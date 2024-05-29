@@ -19,7 +19,10 @@
                             @if (utils.isNotEmptyArray(textcritic.description)) {
                                 <div>
                                     <p class="smallcaps">
-                                        {{ isSketchId(textcritic.id) ? 'Skizzenkommentar' : 'Quellenbewertung' }}:
+                                        <awg-edition-tka-label
+                                            [id]="textcritic.id"
+                                            [labelType]="'evaluation'"></awg-edition-tka-label
+                                        >:
                                     </p>
                                     <awg-edition-tka-description
                                         [textcriticalDescriptions]="textcritic.description"
@@ -31,11 +34,10 @@
                             @if (utils.isNotEmptyArray(textcritic.comments)) {
                                 <div>
                                     <p class="smallcaps">
-                                        {{
-                                            isSketchId(textcritic.id)
-                                                ? 'Textkritischer Kommentar'
-                                                : 'Textkritische Anmerkungen'
-                                        }}:
+                                        <awg-edition-tka-label
+                                            [id]="textcritic.id"
+                                            [labelType]="'comment'"></awg-edition-tka-label
+                                        >:
                                     </p>
                                     <awg-edition-tka-table
                                         [textcriticalComments]="textcritic.comments"
