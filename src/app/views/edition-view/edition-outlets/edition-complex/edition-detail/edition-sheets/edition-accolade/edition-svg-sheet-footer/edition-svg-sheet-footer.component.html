@@ -8,7 +8,7 @@
                 </span>
             }
             <span class="smallcaps"
-                >{{ isTextcriticsForSketch(selectedTextcritics) ? 'Skizzenkommentar' : 'Quellenbewertung' }}:</span
+                >{{ isSketchId(selectedTextcritics.id) ? 'Skizzenkommentar' : 'Quellenbewertung' }}:</span
             >
             @if (selectedTextcritics.description && !utils.isNotEmptyArray(selectedTextcritics.description)) {
                 <span>&nbsp;---</span>
@@ -28,16 +28,12 @@
     @if (showTkA) {
         <div class="awg-edition-svg-sheet-footer-textcritics">
             <p class="smallcaps">
-                {{
-                    isTextcriticsForSketch(selectedTextcritics)
-                        ? 'Textkritischer Kommentar'
-                        : 'Textkritische Anmerkungen'
-                }}:
+                {{ isSketchId(selectedTextcritics.id) ? 'Textkritischer Kommentar' : 'Textkritische Anmerkungen' }}:
             </p>
             <awg-edition-tka-table
                 [textcriticalComments]="selectedTextcriticalComments"
                 [isRowTable]="selectedTextcritics.rowtable"
-                [isTextcriticsForSketch]="isTextcriticsForSketch(selectedTextcritics)"
+                [isSketchId]="isSketchId(selectedTextcritics.id)"
                 (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                 (openModalRequest)="openModal($event)"
                 (selectSvgSheetRequest)="selectSvgSheet($event)">

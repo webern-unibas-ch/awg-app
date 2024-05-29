@@ -19,11 +19,7 @@
                             @if (utils.isNotEmptyArray(textcritic.description)) {
                                 <div>
                                     <p class="smallcaps">
-                                        {{
-                                            isTextcriticsForSketch(textcritic)
-                                                ? 'Skizzenkommentar'
-                                                : 'Quellenbewertung'
-                                        }}:
+                                        {{ isSketchId(textcritic.id) ? 'Skizzenkommentar' : 'Quellenbewertung' }}:
                                     </p>
                                     <awg-edition-tka-description
                                         [textcriticalDescriptions]="textcritic.description"
@@ -36,7 +32,7 @@
                                 <div>
                                     <p class="smallcaps">
                                         {{
-                                            isTextcriticsForSketch(textcritic)
+                                            isSketchId(textcritic.id)
                                                 ? 'Textkritischer Kommentar'
                                                 : 'Textkritische Anmerkungen'
                                         }}:
@@ -44,7 +40,7 @@
                                     <awg-edition-tka-table
                                         [textcriticalComments]="textcritic.comments"
                                         [isRowTable]="textcritic.rowtable"
-                                        [isTextcriticsForSketch]="isTextcriticsForSketch(textcritic)"
+                                        [isSketchId]="isSketchId(textcritic.id)"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                         (openModalRequest)="openModal($event)"
                                         (selectSvgSheetRequest)="selectSvgSheet($event)">

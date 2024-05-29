@@ -44,7 +44,7 @@ class EditionTkaTableStubComponent {
     @Input()
     isRowTable = false;
     @Input()
-    isTextcriticsForSketch = false;
+    isSketchId = false;
     @Output()
     navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -604,7 +604,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     expectToEqual(editionTkaTableCmp.isRowTable, expectedTextcriticsData.textcritics[1].rowtable);
                 });
 
-                it('... should pass down `isTextcriticsForSketch` to EditionTkaTableComponent (stubbed)', () => {
+                it('... should pass down `isSketchId` to EditionTkaTableComponent (stubbed)', () => {
                     const editionTkaTableDes = getAndExpectDebugElementByDirective(
                         compDe,
                         EditionTkaTableStubComponent,
@@ -615,53 +615,50 @@ describe('TextcriticsListComponent (DONE)', () => {
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
-                    expectToEqual(editionTkaTableCmp.isTextcriticsForSketch, false);
+                    expectToEqual(editionTkaTableCmp.isSketchId, false);
                 });
             });
         });
 
-        describe('#isTextcriticsForSketch()', () => {
-            it('... should have a method `isTextcriticsForSketch`', () => {
-                expect(component.isTextcriticsForSketch).toBeDefined();
+        describe('#isSketchId()', () => {
+            it('... should have a method `isSketchId`', () => {
+                expect(component.isSketchId).toBeDefined();
             });
 
             describe('... should return false if', () => {
-                it('... selectedTextcritics is undefined', () => {
-                    const result = component.isTextcriticsForSketch(undefined);
+                it('... is undefined', () => {
+                    const result = component.isSketchId(undefined);
 
                     expect(result).toBeFalse();
                 });
 
-                it('... selectedTextcritics is null', () => {
-                    const result = component.isTextcriticsForSketch(null);
+                it('... id is null', () => {
+                    const result = component.isSketchId(null);
 
                     expect(result).toBeFalse();
                 });
 
-                it('... selectedTextcritics id does not include `_Sk`', () => {
-                    const textcritics = expectedTextcriticsData.textcritics[0];
-                    textcritics.id = 'test-1';
+                it('... id does not include `_Sk`', () => {
+                    const id = 'test-1';
 
-                    const result = component.isTextcriticsForSketch(textcritics);
+                    const result = component.isSketchId(id);
 
                     expect(result).toBeFalse();
                 });
             });
 
-            it('... should return true if selectedTextcritics id includes `_Sk`', () => {
-                const textcritics = expectedTextcriticsData.textcritics[0];
-                textcritics.id = 'test-1_Sk1';
+            it('... should return true if id includes `_Sk`', () => {
+                const id = 'test-1_Sk1';
 
-                const result = component.isTextcriticsForSketch(textcritics);
+                const result = component.isSketchId(id);
 
                 expect(result).toBeTrue();
             });
 
-            it('... should return true if selectedTextcritics id includes `SkRT`', () => {
-                const textcritics = expectedTextcriticsData.textcritics[0];
-                textcritics.id = 'SkRT';
+            it('... should return true if id includes `SkRT`', () => {
+                const id = 'SkRT';
 
-                const result = component.isTextcriticsForSketch(textcritics);
+                const result = component.isSketchId(id);
 
                 expect(result).toBeTrue();
             });
