@@ -1,4 +1,4 @@
-import { DebugElement, SimpleChange } from '@angular/core';
+import { Component, DebugElement, Input, SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import Spy = jasmine.Spy;
@@ -6,9 +6,23 @@ import Spy = jasmine.Spy;
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 
 import { EditionSvgSheetViewerSwitchComponent } from './edition-svg-sheet-viewer-switch.component';
+
+// Mock components
+@Component({ selector: 'awg-edition-tka-label', template: '' })
+class EditionTkaLabelStubComponent {
+    @Input()
+    id: string;
+    @Input() labelType: 'evaluation' | 'comment';
+}
 
 describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
     let component: EditionSvgSheetViewerSwitchComponent;
@@ -23,6 +37,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
     let toggleTkkClassesHighlightSpy: Spy;
     let toggleUpdateAllClassesVisibilitySpy: Spy;
 
+    let expectedId: string;
     let expectedClass1: string;
     let expectedClass2: string;
     let expectedSuppliedClasses: Map<string, boolean>;
@@ -33,7 +48,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [FormsModule],
-            declarations: [EditionSvgSheetViewerSwitchComponent],
+            declarations: [EditionSvgSheetViewerSwitchComponent, EditionTkaLabelStubComponent],
         }).compileComponents();
     }));
 
@@ -43,6 +58,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
+        expectedId = 'test-id';
         expectedClass1 = 'class1';
         expectedClass2 = 'class2';
         expectedSuppliedClasses = new Map<string, boolean>();
@@ -80,11 +96,15 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have no suppliedClasses yet', () => {
+        it('... should have no `id` yet', () => {
+            expect(component.id).toBeUndefined();
+        });
+
+        it('... should have no `suppliedClasses` yet', () => {
             expect(component.suppliedClasses).toBeUndefined();
         });
 
-        it('... should have no hasAvailableTkaOverlays yet', () => {
+        it('... should have no `hasAvailableTkaOverlays` yet', () => {
             expect(component.hasAvailableTkaOverlays).toBeUndefined();
         });
 
@@ -154,17 +174,22 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
+            component.id = expectedId;
             component.suppliedClasses = expectedSuppliedClasses;
             component.hasAvailableTkaOverlays = expectedHasAvailableTkaOverlays;
 
             fixture.detectChanges();
         });
 
-        it('... should have suppliedClasses', () => {
+        it('... should have `id`', () => {
+            expectToEqual(component.id, expectedId);
+        });
+
+        it('... should have `suppliedClasses`', () => {
             expectToEqual(component.suppliedClasses, expectedSuppliedClasses);
         });
 
-        it('... should have hasAvailableTkaOverlays', () => {
+        it('... should have `hasAvailableTkaOverlays`', () => {
             expectToEqual(component.hasAvailableTkaOverlays, expectedHasAvailableTkaOverlays);
         });
 
@@ -372,7 +397,38 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 expectToEqual(formSwitchInputEl.checked, true);
                 expectToEqual(formSwitchInputEl.id, 'tkk');
                 expectToEqual(formSwitchLabelEl.htmlFor, 'tkk');
-                expectToEqual(formSwitchLabelEl.textContent.trim(), 'Textkritische Kommentare');
+            });
+
+            it('... should contain EditionTkaLabelComponent in tkk label', () => {
+                const cardBodyDe = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
+                const formSwitchDe = getAndExpectDebugElementByCss(
+                    cardBodyDe[0],
+                    'div.form-check.form-switch',
+                    expectedSuppliedClasses.size + 2,
+                    expectedSuppliedClasses.size + 2
+                );
+                // Get last form-switch for tkk
+                const formSwitchLabelDe = getAndExpectDebugElementByCss(
+                    formSwitchDe[expectedSuppliedClasses.size + 1],
+                    'label.form-check-label',
+                    1,
+                    1
+                );
+                getAndExpectDebugElementByDirective(formSwitchLabelDe[0], EditionTkaLabelStubComponent, 1, 1);
+            });
+
+            it('... should pass down `id` data to EditionTkaLabelComponent (stubbed)', () => {
+                const labelDes = getAndExpectDebugElementByDirective(compDe, EditionTkaLabelStubComponent, 1, 1);
+                const labelCmp = labelDes[0].injector.get(EditionTkaLabelStubComponent) as EditionTkaLabelStubComponent;
+
+                expectToBe(labelCmp.id, expectedId);
+            });
+
+            it('... should pass down `labelType` data to EditionTkaLabelComponent (stubbed)', () => {
+                const labelDes = getAndExpectDebugElementByDirective(compDe, EditionTkaLabelStubComponent, 1, 1);
+                const labelCmp = labelDes[0].injector.get(EditionTkaLabelStubComponent) as EditionTkaLabelStubComponent;
+
+                expectToBe(labelCmp.labelType, 'comment');
             });
 
             it('... should trigger `toggleTkkClassesHighlight` on click on form-switch for tkk', fakeAsync(() => {
