@@ -47,7 +47,7 @@
             "type": "Fotokopien von <a (click)=\"ref.navigateToReportFragment('source_E')\"><strong>E</strong></a>.",
             "location": "Verschollen.",
             "hasDescription": false,
-            "linkTo": "OP25_SOURCE_NOT_AVAILABLE"
+            "linkTo": ""
         }
     ],
     "textSources": [
