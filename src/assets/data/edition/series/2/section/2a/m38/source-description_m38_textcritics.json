@@ -102,7 +102,7 @@
             "id": "M_38_Sk3",
             "label": "M 38 Sk3",
             "description": [
-                "<strong>M 38 Sk3</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 38."
+                "<strong>Sk3</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet('m38', 'M_38_TF1')\" ><strong>Studienkomposition für Klavier M 38</strong></a>."
             ],
             "comments": [
                 {
