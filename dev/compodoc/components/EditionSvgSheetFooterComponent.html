@@ -200,10 +200,10 @@ and lets the user display textcritical comments.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#faChevronRight" >faChevronRight</a>
+                                <a href="#faChevronDown" >faChevronDown</a>
                             </li>
                             <li>
-                                <a href="#faChevronUp" >faChevronUp</a>
+                                <a href="#faChevronRight" >faChevronRight</a>
                             </li>
                             <li>
                                 <a href="#ref" >ref</a>
@@ -816,6 +816,38 @@ and svg sheet to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.<
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="faChevronDown"></a>
+                    <span class="name">
+                        <span ><b>faChevronDown</b></span>
+                        <a href="#faChevronDown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>faChevronDown</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-footer/edition-svg-sheet-footer.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: faChevronDown.</p>
+<p>It instantiates fontawesome&#39;s faChevronDown icon.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="faChevronRight"></a>
                     <span class="name">
                         <span ><b>faChevronRight</b></span>
@@ -831,38 +863,6 @@ and svg sheet to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.<
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-footer/edition-svg-sheet-footer.component.ts:76</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: faChevronRight.</p>
-<p>It instantiates fontawesome&#39;s faChevronRight icon.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="faChevronUp"></a>
-                    <span class="name">
-                        <span ><b>faChevronUp</b></span>
-                        <a href="#faChevronUp"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>faChevronUp</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-footer/edition-svg-sheet-footer.component.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -980,7 +980,7 @@ and svg sheet to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.<
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
 
-import { faChevronRight, faChevronUp } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
+import { faChevronDown, faChevronRight } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
 
 import { UtilityService } from &#x27;@awg-app/core/services&#x27;;
 import { TextcriticalComment, Textcritics } from &#x27;@awg-app/views/edition-view/models&#x27;;
@@ -1056,11 +1056,11 @@ export class EditionSvgSheetFooterComponent {
     faChevronRight &#x3D; faChevronRight;
 
     /**
-     * Public variable: faChevronRight.
+     * Public variable: faChevronDown.
      *
-     * It instantiates fontawesome&#x27;s faChevronRight icon.
+     * It instantiates fontawesome&#x27;s faChevronDown icon.
      */
-    faChevronUp &#x3D; faChevronUp;
+    faChevronDown &#x3D; faChevronDown;
 
     /**
      * Self-referring variable needed for CompileHtml library.
@@ -1154,7 +1154,7 @@ export class EditionSvgSheetFooterComponent {
         &lt;p (click)&#x3D;&quot;toggleTextcritics()&quot; style&#x3D;&quot;cursor: pointer&quot;&gt;
             @if (selectedTextcritics.description &amp;&amp; utils.isNotEmptyArray(selectedTextcritics.description)) {
                 &lt;span&gt;
-                    &lt;fa-icon [icon]&#x3D;&quot;showTextcritics ? faChevronUp : faChevronRight&quot;&gt;&lt;/fa-icon&gt;
+                    &lt;fa-icon [icon]&#x3D;&quot;showTextcritics ? faChevronDown : faChevronRight&quot;&gt;&lt;/fa-icon&gt;
                     &amp;nbsp;
                 &lt;/span&gt;
             }
@@ -1229,7 +1229,7 @@ export class EditionSvgSheetFooterComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="awg-edition-svg-sheet-footer mt-4">    <div class="awg-edition-svg-sheet-footer-evaluation">        <p (click)="toggleTextcritics()" style="cursor: pointer">            @if (selectedTextcritics.description && utils.isNotEmptyArray(selectedTextcritics.description)) {                <span>                    <fa-icon [icon]="showTextcritics ? faChevronUp : faChevronRight"></fa-icon>                    &nbsp;                </span>            }            <span class="smallcaps"                ><awg-edition-tka-label [id]="selectedTextcritics.id" [labelType]="\'evaluation\'"></awg-edition-tka-label                >:</span            >            @if (selectedTextcritics.description && !utils.isNotEmptyArray(selectedTextcritics.description)) {                <span>&nbsp;---</span>            }        </p>        @if (            showTextcritics && selectedTextcritics.description && utils.isNotEmptyArray(selectedTextcritics.description)        ) {            <awg-edition-tka-description                [textcriticalDescriptions]="selectedTextcritics.description"                (navigateToReportFragmentRequest)="navigateToReportFragment($event)"                (openModalRequest)="openModal($event)"                (selectSvgSheetRequest)="selectSvgSheet($event)">            </awg-edition-tka-description>        }    </div>    @if (showTkA) {        <div class="awg-edition-svg-sheet-footer-textcritics">            <p class="smallcaps">                <awg-edition-tka-label [id]="selectedTextcritics.id" [labelType]="\'comment\'"></awg-edition-tka-label>:            </p>            <awg-edition-tka-table                [textcriticalComments]="selectedTextcriticalComments"                [isRowTable]="selectedTextcritics.rowtable"                [isSketchId]="utils.isSketchId(selectedTextcritics.id)"                (navigateToReportFragmentRequest)="navigateToReportFragment($event)"                (openModalRequest)="openModal($event)"                (selectSvgSheetRequest)="selectSvgSheet($event)">            </awg-edition-tka-table>        </div>    }</div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="awg-edition-svg-sheet-footer mt-4">    <div class="awg-edition-svg-sheet-footer-evaluation">        <p (click)="toggleTextcritics()" style="cursor: pointer">            @if (selectedTextcritics.description && utils.isNotEmptyArray(selectedTextcritics.description)) {                <span>                    <fa-icon [icon]="showTextcritics ? faChevronDown : faChevronRight"></fa-icon>                    &nbsp;                </span>            }            <span class="smallcaps"                ><awg-edition-tka-label [id]="selectedTextcritics.id" [labelType]="\'evaluation\'"></awg-edition-tka-label                >:</span            >            @if (selectedTextcritics.description && !utils.isNotEmptyArray(selectedTextcritics.description)) {                <span>&nbsp;---</span>            }        </p>        @if (            showTextcritics && selectedTextcritics.description && utils.isNotEmptyArray(selectedTextcritics.description)        ) {            <awg-edition-tka-description                [textcriticalDescriptions]="selectedTextcritics.description"                (navigateToReportFragmentRequest)="navigateToReportFragment($event)"                (openModalRequest)="openModal($event)"                (selectSvgSheetRequest)="selectSvgSheet($event)">            </awg-edition-tka-description>        }    </div>    @if (showTkA) {        <div class="awg-edition-svg-sheet-footer-textcritics">            <p class="smallcaps">                <awg-edition-tka-label [id]="selectedTextcritics.id" [labelType]="\'comment\'"></awg-edition-tka-label>:            </p>            <awg-edition-tka-table                [textcriticalComments]="selectedTextcriticalComments"                [isRowTable]="selectedTextcritics.rowtable"                [isSketchId]="utils.isSketchId(selectedTextcritics.id)"                (navigateToReportFragmentRequest)="navigateToReportFragment($event)"                (openModalRequest)="openModal($event)"                (selectSvgSheetRequest)="selectSvgSheet($event)">            </awg-edition-tka-table>        </div>    }</div></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaDescriptionComponent', 'selector': 'awg-edition-tka-description'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionSvgSheetFooterComponent'};
