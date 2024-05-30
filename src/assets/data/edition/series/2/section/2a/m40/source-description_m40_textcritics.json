@@ -148,7 +148,7 @@
                     "measure": "13B",
                     "system": "4",
                     "position": "1/8",
-                    "comment": "[#]ais<sup>1</sup> überschreibt h<sup>1</sup>."
+                    "comment": "{{ref.getGlyph('[#]')}}ais<sup>1</sup> überschreibt h<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "g1456",
