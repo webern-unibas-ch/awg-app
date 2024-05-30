@@ -173,7 +173,7 @@
                     "measure": "10",
                     "system": "2",
                     "position": "1/4",
-                    "comment": "[a]E überschreibt F."
+                    "comment": "{{ref.getGlyph('[a]')}}E überschreibt F."
                 },
                 {
                     "svgGroupId": "g1310",
