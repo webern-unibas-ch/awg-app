@@ -239,7 +239,7 @@
                     "measure": "16B",
                     "system": "8",
                     "position": "(2. Note)",
-                    "comment": "Halbe Note [[a]]H gestrichen."
+                    "comment": "Halbe Note [{{ref.getGlyph('[a]')}}]H gestrichen."
                 },                
                 {
                     "svgGroupId": "g1248",
