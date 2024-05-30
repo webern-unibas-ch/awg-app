@@ -138,7 +138,7 @@
             "id": "M_29_Sk4",
             "label": "M 29 Sk4",
             "description": [
-                "<strong>M 29 Sk4</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 29, die jedoch nach dem B-Teil und vor der Wiederholung des A-Teils abbricht."
+                "<strong>Sk4</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet('m29', 'M_29_TF1')\" ><strong>Studienkomposition für Klavier M 29</strong></a>, die jedoch nach dem B-Teil und vor der Wiederholung des A-Teils abbricht."
             ],
             "comments": [
                 {
