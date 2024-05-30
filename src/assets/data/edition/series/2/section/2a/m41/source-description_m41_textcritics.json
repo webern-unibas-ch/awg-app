@@ -155,7 +155,7 @@
                     "measure": "11",
                     "system": "5",
                     "position": "2/4",
-                    "comment": "[a]G/e überschreibt H/g."
+                    "comment": "{{ref.getGlyph('[a]')}}G/e überschreibt H/g."
                 },
                 {
                     "svgGroupId": "g1188",
