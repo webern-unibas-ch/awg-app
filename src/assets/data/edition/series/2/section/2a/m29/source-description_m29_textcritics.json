@@ -420,7 +420,8 @@
             "id": "M_29_Sk5",
             "label": "M 29 Sk5",
             "description": [
-                "<strong>M 29 Sk5</strong> entwirft im Nachgang zu der Tintenniederschrift von Studienkomposition für Klavier M 29 eine alternative Fassung für die ersten acht Takte, bei denen hauptsächlich die linke Hand in der Hinsicht überarbeitet wird, dass die durchgehende Achtelbewegung durch Viertelnoten und -pausen aufgebrochen wird."          ],
+                "<strong>Sk5</strong> entwirft im Nachgang zu der Tintenniederschrift von<a (click)=\"ref.selectSvgSheet('m29', 'M_29_TF1')\" ><strong>Studienkomposition für Klavier M 29</strong></a> eine alternative Fassung für die ersten acht Takte, bei denen hauptsächlich die linke Hand in der Hinsicht überarbeitet wird, dass die durchgehende Achtelbewegung durch Viertelnoten und -pausen aufgebrochen wird."
+                ],
             "comments": [
                 {
                     "svgGroupId": "g1104",
