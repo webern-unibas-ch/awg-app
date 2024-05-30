@@ -4,7 +4,7 @@ import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faChevronRight, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -60,7 +60,7 @@ class EditionTkaTableStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-describe('EditionSvgSheetFooterComponent (DONE)', () => {
+fdescribe('EditionSvgSheetFooterComponent (DONE)', () => {
     let component: EditionSvgSheetFooterComponent;
     let fixture: ComponentFixture<EditionSvgSheetFooterComponent>;
     let compDe: DebugElement;
@@ -84,8 +84,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
     let expectedShowTka: boolean;
     let expectedModalSnippet: string;
 
+    let expectedChevronDownIcon: IconDefinition;
     let expectedChevronRightIcon: IconDefinition;
-    let expectedChevronUpIcon: IconDefinition;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -117,8 +117,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         expectedSelectedTextcriticalComments = expectedSelectedTextcritics.comments;
         expectedShowTka = true;
 
+        expectedChevronDownIcon = faChevronDown;
         expectedChevronRightIcon = faChevronRight;
-        expectedChevronUpIcon = faChevronUp;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -152,9 +152,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         });
 
         it('... should have fontawesome icons', () => {
+            expectToEqual(component.faChevronDown, expectedChevronDownIcon);
             expectToEqual(component.faChevronRight, expectedChevronRightIcon);
-
-            expectToEqual(component.faChevronUp, expectedChevronUpIcon);
         });
 
         it('... should have `ref`', () => {
@@ -230,7 +229,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expect(iconDes[0].children[0].classes['fa-chevron-right']).toBeTrue();
             });
 
-            it('... should contain fa-icon with chevronUp in p in evaluation div if showTextcritics = true', () => {
+            it('... should contain fa-icon with chevronDown in p in evaluation div if showTextcritics = true', () => {
                 component.showTextcritics = true;
                 detectChangesOnPush(fixture);
 
@@ -246,7 +245,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
 
                 expect(iconDes[0].children[0]).toBeTruthy();
                 expect(iconDes[0].children[0].classes).toBeTruthy();
-                expect(iconDes[0].children[0].classes['fa-chevron-up']).toBeTrue();
+                expect(iconDes[0].children[0].classes['fa-chevron-down']).toBeTrue();
             });
 
             it('... should contain a span.smallcaps in p with first EditionTkaLabelComponent', () => {
