@@ -204,8 +204,8 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 });
             });
 
-            it('... should display default table header with adjusted comment colum if `isTextcriticsForSketch` flag is true', () => {
-                component.isTextcriticsForSketch = true;
+            it('... should display default table header with adjusted comment colum if `isSketchId` flag is true', () => {
+                component.isSketchId = true;
                 detectChangesOnPush(fixture);
 
                 const expected = expectedTableHeaderStrings['default'];
@@ -344,7 +344,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                 expectSpyCall(getTableHeaderStringsSpy, 2);
 
-                component.isTextcriticsForSketch = true;
+                component.isSketchId = true;
                 detectChangesOnPush(fixture);
 
                 expectSpyCall(getTableHeaderStringsSpy, 3);
@@ -352,7 +352,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
             it('... should return rowTable header if `isRowTable` flag is given', () => {
                 component.isRowTable = true;
-                component.isTextcriticsForSketch = false;
+                component.isSketchId = false;
                 detectChangesOnPush(fixture);
 
                 const tableHeaders = component.getTableHeaderStrings();
@@ -360,9 +360,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expectToEqual(tableHeaders, expectedTableHeaderStrings['rowTable']);
             });
 
-            it('... should return rowTable header with adjusted comment colum if `isTextcriticsForSketch` flag is true', () => {
+            it('... should return rowTable header with adjusted comment colum if `isSketchId` flag is true', () => {
                 component.isRowTable = true;
-                component.isTextcriticsForSketch = true;
+                component.isSketchId = true;
                 detectChangesOnPush(fixture);
 
                 const expected = expectedTableHeaderStrings['rowTable'];
@@ -375,7 +375,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
             it('... should return corrections table header if `isCorrections` flag is given', () => {
                 component.isCorrections = true;
-                component.isTextcriticsForSketch = false;
+                component.isSketchId = false;
                 detectChangesOnPush(fixture);
 
                 const tableHeaders = component.getTableHeaderStrings();
@@ -383,9 +383,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expectToEqual(tableHeaders, expectedTableHeaderStrings['corrections']);
             });
 
-            it('... should not change corrections table header if `isTextcriticsForSketch` flag is true', () => {
+            it('... should not change corrections table header if `isSketchId` flag is true', () => {
                 component.isCorrections = true;
-                component.isTextcriticsForSketch = true;
+                component.isSketchId = true;
                 detectChangesOnPush(fixture);
 
                 const tableHeaders = component.getTableHeaderStrings();
@@ -396,7 +396,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             it('... should return default table header if `isRowTable` flag or `isCorrections` are not given', () => {
                 component.isRowTable = false;
                 component.isCorrections = false;
-                component.isTextcriticsForSketch = false;
+                component.isSketchId = false;
                 detectChangesOnPush(fixture);
 
                 const tableHeaders = component.getTableHeaderStrings();
@@ -404,10 +404,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expectToEqual(tableHeaders, expectedTableHeaderStrings['default']);
             });
 
-            it('... should return default table header with adjusted comment colum if `isTextcriticsForSketch` flag is true', () => {
+            it('... should return default table header with adjusted comment colum if `isSketchId` flag is true', () => {
                 component.isRowTable = false;
                 component.isCorrections = false;
-                component.isTextcriticsForSketch = true;
+                component.isSketchId = true;
                 detectChangesOnPush(fixture);
 
                 const expected = expectedTableHeaderStrings['default'];

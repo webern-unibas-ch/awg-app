@@ -78,4 +78,48 @@ describe('UtilityService (DONE)', () => {
             expect(utils.isNotEmptyObject(checkObj)).toBeFalse();
         });
     });
+
+    describe('#isSketchId()', () => {
+        it('... should have a method `isSketchId`', () => {
+            expect(utils.isSketchId).toBeDefined();
+        });
+
+        describe('... should return false if', () => {
+            it('... id is undefined', () => {
+                const result = utils.isSketchId(undefined);
+
+                expect(result).toBeFalse();
+            });
+
+            it('... id is null', () => {
+                const result = utils.isSketchId(null);
+
+                expect(result).toBeFalse();
+            });
+
+            it('... id does not include `_Sk`', () => {
+                const id = 'test-1';
+
+                const result = utils.isSketchId(id);
+
+                expect(result).toBeFalse();
+            });
+        });
+
+        it('... should return true if id includes `_Sk`', () => {
+            const id = 'test-1_Sk1';
+
+            const result = utils.isSketchId(id);
+
+            expect(result).toBeTrue();
+        });
+
+        it('... should return true if id includes `SkRT`', () => {
+            const id = 'SkRT';
+
+            const result = utils.isSketchId(id);
+
+            expect(result).toBeTrue();
+        });
+    });
 });
