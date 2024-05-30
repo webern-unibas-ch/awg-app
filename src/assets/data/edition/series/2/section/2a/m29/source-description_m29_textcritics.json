@@ -223,7 +223,7 @@
                     "measure": "7",
                     "system": "7",
                     "position": "8/16",
-                    "comment": "a<sup>2</sup> überschreibt gis<sup>2</sup>; [#] zu überschriebenem gis<sup>2</sup> gestrichen."
+                    "comment": "a<sup>2</sup> überschreibt gis<sup>2</sup>; {{ref.getGlyph('[#]')}} zu überschriebenem gis<sup>2</sup> gestrichen."
                 },
                 {
                     "svgGroupId": "g1586",
