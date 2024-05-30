@@ -101,7 +101,7 @@
             "id": "M_29_Sk3",
             "label": "M 29 Sk3",
             "description": [
-                "<strong>M 29 Sk3</strong> formuliert einen alternativen harmonischen Verlauf auf der Basis von <strong>M 29 Sk1</strong>, der in formaler Hinsicht aber nicht eindeutig zuzuordnen ist."
+                "<strong>Sk3</strong> formuliert einen alternativen harmonischen Verlauf auf der Basis von <a (click)=\"ref.selectSvgSheet('m29', 'M_29_Sk1')\" ><strong>Sk1</strong></a>, der in formaler Hinsicht aber nicht eindeutig zuzuordnen ist."
             ],
             "comments": [
                 {
