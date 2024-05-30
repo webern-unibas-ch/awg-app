@@ -42,7 +42,7 @@
             "id": "M_40_Sk1",
             "label": "M 40 Sk1",
             "description": [
-                "<strong>M 40 Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 40, die vor der Reprise abbricht."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet('m40', 'M_40_TF1')\" ><strong>Studienkomposition für Klavier M 40</strong></a>, die vor der Reprise abbricht."
             ],
             "comments": [
                 {
