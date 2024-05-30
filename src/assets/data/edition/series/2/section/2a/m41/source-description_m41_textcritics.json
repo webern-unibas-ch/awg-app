@@ -49,7 +49,7 @@
             "id": "M_41_Sk1",
             "label": "M 41 Sk1",
             "description": [
-                "<strong>M 41 Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 41, die ab T. 24 zunehmend ausfranst, indem sie nur noch das harmonische Grundgerüst bzw. die Basslinie skizziert."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet('m41', 'M_41_TF1')\" ><strong>Studienkomposition für Klavier M 41</strong></a>, die ab T. 24 zunehmend ausfranst, indem sie nur noch das harmonische Grundgerüst bzw. die Basslinie skizziert."
             ],
             "comments": [
                 {
