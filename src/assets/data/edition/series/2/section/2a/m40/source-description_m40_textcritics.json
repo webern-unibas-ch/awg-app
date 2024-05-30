@@ -19,7 +19,7 @@
                     "measure": "13",
                     "system": "Klav. o.",
                     "position": "1. Note",
-                    "comment": "Unterstimmenschicht: Notenhals nach unten ergänzt. <strong>B</strong>: Mit punktierter Viertelnote aus Oberstimmenschicht zusammengehalst."
+                    "comment": "Unterstimmenschicht: Notenhals nach unten ergänzt. <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a>: Mit punktierter Viertelnote aus Oberstimmenschicht zusammengehalst."
                 },
                 {
                     "svgGroupId": "g3400",
