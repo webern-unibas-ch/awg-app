@@ -251,7 +251,7 @@
             ]
         },
         {
-            "id": "M_40_Sk1.1",
+            "id": "M_40_Sk1_1",
             "label": "M 40 Sk1.1",
             "description": [
                 "<strong>Sk1.1</strong> enthält die in der Reprise veränderten Schlusstakte und vervollständigt damit die Verlaufsskizze <a (click)=\"ref.selectSvgSheet('m40', 'M_40_Sk1')\" ><strong>Sk1</strong></a>."
