@@ -41,12 +41,12 @@ export class EditionTkaTableComponent {
     isRowTable = false;
 
     /**
-     * Input variable: isTextcriticsForSketch.
+     * Input variable: isSketchId.
      *
      * It keeps a boolean flag to indicate if the textcritics are related to a sketch.
      */
     @Input()
-    isTextcriticsForSketch = false;
+    isSketchId = false;
 
     /**
      * Output variable: navigateToReportFragment.
@@ -154,7 +154,7 @@ export class EditionTkaTableComponent {
         }
 
         // Adjust comment label for sketches, but not corrections
-        if (this.isTextcriticsForSketch && !this.isCorrections) {
+        if (this.isSketchId && !this.isCorrections) {
             selectedTableHeader = selectedTableHeader.map(item =>
                 item.reference === 'comment' ? { ...item, label: 'Kommentar' } : item
             );
