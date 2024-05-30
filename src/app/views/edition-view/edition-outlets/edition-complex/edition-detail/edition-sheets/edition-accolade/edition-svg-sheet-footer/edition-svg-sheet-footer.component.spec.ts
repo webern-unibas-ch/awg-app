@@ -60,7 +60,7 @@ class EditionTkaTableStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-fdescribe('EditionSvgSheetFooterComponent (DONE)', () => {
+describe('EditionSvgSheetFooterComponent (DONE)', () => {
     let component: EditionSvgSheetFooterComponent;
     let fixture: ComponentFixture<EditionSvgSheetFooterComponent>;
     let compDe: DebugElement;
