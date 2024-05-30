@@ -428,7 +428,7 @@
                     "measure": "2",
                     "system": "10",
                     "position": "6/8",
-                    "comment": "[a] überschreibt [b]."
+                    "comment": "{{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[b]')}}."
                 },
                 {
                     "svgGroupId": "g1122",
