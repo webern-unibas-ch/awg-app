@@ -169,7 +169,7 @@
                     "measure": "14",
                     "system": "4",
                     "position": "1. Note",
-                    "comment": "Viertelnote [[b]]as<sup>1</sup> gestrichen."
+                    "comment": "Viertelnote [{{ref.getGlyph('[b]')}}]as<sup>1</sup> gestrichen."
                 },
                 {
                     "svgGroupId": "g1502",
