@@ -197,7 +197,7 @@
                     "measure": "16A",
                     "system": "8",
                     "position": "1/2",
-                    "comment": "[b]B überschreibt [#]Ais."
+                    "comment": "{{ref.getGlyph('[b]')}}B überschreibt {{ref.getGlyph('[#]')}}Ais."
                 },
                 {
                     "svgGroupId": "g1206",
