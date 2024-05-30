@@ -215,7 +215,7 @@
                     "measure": "12B",
                     "system": "1",
                     "position": "2/4",
-                    "comment": "Notenkopf [b]as gestrichen."
+                    "comment": "Notenkopf {{ref.getGlyph('[b]')}}as gestrichen."
                 },
                 {
                     "svgGroupId": "g998",
