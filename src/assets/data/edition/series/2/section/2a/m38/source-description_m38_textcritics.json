@@ -42,7 +42,7 @@
             "id": "M_38_Sk1",
             "label": "M 38 Sk1",
             "description": [
-                "<strong>M 38 Sk1</strong> enthält einen rhythmischen Entwurf des Melodieverlaufs von M 38."
+                "<strong>Sk1</strong> enthält einen rhythmischen Entwurf des Melodieverlaufs der <a (click)=\"ref.selectSvgSheet('m38', 'M_38_TF1')\" ><strong>Studienkomposition für Klavier M 38</strong></a>."
             ],
             "comments": [
                 {
