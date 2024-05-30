@@ -83,7 +83,7 @@
         {
             "siglum": "[K]",
             "siglumAddendum": "",
-            "type": "Stichvorlage für <strong>L</strong>.",
+            "type": "Stichvorlage für <a (click)=\"ref.navigateToReportFragment('source_L')\"><strong>L</strong></a>.",
             "location": "Verschollen.",
             "hasDescription": false,
             "linkTo": "source_K"
@@ -91,7 +91,7 @@
         {
             "siglum": "L",
             "siglumAddendum": "",
-            "type": "Druck von <br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Dies ist ein Lied“ M 133: Textfassung 4 <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Im Windesweben“ M 134: Textfassung 3 <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„An Bachesranft“ M 135: Textfassung 3 <br /><span class=\"tab\"></span>IV<span class=\"tab\"></span>„Im Morgentaun“ M 136: Textfassung 3 <br /><span class=\"tab\"></span>V<span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: Textfassung 5.",
+            "type": "Druck von <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Dies ist ein Lied“ M 133: Textfassung 4 <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Im Windesweben“ M 134: Textfassung 3 <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„An Bachesranft“ M 135: Textfassung 3 <br /><span class=\"tab\"></span>IV<span class=\"tab\"></span>„Im Morgentaun“ M 136: Textfassung 3 <br /><span class=\"tab\"></span>V<span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: Textfassung 5.",
             "location": "Wien: Verein für musikalische Privataufführungen, 1919 / Universal Edition, 1921.",
             "hasDescription": true,
             "linkTo": "source_L"
@@ -99,7 +99,7 @@
         {
             "siglum": "M",
             "siglumAddendum": "",
-            "type": "Druck von <br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Dies ist ein Lied“ M 133: Textfassung 4 <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Im Windesweben“ M 134: Textfassung 3 <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„An Bachesranft“ M 135: Textfassung 3 <br /><span class=\"tab\"></span>IV<span class=\"tab\"></span>„Im Morgentaun“ M 136: Textfassung 3 <br /><span class=\"tab\"></span>V<span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: Textfassung 5.",
+            "type": "Druck von <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Dies ist ein Lied“ M 133: Textfassung 4 <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Im Windesweben“ M 134: Textfassung 3 <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„An Bachesranft“ M 135: Textfassung 3 <br /><span class=\"tab\"></span>IV<span class=\"tab\"></span>„Im Morgentaun“ M 136: Textfassung 3 <br /><span class=\"tab\"></span>V<span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: Textfassung 5.",
             "location": "Wien: Universal Edition, 1923.",
             "hasDescription": true,
             "linkTo": "source_M"
