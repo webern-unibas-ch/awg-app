@@ -169,7 +169,7 @@
                     "measure": "18",
                     "system": "10",
                     "position": "3/8",
-                    "comment": "[b]ges<sup>3</sup> überschreibt [#]fis<sup>3</sup>."
+                    "comment": "{{ref.getGlyph('[b]')}}ges<sup>3</sup> überschreibt {{ref.getGlyph('[#]')}}fis<sup>3</sup>."
                 },
                 {
                     "svgGroupId": "g1569",
