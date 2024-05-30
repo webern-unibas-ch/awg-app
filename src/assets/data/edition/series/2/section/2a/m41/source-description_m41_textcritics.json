@@ -226,7 +226,7 @@
             "id": "M_41_Sk1.1",
             "label": "M 41 Sk1.1",
             "description": [
-                "<strong>M 41 Sk1.1</strong> formuliert die in der Verlaufsskizze Sk1 ab T. 24 nur noch sporadisch vorhandene bzw. gänzlich fehlende Melodielinie und verkürzt den bestehenden Verlauf aus Sk1 verkürzt."
+                "<strong>Sk1.1</strong> formuliert die in der Verlaufsskizze <a (click)=\"ref.selectSvgSheet('m41', 'M_41_Sk1')\"><strong>Sk1</strong></a> ab T. 24 nur noch sporadisch vorhandene bzw. gänzlich fehlende Melodielinie und verkürzt den bestehenden Verlauf aus <strong>Sk1</strong>."
             ],
             "comments": [
                 {
