@@ -180,7 +180,7 @@
                     "measure": "10",
                     "system": "1",
                     "position": "2/8",
-                    "comment": "[a] zu g<sup>2</sup> überschreibt [#]."
+                    "comment": "{{ref.getGlyph('[a]')}} zu g<sup>2</sup> überschreibt {{ref.getGlyph('[#]')}}."
                 },
                 {
                     "svgGroupId": "g1323",
