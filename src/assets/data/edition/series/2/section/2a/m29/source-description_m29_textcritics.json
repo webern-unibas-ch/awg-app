@@ -27,7 +27,7 @@
             "id": "M_29_Sk1",
             "label": "M 29 Sk1",
             "description": [
-                "<strong>M 29 Sk1</strong> skizziert einen ersten Melodieverlauf, der bereits einige Kernmotive der späteren Studienkomposition für Klavier M 29 enthält (z. B. punktierte Rhythmen und Sequenzierungen), ansonsten aber von der Endfassung noch stark abweicht."
+                "<strong>Sk1</strong> skizziert einen ersten Melodieverlauf, der bereits einige Kernmotive der späteren <a (click)=\"ref.selectSvgSheet('m29', 'M_29_TF1')\" ><strong>Studienkomposition für Klavier M 29</strong></a> enthält (z. B. punktierte Rhythmen und Sequenzierungen), ansonsten aber von der Endfassung noch stark abweicht."
             ],
             "comments": [
                 {
