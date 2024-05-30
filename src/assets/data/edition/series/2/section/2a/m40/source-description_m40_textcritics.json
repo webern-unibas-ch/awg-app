@@ -120,7 +120,7 @@
                     "measure": "8B",
                     "system": "1",
                     "position": "2/4",
-                    "comment": "Oberstimmenschicht: [a]g<sup>1</sup> überschreibt f<sub>1</sub>."
+                    "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}}g<sup>1</sup> überschreibt f<sub>1</sub>."
                 },
                 {
                     "svgGroupId": "g1274",
