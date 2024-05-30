@@ -204,7 +204,7 @@
                     "measure": "24A",
                     "system": "14",
                     "position": "1/4",
-                    "comment": "Viertelnote G<sub>1</sub> überschreibt Halbe Note [b]As."
+                    "comment": "Viertelnote G<sub>1</sub> überschreibt Halbe Note {{ref.getGlyph('[b]')}}As."
                 },
                 {
                     "svgGroupId": "g990",
