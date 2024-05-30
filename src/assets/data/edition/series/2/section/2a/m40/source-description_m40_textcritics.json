@@ -155,7 +155,7 @@
                     "measure": "13B",
                     "system": "4",
                     "position": "3. Note",
-                    "comment": "[#]gis<sup>1</sup> überscheibt [b]as<sup></sup>."
+                    "comment": "{{ref.getGlyph('[#]')}}gis<sup>1</sup> überscheibt {{ref.getGlyph('[b]')}}as<sup></sup>."
                 },
                 {
                     "svgGroupId": "g1496",
