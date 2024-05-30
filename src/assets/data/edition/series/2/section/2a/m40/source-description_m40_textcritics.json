@@ -204,7 +204,7 @@
                     "measure": "16A",
                     "system": "7",
                     "position": "2/8",
-                    "comment": "Oberstimmenschicht: [a]e<sup>1</sup> überschreibt [#]dis<sup>1</sup>."
+                    "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}}e<sup>1</sup> überschreibt {{ref.getGlyph('[#]')}}dis<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "g1212",
