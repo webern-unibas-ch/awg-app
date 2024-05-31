@@ -14,7 +14,7 @@
     </head>
     <body>
           <script>
-               // Blocking script to avaoid flickering dark mode
+               // Blocking script to avoid flickering dark mode
                // Dark mode toggle button
                var useDark = window.matchMedia('(prefers-color-scheme: dark)');
                var darkModeState = useDark.matches;
@@ -63,9 +63,11 @@
                toggleDarkMode(darkModeState);
           </script>
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="../" class="navbar-brand">awg-app documentation</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">awg-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -74,7 +76,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -116,13 +118,13 @@
 <title>cluster_EditionSvgSheetNavModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 603,-268 603,-70 8,-70"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_EditionSvgSheetNavModule_imports</title>
-<polygon fill="none" stroke="black" points="481,-78 481,-130 595,-130 595,-78 481,-78"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_EditionSvgSheetNavModule_exports</title>
 <polygon fill="none" stroke="black" points="74,-208 74,-260 538,-260 538,-208 74,-208"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_EditionSvgSheetNavModule_imports</title>
+<polygon fill="none" stroke="black" points="481,-78 481,-130 595,-130 595,-78 481,-78"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_EditionSvgSheetNavModule_declarations</title>
