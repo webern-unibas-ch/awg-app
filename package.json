@@ -96,7 +96,6 @@
         "@angular/router": "^18.0.1",
         "@codemirror/legacy-modes": "^6.4.0",
         "@fortawesome/angular-fontawesome": "^0.15.0",
-        "@fortawesome/fontawesome-svg-core": "^6.5.2",
         "@fortawesome/free-solid-svg-icons": "^6.5.2",
         "@kolkov/ngx-gallery": "2.0.1",
         "@ng-bootstrap/ng-bootstrap": "^16.0.0",
