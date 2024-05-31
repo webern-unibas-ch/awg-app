@@ -1,0 +1,440 @@
+{
+    "textcritics": [
+        {
+            "id": "M_29_Sk1",
+            "label": "M 29 Sk1",
+            "description": [
+                "<strong>M 29 Sk1</strong> skizziert einen ersten Melodieverlauf, der bereits einige Kernmotive der späteren Studienkomposition für Klavier M 29 enthält (z. B. punktierte Rhythmen und Sequenzierungen), ansonsten aber von der Endfassung noch stark abweicht."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g4723",
+                    "measure": "5",
+                    "system": "5",
+                    "position": "1. Note",
+                    "comment": "Augmentationspunkt gestrichen."
+                },
+                {
+                    "svgGroupId": "g4732",
+                    "measure": "6",
+                    "system": "5",
+                    "position": "3/4",
+                    "comment": "Viertelnote c<sup>2</sup> überschreibt ursprünglich auf (1/4) gesetzte Achtelnoten c<sup>2</sup>–h<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g4736",
+                    "measure": "6",
+                    "system": "5",
+                    "position": "3/4",
+                    "comment": "Viertelnote h<sup>1</sup> versetzt von metrisch verschobener Position."
+                },
+                {
+                    "svgGroupId": "g4743",
+                    "measure": "7",
+                    "system": "5",
+                    "position": "",
+                    "comment": "gis<sup>1</sup> gestrichen und ersetzt durch h<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g4748",
+                    "measure": "9",
+                    "system": "5",
+                    "position": "1. Note",
+                    "comment": "Viertelnote f<sup>2</sup> gestrichen."
+                },
+                {
+                    "svgGroupId": "g1030",
+                    "measure": "15",
+                    "system": "7–8",
+                    "position": "vor 3/4",
+                    "comment": "Taktstrich gestrichen."
+                },
+                {
+                    "svgGroupId": "g37",
+                    "measure": "21",
+                    "system": "8",
+                    "position": "1–3/4",
+                    "comment": "as<sup>2</sup>–g<sup>2</sup>–f<sup>2</sup> überschreibt f<sup>2</sup>–e<sup>2</sup>–d<sup>2</sup>."
+                }
+            ] 
+        },
+        {
+            "id": "M_29_Sk2",
+            "label": "M 29 Sk2",
+            "description": [
+                "<strong>M 29 Sk2</strong> enthält eine fragmentarische Modulierung auf der Basis von <strong>M 29 Sk1</strong>, die in formaler Hinsicht aber nicht eindeutig zuzuordnen ist."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g156",
+                    "measure": "x+2",
+                    "system": "11",
+                    "position": "1/4",
+                    "comment": "es<sup>2</sup> überschreibt g<sup>2</sup>."
+                }
+            ]
+        },
+        {
+            "id": "M_29_Sk3",
+            "label": "M 29 Sk3",
+            "description": [
+                "<strong>M 29 Sk3</strong> formuliert einen alternativen harmonischen Verlauf auf der Basis von <strong>M 29 Sk1</strong>, der in formaler Hinsicht aber nicht eindeutig zuzuordnen ist."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g990",
+                    "measure": "{x+1A}–{x+2A}",
+                    "system": "11",
+                    "position": "",
+                    "comment": "Noten gestrichen."
+                },
+                {
+                    "svgGroupId": "g1013",
+                    "measure": "x+1B",
+                    "system": "11",
+                    "position": "8/16",
+                    "comment": "h<sup>1</sup> überschreibt g<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g1021",
+                    "measure": "x+2B",
+                    "system": "11",
+                    "position": "8/16",
+                    "comment": "g<sup>1</sup> überschreibt e<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g916",
+                    "measure": "{x+6}",
+                    "system": "13",
+                    "position": "",
+                    "comment": "Noten gestrichen."
+                }
+            ]
+        },
+        {
+            "id": "M_29_Sk4",
+            "label": "M 29 Sk4",
+            "description": [
+                "<strong>M 29 Sk4</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 29, die jedoch nach dem B-Teil und vor der Wiederholung des A-Teils abbricht."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g1503",
+                    "measure": "1",
+                    "system": "8",
+                    "position": "2/4",
+                    "comment": "Viertelnote c gestrichen."
+                },
+                {
+                    "svgGroupId": "g1509",
+                    "measure": "1",
+                    "system": "8",
+                    "position": "4/8",
+                    "comment": "g überschreibt e."
+                },
+                {
+                    "svgGroupId": "g1515",
+                    "measure": "2",
+                    "system": "8",
+                    "position": "1. Note",
+                    "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                },
+                {
+                    "svgGroupId": "g1519",
+                    "measure": "2",
+                    "system": "8",
+                    "position": "2/8",
+                    "comment": "[b] zu möglichem d gestrichen."
+                },
+                {
+                    "svgGroupId": "g1525",
+                    "measure": "2",
+                    "system": "7",
+                    "position": "3/4",
+                    "comment": "as<sup<1</sup> überschreibt g<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g1529",
+                    "measure": "3",
+                    "system": "7",
+                    "position": "1/4",
+                    "comment": "e<sup>1</sup> gestrichen."
+                },
+                {
+                    "svgGroupId": "g1546",
+                    "measure": "4",
+                    "system": "7",
+                    "position": "1. Note",
+                    "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
+                },
+                {
+                    "svgGroupId": "g1533",
+                    "measure": "4",
+                    "system": "8",
+                    "position": "2/8",
+                    "comment": "A gestrichen."
+                },
+                {
+                    "svgGroupId": "g1551",
+                    "measure": "4",
+                    "system": "7",
+                    "position": "2/4",
+                    "comment": "Viertelnote d<sup>2</sup> gestrichen."
+                },
+                {
+                    "svgGroupId": "g1555",
+                    "measure": "4",
+                    "system": "7",
+                    "position": "3/4",
+                    "comment": "h<sup>1</sup> gestrichen."
+                },
+                {
+                    "svgGroupId": "g1568",
+                    "measure": "7",
+                    "system": "7",
+                    "position": "1. Note",
+                    "comment": "Halbe Note c<sup>3</sup> gestrichen und ersetzt durch Viertelnote c<sup>2</sup>/e<sup>2</sup>/c<sup>3</sup>."
+                },
+                {
+                    "svgGroupId": "g1577",
+                    "measure": "7",
+                    "system": "7",
+                    "position": "8/16",
+                    "comment": "a<sup>2</sup> überschreibt gis<sup>2</sup>; [#] zu überschriebenem gis<sup>2</sup> gestrichen."
+                },
+                {
+                    "svgGroupId": "g1586",
+                    "measure": "7",
+                    "system": "7",
+                    "position": "3/4",
+                    "comment": "gis<sup>2</sup> überschreibt d<sup>3</sup>. "
+                },
+                {
+                    "svgGroupId": "g1592",
+                    "measure": "10",
+                    "system": "8",
+                    "position": "1. Note",
+                    "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                },
+                {
+                    "svgGroupId": "g1603",
+                    "measure": "10",
+                    "system": "8",
+                    "position": "3–4/8",
+                    "comment": "e–d überschreibt a–h."
+                },
+                {
+                    "svgGroupId": "g1271",
+                    "measure": "11",
+                    "system": "9",
+                    "position": "3/4",
+                    "comment": "Viertelnote e<sup>2</sup> gestrichen und ersetzt durch d<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "g1264",
+                    "measure": "15",
+                    "system": "10",
+                    "position": "2–4/8",
+                    "comment": "E–a–c überschreibt c–a–c<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g1251",
+                    "measure": "16",
+                    "system": "9",
+                    "position": "1. Note",
+                    "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
+                },
+                {
+                    "svgGroupId": "g1241",
+                    "measure": "17",
+                    "system": "9",
+                    "position": "1/4",
+                    "comment": "g<sup>2</sup> überschreibt a<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "g1235",
+                    "measure": "18",
+                    "system": "9",
+                    "position": "1. Note",
+                    "comment": "e<sup>2</sup> überschreibt d<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "polyline130",
+                    "measure": "{19A–20A}",
+                    "system": "11–12",
+                    "position": "",
+                    "comment": "Takte pauschal gestrichen."
+                },
+                {
+                    "svgGroupId": "g1208",
+                    "measure": "{20A}",
+                    "system": "9",
+                    "position": "1. Note",
+                    "comment": "Halbe Note überschreibt Viertelnote."
+                },
+                {
+                    "svgGroupId": "polyline170",
+                    "measure": "{21A}",
+                    "system": "11–12",
+                    "position": "",
+                    "comment": "Takt pauschal gestrichen."
+                },
+                {
+                    "svgGroupId": "g1210",
+                    "measure": "20B",
+                    "system": "12",
+                    "position": "1/4",
+                    "comment": "Unterstimmenschicht: Viertelnote E gestrichen und ersetzt durch e."
+                },
+                {
+                    "svgGroupId": "g1216",
+                    "measure": "21B",
+                    "system": "12",
+                    "position": "3/8",
+                    "comment": "a überschreibt c."
+                },
+                {
+                    "svgGroupId": "g1220",
+                    "measure": "{23A}",
+                    "system": "11–12",
+                    "position": "",
+                    "comment": "Takt pauschal gestrichen."
+                },
+                {
+                    "svgGroupId": "g1227",
+                    "measure": "23B",
+                    "system": "12",
+                    "position": "1. Note",
+                    "comment": "Oberstimmenschicht: c<sup>1</sup> überschreibt h."
+                },
+                {
+                    "svgGroupId": "g1233",
+                    "measure": "23B",
+                    "system": "12",
+                    "position": "1. Note",
+                    "comment": "Unterstimmenschicht: Punktierte Halbe Note überschreibt Viertelnote."
+                },
+                {
+                    "svgGroupId": "g1257",
+                    "measure": "24",
+                    "system": "11",
+                    "position": "1. Note",
+                    "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
+                },
+                {
+                    "svgGroupId": "g1251",
+                    "measure": "25",
+                    "system": "11",
+                    "position": "1. Note",
+                    "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                },
+                {
+                    "svgGroupId": "g1262",
+                    "measure": "25",
+                    "system": "11",
+                    "position": "2/4",
+                    "comment": "Viertelnote d<sup>2</sup> gestrichen."
+                },
+                {
+                    "svgGroupId": "g1239",
+                    "measure": "25",
+                    "system": "12",
+                    "position": "letzte Note",
+                    "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                },
+                {
+                    "svgGroupId": "g1245",
+                    "measure": "26",
+                    "system": "12",
+                    "position": "1. Note",
+                    "comment": "G überschreibt g."
+                },
+                {
+                    "svgGroupId": "g4827",
+                    "measure": "{33A}",
+                    "system": "13",
+                    "position": "1. Note",
+                    "comment": "g<sup>2</sup>: Viertelnote überschreibt Halbe Note."
+                },
+                {
+                    "svgGroupId": "g4871",
+                    "measure": "{33A}",
+                    "system": "14",
+                    "position": "1.–3. Note",
+                    "comment": "Noten gestrichen."
+                },
+                {
+                    "svgGroupId": "g4848",
+                    "measure": "{33A}",
+                    "system": "13",
+                    "position": "(2/4)–(5/8)",
+                    "comment": "Noten gestrichen."
+                },
+                {
+                    "svgGroupId": "g4875",
+                    "measure": "33C",
+                    "system": "14",
+                    "position": "1/8",
+                    "comment": "e gestrichen."
+                },
+                {
+                    "svgGroupId": "g4910",
+                    "measure": "34B",
+                    "system": "14",
+                    "position": "2. Note",
+                    "comment": "Unterstimmenschicht: C überschreibt A<sub>1</sub>."
+                },
+                {
+                    "svgGroupId": "g4914",
+                    "measure": "34B",
+                    "system": "14",
+                    "position": "2. Note",
+                    "comment": "Unterstimmenschicht: Augmentationspunkt gestrichen."
+                }
+            ]
+        },
+        {
+            "id": "M_29_Sk5",
+            "label": "M 29 Sk5",
+            "description": [
+                "<strong>M 29 Sk5</strong> entwirft im Nachgang zu der Tintenniederschrift von Studienkomposition für Klavier M 29 eine alternative Fassung für die ersten acht Takte, bei denen hauptsächlich die linke Hand in der Hinsicht überarbeitet wird, dass die durchgehende Achtelbewegung durch Viertelnoten und -pausen aufgebrochen wird."          ],
+            "comments": [
+                {
+                    "svgGroupId": "g1104",
+                    "measure": "2",
+                    "system": "10",
+                    "position": "6/8",
+                    "comment": "[a] überschreibt [b]."
+                },
+                {
+                    "svgGroupId": "g1122",
+                    "measure": "4",
+                    "system": "10",
+                    "position": "3–6/8",
+                    "comment": "A–g–e–f überschreibt d–e–d–f."
+                },
+                {
+                    "svgGroupId": "g1127",
+                    "measure": "5",
+                    "system": "10",
+                    "position": "2/4",
+                    "comment": "A überschreibt Notenkopf h."
+                },
+                {
+                    "svgGroupId": "g1020",
+                    "measure": "8",
+                    "system": "12",
+                    "position": "1/4",
+                    "comment": "Viertelpause gestrichen und ersetzt durch Viertelnote A<sub>1</sub>/A."
+                },
+                {
+                    "svgGroupId": "g1024",
+                    "measure": "9",
+                    "system": "12",
+                    "position": "2/4",
+                    "comment": "A gestrichen."
+                }
+            ]
+        }
+    ]
+}

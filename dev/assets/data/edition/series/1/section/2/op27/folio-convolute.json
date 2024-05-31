@@ -1,0 +1,115 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "B",
+            "convoluteLabel": "B Reihentabelle (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "8",
+                    "format": {
+                        "height": 141,
+                        "width": 268
+                    },
+                    "content": [
+                        {
+                            "complexId": "op27",
+                            "sheetId": "SkRTa",
+                            "sigle": "M 325 Sk# / M 326 Sk1 / M 327 Sk1 (Reihentabelle op. 27)",
+                            "sigleAddendum": "Reihenformen 1–16",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 8
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "8",
+                    "format": {
+                        "height": 141,
+                        "width": 268
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "8",
+                    "format": {
+                        "height": 143,
+                        "width": 268
+                    },
+                    "content": [
+                        {
+                            "complexId": "op27",
+                            "sheetId": "SkRTb",
+                            "sigle": "M 325 Sk# / M 326 Sk1 / M 327 Sk1 (Reihentabelle op. 27)",
+                            "sigleAddendum": "Reihenformen 17–32",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 8
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "8",
+                    "format": {
+                        "height": 143,
+                        "width": 268
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "3r",
+                    "systems": "8",
+                    "format": {
+                        "height": 149,
+                        "width": 270
+                    },
+                    "content": [
+                        {
+                            "complexId": "op27",
+                            "sheetId": "SkRTc",
+                            "sigle": "M 325 Sk# / M 326 Sk1 / M 327 Sk1 (Reihentabelle op. 27)",
+                            "sigleAddendum": "Reihenformen 33–48",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 8
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "3v",
+                    "systems": "8",
+                    "format": {
+                        "height": 149,
+                        "width": 270
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "A-C-G",
+            "convoluteLabel": "A, C–G (siehe kritischer Bericht)",
+            "folios": [],
+            "linkTo": "OP27_SOURCE_NOT_AVAILABLE"
+        }
+    ]
+}
