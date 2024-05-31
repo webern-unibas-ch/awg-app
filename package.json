@@ -135,7 +135,7 @@
         "@types/node": "^18.19.33",
         "@typescript-eslint/eslint-plugin": "^7.11.0",
         "@typescript-eslint/parser": "^7.11.0",
-        "angular-cli-ghpages": "^1.0.7",
+        "angular-cli-ghpages": "^2.0.0",
         "commit-and-tag-version": "^12.4.1",
         "conventional-recommended-bump": "^10.0.0",
         "eslint": "^8.57.0",
