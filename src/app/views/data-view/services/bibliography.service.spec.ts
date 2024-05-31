@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient, HttpParams, HttpRequest, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Data } from '@angular/router';
 
@@ -40,8 +40,8 @@ describe('BibliographyService (DONE)', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [BibliographyService],
+            imports: [],
+            providers: [BibliographyService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
         });
         // Inject services and http client handler
         bibliographyService = TestBed.inject(BibliographyService);
