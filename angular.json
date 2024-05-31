@@ -15,12 +15,14 @@
             "prefix": "awg",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:browser",
+                    "builder": "@angular-devkit/build-angular:application",
                     "options": {
-                        "outputPath": "dist/awg-app",
+                        "outputPath": {
+                            "base": "dist/awg-app",
+                            "browser": ""
+                        },
                         "index": "src/index.html",
-                        "main": "src/main.ts",
-                        "polyfills": "src/polyfills.ts",
+                        "polyfills": ["src/polyfills.ts"],
                         "tsConfig": "tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
                         "aot": false,
@@ -36,20 +38,24 @@
                             "node_modules/rdfstore/dist/rdfstore_min.js",
                             "src/assets/js/dateConverter.js",
                             "src/assets/js/htmlConverter.js"
-                        ]
+                        ],
+                        "browser": "src/main.ts",
+                        "stylePreprocessorOptions": {
+                            "includePaths": ["."]
+                        }
                     },
                     "configurations": {
                         "production": {
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "4mb"
+                                    "maximumWarning": "2MB",
+                                    "maximumError": "4MB"
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "2kb",
-                                    "maximumError": "4kb"
+                                    "maximumWarning": "2kB",
+                                    "maximumError": "4kB"
                                 }
                             ],
                             "fileReplacements": [
@@ -62,28 +68,24 @@
                             "outputHashing": "all",
                             "sourceMap": false,
                             "namedChunks": false,
-                            "extractLicenses": true,
-                            "vendorChunk": false,
-                            "buildOptimizer": false
+                            "extractLicenses": true
                         },
                         "development": {
                             "fileReplacements": [],
-                            "buildOptimizer": false,
                             "optimization": false,
-                            "vendorChunk": true,
                             "extractLicenses": false,
                             "sourceMap": true,
                             "namedChunks": true,
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "3mb"
+                                    "maximumWarning": "2MB",
+                                    "maximumError": "3MB"
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "2kb",
-                                    "maximumError": "4kb"
+                                    "maximumWarning": "2kB",
+                                    "maximumError": "4kB"
                                 }
                             ]
                         }

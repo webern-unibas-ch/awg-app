@@ -6,8 +6,10 @@ import {
     HttpInterceptor,
     HttpRequest,
     HttpResponse,
+    provideHttpClient,
+    withInterceptorsFromDi,
 } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
+import { HttpTestingController, TestRequest, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Data } from '@angular/router';
 
@@ -41,7 +43,7 @@ describe('CachingInterceptor (DONE)', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
+            imports: [],
             providers: [
                 HttpCacheService,
                 {
@@ -49,6 +51,8 @@ describe('CachingInterceptor (DONE)', () => {
                     useClass: CachingInterceptor,
                     multi: true,
                 },
+                provideHttpClient(withInterceptorsFromDi()),
+                provideHttpClientTesting(),
             ],
         });
 
