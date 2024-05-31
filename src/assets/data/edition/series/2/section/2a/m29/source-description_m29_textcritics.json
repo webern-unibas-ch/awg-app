@@ -167,7 +167,7 @@
                     "measure": "2",
                     "system": "8",
                     "position": "2/8",
-                    "comment": "{{ref.getGlyph('[b]')}}] zu möglichem d gestrichen."
+                    "comment": "{{ref.getGlyph('[b]')}}] zu möglichem des gestrichen."
                 },
                 {
                     "svgGroupId": "g1525",
