@@ -2,8 +2,7 @@
 import { Location } from '@angular/common';
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Router, Routes } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { Router, RouterModule, Routes } from '@angular/router';
 
 import Spy = jasmine.Spy;
 
@@ -60,7 +59,7 @@ describe('AppComponent (DONE)', () => {
         };
 
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule.withRoutes(MOCK_ROUTES)],
+            imports: [RouterModule.forRoot(MOCK_ROUTES)],
             declarations: [
                 AppComponent,
                 FooterStubComponent,

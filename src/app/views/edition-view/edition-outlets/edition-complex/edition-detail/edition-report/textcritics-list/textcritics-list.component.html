@@ -1,37 +1,48 @@
 @if (textcriticsData) {
     <div ngbAccordion>
-        @for (textcritic of textcriticsData.textcritics; track textcritic) {
-            <div [ngbAccordionItem]="textcritic.id" [collapsed]="true">
+        @for (textcritics of textcriticsData.textcritics; track textcritics) {
+            <div [ngbAccordionItem]="textcritics.id" [collapsed]="true">
                 <div
                     ngbAccordionHeader
                     class="accordion-button awg-accordion-button-custom-header justify-content-between">
-                    <button ngbAccordionToggle class="btn btn-link text-start p-0">{{ textcritic.label }}</button>
+                    <button ngbAccordionToggle class="btn btn-link text-start p-0">{{ textcritics.label }}</button>
                     <button
                         type="button"
                         class="btn btn-sm btn-outline-info"
-                        (click)="selectSvgSheet({ complexId: '', sheetId: textcritic.id })">
+                        (click)="selectSvgSheet({ complexId: '', sheetId: textcritics.id })">
                         Zum edierten Notentext
                     </button>
                 </div>
                 <div ngbAccordionCollapse>
                     <div ngbAccordionBody>
                         <ng-template>
-                            @if (utils.isNotEmptyArray(textcritic.description)) {
+                            @if (utils.isNotEmptyArray(textcritics.description)) {
                                 <div>
-                                    <p class="smallcaps">Skizzenkommentar:</p>
+                                    <p class="smallcaps">
+                                        <awg-edition-tka-label
+                                            [id]="textcritics.id"
+                                            [labelType]="'evaluation'"></awg-edition-tka-label
+                                        >:
+                                    </p>
                                     <awg-edition-tka-description
-                                        [textcriticalDescriptions]="textcritic.description"
+                                        [textcriticalDescriptions]="textcritics.description"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                         (openModalRequest)="openModal($event)"
                                         (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-tka-description>
                                 </div>
                             }
-                            @if (utils.isNotEmptyArray(textcritic.comments)) {
+                            @if (utils.isNotEmptyArray(textcritics.comments)) {
                                 <div>
-                                    <p class="smallcaps">Textkritischer Kommentar:</p>
+                                    <p class="smallcaps">
+                                        <awg-edition-tka-label
+                                            [id]="textcritics.id"
+                                            [labelType]="'comment'"></awg-edition-tka-label
+                                        >:
+                                    </p>
                                     <awg-edition-tka-table
-                                        [textcriticalComments]="textcritic.comments"
-                                        [isRowTable]="textcritic.rowtable"
+                                        [textcriticalComments]="textcritics.comments"
+                                        [isRowTable]="textcritics.rowtable"
+                                        [isSketchId]="utils.isSketchId(textcritics.id)"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                         (openModalRequest)="openModal($event)"
                                         (selectSvgSheetRequest)="selectSvgSheet($event)">

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { EDITION_GLYPHS_DATA } from '@awg-app/views/edition-view/data';
 
-import { TextcriticalComment } from '@awg-views/edition-view/models';
+import { TextcriticalComment, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
 
 /**
  * The EditionTkaTable component.
@@ -25,12 +25,28 @@ export class EditionTkaTableComponent {
     textcriticalComments: TextcriticalComment[];
 
     /**
+     * Input variable: isCorrections.
+     *
+     * It keeps a boolean flag to indicate if the table content are corrections.
+     */
+    @Input()
+    isCorrections = false;
+
+    /**
      * Input variable: isRowTable.
      *
-     * It keeps a boolean flag to indicate if the textcritics describe a row table.
+     * It keeps a boolean flag to indicate if the table content is a row table.
      */
     @Input()
     isRowTable = false;
+
+    /**
+     * Input variable: isSketchId.
+     *
+     * It keeps a boolean flag to indicate if the textcritics are related to a sketch.
+     */
+    @Input()
+    isSketchId = false;
 
     /**
      * Output variable: navigateToReportFragment.
@@ -74,18 +90,24 @@ export class EditionTkaTableComponent {
      *
      * It keeps different string collections for the table header.
      */
-    tableHeaderStrings = {
+    tableHeaderStrings: { [key: string]: TkaTableHeaderColumn[] } = {
         default: [
             { reference: 'measure', label: 'Takt' },
             { reference: 'system', label: 'System' },
             { reference: 'location', label: 'Ort im Takt' },
-            { reference: 'comment', label: 'Kommentar' },
+            { reference: 'comment', label: 'Anmerkung' },
+        ],
+        corrections: [
+            { reference: 'measure', label: 'Takt' },
+            { reference: 'system', label: 'System' },
+            { reference: 'location', label: 'Ort im Takt' },
+            { reference: 'comment', label: 'Korrektur' },
         ],
         rowTable: [
             { reference: 'measure', label: 'Folio' },
             { reference: 'system', label: 'System' },
             { reference: 'location', label: 'Reihe/Reihenton' },
-            { reference: 'comment', label: 'Kommentar' },
+            { reference: 'comment', label: 'Anmerkung' },
         ],
     };
 
@@ -118,11 +140,27 @@ export class EditionTkaTableComponent {
      *
      * @returns {{reference: string, label: string}[]} The table header string collection.
      */
-    getTableHeaderStrings(): { reference: string; label: string }[] {
+    getTableHeaderStrings(): TkaTableHeaderColumn[] {
+        const { rowTable, default: defaultTable, corrections: correctionsTable } = this.tableHeaderStrings;
+
+        let selectedTableHeader: TkaTableHeaderColumn[];
+
         if (this.isRowTable) {
-            return this.tableHeaderStrings.rowTable;
+            selectedTableHeader = rowTable;
+        } else if (this.isCorrections) {
+            selectedTableHeader = correctionsTable;
+        } else {
+            selectedTableHeader = defaultTable;
         }
-        return this.tableHeaderStrings.default;
+
+        // Adjust comment label for sketches, but not corrections
+        if (this.isSketchId && !this.isCorrections) {
+            selectedTableHeader = selectedTableHeader.map(item =>
+                item.reference === 'comment' ? { ...item, label: 'Kommentar' } : item
+            );
+        }
+
+        return selectedTableHeader;
     }
 
     /**

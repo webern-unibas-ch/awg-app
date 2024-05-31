@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { faChevronRight, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 import { UtilityService } from '@awg-app/core/services';
 import { TextcriticalComment, Textcritics } from '@awg-app/views/edition-view/models';
@@ -76,11 +76,11 @@ export class EditionSvgSheetFooterComponent {
     faChevronRight = faChevronRight;
 
     /**
-     * Public variable: faChevronRight.
+     * Public variable: faChevronDown.
      *
-     * It instantiates fontawesome's faChevronRight icon.
+     * It instantiates fontawesome's faChevronDown icon.
      */
-    faChevronUp = faChevronUp;
+    faChevronDown = faChevronDown;
 
     /**
      * Self-referring variable needed for CompileHtml library.

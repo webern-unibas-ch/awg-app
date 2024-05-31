@@ -3,11 +3,15 @@
         <p (click)="toggleTextcritics()" style="cursor: pointer">
             @if (selectedTextcritics.description && utils.isNotEmptyArray(selectedTextcritics.description)) {
                 <span>
-                    <fa-icon [icon]="showTextcritics ? faChevronUp : faChevronRight"></fa-icon>
+                    <fa-icon [icon]="showTextcritics ? faChevronDown : faChevronRight"></fa-icon>
                     &nbsp;
                 </span>
             }
-            <span class="smallcaps">Skizzenkommentar:</span>
+
+            <span class="smallcaps"
+                ><awg-edition-tka-label [id]="selectedTextcritics.id" [labelType]="'evaluation'"></awg-edition-tka-label
+                >:</span
+            >
             @if (selectedTextcritics.description && !utils.isNotEmptyArray(selectedTextcritics.description)) {
                 <span>&nbsp;---</span>
             }
@@ -25,10 +29,13 @@
     </div>
     @if (showTkA) {
         <div class="awg-edition-svg-sheet-footer-textcritics">
-            <p class="smallcaps">Textkritischer Kommentar:</p>
+            <p class="smallcaps">
+                <awg-edition-tka-label [id]="selectedTextcritics.id" [labelType]="'comment'"></awg-edition-tka-label>:
+            </p>
             <awg-edition-tka-table
                 [textcriticalComments]="selectedTextcriticalComments"
                 [isRowTable]="selectedTextcritics.rowtable"
+                [isSketchId]="utils.isSketchId(selectedTextcritics.id)"
                 (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                 (openModalRequest)="openModal($event)"
                 (selectSvgSheetRequest)="selectSvgSheet($event)">
