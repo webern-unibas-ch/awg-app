@@ -485,11 +485,12 @@
                             <!-- corrections -->
                             @if (utils.isNotEmptyArray(sourceDescription.description.corrections)) {
                                 <div class="awg-source-description-corrections">
+                                    <p class="no-para"><span class="smallcaps">Korrekturen:</span></p>
                                     @for (correction of sourceDescription.description.corrections; track correction) {
                                         <details class="half-para awg-source-description-correction-details">
                                             <summary
                                                 class="half-para awg-source-description-correction-summary"
-                                                [compile-html]="correction.label"
+                                                [compile-html]="correction.label + ':'"
                                                 [compile-html-ref]="ref"></summary>
                                             @for (description of correction.description; track description) {
                                                 <p
@@ -499,6 +500,7 @@
                                             }
                                             <awg-edition-tka-table
                                                 [textcriticalComments]="correction.comments"
+                                                [isCorrections]="true"
                                                 [isRowTable]="correction.rowtable"
                                                 (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                                 (openModalRequest)="openModal($event)"
