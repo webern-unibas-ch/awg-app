@@ -1,7 +1,7 @@
 <div class="awg-source-description-corrections">
     <p class="no-para"><span class="smallcaps">Korrekturen:</span></p>
     @for (correction of corrections; track correction.id) {
-        <details class="half-para awg-source-description-correction-details">
+        <details class="half-para awg-source-description-correction-details" [id]="correction.id">
             <summary
                 class="half-para awg-source-description-correction-summary"
                 [compile-html]="correction.label + ':'"
@@ -18,7 +18,7 @@
                 [isRowTable]="correction.rowtable"
                 (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                 (openModalRequest)="openModal($event)"
-                (selectSvgSheetRequest)="selectSvgSheet('', correction.id)">
+                (selectSvgSheetRequest)="selectSvgSheet($event)">
             </awg-edition-tka-table>
         </details>
     }
