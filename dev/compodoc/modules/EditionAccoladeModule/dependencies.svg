@@ -28,13 +28,13 @@
 <title>cluster_EditionAccoladeModule_imports</title>
 <polygon fill="none" stroke="black" points="216,-78 216,-130 947,-130 947,-78 216,-78"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_EditionAccoladeModule_declarations</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 208,-130 208,-78 16,-78"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_EditionAccoladeModule_exports</title>
 <polygon fill="none" stroke="black" points="341,-208 341,-260 535,-260 535,-208 341,-208"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_EditionAccoladeModule_declarations</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 208,-130 208,-78 16,-78"/>
 </g>
 <!-- EditionAccoladeComponent -->
 <g id="node1" class="node">
