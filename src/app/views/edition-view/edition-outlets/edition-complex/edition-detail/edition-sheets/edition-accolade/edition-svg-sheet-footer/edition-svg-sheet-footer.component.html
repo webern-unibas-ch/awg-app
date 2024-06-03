@@ -3,7 +3,7 @@
         <p (click)="toggleTextcritics()" style="cursor: pointer">
             @if (selectedTextcritics.description && utils.isNotEmptyArray(selectedTextcritics.description)) {
                 <span>
-                    <fa-icon [icon]="showTextcritics ? faChevronUp : faChevronRight"></fa-icon>
+                    <fa-icon [icon]="showTextcritics ? faChevronDown : faChevronRight"></fa-icon>
                     &nbsp;
                 </span>
             }

@@ -1,14 +1,15 @@
 import { DOCUMENT } from '@angular/common';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { of as observableOf, throwError as observableThrowError } from 'rxjs';
 import Spy = jasmine.Spy;
 
+import { IconDefinition } from '@fortawesome/angular-fontawesome';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faPlus, faRefresh, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { click, clickAndAwaitChanges } from '@testing/click-helper';
@@ -124,9 +125,14 @@ describe('ExtendedSearchFormComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, HttpClientTestingModule, ReactiveFormsModule],
             declarations: [ExtendedSearchFormComponent],
-            providers: [FormBuilder, DataApiService],
+            imports: [FontAwesomeTestingModule, ReactiveFormsModule],
+            providers: [
+                FormBuilder,
+                DataApiService,
+                provideHttpClient(withInterceptorsFromDi()),
+                provideHttpClientTesting(),
+            ],
         }).compileComponents();
     });
 

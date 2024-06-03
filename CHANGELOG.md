@@ -2,6 +2,74 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.12.2](https://github.com/webern-unibas-ch/awg-app/compare/v0.12.1...v0.12.2) (2024-05-31)
+
+### Features
+
+-   **edition:** add TkaTableHeader model ([7d24681](https://github.com/webern-unibas-ch/awg-app/commit/7d2468181f450de9afb538e9d70d6d759e4641f8))
+-   **edition:** prepare TkaTableHeader for corrections ([db4b708](https://github.com/webern-unibas-ch/awg-app/commit/db4b708248e156e50d4b4c3cfc4bf0856477af5e))
+
+### Bug Fixes
+
+-   **app:** fix linting errors and warnings ([33db68d](https://github.com/webern-unibas-ch/awg-app/commit/33db68d28cb3c5ec411407edc2ebe89ec1593ec0))
+-   **assets:** fix source description op. 25 D ([21359e3](https://github.com/webern-unibas-ch/awg-app/commit/21359e369a269e900403e1b72d503f6902f43c78); thanks to [@masthom](https://github.com/masthom))
+-   **core:** simplify conversion of full text search response ([7548f51](https://github.com/webern-unibas-ch/awg-app/commit/7548f511e22be7b3decf81c9a21b9c656532e116))
+-   **edition:** don't adjust comment label for corrections ([25056f4](https://github.com/webern-unibas-ch/awg-app/commit/25056f44212b75a0b3e9abb57753d97752fbe38f))
+-   **edition:** fix direction of arrows in SheetFooter ([9085158](https://github.com/webern-unibas-ch/awg-app/commit/908515849e6a35c7d7c157bc8d1dba0ce32ad76a))
+-   **edition:** include check for rowtable sketch ids (SkRT) ([b8e0e94](https://github.com/webern-unibas-ch/awg-app/commit/b8e0e9489de1c916aec7b5068fe2d05341f57963))
+-   **edition:** pass down info about sketches to TkaTable ([df6f608](https://github.com/webern-unibas-ch/awg-app/commit/df6f60806c2848057d8f8b519a06093c5942bf1d))
+-   **edition:** remove placeholder for now available sources ([e122641](https://github.com/webern-unibas-ch/awg-app/commit/e12264195abe451311b03107a47d3e131c43a382))
+-   **edition:** simplify check for sketches ([2eee26f](https://github.com/webern-unibas-ch/awg-app/commit/2eee26f3de30a53d39ecd6c3d1771f580001e6ba))
+-   **edition:** use correct string for source evaluation ([a93aac9](https://github.com/webern-unibas-ch/awg-app/commit/a93aac9b1fa73377264c32f18378f86e09658783))
+-   **edition:** use correct string for textcritical comments ([71182dd](https://github.com/webern-unibas-ch/awg-app/commit/71182dd5486f8ea1dae6ae9a4bd6a86cb289b0a3))
+-   **edition:** use tka label component in SheetViewerSwitch ([7619f8a](https://github.com/webern-unibas-ch/awg-app/commit/7619f8a516302f113be8a672846b944c9b2f9b57))
+
+### Code Refactoring
+
+-   **edition:** improve creation of TkaTableHeader ([cf84944](https://github.com/webern-unibas-ch/awg-app/commit/cf84944d7e2ec0da47938e7f177998404b342d9b))
+-   **edition:** move isSketchId check into utility service ([e1bb971](https://github.com/webern-unibas-ch/awg-app/commit/e1bb9710e06a1a6c307b384c4ff33cc405ec4841))
+-   **edition:** move logic for tka label into component ([c092f46](https://github.com/webern-unibas-ch/awg-app/commit/c092f466e4701609195298d13254cba4aecb5d6e))
+-   **edition:** rename isTextcriticsForSketch -> isSketchId ([a3bddf4](https://github.com/webern-unibas-ch/awg-app/commit/a3bddf4ece151f0605b0fed45d4a7af342ab82b5))
+
+### Tests
+
+-   **core:** fix tests for cleanSubjectValueLabels ([f8c7a5d](https://github.com/webern-unibas-ch/awg-app/commit/f8c7a5d8fe7a5f8d7a43ee9499e204c4a4539886))
+-   **edition:** add tests for TkaTableHeaders ([b6a8da7](https://github.com/webern-unibas-ch/awg-app/commit/b6a8da75158d8aeb3a2e796237a2c8ff0508d8ee))
+-   **edition:** fix test limitation ([ddac1d1](https://github.com/webern-unibas-ch/awg-app/commit/ddac1d19a058805e330e8b240ca7825525fd6a01))
+-   **edition:** fix tests after changes ([2f71abd](https://github.com/webern-unibas-ch/awg-app/commit/2f71abdc4a68a46d629fba09f03be7f5f8244343))
+
+### Continuous Integration
+
+-   **app:** upgrade node to 20.13 ([bac64ac](https://github.com/webern-unibas-ch/awg-app/commit/bac64ac2f995a81caf174939c7150550bc6493a1))
+-   **gh-actions:** remove ratchet comment ([405416f](https://github.com/webern-unibas-ch/awg-app/commit/405416f73ff57fb3e4ba0bcfcef4cb7d472a0f55))
+
+### Documentation
+
+-   **README:** udpate supported minimal node version ([7f8117a](https://github.com/webern-unibas-ch/awg-app/commit/7f8117a131b32b8297caebbe0dcccfd1a28afbb6))
+
+### Build System
+
+-   **app:** add nx/cache to gitignore file ([6a443ef](https://github.com/webern-unibas-ch/awg-app/commit/6a443ef3e8b95acb82a4b2ba0807562b480f2f67))
+-   **app:** adjust config values after update to Angular v18 ([f1f363c](https://github.com/webern-unibas-ch/awg-app/commit/f1f363cf3188dc86ed513238c1be0fae907176dd))
+-   **app:** adjust content files after update to Angular v18 ([746ab15](https://github.com/webern-unibas-ch/awg-app/commit/746ab15e3bc080b1961d6fda7d0346518b6be1c2))
+-   **app:** update to Angular v18 ([0a927b1](https://github.com/webern-unibas-ch/awg-app/commit/0a927b1427fcb6753361f69afcd6cfa8ce0fc1e6))
+-   **app:** update to angular-eslint v18 ([d1abdef](https://github.com/webern-unibas-ch/awg-app/commit/d1abdef0da81519a4e83b199ab91ebe44c6bd50f))
+-   **deps-dev:** bump @compodoc/compodoc from 1.1.24 to 1.1.25 ([5d8b109](https://github.com/webern-unibas-ch/awg-app/commit/5d8b10954181116e98b8bfb2d7d31f838b346990))
+-   **deps-dev:** bump angular-cli-ghpages from 1.0.7 to 2.0.0 ([c882929](https://github.com/webern-unibas-ch/awg-app/commit/c8829293107ef3717556ef3c27a773f26790c852))
+-   **deps-dev:** bump eslint-plugin-jsdoc from 48.2.4 to 48.2.5 ([44999bc](https://github.com/webern-unibas-ch/awg-app/commit/44999bc64cb4098e8dfb755b64897c481651ac8c))
+-   **deps-dev:** bump eslint-plugin-jsdoc from 48.2.5 to 48.2.6 ([f9e178d](https://github.com/webern-unibas-ch/awg-app/commit/f9e178d54030154e1fc98473749abc2637dacc6d))
+-   **deps-dev:** bump eslint-plugin-jsdoc from 48.2.6 to 48.2.7 ([e7cae49](https://github.com/webern-unibas-ch/awg-app/commit/e7cae4913fc46bc391ba4ee03a15aca3cd4ad7d1))
+-   **deps-dev:** bump lint-staged from 15.2.4 to 15.2.5 ([295fee9](https://github.com/webern-unibas-ch/awg-app/commit/295fee9dd1b088619da3b8099e1dc0a6957245c4))
+-   **deps-dev:** bump the angular-eslint group across 1 directory with 5 updates ([a995dd7](https://github.com/webern-unibas-ch/awg-app/commit/a995dd7fa96889b1188ccfb233067db164041f4e))
+-   **deps-dev:** bump the typescript-eslint group with 2 updates ([b9b7989](https://github.com/webern-unibas-ch/awg-app/commit/b9b79894663e7a84ffb31a945a0bd99a1b448a9a))
+-   **deps:** bump actions/checkout from 4.1.5 to 4.1.6 ([f92b7cd](https://github.com/webern-unibas-ch/awg-app/commit/f92b7cd97492a7fa53aa00376128320a6fa66df5))
+-   **deps:** bump codecov/codecov-action from 4.4.0 to 4.4.1 ([ecc91d3](https://github.com/webern-unibas-ch/awg-app/commit/ecc91d349dc19534b5b178ab0bff1f5a89ba0a04))
+-   **deps:** bump github/codeql-action from 3.25.5 to 3.25.6 ([d4ca50e](https://github.com/webern-unibas-ch/awg-app/commit/d4ca50e8b6e039243f8b579f0c377026adf78ba4))
+-   **deps:** bump SonarSource/sonarcloud-github-action ([0586455](https://github.com/webern-unibas-ch/awg-app/commit/05864559d60eabf622b5d51c20e99a97ee0a4f48))
+-   **deps:** bump the angular group with 11 updates ([566e4bc](https://github.com/webern-unibas-ch/awg-app/commit/566e4bc190fb5fccfa6521933465fdd55bcab5a3))
+-   **deps:** bump zone.js from 0.14.2 to 0.14.6 ([30b5647](https://github.com/webern-unibas-ch/awg-app/commit/30b5647420ab78b431db611bbdf76b8fedd35f51))
+-   **deps:** update .github/workflows/ci_workflow.yml ([ca3c2f6](https://github.com/webern-unibas-ch/awg-app/commit/ca3c2f6aeffc10fa2eb7568e36bd32ef814f2de7))
+
 ## [0.12.1](https://github.com/webern-unibas-ch/awg-app/compare/v0.12.0...v0.12.1) (2024-05-15)
 
 ### Features
