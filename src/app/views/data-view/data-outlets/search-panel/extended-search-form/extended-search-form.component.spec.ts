@@ -8,8 +8,8 @@ import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } f
 import { of as observableOf, throwError as observableThrowError } from 'rxjs';
 import Spy = jasmine.Spy;
 
+import { IconDefinition } from '@fortawesome/angular-fontawesome';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faPlus, faRefresh, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { click, clickAndAwaitChanges } from '@testing/click-helper';

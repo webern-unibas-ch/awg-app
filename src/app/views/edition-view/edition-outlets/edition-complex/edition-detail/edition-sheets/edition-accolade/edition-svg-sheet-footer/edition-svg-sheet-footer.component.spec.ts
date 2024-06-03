@@ -2,8 +2,8 @@ import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/c
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
+import { IconDefinition } from '@fortawesome/angular-fontawesome';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
