@@ -31,7 +31,7 @@
                             class="dropdown-item"
                             [ngClass]="{
                                 active: isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial),
-                                'text-muted': !isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial)
+                                'text-muted': !isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial),
                             }"
                             (click)="selectSvgSheet('', svgSheet.id + svgSheetContent.partial)"
                             >{{ svgSheet.label }}

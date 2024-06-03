@@ -259,7 +259,7 @@
                                                         <span
                                                             class="awg-source-description-content-item-folio"
                                                             [ngClass]="{
-                                                                tab: content.item || content.itemDescription
+                                                                tab: content.item || content.itemDescription,
                                                             }">
                                                             @if (folio.folioLinkTo) {
                                                                 <a
@@ -360,7 +360,7 @@
                                                                                     folio.folio.length > 2) ||
                                                                                 (system.measure &&
                                                                                     !firstSystemGroup &&
-                                                                                    folio.folio.length > 2)
+                                                                                    folio.folio.length > 2),
                                                                         }"
                                                                         ><ng-template
                                                                             *ngTemplateOutlet="
@@ -400,7 +400,7 @@
                                                                                     *ngTemplateOutlet="
                                                                                         measureTemplate;
                                                                                         context: {
-                                                                                            $implicit: system.measure
+                                                                                            $implicit: system.measure,
                                                                                         }
                                                                                     "></ng-template
                                                                             ></a>
@@ -410,7 +410,7 @@
                                                                                 *ngTemplateOutlet="
                                                                                     measureTemplate;
                                                                                     context: {
-                                                                                        $implicit: system.measure
+                                                                                        $implicit: system.measure,
                                                                                     }
                                                                                 "></ng-template>
                                                                         }
@@ -436,7 +436,7 @@
                                                                                     *ngTemplateOutlet="
                                                                                         rowTemplate;
                                                                                         context: {
-                                                                                            $implicit: system.row
+                                                                                            $implicit: system.row,
                                                                                         }
                                                                                     "></ng-template>
                                                                             </a>
