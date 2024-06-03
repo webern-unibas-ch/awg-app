@@ -43,6 +43,12 @@ import * as D3_SELECTION from 'd3-selection';
 @Component({ selector: 'awg-license', template: '' })
 class LicenseStubComponent {}
 
+@Component({ selector: 'awg-edition-svg-sheet-viewer-nav', template: '' })
+class EditionSvgSheetViewerNavStubComponent {
+    @Output()
+    browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
+}
+
 @Component({ selector: 'awg-edition-svg-sheet-viewer-switch', template: '' })
 class EditionSvgSheetViewerSwitchStubComponent {
     @Input() id?: string;
@@ -125,6 +131,7 @@ describe('EditionSvgSheetViewerComponent', () => {
             imports: [FontAwesomeTestingModule, FormsModule],
             declarations: [
                 EditionSvgSheetViewerComponent,
+                EditionSvgSheetViewerNavStubComponent,
                 EditionSvgSheetViewerSwitchStubComponent,
                 LicenseStubComponent,
             ],
@@ -323,13 +330,12 @@ describe('EditionSvgSheetViewerComponent', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-viewer', 1, 1);
             });
 
-            it('... should contain 1 icon-bar, 1 sheet-container and 1 sheet-viewer-nav as direct child divs in outer div', () => {
+            it('... should contain 1 icon-bar and 1 sheet-container as direct child divs in outer div', () => {
                 const sheetViewerDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-viewer', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-viewer > div', 3, 3);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-viewer > div', 2, 2);
 
                 getAndExpectDebugElementByCss(sheetViewerDe[0], 'div.awg-edition-svg-icon-bar', 1, 1);
                 getAndExpectDebugElementByCss(sheetViewerDe[0], 'div.awg-edition-svg-sheet-container', 1, 1);
-                getAndExpectDebugElementByCss(sheetViewerDe[0], 'div.awg-edition-svg-sheet-viewer-nav', 1, 1);
             });
 
             describe('awg-edition-svg-icon-bar', () => {
@@ -583,50 +589,15 @@ describe('EditionSvgSheetViewerComponent', () => {
             });
 
             describe('awg-edition-svg-sheet-viewer-nav', () => {
-                it('... should contain 1 div.prev and 1 div.next in div.awg-edition-svg-sheet-viewer-nav', () => {
+                it('... should contain 1 awg-edition-svg-sheet-viewer-nav component (stubbed)', () => {
                     const sheetViewerDe = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-edition-svg-sheet-viewer',
                         1,
                         1
                     );
-                    getAndExpectDebugElementByCss(sheetViewerDe[0], 'div.awg-edition-svg-sheet-viewer-nav > div', 2, 2);
 
-                    const sheetViewerNavDe = getAndExpectDebugElementByCss(
-                        sheetViewerDe[0],
-                        'div.awg-edition-svg-sheet-viewer-nav',
-                        1,
-                        1
-                    );
-
-                    getAndExpectDebugElementByCss(sheetViewerNavDe[0], 'div.prev', 1, 1);
-                    getAndExpectDebugElementByCss(sheetViewerNavDe[0], 'div.next', 1, 1);
-                });
-
-                it('... should display left arrow in div.prev', () => {
-                    const divPrevDe = getAndExpectDebugElementByCss(compDe, 'div.prev', 1, 1);
-
-                    const spanDe = getAndExpectDebugElementByCss(divPrevDe[0], 'span', 1, 1);
-                    const spanEl = spanDe[0].nativeElement;
-
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('span');
-                    expectedHtmlTextContent.innerHTML = '&#10094;';
-
-                    expectToBe(spanEl.textContent, expectedHtmlTextContent.textContent);
-                });
-
-                it('... should display right arrow in div.next', () => {
-                    const divNextDe = getAndExpectDebugElementByCss(compDe, 'div.next', 1, 1);
-
-                    const spanDe = getAndExpectDebugElementByCss(divNextDe[0], 'span', 1, 1);
-                    const spanEl = spanDe[0].nativeElement;
-
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('span');
-                    expectedHtmlTextContent.innerHTML = '&#10095;';
-
-                    expectToBe(spanEl.textContent, expectedHtmlTextContent.textContent);
+                    getAndExpectDebugElementByDirective(sheetViewerDe[0], EditionSvgSheetViewerNavStubComponent, 1, 1);
                 });
             });
         });
@@ -636,25 +607,22 @@ describe('EditionSvgSheetViewerComponent', () => {
                 expect(component.browseSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on click on div.prev', fakeAsync(() => {
-                const divPrevDe = getAndExpectDebugElementByCss(compDe, 'div.prev', 1, 1);
-                const expectedDirection = -1;
+            it('... should trigger on event from EditionSvgSheetViewerNavComponent', () => {
+                const navDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetViewerNavStubComponent, 1, 1);
+                const navCmp = navDes[0].injector.get(
+                    EditionSvgSheetViewerNavStubComponent
+                ) as EditionSvgSheetViewerNavStubComponent;
 
-                // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(divPrevDe[0], fixture);
+                // Direction -1
+                navCmp.browseSvgSheetRequest.emit(-1);
 
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
-            }));
+                expectSpyCall(browseSvgSheetSpy, 1, -1);
 
-            it('... should trigger on click on div.next', fakeAsync(() => {
-                const divNextDe = getAndExpectDebugElementByCss(compDe, 'div.next', 1, 1);
-                const expectedDirection = 1;
+                // Direction 1
+                navCmp.browseSvgSheetRequest.emit(1);
 
-                // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(divNextDe[0], fixture);
-
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
-            }));
+                expectSpyCall(browseSvgSheetSpy, 2, 1);
+            });
 
             it('... should not emit anything if no direction is provided', () => {
                 const expectedDirection = undefined;
