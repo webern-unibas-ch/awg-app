@@ -1055,7 +1055,7 @@
                 ],
                 "corrections": [
                     {
-                        "id": "",
+                        "id": "source_B_corr_1",
                         "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "description": [
                             "Die folgende Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ Fassung 1."
@@ -1113,7 +1113,7 @@
                         ]
                     },
                     {
-                        "id": "",
+                        "id": "source_B_corr_2",
                         "label": "Korrekturen 2 in <strong>B</strong> (mit Tinte)",
                         "description": [
                             "Die folgende Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ Fassung 1."
@@ -1582,7 +1582,9 @@
             "type": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1.",
             "location": "GB-Lbl, British Library, O. W. Neighbour Collection.",
             "description": {
-                "desc": ["1 Blatt (Bl. 1). <span class='text-danger'>[Beschreibung am Original konnte bislang nicht erfolgen.]</span>"],
+                "desc": [
+                    "1 Blatt (Bl. 1). <span class='text-danger'>[Beschreibung am Original konnte bislang nicht erfolgen.]</span>"
+                ],
                 "writingMaterialString": "Notenpapier, 12 Systeme mit vier (1 + 2 Systeme ) vorgedruckten Akkoladen, Format: hoch ### × ### mm, Firmenzeichen: ##JE_12## recto unten links.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
