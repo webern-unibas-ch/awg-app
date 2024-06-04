@@ -542,7 +542,7 @@ export const mockEditionData = {
                             id: 'source_Aa_corr_1',
                             label: 'Korrekturen 1 in <strong>B</strong> (mit Tinte)',
                             description: [
-                                'Die folgende Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ Fassung 1.',
+                                'Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: Textfassung 1.',
                             ],
                             comments: [
                                 {
