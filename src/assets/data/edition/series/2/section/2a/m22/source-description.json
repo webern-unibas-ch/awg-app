@@ -1494,7 +1494,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "18–17",
+                                            "system": "18–17 (auf dem Kopf stehend)",
                                             "measure": "{1A}, 1B, 2–8",
                                             "linkTo": ""
                                         }
@@ -1515,7 +1515,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "16–15",
+                                            "system": "16–15 (auf dem Kopf stehend)",
                                             "measure": "{1A}, 1B, 2–8, x+1",
                                             "linkTo": ""
                                         }
@@ -1539,14 +1539,14 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "14–13b",
+                                            "system": "14–13b (auf dem Kopf stehend)",
                                             "measure": "{1A–2A}, 1B–2B, 3–6",
                                             "linkTo": "M_22_Sk28a"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "10b–9b",
+                                            "system": "10b–9b (auf dem Kopf stehend)",
                                             "measure": "7–8",
                                             "linkTo": "M_22_Sk28b"
                                         }
