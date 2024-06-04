@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
-import { DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -10,6 +10,7 @@ import {
     expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
@@ -23,9 +24,23 @@ import {
     SourceDescriptionWritingMaterialFormat,
     SourceDescriptionWritingMaterialItemLocation,
     SourceDescriptionWritingMaterialSystems,
+    Textcritics,
 } from '@awg-views/edition-view/models';
 
 import { SourceDescriptionComponent } from './source-description.component';
+
+// Mock components
+@Component({ selector: 'awg-source-description-corrections', template: '' })
+class SourceDescriptionCorrectionsStubComponent {
+    @Input()
+    corrections: Textcritics[];
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+}
 
 describe('SourceDescriptionComponent (DONE)', () => {
     let component: SourceDescriptionComponent;
@@ -53,7 +68,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [SourceDescriptionComponent, CompileHtmlComponent, RouterLinkStubDirective],
+            declarations: [
+                SourceDescriptionComponent,
+                SourceDescriptionCorrectionsStubComponent,
+                CompileHtmlComponent,
+                RouterLinkStubDirective,
+            ],
             providers: [UtilityService],
         }).compileComponents();
     }));
@@ -1339,6 +1359,51 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         expect(systemEl7).not.toHaveClass('doubletab_two');
                     });
                 });
+
+                describe('... the corrections', () => {
+                    it('... should contain SourceDescriptionCorrectionsComponent if corrections array is not empty', () => {
+                        const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+
+                        // First body has corrections
+                        getAndExpectDebugElementByDirective(
+                            bodyDes[0],
+                            SourceDescriptionCorrectionsStubComponent,
+                            1,
+                            1
+                        );
+                    });
+
+                    it('... should contain no SourceDescriptionCorrectionsComponent if corrections array is empty or undefined', () => {
+                        const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+
+                        // Second body has no corrections
+                        getAndExpectDebugElementByDirective(
+                            bodyDes[1],
+                            SourceDescriptionCorrectionsStubComponent,
+                            0,
+                            0
+                        );
+                    });
+
+                    it('... should pass down corrections data to SourceDescriptionCorrectionsComponent', () => {
+                        const expectedCorrections =
+                            expectedSourceDescriptionListData.sources[1].description.corrections;
+
+                        const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                        // First body has corrections
+                        const correctionsDes = getAndExpectDebugElementByDirective(
+                            bodyDes[0],
+                            SourceDescriptionCorrectionsStubComponent,
+                            1,
+                            1
+                        );
+                        const correctionsCmp = correctionsDes[0].injector.get(
+                            SourceDescriptionCorrectionsStubComponent
+                        );
+
+                        expectToEqual(correctionsCmp.corrections, expectedCorrections);
+                    });
+                });
             });
 
             describe('... third description div', () => {
@@ -1443,7 +1508,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(descBodyDes[1], 'div.awg-source-description-body > p', 1, 1);
                 });
 
-                it('... the first paragraph displaying the description', () => {
+                it('... the one paragraph displaying the description', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
                     const pDes = getAndExpectDebugElementByCss(
                         descBodyDes[1],
@@ -1909,39 +1974,41 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 // CLick on anchor (with selectSvgSheet call)
                 clickAndAwaitChanges(anchorDes[0], fixture);
 
-                expectSpyCall(selectSvgSheetSpy, 1, [expectedComplexId, expectedSheetId]);
+                expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
             }));
 
             it('... should not emit anything if no id is provided', () => {
-                component.selectSvgSheet(undefined, undefined);
+                const expectedSheetIds = undefined;
+                component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
 
-                component.selectSvgSheet('', '');
+                const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
+                component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
             });
 
             it('... should emit id of selected svg sheet within same complex', () => {
                 const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
-                component.selectSvgSheet(expectedSheetIds.complexId, expectedSheetIds.sheetId);
+                component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
 
                 const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSheetId };
-                component.selectSvgSheet(expectedNextSheetIds.complexId, expectedNextSheetIds.sheetId);
+                component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
             });
 
             it('... should emit id of selected svg sheet for another complex', () => {
                 const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
-                component.selectSvgSheet(expectedSheetIds.complexId, expectedSheetIds.sheetId);
+                component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
 
                 const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSheetId };
-                component.selectSvgSheet(expectedNextSheetIds.complexId, expectedNextSheetIds.sheetId);
+                component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
             });

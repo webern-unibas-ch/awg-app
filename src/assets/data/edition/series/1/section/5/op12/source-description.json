@@ -992,7 +992,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Der Tag ist vergangen“ <a (click)=\"ref.selectSvgSheet('op12', 'M_212_TF1')\">M 212: Textfassung 1</a>→2",
+                        "itemDescription": "Autograph von „Der Tag ist vergangen“ <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\">M 212: Textfassung 1</a>→2",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -1049,6 +1049,104 @@
                                         }
                                     ]
                                 ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_B_corr_1",
+                        "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\">M 212: Textfassung 1</a>."
+                        ],
+                        "comments": [
+                            {
+                                "measure": "3–4",
+                                "system": "",
+                                "position": "",
+                                "comment": "Auf Tektur."
+                            },
+                            {
+                                "measure": "4",
+                                "system": "Klav. o.",
+                                "position": "",
+                                "comment": "Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt."
+                            },
+                            {
+                                "measure": "4",
+                                "system": "Klav. u.",
+                                "position": "2. Pause",
+                                "comment": "Auf Rasur. Ante correcturam: es/as."
+                            },
+                            {
+                                "measure": "13",
+                                "system": "Ges.",
+                                "position": "",
+                                "comment": "{{ref.getGlyph('[ppp]')}} gestrichen oder Tinte zerlaufen?"
+                            },
+                            {
+                                "measure": "18",
+                                "system": "Ges.",
+                                "position": "3. Note",
+                                "comment": "Auf Rasur."
+                            },
+                            {
+                                "measure": "22",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "{{ref.getGlyph('[b]')}} gestrichen."
+                            },
+                            {
+                                "measure": "23",
+                                "system": "Klav. o.",
+                                "position": "Taktanfang",
+                                "comment": "Bassschlüssel auf Rasur."
+                            }
+                        ]
+                    },
+                    {
+                        "id": "source_B_corr_2",
+                        "label": "Korrekturen 2 in <strong>B</strong> (mit Tinte)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\">M 212: Textfassung 1</a>."
+                        ],
+                        "comments": [
+                            {
+                                "measure": "8",
+                                "system": "Klav. o.",
+                                "position": "3. Note",
+                                "comment": "g/cis<sup>1</sup>/fis<sup>1</sup> ersetzt b/des<sup>1</sup>/ges<sup>1</sup>."
+                            },
+                            {
+                                "measure": "9",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Kreis unter der Note."
+                            },
+                            {
+                                "measure": "11",
+                                "system": "Klav. u.",
+                                "position": "Taktanfang",
+                                "comment": "{{ref.getGlyph('[#]')}} (zu virtuellem cis) hinzugefügt."
+                            },
+                            {
+                                "measure": "11",
+                                "system": "Klav.",
+                                "position": "nach 1/4",
+                                "comment": "Viertelpause ergänzt und damit implizit den 2/4-Takt zu einem 3/4-Takt erweitert."
+                            },
+                            {
+                                "measure": "12",
+                                "system": "Klav. o.",
+                                "position": "4/8",
+                                "comment": "{{ref.getGlyph('[a]')}} zu e<sup>2</sup> überschreibt {{ref.getGlyph('[b]')}} zu es<sup>2</sup>."
+                            },
+                            {
+                                "measure": "12",
+                                "system": "Klav. u.",
+                                "position": "4/8",
+                                "comment": "Es ersetzt {{ref.getGlyph('[a]')}}F<sub>1</sub>."
                             }
                         ]
                     }
@@ -1471,7 +1569,9 @@
             "type": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1.",
             "location": "GB-Lbl, British Library, O. W. Neighbour Collection.",
             "description": {
-                "desc": ["1 Blatt (Bl. 1). <span class='text-danger'>[Beschreibung am Original konnte bislang nicht erfolgen.]</span>"],
+                "desc": [
+                    "1 Blatt (Bl. 1). <span class='text-danger'>[Beschreibung am Original konnte bislang nicht erfolgen.]</span>"
+                ],
                 "writingMaterialString": "Notenpapier, 12 Systeme mit vier (1 + 2 Systeme ) vorgedruckten Akkoladen, Format: hoch ### × ### mm, Firmenzeichen: ##JE_12## recto unten links.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
