@@ -209,7 +209,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:70</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -242,7 +242,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:85</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:87</a></div>
                         </td>
                     </tr>
 
@@ -275,7 +275,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:80</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:82</a></div>
                         </td>
                     </tr>
 
@@ -308,7 +308,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:75</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -341,7 +341,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:90</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:92</a></div>
                         </td>
                     </tr>
 
@@ -366,7 +366,16 @@ from a source description json file.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class SourceDescriptionSystemRow {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Textcritics } from &#x27;./textcritics.model&#x27;;
+
+/**
+ * The SourceDescriptionSystemRow class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a system row of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionSystemRow {
     /**
      * The type of the row (optional).
      */
@@ -739,6 +748,11 @@ export class SourceDescriptionDesc {
      * The content of a source (optional).
      */
     content?: SourceDescriptionContent[];
+
+    /**
+     * The corrections lists of a source (optional).
+     */
+    corrections?: Textcritics[];
 }
 
 /**
