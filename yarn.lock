@@ -5449,7 +5449,7 @@ __metadata:
     n3: "npm:^1.17.3"
     ngx-json-viewer: "npm:^3.2.1"
     prettier: "npm:^3.3.0"
-    rdfstore: "musicenfanthen/rdfstore-js#v0.9.18-alpha.15"
+    rdfstore: "musicenfanthen/rdfstore-js#v0.9.18-alpha.16"
     rxjs: "npm:~7.8.1"
     source-map-explorer: "npm:^2.5.3"
     stream: "npm:^0.0.2"
@@ -13592,9 +13592,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rdfstore@musicenfanthen/rdfstore-js#v0.9.18-alpha.15":
-  version: 0.9.18-alpha.15
-  resolution: "rdfstore@https://github.com/musicenfanthen/rdfstore-js.git#commit=f66c4321f171f7199393f51de38c6f42f2560285"
+"rdfstore@musicenfanthen/rdfstore-js#v0.9.18-alpha.16":
+  version: 0.9.18-alpha.16
+  resolution: "rdfstore@https://github.com/musicenfanthen/rdfstore-js.git#commit=a66d1add7048224ac56ce28415527e210cc3a9fb"
   dependencies:
     indexeddb-js: "npm:0.0.14"
     jsonld: "npm:^8.3.1"
@@ -13605,7 +13605,7 @@ __metadata:
       optional: true
     sqlite3:
       optional: true
-  checksum: 10c0/34f54a1baff83805ffe923adc23526ecb0559a96c7a060d5478366894d276b97f430b60a8f72e4c029a6a7aa30af49fc082e33f29806337cd92088843c1e83d5
+  checksum: 10c0/d21dd38c77d408d7a3dd8cb11f8e9377311db779ba9f913c68a4022c09f3728f918a49ceceef39fafd561f43830a2a4bbb933df3b91610a86ea1b5bed8a51ad5
   languageName: node
   linkType: hard
 
