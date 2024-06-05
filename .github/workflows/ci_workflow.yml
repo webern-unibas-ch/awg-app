@@ -20,7 +20,6 @@ env:
     MAIN_REPO_OWNER: webern-unibas-ch # Main repo owner (default: webern-unibas-ch; should not be changed)
 
     # dev settings
-    DEV_REPO: webern-unibas-ch/awg-app-dev
     DEV_GH_PAGES_BRANCH: gh-pages
     DEV_GH_PAGES_DIR: gh-pages-dir
     DIST_DIR: dist
