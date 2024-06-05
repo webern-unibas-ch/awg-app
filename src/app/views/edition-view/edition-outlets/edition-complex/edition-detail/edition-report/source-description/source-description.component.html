@@ -228,10 +228,10 @@
                                                     @if (content.item && utils.isNotEmptyObject(content.itemLinkTo)) {
                                                         <a
                                                             (click)="
-                                                                selectSvgSheet(
-                                                                    content.itemLinkTo.complexId,
-                                                                    content.itemLinkTo.sheetId
-                                                                )
+                                                                selectSvgSheet({
+                                                                    complexId: content.itemLinkTo.complexId,
+                                                                    sheetId: content.itemLinkTo.sheetId,
+                                                                })
                                                             "
                                                             ><strong>{{ content.item }}</strong></a
                                                         >
@@ -259,15 +259,15 @@
                                                         <span
                                                             class="awg-source-description-content-item-folio"
                                                             [ngClass]="{
-                                                                tab: content.item || content.itemDescription
+                                                                tab: content.item || content.itemDescription,
                                                             }">
                                                             @if (folio.folioLinkTo) {
                                                                 <a
                                                                     (click)="
-                                                                        selectSvgSheet(
-                                                                            content.itemLinkTo.complexId,
-                                                                            folio.folioLinkTo
-                                                                        )
+                                                                        selectSvgSheet({
+                                                                            complexId: content.itemLinkTo.complexId,
+                                                                            sheetId: folio.folioLinkTo,
+                                                                        })
                                                                     "
                                                                     ><ng-template
                                                                         *ngTemplateOutlet="
@@ -360,7 +360,7 @@
                                                                                     folio.folio.length > 2) ||
                                                                                 (system.measure &&
                                                                                     !firstSystemGroup &&
-                                                                                    folio.folio.length > 2)
+                                                                                    folio.folio.length > 2),
                                                                         }"
                                                                         ><ng-template
                                                                             *ngTemplateOutlet="
@@ -391,16 +391,18 @@
                                                                         @if (system.linkTo) {
                                                                             <a
                                                                                 (click)="
-                                                                                    selectSvgSheet(
-                                                                                        content.itemLinkTo.complexId,
-                                                                                        system.linkTo
-                                                                                    )
+                                                                                    selectSvgSheet({
+                                                                                        complexId:
+                                                                                            content.itemLinkTo
+                                                                                                .complexId,
+                                                                                        sheetId: system.linkTo,
+                                                                                    })
                                                                                 "
                                                                                 ><ng-template
                                                                                     *ngTemplateOutlet="
                                                                                         measureTemplate;
                                                                                         context: {
-                                                                                            $implicit: system.measure
+                                                                                            $implicit: system.measure,
                                                                                         }
                                                                                     "></ng-template
                                                                             ></a>
@@ -410,7 +412,7 @@
                                                                                 *ngTemplateOutlet="
                                                                                     measureTemplate;
                                                                                     context: {
-                                                                                        $implicit: system.measure
+                                                                                        $implicit: system.measure,
                                                                                     }
                                                                                 "></ng-template>
                                                                         }
@@ -427,16 +429,18 @@
                                                                         @if (system.linkTo) {
                                                                             <a
                                                                                 (click)="
-                                                                                    selectSvgSheet(
-                                                                                        content.itemLinkTo.complexId,
-                                                                                        system.linkTo
-                                                                                    )
+                                                                                    selectSvgSheet({
+                                                                                        complexId:
+                                                                                            content.itemLinkTo
+                                                                                                .complexId,
+                                                                                        sheetId: system.linkTo,
+                                                                                    })
                                                                                 "
                                                                                 ><ng-template
                                                                                     *ngTemplateOutlet="
                                                                                         rowTemplate;
                                                                                         context: {
-                                                                                            $implicit: system.row
+                                                                                            $implicit: system.row,
                                                                                         }
                                                                                     "></ng-template>
                                                                             </a>
@@ -480,6 +484,17 @@
                                         </p>
                                     }
                                 </div>
+                            }
+
+                            <!-- corrections -->
+                            @if (utils.isNotEmptyArray(sourceDescription.description.corrections)) {
+                                <awg-source-description-corrections
+                                    [corrections]="sourceDescription.description.corrections"
+                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                                    (openModalRequest)="openModal($event)"
+                                    (selectSvgSheetRequest)="
+                                        selectSvgSheet($event)
+                                    "></awg-source-description-corrections>
                             }
                         </div>
                     }

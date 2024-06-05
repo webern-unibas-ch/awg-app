@@ -537,6 +537,30 @@ export const mockEditionData = {
                             ],
                         },
                     ],
+                    corrections: [
+                        {
+                            id: 'source_Aa_corr_1',
+                            label: 'Korrekturen 1 in <strong>B</strong> (mit Tinte)',
+                            description: [
+                                'Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: Textfassung 1.',
+                            ],
+                            comments: [
+                                {
+                                    measure: '3–4',
+                                    system: '',
+                                    position: '',
+                                    comment: 'Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####',
+                                },
+                                {
+                                    measure: '4',
+                                    system: 'Klav. o.',
+                                    position: '',
+                                    comment:
+                                        'Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.',
+                                },
+                            ],
+                        },
+                    ],
                 },
             },
             {
