@@ -1449,7 +1449,7 @@
                 "desc": [
                     "1 Blatt (Bl. 1). Archivalische Eintragung recto oben rechts mit Bleistift (<em>Op 3 No 5</em>). Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
-                "writingMaterial": "Notenpapier, 12 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [JE] | <em>Protokoll. Schutzmarke | No. 2 | 12 linig.</em> recto unten links.",
+                "writingMaterialString": "Notenpapier, 12 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [JE] | <em>Protokoll. Schutzmarke | No. 2 | 12 linig.</em> recto unten links.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": [
