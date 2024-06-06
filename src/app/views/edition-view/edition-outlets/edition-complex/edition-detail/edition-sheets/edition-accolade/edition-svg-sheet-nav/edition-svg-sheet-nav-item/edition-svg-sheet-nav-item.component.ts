@@ -69,10 +69,10 @@ export class EditionSvgSheetNavItemComponent {
      */
     isSelectedSvgSheet(id: string, partial?: string): boolean {
         let givenId = id;
-        let selectedId = this.selectedSvgSheet.id;
+        let selectedId = this.selectedSvgSheet?.id;
 
         // Compare partial id if needed
-        if (partial && this.selectedSvgSheet.content?.[0]?.partial) {
+        if (partial && this.selectedSvgSheet?.content?.[0]?.partial) {
             givenId += partial;
             selectedId += this.selectedSvgSheet.content[0].partial;
         }
