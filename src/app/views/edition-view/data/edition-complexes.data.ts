@@ -152,6 +152,328 @@ export class EDITION_COMPLEXES {
     );
 
     /**
+     * An EditionComplex object for M 133.
+     */
+    static readonly M133: EditionComplex = new EditionComplex(
+        {
+            title: '„Dies ist ein Lied“',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '133',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '6. Juni 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 134.
+     */
+    static readonly M134: EditionComplex = new EditionComplex(
+        {
+            title: '„Im Windesweben“',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '134',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '6. Juni 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 135.
+     */
+    static readonly M135: EditionComplex = new EditionComplex(
+        {
+            title: '„An Bachesranft“',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '135',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '6. Juni 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 136.
+     */
+    static readonly M136: EditionComplex = new EditionComplex(
+        {
+            title: '„Im Morgentaun“',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '136',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '6. Juni 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 137.
+     */
+    static readonly M137: EditionComplex = new EditionComplex(
+        {
+            title: '„Kahl reckt der Baum“',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '137',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '6. Juni 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 138.
+     */
+    static readonly M138: EditionComplex = new EditionComplex(
+        {
+            title: '<em>Eingang</em> („Welt der Gestalten“)',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '138',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '6. Juni 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 139.
+     */
+    static readonly M139: EditionComplex = new EditionComplex(
+        {
+            title: '„Noch zwingt mich Treue“',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '139',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '6. Juni 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 140.
+     */
+    static readonly M140: EditionComplex = new EditionComplex(
+        {
+            title: '„Ja Heil und Dank dir“',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '140',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '6. Juni 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 141.
+     */
+    static readonly M141: EditionComplex = new EditionComplex(
+        {
+            title: '„So ich traurig bin“',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '141',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '6. Juni 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 142.
+     */
+    static readonly M142: EditionComplex = new EditionComplex(
+        {
+            title: '„Ihr tratet zu dem Herde“',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '142',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '6. Juni 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 143.
+     */
+    static readonly M143: EditionComplex = new EditionComplex(
+        {
+            title: '„Erwachen aus dem tiefsten Traumesschoße“',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '143',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '6. Juni 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 144.
+     */
+    static readonly M144: EditionComplex = new EditionComplex(
+        {
+            title: '<em>Kunfttag I</em> („Dem bist du Kind“)',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '144',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '6. Juni 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 145.
+     */
+    static readonly M145: EditionComplex = new EditionComplex(
+        {
+            title: '<em>Trauer I</em> („So wart bis ich dies dir noch künde“)',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '145',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '6. Juni 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 146.
+     */
+    static readonly M146: EditionComplex = new EditionComplex(
+        {
+            title: '„Das lockere Saatgefilde“',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '146',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '6. Juni 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
      * An EditionComplex object for M 212.
      */
     static readonly M212: EditionComplex = new EditionComplex(
@@ -259,7 +581,7 @@ export class EDITION_COMPLEXES {
                     homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
                 },
             ],
-            lastModified: '---',
+            lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_5,
@@ -282,7 +604,7 @@ export class EDITION_COMPLEXES {
                     homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
                 },
             ],
-            lastModified: '---',
+            lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_5,
