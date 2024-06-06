@@ -1,0 +1,123 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Autograph von <br /><span class=\"tab\"></span><em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 1→2. <br />Enthält auch Autographe von „Im Windesweben“ M 134, „Im Morgentaun“ M 136 und „Kahl reckt der Baum“ M 137 aus <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3.",
+            "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
+            "hasDescription": true,
+            "linkTo": "source_A"
+        },
+        {
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Autographe von <br /><span class=\"tab\"></span>„Noch zwingt mich Treue“ M 139: Textfassung 1→2 (<strong>B<sup>a</sup></strong>)<br /><span class=\"tab\"></span>„Ja Heil und Dank dir“ M 140: Textfassung 1→2 (<strong>B<sup>b</sup></strong>) <br /><span class=\"tab\"></span>„So ich traurig bin“ M 141: Textfassung 1 (<strong>B<sup>c</sup></strong>).",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_B"
+        },
+        {
+            "siglum": "[C]",
+            "siglumAddendum": "",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 1.",
+            "location": "Verschollen.",
+            "hasDescription": false,
+            "linkTo": "source_C"
+        },
+        {
+            "siglum": "D",
+            "siglumAddendum": "",
+            "type": "Abschriften fremder Hand von <br /><span class=\"tab\"></span>I<span class=\"tab\"></span><em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 1 (<strong>D<sup>a</sup></strong>)<br /><span class=\"tab\"></span>„Noch zwingt mich Treue“ M 139: Textfassung 1 (<strong>D<sup>b</sup></strong>).",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_D"
+        },
+        {
+            "siglum": "[E]",
+            "siglumAddendum": "",
+            "type": "Abschrift fremder Hand von <br /><span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 1.",
+            "location": "Verschollen.",
+            "hasDescription": false,
+            "linkTo": "source_E"
+        },
+        {
+            "siglum": "[F]",
+            "siglumAddendum": "",
+            "type": "Korrekturfahne von <strong>G</strong>.",
+            "location": "Verschollen.",
+            "hasDescription": false,
+            "linkTo": "source_F"
+        },
+        {
+            "siglum": "G",
+            "siglumAddendum": "",
+            "type": "Druck von <br /><span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 1.",
+            "location": "Beilage in: Der blaue Reiter, München: Piper, 1912.",
+            "hasDescription": true,
+            "linkTo": "source_G"
+        },
+        {
+            "siglum": "G",
+            "siglumAddendum": "H",
+            "type": "Handexemplar von <a (click)=\"ref.navigateToReportFragment('source_G')\"><strong>G</strong></a> mit Korrekturen Weberns: <br /><span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 1→2.",
+            "location": "US-NYpm, Dept. of Music Manuscripts and Books, PMM 21.",
+            "hasDescription": true,
+            "linkTo": "source_GH"
+        },
+        {
+            "siglum": "H",
+            "siglumAddendum": "",
+            "type": "Autograph von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span><em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 3 <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Noch zwingt mich Treue“ M 139: Textfassung 3 <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Ja Heil und Dank dir“ M 140: Textfassung 2 <br /><span class=\"tab\"></span>IV<span class=\"tab\"></span>„So ich traurig bin“ M 141: Textfassung 2 <br /><span class=\"tab\"></span>V<span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 3.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_H"
+        },
+        {
+            "siglum": "I",
+            "siglumAddendum": "",
+            "type": "Abschrift fremder Hand von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span><em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 3 <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Noch zwingt mich Treue“ M 139: Textfassung 3 <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Ja Heil und Dank dir“ M 140: Textfassung 2 <br /><span class=\"tab\"></span>IV<span class=\"tab\"></span>„So ich traurig bin“ M 141: Textfassung 2 <br /><span class=\"tab\"></span>V<span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 3. <br />Stichvorlage für <a (click)=\"ref.navigateToReportFragment('source_J')\"><strong>J</strong></a>.",
+            "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
+            "hasDescription": true,
+            "linkTo": "source_I"
+        },
+        {
+            "siglum": "J",
+            "siglumAddendum": "",
+            "type": "Druck von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span><em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 3 <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Noch zwingt mich Treue“ M 139: Textfassung 3 <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Ja Heil und Dank dir“ M 140: Textfassung 2 <br /><span class=\"tab\"></span>IV<span class=\"tab\"></span>„So ich traurig bin“ M 141: Textfassung 2 <br /><span class=\"tab\"></span>V<span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 3.",
+            "location": "Wien: Universal Edition, 1923.",
+            "hasDescription": true,
+            "linkTo": "source_J"
+        },
+        {
+            "siglum": "J",
+            "siglumAddendum": "H",
+            "type": "Handexemplar von <a (click)=\"ref.navigateToReportFragment('source_J')\"><strong>J</strong></a> mit Eintragungen Weberns.",
+            "location": "A-Wst, Musikhandschriften, MHc-14926.",
+            "hasDescription": true,
+            "linkTo": "source_JH"
+        }
+    ],
+    "textSources": [
+        {
+            "id": "text_George_DJdS",
+            "siglum": "George_DJdS",
+            "siglumAddendum": "",
+            "type": "Stefan George, <em>Das Jahr der Seele</em>, Berlin: Bondi, <sup>3</sup>1904, S. 14 (<em>Ja heil und dank dir…</em>), 30 (<em>Noch zwingt mich treue…</em>), 118 (<em>Ihr tratet zu dem herde</em>).",
+            "location": "Weberns Exemplar befindet sich in CH-Bps, PSS AW B 1040."
+        },
+        {
+            "id": "text_George_DBdH",
+            "siglum": "George_DBdH",
+            "siglumAddendum": "",
+            "type": "Stefan George, <em>Die Bücher der Hirten- und Preisgedichte der Sagen und Sänge und der hängenden Gärten</em>, Berlin: Bondi, <sup>3</sup>1907, S. 74 (<em>So ich traurig bin</em>).",
+            "location": "Weberns Exemplar befindet sich in CH-Bps, PSS AW B 1039."
+        },
+        {
+            "id": "text_George_DsR",
+            "siglum": "George_DsR",
+            "siglumAddendum": "",
+            "type": "Stefan George, <em>Der siebente Ring</em>, Berlin: Blätter für die Kunst, 1907, S. 157–161 (<em>Dies ist ein lied</em>, <em>Im windes-weben</em>, <em>An baches ranft</em>, <em>Im morgen-taun</em>, <em>Kahl reckt der baum</em>).",
+            "location": "Weberns Exemplar befindet sich in CH-Bps, PSS AW B 1041."
+        }
+    ]
+}
