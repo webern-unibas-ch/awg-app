@@ -1,0 +1,118 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Autographe von<br /><span class=\"tab\"></span>„Dies ist ein Lied“ M 133: Textfassung 1→2 (<strong>A<sup>a</sup></strong>)<br /><span class=\"tab\"></span>„Im Windesweben“ M 134: Textfassung 1→2 (<strong>A<sup>b</sup></strong>).",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_A"
+        },
+        {
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„Dies ist ein Lied“ M 133: Textfassung 2.",
+            "location": "US-Wc, Moldenhauer Archives, Box-Folder 58/9[a].",
+            "hasDescription": true,
+            "linkTo": "source_B"
+        },
+        {
+            "siglum": "C",
+            "siglumAddendum": "",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„Dies ist ein Lied“ M 133: Textfassung 2→3.",
+            "location": "A-Wn, Mus.Hs.38735.MusA/Webern/4.",
+            "hasDescription": true,
+            "linkTo": "source_C"
+        },
+        {
+            "siglum": "D",
+            "siglumAddendum": "",
+            "type": "Fragment von <br /><span class=\"tab\"></span>„Im Morgentaun“ M 136: Textfassung 1.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_D"
+        },
+        {
+            "siglum": "E",
+            "siglumAddendum": "",
+            "type": "Autographe von <br /><span class=\"tab\"></span>„Dies ist ein Lied“ M 133: Textfassung 4 (<strong>E<sup>a</sup></strong>)<br /><span class=\"tab\"></span>„Im Windesweben“ M 134: Textfassung 2 (<strong>E<sup>b</sup></strong>) <br /><span class=\"tab\"></span>„An Bachesranft“ M 135: Textfassung 1 (<strong>E<sup>c</sup></strong>) <br /><span class=\"tab\"></span>„Im Morgentaun“ M 136: Textfassung 1 (<strong>E<sup>d</sup></strong>) <br /><span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: Textfassung 1→2 (<strong>E<sup>e</sup></strong>).",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_E"
+        },
+        {
+            "siglum": "F",
+            "siglumAddendum": "",
+            "type": "Abschriften fremder Hand von <br /><span class=\"tab\"></span>„Dies ist ein Lied“ M 133: Textfassung 2→3→4 (<strong>F<sup>a</sup></strong>)<br /><span class=\"tab\"></span>„Im Windesweben“ M 134: Textfassung 2 (<strong>F<sup>b</sup></strong>) <br /><span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: Textfassung 1 (<strong>F<sup>c</sup></strong>).",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_F"
+        },
+        {
+            "siglum": "G",
+            "siglumAddendum": "",
+            "type": "Autographe von <br /><span class=\"tab\"></span>„Im Windesweben“ M 134: Textfassung 3 (<strong>G<sup>a</sup></strong>) <br /><span class=\"tab\"></span>„Im Morgentaun“ M 136: Textfassung 1→2 (<strong>G<sup>b</sup></strong>) <br /><span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: Textfassung 2→3 (<strong>G<sup>c</sup></strong>). <br />Enthält auch Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138 aus <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4.",
+            "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
+            "hasDescription": true,
+            "linkTo": "source_G"
+        },
+        {
+            "siglum": "H",
+            "siglumAddendum": "",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„An Bachesranft“ M 133: Textfassung 2.",
+            "location": "US-Wc, Moldenhauer Archives, Box-Folder: 58/9[b].",
+            "hasDescription": true,
+            "linkTo": "source_H"
+        },
+        {
+            "siglum": "I",
+            "siglumAddendum": "",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„Im Morgentaun“ M 136: Textfassung 2.",
+            "location": "US-Wc, Moldenhauer Archives, Box-Folder: 58/9[c].",
+            "hasDescription": true,
+            "linkTo": "source_I"
+        },
+        {
+            "siglum": "J",
+            "siglumAddendum": "",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: Textfassung 4.",
+            "location": "US-Wc, Moldenhauer Archives, Box-Folder: 58/9[d].",
+            "hasDescription": true,
+            "linkTo": "source_J"
+        },
+        {
+            "siglum": "[K]",
+            "siglumAddendum": "",
+            "type": "Stichvorlage für <a (click)=\"ref.navigateToReportFragment('source_L')\"><strong>L</strong></a>.",
+            "location": "Verschollen.",
+            "hasDescription": false,
+            "linkTo": "source_K"
+        },
+        {
+            "siglum": "L",
+            "siglumAddendum": "",
+            "type": "Druck von <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Dies ist ein Lied“ M 133: Textfassung 4 <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Im Windesweben“ M 134: Textfassung 3 <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„An Bachesranft“ M 135: Textfassung 3 <br /><span class=\"tab\"></span>IV<span class=\"tab\"></span>„Im Morgentaun“ M 136: Textfassung 3 <br /><span class=\"tab\"></span>V<span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: Textfassung 5.",
+            "location": "Wien: Verein für musikalische Privataufführungen, 1919 / Universal Edition, 1921.",
+            "hasDescription": true,
+            "linkTo": "source_L"
+        },
+        {
+            "siglum": "M",
+            "siglumAddendum": "",
+            "type": "Druck von <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Dies ist ein Lied“ M 133: Textfassung 4 <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Im Windesweben“ M 134: Textfassung 3 <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„An Bachesranft“ M 135: Textfassung 3 <br /><span class=\"tab\"></span>IV<span class=\"tab\"></span>„Im Morgentaun“ M 136: Textfassung 3 <br /><span class=\"tab\"></span>V<span class=\"tab\"></span>„Kahl reckt der Baum“ M 137: Textfassung 5.",
+            "location": "Wien: Universal Edition, 1923.",
+            "hasDescription": true,
+            "linkTo": "source_M"
+        }
+    ],
+    "textSources": [
+        {
+            "id": "text_George_DsR",
+            "siglum": "George_DsR",
+            "siglumAddendum": "",
+            "type": "Stefan George, <em>Der siebente Ring</em>, Berlin: Blätter für die Kunst, 1907, S. 157–161 (<em>Dies ist ein lied</em>, <em>Im windes-weben</em>, <em>An baches ranft</em>, <em>Im morgen-taun</em>, <em>Kahl reckt der baum</em>).",
+            "location": "Weberns Exemplar befindet sich in CH-Bps, PSS AW B 1041."
+        }
+        
+    ]
+}
