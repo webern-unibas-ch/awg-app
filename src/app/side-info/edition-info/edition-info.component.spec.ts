@@ -68,6 +68,7 @@ describe('EditionInfoComponent (DONE)', () => {
     const expectedEditionTypeConstants: typeof EDITION_TYPE_CONSTANTS = EDITION_TYPE_CONSTANTS;
 
     const expectedEditionInfoHeader = 'Edition';
+    const expectedSliceIndex = 5;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -92,7 +93,10 @@ describe('EditionInfoComponent (DONE)', () => {
 
         // Test data
         expectedEditionComplexes = [
+            EDITION_COMPLEXES.OP3,
+            EDITION_COMPLEXES.OP4,
             EDITION_COMPLEXES.OP12,
+            EDITION_COMPLEXES.OP23,
             EDITION_COMPLEXES.OP25,
             EDITION_COMPLEXES.M22,
             EDITION_COMPLEXES.M30,
@@ -120,6 +124,10 @@ describe('EditionInfoComponent (DONE)', () => {
 
         it('... should have as many `DISPLAYED_EDITION_COMPLEXES` as there are complexes in the array', () => {
             expectToEqual(component.DISPLAYED_EDITION_COMPLEXES.length, expectedEditionComplexes.length);
+        });
+
+        it('... should have `SLICE_INDEX`', () => {
+            expectToBe(component.SLICE_INDEX, expectedSliceIndex);
         });
 
         it('... should have `editionRouteConstants`', () => {
@@ -244,7 +252,7 @@ describe('EditionInfoComponent (DONE)', () => {
                 expectToContain(itemBodyEl.classList, 'show');
             });
 
-            it('... should contain item body with 2 paragraphs in first item', () => {
+            it('... should contain item body with 5 paragraphs in first item', () => {
                 // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 3, 3);
 
@@ -255,7 +263,7 @@ describe('EditionInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 2, 2);
             });
 
-            it('... should contain item body with 2 paragraphs in second item', () => {
+            it('... should contain item body with 5 paragraphs in second item', () => {
                 // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 3, 3);
 
@@ -263,21 +271,21 @@ describe('EditionInfoComponent (DONE)', () => {
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-body', 1, 1);
 
                 // Length of expected paragraphs (first two items)
-                const expectedLength = expectedEditionComplexes.slice(0, 2).length;
+                const expectedLength = expectedEditionComplexes.slice(0, expectedSliceIndex).length;
 
                 // Paragraphs
                 getAndExpectDebugElementByCss(itemBodyDes[0], 'p', expectedLength, expectedLength);
             });
 
-            it('... should contain item body with 4 paragraphs in third item', () => {
+            it('... should contain item body with 6 paragraphs in third item', () => {
                 // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 3, 3);
 
                 // Item body
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[2], 'div.accordion-body', 1, 1);
 
-                // Length of expected paragraphs (last items starting from index 2)
-                const expectedLength = expectedEditionComplexes.slice(2).length;
+                // Length of expected paragraphs (last items starting from index 5)
+                const expectedLength = expectedEditionComplexes.slice(expectedSliceIndex).length;
 
                 // Paragraphs
                 getAndExpectDebugElementByCss(itemBodyDes[0], 'p', expectedLength, expectedLength);

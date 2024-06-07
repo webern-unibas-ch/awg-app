@@ -46,7 +46,10 @@
                 <div ngbAccordionCollapse>
                     <div ngbAccordionBody>
                         <ng-template>
-                            @for (editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: 0 : 2; track editionComplex) {
+                            @for (
+                                editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: 0 : SLICE_INDEX;
+                                track editionComplex
+                            ) {
                                 <p>
                                     <span
                                         class="awg-edition-info-header-title"
@@ -63,7 +66,7 @@
                                         ]"
                                         >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
                                     >
-                                    @if (editionComplex === DISPLAYED_EDITION_COMPLEXES[1]) {
+                                    @if (editionComplex.complexId.short === 'op. 25') {
                                         <span>&nbsp;&&nbsp;</span>
                                         <a
                                             class="awg-edition-info-header-link"
@@ -94,7 +97,7 @@
                         <ng-template>
                             @for (
                                 editionComplex of DISPLAYED_EDITION_COMPLEXES
-                                    | slice: 2 : DISPLAYED_EDITION_COMPLEXES.length;
+                                    | slice: SLICE_INDEX : DISPLAYED_EDITION_COMPLEXES.length;
                                 track editionComplex
                             ) {
                                 <p>

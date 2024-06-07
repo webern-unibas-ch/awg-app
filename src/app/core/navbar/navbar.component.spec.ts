@@ -126,7 +126,10 @@ describe('NavbarComponent (DONE)', () => {
         expectedLogos = LOGOSDATA;
 
         expectedEditionComplexes = [
+            EDITION_COMPLEXES.OP3,
+            EDITION_COMPLEXES.OP4,
             EDITION_COMPLEXES.OP12,
+            EDITION_COMPLEXES.OP23,
             EDITION_COMPLEXES.OP25,
             EDITION_COMPLEXES.M22,
             EDITION_COMPLEXES.M30,
