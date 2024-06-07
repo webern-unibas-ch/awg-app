@@ -317,22 +317,7 @@ describe('EditionInfoComponent (DONE)', () => {
                 titleDes.forEach((titleDe, index) => {
                     const titleEl = titleDe.nativeElement;
 
-                    expectToBe(titleEl.innerHTML, expectedEditionComplexes[index].titleStatement.title);
-                });
-            });
-
-            it('... should render catalogue number of edition info headers', () => {
-                const catalogueDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'span.awg-edition-info-header-catalogue',
-                    expectedEditionComplexes.length,
-                    expectedEditionComplexes.length
-                );
-
-                catalogueDes.forEach((catalogueDe, index) => {
-                    const catalogueEl = catalogueDe.nativeElement;
-
-                    expectToBe(catalogueEl.innerHTML, expectedEditionComplexes[index].complexId.short);
+                    expectToBe(titleEl.innerHTML, expectedEditionComplexes[index].complexId.full);
                 });
             });
         });

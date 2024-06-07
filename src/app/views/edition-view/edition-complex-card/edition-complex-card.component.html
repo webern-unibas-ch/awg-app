@@ -1,15 +1,10 @@
 <div class="row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
-    @for (complex of complexes; track complex) {
+    @for (complex of complexes; track complex.complex.complexId.short) {
         <div class="col">
             <div class="card awg-edition-card h-100">
                 <div class="card-body">
                     <h5 class="card-title" [ngClass]="{ 'text-muted': complex.disabled }">
-                        <span
-                            class="awg-edition-info-header-title"
-                            [innerHTML]="complex.complex.titleStatement.title"></span
-                        >&nbsp;<span class="awg-edition-info-header-catalogue">{{
-                            complex.complex.complexId.short
-                        }}</span>
+                        <span class="awg-edition-info-header-title" [innerHTML]="complex.complex.complexId.full"></span>
                     </h5>
                 </div>
                 <div class="card-footer">
@@ -19,7 +14,7 @@
                                 Ediert von
                                 @for (
                                     editor of complex.complex.responsibilityStatement.editors;
-                                    track editor;
+                                    track editor.name;
                                     let isLast = $last
                                 ) {
                                     <span class="editor">

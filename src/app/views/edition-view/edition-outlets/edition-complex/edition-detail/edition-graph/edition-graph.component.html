@@ -6,7 +6,7 @@
     <!-- graph -->
     @if (editionGraphData$ | async; as editionGraphData) {
         <div class="awg-graph-view p-5 border rounded-3">
-            @for (graph of editionGraphData.graph; track graph) {
+            @for (graph of editionGraphData.graph; track graph.id) {
                 <div>
                     <!-- graph description -->
                     <div class="awg-graph-description">
@@ -22,7 +22,7 @@
                             >
                         </p>
                         @if (utils.isNotEmptyArray(graph.description) || graph.rdfData?.triples) {
-                            @for (description of graph.description; track description) {
+                            @for (description of graph.description; track $index) {
                                 <p [compile-html]="description" [compile-html-ref]="ref"></p>
                             }
                         } @else {
@@ -30,7 +30,8 @@
                                 <small class="text-muted"
                                     >[Die Graph-Visualisierungen zum Editionskomplex
                                     <span [innerHTML]="editionComplex.complexId.full"></span> erscheinen im Zusammenhang
-                                    der vollständigen Edition von {{ editionComplex.complexId.short }} in
+                                    der vollständigen Edition von
+                                    <span [innerHTML]="editionComplex.complexId.short"></span> in
                                     {{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{
                                         editionComplex.section.short
                                     }}.]

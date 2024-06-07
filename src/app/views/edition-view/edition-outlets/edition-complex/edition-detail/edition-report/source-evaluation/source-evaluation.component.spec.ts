@@ -217,10 +217,15 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 const pEl = pDes[0].nativeElement;
 
                 // Create evaluation placeholder
-                const evaluationPlaceholder = `[Die Quellenbewertung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
-                const strippedEvaluationPlaceholder = evaluationPlaceholder.replace(/<em>/g, '').replace(/<\/em>/g, '');
+                const fullComplexSpan = mockDocument.createElement('span');
+                fullComplexSpan.innerHTML = expectedEditionComplex.complexId.full;
 
-                expectToEqual(pEl.textContent.trim(), strippedEvaluationPlaceholder);
+                const shortComplexSpan = mockDocument.createElement('span');
+                shortComplexSpan.innerHTML = expectedEditionComplex.complexId.short;
+
+                const evaluationPlaceholder = `[Die Quellenbewertung zum Editionskomplex ${fullComplexSpan.textContent} erscheint im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
+
+                expectToBe(pEl.textContent.trim(), evaluationPlaceholder);
             }));
         });
 

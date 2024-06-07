@@ -48,15 +48,12 @@
                         <ng-template>
                             @for (
                                 editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: 0 : SLICE_INDEX;
-                                track editionComplex
+                                track editionComplex.complexId.short
                             ) {
                                 <p>
                                     <span
                                         class="awg-edition-info-header-title"
-                                        [innerHTML]="editionComplex.titleStatement.title"></span
-                                    >&nbsp;<span class="awg-edition-info-header-catalogue">{{
-                                        editionComplex.complexId.short
-                                    }}</span>
+                                        [innerHTML]="editionComplex.complexId.full"></span>
                                     <br />
                                     (<a
                                         class="awg-edition-info-header-link"
@@ -66,7 +63,7 @@
                                         ]"
                                         >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
                                     >
-                                    @if (editionComplex.complexId.short === 'op. 25') {
+                                    @if (editionComplex.complexId.route.includes('op25')) {
                                         <span>&nbsp;&&nbsp;</span>
                                         <a
                                             class="awg-edition-info-header-link"
@@ -98,15 +95,12 @@
                             @for (
                                 editionComplex of DISPLAYED_EDITION_COMPLEXES
                                     | slice: SLICE_INDEX : DISPLAYED_EDITION_COMPLEXES.length;
-                                track editionComplex
+                                track editionComplex.complexId.short
                             ) {
                                 <p>
                                     <span
                                         class="awg-edition-info-header-title"
-                                        [innerHTML]="editionComplex.titleStatement.title"></span
-                                    >&nbsp;<span class="awg-edition-info-header-catalogue">{{
-                                        editionComplex.complexId.short
-                                    }}</span>
+                                        [innerHTML]="editionComplex.complexId.full"></span>
                                     <br />
                                     (<a
                                         class="awg-edition-info-header-link"

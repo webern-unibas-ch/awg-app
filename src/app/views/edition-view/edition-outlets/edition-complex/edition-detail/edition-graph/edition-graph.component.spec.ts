@@ -1,4 +1,4 @@
-import { JsonPipe } from '@angular/common';
+import { DOCUMENT, JsonPipe } from '@angular/common';
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 
@@ -51,6 +51,7 @@ describe('EditionGraphComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionGraphComponent>;
     let compDe: DebugElement;
 
+    let mockDocument: Document;
     let mockEditionService: Partial<EditionService>;
     let mockEditionDataService: Partial<EditionDataService>;
 
@@ -101,6 +102,8 @@ describe('EditionGraphComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionGraphComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
+
+        mockDocument = TestBed.inject(DOCUMENT);
 
         // Inject services from root
         editionDataService = TestBed.inject(EditionDataService);
@@ -221,102 +224,6 @@ describe('EditionGraphComponent (DONE)', () => {
             expectSpyCall(compGetEditonGraphDataSpy, 1);
         });
 
-        describe('#getEditionGraphData()', () => {
-            it('... should have a method `getEditionGraphData`', () => {
-                expect(component.getEditionGraphData).toBeDefined();
-            });
-
-            it('... should trigger editionService.getEditionComplex', () => {
-                expectSpyCall(editionServiceGetEditionComplexSpy, 1);
-            });
-
-            it('... should get current editionComplex from editionService', () => {
-                expectSpyCall(editionServiceGetEditionComplexSpy, 1);
-
-                expectToEqual(component.editionComplex, expectedEditionComplex);
-            });
-
-            it('... should update editionComplex when editionService emits changed value', waitForAsync(() => {
-                // ----------------
-                // Change to op. 25
-                editionServiceGetEditionComplexSpy.and.returnValue(observableOf(EDITION_COMPLEXES.OP25));
-
-                component.getEditionGraphData();
-                detectChangesOnPush(fixture);
-
-                expectSpyCall(editionServiceGetEditionComplexSpy, 2);
-
-                expectToEqual(component.editionComplex, EDITION_COMPLEXES.OP25);
-            }));
-
-            it('... should trigger editionDataService.getEditionGraph', () => {
-                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1);
-            });
-
-            it('... should trigger editionDataService.getEditionGraph with current editionComplex', () => {
-                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1, expectedEditionComplex);
-            });
-
-            it('... should re-trigger editionDataService.getEditionGraph with updated editionComplex', waitForAsync(() => {
-                // ----------------
-                // Change to op. 25
-                // ExpectedEditionComplex = EDITION_COMPLEXES.op25;
-                editionServiceGetEditionComplexSpy.and.returnValue(observableOf(EDITION_COMPLEXES.OP25));
-
-                component.getEditionGraphData();
-                detectChangesOnPush(fixture);
-
-                expectSpyCall(editionServiceGetEditionComplexSpy, 2);
-                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 2, EDITION_COMPLEXES.OP25);
-            }));
-
-            it('... should get editionGraphData from editionDataService and set editionGraphData$', waitForAsync(() => {
-                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1, expectedEditionComplex);
-
-                // Wait for fixture to be stable
-                detectChangesOnPush(fixture);
-
-                expectAsync(lastValueFrom(component.editionGraphData$)).toBeResolved();
-                expectAsync(lastValueFrom(component.editionGraphData$))
-                    .withContext(`should be resolved to ${expectedEditionGraphDataEmpty}`)
-                    .toBeResolvedTo(expectedEditionGraphDataEmpty);
-            }));
-
-            it('... should update editionGraphData$ when editionService emits changed value', waitForAsync(() => {
-                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1, expectedEditionComplex);
-
-                // ----------------
-                // Change to op. 25
-                // ExpectedEditionComplex = EDITION_COMPLEXES.op25;
-                editionServiceGetEditionComplexSpy.and.returnValue(observableOf(EDITION_COMPLEXES.OP25));
-
-                component.getEditionGraphData();
-                detectChangesOnPush(fixture);
-
-                expectSpyCall(editionServiceGetEditionComplexSpy, 2);
-                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 2, EDITION_COMPLEXES.OP25);
-
-                expectAsync(lastValueFrom(component.editionGraphData$)).toBeResolved();
-                expectAsync(lastValueFrom(component.editionGraphData$))
-                    .withContext(`should be resolved to ${expectedEditionGraphDataOp25}`)
-                    .toBeResolvedTo(expectedEditionGraphDataOp25);
-            }));
-
-            it('... should return empty observable and set errorObject if switchMap fails', waitForAsync(() => {
-                const expectedError = { status: 404, statusText: 'fail' };
-                // Spy on editionDataService to return an error
-                editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableThrowError(() => expectedError));
-
-                component.getEditionGraphData();
-                detectChangesOnPush(fixture);
-
-                expectAsync(lastValueFrom(component.editionGraphData$)).toBeRejected();
-                expectAsync(lastValueFrom(component.editionGraphData$)).toBeRejectedWithError(EmptyError);
-
-                expectToEqual(component.errorObject, expectedError);
-            }));
-        });
-
         describe('VIEW', () => {
             it('... should have one div.awg-graph-view', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 1, 1);
@@ -387,11 +294,16 @@ describe('EditionGraphComponent (DONE)', () => {
                     const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-graph-description-empty', 1, 1);
                     const pEl = pDes[0].nativeElement;
 
-                    // Create intro placeholder
-                    const graphPlaceholder = `[Die Graph-Visualisierungen zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheinen im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
-                    const strippedGraphPlaceholder = graphPlaceholder.replace(/<em>/g, '').replace(/<\/em>/g, '');
+                    // Create graph placeholder
+                    const fullComplexSpan = mockDocument.createElement('span');
+                    fullComplexSpan.innerHTML = expectedEditionComplex.complexId.full;
 
-                    expectToBe(pEl.textContent.trim(), strippedGraphPlaceholder);
+                    const shortComplexSpan = mockDocument.createElement('span');
+                    shortComplexSpan.innerHTML = expectedEditionComplex.complexId.short;
+
+                    const graphPlaceholder = `[Die Graph-Visualisierungen zum Editionskomplex ${fullComplexSpan.textContent} erscheinen im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
+
+                    expectToBe(pEl.textContent.trim(), graphPlaceholder);
                 }));
 
                 it('... should have one + x paragraphs for graph description if description data is provided', waitForAsync(() => {
@@ -648,6 +560,102 @@ describe('EditionGraphComponent (DONE)', () => {
                     expectToContain(alertEl.textContent, jsonPipe.transform(expectedError));
                 }));
             });
+        });
+
+        describe('#getEditionGraphData()', () => {
+            it('... should have a method `getEditionGraphData`', () => {
+                expect(component.getEditionGraphData).toBeDefined();
+            });
+
+            it('... should trigger editionService.getEditionComplex', () => {
+                expectSpyCall(editionServiceGetEditionComplexSpy, 1);
+            });
+
+            it('... should get current editionComplex from editionService', () => {
+                expectSpyCall(editionServiceGetEditionComplexSpy, 1);
+
+                expectToEqual(component.editionComplex, expectedEditionComplex);
+            });
+
+            it('... should update editionComplex when editionService emits changed value', waitForAsync(() => {
+                // ----------------
+                // Change to op. 25
+                editionServiceGetEditionComplexSpy.and.returnValue(observableOf(EDITION_COMPLEXES.OP25));
+
+                component.getEditionGraphData();
+                detectChangesOnPush(fixture);
+
+                expectSpyCall(editionServiceGetEditionComplexSpy, 2);
+
+                expectToEqual(component.editionComplex, EDITION_COMPLEXES.OP25);
+            }));
+
+            it('... should trigger editionDataService.getEditionGraph', () => {
+                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1);
+            });
+
+            it('... should trigger editionDataService.getEditionGraph with current editionComplex', () => {
+                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1, expectedEditionComplex);
+            });
+
+            it('... should re-trigger editionDataService.getEditionGraph with updated editionComplex', waitForAsync(() => {
+                // ----------------
+                // Change to op. 25
+                // ExpectedEditionComplex = EDITION_COMPLEXES.op25;
+                editionServiceGetEditionComplexSpy.and.returnValue(observableOf(EDITION_COMPLEXES.OP25));
+
+                component.getEditionGraphData();
+                detectChangesOnPush(fixture);
+
+                expectSpyCall(editionServiceGetEditionComplexSpy, 2);
+                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 2, EDITION_COMPLEXES.OP25);
+            }));
+
+            it('... should get editionGraphData from editionDataService and set editionGraphData$', waitForAsync(() => {
+                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1, expectedEditionComplex);
+
+                // Wait for fixture to be stable
+                detectChangesOnPush(fixture);
+
+                expectAsync(lastValueFrom(component.editionGraphData$)).toBeResolved();
+                expectAsync(lastValueFrom(component.editionGraphData$))
+                    .withContext(`should be resolved to ${expectedEditionGraphDataEmpty}`)
+                    .toBeResolvedTo(expectedEditionGraphDataEmpty);
+            }));
+
+            it('... should update editionGraphData$ when editionService emits changed value', waitForAsync(() => {
+                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1, expectedEditionComplex);
+
+                // ----------------
+                // Change to op. 25
+                // ExpectedEditionComplex = EDITION_COMPLEXES.op25;
+                editionServiceGetEditionComplexSpy.and.returnValue(observableOf(EDITION_COMPLEXES.OP25));
+
+                component.getEditionGraphData();
+                detectChangesOnPush(fixture);
+
+                expectSpyCall(editionServiceGetEditionComplexSpy, 2);
+                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 2, EDITION_COMPLEXES.OP25);
+
+                expectAsync(lastValueFrom(component.editionGraphData$)).toBeResolved();
+                expectAsync(lastValueFrom(component.editionGraphData$))
+                    .withContext(`should be resolved to ${expectedEditionGraphDataOp25}`)
+                    .toBeResolvedTo(expectedEditionGraphDataOp25);
+            }));
+
+            it('... should return empty observable and set errorObject if switchMap fails', waitForAsync(() => {
+                const expectedError = { status: 404, statusText: 'fail' };
+                // Spy on editionDataService to return an error
+                editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableThrowError(() => expectedError));
+
+                component.getEditionGraphData();
+                detectChangesOnPush(fixture);
+
+                expectAsync(lastValueFrom(component.editionGraphData$)).toBeRejected();
+                expectAsync(lastValueFrom(component.editionGraphData$)).toBeRejectedWithError(EmptyError);
+
+                expectToEqual(component.errorObject, expectedError);
+            }));
         });
     });
 });

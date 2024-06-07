@@ -564,12 +564,14 @@ describe('NavbarComponent (DONE)', () => {
                         const headerDe = getAndExpectDebugElementByCss(complexDe, 'h6.dropdown-header', 1, 1);
                         const headerEl = headerDe[0].nativeElement;
 
+                        const headerSpanDe = getAndExpectDebugElementByCss(headerDe[0], 'span', 1, 1);
+                        const headerSpanEl = headerSpanDe[0].nativeElement;
+
                         const headerSiglum = `[AWG ${expectedEditionComplexes[index].series.short}/${expectedEditionComplexes[index].section.short}] `;
                         const headerId = expectedEditionComplexes[index].complexId.full;
-                        const strippedHeaderId = headerId.replace(/<em>/g, '').replace(/<\/em>/g, '');
-                        const headerLabel = headerSiglum + strippedHeaderId;
 
-                        expectToBe(headerEl.textContent.trim(), headerLabel.trim());
+                        expectToContain(headerEl.textContent, headerSiglum);
+                        expectToBe(headerSpanEl.innerHTML.trim(), headerId.trim());
                     });
                 });
 

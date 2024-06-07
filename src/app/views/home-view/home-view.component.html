@@ -15,12 +15,11 @@
         track editionComplex.complexId.short
     ) {
         <h4 class="awg-edition-info-header">
-            <span class="awg-edition-info-header-title" [innerHTML]="editionComplex.titleStatement.title"></span
-            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionComplex.complexId.short }}</span> (<a
+            <span class="awg-edition-info-header-title" [innerHTML]="editionComplex.complexId.full"></span> (<a
                 [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
                 >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
             >
-            @if (editionComplex.complexId.short === 'op. 25') {
+            @if (editionComplex.complexId.route.includes('op25')) {
                 <span>&nbsp;&&nbsp;</span>
                 <a [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_GRAPH.route]">{{
                     editionRouteConstants.EDITION_GRAPH.short
@@ -41,8 +40,7 @@
         track editionComplex.complexId.short
     ) {
         <h4 class="awg-edition-info-header">
-            <span class="awg-edition-info-header-title" [innerHTML]="editionComplex.titleStatement.title"></span
-            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionComplex.complexId.short }}</span> (<a
+            <span class="awg-edition-info-header-title" [innerHTML]="editionComplex.complexId.full"></span> (<a
                 [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
                 >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
             >)
@@ -78,8 +76,9 @@
             let i = $index;
             let n = $count
         ) {
-            <a [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
-                >{{ editionComplex.complexId.short }}
+            <a
+                [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
+                [innerHTML]="editionComplex.complexId.short">
             </a>
             @if (i < n - 2) {
                 <span>, </span>

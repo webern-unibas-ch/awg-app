@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { DOCUMENT } from '@angular/common';
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Router, RouterModule } from '@angular/router';
@@ -40,6 +41,7 @@ describe('IntroComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionIntroComponent>;
     let compDe: DebugElement;
 
+    let mockDocument: Document;
     let mockRouter;
 
     let mockEditionDataService: Partial<EditionDataService>;
@@ -99,6 +101,8 @@ describe('IntroComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionIntroComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
+
+        mockDocument = TestBed.inject(DOCUMENT);
 
         // Inject services from root
         editionDataService = TestBed.inject(EditionDataService);
@@ -303,10 +307,15 @@ describe('IntroComponent (DONE)', () => {
                 const pEl = pDes[0].nativeElement;
 
                 // Create intro placeholder
-                const introPlaceholder = `[Die Einleitung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
-                const strippedIntroPlaceholder = introPlaceholder.replace(/<em>/g, '').replace(/<\/em>/g, '');
+                const fullComplexSpan = mockDocument.createElement('span');
+                fullComplexSpan.innerHTML = expectedEditionComplex.complexId.full;
 
-                expectToBe(pEl.textContent.trim(), strippedIntroPlaceholder);
+                const shortComplexSpan = mockDocument.createElement('span');
+                shortComplexSpan.innerHTML = expectedEditionComplex.complexId.short;
+
+                const introPlaceholder = `[Die Einleitung zum Editionskomplex ${fullComplexSpan.textContent} erscheint im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
+
+                expectToBe(pEl.textContent.trim(), introPlaceholder);
             }));
         });
 
