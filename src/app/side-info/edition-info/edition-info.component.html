@@ -46,14 +46,14 @@
                 <div ngbAccordionCollapse>
                     <div ngbAccordionBody>
                         <ng-template>
-                            @for (editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: 0 : 2; track editionComplex) {
+                            @for (
+                                editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: 0 : SLICE_INDEX;
+                                track editionComplex.complexId.short
+                            ) {
                                 <p>
                                     <span
                                         class="awg-edition-info-header-title"
-                                        [innerHTML]="editionComplex.titleStatement.title"></span
-                                    >&nbsp;<span class="awg-edition-info-header-catalogue">{{
-                                        editionComplex.complexId.short
-                                    }}</span>
+                                        [innerHTML]="editionComplex.complexId.full"></span>
                                     <br />
                                     (<a
                                         class="awg-edition-info-header-link"
@@ -63,7 +63,7 @@
                                         ]"
                                         >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
                                     >
-                                    @if (editionComplex === DISPLAYED_EDITION_COMPLEXES[1]) {
+                                    @if (editionComplex.complexId.route.includes('op25')) {
                                         <span>&nbsp;&&nbsp;</span>
                                         <a
                                             class="awg-edition-info-header-link"
@@ -94,16 +94,13 @@
                         <ng-template>
                             @for (
                                 editionComplex of DISPLAYED_EDITION_COMPLEXES
-                                    | slice: 2 : DISPLAYED_EDITION_COMPLEXES.length;
-                                track editionComplex
+                                    | slice: SLICE_INDEX : DISPLAYED_EDITION_COMPLEXES.length;
+                                track editionComplex.complexId.short
                             ) {
                                 <p>
                                     <span
                                         class="awg-edition-info-header-title"
-                                        [innerHTML]="editionComplex.titleStatement.title"></span
-                                    >&nbsp;<span class="awg-edition-info-header-catalogue">{{
-                                        editionComplex.complexId.short
-                                    }}</span>
+                                        [innerHTML]="editionComplex.complexId.full"></span>
                                     <br />
                                     (<a
                                         class="awg-edition-info-header-link"

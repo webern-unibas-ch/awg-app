@@ -4,7 +4,7 @@
         <span>---</span>
     }
 </h6>
-@for (svgSheet of svgSheets; track svgSheet) {
+@for (svgSheet of svgSheets; track svgSheet.id) {
     @if (svgSheet.content.length === 1) {
         <a
             class="btn btn-default w-100 awg-svg-sheet-nav-link card-text text-start"
@@ -25,7 +25,7 @@
                 >
             </a>
             <div ngbDropdownMenu aria-labelledby="dropdownSheetNav">
-                @for (svgSheetContent of svgSheet.content; track svgSheetContent; let i = $index) {
+                @for (svgSheetContent of svgSheet.content; track svgSheetContent.svg; let i = $index) {
                     <div>
                         <a
                             class="dropdown-item"

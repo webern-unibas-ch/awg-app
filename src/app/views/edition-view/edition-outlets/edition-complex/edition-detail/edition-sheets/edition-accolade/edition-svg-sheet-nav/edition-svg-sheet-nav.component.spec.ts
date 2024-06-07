@@ -3,8 +3,12 @@ import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/c
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -114,29 +118,31 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
         });
 
         it('... should have `svgSheetsData` input', () => {
-            expect(component.svgSheetsData).toBeDefined();
-            expect(component.svgSheetsData.sheets.workEditions.length).withContext('should be 0').toBe(0);
-            expect(component.svgSheetsData.sheets.textEditions.length).withContext('should be 0').toBe(0);
-            expect(component.svgSheetsData.sheets.sketchEditions.length).withContext('should be 3').toBe(3);
-            expect(component.svgSheetsData)
-                .withContext(`should equal ${expectedSvgSheetsData}`)
-                .toEqual(expectedSvgSheetsData);
+            expectToEqual(component.svgSheetsData, expectedSvgSheetsData);
+            expectToBe(component.svgSheetsData.sheets.workEditions.length, 0);
+            expectToBe(component.svgSheetsData.sheets.textEditions.length, 0);
+            expectToBe(component.svgSheetsData.sheets.sketchEditions.length, 3);
         });
 
         it('... should have `selectedSvgSheet` input', () => {
-            expect(component.selectedSvgSheet).toBeDefined();
-            expect(component.selectedSvgSheet).withContext(`should be ${expectedSvgSheet}`).toBe(expectedSvgSheet);
+            expectToEqual(component.selectedSvgSheet, expectedSvgSheet);
         });
 
         describe('VIEW', () => {
-            it('... should have one outer div.card', () => {
+            it('... should contain no outer div.card if svgSheetsData is not defined', () => {
+                // Reset svgSheetsData
+                component.svgSheetsData = undefined;
+
+                detectChangesOnPush(fixture);
+
+                getAndExpectDebugElementByCss(compDe, 'div.card', 0, 0);
+            });
+
+            it('... should contain one outer div.card if svgSheetsData is defined', () => {
                 const cardDe = getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
                 const cardEl = cardDe[0].nativeElement;
 
-                expect(cardEl.classList).toBeTruthy();
-                expect(cardEl.classList)
-                    .withContext(`should contain class 'awg-svg-sheet-nav'`)
-                    .toContain('awg-svg-sheet-nav');
+                expectToContain(cardEl.classList, 'awg-svg-sheet-nav');
             });
 
             it('... should have one inner div.card-body', () => {
@@ -158,18 +164,10 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                     de => de.injector.get(EditionSvgSheetNavItemStubComponent) as EditionSvgSheetNavItemStubComponent
                 );
 
-                expect(sheetNavItemCmp.length).withContext('should have 3 nav item components').toBe(3);
-
-                expect(sheetNavItemCmp[0].navItemLabel).toBeTruthy();
-                expect(sheetNavItemCmp[0].navItemLabel).withContext(`should be 'Werkeditionen'`).toBe('Werkeditionen');
-
-                expect(sheetNavItemCmp[1].navItemLabel).toBeTruthy();
-                expect(sheetNavItemCmp[1].navItemLabel).withContext(`should be 'Texteditionen'`).toBe('Texteditionen');
-
-                expect(sheetNavItemCmp[2].navItemLabel).toBeTruthy();
-                expect(sheetNavItemCmp[2].navItemLabel)
-                    .withContext(`should be 'Skizzeneditionen'`)
-                    .toBe('Skizzeneditionen');
+                expectToBe(sheetNavItemCmp.length, 3);
+                expectToBe(sheetNavItemCmp[0].navItemLabel, 'Werkeditionen');
+                expectToBe(sheetNavItemCmp[1].navItemLabel, 'Texteditionen');
+                expectToBe(sheetNavItemCmp[2].navItemLabel, 'Skizzeneditionen');
             });
 
             it('... should pass down selectedSvgSheet to EditionSvgSheetNavItemComponent', () => {
@@ -183,22 +181,10 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                     de => de.injector.get(EditionSvgSheetNavItemStubComponent) as EditionSvgSheetNavItemStubComponent
                 );
 
-                expect(sheetNavItemCmp.length).withContext('should have 3 nav item components').toBe(3);
-
-                expect(sheetNavItemCmp[0].selectedSvgSheet).toBeTruthy();
-                expect(sheetNavItemCmp[0].selectedSvgSheet)
-                    .withContext(`should be ${expectedSvgSheet}`)
-                    .toBe(expectedSvgSheet);
-
-                expect(sheetNavItemCmp[1].selectedSvgSheet).toBeTruthy();
-                expect(sheetNavItemCmp[1].selectedSvgSheet)
-                    .withContext(`should be ${expectedSvgSheet}`)
-                    .toBe(expectedSvgSheet);
-
-                expect(sheetNavItemCmp[2].selectedSvgSheet).toBeTruthy();
-                expect(sheetNavItemCmp[2].selectedSvgSheet)
-                    .withContext(`should be ${expectedSvgSheet}`)
-                    .toBe(expectedSvgSheet);
+                expectToBe(sheetNavItemCmp.length, 3);
+                expectToEqual(sheetNavItemCmp[0].selectedSvgSheet, expectedSvgSheet);
+                expectToEqual(sheetNavItemCmp[1].selectedSvgSheet, expectedSvgSheet);
+                expectToEqual(sheetNavItemCmp[2].selectedSvgSheet, expectedSvgSheet);
             });
 
             it('... should pass down svgSheets to EditionSvgSheetNavItemComponent', () => {
@@ -212,22 +198,10 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                     de => de.injector.get(EditionSvgSheetNavItemStubComponent) as EditionSvgSheetNavItemStubComponent
                 );
 
-                expect(sheetNavItemCmp.length).withContext('should have 3 nav item components').toBe(3);
-
-                expect(sheetNavItemCmp[0].svgSheets).toBeTruthy();
-                expect(sheetNavItemCmp[0].svgSheets)
-                    .withContext(`should be ${expectedSvgSheetsData.sheets.workEditions}`)
-                    .toBe(expectedSvgSheetsData.sheets.workEditions);
-
-                expect(sheetNavItemCmp[1].svgSheets).toBeTruthy();
-                expect(sheetNavItemCmp[1].svgSheets)
-                    .withContext(`should be ${expectedSvgSheetsData.sheets.textEditions}`)
-                    .toBe(expectedSvgSheetsData.sheets.textEditions);
-
-                expect(sheetNavItemCmp[2].svgSheets).toBeTruthy();
-                expect(sheetNavItemCmp[2].svgSheets)
-                    .withContext(`should be ${expectedSvgSheetsData.sheets.sketchEditions}`)
-                    .toBe(expectedSvgSheetsData.sheets.sketchEditions);
+                expectToBe(sheetNavItemCmp.length, 3);
+                expectToEqual(sheetNavItemCmp[0].svgSheets, expectedSvgSheetsData.sheets.workEditions);
+                expectToEqual(sheetNavItemCmp[1].svgSheets, expectedSvgSheetsData.sheets.textEditions);
+                expectToEqual(sheetNavItemCmp[2].svgSheets, expectedSvgSheetsData.sheets.sketchEditions);
             });
         });
 

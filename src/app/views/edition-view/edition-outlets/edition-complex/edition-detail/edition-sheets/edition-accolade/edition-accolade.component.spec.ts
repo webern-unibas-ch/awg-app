@@ -326,6 +326,20 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetViewerStubComponent, 1, 1);
                 });
 
+                it('... should not contain an EditionSvgSheetViewerComponent (stubbed) in the item body if no selectedSvgSheet is provided', () => {
+                    // Reset selectedSvgSheet
+                    component.selectedSvgSheet = undefined;
+
+                    // Trigger data binding
+                    fixture.detectChanges();
+
+                    // Div.accordion-item
+                    const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+                    const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+
+                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetViewerStubComponent, 1, 1);
+                });
+
                 it('... should pass down selectedSvgSheet to the EditionSvgSheetViewerComponent', () => {
                     const sheetDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -350,18 +364,48 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
                 });
 
-                it('... should pass down selectedTextcriticalComments to the EditionSvgSheetFooterComponent', () => {
-                    const footerDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionSvgSheetFooterStubComponent,
-                        1,
-                        1
-                    );
-                    const footerCmp = footerDes[0].injector.get(
-                        EditionSvgSheetFooterStubComponent
-                    ) as EditionSvgSheetFooterStubComponent;
+                describe('... should not contain an EditionSvgSheetFooterComponent (stubbed) in the item body if ...', () => {
+                    it('... no selectedSvgSheet is provided', () => {
+                        // Reset selectedSvgSheet
+                        component.selectedSvgSheet = undefined;
 
-                    expectToEqual(footerCmp.selectedTextcriticalComments, expectedSelectedTextcriticalComments);
+                        // Trigger data binding
+                        fixture.detectChanges();
+
+                        // Div.accordion-item
+                        const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+                        const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+
+                        getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
+                    });
+                    it('... no selectedTextcritics are provided', () => {
+                        // Reset selectedTextcritics
+                        component.selectedTextcritics = undefined;
+
+                        // Trigger data binding
+                        fixture.detectChanges();
+
+                        // Div.accordion-item
+                        const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+                        const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+
+                        getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
+                    });
+
+                    it('... no selectedSvgSheet and no selectedTextcritics are provided', () => {
+                        // Reset selectedSvgSheet and selectedTextcritics
+                        component.selectedSvgSheet = undefined;
+                        component.selectedTextcritics = undefined;
+
+                        // Trigger data binding
+                        fixture.detectChanges();
+
+                        // Div.accordion-item
+                        const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+                        const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+
+                        getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
+                    });
                 });
 
                 it('... should pass down selectedTextcritics to the EditionSvgSheetFooterComponent', () => {
@@ -376,6 +420,20 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     ) as EditionSvgSheetFooterStubComponent;
 
                     expectToEqual(footerCmp.selectedTextcritics, expectedSelectedTextcritics);
+                });
+
+                it('... should pass down selectedTextcriticalComments to the EditionSvgSheetFooterComponent', () => {
+                    const footerDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionSvgSheetFooterStubComponent,
+                        1,
+                        1
+                    );
+                    const footerCmp = footerDes[0].injector.get(
+                        EditionSvgSheetFooterStubComponent
+                    ) as EditionSvgSheetFooterStubComponent;
+
+                    expectToEqual(footerCmp.selectedTextcriticalComments, expectedSelectedTextcriticalComments);
                 });
 
                 it('... should pass down showTkA to the EditionSvgSheetFooterComponent', () => {
