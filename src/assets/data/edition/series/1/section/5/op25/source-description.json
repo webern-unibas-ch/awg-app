@@ -582,7 +582,7 @@
                     "secondary": ["Bleistift"]
                 },
                 "title": "<em>„Wie bin ich froh!“</em> | <em>von Hildegard Jone</em> [Mitte] | <em>Anton Webern</em> [halbrechts] auf Bl. 2<sup>r</sup> System 1–2.",
-                "date": "<em>David Josef Bach</em> | <em>zum 60. Geburtstag</em> | <em>13. VIII. 1934</em> [System 6–7 Mitte] | <em>von seinem Anton Webern</em> [System 11 rechts] auf Bl. 1<sup>r</sup>; <em>1934</em> vertikal aufsteigend auf Bl. 3<sup>r</sup> System 3–4 nach T. 12.",
+                "date": "<em>David Josef Bach</em> | <em>zum 60. Geburtstag</em> | <em>13. VIII. 1934</em> [System 6–7 Mitte] | <em>von seinem Anton Webern</em> [System 11 rechts] auf Bl. 1<sup>r</sup>; <br /><em>1934</em> vertikal aufsteigend auf Bl. 3<sup>r</sup> System 3–4 nach T. 12.",
                 "annotations": "<em>Wie bin ich froh!</em> | <em>noch einmal wird mir alles grün</em> | <em>und leuchtet so!</em> | <em>noch überblühn</em> || <em>die Blumen mir die Welt!</em> | <em>noch einmal bin ich ganz ins Werden</em> | <em>hingestellt</em> | <em>und bin auf Erden.</em> [System 4–7 Mitte] || <sup>k</sup><em>aus</em><sup>k</sup> <em>„Die Freude“ von Hildegard Jone</em> [System 9 rechts] auf Bl. 1<sup>v</sup>.",
                 "content": [
                     {
@@ -591,15 +591,15 @@
                         "itemDescription": "Autograph von „Wie bin ich froh!“ <a (click)=\"ref.selectSvgSheet('op25', 'M_317_TF1')\">M 317: Textfassung 1</a>",
                         "folios": [
                             {
-                                "folio": "1r",
+                                "folio": "1<sup>r</sup>:",
                                 "folioLinkTo": "",
-                                "folioDescription": "Widmung: siehe Datierung.",
+                                "folioDescription": "Widmung (siehe Datierung).",
                                 "systemGroups": []
                             },
                             {
-                                "folio": "1v",
+                                "folio": "1<sup>v</sup>:",
                                 "folioLinkTo": "",
-                                "folioDescription": "Gedichttext: siehe Eintragungen.",
+                                "folioDescription": "Gedichttext (siehe Eintragungen).",
                                 "systemGroups": []
                             },
                             {
@@ -718,7 +718,7 @@
                     "main": "Bleistift",
                     "secondary": ["blauer Buntstift", "grüner Buntstift", "roter Buntstift"]
                 },
-                "title": "<em>Reihen op. 25</em> [teilweise eingerahmt] auf Bl. 1<sup>r</sup> oben rechts mit Bleistift, Einrahmung mit blauem Buntstift; <em>3 Lieder</em> auf Bl. 1<sup>r</sup> System 1–2 rechts mit rotem Buntstift.",
+                "title": "<em>Reihen op. 25</em> [teilweise eingerahmt] auf Bl. 1<sup>r</sup> oben rechts mit Bleistift, Einrahmung mit blauem Buntstift; <br /><em>3 Lieder</em> auf Bl. 1<sup>r</sup> System 1–2 rechts mit rotem Buntstift.",
                 "date": "<em>1934</em> auf Bl. 1<sup>r</sup> System 3–4 rechts mit rotem Buntstift.",
                 "content": [
                     {
@@ -1778,7 +1778,7 @@
                         "itemDescription": "Autograph von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25",
                         "folios": [
                             {
-                                "folio": "1r",
+                                "folio": "1<sup>r</sup>:",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []

@@ -27,7 +27,7 @@
         {
             "siglum": "D",
             "siglumAddendum": "",
-            "type": "Abschriften fremder Hand von <br /><span class=\"tab\"></span>I<span class=\"tab\"></span><em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 1 (<strong>D<sup>a</sup></strong>)<br /><span class=\"tab\"></span>„Noch zwingt mich Treue“ M 139: Textfassung 1 (<strong>D<sup>b</sup></strong>).",
+            "type": "Abschriften fremder Hand von <br /><span class=\"tab\"></span><em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 1 (<strong>D<sup>a</sup></strong>)<br /><span class=\"tab\"></span>„Noch zwingt mich Treue“ M 139: Textfassung 1 (<strong>D<sup>b</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
             "linkTo": "source_D"
@@ -43,7 +43,7 @@
         {
             "siglum": "[F]",
             "siglumAddendum": "",
-            "type": "Korrekturfahne von <strong>G</strong>.",
+            "type": "Korrekturfahne von <a (click)=\"ref.navigateToReportFragment('source_G')\"><strong>G</strong></a>.",
             "location": "Verschollen.",
             "hasDescription": false,
             "linkTo": "source_F"

@@ -242,19 +242,6 @@
                                 ]
                             }
                         ]
-                    },
-                    {
-                        "item": "",
-                        "itemLinkTo": {},
-                        "itemDescription": "",
-                        "folios": [
-                            {
-                                "folio": "2v",
-                                "folioLinkTo": "",
-                                "folioDescription": "unbeschriftet.",
-                                "systemGroups": []
-                            }
-                        ]
                     }
                 ]
             }
@@ -1188,7 +1175,7 @@
                         "itemDescription": "",
                         "folios": [
                             {
-                                "folio": "1r",
+                                "folio": "1<sup>r</sup>:",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
@@ -1658,7 +1645,7 @@
             "location": "In: <em>Musikblätter des Anbruch</em> IV (Mai 1922).",
             "description": {
                 "desc": [
-                    "1 Blatt, Verso-Seite nicht bedruckt. Format: hoch 246 × 177 mm. Paginierung: 1 recto oben rechts."
+                    "1 Blatt, Verso-Seite nicht bedruckt. Format: hoch 246 × 177 mm."
                 ],
                 "writingMaterialString": "",
                 "writingInstruments": {
@@ -1755,7 +1742,7 @@
                         "itemDescription": "Autograph von <em>Vier Lieder</em> op. 12",
                         "folios": [
                             {
-                                "folio": "1r",
+                                "folio": "1<sup>r</sup>:",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
@@ -2076,7 +2063,7 @@
                         "itemDescription": "",
                         "folios": [
                             {
-                                "folio": "10r",
+                                "folio": "10<sup>r</sup>:",
                                 "folioLinkTo": "",
                                 "folioDescription": "gestrichene Titelseite.",
                                 "systemGroups": []
@@ -2114,7 +2101,7 @@
                         "itemDescription": "Druck von <em>Vier Lieder</em> op. 12",
                         "folios": [
                             {
-                                "folio": "[1]",
+                                "folio": "[1]:",
                                 "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",

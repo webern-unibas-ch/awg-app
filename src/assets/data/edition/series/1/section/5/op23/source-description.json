@@ -1556,7 +1556,7 @@
                         "itemDescription": "Autograph von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23",
                         "folios": [
                             {
-                                "folio": "1r",
+                                "folio": "1<sup>r</sup>:",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
@@ -2062,7 +2062,7 @@
                         "itemDescription": "Druck von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23",
                         "folios": [
                             {
-                                "folio": "[1]",
+                                "folio": "[1]:",
                                 "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
