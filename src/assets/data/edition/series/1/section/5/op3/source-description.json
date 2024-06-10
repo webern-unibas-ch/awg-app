@@ -353,7 +353,10 @@
                 "content": [
                     {
                         "item": "M 136 Sk1",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {
+                            "complexId": "op3",
+                            "sheetId": "M_136_Sk1"
+                        },
                         "itemDescription": "(Fragment von „Im Morgentaun“ M 136: Textfassung 1)",
                         "folios": [
                             {
