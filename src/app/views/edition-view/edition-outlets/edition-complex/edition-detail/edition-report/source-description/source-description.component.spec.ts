@@ -1121,7 +1121,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         expect(systemEl5).not.toHaveClass('doubletab');
                     });
 
-                    it('... should have `doubletab_two` class if the folio label length is greater 2 and the system is not in the first systemGroup, and has measures', () => {
+                    it('... should have `doubletab_extended` class if the folio label length is greater 2 and the system is not in the first systemGroup, and has measures', () => {
                         // Get number of all content items of mockdata
                         const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
                         const pDes = getAndExpectDebugElementByCss(
@@ -1152,16 +1152,16 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         const systemEl5 = systemDes[5].nativeElement;
 
                         // Bl. 1r
-                        expect(systemEl0).not.toHaveClass('doubletab_two');
-                        expect(systemEl1).not.toHaveClass('doubletab_two');
+                        expect(systemEl0).not.toHaveClass('doubletab_extended');
+                        expect(systemEl1).not.toHaveClass('doubletab_extended');
 
                         // Bl. 29v
-                        expect(systemEl2).not.toHaveClass('doubletab_two');
-                        expect(systemEl3).toHaveClass('doubletab_two');
+                        expect(systemEl2).not.toHaveClass('doubletab_extended');
+                        expect(systemEl3).toHaveClass('doubletab_extended');
 
                         // S. 2
-                        expect(systemEl4).not.toHaveClass('doubletab_two');
-                        expect(systemEl5).not.toHaveClass('doubletab_two');
+                        expect(systemEl4).not.toHaveClass('doubletab_extended');
+                        expect(systemEl5).not.toHaveClass('doubletab_extended');
                     });
 
                     it('... should have `tab` class if the system has rows and is not the first system', () => {
@@ -1319,7 +1319,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         expect(systemEl11).not.toHaveClass('doubletab');
                     });
 
-                    it('... should have `doubletab_two` class if the system has rows, is first system, but not in the first systemGroup, and the folio length is greater 2', () => {
+                    it('... should have `doubletab_extended` class if the system has rows, is first system, but not in the first systemGroup, and the folio length is greater 2', () => {
                         const expectedContentLength =
                             expectedSourceDescriptionListData.sources[1].description.content.length;
                         const expectedSystemLength = 12;
@@ -1347,16 +1347,16 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         const systemEl7 = systemDes[7].nativeElement;
 
                         // Bl. 1r
-                        expect(systemEl0).not.toHaveClass('doubletab_two');
-                        expect(systemEl1).not.toHaveClass('doubletab_two');
-                        expect(systemEl2).not.toHaveClass('doubletab_two');
-                        expect(systemEl3).not.toHaveClass('doubletab_two');
+                        expect(systemEl0).not.toHaveClass('doubletab_extended');
+                        expect(systemEl1).not.toHaveClass('doubletab_extended');
+                        expect(systemEl2).not.toHaveClass('doubletab_extended');
+                        expect(systemEl3).not.toHaveClass('doubletab_extended');
 
                         // Bl. 29v
-                        expect(systemEl4).not.toHaveClass('doubletab_two');
-                        expect(systemEl5).not.toHaveClass('doubletab_two');
-                        expect(systemEl6).toHaveClass('doubletab_two');
-                        expect(systemEl7).not.toHaveClass('doubletab_two');
+                        expect(systemEl4).not.toHaveClass('doubletab_extended');
+                        expect(systemEl5).not.toHaveClass('doubletab_extended');
+                        expect(systemEl6).toHaveClass('doubletab_extended');
+                        expect(systemEl7).not.toHaveClass('doubletab_extended');
                     });
                 });
 
