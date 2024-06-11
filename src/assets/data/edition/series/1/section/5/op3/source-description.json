@@ -413,7 +413,7 @@
                         "itemDescription": "",
                         "folios": [
                             {
-                                "folio": "1<sup>r</sup>:",
+                                "folio": "1r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
@@ -482,7 +482,7 @@
                         "itemDescription": "Autograph von „Im Windesweben“ M 134: Textfassung 2 (<strong>E<sup>b</sup></strong>)",
                         "folios": [
                             {
-                                "folio": "3<sup>r</sup>:",
+                                "folio": "3r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
@@ -782,7 +782,7 @@
                         "itemDescription": "[<em>Sieben Lieder nach Gedichten von Stefan George op. 2</em> (siehe Einleitung)]",
                         "folios": [
                             {
-                                "folio": "11<sup>r</sup>:",
+                                "folio": "11r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
@@ -824,7 +824,7 @@
                         "itemDescription": "Abschrift fremder Hand von „Dies ist ein Lied“ M 133: Textfassung 2→3→4 (<strong>F<sup>a</sup></strong>)",
                         "folios": [
                             {
-                                "folio": "1<sup>r</sup>:",
+                                "folio": "1r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
@@ -893,7 +893,7 @@
                         "itemDescription": "Abschrift fremder Hand von „Im Windesweben“ M 134: Textfassung 2 (<strong>F<sup>b</sup></strong>)",
                         "folios": [
                             {
-                                "folio": "3<sup>r</sup>:",
+                                "folio": "3r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
@@ -955,7 +955,7 @@
                         "itemDescription": "Abschrift fremder Hand von „Kahl reckt der Baum“ M 137: Textfassung 1 (<strong>F<sup>c</sup></strong>)",
                         "folios": [
                             {
-                                "folio": "5<sup>r</sup>:",
+                                "folio": "5r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []

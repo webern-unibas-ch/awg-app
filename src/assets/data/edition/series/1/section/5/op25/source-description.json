@@ -591,7 +591,7 @@
                         "itemDescription": "Autograph von „Wie bin ich froh!“ <a (click)=\"ref.selectSvgSheet('op25', 'M_317_TF1')\">M 317: Textfassung 1</a>",
                         "folios": [
                             {
-                                "folio": "1<sup>r</sup>:",
+                                "folio": "1r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Widmung (siehe Datierung).",
                                 "systemGroups": []
@@ -1778,7 +1778,7 @@
                         "itemDescription": "Autograph von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25",
                         "folios": [
                             {
-                                "folio": "1<sup>r</sup>:",
+                                "folio": "1r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []

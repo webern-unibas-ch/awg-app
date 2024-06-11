@@ -1175,7 +1175,7 @@
                         "itemDescription": "",
                         "folios": [
                             {
-                                "folio": "1<sup>r</sup>:",
+                                "folio": "1r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
@@ -1742,7 +1742,7 @@
                         "itemDescription": "Autograph von <em>Vier Lieder</em> op. 12",
                         "folios": [
                             {
-                                "folio": "1<sup>r</sup>:",
+                                "folio": "1r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
@@ -2063,7 +2063,7 @@
                         "itemDescription": "",
                         "folios": [
                             {
-                                "folio": "10<sup>r</sup>:",
+                                "folio": "10r",
                                 "folioLinkTo": "",
                                 "folioDescription": "gestrichene Titelseite.",
                                 "systemGroups": []

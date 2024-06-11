@@ -185,13 +185,13 @@
                         "itemDescription": "Autograph von „Noch zwingt mich Treue“ M 139: Textfassung 1→2 (<strong>B<sup>a</sup></strong>)",
                         "folios": [
                             {
-                                "folio": "1<sup>r</sup>:",
+                                "folio": "1r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
                             },
                             {
-                                "folio": "2<sup>r</sup>:",
+                                "folio": "2r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
@@ -302,7 +302,7 @@
                         "itemDescription": "Autograph von „Ja Heil und Dank dir“ M 140: Textfassung 1→2 (<strong>B<sup>b</sup></strong>)",
                         "folios": [
                             {
-                                "folio": "5<sup>r</sup>:",
+                                "folio": "5r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
@@ -508,7 +508,7 @@
                         "itemDescription": "Abschrift fremder Hand von <em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 1 (<strong>D<sup>a</sup></strong>)",
                         "folios": [
                             {
-                                "folio": "1<sup>r</sup>:",
+                                "folio": "1r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
@@ -647,7 +647,7 @@
                         "itemDescription": "Abschrift fremder Hand von „Noch zwingt mich Treue“ M 139: Textfassung 1 (<strong>D<sup>b</sup></strong>)",
                         "folios": [
                             {
-                                "folio": "5<sup>r</sup>:",
+                                "folio": "5r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
@@ -769,7 +769,7 @@
                         "itemDescription": "Autograph von <em>Fünf Lieder nach Gedichten von Stefan George </em>op. 4",
                         "folios": [
                             {
-                                "folio": "1<sup>r</sup>:",
+                                "folio": "1r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
@@ -1111,7 +1111,7 @@
                         "itemDescription": "",
                         "folios": [
                             {
-                                "folio": "8<sup>r</sup>:",
+                                "folio": "8r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
@@ -1156,7 +1156,7 @@
                         "itemDescription": "Abschrift fremder Hand von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4",
                         "folios": [
                             {
-                                "folio": "1<sup>r</sup>:",
+                                "folio": "1r",
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
