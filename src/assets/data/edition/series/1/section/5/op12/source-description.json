@@ -2101,7 +2101,7 @@
                         "itemDescription": "Druck von <em>Vier Lieder</em> op. 12",
                         "folios": [
                             {
-                                "folio": "[1]:",
+                                "folio": "[1]",
                                 "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
