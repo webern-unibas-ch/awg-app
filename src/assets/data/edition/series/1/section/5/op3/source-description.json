@@ -1554,7 +1554,7 @@
                         "itemDescription": "Druck der <em>Fünf Lieder aus </em>Der siebente Ring<em> von Stefan George</em> op. 3",
                         "folios": [
                             {
-                                "folio": "[1]:",
+                                "folio": "[1]",
                                 "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
