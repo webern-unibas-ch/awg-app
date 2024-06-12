@@ -1,5 +1,5 @@
 /**
- * The JdnDate class.
+ * The JdnDate interface.
  *
  * It is used in the context of the data view
  * to store the data for a JDN date reference
