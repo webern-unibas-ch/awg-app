@@ -2,7 +2,7 @@
     <div class="card-body">
         <table aria-label="Table for list of sources" class="table table-hover borderless awg-source-list-sources">
             <tbody>
-                @for (source of sourceListData.sources; track source; let sourceIndex = $index) {
+                @for (source of sourceListData.sources; track $index; let sourceIndex = $index) {
                     <tr>
                         <th scope="row" id="{{ source.siglum }}{{ source.siglumAddendum }}">
                             @if (source.hasDescription === true) {
@@ -53,21 +53,21 @@
                     <tr>
                         <td colspan="2">Zum vertonten Text:</td>
                     </tr>
-                    @for (text of sourceListData.textSources; track text; let textIndex = $index) {
+                    @for (textSource of sourceListData.textSources; track textSource.id; let textIndex = $index) {
                         <tr>
-                            <th scope="row" id="{{ text.id }}">
+                            <th scope="row" id="{{ textSource.id }}">
                                 <span class="awg-source-list-text-siglum-container"
-                                    ><span class="awg-source-list-text-siglum">{{ text.siglum }}</span>
-                                    @if (text.siglumAddendum) {
+                                    ><span class="awg-source-list-text-siglum">{{ textSource.siglum }}</span>
+                                    @if (textSource.siglumAddendum) {
                                         <span class="awg-source-list-text-siglum-addendum"
-                                            ><sup>{{ text.siglumAddendum }}</sup></span
+                                            ><sup>{{ textSource.siglumAddendum }}</sup></span
                                         >
                                     }
                                 </span>
                             </th>
                             <td>
-                                <span [compile-html]="text.type" [compile-html-ref]="ref"></span> <br />
-                                <span class="text-muted" [innerHTML]="text.location"></span>
+                                <span [compile-html]="textSource.type" [compile-html-ref]="ref"></span> <br />
+                                <span class="text-muted" [innerHTML]="textSource.location"></span>
                             </td>
                         </tr>
                     }

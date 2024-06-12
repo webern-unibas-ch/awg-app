@@ -1,7 +1,7 @@
 <table aria-label="Table for text-critical comments" class="table table-hover table-condensed awg-edition-tka-table">
     <thead>
         <tr>
-            @for (header of getTableHeaderStrings(); track header) {
+            @for (header of getTableHeaderStrings(); track header.reference) {
                 <th scope="col" class="awg-edition-tka-table-header {{ header.reference }}">
                     {{ header.label }}
                 </th>
@@ -10,7 +10,7 @@
     </thead>
     @if (textcriticalComments) {
         <tbody>
-            @for (textcriticalComment of textcriticalComments; track textcriticalComment) {
+            @for (textcriticalComment of textcriticalComments; track $index) {
                 <tr>
                     <td [innerHTML]="textcriticalComment.measure"></td>
                     <td [innerHTML]="textcriticalComment.system"></td>
