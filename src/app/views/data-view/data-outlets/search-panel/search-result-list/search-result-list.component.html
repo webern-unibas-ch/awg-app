@@ -71,7 +71,7 @@
                         </thead>
                         <tbody>
                             <!-- show searchResultDetail by clicking on single entry -->
-                            @for (subject of searchResponseWithQuery?.data?.subjects; track subject.obj_id) {
+                            @for (subject of searchResponseWithQuery?.data?.subjects; track $index) {
                                 <tr
                                     class="d-flex"
                                     (click)="navigateToResource(subject?.obj_id)"
@@ -96,7 +96,7 @@
             <!-- grid with searchResults -->
             @if (isGridView()) {
                 <div class="row row-cols-1 row-cols-sm-3 row-cols-xl-5 g-4 mb-4">
-                    @for (subject of searchResponseWithQuery?.data?.subjects; track subject.obj_id) {
+                    @for (subject of searchResponseWithQuery?.data?.subjects; track $index) {
                         <div class="col">
                             <div class="card h-100">
                                 <div class="card-header">

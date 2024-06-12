@@ -6,7 +6,7 @@ import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
 
 import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
-import { ConversionService, DataStreamerService, LoadingService } from '@awg-core/services';
+import { DataStreamerService, LoadingService } from '@awg-core/services';
 import { SearchResponseJson } from '@awg-shared/api-objects';
 import { ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
 import { ExtendedSearchParams, SearchParams, SearchQuery, SearchResponseWithQuery } from '@awg-views/data-view/models';
@@ -90,12 +90,11 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      * Constructor of the SearchPanelComponent.
      *
      * It declares private instances of the Angular ActivatedRoute,
-     * the Angular Router, the ConversionService, the DataApiService,
+     * the Angular Router, the DataApiService,
      * the DataStreamerService, and the LoadingService.
      *
      * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
      * @param {Router} router Instance of the Angular Router.
-     * @param {ConversionService} conversionService Instance of the ConversionService.
      * @param {DataApiService} dataApiService Instance of the DataApiService.
      * @param {DataStreamerService} dataStreamerService Instance of the DataStreamerService.
      * @param {LoadingService} loadingService Instance of the LoadingService.
@@ -103,7 +102,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private conversionService: ConversionService,
         private dataApiService: DataApiService,
         private dataStreamerService: DataStreamerService,
         private loadingService: LoadingService
