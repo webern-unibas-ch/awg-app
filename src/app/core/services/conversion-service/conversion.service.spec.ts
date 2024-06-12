@@ -8,6 +8,7 @@ import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper
 import { mockSearchResponseJson } from '@testing/mock-data';
 
 import { AppModule } from '@awg-app/app.module';
+import { JdnDate } from '@awg-core/core-models';
 import { SearchResponseJson } from '@awg-shared/api-objects';
 import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
@@ -446,6 +447,89 @@ describe('ConversionService', () => {
         });
     });
 
+    describe('#_convertDateValue', () => {
+        it('... should have a method `_convertDateValue`', () => {
+            expect((conversionService as any)._convertDateValue).toBeDefined();
+        });
+
+        it('... should return a string', () => {
+            const dateObj: JdnDate = {
+                dateval1: '2417942', // 1.1.1908
+                dateval2: '2418307', // 31.12.1908
+                calendar: 'GREGORIAN',
+                dateprecision1: 'YEAR',
+                dateprecision2: 'YEAR',
+            };
+
+            const result = (conversionService as any)._convertDateValue(dateObj);
+
+            expect(typeof result).toEqual('string');
+        });
+
+        it('should return the converted date string without " (G)"', () => {
+            const dateObj: JdnDate = {
+                dateval1: '2417942', // 1.1.1908
+                dateval2: '2418307', // 31.12.1908
+                calendar: 'GREGORIAN',
+                dateprecision1: 'YEAR',
+                dateprecision2: 'YEAR',
+            };
+
+            const expected = '1908';
+
+            const result = (conversionService as any)._convertDateValue(dateObj);
+
+            expectToBe(result, expected);
+        });
+
+        it('should handle precision YEAR', () => {
+            const dateObj: JdnDate = {
+                dateval1: '2417942', // 1.1.1908
+                dateval2: '2418307', // 31.12.1908
+                calendar: 'GREGORIAN',
+                dateprecision1: 'YEAR',
+                dateprecision2: 'YEAR',
+            };
+
+            const expected = '1908';
+
+            const result = (conversionService as any)._convertDateValue(dateObj);
+
+            expectToBe(result, expected);
+        });
+
+        it('should handle precision MONTH', () => {
+            const dateObj: JdnDate = {
+                dateval1: '2417942', // 1.1.1908
+                dateval2: '2418307', // 31.12.1908
+                calendar: 'GREGORIAN',
+                dateprecision1: 'MONTH',
+                dateprecision2: 'MONTH',
+            };
+
+            const expected = 'Jan 1908 – Dez 1908';
+
+            const result = (conversionService as any)._convertDateValue(dateObj);
+
+            expectToBe(result, expected);
+        });
+
+        it('should handle precision DAY', () => {
+            const dateObj: JdnDate = {
+                dateval1: '2417942', // 1.1.1908
+                dateval2: '2418307', // 31.12.1908
+                calendar: 'GREGORIAN',
+                dateprecision1: 'DAY',
+                dateprecision2: 'DAY',
+            };
+
+            const expected = '[Mi] 1. Jan 1908 – [Do] 31. Dez 1908';
+
+            const result = (conversionService as any)._convertDateValue(dateObj);
+
+            expectToBe(result, expected);
+        });
+    });
     describe('#_convertRichtextValue', () => {
         it('... should have a method `_convertRichtextValue`', () => {
             expect((conversionService as any)._convertRichtextValue).toBeDefined();

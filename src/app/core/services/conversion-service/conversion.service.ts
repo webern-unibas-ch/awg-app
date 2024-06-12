@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 
-import { GeoNames } from '@awg-core/core-models';
+import { GeoNames, JdnDate } from '@awg-core/core-models';
 import { ApiService } from '@awg-core/services/api-service';
 import { UtilityService } from '@awg-core/services/utility-service';
 import {
@@ -575,14 +575,12 @@ export class ConversionService extends ApiService {
      * Conversion goes from Julian Day Number (JDN)
      * to Gregorian Calendar.
      *
-     * @param {*} dateObj The given date object.
+     * @param {JdnDate} dateObj The given JDN date object.
      *
      * @returns {string} The converted date string.
      */
-    private _convertDateValue(dateObj: any): string {
-        let date: string = dateConverter(dateObj);
-        date = date.replace(' (G)', '');
-        return date;
+    private _convertDateValue(dateObj: JdnDate): string {
+        return dateConverter(dateObj).replace(' (G)', '');
     }
 
     /**
