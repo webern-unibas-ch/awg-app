@@ -530,6 +530,35 @@ describe('ConversionService', () => {
             expectToBe(result, expected);
         });
     });
+
+    describe('#_convertLinkValue', () => {
+        it('... should have a method `_convertLinkValue`', () => {
+            expect((conversionService as any)._convertLinkValue).toBeDefined();
+        });
+
+        it('... should return a string', () => {
+            const valueId = '123';
+            const firstProp = 'TestProp';
+            const restype = 'TestType';
+
+            const result = (conversionService as any)._convertLinkValue(valueId, firstProp, restype);
+
+            expect(typeof result).toEqual('string');
+        });
+
+        it('... should return a linked value', () => {
+            const valueId = '123';
+            const firstProp = 'TestProp';
+            const restype = 'TestType';
+
+            const expected = `<a (click)="ref.navigateToResource('${valueId}')">${firstProp} (${restype})</a>`;
+
+            const result = (conversionService as any)._convertLinkValue(valueId, firstProp, restype);
+
+            expectToBe(result, expected);
+        });
+    });
+
     describe('#_convertRichtextValue', () => {
         it('... should have a method `_convertRichtextValue`', () => {
             expect((conversionService as any)._convertRichtextValue).toBeDefined();

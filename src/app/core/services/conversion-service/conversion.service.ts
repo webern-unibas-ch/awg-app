@@ -452,9 +452,9 @@ export class ConversionService extends ApiService {
      *
      * @param {PropertyJson[]} props The given properties.
      *
-     * @returns {*} The converted resource data.
+     * @returns {PropertyJson[]} The converted properties.
      */
-    private _convertGUISpecificProps(props: PropertyJson[]): any {
+    private _convertGUISpecificProps(props: PropertyJson[]): PropertyJson[] {
         // Loop through all properties and add toHtml values
         Object.keys(props).forEach((key: string) => {
             props[key] = this._addHtmlValues(props[key]);
@@ -468,12 +468,12 @@ export class ConversionService extends ApiService {
      * It adds an 'toHtml' property to the props array
      * of an accessible resource to be displayed via HTML.
      *
-     * @param {*} prop The given property.
+     * @param {PropertyJson} prop The given property.
      * @param {string} [url] A given optional url.
      *
-     * @returns {string[]} The converted property.
+     * @returns {PropertyJson} The converted property.
      */
-    private _addHtmlValues(prop: any, url?: string): [string] {
+    private _addHtmlValues(prop: PropertyJson, url?: string): PropertyJson {
         prop.toHtml = [];
 
         if (prop.values) {
@@ -486,7 +486,11 @@ export class ConversionService extends ApiService {
 
                 case '6': // LINKVALUE (searchbox): links to another salsah object need to be converted
                     for (let i = 0; i < prop.values.length; i++) {
-                        prop.toHtml[i] = this._convertLinkValue(prop, i);
+                        prop.toHtml[i] = this._convertLinkValue(
+                            prop.values[i],
+                            prop.value_firstprops[i],
+                            prop.value_restype[i]
+                        );
                     }
                     break; // END linkvalue
 
@@ -682,18 +686,14 @@ export class ConversionService extends ApiService {
      * It converts a link value of an accessible resource
      * to be displayed via HTML.
      *
-     * @param {*} prop The given property value.
-     * @param {number} index The given index position.
+     * @param {string} valueId The given value id.
+     * @param {string} firstProp The given first property value.
+     * @param {string} restype The given resource type.
      *
      * @returns {string} The converted link value.
      */
-    private _convertLinkValue(prop: any, index: number): string {
-        // Add <a>-tag with click-directive; linktext is stored in "$&"
-        const originalValue = prop.value_firstprops[index];
-        const linkTemplate = `<a (click)="ref.navigateToResource('${prop.values[index]}')">$& (${prop.value_restype[index]})</a>`;
-        const linkedValue = originalValue.replace(originalValue, linkTemplate);
-
-        return linkedValue;
+    private _convertLinkValue(valueId: string, firstProp: string, restype: string): string {
+        return `<a (click)="ref.navigateToResource('${valueId}')">${firstProp} (${restype})</a>`;
     }
 
     /**
