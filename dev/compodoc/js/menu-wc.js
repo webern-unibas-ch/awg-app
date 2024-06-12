@@ -1630,6 +1630,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/IResourceInfoResources.html" data-type="entity-link" >IResourceInfoResources</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/JdnDate.html" data-type="entity-link" >JdnDate</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/Namespace.html" data-type="entity-link" >Namespace</a>
                             </li>
                             <li class="link">
