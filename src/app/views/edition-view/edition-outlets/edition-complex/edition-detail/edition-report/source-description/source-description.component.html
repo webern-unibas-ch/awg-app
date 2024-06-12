@@ -1,6 +1,6 @@
 @if (sourceDescriptionListData) {
     <div class="awg-source-description-list">
-        @for (sourceDescription of sourceDescriptionListData.sources; track sourceDescription) {
+        @for (sourceDescription of sourceDescriptionListData.sources; track sourceDescription.id) {
             <div class="awg-source-description card mb-2" [id]="sourceDescription.id">
                 <div class="card-body">
                     <div class="awg-source-description-head">
@@ -68,7 +68,7 @@
 
                                     @for (
                                         writingMaterial of sourceDescription?.description?.writingMaterial;
-                                        track writingMaterial;
+                                        track $index;
                                         let lastWritingMaterial = $last
                                     ) {
                                         @if (writingMaterial.paperType) {
@@ -115,7 +115,7 @@
                                                     >&nbsp;
                                                 }
                                             </span>
-                                            @for (location of writingMaterial.firmSign.location; track location) {
+                                            @for (location of writingMaterial.firmSign.location; track $index) {
                                                 <span [innerHTML]="getWritingMaterialItemLocation(location)"></span>
                                             }
                                         } @else {
@@ -133,7 +133,7 @@
                                                     >&nbsp;
                                                 }
                                             </span>
-                                            @for (location of writingMaterial.watermark.location; track location) {
+                                            @for (location of writingMaterial.watermark.location; track $index) {
                                                 <span [innerHTML]="getWritingMaterialItemLocation(location)"></span>
                                             }
                                             <span>&nbsp;lesbar</span>
@@ -220,7 +220,7 @@
                             @if (utils.isNotEmptyArray(sourceDescription.description.content)) {
                                 <div class="awg-source-description-content">
                                     <p class="no-para"><span class="smallcaps">Inhalt:</span></p>
-                                    @for (content of sourceDescription.description.content; track content) {
+                                    @for (content of sourceDescription.description.content; track $index) {
                                         <p class="half-para">
                                             <!-- content.itemDescription -->
                                             @if (content.item || content.itemDescription) {
@@ -254,7 +254,7 @@
                                             }
                                             <!-- content.folios -->
                                             @if (utils.isNotEmptyArray(content.folios)) {
-                                                @for (folio of content.folios; track folio; let lastFolio = $last) {
+                                                @for (folio of content.folios; track $index; let lastFolio = $last) {
                                                     @if (folio.folio) {
                                                         <span
                                                             class="awg-source-description-content-item-folio"
@@ -320,14 +320,14 @@
                                                     @if (utils.isNotEmptyArray(folio.systemGroups)) {
                                                         @for (
                                                             systemGroup of folio.systemGroups;
-                                                            track systemGroup;
+                                                            track $index;
                                                             let firstSystemGroup = $first;
                                                             let lastSystemGroup = $last
                                                         ) {
                                                             @for (
                                                                 system of systemGroup;
-                                                                track system;
-                                                                let i = $index;
+                                                                track $index;
+                                                                let systemIndex = $index;
                                                                 let firstSystem = $first;
                                                                 let lastSystem = $last
                                                             ) {
@@ -467,7 +467,9 @@
                                                                 } @else {
                                                                     <span
                                                                         >;
-                                                                        @if ((i + 1) % systemGroup.length === 0) {
+                                                                        @if (
+                                                                            (systemIndex + 1) % systemGroup.length === 0
+                                                                        ) {
                                                                             <br />
                                                                         }
                                                                     </span>
