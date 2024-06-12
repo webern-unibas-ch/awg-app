@@ -954,7 +954,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                                 const systemEl = system.nativeElement;
 
                                 const expectedHtmlTextContent = mockDocument.createElement('span');
-                                expectedHtmlTextContent.innerHTML = `System&nbsp;${expectedSystems[index].system}:`;
+                                expectedHtmlTextContent.innerHTML = `System&nbsp;${expectedSystems[index].system}`;
 
                                 expectToBe(systemEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                             });
@@ -992,6 +992,49 @@ describe('SourceDescriptionComponent (DONE)', () => {
                                 const expectedSystemDescText = expectedSystemDescriptions[index].systemDescription;
 
                                 expectToBe(systemDescEl.textContent.trim(), expectedSystemDescText);
+                            });
+                        });
+                    });
+
+                    it('... should display a colon after the systems if systemDescriptions, measures or rows are given, otherwise a dot.', () => {
+                        // Get number of all content items of mockdata
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
+                        const pDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
+                            expectedContent.length,
+                            expectedContent.length
+                        );
+                        pDes.forEach((pDe, pIndex) => {
+                            // Get length of nested system groups array of all folios of 1st content item array of mockdata
+                            const systemGroups = [];
+                            expectedContent[pIndex].folios.forEach(folio => {
+                                systemGroups.push(folio.systemGroups.flat());
+                            });
+                            const expectedSystems = systemGroups.flat();
+
+                            // Get the direct sibling spans of system spans
+                            const spanDes = getAndExpectDebugElementByCss(
+                                pDe,
+                                'span.awg-source-description-content-item-system + span',
+                                expectedSystems.length,
+                                expectedSystems.length
+                            );
+                            spanDes.forEach((span, index) => {
+                                const spanEl = span.nativeElement;
+                                const expectedHtmlTextContent = mockDocument.createElement('span');
+
+                                if (
+                                    expectedSystems[index].systemDescription ||
+                                    expectedSystems[index].measure ||
+                                    expectedSystems[index].row
+                                ) {
+                                    expectedHtmlTextContent.innerHTML = `:&nbsp;`;
+                                } else {
+                                    expectedHtmlTextContent.innerHTML = `.`;
+                                }
+
+                                expectToBe(spanEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                             });
                         });
                     });
@@ -1121,7 +1164,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         expect(systemEl5).not.toHaveClass('doubletab');
                     });
 
-                    it('... should have `doubletab_two` class if the folio label length is greater 2 and the system is not in the first systemGroup, and has measures', () => {
+                    it('... should have `doubletab_extended` class if the folio label length is greater 2 and the system is not in the first systemGroup, and has measures', () => {
                         // Get number of all content items of mockdata
                         const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
                         const pDes = getAndExpectDebugElementByCss(
@@ -1152,16 +1195,16 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         const systemEl5 = systemDes[5].nativeElement;
 
                         // Bl. 1r
-                        expect(systemEl0).not.toHaveClass('doubletab_two');
-                        expect(systemEl1).not.toHaveClass('doubletab_two');
+                        expect(systemEl0).not.toHaveClass('doubletab_extended');
+                        expect(systemEl1).not.toHaveClass('doubletab_extended');
 
                         // Bl. 29v
-                        expect(systemEl2).not.toHaveClass('doubletab_two');
-                        expect(systemEl3).toHaveClass('doubletab_two');
+                        expect(systemEl2).not.toHaveClass('doubletab_extended');
+                        expect(systemEl3).toHaveClass('doubletab_extended');
 
                         // S. 2
-                        expect(systemEl4).not.toHaveClass('doubletab_two');
-                        expect(systemEl5).not.toHaveClass('doubletab_two');
+                        expect(systemEl4).not.toHaveClass('doubletab_extended');
+                        expect(systemEl5).not.toHaveClass('doubletab_extended');
                     });
 
                     it('... should have `tab` class if the system has rows and is not the first system', () => {
@@ -1319,7 +1362,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         expect(systemEl11).not.toHaveClass('doubletab');
                     });
 
-                    it('... should have `doubletab_two` class if the system has rows, is first system, but not in the first systemGroup, and the folio length is greater 2', () => {
+                    it('... should have `doubletab_extended` class if the system has rows, is first system, but not in the first systemGroup, and the folio length is greater 2', () => {
                         const expectedContentLength =
                             expectedSourceDescriptionListData.sources[1].description.content.length;
                         const expectedSystemLength = 12;
@@ -1347,16 +1390,16 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         const systemEl7 = systemDes[7].nativeElement;
 
                         // Bl. 1r
-                        expect(systemEl0).not.toHaveClass('doubletab_two');
-                        expect(systemEl1).not.toHaveClass('doubletab_two');
-                        expect(systemEl2).not.toHaveClass('doubletab_two');
-                        expect(systemEl3).not.toHaveClass('doubletab_two');
+                        expect(systemEl0).not.toHaveClass('doubletab_extended');
+                        expect(systemEl1).not.toHaveClass('doubletab_extended');
+                        expect(systemEl2).not.toHaveClass('doubletab_extended');
+                        expect(systemEl3).not.toHaveClass('doubletab_extended');
 
                         // Bl. 29v
-                        expect(systemEl4).not.toHaveClass('doubletab_two');
-                        expect(systemEl5).not.toHaveClass('doubletab_two');
-                        expect(systemEl6).toHaveClass('doubletab_two');
-                        expect(systemEl7).not.toHaveClass('doubletab_two');
+                        expect(systemEl4).not.toHaveClass('doubletab_extended');
+                        expect(systemEl5).not.toHaveClass('doubletab_extended');
+                        expect(systemEl6).toHaveClass('doubletab_extended');
+                        expect(systemEl7).not.toHaveClass('doubletab_extended');
                     });
                 });
 
