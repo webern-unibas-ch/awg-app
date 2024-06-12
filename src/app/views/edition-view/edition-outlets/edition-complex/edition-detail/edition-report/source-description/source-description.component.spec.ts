@@ -954,7 +954,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                                 const systemEl = system.nativeElement;
 
                                 const expectedHtmlTextContent = mockDocument.createElement('span');
-                                expectedHtmlTextContent.innerHTML = `System&nbsp;${expectedSystems[index].system}:`;
+                                expectedHtmlTextContent.innerHTML = `System&nbsp;${expectedSystems[index].system}`;
 
                                 expectToBe(systemEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                             });
@@ -992,6 +992,49 @@ describe('SourceDescriptionComponent (DONE)', () => {
                                 const expectedSystemDescText = expectedSystemDescriptions[index].systemDescription;
 
                                 expectToBe(systemDescEl.textContent.trim(), expectedSystemDescText);
+                            });
+                        });
+                    });
+
+                    it('... should display a colon after the systems if systemDescriptions, measures or rows are given, otherwise a dot.', () => {
+                        // Get number of all content items of mockdata
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
+                        const pDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
+                            expectedContent.length,
+                            expectedContent.length
+                        );
+                        pDes.forEach((pDe, pIndex) => {
+                            // Get length of nested system groups array of all folios of 1st content item array of mockdata
+                            const systemGroups = [];
+                            expectedContent[pIndex].folios.forEach(folio => {
+                                systemGroups.push(folio.systemGroups.flat());
+                            });
+                            const expectedSystems = systemGroups.flat();
+
+                            // Get the direct sibling spans of system spans
+                            const spanDes = getAndExpectDebugElementByCss(
+                                pDe,
+                                'span.awg-source-description-content-item-system + span',
+                                expectedSystems.length,
+                                expectedSystems.length
+                            );
+                            spanDes.forEach((span, index) => {
+                                const spanEl = span.nativeElement;
+                                const expectedHtmlTextContent = mockDocument.createElement('span');
+
+                                if (
+                                    expectedSystems[index].systemDescription ||
+                                    expectedSystems[index].measure ||
+                                    expectedSystems[index].row
+                                ) {
+                                    expectedHtmlTextContent.innerHTML = `:&nbsp;`;
+                                } else {
+                                    expectedHtmlTextContent.innerHTML = `.`;
+                                }
+
+                                expectToBe(spanEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                             });
                         });
                     });

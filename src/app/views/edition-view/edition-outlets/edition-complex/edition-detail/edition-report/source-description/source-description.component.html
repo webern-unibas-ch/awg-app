@@ -370,10 +370,15 @@
                                                                     ></span>
                                                                 }
                                                                 <ng-template #systemTemplate let-system
-                                                                    >&nbsp;&nbsp;System&nbsp;{{
-                                                                        system
-                                                                    }}:&nbsp;</ng-template
+                                                                    >&nbsp;&nbsp;System&nbsp;{{ system }}</ng-template
                                                                 >
+                                                                @if (
+                                                                    system.systemDescription ||
+                                                                    system.measure ||
+                                                                    system.row
+                                                                ) {
+                                                                    <span>:&nbsp;</span>
+                                                                }
                                                                 @if (system.systemDescription) {
                                                                     <span
                                                                         class="awg-source-description-content-item-system-description">
