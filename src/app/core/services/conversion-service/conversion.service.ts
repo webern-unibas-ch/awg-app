@@ -807,11 +807,11 @@ export class ConversionService extends ApiService {
             return undefined;
         }
 
-        const distinctObj = subjects.reduce((acc, subject) => {
+        const distinctObj: { [key: string]: SubjectItemJson } = subjects.reduce((acc, subject) => {
             acc[subject.obj_id] = subject;
             return acc;
         }, {});
-        const distinctArr = Object.values(distinctObj) as SubjectItemJson[];
+        const distinctArr: SubjectItemJson[] = Object.values(distinctObj);
 
         this.filteredOut = subjects.length - distinctArr.length;
 

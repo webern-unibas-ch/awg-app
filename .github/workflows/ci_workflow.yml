@@ -44,7 +44,7 @@ jobs:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+              uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
               with:
                   fetch-depth: 0 # Get all history and branches
 
@@ -79,7 +79,7 @@ jobs:
 
             - name: Upload code coverage
               if: matrix.node-version == 20.13 # upload coverage report for current node version only
-              uses: codecov/codecov-action@125fc84a9a348dbcf27191600683ec096ec9021c # v4.4.1
+              uses: codecov/codecov-action@e28ff129e5465c2c0dcc6f003fc735cb6ae0c673 # v4.5.0
               env:
                   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
               with:
@@ -88,7 +88,7 @@ jobs:
 
             - name: Perform SonarCloud Analysis
               if: matrix.node-version == 20.13 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarCloud analysis only for current node version and not with pull requests or forks(token issue)
-              uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216 # v2.2.0
+              uses: SonarSource/sonarcloud-github-action@e44258b109568baa0df60ed515909fc6c72cba92 # v2.3.0
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -140,7 +140,7 @@ jobs:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+              uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
               with:
                   # ref (branch, tag or SHA) to check out
                   ref: ${{ env.DEV_GH_PAGES_BRANCH }}
@@ -206,7 +206,7 @@ jobs:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+              uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
             - name: Set up node ${{ matrix.node-version}}
               uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
               with:
