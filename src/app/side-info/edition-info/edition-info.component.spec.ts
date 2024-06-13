@@ -148,9 +148,28 @@ describe('EditionInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card-body h5#awg-edition-info-header', 1, 1);
             });
 
-            it('... should contain no div.accordion yet', () => {
-                // Div.accordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
+            it('... should contain one div.accordion', () => {
+                // NgbAccordion debug element
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+            });
+
+            it('... should contain 3 div.accordion-items with header and non-collapsible body yet in div.accordion', () => {
+                // NgbAccordion debug element
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 3, 3);
+
+                itemDes.forEach(item => {
+                    // Header (div.accordion-header)
+                    getAndExpectDebugElementByCss(item, 'div.accordion-header', 1, 1);
+
+                    // Item body
+                    const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
+                    const itemBodyEl = itemBodyDes[0].nativeElement;
+
+                    expectToContain(itemBodyEl.classList, 'accordion-collapse');
+                });
             });
         });
     });
@@ -169,11 +188,6 @@ describe('EditionInfoComponent (DONE)', () => {
                 expectToBe(headerEl.textContent, expectedEditionInfoHeader);
             });
 
-            it('... should contain one div.accordion', () => {
-                // NgbAccordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
-            });
-
             it('... should contain 3 div.accordion-items with header and open body in div.accordion', () => {
                 // NgbAccordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
@@ -183,8 +197,7 @@ describe('EditionInfoComponent (DONE)', () => {
 
                 itemDes.forEach(item => {
                     // Header (div.accordion-header)
-                    const itemHeaderDes = getAndExpectDebugElementByCss(item, 'div.accordion-header', 1, 1);
-                    const itemHeaderEl = itemHeaderDes[0].nativeElement;
+                    getAndExpectDebugElementByCss(item, 'div.accordion-header', 1, 1);
 
                     // Item body
                     const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);

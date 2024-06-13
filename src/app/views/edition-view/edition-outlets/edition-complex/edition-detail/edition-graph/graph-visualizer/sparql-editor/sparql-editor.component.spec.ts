@@ -183,9 +183,25 @@ describe('SparqlEditorComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no ngbAccordion yet', () => {
-                // NgbAccordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
+            it('... should contain one div.accordion', () => {
+                // Div.accordion debug element
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+            });
+
+            it('... should contain one div.accordion-item with header and non-collapsible body yet in div.accordion', () => {
+                // Div.accordion debug element
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
+                // Header (div.accordion-header)
+                getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-header', 1, 1);
+
+                // Body (div.accordion-collapse)
+                const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
+                const itemBodyEl = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'accordion-collapse');
             });
         });
     });
@@ -214,59 +230,54 @@ describe('SparqlEditorComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.accordion', () => {
-                // NgbAccordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
-            });
-
             describe('not in fullscreen mode', () => {
-                describe('with closed panel', () => {
-                    it('... should contain one div.accordion with panel (div.accordion-item) header and collapsed body', () => {
+                describe('with closed item', () => {
+                    it('... should contain one div.accordion-item with header and collapsed body in div.accordion', () => {
                         // NgbAccordion debug element
                         const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                        // Panel (div.accordion-item)
-                        const panelDes = getAndExpectDebugElementByCss(
+                        // Div.accordion-item
+                        const itemDes = getAndExpectDebugElementByCss(
                             accordionDes[0],
                             'div#awg-graph-visualizer-sparql-query.accordion-item',
                             1,
                             1
                         );
                         // Header (div.accordion-header)
-                        const panelHeaderDes = getAndExpectDebugElementByCss(
-                            panelDes[0],
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
+                            itemDes[0],
                             'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                             1,
                             1
                         );
-                        const panelHeaderEl = panelHeaderDes[0].nativeElement;
+                        const itemHeaderEl = itemHeaderDes[0].nativeElement;
 
-                        expectToContain(panelHeaderEl.classList, 'collapsed');
+                        expectToContain(itemHeaderEl.classList, 'collapsed');
 
                         // Body (div.accordion-collapse)
-                        const panelBodyDes = getAndExpectDebugElementByCss(
-                            panelDes[0],
+                        const itemBodyDes = getAndExpectDebugElementByCss(
+                            itemDes[0],
                             'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
                             1,
                             1
                         );
-                        const panelBodyEl = panelBodyDes[0].nativeElement;
+                        const itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).not.toContain('show');
+                        expect(itemBodyEl.classList).not.toContain('show');
                     });
 
-                    it('... should display panel header button', () => {
+                    it('... should display item header button', () => {
                         // Header debug elements
-                        const panelHeaderDes = getAndExpectDebugElementByCss(
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                             1,
                             1
                         );
 
-                        // Custom panel header button
+                        // Custom item header button
                         const btnDes = getAndExpectDebugElementByCss(
-                            panelHeaderDes[0],
+                            itemHeaderDes[0],
                             'button#awg-graph-visualizer-sparql-query-toggle',
                             1,
                             1
@@ -278,9 +289,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                         expectToBe(btnEl.textContent, 'SPARQL');
                     });
 
-                    it('... should toggle panel body on click', () => {
+                    it('... should toggle item body on click', () => {
                         // Header debug elements
-                        const panelHeaderDes = getAndExpectDebugElementByCss(
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                             1,
@@ -289,7 +300,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                         // Button debug elements
                         const btnDes = getAndExpectDebugElementByCss(
-                            panelHeaderDes[0],
+                            itemHeaderDes[0],
                             'button#awg-graph-visualizer-sparql-query-toggle',
                             1,
                             1
@@ -297,52 +308,52 @@ describe('SparqlEditorComponent (DONE)', () => {
                         // Button native elements to click on
                         const btnEl = btnDes[0].nativeElement;
 
-                        // Panel body is closed
-                        let panelBodyDes = getAndExpectDebugElementByCss(
+                        // Item body is closed
+                        let itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
                             1,
                             1
                         );
-                        let panelBodyEl = panelBodyDes[0].nativeElement;
+                        let itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).not.toContain('show');
+                        expect(itemBodyEl.classList).not.toContain('show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
                         detectChangesOnPush(fixture);
 
-                        // Panel is open
-                        panelBodyDes = getAndExpectDebugElementByCss(
+                        // Item is open
+                        itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
                             1,
                             1
                         );
-                        panelBodyEl = panelBodyDes[0].nativeElement;
+                        itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expectToContain(panelBodyEl.classList, 'show');
+                        expectToContain(itemBodyEl.classList, 'show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
                         detectChangesOnPush(fixture);
 
-                        // Panel body is closed again
-                        panelBodyDes = getAndExpectDebugElementByCss(
+                        // Item body is closed again
+                        itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
                             1,
                             1
                         );
-                        panelBodyEl = panelBodyDes[0].nativeElement;
+                        itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).not.toContain('show');
+                        expect(itemBodyEl.classList).not.toContain('show');
                     });
 
                     describe('View handle button group', () => {
-                        it('... should contain ViewHandleButtongGroupComponent (stubbed) in panel header', () => {
+                        it('... should contain ViewHandleButtongGroupComponent (stubbed) in item header', () => {
                             // Header debug elements
-                            const panelHeaderDes = getAndExpectDebugElementByCss(
+                            const itemHeaderDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                                 1,
@@ -350,7 +361,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                             );
 
                             getAndExpectDebugElementByDirective(
-                                panelHeaderDes[0],
+                                itemHeaderDes[0],
                                 ViewHandleButtongGroupStubComponent,
                                 1,
                                 1
@@ -359,7 +370,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                         it('... should have selectedViewType===graph (according to querytype)', () => {
                             // Header debug elements
-                            const panelHeaderDes = getAndExpectDebugElementByCss(
+                            const itemHeaderDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                                 1,
@@ -367,7 +378,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                             );
                             // ViewHandleButtongGroupComponent debug elements
                             const viewHandleButtongGroupDes = getAndExpectDebugElementByDirective(
-                                panelHeaderDes[0],
+                                itemHeaderDes[0],
                                 ViewHandleButtongGroupStubComponent,
                                 1,
                                 1
@@ -381,44 +392,44 @@ describe('SparqlEditorComponent (DONE)', () => {
                     });
 
                     describe('Example query button group', () => {
-                        it('... should contain an example query btn-group in panel header if isExampleQueriesEnabled = true', () => {
+                        it('... should contain an example query btn-group in item header if isExampleQueriesEnabled = true', () => {
                             isExampleQueriesEnabledSpy.and.returnValue(true);
 
                             detectChangesOnPush(fixture);
 
                             // Header debug elements
-                            const panelHeaderDes = getAndExpectDebugElementByCss(
+                            const itemHeaderDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                                 1,
                                 1
                             );
 
-                            // Panel header div.awg-example-query-btn-group
+                            // Item header div.awg-example-query-btn-group
                             getAndExpectDebugElementByCss(
-                                panelHeaderDes[0],
+                                itemHeaderDes[0],
                                 'div.accordion-header > div.awg-example-query-btn-group',
                                 1,
                                 1
                             );
                         });
 
-                        it('... should not contain an example query btn-group in panel header if isExampleQueriesEnabled = false', () => {
+                        it('... should not contain an example query btn-group in item header if isExampleQueriesEnabled = false', () => {
                             isExampleQueriesEnabledSpy.and.returnValue(false);
 
                             detectChangesOnPush(fixture);
 
                             // Header debug elements
-                            const panelHeaderDes = getAndExpectDebugElementByCss(
+                            const itemHeaderDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                                 1,
                                 1
                             );
 
-                            // Panel header div.awg-example-query-btn-group
+                            // Item header div.awg-example-query-btn-group
                             getAndExpectDebugElementByCss(
-                                panelHeaderDes[0],
+                                itemHeaderDes[0],
                                 'div.accordion-header > div.awg-example-query-btn-group',
                                 0,
                                 0
@@ -427,7 +438,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                         it('... should display a disabled button label in example query btn-group', () => {
                             // Header debug elements
-                            const panelHeaderDes = getAndExpectDebugElementByCss(
+                            const itemHeaderDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                                 1,
@@ -435,7 +446,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                             );
 
                             const btnDes = getAndExpectDebugElementByCss(
-                                panelHeaderDes[0],
+                                itemHeaderDes[0],
                                 'div.accordion-header > div.awg-example-query-btn-group > button.btn',
                                 1,
                                 1
@@ -449,7 +460,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                         it('... should contain another btn-group dropdown in example query btn-group', () => {
                             // Header debug elements
-                            const panelHeaderDes = getAndExpectDebugElementByCss(
+                            const itemHeaderDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                                 1,
@@ -457,7 +468,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                             );
 
                             const outerButtonGroupDes = getAndExpectDebugElementByCss(
-                                panelHeaderDes[0],
+                                itemHeaderDes[0],
                                 'div.accordion-header > div.awg-example-query-btn-group',
                                 1,
                                 1
@@ -468,7 +479,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                         it('... should contain toggle button in example query btn-group dropdown', () => {
                             // Header debug elements
-                            const panelHeaderDes = getAndExpectDebugElementByCss(
+                            const itemHeaderDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                                 1,
@@ -476,7 +487,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                             );
 
                             const dropdownButtonGroupDes = getAndExpectDebugElementByCss(
-                                panelHeaderDes[0],
+                                itemHeaderDes[0],
                                 'div.accordion-header > div.awg-example-query-btn-group > div.btn-group.dropdown',
                                 1,
                                 1
@@ -493,7 +504,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         it('... should contain dropdown menu div with dropdown item links in example query btn-group dropdown', fakeAsync(() => {
                             tick();
                             // Header debug elements
-                            const panelHeaderDes = getAndExpectDebugElementByCss(
+                            const itemHeaderDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                                 1,
@@ -501,7 +512,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                             );
 
                             const dropdownButtonGroupDes = getAndExpectDebugElementByCss(
-                                panelHeaderDes[0],
+                                itemHeaderDes[0],
                                 'div.accordion-header > div.awg-example-query-btn-group > div.btn-group.dropdown',
                                 1,
                                 1
@@ -606,11 +617,11 @@ describe('SparqlEditorComponent (DONE)', () => {
                     });
                 });
 
-                describe('with open panel', () => {
+                describe('with open item', () => {
                     let bodyDes: DebugElement[];
 
                     beforeEach(() => {
-                        // Open panel by click on header button
+                        // Open item by click on header button
                         const btnDes = getAndExpectDebugElementByCss(
                             compDe,
                             'button#awg-graph-visualizer-sparql-query-toggle',
@@ -623,7 +634,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         click(btnEl as HTMLElement);
                         detectChangesOnPush(fixture);
 
-                        // Panel body is open
+                        // Item body is open
                         const collapseDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
@@ -634,13 +645,13 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                         expectToContain(collapseEl.classList, 'show');
 
-                        // Panel body
+                        // Item body
                         bodyDes = getAndExpectDebugElementByCss(collapseDes[0], 'div.accordion-body', 1, 1);
                     });
 
-                    it('... should toggle panel body on click', () => {
+                    it('... should toggle item body on click', () => {
                         // Header debug elements
-                        const panelHeaderDes = getAndExpectDebugElementByCss(
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                             1,
@@ -649,7 +660,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                         // Button debug elements
                         const btnDes = getAndExpectDebugElementByCss(
-                            panelHeaderDes[0],
+                            itemHeaderDes[0],
                             'button#awg-graph-visualizer-sparql-query-toggle',
                             1,
                             1
@@ -657,54 +668,54 @@ describe('SparqlEditorComponent (DONE)', () => {
                         // Button native elements to click on
                         const btnEl = btnDes[0].nativeElement;
 
-                        // Panel body is open
-                        let panelBodyDes = getAndExpectDebugElementByCss(
+                        // Item body is open
+                        let itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
                             1,
                             1
                         );
-                        let panelBodyEl = panelBodyDes[0].nativeElement;
+                        let itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expectToContain(panelBodyEl.classList, 'show');
+                        expectToContain(itemBodyEl.classList, 'show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
                         detectChangesOnPush(fixture);
 
-                        // Panel is closed
-                        panelBodyDes = getAndExpectDebugElementByCss(
+                        // Item is closed
+                        itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
                             1,
                             1
                         );
-                        panelBodyEl = panelBodyDes[0].nativeElement;
+                        itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).not.toContain('show');
+                        expect(itemBodyEl.classList).not.toContain('show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
                         detectChangesOnPush(fixture);
 
-                        // Panel body is open again
-                        panelBodyDes = getAndExpectDebugElementByCss(
+                        // Item body is open again
+                        itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
                             1,
                             1
                         );
-                        panelBodyEl = panelBodyDes[0].nativeElement;
+                        itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expectToContain(panelBodyEl.classList, 'show');
+                        expectToContain(itemBodyEl.classList, 'show');
                     });
 
-                    it('... should contain CodeMirrorComponent (stubbed) in panel body', () => {
+                    it('... should contain CodeMirrorComponent (stubbed) in item body', () => {
                         // CodeMirrorComponent
                         getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorStubComponent, 1, 1);
                     });
 
-                    it('... should contain div with 3 buttons (Query, Reset, Clear) in panel body', () => {
+                    it('... should contain div with 3 buttons (Query, Reset, Clear) in item body', () => {
                         const divDes = getAndExpectDebugElementByCss(
                             bodyDes[0],
                             'div.awg-graph-visualizer-sparql-query-handle-buttons',
@@ -784,7 +795,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 let bodyDes: DebugElement[];
 
                 beforeEach(() => {
-                    // Open panel by click on header button
+                    // Open item by click on header button
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
                         'button#awg-graph-visualizer-sparql-query-toggle',
@@ -797,7 +808,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    // Panel body
+                    // Item body
                     bodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-sparql-query-collapse > div.accordion-body',
@@ -810,12 +821,12 @@ describe('SparqlEditorComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
                 });
 
-                it('... should contain one div.accordion with panel (div.accordion-item) header and open body', () => {
+                it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
                     // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                    // Panel (div.accordion-item)
-                    const panelDes = getAndExpectDebugElementByCss(
+                    // Div.accordion-item
+                    const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
                         'div#awg-graph-visualizer-sparql-query.accordion-item',
                         1,
@@ -823,7 +834,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     );
                     // Header (div.accordion-header)
                     getAndExpectDebugElementByCss(
-                        panelDes[0],
+                        itemDes[0],
                         'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                         1,
                         1
@@ -831,25 +842,25 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     // Body open (div.accordion-body)
                     getAndExpectDebugElementByCss(
-                        panelDes[0],
+                        itemDes[0],
                         'div#awg-graph-visualizer-sparql-query-collapse > div.accordion-body',
                         1,
                         1
                     );
                 });
 
-                it('... should display panel header button', () => {
+                it('... should display item header button', () => {
                     // Header debug elements
-                    const panelHeaderDes = getAndExpectDebugElementByCss(
+                    const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                         1,
                         1
                     );
 
-                    // Custom panel header button
+                    // Custom item header button
                     const btnDes = getAndExpectDebugElementByCss(
-                        panelHeaderDes[0],
+                        itemHeaderDes[0],
                         'button#awg-graph-visualizer-sparql-query-toggle',
                         1,
                         1
@@ -860,9 +871,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expectToBe(btnEl.textContent, 'SPARQL');
                 });
 
-                it('... should not toggle panel body on click', () => {
+                it('... should not toggle item body on click', () => {
                     // Header debug elements
-                    const panelHeaderDes = getAndExpectDebugElementByCss(
+                    const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                         1,
@@ -871,7 +882,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     // Button debug element
                     const btnDes = getAndExpectDebugElementByCss(
-                        panelHeaderDes[0],
+                        itemHeaderDes[0],
                         'div.accordion-button > button#awg-graph-visualizer-sparql-query-toggle',
                         1,
                         1
@@ -879,7 +890,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     // Button native element to click on
                     const btnEl = btnDes[0].nativeElement;
 
-                    // Panel body does not close
+                    // Item body does not close
                     getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-sparql-query-collapse > div.accordion-body',
@@ -892,7 +903,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    // Panel is open again
+                    // Item is open again
                     getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-sparql-query-collapse > div.accordion-body',
@@ -903,9 +914,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                 });
 
                 describe('View handle button group', () => {
-                    it('... should contain no ViewHandleButtongGroupComponent (stubbed) in panel header', () => {
+                    it('... should contain no ViewHandleButtongGroupComponent (stubbed) in item header', () => {
                         // Header debug elements
-                        const panelHeaderDes = getAndExpectDebugElementByCss(
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                             1,
@@ -913,7 +924,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         );
 
                         getAndExpectDebugElementByDirective(
-                            panelHeaderDes[0],
+                            itemHeaderDes[0],
                             ViewHandleButtongGroupStubComponent,
                             0,
                             0
@@ -922,44 +933,44 @@ describe('SparqlEditorComponent (DONE)', () => {
                 });
 
                 describe('Example query button group', () => {
-                    it('... should contain an example query btn-group in panel header if isExampleQueriesEnabled = true', () => {
+                    it('... should contain an example query btn-group in item header if isExampleQueriesEnabled = true', () => {
                         isExampleQueriesEnabledSpy.and.returnValue(true);
 
                         detectChangesOnPush(fixture);
 
                         // Header debug elements
-                        const panelHeaderDes = getAndExpectDebugElementByCss(
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                             1,
                             1
                         );
 
-                        // Panel header div.btn-group
+                        // Item header div.btn-group
                         getAndExpectDebugElementByCss(
-                            panelHeaderDes[0],
+                            itemHeaderDes[0],
                             'div.accordion-button > div.awg-example-query-btn-group',
                             1,
                             1
                         );
                     });
 
-                    it('... should not contain an example query btn-group in panel header if isExampleQueriesEnabled = false', () => {
+                    it('... should not contain an example query btn-group in item header if isExampleQueriesEnabled = false', () => {
                         isExampleQueriesEnabledSpy.and.returnValue(false);
 
                         detectChangesOnPush(fixture);
 
                         // Header debug elements
-                        const panelHeaderDes = getAndExpectDebugElementByCss(
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                             1,
                             1
                         );
 
-                        // Panel header div.btn-group
+                        // Item header div.btn-group
                         getAndExpectDebugElementByCss(
-                            panelHeaderDes[0],
+                            itemHeaderDes[0],
                             'div.accordion-button > div.awg-example-query-btn-group',
                             0,
                             0
@@ -968,7 +979,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     it('... should display a disabled button label in example query btn-group', () => {
                         // Header debug elements
-                        const panelHeaderDes = getAndExpectDebugElementByCss(
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                             1,
@@ -976,7 +987,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         );
 
                         const btnDes = getAndExpectDebugElementByCss(
-                            panelHeaderDes[0],
+                            itemHeaderDes[0],
                             'div.accordion-button > div.awg-example-query-btn-group > button.btn',
                             1,
                             1
@@ -990,7 +1001,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     it('... should contain another btn-group dropdown in example query btn-group', () => {
                         // Header debug elements
-                        const panelHeaderDes = getAndExpectDebugElementByCss(
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                             1,
@@ -998,7 +1009,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         );
 
                         const outerButtonGroupDes = getAndExpectDebugElementByCss(
-                            panelHeaderDes[0],
+                            itemHeaderDes[0],
                             'div.accordion-button > div.awg-example-query-btn-group',
                             1,
                             1
@@ -1009,7 +1020,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     it('... should contain toggle button in example query btn-group dropdown', () => {
                         // Header debug elements
-                        const panelHeaderDes = getAndExpectDebugElementByCss(
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                             1,
@@ -1017,7 +1028,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         );
 
                         const dropdownButtonGroupDes = getAndExpectDebugElementByCss(
-                            panelHeaderDes[0],
+                            itemHeaderDes[0],
                             'div.accordion-button > div.awg-example-query-btn-group > div.btn-group.dropdown',
                             1,
                             1
@@ -1028,7 +1039,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     it('... should contain exmapleydropdown menu div with dropdown items in example query btn-group', () => {
                         // Header debug elements
-                        const panelHeaderDes = getAndExpectDebugElementByCss(
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                             1,
@@ -1036,7 +1047,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         );
 
                         const dropdownButtonGroupDes = getAndExpectDebugElementByCss(
-                            panelHeaderDes[0],
+                            itemHeaderDes[0],
                             'div.accordion-button > div.awg-example-query-btn-group > div.btn-group.dropdown',
                             1,
                             1
@@ -1140,12 +1151,12 @@ describe('SparqlEditorComponent (DONE)', () => {
                     });
                 });
 
-                it('... should contain CodeMirrorComponent (stubbed) in panel body', () => {
+                it('... should contain CodeMirrorComponent (stubbed) in item body', () => {
                     // CodeMirrorComponent
                     getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorStubComponent, 1, 1);
                 });
 
-                it('... should contain div with 3 buttons (Query, Reset, Clear) in panel body', () => {
+                it('... should contain div with 3 buttons (Query, Reset, Clear) in item body', () => {
                     const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div', 1, 1);
 
                     const btnDes = getAndExpectDebugElementByCss(divDes[0], 'button.btn', 3, 3);
@@ -1268,7 +1279,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
         describe('#onEditorInputChange()', () => {
             beforeEach(async () => {
-                // Open panel by click on header button
+                // Open item by click on header button
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-sparql-query > div.accordion-header > button.btn-link',
@@ -1467,7 +1478,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
             it('... should trigger on event from view handle button group', fakeAsync(() => {
                 // Header debug elements
-                const panelHeaderDes = getAndExpectDebugElementByCss(
+                const itemHeaderDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                     1,
@@ -1476,7 +1487,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 // ViewHandleButtongGroupComponent debug elements
                 const viewHandleButtongGroupDes = getAndExpectDebugElementByDirective(
-                    panelHeaderDes[0],
+                    itemHeaderDes[0],
                     ViewHandleButtongGroupStubComponent,
                     1,
                     1
@@ -1501,7 +1512,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
         describe('#performQuery()', () => {
             beforeEach(async () => {
-                // Open panel by click on header button
+                // Open item by click on header button
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-sparql-query > div.accordion-header > button.btn-link',
@@ -1587,7 +1598,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
         describe('#resetQuery()', () => {
             beforeEach(async () => {
-                // Open panel by click on header button
+                // Open item by click on header button
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-sparql-query > div.accordion-header > button.btn-link',

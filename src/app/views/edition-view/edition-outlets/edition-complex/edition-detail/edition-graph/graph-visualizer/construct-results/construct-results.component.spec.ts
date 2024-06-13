@@ -113,9 +113,25 @@ describe('ConstructResultsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no div.accordion yet', () => {
+            it('... should contain one div.accordion', () => {
                 // Div.accordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+            });
+
+            it('... should contain one div.accordion-item with header and non-collapsible body yet in div.accordion', () => {
+                // Div.accordion debug element
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
+                // Header (div.accordion-header)
+                getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-header', 1, 1);
+
+                // Body (div.accordion-collapse)
+                const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
+                const itemBodyEl = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'accordion-collapse');
             });
         });
     });
@@ -144,13 +160,8 @@ describe('ConstructResultsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.accordion', () => {
-                // NgbAccordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
-            });
-
             describe('not in fullscreen mode', () => {
-                it('... should contain div.accordion-item with header and open body in div.accordion', () => {
+                it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
                     // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
@@ -514,11 +525,11 @@ describe('ConstructResultsComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
                 });
 
-                it('... should contain div.accordion-item with header and open body in div.accordion', () => {
+                it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
                     // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                    // Panel (div.accordion-item)
+                    // Item (div.accordion-item)
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
                         'div#awg-graph-visualizer-construct-results.accordion-item',
@@ -554,7 +565,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Panel header button
+                    // Item header button
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
                     const btnEl = btnDes[0].nativeElement;
 
