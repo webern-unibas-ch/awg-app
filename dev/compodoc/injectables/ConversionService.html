@@ -3995,11 +3995,11 @@ export class ConversionService extends ApiService {
             return undefined;
         }
 
-        const distinctObj &#x3D; subjects.reduce((acc, subject) &#x3D;&gt; {
+        const distinctObj: { [key: string]: SubjectItemJson } &#x3D; subjects.reduce((acc, subject) &#x3D;&gt; {
             acc[subject.obj_id] &#x3D; subject;
             return acc;
         }, {});
-        const distinctArr &#x3D; Object.values(distinctObj) as SubjectItemJson[];
+        const distinctArr: SubjectItemJson[] &#x3D; Object.values(distinctObj);
 
         this.filteredOut &#x3D; subjects.length - distinctArr.length;
 
