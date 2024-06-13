@@ -1,4 +1,4 @@
-@for (toast of toastService.toasts; track toast) {
+@for (toast of toastService.toasts; track $index) {
     <ngb-toast
         [header]="toast?.options?.header"
         [class]="toast?.options?.classname"

@@ -352,6 +352,20 @@ export const mockEditionData = {
                                         ],
                                     ],
                                 },
+                                {
+                                    folio: '100v',
+                                    folioLinkTo: '',
+                                    folioDescription: '',
+                                    systemGroups: [
+                                        [
+                                            {
+                                                system: '7–8',
+                                                measure: '',
+                                                linkTo: '',
+                                            },
+                                        ],
+                                    ],
+                                },
                             ],
                         },
                         {
