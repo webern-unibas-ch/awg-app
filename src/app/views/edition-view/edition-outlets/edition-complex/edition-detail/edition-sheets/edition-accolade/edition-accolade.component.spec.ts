@@ -9,6 +9,7 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
@@ -196,9 +197,25 @@ describe('EditionAccoladeComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no div.accordion yet', () => {
+            it('... should contain one div.accordion', () => {
                 // Div.accordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+            });
+
+            it('... should contain one div.accordion-item with header and non-collapsible body yet in div.accordion', () => {
+                // Div.accordion debug element
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
+                // Header (div.accordion-header)
+                getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-header', 1, 1);
+
+                // Body (div.accordion-collapse)
+                const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
+                const itemBodyEl = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'accordion-collapse');
             });
         });
     });
@@ -237,17 +254,25 @@ describe('EditionAccoladeComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.accordion', () => {
-                // NgbAccordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
-            });
-
-            it('... should contain one item in div.accordion', () => {
+            it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
                 // NgbAccordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                // Div.accordion-item
-                getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
+                // Item (div.accordion-item)
+                const itemDes = getAndExpectDebugElementByCss(
+                    accordionDes[0],
+                    'div#awg-accolade-view.accordion-item',
+                    1,
+                    1
+                );
+                // Header (div.accordion-header)
+                getAndExpectDebugElementByCss(itemDes[0], 'div#awg-accolade-view > div.accordion-header', 1, 1);
+
+                // Body open (div.accordion-collapse)
+                const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div#awg-accolade-view-collapse', 1, 1);
+                const itemBodyEl = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'show');
             });
 
             it('... should contain header section with div and two buttons (div.accordion-header)', () => {
@@ -283,9 +308,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 it('... should contain one EditionSvgSheetNavComponent (stubbed) in the item body (div.accordion-body)', () => {
                     // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
-                    const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+                    const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetNavStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(itemBodyDes[0], EditionSvgSheetNavStubComponent, 1, 1);
                 });
 
                 it('... should pass down svgSheetsData to the EditionSvgSheetNavComponent', () => {
@@ -321,9 +346,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 it('... should contain one EditionSvgSheetViewerComponent (stubbed) in the item body (div.accordion-body)', () => {
                     // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
-                    const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+                    const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetViewerStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(itemBodyDes[0], EditionSvgSheetViewerStubComponent, 1, 1);
                 });
 
                 it('... should not contain an EditionSvgSheetViewerComponent (stubbed) in the item body if no selectedSvgSheet is provided', () => {
@@ -335,9 +360,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
                     // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
-                    const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+                    const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetViewerStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(itemBodyDes[0], EditionSvgSheetViewerStubComponent, 1, 1);
                 });
 
                 it('... should pass down selectedSvgSheet to the EditionSvgSheetViewerComponent', () => {
@@ -359,9 +384,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 it('... should contain one EditionSvgSheetFooterComponent (stubbed) in the item body (div.accordion-body)', () => {
                     // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
-                    const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+                    const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(itemBodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
                 });
 
                 describe('... should not contain an EditionSvgSheetFooterComponent (stubbed) in the item body if ...', () => {
@@ -374,9 +399,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
                         // Div.accordion-item
                         const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
-                        const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+                        const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
-                        getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(itemBodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
                     });
                     it('... no selectedTextcritics are provided', () => {
                         // Reset selectedTextcritics
@@ -387,9 +412,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
                         // Div.accordion-item
                         const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
-                        const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+                        const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
-                        getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(itemBodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
                     });
 
                     it('... no selectedSvgSheet and no selectedTextcritics are provided', () => {
@@ -402,9 +427,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
                         // Div.accordion-item
                         const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
-                        const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+                        const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
-                        getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(itemBodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
                     });
                 });
 
