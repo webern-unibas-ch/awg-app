@@ -1,7 +1,10 @@
 <!-- content: bibliography list -->
 <ul class="bibliography">
     @for (bibItem of bibList; track bibItem.obj_id) {
-        <li [class.selected]="bibItem === selectedBibItem" (click)="onItemSelect(bibItem)">
+        <li
+            [class.selected]="bibItem === selectedBibItem"
+            (click)="onItemSelect(bibItem)"
+            (keydown)="onItemSelect(bibItem)">
             <span class="badge">{{ bibItem.value[0] }}</span>
             @if (bibItem.obj_id === selectedBibItem.obj_id) {
                 <awg-bibliography-detail [objId]="bibItem.obj_id"> </awg-bibliography-detail>
