@@ -249,7 +249,7 @@
                         "blauer Kugelschreiber"
                     ]
                 },
-                "title": "<em>IV.</em> [roter Buntstift] | &lt;<em>Anton von</em>&gt; [schwarze Tinte] <em>Webern</em> [oranger Buntstift] <em><s>(2)</s></em> [roter Buntstift] auf Bl. 1<sup>r</sup> System 2–5 Mitte, <em>(2)</em> gestrichen mit rotem Buntstift;<br />&lt;<em>IV</em>&gt; [roter Buntstift] [<s style=\"text-decoration-style: double;\">xxx</s>] [→<s><em>Lieder „Lieder“ <s style=\"text-decoration-style: double;\">I.</s></em>] </s>|<s> <em>(Der siebente Ring)</em></s> auf Bl. 1<sup>v</sup> oben Mitte mit Bleistift, [<s>xxx</s>] radiert und überschrieben, dann <em><s>I.</s></em> gestrichen, dann alles radiert und <em>IV</em> hinzugefügt mit rotem Buntstift;<br /><em><s>Aus den Liedern des „VII. Ringes“</s> | <s>von Stefan George</s></em> auf Bl. 1<sup>v</sup> System 1–2 rechts mit schwarzer Tinte, gestrichen mit Bleistift.",
+                "title": "<em>IV.</em> [roter Buntstift] | &lt;<em>Anton von</em>&gt; [schwarze Tinte] <em>Webern</em> [oranger Buntstift] <em><s>(2)</s></em> [roter Buntstift] auf Bl. 1<sup>r</sup> System 2–5 Mitte, <em>(2)</em> gestrichen mit rotem Buntstift;<br />&lt;<em>IV</em>&gt; [roter Buntstift] [<s style=\"text-decoration-style: double;>\"xxx</s>→] <s><em>Lieder „Lieder“ <s style=\"text-decoration-style: double;\">I.</s></em></s> | <s><em>(Der siebente Ring)</em></s> auf Bl. 1<sup>v</sup> oben Mitte mit Bleistift, [<s>xxx</s>] radiert und überschrieben, dann <em><s>I.</s></em> gestrichen, dann alles radiert und <em>IV</em> hinzugefügt mit rotem Buntstift;<br /><em><s>Aus den Liedern des „VII. Ringes“</s> | <s>von Stefan George</s></em> auf Bl. 1<sup>v</sup> System 1–2 rechts mit schwarzer Tinte, gestrichen mit Bleistift.",
                 "date": "",
                 "pagination": "",
                 "measureNumbers": "",
@@ -616,11 +616,11 @@
                             {
                                 "folio": "6r",
                                 "folioLinkTo": "",
-                                "folioDescription": "System 8b–9b.",
+                                "folioDescription": "",
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "",
+                                            "system": "8b–9b",
                                             "measure": "",
                                             "linkTo": ""
                                         }
@@ -1362,7 +1362,7 @@
                         "rote Tinte"
                     ]
                 },
-                "title": "<em>VI. </em>[Mitte] <em>Stefan George VII. Ring </em>[rechts]<em> | Anton von Webern op 2</em>[→<em>3</em>]<em> N<sup>o</sup> 6</em> [rechts] auf Bl. 1<sup>r</sup> System 1–2 mit roter Tinte, Überschreibung von <em>2</em> zu <em>3</em> mit Bleistift, <em>N<sup>o</sup> 6</em> ergänzt mit schwarzer Tinte.",
+                "title": "<em>VI. </em>[Mitte] <em>Stefan George VII. Ring </em>[rechts]<em> | Anton von Webern op</em>[.] [<em>2</em>→] <em>3 N<sup>o</sup> 6</em> [rechts] auf Bl. 1<sup>r</sup> System 1–2 mit roter Tinte, Überschreibung [<em>2</em>→] <em>3</em> mit Bleistift, <em>N<sup>o</sup> 6</em> ergänzt mit schwarzer Tinte.",
                 "date": "",
                 "pagination": "",
                 "measureNumbers": "",
@@ -1810,7 +1810,7 @@
             "location": "Universal Edition, 1923.",
             "description": {
                 "desc": [
-                    "[Ein Exemplar dieser Ausgabe konnte bislang nicht aufgefunden werden. Hier aufgeführt gemäß Anton Webern, <em>Briefwechsel mit der Universal-Edition</em>, hg. von Julia Bungardt, Wien: Lafite, 2020 (Webern-Studien 5), S. 336 f. („Erstausgaben der Werke Anton Weberns in der Universal-Edition zu dessen Lebzeiten“]"
+                    "[Ein Exemplar dieser Ausgabe konnte bislang nicht aufgefunden werden. Hier aufgeführt gemäß Anton Webern, <em>Briefwechsel mit der Universal-Edition</em>, hg. von Julia Bungardt, Wien: Lafite, 2020 (Webern-Studien 5), S. 336 f. („Erstausgaben der Werke Anton Weberns in der Universal-Edition zu dessen Lebzeiten“).]"
                 ],
                 "writingMaterial": "",
                 "writingInstruments": {
