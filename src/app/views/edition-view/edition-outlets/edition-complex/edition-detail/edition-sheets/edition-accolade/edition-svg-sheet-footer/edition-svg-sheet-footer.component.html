@@ -1,7 +1,7 @@
 <div class="awg-edition-svg-sheet-footer mt-4">
     @if (utils.isNotEmptyObject(selectedTextcritics)) {
         <div class="awg-edition-svg-sheet-footer-evaluation">
-            <p (click)="toggleTextcritics()" style="cursor: pointer">
+            <p (click)="toggleTextcritics()" (keydown)="toggleTextcritics()" tabindex="0" style="cursor: pointer">
                 @if (utils.isNotEmptyArray(selectedTextcritics.description)) {
                     <span>
                         <fa-icon [icon]="showTextcritics ? faChevronDown : faChevronRight"></fa-icon>
