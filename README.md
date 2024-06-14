@@ -62,7 +62,7 @@ To get started with this project, follow these steps:
 
 In the project directory, you can run the following command to serve the app in development mode:
 
--   `yarn start`: Serves the app in the development mode. Open [http://localhost:4200](http://localhost:4200) to view it in the browser.
+-   `yarn start` or `ng s`: Serves the app in the development mode. Open [http://localhost:4200](http://localhost:4200) to view it in the browser.
 
 During the development process, you'll also find the following commands useful for maintaining code quality and understanding the codebase:
 
