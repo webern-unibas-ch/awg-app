@@ -39,10 +39,15 @@ This repository houses the source code for the web application that powers the o
 
 ## Prerequisites
 
-To run the code base yourself, there are only a few prerequisites to take care of. We use [Yarn](https://classic.yarnpkg.com/) for dependency managing, so, before you begin, ensure you have met the following requirements:
+To run the code base yourself, there are only a few prerequisites to take care of. We use (modern) [Yarn](https://yarnpkg.com/) for dependency managing, so, before you begin, ensure you have met the following requirements:
 
--   You have installed the latest version of Node.js. You can check this by running `node -v` in your terminal. If Node.js is not installed, you can download it from [here](https://nodejs.org/).
--   You have installed Yarn. You can check this by running `yarn -v` in your terminal. If Yarn is not installed, you can download it from [here](https://classic.yarnpkg.com/).
+-   You have installed the latest version of Node.js. You can check this by running `node -v` in your terminal. If Node.js is not installed, you can download it from [here](https://nodejs.org/) or use a Node version manager like `nvm` ([Posix](https://github.com/nvm-sh/nvm)/[Windows](https://github.com/coreybutler/nvm-windows)).
+-   To activate Yarn, follow the instructions [here](https://yarnpkg.com/getting-started/install):
+    -   Run `corepack enable` in the terminal.
+    -   Check that Yarn was installed by running `yarn -v` in your terminal.
+
+> [!NOTE]
+> While it's likely that the project can be run with [classic Yarn](https://classic.yarnpkg.com/en/), please be aware that this is no longer actively tested.
 
 ## Getting Started
 
