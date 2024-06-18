@@ -6,7 +6,7 @@
                     <tr>
                         <th scope="row" id="{{ source.siglum }}{{ source.siglumAddendum }}">
                             @if (source.hasDescription === true) {
-                                <a (click)="navigateToReportFragment(source.linkTo)">
+                                <a (click)="navigateToReportFragment({ complexId: '', fragmentId: source.linkTo })">
                                     @if (source.missing) {
                                         <span>[</span>
                                     }

@@ -118,11 +118,11 @@ export const mockEditionData = {
             {
                 id: 'op12',
                 content: [
-                    'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'source_A\')"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.',
-                    "In <a (click)=\"ref.selectSvgSheet('testComplex1', 'test-1')\"><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test Sk1</strong></a> neu skizziert.<sup id='footnote-80-backlink' class='footnote-link'><a (click)=\"ref.navigateToIntroFragment('footnote-80')\">80</a></sup>",
+                    "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: 'testComplex1', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.",
+                    "In <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test Sk1</strong></a> neu skizziert.<sup id='footnote-80-backlink' class='footnote-link'><a (click)=\"ref.navigateToIntroFragment({complexId: 'testComplex1', fragmentId: 'footnote-80'})\">80</a></sup>",
                 ],
                 footnotes: [
-                    "<span id='footnote-80' class='footnote'><a class='footnote-backlink' (click)=\"ref.navigateToIntroFragment('footnote-80-backlink')\">80</a> | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).</span>",
+                    "<span id='footnote-80' class='footnote'><a class='footnote-backlink' (click)=\"ref.navigateToIntroFragment({complexId: 'testComplex1', fragmentId: 'footnote-80-backlink'})\">80</a> | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).</span>",
                 ],
             },
         ],
@@ -585,7 +585,9 @@ export const mockEditionData = {
                 type: 'Handexemplar von <strong>G</strong>.',
                 location: 'US-Wc, Moldenhauer Archives, Box-Folder: 59/10.',
                 description: {
-                    desc: ['Siehe <a (click)="ref.navigateToReportFragment(\'source_G\')"><strong>G</strong></a>.'],
+                    desc: [
+                        "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_G'})\"><strong>G</strong></a>.",
+                    ],
                 },
             },
         ],
@@ -602,7 +604,7 @@ export const mockEditionData = {
                 id: 'op25',
                 content: [
                     '<small class="text-muted">[Die Quellenbewertung zum gesamten Editionskomplex <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheint im Zusammenhang der vollständigen Edition von Opus 25 in AWG I/5.]</small>',
-                    "Die Skizzen in <a (click)=\"ref.navigateToReportFragment('source_A')\"><strong>A</strong></a> enthalten u. a. <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test Sk1</strong></a> (13. Januar 1915) als Korrekturen einer in <strong>B</strong> und in <a (click)=\"ref.selectSvgSheet('testComplex1', 'test-1')\"><strong>Test Sk1</strong></a> vorformulierten Fassung dar.",
+                    "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten u. a. <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test Sk1</strong></a> (13. Januar 1915) als Korrekturen einer in <strong>B</strong> und in <a (click)=\"ref.selectSvgSheet('testComplex1', 'test-1')\"><strong>Test Sk1</strong></a> vorformulierten Fassung dar.",
                 ],
             },
         ],
@@ -1035,7 +1037,7 @@ export const mockEditionData = {
                 label: 'test2',
                 description: [
                     'test description 1',
-                    "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet('testComplex1', 'test-1')\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>C</strong></a> entspricht.",
+                    "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet('testComplex1', 'test-1')\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_B'})\"><strong>B</strong></a> neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>C</strong></a> entspricht.",
                 ],
                 rowtable: true,
                 comments: [
@@ -1052,7 +1054,7 @@ export const mockEditionData = {
                         system: '12',
                         position: '2. Note',
                         comment:
-                            "Die Skizzen in <a (click)=\"ref.navigateToReportFragment('source_A')\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test SkXYZ</strong></a> T. [11] und <a (click)=\"ref.selectSvgSheet('testComplex1', 'test-1')\"><strong>Test Sk1</strong></a>.",
+                            "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test SkXYZ</strong></a> T. [11] und <a (click)=\"ref.selectSvgSheet('testComplex1', 'test-1')\"><strong>Test Sk1</strong></a>.",
                     },
                     {
                         svgGroupId: 'svg-group-3',
