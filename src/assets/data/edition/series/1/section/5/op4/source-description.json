@@ -30,7 +30,7 @@
                             {
                                 "folio": "1–5",
                                 "folioLinkTo": "",
-                                "folioDescription": "siehe die Quellenbeschreibung zu <strong>G</strong> von <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3.",
+                                "folioDescription": "siehe die Quellenbeschreibung zu <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G</strong></a> von <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3.",
                                 "systemGroups": []
                             }
                         ]
