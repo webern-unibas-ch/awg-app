@@ -29,7 +29,7 @@ class EditionTkaTableStubComponent {
     @Input()
     isSketchId = false;
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -46,7 +46,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
     let expectedCorrections: Textcritics[];
     let expectedComplexId: string;
     let expectedNextComplexId: string;
-    let expectedFragment: string;
+    let expectedReportFragment: string;
     let expectedModalSnippet: string;
     let expectedSheetId: string;
     let expectedNextSheetId: string;
@@ -76,7 +76,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
         expectedCorrections = expectedSourceDescriptionListData.sources[1].description.corrections;
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
-        expectedFragment = 'source_A';
+        expectedReportFragment = 'source_A';
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedNextSheetId = 'test_item_id_2';
         expectedSheetId = 'test_item_id_1';
@@ -329,39 +329,66 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
-                    editionTkaTableCmp.navigateToReportFragmentRequest.emit(expectedFragment);
+                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
 
-                    expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+                    editionTkaTableCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+
+                    expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
                 });
             });
 
             describe('... should not emit anything if', () => {
-                it('... id is undefined', () => {
+                it('... paraemeter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
-                it('... id is null', () => {
+                it('... parameter is null', () => {
                     component.navigateToReportFragment(null);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
-                it('... id is empty string', () => {
-                    component.navigateToReportFragment('');
+                it('... fragment id is undefined', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... fragment id is null', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... fragment id is empty string', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
             });
 
-            it('... should emit id of selected report fragment', () => {
-                component.navigateToReportFragment(expectedFragment);
+            it('... should emit id of selected report fragment within same complex', () => {
+                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                component.navigateToReportFragment(expectedReportIds);
 
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedFragment);
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
 
                 const otherFragment = 'source_B';
-                component.navigateToReportFragment(otherFragment);
+                const expectedNextReportIds = { complexId: expectedComplexId, fragmentId: otherFragment };
+                component.navigateToReportFragment(expectedNextReportIds);
 
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, otherFragment);
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
+            });
+
+            it('... should emit id of selected report fragment for another complex', () => {
+                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                component.navigateToReportFragment(expectedReportIds);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
+
+                const otherFragment = 'source_B';
+                const expectedNextReportIds = { complexId: expectedNextComplexId, fragmentId: otherFragment };
+                component.navigateToReportFragment(expectedNextReportIds);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
             });
         });
 

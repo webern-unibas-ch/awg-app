@@ -35,7 +35,7 @@ class SourceDescriptionCorrectionsStubComponent {
     @Input()
     corrections: Textcritics[];
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -57,7 +57,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
     let expectedSheetId: string;
     let expectedNextSheetId: string;
     let expectedModalSnippet: string;
-    let expectedFragment: string;
+    let expectedReportFragment: string;
 
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
@@ -92,7 +92,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
         expectedNextComplexId = 'testComplex2';
         expectedSheetId = 'test_item_id_1';
         expectedNextSheetId = 'test_item_id_2';
-        expectedFragment = 'source_G';
+        expectedReportFragment = 'source_G';
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedFirmSigns = EDITION_FIRM_SIGNS_DATA;
 
@@ -1907,46 +1907,112 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 expect(component.navigateToReportFragment).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
-                // Get description section
-                const descDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-desc', 2, 2);
+            describe('... should trigger', () => {
+                it('... on click', fakeAsync(() => {
+                    // Get description section
+                    const descDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-desc', 2, 2);
 
-                const anchorDes = getAndExpectDebugElementByCss(descDes[1], 'a', 1, 1);
+                    const anchorDes = getAndExpectDebugElementByCss(descDes[1], 'a', 1, 1);
 
-                // Everything but first anchor uses modal
-                // Click on first anchor
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                    // Everything but first anchor uses modal
+                    // Click on first anchor
+                    clickAndAwaitChanges(anchorDes[0], fixture);
 
-                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
-            }));
+                    expectSpyCall(navigateToReportFragmentSpy, 1, {
+                        complexId: '',
+                        fragmentId: expectedReportFragment,
+                    });
+                }));
+
+                describe('... on event from SourceDescriptionCorrectionsComponent (stubbed) if', () => {
+                    it('... fragment id is undefined', () => {
+                        const correctionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionCorrectionsStubComponent,
+                            1,
+                            1
+                        );
+                        const correctionCmp = correctionDes[0].injector.get(
+                            SourceDescriptionCorrectionsStubComponent
+                        ) as SourceDescriptionCorrectionsStubComponent;
+
+                        correctionCmp.navigateToReportFragmentRequest.emit(undefined);
+
+                        expectSpyCall(navigateToReportFragmentSpy, 1, undefined);
+                    });
+
+                    it('... fragment id is given', () => {
+                        const correctionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionCorrectionsStubComponent,
+                            1,
+                            1
+                        );
+                        const correctionCmp = correctionDes[0].injector.get(
+                            SourceDescriptionCorrectionsStubComponent
+                        ) as SourceDescriptionCorrectionsStubComponent;
+
+                        const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+
+                        correctionCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+
+                        expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
+                    });
+                });
+            });
 
             describe('... should not emit anything if', () => {
-                it('... id is undefined', () => {
+                it('... paraemeter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
-                it('... id is null', () => {
+                it('... parameter is null', () => {
                     component.navigateToReportFragment(null);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
-                it('... id is empty string', () => {
-                    component.navigateToReportFragment('');
+                it('... fragment id is undefined', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... fragment id is null', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... fragment id is empty string', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
             });
 
-            it('... should emit id of selected report fragment', () => {
-                component.navigateToReportFragment(expectedFragment);
+            it('... should emit id of selected report fragment within same complex', () => {
+                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                component.navigateToReportFragment(expectedReportIds);
 
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedFragment);
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
 
                 const otherFragment = 'source_B';
-                component.navigateToReportFragment(otherFragment);
+                const expectedNextReportIds = { complexId: expectedComplexId, fragmentId: otherFragment };
+                component.navigateToReportFragment(expectedNextReportIds);
 
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, otherFragment);
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
+            });
+
+            it('... should emit id of selected report fragment for another complex', () => {
+                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                component.navigateToReportFragment(expectedReportIds);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
+
+                const otherFragment = 'source_B';
+                const expectedNextReportIds = { complexId: expectedNextComplexId, fragmentId: otherFragment };
+                component.navigateToReportFragment(expectedNextReportIds);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
             });
         });
 
@@ -1955,19 +2021,55 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 expect(component.openModal).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
-                // Find description paragraphs
-                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-description-desc', 1, 1);
+            describe('... should trigger', () => {
+                it('... on click', fakeAsync(() => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    // Find description paragraphs
+                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-description-desc', 1, 1);
 
-                // Find anchors in second description paragraph
-                const anchorDes = getAndExpectDebugElementByCss(pDes[0], 'a', 1, 1);
+                    // Find anchors in second description paragraph
+                    const anchorDes = getAndExpectDebugElementByCss(pDes[0], 'a', 1, 1);
 
-                // Click on first anchor with modal call
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                    // Click on first anchor with modal call
+                    clickAndAwaitChanges(anchorDes[0], fixture);
 
-                expectSpyCall(openModalSpy, 1, expectedModalSnippet);
-            }));
+                    expectSpyCall(openModalSpy, 1, expectedModalSnippet);
+                }));
+
+                describe('... on event from SourceDescriptionCorrectionsComponent (stubbed) if', () => {
+                    it('... fragment id is undefined', () => {
+                        const correctionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionCorrectionsStubComponent,
+                            1,
+                            1
+                        );
+                        const correctionCmp = correctionDes[0].injector.get(
+                            SourceDescriptionCorrectionsStubComponent
+                        ) as SourceDescriptionCorrectionsStubComponent;
+
+                        correctionCmp.openModalRequest.emit(undefined);
+
+                        expectSpyCall(openModalSpy, 1, undefined);
+                    });
+
+                    it('... fragment id is given', () => {
+                        const correctionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionCorrectionsStubComponent,
+                            1,
+                            1
+                        );
+                        const correctionCmp = correctionDes[0].injector.get(
+                            SourceDescriptionCorrectionsStubComponent
+                        ) as SourceDescriptionCorrectionsStubComponent;
+
+                        correctionCmp.openModalRequest.emit(expectedModalSnippet);
+
+                        expectSpyCall(openModalSpy, 1, expectedModalSnippet);
+                    });
+                });
+            });
 
             describe('... should not emit anything if ', () => {
                 it('... id is undefined', () => {
@@ -2000,25 +2102,63 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+            describe('... should trigger', () => {
+                it('... on click', fakeAsync(() => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
 
-                // Find content item spans
-                const contentItemDes = getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'span.awg-source-description-content-item',
-                    3,
-                    3
-                );
+                    // Find content item spans
+                    const contentItemDes = getAndExpectDebugElementByCss(
+                        divDes[0],
+                        'span.awg-source-description-content-item',
+                        3,
+                        3
+                    );
 
-                // Find anchors in second paragraph
-                const anchorDes = getAndExpectDebugElementByCss(contentItemDes[0], 'a', 1, 1);
+                    // Find anchors in second paragraph
+                    const anchorDes = getAndExpectDebugElementByCss(contentItemDes[0], 'a', 1, 1);
 
-                // CLick on anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                    // CLick on anchor (with selectSvgSheet call)
+                    clickAndAwaitChanges(anchorDes[0], fixture);
 
-                expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
-            }));
+                    expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
+                }));
+
+                describe('... on event from SourceDescriptionCorrectionsComponent (stubbed) if', () => {
+                    it('... fragment id is undefined', () => {
+                        const correctionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionCorrectionsStubComponent,
+                            1,
+                            1
+                        );
+                        const correctionCmp = correctionDes[0].injector.get(
+                            SourceDescriptionCorrectionsStubComponent
+                        ) as SourceDescriptionCorrectionsStubComponent;
+
+                        correctionCmp.selectSvgSheetRequest.emit(undefined);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, undefined);
+                    });
+
+                    it('... fragment id is given', () => {
+                        const correctionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionCorrectionsStubComponent,
+                            1,
+                            1
+                        );
+                        const correctionCmp = correctionDes[0].injector.get(
+                            SourceDescriptionCorrectionsStubComponent
+                        ) as SourceDescriptionCorrectionsStubComponent;
+
+                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+
+                        correctionCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                    });
+                });
+            });
 
             it('... should not emit anything if no id is provided', () => {
                 const expectedSheetIds = undefined;
