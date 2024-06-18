@@ -236,6 +236,10 @@ the <a href="SourcesComponent">SourcesComponent</a> and the <a href="Textcritics
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_navigateWithComplexId" >_navigateWithComplexId</a>
+                            </li>
+                            <li>
                                 <a href="#getEditionReportData" >getEditionReportData</a>
                             </li>
                             <li>
@@ -375,6 +379,116 @@ to get the report data and a private Router instance.</p>
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_navigateWithComplexId"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_navigateWithComplexId</b></span>
+                        <a href="#_navigateWithComplexId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_navigateWithComplexId(complexId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, targetRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, navigationExtras: NavigationExtras)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="196"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report.component.ts:196</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _navigateWithComplexId.</p>
+<p>It navigates to a target route using the provided complexId.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>complexId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given complex id.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>targetRoute</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given target route.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>navigationExtras</td>
+                                            <td>
+                                                        <code>NavigationExtras</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given navigation extras.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Navigates to the target route.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -550,15 +664,15 @@ when initializing the component.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onReportFragmentNavigate(fragmentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>onReportFragmentNavigate(reportIds: literal type)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="157"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report.component.ts:157</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="158"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report.component.ts:158</a></div>
                         </td>
                     </tr>
 
@@ -566,7 +680,8 @@ when initializing the component.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: onReportFragmentNavigate.</p>
-<p>It navigates to the &#39;/report/&#39; route with the given fragmentId.</p>
+<p>It navigates to the &#39;/report/&#39; route using the provided fragmentId
+within the context of an edition complex identified by the provided complexId.</p>
 </div>
 
                             <div class="io-description">
@@ -583,9 +698,9 @@ when initializing the component.</p>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>fragmentId</td>
+                                                <td>reportIds</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        <code>literal type</code>
                                             </td>
 
                                             <td>
@@ -594,7 +709,7 @@ when initializing the component.</p>
 
 
                                             <td>
-                                                    <p>The given fragment id.</p>
+                                                    <p>The given report ids as { complexId: string, fragmentId: string }.</p>
 
                                             </td>
                                         </tr>
@@ -633,8 +748,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="180"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report.component.ts:180</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="176"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report.component.ts:176</a></div>
                         </td>
                     </tr>
 
@@ -642,9 +757,8 @@ when initializing the component.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: onSvgSheetSelect.</p>
-<p>It selects a SVG sheet by its edition complex
-and sheet ids and navigates to the edition sheets route
-with this given id.</p>
+<p>It navigates to the &#39;/sheet/&#39; route using the provided sheetId
+within the context of an edition complex identified by the provided complexId.</p>
 </div>
 
                             <div class="io-description">
@@ -1079,47 +1193,54 @@ export class EditionReportComponent implements OnInit {
     /**
      * Public method: onReportFragmentNavigate.
      *
-     * It navigates to the &#x27;/report/&#x27; route with the given fragmentId.
+     * It navigates to the &#x27;/report/&#x27; route using the provided fragmentId
+     * within the context of an edition complex identified by the provided complexId.
      *
-     * @param {string}  fragmentId The given fragment id.
+     * @param {object}  reportIds The given report ids as { complexId: string, fragmentId: string }.
      * @returns {void} Navigates to the edition report.
      */
-    onReportFragmentNavigate(fragmentId: string): void {
-        if (!fragmentId) {
-            fragmentId &#x3D; &#x27;&#x27;;
-        }
+    onReportFragmentNavigate(reportIds: { complexId: string; fragmentId: string }): void {
+        const reportRoute &#x3D; this.editionRouteConstants.EDITION_REPORT.route;
         const navigationExtras: NavigationExtras &#x3D; {
-            fragment: fragmentId,
+            fragment: reportIds?.fragmentId ?? &#x27;&#x27;,
         };
-        this.router.navigate(
-            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_REPORT.route],
-            navigationExtras
-        );
+
+        this._navigateWithComplexId(reportIds.complexId, reportRoute, navigationExtras);
     }
 
     /**
      * Public method: onSvgSheetSelect.
      *
-     * It selects a SVG sheet by its edition complex
-     * and sheet ids and navigates to the edition sheets route
-     * with this given id.
+     * It navigates to the &#x27;/sheet/&#x27; route using the provided sheetId
+     * within the context of an edition complex identified by the provided complexId.
      *
      * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
      * @returns {void} Navigates to the edition sheets.
      */
     onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
-        // Set default id if none is given
-        const complexRoute &#x3D; sheetIds?.complexId
-            ? &#x60;/edition/complex/${sheetIds?.complexId}/&#x60;
-            : this.editionComplex.baseRoute;
-        const sheetRoute &#x3D; sheetIds?.sheetId ?? &#x27;&#x27;;
-
+        const sheetRoute &#x3D; this.editionRouteConstants.EDITION_SHEETS.route;
         const navigationExtras: NavigationExtras &#x3D; {
-            queryParams: { id: sheetRoute },
+            queryParams: { id: sheetIds?.sheetId ?? &#x27;&#x27; },
             // .queryParamsHandling: &#x27;&#x27;,
         };
 
-        this.router.navigate([complexRoute, this.editionRouteConstants.EDITION_SHEETS.route], navigationExtras);
+        this._navigateWithComplexId(sheetIds?.complexId, sheetRoute, navigationExtras);
+    }
+
+    /**
+     * Private method: _navigateWithComplexId.
+     *
+     * It navigates to a target route using the provided complexId.
+     *
+     * @param {string} complexId The given complex id.
+     * @param {string} targetRoute The given target route.
+     * @param {NavigationExtras} navigationExtras The given navigation extras.
+     * @returns {void} Navigates to the target route.
+     */
+    private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
+        const complexRoute &#x3D; complexId ? &#x60;/edition/complex/${complexId}/&#x60; : this.editionComplex.baseRoute;
+
+        this.router.navigate([complexRoute, targetRoute], navigationExtras);
     }
 }
 </code></pre>

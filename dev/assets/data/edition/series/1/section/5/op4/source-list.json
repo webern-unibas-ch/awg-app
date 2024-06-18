@@ -43,7 +43,7 @@
         {
             "siglum": "[F]",
             "siglumAddendum": "",
-            "type": "Korrekturfahne von <a (click)=\"ref.navigateToReportFragment('source_G')\"><strong>G</strong></a>.",
+            "type": "Korrekturfahne von <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>.",
             "location": "Verschollen.",
             "hasDescription": false,
             "linkTo": "source_F"
@@ -59,7 +59,7 @@
         {
             "siglum": "G",
             "siglumAddendum": "H",
-            "type": "Handexemplar von <a (click)=\"ref.navigateToReportFragment('source_G')\"><strong>G</strong></a> mit Korrekturen Weberns: <br /><span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 1→2.",
+            "type": "Handexemplar von <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a> mit Korrekturen Weberns: <br /><span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 1→2.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, PMM 21.",
             "hasDescription": true,
             "linkTo": "source_GH"
@@ -75,7 +75,7 @@
         {
             "siglum": "I",
             "siglumAddendum": "",
-            "type": "Abschrift fremder Hand von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span><em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 3 <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Noch zwingt mich Treue“ M 139: Textfassung 3 <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Ja Heil und Dank dir“ M 140: Textfassung 2 <br /><span class=\"tab\"></span>IV<span class=\"tab\"></span>„So ich traurig bin“ M 141: Textfassung 2 <br /><span class=\"tab\"></span>V<span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 3. <br />Stichvorlage für <a (click)=\"ref.navigateToReportFragment('source_J')\"><strong>J</strong></a>.",
+            "type": "Abschrift fremder Hand von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span><em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 3 <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Noch zwingt mich Treue“ M 139: Textfassung 3 <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Ja Heil und Dank dir“ M 140: Textfassung 2 <br /><span class=\"tab\"></span>IV<span class=\"tab\"></span>„So ich traurig bin“ M 141: Textfassung 2 <br /><span class=\"tab\"></span>V<span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 3. <br />Stichvorlage für <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
             "hasDescription": true,
             "linkTo": "source_I"
@@ -91,7 +91,7 @@
         {
             "siglum": "J",
             "siglumAddendum": "H",
-            "type": "Handexemplar von <a (click)=\"ref.navigateToReportFragment('source_J')\"><strong>J</strong></a> mit Eintragungen Weberns.",
+            "type": "Handexemplar von <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a> mit Eintragungen Weberns.",
             "location": "A-Wst, Musikhandschriften, MHc-14926.",
             "hasDescription": true,
             "linkTo": "source_JH"

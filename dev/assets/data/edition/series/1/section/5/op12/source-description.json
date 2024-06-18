@@ -1644,9 +1644,7 @@
             "type": "Druck von „Der Tag ist vergangen“ M 212: Textfassung 2.",
             "location": "In: <em>Musikblätter des Anbruch</em> IV (Mai 1922).",
             "description": {
-                "desc": [
-                    "1 Blatt, Verso-Seite nicht bedruckt. Format: hoch 246 × 177 mm."
-                ],
+                "desc": ["1 Blatt, Verso-Seite nicht bedruckt. Format: hoch 246 × 177 mm."],
                 "writingMaterialString": "",
                 "writingInstruments": {
                     "main": "",
@@ -1711,7 +1709,9 @@
             "type": "Handexemplar von <strong>E</strong> mit Korrekturen Weberns („Der Tag ist vergangen“ M 212: Fassung [2→] 3).",
             "location": "CH-Bps, Sammlung Anton Webern, Basel, P IV 29.",
             "description": {
-                "desc": ["Siehe <a (click)=\"ref.navigateToReportFragment('source_E')\"><strong>E</strong></a>."]
+                "desc": [
+                    "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>."
+                ]
             }
         },
         {
@@ -2414,7 +2414,9 @@
             "type": "Handexemplar von <strong>G</strong>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder: 59/10.",
             "description": {
-                "desc": ["Siehe <a (click)=\"ref.navigateToReportFragment('source_G')\"><strong>G</strong></a>."],
+                "desc": [
+                    "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>."
+                ],
                 "annotations": "<em>Som̅er, 1925</em> auf S. [1] untere Hälfte links mit Bleistift;<br /><em>2 1/2 bis 3</em> nach I mit Bleistift;<br/><em>3’</em> nach II mit Bleistift;<br /><em>2 1/2</em> nach III mit Bleistift;<br /><em>2’</em> [eingerahmt] <em><s>3’</s></em> nach IV mit Bleistift, <em><s>3’</s></em> gestrichen. "
             }
         }

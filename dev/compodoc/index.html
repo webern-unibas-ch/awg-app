@@ -117,11 +117,19 @@
 <h2>Description</h2>
 <p>This repository houses the source code for the web application that powers the online edition of the Anton Webern Gesamtausgabe (AWG). Our goal is to provide a comprehensive, accessible, and interactive platform for exploring the works of Anton Webern.</p>
 <h2>Prerequisites</h2>
-<p>To run the code base yourself, there are only a few prerequisites to take care of. We use <a href="https://classic.yarnpkg.com/">Yarn</a> for dependency managing, so, before you begin, ensure you have met the following requirements:</p>
+<p>To run the code base yourself, there are only a few prerequisites to take care of. We use (modern) <a href="https://yarnpkg.com/">Yarn</a> for dependency managing, so, before you begin, ensure you have met the following requirements:</p>
 <ul>
-<li>You have installed the latest version of Node.js. You can check this by running <code>node -v</code> in your terminal. If Node.js is not installed, you can download it from <a href="https://nodejs.org/">here</a>.</li>
-<li>You have installed Yarn. You can check this by running <code>yarn -v</code> in your terminal. If Yarn is not installed, you can download it from <a href="https://classic.yarnpkg.com/">here</a>.</li>
+<li>You have installed the latest version of Node.js. You can check this by running <code>node -v</code> in your terminal. If Node.js is not installed, you can download it from <a href="https://nodejs.org/">here</a> or use a Node version manager like <code>nvm</code> (<a href="https://github.com/nvm-sh/nvm">Posix</a>/<a href="https://github.com/coreybutler/nvm-windows">Windows</a>).</li>
+<li>To activate Yarn, follow the instructions <a href="https://yarnpkg.com/getting-started/install">here</a>:<ul>
+<li>Run <code>corepack enable</code> in the terminal (may need admin privileges to access node folder).</li>
+<li>Check that Yarn was installed by running <code>yarn -v</code> in your terminal.</li>
 </ul>
+</li>
+</ul>
+<blockquote>
+<p>[!NOTE]
+While it&#39;s likely that the project can be run with <a href="https://classic.yarnpkg.com/en/">classic Yarn</a>, please be aware that this is no longer actively tested.</p>
+</blockquote>
 <h2>Getting Started</h2>
 <p>To get started with this project, follow these steps:</p>
 <ol>
@@ -133,7 +141,7 @@
 <h2>Usage</h2>
 <p>In the project directory, you can run the following command to serve the app in development mode:</p>
 <ul>
-<li><code>yarn start</code>: Serves the app in the development mode. Open <a href="http://localhost:4200">http://localhost:4200</a> to view it in the browser.</li>
+<li><code>yarn start</code> or <code>ng s</code>: Serves the app in the development mode. Open <a href="http://localhost:4200">http://localhost:4200</a> to view it in the browser.</li>
 </ul>
 <p>During the development process, you&#39;ll also find the following commands useful for maintaining code quality and understanding the codebase:</p>
 <ul>
