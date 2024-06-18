@@ -17,7 +17,7 @@
                     "measure": "8",
                     "system": "Klav.",
                     "position": "Taktende",
-                    "comment": "Schlussstrich ergänzt. <a (click)=\"ref.navigateToReportFragment('source_F')\"><strong>F</strong></a>: Einfacher Taktstrich."
+                    "comment": "Schlussstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_F'})\"><strong>F</strong></a>: Einfacher Taktstrich."
                 },
                 {
                     "svgGroupId": "",
@@ -87,7 +87,7 @@
                     "measure": "8",
                     "system": "Klav.",
                     "position": "Taktende",
-                    "comment": "Schlussstrich ergänzt. <a (click)=\"ref.navigateToReportFragment('source_F')\"><strong>F</strong></a>: Einfacher Taktstrich."
+                    "comment": "Schlussstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_F'})\"><strong>F</strong></a>: Einfacher Taktstrich."
                 },
                 {
                     "svgGroupId": "",
