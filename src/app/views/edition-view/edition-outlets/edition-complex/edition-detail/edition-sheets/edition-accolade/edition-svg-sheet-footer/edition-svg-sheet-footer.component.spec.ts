@@ -28,7 +28,7 @@ class EditionTkaDescriptionStubComponent {
     @Input()
     textcriticalDescriptions: string[];
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -53,7 +53,7 @@ class EditionTkaTableStubComponent {
     @Input()
     isSketchId = false;
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -76,7 +76,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
 
     let expectedComplexId: string;
     let expectedNextComplexId: string;
-    let expectedFragment: string;
+    let expectedReportFragment: string;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedSelectedTextcritics: Textcritics;
@@ -109,7 +109,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         // Test data
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
-        expectedFragment = 'source_A';
+        expectedReportFragment = 'source_A';
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
@@ -476,49 +476,99 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expect(component.navigateToReportFragment).toBeDefined();
             });
 
-            it('... should trigger on event from EditionTkaTableComponent', () => {
-                const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditionTkaTableStubComponent,
-                    1,
-                    1
-                );
-                const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
-                    EditionTkaTableStubComponent
-                ) as EditionTkaTableStubComponent;
+            describe('... should trigger on event from', () => {
+                it('... EditionTkaDescriptionComponent', () => {
+                    component.showTextcritics = true;
+                    detectChangesOnPush(fixture);
 
-                editionTkaTableCmp.navigateToReportFragmentRequest.emit(expectedFragment);
+                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionTkaDescriptionStubComponent,
+                        1,
+                        1
+                    );
+                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
+                        EditionTkaDescriptionStubComponent
+                    ) as EditionTkaDescriptionStubComponent;
 
-                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+
+                    editionTkaDescriptionCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+
+                    expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
+                });
+
+                it('... EditionTkaTableComponent', () => {
+                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionTkaTableStubComponent,
+                        1,
+                        1
+                    );
+                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                        EditionTkaTableStubComponent
+                    ) as EditionTkaTableStubComponent;
+
+                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+
+                    editionTkaTableCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+
+                    expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
+                });
             });
 
             describe('... should not emit anything if', () => {
-                it('... id is undefined', () => {
+                it('... paraemeter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
-                it('... id is null', () => {
+                it('... parameter is null', () => {
                     component.navigateToReportFragment(null);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
-                it('... id is empty string', () => {
-                    component.navigateToReportFragment('');
+                it('... fragment id is undefined', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... fragment id is null', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... fragment id is empty string', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
             });
 
-            it('... should emit id of selected report fragment', () => {
-                component.navigateToReportFragment(expectedFragment);
+            it('... should emit id of selected report fragment within same complex', () => {
+                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                component.navigateToReportFragment(expectedReportIds);
 
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedFragment);
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
 
                 const otherFragment = 'source_B';
-                component.navigateToReportFragment(otherFragment);
+                const expectedNextReportIds = { complexId: expectedComplexId, fragmentId: otherFragment };
+                component.navigateToReportFragment(expectedNextReportIds);
 
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, otherFragment);
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
+            });
+
+            it('... should emit id of selected report fragment for another complex', () => {
+                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                component.navigateToReportFragment(expectedReportIds);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
+
+                const otherFragment = 'source_B';
+                const expectedNextReportIds = { complexId: expectedNextComplexId, fragmentId: otherFragment };
+                component.navigateToReportFragment(expectedNextReportIds);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
             });
         });
 
@@ -527,20 +577,41 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expect(component.openModal).toBeDefined();
             });
 
-            it('... should trigger on event from EditionTkaTableComponent', () => {
-                const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditionTkaTableStubComponent,
-                    1,
-                    1
-                );
-                const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
-                    EditionTkaTableStubComponent
-                ) as EditionTkaTableStubComponent;
+            describe('... should trigger on event from', () => {
+                it('... EditionTkaDescriptionComponent', () => {
+                    component.showTextcritics = true;
+                    detectChangesOnPush(fixture);
 
-                editionTkaTableCmp.openModalRequest.emit(expectedModalSnippet);
+                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionTkaDescriptionStubComponent,
+                        1,
+                        1
+                    );
+                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
+                        EditionTkaDescriptionStubComponent
+                    ) as EditionTkaDescriptionStubComponent;
 
-                expectSpyCall(openModalSpy, 1, expectedModalSnippet);
+                    editionTkaDescriptionCmp.openModalRequest.emit(expectedModalSnippet);
+
+                    expectSpyCall(openModalSpy, 1, expectedModalSnippet);
+                });
+
+                it('... EditionTkaTableComponent', () => {
+                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionTkaTableStubComponent,
+                        1,
+                        1
+                    );
+                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                        EditionTkaTableStubComponent
+                    ) as EditionTkaTableStubComponent;
+
+                    editionTkaTableCmp.openModalRequest.emit(expectedModalSnippet);
+
+                    expectSpyCall(openModalSpy, 1, expectedModalSnippet);
+                });
             });
 
             it('... should not emit anything if no id is provided', () => {
@@ -561,21 +632,43 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on event from EditionTkaTableComponent', () => {
-                const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditionTkaTableStubComponent,
-                    1,
-                    1
-                );
-                const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
-                    EditionTkaTableStubComponent
-                ) as EditionTkaTableStubComponent;
+            describe('... should trigger on event from', () => {
+                it('... EditionTkaDescriptionComponent', () => {
+                    component.showTextcritics = true;
+                    detectChangesOnPush(fixture);
 
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                editionTkaTableCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionTkaDescriptionStubComponent,
+                        1,
+                        1
+                    );
+                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
+                        EditionTkaDescriptionStubComponent
+                    ) as EditionTkaDescriptionStubComponent;
 
-                expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                    editionTkaDescriptionCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                    expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                });
+
+                it('... EditionTkaTableComponent', () => {
+                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionTkaTableStubComponent,
+                        1,
+                        1
+                    );
+                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                        EditionTkaTableStubComponent
+                    ) as EditionTkaTableStubComponent;
+
+                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                    editionTkaTableCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                    expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                });
             });
 
             it('... should not emit anything if no id is provided', () => {
