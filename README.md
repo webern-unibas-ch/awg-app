@@ -43,7 +43,7 @@ To run the code base yourself, there are only a few prerequisites to take care o
 
 -   You have installed the latest version of Node.js. You can check this by running `node -v` in your terminal. If Node.js is not installed, you can download it from [here](https://nodejs.org/) or use a Node version manager like `nvm` ([Posix](https://github.com/nvm-sh/nvm)/[Windows](https://github.com/coreybutler/nvm-windows)).
 -   To activate Yarn, follow the instructions [here](https://yarnpkg.com/getting-started/install):
-    -   Run `corepack enable` in the terminal.
+    -   Run `corepack enable` in the terminal (may need admin privileges to access node folder).
     -   Check that Yarn was installed by running `yarn -v` in your terminal.
 
 > [!NOTE]
