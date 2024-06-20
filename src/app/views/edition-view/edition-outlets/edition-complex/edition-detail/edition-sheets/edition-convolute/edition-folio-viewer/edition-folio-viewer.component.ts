@@ -263,17 +263,16 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
      * Public method: selectSvgSheet.
      *
      * It emits the given ids of a selected edition complex
-     * and SVG sheet to the {@link selectSvgSheetRequest}.
+     * and svg sheet to the {@link selectSvgSheetRequest}.
      *
-     * @param {string} complexId The given complex id.
-     * @param {string} sheetId The given sheet id.
+     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
      * @returns {void} Emits the ids.
      */
-    selectSvgSheet(complexId: string, sheetId: string): void {
-        if (!sheetId) {
+    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
+        if (!sheetIds?.sheetId) {
             return;
         }
-        this.selectSvgSheetRequest.emit({ complexId: complexId, sheetId: sheetId });
+        this.selectSvgSheetRequest.emit(sheetIds);
     }
 
     /**

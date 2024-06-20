@@ -294,7 +294,7 @@ export class FolioService {
         // Add click event handler
         contentSegmentGroup.on('click', () =>
             contentSegment.selectable
-                ? this.ref.selectSvgSheet(contentSegment.complexId, contentSegment.sheetId)
+                ? this.ref.selectSvgSheet({ complexId: contentSegment.complexId, sheetId: contentSegment.sheetId })
                 : this.ref.openModal(contentSegment.linkTo)
         );
 
