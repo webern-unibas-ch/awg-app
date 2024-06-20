@@ -235,7 +235,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             fragment: reportIds?.fragmentId ?? '',
         };
 
-        this._navigateWithComplexId(reportIds.complexId, reportRoute, navigationExtras);
+        this._navigateWithComplexId(reportIds?.complexId, reportRoute, navigationExtras);
     }
 
     /**
