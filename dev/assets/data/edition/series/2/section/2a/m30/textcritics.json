@@ -47,7 +47,7 @@
                     "measure": "24",
                     "system": "Klav.",
                     "position": "Taktende",
-                    "comment": "sic. <a (click)=\"ref.navigateToReportFragment({complexId: 'm30', fragmentId: 'source_B'})\"><strong>B</strong></a>: Kein Schlussstrich vorhanden (vgl. auch <a (click)=\"ref.selectSvgSheet('m30', 'M_30_Sk1k')\"><strong>Sk1</strong></a>)."
+                    "comment": "sic. <a (click)=\"ref.navigateToReportFragment({complexId: 'm30', fragmentId: 'source_B'})\"><strong>B</strong></a>: Kein Schlussstrich vorhanden (vgl. auch <a (click)=\"ref.selectSvgSheet({complexId: 'm30', sheetId: 'M_30_Sk1k'})\"><strong>Sk1</strong></a>)."
                 }
             ]
         },

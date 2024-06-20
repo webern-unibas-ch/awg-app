@@ -212,7 +212,7 @@
             "id": "M_31_Sk3_1",
             "label": "M 31 Sk3.1",
             "description": [
-                "<strong>Sk3.1</strong> fügt einen zusätzlichen Takt zwischen T. 10 und T. 11 von <a (click)=\"ref.selectSvgSheet('m31', 'M_31_Sk3')\"><strong>Sk3</strong></a> ein."
+                "<strong>Sk3.1</strong> fügt einen zusätzlichen Takt zwischen T. 10 und T. 11 von <a (click)=\"ref.selectSvgSheet({complexId: 'm31', sheetId: 'M_31_Sk3'})\"><strong>Sk3</strong></a> ein."
             ],
             "comments": [
                 {
@@ -244,7 +244,7 @@
             "id": "M_31_Sk3_2",
             "label": "M 31 Sk3.2",
             "description": [
-                "<strong>Sk3.2</strong> skizziert vermutlich das Vorhaben, den Übergang zur Reprise in <a (click)=\"ref.selectSvgSheet('m31', 'M_31_Sk3')\"><strong>Sk3</strong></a> von D nach G um eine Quinte nach unten zu transponieren."
+                "<strong>Sk3.2</strong> skizziert vermutlich das Vorhaben, den Übergang zur Reprise in <a (click)=\"ref.selectSvgSheet({complexId: 'm31', sheetId: 'M_31_Sk3'})\"><strong>Sk3</strong></a> von D nach G um eine Quinte nach unten zu transponieren."
             ],
             "comments": [
                 {
