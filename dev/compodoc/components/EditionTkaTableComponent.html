@@ -830,15 +830,15 @@ to the <a href="openModalRequest">openModalRequest</a>.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>selectSvgSheet(complexId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, sheetId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>selectSvgSheet(sheetIds: literal type)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="208"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-tka/edition-tka-table/edition-tka-table.component.ts:208</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="207"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-tka/edition-tka-table/edition-tka-table.component.ts:207</a></div>
                         </td>
                     </tr>
 
@@ -864,9 +864,9 @@ and svg sheet to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.<
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>complexId</td>
+                                                <td>sheetIds</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        <code>literal type</code>
                                             </td>
 
                                             <td>
@@ -875,23 +875,7 @@ and svg sheet to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.<
 
 
                                             <td>
-                                                    <p>The given complex id.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>sheetId</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given sheet id.</p>
+                                                    <p>The given sheet ids as { complexId: string, sheetId: string }.</p>
 
                                             </td>
                                         </tr>
@@ -1247,15 +1231,14 @@ export class EditionTkaTableComponent {
      * It emits the given ids of a selected edition complex
      * and svg sheet to the {@link selectSvgSheetRequest}.
      *
-     * @param {string} complexId The given complex id.
-     * @param {string} sheetId The given sheet id.
+     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
      * @returns {void} Emits the ids.
      */
-    selectSvgSheet(complexId: string, sheetId: string): void {
-        if (!sheetId) {
+    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
+        if (!sheetIds?.sheetId) {
             return;
         }
-        this.selectSvgSheetRequest.emit({ complexId: complexId, sheetId: sheetId });
+        this.selectSvgSheetRequest.emit(sheetIds);
     }
 }
 </code></pre>
