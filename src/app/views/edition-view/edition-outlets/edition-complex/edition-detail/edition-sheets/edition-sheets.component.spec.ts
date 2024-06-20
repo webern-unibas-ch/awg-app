@@ -27,7 +27,7 @@ import {
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionService, EditionSheetsService } from '@awg-views/edition-view/services';
 
 import { EditionSheetsComponent } from './edition-sheets.component';
 
@@ -81,10 +81,13 @@ describe('EditionSheetsComponent', () => {
 
     let mockEditionDataService: Partial<EditionDataService>;
     let mockEditionService: Partial<EditionService>;
+    let mockEditionSheetsService: Partial<EditionSheetsService>;
 
     let editionDataServiceGetEditionSheetsDataSpy: Spy;
+    let editionServiceGetEditionComplexSpy: Spy;
+    let editionSheetsServiceSelectSvgSheetByIdSpy: Spy;
+    let editionSheetsServiceSelectConvoluteSpy: Spy;
     let getEditionSheetsDataSpy: Spy;
-    let getEditionComplexSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
     let navigateWithComplexIdSpy: Spy;
     let navigationSpy: Spy;
@@ -129,6 +132,15 @@ describe('EditionSheetsComponent', () => {
         };
         mockEditionService = {
             getEditionComplex: (): Observable<EditionComplex> => observableOf(),
+        };
+        mockEditionSheetsService = {
+            selectSvgSheetById: (sheets: EditionSvgSheetList['sheets'], id: string): EditionSvgSheet =>
+                new EditionSvgSheet(),
+            selectConvolute: (
+                convolutes: FolioConvolute[],
+                sheets: EditionSvgSheetList['sheets'],
+                selectedSheet: EditionSvgSheet
+            ): FolioConvolute | undefined => new FolioConvolute(),
         };
 
         TestBed.configureTestingModule({
@@ -179,9 +191,16 @@ describe('EditionSheetsComponent', () => {
         editionDataServiceGetEditionSheetsDataSpy = spyOn(
             mockEditionDataService,
             'getEditionSheetsData'
-        ).and.callThrough();
-        getEditionComplexSpy = spyOn(mockEditionService, 'getEditionComplex').and.returnValue(
+        ).and.returnValue(observableOf([expectedFolioConvoluteData, expectedSvgSheetsData, expectedTextcriticsData]));
+        editionServiceGetEditionComplexSpy = spyOn(mockEditionService, 'getEditionComplex').and.returnValue(
             observableOf(expectedEditionComplex)
+        );
+        editionSheetsServiceSelectSvgSheetByIdSpy = spyOn(
+            mockEditionSheetsService,
+            'selectSvgSheetById'
+        ).and.returnValue(expectedSvgSheet);
+        editionSheetsServiceSelectConvoluteSpy = spyOn(mockEditionSheetsService, 'selectConvolute').and.returnValue(
+            expectedFolioConvoluteData[0]
         );
         getEditionSheetsDataSpy = spyOn(component, 'getEditionSheetsData').and.callThrough();
         navigateToReportFragmentSpy = spyOn(component, 'onReportFragmentNavigate').and.callThrough();

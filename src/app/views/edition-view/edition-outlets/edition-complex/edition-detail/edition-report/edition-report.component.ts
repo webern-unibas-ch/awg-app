@@ -161,7 +161,7 @@ export class EditionReportComponent implements OnInit {
             fragment: reportIds?.fragmentId ?? '',
         };
 
-        this._navigateWithComplexId(reportIds.complexId, reportRoute, navigationExtras);
+        this._navigateWithComplexId(reportIds?.complexId, reportRoute, navigationExtras);
     }
 
     /**
