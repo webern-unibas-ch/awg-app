@@ -1,0 +1,15 @@
+@if (details?.length) {
+    <p class="awg-source-description-{{ class }}">
+        @if (label) {
+            <span class="smallcaps">{{ label }}:&nbsp;</span>
+        }
+        @for (detail of details; track $index; let lastDetail = $last) {
+            <span [compile-html]="detail" [compile-html-ref]="ref"></span>
+            @if (!lastDetail) {
+                <span>;</span><br />
+            } @else {
+                <span>.</span>
+            }
+        }
+    </p>
+}
