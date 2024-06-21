@@ -1706,11 +1706,527 @@
             "id": "source_EH",
             "siglum": "E",
             "siglumAddendum": "H",
-            "type": "Handexemplar von <strong>E</strong> mit Korrekturen Weberns („Der Tag ist vergangen“ M 212: Fassung [2→] 3).",
+            "type": "Handexemplar von <strong>E</strong> mit Korrekturen Weberns: „Der Tag ist vergangen“ M 212: Textfassung 2→3.",
             "location": "CH-Bps, Sammlung Anton Webern, Basel, P IV 29.",
             "description": {
                 "desc": [
                     "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>."
+                ],
+                "corrections": [
+                    {
+                        "id": "source_EH_corr",
+                        "label": "Korrekturen in <strong>E<sup>H</sup></strong> (mit Bleistift)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: Textfassung 2."
+                        ],
+                        "comments": [
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "1",
+                                "system": "Klav.",
+                                "position": "1. Note",
+                                "comment": "{{ref.getGlyph('[ppp]')}} geändert zu {{ref.getGlyph('[pp]')}}."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "1",
+                                "system": "Klav. o.",
+                                "position": "1/8–2/4",
+                                "comment": "Crescendogabel zwischen den Systemen gestrichen. Crescendogabel 1–2/8, Decrescendogabel 2/8 bis Taktende über dem System hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "1</p><p>bis 2",
+                                "system": "Klav. o.",
+                                "position": "1/8</p><p>4/8",
+                                "comment": "Legatobogen geändert zu zwei Legatobögen von T. 1 1/8 bis T. 2 1/8 und T. 2 2.–3. Note."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "2",
+                                "system": "Klav. o.",
+                                "position": "2. Note",
+                                "comment": "<em>zögernd</em> geändert zu <em>rit. - - -</em> (mit Geltungsstrichelung bis Taktende).</p><p>{{ref.getGlyph('[ppp]')}} hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "3",
+                                "system": "Klav. u.",
+                                "position": "2–3/8",
+                                "comment": "Achtelfähnchen bei 2/8 geändert zu Balken."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "3",
+                                "system": "Ges.",
+                                "position": "6/8",
+                                "comment": "Tenutostrich hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "3</p><p>bis 5",
+                                "system": "Ges.",
+                                "position": "6/8</p><p>3/8",
+                                "comment": "Zuerst: Bogen über den Noten hinzugefügt. </p><p>Dann: Bogen wieder gestrichen. </p><p>Siehe Korrektur in T. 4 3/8 bis T. 5 3/8."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "4",
+                                "system": "Ges.",
+                                "position": "2–4/8",
+                                "comment": "Crescendogabel gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "4",
+                                "system": "Klav.",
+                                "position": "1.–2. Note",
+                                "comment": "Legatobogen und Decrescendogabel hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "4",
+                                "system": "Ges.",
+                                "position": "3–4/8",
+                                "comment": "Crescendogabel hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "4</p><p>bis 5",
+                                "system": "Ges.",
+                                "position": "3/8</p><p>3/8",
+                                "comment": "Bogen hinzugefügt. </p><p>Siehe Korrektur in T. 3 6/8 bis T. 5 3/8."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "4",
+                                "system": "Klav. o.",
+                                "position": "letzte Pause",
+                                "comment": "Viertelpause gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "4",
+                                "system": "Klav.",
+                                "position": "2. Note",
+                                "comment": "{{ref.getGlyph('[pp]')}} gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "5",
+                                "system": "Ges.",
+                                "position": "3–4/8",
+                                "comment": "Achtelfähnchen geändert zu Balken."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "5</p><p>bis 7",
+                                "system": "Ges.",
+                                "position": "4/8</p><p>1/4",
+                                "comment": "Bogen hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "6",
+                                "system": "Ges.",
+                                "position": "2.–4. Note",
+                                "comment": "Zunächst: Fähnchen bei 3.–4. Note geändert zu Balken über den Noten. </p><p>Dann: Balken bei 2.–4. Note unter den Noten hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "7",
+                                "system": "Klav. o.",
+                                "position": "2–3/8",
+                                "comment": "Achtelfähnchen geändert zu Balken."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "7",
+                                "system": "Klav.",
+                                "position": "2–3/8",
+                                "comment": "Decrescendogabel hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "7",
+                                "system": "Klav. u.",
+                                "position": "2–3/8",
+                                "comment": "Achtelfähnchen geändert zu Balken."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "7",
+                                "system": "Ges.",
+                                "position": "2.–3. Note",
+                                "comment": "Achtelfähnchen geändert zu Balken."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "7</p><p>bis 8",
+                                "system": "Ges.",
+                                "position": "2. Note</p><p>1. Note",
+                                "comment": "Bogen hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "7</p><p>8",
+                                "system": "Ges.",
+                                "position": "3. Note</p><p>nach 1/4",
+                                "comment": "Ende der Crescendogabel T. 7 3. Note ##verlängert## zu T. 8 nach 1/4."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "7</p><p>bis 8",
+                                "system": "Ges.",
+                                "position": "3. Note</p><p>3/8",
+                                "comment": "<em>dis fis e</em> unter den Noten es<sup>2</sup>–ges<sup>2</sup>–fes<sup>2</sup>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "8",
+                                "system": "Klav. o. u.",
+                                "position": "1.–2. Note",
+                                "comment": "Stacctopunkte überschrieben zu Tenutostrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "8</p><p>bis 9",
+                                "system": "Ges.",
+                                "position": "3/8</p><p>2. Note",
+                                "comment": "Bogen hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "8</p><p>bis 9",
+                                "system": "Ges.",
+                                "position": "4/8</p><p>2. Note",
+                                "comment": "Ende der Crescendogabel T. 8 4/8 ##verlängert## zu T. 9 2. Note."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "9",
+                                "system": "Klav.",
+                                "position": "1/4",
+                                "comment": "{{ref.getGlyph('[p]')}} geändert zu {{ref.getGlyph('[pp]')}}."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "9",
+                                "system": "Ges.",
+                                "position": "",
+                                "comment": "Drei Vierteltriolen geändert zu triolischer Viertel- und Achtelnote sowie triolischer Achtelpause und Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "9",
+                                "system": "Ges.",
+                                "position": "3. Note",
+                                "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "9</p><p>bis 11",
+                                "system": "Ges.",
+                                "position": "3. Note</p><p>1/4",
+                                "comment": "Bogen hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "9</p><p>bis 10",
+                                "system": "Klav. u.",
+                                "position": "4/8</p><p>1/4",
+                                "comment": "Legatobogen gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "9</p><p>bis 11",
+                                "system": "Klav. u.",
+                                "position": "4/8</p><p>1/4",
+                                "comment": "Legatobogen hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "10",
+                                "system": "Klav. o.",
+                                "position": "1., 2. Note",
+                                "comment": "Tenutostriche gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "10</p><p>bis 11",
+                                "system": "Klav. o.",
+                                "position": "1. Note</p><p>2. Note",
+                                "comment": "Legatobogen hinzugefügt. Siehe Korrektur T. 10 2. Note bis T. 11 2. Note.</p><p>Crescendogabel T. 10 1. Note bis nach 2. Note und Decrescendogabel T. 11 1.–2. Note geändert zu Decrescendogabel T. 10 1. Note bis T. 11 2. Note."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "10",
+                                "system": "Ges.",
+                                "position": "2–4/8",
+                                "comment": "Achtelfähnchen bei 3–4/8 geändert zu Balken."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "10</p><p>bis 11",
+                                "system": "Klav. o.",
+                                "position": "2. Note</p><p>2. Note",
+                                "comment": "Legatobogen gestrichen. Siehe Korrektur T. 10 1. Note bis T. 11 2. Note."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "10",
+                                "system": "Klav. u.",
+                                "position": "2/4",
+                                "comment": "Tenutostrich gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "11",
+                                "system": "Klav. o.",
+                                "position": "2. Note",
+                                "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "12",
+                                "system": "",
+                                "position": "Taktanfang",
+                                "comment": "<em>molto</em> (scil: „molto rit.“) gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "12/13",
+                                "system": "",
+                                "position": "Taktstrich",
+                                "comment": "Fermaten über Ges. und Klav. o. hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "13",
+                                "system": "Ges.",
+                                "position": "1/8",
+                                "comment": "Fermate gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "13",
+                                "system": "Klav. o.",
+                                "position": "",
+                                "comment": "Fermate gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "13",
+                                "system": "Klav. u.",
+                                "position": "1/4",
+                                "comment": "Fermate gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "13</p><p>bis 14",
+                                "system": "Ges.",
+                                "position": "2/8</p><p> 2. Note?",
+                                "comment": "Bogen hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "13",
+                                "system": "Ges.",
+                                "position": "5–6/8",
+                                "comment": "Achtelfähnchen geändert zu Balken."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "13",
+                                "system": "Klav. u.",
+                                "position": "3/4",
+                                "comment": "{{ref.getGlyph('[ppp]')}} geändert zu {{ref.getGlyph('[pp]')}}."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "14",
+                                "system": "Ges.",
+                                "position": "1.–3. Note",
+                                "comment": "Achtelfähnchen geändert zu Balken."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "14",
+                                "system": "Klav. (u.)",
+                                "position": "1/8",
+                                "comment": "<em>ohne Pedal</em> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "14",
+                                "system": "Klav. u.",
+                                "position": "1.–2. Note",
+                                "comment": "Decrescendogabel hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "14",
+                                "system": "Klav. u.",
+                                "position": "2. Note",
+                                "comment": "Decrescendogabel gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "14</p><p>bis 15",
+                                "system": "Ges.",
+                                "position": "3. Note</p><p>2/8",
+                                "comment": "Anfang des Bogens ##geändert## von T. 14 3/8."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "14</p><p>bis 15",
+                                "system": "Ges.",
+                                "position": "3. Note</p><p>2/8",
+                                "comment": "Crescendogabel von T. 14 4/8 bis T. 15 1/8 geändert zu T. 14 3. Note bis T. 15 2/8."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "15",
+                                "system": "Ges.",
+                                "position": "2/8–8/16",
+                                "comment": "Zunächst: Fähnchen bei 3.–4. Note geändert zu Balken. </p><p>Dann: Balken bei 2.–4. Note hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "15",
+                                "system": "Ges.",
+                                "position": "3. Note",
+                                "comment": "{{ref.getGlyph('[pp]')}} gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "15</p><p>bis 16",
+                                "system": "Ges.",
+                                "position": "3. Note</p><p>2/4",
+                                "comment": "Crescendogabel T. 15 3.–4. Note und Decrescendogabel T. 16 1–2/4 geändert zu Decrescendogabel. </p><p>Anfang des Bogens T. 16 1/4 ##geändert## zu T. 15 3. Note."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "15",
+                                "system": "Klav. o.",
+                                "position": "1.–2. Note",
+                                "comment": "{{ref.getGlyph('[pp]')}} zu 1. Note gestrichen und Crescendogabel geändert zu Decrescendogabel."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "16",
+                                "system": "Klav.",
+                                "position": "(3/4)",
+                                "comment": "Crescendogabel gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "17",
+                                "system": "Klav.",
+                                "position": "Taktanfang bis 1/4",
+                                "comment": "Decrescendogabel von T. 16 hinzugefügt. (E: Akkoladenwechsel nach T. 16.)"
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "17",
+                                "system": "Ges.",
+                                "position": "1–4/8",
+                                "comment": "Achtelfähnchen geändert zu Balken."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "17</p><p>bis 18",
+                                "system": "Ges.",
+                                "position": "1/8</p><p>2. Note",
+                                "comment": "Bogen hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "17",
+                                "system": "Ges.",
+                                "position": "2–3/8",
+                                "comment": "Crescendogabel gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "17",
+                                "system": "Klav.",
+                                "position": "2. Note",
+                                "comment": "{{ref.getGlyph('[p]')}} hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "18",
+                                "system": "Ges.",
+                                "position": "Taktanfang</p><p>bis 2. Note",
+                                "comment": "Decrescendogabel hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "18",
+                                "system": "Ges.",
+                                "position": "",
+                                "comment": "Drei Vierteltriolen geändert zu Viertel-, Achtelnote as1–ges1 unter einer Triolenklammer und Achtelpause, Viertelnote des1 unter einer Triolenklammer."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "18",
+                                "system": "Ges.",
+                                "position": "3. Note",
+                                "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "18</p><p>bis 21",
+                                "system": "Ges.",
+                                "position": "3. Note",
+                                "comment": "Bogen hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "19",
+                                "system": "Ges.",
+                                "position": "",
+                                "comment": "{{ref.getGlyph('[pp]')}} gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "19",
+                                "system": "Ges.",
+                                "position": "",
+                                "comment": "Ansatz zu Bogen oder Crescendogabel (bis Taktende) gestrichen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "20",
+                                "system": "Ges.",
+                                "position": "2.–3. Note",
+                                "comment": "Crescendogabel überschrieben zu Decrescendogabel."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "21",
+                                "system": "Klav.",
+                                "position": "2/4",
+                                "comment": "{{ref.getGlyph('[pp]')}} geändert zu {{ref.getGlyph('[p]')}}."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "21</p><p>bis 22",
+                                "system": "Klav.",
+                                "position": "2/4",
+                                "comment": "Decrescendogabel hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "22",
+                                "system": "Klav.",
+                                "position": "2/4",
+                                "comment": "{{ref.getGlyph('[ppp]')}} geändert zu {{ref.getGlyph('[pp]')}}."
+                            }
+                        ],
+                        "linkBoxes": []
+                    }
                 ]
             }
         },
