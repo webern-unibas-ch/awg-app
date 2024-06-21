@@ -368,7 +368,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                 });
 
-                it('... the second possible paragraph displaying the writingMaterial', () => {
+                it('... the second possible paragraph displaying the writingMaterials', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
                     const pDes = getAndExpectDebugElementByCss(
                         descBodyDes[0],

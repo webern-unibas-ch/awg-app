@@ -53,7 +53,7 @@
                             <!-- writingMaterial -->
                             @if (
                                 sourceDescription.description.writingMaterialString &&
-                                !sourceDescription.description.writingMaterial
+                                !sourceDescription.description.writingMaterials
                             ) {
                                 <p class="awg-source-description-writing-material">
                                     <span class="smallcaps">Beschreibstoff:&nbsp;</span>
@@ -62,12 +62,12 @@
                                         [compile-html-ref]="ref"></span>
                                 </p>
                             }
-                            @if (sourceDescription.description.writingMaterial) {
+                            @if (sourceDescription.description.writingMaterials) {
                                 <p class="awg-source-description-writing-material">
                                     <span class="smallcaps">Beschreibstoff:&nbsp;</span>
 
                                     @for (
-                                        writingMaterial of sourceDescription?.description?.writingMaterial;
+                                        writingMaterial of sourceDescription?.description?.writingMaterials;
                                         track $index;
                                         let lastWritingMaterial = $last
                                     ) {

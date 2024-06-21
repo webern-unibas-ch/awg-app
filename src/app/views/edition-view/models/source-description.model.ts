@@ -337,9 +337,9 @@ export class SourceDescriptionDesc {
     writingMaterialString?: string;
 
     /**
-     * The writing material used for a source (optional).
+     * The writing materials used for a source (optional).
      */
-    writingMaterial?: SourceDescriptionWritingMaterial[];
+    writingMaterials?: SourceDescriptionWritingMaterial[];
 
     /**
      * The writing instruments used in a source (optional).
