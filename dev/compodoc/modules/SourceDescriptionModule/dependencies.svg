@@ -24,10 +24,6 @@
 <title>cluster_SourceDescriptionModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 756,-268 756,-70 8,-70"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_SourceDescriptionModule_exports</title>
-<polygon fill="none" stroke="black" points="365,-208 365,-260 571,-260 571,-208 365,-208"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_SourceDescriptionModule_imports</title>
 <polygon fill="none" stroke="black" points="494,-78 494,-130 748,-130 748,-78 494,-78"/>
@@ -35,6 +31,10 @@
 <g id="clust2" class="cluster">
 <title>cluster_SourceDescriptionModule_declarations</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 486,-130 486,-78 16,-78"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_SourceDescriptionModule_exports</title>
+<polygon fill="none" stroke="black" points="365,-208 365,-260 571,-260 571,-208 365,-208"/>
 </g>
 <!-- SourceDescriptionComponent -->
 <g id="node1" class="node">
