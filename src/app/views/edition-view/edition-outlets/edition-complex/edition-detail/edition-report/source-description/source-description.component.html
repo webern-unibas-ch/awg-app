@@ -39,8 +39,8 @@
                             @if (sourceDescription?.description?.desc?.length) {
                                 <awg-source-description-detail
                                     [details]="sourceDescription.description.desc"
-                                    label=""
-                                    class="desc"
+                                    detailsLabel=""
+                                    detailsClass="desc"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-detail>
@@ -52,8 +52,8 @@
                             ) {
                                 <awg-source-description-detail
                                     [details]="sourceDescription.description.writingMaterialStrings"
-                                    label="Beschreibstoff"
-                                    class="writing-materials"
+                                    detailsLabel="Beschreibstoff"
+                                    detailsClass="writing-materials"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-detail>
@@ -162,8 +162,8 @@
                             @if (sourceDescription?.description?.titles?.length) {
                                 <awg-source-description-detail
                                     [details]="sourceDescription.description.titles"
-                                    label="Titel"
-                                    class="titles"
+                                    detailsLabel="Titel"
+                                    detailsClass="titles"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-detail>
@@ -172,8 +172,8 @@
                             @if (sourceDescription?.description?.dates?.length) {
                                 <awg-source-description-detail
                                     [details]="sourceDescription.description.dates"
-                                    label="Datierung"
-                                    class="dates"
+                                    detailsLabel="Datierung"
+                                    detailsClass="dates"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-detail>
@@ -182,8 +182,8 @@
                             @if (sourceDescription?.description?.paginations?.length) {
                                 <awg-source-description-detail
                                     [details]="sourceDescription.description.paginations"
-                                    label="Paginierung"
-                                    class="paginations"
+                                    detailsLabel="Paginierung"
+                                    detailsClass="paginations"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-detail>
@@ -192,8 +192,8 @@
                             @if (sourceDescription?.description?.measureNumbers?.length) {
                                 <awg-source-description-detail
                                     [details]="sourceDescription.description.measureNumbers"
-                                    label="Taktzahlen"
-                                    class="measure-numbers"
+                                    detailsLabel="Taktzahlen"
+                                    detailsClass="measure-numbers"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-detail>
@@ -202,8 +202,8 @@
                             @if (sourceDescription?.description?.instrumentations?.length) {
                                 <awg-source-description-detail
                                     [details]="sourceDescription.description.instrumentations"
-                                    label="Instrumentenvorsatz"
-                                    class="instrumentations"
+                                    detailsLabel="Instrumentenvorsatz"
+                                    detailsClass="instrumentations"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-detail>
@@ -212,8 +212,8 @@
                             @if (sourceDescription?.description?.annotations?.length) {
                                 <awg-source-description-detail
                                     [details]="sourceDescription.description.annotations"
-                                    label="Eintragungen"
-                                    class="annotations"
+                                    detailsLabel="Eintragungen"
+                                    detailsClass="annotations"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-detail>

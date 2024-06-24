@@ -35,9 +35,9 @@ class SourceDescriptionDetailStubComponent {
     @Input()
     details: string[];
     @Input()
-    class: string;
+    detailsClass: string;
     @Input()
-    label: string;
+    detailsLabel: string;
     @Output()
     navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
     @Output()
@@ -65,6 +65,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
     let mockDocument: Document;
     let utils: UtilityService;
 
+    let navigateToReportFragmentSpy: Spy;
+    let navigateToReportFragmentRequestEmitSpy: Spy;
+    let openModalSpy: Spy;
+    let openModalRequestEmitSpy: Spy;
+    let selectSvgSheetSpy: Spy;
+    let selectSvgSheetRequestEmitSpy: Spy;
+
     let expectedSourceDescriptionListData: SourceDescriptionList;
     let expectedFirmSigns;
     let expectedComplexId: string;
@@ -73,13 +80,6 @@ describe('SourceDescriptionComponent (DONE)', () => {
     let expectedNextSheetId: string;
     let expectedModalSnippet: string;
     let expectedReportFragment: string;
-
-    let navigateToReportFragmentSpy: Spy;
-    let navigateToReportFragmentRequestEmitSpy: Spy;
-    let openModalSpy: Spy;
-    let openModalRequestEmitSpy: Spy;
-    let selectSvgSheetSpy: Spy;
-    let selectSvgSheetRequestEmitSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
@@ -414,8 +414,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     ) as SourceDescriptionDetailStubComponent;
 
                     expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].description.desc);
-                    expectToBe(detailCmp.label, '');
-                    expectToBe(detailCmp.class, 'desc');
+                    expectToBe(detailCmp.detailsLabel, '');
+                    expectToBe(detailCmp.detailsClass, 'desc');
                 });
 
                 it('... should pass down the writingMaterials to the second source description detail component', () => {
@@ -435,8 +435,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         detailCmp.details,
                         expectedSourceDescriptionListData.sources[1].description.writingMaterialStrings
                     );
-                    expectToBe(detailCmp.label, 'Beschreibstoff');
-                    expectToBe(detailCmp.class, 'writing-materials');
+                    expectToBe(detailCmp.detailsLabel, 'Beschreibstoff');
+                    expectToBe(detailCmp.detailsClass, 'writing-materials');
                 });
 
                 it('... should pass down the titles to the third source description detail component', () => {
@@ -453,8 +453,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     ) as SourceDescriptionDetailStubComponent;
 
                     expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].description.titles);
-                    expectToBe(detailCmp.label, 'Titel');
-                    expectToBe(detailCmp.class, 'titles');
+                    expectToBe(detailCmp.detailsLabel, 'Titel');
+                    expectToBe(detailCmp.detailsClass, 'titles');
                 });
 
                 it('... should pass down the dates to the fourth source description detail component', () => {
@@ -471,8 +471,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     ) as SourceDescriptionDetailStubComponent;
 
                     expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].description.dates);
-                    expectToBe(detailCmp.label, 'Datierung');
-                    expectToBe(detailCmp.class, 'dates');
+                    expectToBe(detailCmp.detailsLabel, 'Datierung');
+                    expectToBe(detailCmp.detailsClass, 'dates');
                 });
 
                 it('... should pass down the paginations to the fifth source description detail component', () => {
@@ -492,8 +492,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         detailCmp.details,
                         expectedSourceDescriptionListData.sources[1].description.paginations
                     );
-                    expectToBe(detailCmp.label, 'Paginierung');
-                    expectToBe(detailCmp.class, 'paginations');
+                    expectToBe(detailCmp.detailsLabel, 'Paginierung');
+                    expectToBe(detailCmp.detailsClass, 'paginations');
                 });
 
                 it('... should pass down the measureNumbers to the sixth source description detail component', () => {
@@ -513,8 +513,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         detailCmp.details,
                         expectedSourceDescriptionListData.sources[1].description.measureNumbers
                     );
-                    expectToBe(detailCmp.label, 'Taktzahlen');
-                    expectToBe(detailCmp.class, 'measure-numbers');
+                    expectToBe(detailCmp.detailsLabel, 'Taktzahlen');
+                    expectToBe(detailCmp.detailsClass, 'measure-numbers');
                 });
 
                 it('... should pass down the instrumentations to the seventh source description detail component', () => {
@@ -534,8 +534,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         detailCmp.details,
                         expectedSourceDescriptionListData.sources[1].description.instrumentations
                     );
-                    expectToBe(detailCmp.label, 'Instrumentenvorsatz');
-                    expectToBe(detailCmp.class, 'instrumentations');
+                    expectToBe(detailCmp.detailsLabel, 'Instrumentenvorsatz');
+                    expectToBe(detailCmp.detailsClass, 'instrumentations');
                 });
 
                 it('... should pass down the annotations to the eighth source description detail component', () => {
@@ -555,8 +555,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         detailCmp.details,
                         expectedSourceDescriptionListData.sources[1].description.annotations
                     );
-                    expectToBe(detailCmp.label, 'Eintragungen');
-                    expectToBe(detailCmp.class, 'annotations');
+                    expectToBe(detailCmp.detailsLabel, 'Eintragungen');
+                    expectToBe(detailCmp.detailsClass, 'annotations');
                 });
 
                 it('... should contain one description-contents div in description-body div', () => {
@@ -1588,8 +1588,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     ) as SourceDescriptionDetailStubComponent;
 
                     expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[2].description.desc);
-                    expectToBe(detailCmp.label, '');
-                    expectToBe(detailCmp.class, 'desc');
+                    expectToBe(detailCmp.detailsLabel, '');
+                    expectToBe(detailCmp.detailsClass, 'desc');
                 });
             });
         });

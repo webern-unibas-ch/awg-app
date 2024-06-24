@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'awg-source-description-detail',
     templateUrl: './source-description-detail.component.html',
     styleUrl: './source-description-detail.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SourceDescriptionDetailComponent {
     /**
@@ -15,20 +16,20 @@ export class SourceDescriptionDetailComponent {
     details: string[];
 
     /**
-     * Input variable: class.
+     * Input variable: detailsClass.
      *
-     * It keeps the class name for the entry.
+     * It keeps the class name for the details.
      */
     @Input()
-    class: string;
+    detailsClass: string;
 
     /**
-     * Input variable: label.
+     * Input variable: detailsLabel.
      *
-     * It keeps the label for the entry.
+     * It keeps the label for the details.
      */
     @Input()
-    label: string;
+    detailsLabel: string;
 
     /**
      * Output variable: navigateToReportFragment.

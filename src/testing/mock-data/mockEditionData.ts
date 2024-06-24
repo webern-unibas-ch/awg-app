@@ -273,11 +273,11 @@ export const mockEditionData = {
                         main: 'Bleistift',
                         secondary: ['roter Buntstift', 'blaue Tinte', 'Kopierstift'],
                     },
-                    titles: ['test titles'],
-                    dates: ['test dates'],
-                    paginations: ['test paginations'],
-                    measureNumbers: ['test measure numbers'],
-                    instrumentations: ['test instrumentations'],
+                    titles: ['test titles 1', 'test titles 2'],
+                    dates: ['test dates 1', 'test dates 2'],
+                    paginations: ['test paginations 1', 'test paginations 2'],
+                    measureNumbers: ['test measure numbers 1', 'test measure numbers 2'],
+                    instrumentations: ['test instrumentations 1', 'test instrumentations 2'],
                     annotations: ['test annotations'],
                     contents: [
                         {
