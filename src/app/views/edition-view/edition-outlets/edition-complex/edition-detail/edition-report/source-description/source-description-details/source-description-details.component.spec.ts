@@ -3,18 +3,18 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
-import { SourceDescriptionDetailComponent } from './source-description-detail.component';
+import { SourceDescriptionDetailsComponent } from './source-description-details.component';
 
-describe('SourceDescriptionDetailComponent (DONE)', () => {
-    let component: SourceDescriptionDetailComponent;
-    let fixture: ComponentFixture<SourceDescriptionDetailComponent>;
+describe('SourceDescriptionDetailsComponent (DONE)', () => {
+    let component: SourceDescriptionDetailsComponent;
+    let fixture: ComponentFixture<SourceDescriptionDetailsComponent>;
     let compDe: DebugElement;
 
     let mockDocument: Document;
@@ -38,10 +38,10 @@ describe('SourceDescriptionDetailComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [SourceDescriptionDetailComponent, CompileHtmlComponent],
+            declarations: [SourceDescriptionDetailsComponent, CompileHtmlComponent],
         }).compileComponents();
 
-        fixture = TestBed.createComponent(SourceDescriptionDetailComponent);
+        fixture = TestBed.createComponent(SourceDescriptionDetailsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 

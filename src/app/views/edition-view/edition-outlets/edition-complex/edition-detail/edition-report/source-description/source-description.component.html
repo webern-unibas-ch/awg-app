@@ -37,26 +37,26 @@
                         <div class="awg-source-description-body">
                             <!-- description -->
                             @if (sourceDescription?.description?.desc?.length) {
-                                <awg-source-description-detail
+                                <awg-source-description-details
                                     [details]="sourceDescription.description.desc"
                                     detailsLabel=""
                                     detailsClass="desc"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-detail>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- writingMaterial -->
                             @if (
                                 sourceDescription.description.writingMaterialStrings &&
                                 !sourceDescription.description.writingMaterials
                             ) {
-                                <awg-source-description-detail
+                                <awg-source-description-details
                                     [details]="sourceDescription.description.writingMaterialStrings"
                                     detailsLabel="Beschreibstoff"
                                     detailsClass="writing-materials"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-detail>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             @if (sourceDescription.description.writingMaterials) {
                                 <p class="awg-source-description-writing-materials">
@@ -160,63 +160,63 @@
                             }
                             <!-- title -->
                             @if (sourceDescription?.description?.titles?.length) {
-                                <awg-source-description-detail
+                                <awg-source-description-details
                                     [details]="sourceDescription.description.titles"
                                     detailsLabel="Titel"
                                     detailsClass="titles"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-detail>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- date -->
                             @if (sourceDescription?.description?.dates?.length) {
-                                <awg-source-description-detail
+                                <awg-source-description-details
                                     [details]="sourceDescription.description.dates"
                                     detailsLabel="Datierung"
                                     detailsClass="dates"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-detail>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- pagination -->
                             @if (sourceDescription?.description?.paginations?.length) {
-                                <awg-source-description-detail
+                                <awg-source-description-details
                                     [details]="sourceDescription.description.paginations"
                                     detailsLabel="Paginierung"
                                     detailsClass="paginations"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-detail>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- measureNumbers -->
                             @if (sourceDescription?.description?.measureNumbers?.length) {
-                                <awg-source-description-detail
+                                <awg-source-description-details
                                     [details]="sourceDescription.description.measureNumbers"
                                     detailsLabel="Taktzahlen"
                                     detailsClass="measure-numbers"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-detail>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- instrumentation -->
                             @if (sourceDescription?.description?.instrumentations?.length) {
-                                <awg-source-description-detail
+                                <awg-source-description-details
                                     [details]="sourceDescription.description.instrumentations"
                                     detailsLabel="Instrumentenvorsatz"
                                     detailsClass="instrumentations"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-detail>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- annotations -->
                             @if (sourceDescription?.description?.annotations?.length) {
-                                <awg-source-description-detail
+                                <awg-source-description-details
                                     [details]="sourceDescription.description.annotations"
                                     detailsLabel="Eintragungen"
                                     detailsClass="annotations"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-detail>
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- content -->
                             @if (sourceDescription?.description?.contents?.length) {

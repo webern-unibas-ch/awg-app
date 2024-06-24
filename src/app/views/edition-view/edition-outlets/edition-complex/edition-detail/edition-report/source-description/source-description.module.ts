@@ -4,7 +4,7 @@ import { SharedModule } from '@awg-shared/shared.module';
 import { EditionTkaModule } from '../../edition-tka/edition-tka.module';
 
 import { SourceDescriptionCorrectionsComponent } from './source-description-corrections';
-import { SourceDescriptionDetailComponent } from './source-description-detail';
+import { SourceDescriptionDetailsComponent } from './source-description-details';
 import { SourceDescriptionComponent } from './source-description.component';
 
 /**
@@ -15,7 +15,11 @@ import { SourceDescriptionComponent } from './source-description.component';
  */
 @NgModule({
     imports: [SharedModule, EditionTkaModule],
-    declarations: [SourceDescriptionComponent, SourceDescriptionDetailComponent, SourceDescriptionCorrectionsComponent],
+    declarations: [
+        SourceDescriptionComponent,
+        SourceDescriptionDetailsComponent,
+        SourceDescriptionCorrectionsComponent,
+    ],
     exports: [SourceDescriptionComponent],
 })
 export class SourceDescriptionModule {}

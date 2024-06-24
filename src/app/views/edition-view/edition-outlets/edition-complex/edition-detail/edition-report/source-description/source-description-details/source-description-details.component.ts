@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-    selector: 'awg-source-description-detail',
-    templateUrl: './source-description-detail.component.html',
-    styleUrl: './source-description-detail.component.scss',
+    selector: 'awg-source-description-details',
+    templateUrl: './source-description-details.component.html',
+    styleUrl: './source-description-details.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SourceDescriptionDetailComponent {
+export class SourceDescriptionDetailsComponent {
     /**
      * Input variable: details.
      *
@@ -59,10 +59,10 @@ export class SourceDescriptionDetailComponent {
     /**
      * Self-referring variable needed for CompileHtml library.
      */
-    ref: SourceDescriptionDetailComponent;
+    ref: SourceDescriptionDetailsComponent;
 
     /**
-     * Constructor of the SourceDescriptionComponent.
+     * Constructor of the SourceDescriptionDetailsComponent.
      *
      * It initializes the self-referring variable needed for CompileHtml library.
      */

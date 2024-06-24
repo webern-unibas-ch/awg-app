@@ -30,8 +30,8 @@ import {
 import { SourceDescriptionComponent } from './source-description.component';
 
 // Mock components
-@Component({ selector: 'awg-source-description-detail', template: '' })
-class SourceDescriptionDetailStubComponent {
+@Component({ selector: 'awg-source-description-details', template: '' })
+class SourceDescriptionDetailsStubComponent {
     @Input()
     details: string[];
     @Input()
@@ -85,7 +85,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
         TestBed.configureTestingModule({
             declarations: [
                 SourceDescriptionComponent,
-                SourceDescriptionDetailStubComponent,
+                SourceDescriptionDetailsStubComponent,
                 SourceDescriptionCorrectionsStubComponent,
                 CompileHtmlComponent,
                 RouterLinkStubDirective,
@@ -393,43 +393,43 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
                 });
 
-                it('... should contain up to 8 source description detail components (stubbed) in description-body div', () => {
+                it('... should contain up to 8 source description details components (stubbed) in description-body div', () => {
                     // First description has no content, so only 2 divs
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
 
-                    getAndExpectDebugElementByDirective(descBodyDes[0], SourceDescriptionDetailStubComponent, 8, 8);
+                    getAndExpectDebugElementByDirective(descBodyDes[0], SourceDescriptionDetailsStubComponent, 8, 8);
                 });
 
-                it('... should pass down the description to the first source description detail component', () => {
+                it('... should pass down the description to the first source description details component', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
-                        SourceDescriptionDetailStubComponent,
+                        SourceDescriptionDetailsStubComponent,
                         8,
                         8
                     );
                     const detailCmp = detailDes[0].injector.get(
-                        SourceDescriptionDetailStubComponent
-                    ) as SourceDescriptionDetailStubComponent;
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
 
                     expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].description.desc);
                     expectToBe(detailCmp.detailsLabel, '');
                     expectToBe(detailCmp.detailsClass, 'desc');
                 });
 
-                it('... should pass down the writingMaterials to the second source description detail component', () => {
+                it('... should pass down the writingMaterials to the second source description details component', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
-                        SourceDescriptionDetailStubComponent,
+                        SourceDescriptionDetailsStubComponent,
                         8,
                         8
                     );
                     const detailCmp = detailDes[1].injector.get(
-                        SourceDescriptionDetailStubComponent
-                    ) as SourceDescriptionDetailStubComponent;
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
 
                     expectToEqual(
                         detailCmp.details,
@@ -439,54 +439,54 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     expectToBe(detailCmp.detailsClass, 'writing-materials');
                 });
 
-                it('... should pass down the titles to the third source description detail component', () => {
+                it('... should pass down the titles to the third source description details component', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
-                        SourceDescriptionDetailStubComponent,
+                        SourceDescriptionDetailsStubComponent,
                         8,
                         8
                     );
                     const detailCmp = detailDes[2].injector.get(
-                        SourceDescriptionDetailStubComponent
-                    ) as SourceDescriptionDetailStubComponent;
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
 
                     expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].description.titles);
                     expectToBe(detailCmp.detailsLabel, 'Titel');
                     expectToBe(detailCmp.detailsClass, 'titles');
                 });
 
-                it('... should pass down the dates to the fourth source description detail component', () => {
+                it('... should pass down the dates to the fourth source description details component', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
-                        SourceDescriptionDetailStubComponent,
+                        SourceDescriptionDetailsStubComponent,
                         8,
                         8
                     );
                     const detailCmp = detailDes[3].injector.get(
-                        SourceDescriptionDetailStubComponent
-                    ) as SourceDescriptionDetailStubComponent;
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
 
                     expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].description.dates);
                     expectToBe(detailCmp.detailsLabel, 'Datierung');
                     expectToBe(detailCmp.detailsClass, 'dates');
                 });
 
-                it('... should pass down the paginations to the fifth source description detail component', () => {
+                it('... should pass down the paginations to the fifth source description details component', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
-                        SourceDescriptionDetailStubComponent,
+                        SourceDescriptionDetailsStubComponent,
                         8,
                         8
                     );
                     const detailCmp = detailDes[4].injector.get(
-                        SourceDescriptionDetailStubComponent
-                    ) as SourceDescriptionDetailStubComponent;
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
 
                     expectToEqual(
                         detailCmp.details,
@@ -496,18 +496,18 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     expectToBe(detailCmp.detailsClass, 'paginations');
                 });
 
-                it('... should pass down the measureNumbers to the sixth source description detail component', () => {
+                it('... should pass down the measureNumbers to the sixth source description details component', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
-                        SourceDescriptionDetailStubComponent,
+                        SourceDescriptionDetailsStubComponent,
                         8,
                         8
                     );
                     const detailCmp = detailDes[5].injector.get(
-                        SourceDescriptionDetailStubComponent
-                    ) as SourceDescriptionDetailStubComponent;
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
 
                     expectToEqual(
                         detailCmp.details,
@@ -517,18 +517,18 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     expectToBe(detailCmp.detailsClass, 'measure-numbers');
                 });
 
-                it('... should pass down the instrumentations to the seventh source description detail component', () => {
+                it('... should pass down the instrumentations to the seventh source description details component', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
-                        SourceDescriptionDetailStubComponent,
+                        SourceDescriptionDetailsStubComponent,
                         8,
                         8
                     );
                     const detailCmp = detailDes[6].injector.get(
-                        SourceDescriptionDetailStubComponent
-                    ) as SourceDescriptionDetailStubComponent;
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
 
                     expectToEqual(
                         detailCmp.details,
@@ -538,18 +538,18 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     expectToBe(detailCmp.detailsClass, 'instrumentations');
                 });
 
-                it('... should pass down the annotations to the eighth source description detail component', () => {
+                it('... should pass down the annotations to the eighth source description details component', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
-                        SourceDescriptionDetailStubComponent,
+                        SourceDescriptionDetailsStubComponent,
                         8,
                         8
                     );
                     const detailCmp = detailDes[7].injector.get(
-                        SourceDescriptionDetailStubComponent
-                    ) as SourceDescriptionDetailStubComponent;
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
 
                     expectToEqual(
                         detailCmp.details,
@@ -1567,25 +1567,25 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[2].location.trim());
                 });
 
-                it('... should contain up to 8 source description detail components (stubbed) in description-body div', () => {
+                it('... should contain up to 8 source description details components (stubbed) in description-body div', () => {
                     // First description has no content, so only 2 divs
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
 
-                    getAndExpectDebugElementByDirective(descBodyDes[1], SourceDescriptionDetailStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(descBodyDes[1], SourceDescriptionDetailsStubComponent, 1, 1);
                 });
 
-                it('... should pass down the description to the first source description detail component', () => {
+                it('... should pass down the description to the first source description details component', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[1],
-                        SourceDescriptionDetailStubComponent,
+                        SourceDescriptionDetailsStubComponent,
                         1,
                         1
                     );
                     const detailCmp = detailDes[0].injector.get(
-                        SourceDescriptionDetailStubComponent
-                    ) as SourceDescriptionDetailStubComponent;
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
 
                     expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[2].description.desc);
                     expectToBe(detailCmp.detailsLabel, '');
@@ -1934,13 +1934,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     it('... sheet id is undefined', () => {
                         const detailDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            SourceDescriptionDetailStubComponent,
+                            SourceDescriptionDetailsStubComponent,
                             9,
                             9
                         );
                         const detailCmp = detailDes[0].injector.get(
-                            SourceDescriptionDetailStubComponent
-                        ) as SourceDescriptionDetailStubComponent;
+                            SourceDescriptionDetailsStubComponent
+                        ) as SourceDescriptionDetailsStubComponent;
 
                         detailCmp.navigateToReportFragmentRequest.emit(undefined);
 
@@ -1950,13 +1950,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     it('... sheet id is given', () => {
                         const detailDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            SourceDescriptionDetailStubComponent,
+                            SourceDescriptionDetailsStubComponent,
                             9,
                             9
                         );
                         const detailCmp = detailDes[0].injector.get(
-                            SourceDescriptionDetailStubComponent
-                        ) as SourceDescriptionDetailStubComponent;
+                            SourceDescriptionDetailsStubComponent
+                        ) as SourceDescriptionDetailsStubComponent;
 
                         const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
 
@@ -2068,13 +2068,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     it('... sheet id is undefined', () => {
                         const detailDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            SourceDescriptionDetailStubComponent,
+                            SourceDescriptionDetailsStubComponent,
                             9,
                             9
                         );
                         const detailCmp = detailDes[0].injector.get(
-                            SourceDescriptionDetailStubComponent
-                        ) as SourceDescriptionDetailStubComponent;
+                            SourceDescriptionDetailsStubComponent
+                        ) as SourceDescriptionDetailsStubComponent;
 
                         detailCmp.openModalRequest.emit(undefined);
 
@@ -2084,13 +2084,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     it('... sheet id is given', () => {
                         const detailDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            SourceDescriptionDetailStubComponent,
+                            SourceDescriptionDetailsStubComponent,
                             9,
                             9
                         );
                         const detailCmp = detailDes[0].injector.get(
-                            SourceDescriptionDetailStubComponent
-                        ) as SourceDescriptionDetailStubComponent;
+                            SourceDescriptionDetailsStubComponent
+                        ) as SourceDescriptionDetailsStubComponent;
 
                         detailCmp.openModalRequest.emit(expectedModalSnippet);
 
@@ -2189,13 +2189,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     it('... sheet id is undefined', () => {
                         const detailDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            SourceDescriptionDetailStubComponent,
+                            SourceDescriptionDetailsStubComponent,
                             9,
                             9
                         );
                         const detailCmp = detailDes[0].injector.get(
-                            SourceDescriptionDetailStubComponent
-                        ) as SourceDescriptionDetailStubComponent;
+                            SourceDescriptionDetailsStubComponent
+                        ) as SourceDescriptionDetailsStubComponent;
 
                         detailCmp.selectSvgSheetRequest.emit(undefined);
 
@@ -2205,13 +2205,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     it('... sheet id is given', () => {
                         const detailDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            SourceDescriptionDetailStubComponent,
+                            SourceDescriptionDetailsStubComponent,
                             9,
                             9
                         );
                         const detailCmp = detailDes[0].injector.get(
-                            SourceDescriptionDetailStubComponent
-                        ) as SourceDescriptionDetailStubComponent;
+                            SourceDescriptionDetailsStubComponent
+                        ) as SourceDescriptionDetailsStubComponent;
 
                         const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
 
