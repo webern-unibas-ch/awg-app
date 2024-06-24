@@ -192,6 +192,19 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                     }
                 });
             });
+
+            it('... should contain no punctuation marks if detailsClass equals `desc`', () => {
+                component.detailsClass = 'desc';
+                detectChangesOnPush(fixture);
+
+                const spanDes = getAndExpectDebugElementByCss(compDe, 'span:not(:first-child)', 3, 3);
+
+                spanDes.forEach((spanDe, index) => {
+                    const spanEl = spanDe.nativeElement;
+
+                    expectToBe(spanEl.textContent, expectedDetails[index]);
+                });
+            });
         });
 
         describe('#navigateToReportFragment()', () => {
