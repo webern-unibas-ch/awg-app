@@ -10,18 +10,27 @@
                 "desc": [
                     "7 Blätter (Bl. 1–7) in festem rotem Ledereinband mit einem roten Schmutzblatt (Bl. [a]) und drei weißen Schmutzblättern (Bl. [b–d]) vorne sowie drei weißen Schmutzblättern (Bl. [e–g]) und einem roten Schmutzblatt (Bl. [h]) hinten. Alle Blätter sind mit Papierklebestreifen am Falz in die Bindung eingeheftet. Bl. 2/3, 4/5 und 6/7 bildeten vermutlich vor der Bindung gemeinsame Bögen. Schmutzblätter bis auf die Paraphe <em>RoLehman</em> auf Bl. [c] oben mit blauer Tinte (Hs. Lehman) und die archivalische Eintragung <em>II = OP. 3 # II | III = OP. 3 # V | VI = OP. 3 # IV | VII = OP. IV # 1</em> auf Bl. [c] Mitte bis unten mit schwarzer Tinte (archivalische Hs.) unbeschriftet, Bl. 3<sup>r</sup>–3<sup>v</sup> unbeschriftet. Papierklebestreifen am linken Rand von Bl. 4<sup>v</sup>. Einband: 345 × 292 mm, Bunddicke ca. 8 mm."
                 ],
-                "writingMaterialString": "Notenpapier, 12 Systeme (vier vorgedruckte Akkoladen [1 + 2 Systeme]), Format: hoch 342 × ca. 270 mm, Firmenzeichen: [JE] | <em>Protokoll. Schutzmarke | No. 12 </em>auf Bl. 1<sup>r</sup>, 2<sup>r</sup>, 3<sup>r</sup> unten links (Bl. 1–3);<br />Notenpapier, 12 Systeme, Format: hoch 345 × ca. 270 mm, Firmenzeichen: [JE] | <em>Protokoll. Schutzmarke | No. 2 | 12 linig. </em>auf Bl. 4<sup>r</sup>, 5<sup>r</sup>, 6<sup>r</sup>, 7<sup>r</sup> unten links (Bl. 4–7).",
+                "writingMaterialStrings": [
+                    "Notenpapier, 12 Systeme (vier vorgedruckte Akkoladen [1 + 2 Systeme]), Format: hoch 342 × ca. 270 mm, Firmenzeichen: [JE] | <em>Protokoll. Schutzmarke | No. 12 </em>auf Bl. 1<sup>r</sup>, 2<sup>r</sup>, 3<sup>r</sup> unten links (Bl. 1–3)",
+                    "Notenpapier, 12 Systeme, Format: hoch 345 × ca. 270 mm, Firmenzeichen: [JE] | <em>Protokoll. Schutzmarke | No. 2 | 12 linig. </em>auf Bl. 4<sup>r</sup>, 5<sup>r</sup>, 6<sup>r</sup>, 7<sup>r</sup> unten links (Bl. 4–7)"
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift", "roter Buntstift", "rote Tinte"]
                 },
-                "title": "[Bl. 6–7:] <em><s>I</s></em> auf Bl. 6<sup>r</sup> oben Mitte mit roter Tinte, gestrichen mit roter Tinte;<br /><em>VII</em> auf Bl. 6<sup>r</sup> oben Mitte mit roter Tinte;<br /><em><s>I</s></em> auf Bl. 6<sup>r</sup> oben halbrechts mit schwarzer Tinte, gestrichen mit roter Tinte;<br /><em><s>„Der siebente Ring“</s> | Anton von Webern | <s>Eingang aus Traumdunkel | von Stefan George</s></em> auf Bl. 6<sup>r</sup> oben bis System 1 rechts, Streichung mit schwarzer Tinte;<br /><em>Eingang | (Der siebente Ring)</em> auf Bl. 6<sup>r</sup> System 1 Mitte.",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "[Bl. 6–7:] <em>Webern</em> auf Bl. 6<sup>r</sup> oben links mit rotem Buntstift.",
-                "content": [
+                "titles": [
+                    "[Bl. 6–7:] <em><s>I</s></em> auf Bl. 6<sup>r</sup> oben Mitte mit roter Tinte, gestrichen mit roter Tinte",
+                    "<em>VII</em> auf Bl. 6<sup>r</sup> oben Mitte mit roter Tinte",
+                    "<em><s>I</s></em> auf Bl. 6<sup>r</sup> oben halbrechts mit schwarzer Tinte, gestrichen mit roter Tinte",
+                    "<em><s>„Der siebente Ring“</s> | Anton von Webern | <s>Eingang aus Traumdunkel | von Stefan George</s></em> auf Bl. 6<sup>r</sup> oben bis System 1 rechts, Streichung mit schwarzer Tinte",
+                    "<em>Eingang | (Der siebente Ring)</em> auf Bl. 6<sup>r</sup> System 1 Mitte"
+                ],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": ["[Bl. 6–7:] <em>Webern</em> auf Bl. 6<sup>r</sup> oben links mit rotem Buntstift"],
+                "contents": [
                     {
                         "item": "",
                         "itemLinkTo": "",
@@ -167,18 +176,42 @@
                 "desc": [
                     "10 Blätter (Bl. 1–10): 2 ineinander gelegte Bögen (Bl. 1/4, 2/3), 3 Bögen (Bl. 5/6, 7/8, 9/10). Archivalisch mit Bleistift paginiert von <em>[1]</em> bis <em>[20]</em> unten rechts (recto) oder links (verso). Bl. 1<sup>v</sup>, 8<sup>r</sup>, 8<sup>v</sup>, 10<sup>v</sup> (bis auf die archivalische Paginierung) unbeschriftet. Knickfalten und kleinere Risse. Einstichlöcher am Falz oben und unten bei Bl. 1–8. Untere rechte Ecke von Bl. 8 (System 12) ausgeschnitten. Rechteckige Ausschneidungen am linken Rand von Bl. 10 (System 5–6, 8, 10, 12)."
                 ],
-                "writingMaterialString": "Notenpapier, 12 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen: [JE] | <em>No. 2 | 12 linig.</em> auf allen Blättern recto unten links.",
+                "writingMaterialStrings": [
+                    "Notenpapier, 12 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen: [JE] | <em>No. 2 | 12 linig.</em> auf allen Blättern recto unten links"
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift", "grüner Buntstift", "roter Buntstift"]
                 },
-                "title": "<em><s>Op. 4 Nr.</s></em> [<em><s>x</s></em>] auf Bl. 1<sup>r</sup> oben rechts (Hs.?), radiert;<br />[<em>VI.</em>→] <em>V.</em> auf Bl. 1<sup>r</sup> oben Mitte mit rotem Buntstift, korrigiert mit schwarzer Tinte;<br /><em><s>8)</s></em> auf Bl. 1<sup>r</sup> System 1–2 mit schwarzer Tinte (Hs.?);<br /><em>op. 4 N<sup>o</sup> 2</em> auf Bl. 1<sup>r</sup> System 6 Mitte;<br /><em>op. 3 N<sup>o</sup> </em>[<em>5</em>→] <em>2</em> auf Bl. 1<sup>r</sup> System 6 halbrechts mit Bleistift;<br />[<em>IV</em>→] <em>V.</em> auf Bl. 2<sup>r</sup> System 1–2 Mitte;<br /><em>Noch zwingt mich Treue</em> auf Bl. 2<sup>r</sup> System 5–6 halbrechts mit rotem Buntstift;<br /><em>V</em> auf Bl. 2<sup>v</sup> oben Mitte mit Bleistift;<br /><em>Anton von Webern </em>[rechts] |<em> Stefan George</em> [Mitte] <em>aus „Waller im Schnee“ | („Das Jahr der Seele“)</em> [rechts] auf Bl. 2<sup>v</sup> oben bis System 2;<br /><em>op</em>[.]<em> 3 | N<sup>o</sup> 5</em> auf Bl. 2<sup>v</sup> oben rechts mit Bleistift;<br /><em>Ja, heil und dank dir</em> auf Bl. 5<sup>r</sup> oben links mit Bleistift (archivalische Hs.);<br /><em>III.</em> auf Bl. 5<sup>r</sup> oben Mitte mit grünem Buntstift;<br /><em>Ja, heil und dank dir Op</em>[.]<em> 4, No</em>[.]<em> 3</em> auf Bl. 5<sup>v</sup> oben links mit Bleistift (archivalische Hs.);<br /><em>aus „Nach der Lese“ | (Jahr der Seele) von Stefan George</em> auf Bl. 5<sup>v</sup> oben bis System 1–2 rechts;<br /><em>IV</em> auf Bl. 9<sup>r</sup> oben links mit Bleistift (Hs.?);<br /><em>„So ich traurig bon Op. 4, No. 4</em> auf Bl. 9<sup>r</sup> oben links mit Bleistift (archivalische Hs.);<br /><em>Aus „Sänge eines fahrenden Spielmanns“ | („Buch der Sagen und Sänge“) | von Stefan George</em> auf Bl. 9<sup>r</sup> System 1–3 rechts.",
-                "date": "",
-                "pagination": "<em>1</em> bis <em>5</em> auf Bl. 2<sup>v</sup>–4<sup>v</sup> Außenecken oben mit rotem Buntstift.",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "<em>Webern</em> auf Bl. 1<sup>r</sup> System 4–5 Mitte, Bl. 2<sup>r</sup> System 9 Mitte und Bl. 5<sup>r</sup> System 4–5 halbrechts mit rotem Buntstift (Hs.?).",
-                "content": [
+                "titles": [
+                    "<em><s>Op. 4 Nr.</s></em> [<em><s>x</s></em>] auf Bl. 1<sup>r</sup> oben rechts (Hs.?), radiert",
+                    "[<em>VI.</em>→] <em>V.</em> auf Bl. 1<sup>r</sup> oben Mitte mit rotem Buntstift, korrigiert mit schwarzer Tinte",
+                    "<em><s>8)</s></em> auf Bl. 1<sup>r</sup> System 1–2 mit schwarzer Tinte (Hs.?)",
+                    "<em>op. 4 N<sup>o</sup> 2</em> auf Bl. 1<sup>r</sup> System 6 Mitte",
+                    "<em>op. 3 N<sup>o</sup> </em>[<em>5</em>→] <em>2</em> auf Bl. 1<sup>r</sup> System 6 halbrechts mit Bleistift",
+                    "[<em>IV</em>→] <em>V.</em> auf Bl. 2<sup>r</sup> System 1–2 Mitte",
+                    "<em>Noch zwingt mich Treue</em> auf Bl. 2<sup>r</sup> System 5–6 halbrechts mit rotem Buntstift",
+                    "<em>V</em> auf Bl. 2<sup>v</sup> oben Mitte mit Bleistift",
+                    "<em>Anton von Webern </em>[rechts] |<em> Stefan George</em> [Mitte] <em>aus „Waller im Schnee“ | („Das Jahr der Seele“)</em> [rechts] auf Bl. 2<sup>v</sup> oben bis System 2",
+                    "<em>op</em>[.]<em> 3 | N<sup>o</sup> 5</em> auf Bl. 2<sup>v</sup> oben rechts mit Bleistift",
+                    "<em>Ja, heil und dank dir</em> auf Bl. 5<sup>r</sup> oben links mit Bleistift (archivalische Hs.)",
+                    "<em>III.</em> auf Bl. 5<sup>r</sup> oben Mitte mit grünem Buntstift",
+                    "<em>Ja, heil und dank dir Op</em>[.]<em> 4, No</em>[.]<em> 3</em> auf Bl. 5<sup>v</sup> oben links mit Bleistift (archivalische Hs.)",
+                    "<em>aus „Nach der Lese“ | (Jahr der Seele) von Stefan George</em> auf Bl. 5<sup>v</sup> oben bis System 1–2 rechts",
+                    "<em>IV</em> auf Bl. 9<sup>r</sup> oben links mit Bleistift (Hs.?)",
+                    "<em>„So ich traurig bon Op. 4, No. 4</em> auf Bl. 9<sup>r</sup> oben links mit Bleistift (archivalische Hs.)",
+                    "<em>Aus „Sänge eines fahrenden Spielmanns“ | („Buch der Sagen und Sänge“) | von Stefan George</em> auf Bl. 9<sup>r</sup> System 1–3 rechts"
+                ],
+                "dates": [],
+                "paginations": [
+                    "<em>1</em> bis <em>5</em> auf Bl. 2<sup>v</sup>–4<sup>v</sup> Außenecken oben mit rotem Buntstift"
+                ],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [
+                    "<em>Webern</em> auf Bl. 1<sup>r</sup> System 4–5 Mitte, Bl. 2<sup>r</sup> System 9 Mitte und Bl. 5<sup>r</sup> System 4–5 halbrechts mit rotem Buntstift (Hs.?)"
+                ],
+                "contents": [
                     {
                         "item": "",
                         "itemLinkTo": "",
@@ -490,18 +523,24 @@
                 "desc": [
                     "6 Blätter (Bl. 1–6): 2 ineinander gelegte Bögen (Bl. 1/4, 2/3) und 1 Bogen (5/6). Archivalisch mit Bleistift paginiert von <em>[1]</em> bis <em>[12]</em> unten rechts (recto) oder links (verso). Bl. 4<sup>r</sup>, 4<sup>v</sup> (bis auf die archivalische Paginierung) unbeschriftet. Knickecken und kleinere Risse; Löcher (durch vormalige Fadenheftung?) am Falz; Stockflecken am oberen Rand von Bl. 2/3."
                 ],
-                "writingMaterialString": "Notenpapier, 12 Systeme, Format: hoch 346 × 262 mm, Firmenzeichen: [JE] | <em>No. 2 II | 12 linig.</em> auf allen Blättern recto unten links (Bl. 1–4);<br />Notenpapier, 12 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen: [JE] | <em>No. 2 | 12 linig.</em> auf allen Blättern recto unten links (Bl. 5/6).",
+                "writingMaterialStrings": [
+                    "Notenpapier, 12 Systeme, Format: hoch 346 × 262 mm, Firmenzeichen: [JE] | <em>No. 2 II | 12 linig.</em> auf allen Blättern recto unten links (Bl. 1–4)",
+                    "Notenpapier, 12 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen: [JE] | <em>No. 2 | 12 linig.</em> auf allen Blättern recto unten links (Bl. 5/6)"
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift"]
                 },
-                "title": "<em>I</em> auf Bl. 1<sup>r</sup> oben Mitte mit Bleistift;<br /><em>V.</em> [Mitte] | <em>op</em>[.] <em>3 N<sup><u>o</u></sup> 5</em> auf Bl. 5<sup>r</sup> System 1–2 mit Bleistift.",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
-                "content": [
+                "titles": [
+                    "<em>I</em> auf Bl. 1<sup>r</sup> oben Mitte mit Bleistift",
+                    "<em>V.</em> [Mitte] | <em>op</em>[.] <em>3 N<sup><u>o</u></sup> 5</em> auf Bl. 5<sup>r</sup> System 1–2 mit Bleistift"
+                ],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "",
                         "itemLinkTo": "",
@@ -751,18 +790,41 @@
                 "desc": [
                     "8 Blätter (Bl. 1–8) in Umschlagbogen (Bl. [a]/[b]): 1 Bogen (Bl. 1/8) umschließt 1 Bogen (Bl. 2/3) und 4 Blätter (Bl. 4–7). Fadenheftung, teilweise aufgelöst. Bl. 1–8 archivalisch mit Bleistift paginiert von <em>[1]</em> bis <em>[16]</em> unten links (recto) oder rechts (verso). Bl. 1<sup>v</sup>, 3<sup>v</sup>, 8<sup>v</sup> (bis auf die archivalische Paginierung) sowie Innenseite des vorderen Umschlagblattes und hinteres Umschlagblatt unbeschriftet. Knickfalten und kleinere Risse. Risse am Falz oben und unten bei Bl. 1/8. Riss an der Mitte des Falzes, mehrere Löcher (durch Rasuren?) bei Bl. 2/3, 6 und 7. Rissspuren am linken Rand von Bl. 4–7: von Bögen abgetrennt."
                 ],
-                "writingMaterialString": "unliniertes Papier, Format: hoch 354 × 270 mm (Bl. [a]/[b]);<br />Notenpapier, 28 Systeme, Format: hoch 343 × 265 mm, Firmenzeichen: [JE] | <em>No. 9 | 28 linig.</em> recto unten links (Bl. 1/8);<br />Notenpapier, 12 Systeme, 4 vorgedruckte Akkoladen (1 + 2 Systeme), Format: hoch 346 × 265 mm, Firmenzeichen: [JE] | <em>No. 12</em> recto unten links (Bl. 2/3, 4, 7);<br />Notenpapier, 26 Systeme, Format: hoch 345 × 263 mm, Firmenzeichen: [JE##DEPOSÉ##] | <em>No. 3 a | 26 linig.</em> auf Bl. 5<sup>v</sup> auf dem Kopf stehend oben rechts (Bl. 5);<br />Notenpapier, 16 Systeme, Format: hoch 343 × 267 mm, Firmenzeichen: [JE] | <em>No. 4 | 16 linig.</em> recto unten links (Bl. 6).",
+                "writingMaterialStrings": [
+                    "unliniertes Papier, Format: hoch 354 × 270 mm (Bl. [a]/[b])",
+                    "Notenpapier, 28 Systeme, Format: hoch 343 × 265 mm, Firmenzeichen: [JE] | <em>No. 9 | 28 linig.</em> recto unten links (Bl. 1/8)",
+                    "Notenpapier, 12 Systeme, 4 vorgedruckte Akkoladen (1 + 2 Systeme), Format: hoch 346 × 265 mm, Firmenzeichen: [JE] | <em>No. 12</em> recto unten links (Bl. 2/3, 4, 7)",
+                    "Notenpapier, 26 Systeme, Format: hoch 345 × 263 mm, Firmenzeichen: [JE##DEPOSÉ##] | <em>No. 3 a | 26 linig.</em> auf Bl. 5<sup>v</sup> auf dem Kopf stehend oben rechts (Bl. 5)",
+                    "Notenpapier, 16 Systeme, Format: hoch 343 × 267 mm, Firmenzeichen: [JE] | <em>No. 4 | 16 linig.</em> recto unten links (Bl. 6)"
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift", "roter Buntstift", "violetter Buntstift", "blaue Tinte", "rote Tinte"]
                 },
-                "title": "<em>Fünf Lieder | nach | Gedichten von Stefan George | für eine Singstimme und Klavier | op. 4</em> auf Bl. [a]<sup>r</sup> mit schwarzer Tinte;<br /><em>Fünf Lieder | nach Gedichten | von | Stefan George | Anton Webern | op. 4</em> auf Bl. 1<sup>r</sup> System 1–15 mit blauer Tinte;<br />&lt;<em>I.</em>&gt; | <em>Eingang</em> [Mitte] | <em>Anton v. Webern op</em>[.] [x→] &lt;<em>4</em>&gt; [rechts] auf Bl. 2<sup>r</sup> oben mit roter Tinte, &lt;<em>I.</em>&gt; und &lt;<em>4</em>&gt; mit schwarzer Tinte, <em>v.</em> gestrichen mit schwarzer Tinte;<br /><em>II.</em> [Mitte] | <em>Anton Webern op. 4</em> [rechts] auf Bl. 4<sup>r</sup> oben mit blauer Tinte;<br /><em>III.</em> [Mitte] | <em>Anton Webern op</em>[.]<em> 4</em> [rechts] auf Bl. 5<sup>r</sup> oben;<br />&lt;<em>IV.</em>&gt; [Mitte] | <em>„Buch der Sagen und Sänge“ | Stefan George | Anton Webern op.</em> <em>4</em> [rechts] auf Bl. 6<sup>r</sup> oben;<br />&lt;[<em>I.</em>→] <em>V.</em>&gt; [Mitte] | <em>Stefan George | „Das Jahr der Seele“ | Anton v. Webern op</em>[.] <em>4</em> [rechts] auf Bl. 7<sup>r</sup> oben mit roter Tinte, &lt;[<em>I.</em>→] <em>V.</em>&gt; und <em>Anton v. Webern op</em>[.] <em>4</em> mit schwarzer Tinte,<em> Stefan George | „Das Jahr der Seele“</em> gestrichen mit blauer Tinte;<br /><em>5 Lieder | op</em>[.] [<em>5</em> →] <em>4</em> [eingerahmt] auf Bl. 8<sup>r</sup> System 4–6 mit Bleistift, gestrichen mit Bleistift;<br /><em>Neun Lieder | </em>&lt;<em>op</em>[.] [<em>5</em> →] <em>6</em>&gt; | <em>nach Gedichten von Stefan George | komponiert | von | Anton von Webern</em> auf Bl. 8<sup>r</sup> System 9–19 mit roter Tinte, &lt;<em>op</em>[.] [<em>5</em> →] <em>6</em>&gt; mit Bleistift, gestrichen mit rotem Buntstift.",
-                "date": "",
-                "pagination": "<em>- 1-</em> bis <em>- 11 -</em> auf Bl. 2<sup>r</sup>–3<sup>r</sup>, 4<sup>r</sup>–7<sup>v</sup> äußere Seitenecken oben mit Bleistift (Hs. ?).",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "<em>66 | 33</em> auf Bl. 3<sup>r</sup> System 9–10 mit Bleistift;<br /><em><u>100 – 150 – 200 Exemplare!</u></em> auf Bl. 8<sup>r</sup> System 2–3 mit schwarzer Tinte (Hs. ?);<br /><em>Quart</em> [diagonal aufsteigend] auf Bl. 8<sup>r</sup> System 3–5 mit Bleistift (Hs. ?);<br /><em>1 | 2 | 3 | 7 | </em>[xx]<em> | 6 | - <u>4</u></em> auf Bl. 8<sup>r</sup> System 4–8 rechts mit violettem Buntstift.",
-                "content": [
+                "titles": [
+                    "<em>Fünf Lieder | nach | Gedichten von Stefan George | für eine Singstimme und Klavier | op. 4</em> auf Bl. [a]<sup>r</sup> mit schwarzer Tinte",
+                    "<em>Fünf Lieder | nach Gedichten | von | Stefan George | Anton Webern | op. 4</em> auf Bl. 1<sup>r</sup> System 1–15 mit blauer Tinte",
+                    "&lt;<em>I.</em>&gt; | <em>Eingang</em> [Mitte] | <em>Anton v. Webern op</em>[.] [x→] &lt;<em>4</em>&gt; [rechts] auf Bl. 2<sup>r</sup> oben mit roter Tinte, &lt;<em>I.</em>&gt; und &lt;<em>4</em>&gt; mit schwarzer Tinte, <em>v.</em> gestrichen mit schwarzer Tinte",
+                    "<em>II.</em> [Mitte] | <em>Anton Webern op. 4</em> [rechts] auf Bl. 4<sup>r</sup> oben mit blauer Tinte",
+                    "<em>III.</em> [Mitte] | <em>Anton Webern op</em>[.]<em> 4</em> [rechts] auf Bl. 5<sup>r</sup> oben",
+                    "&lt;<em>IV.</em>&gt; [Mitte] | <em>„Buch der Sagen und Sänge“ | Stefan George | Anton Webern op.</em> <em>4</em> [rechts] auf Bl. 6<sup>r</sup> oben",
+                    "&lt;[<em>I.</em>→] <em>V.</em>&gt; [Mitte] | <em>Stefan George | „Das Jahr der Seele“ | Anton v. Webern op</em>[.] <em>4</em> [rechts] auf Bl. 7<sup>r</sup> oben mit roter Tinte, &lt;[<em>I.</em>→] <em>V.</em>&gt; und <em>Anton v. Webern op</em>[.] <em>4</em> mit schwarzer Tinte,<em> Stefan George | „Das Jahr der Seele“</em> gestrichen mit blauer Tinte",
+                    "<em>5 Lieder | op</em>[.] [<em>5</em> →] <em>4</em> [eingerahmt] auf Bl. 8<sup>r</sup> System 4–6 mit Bleistift, gestrichen mit Bleistift",
+                    "<em>Neun Lieder | </em>&lt;<em>op</em>[.] [<em>5</em> →] <em>6</em>&gt; | <em>nach Gedichten von Stefan George | komponiert | von | Anton von Webern</em> auf Bl. 8<sup>r</sup> System 9–19 mit roter Tinte, &lt;<em>op</em>[.] [<em>5</em> →] <em>6</em>&gt; mit Bleistift, gestrichen mit rotem Buntstift"
+                ],
+                "dates": [],
+                "paginations": [
+                    "<em>- 1-</em> bis <em>- 11 -</em> auf Bl. 2<sup>r</sup>–3<sup>r</sup>, 4<sup>r</sup>–7<sup>v</sup> äußere Seitenecken oben mit Bleistift (Hs. ?)"
+                ],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [
+                    "<em>66 | 33</em> auf Bl. 3<sup>r</sup> System 9–10 mit Bleistift",
+                    "<em><u>100 – 150 – 200 Exemplare!</u></em> auf Bl. 8<sup>r</sup> System 2–3 mit schwarzer Tinte (Hs. ?)",
+                    "<em>Quart</em> [diagonal aufsteigend] auf Bl. 8<sup>r</sup> System 3–5 mit Bleistift (Hs. ?)",
+                    "<em>1 | 2 | 3 | 7 | </em>[xx]<em> | 6 | - <u>4</u></em> auf Bl. 8<sup>r</sup> System 4–8 rechts mit violettem Buntstift"
+                ],
+                "contents": [
                     {
                         "item": "",
                         "itemLinkTo": {},
@@ -1131,7 +1193,10 @@
                 "desc": [
                     "7 Blätter (Bl. 1–7): 1 Blatt (Bl. 1) und 3 ineinander gelegte, fadenheftete Bögen (Bl. 2/7, 3/6, 4/5). Auf Bl. 1<sup>r</sup> ist oben links ein Zettel (hoch 140 × 125 mm) mit Klebstoff aufgeklebt. Foliierung unten links mit <em>1</em> (aufgeklebter Zettel auf Bl. 1<sup>r</sup>) und von <em>2</em> bis <em>8</em> (Bl. 1–7) recto unten links mit Bleistift. Bl. 7<sup>r</sup> bis auf die Foliierung unbeschriftet, Verso Seite des auf Bl. 1<sup>r</sup> aufgeklebten Zettels, Bl. 1<sup>v</sup>, 8<sup>v</sup> unbeschriftet. Spuren von Klebstoff am rechten Rand von Bl. 8<sup>v</sup>."
                 ],
-                "writingMaterialString": "Notenpapier, 24 Systeme, Format: hoch 330 × 253 mm, kein Firmenzeichen (Bl. 1);<br />Notenpapier, 12 Systeme (mit vier vorgedruckten Akkoalden [1 + 2 Systeme]), Format: hoch 341 × 270 mm, Firmenzeichen: [JE] | <em>Protokoll. Schutzmarke | No.12 </em>auf Bl. 2<sup>r</sup>, 3<sup>r</sup>, 4<sup>r</sup> unten links (Bl. 2–7).",
+                "writingMaterialStrings": [
+                    "Notenpapier, 24 Systeme, Format: hoch 330 × 253 mm, kein Firmenzeichen (Bl. 1)",
+                    "Notenpapier, 12 Systeme (mit vier vorgedruckten Akkoalden [1 + 2 Systeme]), Format: hoch 341 × 270 mm, Firmenzeichen: [JE] | <em>Protokoll. Schutzmarke | No.12 </em>auf Bl. 2<sup>r</sup>, 3<sup>r</sup>, 4<sup>r</sup> unten links (Bl. 2–7)"
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": [
@@ -1143,13 +1208,33 @@
                         "blaue Tinte"
                     ]
                 },
-                "title": "<em>Anton Webern | Fünf Lieder | nach | Gedichten von Stefan George | für | Singstim̅e u. Klavier | op. 4 </em>auf Bl. 1<sup>r</sup> System 4–14 Mitte;<br /><em>I. | EINGANG.</em> [Mitte] &lt;<em>Anton Webern, Op</em>[.] <em>4</em>&gt; [rechts] auf Bl. 2<sup>r</sup> oben (Hs. ?), &lt;<em>Anton Webern, Op</em>[.] <em>4</em>&gt; mit blauem Buntstift (Hs.?);<br /><em>II.</em> auf Bl. 3<sup>v</sup> oben Mitte;<br /><em>III.</em> auf Bl. 4<sup>v</sup> oben Mitte;<br /><em>IV.</em> auf Bl. 4<sup>v</sup> oben Mitte;<br /><em>V.</em> auf Bl. 5<sup>r</sup> oben Mitte.",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "<em>Gesang</em>, <em>Klavier</em> (2 Systeme) auf Bl. 2<sup>r</sup> 1. Akkolade mit blauem Buntstift (Hs.?).",
-                "annotations": "<em>Die Tempovorschriften nur <u>einmal</u> | (über den <u>Gesang</u>), <u>nicht</u> auch über | das Klaviersystem; alle <u>in einheitlicher</u> | Größe (die im Verlaufe eines Liedes | angegebenen ebenso groß wie die | Tempovorschrift zu Beginn); große | Schrift. | Die Art der Notierung der Singstim̅e, | wie sie im <u>Manuscript</u> ist, absolut | beibehalten; das heißt:</em> &lt;<em>für</em>&gt; [vier zusammengebalkte Achtel] <em>u.s.w. | nicht etwa</em> [vier Achtel mit Fähnchen] <em>setzen, wenn | auf die Textsilbe nur eine Note kom̅t.</em> auf dem auf Bl. 1<sup>r</sup> aufgeklebten Zettel;<br /><em>Schrift des Titelblattes | wie bei meinen Violinstücken op. 7 | U. E. N<sup><u>o</u></sup> 6642</em> [alles eingekreist] auf Bl. 1<sup>r</sup> System 1–4 rechts mit Bleistift;<br /><em>DOUANES | FRANÇAISES</em> [kreisförmig oben und unten, im Kreis:] <em>BUREAU | D’ | ORLY | 3</em> auf Bl. 1<sup>r</sup> unten links, Bl. 2<sup>r</sup>, 3<sup>r</sup>, 4<sup>r</sup>, 5<sup>r</sup>, 6<sup>r</sup> oben rechts als roter Stempelabdruck;<br /><em>„Universal-Edition“ A.-G. | WIEN</em> [Stempel] | <em>11/5 ̅2̅3</em> [blauer Buntstift] | <em>Zum Stich!</em> [Stempel] | <em>U. E. 4<sup>o</sup></em> [Paraphe] [blauer Buntstift] auf Bl. 2<sup>r</sup> oben rechts (Hs. ?);<br /><em>Aufführungsrechte vorbehalten.</em> | <em>Droits d’exécution réserves.</em> auf Bl. 2<sup>r</sup> oben links als violetter Stempelabdruck;<br /><em>Copyright 19</em>&lt;<em>23</em>&gt; <em>by Universal Edition</em> auf Bl. 2<sup>r</sup> unten links als schwarzer Stempelabdruck, &lt;<em>25</em>&gt; mit Bleistift (Hs. ?);<br /><em>Universal – Edition Nr.</em> <em>7395</em> auf Bl. 2<sup>r</sup> unten Mitte mit Bleistift (Hs. ?);<br /><em>ARCHIV</em> | [darum im Kreis:] <em>DER UNIVERSAL-EDITION A. G. *</em> [alles in einem Kreis] auf Bl. 2<sup>r</sup>, 3<sup>r</sup>, 4<sup>r</sup>, 5<sup>r</sup>, 6<sup>r</sup> unten rechts mit violettem Stempelabdruck;<br /><em>U. E. 7395</em> auf Bl. 2<sup>v</sup> unten Mitte mit Bleistift (Hs. ?);<br />Dispositionsziffern in I nach T. 1, 3, 5, 6, 7, 9, 10, 12, 15, in II nach T. 2, 5, 8, 11, 14, 17, 21, in III nach T. 2, 5, 7, 9, 11, 13, 15, in IV nach T. 4, 9, 13, 18 und in V nach T. 4, 8, 12, 15 mit Bleistift (Hs. ?).",
-                "content": [
+                "titles": [
+                    "<em>Anton Webern | Fünf Lieder | nach | Gedichten von Stefan George | für | Singstim̅e u. Klavier | op. 4 </em>auf Bl. 1<sup>r</sup> System 4–14 Mitte",
+                    "<em>I. | EINGANG.</em> [Mitte] &lt;<em>Anton Webern, Op</em>[.] <em>4</em>&gt; [rechts] auf Bl. 2<sup>r</sup> oben (Hs. ?), &lt;<em>Anton Webern, Op</em>[.] <em>4</em>&gt; mit blauem Buntstift (Hs.?)",
+                    "<em>II.</em> auf Bl. 3<sup>v</sup> oben Mitte",
+                    "<em>III.</em> auf Bl. 4<sup>v</sup> oben Mitte",
+                    "<em>IV.</em> auf Bl. 4<sup>v</sup> oben Mitte",
+                    "<em>V.</em> auf Bl. 5<sup>r</sup> oben Mitte"
+                ],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [
+                    "<em>Gesang</em>, <em>Klavier</em> (2 Systeme) auf Bl. 2<sup>r</sup> 1. Akkolade mit blauem Buntstift (Hs.?)"
+                ],
+                "annotations": [
+                    "<em>Die Tempovorschriften nur <u>einmal</u> | (über den <u>Gesang</u>), <u>nicht</u> auch über | das Klaviersystem; alle <u>in einheitlicher</u> | Größe (die im Verlaufe eines Liedes | angegebenen ebenso groß wie die | Tempovorschrift zu Beginn); große | Schrift. | Die Art der Notierung der Singstim̅e, | wie sie im <u>Manuscript</u> ist, absolut | beibehalten; das heißt:</em> &lt;<em>für</em>&gt; [vier zusammengebalkte Achtel] <em>u.s.w. | nicht etwa</em> [vier Achtel mit Fähnchen] <em>setzen, wenn | auf die Textsilbe nur eine Note kom̅t.</em> auf dem auf Bl. 1<sup>r</sup> aufgeklebten Zettel",
+                    "<em>Schrift des Titelblattes | wie bei meinen Violinstücken op. 7 | U. E. N<sup><u>o</u></sup> 6642</em> [alles eingekreist] auf Bl. 1<sup>r</sup> System 1–4 rechts mit Bleistift",
+                    "<em>DOUANES | FRANÇAISES</em> [kreisförmig oben und unten, im Kreis:] <em>BUREAU | D’ | ORLY | 3</em> auf Bl. 1<sup>r</sup> unten links, Bl. 2<sup>r</sup>, 3<sup>r</sup>, 4<sup>r</sup>, 5<sup>r</sup>, 6<sup>r</sup> oben rechts als roter Stempelabdruck",
+                    "<em>„Universal-Edition“ A.-G. | WIEN</em> [Stempel] | <em>11/5 ̅2̅3</em> [blauer Buntstift] | <em>Zum Stich!</em> [Stempel] | <em>U. E. 4<sup>o</sup></em> [Paraphe] [blauer Buntstift] auf Bl. 2<sup>r</sup> oben rechts (Hs. ?)",
+                    "<em>Aufführungsrechte vorbehalten.</em> | <em>Droits d’exécution réserves.</em> auf Bl. 2<sup>r</sup> oben links als violetter Stempelabdruck",
+                    "<em>Copyright 19</em>&lt;<em>23</em>&gt; <em>by Universal Edition</em> auf Bl. 2<sup>r</sup> unten links als schwarzer Stempelabdruck, &lt;<em>25</em>&gt; mit Bleistift (Hs. ?)",
+                    "<em>Universal – Edition Nr.</em> <em>7395</em> auf Bl. 2<sup>r</sup> unten Mitte mit Bleistift (Hs. ?)",
+                    "<em>ARCHIV</em> | [darum im Kreis:] <em>DER UNIVERSAL-EDITION A. G. *</em> [alles in einem Kreis] auf Bl. 2<sup>r</sup>, 3<sup>r</sup>, 4<sup>r</sup>, 5<sup>r</sup>, 6<sup>r</sup> unten rechts mit violettem Stempelabdruck",
+                    "<em>U. E. 7395</em> auf Bl. 2<sup>v</sup> unten Mitte mit Bleistift (Hs. ?)",
+                    "Dispositionsziffern in I nach T. 1, 3, 5, 6, 7, 9, 10, 12, 15, in II nach T. 2, 5, 8, 11, 14, 17, 21, in III nach T. 2, 5, 7, 9, 11, 13, 15, in IV nach T. 4, 9, 13, 18 und in V nach T. 4, 8, 12, 15 mit Bleistift (Hs. ?)"
+                ],
+                "contents": [
                     {
                         "item": "",
                         "itemLinkTo": {},
@@ -1491,18 +1576,20 @@
                 "desc": [
                     "Buch, 150 Seiten, Format (hoch) 296 × 215 mm, Einband: 305 × 320 mm. Beilagen mit Kompositionen von Arnold Schönberg, Alban Berg und Anton Webern zwischen S. [132] (vacat) und S. [133] (Inhaltsverzeichnis). (Es folgen: S. [134] vacat, S. [135]–140 Register der Reproduktionen, S. [141] vacat, S. [142–150] Werbeanzeigen.) Im konsultierten Exemplar (Berlin, Staatsbibliothek Preußischer Kulturbesitz, 1 B 20301) sind die Notenbeilagen (zusammen mit einer Anzeige „Moderne Galerie | Heinrich Tannhauser | MÜNCHEN THEATINERSTR. 7“) vermutlich nachträglich eingeheftet. Beilage Anton Webern: 1 Blatt, Format (hoch) 296 × ca. 222 mm, paginiert von <em>1</em> bis <em>2</em> recto oben rechts und verso oben links. Eine zweite Auflage des Buches von 1914 unterscheidet sich im Umfang (140 Seiten; die Werbeanzeigen fehlen) und Format ([hoch] 288 × 217 mm; Einband: 295 × 220 mm). Die Beilage mit der Komposition Anton Weberns unterscheidet sich in dieser Auflage ebenfalls im Format: (hoch) 280 × ca. 205 mm."
                 ],
-                "writingMaterialString": "",
+                "writingMaterialStrings": [],
                 "writingInstruments": {
                     "main": "",
                     "secondary": []
                 },
-                "title": "<em>„Ihr tratet zu dem herde _ _ _ _“ aus dem „Jahr der Seele“ | von STEFAN GEORGE | Für eine Singstimme und Klavier von ANTON von WEBERN</em> auf S. 1 oben Mitte.",
-                "date": "",
-                "pagination": "<em>1</em> bis <em>2</em> auf S. 1–2 Außenecken oben.",
-                "measureNumbers": "",
-                "instrumentation": "<em>Gesang | Piano</em> auf S. 1 System 1 | 2–3.",
-                "annotations": "",
-                "content": [
+                "titles": [
+                    "<em>„Ihr tratet zu dem herde _ _ _ _“ aus dem „Jahr der Seele“ | von STEFAN GEORGE | Für eine Singstimme und Klavier von ANTON von WEBERN</em> auf S. 1 oben Mitte"
+                ],
+                "dates": [],
+                "paginations": ["<em>1</em> bis <em>2</em> auf S. 1–2 Außenecken oben"],
+                "measureNumbers": [],
+                "instrumentations": ["<em>Gesang | Piano</em> auf S. 1 System 1 | 2–3"],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "",
                         "itemLinkTo": "",
@@ -1581,7 +1668,15 @@
                 "desc": [
                     "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>. Format: hoch 296 × 219 mm. Rissspuren am linken Rand: von Bogen abgetrennt. Papierklebestreifen am rechten Rand von S. 2. Archivalische Eintragung <em>PMM 21</em> auf S. 2 unten Mitte mit Bleistift."
                 ],
-                "title": "<em>&lt;I.&gt; | „Ihr tratet zu dem herde _ _ _ _“ aus dem „Jahr der Seele“ | von STEFAN GEORGE | Für eine Singstimme und Klavier von ANTON von WEBERN &lt;op</em>[.] <em>2&gt;</em> auf S. 1 oben Mitte, <em>&lt;I.&gt;</em> mit schwarzer Tinte, <em>&lt;op</em>[.] <em>2&gt;</em> mit roter Tinte."
+                "titles": [
+                    "<em>&lt;I.&gt; | „Ihr tratet zu dem herde _ _ _ _“ aus dem „Jahr der Seele“ | von STEFAN GEORGE | Für eine Singstimme und Klavier von ANTON von WEBERN &lt;op</em>[.] <em>2&gt;</em> auf S. 1 oben Mitte, <em>&lt;I.&gt;</em> mit schwarzer Tinte, <em>&lt;op</em>[.] <em>2&gt;</em> mit roter Tinte"
+                ],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": []
             }
         },
         {
@@ -1594,18 +1689,33 @@
                 "desc": [
                     "12 Seiten (S [1]–[12]): 3 fadengeheftete Bögen (S. [1]|2/11|[12], 3|4/9|10 und 5|6/7|8) in Umschlag (S. [a]–[d]), Format: hoch ### × ### mm. S. [2] und [12] sowie innere Seiten des Umschlags (S. [b] und [c]) nicht bedruckt. [Die konsultierten Exemplare lassen wegen Einbindung in Sammelbände keine Aussagen über das Originalformat und den Inhalt von S. [d] (Verlagsanzeige?) zu.]"
                 ],
-                "writingMaterialString": "",
+                "writingMaterialStrings": [],
                 "writingInstruments": {
                     "main": "",
                     "secondary": []
                 },
-                "title": "<em>ANTON WEBERN | FÜNF LIEDER | OP. 4 | GESANG UND KLAVIER</em> auf der vorderen Umschlagseite (S. [a]) oben;<br /><em>Herrn Werner Reinhart in Herzlichkeit | FÜNF LIEDER | nach | Gedichten von Stefan George | für | eine Singstimme und Klavier | von | ANTON WEBERN | op. 4</em> auf S. [1] oben;<br /><em>I. | EINGANG</em> [Mitte] | <em>Anton Webern, Op. 4</em> [rechts] auf S. 3 oben (Kopftitel);<br /><em>II.</em> auf S. 6 oben (Kopftitel);<br /><em>III.</em> auf S. 8 oben (Kopftitel);<br /><em>IV.</em> auf S. 10 oben (Kopftitel);<br /><em>V.</em> auf S. 11 oben (Kopftitel).",
-                "date": "",
-                "pagination": "<em>3</em> bis <em>11</em> auf S. 3–11 Außenecken oben.",
-                "measureNumbers": "",
-                "instrumentation": "<em>Gesang | Klavier</em> auf S. 3 System 1 | 2–3.",
-                "annotations": "<em>UNIVERSAL-EDITION | Nr. 7395</em> auf S. [a] unten mittig;<br /><em>Aufführungsrecht vorbehalten. – Droits d'exécution réservés | UNIVERSAL-EDITION A. G. | WIEN   Copyright 1923 by Universal-Edition   NEW YORK</em> auf S. [1] unten;<br /><em>Aufführungsrecht vorbehalten. | Droits d'exécution réservés.</em> auf S. 3 oben links;<br /><em>Copyright 1923 by Universal-Edition.</em> [links] | <em>Universal-Edition Nr. 7395.</em> [Mitte] auf S. 3 unten;<br /><em>U. E. 7395.</em> auf S. 4–11 unten Mitte;<br /><em>Weag.</em> auf S. 11 unten rechts.",
-                "content": [
+                "titles": [
+                    "<em>ANTON WEBERN | FÜNF LIEDER | OP. 4 | GESANG UND KLAVIER</em> auf der vorderen Umschlagseite (S. [a]) oben",
+                    "<em>Herrn Werner Reinhart in Herzlichkeit | FÜNF LIEDER | nach | Gedichten von Stefan George | für | eine Singstimme und Klavier | von | ANTON WEBERN | op. 4</em> auf S. [1] oben",
+                    "<em>I. | EINGANG</em> [Mitte] | <em>Anton Webern, Op. 4</em> [rechts] auf S. 3 oben (Kopftitel)",
+                    "<em>II.</em> auf S. 6 oben (Kopftitel)",
+                    "<em>III.</em> auf S. 8 oben (Kopftitel)",
+                    "<em>IV.</em> auf S. 10 oben (Kopftitel)",
+                    "<em>V.</em> auf S. 11 oben (Kopftitel)"
+                ],
+                "dates": [],
+                "paginations": ["<em>3</em> bis <em>11</em> auf S. 3–11 Außenecken oben"],
+                "measureNumbers": [],
+                "instrumentations": ["<em>Gesang | Klavier</em> auf S. 3 System 1 | 2–3"],
+                "annotations": [
+                    "<em>UNIVERSAL-EDITION | Nr. 7395</em> auf S. [a] unten mittig",
+                    "<em>Aufführungsrecht vorbehalten. – Droits d'exécution réservés | UNIVERSAL-EDITION A. G. | WIEN   Copyright 1923 by Universal-Edition   NEW YORK</em> auf S. [1] unten",
+                    "<em>Aufführungsrecht vorbehalten. | Droits d'exécution réservés.</em> auf S. 3 oben links",
+                    "<em>Copyright 1923 by Universal-Edition.</em> [links] | <em>Universal-Edition Nr. 7395.</em> [Mitte] auf S. 3 unten",
+                    "<em>U. E. 7395.</em> auf S. 4–11 unten Mitte",
+                    "<em>Weag.</em> auf S. 11 unten rechts"
+                ],
+                "contents": [
                     {
                         "item": "",
                         "itemLinkTo": "",

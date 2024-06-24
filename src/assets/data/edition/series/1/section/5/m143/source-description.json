@@ -7,23 +7,24 @@
             "type": "Autograph von „Erwachen aus dem tiefsten Traumesschoße“ M 143: einzige Textfassung.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
-                    "1 Bogen (Bl. 1/2). Bl. 2<sup>v</sup> unbeschriftet."
+                "desc": ["1 Bogen (Bl. 1/2). Bl. 2<sup>v</sup> unbeschriftet."],
+                "writingMaterialStrings": [
+                    "Notenpapier, Format hoch 346 × 265 mm, Firmenzeichen [JE] | <em>No. 5 | 18 linig.</em> auf Bl. 1<sup>r</sup>, 2<sup>r</sup> unten links."
                 ],
-                "writingMaterialString": "Notenpapier, Format hoch 346 × 265 mm, Firmenzeichen [JE] | <em>No. 5 | 18 linig.</em> auf Bl. 1<sup>r</sup>, 2<sup>r</sup> unten links.",
                 "writingInstruments": {
                     "main": "Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
-                "title": "<em>op 5 N<sup><u>o</u></sup> 2</em> auf Bl. 1<sup>r</sup> oben rechts mit Bleistift;<br /><em>Aus „Nachtwachen“ von Stefan George</em> auf Bl. 1<sup>r</sup> System 1 rechts.",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
-                "content": [
+                "titles": [
+                    "<em>op 5 N<sup><u>o</u></sup> 2</em> auf Bl. 1<sup>r</sup> oben rechts mit Bleistift",
+                    "<em>Aus „Nachtwachen“ von Stefan George</em> auf Bl. 1<sup>r</sup> System 1 rechts"
+                ],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "",
                         "itemLinkTo": {},
