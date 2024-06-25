@@ -265,19 +265,21 @@ export const mockEditionData = {
                     desc: [
                         '2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert. Zeichen ergänzt mit Blick auf <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')" ><strong>Textfassung 2</strong></a>',
                     ],
-                    writingMaterialString:
-                        'Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen:<br /><img class="img-thumbnail" [src]="ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.route" [title]="ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.full" [alt]="ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.short" /><br />auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).',
+                    writingMaterialStrings: [
+                        'Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen:<br /><img class="img-thumbnail" [src]="ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.route" [title]="ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.full" [alt]="ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.short" /><br />auf Bl. 1<sup>r</sup> unten links (Bl. 1)',
+                        'Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2)',
+                    ],
                     writingInstruments: {
                         main: 'Bleistift',
                         secondary: ['roter Buntstift', 'blaue Tinte', 'Kopierstift'],
                     },
-                    title: 'test title',
-                    date: 'test date',
-                    pagination: 'test pagination',
-                    measureNumbers: 'test measure numbers',
-                    instrumentation: 'test instrumentation',
-                    annotations: 'test annotations',
-                    content: [
+                    titles: ['test titles 1', 'test titles 2'],
+                    dates: ['test dates 1', 'test dates 2'],
+                    paginations: ['test paginations 1', 'test paginations 2'],
+                    measureNumbers: ['test measure numbers 1', 'test measure numbers 2'],
+                    instrumentations: ['test instrumentations 1', 'test instrumentations 2'],
+                    annotations: ['test annotations'],
+                    contents: [
                         {
                             item: 'Test item',
                             itemLinkTo: {
