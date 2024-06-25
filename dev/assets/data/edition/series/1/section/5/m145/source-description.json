@@ -7,21 +7,25 @@
             "type": "Autograph von <em>Trauer I</em> („So wart bis ich dies dir noch künde“) M 145: einzige Textfassung.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
-                    "2 aufeinander gelegte Bögen (Bl. 1/2, 3/4). Bl. 4<sup>r</sup>–4<sup>v</sup> unbeschriftet."
+                "desc": ["2 aufeinander gelegte Bögen (Bl. 1/2, 3/4). Bl. 4<sup>r</sup>–4<sup>v</sup> unbeschriftet."],
+                "writingMaterialStrings": [
+                    "Notenpapier, 12 Systeme, Format hoch 343 × 265 mm, Firmenzeichen: [JE] | <em>No. 2 | 12 linig.</em> auf Bl. 1<sup>r</sup>, 2<sup>r</sup>, 3<sup>r</sup>, 4<sup>r</sup> unten links"
                 ],
-                "writingMaterialString": "Notenpapier, 12 Systeme, Format hoch 343 × 265 mm, Firmenzeichen: [JE] | <em>No. 2 | 12 linig.</em> auf Bl. 1<sup>r</sup>, 2<sup>r</sup>, 3<sup>r</sup>, 4<sup>r</sup> unten links.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": []
                 },
-                "title": "<em>Trauer I (Maximin) | aus dem „siebenten Ring“ von Stefan George</em> auf Bl. 1<sup>r</sup> System 1–2 rechts.",
-                "date": "",
-                "pagination": "<em>2</em> bis <em>5</em> auf Bl. 1<sup>v</sup>–3<sup>r</sup> Außenecken oben mit Bleistift.",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
-                "content": [
+                "titles": [
+                    "<em>Trauer I (Maximin) | aus dem „siebenten Ring“ von Stefan George</em> auf Bl. 1<sup>r</sup> System 1–2 rechts"
+                ],
+                "dates": [],
+                "paginations": [
+                    "<em>2</em> bis <em>5</em> auf Bl. 1<sup>v</sup>–3<sup>r</sup> Außenecken oben mit Bleistift"
+                ],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "",
                         "itemLinkTo": {},

@@ -7,24 +7,26 @@
             "type": "Autograph von „Das lockere Saatgefilde“ M 146: einzige Textfassung.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
-                    "1 Bogen (Bl. 1/2)."
+                "desc": ["1 Bogen (Bl. 1/2)."],
+                "writingMaterialStrings": [
+                    "Notenpapier, 12 Systeme, Format hoch 343 × 265 mm, Firmenzeichen: [JE] | <em>No. 2 | 12 linig.</em> auf Bl. 1<sup>r</sup>, 2<sup>r</sup> unten links"
                 ],
-                "writingMaterialString": "Notenpapier, 12 Systeme, Format hoch 343 × 265 mm, Firmenzeichen: [JE] | <em>No. 2 | 12 linig.</em> auf Bl. 1<sup>r</sup>, 2<sup>r</sup> unten links.",
                 "writingInstruments": {
                     "main": "Tinte",
-                    "secondary": [
-                        "Bleistift",
-                        "roter Buntstift"
-                    ]
+                    "secondary": ["Bleistift", "roter Buntstift"]
                 },
-                "title": "<em>7)</em> [Bleistift] [Abstand] <em>Webern</em> [roter Buntstift] auf Bl. 1<sup>r</sup> oben links;<br /><em>Anton von Webern | aus „Gezeiten“ („VII. Ring“) | von Stefan George</em> auf Bl. 1<sup>r</sup> oben bis System 2 rechts.",
-                "date": "",
-                "pagination": "<em>2</em> bis <em>3</em> auf Bl. 1<sup>v</sup>–2<sup>r</sup> Außenecken oben mit Bleistift (Hs. ?).",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
-                "content": [
+                "titles": [
+                    "<em>7)</em> [Bleistift] [Abstand] <em>Webern</em> [roter Buntstift] auf Bl. 1<sup>r</sup> oben links",
+                    "<em>Anton von Webern | aus „Gezeiten“ („VII. Ring“) | von Stefan George</em> auf Bl. 1<sup>r</sup> oben bis System 2 rechts"
+                ],
+                "dates": [],
+                "paginations": [
+                    "<em>2</em> bis <em>3</em> auf Bl. 1<sup>v</sup>–2<sup>r</sup> Außenecken oben mit Bleistift (Hs. ?)"
+                ],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "",
                         "itemLinkTo": {},
