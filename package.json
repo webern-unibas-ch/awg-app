@@ -155,7 +155,7 @@
         "lint-staged": "^15.2.7",
         "prettier": "^3.3.2",
         "source-map-explorer": "^2.5.3",
-        "typescript": "~5.4.5",
+        "typescript": "~5.5.2",
         "webpack-bundle-analyzer": "^4.10.2"
     },
     "engines": {
