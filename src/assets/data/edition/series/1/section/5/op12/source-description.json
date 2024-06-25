@@ -1736,9 +1736,9 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "1</p><p>bis 2",
+                                "measure": "1<br />bis 2",
                                 "system": "Klav. o.",
-                                "position": "1/8</p><p>4/8",
+                                "position": "1/8<br />4/8",
                                 "comment": "Legatobogen geändert zu zwei Legatobögen von T. 1 1/8 bis T. 2 1/8 und T. 2 2.–3. Note."
                             },
                             {
@@ -1746,7 +1746,7 @@
                                 "measure": "2",
                                 "system": "Klav. o.",
                                 "position": "2. Note",
-                                "comment": "<em>zögernd</em> geändert zu <em>rit. - - -</em> (mit Geltungsstrichelung bis Taktende).</p><p>{{ref.getGlyph('[ppp]')}} hinzugefügt."
+                                "comment": "<em>zögernd</em> geändert zu <em>rit. - - -</em> (mit Geltungsstrichelung bis Taktende).<br />{{ref.getGlyph('[ppp]')}} hinzugefügt."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -1764,10 +1764,10 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "3</p><p>bis 5",
+                                "measure": "3<br />bis 5",
                                 "system": "Ges.",
-                                "position": "6/8</p><p>3/8",
-                                "comment": "Zuerst: Bogen über den Noten hinzugefügt. </p><p>Dann: Bogen wieder gestrichen. </p><p>Siehe Korrektur in T. 4 3/8 bis T. 5 3/8."
+                                "position": "6/8<br />3/8",
+                                "comment": "Zuerst: Bogen über den Noten hinzugefügt. <br />Dann: Bogen wieder gestrichen. <br />Siehe Korrektur in T. 4 3/8 bis T. 5 3/8."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -1792,10 +1792,10 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "4</p><p>bis 5",
+                                "measure": "4<br />bis 5",
                                 "system": "Ges.",
-                                "position": "3/8</p><p>3/8",
-                                "comment": "Bogen hinzugefügt. </p><p>Siehe Korrektur in T. 3 6/8 bis T. 5 3/8."
+                                "position": "3/8<br />3/8",
+                                "comment": "Bogen hinzugefügt. <br />Siehe Korrektur in T. 3 6/8 bis T. 5 3/8."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -1820,9 +1820,9 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "5</p><p>bis 7",
+                                "measure": "5<br />bis 7",
                                 "system": "Ges.",
-                                "position": "4/8</p><p>1/4",
+                                "position": "4/8<br />1/4",
                                 "comment": "Bogen hinzugefügt."
                             },
                             {
@@ -1830,7 +1830,7 @@
                                 "measure": "6",
                                 "system": "Ges.",
                                 "position": "2.–4. Note",
-                                "comment": "Zunächst: Fähnchen bei 3.–4. Note geändert zu Balken über den Noten. </p><p>Dann: Balken bei 2.–4. Note unter den Noten hinzugefügt."
+                                "comment": "Zunächst: Fähnchen bei 3.–4. Note geändert zu Balken über den Noten. <br />Dann: Balken bei 2.–4. Note unter den Noten hinzugefügt."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -1862,23 +1862,23 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "7</p><p>bis 8",
+                                "measure": "7<br />bis 8",
                                 "system": "Ges.",
-                                "position": "2. Note</p><p>1. Note",
+                                "position": "2. Note<br />1. Note",
                                 "comment": "Bogen hinzugefügt."
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "7</p><p>8",
+                                "measure": "7<br />bis 8",
                                 "system": "Ges.",
-                                "position": "3. Note</p><p>nach 1/4",
-                                "comment": "Ende der Crescendogabel T. 7 3. Note ##verlängert## zu T. 8 nach 1/4."
+                                "position": "3. Note<br />nach 1/4",
+                                "comment": "Ende der Crescendogabel T. 7 3. Note verlängert zu T. 8 nach 1/4."
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "7</p><p>bis 8",
+                                "measure": "7<br />bis 8",
                                 "system": "Ges.",
-                                "position": "3. Note</p><p>3/8",
+                                "position": "3. Note<br />3/8",
                                 "comment": "<em>dis fis e</em> unter den Noten es<sup>2</sup>–ges<sup>2</sup>–fes<sup>2</sup>."
                             },
                             {
@@ -1890,17 +1890,17 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "8</p><p>bis 9",
+                                "measure": "8<br />bis 9",
                                 "system": "Ges.",
-                                "position": "3/8</p><p>2. Note",
+                                "position": "3/8<br />2. Note",
                                 "comment": "Bogen hinzugefügt."
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "8</p><p>bis 9",
+                                "measure": "8<br />bis 9",
                                 "system": "Ges.",
-                                "position": "4/8</p><p>2. Note",
-                                "comment": "Ende der Crescendogabel T. 8 4/8 ##verlängert## zu T. 9 2. Note."
+                                "position": "4/8<br />2. Note",
+                                "comment": "Ende der Crescendogabel T. 8 4/8 verlängert zu T. 9 2. Note."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -1925,23 +1925,23 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "9</p><p>bis 11",
+                                "measure": "9<br />bis 11",
                                 "system": "Ges.",
-                                "position": "3. Note</p><p>1/4",
+                                "position": "3. Note<br />1/4",
                                 "comment": "Bogen hinzugefügt."
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "9</p><p>bis 10",
+                                "measure": "9<br />bis 10",
                                 "system": "Klav. u.",
-                                "position": "4/8</p><p>1/4",
+                                "position": "4/8<br />1/4",
                                 "comment": "Legatobogen gestrichen."
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "9</p><p>bis 11",
+                                "measure": "9<br />bis 11",
                                 "system": "Klav. u.",
-                                "position": "4/8</p><p>1/4",
+                                "position": "4/8<br />1/4",
                                 "comment": "Legatobogen hinzugefügt."
                             },
                             {
@@ -1953,10 +1953,10 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "10</p><p>bis 11",
+                                "measure": "10<br />bis 11",
                                 "system": "Klav. o.",
-                                "position": "1. Note</p><p>2. Note",
-                                "comment": "Legatobogen hinzugefügt. Siehe Korrektur T. 10 2. Note bis T. 11 2. Note.</p><p>Crescendogabel T. 10 1. Note bis nach 2. Note und Decrescendogabel T. 11 1.–2. Note geändert zu Decrescendogabel T. 10 1. Note bis T. 11 2. Note."
+                                "position": "1. Note<br />2. Note",
+                                "comment": "Legatobogen hinzugefügt. Siehe Korrektur T. 10 2. Note bis T. 11 2. Note.<br />Crescendogabel T. 10 1. Note bis nach 2. Note und Decrescendogabel T. 11 1.–2. Note geändert zu Decrescendogabel T. 10 1. Note bis T. 11 2. Note."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -1967,9 +1967,9 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "10</p><p>bis 11",
+                                "measure": "10<br />bis 11",
                                 "system": "Klav. o.",
-                                "position": "2. Note</p><p>2. Note",
+                                "position": "2. Note<br />2. Note",
                                 "comment": "Legatobogen gestrichen. Siehe Korrektur T. 10 1. Note bis T. 11 2. Note."
                             },
                             {
@@ -2023,9 +2023,9 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "13</p><p>bis 14",
+                                "measure": "13<br />bis 14",
                                 "system": "Ges.",
-                                "position": "2/8</p><p> 2. Note?",
+                                "position": "2/8<br /> 2. Note?",
                                 "comment": "Bogen hinzugefügt."
                             },
                             {
@@ -2072,16 +2072,16 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "14</p><p>bis 15",
+                                "measure": "14<br />bis 15",
                                 "system": "Ges.",
-                                "position": "3. Note</p><p>2/8",
-                                "comment": "Anfang des Bogens ##geändert## von T. 14 3/8."
+                                "position": "3. Note<br />2/8",
+                                "comment": "Anfang des Bogens geändert von T. 14 3/8."
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "14</p><p>bis 15",
+                                "measure": "14<br />bis 15",
                                 "system": "Ges.",
-                                "position": "3. Note</p><p>2/8",
+                                "position": "3. Note<br />2/8",
                                 "comment": "Crescendogabel von T. 14 4/8 bis T. 15 1/8 geändert zu T. 14 3. Note bis T. 15 2/8."
                             },
                             {
@@ -2089,7 +2089,7 @@
                                 "measure": "15",
                                 "system": "Ges.",
                                 "position": "2/8–8/16",
-                                "comment": "Zunächst: Fähnchen bei 3.–4. Note geändert zu Balken. </p><p>Dann: Balken bei 2.–4. Note hinzugefügt."
+                                "comment": "Zunächst: Fähnchen bei 3.–4. Note geändert zu Balken. <br />Dann: Balken bei 2.–4. Note hinzugefügt."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -2100,10 +2100,10 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "15</p><p>bis 16",
+                                "measure": "15<br />bis 16",
                                 "system": "Ges.",
-                                "position": "3. Note</p><p>2/4",
-                                "comment": "Crescendogabel T. 15 3.–4. Note und Decrescendogabel T. 16 1–2/4 geändert zu Decrescendogabel. </p><p>Anfang des Bogens T. 16 1/4 ##geändert## zu T. 15 3. Note."
+                                "position": "3. Note<br />2/4",
+                                "comment": "Crescendogabel T. 15 3.–4. Note und Decrescendogabel T. 16 1–2/4 geändert zu Decrescendogabel. <br />Anfang des Bogens T. 16 1/4 geändert zu T. 15 3. Note."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -2135,9 +2135,9 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "17</p><p>bis 18",
+                                "measure": "17<br />bis 18",
                                 "system": "Ges.",
-                                "position": "1/8</p><p>2. Note",
+                                "position": "1/8<br />2. Note",
                                 "comment": "Bogen hinzugefügt."
                             },
                             {
@@ -2158,7 +2158,7 @@
                                 "svgGroupId": "TODO",
                                 "measure": "18",
                                 "system": "Ges.",
-                                "position": "Taktanfang</p><p>bis 2. Note",
+                                "position": "Taktanfang<br />bis 2. Note",
                                 "comment": "Decrescendogabel hinzugefügt."
                             },
                             {
@@ -2166,7 +2166,7 @@
                                 "measure": "18",
                                 "system": "Ges.",
                                 "position": "",
-                                "comment": "Drei Vierteltriolen geändert zu Viertel-, Achtelnote as1–ges1 unter einer Triolenklammer und Achtelpause, Viertelnote des1 unter einer Triolenklammer."
+                                "comment": "Drei Vierteltriolen geändert zu Viertel-, Achtelnote as<sup>1</sup>–ges<sup>1</sup> unter einer Triolenklammer und Achtelpause, Viertelnote des<sup>1</sup> unter einer Triolenklammer."
                             },
                             {
                                 "svgGroupId": "TODO",
@@ -2177,7 +2177,7 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "18</p><p>bis 21",
+                                "measure": "18<br />bis 21",
                                 "system": "Ges.",
                                 "position": "3. Note",
                                 "comment": "Bogen hinzugefügt."
@@ -2212,7 +2212,7 @@
                             },
                             {
                                 "svgGroupId": "TODO",
-                                "measure": "21</p><p>bis 22",
+                                "measure": "21<br />bis 22",
                                 "system": "Klav.",
                                 "position": "2/4",
                                 "comment": "Decrescendogabel hinzugefügt."
