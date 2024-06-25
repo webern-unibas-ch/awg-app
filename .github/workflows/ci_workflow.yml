@@ -153,16 +153,22 @@ jobs:
                   name: dist
                   path: ${{ github.workspace }}/${{ env.DIST_DIR }}
 
-            - name: Copy artifacts to gh-pages
-              run: |
-                  cp -r ${{ env.DIST_DIR }}/awg-app/. ${{ env.DEV_GH_PAGES_DIR }}/dev/
-
             - name: Configure git
               working-directory: ${{ env.DEV_GH_PAGES_DIR }}
               run: |
                   echo "Configuring git"
                   git config user.name "github-actions"
                   git config user.email "github-actions@users.noreply.github.com"
+
+            - name: Remove existing files
+              working-directory: ${{ env.DEV_GH_PAGES_DIR }}
+              run: |
+                  echo "Removing existing files except .git directory"
+                  git rm -r *
+
+            - name: Copy artifacts to gh-pages
+              run: |
+                  cp -r ${{ env.DIST_DIR }}/awg-app/. ${{ env.DEV_GH_PAGES_DIR }}/dev/
 
             - name: Commit files
               working-directory: ${{ env.DEV_GH_PAGES_DIR }}
