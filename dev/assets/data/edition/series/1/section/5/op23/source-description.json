@@ -1380,7 +1380,7 @@
                     "1 Bogen (Bl. 1/2). Unterer Rand beschnitten. Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> mit Bleistift unten rechts oder links. Bl. 1<sup>v</sup>–2<sup>v</sup> bis auf die archivalische Paginierung unbeschriftet."
                 ],
                 "writingMaterialString": "Notenpapier, 4 Systeme (unten beschnitten), Format (quer): 74 × 270 mm, kein Firmenzeichen (Bl. 1/2).",
-                "writingMaterial": [
+                "writingMaterials": [
                     {
                         "paperType": "Notenpapier",
                         "systems": {

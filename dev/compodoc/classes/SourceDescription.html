@@ -764,14 +764,14 @@ export class SourceDescriptionDesc {
     desc?: string[];
 
     /**
-     * The string representation of a writing material used for a source (optional).
+     * The string representation of writing materials used for a source (optional).
      */
-    writingMaterialString?: string;
+    writingMaterialStrings?: string[];
 
     /**
-     * The writing material used for a source (optional).
+     * The writing materials used for a source (optional).
      */
-    writingMaterial?: SourceDescriptionWritingMaterial[];
+    writingMaterials?: SourceDescriptionWritingMaterial[];
 
     /**
      * The writing instruments used in a source (optional).
@@ -779,39 +779,39 @@ export class SourceDescriptionDesc {
     writingInstruments?: SourceDescriptionWritingInstruments;
 
     /**
-     * A title as it appears in a source (optional).
+     * One or multiple titles as they appear in a source (optional).
      */
-    title?: string;
+    titles?: string[];
 
     /**
-     * A date as it appears in a source (optional).
+     * One or multiple dates as they appear in a source (optional).
      */
-    date?: string;
+    dates?: string[];
 
     /**
-     * The pagination as it appears in a source (optional).
+     * One or multiple paginations as they appear in a source (optional).
      */
-    pagination?: string;
+    paginations?: string[];
 
     /**
-     * Measure numbers as they appear in a source (optional).
+     * One or multiple measure numbers as they appear in a source (optional).
      */
-    measureNumbers?: string;
+    measureNumbers?: string[];
 
     /**
-     * The instrumentation as it appears in a source (optional).
+     * One or multiple instrumentations as they appear in a source (optional).
      */
-    instrumentation?: string;
+    instrumentations?: string[];
 
     /**
-     * Annotations as they appear in a source (optional).
+     * One or multiple annotations as they appear in a source (optional).
      */
-    annotations?: string;
+    annotations?: string[];
 
     /**
      * The content of a source (optional).
      */
-    content?: SourceDescriptionContent[];
+    contents?: SourceDescriptionContent[];
 
     /**
      * The corrections lists of a source (optional).
