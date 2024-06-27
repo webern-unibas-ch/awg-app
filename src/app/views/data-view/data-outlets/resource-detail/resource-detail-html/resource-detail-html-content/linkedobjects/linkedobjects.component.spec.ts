@@ -58,7 +58,7 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
         incomingLink2 = {
             id: '28',
             value: 'testvalue2',
-            restype: { id: '1235', label: 'test-type2', icon: '/assets/img/logos/snf.png' },
+            restype: { id: '1235', label: 'test-type2', icon: '/assets/img/logos/snf.svg' },
         };
         incomingLink3 = {
             id: '330',

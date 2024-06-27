@@ -230,8 +230,8 @@ describe('FooterComponent (DONE)', () => {
                     );
 
                     expectToBe(footerLogoCmps.length, 3);
-                    expectToEqual(footerLogoCmps[0].logo, expectedLogos['sagw']);
-                    expectToEqual(footerLogoCmps[1].logo, expectedLogos['unibas']);
+                    expectToEqual(footerLogoCmps[0].logo, expectedLogos['unibas']);
+                    expectToEqual(footerLogoCmps[1].logo, expectedLogos['sagw']);
                     expectToEqual(footerLogoCmps[2].logo, expectedLogos['snf']);
                 });
             });
