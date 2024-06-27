@@ -289,8 +289,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="36"
-                                    class="link-to-prism">src/app/core/footer/footer-logo/footer-logo.component.ts:36</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/app/core/footer/footer-logo/footer-logo.component.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -298,8 +298,7 @@
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public variable: getLogoClass.</p>
-<p>It checks a given logo id for the logo
-being part of the (right) main footer.</p>
+<p>It checks a given logo id and returns the corresponding class list.</p>
 </div>
 
                             <div class="io-description">
@@ -339,7 +338,7 @@ being part of the (right) main footer.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>The boolean value of the comparison.</p>
+                                <p>The class list for the logo.</p>
 
                             </div>
                 </td>
@@ -380,14 +379,13 @@ export class FooterLogoComponent {
     /**
      * Public variable: getLogoClass.
      *
-     * It checks a given logo id for the logo
-     * being part of the (right) main footer.
+     * It checks a given logo id and returns the corresponding class list.
      *
      * @param {string} id The given logo id.
      *
-     * @returns {boolean} The boolean value of the comparison.
+     * @returns {string} The class list for the logo.
      */
-    getLogoClass(id: string) {
+    getLogoClass(id: string): string {
         const isSnfLogo &#x3D; id &#x3D;&#x3D;&#x3D; LOGOSDATA[&#x27;snf&#x27;].id;
         const isUnibasLogo &#x3D; id &#x3D;&#x3D;&#x3D; LOGOSDATA[&#x27;unibas&#x27;].id;
         const isSagwLogo &#x3D; id &#x3D;&#x3D;&#x3D; LOGOSDATA[&#x27;sagw&#x27;].id;
@@ -396,7 +394,7 @@ export class FooterLogoComponent {
         if (isUnibasLogo || isSnfLogo || isSagwLogo) {
             classList &#x3D; &#x27;my-2&#x27;;
         }
-        if (isUnibasLogo || isSnfLogo) {
+        if (isSagwLogo || isSnfLogo) {
             classList +&#x3D; &#x27; float-end&#x27;;
         }
         return classList;
