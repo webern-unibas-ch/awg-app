@@ -160,11 +160,11 @@ jobs:
                   git config user.name "github-actions"
                   git config user.email "github-actions@users.noreply.github.com"
 
-            - name: Remove existing files
+            - name: Remove existing files from dev
               working-directory: ${{ env.DEV_GH_PAGES_DIR }}
               run: |
-                  echo "Removing existing files except .git directory"
-                  git rm -r *
+                  echo "Removing existing files from dev"
+                  git rm -r dev/* || true
 
             - name: Copy artifacts to gh-pages
               run: |
