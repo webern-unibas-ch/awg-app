@@ -5518,7 +5518,7 @@ __metadata:
     rdfstore: "musicenfanthen/rdfstore-js#v0.9.18-alpha.16"
     rxjs: "npm:~7.8.1"
     source-map-explorer: "npm:^2.5.3"
-    stream: "npm:^0.0.2"
+    stream: "npm:^0.0.3"
     tslib: "npm:^2.6.2"
     typescript: "npm:~5.5.2"
     webpack-bundle-analyzer: "npm:^4.10.2"
@@ -6328,6 +6328,13 @@ __metadata:
     array-ify: "npm:^1.0.0"
     dot-prop: "npm:^5.1.0"
   checksum: 10c0/78bd4dd4ed311a79bd264c9e13c36ed564cde657f1390e699e0f04b8eee1fc06ffb8698ce2dfb5fbe7342d509579c82d4e248f08915b708f77f7b72234086cc3
+  languageName: node
+  linkType: hard
+
+"component-emitter@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "component-emitter@npm:2.0.0"
+  checksum: 10c0/65dfaf787ea49eb48f0ffec766bda7ec67e8dbeb3b406f08724dcae842e0aa274731fcccb9280b77d2b41693061731a9080b60d276020246a146544cd9900b83
   languageName: node
   linkType: hard
 
@@ -14926,12 +14933,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stream@npm:^0.0.2":
-  version: 0.0.2
-  resolution: "stream@npm:0.0.2"
+"stream@npm:^0.0.3":
+  version: 0.0.3
+  resolution: "stream@npm:0.0.3"
   dependencies:
-    emitter-component: "npm:^1.1.1"
-  checksum: 10c0/2b2a196218afcd61fa48366318cdbc4a496d7141ec21f616e5f75290428daff9d0e1ac109a39e63c6d07f1187db055ca2b04e188232cca21595b85f282d7ad28
+    component-emitter: "npm:^2.0.0"
+  checksum: 10c0/5d262408583f3d5fed8077b33ad670320d85c6b7c0fb3ab73a9a632fbad0ee36f3c66e6feb5264cb39dbee3a619174fa886b5f69f98217666d0844f6a2f6510b
   languageName: node
   linkType: hard
 
