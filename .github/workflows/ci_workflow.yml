@@ -93,18 +93,18 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-            - name: Test build from develop for GH Pages
+            - name: Test build for GH Pages (all but develop)
+              if: github.ref != 'refs/heads/develop'
+              run: |
+                  yarn run build:gh
+
+            - name: Test build for GH Pages (develop)
               if: github.ref == 'refs/heads/develop'
               run: |
                   echo "Updating dev-version"
                   yarn run pre-release --release-as ${{ steps.get-sha.outputs.SHA }} --skip.changelog --skip.commit --skip.tag
                   echo "Building dev-version"
                   yarn run build:dev
-
-            - name: Test build for GH Pages (except develop)
-              if: github.ref != 'refs/heads/develop'
-              run: |
-                  yarn run build:gh
 
             - name: Upload build artifacts (main && develop)
               # upload build artifacts for current node version and main or develop branch only
