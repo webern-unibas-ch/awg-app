@@ -101,13 +101,14 @@ jobs:
                   echo "Building dev-version"
                   yarn run build:dev
 
-            - name: Test build from main for GH Pages
-              if: github.ref == 'refs/heads/main'
+            - name: Test build for GH Pages (except develop)
+              if: github.ref != 'refs/heads/develop'
               run: |
                   yarn run build:gh
 
-            - name: Upload build artifacts
-              if: matrix.node-version == 20.13 # upload build artifacts for current node version only
+            - name: Upload build artifacts (main && develop)
+              # upload build artifacts for current node version and main or develop branch only
+              if: matrix.node-version == 20.13 && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
               uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # ratchet:actions/upload-artifact@v4.3.3
               with:
                   name: dist
