@@ -36,10 +36,10 @@ describe('SourceEvaluationComponent (DONE)', () => {
     let expectedSourceEvaluationListData: SourceEvaluationList;
     let expectedSourceEvaluationListEmptyData: SourceEvaluationList;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
-    let expectedFragment: string;
+    let expectedReportFragment: string;
     let expectedModalSnippet: string;
-    let expectedSvgSheet: EditionSvgSheet;
-    let expectedNextSvgSheet: EditionSvgSheet;
+    let expectedSheetId: string;
+    let expectedNextSheetId: string;
 
     let openModalSpy: Spy;
     let openModalRequestEmitSpy: Spy;
@@ -63,9 +63,9 @@ describe('SourceEvaluationComponent (DONE)', () => {
         expectedEditionComplex = EDITION_COMPLEXES.OP25;
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
-        expectedFragment = 'source_A';
-        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
+        expectedReportFragment = 'source_A';
+        expectedSheetId = 'test_item_id_1';
+        expectedNextSheetId = 'test_item_id_2';
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedSourceEvaluationListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceEvaluationListData));
         expectedSourceEvaluationListEmptyData = JSON.parse(
@@ -217,10 +217,15 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 const pEl = pDes[0].nativeElement;
 
                 // Create evaluation placeholder
-                const evaluationPlaceholder = `[Die Quellenbewertung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
-                const strippedEvaluationPlaceholder = evaluationPlaceholder.replace(/<em>/g, '').replace(/<\/em>/g, '');
+                const fullComplexSpan = mockDocument.createElement('span');
+                fullComplexSpan.innerHTML = expectedEditionComplex.complexId.full;
 
-                expectToEqual(pEl.textContent.trim(), strippedEvaluationPlaceholder);
+                const shortComplexSpan = mockDocument.createElement('span');
+                shortComplexSpan.innerHTML = expectedEditionComplex.complexId.short;
+
+                const evaluationPlaceholder = `[Die Quellenbewertung zum Editionskomplex ${fullComplexSpan.textContent} erscheint im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
+
+                expectToBe(pEl.textContent.trim(), evaluationPlaceholder);
             }));
         });
 
@@ -241,36 +246,61 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 // CLick on first anchor (with navigateToReportFragment call)
                 clickAndAwaitChanges(anchorDes[0], fixture);
 
-                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+                expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: expectedReportFragment });
             }));
 
             describe('... should not emit anything if', () => {
-                it('... id is undefined', () => {
+                it('... paraemeter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
-                it('... id is null', () => {
+                it('... parameter is null', () => {
                     component.navigateToReportFragment(null);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
-                it('... id is empty string', () => {
-                    component.navigateToReportFragment('');
+                it('... fragment id is undefined', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... fragment id is null', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... fragment id is empty string', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
             });
 
-            it('... should emit id of selected report fragment', () => {
-                component.navigateToReportFragment(expectedFragment);
+            it('... should emit id of selected report fragment within same complex', () => {
+                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                component.navigateToReportFragment(expectedReportIds);
 
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedFragment);
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
 
                 const otherFragment = 'source_B';
-                component.navigateToReportFragment(otherFragment);
+                const expectedNextReportIds = { complexId: expectedComplexId, fragmentId: otherFragment };
+                component.navigateToReportFragment(expectedNextReportIds);
 
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, otherFragment);
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
+            });
+
+            it('... should emit id of selected report fragment for another complex', () => {
+                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                component.navigateToReportFragment(expectedReportIds);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
+
+                const otherFragment = 'source_B';
+                const expectedNextReportIds = { complexId: expectedNextComplexId, fragmentId: otherFragment };
+                component.navigateToReportFragment(expectedNextReportIds);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
             });
         });
 
@@ -337,39 +367,41 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 // CLick on third anchor (with selectSvgSheet call)
                 clickAndAwaitChanges(anchorDes[2], fixture);
 
-                expectSpyCall(selectSvgSheetSpy, 1, [expectedComplexId, expectedSvgSheet.id]);
+                expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
             }));
 
             it('... should not emit anything if no id is provided', () => {
-                component.selectSvgSheet(undefined, undefined);
+                const expectedSheetIds = undefined;
+                component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
 
-                component.selectSvgSheet('', '');
+                const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
+                component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
             });
 
             it('... should emit id of selected svg sheet within same complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                component.selectSvgSheet(expectedSheetIds.complexId, expectedSheetIds.sheetId);
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
 
-                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
-                component.selectSvgSheet(expectedNextSheetIds.complexId, expectedNextSheetIds.sheetId);
+                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSheetId };
+                component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
             });
 
             it('... should emit id of selected svg sheet for another complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                component.selectSvgSheet(expectedSheetIds.complexId, expectedSheetIds.sheetId);
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
 
-                const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSvgSheet.id };
-                component.selectSvgSheet(expectedNextSheetIds.complexId, expectedNextSheetIds.sheetId);
+                const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSheetId };
+                component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
             });

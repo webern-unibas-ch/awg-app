@@ -9,6 +9,7 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
@@ -62,7 +63,7 @@ class EditionSvgSheetFooterStubComponent {
     @Input()
     showTkA: boolean;
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -89,7 +90,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
     let expectedComplexId: string;
     let expectedNextComplexId: string;
-    let expectedFragment: string;
+    let expectedReportFragment: string;
     let expectedSvgSheetsData: EditionSvgSheetList;
     let expectedOverlays: EditionSvgOverlay[];
     let expectedSvgSheet: EditionSvgSheet;
@@ -129,7 +130,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
         // Test data
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
-        expectedFragment = 'source_A';
+        expectedReportFragment = 'source_A';
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
@@ -196,9 +197,25 @@ describe('EditionAccoladeComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no div.accordion yet', () => {
+            it('... should contain one div.accordion', () => {
                 // Div.accordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+            });
+
+            it('... should contain one div.accordion-item with header and non-collapsible body yet in div.accordion', () => {
+                // Div.accordion debug element
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
+                // Header (div.accordion-header)
+                getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-header', 1, 1);
+
+                // Body (div.accordion-collapse)
+                const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
+                const itemBodyEl = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'accordion-collapse');
             });
         });
     });
@@ -237,17 +254,25 @@ describe('EditionAccoladeComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.accordion', () => {
-                // NgbAccordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
-            });
-
-            it('... should contain one item in div.accordion', () => {
+            it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
                 // NgbAccordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                // Div.accordion-item
-                getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
+                // Item (div.accordion-item)
+                const itemDes = getAndExpectDebugElementByCss(
+                    accordionDes[0],
+                    'div#awg-accolade-view.accordion-item',
+                    1,
+                    1
+                );
+                // Header (div.accordion-header)
+                getAndExpectDebugElementByCss(itemDes[0], 'div#awg-accolade-view > div.accordion-header', 1, 1);
+
+                // Body open (div.accordion-collapse)
+                const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div#awg-accolade-view-collapse', 1, 1);
+                const itemBodyEl = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'show');
             });
 
             it('... should contain header section with div and two buttons (div.accordion-header)', () => {
@@ -283,9 +308,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 it('... should contain one EditionSvgSheetNavComponent (stubbed) in the item body (div.accordion-body)', () => {
                     // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
-                    const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+                    const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetNavStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(itemBodyDes[0], EditionSvgSheetNavStubComponent, 1, 1);
                 });
 
                 it('... should pass down svgSheetsData to the EditionSvgSheetNavComponent', () => {
@@ -321,9 +346,23 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 it('... should contain one EditionSvgSheetViewerComponent (stubbed) in the item body (div.accordion-body)', () => {
                     // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
-                    const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+                    const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetViewerStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(itemBodyDes[0], EditionSvgSheetViewerStubComponent, 1, 1);
+                });
+
+                it('... should not contain an EditionSvgSheetViewerComponent (stubbed) in the item body if no selectedSvgSheet is provided', () => {
+                    // Reset selectedSvgSheet
+                    component.selectedSvgSheet = undefined;
+
+                    // Trigger data binding
+                    fixture.detectChanges();
+
+                    // Div.accordion-item
+                    const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+                    const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+
+                    getAndExpectDebugElementByDirective(itemBodyDes[0], EditionSvgSheetViewerStubComponent, 1, 1);
                 });
 
                 it('... should pass down selectedSvgSheet to the EditionSvgSheetViewerComponent', () => {
@@ -345,23 +384,53 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 it('... should contain one EditionSvgSheetFooterComponent (stubbed) in the item body (div.accordion-body)', () => {
                     // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
-                    const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+                    const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(itemBodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
                 });
 
-                it('... should pass down selectedTextcriticalComments to the EditionSvgSheetFooterComponent', () => {
-                    const footerDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionSvgSheetFooterStubComponent,
-                        1,
-                        1
-                    );
-                    const footerCmp = footerDes[0].injector.get(
-                        EditionSvgSheetFooterStubComponent
-                    ) as EditionSvgSheetFooterStubComponent;
+                describe('... should not contain an EditionSvgSheetFooterComponent (stubbed) in the item body if ...', () => {
+                    it('... no selectedSvgSheet is provided', () => {
+                        // Reset selectedSvgSheet
+                        component.selectedSvgSheet = undefined;
 
-                    expectToEqual(footerCmp.selectedTextcriticalComments, expectedSelectedTextcriticalComments);
+                        // Trigger data binding
+                        fixture.detectChanges();
+
+                        // Div.accordion-item
+                        const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+                        const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+
+                        getAndExpectDebugElementByDirective(itemBodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
+                    });
+                    it('... no selectedTextcritics are provided', () => {
+                        // Reset selectedTextcritics
+                        component.selectedTextcritics = undefined;
+
+                        // Trigger data binding
+                        fixture.detectChanges();
+
+                        // Div.accordion-item
+                        const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+                        const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+
+                        getAndExpectDebugElementByDirective(itemBodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
+                    });
+
+                    it('... no selectedSvgSheet and no selectedTextcritics are provided', () => {
+                        // Reset selectedSvgSheet and selectedTextcritics
+                        component.selectedSvgSheet = undefined;
+                        component.selectedTextcritics = undefined;
+
+                        // Trigger data binding
+                        fixture.detectChanges();
+
+                        // Div.accordion-item
+                        const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+                        const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
+
+                        getAndExpectDebugElementByDirective(itemBodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
+                    });
                 });
 
                 it('... should pass down selectedTextcritics to the EditionSvgSheetFooterComponent', () => {
@@ -376,6 +445,20 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     ) as EditionSvgSheetFooterStubComponent;
 
                     expectToEqual(footerCmp.selectedTextcritics, expectedSelectedTextcritics);
+                });
+
+                it('... should pass down selectedTextcriticalComments to the EditionSvgSheetFooterComponent', () => {
+                    const footerDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionSvgSheetFooterStubComponent,
+                        1,
+                        1
+                    );
+                    const footerCmp = footerDes[0].injector.get(
+                        EditionSvgSheetFooterStubComponent
+                    ) as EditionSvgSheetFooterStubComponent;
+
+                    expectToEqual(footerCmp.selectedTextcriticalComments, expectedSelectedTextcriticalComments);
                 });
 
                 it('... should pass down showTkA to the EditionSvgSheetFooterComponent', () => {
@@ -454,38 +537,65 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     EditionSvgSheetFooterStubComponent
                 ) as EditionSvgSheetFooterStubComponent;
 
-                sheetFooterCmp.navigateToReportFragmentRequest.emit(expectedFragment);
+                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
 
-                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+                sheetFooterCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+
+                expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
             });
 
             describe('... should not emit anything if', () => {
-                it('... id is undefined', () => {
+                it('... paraemeter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
-                it('... id is null', () => {
+                it('... parameter is null', () => {
                     component.navigateToReportFragment(null);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
-                it('... id is empty string', () => {
-                    component.navigateToReportFragment('');
+                it('... fragment id is undefined', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... fragment id is null', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... fragment id is empty string', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
             });
 
-            it('... should emit id of selected report fragment', () => {
-                component.navigateToReportFragment(expectedFragment);
+            it('... should emit id of selected report fragment within same complex', () => {
+                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                component.navigateToReportFragment(expectedReportIds);
 
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedFragment);
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
 
                 const otherFragment = 'source_B';
-                component.navigateToReportFragment(otherFragment);
+                const expectedNextReportIds = { complexId: expectedComplexId, fragmentId: otherFragment };
+                component.navigateToReportFragment(expectedNextReportIds);
 
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, otherFragment);
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
+            });
+
+            it('... should emit id of selected report fragment for another complex', () => {
+                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                component.navigateToReportFragment(expectedReportIds);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
+
+                const otherFragment = 'source_B';
+                const expectedNextReportIds = { complexId: expectedNextComplexId, fragmentId: otherFragment };
+                component.navigateToReportFragment(expectedNextReportIds);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
             });
         });
 

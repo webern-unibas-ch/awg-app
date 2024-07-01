@@ -1,17 +1,17 @@
 import { DebugElement } from '@angular/core';
 
 /**
- * Test helper function: expectPanel.
+ * Test helper function: expectAccordionItem.
  *
- * It checks if a given ngbAccordion item (panel) is collapsed or open.
+ * It checks if a given ngbAccordion item is collapsed or open.
  *
  * @param {DebugElement} headerDe The accordion header DebugElement.
  * @param {string} msg The msg to be displayed in Expectation.
- * @param {boolean} collapsed The boolean value if the panel is collapsed.
+ * @param {boolean} collapsed The boolean value if the accordion item is collapsed.
  *
- * @returns {DebugElement} The debug element of the panel.
+ * @returns {void} Evaluates the expectation.
  */
-function expectPanel(headerDe: DebugElement, msg: string, collapsed?: boolean): void {
+function expectAccordionItem(headerDe: DebugElement, msg: string, collapsed?: boolean): void {
     const headerEl = headerDe.nativeElement;
     const isCollapsed = headerEl.classList.contains('collapsed');
 
@@ -21,29 +21,29 @@ function expectPanel(headerDe: DebugElement, msg: string, collapsed?: boolean): 
 }
 
 /**
- * Test helper function: expectCollapsedPanel.
+ * Test helper function: expectCollapsedAccordionItem.
  *
- * It checks if a given ngbAccordion item (panel) is collapsed.
+ * It checks if a given ngbAccordion item is collapsed.
  *
  * @param {DebugElement} headerDe The accordion header DebugElement.
  * @param {string} msg The msg to be displayed in Expectation.
  *
- * @returns {void} Sends the given values to getAndExpect helper.
+ * @returns {void} Sends the given values to expectAccordionItem helper.
  */
-export function expectCollapsedPanel(headerDe: DebugElement, msg: string) {
-    expectPanel(headerDe, msg, true);
+export function expectCollapsedAccordionItem(headerDe: DebugElement, msg: string): void {
+    expectAccordionItem(headerDe, msg, true);
 }
 
 /**
- * Test helper function: expectOpenPanel.
+ * Test helper function: expectOpenAccordionItem.
  *
- * It checks if a given ngbAccordion item (panel) is open.
+ * It checks if a given ngbAccordion item is open.
  *
  * @param {DebugElement} headerDe The accordion header DebugElement.
  * @param {string} msg The msg to be displayed in Expectation.
  *
- * @returns {void} Sends the given values to getAndExpect helper.
+ * @returns {void} Sends the given values to expectAccordionItem helper.
  */
-export function expectOpenPanel(headerDe: DebugElement, msg: string) {
-    expectPanel(headerDe, msg, false);
+export function expectOpenAccordionItem(headerDe: DebugElement, msg: string): void {
+    expectAccordionItem(headerDe, msg, false);
 }

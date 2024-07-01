@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
-import { DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -10,6 +10,7 @@ import {
     expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
@@ -23,9 +24,38 @@ import {
     SourceDescriptionWritingMaterialFormat,
     SourceDescriptionWritingMaterialItemLocation,
     SourceDescriptionWritingMaterialSystems,
+    Textcritics,
 } from '@awg-views/edition-view/models';
 
 import { SourceDescriptionComponent } from './source-description.component';
+
+// Mock components
+@Component({ selector: 'awg-source-description-details', template: '' })
+class SourceDescriptionDetailsStubComponent {
+    @Input()
+    details: string[];
+    @Input()
+    detailsClass: string;
+    @Input()
+    detailsLabel: string;
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+}
+@Component({ selector: 'awg-source-description-corrections', template: '' })
+class SourceDescriptionCorrectionsStubComponent {
+    @Input()
+    corrections: Textcritics[];
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+}
 
 describe('SourceDescriptionComponent (DONE)', () => {
     let component: SourceDescriptionComponent;
@@ -35,15 +65,6 @@ describe('SourceDescriptionComponent (DONE)', () => {
     let mockDocument: Document;
     let utils: UtilityService;
 
-    let expectedSourceDescriptionListData: SourceDescriptionList;
-    let expectedFirmSigns;
-    let expectedComplexId: string;
-    let expectedNextComplexId: string;
-    let expectedSheetId: string;
-    let expectedNextSheetId: string;
-    let expectedModalSnippet: string;
-    let expectedFragment: string;
-
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
     let openModalSpy: Spy;
@@ -51,9 +72,24 @@ describe('SourceDescriptionComponent (DONE)', () => {
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
 
+    let expectedSourceDescriptionListData: SourceDescriptionList;
+    let expectedFirmSigns;
+    let expectedComplexId: string;
+    let expectedNextComplexId: string;
+    let expectedSheetId: string;
+    let expectedNextSheetId: string;
+    let expectedModalSnippet: string;
+    let expectedReportFragment: string;
+
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [SourceDescriptionComponent, CompileHtmlComponent, RouterLinkStubDirective],
+            declarations: [
+                SourceDescriptionComponent,
+                SourceDescriptionDetailsStubComponent,
+                SourceDescriptionCorrectionsStubComponent,
+                CompileHtmlComponent,
+                RouterLinkStubDirective,
+            ],
             providers: [UtilityService],
         }).compileComponents();
     }));
@@ -72,7 +108,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
         expectedNextComplexId = 'testComplex2';
         expectedSheetId = 'test_item_id_1';
         expectedNextSheetId = 'test_item_id_2';
-        expectedFragment = 'source_G';
+        expectedReportFragment = 'source_G';
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedFirmSigns = EDITION_FIRM_SIGNS_DATA;
 
@@ -321,66 +357,23 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[1].location.trim());
                 });
 
-                it('... should contain up to 9 paragraphs in description-body div', () => {
+                it('... should contain 1 paragraph in description-body div', () => {
                     // First description has no content, so only 2 divs
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
 
                     // Get first description body div with content
-                    getAndExpectDebugElementByCss(descBodyDes[0], 'div.awg-source-description-body > p', 9, 9);
+                    getAndExpectDebugElementByCss(descBodyDes[0], 'div.awg-source-description-body > p', 1, 1);
                 });
 
-                it('... the first possible paragraph displaying the description', () => {
+                it('... the paragraph in description-body div displaying the writingInstruments', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
                     const pDes = getAndExpectDebugElementByCss(
                         descBodyDes[0],
                         'div.awg-source-description-body > p',
-                        9,
-                        9
+                        1,
+                        1
                     );
                     const pEl = pDes[0].nativeElement;
-
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('p');
-                    expectedHtmlTextContent.innerHTML =
-                        expectedSourceDescriptionListData.sources[1].description.desc[0];
-
-                    expect(pEl).toHaveClass('awg-source-description-desc');
-                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
-                });
-
-                it('... the second possible paragraph displaying the writingMaterial', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
-                    const pDes = getAndExpectDebugElementByCss(
-                        descBodyDes[0],
-                        'div.awg-source-description-body > p',
-                        9,
-                        9
-                    );
-                    const pEl = pDes[1].nativeElement;
-
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('p');
-                    expectedHtmlTextContent.innerHTML =
-                        '<span class="smallcaps">Beschreibstoff:&nbsp;</span><span>' +
-                        expectedSourceDescriptionListData.sources[1].description.writingMaterialString +
-                        '</span>';
-
-                    expect(pEl).toHaveClass('awg-source-description-writing-material');
-                    expectToBe(
-                        pEl.textContent.trim().toLowerCase(),
-                        expectedHtmlTextContent.textContent.trim().toLowerCase()
-                    );
-                });
-
-                it('... the third possible paragraph displaying the writingInstruments', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
-                    const pDes = getAndExpectDebugElementByCss(
-                        descBodyDes[0],
-                        'div.awg-source-description-body > p',
-                        9,
-                        9
-                    );
-                    const pEl = pDes[2].nativeElement;
 
                     const instruments = expectedSourceDescriptionListData.sources[1].description.writingInstruments;
 
@@ -400,134 +393,185 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
                 });
 
-                it('... the fourth possible paragraph displaying the title', () => {
+                it('... should contain up to 8 source description details components (stubbed) in description-body div', () => {
+                    // First description has no content, so only 2 divs
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
-                    const pDes = getAndExpectDebugElementByCss(
-                        descBodyDes[0],
-                        'div.awg-source-description-body > p',
-                        9,
-                        9
-                    );
-                    const pEl = pDes[3].nativeElement;
 
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('p');
-                    expectedHtmlTextContent.innerHTML =
-                        'Titel:&nbsp;' + expectedSourceDescriptionListData.sources[1].description.title;
-
-                    expect(pEl).toHaveClass('awg-source-description-title');
-                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
+                    getAndExpectDebugElementByDirective(descBodyDes[0], SourceDescriptionDetailsStubComponent, 8, 8);
                 });
 
-                it('... the fifth possible paragraph displaying the date', () => {
+                it('... should pass down the description to the first source description details component', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
-                    const pDes = getAndExpectDebugElementByCss(
+
+                    const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
-                        'div.awg-source-description-body > p',
-                        9,
-                        9
+                        SourceDescriptionDetailsStubComponent,
+                        8,
+                        8
                     );
-                    const pEl = pDes[4].nativeElement;
+                    const detailCmp = detailDes[0].injector.get(
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
 
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('p');
-                    expectedHtmlTextContent.innerHTML =
-                        'Datierung:&nbsp;' + expectedSourceDescriptionListData.sources[1].description.date;
-
-                    expect(pEl).toHaveClass('awg-source-description-date');
-                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
+                    expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].description.desc);
+                    expectToBe(detailCmp.detailsLabel, '');
+                    expectToBe(detailCmp.detailsClass, 'desc');
                 });
 
-                it('... the sixth possible paragraph displaying the pagination', () => {
+                it('... should pass down the writingMaterials to the second source description details component', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
-                    const pDes = getAndExpectDebugElementByCss(
+
+                    const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
-                        'div.awg-source-description-body > p',
-                        9,
-                        9
+                        SourceDescriptionDetailsStubComponent,
+                        8,
+                        8
                     );
-                    const pEl = pDes[5].nativeElement;
+                    const detailCmp = detailDes[1].injector.get(
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
 
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('p');
-                    expectedHtmlTextContent.innerHTML =
-                        'Paginierung:&nbsp;' + expectedSourceDescriptionListData.sources[1].description.pagination;
-
-                    expect(pEl).toHaveClass('awg-source-description-pagination');
-                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
+                    expectToEqual(
+                        detailCmp.details,
+                        expectedSourceDescriptionListData.sources[1].description.writingMaterialStrings
+                    );
+                    expectToBe(detailCmp.detailsLabel, 'Beschreibstoff');
+                    expectToBe(detailCmp.detailsClass, 'writing-materials');
                 });
 
-                it('... the seventh possible paragraph displaying the measure numbers', () => {
+                it('... should pass down the titles to the third source description details component', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
-                    const pDes = getAndExpectDebugElementByCss(
+
+                    const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
-                        'div.awg-source-description-body > p',
-                        9,
-                        9
+                        SourceDescriptionDetailsStubComponent,
+                        8,
+                        8
                     );
-                    const pEl = pDes[6].nativeElement;
+                    const detailCmp = detailDes[2].injector.get(
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
 
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('p');
-                    expectedHtmlTextContent.innerHTML =
-                        'Taktzahlen:&nbsp;' + expectedSourceDescriptionListData.sources[1].description.measureNumbers;
-
-                    expect(pEl).toHaveClass('awg-source-description-measure-numbers');
-                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
+                    expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].description.titles);
+                    expectToBe(detailCmp.detailsLabel, 'Titel');
+                    expectToBe(detailCmp.detailsClass, 'titles');
                 });
 
-                it('... the eighth possible paragraph displaying the instrumentation', () => {
+                it('... should pass down the dates to the fourth source description details component', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
-                    const pDes = getAndExpectDebugElementByCss(
+
+                    const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
-                        'div.awg-source-description-body > p',
-                        9,
-                        9
+                        SourceDescriptionDetailsStubComponent,
+                        8,
+                        8
                     );
-                    const pEl = pDes[7].nativeElement;
+                    const detailCmp = detailDes[3].injector.get(
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
 
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('p');
-                    expectedHtmlTextContent.innerHTML =
-                        'Instrumentenvorsatz:&nbsp;' +
-                        expectedSourceDescriptionListData.sources[1].description.instrumentation;
-
-                    expect(pEl).toHaveClass('awg-source-description-instrumentation');
-                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
+                    expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].description.dates);
+                    expectToBe(detailCmp.detailsLabel, 'Datierung');
+                    expectToBe(detailCmp.detailsClass, 'dates');
                 });
 
-                it('... the ninth possible paragraph displaying the annotations', () => {
+                it('... should pass down the paginations to the fifth source description details component', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
-                    const pDes = getAndExpectDebugElementByCss(
+
+                    const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
-                        'div.awg-source-description-body > p',
-                        9,
-                        9
+                        SourceDescriptionDetailsStubComponent,
+                        8,
+                        8
                     );
-                    const pEl = pDes[8].nativeElement;
+                    const detailCmp = detailDes[4].injector.get(
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
 
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('p');
-                    expectedHtmlTextContent.innerHTML =
-                        'Eintragungen:&nbsp;' + expectedSourceDescriptionListData.sources[1].description.annotations;
-
-                    expect(pEl).toHaveClass('awg-source-description-annotations');
-                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
+                    expectToEqual(
+                        detailCmp.details,
+                        expectedSourceDescriptionListData.sources[1].description.paginations
+                    );
+                    expectToBe(detailCmp.detailsLabel, 'Paginierung');
+                    expectToBe(detailCmp.detailsClass, 'paginations');
                 });
 
-                it('... should contain one description-content div in description-body div', () => {
+                it('... should pass down the measureNumbers to the sixth source description details component', () => {
+                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+
+                    const detailDes = getAndExpectDebugElementByDirective(
+                        descBodyDes[0],
+                        SourceDescriptionDetailsStubComponent,
+                        8,
+                        8
+                    );
+                    const detailCmp = detailDes[5].injector.get(
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
+
+                    expectToEqual(
+                        detailCmp.details,
+                        expectedSourceDescriptionListData.sources[1].description.measureNumbers
+                    );
+                    expectToBe(detailCmp.detailsLabel, 'Taktzahlen');
+                    expectToBe(detailCmp.detailsClass, 'measure-numbers');
+                });
+
+                it('... should pass down the instrumentations to the seventh source description details component', () => {
+                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+
+                    const detailDes = getAndExpectDebugElementByDirective(
+                        descBodyDes[0],
+                        SourceDescriptionDetailsStubComponent,
+                        8,
+                        8
+                    );
+                    const detailCmp = detailDes[6].injector.get(
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
+
+                    expectToEqual(
+                        detailCmp.details,
+                        expectedSourceDescriptionListData.sources[1].description.instrumentations
+                    );
+                    expectToBe(detailCmp.detailsLabel, 'Instrumentenvorsatz');
+                    expectToBe(detailCmp.detailsClass, 'instrumentations');
+                });
+
+                it('... should pass down the annotations to the eighth source description details component', () => {
+                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+
+                    const detailDes = getAndExpectDebugElementByDirective(
+                        descBodyDes[0],
+                        SourceDescriptionDetailsStubComponent,
+                        8,
+                        8
+                    );
+                    const detailCmp = detailDes[7].injector.get(
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
+
+                    expectToEqual(
+                        detailCmp.details,
+                        expectedSourceDescriptionListData.sources[1].description.annotations
+                    );
+                    expectToBe(detailCmp.detailsLabel, 'Eintragungen');
+                    expectToBe(detailCmp.detailsClass, 'annotations');
+                });
+
+                it('... should contain one description-contents div in description-body div', () => {
                     getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-source-description-body > div.awg-source-description-content',
+                        'div.awg-source-description-body > div.awg-source-description-contents',
                         1,
                         1
                     );
                 });
 
-                it('... should contain one paragraph (no-para) displaying the label "Inhalt:" in description-content div', () => {
+                it('... should contain one paragraph (no-para) displaying the label "Inhalt:" in description-contents div', () => {
                     const pDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-source-description-body > div.awg-source-description-content > p.no-para',
+                        'div.awg-source-description-body > div.awg-source-description-contents > p.no-para',
                         1,
                         1
                     );
@@ -537,24 +581,24 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     expectToBe(pEl.textContent.trim(), 'Inhalt:');
                 });
 
-                it('... should contain as many item paragraphs (half-para) in description-content div as given content items', () => {
+                it('... should contain as many item paragraphs (half-para) in description-contents div as given content items', () => {
                     getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                        expectedSourceDescriptionListData.sources[1].description.content.length,
-                        expectedSourceDescriptionListData.sources[1].description.content.length
+                        'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
+                        expectedSourceDescriptionListData.sources[1].description.contents.length,
+                        expectedSourceDescriptionListData.sources[1].description.contents.length
                     );
                 });
 
                 describe('... the item paragraphs (half-para)', () => {
                     it('... should contain the content items', () => {
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
+                        const expectedContentsLength =
+                            expectedSourceDescriptionListData.sources[1].description.contents.length;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
+                            expectedContentsLength,
+                            expectedContentsLength
                         );
 
                         const itemDes0 = getAndExpectDebugElementByCss(
@@ -587,13 +631,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     });
 
                     it('... should display the content-item (strong) with anchor link and description if given', () => {
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
+                        const expectedContentsLength =
+                            expectedSourceDescriptionListData.sources[1].description.contents.length;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
+                            expectedContentsLength,
+                            expectedContentsLength
                         );
                         const contentItemDes = getAndExpectDebugElementByCss(
                             pDes[0],
@@ -618,13 +662,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     });
 
                     it('... should display the content-item (strong) without anchor link if not given', () => {
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
+                        const expectedContentsLength =
+                            expectedSourceDescriptionListData.sources[1].description.contents.length;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
+                            expectedContentsLength,
+                            expectedContentsLength
                         );
                         const contentItemDes = getAndExpectDebugElementByCss(
                             pDes[1],
@@ -649,13 +693,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     });
 
                     it('... should display the content-item (strong) without description if not given', () => {
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
+                        const expectedContentsLength =
+                            expectedSourceDescriptionListData.sources[1].description.contents.length;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
+                            expectedContentsLength,
+                            expectedContentsLength
                         );
                         const contentItemDes = getAndExpectDebugElementByCss(
                             pDes[2],
@@ -680,15 +724,15 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                 describe('... the content item folios', () => {
                     it('... should contain as many folio spans (content-item-folio) in item paragraphs as given content item folios', () => {
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
+                        const expectedContentsLength =
+                            expectedSourceDescriptionListData.sources[1].description.contents.length;
                         const expectedFolioLength =
-                            expectedSourceDescriptionListData.sources[1].description.content[0].folios.length;
+                            expectedSourceDescriptionListData.sources[1].description.contents[0].folios.length;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
+                            expectedContentsLength,
+                            expectedContentsLength
                         );
                         getAndExpectDebugElementByCss(
                             pDes[0],
@@ -700,18 +744,18 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     it('... should have `tab` class on folio spans (content-item-folio) if content.item is given', () => {
                         // Get number of all content items of mockdata
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
+                        const expectedContentsLength =
+                            expectedSourceDescriptionListData.sources[1].description.contents.length;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
+                            expectedContentsLength,
+                            expectedContentsLength
                         );
 
                         // Get length of folio array of 1st content item array of mockdata
                         const expectedFolioLength =
-                            expectedSourceDescriptionListData.sources[1].description.content[0].folios.length;
+                            expectedSourceDescriptionListData.sources[1].description.contents[0].folios.length;
                         const folioDes = getAndExpectDebugElementByCss(
                             pDes[0],
                             'span.awg-source-description-content-item-folio',
@@ -727,18 +771,18 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     it('... should have no tab class on folio spans (content-item-folio) if no content.item is given', () => {
                         // Get number of all content items of mockdata
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
+                        const expectedContentsLength =
+                            expectedSourceDescriptionListData.sources[1].description.contents.length;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
+                            expectedContentsLength,
+                            expectedContentsLength
                         );
 
                         // Get length of folio array of 4th content item array of mockdata
                         const expectedFolioLength =
-                            expectedSourceDescriptionListData.sources[1].description.content[3].folios.length;
+                            expectedSourceDescriptionListData.sources[1].description.contents[3].folios.length;
                         const folioDes = getAndExpectDebugElementByCss(
                             pDes[3],
                             'span.awg-source-description-content-item-folio',
@@ -752,18 +796,18 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     it('... should display the content-item-folio with anchor link if given', () => {
                         // Get number of all content items of mockdata
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
+                        const expectedContentsLength =
+                            expectedSourceDescriptionListData.sources[1].description.contents.length;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
+                            expectedContentsLength,
+                            expectedContentsLength
                         );
 
                         // Get length of folio array of 1st content item array of mockdata
                         const expectedFolioLength =
-                            expectedSourceDescriptionListData.sources[1].description.content[0].folios.length;
+                            expectedSourceDescriptionListData.sources[1].description.contents[0].folios.length;
                         const folioDes = getAndExpectDebugElementByCss(
                             pDes[0],
                             'span.awg-source-description-content-item-folio',
@@ -785,18 +829,18 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     it('... should display the content-item-folio without anchor link if not given', () => {
                         // Get number of all content items of mockdata
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
+                        const expectedContentsLength =
+                            expectedSourceDescriptionListData.sources[1].description.contents.length;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
+                            expectedContentsLength,
+                            expectedContentsLength
                         );
 
                         // Get length of folio array of 1st content item array of mockdata
                         const expectedFolioLength =
-                            expectedSourceDescriptionListData.sources[1].description.content[0].folios.length;
+                            expectedSourceDescriptionListData.sources[1].description.contents[0].folios.length;
                         const folioDes = getAndExpectDebugElementByCss(
                             pDes[0],
                             'span.awg-source-description-content-item-folio',
@@ -818,18 +862,18 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     it('... should display the content-item-folio as pages if given', () => {
                         // Get number of all content items of mockdata
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
+                        const expectedContentsLength =
+                            expectedSourceDescriptionListData.sources[1].description.contents.length;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
+                            expectedContentsLength,
+                            expectedContentsLength
                         );
 
                         // Get length of folio array of 1st content item array of mockdata
                         const expectedFolioLength =
-                            expectedSourceDescriptionListData.sources[1].description.content[0].folios.length;
+                            expectedSourceDescriptionListData.sources[1].description.contents[0].folios.length;
                         const folioDes = getAndExpectDebugElementByCss(
                             pDes[0],
                             'span.awg-source-description-content-item-folio',
@@ -851,18 +895,18 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     it('... should display the content-item-folio with description if given', () => {
                         // Get number of all content items of mockdata
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
+                        const expectedContentsLength =
+                            expectedSourceDescriptionListData.sources[1].description.contents.length;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
+                            expectedContentsLength,
+                            expectedContentsLength
                         );
 
                         // Get length of folio array of 4th content item array of mockdata
                         const expectedFolioLength =
-                            expectedSourceDescriptionListData.sources[1].description.content[3].folios.length;
+                            expectedSourceDescriptionListData.sources[1].description.contents[3].folios.length;
                         const folioDes = getAndExpectDebugElementByCss(
                             pDes[3],
                             'span.awg-source-description-content-item-folio',
@@ -883,10 +927,10 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 describe('... the content item systems', () => {
                     it('... should contain as many system spans (content-item-system) in content item folios as given systems', () => {
                         // Get number of all content items of mockdata
-                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.contents;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
                             expectedContent.length,
                             expectedContent.length
                         );
@@ -909,10 +953,10 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     it('... should display the system labels', () => {
                         // Get number of all content items of mockdata
-                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.contents;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
                             expectedContent.length,
                             expectedContent.length
                         );
@@ -934,7 +978,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                                 const systemEl = system.nativeElement;
 
                                 const expectedHtmlTextContent = mockDocument.createElement('span');
-                                expectedHtmlTextContent.innerHTML = `System&nbsp;${expectedSystems[index].system}:`;
+                                expectedHtmlTextContent.innerHTML = `System&nbsp;${expectedSystems[index].system}`;
 
                                 expectToBe(systemEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                             });
@@ -943,10 +987,10 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     it('... should display the system description if given', () => {
                         // Get number of all content items of mockdata
-                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.contents;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
                             expectedContent.length,
                             expectedContent.length
                         );
@@ -976,12 +1020,55 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         });
                     });
 
-                    it('... should display measure numbers if given', () => {
+                    it('... should display a colon after the systems if systemDescriptions, measures or rows are given, otherwise a dot.', () => {
                         // Get number of all content items of mockdata
-                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.contents;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
+                            expectedContent.length,
+                            expectedContent.length
+                        );
+                        pDes.forEach((pDe, pIndex) => {
+                            // Get length of nested system groups array of all folios of 1st content item array of mockdata
+                            const systemGroups = [];
+                            expectedContent[pIndex].folios.forEach(folio => {
+                                systemGroups.push(folio.systemGroups.flat());
+                            });
+                            const expectedSystems = systemGroups.flat();
+
+                            // Get the direct sibling spans of system spans
+                            const spanDes = getAndExpectDebugElementByCss(
+                                pDe,
+                                'span.awg-source-description-content-item-system + span',
+                                expectedSystems.length,
+                                expectedSystems.length
+                            );
+                            spanDes.forEach((span, index) => {
+                                const spanEl = span.nativeElement;
+                                const expectedHtmlTextContent = mockDocument.createElement('span');
+
+                                if (
+                                    expectedSystems[index].systemDescription ||
+                                    expectedSystems[index].measure ||
+                                    expectedSystems[index].row
+                                ) {
+                                    expectedHtmlTextContent.innerHTML = `:&nbsp;`;
+                                } else {
+                                    expectedHtmlTextContent.innerHTML = `.`;
+                                }
+
+                                expectToBe(spanEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
+                            });
+                        });
+                    });
+
+                    it('... should display measure numbers if given', () => {
+                        // Get number of all content items of mockdata
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.contents;
+                        const pDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
                             expectedContent.length,
                             expectedContent.length
                         );
@@ -1017,10 +1104,10 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     it('... should have `singletab` class if the folio label length equals 1 and the system is not in the first systemGroup, and has measures', () => {
                         // Get number of all content items of mockdata
-                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.contents;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
                             expectedContent.length,
                             expectedContent.length
                         );
@@ -1060,10 +1147,10 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     it('... should have `doubletab` class if the folio label length equals 2 and the system is not in the first systemGroup, and has measures', () => {
                         // Get number of all content items of mockdata
-                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.contents;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
                             expectedContent.length,
                             expectedContent.length
                         );
@@ -1101,12 +1188,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         expect(systemEl5).not.toHaveClass('doubletab');
                     });
 
-                    it('... should have `doubletab_two` class if the folio label length is greater 2 and the system is not in the first systemGroup, and has measures', () => {
+                    it('... should have `doubletab_extended` class if the folio label length is greater 2 and the system is not in the first systemGroup, and has measures', () => {
                         // Get number of all content items of mockdata
-                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.contents;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
                             expectedContent.length,
                             expectedContent.length
                         );
@@ -1132,24 +1219,24 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         const systemEl5 = systemDes[5].nativeElement;
 
                         // Bl. 1r
-                        expect(systemEl0).not.toHaveClass('doubletab_two');
-                        expect(systemEl1).not.toHaveClass('doubletab_two');
+                        expect(systemEl0).not.toHaveClass('doubletab_extended');
+                        expect(systemEl1).not.toHaveClass('doubletab_extended');
 
                         // Bl. 29v
-                        expect(systemEl2).not.toHaveClass('doubletab_two');
-                        expect(systemEl3).toHaveClass('doubletab_two');
+                        expect(systemEl2).not.toHaveClass('doubletab_extended');
+                        expect(systemEl3).toHaveClass('doubletab_extended');
 
                         // S. 2
-                        expect(systemEl4).not.toHaveClass('doubletab_two');
-                        expect(systemEl5).not.toHaveClass('doubletab_two');
+                        expect(systemEl4).not.toHaveClass('doubletab_extended');
+                        expect(systemEl5).not.toHaveClass('doubletab_extended');
                     });
 
                     it('... should have `tab` class if the system has rows and is not the first system', () => {
                         // Get number of all content items of mockdata
-                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.contents;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
                             expectedContent.length,
                             expectedContent.length
                         );
@@ -1200,15 +1287,15 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     });
 
                     it('... should have `singletab` class if the system has rows, is first system, but not in the first systemGroup, and the folio length equals 1', () => {
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
+                        const expectedContentsLength =
+                            expectedSourceDescriptionListData.sources[1].description.contents.length;
                         const expectedSystemLength = 12;
 
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
+                            expectedContentsLength,
+                            expectedContentsLength
                         );
                         // Systems with measures
                         const systemDes = getAndExpectDebugElementByCss(
@@ -1250,15 +1337,15 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     });
 
                     it('... should have `doubletab` class if the system has rows, is first system, but not in the first systemGroup, and the folio length equals 2', () => {
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
+                        const expectedContentsLength =
+                            expectedSourceDescriptionListData.sources[1].description.contents.length;
                         const expectedSystemLength = 12;
 
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
+                            expectedContentsLength,
+                            expectedContentsLength
                         );
                         // Systems with measures
                         const systemDes = getAndExpectDebugElementByCss(
@@ -1299,16 +1386,16 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         expect(systemEl11).not.toHaveClass('doubletab');
                     });
 
-                    it('... should have `doubletab_two` class if the system has rows, is first system, but not in the first systemGroup, and the folio length is greater 2', () => {
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
+                    it('... should have `doubletab_extended` class if the system has rows, is first system, but not in the first systemGroup, and the folio length is greater 2', () => {
+                        const expectedContentsLength =
+                            expectedSourceDescriptionListData.sources[1].description.contents.length;
                         const expectedSystemLength = 12;
 
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            'div.awg-source-description-body > div.awg-source-description-contents > p.half-para',
+                            expectedContentsLength,
+                            expectedContentsLength
                         );
                         // Systems with measures
                         const systemDes = getAndExpectDebugElementByCss(
@@ -1327,16 +1414,61 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         const systemEl7 = systemDes[7].nativeElement;
 
                         // Bl. 1r
-                        expect(systemEl0).not.toHaveClass('doubletab_two');
-                        expect(systemEl1).not.toHaveClass('doubletab_two');
-                        expect(systemEl2).not.toHaveClass('doubletab_two');
-                        expect(systemEl3).not.toHaveClass('doubletab_two');
+                        expect(systemEl0).not.toHaveClass('doubletab_extended');
+                        expect(systemEl1).not.toHaveClass('doubletab_extended');
+                        expect(systemEl2).not.toHaveClass('doubletab_extended');
+                        expect(systemEl3).not.toHaveClass('doubletab_extended');
 
                         // Bl. 29v
-                        expect(systemEl4).not.toHaveClass('doubletab_two');
-                        expect(systemEl5).not.toHaveClass('doubletab_two');
-                        expect(systemEl6).toHaveClass('doubletab_two');
-                        expect(systemEl7).not.toHaveClass('doubletab_two');
+                        expect(systemEl4).not.toHaveClass('doubletab_extended');
+                        expect(systemEl5).not.toHaveClass('doubletab_extended');
+                        expect(systemEl6).toHaveClass('doubletab_extended');
+                        expect(systemEl7).not.toHaveClass('doubletab_extended');
+                    });
+                });
+
+                describe('... the corrections', () => {
+                    it('... should contain SourceDescriptionCorrectionsComponent if corrections array is not empty', () => {
+                        const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+
+                        // First body has corrections
+                        getAndExpectDebugElementByDirective(
+                            bodyDes[0],
+                            SourceDescriptionCorrectionsStubComponent,
+                            1,
+                            1
+                        );
+                    });
+
+                    it('... should contain no SourceDescriptionCorrectionsComponent if corrections array is empty or undefined', () => {
+                        const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+
+                        // Second body has no corrections
+                        getAndExpectDebugElementByDirective(
+                            bodyDes[1],
+                            SourceDescriptionCorrectionsStubComponent,
+                            0,
+                            0
+                        );
+                    });
+
+                    it('... should pass down corrections data to SourceDescriptionCorrectionsComponent', () => {
+                        const expectedCorrections =
+                            expectedSourceDescriptionListData.sources[1].description.corrections;
+
+                        const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                        // First body has corrections
+                        const correctionsDes = getAndExpectDebugElementByDirective(
+                            bodyDes[0],
+                            SourceDescriptionCorrectionsStubComponent,
+                            1,
+                            1
+                        );
+                        const correctionsCmp = correctionsDes[0].injector.get(
+                            SourceDescriptionCorrectionsStubComponent
+                        );
+
+                        expectToEqual(correctionsCmp.corrections, expectedCorrections);
                     });
                 });
             });
@@ -1435,31 +1567,29 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[2].location.trim());
                 });
 
-                it('... should contain one paragraph in description-body div', () => {
+                it('... should contain up to 8 source description details components (stubbed) in description-body div', () => {
                     // First description has no content, so only 2 divs
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
 
-                    // Get second description body div with content
-                    getAndExpectDebugElementByCss(descBodyDes[1], 'div.awg-source-description-body > p', 1, 1);
+                    getAndExpectDebugElementByDirective(descBodyDes[1], SourceDescriptionDetailsStubComponent, 1, 1);
                 });
 
-                it('... the first paragraph displaying the description', () => {
+                it('... should pass down the description to the first source description details component', () => {
                     const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
-                    const pDes = getAndExpectDebugElementByCss(
+
+                    const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[1],
-                        'div.awg-source-description-body > p',
+                        SourceDescriptionDetailsStubComponent,
                         1,
                         1
                     );
-                    const pEl = pDes[0].nativeElement;
+                    const detailCmp = detailDes[0].injector.get(
+                        SourceDescriptionDetailsStubComponent
+                    ) as SourceDescriptionDetailsStubComponent;
 
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('p');
-                    expectedHtmlTextContent.innerHTML =
-                        expectedSourceDescriptionListData.sources[2].description.desc[0];
-
-                    expect(pEl).toHaveClass('awg-source-description-desc');
-                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
+                    expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[2].description.desc);
+                    expectToBe(detailCmp.detailsLabel, '');
+                    expectToBe(detailCmp.detailsClass, 'desc');
                 });
             });
         });
@@ -1799,46 +1929,132 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 expect(component.navigateToReportFragment).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
-                // Get description section
-                const descDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-desc', 2, 2);
+            describe('... should trigger', () => {
+                describe('... on event from SourceDescriptionDetailComponent (stubbed) if', () => {
+                    it('... sheet id is undefined', () => {
+                        const detailDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionDetailsStubComponent,
+                            9,
+                            9
+                        );
+                        const detailCmp = detailDes[0].injector.get(
+                            SourceDescriptionDetailsStubComponent
+                        ) as SourceDescriptionDetailsStubComponent;
 
-                const anchorDes = getAndExpectDebugElementByCss(descDes[1], 'a', 1, 1);
+                        detailCmp.navigateToReportFragmentRequest.emit(undefined);
 
-                // Everything but first anchor uses modal
-                // Click on first anchor
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                        expectSpyCall(navigateToReportFragmentSpy, 1, undefined);
+                    });
 
-                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
-            }));
+                    it('... sheet id is given', () => {
+                        const detailDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionDetailsStubComponent,
+                            9,
+                            9
+                        );
+                        const detailCmp = detailDes[0].injector.get(
+                            SourceDescriptionDetailsStubComponent
+                        ) as SourceDescriptionDetailsStubComponent;
+
+                        const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+
+                        detailCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+
+                        expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
+                    });
+                });
+
+                describe('... on event from SourceDescriptionCorrectionsComponent (stubbed) if', () => {
+                    it('... fragment id is undefined', () => {
+                        const correctionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionCorrectionsStubComponent,
+                            1,
+                            1
+                        );
+                        const correctionCmp = correctionDes[0].injector.get(
+                            SourceDescriptionCorrectionsStubComponent
+                        ) as SourceDescriptionCorrectionsStubComponent;
+
+                        correctionCmp.navigateToReportFragmentRequest.emit(undefined);
+
+                        expectSpyCall(navigateToReportFragmentSpy, 1, undefined);
+                    });
+
+                    it('... fragment id is given', () => {
+                        const correctionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionCorrectionsStubComponent,
+                            1,
+                            1
+                        );
+                        const correctionCmp = correctionDes[0].injector.get(
+                            SourceDescriptionCorrectionsStubComponent
+                        ) as SourceDescriptionCorrectionsStubComponent;
+
+                        const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+
+                        correctionCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+
+                        expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
+                    });
+                });
+            });
 
             describe('... should not emit anything if', () => {
-                it('... id is undefined', () => {
+                it('... paraemeter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
-                it('... id is null', () => {
+                it('... parameter is null', () => {
                     component.navigateToReportFragment(null);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
-                it('... id is empty string', () => {
-                    component.navigateToReportFragment('');
+                it('... fragment id is undefined', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... fragment id is null', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... fragment id is empty string', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
             });
 
-            it('... should emit id of selected report fragment', () => {
-                component.navigateToReportFragment(expectedFragment);
+            it('... should emit id of selected report fragment within same complex', () => {
+                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                component.navigateToReportFragment(expectedReportIds);
 
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedFragment);
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
 
                 const otherFragment = 'source_B';
-                component.navigateToReportFragment(otherFragment);
+                const expectedNextReportIds = { complexId: expectedComplexId, fragmentId: otherFragment };
+                component.navigateToReportFragment(expectedNextReportIds);
 
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, otherFragment);
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
+            });
+
+            it('... should emit id of selected report fragment for another complex', () => {
+                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                component.navigateToReportFragment(expectedReportIds);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
+
+                const otherFragment = 'source_B';
+                const expectedNextReportIds = { complexId: expectedNextComplexId, fragmentId: otherFragment };
+                component.navigateToReportFragment(expectedNextReportIds);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
             });
         });
 
@@ -1847,19 +2063,75 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 expect(component.openModal).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
-                // Find description paragraphs
-                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-description-desc', 1, 1);
+            describe('... should trigger', () => {
+                describe('... on event from SourceDescriptionDetailComponent (stubbed) if', () => {
+                    it('... sheet id is undefined', () => {
+                        const detailDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionDetailsStubComponent,
+                            9,
+                            9
+                        );
+                        const detailCmp = detailDes[0].injector.get(
+                            SourceDescriptionDetailsStubComponent
+                        ) as SourceDescriptionDetailsStubComponent;
 
-                // Find anchors in second description paragraph
-                const anchorDes = getAndExpectDebugElementByCss(pDes[0], 'a', 1, 1);
+                        detailCmp.openModalRequest.emit(undefined);
 
-                // Click on first anchor with modal call
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                        expectSpyCall(openModalSpy, 1, undefined);
+                    });
 
-                expectSpyCall(openModalSpy, 1, expectedModalSnippet);
-            }));
+                    it('... sheet id is given', () => {
+                        const detailDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionDetailsStubComponent,
+                            9,
+                            9
+                        );
+                        const detailCmp = detailDes[0].injector.get(
+                            SourceDescriptionDetailsStubComponent
+                        ) as SourceDescriptionDetailsStubComponent;
+
+                        detailCmp.openModalRequest.emit(expectedModalSnippet);
+
+                        expectSpyCall(openModalSpy, 1, expectedModalSnippet);
+                    });
+                });
+
+                describe('... on event from SourceDescriptionCorrectionsComponent (stubbed) if', () => {
+                    it('... fragment id is undefined', () => {
+                        const correctionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionCorrectionsStubComponent,
+                            1,
+                            1
+                        );
+                        const correctionCmp = correctionDes[0].injector.get(
+                            SourceDescriptionCorrectionsStubComponent
+                        ) as SourceDescriptionCorrectionsStubComponent;
+
+                        correctionCmp.openModalRequest.emit(undefined);
+
+                        expectSpyCall(openModalSpy, 1, undefined);
+                    });
+
+                    it('... fragment id is given', () => {
+                        const correctionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionCorrectionsStubComponent,
+                            1,
+                            1
+                        );
+                        const correctionCmp = correctionDes[0].injector.get(
+                            SourceDescriptionCorrectionsStubComponent
+                        ) as SourceDescriptionCorrectionsStubComponent;
+
+                        correctionCmp.openModalRequest.emit(expectedModalSnippet);
+
+                        expectSpyCall(openModalSpy, 1, expectedModalSnippet);
+                    });
+                });
+            });
 
             describe('... should not emit anything if ', () => {
                 it('... id is undefined', () => {
@@ -1892,56 +2164,132 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+            describe('... should trigger', () => {
+                it('... on click', fakeAsync(() => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
 
-                // Find content item spans
-                const contentItemDes = getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'span.awg-source-description-content-item',
-                    3,
-                    3
-                );
+                    // Find content item spans
+                    const contentItemDes = getAndExpectDebugElementByCss(
+                        divDes[0],
+                        'span.awg-source-description-content-item',
+                        3,
+                        3
+                    );
 
-                // Find anchors in second paragraph
-                const anchorDes = getAndExpectDebugElementByCss(contentItemDes[0], 'a', 1, 1);
+                    // Find anchors in second paragraph
+                    const anchorDes = getAndExpectDebugElementByCss(contentItemDes[0], 'a', 1, 1);
 
-                // CLick on anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                    // CLick on anchor (with selectSvgSheet call)
+                    clickAndAwaitChanges(anchorDes[0], fixture);
 
-                expectSpyCall(selectSvgSheetSpy, 1, [expectedComplexId, expectedSheetId]);
-            }));
+                    expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
+                }));
+
+                describe('... on event from SourceDescriptionDetailComponent (stubbed) if', () => {
+                    it('... sheet id is undefined', () => {
+                        const detailDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionDetailsStubComponent,
+                            9,
+                            9
+                        );
+                        const detailCmp = detailDes[0].injector.get(
+                            SourceDescriptionDetailsStubComponent
+                        ) as SourceDescriptionDetailsStubComponent;
+
+                        detailCmp.selectSvgSheetRequest.emit(undefined);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, undefined);
+                    });
+
+                    it('... sheet id is given', () => {
+                        const detailDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionDetailsStubComponent,
+                            9,
+                            9
+                        );
+                        const detailCmp = detailDes[0].injector.get(
+                            SourceDescriptionDetailsStubComponent
+                        ) as SourceDescriptionDetailsStubComponent;
+
+                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+
+                        detailCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                    });
+                });
+
+                describe('... on event from SourceDescriptionCorrectionsComponent (stubbed) if', () => {
+                    it('... sheet id is undefined', () => {
+                        const correctionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionCorrectionsStubComponent,
+                            1,
+                            1
+                        );
+                        const correctionCmp = correctionDes[0].injector.get(
+                            SourceDescriptionCorrectionsStubComponent
+                        ) as SourceDescriptionCorrectionsStubComponent;
+
+                        correctionCmp.selectSvgSheetRequest.emit(undefined);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, undefined);
+                    });
+
+                    it('... sheet id is given', () => {
+                        const correctionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionCorrectionsStubComponent,
+                            1,
+                            1
+                        );
+                        const correctionCmp = correctionDes[0].injector.get(
+                            SourceDescriptionCorrectionsStubComponent
+                        ) as SourceDescriptionCorrectionsStubComponent;
+
+                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+
+                        correctionCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                    });
+                });
+            });
 
             it('... should not emit anything if no id is provided', () => {
-                component.selectSvgSheet(undefined, undefined);
+                const expectedSheetIds = undefined;
+                component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
 
-                component.selectSvgSheet('', '');
+                const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
+                component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
             });
 
             it('... should emit id of selected svg sheet within same complex', () => {
                 const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
-                component.selectSvgSheet(expectedSheetIds.complexId, expectedSheetIds.sheetId);
+                component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
 
                 const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSheetId };
-                component.selectSvgSheet(expectedNextSheetIds.complexId, expectedNextSheetIds.sheetId);
+                component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
             });
 
             it('... should emit id of selected svg sheet for another complex', () => {
                 const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
-                component.selectSvgSheet(expectedSheetIds.complexId, expectedSheetIds.sheetId);
+                component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
 
                 const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSheetId };
-                component.selectSvgSheet(expectedNextSheetIds.complexId, expectedNextSheetIds.sheetId);
+                component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
             });

@@ -278,15 +278,16 @@ footer {
 
 /****** IMAGES ******/
 #unibaslogo {
-    width: 118px;
-    height: 37px;
+    height: 50px;
+    cursor: pointer;
+}
+#sagwlogo {
+    height: 50px;
     cursor: pointer;
 }
 #snflogo {
-    width: 118px;
-    height: 40px;
+    height: 50px;
     cursor: pointer;
-    padding-right: 10px;
 }
 .webernlogo {
     cursor: pointer;
@@ -392,7 +393,7 @@ span.facet-badge {
     @extend %inlineblock;
     margin-left: 60px;
 }
-.doubletab_two {
+.doubletab_extended {
     @extend %inlineblock;
     margin-left: 70px;
 }

@@ -8,7 +8,7 @@
                 formControlName="restypeControl"
                 required>
                 <option value="" disabled hidden>{{ defaultFormString }}</option>
-                @for (resourcetype of restypesResponse?.resourcetypes; track resourcetype) {
+                @for (resourcetype of restypesResponse?.resourcetypes; track resourcetype.id) {
                     <option [value]="resourcetype.id" [title]="resourcetype.label">
                         {{ resourcetype.id }} | {{ resourcetype.label }}
                     </option>
@@ -17,7 +17,7 @@
             <label for="awg-extended-search-resourcetype-input" class="text-muted">Resource type</label>
         </div>
         <ng-container formArrayName="propertiesControls">
-            @for (propCtrl of propertiesControls.controls; track propCtrl; let idx = $index) {
+            @for (propCtrl of propertiesControls.controls; track $index; let idx = $index) {
                 <div class="row mb-4 ms-4 g-2">
                     <ng-container [formGroupName]="idx">
                         <div class="form-floating col-md-4">
@@ -28,7 +28,7 @@
                                 required>
                                 <option value="" disabled hidden>{{ defaultFormString }}</option>
                                 @if (selectedResourcetype) {
-                                    @for (property of selectedResourcetype?.properties; track property) {
+                                    @for (property of selectedResourcetype?.properties; track property.id) {
                                         <option [value]="property.id" [title]="property.label">
                                             {{ property.id }} | {{ property.label }}
                                         </option>
@@ -45,7 +45,7 @@
                                 required>
                                 <option value="" disabled hidden>{{ defaultFormString }}</option>
                                 @if (selectedCompopSets) {
-                                    @for (compop of selectedCompopSets[idx]; track compop) {
+                                    @for (compop of selectedCompopSets[idx]; track compop.value) {
                                         <option
                                             [value]="compop.value"
                                             [title]="compop.title"

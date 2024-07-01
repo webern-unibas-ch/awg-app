@@ -69,10 +69,10 @@ export class EditionSvgSheetNavItemComponent {
      */
     isSelectedSvgSheet(id: string, partial?: string): boolean {
         let givenId = id;
-        let selectedId = this.selectedSvgSheet.id;
+        let selectedId = this.selectedSvgSheet?.id;
 
         // Compare partial id if needed
-        if (partial && this.selectedSvgSheet.content?.[0]?.partial) {
+        if (partial && this.selectedSvgSheet?.content?.[0]?.partial) {
             givenId += partial;
             selectedId += this.selectedSvgSheet.content[0].partial;
         }
@@ -86,14 +86,13 @@ export class EditionSvgSheetNavItemComponent {
      * It emits the given ids of a selected edition complex
      * and svg sheet to the {@link selectSvgSheetRequest}.
      *
-     * @param {string} complexId The given complex id.
-     * @param {string} sheetId The given sheet id.
+     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
      * @returns {void} Emits the ids.
      */
-    selectSvgSheet(complexId: string, sheetId: string): void {
-        if (!sheetId) {
+    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
+        if (!sheetIds?.sheetId) {
             return;
         }
-        this.selectSvgSheetRequest.emit({ complexId: complexId, sheetId: sheetId });
+        this.selectSvgSheetRequest.emit(sheetIds);
     }
 }

@@ -20,7 +20,6 @@ env:
     MAIN_REPO_OWNER: webern-unibas-ch # Main repo owner (default: webern-unibas-ch; should not be changed)
 
     # dev settings
-    DEV_REPO: webern-unibas-ch/awg-app-dev
     DEV_GH_PAGES_BRANCH: gh-pages
     DEV_GH_PAGES_DIR: gh-pages-dir
     DIST_DIR: dist
@@ -40,12 +39,12 @@ jobs:
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
+              uses: step-security/harden-runner@17d0e2bd7d51742c71671bd19fa12bdc9d40a3d6 # v2.8.1
               with:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+              uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
               with:
                   fetch-depth: 0 # Get all history and branches
 
@@ -61,11 +60,18 @@ jobs:
               uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # ratchet:actions/setup-node@v4.0.2
               with:
                   node-version: ${{ matrix.node-version }}
+
+            - name: Set up corepack (for getting yarn)
+              run: corepack enable
+
+            - name: Get yarn cache ${{ matrix.node-version}}
+              uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # ratchet:actions/setup-node@v4.0.2
+              with:
                   cache: 'yarn'
 
             - name: yarn install dependencies
               run: |
-                  yarn install
+                  yarn install  --immutable
 
             - name: Run CI tests with coverage
               run: |
@@ -73,7 +79,7 @@ jobs:
 
             - name: Upload code coverage
               if: matrix.node-version == 20.13 # upload coverage report for current node version only
-              uses: codecov/codecov-action@125fc84a9a348dbcf27191600683ec096ec9021c # v4.4.1
+              uses: codecov/codecov-action@e28ff129e5465c2c0dcc6f003fc735cb6ae0c673 # v4.5.0
               env:
                   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
               with:
@@ -82,12 +88,17 @@ jobs:
 
             - name: Perform SonarCloud Analysis
               if: matrix.node-version == 20.13 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarCloud analysis only for current node version and not with pull requests or forks(token issue)
-              uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216 # v2.2.0
+              uses: SonarSource/sonarcloud-github-action@e44258b109568baa0df60ed515909fc6c72cba92 # v2.3.0
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-            - name: Test build from develop for GH Pages
+            - name: Test build for GH Pages (all but develop)
+              if: github.ref != 'refs/heads/develop'
+              run: |
+                  yarn run build:gh
+
+            - name: Test build for GH Pages (develop)
               if: github.ref == 'refs/heads/develop'
               run: |
                   echo "Updating dev-version"
@@ -95,13 +106,9 @@ jobs:
                   echo "Building dev-version"
                   yarn run build:dev
 
-            - name: Test build from main for GH Pages
-              if: github.ref == 'refs/heads/main'
-              run: |
-                  yarn run build:gh
-
-            - name: Upload build artifacts
-              if: matrix.node-version == 20.13 # upload build artifacts for current node version only
+            - name: Upload build artifacts (main && develop)
+              # upload build artifacts for current node version and main or develop branch only
+              if: matrix.node-version == 20.13 && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
               uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # ratchet:actions/upload-artifact@v4.3.3
               with:
                   name: dist
@@ -129,12 +136,12 @@ jobs:
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
+              uses: step-security/harden-runner@17d0e2bd7d51742c71671bd19fa12bdc9d40a3d6 # v2.8.1
               with:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+              uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
               with:
                   # ref (branch, tag or SHA) to check out
                   ref: ${{ env.DEV_GH_PAGES_BRANCH }}
@@ -147,16 +154,22 @@ jobs:
                   name: dist
                   path: ${{ github.workspace }}/${{ env.DIST_DIR }}
 
-            - name: Copy artifacts to gh-pages
-              run: |
-                  cp -r ${{ env.DIST_DIR }}/awg-app/. ${{ env.DEV_GH_PAGES_DIR }}/dev/
-
             - name: Configure git
               working-directory: ${{ env.DEV_GH_PAGES_DIR }}
               run: |
                   echo "Configuring git"
                   git config user.name "github-actions"
                   git config user.email "github-actions@users.noreply.github.com"
+
+            - name: Remove existing files from dev
+              working-directory: ${{ env.DEV_GH_PAGES_DIR }}
+              run: |
+                  echo "Removing existing files from dev"
+                  git rm -r dev/* || true
+
+            - name: Copy artifacts to gh-pages
+              run: |
+                  cp -r ${{ env.DIST_DIR }}/awg-app/. ${{ env.DEV_GH_PAGES_DIR }}/dev/
 
             - name: Commit files
               working-directory: ${{ env.DEV_GH_PAGES_DIR }}
@@ -195,12 +208,12 @@ jobs:
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
+              uses: step-security/harden-runner@17d0e2bd7d51742c71671bd19fa12bdc9d40a3d6 # v2.8.1
               with:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+              uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
             - name: Set up node ${{ matrix.node-version}}
               uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
               with:
@@ -235,7 +248,7 @@ jobs:
                 node-version: [20.13]
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
+              uses: step-security/harden-runner@17d0e2bd7d51742c71671bd19fa12bdc9d40a3d6 # v2.8.1
               with:
                   egress-policy: audit
 
@@ -245,7 +258,7 @@ jobs:
             - name: Create Release
               id: create_release
               if: ${{ success() && startsWith(github.ref, 'refs/tags/') }}
-              uses: softprops/action-gh-release@69320dbe05506a9a39fc8ae11030b214ec2d1f87 # ratchet:softprops/action-gh-release@v2.0.5
+              uses: softprops/action-gh-release@a74c6b72af54cfa997e81df42d94703d6313a2d0 # v2.0.6
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   TAG_VERSION: ${{ steps.get_version.outputs.VERSION }}

@@ -221,24 +221,21 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Public method: onNavigateToReportFragment.
+     * Public method: onReportFragmentNavigate.
      *
-     * It navigates to the '/report/' route with the given fragmentId.
+     * It navigates to the '/report/' route using the provided fragmentId
+     * within the context of an edition complex identified by the provided complexId.
      *
-     * @param {string}  fragmentId The given fragment id.
+     * @param {object}  reportIds The given report ids as { complexId: string, fragmentId: string }.
      * @returns {void} Navigates to the edition report.
      */
-    onNavigateToReportFragment(fragmentId: string): void {
-        if (!fragmentId) {
-            fragmentId = '';
-        }
+    onReportFragmentNavigate(reportIds: { complexId: string; fragmentId: string }): void {
+        const reportRoute = this.editionRouteConstants.EDITION_REPORT.route;
         const navigationExtras: NavigationExtras = {
-            fragment: fragmentId,
+            fragment: reportIds?.fragmentId ?? '',
         };
-        this.router.navigate(
-            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_REPORT.route],
-            navigationExtras
-        );
+
+        this._navigateWithComplexId(reportIds?.complexId, reportRoute, navigationExtras);
     }
 
     /**
@@ -290,25 +287,20 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**
      * Public method: onSvgSheetSelect.
      *
-     * It selects a SVG sheet by its edition complex
-     * and sheet ids and navigates to the edition sheets route
-     * with this given id.
+     * It navigates to the '/sheet/' route using the provided sheetId
+     * within the context of an edition complex identified by the provided complexId.
      *
      * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
      * @returns {void} Navigates to the edition sheets.
      */
     onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
-        // Set default complex route if none is given
-        const complexRoute = sheetIds.complexId
-            ? `/edition/complex/${sheetIds.complexId}/`
-            : this.editionComplex.baseRoute;
-
+        const sheetRoute = this.editionRouteConstants.EDITION_SHEETS.route;
         const navigationExtras: NavigationExtras = {
-            queryParams: { id: sheetIds.sheetId },
+            queryParams: { id: sheetIds?.sheetId ?? '' },
             queryParamsHandling: 'merge',
         };
 
-        this.router.navigate([complexRoute, this.editionRouteConstants.EDITION_SHEETS.route], navigationExtras);
+        this._navigateWithComplexId(sheetIds?.complexId, sheetRoute, navigationExtras);
     }
 
     /**
@@ -403,6 +395,22 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         }
 
         this._isFirstPageLoad = false;
+    }
+
+    /**
+     * Private method: _navigateWithComplexId.
+     *
+     * It navigates to a target route using the provided complexId.
+     *
+     * @param {string} complexId The given complex id.
+     * @param {string} targetRoute The given target route.
+     * @param {NavigationExtras} navigationExtras The given navigation extras.
+     * @returns {void} Navigates to the target route.
+     */
+    private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
+        const complexRoute = complexId ? `/edition/complex/${complexId}/` : this.editionComplex.baseRoute;
+
+        this.router.navigate([complexRoute, targetRoute], navigationExtras);
     }
 
     /**

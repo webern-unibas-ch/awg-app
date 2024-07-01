@@ -4,7 +4,7 @@
             "id": "M_31_TF1",
             "label": "M 31 einzige Textfassung",
             "description": [
-                "Für die Textedition der Studienkomposition für Klavier M 31 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment('source_A')\"><strong>A</strong></a> enthält Skizzen. <br /><a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. <br /> Hauptquelle für die Textedition der Studienkomposition für Klavier M 31 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition für Klavier M 31 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm31', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm31', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen. <br /><a (click)=\"ref.navigateToReportFragment({complexId: 'm31', fragmentId: 'source_B'})\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. <br /> Hauptquelle für die Textedition der Studienkomposition für Klavier M 31 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm31', fragmentId: 'source_B'})\"><strong>B</strong></a> nach Korrekturen 1."
             ],
             "comments": [
                 {
@@ -212,7 +212,7 @@
             "id": "M_31_Sk3_1",
             "label": "M 31 Sk3.1",
             "description": [
-                "<strong>Sk3.1</strong> fügt einen zusätzlichen Takt zwischen T. 10 und T. 11 von <a (click)=\"ref.selectSvgSheet('m31', 'M_31_Sk3')\"><strong>Sk3</strong></a> ein."
+                "<strong>Sk3.1</strong> fügt einen zusätzlichen Takt zwischen T. 10 und T. 11 von <a (click)=\"ref.selectSvgSheet({complexId: 'm31', sheetId: 'M_31_Sk3'})\"><strong>Sk3</strong></a> ein."
             ],
             "comments": [
                 {
@@ -244,7 +244,7 @@
             "id": "M_31_Sk3_2",
             "label": "M 31 Sk3.2",
             "description": [
-                "<strong>Sk3.2</strong> skizziert vermutlich das Vorhaben, den Übergang zur Reprise in <a (click)=\"ref.selectSvgSheet('m31', 'M_31_Sk3')\"><strong>Sk3</strong></a> von D nach G um eine Quinte nach unten zu transponieren."
+                "<strong>Sk3.2</strong> skizziert vermutlich das Vorhaben, den Übergang zur Reprise in <a (click)=\"ref.selectSvgSheet({complexId: 'm31', sheetId: 'M_31_Sk3'})\"><strong>Sk3</strong></a> von D nach G um eine Quinte nach unten zu transponieren."
             ],
             "comments": [
                 {

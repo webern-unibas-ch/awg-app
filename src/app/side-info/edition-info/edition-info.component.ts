@@ -29,7 +29,10 @@ export class EditionInfoComponent {
      * It keeps the array of displayed edition complexes.
      */
     readonly DISPLAYED_EDITION_COMPLEXES: EditionComplex[] = [
+        EDITION_COMPLEXES.OP3,
+        EDITION_COMPLEXES.OP4,
         EDITION_COMPLEXES.OP12,
+        EDITION_COMPLEXES.OP23,
         EDITION_COMPLEXES.OP25,
         EDITION_COMPLEXES.M22,
         EDITION_COMPLEXES.M30,
@@ -38,6 +41,13 @@ export class EditionInfoComponent {
         EDITION_COMPLEXES.M35_42,
         EDITION_COMPLEXES.M37,
     ];
+
+    /**
+     * Readonly variable: SLICE_INDEX.
+     *
+     * It keeps the index for the slice of edition complexes.
+     */
+    readonly SLICE_INDEX = 5;
 
     /**
      * Getter variable: editionRouteConstants.

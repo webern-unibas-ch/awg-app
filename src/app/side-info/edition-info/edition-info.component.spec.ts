@@ -68,6 +68,7 @@ describe('EditionInfoComponent (DONE)', () => {
     const expectedEditionTypeConstants: typeof EDITION_TYPE_CONSTANTS = EDITION_TYPE_CONSTANTS;
 
     const expectedEditionInfoHeader = 'Edition';
+    const expectedSliceIndex = 5;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -92,7 +93,10 @@ describe('EditionInfoComponent (DONE)', () => {
 
         // Test data
         expectedEditionComplexes = [
+            EDITION_COMPLEXES.OP3,
+            EDITION_COMPLEXES.OP4,
             EDITION_COMPLEXES.OP12,
+            EDITION_COMPLEXES.OP23,
             EDITION_COMPLEXES.OP25,
             EDITION_COMPLEXES.M22,
             EDITION_COMPLEXES.M30,
@@ -122,6 +126,10 @@ describe('EditionInfoComponent (DONE)', () => {
             expectToEqual(component.DISPLAYED_EDITION_COMPLEXES.length, expectedEditionComplexes.length);
         });
 
+        it('... should have `SLICE_INDEX`', () => {
+            expectToBe(component.SLICE_INDEX, expectedSliceIndex);
+        });
+
         it('... should have `editionRouteConstants`', () => {
             expectToBe(component.editionRouteConstants, expectedEditionRouteConstants);
         });
@@ -140,9 +148,28 @@ describe('EditionInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card-body h5#awg-edition-info-header', 1, 1);
             });
 
-            it('... should contain no div.accordion yet', () => {
-                // Div.accordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
+            it('... should contain one div.accordion', () => {
+                // NgbAccordion debug element
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+            });
+
+            it('... should contain 3 div.accordion-items with header and non-collapsible body yet in div.accordion', () => {
+                // NgbAccordion debug element
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 3, 3);
+
+                itemDes.forEach(item => {
+                    // Header (div.accordion-header)
+                    getAndExpectDebugElementByCss(item, 'div.accordion-header', 1, 1);
+
+                    // Item body
+                    const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
+                    const itemBodyEl = itemBodyDes[0].nativeElement;
+
+                    expectToContain(itemBodyEl.classList, 'accordion-collapse');
+                });
             });
         });
     });
@@ -161,11 +188,6 @@ describe('EditionInfoComponent (DONE)', () => {
                 expectToBe(headerEl.textContent, expectedEditionInfoHeader);
             });
 
-            it('... should contain one div.accordion', () => {
-                // NgbAccordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
-            });
-
             it('... should contain 3 div.accordion-items with header and open body in div.accordion', () => {
                 // NgbAccordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
@@ -175,8 +197,7 @@ describe('EditionInfoComponent (DONE)', () => {
 
                 itemDes.forEach(item => {
                     // Header (div.accordion-header)
-                    const itemHeaderDes = getAndExpectDebugElementByCss(item, 'div.accordion-header', 1, 1);
-                    const itemHeaderEl = itemHeaderDes[0].nativeElement;
+                    getAndExpectDebugElementByCss(item, 'div.accordion-header', 1, 1);
 
                     // Item body
                     const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
@@ -244,7 +265,7 @@ describe('EditionInfoComponent (DONE)', () => {
                 expectToContain(itemBodyEl.classList, 'show');
             });
 
-            it('... should contain item body with 2 paragraphs in first item', () => {
+            it('... should contain item body with 5 paragraphs in first item', () => {
                 // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 3, 3);
 
@@ -255,7 +276,7 @@ describe('EditionInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 2, 2);
             });
 
-            it('... should contain item body with 2 paragraphs in second item', () => {
+            it('... should contain item body with 5 paragraphs in second item', () => {
                 // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 3, 3);
 
@@ -263,21 +284,21 @@ describe('EditionInfoComponent (DONE)', () => {
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-body', 1, 1);
 
                 // Length of expected paragraphs (first two items)
-                const expectedLength = expectedEditionComplexes.slice(0, 2).length;
+                const expectedLength = expectedEditionComplexes.slice(0, expectedSliceIndex).length;
 
                 // Paragraphs
                 getAndExpectDebugElementByCss(itemBodyDes[0], 'p', expectedLength, expectedLength);
             });
 
-            it('... should contain item body with 4 paragraphs in third item', () => {
+            it('... should contain item body with 6 paragraphs in third item', () => {
                 // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 3, 3);
 
                 // Item body
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[2], 'div.accordion-body', 1, 1);
 
-                // Length of expected paragraphs (last items starting from index 2)
-                const expectedLength = expectedEditionComplexes.slice(2).length;
+                // Length of expected paragraphs (last items starting from index 5)
+                const expectedLength = expectedEditionComplexes.slice(expectedSliceIndex).length;
 
                 // Paragraphs
                 getAndExpectDebugElementByCss(itemBodyDes[0], 'p', expectedLength, expectedLength);
@@ -309,22 +330,7 @@ describe('EditionInfoComponent (DONE)', () => {
                 titleDes.forEach((titleDe, index) => {
                     const titleEl = titleDe.nativeElement;
 
-                    expectToBe(titleEl.innerHTML, expectedEditionComplexes[index].titleStatement.title);
-                });
-            });
-
-            it('... should render catalogue number of edition info headers', () => {
-                const catalogueDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'span.awg-edition-info-header-catalogue',
-                    expectedEditionComplexes.length,
-                    expectedEditionComplexes.length
-                );
-
-                catalogueDes.forEach((catalogueDe, index) => {
-                    const catalogueEl = catalogueDe.nativeElement;
-
-                    expectToBe(catalogueEl.innerHTML, expectedEditionComplexes[index].complexId.short);
+                    expectToBe(titleEl.innerHTML, expectedEditionComplexes[index].complexId.full);
                 });
             });
         });

@@ -40,7 +40,7 @@ export const LOGOSDATA: Logos = {
     },
     snf: {
         id: 'snflogo',
-        src: 'assets/img/logos/snf.png',
+        src: 'assets/img/logos/snf.svg',
         alt: 'Logo SNF',
         href: 'https://www.snf.ch',
     },

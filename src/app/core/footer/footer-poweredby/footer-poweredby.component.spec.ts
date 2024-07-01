@@ -1,8 +1,8 @@
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
+import { IconDefinition } from '@fortawesome/angular-fontawesome';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';

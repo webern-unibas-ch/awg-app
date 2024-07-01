@@ -12,13 +12,14 @@
                         [checked]="allClassesVisible"
                         value=""
                         id="all-supplied-classes"
-                        (click)="toggleAllClassesOpacity()" />
+                        (click)="toggleAllClassesOpacity()"
+                        (keypress)="toggleAllClassesOpacity()" />
                     <label class="form-check-label" for="all-supplied-classes">
                         Alle {{ allClassesVisible ? 'aus' : 'ein' }}blenden
                     </label>
                 </div>
             </div>
-            @for (suppliedClass of suppliedClasses | keyvalue; track suppliedClass; let i = $index) {
+            @for (suppliedClass of suppliedClasses | keyvalue; track suppliedClass.key; let i = $index) {
                 <div class="col-12 col-sm-4">
                     <div class="form-check form-switch">
                         <input
@@ -27,7 +28,8 @@
                             [checked]="suppliedClass.value"
                             value=""
                             [id]="suppliedClass.key"
-                            (click)="toggleSingleSuppliedClassOpacity(suppliedClass.key)" />
+                            (click)="toggleSingleSuppliedClassOpacity(suppliedClass.key)"
+                            (keypress)="toggleSingleSuppliedClassOpacity(suppliedClass.key)" />
                         <label class="form-check-label" [for]="suppliedClass.key">{{ suppliedClass.key }}</label>
                     </div>
                 </div>
@@ -45,7 +47,8 @@
                             [checked]="tkkHighlightingVisible"
                             value=""
                             id="tkk"
-                            (click)="toggleTkkClassesHighlight()" />
+                            (click)="toggleTkkClassesHighlight()"
+                            (keypress)="toggleTkkClassesHighlight()" />
                         <label class="form-check-label" for="tkk">
                             <awg-edition-tka-label [id]="id" [labelType]="'comment'"></awg-edition-tka-label
                         ></label>

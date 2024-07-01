@@ -17,7 +17,7 @@
                     "measure": "8",
                     "system": "Klav.",
                     "position": "Taktende",
-                    "comment": "Schlussstrich ergänzt. <a (click)=\"ref.navigateToReportFragment('source_F')\"><strong>F</strong></a>: Einfacher Taktstrich."
+                    "comment": "Schlussstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_F'})\"><strong>F</strong></a>: Einfacher Taktstrich."
                 },
                 {
                     "svgGroupId": "",
@@ -87,7 +87,7 @@
                     "measure": "8",
                     "system": "Klav.",
                     "position": "Taktende",
-                    "comment": "Schlussstrich ergänzt. <a (click)=\"ref.navigateToReportFragment('source_F')\"><strong>F</strong></a>: Einfacher Taktstrich."
+                    "comment": "Schlussstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_F'})\"><strong>F</strong></a>: Einfacher Taktstrich."
                 },
                 {
                     "svgGroupId": "",
@@ -1720,7 +1720,7 @@
             "id": "M_22_Sk27_1",
             "label": "M 22 Sk27.1",
             "description": [
-                "<strong>M 22 Sk27.1</strong> überarbeitet die T. 5–6 aus <a (click)=\"ref.selectSvgSheet('m22', 'M_22_Sk27')\"><strong>M 22 Sk27</strong></a> und fügt die T. 7–8 zu Var. XVIII von M 22 hinzu."
+                "<strong>M 22 Sk27.1</strong> überarbeitet die T. 5–6 aus <a (click)=\"ref.selectSvgSheet({complexId: 'm22', sheetId: 'M_22_Sk27'})\"><strong>M 22 Sk27</strong></a> und fügt die T. 7–8 zu Var. XVIII von M 22 hinzu."
             ],
             "comments": [
                 {
@@ -2163,7 +2163,7 @@
             "id": "M_22_Sk32_1",
             "label": "M 22 Sk32.1",
             "description": [
-                "<strong>M 22 Sk32.1</strong> schließt an T. 5 von <a (click)=\"ref.selectSvgSheet('m22', 'M_22_Sk32')\"><strong>M 22 Sk32</strong></a> an und entwirft einen alternativen Schluss zu Var. XXII von M 22."
+                "<strong>M 22 Sk32.1</strong> schließt an T. 5 von <a (click)=\"ref.selectSvgSheet({complexId: 'm22', sheetId: 'M_22_Sk32'})\"><strong>M 22 Sk32</strong></a> an und entwirft einen alternativen Schluss zu Var. XXII von M 22."
             ],
             "comments": [
                 {
@@ -2216,7 +2216,7 @@
             "id": "M_22_Sk32_1_1",
             "label": "M 22 Sk32.1.1",
             "description": [
-                "<strong>M 22 Sk32.1.1</strong> formuliert im Anschluss an <a (click)=\"ref.selectSvgSheet('m22', 'M_22_Sk32_1')\"><strong>M 22 Sk32.1</strong></a> den melodischen Übergang in T. 7 zum Schlussakkord neu."
+                "<strong>M 22 Sk32.1.1</strong> formuliert im Anschluss an <a (click)=\"ref.selectSvgSheet({complexId: 'm22', sheetId: 'M_22_Sk32_1'})\"><strong>M 22 Sk32.1</strong></a> den melodischen Übergang in T. 7 zum Schlussakkord neu."
             ],
             "comments": [],
             "linkBoxes": [

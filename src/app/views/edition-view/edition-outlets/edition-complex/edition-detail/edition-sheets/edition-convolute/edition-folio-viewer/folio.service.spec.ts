@@ -929,10 +929,10 @@ describe('FolioService (DONE)', () => {
                 // Dispatch a click event manually
                 (contentSegmentGroup.node() as Element).dispatchEvent(new Event('click'));
 
-                expectSpyCall(refMock.selectSvgSheet, 1, [
-                    expectedContentSegment.complexId,
-                    expectedContentSegment.sheetId,
-                ]);
+                expectSpyCall(refMock.selectSvgSheet, 1, {
+                    complexId: expectedContentSegment.complexId,
+                    sheetId: expectedContentSegment.sheetId,
+                });
             });
 
             it('... should trigger the referenced `openModal` method when the content segment is not selectable and clicked', () => {
