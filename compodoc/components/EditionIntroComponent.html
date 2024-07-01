@@ -240,7 +240,7 @@ of the edition view of the app.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_navigateToFragment" >_navigateToFragment</a>
+                                <a href="#_navigateWithComplexId" >_navigateWithComplexId</a>
                             </li>
                             <li>
                                 <a href="#getEditionIntroData" >getEditionIntroData</a>
@@ -405,34 +405,34 @@ and the Angular Router; as well as a public instance of the UtilityService.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_navigateToFragment"></a>
+                    <a name="_navigateWithComplexId"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>_navigateToFragment</b></span>
-                        <a href="#_navigateToFragment"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_navigateWithComplexId</b></span>
+                        <a href="#_navigateWithComplexId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_navigateToFragment(route: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, fragmentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_navigateWithComplexId(complexId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, targetRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, navigationExtras: NavigationExtras)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="197"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:197</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="202"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:202</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _navigateToFragment.</p>
-<p>It navigates to a given route with the given fragmentId.</p>
+                        <div class="io-description"><p>Private method: _navigateWithComplexId.</p>
+<p>It navigates to a target route using the provided complexId.</p>
 </div>
 
                             <div class="io-description">
@@ -449,7 +449,7 @@ and the Angular Router; as well as a public instance of the UtilityService.</p>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>route</td>
+                                                <td>complexId</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
@@ -460,12 +460,12 @@ and the Angular Router; as well as a public instance of the UtilityService.</p>
 
 
                                             <td>
-                                                    <p>The given route.</p>
+                                                    <p>The given complex id.</p>
 
                                             </td>
                                         </tr>
                                         <tr>
-                                                <td>fragmentId</td>
+                                                <td>targetRoute</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
@@ -476,7 +476,23 @@ and the Angular Router; as well as a public instance of the UtilityService.</p>
 
 
                                             <td>
-                                                    <p>The given fragment id.</p>
+                                                    <p>The given target route.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>navigationExtras</td>
+                                            <td>
+                                                        <code>NavigationExtras</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given navigation extras.</p>
 
                                             </td>
                                         </tr>
@@ -488,7 +504,7 @@ and the Angular Router; as well as a public instance of the UtilityService.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Navigates to the given route with the fragment id.</p>
+                                <p>Navigates to the target route.</p>
 
                             </div>
                 </td>
@@ -554,7 +570,7 @@ from the EditionDataService.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>navigateToIntroFragment(fragmentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>navigateToIntroFragment(introIds: literal type)</code>
                 </td>
             </tr>
 
@@ -570,7 +586,7 @@ from the EditionDataService.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: navigateToIntroFragment.</p>
-<p>It navigates to the &#39;/intro/&#39; route with the given fragmentId.</p>
+<p>It navigates to the &#39;/intro/&#39; route with the given complexId and fragmentId.</p>
 </div>
 
                             <div class="io-description">
@@ -582,14 +598,13 @@ from the EditionDataService.</p>
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>fragmentId</td>
+                                                <td>introIds</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        <code>literal type</code>
                                             </td>
 
                                             <td>
@@ -597,10 +612,6 @@ from the EditionDataService.</p>
                                             </td>
 
 
-                                            <td>
-                                                    <p>The given fragment id.</p>
-
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -630,15 +641,15 @@ from the EditionDataService.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>navigateToReportFragment(fragmentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>navigateToReportFragment(reportIds: literal type)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="146"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:146</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="150"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:150</a></div>
                         </td>
                     </tr>
 
@@ -646,7 +657,7 @@ from the EditionDataService.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: navigateToReportFragment.</p>
-<p>It navigates to the &#39;/report/&#39; route with the given fragmentId.</p>
+<p>It navigates to the &#39;/report/&#39; route with the given complexId and fragmentId.</p>
 </div>
 
                             <div class="io-description">
@@ -658,14 +669,13 @@ from the EditionDataService.</p>
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>fragmentId</td>
+                                                <td>reportIds</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        <code>literal type</code>
                                             </td>
 
                                             <td>
@@ -673,10 +683,6 @@ from the EditionDataService.</p>
                                             </td>
 
 
-                                            <td>
-                                                    <p>The given fragment id.</p>
-
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -754,8 +760,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="158"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:158</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="166"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:166</a></div>
                         </td>
                     </tr>
 
@@ -823,15 +829,15 @@ when initializing the component.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>selectSvgSheet(complexId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, sheetId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>selectSvgSheet(sheetIds: literal type)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="175"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:175</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="182"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:182</a></div>
                         </td>
                     </tr>
 
@@ -839,8 +845,8 @@ when initializing the component.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: selectSvgSheet.</p>
-<p>It navigates to the &#39;/edition/complex/{complexRoute}/sheets/{sheetsId}&#39;
-route with the given id.</p>
+<p>It navigates to the &#39;/sheet/&#39; route using the provided sheetId
+within the context of an edition complex identified by the provided complexId.</p>
 </div>
 
                             <div class="io-description">
@@ -857,9 +863,9 @@ route with the given id.</p>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>complexId</td>
+                                                <td>sheetIds</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        <code>literal type</code>
                                             </td>
 
                                             <td>
@@ -868,23 +874,7 @@ route with the given id.</p>
 
 
                                             <td>
-                                                    <p>The given complex id.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>sheetId</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given sheet id.</p>
+                                                    <p>The given sheet ids as { complexId: string, sheetId: string }.</p>
 
                                             </td>
                                         </tr>
@@ -896,7 +886,7 @@ route with the given id.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Navigates to the given svg sheet id.</p>
+                                <p>Navigates to the edition sheets.</p>
 
                             </div>
                 </td>
@@ -1289,25 +1279,33 @@ export class EditionIntroComponent implements OnInit {
     /**
      * Public method: navigateToIntroFragment.
      *
-     * It navigates to the &#x27;/intro/&#x27; route with the given fragmentId.
+     * It navigates to the &#x27;/intro/&#x27; route with the given complexId and fragmentId.
      *
      * @param {string} fragmentId The given fragment id.
      * @returns {void} Navigates to the edition intro fragment.
      */
-    navigateToIntroFragment(fragmentId: string): void {
-        this._navigateToFragment(this.editionRouteConstants.EDITION_INTRO.route, fragmentId);
+    navigateToIntroFragment(introIds: { complexId: string; fragmentId: string }): void {
+        const introRoute &#x3D; this.editionRouteConstants.EDITION_INTRO.route;
+        const navigationExtras: NavigationExtras &#x3D; {
+            fragment: introIds?.fragmentId ?? &#x27;&#x27;,
+        };
+        this._navigateWithComplexId(introIds?.complexId, introRoute, navigationExtras);
     }
 
     /**
      * Public method: navigateToReportFragment.
      *
-     * It navigates to the &#x27;/report/&#x27; route with the given fragmentId.
+     * It navigates to the &#x27;/report/&#x27; route with the given complexId and fragmentId.
      *
      * @param {string}  fragmentId The given fragment id.
      * @returns {void} Navigates to the edition report fragment.
      */
-    navigateToReportFragment(fragmentId: string): void {
-        this._navigateToFragment(this.editionRouteConstants.EDITION_REPORT.route, fragmentId);
+    navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
+        const reportRoute &#x3D; this.editionRouteConstants.EDITION_REPORT.route;
+        const navigationExtras: NavigationExtras &#x3D; {
+            fragment: reportIds?.fragmentId ?? &#x27;&#x27;,
+        };
+        this._navigateWithComplexId(reportIds?.complexId, reportRoute, navigationExtras);
     }
 
     /**
@@ -1328,43 +1326,36 @@ export class EditionIntroComponent implements OnInit {
     /**
      * Public method: selectSvgSheet.
      *
-     * It navigates to the &#x27;/edition/complex/{complexRoute}/sheets/{sheetsId}&#x27;
-     * route with the given id.
+     * It navigates to the &#x27;/sheet/&#x27; route using the provided sheetId
+     * within the context of an edition complex identified by the provided complexId.
      *
-     * @param {string} complexId The given complex id.
-     * @param {string} sheetId The given sheet id.
-     * @returns {void} Navigates to the given svg sheet id.
+     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
+     * @returns {void} Navigates to the edition sheets.
      */
-    selectSvgSheet(complexId: string, sheetId: string): void {
-        // Set default id if none is given
-        const complexRoute &#x3D; complexId ? &#x60;/edition/complex/${complexId}/&#x60; : this.editionComplex.baseRoute;
-        const sheetRoute &#x3D; sheetId ?? &#x27;&#x27;;
-
+    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
+        const sheetRoute &#x3D; this.editionRouteConstants.EDITION_SHEETS.route;
         const navigationExtras: NavigationExtras &#x3D; {
-            queryParams: { id: sheetRoute },
-            queryParamsHandling: &#x27;&#x27;,
+            queryParams: { id: sheetIds?.sheetId ?? &#x27;&#x27; },
+            // .queryParamsHandling: &#x27;&#x27;,
         };
 
-        this.router.navigate([complexRoute, this.editionRouteConstants.EDITION_SHEETS.route], navigationExtras);
+        this._navigateWithComplexId(sheetIds?.complexId, sheetRoute, navigationExtras);
     }
 
     /**
-     * Private method: _navigateToFragment.
+     * Private method: _navigateWithComplexId.
      *
-     * It navigates to a given route with the given fragmentId.
+     * It navigates to a target route using the provided complexId.
      *
-     * @param {string} route The given route.
-     * @param {string} fragmentId The given fragment id.
-     * @returns {void} Navigates to the given route with the fragment id.
+     * @param {string} complexId The given complex id.
+     * @param {string} targetRoute The given target route.
+     * @param {NavigationExtras} navigationExtras The given navigation extras.
+     * @returns {void} Navigates to the target route.
      */
-    private _navigateToFragment(route: string, fragmentId: string): void {
-        if (!fragmentId) {
-            fragmentId &#x3D; &#x27;&#x27;;
-        }
-        const navigationExtras: NavigationExtras &#x3D; {
-            fragment: fragmentId,
-        };
-        this.router.navigate([this.editionComplex.baseRoute, route], navigationExtras);
+    private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
+        const complexRoute &#x3D; complexId ? &#x60;/edition/complex/${complexId}/&#x60; : this.editionComplex.baseRoute;
+
+        this.router.navigate([complexRoute, targetRoute], navigationExtras);
     }
 }
 </code></pre>
@@ -1388,7 +1379,7 @@ export class EditionIntroComponent implements OnInit {
                     &lt;small class&#x3D;&quot;text-muted&quot;
                         &gt;[Die Einleitung zum Editionskomplex
                         &lt;span [innerHTML]&#x3D;&quot;editionComplex.complexId.full&quot;&gt;&lt;/span&gt; erscheint im Zusammenhang der
-                        vollständigen Edition von {{ editionComplex.complexId.short }} in
+                        vollständigen Edition von &lt;span [innerHTML]&#x3D;&quot;editionComplex.complexId.short&quot;&gt;&lt;/span&gt; in
                         {{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{
                             editionComplex.section.short
                         }}.]
@@ -1483,8 +1474,8 @@ export class EditionIntroComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- content: intro --><div>    <!-- modal -->    <awg-modal #modal></awg-modal>    <!-- intro -->    @if (editionIntroData$ | async; as editionIntroData) {        <div class="awg-intro-view p-5 border rounded-3">            @if (utils.isNotEmptyArray(editionIntroData.intro[0].content)) {                @for (introParagraph of editionIntroData.intro[0].content; track introParagraph) {                    <p class="awg-intro-paragraph" [compile-html]="introParagraph" [compile-html-ref]="this"></p>                }            } @else {                <p class="awg-intro-empty">                    <small class="text-muted"                        >[Die Einleitung zum Editionskomplex                        <span [innerHTML]="editionComplex.complexId.full"></span> erscheint im Zusammenhang der                        vollständigen Edition von {{ editionComplex.complexId.short }} in                        {{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{                            editionComplex.section.short                        }}.]                    </small>                </p>            }            @if (utils.isNotEmptyArray(editionIntroData.intro[0].footnotes)) {                <hr />                <h5>Anmerkungen</h5>                @for (footnote of editionIntroData.intro[0].footnotes; track footnote) {                    <small                        ><p class="awg-intro-footnote" [compile-html]="footnote" [compile-html-ref]="this"></p                    ></small>                }            }        </div>    } @else {        <!-- error message -->        @if (errorObject) {            <div class="errorMessage">                <div class="col-12 text-center">                    <div class="alert alert-danger">                        {{ errorObject }}                    </div>                </div>            </div>        }    }</div></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaDescriptionComponent', 'selector': 'awg-edition-tka-description'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+        var COMPONENT_TEMPLATE = '<div><!-- content: intro --><div>    <!-- modal -->    <awg-modal #modal></awg-modal>    <!-- intro -->    @if (editionIntroData$ | async; as editionIntroData) {        <div class="awg-intro-view p-5 border rounded-3">            @if (utils.isNotEmptyArray(editionIntroData.intro[0].content)) {                @for (introParagraph of editionIntroData.intro[0].content; track introParagraph) {                    <p class="awg-intro-paragraph" [compile-html]="introParagraph" [compile-html-ref]="this"></p>                }            } @else {                <p class="awg-intro-empty">                    <small class="text-muted"                        >[Die Einleitung zum Editionskomplex                        <span [innerHTML]="editionComplex.complexId.full"></span> erscheint im Zusammenhang der                        vollständigen Edition von <span [innerHTML]="editionComplex.complexId.short"></span> in                        {{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{                            editionComplex.section.short                        }}.]                    </small>                </p>            }            @if (utils.isNotEmptyArray(editionIntroData.intro[0].footnotes)) {                <hr />                <h5>Anmerkungen</h5>                @for (footnote of editionIntroData.intro[0].footnotes; track footnote) {                    <small                        ><p class="awg-intro-footnote" [compile-html]="footnote" [compile-html-ref]="this"></p                    ></small>                }            }        </div>    } @else {        <!-- error message -->        @if (errorObject) {            <div class="errorMessage">                <div class="col-12 text-center">                    <div class="alert alert-danger">                        {{ errorObject }}                    </div>                </div>            </div>        }    }</div></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaDescriptionComponent', 'selector': 'awg-edition-tka-description'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionIntroComponent'};
 </script>

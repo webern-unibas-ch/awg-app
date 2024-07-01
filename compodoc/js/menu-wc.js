@@ -343,18 +343,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionReportModule.html" data-type="entity-link" >EditionReportModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionReportModule-410326391224951867ae08e12c0f259cc3b1559c4bcd279951a35137b3ec7581a78878ea432500a24195df73b04eac4641f403aed0bce7d5b8296cbe8ce08e3b"' : 'data-bs-target="#xs-components-links-module-EditionReportModule-410326391224951867ae08e12c0f259cc3b1559c4bcd279951a35137b3ec7581a78878ea432500a24195df73b04eac4641f403aed0bce7d5b8296cbe8ce08e3b"' }>
+                                            'data-bs-target="#components-links-module-EditionReportModule-4b42b9acb88dcfaec53b17c3ce7312d4774c856ce6e55d37fa11f12b169bf977e825562e19aa8aadd853e6992b4be013dd4ead0e8faf6d0dfaf1e2c1582528e0"' : 'data-bs-target="#xs-components-links-module-EditionReportModule-4b42b9acb88dcfaec53b17c3ce7312d4774c856ce6e55d37fa11f12b169bf977e825562e19aa8aadd853e6992b4be013dd4ead0e8faf6d0dfaf1e2c1582528e0"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionReportModule-410326391224951867ae08e12c0f259cc3b1559c4bcd279951a35137b3ec7581a78878ea432500a24195df73b04eac4641f403aed0bce7d5b8296cbe8ce08e3b"' :
-                                            'id="xs-components-links-module-EditionReportModule-410326391224951867ae08e12c0f259cc3b1559c4bcd279951a35137b3ec7581a78878ea432500a24195df73b04eac4641f403aed0bce7d5b8296cbe8ce08e3b"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionReportModule-4b42b9acb88dcfaec53b17c3ce7312d4774c856ce6e55d37fa11f12b169bf977e825562e19aa8aadd853e6992b4be013dd4ead0e8faf6d0dfaf1e2c1582528e0"' :
+                                            'id="xs-components-links-module-EditionReportModule-4b42b9acb88dcfaec53b17c3ce7312d4774c856ce6e55d37fa11f12b169bf977e825562e19aa8aadd853e6992b4be013dd4ead0e8faf6d0dfaf1e2c1582528e0"' }>
                                             <li class="link">
                                                 <a href="components/EditionReportComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionReportComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SourceDescriptionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionComponent</a>
                                             </li>
                                             <li class="link">
                                                 <a href="components/SourceEvaluationComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceEvaluationComponent</a>
@@ -452,15 +449,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionSvgSheetViewerModule.html" data-type="entity-link" >EditionSvgSheetViewerModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionSvgSheetViewerModule-9bae1e30af1dba0c452642458a76500ab38fe9f960339d3ba2c61094d02068119dbb6efbe0adca1c433739ebd64944439288c3d41ac8307a69555ca9e299b718"' : 'data-bs-target="#xs-components-links-module-EditionSvgSheetViewerModule-9bae1e30af1dba0c452642458a76500ab38fe9f960339d3ba2c61094d02068119dbb6efbe0adca1c433739ebd64944439288c3d41ac8307a69555ca9e299b718"' }>
+                                            'data-bs-target="#components-links-module-EditionSvgSheetViewerModule-5f5da467b9f257805215935e0942f63aa7bd51b7b43cd1f34868f8376d4f389e63e572d94619d900b1c97681c35448acaf10a1e32453c42eb6d324f0e50ac931"' : 'data-bs-target="#xs-components-links-module-EditionSvgSheetViewerModule-5f5da467b9f257805215935e0942f63aa7bd51b7b43cd1f34868f8376d4f389e63e572d94619d900b1c97681c35448acaf10a1e32453c42eb6d324f0e50ac931"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionSvgSheetViewerModule-9bae1e30af1dba0c452642458a76500ab38fe9f960339d3ba2c61094d02068119dbb6efbe0adca1c433739ebd64944439288c3d41ac8307a69555ca9e299b718"' :
-                                            'id="xs-components-links-module-EditionSvgSheetViewerModule-9bae1e30af1dba0c452642458a76500ab38fe9f960339d3ba2c61094d02068119dbb6efbe0adca1c433739ebd64944439288c3d41ac8307a69555ca9e299b718"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionSvgSheetViewerModule-5f5da467b9f257805215935e0942f63aa7bd51b7b43cd1f34868f8376d4f389e63e572d94619d900b1c97681c35448acaf10a1e32453c42eb6d324f0e50ac931"' :
+                                            'id="xs-components-links-module-EditionSvgSheetViewerModule-5f5da467b9f257805215935e0942f63aa7bd51b7b43cd1f34868f8376d4f389e63e572d94619d900b1c97681c35448acaf10a1e32453c42eb6d324f0e50ac931"' }>
                                             <li class="link">
                                                 <a href="components/EditionSvgSheetViewerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetViewerComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/EditionSvgSheetViewerNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetViewerNavComponent</a>
                                             </li>
                                             <li class="link">
                                                 <a href="components/EditionSvgSheetViewerSwitchComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetViewerSwitchComponent</a>
@@ -472,13 +472,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionTkaModule.html" data-type="entity-link" >EditionTkaModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionTkaModule-75604a742b85e296d23d4a4379c4c8b50c753f67a004785cc89f736984abe3abba3c6c0eaafc988c0defa13fe8a21e0dd0902c9eb813b9142eb33aad1b2e58e8"' : 'data-bs-target="#xs-components-links-module-EditionTkaModule-75604a742b85e296d23d4a4379c4c8b50c753f67a004785cc89f736984abe3abba3c6c0eaafc988c0defa13fe8a21e0dd0902c9eb813b9142eb33aad1b2e58e8"' }>
+                                            'data-bs-target="#components-links-module-EditionTkaModule-436fdaae02b628f9cf08c419b5f412b4abf4d9bbb5024cdf3d87212938d11787beaeff77cc1b4eafd0f30f87d53fbd08ffe2a12a426e59eefd315faa7e18a875"' : 'data-bs-target="#xs-components-links-module-EditionTkaModule-436fdaae02b628f9cf08c419b5f412b4abf4d9bbb5024cdf3d87212938d11787beaeff77cc1b4eafd0f30f87d53fbd08ffe2a12a426e59eefd315faa7e18a875"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionTkaModule-75604a742b85e296d23d4a4379c4c8b50c753f67a004785cc89f736984abe3abba3c6c0eaafc988c0defa13fe8a21e0dd0902c9eb813b9142eb33aad1b2e58e8"' :
-                                            'id="xs-components-links-module-EditionTkaModule-75604a742b85e296d23d4a4379c4c8b50c753f67a004785cc89f736984abe3abba3c6c0eaafc988c0defa13fe8a21e0dd0902c9eb813b9142eb33aad1b2e58e8"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionTkaModule-436fdaae02b628f9cf08c419b5f412b4abf4d9bbb5024cdf3d87212938d11787beaeff77cc1b4eafd0f30f87d53fbd08ffe2a12a426e59eefd315faa7e18a875"' :
+                                            'id="xs-components-links-module-EditionTkaModule-436fdaae02b628f9cf08c419b5f412b4abf4d9bbb5024cdf3d87212938d11787beaeff77cc1b4eafd0f30f87d53fbd08ffe2a12a426e59eefd315faa7e18a875"' }>
                                             <li class="link">
                                                 <a href="components/EditionTkaDescriptionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionTkaDescriptionComponent</a>
                                             </li>
@@ -811,6 +811,29 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/SideInfoRoutingModule.html" data-type="entity-link" >SideInfoRoutingModule</a>
                             </li>
                             <li class="link">
+                                <a href="modules/SourceDescriptionModule.html" data-type="entity-link" >SourceDescriptionModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
+                                            'data-bs-target="#components-links-module-SourceDescriptionModule-647a16d7f4098b78f790a47e017406bbb6faf05b29ef7fb775375ca284b6643a6ef55bf3567c6b1286f5ea59502151a3b5a3d273f41beb435a9278cf021b0025"' : 'data-bs-target="#xs-components-links-module-SourceDescriptionModule-647a16d7f4098b78f790a47e017406bbb6faf05b29ef7fb775375ca284b6643a6ef55bf3567c6b1286f5ea59502151a3b5a3d273f41beb435a9278cf021b0025"' }>
+                                            <span class="icon ion-md-cog"></span>
+                                            <span>Components</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SourceDescriptionModule-647a16d7f4098b78f790a47e017406bbb6faf05b29ef7fb775375ca284b6643a6ef55bf3567c6b1286f5ea59502151a3b5a3d273f41beb435a9278cf021b0025"' :
+                                            'id="xs-components-links-module-SourceDescriptionModule-647a16d7f4098b78f790a47e017406bbb6faf05b29ef7fb775375ca284b6643a6ef55bf3567c6b1286f5ea59502151a3b5a3d273f41beb435a9278cf021b0025"' }>
+                                            <li class="link">
+                                                <a href="components/SourceDescriptionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/SourceDescriptionCorrectionsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionCorrectionsComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/SourceDescriptionDetailsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionDetailsComponent</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/StructureViewModule.html" data-type="entity-link" >StructureViewModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
@@ -853,7 +876,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/EditionJumbotronComponent.html" data-type="entity-link" >EditionJumbotronComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/EditionSvgSheetViewerNavComponent.html" data-type="entity-link" >EditionSvgSheetViewerNavComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/EditionSvgSheetViewerSwitchComponent.html" data-type="entity-link" >EditionSvgSheetViewerSwitchComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionTkaDescriptionComponent.html" data-type="entity-link" >EditionTkaDescriptionComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionTkaLabelComponent.html" data-type="entity-link" >EditionTkaLabelComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionTkaTableComponent.html" data-type="entity-link" >EditionTkaTableComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/ExtendedSearchFormComponent.html" data-type="entity-link" >ExtendedSearchFormComponent</a>
@@ -895,7 +930,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/SelectResultsComponent.html" data-type="entity-link" >SelectResultsComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/SourceDescriptionComponent.html" data-type="entity-link" >SourceDescriptionComponent</a>
+                                <a href="components/SourceDescriptionCorrectionsComponent.html" data-type="entity-link" >SourceDescriptionCorrectionsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescriptionDetailsComponent.html" data-type="entity-link" >SourceDescriptionDetailsComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/SourceEvaluationComponent.html" data-type="entity-link" >SourceEvaluationComponent</a>
@@ -1596,6 +1634,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/IResourceInfoResources.html" data-type="entity-link" >IResourceInfoResources</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/JdnDate.html" data-type="entity-link" >JdnDate</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Namespace.html" data-type="entity-link" >Namespace</a>

@@ -156,11 +156,15 @@ from a source description json file.</p>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#content" >content</a>
+                                <a href="#contents" >contents</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#date" >date</a>
+                                <a href="#corrections" >corrections</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#dates" >dates</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
@@ -168,7 +172,7 @@ from a source description json file.</p>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#instrumentation" >instrumentation</a>
+                                <a href="#instrumentations" >instrumentations</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
@@ -176,11 +180,11 @@ from a source description json file.</p>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#pagination" >pagination</a>
+                                <a href="#paginations" >paginations</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#title" >title</a>
+                                <a href="#titles" >titles</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
@@ -188,11 +192,11 @@ from a source description json file.</p>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#writingMaterial" >writingMaterial</a>
+                                <a href="#writingMaterials" >writingMaterials</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#writingMaterialString" >writingMaterialString</a>
+                                <a href="#writingMaterialStrings" >writingMaterialStrings</a>
                             </li>
                         </ul>
                     </td>
@@ -227,19 +231,19 @@ from a source description json file.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>    <code>string[]</code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="375" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:375</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="377" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:377</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Annotations as they appear in a source (optional).</p>
+                    <div class="io-description"><p>One or multiple annotations as they appear in a source (optional).</p>
 </div>
                 </td>
             </tr>
@@ -250,11 +254,11 @@ from a source description json file.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="content"></a>
+                    <a name="contents"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>content</b></span>
-                        <a href="#content"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>contents</b></span>
+                        <a href="#contents"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -266,7 +270,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="380" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:380</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="382" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:382</a></div>
                         </td>
                     </tr>
 
@@ -283,29 +287,62 @@ from a source description json file.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="date"></a>
+                    <a name="corrections"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>date</b></span>
-                        <a href="#date"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>corrections</b></span>
+                        <a href="#corrections"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="../classes/Textcritics.html" target="_self" >Textcritics[]</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="355" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:355</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="387" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:387</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>A date as it appears in a source (optional).</p>
+                    <div class="io-description"><p>The corrections lists of a source (optional).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dates"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>dates</b></span>
+                        <a href="#dates"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="357" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:357</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>One or multiple dates as they appear in a source (optional).</p>
 </div>
                 </td>
             </tr>
@@ -332,7 +369,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="330" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:330</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="332" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:332</a></div>
                         </td>
                     </tr>
 
@@ -349,29 +386,29 @@ from a source description json file.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="instrumentation"></a>
+                    <a name="instrumentations"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>instrumentation</b></span>
-                        <a href="#instrumentation"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>instrumentations</b></span>
+                        <a href="#instrumentations"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>    <code>string[]</code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="370" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:370</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="372" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:372</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The instrumentation as it appears in a source (optional).</p>
+                    <div class="io-description"><p>One or multiple instrumentations as they appear in a source (optional).</p>
 </div>
                 </td>
             </tr>
@@ -392,19 +429,19 @@ from a source description json file.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>    <code>string[]</code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="365" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:365</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="367" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:367</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Measure numbers as they appear in a source (optional).</p>
+                    <div class="io-description"><p>One or multiple measure numbers as they appear in a source (optional).</p>
 </div>
                 </td>
             </tr>
@@ -415,29 +452,29 @@ from a source description json file.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="pagination"></a>
+                    <a name="paginations"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>pagination</b></span>
-                        <a href="#pagination"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>paginations</b></span>
+                        <a href="#paginations"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>    <code>string[]</code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="360" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:360</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="362" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:362</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The pagination as it appears in a source (optional).</p>
+                    <div class="io-description"><p>One or multiple paginations as they appear in a source (optional).</p>
 </div>
                 </td>
             </tr>
@@ -448,29 +485,29 @@ from a source description json file.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="title"></a>
+                    <a name="titles"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>title</b></span>
-                        <a href="#title"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>titles</b></span>
+                        <a href="#titles"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>    <code>string[]</code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="350" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:350</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="352" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:352</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>A title as it appears in a source (optional).</p>
+                    <div class="io-description"><p>One or multiple titles as they appear in a source (optional).</p>
 </div>
                 </td>
             </tr>
@@ -497,7 +534,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="345" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:345</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="347" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:347</a></div>
                         </td>
                     </tr>
 
@@ -514,11 +551,11 @@ from a source description json file.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="writingMaterial"></a>
+                    <a name="writingMaterials"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>writingMaterial</b></span>
-                        <a href="#writingMaterial"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>writingMaterials</b></span>
+                        <a href="#writingMaterials"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -530,13 +567,13 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="340" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:340</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="342" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:342</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The writing material used for a source (optional).</p>
+                    <div class="io-description"><p>The writing materials used for a source (optional).</p>
 </div>
                 </td>
             </tr>
@@ -547,29 +584,29 @@ from a source description json file.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="writingMaterialString"></a>
+                    <a name="writingMaterialStrings"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>writingMaterialString</b></span>
-                        <a href="#writingMaterialString"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>writingMaterialStrings</b></span>
+                        <a href="#writingMaterialStrings"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>    <code>string[]</code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="335" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:335</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="337" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:337</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The string representation of a writing material used for a source (optional).</p>
+                    <div class="io-description"><p>The string representation of writing materials used for a source (optional).</p>
 </div>
                 </td>
             </tr>
@@ -588,7 +625,16 @@ from a source description json file.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class SourceDescriptionSystemRow {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Textcritics } from &#x27;./textcritics.model&#x27;;
+
+/**
+ * The SourceDescriptionSystemRow class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a system row of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionSystemRow {
     /**
      * The type of the row (optional).
      */
@@ -913,14 +959,14 @@ export class SourceDescriptionDesc {
     desc?: string[];
 
     /**
-     * The string representation of a writing material used for a source (optional).
+     * The string representation of writing materials used for a source (optional).
      */
-    writingMaterialString?: string;
+    writingMaterialStrings?: string[];
 
     /**
-     * The writing material used for a source (optional).
+     * The writing materials used for a source (optional).
      */
-    writingMaterial?: SourceDescriptionWritingMaterial[];
+    writingMaterials?: SourceDescriptionWritingMaterial[];
 
     /**
      * The writing instruments used in a source (optional).
@@ -928,39 +974,44 @@ export class SourceDescriptionDesc {
     writingInstruments?: SourceDescriptionWritingInstruments;
 
     /**
-     * A title as it appears in a source (optional).
+     * One or multiple titles as they appear in a source (optional).
      */
-    title?: string;
+    titles?: string[];
 
     /**
-     * A date as it appears in a source (optional).
+     * One or multiple dates as they appear in a source (optional).
      */
-    date?: string;
+    dates?: string[];
 
     /**
-     * The pagination as it appears in a source (optional).
+     * One or multiple paginations as they appear in a source (optional).
      */
-    pagination?: string;
+    paginations?: string[];
 
     /**
-     * Measure numbers as they appear in a source (optional).
+     * One or multiple measure numbers as they appear in a source (optional).
      */
-    measureNumbers?: string;
+    measureNumbers?: string[];
 
     /**
-     * The instrumentation as it appears in a source (optional).
+     * One or multiple instrumentations as they appear in a source (optional).
      */
-    instrumentation?: string;
+    instrumentations?: string[];
 
     /**
-     * Annotations as they appear in a source (optional).
+     * One or multiple annotations as they appear in a source (optional).
      */
-    annotations?: string;
+    annotations?: string[];
 
     /**
      * The content of a source (optional).
      */
-    content?: SourceDescriptionContent[];
+    contents?: SourceDescriptionContent[];
+
+    /**
+     * The corrections lists of a source (optional).
+     */
+    corrections?: Textcritics[];
 }
 
 /**

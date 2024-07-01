@@ -213,7 +213,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="287" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:287</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="289" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:289</a></div>
                         </td>
                     </tr>
 
@@ -246,7 +246,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="297" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:297</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:299</a></div>
                         </td>
                     </tr>
 
@@ -279,7 +279,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="282" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:282</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="284" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:284</a></div>
                         </td>
                     </tr>
 
@@ -312,7 +312,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="272" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:272</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="274" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:274</a></div>
                         </td>
                     </tr>
 
@@ -345,7 +345,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:277</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="279" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:279</a></div>
                         </td>
                     </tr>
 
@@ -378,7 +378,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="292" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:292</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="294" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:294</a></div>
                         </td>
                     </tr>
 
@@ -403,7 +403,16 @@ from a source description json file.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class SourceDescriptionSystemRow {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Textcritics } from &#x27;./textcritics.model&#x27;;
+
+/**
+ * The SourceDescriptionSystemRow class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a system row of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionSystemRow {
     /**
      * The type of the row (optional).
      */
@@ -728,14 +737,14 @@ export class SourceDescriptionDesc {
     desc?: string[];
 
     /**
-     * The string representation of a writing material used for a source (optional).
+     * The string representation of writing materials used for a source (optional).
      */
-    writingMaterialString?: string;
+    writingMaterialStrings?: string[];
 
     /**
-     * The writing material used for a source (optional).
+     * The writing materials used for a source (optional).
      */
-    writingMaterial?: SourceDescriptionWritingMaterial[];
+    writingMaterials?: SourceDescriptionWritingMaterial[];
 
     /**
      * The writing instruments used in a source (optional).
@@ -743,39 +752,44 @@ export class SourceDescriptionDesc {
     writingInstruments?: SourceDescriptionWritingInstruments;
 
     /**
-     * A title as it appears in a source (optional).
+     * One or multiple titles as they appear in a source (optional).
      */
-    title?: string;
+    titles?: string[];
 
     /**
-     * A date as it appears in a source (optional).
+     * One or multiple dates as they appear in a source (optional).
      */
-    date?: string;
+    dates?: string[];
 
     /**
-     * The pagination as it appears in a source (optional).
+     * One or multiple paginations as they appear in a source (optional).
      */
-    pagination?: string;
+    paginations?: string[];
 
     /**
-     * Measure numbers as they appear in a source (optional).
+     * One or multiple measure numbers as they appear in a source (optional).
      */
-    measureNumbers?: string;
+    measureNumbers?: string[];
 
     /**
-     * The instrumentation as it appears in a source (optional).
+     * One or multiple instrumentations as they appear in a source (optional).
      */
-    instrumentation?: string;
+    instrumentations?: string[];
 
     /**
-     * Annotations as they appear in a source (optional).
+     * One or multiple annotations as they appear in a source (optional).
      */
-    annotations?: string;
+    annotations?: string[];
 
     /**
      * The content of a source (optional).
      */
-    content?: SourceDescriptionContent[];
+    contents?: SourceDescriptionContent[];
+
+    /**
+     * The corrections lists of a source (optional).
+     */
+    corrections?: Textcritics[];
 }
 
 /**

@@ -401,7 +401,7 @@ export class EditionComplex {
 
         // Helper constants
         const delimiter &#x3D; &#x27;/&#x27;;
-        const spacer &#x3D; &#x27; &#x27;;
+        const spacer &#x3D; &#x27;&amp;nbsp;&#x27;;
 
         // Set dynamic routes
         this.titleStatement &#x3D; titleStatement;
@@ -418,7 +418,7 @@ export class EditionComplex {
         // For routes, replace slashes in catalogue number with underscores
         this.complexId.route +&#x3D; this.titleStatement.catalogueNumber.replace(/\//g, &#x27;_&#x27;);
         this.complexId.short &#x3D; this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
-        this.complexId.full &#x3D; this.titleStatement.title + spacer + this.complexId.short;
+        this.complexId.full &#x3D; &#x60;${this.titleStatement.title} ${this.complexId.short}&#x60;;
 
         this.series &#x3D; series || new EditionRouteConstant();
         this.section &#x3D; section || new EditionRouteConstant();

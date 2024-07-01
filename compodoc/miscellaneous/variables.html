@@ -617,7 +617,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;0.12.2&#x27;</code>
+                        <i>Default value : </i><code>&#x27;0.12.3&#x27;</code>
                     </td>
                 </tr>
 
@@ -649,7 +649,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;31. Mai 2024&#x27;</code>
+                        <i>Default value : </i><code>&#x27;01. Juli 2024&#x27;</code>
                     </td>
                 </tr>
 
@@ -1987,15 +1987,29 @@ to store graph images data.</p>
                 section: EDITION_ROUTE_CONSTANTS.SECTION_5,
                 complexes: {
                     opus: [
-                        { complex: EDITION_COMPLEXES.OP3, disabled: true },
-                        { complex: EDITION_COMPLEXES.OP4, disabled: true },
+                        { complex: EDITION_COMPLEXES.OP3, disabled: false },
+                        { complex: EDITION_COMPLEXES.OP4, disabled: false },
                         { complex: EDITION_COMPLEXES.OP12, disabled: false },
                         { complex: EDITION_COMPLEXES.OP23, disabled: false },
                         { complex: EDITION_COMPLEXES.OP25, disabled: false },
                     ],
                     mnr: [
-                        { complex: EDITION_COMPLEXES.M212, disabled: true },
+                        { complex: EDITION_COMPLEXES.M133, disabled: true },
+                        { complex: EDITION_COMPLEXES.M134, disabled: true },
+                        { complex: EDITION_COMPLEXES.M135, disabled: true },
+                        { complex: EDITION_COMPLEXES.M136, disabled: true },
+                        { complex: EDITION_COMPLEXES.M137, disabled: true },
+                        { complex: EDITION_COMPLEXES.M138, disabled: true },
+                        { complex: EDITION_COMPLEXES.M139, disabled: true },
+                        { complex: EDITION_COMPLEXES.M140, disabled: true },
+                        { complex: EDITION_COMPLEXES.M141, disabled: true },
+                        { complex: EDITION_COMPLEXES.M142, disabled: true },
+                        { complex: EDITION_COMPLEXES.M143, disabled: false },
+                        { complex: EDITION_COMPLEXES.M144, disabled: false },
+                        { complex: EDITION_COMPLEXES.M145, disabled: false },
+                        { complex: EDITION_COMPLEXES.M146, disabled: false },
                         { complex: EDITION_COMPLEXES.M213, disabled: true },
+                        { complex: EDITION_COMPLEXES.M212, disabled: true },
                         { complex: EDITION_COMPLEXES.M216, disabled: true },
                         { complex: EDITION_COMPLEXES.M217, disabled: true },
                     ],
@@ -2547,7 +2561,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
     },
     snf: {
         id: &#x27;snflogo&#x27;,
-        src: &#x27;assets/img/logos/snf.png&#x27;,
+        src: &#x27;assets/img/logos/snf.svg&#x27;,
         alt: &#x27;Logo SNF&#x27;,
         href: &#x27;https://www.snf.ch&#x27;,
     },
@@ -3122,11 +3136,11 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
             {
                 id: &#x27;op12&#x27;,
                 content: [
-                    &#x27;Die Skizzen in &lt;a (click)&#x3D;&quot;ref.navigateToReportFragment(\&#x27;source_A\&#x27;)&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern.&#x27;,
-                    &quot;In &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet(&#x27;testComplex1&#x27;, &#x27;test-1&#x27;)\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; werden T. [11]–[12] aus &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; neu skizziert.&lt;sup id&#x3D;&#x27;footnote-80-backlink&#x27; class&#x3D;&#x27;footnote-link&#x27;&gt;&lt;a (click)&#x3D;\&quot;ref.navigateToIntroFragment(&#x27;footnote-80&#x27;)\&quot;&gt;80&lt;/a&gt;&lt;/sup&gt;&quot;,
+                    &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;testComplex1&#x27;, fragmentId: &#x27;source_A&#x27;})\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern.&quot;,
+                    &quot;In &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; werden T. [11]–[12] aus &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; neu skizziert.&lt;sup id&#x3D;&#x27;footnote-80-backlink&#x27; class&#x3D;&#x27;footnote-link&#x27;&gt;&lt;a (click)&#x3D;\&quot;ref.navigateToIntroFragment({complexId: &#x27;testComplex1&#x27;, fragmentId: &#x27;footnote-80&#x27;})\&quot;&gt;80&lt;/a&gt;&lt;/sup&gt;&quot;,
                 ],
                 footnotes: [
-                    &quot;&lt;span id&#x3D;&#x27;footnote-80&#x27; class&#x3D;&#x27;footnote&#x27;&gt;&lt;a class&#x3D;&#x27;footnote-backlink&#x27; (click)&#x3D;\&quot;ref.navigateToIntroFragment(&#x27;footnote-80-backlink&#x27;)\&quot;&gt;80&lt;/a&gt; | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).&lt;/span&gt;&quot;,
+                    &quot;&lt;span id&#x3D;&#x27;footnote-80&#x27; class&#x3D;&#x27;footnote&#x27;&gt;&lt;a class&#x3D;&#x27;footnote-backlink&#x27; (click)&#x3D;\&quot;ref.navigateToIntroFragment({complexId: &#x27;testComplex1&#x27;, fragmentId: &#x27;footnote-80-backlink&#x27;})\&quot;&gt;80&lt;/a&gt; | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).&lt;/span&gt;&quot;,
                 ],
             },
         ],
@@ -3269,19 +3283,21 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     desc: [
                         &#x27;2 Blätter (Bl. 1–2). Archivalische Paginierung &lt;em&gt;[1]&lt;/em&gt; bis &lt;em&gt;[4]&lt;/em&gt; unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2&lt;sup&gt;v&lt;/sup&gt; mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert. Zeichen ergänzt mit Blick auf &lt;a (click)&#x3D;&quot;ref.openModal(\&#x27;OP12_SHEET_COMING_SOON\&#x27;)&quot; &gt;&lt;strong&gt;Textfassung 2&lt;/strong&gt;&lt;/a&gt;&#x27;,
                     ],
-                    writingMaterialString:
-                        &#x27;Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen:&lt;br /&gt;&lt;img class&#x3D;&quot;img-thumbnail&quot; [src]&#x3D;&quot;ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.route&quot; [title]&#x3D;&quot;ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.full&quot; [alt]&#x3D;&quot;ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.short&quot; /&gt;&lt;br /&gt;auf Bl. 1&lt;sup&gt;r&lt;/sup&gt; unten links (Bl. 1); &lt;br /&gt;Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).&#x27;,
+                    writingMaterialStrings: [
+                        &#x27;Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen:&lt;br /&gt;&lt;img class&#x3D;&quot;img-thumbnail&quot; [src]&#x3D;&quot;ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.route&quot; [title]&#x3D;&quot;ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.full&quot; [alt]&#x3D;&quot;ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.short&quot; /&gt;&lt;br /&gt;auf Bl. 1&lt;sup&gt;r&lt;/sup&gt; unten links (Bl. 1)&#x27;,
+                        &#x27;Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2)&#x27;,
+                    ],
                     writingInstruments: {
                         main: &#x27;Bleistift&#x27;,
                         secondary: [&#x27;roter Buntstift&#x27;, &#x27;blaue Tinte&#x27;, &#x27;Kopierstift&#x27;],
                     },
-                    title: &#x27;test title&#x27;,
-                    date: &#x27;test date&#x27;,
-                    pagination: &#x27;test pagination&#x27;,
-                    measureNumbers: &#x27;test measure numbers&#x27;,
-                    instrumentation: &#x27;test instrumentation&#x27;,
-                    annotations: &#x27;test annotations&#x27;,
-                    content: [
+                    titles: [&#x27;test titles 1&#x27;, &#x27;test titles 2&#x27;],
+                    dates: [&#x27;test dates 1&#x27;, &#x27;test dates 2&#x27;],
+                    paginations: [&#x27;test paginations 1&#x27;, &#x27;test paginations 2&#x27;],
+                    measureNumbers: [&#x27;test measure numbers 1&#x27;, &#x27;test measure numbers 2&#x27;],
+                    instrumentations: [&#x27;test instrumentations 1&#x27;, &#x27;test instrumentations 2&#x27;],
+                    annotations: [&#x27;test annotations&#x27;],
+                    contents: [
                         {
                             item: &#x27;Test item&#x27;,
                             itemLinkTo: {
@@ -3352,6 +3368,20 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                                                 systemDescription: &#x27;(test system description)&#x27;,
                                                 measure: &#x27;4–6&#x27;,
                                                 linkTo: &#x27;test_id_2_2&#x27;,
+                                            },
+                                        ],
+                                    ],
+                                },
+                                {
+                                    folio: &#x27;100v&#x27;,
+                                    folioLinkTo: &#x27;&#x27;,
+                                    folioDescription: &#x27;&#x27;,
+                                    systemGroups: [
+                                        [
+                                            {
+                                                system: &#x27;7–8&#x27;,
+                                                measure: &#x27;&#x27;,
+                                                linkTo: &#x27;&#x27;,
                                             },
                                         ],
                                     ],
@@ -3541,6 +3571,30 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                             ],
                         },
                     ],
+                    corrections: [
+                        {
+                            id: &#x27;source_Aa_corr_1&#x27;,
+                            label: &#x27;Korrekturen 1 in &lt;strong&gt;B&lt;/strong&gt; (mit Tinte)&#x27;,
+                            description: [
+                                &#x27;Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: Textfassung 1.&#x27;,
+                            ],
+                            comments: [
+                                {
+                                    measure: &#x27;3–4&#x27;,
+                                    system: &#x27;&#x27;,
+                                    position: &#x27;&#x27;,
+                                    comment: &#x27;Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####&#x27;,
+                                },
+                                {
+                                    measure: &#x27;4&#x27;,
+                                    system: &#x27;Klav. o.&#x27;,
+                                    position: &#x27;&#x27;,
+                                    comment:
+                                        &#x27;Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.&#x27;,
+                                },
+                            ],
+                        },
+                    ],
                 },
             },
             {
@@ -3551,7 +3605,9 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 type: &#x27;Handexemplar von &lt;strong&gt;G&lt;/strong&gt;.&#x27;,
                 location: &#x27;US-Wc, Moldenhauer Archives, Box-Folder: 59/10.&#x27;,
                 description: {
-                    desc: [&#x27;Siehe &lt;a (click)&#x3D;&quot;ref.navigateToReportFragment(\&#x27;source_G\&#x27;)&quot;&gt;&lt;strong&gt;G&lt;/strong&gt;&lt;/a&gt;.&#x27;],
+                    desc: [
+                        &quot;Siehe &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;&#x27;, fragmentId: &#x27;source_G&#x27;})\&quot;&gt;&lt;strong&gt;G&lt;/strong&gt;&lt;/a&gt;.&quot;,
+                    ],
                 },
             },
         ],
@@ -3568,7 +3624,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 id: &#x27;op25&#x27;,
                 content: [
                     &#x27;&lt;small class&#x3D;&quot;text-muted&quot;&gt;[Die Quellenbewertung zum gesamten Editionskomplex &lt;em&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/em&gt; op. 25 erscheint im Zusammenhang der vollständigen Edition von Opus 25 in AWG I/5.]&lt;/small&gt;&#x27;,
-                    &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment(&#x27;source_A&#x27;)\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten u. a. &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; (13. Januar 1915) als Korrekturen einer in &lt;strong&gt;B&lt;/strong&gt; und in &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet(&#x27;testComplex1&#x27;, &#x27;test-1&#x27;)\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; vorformulierten Fassung dar.&quot;,
+                    &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;&#x27;, fragmentId: &#x27;source_A&#x27;})\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten u. a. &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; (13. Januar 1915) als Korrekturen einer in &lt;strong&gt;B&lt;/strong&gt; und in &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test_item_id_1&#x27;})\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; vorformulierten Fassung dar.&quot;,
                 ],
             },
         ],
@@ -4001,7 +4057,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 label: &#x27;test2&#x27;,
                 description: [
                     &#x27;test description 1&#x27;,
-                    &quot;In &lt;strong&gt;Sk2&lt;/strong&gt; werden T. 11–12 aus &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet(&#x27;testComplex1&#x27;, &#x27;test-1&#x27;)\&quot;&gt;&lt;strong&gt;Sk1&lt;/strong&gt;&lt;/a&gt; bzw. T. 10–11 aus &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment(&#x27;source_B&#x27;)\&quot;&gt;&lt;strong&gt;B&lt;/strong&gt;&lt;/a&gt; neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;C&lt;/strong&gt;&lt;/a&gt; entspricht.&quot;,
+                    &quot;In &lt;strong&gt;Sk2&lt;/strong&gt; werden T. 11–12 aus &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Sk1&lt;/strong&gt;&lt;/a&gt; bzw. T. 10–11 aus &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;&#x27;, fragmentId: &#x27;source_B&#x27;})\&quot;&gt;&lt;strong&gt;B&lt;/strong&gt;&lt;/a&gt; neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;C&lt;/strong&gt;&lt;/a&gt; entspricht.&quot;,
                 ],
                 rowtable: true,
                 comments: [
@@ -4018,7 +4074,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                         system: &#x27;12&#x27;,
                         position: &#x27;2. Note&#x27;,
                         comment:
-                            &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment(&#x27;source_A&#x27;)\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test SkXYZ&lt;/strong&gt;&lt;/a&gt; T. [11] und &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet(&#x27;testComplex1&#x27;, &#x27;test-1&#x27;)\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt;.&quot;,
+                            &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;&#x27;, fragmentId: &#x27;source_A&#x27;})\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test SkXYZ&lt;/strong&gt;&lt;/a&gt; T. [11] und &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt;.&quot;,
                     },
                     {
                         svgGroupId: &#x27;svg-group-3&#x27;,
