@@ -121,9 +121,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
         it('... should have rowTablesData$', waitForAsync(() => {
             expectAsync(lastValueFrom(component.rowTablesData$)).toBeResolved();
-            expectAsync(lastValueFrom(component.rowTablesData$))
-                .withContext(`should be resolved to ${expectedRowTablesData}`)
-                .toBeResolvedTo(expectedRowTablesData);
+            expectAsync(lastValueFrom(component.rowTablesData$)).toBeResolvedTo(expectedRowTablesData);
         }));
 
         describe('VIEW', () => {

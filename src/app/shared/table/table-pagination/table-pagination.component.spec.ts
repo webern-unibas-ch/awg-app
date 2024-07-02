@@ -7,6 +7,8 @@ import { NgbConfig, NgbPagination, NgbPaginationModule } from '@ng-bootstrap/ng-
 
 import {
     expectSpyCall,
+    expectToBe,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -78,9 +80,7 @@ describe('TablePaginationComponent (DONE)', () => {
         });
 
         it('... should have FILTER_PAG_REGEX', () => {
-            expect(component.FILTER_PAG_REGEX).toBeDefined();
-
-            expect(component.FILTER_PAG_REGEX).withContext(`should equal /\\D/g`).toEqual(/\D/g);
+            expectToEqual(component.FILTER_PAG_REGEX, /\D/g);
         });
 
         it('... should not have called formatInput', () => {
@@ -118,15 +118,11 @@ describe('TablePaginationComponent (DONE)', () => {
         });
 
         it('... should have collectionSize', () => {
-            expect(component.collectionSize).toBeDefined();
-            expect(component.collectionSize)
-                .withContext(`should equal ${expectedCollectionSize}`)
-                .toEqual(expectedCollectionSize);
+            expectToBe(component.collectionSize, expectedCollectionSize);
         });
 
         it('... should have page', () => {
-            expect(component.page).toBeDefined();
-            expect(component.page).withContext(`should equal ${expectedPage}`).toEqual(expectedPage);
+            expectToBe(component.page, expectedPage);
         });
 
         describe('VIEW', () => {
@@ -201,8 +197,7 @@ describe('TablePaginationComponent (DONE)', () => {
                 const labelDe = getAndExpectDebugElementByCss(divDe[0], 'label#paginationInputLabel', 1, 1);
                 const labelEl = labelDe[0].nativeElement;
 
-                expect(labelEl.textContent).toBeTruthy();
-                expect(labelEl.textContent).withContext(`should be ${expectedLabel}`).toBe(expectedLabel);
+                expectToBe(labelEl.textContent, expectedLabel);
             });
 
             it('... should display recent page in input', () => {
@@ -217,8 +212,7 @@ describe('TablePaginationComponent (DONE)', () => {
                 );
                 const inputEl = inputDe[0].nativeElement;
 
-                expect(inputEl.value).toBeTruthy();
-                expect(inputEl.value).withContext(`should be ${expectedInputValue}`).toBe(expectedInputValue);
+                expectToBe(inputEl.value, expectedInputValue);
             });
 
             it('... should display `von pages.length` in span', () => {
@@ -230,8 +224,7 @@ describe('TablePaginationComponent (DONE)', () => {
                 const spanDe = getAndExpectDebugElementByCss(divDe[0], 'span#paginationDescription', 1, 1);
                 const spanEl = spanDe[0].nativeElement;
 
-                expect(spanEl.textContent).toBeTruthy();
-                expect(spanEl.textContent.trim()).withContext(`should be ${expectedSpanText}`).toBe(expectedSpanText);
+                expectToBe(spanEl.textContent.trim(), expectedSpanText);
             });
         });
 
@@ -341,8 +334,7 @@ describe('TablePaginationComponent (DONE)', () => {
 
                     component.selectPage(expectedNewPage.toString());
 
-                    expect(component.page).toBeTruthy();
-                    expect(component.page).withContext(`should be ${expectedNewPage}`).toBe(expectedNewPage);
+                    expectToBe(component.page, expectedNewPage);
                 });
 
                 it('... to 1 if the given value cannot be parsed to an integer', () => {
@@ -350,29 +342,25 @@ describe('TablePaginationComponent (DONE)', () => {
 
                     component.selectPage(expectedNewPage);
 
-                    expect(component.page).toBeTruthy();
-                    expect(component.page).withContext(`should be 1`).toBe(1);
+                    expectToBe(component.page, 1);
 
                     const expectedNewPage2 = 'NaN';
 
                     component.selectPage(expectedNewPage2);
 
-                    expect(component.page).toBeTruthy();
-                    expect(component.page).withContext(`should be 1`).toBe(1);
+                    expectToBe(component.page, 1);
 
                     const expectedNewPage3 = '_123';
 
                     component.selectPage(expectedNewPage3);
 
-                    expect(component.page).toBeTruthy();
-                    expect(component.page).withContext(`should be 1`).toBe(1);
+                    expectToBe(component.page, 1);
                 });
 
                 it('... to 1 if the given value is undefined', () => {
                     component.selectPage(undefined);
 
-                    expect(component.page).toBeTruthy();
-                    expect(component.page).withContext(`should be 1`).toBe(1);
+                    expectToBe(component.page, 1);
                 });
             });
         });

@@ -8,7 +8,7 @@ import { sparql } from '@codemirror/legacy-modes/mode/sparql';
 import { EditorState, EditorStateConfig, Extension } from '@codemirror/state';
 import { basicSetup } from 'codemirror';
 
-import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { CmMode, CodeMirrorComponent } from './codemirror.component';
 
@@ -70,7 +70,7 @@ describe('CodemirrorComponent', () => {
         describe('VIEW', () => {
             it('... should contain one div.codemirrorhost', () => {
                 // Div debug element
-                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.codemirrorhost', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.codemirrorhost', 1, 1);
             });
         });
     });
@@ -86,13 +86,11 @@ describe('CodemirrorComponent', () => {
         });
 
         it('... should have mode', () => {
-            expect(component.mode).toBeDefined();
-            expect(component.mode).withContext(`should equal ${expectedMode}`).toEqual(expectedMode);
+            expectToEqual(component.mode, expectedMode);
         });
 
         it('... should have content', () => {
-            expect(component.content).toBeDefined();
-            expect(component.content).withContext(`should equal ${expectedContent}`).toEqual(expectedContent);
+            expectToBe(component.content, expectedContent);
         });
 
         describe('#init()', () => {
@@ -111,17 +109,13 @@ describe('CodemirrorComponent', () => {
                 fixture.detectChanges();
 
                 expectSpyCall(initSpy, 2, expectedState);
-                expect(component.editor.state).toBeDefined();
-                expect(component.editor.state).withContext(`should equal ${expectedState}`).toEqual(expectedState);
+                expectToEqual(component.editor.state, expectedState);
             });
 
             it('... should init the editor with the correct content if given', () => {
                 expectSpyCall(initSpy, 1);
 
-                expect(component.editor.state.doc.toString()).toBeDefined();
-                expect(component.editor.state.doc.toString())
-                    .withContext(`should equal ${expectedContent}`)
-                    .toEqual(expectedContent);
+                expectToBe(component.editor.state.doc.toString(), expectedContent);
             });
 
             it('... should init an empty editor if no content is given', () => {
@@ -132,8 +126,7 @@ describe('CodemirrorComponent', () => {
                 fixture.detectChanges();
 
                 expectSpyCall(initSpy, 1);
-                expect(component.editor.state.doc.toString()).toBeDefined();
-                expect(component.editor.state.doc.toString()).withContext(`should equal ''`).toEqual('');
+                expectToBe(component.editor.state.doc.toString(), '');
             });
         });
 

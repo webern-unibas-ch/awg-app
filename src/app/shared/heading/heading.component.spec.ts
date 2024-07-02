@@ -3,7 +3,7 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { HeadingComponent } from './heading.component';
 
@@ -71,11 +71,8 @@ describe('HeadingComponent (DONE)', () => {
                 const divEl = divDes[0].nativeElement;
                 const headerEl = headerDes[0].nativeElement;
 
-                expect(divEl.id).toBeDefined();
-                expect(divEl.id).withContext(`should contain ${expectedId}`).toContain(expectedId);
-
-                expect(headerEl.textContent).toBeDefined();
-                expect(headerEl.textContent).withContext(`should contain ${expectedTitle}`).toContain(expectedTitle);
+                expectToContain(divEl.id, expectedId);
+                expectToContain(headerEl.textContent, expectedTitle);
             });
         });
     });
