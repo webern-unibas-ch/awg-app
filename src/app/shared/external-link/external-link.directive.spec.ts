@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 
+import { expectToBe } from '@testing/expect-helper';
 import { ExternalLinkDirective } from './external-link.directive';
 
 @Component({
@@ -63,47 +64,33 @@ describe('ExternalLinkDirective', () => {
         // All elements with an attached ExternalLinkDirective (a[href])
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
 
-        expect(aDes).toBeDefined();
-        expect(aDes.length).withContext('should be 4').toBe(4);
+        expectToBe(aDes.length, 4);
     });
 
     it('... should have 1 anchor element without href attributes', () => {
         bareADes = fixture.debugElement.queryAll(By.css('a:not([href])'));
 
-        expect(bareADes).toBeDefined();
-        expect(bareADes.length).withContext('should be 1').toBe(1);
+        expectToBe(bareADes.length, 1);
     });
 
     it('... should apply [href|target|rel] values to 1st anchor element (external)', () => {
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
         const aEl = aDes[0].nativeElement;
 
-        expect(aEl.href).toBeTruthy();
-        expect(aEl.href).withContext(`should be ${expectedExternalLink}`).toBe(expectedExternalLink);
-
-        expect(aEl.rel).toBeTruthy();
-        expect(aEl.rel).withContext(`should be ${expectedRelAttr}`).toBe(expectedRelAttr);
-
-        expect(aEl.target).toBeTruthy();
-        expect(aEl.target).withContext(`should be ${expectedTargetAttr}`).toBe(expectedTargetAttr);
-
-        expect(aEl.innerText).withContext('should be "Link External"').toBe('Link External');
+        expectToBe(aEl.href, expectedExternalLink);
+        expectToBe(aEl.rel, expectedRelAttr);
+        expectToBe(aEl.target, expectedTargetAttr);
+        expectToBe(aEl.innerText, 'Link External');
     });
 
     it('... should apply [href|target|rel] values to 2nd anchor element (dynamic external)', () => {
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
         const aEl = aDes[1].nativeElement;
 
-        expect(aEl.href).toBeTruthy();
-        expect(aEl.href).withContext(`should be ${expectedExternalLink}`).toBe(expectedExternalLink);
-
-        expect(aEl.rel).toBeTruthy();
-        expect(aEl.rel).withContext(`should be ${expectedRelAttr}`).toBe(expectedRelAttr);
-
-        expect(aEl.target).toBeTruthy();
-        expect(aEl.target).withContext(`should be ${expectedTargetAttr}`).toBe(expectedTargetAttr);
-
-        expect(aEl.innerText).withContext('should be "Link External Dynamic"').toBe('Link External Dynamic');
+        expectToBe(aEl.href, expectedExternalLink);
+        expectToBe(aEl.rel, expectedRelAttr);
+        expectToBe(aEl.target, expectedTargetAttr);
+        expectToBe(aEl.innerText, 'Link External Dynamic');
     });
 
     it('... should not apply [target|rel] values to 3rd anchor element (internal)', () => {
@@ -112,13 +99,10 @@ describe('ExternalLinkDirective', () => {
 
         const expectedHref = aEl.baseURI + aEl.hostname + expectedInternalLink;
 
-        expect(aEl.href).toBeTruthy();
-        expect(aEl.href).withContext(`should be ${expectedHref}`).toBe(expectedHref);
-
-        expect(aEl.rel).withContext('should be empty string').not.toBeTruthy();
-        expect(aEl.target).withContext('should be empty string').not.toBeTruthy();
-
-        expect(aEl.innerText).withContext('should be "Link Internal"').toBe('Link Internal');
+        expectToBe(aEl.href, expectedHref);
+        expectToBe(aEl.rel, '');
+        expectToBe(aEl.target, '');
+        expectToBe(aEl.innerText, 'Link Internal');
     });
 
     it('... should not apply [target|rel] values to 4th anchor element (dynamic internal)', () => {
@@ -127,24 +111,19 @@ describe('ExternalLinkDirective', () => {
 
         const expectedHref = aEl.baseURI + aEl.hostname + expectedInternalLink;
 
-        expect(aEl.href).toBeTruthy();
-        expect(aEl.href).withContext(`should be ${expectedHref}`).toBe(expectedHref);
-
-        expect(aEl.rel).withContext('should be empty string').not.toBeTruthy();
-        expect(aEl.target).withContext('should be empty string').not.toBeTruthy();
-
-        expect(aEl.innerText).withContext('should be "Link Internal Dynamic"').toBe('Link Internal Dynamic');
+        expectToBe(aEl.href, expectedHref);
+        expectToBe(aEl.rel, '');
+        expectToBe(aEl.target, '');
+        expectToBe(aEl.innerText, 'Link Internal Dynamic');
     });
 
     it('... should not apply [href|target|rel] values to bare anchor', () => {
         bareADes = fixture.debugElement.queryAll(By.css('a:not([href])'));
 
-        expect(bareADes[0].properties['href']).withContext('should be empty string').not.toBeTruthy();
-        expect(bareADes[0].properties['target']).withContext('should be empty string').not.toBeTruthy();
-        expect(bareADes[0].properties['rel']).withContext('should be empty string').not.toBeTruthy();
-        expect(bareADes[0].properties['innerText'])
-            .withContext('should be "Link without href"')
-            .toBe('Link without href');
+        expectToBe(bareADes[0].properties['href'], '');
+        expectToBe(bareADes[0].properties['target'], '');
+        expectToBe(bareADes[0].properties['rel'], '');
+        expectToBe(bareADes[0].properties['innerText'], 'Link without href');
     });
 
     it('... should reflect input change for [href] values', () => {
@@ -156,15 +135,9 @@ describe('ExternalLinkDirective', () => {
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
         const aEl = aDes[1].nativeElement;
 
-        expect(aEl.href).toBeTruthy();
-        expect(aEl.href).withContext(`should be ${expectedNewExternalLink}`).toBe(expectedNewExternalLink);
-
-        expect(aEl.rel).toBeTruthy();
-        expect(aEl.rel).withContext(`should be ${expectedRelAttr}`).toBe(expectedRelAttr);
-
-        expect(aEl.target).toBeTruthy();
-        expect(aEl.target).withContext(`should be ${expectedTargetAttr}`).toBe(expectedTargetAttr);
-
-        expect(aEl.innerText).withContext('should be "Link External Dynamic"').toBe('Link External Dynamic');
+        expectToBe(aEl.href, expectedNewExternalLink);
+        expectToBe(aEl.rel, expectedRelAttr);
+        expectToBe(aEl.target, expectedTargetAttr);
+        expectToBe(aEl.innerText, 'Link External Dynamic');
     });
 });

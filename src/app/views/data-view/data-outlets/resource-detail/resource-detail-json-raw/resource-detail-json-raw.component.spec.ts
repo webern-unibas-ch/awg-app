@@ -1,7 +1,7 @@
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 import { ResourceDetail } from '@awg-views/data-view/models';
@@ -59,10 +59,7 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
                 const viewerDes = getAndExpectDebugElementByDirective(compDe, JsonViewerStubComponent, 1, 1);
                 const viewerCmp = viewerDes[0].injector.get(JsonViewerStubComponent) as JsonViewerStubComponent;
 
-                expect(viewerCmp.jsonViewerHeader).toBeDefined();
-                expect(viewerCmp.jsonViewerHeader)
-                    .withContext(`should have header: ${expectedHeader}`)
-                    .toBe(expectedHeader);
+                expectToBe(viewerCmp.jsonViewerHeader, expectedHeader);
             });
 
             it('... should not pass down `resourceJsonRawData` to json viewer component', () => {
@@ -84,8 +81,7 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
         });
 
         it('... should have `resourceJsonRawData`', () => {
-            expect(component.resourceJsonRawData).toBeDefined();
-            expect(component.resourceJsonRawData).withContext(`should equal ${expectedData}`).toEqual(expectedData);
+            expectToEqual(component.resourceJsonRawData, expectedData);
         });
 
         describe('VIEW', () => {
@@ -93,8 +89,7 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
                 const viewerDes = getAndExpectDebugElementByDirective(compDe, JsonViewerStubComponent, 1, 1);
                 const viewerCmp = viewerDes[0].injector.get(JsonViewerStubComponent) as JsonViewerStubComponent;
 
-                expect(viewerCmp.jsonViewerData).toBeDefined();
-                expect(viewerCmp.jsonViewerData).withContext(`should have data: ${expectedData}`).toBe(expectedData);
+                expectToEqual(viewerCmp.jsonViewerData, expectedData);
             });
         });
     });

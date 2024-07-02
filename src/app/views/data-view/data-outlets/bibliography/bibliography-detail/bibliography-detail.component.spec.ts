@@ -2,12 +2,14 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Observable, of as observableOf } from 'rxjs';
 
+import { expectToBe } from '@testing/expect-helper';
+
 import { ConversionService } from '@awg-core/services';
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
+import { BibliographyFormatPipe } from '@awg-views/data-view/data-outlets/bibliography//bibliography-format.pipe';
+import { BibEntry } from '@awg-views/data-view/data-outlets/bibliography/bibliography-entry.model';
 import { BibliographyService } from '@awg-views/data-view/services';
 
-import { BibEntry } from '../bibliography-entry.model';
-import { BibliographyFormatPipe } from '../bibliography-format.pipe';
 import { BibliographyDetailComponent } from './bibliography-detail.component';
 
 describe('BibliographyDetailComponent', () => {
@@ -73,8 +75,7 @@ describe('BibliographyDetailComponent', () => {
         });
 
         it('... should have objId input', () => {
-            expect(component.objId).toBeTruthy();
-            expect(component.objId).withContext(`should be ${expectedObjId}`).toBe(expectedObjId);
+            expectToBe(component.objId, expectedObjId);
         });
     });
 });
