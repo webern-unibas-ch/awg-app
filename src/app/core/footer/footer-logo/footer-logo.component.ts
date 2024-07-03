@@ -26,14 +26,13 @@ export class FooterLogoComponent {
     /**
      * Public variable: getLogoClass.
      *
-     * It checks a given logo id for the logo
-     * being part of the (right) main footer.
+     * It checks a given logo id and returns the corresponding class list.
      *
      * @param {string} id The given logo id.
      *
-     * @returns {boolean} The boolean value of the comparison.
+     * @returns {string} The class list for the logo.
      */
-    getLogoClass(id: string) {
+    getLogoClass(id: string): string {
         const isSnfLogo = id === LOGOSDATA['snf'].id;
         const isUnibasLogo = id === LOGOSDATA['unibas'].id;
         const isSagwLogo = id === LOGOSDATA['sagw'].id;
@@ -42,7 +41,7 @@ export class FooterLogoComponent {
         if (isUnibasLogo || isSnfLogo || isSagwLogo) {
             classList = 'my-2';
         }
-        if (isUnibasLogo || isSnfLogo) {
+        if (isSagwLogo || isSnfLogo) {
             classList += ' float-end';
         }
         return classList;

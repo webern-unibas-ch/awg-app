@@ -4,7 +4,13 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
-import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { PageNotFoundViewComponent } from './page-not-found-view.component';
@@ -44,27 +50,13 @@ describe('PageNotFoundViewComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should have pageNotFoundTitle and pageNotFoundSubtitle', () => {
-            expect(component.pageNotFoundTitle).toBeTruthy();
-            expect(component.pageNotFoundTitle)
-                .withContext(`should be ${expectedPageNotFoundTitle}`)
-                .toBe(expectedPageNotFoundTitle);
-
-            expect(component.pageNotFoundSubTitle).toBeTruthy();
-            expect(component.pageNotFoundSubTitle)
-                .withContext(`should be ${expectedPageNotFoundSubTitle}`)
-                .toBe(expectedPageNotFoundSubTitle);
+            expectToBe(component.pageNotFoundTitle, expectedPageNotFoundTitle);
+            expectToBe(component.pageNotFoundSubTitle, expectedPageNotFoundSubTitle);
         });
 
         it('... should have correct values from getters', () => {
-            expect(component.pageNotFoundImgPath).toBeTruthy();
-            expect(component.pageNotFoundImgPath)
-                .withContext(`should be ${expectedPageNotFoundImgPath}`)
-                .toBe(expectedPageNotFoundImgPath);
-
-            expect(component.awgContactUrl).toBeTruthy();
-            expect(component.awgContactUrl)
-                .withContext(`should be ${expectedAwgContactUrl}`)
-                .toBe(expectedAwgContactUrl);
+            expectToBe(component.pageNotFoundImgPath, expectedPageNotFoundImgPath);
+            expectToBe(component.awgContactUrl, expectedAwgContactUrl);
         });
 
         describe('VIEW', () => {
@@ -143,40 +135,28 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 const titleDes = getAndExpectDebugElementByCss(compDe, 'h2#awg-page-not-found-title', 1, 1);
                 const titleEl = titleDes[0].nativeElement;
 
-                expect(titleEl.textContent).toBeTruthy();
-                expect(titleEl.textContent)
-                    .withContext(`should contain ${expectedPageNotFoundTitle}`)
-                    .toContain(expectedPageNotFoundTitle);
+                expectToContain(titleEl.textContent, expectedPageNotFoundTitle);
             });
 
             it('... should render pageNotFoundSubTitle in the `h5`-element', () => {
                 const subtitleDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-page-not-found-subtitle', 1, 1);
                 const subtitleEl = subtitleDes[0].nativeElement;
 
-                expect(subtitleEl.textContent).toBeTruthy();
-                expect(subtitleEl.textContent)
-                    .withContext(`should contain ${expectedPageNotFoundSubTitle}`)
-                    .toContain(expectedPageNotFoundSubTitle);
+                expectToContain(subtitleEl.textContent, expectedPageNotFoundSubTitle);
             });
 
             it('... should render image', () => {
                 const imgDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-image > img', 1, 1);
                 const imgEl = imgDes[0].nativeElement;
 
-                expect(imgEl.src).toBeTruthy();
-                expect(imgEl.src)
-                    .withContext(`should contain ${expectedPageNotFoundImgPath}`)
-                    .toContain(expectedPageNotFoundImgPath);
+                expectToContain(imgEl.src, expectedPageNotFoundImgPath);
             });
 
             it('... should render contact url', () => {
                 const contactDes = getAndExpectDebugElementByCss(compDe, 'p#awg-page-not-found-contact > a', 1, 1);
                 const contactEl = contactDes[0].nativeElement;
 
-                expect(contactEl.href).toBeTruthy();
-                expect(contactEl.href)
-                    .withContext(`should contain ${expectedAwgContactUrl}`)
-                    .toBe(expectedAwgContactUrl);
+                expectToContain(contactEl.href, expectedAwgContactUrl);
             });
         });
 
@@ -190,11 +170,11 @@ describe('PageNotFoundViewComponent (DONE)', () => {
             });
 
             it('... can get correct number of routerLinks from template', () => {
-                expect(routerLinks.length).withContext('should have 1 routerLink').toBe(1);
+                expectToBe(routerLinks.length, 1);
             });
 
             it('... can get correct linkParams from template', () => {
-                expect(routerLinks[0].linkParams).withContext(`should equal ['/home']`).toEqual(['/home']);
+                expectToEqual(routerLinks[0].linkParams, ['/home']);
             });
 
             it('... can click home link in template', () => {
@@ -206,7 +186,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 click(homeLinkDe);
                 fixture.detectChanges();
 
-                expect(homeLink.navigatedTo).withContext(`should equal ['/home']`).toEqual(['/home']);
+                expectToEqual(homeLink.navigatedTo, ['/home']);
             });
         });
     });

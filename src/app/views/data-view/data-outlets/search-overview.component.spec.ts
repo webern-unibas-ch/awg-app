@@ -6,7 +6,7 @@ import { ActivatedRoute, QueryParamsHandling } from '@angular/router';
 
 import Spy = jasmine.Spy;
 
-import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { ActivatedRouteStub, RouterOutletStubComponent, UrlSegmentStub } from '@testing/router-stubs';
 
 import { SideInfoService } from '@awg-core/services';
@@ -96,18 +96,14 @@ describe('SearchOverviewComponent (DONE)', () => {
     });
 
     it('... should change urls', () => {
-        expect(mockActivatedRoute.snapshot.url[0].path).toBeTruthy();
-        expect(mockActivatedRoute.snapshot.url[0].path)
-            .withContext(`should equal ${expectedPath}`)
-            .toEqual(expectedPath);
+        expectToBe(mockActivatedRoute.snapshot.url[0].path, expectedPath);
 
         const changedPath = 'other';
         const changedRouteUrl: UrlSegmentStub[] = [{ path: changedPath }];
 
         mockActivatedRoute.testUrl = changedRouteUrl;
 
-        expect(mockActivatedRoute.snapshot.url[0].path).toBeTruthy();
-        expect(mockActivatedRoute.snapshot.url[0].path).withContext(`should equal ${changedPath}`).toEqual(changedPath);
+        expectToBe(mockActivatedRoute.snapshot.url[0].path, changedPath);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -185,10 +181,7 @@ describe('SearchOverviewComponent (DONE)', () => {
                     RouterLinkButtonGroupStubComponent
                 ) as RouterLinkButtonGroupStubComponent;
 
-                expect(buttonCmp.routerLinkButtons).toBeTruthy();
-                expect(buttonCmp.routerLinkButtons)
-                    .withContext(`should equal ${expectedSearchRouterLinkButtons}`)
-                    .toEqual(expectedSearchRouterLinkButtons);
+                expectToEqual(buttonCmp.routerLinkButtons, expectedSearchRouterLinkButtons);
             });
         });
 
@@ -198,10 +191,7 @@ describe('SearchOverviewComponent (DONE)', () => {
             });
 
             it('... should have `searchRouterLinkButtons`', () => {
-                expect(component.searchRouterLinkButtons).withContext('should be defined').toBeDefined();
-                expect(component.searchRouterLinkButtons)
-                    .withContext(`should equal ${expectedSearchRouterLinkButtons}`)
-                    .toEqual(expectedSearchRouterLinkButtons);
+                expectToEqual(component.searchRouterLinkButtons, expectedSearchRouterLinkButtons);
             });
         });
 

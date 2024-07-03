@@ -244,14 +244,10 @@ describe('TableComponent', () => {
                     expectToEqual(component.tableData.filteredRows, expectedRowInputData);
 
                     expect(component.tableData.paginatedRows$).toBeDefined();
-                    expectAsync(lastValueFrom(component.tableData.paginatedRows$))
-                        .withContext(`should be resolved to ${expectedRowInputData}`)
-                        .toBeResolvedTo(expectedRowInputData);
+                    expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolvedTo(expectedRowInputData);
 
                     expect(component.tableData.totalRows$).toBeDefined();
-                    expectAsync(lastValueFrom(component.tableData.totalRows$))
-                        .withContext(`should be resolved to ${expectedRowInputData}`)
-                        .toBeResolvedTo(expectedRowInputData);
+                    expectAsync(lastValueFrom(component.tableData.totalRows$)).toBeResolvedTo(expectedRowInputData);
                 }));
 
                 describe('... to empty object', () => {
@@ -268,14 +264,10 @@ describe('TableComponent', () => {
                         expectToEqual(component.tableData.filteredRows, []);
 
                         expect(component.tableData.paginatedRows$).toBeDefined();
-                        expectAsync(lastValueFrom(component.tableData.paginatedRows$))
-                            .withContext(`should be resolved to []`)
-                            .toBeResolvedTo([]);
+                        expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolvedTo([]);
 
                         expect(component.tableData.totalRows$).toBeDefined();
-                        expectAsync(lastValueFrom(component.tableData.totalRows$))
-                            .withContext(`should be resolved to []`)
-                            .toBeResolvedTo([]);
+                        expectAsync(lastValueFrom(component.tableData.totalRows$)).toBeResolvedTo([]);
                     }));
 
                     it('... if rowInputData is not given', waitForAsync(() => {
@@ -291,14 +283,10 @@ describe('TableComponent', () => {
                         expectToEqual(component.tableData.filteredRows, []);
 
                         expect(component.tableData.paginatedRows$).toBeDefined();
-                        expectAsync(lastValueFrom(component.tableData.paginatedRows$))
-                            .withContext(`should be resolved to []`)
-                            .toBeResolvedTo([]);
+                        expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolvedTo([]);
 
                         expect(component.tableData.totalRows$).toBeDefined();
-                        expectAsync(lastValueFrom(component.tableData.totalRows$))
-                            .withContext(`should be resolved to []`)
-                            .toBeResolvedTo([]);
+                        expectAsync(lastValueFrom(component.tableData.totalRows$)).toBeResolvedTo([]);
                     }));
 
                     it('... if both headerInputData and rowInputData are not given', waitForAsync(() => {
@@ -314,14 +302,10 @@ describe('TableComponent', () => {
                         expectToEqual(component.tableData.filteredRows, []);
 
                         expect(component.tableData.paginatedRows$).toBeDefined();
-                        expectAsync(lastValueFrom(component.tableData.paginatedRows$))
-                            .withContext(`should be resolved to []`)
-                            .toBeResolvedTo([]);
+                        expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolvedTo([]);
 
                         expect(component.tableData.totalRows$).toBeDefined();
-                        expectAsync(lastValueFrom(component.tableData.totalRows$))
-                            .withContext(`should be resolved to []`)
-                            .toBeResolvedTo([]);
+                        expectAsync(lastValueFrom(component.tableData.totalRows$)).toBeResolvedTo([]);
                     }));
                 });
             });
@@ -375,18 +359,14 @@ describe('TableComponent', () => {
 
                 // First call happens on ngOnInit()
                 expectSpyCall(onPageSizeChangeSpy, 2, expectedSearchFilter);
-                expect(component.searchFilter).toBeDefined();
-                expect(component.searchFilter)
-                    .withContext(`should equal ${expectedSearchFilter}`)
-                    .toBe(expectedSearchFilter);
+                expectToBe(component.searchFilter, expectedSearchFilter);
 
                 inputEl.value = otherSearchFilter;
                 inputEl.dispatchEvent(new Event('input'));
                 fixture.detectChanges();
 
                 expectSpyCall(onPageSizeChangeSpy, 3, otherSearchFilter);
-                expect(component.searchFilter).toBeDefined();
-                expect(component.searchFilter).withContext(`should equal ${otherSearchFilter}`).toBe(otherSearchFilter);
+                expectToBe(component.searchFilter, otherSearchFilter);
             });
 
             it('... should trigger on change of selectedPageSize in upper dropdown menu', fakeAsync(() => {
@@ -575,14 +555,10 @@ describe('TableComponent', () => {
                     expectToEqual(component.tableData.filteredRows, []);
 
                     expect(component.tableData.paginatedRows$).toBeDefined();
-                    await expectAsync(lastValueFrom(component.tableData.paginatedRows$))
-                        .withContext(`should be resolved to []`)
-                        .toBeResolvedTo([]);
+                    await expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolvedTo([]);
 
                     expect(component.tableData.totalRows$).toBeDefined();
-                    await expectAsync(lastValueFrom(component.tableData.totalRows$))
-                        .withContext(`should be resolved to []`)
-                        .toBeResolvedTo([]);
+                    await expectAsync(lastValueFrom(component.tableData.totalRows$)).toBeResolvedTo([]);
                 });
             });
 
@@ -596,9 +572,7 @@ describe('TableComponent', () => {
 
                 expect(component.tableData).toBeDefined();
                 expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolved();
-                expectAsync(lastValueFrom(component.tableData.paginatedRows$))
-                    .withContext(`should be resolved to ${expectedPaginatedRows}`)
-                    .toBeResolvedTo(expectedPaginatedRows);
+                expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolvedTo(expectedPaginatedRows);
             }));
 
             describe('should not do anything', () => {
