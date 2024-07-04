@@ -7,6 +7,9 @@ import Spy = jasmine.Spy;
 
 import {
     expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -146,10 +149,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                 expectSpyCall(getSectionSpy, 1);
                 expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 1);
 
-                expect(component.selectedSeries).toBeTruthy();
-                expect(component.selectedSeries)
-                    .withContext(`should equal ${expectedSelectedSeries}`)
-                    .toEqual(expectedSelectedSeries);
+                expectToEqual(component.selectedSeries, expectedSelectedSeries);
             }));
 
             it('... should have called editionService.getEditionSectionById', () => {
@@ -160,10 +160,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                 expectSpyCall(getSectionSpy, 1);
                 expectSpyCall(editionServiceGetEditionSectionByIdSpy, 1, [expectedSeriesId, expectedSectionId]);
 
-                expect(component.selectedSection).toBeTruthy();
-                expect(component.selectedSection)
-                    .withContext(`should equal ${expectedSelectedSection}`)
-                    .toEqual(expectedSelectedSection);
+                expectToEqual(component.selectedSection, expectedSelectedSection);
             }));
 
             it('... should have called editionService.updateSelectedEditionSection with selectedSection', () => {
@@ -222,10 +219,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
 
                         const expectedHeaderText = 'nach Opusnummer:';
 
-                        expect(headerEl.textContent).toBeTruthy();
-                        expect(headerEl.textContent)
-                            .withContext(`should be ${expectedHeaderText}`)
-                            .toBe(expectedHeaderText);
+                        expectToBe(headerEl.textContent, expectedHeaderText);
                     });
 
                     it('... should contain 1 edition complex card component (stubbed)', () => {
@@ -256,10 +250,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                             EditionComplexCardStubComponent
                         ) as EditionComplexCardStubComponent;
 
-                        expect(complexCardCmp.complexes).toBeTruthy();
-                        expect(complexCardCmp.complexes)
-                            .withContext(`should equal ${expectedSelectedSection.complexes.opus}`)
-                            .toEqual(expectedSelectedSection.complexes.opus);
+                        expectToEqual(complexCardCmp.complexes, expectedSelectedSection.complexes.opus);
                     });
                 });
 
@@ -284,10 +275,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
 
                         const expectedHeaderText = 'nach Moldenhauer-Nummer:';
 
-                        expect(headerEl.textContent).toBeTruthy();
-                        expect(headerEl.textContent)
-                            .withContext(`should be ${expectedHeaderText}`)
-                            .toBe(expectedHeaderText);
+                        expectToBe(headerEl.textContent, expectedHeaderText);
                     });
 
                     it('... should contain 1 edition complex card component (stubbed)', () => {
@@ -308,10 +296,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                             EditionComplexCardStubComponent
                         ) as EditionComplexCardStubComponent;
 
-                        expect(complexCardCmp.complexes).toBeTruthy();
-                        expect(complexCardCmp.complexes)
-                            .withContext(`should equal ${expectedSelectedSection.complexes.mnr}`)
-                            .toEqual(expectedSelectedSection.complexes.mnr);
+                        expectToEqual(complexCardCmp.complexes, expectedSelectedSection.complexes.mnr);
                     });
                 });
             });
@@ -345,8 +330,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                     const pDe = getAndExpectDebugElementByCss(divDe[0], 'p', 1, 1);
                     const pEl = pDe[0].nativeElement;
 
-                    expect(pEl.classList).toBeTruthy();
-                    expect(pEl.classList).withContext(`should contain 'text-muted`).toContain('text-muted');
+                    expectToContain(pEl.classList, 'text-muted');
                 });
 
                 it('... should display info message in p.text-muted', () => {
@@ -359,10 +343,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
 
                     const expectedNoComplexesMsg = `[Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von AWG ${expectedSelectedSeries.series.short}/${expectedSelectedSection.section.short}.]`;
 
-                    expect(pEl.textContent).toBeTruthy();
-                    expect(pEl.textContent.trim())
-                        .withContext(`should contain ${expectedNoComplexesMsg}`)
-                        .toContain(expectedNoComplexesMsg.trim());
+                    expectToBe(pEl.textContent.trim(), expectedNoComplexesMsg.trim());
                 });
             });
         });

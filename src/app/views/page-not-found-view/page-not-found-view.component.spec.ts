@@ -88,8 +88,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 );
                 const imgEl = imgDes[0].nativeElement;
 
-                expect(imgEl.src).toBeDefined();
-                expect(imgEl.src).toBeFalsy();
+                expectToBe(imgEl.src, '');
             });
 
             it('... should contain 2 paragraphs (contact and back) in body', () => {
@@ -107,19 +106,15 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 const subtitleDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-page-not-found-subtitle', 1, 1);
                 const subtitleEl = subtitleDes[0].nativeElement;
 
-                expect(titleEl.textContent).toBeDefined();
-                expect(titleEl.textContent).toBeFalsy();
-
-                expect(subtitleEl.textContent).toBeDefined();
-                expect(subtitleEl.textContent).toBeFalsy();
+                expectToBe(titleEl.textContent, '');
+                expectToBe(subtitleEl.textContent, '');
             });
 
             it('... should not render contact url yet', () => {
                 const contactDes = getAndExpectDebugElementByCss(compDe, 'p#awg-page-not-found-contact > a', 1, 1);
                 const contactEl = contactDes[0].nativeElement;
 
-                expect(contactEl.href).toBeDefined();
-                expect(contactEl.href).toBeFalsy();
+                expectToBe(contactEl.href, '');
             });
         });
     });
@@ -181,7 +176,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 const homeLinkDe = linkDes[0]; // Home link DebugElement
                 const homeLink = routerLinks[0]; // Home link directive
 
-                expect(homeLink.navigatedTo).toBeNull();
+                expectToBe(homeLink.navigatedTo, null);
 
                 click(homeLinkDe);
                 fixture.detectChanges();

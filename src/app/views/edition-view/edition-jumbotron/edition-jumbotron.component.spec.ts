@@ -1,7 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { EditionJumbotronComponent } from './edition-jumbotron.component';
 
@@ -56,13 +56,11 @@ describe('EditionJumbotronComponent', () => {
         });
 
         it('... should have jumbotronId', () => {
-            expect(component.jumbotronId).toBeDefined();
-            expect(component.jumbotronId).withContext(`should be ${expectedId}`).toBe(expectedId);
+            expectToBe(component.jumbotronId, expectedId);
         });
 
         it('... should have jumbotronTitle', () => {
-            expect(component.jumbotronTitle).toBeDefined();
-            expect(component.jumbotronTitle).withContext(`should be ${expectedTitle}`).toBe(expectedTitle);
+            expectToBe(component.jumbotronTitle, expectedTitle);
         });
 
         describe('VIEW', () => {
@@ -76,11 +74,8 @@ describe('EditionJumbotronComponent', () => {
                 const headingDes = getAndExpectDebugElementByCss(compDe, 'div.awg-jumbotron-image > h1', 1, 1);
                 const headingEl = headingDes[0].nativeElement;
 
-                expect(headingEl.id).toBeTruthy();
-                expect(headingEl.id).withContext(`should be ${expectedId}`).toBe(expectedId);
-
-                expect(headingEl.textContent).toBeTruthy();
-                expect(headingEl.textContent.trim()).withContext(`should be ${expectedTitle}`).toBe(expectedTitle);
+                expectToBe(headingEl.id, expectedId);
+                expectToBe(headingEl.textContent.trim(), expectedTitle);
             });
         });
     });

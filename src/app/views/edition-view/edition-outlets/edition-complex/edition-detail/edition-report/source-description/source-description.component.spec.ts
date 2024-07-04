@@ -1683,13 +1683,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                 const result1 = component.getWritingMaterialFirmSign(variant);
 
-                expect(result1).toEqual({ route: '', full: 'Not a known firm sign.', short: 'unknown' });
+                expectToEqual(result1, { route: '', full: 'Not a known firm sign.', short: 'unknown' });
 
                 variant = undefined;
 
                 const result2 = component.getWritingMaterialFirmSign(variant);
 
-                expect(result2).toEqual({ route: '', full: 'Not a known firm sign.', short: 'unknown' });
+                expectToEqual(result2, { route: '', full: 'Not a known firm sign.', short: 'unknown' });
             });
         });
 

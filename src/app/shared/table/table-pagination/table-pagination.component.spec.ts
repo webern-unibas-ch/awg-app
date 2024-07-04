@@ -250,7 +250,7 @@ describe('TablePaginationComponent (DONE)', () => {
                     input.value = '3';
 
                     component.replaceNonNumberInput(input);
-                    expect(input.value).toBe('3');
+                    expectToBe(input.value, '3');
                 });
 
                 it('... by replacing non-numbers with empty string', () => {
@@ -258,7 +258,7 @@ describe('TablePaginationComponent (DONE)', () => {
                     input.value = 'Test';
 
                     component.replaceNonNumberInput(input);
-                    expect(input.value).toBe('');
+                    expectToBe(input.value, '');
                 });
             });
         });

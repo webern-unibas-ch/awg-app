@@ -1218,7 +1218,7 @@ describe('SparqlEditorComponent (DONE)', () => {
             });
 
             it('... should return true if queryList = true and query is a valid query (has queryType, queryLabel, queryString)', () => {
-                expect(component.isExampleQueriesEnabled()).toBeTrue();
+                expectToBe(component.isExampleQueriesEnabled(), true);
             });
 
             it('... should return false if query is falsy', async () => {
@@ -1227,7 +1227,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 // Change detection
                 await detectChangesOnPush(fixture);
 
-                expect(component.isExampleQueriesEnabled()).toBeFalse();
+                expectToBe(component.isExampleQueriesEnabled(), false);
             });
 
             it('... should return false if query.queryType is falsy', async () => {
@@ -1236,7 +1236,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 // Change detection
                 await detectChangesOnPush(fixture);
 
-                expect(component.isExampleQueriesEnabled()).toBeFalse();
+                expectToBe(component.isExampleQueriesEnabled(), false);
             });
 
             it('... should return false if query.queryLabel is falsy', async () => {
@@ -1245,7 +1245,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 // Change detection
                 await detectChangesOnPush(fixture);
 
-                expect(component.isExampleQueriesEnabled()).toBeFalse();
+                expectToBe(component.isExampleQueriesEnabled(), false);
             });
 
             it('... should return false if query.queryString is falsy', async () => {
@@ -1254,7 +1254,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 // Change detection
                 await detectChangesOnPush(fixture);
 
-                expect(component.isExampleQueriesEnabled()).toBeFalse();
+                expectToBe(component.isExampleQueriesEnabled(), false);
             });
 
             it('... should return false if queryList is falsy', async () => {
@@ -1263,7 +1263,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 // Change detection
                 await detectChangesOnPush(fixture);
 
-                expect(component.isExampleQueriesEnabled()).toBeFalse();
+                expectToBe(component.isExampleQueriesEnabled(), false);
             });
 
             it('... should return false if query (incl. type, label & string) and queryList not exist', async () => {
@@ -1273,7 +1273,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 // Change detection
                 await detectChangesOnPush(fixture);
 
-                expect(component.isExampleQueriesEnabled()).toBeFalse();
+                expectToBe(component.isExampleQueriesEnabled(), false);
             });
         });
 
@@ -1698,24 +1698,24 @@ describe('SparqlEditorComponent (DONE)', () => {
                 component.query = expectedConstructQuery1;
                 component.setViewType();
 
-                expect(component.selectedViewType).toBe(ViewHandleTypes.GRAPH);
+                expectToBe(component.selectedViewType, ViewHandleTypes.GRAPH);
 
                 component.query = expectedConstructQuery2;
                 component.setViewType();
 
-                expect(component.selectedViewType).toBe(ViewHandleTypes.GRAPH);
+                expectToBe(component.selectedViewType, ViewHandleTypes.GRAPH);
             });
 
             it('... should return ViewHandleTypes.TABLE if querytype is `select`', () => {
                 component.query = expectedSelectQuery1;
                 component.setViewType();
 
-                expect(component.selectedViewType).toBe(ViewHandleTypes.TABLE);
+                expectToBe(component.selectedViewType, ViewHandleTypes.TABLE);
 
                 component.query = expectedSelectQuery2;
                 component.setViewType();
 
-                expect(component.selectedViewType).toBe(ViewHandleTypes.TABLE);
+                expectToBe(component.selectedViewType, ViewHandleTypes.TABLE);
             });
         });
 

@@ -70,11 +70,8 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 const versionDateEl = versionDateDes[0].nativeElement;
 
                 // Check output
-                expect(versionEl.textContent).toBeDefined();
-                expect(versionEl.textContent).toBeFalsy();
-
-                expect(versionDateEl.textContent).toBeDefined();
-                expect(versionDateEl.textContent).toBeFalsy();
+                expectToBe(versionEl.textContent, '');
+                expectToBe(versionDateEl.textContent, '');
             });
         });
     });
@@ -133,7 +130,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 const imprintLinkDe = linkDes[0]; // Contact link DebugElement
                 const imprintLink = routerLinks[0]; // Contact link directive
 
-                expect(imprintLink.navigatedTo).toBeNull();
+                expectToBe(imprintLink.navigatedTo, null);
 
                 click(imprintLinkDe);
                 fixture.detectChanges();
@@ -146,7 +143,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 const documentationLinkDe = linkDes[1]; // Contact link DebugElement
                 const documentationLink = routerLinks[1]; // Contact link directive
 
-                expect(documentationLink.navigatedTo).toBeNull();
+                expectToBe(documentationLink.navigatedTo, null);
 
                 click(documentationLinkDe);
                 fixture.detectChanges();

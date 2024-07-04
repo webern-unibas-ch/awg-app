@@ -8,7 +8,7 @@ import Spy = jasmine.Spy;
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { expectSpyCall, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
 
@@ -243,7 +243,7 @@ describe('EditionSheetsComponent', () => {
         });
 
         it('... should have `showTkA===false`', () => {
-            expect(component.showTkA).toBeFalse();
+            expectToBe(component.showTkA, false);
         });
 
         it('... should not have `snapshotQueryParamsId`', () => {
@@ -259,7 +259,7 @@ describe('EditionSheetsComponent', () => {
         });
 
         it('... should have `_isFirstPageLoad===true`', () => {
-            expect((component as any)._isFirstPageLoad).toBeTrue();
+            expectToBe((component as any)._isFirstPageLoad, true);
         });
 
         it('... should have `editionRouteConstants` getter', () => {
