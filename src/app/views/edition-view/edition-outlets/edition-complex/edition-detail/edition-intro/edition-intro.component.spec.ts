@@ -350,7 +350,7 @@ describe('IntroComponent (DONE)', () => {
                 expectAsync(lastValueFrom(component.editionIntroData$)).toBeRejected();
                 expectAsync(lastValueFrom(component.editionIntroData$)).toBeRejectedWithError(EmptyError);
 
-                expect(component.errorObject).toEqual(expectedError);
+                expectToEqual(component.errorObject, expectedError);
             }));
         });
 

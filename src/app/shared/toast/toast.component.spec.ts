@@ -150,7 +150,7 @@ describe('ToastComponent (DONE)', () => {
             it('... should return false if given toast is not a template, but string', () => {
                 const check = component.isTemplate(expectedToast);
 
-                expect(check).toBeFalse();
+                expectToBe(check, false);
             });
 
             it('... should return true if given toast is a template', () => {
@@ -161,7 +161,7 @@ describe('ToastComponent (DONE)', () => {
 
                 const check = component.isTemplate(expectedTplToast);
 
-                expect(check).toBeTrue();
+                expectToBe(check, true);
             });
         });
     });

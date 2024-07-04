@@ -168,7 +168,7 @@ describe('NavbarComponent (DONE)', () => {
 
     it('... injected service should use provided mockValue', () => {
         const coreService = TestBed.inject(CoreService);
-        expect(mockCoreService === coreService).toBe(true);
+        expectToBe(mockCoreService === coreService, true);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -185,7 +185,7 @@ describe('NavbarComponent (DONE)', () => {
         });
 
         it('... should have `isCollapsed = true`', () => {
-            expect(component.isCollapsed).toBeTrue();
+            expectToBe(component.isCollapsed, true);
         });
 
         it('... should have `DISPLAYED_EDITION_COMPLEXES`', () => {
@@ -384,15 +384,15 @@ describe('NavbarComponent (DONE)', () => {
             it('... should toggle `isCollapsed`', () => {
                 component.toggleNav();
 
-                expect(component.isCollapsed).toBeFalse();
+                expectToBe(component.isCollapsed, false);
 
                 component.toggleNav();
 
-                expect(component.isCollapsed).toBeTrue();
+                expectToBe(component.isCollapsed, true);
 
                 component.toggleNav();
 
-                expect(component.isCollapsed).toBeFalse();
+                expectToBe(component.isCollapsed, false);
             });
         });
     });
@@ -604,7 +604,6 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... should get `selectedEditionComplex`', () => {
-                expect(component.selectedEditionComplex).toBeDefined();
                 expectToEqual(component.selectedEditionComplex, expectedSelectedEditionComplex);
             });
         });
@@ -618,14 +617,14 @@ describe('NavbarComponent (DONE)', () => {
                 const expectedActiveRoute = '/active-route';
                 routerSpy.and.returnValue(true);
 
-                expect(component.isActiveRoute(expectedActiveRoute)).toBeTrue();
+                expectToBe(component.isActiveRoute(expectedActiveRoute), true);
             });
 
             it('... should return false if a given route is not active', () => {
                 const expectedActiveRoute = '/non-active-route';
                 routerSpy.and.returnValue(false);
 
-                expect(component.isActiveRoute(expectedActiveRoute)).toBeFalse();
+                expectToBe(component.isActiveRoute(expectedActiveRoute), false);
             });
         });
 
@@ -672,7 +671,7 @@ describe('NavbarComponent (DONE)', () => {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = expectedOrderOfRouterlinks[index];
 
-                    expect(routerLink.navigatedTo).toBeNull();
+                    expectToBe(routerLink.navigatedTo, null);
 
                     click(linkDe);
                     fixture.detectChanges();

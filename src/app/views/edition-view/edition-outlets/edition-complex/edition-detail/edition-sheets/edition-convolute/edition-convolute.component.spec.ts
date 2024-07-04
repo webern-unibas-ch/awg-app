@@ -402,7 +402,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 const reportLinkDe = linkDes[0]; // Contact link DebugElement
                 const reportLink = routerLinks[0]; // Contact link directive
 
-                expect(reportLink.navigatedTo).toBeNull();
+                expectToBe(reportLink.navigatedTo, null);
 
                 click(reportLinkDe);
                 fixture.detectChanges();
@@ -414,7 +414,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 const reportLinkDe = linkDes[0]; // Contact link DebugElement
                 const reportLink = routerLinks[0]; // Contact link directive
 
-                expect(reportLink.navigatedTo).toBeNull();
+                expectToBe(reportLink.navigatedTo, null);
 
                 click(reportLinkDe);
                 fixture.detectChanges();

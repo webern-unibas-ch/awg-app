@@ -5,7 +5,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable, ReplaySubject } from 'rxjs';
 import Spy = jasmine.Spy;
 
-import { expectSpyCall } from '@testing/expect-helper';
+import { expectSpyCall, expectToEqual } from '@testing/expect-helper';
 import { ActivatedRouteStub } from '@testing/router-stubs';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
@@ -92,10 +92,7 @@ describe('EditionComplexComponent (DONE)', () => {
         });
 
         it('... should have `editionRouteConstants`', () => {
-            expect(component.editionRouteConstants).toBeDefined();
-            expect(component.editionRouteConstants)
-                .withContext(`should be ${expectedEditionRouteConstants}`)
-                .toBe(expectedEditionRouteConstants);
+            expectToEqual(component.editionRouteConstants, expectedEditionRouteConstants);
         });
 
         describe('#getEditionComplexFromRoute()', () => {

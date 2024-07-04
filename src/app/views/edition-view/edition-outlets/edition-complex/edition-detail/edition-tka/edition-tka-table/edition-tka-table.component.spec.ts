@@ -325,9 +325,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
 
             it('... should return an empty string for an invalid glyph alt value', () => {
-                expect(component.getGlyph('')).toBe('');
-                expect(component.getGlyph('[invalid]')).toBe('');
-                expect(component.getGlyph('[not found]')).toBe('');
+                expectToBe(component.getGlyph(''), '');
+                expectToBe(component.getGlyph('[invalid]'), '');
+                expectToBe(component.getGlyph('[not found]'), '');
             });
         });
 

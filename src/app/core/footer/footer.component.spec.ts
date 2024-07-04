@@ -97,7 +97,7 @@ describe('FooterComponent (DONE)', () => {
 
     it('... injected service should use provided mockValue', () => {
         const coreService = TestBed.inject(CoreService);
-        expect(mockCoreService === coreService).toBeTrue();
+        expectToBe(mockCoreService === coreService, true);
     });
 
     describe('BEFORE initial data binding', () => {

@@ -1013,7 +1013,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         component.resourceInfoData.searchResults = null;
                         component.navigateToSearchPanel();
 
-                        expect(component.resourceInfoData.searchResults).toBeNull();
+                        expectToBe(component.resourceInfoData.searchResults, null);
                         expectSpyCall(navigationSpy, 1, [expectedRoute, expectedParams]);
                     });
 
@@ -1176,7 +1176,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                     expect(iconDes[0].children[0]).toBeTruthy();
                     expect(iconDes[0].children[0].classes).toBeTruthy();
-                    expect(iconDes[0].children[0].classes['fa-arrow-left']).toBeTrue();
+                    expectToBe(iconDes[0].children[0].classes['fa-arrow-left'], true);
                 });
 
                 it('... should display innerHTML text on first div button', () => {
@@ -1314,7 +1314,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const iconDes = getAndExpectDebugElementByCss(strongDes[0], 'fa-icon', 1, 1);
                             expect(iconDes[0].children[0]).toBeTruthy();
                             expect(iconDes[0].children[0].classes).toBeTruthy();
-                            expect(iconDes[0].children[0].classes['fa-chevron-left']).toBeTrue();
+                            expectToBe(iconDes[0].children[0].classes['fa-chevron-left'], true);
                         });
 
                         it('... should point to previous resource in span in strong element', () => {
@@ -1456,7 +1456,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                             expect(iconDes[0].children[0]).toBeTruthy();
                             expect(iconDes[0].children[0].classes).toBeTruthy();
-                            expect(iconDes[0].children[0].classes['fa-circle-xmark']).toBeTrue();
+                            expectToBe(iconDes[0].children[0].classes['fa-circle-xmark'], true);
                         });
 
                         it('... should have two empty divs.single-line in second div', () => {
@@ -1595,7 +1595,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                                 expectToBe(buttonDes[0].attributes['type'], 'submit');
                                 expect(buttonEl).toHaveClass('btn');
-                                expect(buttonEl.disabled).toBeTrue();
+                                expectToBe(buttonEl.disabled, true);
                             });
 
                             it('... should display innerHTML text', () => {
@@ -1670,7 +1670,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                     resourceInfoIndex.value,
                                     component.resourceInfoData.resources.current.displayIndex
                                 );
-                                expect(buttonEl.disabled).toBeTrue();
+                                expectToBe(buttonEl.disabled, true);
                             });
 
                             it('... should be disabled when form is not valid', () => {
@@ -1694,7 +1694,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 expect(component.resourceInfoFormGroup.invalid).toBeTruthy();
 
                                 // Disabled = true
-                                expect(buttonEl.disabled).toBeTrue();
+                                expectToBe(buttonEl.disabled, true);
                             });
 
                             it('... should be enabled when input index is not current.displayIndex and form is valid', () => {
@@ -1721,7 +1721,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 expect(resourceInfoIndex.value).not.toBe(
                                     component.resourceInfoData.resources.current.displayIndex
                                 );
-                                expect(buttonEl.disabled).toBeFalse();
+                                expectToBe(buttonEl.disabled, false);
                             });
 
                             it('... should not be able to navigate to resource by index when button is disabled', fakeAsync(() => {
@@ -1747,7 +1747,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 expect(component.resourceInfoFormGroup.invalid).toBeFalsy();
 
                                 // Disabled = true
-                                expect(buttonEl.disabled).toBeTrue();
+                                expectToBe(buttonEl.disabled, true);
 
                                 // Trigger click on button with click helper & wait for changes
                                 clickAndAwaitChanges(buttonDes[0], fixture);
@@ -1767,7 +1767,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 expect(component.resourceInfoFormGroup.invalid).toBeTruthy();
 
                                 // Disabled = true
-                                expect(buttonEl.disabled).toBeTrue();
+                                expectToBe(buttonEl.disabled, true);
 
                                 // Trigger click on button with click helper & wait for changes
                                 clickAndAwaitChanges(buttonDes[0], fixture);
@@ -1802,7 +1802,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 expect(component.resourceInfoFormGroup.invalid).toBeFalsy();
 
                                 // Button.disabled = false
-                                expect(buttonEl.disabled).toBeFalse();
+                                expectToBe(buttonEl.disabled, false);
 
                                 // Trigger click on button with click helper & wait for changes
                                 clickAndAwaitChanges(buttonDes[0], fixture);
@@ -1898,7 +1898,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const iconDes = getAndExpectDebugElementByCss(strongDes[0], 'fa-icon', 1, 1);
                             expect(iconDes[0].children[0]).toBeTruthy();
                             expect(iconDes[0].children[0].classes).toBeTruthy();
-                            expect(iconDes[0].children[0].classes['fa-chevron-right']).toBeTrue();
+                            expectToBe(iconDes[0].children[0].classes['fa-chevron-right'], true);
                         });
 
                         it('... should point to previous resource in span in strong element', () => {
@@ -2035,7 +2035,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const iconDes = getAndExpectDebugElementByCss(strongDes[0], 'fa-icon', 1, 1);
                             expect(iconDes[0].children[0]).toBeTruthy();
                             expect(iconDes[0].children[0].classes).toBeTruthy();
-                            expect(iconDes[0].children[0].classes['fa-circle-xmark']).toBeTrue();
+                            expectToBe(iconDes[0].children[0].classes['fa-circle-xmark'], true);
                         });
 
                         it('... should have two empty divs.single-line in second div', () => {

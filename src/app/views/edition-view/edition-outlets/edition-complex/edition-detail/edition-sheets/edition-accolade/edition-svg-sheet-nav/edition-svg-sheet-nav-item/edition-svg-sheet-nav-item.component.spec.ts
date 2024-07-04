@@ -176,10 +176,10 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                 const anchorEl1 = anchorDes[1].nativeElement;
 
                 expectToContain(anchorEl0.classList, 'active');
-                expect(anchorEl0.classList).withContext(`should not contain 'text-muted'`).not.toContain('text-muted');
+                expect(anchorEl0.classList).not.toContain('text-muted');
 
                 expectToContain(anchorEl1.classList, 'text-muted');
-                expect(anchorEl1.classList).withContext(`should not contain 'active'`).not.toContain('active');
+                expect(anchorEl1.classList).not.toContain('active');
             });
 
             it('... should display sheet label in direct anchors (no partials)', () => {
@@ -289,7 +289,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                     const anchorEl = anchorDe.nativeElement;
 
                     expectToContain(anchorEl.classList, 'text-muted');
-                    expect(anchorEl.classList).withContext(`should not contain 'active'`).not.toContain('active');
+                    expect(anchorEl.classList).not.toContain('active');
                 });
             });
 
@@ -307,10 +307,10 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                 let anchorEl1 = anchorDes[1].nativeElement;
 
                 expectToContain(anchorEl0.classList, 'active');
-                expect(anchorEl0.classList).withContext(`should not contain 'text-muted'`).not.toContain('text-muted');
+                expect(anchorEl0.classList).not.toContain('text-muted');
 
                 expectToContain(anchorEl1.classList, 'text-muted');
-                expect(anchorEl1.classList).withContext(`should not contain 'active'`).not.toContain('active');
+                expect(anchorEl1.classList).not.toContain('active');
 
                 component.selectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk3b));
                 detectChangesOnPush(fixture);
@@ -325,10 +325,10 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                 anchorEl1 = anchorDes[1].nativeElement;
 
                 expectToContain(anchorEl0.classList, 'text-muted');
-                expect(anchorEl0.classList).withContext(`should not contain 'active'`).not.toContain('active');
+                expect(anchorEl0.classList).not.toContain('active');
 
                 expectToContain(anchorEl1.classList, 'active');
-                expect(anchorEl1.classList).withContext(`should not contain 'text-muted'`).not.toContain('text-muted');
+                expect(anchorEl1.classList).not.toContain('text-muted');
             });
 
             it('... should have as many item anchors (.dropdown-item) in dropdown as partials in sheet content', () => {
@@ -364,12 +364,10 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                 const anchorEl1 = anchorDes[1].nativeElement;
 
                 expectToContain(anchorEl0.classList, 'active');
-                expect(anchorEl0.classList)
-                    .withContext(`should not have class 'text-muted'`)
-                    .not.toContain('text-muted');
+                expect(anchorEl0.classList).not.toContain('text-muted');
 
                 expectToContain(anchorEl1.classList, 'text-muted');
-                expect(anchorEl1.classList).withContext(`should not have class 'active'`).not.toContain('active');
+                expect(anchorEl1.classList).not.toContain('active');
             });
 
             it('... should display sheet labels in dropdown item anchors (with numbered partials)', () => {
@@ -408,13 +406,13 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                 it('... should return false if given id does not equal id of selected svg sheet', () => {
                     const comparison = component.isSelectedSvgSheet(expectedNextSvgSheet.id);
 
-                    expect(comparison).toBeFalse();
+                    expectToBe(comparison, false);
                 });
 
                 it('... should return true if given id does equal id of selected svg sheet', () => {
                     const comparison = component.isSelectedSvgSheet(expectedSvgSheet.id);
 
-                    expect(comparison).toBeTrue();
+                    expectToBe(comparison, true);
                 });
             });
 
@@ -425,7 +423,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
 
                     const comparison = component.isSelectedSvgSheet(expectedSvgSheetWithPartials.id, 'XXX');
 
-                    expect(comparison).toBeFalse();
+                    expectToBe(comparison, false);
                 });
 
                 it('... should return true if given id does equal id with partial of selected svg sheet', () => {
@@ -434,7 +432,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
 
                     const comparison = component.isSelectedSvgSheet(expectedSvgSheetWithPartials.id, 'a');
 
-                    expect(comparison).toBeTrue();
+                    expectToBe(comparison, true);
                 });
             });
         });

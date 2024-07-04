@@ -270,7 +270,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
                 service.fillD3SelectionWithColor(d3Selection, color);
 
                 expect(d3Selection).toBeDefined();
-                expect(d3Selection.attr('fill')).toBeNull();
+                expectToBe(d3Selection.attr('fill'), null);
             });
         });
 
