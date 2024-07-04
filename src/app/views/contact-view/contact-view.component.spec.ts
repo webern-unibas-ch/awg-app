@@ -257,8 +257,7 @@ describe('ContactViewComponent (DONE)', () => {
                 const navExtras = navArgs[1];
 
                 expect(navExtras).toBeDefined();
-                expect(navExtras.preserveFragment).toBeDefined();
-                expect(navExtras.preserveFragment).toBeTrue();
+                expectToBe(navExtras.preserveFragment, true);
                 expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
         });

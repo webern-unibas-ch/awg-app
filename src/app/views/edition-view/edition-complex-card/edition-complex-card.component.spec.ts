@@ -347,7 +347,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = [expectedComplexes[index].complex.baseRoute];
 
-                    expect(routerLink.navigatedTo).toBeNull();
+                    expectToBe(routerLink.navigatedTo, null);
 
                     click(linkDe);
                     fixture.detectChanges();

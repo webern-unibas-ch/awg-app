@@ -14,7 +14,13 @@ import { faPlus, faRefresh, faSearch, faTrash } from '@fortawesome/free-solid-sv
 
 import { click, clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+} from '@testing/expect-helper';
 import {
     mockPropertyTypesInResourceClassResponseJson,
     mockResourceTypesInVocabularyResponseJson,
@@ -380,7 +386,7 @@ describe('ExtendedSearchFormComponent', () => {
                     );
                     const labelEl = labelDes[0].nativeElement;
 
-                    expect(labelEl.classList).toContain('text-muted');
+                    expectToContain(labelEl.classList, 'text-muted');
                     expectToBe(labelEl.textContent, 'Resource type');
                 });
             });
@@ -509,7 +515,7 @@ describe('ExtendedSearchFormComponent', () => {
                         );
                         const labelEl = labelDes[0].nativeElement;
 
-                        expect(labelEl.classList).toContain('text-muted');
+                        expectToContain(labelEl.classList, 'text-muted');
                         expectToBe(labelEl.textContent, 'Property');
                     });
                 });
@@ -628,7 +634,7 @@ describe('ExtendedSearchFormComponent', () => {
                         );
                         const labelEl = labelDes[0].nativeElement;
 
-                        expect(labelEl.classList).toContain('text-muted');
+                        expectToContain(labelEl.classList, 'text-muted');
                         expectToBe(labelEl.textContent, 'Operator');
                     });
                 });
@@ -688,7 +694,7 @@ describe('ExtendedSearchFormComponent', () => {
                         );
                         const labelEl = labelDes[0].nativeElement;
 
-                        expect(labelEl.classList).toContain('text-muted');
+                        expectToContain(labelEl.classList, 'text-muted');
                         expectToBe(labelEl.textContent, 'Search value');
                     });
                 });
@@ -746,7 +752,7 @@ describe('ExtendedSearchFormComponent', () => {
                                 );
                                 const buttonEl = buttonDes[0].nativeElement;
 
-                                expect(buttonEl.classList).toContain('btn-outline-info');
+                                expectToContain(buttonEl.classList, 'btn-outline-info');
                             });
                         });
 
@@ -916,7 +922,7 @@ describe('ExtendedSearchFormComponent', () => {
                                 );
                                 const buttonEl = buttonDes[0].nativeElement;
 
-                                expect(buttonEl.classList).toContain('btn-outline-danger');
+                                expectToContain(buttonEl.classList, 'btn-outline-danger');
                             });
                         });
 
@@ -985,7 +991,7 @@ describe('ExtendedSearchFormComponent', () => {
                         );
                         const buttonEl = buttonDes[0].nativeElement;
 
-                        expect(buttonEl.classList).toContain('btn-outline-info');
+                        expectToContain(buttonEl.classList, 'btn-outline-info');
                     });
 
                     it('... should have the search button disabled as long as the form is not valid', () => {
@@ -1067,7 +1073,7 @@ describe('ExtendedSearchFormComponent', () => {
                         );
                         const buttonEl = buttonDes[0].nativeElement;
 
-                        expect(buttonEl.classList).toContain('btn-outline-danger');
+                        expectToContain(buttonEl.classList, 'btn-outline-danger');
                     });
 
                     it('... should have the reset button disabled as long as the restypeControl is not valid', () => {
@@ -1415,7 +1421,7 @@ describe('ExtendedSearchFormComponent', () => {
             });
 
             it('... should return null if the index is out of bounds', () => {
-                expect(component.getCompopControlAtIndex(100)).toBeNull();
+                expectToBe(component.getCompopControlAtIndex(100), null);
             });
         });
 
@@ -1436,12 +1442,12 @@ describe('ExtendedSearchFormComponent', () => {
                     for (const guieElementId of ['3', '6', '14']) {
                         const compopSet = component.getCompopSetByValueType(valueTypeId, guieElementId);
 
-                        expect(typeof compopSet).toBe('object');
-                        expect(Array.isArray(compopSet)).toBeTrue();
+                        expectToBe(typeof compopSet, 'object');
+                        expectToBe(Array.isArray(compopSet), true);
                         expect(compopSet.length).toBeGreaterThanOrEqual(0);
 
                         compopSet.forEach(compop => {
-                            expect(compop instanceof SearchCompop).toBeTrue();
+                            expectToBe(compop instanceof SearchCompop, true);
                         });
                     }
                 }
@@ -1599,7 +1605,7 @@ describe('ExtendedSearchFormComponent', () => {
             });
 
             it('... should return null if the propertyIdControl does not exist', () => {
-                expect(component.getPropertyIdControlAtIndex(100)).toBeNull();
+                expectToBe(component.getPropertyIdControlAtIndex(100), null);
             });
         });
 
@@ -2765,13 +2771,13 @@ describe('ExtendedSearchFormComponent', () => {
                 it('... the index is out of bounds', () => {
                     const index = 100;
 
-                    expect((component as any)._getFormArrayControlAtIndex('searchvalControl', index)).toBeNull();
+                    expectToBe((component as any)._getFormArrayControlAtIndex('searchvalControl', index), null);
                 });
 
                 it('... the control does not exist', () => {
                     const index = 0;
 
-                    expect((component as any)._getFormArrayControlAtIndex('invalidControl', index)).toBeNull();
+                    expectToBe((component as any)._getFormArrayControlAtIndex('invalidControl', index), null);
                 });
             });
 
@@ -2815,7 +2821,7 @@ describe('ExtendedSearchFormComponent', () => {
                     'compopControl'
                 ].setValue('EXISTS');
 
-                expect((component as any)._isCompopExists(index)).toBeTrue();
+                expectToBe((component as any)._isCompopExists(index), true);
             });
 
             it('... should return false if the compop value is not `EXISTS`', () => {
@@ -2825,7 +2831,7 @@ describe('ExtendedSearchFormComponent', () => {
                     'compopControl'
                 ].setValue('EQUALS');
 
-                expect((component as any)._isCompopExists(index)).toBeFalse();
+                expectToBe((component as any)._isCompopExists(index), false);
             });
         });
 
@@ -2839,7 +2845,7 @@ describe('ExtendedSearchFormComponent', () => {
 
                 isFormControlValueMissingSpy.withArgs('compopControl', index).and.returnValue(true);
 
-                expect((component as any)._isCompopMissing(index)).toBeTrue();
+                expectToBe((component as any)._isCompopMissing(index), true);
             });
 
             it('... should return false if `_isFormControlValueMissing` returns false', () => {
@@ -2847,7 +2853,7 @@ describe('ExtendedSearchFormComponent', () => {
 
                 isFormControlValueMissingSpy.withArgs('compopControl', index).and.returnValue(false);
 
-                expect((component as any)._isCompopMissing(index)).toBeFalse();
+                expectToBe((component as any)._isCompopMissing(index), false);
             });
         });
 
@@ -2865,7 +2871,7 @@ describe('ExtendedSearchFormComponent', () => {
                         'searchvalControl'
                     ].setValue(null);
 
-                    expect((component as any)._isFormControlValueMissing('searchvalControl', index)).toBeTrue();
+                    expectToBe((component as any)._isFormControlValueMissing('searchvalControl', index), true);
                 });
 
                 it('... undefined', () => {
@@ -2876,7 +2882,7 @@ describe('ExtendedSearchFormComponent', () => {
                         'searchvalControl'
                     ].setValue(undefined);
 
-                    expect((component as any)._isFormControlValueMissing('searchvalControl', index)).toBeTrue();
+                    expectToBe((component as any)._isFormControlValueMissing('searchvalControl', index), true);
                 });
 
                 it('... an empty string', () => {
@@ -2887,7 +2893,7 @@ describe('ExtendedSearchFormComponent', () => {
                         'searchvalControl'
                     ].setValue('');
 
-                    expect((component as any)._isFormControlValueMissing('searchvalControl', index)).toBeTrue();
+                    expectToBe((component as any)._isFormControlValueMissing('searchvalControl', index), true);
                 });
 
                 it('... the default formString', () => {
@@ -2898,7 +2904,7 @@ describe('ExtendedSearchFormComponent', () => {
                         'searchvalControl'
                     ].setValue(expectedDefaultFormString);
 
-                    expect((component as any)._isFormControlValueMissing('searchvalControl', index)).toBeTrue();
+                    expectToBe((component as any)._isFormControlValueMissing('searchvalControl', index), true);
                 });
             });
 
@@ -2910,7 +2916,7 @@ describe('ExtendedSearchFormComponent', () => {
                         'searchvalControl'
                     ].setValue(1);
 
-                    expect((component as any)._isFormControlValueMissing('searchvalControl', index)).toBeFalse();
+                    expectToBe((component as any)._isFormControlValueMissing('searchvalControl', index), false);
                 });
 
                 it('... a string', () => {
@@ -2920,7 +2926,7 @@ describe('ExtendedSearchFormComponent', () => {
                         'searchvalControl'
                     ].setValue('test');
 
-                    expect((component as any)._isFormControlValueMissing('searchvalControl', index)).toBeFalse();
+                    expectToBe((component as any)._isFormControlValueMissing('searchvalControl', index), false);
                 });
 
                 it('... an object', () => {
@@ -2930,7 +2936,7 @@ describe('ExtendedSearchFormComponent', () => {
                         'searchvalControl'
                     ].setValue({ id: 1 });
 
-                    expect((component as any)._isFormControlValueMissing('searchvalControl', index)).toBeFalse();
+                    expectToBe((component as any)._isFormControlValueMissing('searchvalControl', index), false);
                 });
 
                 it('... an empty object', () => {
@@ -2940,7 +2946,7 @@ describe('ExtendedSearchFormComponent', () => {
                         'searchvalControl'
                     ].setValue({});
 
-                    expect((component as any)._isFormControlValueMissing('searchvalControl', index)).toBeFalse();
+                    expectToBe((component as any)._isFormControlValueMissing('searchvalControl', index), false);
                 });
 
                 it('... an empty array', () => {
@@ -2950,7 +2956,7 @@ describe('ExtendedSearchFormComponent', () => {
                         'searchvalControl'
                     ].setValue([]);
 
-                    expect((component as any)._isFormControlValueMissing('searchvalControl', index)).toBeFalse();
+                    expectToBe((component as any)._isFormControlValueMissing('searchvalControl', index), false);
                 });
             });
 
@@ -2964,9 +2970,9 @@ describe('ExtendedSearchFormComponent', () => {
                 controls['compopControl'].setValue('EXISTS');
                 controls['searchvalControl'].setValue(null);
 
-                expect((component as any)._isFormControlValueMissing('propertyIdControl', index)).toBeFalse();
-                expect((component as any)._isFormControlValueMissing('compopControl', index)).toBeFalse();
-                expect((component as any)._isFormControlValueMissing('searchvalControl', index)).toBeTrue();
+                expectToBe((component as any)._isFormControlValueMissing('propertyIdControl', index), false);
+                expectToBe((component as any)._isFormControlValueMissing('compopControl', index), false);
+                expectToBe((component as any)._isFormControlValueMissing('searchvalControl', index), true);
             });
         });
 
@@ -2983,8 +2989,8 @@ describe('ExtendedSearchFormComponent', () => {
                     component.addPropertiesControl();
                     component.addPropertiesControl();
 
-                    expect((component as any)._isNotLastProperty(index)).toBeTrue();
-                    expect((component as any)._isNotLastProperty(index1)).toBeTrue();
+                    expectToBe((component as any)._isNotLastProperty(index), true);
+                    expectToBe((component as any)._isNotLastProperty(index1), true);
                 });
 
                 it('... less than the length - 1 of the propertiesControls', () => {
@@ -2993,7 +2999,7 @@ describe('ExtendedSearchFormComponent', () => {
                     component.addPropertiesControl();
                     component.addPropertiesControl();
 
-                    expect((component as any)._isNotLastProperty(index)).toBeTrue();
+                    expectToBe((component as any)._isNotLastProperty(index), true);
                 });
 
                 it('... negative', () => {
@@ -3002,7 +3008,7 @@ describe('ExtendedSearchFormComponent', () => {
                     component.addPropertiesControl();
                     component.addPropertiesControl();
 
-                    expect((component as any)._isNotLastProperty(index)).toBeTrue();
+                    expectToBe((component as any)._isNotLastProperty(index), true);
                 });
             });
 
@@ -3010,7 +3016,7 @@ describe('ExtendedSearchFormComponent', () => {
                 it('... the last index position in the propertiesControls', () => {
                     const index = 0;
 
-                    expect((component as any)._isNotLastProperty(index)).toBeFalse();
+                    expectToBe((component as any)._isNotLastProperty(index), false);
 
                     // Add tow more properties controls
                     component.addPropertiesControl();
@@ -3018,7 +3024,7 @@ describe('ExtendedSearchFormComponent', () => {
 
                     const index2 = 2;
 
-                    expect((component as any)._isNotLastProperty(index2)).toBeFalse();
+                    expectToBe((component as any)._isNotLastProperty(index2), false);
                 });
 
                 it('... greater than the length - 1 of the propertiesControls', () => {
@@ -3027,7 +3033,7 @@ describe('ExtendedSearchFormComponent', () => {
                     component.addPropertiesControl();
                     component.addPropertiesControl();
 
-                    expect((component as any)._isNotLastProperty(index)).toBeFalse();
+                    expectToBe((component as any)._isNotLastProperty(index), false);
                 });
 
                 it('... equal to the length - 1 of the propertiesControls', () => {
@@ -3036,7 +3042,7 @@ describe('ExtendedSearchFormComponent', () => {
                     component.addPropertiesControl();
                     component.addPropertiesControl();
 
-                    expect((component as any)._isNotLastProperty(index)).toBeFalse();
+                    expectToBe((component as any)._isNotLastProperty(index), false);
                 });
             });
         });
@@ -3051,7 +3057,7 @@ describe('ExtendedSearchFormComponent', () => {
 
                 isFormControlValueMissingSpy.withArgs('propertyIdControl', index).and.returnValue(true);
 
-                expect((component as any)._isPropertyIdMissing(index)).toBeTrue();
+                expectToBe((component as any)._isPropertyIdMissing(index), true);
             });
 
             it('... should return false if `_isFormControlValueMissing` returns false', () => {
@@ -3059,7 +3065,7 @@ describe('ExtendedSearchFormComponent', () => {
 
                 isFormControlValueMissingSpy.withArgs('propertyIdControl', index).and.returnValue(false);
 
-                expect((component as any)._isPropertyIdMissing(index)).toBeFalse();
+                expectToBe((component as any)._isPropertyIdMissing(index), false);
             });
         });
 
@@ -3075,7 +3081,7 @@ describe('ExtendedSearchFormComponent', () => {
                     isPropertyIdMissingSpy.withArgs(index).and.returnValue(true);
                     isCompopMissingSpy.withArgs(index).and.returnValue(false);
 
-                    expect((component as any)._isPropertyIdOrCompopMissing(index)).toBeTrue();
+                    expectToBe((component as any)._isPropertyIdOrCompopMissing(index), true);
                 });
 
                 it('... `_isCompopMissing` returns true', () => {
@@ -3084,7 +3090,7 @@ describe('ExtendedSearchFormComponent', () => {
                     isPropertyIdMissingSpy.withArgs(index).and.returnValue(false);
                     isCompopMissingSpy.withArgs(index).and.returnValue(true);
 
-                    expect((component as any)._isPropertyIdOrCompopMissing(index)).toBeTrue();
+                    expectToBe((component as any)._isPropertyIdOrCompopMissing(index), true);
                 });
 
                 it('... `_isPropertyIdMissing` and `_isCompopMissing` both return true', () => {
@@ -3093,7 +3099,7 @@ describe('ExtendedSearchFormComponent', () => {
                     isPropertyIdMissingSpy.withArgs(index).and.returnValue(true);
                     isCompopMissingSpy.withArgs(index).and.returnValue(true);
 
-                    expect((component as any)._isPropertyIdOrCompopMissing(index)).toBeTrue();
+                    expectToBe((component as any)._isPropertyIdOrCompopMissing(index), true);
                 });
             });
 
@@ -3103,7 +3109,7 @@ describe('ExtendedSearchFormComponent', () => {
                 isPropertyIdMissingSpy.withArgs(index).and.returnValue(false);
                 isCompopMissingSpy.withArgs(index).and.returnValue(false);
 
-                expect((component as any)._isPropertyIdOrCompopMissing(index)).toBeFalse();
+                expectToBe((component as any)._isPropertyIdOrCompopMissing(index), false);
             });
         });
 
@@ -3116,25 +3122,25 @@ describe('ExtendedSearchFormComponent', () => {
                 it('... an empty string', () => {
                     component.extendedSearchForm.controls['restypeControl'].setValue('');
 
-                    expect((component as any)._isResourecetypeMissing()).toBeTrue();
+                    expectToBe((component as any)._isResourecetypeMissing(), true);
                 });
 
                 it('... undefined', () => {
                     component.extendedSearchForm.controls['restypeControl'].setValue(undefined);
 
-                    expect((component as any)._isResourecetypeMissing()).toBeTrue();
+                    expectToBe((component as any)._isResourecetypeMissing(), true);
                 });
 
                 it('... null', () => {
                     component.extendedSearchForm.controls['restypeControl'].setValue(null);
 
-                    expect((component as any)._isResourecetypeMissing()).toBeTrue();
+                    expectToBe((component as any)._isResourecetypeMissing(), true);
                 });
 
                 it('... the default formString', () => {
                     component.extendedSearchForm.controls['restypeControl'].setValue(expectedDefaultFormString);
 
-                    expect((component as any)._isResourecetypeMissing()).toBeTrue();
+                    expectToBe((component as any)._isResourecetypeMissing(), true);
                 });
             });
 
@@ -3142,31 +3148,31 @@ describe('ExtendedSearchFormComponent', () => {
                 it('... a number', () => {
                     component.extendedSearchForm.controls['restypeControl'].setValue(1);
 
-                    expect((component as any)._isResourecetypeMissing()).toBeFalse();
+                    expectToBe((component as any)._isResourecetypeMissing(), false);
                 });
 
                 it('... a string', () => {
                     component.extendedSearchForm.controls['restypeControl'].setValue('1');
 
-                    expect((component as any)._isResourecetypeMissing()).toBeFalse();
+                    expectToBe((component as any)._isResourecetypeMissing(), false);
                 });
 
                 it('... an object', () => {
                     component.extendedSearchForm.controls['restypeControl'].setValue({ id: 1 });
 
-                    expect((component as any)._isResourecetypeMissing()).toBeFalse();
+                    expectToBe((component as any)._isResourecetypeMissing(), false);
                 });
 
                 it('... an empty object', () => {
                     component.extendedSearchForm.controls['restypeControl'].setValue({});
 
-                    expect((component as any)._isResourecetypeMissing()).toBeFalse();
+                    expectToBe((component as any)._isResourecetypeMissing(), false);
                 });
 
                 it('... an empty array', () => {
                     component.extendedSearchForm.controls['restypeControl'].setValue([]);
 
-                    expect((component as any)._isResourecetypeMissing()).toBeFalse();
+                    expectToBe((component as any)._isResourecetypeMissing(), false);
                 });
             });
         });
@@ -3181,7 +3187,7 @@ describe('ExtendedSearchFormComponent', () => {
 
                 isFormControlValueMissingSpy.withArgs('searchvalControl', index).and.returnValue(true);
 
-                expect((component as any)._isSearchvalMissing(index)).toBeTrue();
+                expectToBe((component as any)._isSearchvalMissing(index), true);
             });
 
             it('... should return false if `_isFormControlValueMissing` returns false', () => {
@@ -3189,7 +3195,7 @@ describe('ExtendedSearchFormComponent', () => {
 
                 isFormControlValueMissingSpy.withArgs('searchvalControl', index).and.returnValue(false);
 
-                expect((component as any)._isSearchvalMissing(index)).toBeFalse();
+                expectToBe((component as any)._isSearchvalMissing(index), false);
             });
         });
 
@@ -3205,7 +3211,7 @@ describe('ExtendedSearchFormComponent', () => {
                     isSearchvalMissingSpy.withArgs(index).and.returnValue(true);
                     isSearchvalTooShortSpy.withArgs(index).and.returnValue(false);
 
-                    expect((component as any)._isSearchvalMissingOrTooShort(index)).toBeTrue();
+                    expectToBe((component as any)._isSearchvalMissingOrTooShort(index), true);
                 });
 
                 it('... `_isSearchvalTooShort` returns true', () => {
@@ -3214,7 +3220,7 @@ describe('ExtendedSearchFormComponent', () => {
                     isSearchvalMissingSpy.withArgs(index).and.returnValue(false);
                     isSearchvalTooShortSpy.withArgs(index).and.returnValue(true);
 
-                    expect((component as any)._isSearchvalMissingOrTooShort(index)).toBeTrue();
+                    expectToBe((component as any)._isSearchvalMissingOrTooShort(index), true);
                 });
 
                 it('... `_isSearchvalMissing` and `_isSearchvalTooShort` both return true', () => {
@@ -3223,7 +3229,7 @@ describe('ExtendedSearchFormComponent', () => {
                     isSearchvalMissingSpy.withArgs(index).and.returnValue(true);
                     isSearchvalTooShortSpy.withArgs(index).and.returnValue(true);
 
-                    expect((component as any)._isSearchvalMissingOrTooShort(index)).toBeTrue();
+                    expectToBe((component as any)._isSearchvalMissingOrTooShort(index), true);
                 });
             });
 
@@ -3233,7 +3239,7 @@ describe('ExtendedSearchFormComponent', () => {
                 isSearchvalMissingSpy.withArgs(index).and.returnValue(false);
                 isSearchvalTooShortSpy.withArgs(index).and.returnValue(false);
 
-                expect((component as any)._isSearchvalMissingOrTooShort(index)).toBeFalse();
+                expectToBe((component as any)._isSearchvalMissingOrTooShort(index), false);
             });
         });
 
@@ -3252,9 +3258,9 @@ describe('ExtendedSearchFormComponent', () => {
                 controls[1]['controls']['searchvalControl'].setValue('a');
                 controls[2]['controls']['searchvalControl'].setValue('ab');
 
-                expect((component as any)._isSearchvalTooShort(0)).toBeTrue();
-                expect((component as any)._isSearchvalTooShort(1)).toBeTrue();
-                expect((component as any)._isSearchvalTooShort(2)).toBeTrue();
+                expectToBe((component as any)._isSearchvalTooShort(0), true);
+                expectToBe((component as any)._isSearchvalTooShort(1), true);
+                expectToBe((component as any)._isSearchvalTooShort(2), true);
             });
 
             it('... should return false if the searchval control at a given index has a value that is equal or longer than 3 characters', () => {
@@ -3267,9 +3273,9 @@ describe('ExtendedSearchFormComponent', () => {
                 controls[1]['controls']['searchvalControl'].setValue('abcd');
                 controls[2]['controls']['searchvalControl'].setValue('abcde');
 
-                expect((component as any)._isSearchvalTooShort(0)).toBeFalse();
-                expect((component as any)._isSearchvalTooShort(1)).toBeFalse();
-                expect((component as any)._isSearchvalTooShort(2)).toBeFalse();
+                expectToBe((component as any)._isSearchvalTooShort(0), false);
+                expectToBe((component as any)._isSearchvalTooShort(1), false);
+                expectToBe((component as any)._isSearchvalTooShort(2), false);
             });
         });
 
@@ -3300,7 +3306,7 @@ describe('ExtendedSearchFormComponent', () => {
 
                 compopControl.setValue('EXISTS');
 
-                expect(validator(searchvalControl)).toBeNull();
+                expectToBe(validator(searchvalControl), null);
             });
 
             it('... should require non-null searchvalControl when compopControl has value other than `EXISTS`', () => {
@@ -3349,7 +3355,7 @@ describe('ExtendedSearchFormComponent', () => {
 
                 searchvalControl.setValue('abc');
 
-                expect(validator(searchvalControl)).toBeNull();
+                expectToBe(validator(searchvalControl), null);
             });
         });
     });

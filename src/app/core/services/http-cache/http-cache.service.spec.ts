@@ -71,7 +71,7 @@ describe('HttpCacheService (DONE)', () => {
             expect(expectedCachedResponse).toBeUndefined();
 
             const expectedGetCache = httpCacheService.get(expectedRequest);
-            expect(expectedGetCache).toBeNull();
+            expectToBe(expectedGetCache, null);
         });
 
         it('... should return an HTTP response from cache if available', () => {

@@ -6,7 +6,13 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { faSearch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import Spy = jasmine.Spy;
 
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+} from '@testing/expect-helper';
 
 import { FulltextSearchFormComponent } from './fulltext-search-form.component';
 
@@ -227,7 +233,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
                     const inputEl = inputDe[0].nativeElement;
 
-                    expect(inputEl.classList).toContain('is-invalid');
+                    expectToContain(inputEl.classList, 'is-invalid');
                 });
 
                 it('... should have class `ng-pristine`, but not `ng-dirty` in input.form-control', () => {
@@ -240,16 +246,16 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
                     const inputEl = inputDe[0].nativeElement;
 
-                    expect(inputEl.classList).toContain('ng-pristine');
+                    expectToContain(inputEl.classList, 'ng-pristine');
                     expect(inputEl.classList).not.toContain('ng-dirty');
                 });
 
                 it('... should have an invalid searchval input', () => {
-                    expect(component.searchvalControl.valid).toBeFalse();
+                    expectToBe(component.searchvalControl.valid, false);
                 });
 
                 it('... should have an invalid form', () => {
-                    expect(component.fulltextSearchForm.valid).toBeFalse();
+                    expectToBe(component.fulltextSearchForm.valid, false);
                 });
 
                 it('... should not have a div.invalid-feedback', () => {
@@ -303,7 +309,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     inputEl.dispatchEvent(new Event('input'));
                     fixture.detectChanges();
 
-                    expect(inputEl.classList).toContain('is-invalid');
+                    expectToContain(inputEl.classList, 'is-invalid');
                 });
 
                 it('... should not have class `ng-pristine`, but `ng-dirty` in input.form-control', () => {
@@ -325,7 +331,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     fixture.detectChanges();
 
                     expect(inputEl.classList).not.toContain('ng-pristine');
-                    expect(inputEl.classList).toContain('ng-dirty');
+                    expectToContain(inputEl.classList, 'ng-dirty');
                 });
 
                 it('... should have an invalid searchval input', () => {
@@ -334,7 +340,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.setSearchvalFromInput();
                     fixture.detectChanges();
 
-                    expect(component.searchvalControl.valid).toBeFalse();
+                    expectToBe(component.searchvalControl.valid, false);
                 });
 
                 it('... should have an invalid form', () => {
@@ -343,7 +349,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.setSearchvalFromInput();
                     fixture.detectChanges();
 
-                    expect(component.fulltextSearchForm.valid).toBeFalse();
+                    expectToBe(component.fulltextSearchForm.valid, false);
                 });
 
                 it('... should have a div.invalid-feedback if form is invalid after input', () => {
@@ -461,7 +467,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     fixture.detectChanges();
 
                     expect(inputEl.classList).not.toContain('ng-pristine');
-                    expect(inputEl.classList).toContain('ng-dirty');
+                    expectToContain(inputEl.classList, 'ng-dirty');
                 }));
 
                 it('... should have a valid searchval input', () => {

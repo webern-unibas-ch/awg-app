@@ -277,7 +277,11 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
-                    expect(editionTkaTableCmp.isRowTable).toBe(expectedCorrections[index].rowtable);
+                    if (expectedCorrections[index].rowtable) {
+                        expectToBe(editionTkaTableCmp.isRowTable, expectedCorrections[index].rowtable);
+                    } else {
+                        expect(editionTkaTableCmp.isRowTable).toBeUndefined();
+                    }
                 });
             });
 

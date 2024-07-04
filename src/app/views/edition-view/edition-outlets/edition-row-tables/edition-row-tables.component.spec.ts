@@ -297,7 +297,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = ['../complex' + expectedRowTablesData.rowTables[index].route, 'sheets'];
 
-                    expect(routerLink.navigatedTo).toBeNull();
+                    expectToBe(routerLink.navigatedTo, null);
 
                     click(linkDe);
                     fixture.detectChanges();

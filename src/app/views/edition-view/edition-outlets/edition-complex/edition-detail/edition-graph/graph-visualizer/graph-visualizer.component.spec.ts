@@ -8,6 +8,8 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
+    expectToBe,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -226,8 +228,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         });
 
         it('... should have defaultForceGraphHeight ', () => {
-            expect(component.defaultForceGraphHeight).toBeTruthy();
-            expect(component.defaultForceGraphHeight).withContext('should be 500').toBe(500);
+            expectToBe(component.defaultForceGraphHeight, 500);
         });
 
         it('... should not have triggered `resetTriples()`', () => {
@@ -264,43 +265,30 @@ describe('GraphVisualizerComponent (DONE)', () => {
         });
 
         it('... should have graphRDFInputData', () => {
-            expect(component.graphRDFInputData).toBeDefined();
-            expect(component.graphRDFInputData)
-                .withContext(`should equal ${expectedGraphRDFData}`)
-                .toEqual(expectedGraphRDFData);
+            expectToEqual(component.graphRDFInputData, expectedGraphRDFData);
         });
 
         it('... should have `isFullScreen` input', () => {
-            expect(component.isFullscreen).toBeDefined();
-            expect(component.isFullscreen).withContext(`should be ${expectedIsFullscreen}`).toBe(expectedIsFullscreen);
+            expectToBe(component.isFullscreen, expectedIsFullscreen);
         });
 
         it('... should have triples', () => {
-            expect(component.triples).toBeDefined();
-            expect(component.triples)
-                .withContext(`should equal ${expectedGraphRDFData.triples}`)
-                .toEqual(expectedGraphRDFData.triples);
+            expectToEqual(component.triples, expectedGraphRDFData.triples);
         });
 
         it('... should have queryList', () => {
-            expect(component.queryList).toBeDefined();
-            expect(component.queryList)
-                .withContext(`should equal ${expectedGraphRDFData.triples}`)
-                .toEqual(expectedGraphRDFData.queryList);
+            expectToEqual(component.queryList, expectedGraphRDFData.queryList);
         });
 
         it('... should have query', () => {
-            expect(component.query).toBeDefined();
-            expect(component.query)
-                .withContext(`should equal ${expectedGraphRDFData.triples}`)
-                .toEqual(expectedGraphRDFData.queryList[0]);
+            expectToEqual(component.query, expectedGraphRDFData.queryList[0]);
         });
 
         it('... should have queryResult', () => {
             expect(component.queryResult$).toBeDefined();
+
             component.queryResult$.subscribe(result => {
-                expect(result).toBeTruthy();
-                expect(result).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                expectToEqual(result, expectedResult);
             });
         });
 
@@ -338,10 +326,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             it('... should set initial triples', () => {
                 expectSpyCall(resetTriplesSpy, 1, undefined);
 
-                expect(component.triples).toBeDefined();
-                expect(component.triples)
-                    .withContext(`should equal ${expectedGraphRDFData.triples}`)
-                    .toEqual(expectedGraphRDFData.triples);
+                expectToEqual(component.triples, expectedGraphRDFData.triples);
             });
 
             it('... should reset changed triples to initial triples', () => {
@@ -354,8 +339,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 // Wait for fixture to be stable
                 fixture.detectChanges();
 
-                expect(component.triples).toBeDefined();
-                expect(component.triples).withContext(`should equal ${changedTriples}`).toEqual(changedTriples);
+                expectToEqual(component.triples, changedTriples);
 
                 // Reset triples
                 component.resetTriples();
@@ -363,9 +347,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 expectSpyCall(resetTriplesSpy, 2, undefined);
                 expect(component.triples).toBeDefined();
-                expect(component.triples)
-                    .withContext(`should equal ${expectedGraphRDFData.triples}`)
-                    .toEqual(expectedGraphRDFData.triples);
+                expectToEqual(component.triples, expectedGraphRDFData.triples);
             });
 
             it('... should not do anything if no triples are provided from rdf data', () => {
@@ -405,19 +387,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
             it('... should set initial queryList', () => {
                 expectSpyCall(resetQuerySpy, 1, undefined);
 
-                expect(component.queryList).toBeDefined();
-                expect(component.queryList)
-                    .withContext(`should equal ${expectedGraphRDFData.queryList}`)
-                    .toEqual(expectedGraphRDFData.queryList);
+                expectToEqual(component.queryList, expectedGraphRDFData.queryList);
             });
 
             it('... should set initial query', () => {
                 expectSpyCall(resetQuerySpy, 1, undefined);
 
-                expect(component.query).toBeDefined();
-                expect(component.query)
-                    .withContext(`should equal ${expectedGraphRDFData.queryList[0]}`)
-                    .toEqual(expectedGraphRDFData.queryList[0]);
+                expectToEqual(component.query, expectedGraphRDFData.queryList[0]);
             });
 
             it('... should find and reset a query from queryList if queryLabel and queryType is known', () => {
@@ -432,18 +408,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 // Matches queryList queries by label
                 expectSpyCall(resetQuerySpy, 2, undefined);
 
-                expect(component.query).toBeDefined();
-                expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
-
-                expect(component.query.queryLabel).toBeDefined();
-                expect(component.query.queryLabel)
-                    .withContext(`should equal ${changedQuery.queryLabel}`)
-                    .toEqual(changedQuery.queryLabel);
-
-                expect(component.query.queryType).toBeDefined();
-                expect(component.query.queryType)
-                    .withContext(`should equal ${changedQuery.queryType}`)
-                    .toEqual(changedQuery.queryType);
+                expectToEqual(component.query, changedQuery);
+                expectToBe(component.query.queryLabel, changedQuery.queryLabel);
+                expectToBe(component.query.queryType, changedQuery.queryType);
             });
 
             describe('... should set query as is, and not find from queryList, if', () => {
@@ -463,18 +430,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     // Matches queryList queries only by label
                     expectSpyCall(resetQuerySpy, 2, undefined);
 
-                    expect(component.query).toBeDefined();
-                    expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
-
-                    expect(component.query.queryLabel).toBeDefined();
-                    expect(component.query.queryLabel)
-                        .withContext(`should equal ${changedQuery.queryLabel}`)
-                        .toBe(changedQuery.queryLabel);
-
-                    expect(component.query.queryType).toBeDefined();
-                    expect(component.query.queryType)
-                        .withContext(`should equal ${changedQuery.queryType}`)
-                        .toBe(changedQuery.queryType);
+                    expectToEqual(component.query, changedQuery);
+                    expectToBe(component.query.queryLabel, changedQuery.queryLabel);
+                    expectToBe(component.query.queryType, changedQuery.queryType);
                 });
 
                 it('... only queryType is known but not queryLabel', () => {
@@ -490,18 +448,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     // Matches queryList queries only by type
                     expectSpyCall(resetQuerySpy, 2, undefined);
 
-                    expect(component.query).toBeDefined();
-                    expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
-
-                    expect(component.query.queryLabel).toBeDefined();
-                    expect(component.query.queryLabel)
-                        .withContext(`should equal ${changedQuery.queryLabel}`)
-                        .toBe(changedQuery.queryLabel);
-
-                    expect(component.query.queryType).toBeDefined();
-                    expect(component.query.queryType)
-                        .withContext(`should equal ${changedQuery.queryType}`)
-                        .toBe(changedQuery.queryType);
+                    expectToEqual(component.query, changedQuery);
+                    expectToBe(component.query.queryLabel, changedQuery.queryLabel);
+                    expectToBe(component.query.queryType, changedQuery.queryType);
                 });
 
                 it('... given query is not in queryList', () => {
@@ -521,18 +470,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     expectSpyCall(resetQuerySpy, 2, undefined);
 
-                    expect(component.query).toBeDefined();
-                    expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
-
-                    expect(component.query.queryLabel).toBeDefined();
-                    expect(component.query.queryLabel)
-                        .withContext(`should equal ${changedQuery.queryLabel}`)
-                        .toBe(changedQuery.queryLabel);
-
-                    expect(component.query.queryType).toBeDefined();
-                    expect(component.query.queryType)
-                        .withContext(`should equal ${changedQuery.queryType}`)
-                        .toBe(changedQuery.queryType);
+                    expectToEqual(component.query, changedQuery);
+                    expectToBe(component.query.queryLabel, changedQuery.queryLabel);
+                    expectToBe(component.query.queryType, changedQuery.queryType);
                 });
             });
 
@@ -544,8 +484,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 component.query = changedQuery;
                 fixture.detectChanges();
 
-                expect(component.query).toBeDefined();
-                expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
+                expectToEqual(component.query, changedQuery);
 
                 // Reset triples
                 component.resetQuery();
@@ -553,10 +492,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 expectSpyCall(resetQuerySpy, 2, undefined);
 
-                expect(component.query).toBeDefined();
-                expect(component.query)
-                    .withContext(`should equal ${expectedGraphRDFData.queryList[0]}`)
-                    .toEqual(expectedGraphRDFData.queryList[0]);
+                expectToEqual(component.query, expectedGraphRDFData.queryList[0]);
             });
 
             it('... should not do anything if no queryList is provided from RDF data', () => {
@@ -645,10 +581,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectSpyCall(performQuerySpy, 2, undefined);
                 expectSpyCall(namespaceSpy, 1, [queryStringWithoutPrefixes, expectedGraphRDFData.triples]);
 
-                expect(component.query).toBeDefined();
-                expect(component.query)
-                    .withContext(`should equal ${expectedGraphRDFData.queryList[0]}`)
-                    .toEqual(expectedGraphRDFData.queryList[0]);
+                expectToEqual(component.query, expectedGraphRDFData.queryList[0]);
             });
 
             it('... should get queryType from service', () => {
@@ -670,8 +603,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectedGraphRDFData.queryList[0].queryString
                 );
 
-                expect(component.query.queryType).toBeDefined();
-                expect(component.query.queryType).withContext('should equal construct').toEqual('construct');
+                expectToBe(component.query.queryType, 'construct');
             });
 
             it('... should trigger `_queryLocalStore` for construct queries', () => {
@@ -716,10 +648,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 component.performQuery();
                 detectChangesOnPush(fixture);
 
+                expectToBe(component.query.queryType, 'construct');
                 expectAsync(lastValueFrom(component.queryResult$)).toBeResolved();
-                expectAsync(lastValueFrom(component.queryResult$))
-                    .withContext(`should be resolved to ${expectedResult}`)
-                    .toBeResolvedTo(expectedResult);
+                expectAsync(lastValueFrom(component.queryResult$)).toBeResolvedTo(expectedResult);
             }));
 
             it('... should get queryResult for select queries', waitForAsync(() => {
@@ -730,10 +661,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 component.performQuery();
                 detectChangesOnPush(fixture);
 
+                expectToBe(component.query.queryType, 'select');
                 expectAsync(lastValueFrom(component.queryResult$)).toBeResolved();
-                expectAsync(lastValueFrom(component.queryResult$))
-                    .withContext(`should be resolved to ${expectedResult}`)
-                    .toBeResolvedTo(expectedResult);
+                expectAsync(lastValueFrom(component.queryResult$)).toBeResolvedTo(expectedResult);
             }));
 
             it('... should set empty observable for update query types', waitForAsync(() => {
@@ -743,7 +673,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 component.performQuery();
                 fixture.detectChanges();
 
-                expect(component.query.queryType).withContext('should be other').toBe('update');
+                expectToBe(component.query.queryType, 'update');
                 expectAsync(lastValueFrom(component.queryResult$)).toBeRejected();
                 expectAsync(lastValueFrom(component.queryResult$)).toBeRejectedWithError(EmptyError);
             }));
@@ -755,7 +685,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 component.performQuery();
                 fixture.detectChanges();
 
-                expect(component.query.queryType).withContext('should be other').toBe('other');
+                expectToBe(component.query.queryType, 'other');
                 expectAsync(lastValueFrom(component.queryResult$)).toBeRejected();
                 expectAsync(lastValueFrom(component.queryResult$)).toBeRejectedWithError(EmptyError);
             }));
@@ -806,14 +736,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 expectAsync(
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
-                )
-                    .withContext(`should be resolved to ${expectedResult}`)
-                    .toBeResolvedTo(expectedResult);
+                ).toBeResolvedTo(expectedResult);
 
                 expectAsync(lastValueFrom(component.queryResult$)).toBeResolved();
-                expectAsync(lastValueFrom(component.queryResult$))
-                    .withContext(`should be resolved to ${expectedResult}`)
-                    .toBeResolvedTo(expectedResult);
+                expectAsync(lastValueFrom(component.queryResult$)).toBeResolvedTo(expectedResult);
             }));
 
             it('... should return empty array on error', waitForAsync(() => {
@@ -836,9 +762,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ).toBeRejectedWith(expectedError);
 
                 expectAsync(lastValueFrom(component.queryResult$)).toBeResolved();
-                expectAsync(lastValueFrom(component.queryResult$))
-                    .withContext(`should be resolved to []`)
-                    .toBeResolvedTo([]);
+                expectAsync(lastValueFrom(component.queryResult$)).toBeResolvedTo([]);
             }));
 
             it('... should log an error on error', async () => {
@@ -885,11 +809,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 expectSpyCall(showErrorMessageSpy, 1);
                 expect(showErrorMessageSpy.calls.any()).toBeTruthy();
-                expect(showErrorMessageSpy.calls.count()).withContext(`should be 1`).toBe(1);
-                expect(showErrorMessageSpy.calls.first().args)
-                    .withContext(`should equal ${expectedToastMessage}`)
-                    .toEqual([expectedToastMessage]);
-                expect(showErrorMessageSpy.calls.allArgs()[0]).withContext(`should equal ${expectedToastMessage}`);
+                expectToBe(showErrorMessageSpy.calls.count(), 1);
+                expectToEqual(showErrorMessageSpy.calls.first().args, [expectedToastMessage]);
+                expectToEqual(showErrorMessageSpy.calls.allArgs()[0], [expectedToastMessage]);
             });
 
             it('... should trigger `showErrorMessage` 2x if error message contains `undefined`', async () => {
@@ -916,19 +838,11 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 expectSpyCall(showErrorMessageSpy, 2);
                 expect(showErrorMessageSpy.calls.any()).toBeTruthy();
-                expect(showErrorMessageSpy.calls.count()).withContext(`should be 2`).toBe(2);
-                expect(showErrorMessageSpy.calls.first().args)
-                    .withContext(`should equal ${expectedToastMessage1}`)
-                    .toEqual([expectedToastMessage1]);
-                expect(showErrorMessageSpy.calls.allArgs()[0])
-                    .withContext(`should equal ${expectedToastMessage1}`)
-                    .toEqual([expectedToastMessage1]);
-                expect(showErrorMessageSpy.calls.allArgs()[1])
-                    .withContext(`should equal ${expectedToastMessage2}`)
-                    .toEqual([expectedToastMessage2]);
-                expect(showErrorMessageSpy.calls.mostRecent().args)
-                    .withContext(`should equal ${expectedToastMessage2}`)
-                    .toEqual([expectedToastMessage2]);
+                expectToBe(showErrorMessageSpy.calls.count(), 2);
+                expectToEqual(showErrorMessageSpy.calls.first().args, [expectedToastMessage1]);
+                expectToEqual(showErrorMessageSpy.calls.allArgs()[0], [expectedToastMessage1]);
+                expectToEqual(showErrorMessageSpy.calls.allArgs()[1], [expectedToastMessage2]);
+                expectToEqual(showErrorMessageSpy.calls.mostRecent().args, [expectedToastMessage2]);
             });
         });
 
@@ -1011,8 +925,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectSpyCall(toastServiceAddSpy, 1, expectedToast);
 
                 expect(toastService.toasts).toBeDefined();
-                expect(toastService.toasts.length).withContext(`should be 1`).toBe(1);
-                expect(toastService.toasts[0]).withContext(`should equal ${expectedToast}`).toEqual(expectedToast);
+                expectToBe(toastService.toasts.length, 1);
+                expectToEqual(toastService.toasts[0], expectedToast);
             });
 
             it('... should set durationvValue = 3000 for the toast message if delay not given ', () => {
@@ -1032,8 +946,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectSpyCall(toastServiceAddSpy, 1, expectedToast);
 
                 expect(toastService.toasts).toBeDefined();
-                expect(toastService.toasts.length).withContext(`should be 1`).toBe(1);
-                expect(toastService.toasts[0]).withContext(`should equal ${expectedToast}`).toEqual(expectedToast);
+                expectToBe(toastService.toasts.length, 1);
+                expectToEqual(toastService.toasts[0], expectedToast);
             });
         });
 
@@ -1068,7 +982,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             it('... should not do anything if no node is provided', () => {
                 // Check initial state
                 expectSpyCall(performQuerySpy, 1, undefined);
-                expect(component.query.queryString).toEqual(component.graphRDFInputData.queryList[0].queryString);
+                expectToBe(component.query.queryString, component.graphRDFInputData.queryList[0].queryString);
 
                 const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
                 const resultsCmp = resultsDes[0].injector.get(
@@ -1079,9 +993,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 resultsCmp.clickedNodeRequest.emit(undefined);
 
                 expectSpyCall(onGraphNodeClickSpy, 1, undefined);
-                expect(component.query.queryString)
-                    .withContext(`should equal ${component.graphRDFInputData.queryList[0].queryString}`)
-                    .toEqual(component.graphRDFInputData.queryList[0].queryString);
+                expectToBe(component.query.queryString, component.graphRDFInputData.queryList[0].queryString);
                 expectSpyCall(performQuerySpy, 1, undefined);
             });
 
@@ -1128,7 +1040,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             it('... should not do anything if no URI is provided', () => {
                 // Check initial state
                 expectSpyCall(performQuerySpy, 1, undefined);
-                expect(component.query.queryString).toEqual(component.graphRDFInputData.queryList[0].queryString);
+                expectToBe(component.query.queryString, component.graphRDFInputData.queryList[0].queryString);
 
                 const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
                 const resultsCmp = resultsDes[0].injector.get(SelectResultsStubComponent) as SelectResultsStubComponent;
@@ -1137,9 +1049,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 resultsCmp.clickedTableRequest.emit('');
 
                 expectSpyCall(onTableNodeClickSpy, 1, '');
-                expect(component.query.queryString)
-                    .withContext(`should equal ${component.graphRDFInputData.queryList[0].queryString}`)
-                    .toEqual(component.graphRDFInputData.queryList[0].queryString);
+                expectToBe(component.query.queryString, component.graphRDFInputData.queryList[0].queryString);
                 expectSpyCall(performQuerySpy, 1, undefined);
             });
 
@@ -1288,10 +1198,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         TriplesEditorStubComponent
                     ) as TriplesEditorStubComponent;
 
-                    expect(editorCmp.triples).toBeDefined();
-                    expect(editorCmp.triples)
-                        .withContext(`should equal ${expectedGraphRDFData.triples}`)
-                        .toEqual(expectedGraphRDFData.triples);
+                    expectToEqual(editorCmp.triples, expectedGraphRDFData.triples);
                 });
 
                 it('... should update `triples` with updateTriplesRequest event', () => {
@@ -1305,8 +1212,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         '@prefix example: <https://example.com/onto#> .\n\n example:Test2 example:has example:Success2 .';
                     editorCmp.updateTriplesRequest.emit(changedTriples);
 
-                    expect(component.triples).toBeDefined();
-                    expect(component.triples).withContext(`should equal ${changedTriples}`).toEqual(changedTriples);
+                    expectToEqual(component.triples, changedTriples);
                 });
 
                 it('... should re-trigger `resetTriples()` with resetTriplesRequest event', () => {
@@ -1341,15 +1247,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
                     const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
 
-                    expect(editorCmp.queryList).toBeDefined();
-                    expect(editorCmp.queryList)
-                        .withContext(`should equal ${expectedGraphRDFData.queryList}`)
-                        .toEqual(expectedGraphRDFData.queryList);
-
-                    expect(editorCmp.query).toBeDefined();
-                    expect(editorCmp.query)
-                        .withContext(`should equal ${expectedGraphRDFData.queryList[0]}`)
-                        .toEqual(expectedGraphRDFData.queryList[0]);
+                    expectToEqual(editorCmp.queryList, expectedGraphRDFData.queryList);
+                    expectToEqual(editorCmp.query, expectedGraphRDFData.queryList[0]);
                 });
 
                 it('... should update `query.string` with updateQueryStringRequest event', () => {
@@ -1361,10 +1260,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }';
                     editorCmp.updateQueryStringRequest.emit(changedQueryString);
 
-                    expect(component.query.queryString).toBeDefined();
-                    expect(component.query.queryString)
-                        .withContext(`should equal ${changedQueryString}`)
-                        .toEqual(changedQueryString);
+                    expectToBe(component.query.queryString, changedQueryString);
                 });
 
                 it('... should re-trigger `resetQuery()` with resetQueryRequest event', () => {
@@ -1406,8 +1302,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     expect(resultsCmp.queryResult$).toBeDefined();
                     resultsCmp.queryResult$.subscribe(result => {
-                        expect(result).toBeTruthy();
-                        expect(result).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                        expectToEqual(result, expectedResult);
                     });
                 });
 
@@ -1417,8 +1312,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         ConstructResultsStubComponent
                     ) as ConstructResultsStubComponent;
 
-                    expect(resultsCmp.defaultForceGraphHeight).toBeDefined();
-                    expect(resultsCmp.defaultForceGraphHeight).withContext('should be 500').toBe(500);
+                    expectToBe(resultsCmp.defaultForceGraphHeight, 500);
                 });
 
                 it('... should re-trigger `onGraphNodeClick()` with clickedTableRequest event', () => {
@@ -1453,8 +1347,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     expect(resultsCmp.queryResult$).toBeDefined();
                     resultsCmp.queryResult$.subscribe(result => {
-                        expect(result).toBeTruthy();
-                        expect(result).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                        expectToEqual(result, expectedResult);
                     });
                 });
 
@@ -1493,8 +1386,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         UnsupportedTypeResultsStubComponent
                     ) as UnsupportedTypeResultsStubComponent;
 
-                    expect(resultsCmp.queryType).toBeDefined();
-                    expect(resultsCmp.queryType).withContext('should be other').toBe('other');
+                    expectToBe(resultsCmp.queryType, 'other');
                 });
             });
         });

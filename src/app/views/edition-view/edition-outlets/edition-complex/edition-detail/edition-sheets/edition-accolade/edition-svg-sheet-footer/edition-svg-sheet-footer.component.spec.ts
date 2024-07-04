@@ -240,7 +240,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
 
                 expect(iconDe[0].children[0]).toBeTruthy();
                 expect(iconDe[0].children[0].classes).toBeTruthy();
-                expect(iconDe[0].children[0].classes['fa-chevron-right']).toBeTrue();
+                expectToBe(iconDe[0].children[0].classes['fa-chevron-right'], true);
             });
 
             it('... should contain fa-icon with chevronDown in evaluation paragraph if showTextcritics = true', () => {
@@ -257,7 +257,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
 
                 expect(iconDe[0].children[0]).toBeTruthy();
                 expect(iconDe[0].children[0].classes).toBeTruthy();
-                expect(iconDe[0].children[0].classes['fa-chevron-down']).toBeTrue();
+                expectToBe(iconDe[0].children[0].classes['fa-chevron-down'], true);
             });
 
             it('... should contain a span.smallcaps in evaluation paragraph with first EditionTkaLabelComponent', () => {
@@ -714,17 +714,17 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             it('... should toggle `showTextcritics`', () => {
-                expect(component.showTextcritics).toBe(false);
+                expectToBe(component.showTextcritics, false);
 
                 component.toggleTextcritics();
                 detectChangesOnPush(fixture);
 
-                expect(component.showTextcritics).toBe(true);
+                expectToBe(component.showTextcritics, true);
 
                 component.toggleTextcritics();
                 detectChangesOnPush(fixture);
 
-                expect(component.showTextcritics).toBe(false);
+                expectToBe(component.showTextcritics, false);
             });
         });
     });

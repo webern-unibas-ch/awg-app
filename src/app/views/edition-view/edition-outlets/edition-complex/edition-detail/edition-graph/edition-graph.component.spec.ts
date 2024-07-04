@@ -152,11 +152,11 @@ describe('EditionGraphComponent (DONE)', () => {
     });
 
     it('... injected editionService should use provided mockValue', () => {
-        expect(mockEditionService === editionService).toBe(true);
+        expectToBe(mockEditionService === editionService, true);
     });
 
     it('... injected editionDataService should use provided mockValue', () => {
-        expect(mockEditionDataService === editionDataService).toBe(true);
+        expectToBe(mockEditionDataService === editionDataService, true);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -172,7 +172,7 @@ describe('EditionGraphComponent (DONE)', () => {
         });
 
         it('... should have `errorObject` = null', () => {
-            expect(component.errorObject).toBeNull();
+            expectToBe(component.errorObject, null);
         });
 
         it('... should have `isFullscreen`', () => {
@@ -618,9 +618,7 @@ describe('EditionGraphComponent (DONE)', () => {
                 detectChangesOnPush(fixture);
 
                 expectAsync(lastValueFrom(component.editionGraphData$)).toBeResolved();
-                expectAsync(lastValueFrom(component.editionGraphData$))
-                    .withContext(`should be resolved to ${expectedEditionGraphDataEmpty}`)
-                    .toBeResolvedTo(expectedEditionGraphDataEmpty);
+                expectAsync(lastValueFrom(component.editionGraphData$)).toBeResolvedTo(expectedEditionGraphDataEmpty);
             }));
 
             it('... should update editionGraphData$ when editionService emits changed value', waitForAsync(() => {
@@ -638,9 +636,7 @@ describe('EditionGraphComponent (DONE)', () => {
                 expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 2, EDITION_COMPLEXES.OP25);
 
                 expectAsync(lastValueFrom(component.editionGraphData$)).toBeResolved();
-                expectAsync(lastValueFrom(component.editionGraphData$))
-                    .withContext(`should be resolved to ${expectedEditionGraphDataOp25}`)
-                    .toBeResolvedTo(expectedEditionGraphDataOp25);
+                expectAsync(lastValueFrom(component.editionGraphData$)).toBeResolvedTo(expectedEditionGraphDataOp25);
             }));
 
             it('... should return empty observable and set errorObject if switchMap fails', waitForAsync(() => {

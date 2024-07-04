@@ -99,8 +99,7 @@ describe('EditionSeriesComponent (DONE)', () => {
         });
 
         it('... should have `editionOutline`', () => {
-            expect(component.editionOutline).toBeDefined();
-            expect(component.editionOutline).toEqual(expectedEditionOutline);
+            expectToEqual(component.editionOutline, expectedEditionOutline);
         });
 
         it('...should trigger `clearSelections` method on init', () => {
@@ -372,7 +371,7 @@ describe('EditionSeriesComponent (DONE)', () => {
 
                     const expectedLinkParams = [expectedSeries.route];
 
-                    expect(footerLink.linkParams).toEqual(expectedLinkParams);
+                    expectToEqual(footerLink.linkParams, expectedLinkParams);
                 });
             });
 
@@ -425,13 +424,13 @@ describe('EditionSeriesComponent (DONE)', () => {
                         if (!section.disabled) {
                             // Check the router link for the section
                             const expectedSectionLinkParams = [series.series.route, 'section', section.section.route];
-                            expect(routerLinks[linkIndex++].linkParams).toEqual(expectedSectionLinkParams);
+                            expectToEqual(routerLinks[linkIndex++].linkParams, expectedSectionLinkParams);
                         }
                     });
 
                     // Check the final router link for the series
                     const expectedSeriesLinkParams = [series.series.route];
-                    expect(routerLinks[linkIndex++].linkParams).toEqual(expectedSeriesLinkParams);
+                    expectToEqual(routerLinks[linkIndex++].linkParams, expectedSeriesLinkParams);
                 });
             });
 
@@ -439,7 +438,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                 const sectionLinkDe = linkDes[0];
                 const sectionLink = routerLinks[0];
 
-                expect(sectionLink.navigatedTo).toBeNull();
+                expectToBe(sectionLink.navigatedTo, null);
 
                 click(sectionLinkDe);
                 fixture.detectChanges();
@@ -451,7 +450,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                 const sectionLinkDe = linkDes[0];
                 const sectionLink = routerLinks[0];
 
-                expect(sectionLink.navigatedTo).toBeNull();
+                expectToBe(sectionLink.navigatedTo, null);
 
                 click(sectionLinkDe);
                 fixture.detectChanges();
@@ -463,7 +462,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                 const seriesLinkDe = linkDes[1];
                 const seriesLink = routerLinks[1];
 
-                expect(seriesLink.navigatedTo).toBeNull();
+                expectToBe(seriesLink.navigatedTo, null);
 
                 click(seriesLinkDe);
                 fixture.detectChanges();
@@ -475,7 +474,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                 const seriesLinkDe = linkDes[1];
                 const seriesLink = routerLinks[1];
 
-                expect(seriesLink.navigatedTo).toBeNull();
+                expectToBe(seriesLink.navigatedTo, null);
 
                 click(seriesLinkDe);
                 fixture.detectChanges();

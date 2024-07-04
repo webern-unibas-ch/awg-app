@@ -59,19 +59,20 @@ export class GraphVisualizerService {
      *
      * @returns {Promise<{triples; namespaces}>} A promise of the parsed triples.
      */
-    parseTripleString(triples: string): Promise<{ triples; namespaces } | unknown> {
+    parseTripleString(triples: string): Promise<{ triples; namespaces }> {
         const parser = new N3.Parser();
         const jsonTriples = [];
 
         return new Promise((resolve, reject) => {
             parser.parse(triples, (err, triple, namespaceValues) => {
+                if (err) {
+                    reject(err);
+                    return;
+                }
                 if (triple) {
                     jsonTriples.push(triple);
                 } else {
                     resolve({ triples: jsonTriples, namespaces: namespaceValues });
-                }
-                if (err) {
-                    reject(err);
                 }
             });
         });

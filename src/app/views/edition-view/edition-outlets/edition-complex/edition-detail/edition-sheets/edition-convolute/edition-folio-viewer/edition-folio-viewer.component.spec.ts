@@ -7,7 +7,13 @@ import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+} from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import {
@@ -141,7 +147,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
     it('... injected service should use provided mockValue', () => {
         const folioService = TestBed.inject(FolioService);
-        expect(mockFolioService === folioService).toBeTrue();
+        expectToBe(mockFolioService === folioService, true);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -236,8 +242,8 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
                     const expectedLgColClass = 'col-lg-' + Math.floor(12 / expectedFolioSvgDataArray.length);
 
-                    expect(colEl.classList.contains('col-sm-6')).toBeTrue();
-                    expect(colEl.classList.contains(expectedLgColClass)).toBeTrue();
+                    expectToContain(colEl.classList, 'col-sm-6');
+                    expectToContain(colEl.classList, expectedLgColClass);
                 });
             });
 
@@ -377,8 +383,10 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                     component.createSVGCanvas();
 
                     expect(component.viewBoxArray.length).not.toEqual(component.folioSvgDataArray.length);
-                    expectToEqual(component.canvasArray, []);
                     expectToBe(component.canvasArray.length, 0);
+                    expectToBe(component.viewBoxArray.length, 2);
+
+                    expectToEqual(component.canvasArray, []);
                 });
 
                 it('... svgCanvas is empty', () => {
@@ -387,7 +395,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                     component.prepareFolioSvgOutput();
                     component.createSVGCanvas();
 
-                    expect(component.canvasArray).toEqual([]);
+                    expectToEqual(component.canvasArray, []);
                 });
             });
 
@@ -451,13 +459,13 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 it('... the given id matches the selectedSvgSheet id', () => {
                     component.selectedSvgSheet = expectedSvgSheet;
 
-                    expect(component.isSelectedSvgSheet('test-1')).toBeTrue();
+                    expectToBe(component.isSelectedSvgSheet('test-1'), true);
                 });
 
                 it('... the given id matches the selectedSvgSheet id with partial', () => {
                     component.selectedSvgSheet = expectedSvgSheetWithPartialA;
 
-                    expect(component.isSelectedSvgSheet('test-2a')).toBeTrue();
+                    expectToBe(component.isSelectedSvgSheet('test-2a'), true);
                 });
             });
 
@@ -465,19 +473,19 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 it('... the given id does not match the selectedSvgSheet id', () => {
                     component.selectedSvgSheet = expectedSvgSheet;
 
-                    expect(component.isSelectedSvgSheet('other-test')).toBeFalse();
+                    expectToBe(component.isSelectedSvgSheet('other-test'), false);
                 });
 
                 it('... given the id does not match the selectedSvgSheet id with partial', () => {
                     component.selectedSvgSheet = expectedSvgSheetWithPartialA;
 
-                    expect(component.isSelectedSvgSheet('test-2b')).toBeFalse();
+                    expectToBe(component.isSelectedSvgSheet('test-2b'), false);
                 });
 
                 it('... selectedSvgSheet is undefined', () => {
                     component.selectedSvgSheet = undefined;
 
-                    expect(component.isSelectedSvgSheet('test-1')).toBeFalse();
+                    expectToBe(component.isSelectedSvgSheet('test-1'), false);
                 });
             });
         });
@@ -730,15 +738,15 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
                 component.toggleActiveClass();
 
-                expect(svgGroupSelection1.classed('active')).toBe(true);
-                expect(svgGroupSelection2.classed('active')).toBe(false);
+                expectToBe(svgGroupSelection1.classed('active'), true);
+                expectToBe(svgGroupSelection2.classed('active'), false);
 
                 isSelectedSvgSheetSpy.and.callFake(contentSegmentId => contentSegmentId === 'another-id');
 
                 component.toggleActiveClass();
 
-                expect(svgGroupSelection1.classed('active')).toBe(false);
-                expect(svgGroupSelection2.classed('active')).toBe(true);
+                expectToBe(svgGroupSelection1.classed('active'), false);
+                expectToBe(svgGroupSelection2.classed('active'), true);
             });
         });
 

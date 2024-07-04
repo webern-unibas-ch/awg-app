@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import Spy = jasmine.Spy;
 
-import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { QueryResult } from '../models';
 import { SparqlTableComponent } from './sparql-table.component';
@@ -94,15 +94,11 @@ describe('SparqlTableComponent (DONE)', () => {
         });
 
         it('... should have `queryResult` input', () => {
-            expect(component.queryResult).withContext('should be defined').toBeDefined();
-            expect(component.queryResult)
-                .withContext(`should equal ${expectedQueryResult}`)
-                .toEqual(expectedQueryResult);
+            expectToEqual(component.queryResult, expectedQueryResult);
         });
 
         it('... should have `queryTime` input', () => {
-            expect(component.queryTime).withContext('should be defined').toBeDefined();
-            expect(component.queryTime).withContext(`should equal ${expectedQueryTime}`).toEqual(expectedQueryTime);
+            expectToBe(component.queryTime, expectedQueryTime);
         });
 
         describe('VIEW', () => {
@@ -114,30 +110,21 @@ describe('SparqlTableComponent (DONE)', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, TableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(TableStubComponent) as TableStubComponent;
 
-                expect(tableCmp.tableTitle).toBeDefined();
-                expect(tableCmp.tableTitle)
-                    .withContext(`should equal ${expectedTableTitle}`)
-                    .toEqual(expectedTableTitle);
+                expectToBe(tableCmp.tableTitle, expectedTableTitle);
             });
 
             it('... should pass down `headerInputData` to table component', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, TableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(TableStubComponent) as TableStubComponent;
 
-                expect(tableCmp.headerInputData).toBeDefined();
-                expect(tableCmp.headerInputData)
-                    .withContext(`should equal ${expectedQueryResult.head.vars}`)
-                    .toEqual(expectedQueryResult.head.vars);
+                expectToEqual(tableCmp.headerInputData, expectedQueryResult.head.vars);
             });
 
             it('... should pass down `rowInputData` to table component', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, TableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(TableStubComponent) as TableStubComponent;
 
-                expect(tableCmp.rowInputData).toBeDefined();
-                expect(tableCmp.rowInputData)
-                    .withContext(`should equal ${expectedQueryResult.body.bindings}`)
-                    .toEqual(expectedQueryResult.body.bindings);
+                expectToEqual(tableCmp.rowInputData, expectedQueryResult.body.bindings);
             });
         });
 

@@ -111,7 +111,7 @@ describe('AppComponent (DONE)', () => {
 
     it('... injected service should use provided mockValue', () => {
         const analyticsService = TestBed.inject(AnalyticsService);
-        expect(analyticsService === mockAnalyticsService).toBe(true);
+        expectToBe(analyticsService === mockAnalyticsService, true);
     });
 
     describe('router setup (self-test)', () => {

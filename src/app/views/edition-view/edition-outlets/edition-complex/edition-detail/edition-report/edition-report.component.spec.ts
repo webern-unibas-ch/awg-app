@@ -287,9 +287,7 @@ describe('EditionReportComponent', () => {
 
         it('... should have editionReportData$', waitForAsync(() => {
             expectAsync(lastValueFrom(component.editionReportData$)).toBeResolved();
-            expectAsync(lastValueFrom(component.editionReportData$))
-                .withContext(`should be resolved to ${expectedEditionReportData}`)
-                .toBeResolvedTo(expectedEditionReportData);
+            expectAsync(lastValueFrom(component.editionReportData$)).toBeResolvedTo(expectedEditionReportData);
         }));
 
         describe('VIEW', () => {
@@ -385,7 +383,7 @@ describe('EditionReportComponent', () => {
                 expectAsync(lastValueFrom(component.editionReportData$)).toBeRejected();
                 expectAsync(lastValueFrom(component.editionReportData$)).toBeRejectedWithError(EmptyError);
 
-                expect(component.errorObject).toEqual(expectedError);
+                expectToEqual(component.errorObject, expectedError);
             }));
         });
 

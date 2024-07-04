@@ -7,7 +7,7 @@ import { of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { expectSpyCall, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
@@ -154,10 +154,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
         });
 
         it('... should have `editionComplex`', () => {
-            expect(component.editionComplex).withContext('should be defined').toBeDefined();
-            expect(component.editionComplex)
-                .withContext(`should equal ${expectedEditionComplex}`)
-                .toEqual(expectedEditionComplex);
+            expectToEqual(component.editionComplex, expectedEditionComplex);
         });
 
         describe('#setButtons()', () => {
@@ -166,10 +163,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
             });
 
             it('... should have `editionRouterLinkButtons`', () => {
-                expect(component.editionRouterLinkButtons).toBeDefined();
-                expect(component.editionRouterLinkButtons)
-                    .withContext(`should equal ${expectedEditionRouterLinkButtons}`)
-                    .toEqual(expectedEditionRouterLinkButtons);
+                expectToEqual(component.editionRouterLinkButtons, expectedEditionRouterLinkButtons);
             });
         });
 
@@ -188,10 +182,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
                     RouterLinkButtonGroupStubComponent
                 ) as RouterLinkButtonGroupStubComponent;
 
-                expect(buttonCmp.routerLinkButtons).toBeTruthy();
-                expect(buttonCmp.routerLinkButtons)
-                    .withContext(`should equal ${expectedEditionRouterLinkButtons}`)
-                    .toEqual(expectedEditionRouterLinkButtons);
+                expectToEqual(buttonCmp.routerLinkButtons, expectedEditionRouterLinkButtons);
             });
         });
     });
