@@ -671,4 +671,389 @@ describe('GraphVisualizerService', () => {
             });
         });
     });
+
+    describe('_mapKeys', () => {
+        it('... should have a method `_mapKeys`', () => {
+            expect((graphVisualizerService as any)._mapKeys).toBeDefined();
+        });
+
+        describe('... should return an empty object if', () => {
+            it('... the input object is empty', () => {
+                const inputObj = {};
+                const keyMap = {
+                    token: 'type',
+                    type: 'datatype',
+                    lang: 'xml:lang',
+                };
+
+                const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
+
+                expectToEqual(result, {});
+            });
+
+            it('... the input object is null', () => {
+                const inputObj = null;
+                const keyMap = {
+                    token: 'type',
+                    type: 'datatype',
+                    lang: 'xml:lang',
+                };
+
+                const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
+
+                expectToEqual(result, {});
+            });
+
+            it('... the input object is undefined', () => {
+                const inputObj = undefined;
+                const keyMap = {
+                    token: 'type',
+                    type: 'datatype',
+                    lang: 'xml:lang',
+                };
+
+                const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
+
+                expectToEqual(result, {});
+            });
+        });
+
+        describe('... should return the original object if', () => {
+            it('... the new keys object is empty', () => {
+                const inputObj = {
+                    key1: 'value1',
+                    key2: 'value2',
+                };
+                const keyMap = {};
+
+                const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
+
+                expectToEqual(result, inputObj);
+            });
+
+            it('... the new keys object is null', () => {
+                const inputObj = {
+                    key1: 'value1',
+                    key2: 'value2',
+                };
+                const keyMap = null;
+
+                const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
+
+                expectToEqual(result, inputObj);
+            });
+
+            it('... the new keys object is undefined', () => {
+                const inputObj = {
+                    key1: 'value1',
+                    key2: 'value2',
+                };
+                const keyMap = undefined;
+
+                const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
+
+                expectToEqual(result, inputObj);
+            });
+        });
+
+        it('... should return an object with mapped keys', () => {
+            const inputObj = {
+                key1: 'value1',
+                key2: 'value2',
+            };
+            const keyMap = {
+                key1: 'key1Mapped',
+                key2: 'key2Mapped',
+            };
+            const outputObj = {
+                key1Mapped: 'value1',
+                key2Mapped: 'value2',
+            };
+
+            const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
+
+            expectToEqual(result, outputObj);
+        });
+
+        it('... should map token, type and lang keys in a given object', () => {
+            const inputObj = {
+                token: 'literal',
+                type: 'http://www.w3.org/2001/XMLSchema#string',
+                lang: 'en',
+            };
+            const keyMap = {
+                token: 'type',
+                type: 'datatype',
+                lang: 'xml:lang',
+            };
+            const outputObj = {
+                type: 'literal',
+                datatype: 'http://www.w3.org/2001/XMLSchema#string',
+            };
+            outputObj['xml:lang'] = 'en';
+
+            const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
+
+            expectToEqual(result, outputObj);
+        });
+    });
+
+    describe('_prepareMappedBindings', () => {
+        it('... should have a method `_prepareMappedBindings`', () => {
+            expect((graphVisualizerService as any)._prepareMappedBindings).toBeDefined();
+        });
+
+        it('... should return an array with mapped bindings and label', () => {
+            const selectResponse = [
+                {
+                    key1: {
+                        token: 'uri',
+                        value: 'https://edition.anton-webern.ch/webern-onto#Op25_1',
+                    },
+                    key2: {
+                        token: 'literal',
+                        type: 'http://www.w3.org/2001/XMLSchema#integer',
+                        value: '1',
+                    },
+                },
+            ];
+            const expectedMappedBindings = [
+                {
+                    key1: {
+                        label: 'awg:Op25_1',
+                        type: 'uri',
+                        value: 'https://edition.anton-webern.ch/webern-onto#Op25_1',
+                    },
+                    key2: {
+                        datatype: 'http://www.w3.org/2001/XMLSchema#integer',
+                        label: 1,
+                        type: 'literal',
+                        value: '1',
+                    },
+                },
+            ];
+
+            const result = (graphVisualizerService as any)._prepareMappedBindings(selectResponse);
+
+            expectToEqual(result, expectedMappedBindings);
+        });
+
+        describe('... should return a number label for', () => {
+            it('... literal integer values', () => {
+                const selectResponse = [
+                    {
+                        key1: {
+                            token: 'literal',
+                            type: 'http://www.w3.org/2001/XMLSchema#integer',
+                            value: '1',
+                        },
+                    },
+                ];
+                const expectedMappedBindings = [
+                    {
+                        key1: {
+                            datatype: 'http://www.w3.org/2001/XMLSchema#integer',
+                            label: 1,
+                            type: 'literal',
+                            value: '1',
+                        },
+                    },
+                ];
+
+                const result = (graphVisualizerService as any)._prepareMappedBindings(selectResponse);
+
+                expectToEqual(result, expectedMappedBindings);
+            });
+
+            it('... literal non-negative integer values', () => {
+                const selectResponse = [
+                    {
+                        key1: {
+                            token: 'literal',
+                            type: 'http://www.w3.org/2001/XMLSchema#nonNegativeInteger',
+                            value: '1',
+                        },
+                    },
+                ];
+                const expectedMappedBindings = [
+                    {
+                        key1: {
+                            datatype: 'http://www.w3.org/2001/XMLSchema#nonNegativeInteger',
+                            label: 1,
+                            type: 'literal',
+                            value: '1',
+                        },
+                    },
+                ];
+
+                const result = (graphVisualizerService as any)._prepareMappedBindings(selectResponse);
+
+                expectToEqual(result, expectedMappedBindings);
+            });
+        });
+
+        it('... should return a prefixed label for a URI value', () => {
+            const selectResponse = [
+                {
+                    key1: {
+                        token: 'uri',
+                        value: 'https://edition.anton-webern.ch/webern-onto#Op25_1',
+                    },
+                },
+                {
+                    key1: {
+                        token: 'uri',
+                        value: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+                    },
+                },
+            ];
+            const expectedMappedBindings = [
+                {
+                    key1: {
+                        label: 'awg:Op25_1',
+                        type: 'uri',
+                        value: 'https://edition.anton-webern.ch/webern-onto#Op25_1',
+                    },
+                },
+                {
+                    key1: {
+                        label: 'rdf:type',
+                        type: 'uri',
+                        value: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+                    },
+                },
+            ];
+
+            const result = (graphVisualizerService as any)._prepareMappedBindings(selectResponse);
+
+            expectToEqual(result, expectedMappedBindings);
+        });
+
+        it('... should trigger `_mapKeys` method for each key', () => {
+            const selectResponse = [
+                {
+                    key1: {
+                        token: 'uri',
+                        value: 'https://edition.anton-webern.ch/webern-onto#Op25_1',
+                    },
+                    key2: {
+                        token: 'literal',
+                        type: 'http://www.w3.org/2001/XMLSchema#integer',
+                        value: '1',
+                    },
+                },
+            ];
+            const mapKeysSpy = spyOn(graphVisualizerService as any, '_mapKeys').and.callThrough();
+
+            (graphVisualizerService as any)._prepareMappedBindings(selectResponse);
+
+            expectSpyCall(mapKeysSpy, 2);
+        });
+    });
+
+    describe('_prepareSelectResponse', () => {
+        it('... should have a method `_prepareSelectResponse`', () => {
+            expect((graphVisualizerService as any)._prepareSelectResponse).toBeDefined();
+        });
+
+        it('... should return a QueryResult object with mapped bindings and vars', () => {
+            const selectResponse = [
+                {
+                    key1: {
+                        token: 'uri',
+                        value: 'https://edition.anton-webern.ch/webern-onto#Op25_1',
+                    },
+                    key2: {
+                        token: 'literal',
+                        type: 'http://www.w3.org/2001/XMLSchema#integer',
+                        value: '1',
+                    },
+                },
+            ];
+            const expectedQueryResult = {
+                status: 200,
+                data: {
+                    head: {
+                        vars: ['key1', 'key2'],
+                    },
+                    body: {
+                        bindings: [
+                            {
+                                key1: {
+                                    label: 'awg:Op25_1',
+                                    type: 'uri',
+                                    value: 'https://edition.anton-webern.ch/webern-onto#Op25_1',
+                                },
+                                key2: {
+                                    datatype: 'http://www.w3.org/2001/XMLSchema#integer',
+                                    label: 1,
+                                    type: 'literal',
+                                    value: '1',
+                                },
+                            },
+                        ],
+                    },
+                },
+            };
+
+            const result = (graphVisualizerService as any)._prepareSelectResponse(selectResponse);
+
+            expectToEqual(result, expectedQueryResult);
+        });
+
+        it('... should return status=400 and `Query returned no results` if selectRespone is empty', () => {
+            const selectResponse = [];
+            const expectedResponse = {
+                status: 400,
+                data: 'Query returned no results',
+            };
+
+            const result = (graphVisualizerService as any)._prepareSelectResponse(selectResponse);
+
+            expectToEqual(result, expectedResponse);
+        });
+
+        it('... should return status=404 and undefined if selectRespone is undefined or null', () => {
+            const selectResponse = undefined;
+            const expectedResponse = {
+                status: 404,
+                data: undefined,
+            };
+
+            const result = (graphVisualizerService as any)._prepareSelectResponse(selectResponse);
+
+            expectToEqual(result, expectedResponse);
+
+            const selectResponse2 = null;
+
+            const result2 = (graphVisualizerService as any)._prepareSelectResponse(selectResponse2);
+
+            expectToEqual(result2, expectedResponse);
+        });
+
+        it('... should trigger `_prepareMappedBindings` method', () => {
+            const selectResponse = [
+                {
+                    key1: {
+                        token: 'uri',
+                        value: 'https://edition.anton-webern.ch/webern-onto#Op25_1',
+                    },
+                    key2: {
+                        token: 'literal',
+                        type: 'http://www.w3.org/2001/XMLSchema#integer',
+                        value: '1',
+                    },
+                },
+            ];
+
+            const prepareMappedBindingsSpy = spyOn(
+                graphVisualizerService as any,
+                '_prepareMappedBindings'
+            ).and.callThrough();
+
+            (graphVisualizerService as any)._prepareSelectResponse(selectResponse);
+
+            expectSpyCall(prepareMappedBindingsSpy, 1, [selectResponse]);
+        });
+    });
 });

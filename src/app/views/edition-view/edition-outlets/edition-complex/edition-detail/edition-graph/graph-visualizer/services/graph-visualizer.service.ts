@@ -12,6 +12,7 @@ import {
     NamespaceType,
     PrefixForm,
     QueryResult,
+    QueryResultBindings,
     QueryTypeIndex,
     RDFStoreConstructResponse,
     RDFStoreConstructResponseTriple,
@@ -531,17 +532,62 @@ export class GraphVisualizerService {
      *
      * It maps the keys of a given key-value paired object to given newKeys.
      *
-     * @param {[key:string]: string} obj The given obj.
-     * @param {[key:string]: string} newKeys The given new keys.
+     * @param {Record<string, string>} obj The given object.
+     * @param {Record<string, string>} newKeysObj The given new keys object.
      *
-     * @returns {[key:string]: string} An object with the new keys.
+     * @returns {Record<string, string>} An object with the new keys.
      */
-    private _mapKeys(obj: { [key: string]: string }, newKeys: { [key: string]: string }): { [key: string]: string } {
-        const keyValues = Object.keys(obj).map(key => {
-            const newKey = newKeys[key] || key;
-            return { [newKey]: obj[key] };
+    private _mapKeys(obj: Record<string, string>, keyMap: Record<string, string>): Record<string, string> {
+        if (!obj) {
+            return {};
+        }
+        if (!keyMap) {
+            return obj;
+        }
+        return Object.entries(obj).reduce(
+            (acc, [key, value]) => {
+                const newKey = keyMap[key] || key;
+                acc[newKey] = value;
+                return acc;
+            },
+            {} as { [key: string]: string }
+        );
+    }
+
+    /**
+     * Private method: _prepareMappedBindings.
+     *
+     * It prepares the bindings with mapped keys and label of a given select response.
+     *
+     * @param {RDFStoreSelectResponse} selectResponse The given select response.
+     *
+     * @returns {QueryResultBindings[]} The array of bindings.
+     */
+    private _prepareMappedBindings(selectResponse: RDFStoreSelectResponse): QueryResultBindings[] {
+        const xmlsInteger = 'http://www.w3.org/2001/XMLSchema#integer';
+        const xmlsNonNegativeInteger = 'http://www.w3.org/2001/XMLSchema#nonNegativeInteger';
+        const keyMap = {
+            token: 'type',
+            type: 'datatype',
+            lang: 'xml:lang',
+        };
+
+        return selectResponse.map(item => {
+            const newItem: Record<string, any> = {};
+
+            Object.entries(item).forEach(([itemEntryKey, itemEntryValue]) => {
+                // Map keys
+                newItem[itemEntryKey] = this._mapKeys(itemEntryValue, keyMap);
+
+                // Set label
+                const { value, type, datatype = '' } = newItem[itemEntryKey];
+                newItem[itemEntryKey]['label'] =
+                    type === 'literal' && (datatype === xmlsInteger || datatype === xmlsNonNegativeInteger)
+                        ? +value
+                        : this.prefixPipe.transform(value, PrefixForm.SHORT);
+            });
+            return newItem;
         });
-        return Object.assign({}, ...keyValues);
     }
 
     /**
@@ -561,59 +607,19 @@ export class GraphVisualizerService {
             return { status: 404, data: undefined };
         }
 
-        // Check that it didn't return null results
-        if (selectResponse[0] == null) {
+        if (selectResponse.length === 0) {
             return { status: 400, data: 'Query returned no results' };
         }
 
-        // Get variable keys
-        const varKeys = Object.keys(selectResponse[0]);
-
-        // Get object array
-        const b = selectResponse;
-
-        // Rename keys according to below mapping table
-        const map = {
-            token: 'type',
-            type: 'datatype',
-            lang: 'xml:lang',
-        };
-
-        // Loop over data to rename the keys
-        for (const i in b) {
-            if (b.hasOwnProperty(i)) {
-                for (const key in varKeys) {
-                    if (varKeys.hasOwnProperty(key)) {
-                        // Map keys
-                        b[i][varKeys[key]] = this._mapKeys(b[i][varKeys[key]], map);
-
-                        // Add label with short prefix
-                        b[i][varKeys[key]]['label'] = '';
-                        if (b[i][varKeys[key]]['value']) {
-                            b[i][varKeys[key]]['label'] = this.prefixPipe.transform(
-                                b[i][varKeys[key]]['value'],
-                                PrefixForm.SHORT
-                            );
-
-                            // Transform integer values to numbers
-                            const xmlsInteger = 'http://www.w3.org/2001/XMLSchema#integer';
-                            const xmlsNonNegativeInteger = 'http://www.w3.org/2001/XMLSchema#nonNegativeInteger';
-                            const type = b[i][varKeys[key]]['type'];
-                            const datatype = b[i][varKeys[key]]['datatype'] || '';
-                            if (
-                                type === 'literal' &&
-                                (datatype === xmlsInteger || datatype === xmlsNonNegativeInteger)
-                            ) {
-                                b[i][varKeys[key]]['label'] = +b[i][varKeys[key]]['value'];
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        // Get variable keys and bindings
+        const selectResponseKeys = Object.keys(selectResponse[0]);
+        const selectResponseBindings = this._prepareMappedBindings(selectResponse);
 
         // Re-format data
-        const reformatted: QueryResult = { head: { vars: varKeys }, body: { bindings: b } };
+        const reformatted: QueryResult = {
+            head: { vars: selectResponseKeys },
+            body: { bindings: selectResponseBindings },
+        };
 
         return { status: 200, data: reformatted };
     }
