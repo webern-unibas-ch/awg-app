@@ -61,7 +61,7 @@ describe('GraphVisualizerService', () => {
         ];
 
         // Spies on service functions
-        consoleSpy = spyOn(console, 'warn').and.callFake(mockConsole.log);
+        consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
     });
 
     afterEach(() => {
@@ -378,19 +378,15 @@ describe('GraphVisualizerService', () => {
 
         describe('should check qNames from the query if a qName is not referenced in the list of namespaces and ...', () => {
             describe('if the qName is not in the list of default namespaces', () => {
-                it('... warn in the console ', () => {
+                it('... error in the console ', () => {
                     const tripleStr =
                         '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>';
                     const queryStr = 'SELECT * WHERE { ?s xyz:composer ?o }';
-                    const expectedFirstWarning = `Prefix 'xyz:' not declared in SPARQL and/or Turtle header. Searching in default namespaces...`;
-                    const expectedSecondWarning = `'xyz:' is unknown. Please provide a declaration.`;
+                    const expectedError = `'xyz:' is unknown. Please provide a declaration.`;
 
                     graphVisualizerService.checkNamespacesInQuery(queryStr, tripleStr);
 
-                    expectSpyCall(consoleSpy, 2);
-
-                    expectToEqual(consoleSpy.calls.argsFor(0), [expectedFirstWarning]);
-                    expectToEqual(consoleSpy.calls.argsFor(1), [expectedSecondWarning]);
+                    expectSpyCall(consoleSpy, 1, [expectedError]);
                 });
             });
 
@@ -404,21 +400,6 @@ describe('GraphVisualizerService', () => {
                     const result = graphVisualizerService.checkNamespacesInQuery(queryStr, tripleStr);
 
                     expectToBe(result, expectedResult);
-                });
-
-                it('... warn in the console ', () => {
-                    const tripleStr =
-                        '@prefix ex: <http://example.org/> .\n<http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
-                    const queryStr = 'PREFIX ex: <http://example.org/>\nSELECT * WHERE { ?s foaf:age ?o }';
-                    const expectedFirstWarning = `Prefix 'foaf:' not declared in SPARQL and/or Turtle header. Searching in default namespaces...`;
-                    const expectedSecondWarning = `Added 'PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n' to SPARQL prefixes from list of default namespaces.`;
-
-                    graphVisualizerService.checkNamespacesInQuery(queryStr, tripleStr);
-
-                    expectSpyCall(consoleSpy, 2);
-
-                    expectToEqual(consoleSpy.calls.argsFor(0), [expectedFirstWarning]);
-                    expectToEqual(consoleSpy.calls.argsFor(1), [expectedSecondWarning]);
                 });
             });
         });
@@ -669,6 +650,121 @@ describe('GraphVisualizerService', () => {
                     graphVisualizerService.parseTripleString(triplesWithSyntaxError)
                 ).toBeRejectedWithError('Undefined prefix "ex2:" on line 1.');
             });
+        });
+    });
+
+    describe('#_loadTriplesInStore()', () => {
+        it('... should have a method `_loadTriplesInStore`', () => {
+            expect((graphVisualizerService as any)._loadTriplesInStore).toBeDefined();
+        });
+
+        it('... should load a single triple into the rdfstore', async () => {
+            const tripleStr =
+                '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+            const expectedSize = 1;
+
+            const store = await (graphVisualizerService as any)._createStore();
+            const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
+
+            expectToBe(size, expectedSize);
+        });
+
+        it('... should load multiple triples into the rdfstore', async () => {
+            const tripleStr =
+                '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>. ' +
+                '<http://example.org/subject2> <http://example.org/predicate2> <http://example.org/object2>;' +
+                '<http://example.org/subject3> <http://example.org/predicate3> <http://example.org/object3>.';
+            const expectedSize = 3;
+
+            const store = await (graphVisualizerService as any)._createStore();
+            const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
+
+            expectToBe(size, expectedSize);
+        });
+
+        it('... should load a huge number of triples into the rdfstore', async () => {
+            let tripleStr = '@prefix ex: <http://example.org/>. ';
+            const expectedSize = 1000;
+
+            for (let i = 0; i < expectedSize; i++) {
+                tripleStr += `<http://example.org/subject${i}> <http://example.org/predicate${i}> <http://example.org/object${i}>. `;
+            }
+
+            const store = await (graphVisualizerService as any)._createStore();
+            const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
+
+            expectToBe(size, expectedSize);
+        });
+
+        it('... should load prefixed triples into the rdfstore', async () => {
+            const tripleStr =
+                '@prefix ex: <http://example.org/>. ' +
+                'ex:subject ex:predicate ex:object. ' +
+                'ex:subject2 ex:predicate2 ex:object2.';
+            const expectedSize = 2;
+
+            const store = await (graphVisualizerService as any)._createStore();
+            const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
+
+            expectToBe(size, expectedSize);
+        });
+
+        it('... should load triples without prefixes or URIs into the rdfstore', async () => {
+            const tripleStr = '<subject> <predicate> <object>.';
+            const expectedSize = 1;
+
+            const store = await (graphVisualizerService as any)._createStore();
+            const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
+
+            expectToBe(size, expectedSize);
+        });
+
+        it('... should load triples with mimetype `text/turtle` by default (no mimetype given)', async () => {
+            const tripleStr = '@prefix ex: <http://example.org/>. ex:subject ex:predicate ex:object.';
+            const expectedSize = 1;
+
+            const store = await (graphVisualizerService as any)._createStore();
+            const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
+
+            expectToBe(size, expectedSize);
+        });
+
+        it('... should load triples with mimetype `text/turtle` if given', async () => {
+            const tripleStr = '@prefix ex: <http://example.org/>. ex:subject ex:predicate ex:object.';
+            const mimeType = 'text/turtle';
+            const expectedSize = 1;
+
+            const store = await (graphVisualizerService as any)._createStore();
+            const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr, mimeType);
+
+            expectToBe(size, expectedSize);
+        });
+
+        it('... should load triples with mimetype `application/ld+json` if given', async () => {
+            const tripleStr =
+                '[{"@id":"http://example.org/object"},{"@id":"http://example.org/subject","http://example.org/predicate":[{"@id":"http://example.org/object"}]}]';
+            const mimeType = 'application/ld+json';
+            const expectedSize = 1;
+
+            const store = await (graphVisualizerService as any)._createStore();
+            const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr, mimeType);
+
+            expectToBe(size, expectedSize);
+        });
+
+        it('... should throw and log an error if no parser is found for the provided mimeType', async () => {
+            const tripleStr = '@prefix ex: <http://example.org/>. ex:subject ex:predicate ex:object.';
+            const mimeType = 'application/rdf+xml';
+            const expectedErrorMessage = `Cannot find parser for the provided media type:${mimeType}`;
+            const expectedError = new Error(expectedErrorMessage);
+
+            const store = await (graphVisualizerService as any)._createStore();
+
+            await expectAsync(
+                (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr, mimeType)
+            ).toBeRejectedWithError(expectedErrorMessage);
+
+            expectSpyCall(consoleSpy, 1, ['_loadTriplesInStore# got error', expectedError]);
         });
     });
 

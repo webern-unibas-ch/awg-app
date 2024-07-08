@@ -180,18 +180,12 @@ export class GraphVisualizerService {
             qNames.forEach(qName => {
                 // If prefix is not in the list...
                 if (sparqlNamespaceKeys.indexOf(qName) === -1) {
-                    // TODO: Warnings should go into error messages
-                    console.warn(
-                        `Prefix '${qName}' not declared in SPARQL and/or Turtle header. Searching in default namespaces...`
-                    );
-
                     const defaultNamespace = this.prefixPipe.transform(qName, PrefixForm.LONG);
                     if (defaultNamespace !== qName) {
                         const missingPrefix = `PREFIX ${qName} <${defaultNamespace}>\n`;
                         missingNamespacesStr += missingPrefix;
-                        console.warn(`Added '${missingPrefix}' to SPARQL prefixes from list of default namespaces.`);
                     } else {
-                        console.warn(`'${qName}' is unknown. Please provide a declaration.`);
+                        console.error(`'${qName}' is unknown. Please provide a declaration.`);
                     }
                 }
             });
@@ -517,7 +511,7 @@ export class GraphVisualizerService {
         }
 
         return new Promise((resolve, reject) => {
-            store.load(mimeType, triples, (err, size) => {
+            store.load(mimeType, triples, (err, size: number) => {
                 if (err) {
                     console.error('_loadTriplesInStore# got error', err);
                     reject(err);
