@@ -437,37 +437,31 @@ export class GraphVisualizerService {
      * @returns {string[]} A string array of the used qNames.
      */
     private _extractQNamesFromSPARQLWhereClause(query: string): string[] {
-        let m;
         let queryStr = query.toLowerCase();
-        let start = 0;
-        const qNames: string[] = [];
-        const regex = /\b[a-zA-Z]{2,15}:/g;
         const where = 'WHERE {'.toLowerCase();
+        const qNames = new Set<string>();
+        const regex = /\b[a-zA-Z]{2,15}:/g;
 
         // Find WHERE clause
-        if (queryStr.includes(where)) {
-            start = queryStr.indexOf(where) + where.length;
-        }
+        const start = queryStr.includes(where) ? queryStr.indexOf(where) + where.length : 0;
 
         // Remove everything before WHERE clause from query string
         queryStr = queryStr.slice(start);
 
         // Find prefixes in query
         // eslint-disable-next-line no-cond-assign
-        while ((m = regex.exec(queryStr)) !== null) {
+        let matcher: RegExpExecArray | null;
+        while ((matcher = regex.exec(queryStr)) !== null) {
             // This is necessary to avoid infinite loops with zero-width matches
-            if (m.index === regex.lastIndex) {
+            if (matcher.index === regex.lastIndex) {
                 regex.lastIndex++;
             }
 
-            // The result can be accessed through the `m`-variable.
-            m.forEach(match => {
-                if (qNames.indexOf(match) === -1) {
-                    qNames.push(match);
-                }
-            });
+            // Add the match to the Set
+            qNames.add(matcher[0]);
         }
-        return qNames;
+
+        return Array.from(qNames);
     }
 
     /**
