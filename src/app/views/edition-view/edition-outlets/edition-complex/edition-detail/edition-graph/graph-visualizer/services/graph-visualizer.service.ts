@@ -244,6 +244,7 @@ export class GraphVisualizerService {
                         this.abbreviateTriples(response.triples, namespaces, mimeType)
                     );
                 }
+
                 return undefined;
             });
     }
@@ -371,8 +372,8 @@ export class GraphVisualizerService {
      * It extracts the namespaces (qname: <baseURI>) of a given type (SPARQL, TURTLE)
      * from a given string.
      *
-     * @param {string} str The given string.
      * @param {NamespaceType} type The given namespace type.
+     * @param {string} str The given string.
      *
      * @returns {Promise<Namespace>} A promise of the namespaces.
      */
@@ -385,7 +386,7 @@ export class GraphVisualizerService {
             .split(' ')
             .filter(el => el !== '');
 
-        let prefixStr;
+        let prefixStr: string;
 
         switch (type) {
             case NamespaceType.TURTLE: {
@@ -472,23 +473,22 @@ export class GraphVisualizerService {
     /**
      * Private method: _getNamespaces.
      *
-     * It extracts the namespaces from a given triple string.
+     * It parses a given triple string and extracts the namespaces from it.
      *
      * @param {string} triples The given triple string.
      *
      * @returns {Promise<Namespace>} A promise of the namespaces.
      */
     private _getNamespaces(triples: string): Promise<Namespace> {
-        // Parse triples
         const parser = new N3.Parser();
 
         return new Promise((resolve, reject) => {
             parser.parse(triples, (err, triple, prefixes) => {
-                if (!triple) {
-                    resolve(prefixes);
-                }
                 if (err) {
                     reject(err);
+                }
+                if (!triple) {
+                    resolve(prefixes);
                 }
             });
         });

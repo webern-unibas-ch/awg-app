@@ -642,12 +642,88 @@ describe('GraphVisualizerService', () => {
                 ).toBeRejectedWithError('Expected entity but got . on line 1.');
             });
 
-            it('... for missing prefix', async () => {
+            it('... for missing prefix marker', async () => {
                 const triplesWithSyntaxError =
                     '@prefix ex: <http://example.org/>. ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
 
                 await expectAsync(
                     graphVisualizerService.parseTripleString(triplesWithSyntaxError)
+                ).toBeRejectedWithError('Undefined prefix "ex2:" on line 1.');
+            });
+        });
+    });
+
+    describe('#_getNamespaces()', () => {
+        it('... should have a method `_getNamespaces`', () => {
+            expect((graphVisualizerService as any)._getNamespaces).toBeDefined();
+        });
+
+        it('... should get a single namespace from a triple string', async () => {
+            const tripleStr =
+                '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+            const expectedNamespaces = { ex: 'http://example.org/' };
+
+            const result = await (graphVisualizerService as any)._getNamespaces(tripleStr);
+
+            expectToEqual(result, expectedNamespaces);
+        });
+
+        it('... should get multiple namespaces from a triple string', async () => {
+            const tripleStr =
+                '@prefix ex: <http://example.org/>. @prefix ex2: <http://example2.org>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+            const expectedNamespaces = { ex: 'http://example.org/', ex2: 'http://example2.org' };
+
+            const result = await (graphVisualizerService as any)._getNamespaces(tripleStr);
+
+            expectToEqual(result, expectedNamespaces);
+        });
+
+        describe('... should return an empty object if ', () => {
+            it('... triple string is empty', async () => {
+                const tripleStr = '';
+                const expectedNamespaces = {};
+
+                const result = await (graphVisualizerService as any)._getNamespaces(tripleStr);
+
+                expectToEqual(result, expectedNamespaces);
+            });
+
+            it('... triple string has no prefixes', async () => {
+                const tripleStr =
+                    '<http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+                const expectedNamespaces = {};
+
+                const result = await (graphVisualizerService as any)._getNamespaces(tripleStr);
+
+                expectToEqual(result, expectedNamespaces);
+            });
+        });
+
+        describe('... should reject and throw an error', () => {
+            it('... for missing dots', async () => {
+                const triplesWithSyntaxError =
+                    '@prefix ex: <http://example.org/>  @prefix ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+
+                await expectAsync(
+                    (graphVisualizerService as any)._getNamespaces(triplesWithSyntaxError)
+                ).toBeRejectedWithError('Expected declaration to end with a dot on line 1.');
+            });
+
+            it('... for missing @', async () => {
+                const triplesWithSyntaxError =
+                    'prefix ex: <http://example.org/>. @prefix ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+
+                await expectAsync(
+                    (graphVisualizerService as any)._getNamespaces(triplesWithSyntaxError)
+                ).toBeRejectedWithError('Expected entity but got . on line 1.');
+            });
+
+            it('... for missing prefix marker', async () => {
+                const triplesWithSyntaxError =
+                    '@prefix ex: <http://example.org/>. ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+
+                await expectAsync(
+                    (graphVisualizerService as any)._getNamespaces(triplesWithSyntaxError)
                 ).toBeRejectedWithError('Undefined prefix "ex2:" on line 1.');
             });
         });
@@ -752,7 +828,7 @@ describe('GraphVisualizerService', () => {
             expectToBe(size, expectedSize);
         });
 
-        it('... should throw and log an error if no parser is found for the provided mimeType', async () => {
+        it('... should reject and throw/log an error if no parser is found for the provided mimeType', async () => {
             const tripleStr = '@prefix ex: <http://example.org/>. ex:subject ex:predicate ex:object.';
             const mimeType = 'application/rdf+xml';
             const expectedErrorMessage = `Cannot find parser for the provided media type:${mimeType}`;
@@ -934,6 +1010,43 @@ describe('GraphVisualizerService', () => {
             expectToEqual(result, expectedMappedBindings);
         });
 
+        it('... should return a prefixed label for a URI value', () => {
+            const selectResponse = [
+                {
+                    key1: {
+                        token: 'uri',
+                        value: 'https://edition.anton-webern.ch/webern-onto#Op25_1',
+                    },
+                },
+                {
+                    key1: {
+                        token: 'uri',
+                        value: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+                    },
+                },
+            ];
+            const expectedMappedBindings = [
+                {
+                    key1: {
+                        label: 'awg:Op25_1',
+                        type: 'uri',
+                        value: 'https://edition.anton-webern.ch/webern-onto#Op25_1',
+                    },
+                },
+                {
+                    key1: {
+                        label: 'rdf:type',
+                        type: 'uri',
+                        value: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+                    },
+                },
+            ];
+
+            const result = (graphVisualizerService as any)._prepareMappedBindings(selectResponse);
+
+            expectToEqual(result, expectedMappedBindings);
+        });
+
         describe('... should return a number label for', () => {
             it('... literal integer values', () => {
                 const selectResponse = [
@@ -986,43 +1099,6 @@ describe('GraphVisualizerService', () => {
 
                 expectToEqual(result, expectedMappedBindings);
             });
-        });
-
-        it('... should return a prefixed label for a URI value', () => {
-            const selectResponse = [
-                {
-                    key1: {
-                        token: 'uri',
-                        value: 'https://edition.anton-webern.ch/webern-onto#Op25_1',
-                    },
-                },
-                {
-                    key1: {
-                        token: 'uri',
-                        value: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-                    },
-                },
-            ];
-            const expectedMappedBindings = [
-                {
-                    key1: {
-                        label: 'awg:Op25_1',
-                        type: 'uri',
-                        value: 'https://edition.anton-webern.ch/webern-onto#Op25_1',
-                    },
-                },
-                {
-                    key1: {
-                        label: 'rdf:type',
-                        type: 'uri',
-                        value: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-                    },
-                },
-            ];
-
-            const result = (graphVisualizerService as any)._prepareMappedBindings(selectResponse);
-
-            expectToEqual(result, expectedMappedBindings);
         });
 
         it('... should trigger `_mapKeys` method for each key', () => {
