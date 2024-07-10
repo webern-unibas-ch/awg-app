@@ -57,7 +57,7 @@ jobs:
                   echo "SHA: ${{ steps.get-sha.outputs.SHA }}"
 
             - name: Set up node ${{ matrix.node-version}}
-              uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # ratchet:actions/setup-node@v4.0.3
+              uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
               with:
                   node-version: ${{ matrix.node-version }}
 
@@ -65,7 +65,7 @@ jobs:
               run: corepack enable
 
             - name: Get yarn cache ${{ matrix.node-version}}
-              uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # ratchet:actions/setup-node@v4.0.3
+              uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
               with:
                   cache: 'yarn'
 
