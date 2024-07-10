@@ -108,7 +108,7 @@ describe('GraphVisualizerService', () => {
             });
         });
 
-        describe('should return the same Triple array', () => {
+        describe('should return the original Triple array', () => {
             it('... if the Triple array length is smaller than the given limit', () => {
                 const inputWithTwoTriples: Triple[] = expectedTriples.slice(0, 2);
                 const limit = 3;
@@ -382,7 +382,7 @@ describe('GraphVisualizerService', () => {
                     const tripleStr =
                         '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>';
                     const queryStr = 'SELECT * WHERE { ?s xyz:composer ?o }';
-                    const expectedError = `'xyz:' is unknown. Please provide a declaration.`;
+                    const expectedError = `Prefix 'xyz' is unknown. Please provide a declaration.`;
 
                     graphVisualizerService.checkNamespacesInQuery(queryStr, tripleStr);
 
@@ -650,6 +650,143 @@ describe('GraphVisualizerService', () => {
                     graphVisualizerService.parseTripleString(triplesWithSyntaxError)
                 ).toBeRejectedWithError('Undefined prefix "ex2:" on line 1.');
             });
+        });
+    });
+
+    describe('#_extractNamespacesFromString()', () => {
+        it('... should have a method `_extractNamespacesFromString`', () => {
+            expect((graphVisualizerService as any)._extractNamespacesFromString).toBeDefined();
+        });
+
+        it('... should return an object with namespaces from a given turtle string', () => {
+            const turtleStr =
+                '@prefix ex: <http://example.org/>. @prefix ex2: <http://example2.org>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+            const expectedNamespaces = { ex: 'http://example.org/', ex2: 'http://example2.org' };
+
+            const result = (graphVisualizerService as any)._extractNamespacesFromString('TURTLE', turtleStr);
+
+            expectToEqual(result, expectedNamespaces);
+        });
+
+        it('... should return an object with namespaces from a given SPARQL string', () => {
+            const sparqlStr =
+                'PREFIX ex: <http://example.org/>. PREFIX ex2: <http://example2.org>. SELECT * WHERE { ?s ?p ?o }';
+            const expectedNamespaces = { ex: 'http://example.org/', ex2: 'http://example2.org' };
+
+            const result = (graphVisualizerService as any)._extractNamespacesFromString('SPARQL', sparqlStr);
+
+            expectToEqual(result, expectedNamespaces);
+        });
+
+        describe('... should return an empty object if', () => {
+            it('... the given string is empty', () => {
+                const emptyStr = '';
+                const expectedNamespaces = {};
+
+                const result = (graphVisualizerService as any)._extractNamespacesFromString('TURTLE', emptyStr);
+
+                expectToEqual(result, expectedNamespaces);
+
+                const result2 = (graphVisualizerService as any)._extractNamespacesFromString('SPARQL', emptyStr);
+
+                expectToEqual(result2, expectedNamespaces);
+            });
+
+            it('... the given string has no prefixes in TURTLE', () => {
+                const noPrefixTurtleStr =
+                    '<http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+                const expectedNamespaces = {};
+
+                const result = (graphVisualizerService as any)._extractNamespacesFromString(
+                    'TURTLE',
+                    noPrefixTurtleStr
+                );
+
+                expectToEqual(result, expectedNamespaces);
+            });
+
+            it('... the given string has no prefixes in SPARQL', () => {
+                const noPrefixSparqlStr = 'SELECT * WHERE { ?s ?p ?o }';
+                const expectedNamespaces = {};
+
+                const result = (graphVisualizerService as any)._extractNamespacesFromString(
+                    'SPARQL',
+                    noPrefixSparqlStr
+                );
+
+                expectToEqual(result, expectedNamespaces);
+            });
+        });
+
+        it('... should throw an error if called with another type than TURTLE or SPARQL', () => {
+            const tripleStr =
+                '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>';
+            const expectedError = 'The type must be TURTLE or SPARQL, but was: OTHER.';
+
+            expect(() => (graphVisualizerService as any)._extractNamespacesFromString('OTHER', tripleStr)).toThrowError(
+                expectedError
+            );
+        });
+    });
+
+    describe('#_extractQNamePrefixesFromSPARQLWhereClause()', () => {
+        it('... should have a method `_extractQNamePrefixesFromSPARQLWhereClause`', () => {
+            expect((graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause).toBeDefined();
+        });
+
+        it('... should return an empty array if no prefixes are in the where clause', () => {
+            const query = 'SELECT * WHERE { ?s ?p ?o . }';
+            const expectedPrefixes = [];
+
+            const result = (graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause(query);
+
+            expectToEqual(result, expectedPrefixes);
+        });
+
+        it('... should return an array of prefixes from the where clause', () => {
+            const query = 'SELECT * WHERE { ex:s ex1:p ex2:o .}';
+            const expectedPrefixes = ['ex', 'ex1', 'ex2'];
+
+            const result = (graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause(query);
+
+            expectToEqual(result, expectedPrefixes);
+        });
+
+        it('... should return an array of unique prefixes from the where clause', () => {
+            const query = 'SELECT * WHERE { ex:s ex1:p ex2:o . ex:s1 ex1:p1 ex2:o1 .}';
+            const expectedPrefixes = ['ex', 'ex1', 'ex2'];
+
+            const result = (graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause(query);
+
+            expectToEqual(result, expectedPrefixes);
+        });
+
+        it('... should return an array of unique prefixes from the where clause respecting case sensitivity', () => {
+            const query =
+                'SELECT * WHERE { ex:s ex1:p ex2:o . Ex:s1 Ex1:p1 Ex2:o1 . EX:s2 EX1:p2 EX2:o2 . eX:s3 eX1:p3 eX2:o3 .}';
+            const expectedPrefixes = ['ex', 'ex1', 'ex2', 'Ex', 'Ex1', 'Ex2', 'EX', 'EX1', 'EX2', 'eX', 'eX1', 'eX2'];
+
+            const result = (graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause(query);
+
+            expectToEqual(result, expectedPrefixes);
+        });
+
+        it('... should find prefixes when no where keyword is given', () => {
+            const query = 'SELECT * { ex:s ex1:p ex2:o . ex:s1 ex1:p1 ex2:o1 .}';
+            const expectedPrefixes = ['ex', 'ex1', 'ex2'];
+
+            const result = (graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause(query);
+
+            expectToEqual(result, expectedPrefixes);
+        });
+
+        it('... should find prefixes starting with underscore, small letter or capital letter', () => {
+            const query = 'SELECT * WHERE { _:s Ex1:p EX2:o . ex:s1 ex1:p1 ex2:o1 .}';
+            const expectedPrefixes = ['_', 'Ex1', 'EX2', 'ex', 'ex1', 'ex2'];
+
+            const result = (graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause(query);
+
+            expectToEqual(result, expectedPrefixes);
         });
     });
 
