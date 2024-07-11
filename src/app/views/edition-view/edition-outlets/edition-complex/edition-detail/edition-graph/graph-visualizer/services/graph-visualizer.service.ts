@@ -51,51 +51,6 @@ export class GraphVisualizerService {
     constructor(private prefixPipe: PrefixPipe) {}
 
     /**
-     * Public method: parseTripleString.
-     *
-     * It parses the triples from a given triple string.
-     *
-     * @param {string} triples The given triple string.
-     *
-     * @returns {Promise<{triples; namespaces}>} A promise of the parsed triples.
-     */
-    parseTripleString(triples: string): Promise<{ triples; namespaces }> {
-        const parser = new N3.Parser();
-        const jsonTriples = [];
-
-        return new Promise((resolve, reject) => {
-            parser.parse(triples, (err, triple, namespaceValues) => {
-                if (err) {
-                    reject(err);
-                    return;
-                }
-                if (triple) {
-                    jsonTriples.push(triple);
-                } else {
-                    resolve({ triples: jsonTriples, namespaces: namespaceValues });
-                }
-            });
-        });
-    }
-
-    /**
-     * Public method: limitTriples.
-     *
-     * It limits a given array of triples by a given limit.
-     *
-     * @param {Triple[]} triples The given triples array.
-     * @param {number} limit The given limit.
-     *
-     * @returns {Triple[]} The array of limited triples.
-     */
-    limitTriples(triples: Triple[], limit: number): Triple[] {
-        if (!triples) {
-            return [];
-        }
-        return triples.length > limit ? triples.slice(0, limit) : triples;
-    }
-
-    /**
      * Public method: abbreviateTriples.
      *
      * It abbreviates the given triples according to the given namespaces.
@@ -204,11 +159,9 @@ export class GraphVisualizerService {
                 // Reformat data if construct query
                 if (queryType === 'construct') {
                     const response = res as RDFStoreConstructResponse;
-                    // Get namespaces
-                    return this._getNamespaces(ttlString).then((namespaces: Namespace) =>
-                        // Process triples
-                        this.abbreviateTriples(response.triples, namespaces, mimeType)
-                    );
+                    const namespaces = this._extractNamespacesFromString(NamespaceType.TURTLE, ttlString);
+                    const constructResponse = this.abbreviateTriples(response.triples, namespaces, mimeType);
+                    return constructResponse;
                 }
 
                 return undefined;
@@ -246,6 +199,51 @@ export class GraphVisualizerService {
     }
 
     /**
+     * Public method: limitTriples.
+     *
+     * It limits a given array of triples by a given limit.
+     *
+     * @param {Triple[]} triples The given triples array.
+     * @param {number} limit The given limit.
+     *
+     * @returns {Triple[]} The array of limited triples.
+     */
+    limitTriples(triples: Triple[], limit: number): Triple[] {
+        if (!triples) {
+            return [];
+        }
+        return triples.length > limit ? triples.slice(0, limit) : triples;
+    }
+
+    /**
+     * Public method: parseTripleString.
+     *
+     * It parses the triples from a given triple string.
+     *
+     * @param {string} triples The given triple string.
+     *
+     * @returns {Promise<{triples; namespaces}>} A promise of the parsed triples.
+     */
+    parseTripleString(triples: string): Promise<{ quads: N3.DataFactory.quad[]; namespaces: N3.DataFactory.prefixes }> {
+        const parser = new N3.Parser();
+        const jsonTriples = [];
+
+        return new Promise((resolve, reject) => {
+            parser.parse(triples, (error, quad, prefixes) => {
+                if (error) {
+                    reject(error);
+                    return;
+                }
+                if (quad) {
+                    jsonTriples.push(quad);
+                } else {
+                    resolve({ quads: jsonTriples, namespaces: prefixes });
+                }
+            });
+        });
+    }
+
+    /**
      * Private method: _abbreviate.
      *
      * It abbreviates the namespaces of a given iri.
@@ -256,18 +254,17 @@ export class GraphVisualizerService {
      * @returns {string} The abbreviated or original iri string.
      */
     private _abbreviate(iri: string, namespaces: Namespace): string {
-        let newVal: string = iri;
-        // If IRI has 'http' or 'https in its name, continue
-        if (iri.indexOf('http') !== -1) {
-            // Loop over namespaces
-            Object.entries(namespaces).forEach(([key, value]) => {
-                // If the IRI has the prefixed namespace in its name, return it
-                if (iri.indexOf(value) !== -1) {
-                    newVal = iri.replace(value, key + ':');
-                }
-            });
+        if (!iri.startsWith('http')) {
+            return iri;
         }
-        return newVal;
+
+        for (const [key, value] of Object.entries(namespaces)) {
+            if (iri.includes(value)) {
+                return iri.replace(value, key + ':');
+            }
+        }
+
+        return iri;
     }
 
     /**
@@ -367,30 +364,6 @@ export class GraphVisualizerService {
         const prefixes = new Set<string>(Array.from(matches, match => match[1]));
 
         return Array.from(prefixes);
-    }
-
-    /**
-     * Private method: _getNamespaces.
-     *
-     * It parses a given triple string and extracts the namespaces from it.
-     *
-     * @param {string} triples The given triple string.
-     *
-     * @returns {Promise<Namespace>} A promise of the namespaces.
-     */
-    private _getNamespaces(triples: string): Promise<Namespace> {
-        const parser = new N3.Parser();
-
-        return new Promise((resolve, reject) => {
-            parser.parse(triples, (err, triple, prefixes) => {
-                if (err) {
-                    reject(err);
-                }
-                if (!triple) {
-                    resolve(prefixes);
-                }
-            });
-        });
     }
 
     /**

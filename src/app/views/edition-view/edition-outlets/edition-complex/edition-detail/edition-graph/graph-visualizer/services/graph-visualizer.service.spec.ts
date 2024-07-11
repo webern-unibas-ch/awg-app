@@ -77,77 +77,6 @@ describe('GraphVisualizerService', () => {
         expect((graphVisualizerService as any)._store).toBeUndefined();
     });
 
-    describe('#limitTriples()', () => {
-        it('... should have a method `limitTriples`', () => {
-            expect(graphVisualizerService.limitTriples).toBeDefined();
-        });
-
-        describe('should return an empty array', () => {
-            it('... if triples are undefined', () => {
-                const limit = 3;
-
-                const result = graphVisualizerService.limitTriples(undefined, limit);
-
-                expectToEqual(result, []);
-            });
-
-            it('... if triples are null', () => {
-                const limit = 3;
-
-                const result = graphVisualizerService.limitTriples(null, limit);
-
-                expectToEqual(result, []);
-            });
-
-            it('... if triples are empty array', () => {
-                const limit = 3;
-
-                const result = graphVisualizerService.limitTriples([], limit);
-
-                expectToEqual(result, []);
-            });
-        });
-
-        describe('should return the original Triple array', () => {
-            it('... if the Triple array length is smaller than the given limit', () => {
-                const inputWithTwoTriples: Triple[] = expectedTriples.slice(0, 2);
-                const limit = 3;
-
-                const result = graphVisualizerService.limitTriples(inputWithTwoTriples, limit);
-
-                expectToEqual(result, inputWithTwoTriples);
-            });
-
-            it('... if the Triple array length is equal with the given limit', () => {
-                const inputWithThreeTriples: Triple[] = expectedTriples.splice(0, 3);
-                const limit = 3;
-
-                const result = graphVisualizerService.limitTriples(inputWithThreeTriples, limit);
-
-                expectToEqual(result, inputWithThreeTriples);
-            });
-        });
-
-        describe('should return a limited Triple array', () => {
-            it('... if the Triple array is larger than the limit', () => {
-                const inputWithFourTriples: Triple[] = expectedTriples.slice(0, 4);
-                const outputWithTwoTriples: Triple[] = expectedTriples.slice(0, 2);
-                const outputWithThreeTriples: Triple[] = expectedTriples.splice(0, 3);
-
-                const limit = 3;
-
-                const result = graphVisualizerService.limitTriples(inputWithFourTriples, limit);
-
-                expectToEqual(result, outputWithThreeTriples);
-
-                const limit2 = 2;
-                const result2 = graphVisualizerService.limitTriples(inputWithFourTriples, limit2);
-
-                expectToEqual(result2, outputWithTwoTriples);
-            });
-        });
-    });
-
     describe('#abbreviateTriples()', () => {
         it('... should have a method `abbreviateTriples`', () => {
             expect(graphVisualizerService.abbreviateTriples).toBeDefined();
@@ -248,6 +177,85 @@ describe('GraphVisualizerService', () => {
         });
     });
 
+    describe('#checkNamespacesInQuery()', () => {
+        it('... should have a method `checkNamespacesInQuery`', () => {
+            expect(graphVisualizerService.checkNamespacesInQuery).toBeDefined();
+        });
+
+        describe('should return `undefined`', () => {
+            it('... if no queryString is given', () => {
+                const tripleStr =
+                    '@prefix ex: <http://example.org/> <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>';
+                const result = graphVisualizerService.checkNamespacesInQuery(undefined, tripleStr);
+
+                expect(result).toBeUndefined();
+            });
+
+            it('... if no tripleString is given', () => {
+                const queryStr = 'PREFIX ex: <http://example.org/> SELECT * WHERE { ?s ?p ?o }';
+
+                const result = graphVisualizerService.checkNamespacesInQuery(queryStr, undefined);
+
+                expect(result).toBeUndefined();
+            });
+
+            it('... if no queryString and tripleString is given', () => {
+                const result = graphVisualizerService.checkNamespacesInQuery(undefined, undefined);
+
+                expect(result).toBeUndefined();
+            });
+        });
+
+        it('... should add missing namespaces from the tripleString to the queryString', () => {
+            const tripleStr =
+                '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+            const queryStr = 'SELECT * WHERE { ?s ?p ?o }';
+            const expectedResult = 'PREFIX ex: <http://example.org/>\nSELECT * WHERE { ?s ?p ?o }';
+
+            const result = graphVisualizerService.checkNamespacesInQuery(queryStr, tripleStr);
+
+            expectToBe(result, expectedResult);
+        });
+
+        describe('should check qNames from the query if a qName is not referenced in the list of namespaces and ...', () => {
+            describe('if the qName is not in the list of default namespaces', () => {
+                it('... error in the console ', () => {
+                    const tripleStr =
+                        '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>';
+                    const queryStr = 'SELECT * WHERE { ?s xyz:composer ?o }';
+                    const expectedError = `Prefix 'xyz' is unknown. Please provide a declaration.`;
+
+                    graphVisualizerService.checkNamespacesInQuery(queryStr, tripleStr);
+
+                    expectSpyCall(consoleSpy, 1, [expectedError]);
+                });
+            });
+
+            describe('if the qName is in the list of default namespaces', () => {
+                it('... prepend missing namespaces to the queryString prefixes', () => {
+                    const tripleStr =
+                        '@prefix ex: <http://example.org/> .\n<http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+                    const queryStr = 'PREFIX ex: <http://example.org/>\nSELECT * WHERE { ?s foaf:age ?o }';
+                    const expectedResult = `PREFIX foaf: <http://xmlns.com/foaf/0.1/>\nPREFIX ex: <http://example.org/>\nSELECT * WHERE { ?s foaf:age ?o }`;
+
+                    const result = graphVisualizerService.checkNamespacesInQuery(queryStr, tripleStr);
+
+                    expectToBe(result, expectedResult);
+                });
+            });
+        });
+
+        it('... should throw an error if extractNamespacesFromString() is called with another type than TURTLE or SPARQL', () => {
+            const tripleStr =
+                '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>';
+            const expectedError = 'The type must be TURTLE or SPARQL, but was: undefined.';
+
+            expect(() =>
+                (graphVisualizerService as any)._extractNamespacesFromString(undefined, tripleStr)
+            ).toThrowError(expectedError);
+        });
+    });
+
     describe('#getQuerytype()', () => {
         it('... should have a method `getQuerytype`', () => {
             expect(graphVisualizerService.getQuerytype).toBeDefined();
@@ -336,82 +344,74 @@ describe('GraphVisualizerService', () => {
         });
     });
 
-    describe('#checkNamespacesInQuery()', () => {
-        it('... should have a method `checkNamespacesInQuery`', () => {
-            expect(graphVisualizerService.checkNamespacesInQuery).toBeDefined();
+    describe('#limitTriples()', () => {
+        it('... should have a method `limitTriples`', () => {
+            expect(graphVisualizerService.limitTriples).toBeDefined();
         });
 
-        describe('should return `undefined`', () => {
-            it('... if no queryString is given', () => {
-                const tripleStr =
-                    '@prefix ex: <http://example.org/> <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>';
-                const result = graphVisualizerService.checkNamespacesInQuery(undefined, tripleStr);
+        describe('should return an empty array', () => {
+            it('... if triples are undefined', () => {
+                const limit = 3;
 
-                expect(result).toBeUndefined();
+                const result = graphVisualizerService.limitTriples(undefined, limit);
+
+                expectToEqual(result, []);
             });
 
-            it('... if no tripleString is given', () => {
-                const queryStr = 'PREFIX ex: <http://example.org/> SELECT * WHERE { ?s ?p ?o }';
+            it('... if triples are null', () => {
+                const limit = 3;
 
-                const result = graphVisualizerService.checkNamespacesInQuery(queryStr, undefined);
+                const result = graphVisualizerService.limitTriples(null, limit);
 
-                expect(result).toBeUndefined();
+                expectToEqual(result, []);
             });
 
-            it('... if no queryString and tripleString is given', () => {
-                const result = graphVisualizerService.checkNamespacesInQuery(undefined, undefined);
+            it('... if triples are empty array', () => {
+                const limit = 3;
 
-                expect(result).toBeUndefined();
-            });
-        });
+                const result = graphVisualizerService.limitTriples([], limit);
 
-        it('... should add missing namespaces from the tripleString to the queryString', () => {
-            const tripleStr =
-                '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
-            const queryStr = 'SELECT * WHERE { ?s ?p ?o }';
-            const expectedResult = 'PREFIX ex: <http://example.org/>\nSELECT * WHERE { ?s ?p ?o }';
-
-            const result = graphVisualizerService.checkNamespacesInQuery(queryStr, tripleStr);
-
-            expectToBe(result, expectedResult);
-        });
-
-        describe('should check qNames from the query if a qName is not referenced in the list of namespaces and ...', () => {
-            describe('if the qName is not in the list of default namespaces', () => {
-                it('... error in the console ', () => {
-                    const tripleStr =
-                        '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>';
-                    const queryStr = 'SELECT * WHERE { ?s xyz:composer ?o }';
-                    const expectedError = `Prefix 'xyz' is unknown. Please provide a declaration.`;
-
-                    graphVisualizerService.checkNamespacesInQuery(queryStr, tripleStr);
-
-                    expectSpyCall(consoleSpy, 1, [expectedError]);
-                });
-            });
-
-            describe('if the qName is in the list of default namespaces', () => {
-                it('... prepend missing namespaces to the queryString prefixes', () => {
-                    const tripleStr =
-                        '@prefix ex: <http://example.org/> .\n<http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
-                    const queryStr = 'PREFIX ex: <http://example.org/>\nSELECT * WHERE { ?s foaf:age ?o }';
-                    const expectedResult = `PREFIX foaf: <http://xmlns.com/foaf/0.1/>\nPREFIX ex: <http://example.org/>\nSELECT * WHERE { ?s foaf:age ?o }`;
-
-                    const result = graphVisualizerService.checkNamespacesInQuery(queryStr, tripleStr);
-
-                    expectToBe(result, expectedResult);
-                });
+                expectToEqual(result, []);
             });
         });
 
-        it('... should throw an error if extractNamespacesFromString() is called with another type than TURTLE or SPARQL', () => {
-            const tripleStr =
-                '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>';
-            const expectedError = 'The type must be TURTLE or SPARQL, but was: undefined.';
+        describe('should return the original Triple array', () => {
+            it('... if the Triple array length is smaller than the given limit', () => {
+                const inputWithTwoTriples: Triple[] = expectedTriples.slice(0, 2);
+                const limit = 3;
 
-            expect(() =>
-                (graphVisualizerService as any)._extractNamespacesFromString(undefined, tripleStr)
-            ).toThrowError(expectedError);
+                const result = graphVisualizerService.limitTriples(inputWithTwoTriples, limit);
+
+                expectToEqual(result, inputWithTwoTriples);
+            });
+
+            it('... if the Triple array length is equal with the given limit', () => {
+                const inputWithThreeTriples: Triple[] = expectedTriples.splice(0, 3);
+                const limit = 3;
+
+                const result = graphVisualizerService.limitTriples(inputWithThreeTriples, limit);
+
+                expectToEqual(result, inputWithThreeTriples);
+            });
+        });
+
+        describe('should return a limited Triple array', () => {
+            it('... if the Triple array is larger than the limit', () => {
+                const inputWithFourTriples: Triple[] = expectedTriples.slice(0, 4);
+                const outputWithTwoTriples: Triple[] = expectedTriples.slice(0, 2);
+                const outputWithThreeTriples: Triple[] = expectedTriples.splice(0, 3);
+
+                const limit = 3;
+
+                const result = graphVisualizerService.limitTriples(inputWithFourTriples, limit);
+
+                expectToEqual(result, outputWithThreeTriples);
+
+                const limit2 = 2;
+                const result2 = graphVisualizerService.limitTriples(inputWithFourTriples, limit2);
+
+                expectToEqual(result2, outputWithTwoTriples);
+            });
         });
     });
 

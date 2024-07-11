@@ -188,7 +188,7 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * @returns {void} Logs the click event.
      */
-    onGraphNodeClick(node: D3SimulationNode) {
+    onGraphNodeClick(node: D3SimulationNode): void {
         if (!node) {
             return;
         }
@@ -250,7 +250,7 @@ export class GraphVisualizerComponent implements OnInit {
      * @param {string} queryString The given queryString.
      * @param {string} triples THe given triples.
      *
-     * @returns {Promise<Triple[]>} The result of the query as an promise of triple array.
+     * @returns {Promise<Triple[]>} The result of the query as a promise of triple array.
      */
     private async _queryLocalStore(queryType: string, queryString: string, triples: string): Promise<Triple[]> {
         // Capture start time of query
