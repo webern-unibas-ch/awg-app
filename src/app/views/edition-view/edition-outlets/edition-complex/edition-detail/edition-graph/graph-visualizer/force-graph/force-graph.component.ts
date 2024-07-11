@@ -424,7 +424,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Attaches the data and sets up the simulation.
      */
     private _attachData(): void {
-        // Limit result length
         const triples: Triple[] = this.graphVisualizerService.limitTriples(this.currentQueryResultTriples, this.limit);
 
         this._simulationData = this._triplesToD3GraphData(triples);

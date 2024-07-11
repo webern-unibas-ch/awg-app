@@ -77,106 +77,6 @@ describe('GraphVisualizerService', () => {
         expect((graphVisualizerService as any)._store).toBeUndefined();
     });
 
-    describe('#abbreviateTriples()', () => {
-        it('... should have a method `abbreviateTriples`', () => {
-            expect(graphVisualizerService.abbreviateTriples).toBeDefined();
-        });
-
-        describe('should abbreviate the given StoreTriples', () => {
-            it('... according to the given namespaces', () => {
-                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
-                const namespaces = {
-                    ex: 'http://example.org/',
-                    exs: 'https://example.org/',
-                };
-
-                const result = graphVisualizerService.abbreviateTriples(triples, namespaces);
-
-                expectToBe(result[0].subject, 'ex:subject1');
-                expectToBe(result[0].predicate, 'ex:predicate1');
-                expectToBe(result[0].object, 'ex:object1');
-
-                expectToBe(result[1].subject, 'exs:subject2');
-                expectToBe(result[1].predicate, 'exs:predicate2');
-                expectToBe(result[1].object, 'exs:object2');
-            });
-
-            it('... if mimetype `text/turtle` is given', () => {
-                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
-                const namespaces = {
-                    ex: 'http://example.org/',
-                    exs: 'https://example.org/',
-                };
-                const mimetypeTurtle = 'text/turtle';
-
-                const result = graphVisualizerService.abbreviateTriples(triples, namespaces, mimetypeTurtle);
-
-                expectToBe(result[0].subject, 'ex:subject1');
-                expectToBe(result[0].predicate, 'ex:predicate1');
-                expectToBe(result[0].object, 'ex:object1');
-
-                expectToBe(result[1].subject, 'exs:subject2');
-                expectToBe(result[1].predicate, 'exs:predicate2');
-                expectToBe(result[1].object, 'exs:object2');
-            });
-
-            it('... if no mimetype is given (`text/turtle` applied by default)', () => {
-                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
-                const namespaces = {
-                    ex: 'http://example.org/',
-                    exs: 'https://example.org/',
-                };
-                const mimetypeEmpty = '';
-
-                const result = graphVisualizerService.abbreviateTriples(triples, namespaces, mimetypeEmpty);
-
-                expectToBe(result[0].subject, 'ex:subject1');
-                expectToBe(result[0].predicate, 'ex:predicate1');
-                expectToBe(result[0].object, 'ex:object1');
-
-                expectToBe(result[1].subject, 'exs:subject2');
-                expectToBe(result[1].predicate, 'exs:predicate2');
-                expectToBe(result[1].object, 'exs:object2');
-            });
-        });
-
-        describe('should not abbreviate the given StoreTriples', () => {
-            it('... if the IRI uses an unknown namespace', () => {
-                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
-                const namespaces = {};
-
-                const result = graphVisualizerService.abbreviateTriples(triples, namespaces);
-
-                expectToBe(result[0].subject, 'http://example.org/subject1');
-                expectToBe(result[0].predicate, 'http://example.org/predicate1');
-                expectToBe(result[0].object, 'http://example.org/object1');
-
-                expectToBe(result[1].subject, 'https://example.org/subject2');
-                expectToBe(result[1].predicate, 'https://example.org/predicate2');
-                expectToBe(result[1].object, 'https://example.org/object2');
-            });
-
-            it('... if a given mimetype is not `text/turtle`', () => {
-                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
-                const namespaces = {
-                    ex: 'http://example.org/',
-                    exs: 'https://example.org/',
-                };
-                const mimetypePlain = 'text/plain';
-
-                const result = graphVisualizerService.abbreviateTriples(triples, namespaces, mimetypePlain);
-
-                expectToBe(result[0].subject, 'http://example.org/subject1');
-                expectToBe(result[0].predicate, 'http://example.org/predicate1');
-                expectToBe(result[0].object, 'http://example.org/object1');
-
-                expectToBe(result[1].subject, 'https://example.org/subject2');
-                expectToBe(result[1].predicate, 'https://example.org/predicate2');
-                expectToBe(result[1].object, 'https://example.org/object2');
-            });
-        });
-    });
-
     describe('#checkNamespacesInQuery()', () => {
         it('... should have a method `checkNamespacesInQuery`', () => {
             expect(graphVisualizerService.checkNamespacesInQuery).toBeDefined();
@@ -253,165 +153,6 @@ describe('GraphVisualizerService', () => {
             expect(() =>
                 (graphVisualizerService as any)._extractNamespacesFromString(undefined, tripleStr)
             ).toThrowError(expectedError);
-        });
-    });
-
-    describe('#getQuerytype()', () => {
-        it('... should have a method `getQuerytype`', () => {
-            expect(graphVisualizerService.getQuerytype).toBeDefined();
-        });
-
-        describe('should return correct querytpe', () => {
-            it('... if the query is a SELECT query (= `select`)', () => {
-                const query = 'SELECT * WHERE { ?s ?p ?o }';
-
-                const result = graphVisualizerService.getQuerytype(query);
-
-                expectToBe(result, 'select');
-            });
-
-            it('... if the query is a CONSTRUCT query (= `construct`)', () => {
-                const query = 'CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }';
-
-                const result = graphVisualizerService.getQuerytype(query);
-
-                expectToBe(result, 'construct');
-            });
-
-            it('... if the query is an ASK query (= `ask`)', () => {
-                const query = 'ASK WHERE { ?s ?p ?o }';
-
-                const result = graphVisualizerService.getQuerytype(query);
-
-                expectToBe(result, 'ask');
-            });
-
-            it('... if the query is a DESCRIBE query (= `describe`)', () => {
-                const query = 'DESCRIBE ?s WHERE { ?s ?p ?o }';
-
-                const result = graphVisualizerService.getQuerytype(query);
-
-                expectToBe(result, 'describe');
-            });
-
-            it('... if the query is a COUNT query (= `count`)', () => {
-                const query = 'COUNT ?s WHERE { ?s ?p ?o }';
-
-                const result = graphVisualizerService.getQuerytype(query);
-
-                expectToBe(result, 'count');
-            });
-
-            it('... if the query is a DELETE query (= `update`)', () => {
-                const query = 'DELETE  {?s ?p ?o } WHERE { ?s ?p ?o }';
-
-                const result = graphVisualizerService.getQuerytype(query);
-
-                expectToBe(result, 'update');
-            });
-
-            it('... if the query is an INSERT query (= `update`)', () => {
-                const query = 'INSERT { ?s ?p ?o } WHERE { ?s ?p ?o} ';
-
-                const result = graphVisualizerService.getQuerytype(query);
-
-                expectToBe(result, 'update');
-            });
-
-            it('... if the query starts with prefixes', () => {
-                const query = 'PREFIX ex: <http://example.org/> SELECT * WHERE { ?s ?p ?o }';
-
-                const result = graphVisualizerService.getQuerytype(query);
-
-                expectToBe(result, 'select');
-            });
-        });
-
-        it('... should return the first query type if the query uses multiple query types', () => {
-            const query = 'CONSTRUCT { ?s ?p ?y } WHERE { SELECT ?s ?p ( bnode() AS ?y ) WHERE { ?s ?p ?o } }';
-
-            const result = graphVisualizerService.getQuerytype(query);
-
-            expectToBe(result, 'construct');
-        });
-
-        it('... should return `null` if the query is not a SELECT, CONSTRUCT, ASK, COUNT, DESCRIBE, INSERT or DELETE query', () => {
-            const query = 'LOAD <http://example.org/graph>';
-
-            const result = graphVisualizerService.getQuerytype(query);
-
-            expectToBe(result, null);
-        });
-    });
-
-    describe('#limitTriples()', () => {
-        it('... should have a method `limitTriples`', () => {
-            expect(graphVisualizerService.limitTriples).toBeDefined();
-        });
-
-        describe('should return an empty array', () => {
-            it('... if triples are undefined', () => {
-                const limit = 3;
-
-                const result = graphVisualizerService.limitTriples(undefined, limit);
-
-                expectToEqual(result, []);
-            });
-
-            it('... if triples are null', () => {
-                const limit = 3;
-
-                const result = graphVisualizerService.limitTriples(null, limit);
-
-                expectToEqual(result, []);
-            });
-
-            it('... if triples are empty array', () => {
-                const limit = 3;
-
-                const result = graphVisualizerService.limitTriples([], limit);
-
-                expectToEqual(result, []);
-            });
-        });
-
-        describe('should return the original Triple array', () => {
-            it('... if the Triple array length is smaller than the given limit', () => {
-                const inputWithTwoTriples: Triple[] = expectedTriples.slice(0, 2);
-                const limit = 3;
-
-                const result = graphVisualizerService.limitTriples(inputWithTwoTriples, limit);
-
-                expectToEqual(result, inputWithTwoTriples);
-            });
-
-            it('... if the Triple array length is equal with the given limit', () => {
-                const inputWithThreeTriples: Triple[] = expectedTriples.splice(0, 3);
-                const limit = 3;
-
-                const result = graphVisualizerService.limitTriples(inputWithThreeTriples, limit);
-
-                expectToEqual(result, inputWithThreeTriples);
-            });
-        });
-
-        describe('should return a limited Triple array', () => {
-            it('... if the Triple array is larger than the limit', () => {
-                const inputWithFourTriples: Triple[] = expectedTriples.slice(0, 4);
-                const outputWithTwoTriples: Triple[] = expectedTriples.slice(0, 2);
-                const outputWithThreeTriples: Triple[] = expectedTriples.splice(0, 3);
-
-                const limit = 3;
-
-                const result = graphVisualizerService.limitTriples(inputWithFourTriples, limit);
-
-                expectToEqual(result, outputWithThreeTriples);
-
-                const limit2 = 2;
-                const result2 = graphVisualizerService.limitTriples(inputWithFourTriples, limit2);
-
-                expectToEqual(result2, outputWithTwoTriples);
-            });
         });
     });
 
@@ -588,6 +329,165 @@ describe('GraphVisualizerService', () => {
         });
     });
 
+    describe('#getQuerytype()', () => {
+        it('... should have a method `getQuerytype`', () => {
+            expect(graphVisualizerService.getQuerytype).toBeDefined();
+        });
+
+        describe('should return correct querytpe', () => {
+            it('... if the query is a SELECT query (= `select`)', () => {
+                const query = 'SELECT * WHERE { ?s ?p ?o }';
+
+                const result = graphVisualizerService.getQuerytype(query);
+
+                expectToBe(result, 'select');
+            });
+
+            it('... if the query is a CONSTRUCT query (= `construct`)', () => {
+                const query = 'CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }';
+
+                const result = graphVisualizerService.getQuerytype(query);
+
+                expectToBe(result, 'construct');
+            });
+
+            it('... if the query is an ASK query (= `ask`)', () => {
+                const query = 'ASK WHERE { ?s ?p ?o }';
+
+                const result = graphVisualizerService.getQuerytype(query);
+
+                expectToBe(result, 'ask');
+            });
+
+            it('... if the query is a DESCRIBE query (= `describe`)', () => {
+                const query = 'DESCRIBE ?s WHERE { ?s ?p ?o }';
+
+                const result = graphVisualizerService.getQuerytype(query);
+
+                expectToBe(result, 'describe');
+            });
+
+            it('... if the query is a COUNT query (= `count`)', () => {
+                const query = 'COUNT ?s WHERE { ?s ?p ?o }';
+
+                const result = graphVisualizerService.getQuerytype(query);
+
+                expectToBe(result, 'count');
+            });
+
+            it('... if the query is a DELETE query (= `update`)', () => {
+                const query = 'DELETE  {?s ?p ?o } WHERE { ?s ?p ?o }';
+
+                const result = graphVisualizerService.getQuerytype(query);
+
+                expectToBe(result, 'update');
+            });
+
+            it('... if the query is an INSERT query (= `update`)', () => {
+                const query = 'INSERT { ?s ?p ?o } WHERE { ?s ?p ?o} ';
+
+                const result = graphVisualizerService.getQuerytype(query);
+
+                expectToBe(result, 'update');
+            });
+
+            it('... if the query starts with prefixes', () => {
+                const query = 'PREFIX ex: <http://example.org/> SELECT * WHERE { ?s ?p ?o }';
+
+                const result = graphVisualizerService.getQuerytype(query);
+
+                expectToBe(result, 'select');
+            });
+        });
+
+        it('... should return the first query type if the query uses multiple query types', () => {
+            const query = 'CONSTRUCT { ?s ?p ?y } WHERE { SELECT ?s ?p ( bnode() AS ?y ) WHERE { ?s ?p ?o } }';
+
+            const result = graphVisualizerService.getQuerytype(query);
+
+            expectToBe(result, 'construct');
+        });
+
+        it('... should return `null` if the query is not a SELECT, CONSTRUCT, ASK, COUNT, DESCRIBE, INSERT or DELETE query', () => {
+            const query = 'LOAD <http://example.org/graph>';
+
+            const result = graphVisualizerService.getQuerytype(query);
+
+            expectToBe(result, null);
+        });
+    });
+
+    describe('#limitTriples()', () => {
+        it('... should have a method `limitTriples`', () => {
+            expect(graphVisualizerService.limitTriples).toBeDefined();
+        });
+
+        describe('should return an empty array', () => {
+            it('... if triples are undefined', () => {
+                const limit = 3;
+
+                const result = graphVisualizerService.limitTriples(undefined, limit);
+
+                expectToEqual(result, []);
+            });
+
+            it('... if triples are null', () => {
+                const limit = 3;
+
+                const result = graphVisualizerService.limitTriples(null, limit);
+
+                expectToEqual(result, []);
+            });
+
+            it('... if triples are empty array', () => {
+                const limit = 3;
+
+                const result = graphVisualizerService.limitTriples([], limit);
+
+                expectToEqual(result, []);
+            });
+        });
+
+        describe('should return the original Triple array', () => {
+            it('... if the Triple array length is smaller than the given limit', () => {
+                const inputWithTwoTriples: Triple[] = expectedTriples.slice(0, 2);
+                const limit = 3;
+
+                const result = graphVisualizerService.limitTriples(inputWithTwoTriples, limit);
+
+                expectToEqual(result, inputWithTwoTriples);
+            });
+
+            it('... if the Triple array length is equal with the given limit', () => {
+                const inputWithThreeTriples: Triple[] = expectedTriples.splice(0, 3);
+                const limit = 3;
+
+                const result = graphVisualizerService.limitTriples(inputWithThreeTriples, limit);
+
+                expectToEqual(result, inputWithThreeTriples);
+            });
+        });
+
+        describe('should return a limited Triple array', () => {
+            it('... if the Triple array is larger than the limit', () => {
+                const inputWithFourTriples: Triple[] = expectedTriples.slice(0, 4);
+                const outputWithTwoTriples: Triple[] = expectedTriples.slice(0, 2);
+                const outputWithThreeTriples: Triple[] = expectedTriples.splice(0, 3);
+
+                const limit = 3;
+
+                const result = graphVisualizerService.limitTriples(inputWithFourTriples, limit);
+
+                expectToEqual(result, outputWithThreeTriples);
+
+                const limit2 = 2;
+                const result2 = graphVisualizerService.limitTriples(inputWithFourTriples, limit2);
+
+                expectToEqual(result2, outputWithTwoTriples);
+            });
+        });
+    });
+
     describe('#parseTripleString()', () => {
         it('... should have a method `parseTripleString`', () => {
             expect(graphVisualizerService.parseTripleString).toBeDefined();
@@ -603,11 +503,11 @@ describe('GraphVisualizerService', () => {
 
             expect(result).toBeDefined();
             expectToEqual(result.namespaces, { ex: 'http://example.org/', ex2: 'http://example2.org/' });
-            expectToBe(Array.isArray(result.triples), true);
-            expectToBe(result.triples.length, 1);
-            expectToBe(result.triples[0].subject.id, 'http://example.org/subject');
-            expectToBe(result.triples[0].predicate.id, 'http://example.org/predicate');
-            expectToBe(result.triples[0].object.id, 'http://example.org/object');
+            expectToBe(Array.isArray(result.quads), true);
+            expectToBe(result.quads.length, 1);
+            expectToBe(result.quads[0].subject.id, 'http://example.org/subject');
+            expectToBe(result.quads[0].predicate.id, 'http://example.org/predicate');
+            expectToBe(result.quads[0].object.id, 'http://example.org/object');
         });
 
         it('... should return a Promise of empty triples and namespaces for an empty triple string', async () => {
@@ -619,8 +519,8 @@ describe('GraphVisualizerService', () => {
 
             expect(result).toBeDefined();
             expectToEqual(result.namespaces, {});
-            expectToBe(Array.isArray(result.triples), true);
-            expectToBe(result.triples.length, 0);
+            expectToBe(Array.isArray(result.quads), true);
+            expectToBe(result.quads.length, 0);
         });
 
         describe('... should throw an error', () => {
@@ -650,6 +550,250 @@ describe('GraphVisualizerService', () => {
                     graphVisualizerService.parseTripleString(triplesWithSyntaxError)
                 ).toBeRejectedWithError('Undefined prefix "ex2:" on line 1.');
             });
+        });
+    });
+
+    describe('#_abbreviate()', () => {
+        it('... should have a method `_abbreviate`', () => {
+            expect((graphVisualizerService as any)._abbreviate).toBeDefined();
+        });
+
+        describe('... should return an abbreviated IRI if', () => {
+            it('... the given IRI matches a given namespace', () => {
+                const iri = 'http://example.org/subject';
+                const namespaces = { ex: 'http://example.org/' };
+                const expectedAbbreviation = 'ex:subject';
+
+                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
+
+                expectToBe(result, expectedAbbreviation);
+            });
+
+            it('... the given IRI matches one of the provided namespaces', () => {
+                const iri = 'http://example2.org/subject';
+                const namespaces = {
+                    ex: 'http://example.org/',
+                    ex2: 'http://example2.org/',
+                    ex3: 'http://example3.org/',
+                };
+                const expectedAbbreviation = 'ex2:subject';
+
+                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
+
+                expectToBe(result, expectedAbbreviation);
+            });
+
+            it('... the given IRI matches multiple namespaces (using the first matching namespace)', () => {
+                const iri = 'http://example.com/subject';
+                const namespaces = {
+                    other: 'http://other.org/subject',
+                    ex1: 'http://example.com/',
+                    ex2: 'http://example.com/',
+                    ex3: 'http://example.com/',
+                };
+                const expectedAbbreviation = 'ex1:subject';
+
+                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
+
+                expect(result).toBe(expectedAbbreviation);
+            });
+        });
+
+        describe('... should return a partially (incorrect) abbreviated IRI if', () => {
+            it('... the namespace does not have a trailing slash', () => {
+                const iri = 'http://example.org/subject';
+                const namespaces = { ex: 'http://example.org' };
+                const expectedAbbreviation = 'ex:/subject';
+
+                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
+
+                expectToBe(result, expectedAbbreviation);
+            });
+
+            it('... the namespace does not have a trailing hash', () => {
+                const iri = 'http://example.org#subject';
+                const namespaces = { ex: 'http://example.org' };
+                const expectedAbbreviation = 'ex:#subject';
+
+                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
+
+                expectToBe(result, expectedAbbreviation);
+            });
+
+            it('... the namespace matches the IRI exactly', () => {
+                const iri = 'http://example.org/';
+                const namespaces = { ex: 'http://example.org/' };
+                const expectedAbbreviation = 'ex:';
+
+                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
+
+                expectToBe(result, expectedAbbreviation);
+            });
+        });
+
+        describe('... should return the original IRI if', () => {
+            it('... the given IRI does not start with http', () => {
+                const notFullIri = 'ex:subject';
+                const namespaces = { ex: 'http://example.org/' };
+                const expectedAbbreviation = 'ex:subject';
+
+                const result = (graphVisualizerService as any)._abbreviate(notFullIri, namespaces);
+
+                expectToBe(result, expectedAbbreviation);
+            });
+
+            it('... no namespaces are provided', () => {
+                const iri = 'http://example.org/subject';
+                const namespaces = {};
+                const expectedAbbreviation = 'http://example.org/subject';
+
+                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
+
+                expectToBe(result, expectedAbbreviation);
+            });
+
+            it('... the given namespaces are undefined or null', () => {
+                const iri = 'http://example.org/subject';
+                const namespaces = undefined;
+                const expectedAbbreviation = 'http://example.org/subject';
+
+                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
+
+                expectToBe(result, expectedAbbreviation);
+
+                const namespaces2 = null;
+
+                const result2 = (graphVisualizerService as any)._abbreviate(iri, namespaces2);
+
+                expectToBe(result2, expectedAbbreviation);
+            });
+
+            it('... the given IRI does not match a given namespace', () => {
+                const notMatchingIri = 'http://other.org/subject';
+                const namespaces = { ex: 'http://example.org/' };
+                const expectedAbbreviation = 'http://other.org/subject';
+
+                const result = (graphVisualizerService as any)._abbreviate(notMatchingIri, namespaces);
+
+                expectToBe(result, expectedAbbreviation);
+            });
+
+            it('... the given IRI does not match any of the provided namespaces', () => {
+                const notMatchingIri = 'http://other.org/subject';
+                const namespaces = {
+                    ex: 'http://example.org/',
+                    ex2: 'http://example2.org/',
+                    ex3: 'http://example3.org/',
+                };
+                const expectedAbbreviation = 'http://other.org/subject';
+
+                const result = (graphVisualizerService as any)._abbreviate(notMatchingIri, namespaces);
+
+                expectToBe(result, expectedAbbreviation);
+            });
+
+            it('... the given IRI does not match a given namespace respecting case sensitivity', () => {
+                const iri = 'http://example.org/subject';
+                const namespaces = { ex: 'http://EXAMPLE.org/' };
+                const expectedAbbreviation = 'http://example.org/subject';
+
+                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
+
+                expectToBe(result, expectedAbbreviation);
+            });
+
+            it('... the given IRI only partially matches a given namespace', () => {
+                const iri = 'http://example.org#subject';
+                const namespaces = { ex: 'http://example.org/' };
+                const expectedAbbreviation = 'http://example.org#subject';
+
+                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
+
+                expectToBe(result, expectedAbbreviation);
+            });
+        });
+
+        it('... should return `undefined` if the given IRI is undefined', () => {
+            const iri = undefined;
+            const namespaces = { ex: 'http://example.org/' };
+
+            const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
+
+            expect(result).toBeUndefined();
+        });
+
+        it('... should return `null` if the given IRI is null', () => {
+            const iri = null;
+            const namespaces = { ex: 'http://example.org/' };
+
+            const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
+
+            expectToBe(result, null);
+        });
+    });
+
+    describe('#_executeQuery()', () => {
+        let store;
+
+        beforeEach(async () => {
+            store = await (graphVisualizerService as any)._createStore();
+
+            let tripleStr =
+                '@prefix ex: <http://example.org/>. @prefix ex1: <http://example1.org>. @prefix ex2: <http://example2.org>.';
+
+            for (let i = 1; i <= 2; i++) {
+                tripleStr += `<http://example.org/subject${i}> <http://example.org/predicate${i}> <http://example.org/object${i}>. `;
+            }
+
+            await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
+        });
+
+        it('... should have a method `_executeQuery`', () => {
+            expect((graphVisualizerService as any)._executeQuery).toBeDefined();
+        });
+
+        it('... should resolve a construct response for a CONSTRUCT query', async () => {
+            const query = 'CONSTRUCT WHERE { ?s ?p ?o . }';
+            const expectedQueryResult = [
+                '<http://example.org/subject1> <http://example.org/predicate1> <http://example.org/object1> .',
+                '<http://example.org/subject2> <http://example.org/predicate2> <http://example.org/object2> .',
+            ];
+
+            const result = await (graphVisualizerService as any)._executeQuery(store, query);
+
+            expectToBe(result.triples.length, 2);
+            result.triples.forEach((triple, index: number) => {
+                expectToBe(triple.toString().trim(), expectedQueryResult[index]);
+            });
+        });
+
+        it('... should resolve a select response for a SELECT query', async () => {
+            const query = 'SELECT * WHERE { ?s ?p ?o . }';
+            const expectedQueryResult = [
+                {
+                    s: { token: 'uri', value: 'http://example.org/subject1' },
+                    p: { token: 'uri', value: 'http://example.org/predicate1' },
+                    o: { token: 'uri', value: 'http://example.org/object1' },
+                },
+                {
+                    s: { token: 'uri', value: 'http://example.org/subject2' },
+                    p: { token: 'uri', value: 'http://example.org/predicate2' },
+                    o: { token: 'uri', value: 'http://example.org/object2' },
+                },
+            ];
+
+            const result = await (graphVisualizerService as any)._executeQuery(store, query);
+
+            expectToBe(result.length, 2);
+            result.forEach((triple, index: number) => {
+                expectToEqual(triple, expectedQueryResult[index]);
+            });
+        });
+
+        it('... should reject if query is empty', async () => {
+            const emptyQuery = '';
+
+            await expectAsync((graphVisualizerService as any)._executeQuery(store, emptyQuery)).toBeRejected();
         });
     });
 
@@ -790,83 +934,13 @@ describe('GraphVisualizerService', () => {
         });
     });
 
-    describe('#_getNamespaces()', () => {
-        it('... should have a method `_getNamespaces`', () => {
-            expect((graphVisualizerService as any)._getNamespaces).toBeDefined();
-        });
-
-        it('... should get a single namespace from a triple string', async () => {
-            const tripleStr =
-                '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
-            const expectedNamespaces = { ex: 'http://example.org/' };
-
-            const result = await (graphVisualizerService as any)._getNamespaces(tripleStr);
-
-            expectToEqual(result, expectedNamespaces);
-        });
-
-        it('... should get multiple namespaces from a triple string', async () => {
-            const tripleStr =
-                '@prefix ex: <http://example.org/>. @prefix ex2: <http://example2.org>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
-            const expectedNamespaces = { ex: 'http://example.org/', ex2: 'http://example2.org' };
-
-            const result = await (graphVisualizerService as any)._getNamespaces(tripleStr);
-
-            expectToEqual(result, expectedNamespaces);
-        });
-
-        describe('... should return an empty object if ', () => {
-            it('... triple string is empty', async () => {
-                const tripleStr = '';
-                const expectedNamespaces = {};
-
-                const result = await (graphVisualizerService as any)._getNamespaces(tripleStr);
-
-                expectToEqual(result, expectedNamespaces);
-            });
-
-            it('... triple string has no prefixes', async () => {
-                const tripleStr =
-                    '<http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
-                const expectedNamespaces = {};
-
-                const result = await (graphVisualizerService as any)._getNamespaces(tripleStr);
-
-                expectToEqual(result, expectedNamespaces);
-            });
-        });
-
-        describe('... should reject and throw an error', () => {
-            it('... for missing dots', async () => {
-                const triplesWithSyntaxError =
-                    '@prefix ex: <http://example.org/>  @prefix ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
-
-                await expectAsync(
-                    (graphVisualizerService as any)._getNamespaces(triplesWithSyntaxError)
-                ).toBeRejectedWithError('Expected declaration to end with a dot on line 1.');
-            });
-
-            it('... for missing @', async () => {
-                const triplesWithSyntaxError =
-                    'prefix ex: <http://example.org/>. @prefix ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
-
-                await expectAsync(
-                    (graphVisualizerService as any)._getNamespaces(triplesWithSyntaxError)
-                ).toBeRejectedWithError('Expected entity but got . on line 1.');
-            });
-
-            it('... for missing prefix marker', async () => {
-                const triplesWithSyntaxError =
-                    '@prefix ex: <http://example.org/>. ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
-
-                await expectAsync(
-                    (graphVisualizerService as any)._getNamespaces(triplesWithSyntaxError)
-                ).toBeRejectedWithError('Undefined prefix "ex2:" on line 1.');
-            });
-        });
-    });
-
     describe('#_loadTriplesInStore()', () => {
+        let store;
+
+        beforeEach(async () => {
+            store = await (graphVisualizerService as any)._createStore();
+        });
+
         it('... should have a method `_loadTriplesInStore`', () => {
             expect((graphVisualizerService as any)._loadTriplesInStore).toBeDefined();
         });
@@ -876,7 +950,6 @@ describe('GraphVisualizerService', () => {
                 '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
             const expectedSize = 1;
 
-            const store = await (graphVisualizerService as any)._createStore();
             const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
 
             expectToBe(size, expectedSize);
@@ -889,7 +962,6 @@ describe('GraphVisualizerService', () => {
                 '<http://example.org/subject3> <http://example.org/predicate3> <http://example.org/object3>.';
             const expectedSize = 3;
 
-            const store = await (graphVisualizerService as any)._createStore();
             const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
 
             expectToBe(size, expectedSize);
@@ -903,7 +975,6 @@ describe('GraphVisualizerService', () => {
                 tripleStr += `<http://example.org/subject${i}> <http://example.org/predicate${i}> <http://example.org/object${i}>. `;
             }
 
-            const store = await (graphVisualizerService as any)._createStore();
             const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
 
             expectToBe(size, expectedSize);
@@ -916,7 +987,6 @@ describe('GraphVisualizerService', () => {
                 'ex:subject2 ex:predicate2 ex:object2.';
             const expectedSize = 2;
 
-            const store = await (graphVisualizerService as any)._createStore();
             const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
 
             expectToBe(size, expectedSize);
@@ -926,7 +996,6 @@ describe('GraphVisualizerService', () => {
             const tripleStr = '<subject> <predicate> <object>.';
             const expectedSize = 1;
 
-            const store = await (graphVisualizerService as any)._createStore();
             const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
 
             expectToBe(size, expectedSize);
@@ -936,7 +1005,6 @@ describe('GraphVisualizerService', () => {
             const tripleStr = '@prefix ex: <http://example.org/>. ex:subject ex:predicate ex:object.';
             const expectedSize = 1;
 
-            const store = await (graphVisualizerService as any)._createStore();
             const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
 
             expectToBe(size, expectedSize);
@@ -947,7 +1015,6 @@ describe('GraphVisualizerService', () => {
             const mimeType = 'text/turtle';
             const expectedSize = 1;
 
-            const store = await (graphVisualizerService as any)._createStore();
             const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr, mimeType);
 
             expectToBe(size, expectedSize);
@@ -959,7 +1026,6 @@ describe('GraphVisualizerService', () => {
             const mimeType = 'application/ld+json';
             const expectedSize = 1;
 
-            const store = await (graphVisualizerService as any)._createStore();
             const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr, mimeType);
 
             expectToBe(size, expectedSize);
@@ -971,13 +1037,11 @@ describe('GraphVisualizerService', () => {
             const expectedErrorMessage = `Cannot find parser for the provided media type:${mimeType}`;
             const expectedError = new Error(expectedErrorMessage);
 
-            const store = await (graphVisualizerService as any)._createStore();
-
             await expectAsync(
                 (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr, mimeType)
             ).toBeRejectedWithError(expectedErrorMessage);
 
-            expectSpyCall(consoleSpy, 1, ['_loadTriplesInStore# got error', expectedError]);
+            expectSpyCall(consoleSpy, 1, ['_loadTriplesInStore# got ERROR', expectedError]);
         });
     });
 
@@ -1257,6 +1321,201 @@ describe('GraphVisualizerService', () => {
             (graphVisualizerService as any)._prepareMappedBindings(selectResponse);
 
             expectSpyCall(mapKeysSpy, 2);
+        });
+    });
+
+    describe('#_prepareConstructResponse()', () => {
+        it('... should have a method `_prepareConstructResponse`', () => {
+            expect(graphVisualizerService._prepareConstructResponse).toBeDefined();
+        });
+
+        describe('should flatten and abbreviate the given StoreTriples', () => {
+            it('... according to the given namespaces', () => {
+                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
+                const namespaces = {
+                    ex: 'http://example.org/',
+                    exs: 'https://example.org/',
+                };
+
+                const result = graphVisualizerService._prepareConstructResponse(triples, namespaces);
+
+                expectToBe(result[0].subject, 'ex:subject1');
+                expectToBe(result[0].predicate, 'ex:predicate1');
+                expectToBe(result[0].object, 'ex:object1');
+
+                expectToBe(result[1].subject, 'exs:subject2');
+                expectToBe(result[1].predicate, 'exs:predicate2');
+                expectToBe(result[1].object, 'exs:object2');
+
+                expectToEqual(result, [
+                    {
+                        subject: 'ex:subject1',
+                        predicate: 'ex:predicate1',
+                        object: 'ex:object1',
+                    },
+                    {
+                        subject: 'exs:subject2',
+                        predicate: 'exs:predicate2',
+                        object: 'exs:object2',
+                    },
+                ]);
+            });
+
+            it('... if mimetype `text/turtle` is given', () => {
+                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
+                const namespaces = {
+                    ex: 'http://example.org/',
+                    exs: 'https://example.org/',
+                };
+                const mimetypeTurtle = 'text/turtle';
+
+                const result = graphVisualizerService._prepareConstructResponse(triples, namespaces, mimetypeTurtle);
+
+                expectToBe(result[0].subject, 'ex:subject1');
+                expectToBe(result[0].predicate, 'ex:predicate1');
+                expectToBe(result[0].object, 'ex:object1');
+
+                expectToBe(result[1].subject, 'exs:subject2');
+                expectToBe(result[1].predicate, 'exs:predicate2');
+                expectToBe(result[1].object, 'exs:object2');
+
+                expectToEqual(result, [
+                    {
+                        subject: 'ex:subject1',
+                        predicate: 'ex:predicate1',
+                        object: 'ex:object1',
+                    },
+                    {
+                        subject: 'exs:subject2',
+                        predicate: 'exs:predicate2',
+                        object: 'exs:object2',
+                    },
+                ]);
+            });
+
+            it('... if no mimetype is given (`text/turtle` applied by default)', () => {
+                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
+                const namespaces = {
+                    ex: 'http://example.org/',
+                    exs: 'https://example.org/',
+                };
+                const mimetypeEmpty = '';
+
+                const result = graphVisualizerService._prepareConstructResponse(triples, namespaces, mimetypeEmpty);
+
+                expectToBe(result[0].subject, 'ex:subject1');
+                expectToBe(result[0].predicate, 'ex:predicate1');
+                expectToBe(result[0].object, 'ex:object1');
+
+                expectToBe(result[1].subject, 'exs:subject2');
+                expectToBe(result[1].predicate, 'exs:predicate2');
+                expectToBe(result[1].object, 'exs:object2');
+
+                expectToEqual(result, [
+                    {
+                        subject: 'ex:subject1',
+                        predicate: 'ex:predicate1',
+                        object: 'ex:object1',
+                    },
+                    {
+                        subject: 'exs:subject2',
+                        predicate: 'exs:predicate2',
+                        object: 'exs:object2',
+                    },
+                ]);
+            });
+        });
+
+        describe('should flatten, but not abbreviate the given StoreTriples', () => {
+            it('... if no namespaces are provided', () => {
+                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
+                const namespaces = {};
+
+                const result = graphVisualizerService._prepareConstructResponse(triples, namespaces);
+
+                expectToBe(result[0].subject, 'http://example.org/subject1');
+                expectToBe(result[0].predicate, 'http://example.org/predicate1');
+                expectToBe(result[0].object, 'http://example.org/object1');
+
+                expectToBe(result[1].subject, 'https://example.org/subject2');
+                expectToBe(result[1].predicate, 'https://example.org/predicate2');
+                expectToBe(result[1].object, 'https://example.org/object2');
+
+                expectToEqual(result, [
+                    {
+                        subject: 'http://example.org/subject1',
+                        predicate: 'http://example.org/predicate1',
+                        object: 'http://example.org/object1',
+                    },
+                    {
+                        subject: 'https://example.org/subject2',
+                        predicate: 'https://example.org/predicate2',
+                        object: 'https://example.org/object2',
+                    },
+                ]);
+            });
+
+            it('... if namespaces do not match the IRIs', () => {
+                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
+                const namespaces = {
+                    ot: 'http://other.org/',
+                };
+
+                const result = graphVisualizerService._prepareConstructResponse(triples, namespaces);
+
+                expectToBe(result[0].subject, 'http://example.org/subject1');
+                expectToBe(result[0].predicate, 'http://example.org/predicate1');
+                expectToBe(result[0].object, 'http://example.org/object1');
+
+                expectToBe(result[1].subject, 'https://example.org/subject2');
+                expectToBe(result[1].predicate, 'https://example.org/predicate2');
+                expectToBe(result[1].object, 'https://example.org/object2');
+
+                expectToEqual(result, [
+                    {
+                        subject: 'http://example.org/subject1',
+                        predicate: 'http://example.org/predicate1',
+                        object: 'http://example.org/object1',
+                    },
+                    {
+                        subject: 'https://example.org/subject2',
+                        predicate: 'https://example.org/predicate2',
+                        object: 'https://example.org/object2',
+                    },
+                ]);
+            });
+
+            it('... if a given mimetype is not `text/turtle`', () => {
+                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
+                const namespaces = {
+                    ex: 'http://example.org/',
+                    exs: 'https://example.org/',
+                };
+                const mimetypePlain = 'text/plain';
+
+                const result = graphVisualizerService._prepareConstructResponse(triples, namespaces, mimetypePlain);
+
+                expectToBe(result[0].subject, 'http://example.org/subject1');
+                expectToBe(result[0].predicate, 'http://example.org/predicate1');
+                expectToBe(result[0].object, 'http://example.org/object1');
+
+                expectToBe(result[1].subject, 'https://example.org/subject2');
+                expectToBe(result[1].predicate, 'https://example.org/predicate2');
+                expectToBe(result[1].object, 'https://example.org/object2');
+
+                expectToEqual(result, [
+                    {
+                        subject: 'http://example.org/subject1',
+                        predicate: 'http://example.org/predicate1',
+                        object: 'http://example.org/object1',
+                    },
+                    {
+                        subject: 'https://example.org/subject2',
+                        predicate: 'https://example.org/predicate2',
+                        object: 'https://example.org/object2',
+                    },
+                ]);
+            });
         });
     });
 

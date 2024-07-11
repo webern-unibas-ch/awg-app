@@ -51,37 +51,6 @@ export class GraphVisualizerService {
     constructor(private prefixPipe: PrefixPipe) {}
 
     /**
-     * Public method: abbreviateTriples.
-     *
-     * It abbreviates the given triples according to the given namespaces.
-     *
-     * @param {RDFStoreConstructResponseTriple[]} storeTriples The given triples from the rdf construct response.
-     * @param {string} namespaces The given namespaces.
-     * @param {string} [mimeType] The given optional mimeType.
-     *
-     * @returns {Triple[]} The array of abbreviated triples.
-     */
-    abbreviateTriples(
-        storeTriples: RDFStoreConstructResponseTriple[],
-        namespaces: Namespace,
-        mimeType?: string
-    ): Triple[] {
-        return storeTriples.map((storeTriple: RDFStoreConstructResponseTriple) => {
-            let s: string = storeTriple.subject.nominalValue;
-            let p: string = storeTriple.predicate.nominalValue;
-            let o: string = storeTriple.object.nominalValue;
-
-            // Abbreviate turtle format (default if mimeType is not set)
-            if (!mimeType || mimeType === 'text/turtle') {
-                s = this._abbreviate(s, namespaces) ?? s;
-                p = this._abbreviate(p, namespaces) ?? p;
-                o = this._abbreviate(o, namespaces) ?? o;
-            }
-            return { subject: s, predicate: p, object: o };
-        });
-    }
-
-    /**
      * Public method: checkNamespacesInQuery.
      *
      * It checks the existing namespaces and prefixes in a SPARQL query
@@ -160,7 +129,7 @@ export class GraphVisualizerService {
                 if (queryType === 'construct') {
                     const response = res as RDFStoreConstructResponse;
                     const namespaces = this._extractNamespacesFromString(NamespaceType.TURTLE, ttlString);
-                    const constructResponse = this.abbreviateTriples(response.triples, namespaces, mimeType);
+                    const constructResponse = this._prepareConstructResponse(response.triples, namespaces, mimeType);
                     return constructResponse;
                 }
 
@@ -254,13 +223,13 @@ export class GraphVisualizerService {
      * @returns {string} The abbreviated or original iri string.
      */
     private _abbreviate(iri: string, namespaces: Namespace): string {
-        if (!iri.startsWith('http')) {
+        if (!iri?.startsWith('http') || !namespaces) {
             return iri;
         }
 
-        for (const [key, value] of Object.entries(namespaces)) {
-            if (iri.includes(value)) {
-                return iri.replace(value, key + ':');
+        for (const [namespaceKey, namespaceValue] of Object.entries(namespaces)) {
+            if (iri.includes(namespaceValue)) {
+                return iri.replace(namespaceValue, namespaceKey + ':');
             }
         }
 
@@ -385,7 +354,7 @@ export class GraphVisualizerService {
         return new Promise((resolve, reject) => {
             store.load(mimeType, triples, (err, size: number) => {
                 if (err) {
-                    console.error('_loadTriplesInStore# got error', err);
+                    console.error('_loadTriplesInStore# got ERROR', err);
                     reject(err);
                 }
                 resolve(size);
@@ -453,6 +422,44 @@ export class GraphVisualizerService {
                         : this.prefixPipe.transform(value, PrefixForm.SHORT);
             });
             return newItem;
+        });
+    }
+
+    /**
+     * Private method: _prepareConstructResponse.
+     *
+     * It prepares the triples of the construct response.
+     *
+     * @param {RDFStoreConstructResponseTriple[]} storeTriples The given triples from the rdf construct response.
+     * @param {string} namespaces The given namespaces.
+     * @param {string} [mimeType] The given optional mimeType.
+     *
+     * @returns {Triple[]} The array of abbreviated triples.
+     */
+    private _prepareConstructResponse(
+        storeTriples: RDFStoreConstructResponseTriple[],
+        namespaces: Namespace,
+        mimeType?: string
+    ): Triple[] {
+        const shouldAbbreviate = !mimeType || mimeType === 'text/turtle';
+
+        return storeTriples.map((storeTriple: RDFStoreConstructResponseTriple) => {
+            let {
+                subject: s,
+                predicate: p,
+                object: o,
+            } = {
+                subject: storeTriple.subject.nominalValue,
+                predicate: storeTriple.predicate.nominalValue,
+                object: storeTriple.object.nominalValue,
+            };
+
+            if (shouldAbbreviate) {
+                s = this._abbreviate(s, namespaces);
+                p = this._abbreviate(p, namespaces);
+                o = this._abbreviate(o, namespaces);
+            }
+            return { subject: s, predicate: p, object: o };
         });
     }
 
