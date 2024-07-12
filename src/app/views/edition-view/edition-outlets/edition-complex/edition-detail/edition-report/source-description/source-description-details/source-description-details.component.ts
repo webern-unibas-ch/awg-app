@@ -1,5 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
+/**
+ * The SourceDescriptionDetails component.
+ *
+ * It contains the source description details section
+ * of the critical report
+ * of the edition view of the app.
+ */
 @Component({
     selector: 'awg-source-description-details',
     templateUrl: './source-description-details.component.html',
