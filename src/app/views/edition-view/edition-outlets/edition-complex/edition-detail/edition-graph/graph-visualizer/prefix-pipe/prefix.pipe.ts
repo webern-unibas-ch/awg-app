@@ -40,7 +40,7 @@ export class PrefixPipe implements PipeTransform {
             case PrefixForm.LONG: {
                 this.defaultPrefixes.forEach((p: Prefix) => {
                     if (value.indexOf(p.prefixName) !== -1) {
-                        transformedValue = value.replace(p.prefixName + ':', p.prefixIri);
+                        transformedValue = value.replace(p.prefixName, p.prefixIri);
                     }
                 });
                 break;
