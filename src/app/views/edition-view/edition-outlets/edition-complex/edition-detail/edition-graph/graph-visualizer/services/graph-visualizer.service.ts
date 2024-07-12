@@ -110,7 +110,7 @@ export class GraphVisualizerService {
             mimeType = 'text/turtle';
         }
 
-        return this._createStore()
+        return this._createStore(rdfstore)
             .then(store => {
                 this._store = store;
 
@@ -239,17 +239,19 @@ export class GraphVisualizerService {
     /**
      * Private method: _createStore.
      *
-     * It creates an instance of the triple store.
+     * It creates an instance of the rdfstore.
      *
-     * @returns {Promise<any>} A promise of the triple store instance.
+     * @param {typeof rdfstore} store The given rdfstore.
+     *
+     * @returns {Promise<any>} A promise of the rdfstore instance.
      */
-    private _createStore(): Promise<any> {
+    private _createStore(store: typeof rdfstore): Promise<any> {
         return new Promise((resolve, reject) => {
-            rdfstore.create((err, store) => {
+            store.create((err, createdStore) => {
                 if (err) {
                     reject(err);
                 }
-                resolve(store);
+                resolve(createdStore);
             });
         });
     }

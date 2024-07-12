@@ -170,6 +170,7 @@ describe('GraphVisualizerService', () => {
             await graphVisualizerService.doQuery(queryType, queryStr, tripleStr);
 
             expect((graphVisualizerService as any)._store).toBeDefined();
+            expectToEqual((graphVisualizerService as any)._store.constructor.name, 'Store');
         });
 
         describe('should perform a given query with a given turtle string against the rdfstore', () => {
@@ -732,11 +733,45 @@ describe('GraphVisualizerService', () => {
         });
     });
 
+    describe('#_createStore()', () => {
+        it('... should have a method `_createStore`', () => {
+            expect((graphVisualizerService as any)._createStore).toBeDefined();
+        });
+
+        it('... should return a Promise of an rdfstore instance', async () => {
+            await expectAsync((graphVisualizerService as any)._createStore(global.rdfstore)).toBeResolved();
+        });
+
+        it('... should return a Promise of an rdfstore instance with load and execute methods', async () => {
+            const result = await (graphVisualizerService as any)._createStore(global.rdfstore);
+
+            expect(result).toBeDefined();
+            expectToBe(result.constructor.name, 'Store');
+            expect(result.load).toBeDefined();
+            expect(result.execute).toBeDefined();
+        });
+
+        it('... should reject if store.create encounters an error', async () => {
+            const expectedError = new Error('Test error');
+            const mockStore = {
+                create: callback => {
+                    callback(expectedError, null);
+                },
+            };
+
+            const storeSpy = spyOn(mockStore, 'create').and.callThrough();
+
+            await expectAsync((graphVisualizerService as any)._createStore(mockStore)).toBeRejectedWith(expectedError);
+
+            expectSpyCall(storeSpy, 1, [jasmine.any(Function)]);
+        });
+    });
+
     describe('#_executeQuery()', () => {
         let store;
 
         beforeEach(async () => {
-            store = await (graphVisualizerService as any)._createStore();
+            store = await (graphVisualizerService as any)._createStore(global.rdfstore);
 
             let tripleStr =
                 '@prefix ex: <http://example.org/>. @prefix ex1: <http://example1.org>. @prefix ex2: <http://example2.org>.';
@@ -794,6 +829,26 @@ describe('GraphVisualizerService', () => {
             const emptyQuery = '';
 
             await expectAsync((graphVisualizerService as any)._executeQuery(store, emptyQuery)).toBeRejected();
+        });
+
+        it('... should reject and throw/log an error if store.execute encounters an error', async () => {
+            const expectedError = new Error('Test error');
+            const mockStore = {
+                execute: (query, callback) => {
+                    callback(expectedError, null);
+                },
+            };
+
+            const storeSpy = spyOn(mockStore, 'execute').and.callThrough();
+
+            const testQuery = 'SELECT * WHERE { ?s ?p ?o }';
+
+            await expectAsync((graphVisualizerService as any)._executeQuery(mockStore, testQuery)).toBeRejectedWith(
+                expectedError
+            );
+
+            expectSpyCall(storeSpy, 1, [testQuery, jasmine.any(Function)]);
+            expectSpyCall(consoleSpy, 1, ['_executeQuery# got ERROR', expectedError]);
         });
     });
 
@@ -938,7 +993,7 @@ describe('GraphVisualizerService', () => {
         let store;
 
         beforeEach(async () => {
-            store = await (graphVisualizerService as any)._createStore();
+            store = await (graphVisualizerService as any)._createStore(global.rdfstore);
         });
 
         it('... should have a method `_loadTriplesInStore`', () => {
@@ -1326,7 +1381,7 @@ describe('GraphVisualizerService', () => {
 
     describe('#_prepareConstructResponse()', () => {
         it('... should have a method `_prepareConstructResponse`', () => {
-            expect(graphVisualizerService._prepareConstructResponse).toBeDefined();
+            expect((graphVisualizerService as any)._prepareConstructResponse).toBeDefined();
         });
 
         describe('should flatten and abbreviate the given StoreTriples', () => {
@@ -1337,7 +1392,7 @@ describe('GraphVisualizerService', () => {
                     exs: 'https://example.org/',
                 };
 
-                const result = graphVisualizerService._prepareConstructResponse(triples, namespaces);
+                const result = (graphVisualizerService as any)._prepareConstructResponse(triples, namespaces);
 
                 expectToBe(result[0].subject, 'ex:subject1');
                 expectToBe(result[0].predicate, 'ex:predicate1');
@@ -1369,7 +1424,11 @@ describe('GraphVisualizerService', () => {
                 };
                 const mimetypeTurtle = 'text/turtle';
 
-                const result = graphVisualizerService._prepareConstructResponse(triples, namespaces, mimetypeTurtle);
+                const result = (graphVisualizerService as any)._prepareConstructResponse(
+                    triples,
+                    namespaces,
+                    mimetypeTurtle
+                );
 
                 expectToBe(result[0].subject, 'ex:subject1');
                 expectToBe(result[0].predicate, 'ex:predicate1');
@@ -1401,7 +1460,11 @@ describe('GraphVisualizerService', () => {
                 };
                 const mimetypeEmpty = '';
 
-                const result = graphVisualizerService._prepareConstructResponse(triples, namespaces, mimetypeEmpty);
+                const result = (graphVisualizerService as any)._prepareConstructResponse(
+                    triples,
+                    namespaces,
+                    mimetypeEmpty
+                );
 
                 expectToBe(result[0].subject, 'ex:subject1');
                 expectToBe(result[0].predicate, 'ex:predicate1');
@@ -1424,6 +1487,23 @@ describe('GraphVisualizerService', () => {
                     },
                 ]);
             });
+
+            it('... should trigger `_abbreviate` method for each part of a triple', () => {
+                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
+                const namespaces = {
+                    ex: 'http://example.org/',
+                    exs: 'https://example.org/',
+                };
+                const abbreviateSpy = spyOn(graphVisualizerService as any, '_abbreviate').and.callThrough();
+
+                (graphVisualizerService as any)._prepareConstructResponse(triples, namespaces);
+
+                const tripleLength = triples.length;
+                const tripleKeysLength = Object.keys(triples[0]).length;
+                const expectedCalls = tripleLength * tripleKeysLength;
+
+                expectSpyCall(abbreviateSpy, expectedCalls);
+            });
         });
 
         describe('should flatten, but not abbreviate the given StoreTriples', () => {
@@ -1431,7 +1511,7 @@ describe('GraphVisualizerService', () => {
                 const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
                 const namespaces = {};
 
-                const result = graphVisualizerService._prepareConstructResponse(triples, namespaces);
+                const result = (graphVisualizerService as any)._prepareConstructResponse(triples, namespaces);
 
                 expectToBe(result[0].subject, 'http://example.org/subject1');
                 expectToBe(result[0].predicate, 'http://example.org/predicate1');
@@ -1461,7 +1541,7 @@ describe('GraphVisualizerService', () => {
                     ot: 'http://other.org/',
                 };
 
-                const result = graphVisualizerService._prepareConstructResponse(triples, namespaces);
+                const result = (graphVisualizerService as any)._prepareConstructResponse(triples, namespaces);
 
                 expectToBe(result[0].subject, 'http://example.org/subject1');
                 expectToBe(result[0].predicate, 'http://example.org/predicate1');
@@ -1493,7 +1573,11 @@ describe('GraphVisualizerService', () => {
                 };
                 const mimetypePlain = 'text/plain';
 
-                const result = graphVisualizerService._prepareConstructResponse(triples, namespaces, mimetypePlain);
+                const result = (graphVisualizerService as any)._prepareConstructResponse(
+                    triples,
+                    namespaces,
+                    mimetypePlain
+                );
 
                 expectToBe(result[0].subject, 'http://example.org/subject1');
                 expectToBe(result[0].predicate, 'http://example.org/predicate1');
