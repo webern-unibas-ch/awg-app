@@ -1654,9 +1654,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/QueryResultHead.html" data-type="entity-link" >QueryResultHead</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/QueryTypeIndex.html" data-type="entity-link" >QueryTypeIndex</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/RDFStoreConstructResponse.html" data-type="entity-link" >RDFStoreConstructResponse</a>
                             </li>
                             <li class="link">

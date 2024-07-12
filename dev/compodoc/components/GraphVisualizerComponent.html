@@ -539,7 +539,7 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
 
                         </div>
                             <div class="io-description">
-                                <p>The result of the query as an promise of triple array.</p>
+                                <p>The result of the query as a promise of triple array.</p>
 
                             </div>
                 </td>
@@ -1420,7 +1420,7 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * @returns {void} Logs the click event.
      */
-    onGraphNodeClick(node: D3SimulationNode) {
+    onGraphNodeClick(node: D3SimulationNode): void {
         if (!node) {
             return;
         }
@@ -1482,7 +1482,7 @@ export class GraphVisualizerComponent implements OnInit {
      * @param {string} queryString The given queryString.
      * @param {string} triples THe given triples.
      *
-     * @returns {Promise&lt;Triple[]&gt;} The result of the query as an promise of triple array.
+     * @returns {Promise&lt;Triple[]&gt;} The result of the query as a promise of triple array.
      */
     private async _queryLocalStore(queryType: string, queryString: string, triples: string): Promise&lt;Triple[]&gt; {
         // Capture start time of query
