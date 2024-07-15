@@ -17,7 +17,7 @@ describe('PrefixPipe', () => {
 
         it('... should transform the short form of a known default RDF prefix into its long form', () => {
             const pipe = new PrefixPipe();
-            const shortForm = 'rdf:';
+            const shortForm = 'rdf';
             const longForm = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
 
             const transformedValue = pipe.transform(shortForm, PrefixForm.LONG);
