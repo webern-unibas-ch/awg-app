@@ -42,7 +42,7 @@
         },
         {
             "siglum": "E",
-            "siglumAddendum": "F1–2",
+            "siglumAddendum": "F1–F2",
             "missing": true,
             "type": "Fotokopien von <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>.",
             "location": "Verschollen.",
