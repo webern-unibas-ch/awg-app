@@ -24,103 +24,103 @@
 <title>cluster_SideInfoModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-195 1154,-195 1154,-70 8,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_SideInfoModule_declarations</title>
-<polygon fill="none" stroke="black" points="309,-78 309,-130 1146,-130 1146,-78 309,-78"/>
-</g>
 <g id="clust8" class="cluster">
 <title>cluster_SideInfoModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 301,-130 301,-78 16,-78"/>
+<polygon fill="none" stroke="black" points="861,-78 861,-130 1146,-130 1146,-78 861,-78"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_SideInfoModule_declarations</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 853,-130 853,-78 16,-78"/>
 </g>
 <!-- ContactInfoComponent -->
 <g id="node1" class="node">
 <title>ContactInfoComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="1138.2,-122 989.8,-122 989.8,-86 1138.2,-86 1138.2,-122"/>
-<text text-anchor="middle" x="1064" y="-99.8" font-family="Times,serif" font-size="14.00">ContactInfoComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="845.2,-122 696.8,-122 696.8,-86 845.2,-86 845.2,-122"/>
+<text text-anchor="middle" x="771" y="-99.8" font-family="Times,serif" font-size="14.00">ContactInfoComponent</text>
 </g>
 <!-- SideInfoModule -->
 <g id="node6" class="node">
 <title>SideInfoModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="615.76,-187 612.76,-191 591.76,-191 588.76,-187 508.24,-187 508.24,-151 615.76,-151 615.76,-187"/>
-<text text-anchor="middle" x="562" y="-164.8" font-family="Times,serif" font-size="14.00">SideInfoModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="659.76,-187 656.76,-191 635.76,-191 632.76,-187 552.24,-187 552.24,-151 659.76,-151 659.76,-187"/>
+<text text-anchor="middle" x="606" y="-164.8" font-family="Times,serif" font-size="14.00">SideInfoModule</text>
 </g>
 <!-- ContactInfoComponent&#45;&gt;SideInfoModule -->
 <g id="edge1" class="edge">
 <title>ContactInfoComponent&#45;&gt;SideInfoModule</title>
-<path fill="none" stroke="black" d="M1064,-122.29C1064,-144.21 1064,-178 1064,-178 1064,-178 626.2,-178 626.2,-178"/>
-<polygon fill="black" stroke="black" points="626.2,-174.5 616.2,-178 626.2,-181.5 626.2,-174.5"/>
+<path fill="none" stroke="black" d="M771,-122.03C771,-138.4 771,-160 771,-160 771,-160 670.03,-160 670.03,-160"/>
+<polygon fill="black" stroke="black" points="670.03,-156.5 660.03,-160 670.03,-163.5 670.03,-156.5"/>
 </g>
 <!-- EditionInfoComponent -->
 <g id="node2" class="node">
 <title>EditionInfoComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="971.88,-122 826.12,-122 826.12,-86 971.88,-86 971.88,-122"/>
-<text text-anchor="middle" x="899" y="-99.8" font-family="Times,serif" font-size="14.00">EditionInfoComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="678.88,-122 533.12,-122 533.12,-86 678.88,-86 678.88,-122"/>
+<text text-anchor="middle" x="606" y="-99.8" font-family="Times,serif" font-size="14.00">EditionInfoComponent</text>
 </g>
 <!-- EditionInfoComponent&#45;&gt;SideInfoModule -->
 <g id="edge2" class="edge">
 <title>EditionInfoComponent&#45;&gt;SideInfoModule</title>
-<path fill="none" stroke="black" d="M899,-122.11C899,-141.34 899,-169 899,-169 899,-169 625.77,-169 625.77,-169"/>
-<polygon fill="black" stroke="black" points="625.77,-165.5 615.77,-169 625.77,-172.5 625.77,-165.5"/>
+<path fill="none" stroke="black" d="M606,-122.11C606,-122.11 606,-140.99 606,-140.99"/>
+<polygon fill="black" stroke="black" points="602.5,-140.99 606,-150.99 609.5,-140.99 602.5,-140.99"/>
 </g>
 <!-- ResourceInfoComponent -->
 <g id="node3" class="node">
 <title>ResourceInfoComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="808.24,-122 651.76,-122 651.76,-86 808.24,-86 808.24,-122"/>
-<text text-anchor="middle" x="730" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceInfoComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="515.24,-122 358.76,-122 358.76,-86 515.24,-86 515.24,-122"/>
+<text text-anchor="middle" x="437" y="-99.8" font-family="Times,serif" font-size="14.00">ResourceInfoComponent</text>
 </g>
 <!-- ResourceInfoComponent&#45;&gt;SideInfoModule -->
 <g id="edge3" class="edge">
 <title>ResourceInfoComponent&#45;&gt;SideInfoModule</title>
-<path fill="none" stroke="black" d="M730,-122.03C730,-138.4 730,-160 730,-160 730,-160 626.08,-160 626.08,-160"/>
-<polygon fill="black" stroke="black" points="626.08,-156.5 616.08,-160 626.08,-163.5 626.08,-156.5"/>
+<path fill="none" stroke="black" d="M437,-122.03C437,-138.4 437,-160 437,-160 437,-160 542.06,-160 542.06,-160"/>
+<polygon fill="black" stroke="black" points="542.06,-163.5 552.06,-160 542.06,-156.5 542.06,-163.5"/>
 </g>
 <!-- SearchInfoComponent -->
 <g id="node4" class="node">
 <title>SearchInfoComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="633.24,-122 490.76,-122 490.76,-86 633.24,-86 633.24,-122"/>
-<text text-anchor="middle" x="562" y="-99.8" font-family="Times,serif" font-size="14.00">SearchInfoComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="340.24,-122 197.76,-122 197.76,-86 340.24,-86 340.24,-122"/>
+<text text-anchor="middle" x="269" y="-99.8" font-family="Times,serif" font-size="14.00">SearchInfoComponent</text>
 </g>
 <!-- SearchInfoComponent&#45;&gt;SideInfoModule -->
 <g id="edge4" class="edge">
 <title>SearchInfoComponent&#45;&gt;SideInfoModule</title>
-<path fill="none" stroke="black" d="M562,-122.11C562,-122.11 562,-140.99 562,-140.99"/>
-<polygon fill="black" stroke="black" points="558.5,-140.99 562,-150.99 565.5,-140.99 558.5,-140.99"/>
+<path fill="none" stroke="black" d="M269,-122.11C269,-141.34 269,-169 269,-169 269,-169 542.23,-169 542.23,-169"/>
+<polygon fill="black" stroke="black" points="542.23,-172.5 552.23,-169 542.23,-165.5 542.23,-172.5"/>
 </g>
 <!-- StructureInfoComponent -->
 <g id="node5" class="node">
 <title>StructureInfoComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="472.97,-122 317.03,-122 317.03,-86 472.97,-86 472.97,-122"/>
-<text text-anchor="middle" x="395" y="-99.8" font-family="Times,serif" font-size="14.00">StructureInfoComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="179.97,-122 24.03,-122 24.03,-86 179.97,-86 179.97,-122"/>
+<text text-anchor="middle" x="102" y="-99.8" font-family="Times,serif" font-size="14.00">StructureInfoComponent</text>
 </g>
 <!-- StructureInfoComponent&#45;&gt;SideInfoModule -->
 <g id="edge5" class="edge">
 <title>StructureInfoComponent&#45;&gt;SideInfoModule</title>
-<path fill="none" stroke="black" d="M395,-122.03C395,-138.4 395,-160 395,-160 395,-160 498.24,-160 498.24,-160"/>
-<polygon fill="black" stroke="black" points="498.24,-163.5 508.24,-160 498.24,-156.5 498.24,-163.5"/>
+<path fill="none" stroke="black" d="M102,-122.29C102,-144.21 102,-178 102,-178 102,-178 542.06,-178 542.06,-178"/>
+<polygon fill="black" stroke="black" points="542.06,-181.5 552.06,-178 542.06,-174.5 542.06,-181.5"/>
 </g>
 <!-- SharedModule -->
 <g id="node7" class="node">
 <title>SharedModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="293.42,-122 290.42,-126 269.42,-126 266.42,-122 194.58,-122 194.58,-86 293.42,-86 293.42,-122"/>
-<text text-anchor="middle" x="244" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="1138.42,-122 1135.42,-126 1114.42,-126 1111.42,-122 1039.58,-122 1039.58,-86 1138.42,-86 1138.42,-122"/>
+<text text-anchor="middle" x="1089" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
 </g>
 <!-- SharedModule&#45;&gt;SideInfoModule -->
 <g id="edge6" class="edge">
 <title>SharedModule&#45;&gt;SideInfoModule</title>
-<path fill="none" stroke="black" d="M244,-122.11C244,-141.34 244,-169 244,-169 244,-169 498.06,-169 498.06,-169"/>
-<polygon fill="black" stroke="black" points="498.06,-172.5 508.06,-169 498.06,-165.5 498.06,-172.5"/>
+<path fill="none" stroke="black" d="M1089,-122.29C1089,-144.21 1089,-178 1089,-178 1089,-178 670,-178 670,-178"/>
+<polygon fill="black" stroke="black" points="670,-174.5 660,-178 670,-181.5 670,-174.5"/>
 </g>
 <!-- SideInfoRoutingModule -->
 <g id="node8" class="node">
 <title>SideInfoRoutingModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="176.38,-122 173.38,-126 152.38,-126 149.38,-122 23.62,-122 23.62,-86 176.38,-86 176.38,-122"/>
-<text text-anchor="middle" x="100" y="-99.8" font-family="Times,serif" font-size="14.00">SideInfoRoutingModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="1021.38,-122 1018.38,-126 997.38,-126 994.38,-122 868.62,-122 868.62,-86 1021.38,-86 1021.38,-122"/>
+<text text-anchor="middle" x="945" y="-99.8" font-family="Times,serif" font-size="14.00">SideInfoRoutingModule</text>
 </g>
 <!-- SideInfoRoutingModule&#45;&gt;SideInfoModule -->
 <g id="edge7" class="edge">
 <title>SideInfoRoutingModule&#45;&gt;SideInfoModule</title>
-<path fill="none" stroke="black" d="M100,-122.29C100,-144.21 100,-178 100,-178 100,-178 498.1,-178 498.1,-178"/>
-<polygon fill="black" stroke="black" points="498.1,-181.5 508.1,-178 498.1,-174.5 498.1,-181.5"/>
+<path fill="none" stroke="black" d="M945,-122.11C945,-141.34 945,-169 945,-169 945,-169 670.09,-169 670.09,-169"/>
+<polygon fill="black" stroke="black" points="670.09,-165.5 660.09,-169 670.09,-172.5 670.09,-165.5"/>
 </g>
 </g>
 </svg>
