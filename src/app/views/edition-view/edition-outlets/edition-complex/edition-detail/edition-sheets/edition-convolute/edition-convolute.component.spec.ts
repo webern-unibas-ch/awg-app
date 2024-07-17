@@ -127,7 +127,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
         });
 
         it('... should have faSquare', () => {
-            expectToBe(component.faSquare, faSquare);
+            expectToEqual(component.faSquare, faSquare);
         });
 
         it('... should have folioLegends', () => {

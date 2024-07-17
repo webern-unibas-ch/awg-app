@@ -165,8 +165,8 @@ describe('TableComponent', () => {
         });
 
         it('... should have faSortUp and faSortDown icons', () => {
-            expectToBe(component.faSortUp, faSortUp);
-            expectToBe(component.faSortDown, faSortDown);
+            expectToEqual(component.faSortUp, faSortUp);
+            expectToEqual(component.faSortDown, faSortDown);
         });
 
         it('... should have tableOptions', () => {
