@@ -781,6 +781,119 @@
             }
         },
         {
+            "id": "source_G",
+            "siglum": "G",
+            "siglumAddendum": "",
+            "type": "Druck von „Ihr tratet zu dem Herde“ M 142: Textfassung 1.",
+            "location": "Beilage in: <em>Der blaue Reiter</em>, München: Piper, 1912.",
+            "description": {
+                "desc": [
+                    "Buch, 150 Seiten, Format (hoch) 296 × 215 mm, Einband: 305 × 320 mm. Beilagen mit Kompositionen von Arnold Schönberg, Alban Berg und Anton Webern zwischen S. [132] (vacat) und S. [133] (Inhaltsverzeichnis). (Es folgen: S. [134] vacat, S. [135]–140 Register der Reproduktionen, S. [141] vacat, S. [142–150] Werbeanzeigen.) Im konsultierten Exemplar (Berlin, Staatsbibliothek Preußischer Kulturbesitz, 1 B 20301) sind die Notenbeilagen (zusammen mit einer Anzeige „Moderne Galerie | Heinrich Tannhauser | MÜNCHEN THEATINERSTR. 7“) vermutlich nachträglich eingeheftet. Beilage Anton Webern: 1 Blatt, Format (hoch) 296 × ca. 222 mm, paginiert von <em>1</em> bis <em>2</em> recto oben rechts und verso oben links. Eine zweite Auflage des Buches von 1914 unterscheidet sich im Umfang (140 Seiten; die Werbeanzeigen fehlen) und Format ([hoch] 288 × 217 mm; Einband: 295 × 220 mm). Die Beilage mit der Komposition Anton Weberns unterscheidet sich in dieser Auflage ebenfalls im Format: (hoch) 280 × ca. 205 mm."
+                ],
+                "writingMaterialStrings": [],
+                "writingInstruments": {
+                    "main": "",
+                    "secondary": []
+                },
+                "titles": [
+                    "<em>„Ihr tratet zu dem herde _ _ _ _“ aus dem „Jahr der Seele“ | von STEFAN GEORGE | Für eine Singstimme und Klavier von ANTON von WEBERN</em> auf S. 1 oben Mitte"
+                ],
+                "dates": [],
+                "paginations": ["<em>1</em> bis <em>2</em> auf S. 1–2 Außenecken oben"],
+                "measureNumbers": [],
+                "instrumentations": ["<em>Gesang | Piano</em> auf S. 1 System 1 | 2–3"],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Druck von „Ihr tratet zu dem Herde“ M 142: Textfassung 1",
+                        "folios": [
+                            {
+                                "folio": "1",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "3–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "6–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "9–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "12–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "14–15",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_GH",
+            "siglum": "G",
+            "siglumAddendum": "H",
+            "type": "Handexemplar von <strong>G</strong> mit Korrekturen Weberns: „Ihr tratet zu dem Herde“ M 142: Textfassung 1→2.",
+            "location": "US-NYpm, Dept. of Music Manuscripts and Books, PMM 21.",
+            "description": {
+                "desc": [
+                    "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>. Format: hoch 296 × 219 mm. Rissspuren am linken Rand: von Bogen abgetrennt. Papierklebestreifen am rechten Rand von S. 2. Archivalische Eintragung <em>PMM 21</em> auf S. 2 unten Mitte mit Bleistift."
+                ],
+                "titles": [
+                    "<em>&lt;I.&gt; | „Ihr tratet zu dem herde _ _ _ _“ aus dem „Jahr der Seele“ | von STEFAN GEORGE | Für eine Singstimme und Klavier von ANTON von WEBERN &lt;op</em>[.] <em>2&gt;</em> auf S. 1 oben Mitte, <em>&lt;I.&gt;</em> mit schwarzer Tinte, <em>&lt;op</em>[.] <em>2&gt;</em> mit roter Tinte"
+                ],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": []
+            }
+        },
+        {
             "id": "source_H",
             "siglum": "H",
             "siglumAddendum": "",
@@ -1564,119 +1677,6 @@
                         ]
                     }
                 ]
-            }
-        },
-        {
-            "id": "source_G",
-            "siglum": "G",
-            "siglumAddendum": "",
-            "type": "Druck von „Ihr tratet zu dem Herde“ M 142: Textfassung 1.",
-            "location": "Beilage in: <em>Der blaue Reiter</em>, München: Piper, 1912.",
-            "description": {
-                "desc": [
-                    "Buch, 150 Seiten, Format (hoch) 296 × 215 mm, Einband: 305 × 320 mm. Beilagen mit Kompositionen von Arnold Schönberg, Alban Berg und Anton Webern zwischen S. [132] (vacat) und S. [133] (Inhaltsverzeichnis). (Es folgen: S. [134] vacat, S. [135]–140 Register der Reproduktionen, S. [141] vacat, S. [142–150] Werbeanzeigen.) Im konsultierten Exemplar (Berlin, Staatsbibliothek Preußischer Kulturbesitz, 1 B 20301) sind die Notenbeilagen (zusammen mit einer Anzeige „Moderne Galerie | Heinrich Tannhauser | MÜNCHEN THEATINERSTR. 7“) vermutlich nachträglich eingeheftet. Beilage Anton Webern: 1 Blatt, Format (hoch) 296 × ca. 222 mm, paginiert von <em>1</em> bis <em>2</em> recto oben rechts und verso oben links. Eine zweite Auflage des Buches von 1914 unterscheidet sich im Umfang (140 Seiten; die Werbeanzeigen fehlen) und Format ([hoch] 288 × 217 mm; Einband: 295 × 220 mm). Die Beilage mit der Komposition Anton Weberns unterscheidet sich in dieser Auflage ebenfalls im Format: (hoch) 280 × ca. 205 mm."
-                ],
-                "writingMaterialStrings": [],
-                "writingInstruments": {
-                    "main": "",
-                    "secondary": []
-                },
-                "titles": [
-                    "<em>„Ihr tratet zu dem herde _ _ _ _“ aus dem „Jahr der Seele“ | von STEFAN GEORGE | Für eine Singstimme und Klavier von ANTON von WEBERN</em> auf S. 1 oben Mitte"
-                ],
-                "dates": [],
-                "paginations": ["<em>1</em> bis <em>2</em> auf S. 1–2 Außenecken oben"],
-                "measureNumbers": [],
-                "instrumentations": ["<em>Gesang | Piano</em> auf S. 1 System 1 | 2–3"],
-                "annotations": [],
-                "contents": [
-                    {
-                        "item": "",
-                        "itemLinkTo": "",
-                        "itemDescription": "Druck von „Ihr tratet zu dem Herde“ M 142: Textfassung 1",
-                        "folios": [
-                            {
-                                "folio": "1",
-                                "isPage": true,
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "1–3",
-                                            "measure": "1–2",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "4–6",
-                                            "measure": "3–5",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "7–9",
-                                            "measure": "6–8",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            },
-                            {
-                                "folio": "2",
-                                "isPage": true,
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "1–3",
-                                            "measure": "9–11",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "4–6",
-                                            "measure": "12–13",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "7–9",
-                                            "measure": "14–15",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "id": "source_GH",
-            "siglum": "G",
-            "siglumAddendum": "H",
-            "type": "Handexemplar von <strong>G</strong> mit Korrekturen Weberns: „Ihr tratet zu dem Herde“ M 142: Textfassung 1→2.",
-            "location": "US-NYpm, Dept. of Music Manuscripts and Books, PMM 21.",
-            "description": {
-                "desc": [
-                    "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>. Format: hoch 296 × 219 mm. Rissspuren am linken Rand: von Bogen abgetrennt. Papierklebestreifen am rechten Rand von S. 2. Archivalische Eintragung <em>PMM 21</em> auf S. 2 unten Mitte mit Bleistift."
-                ],
-                "titles": [
-                    "<em>&lt;I.&gt; | „Ihr tratet zu dem herde _ _ _ _“ aus dem „Jahr der Seele“ | von STEFAN GEORGE | Für eine Singstimme und Klavier von ANTON von WEBERN &lt;op</em>[.] <em>2&gt;</em> auf S. 1 oben Mitte, <em>&lt;I.&gt;</em> mit schwarzer Tinte, <em>&lt;op</em>[.] <em>2&gt;</em> mit roter Tinte"
-                ],
-                "dates": [],
-                "paginations": [],
-                "measureNumbers": [],
-                "instrumentations": [],
-                "annotations": [],
-                "contents": []
             }
         },
         {
