@@ -24,7 +24,7 @@ import { EditionService } from '@awg-views/edition-view/services';
 
 import { EditionViewComponent } from './edition-view.component';
 
-// Mock jumbotron component
+// Mock components
 @Component({ selector: 'awg-edition-jumbotron', template: '' })
 class EditionJumbotronStubComponent {
     @Input()
@@ -32,6 +32,9 @@ class EditionJumbotronStubComponent {
     @Input()
     jumbotronTitle: string;
 }
+
+@Component({ selector: 'awg-scroll-to-top', template: '' })
+class ScrollToTopStubComponent {}
 
 describe('EditionViewComponent (DONE)', () => {
     let component: EditionViewComponent;
@@ -88,6 +91,7 @@ describe('EditionViewComponent (DONE)', () => {
                 EditionJumbotronStubComponent,
                 RouterOutletStubComponent,
                 RouterLinkStubDirective,
+                ScrollToTopStubComponent,
             ],
             providers: [
                 { provide: EditionService, useValue: mockEditionService },
@@ -167,6 +171,10 @@ describe('EditionViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should contain one ScrollToTop component (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, ScrollToTopStubComponent, 1, 1);
+            });
+
             it('... should contain one outer div', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
             });
