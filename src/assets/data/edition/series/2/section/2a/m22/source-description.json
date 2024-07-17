@@ -8,10 +8,10 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "1 Blatt: Das Blatt ist Bestandteil (Bl. 4) eines größeren Konvolutes bestehend aus 1 Blatt (Bl. 1), 1 Bogen (Bl. 2/3) und 1 Blatt (Bl. 4). Horizontale Knickfalte. Stockflecken unten mittig-rechts. Ecke unten links abgerissen (inkl. Firmenzeichen auf 1<sup>r</sup>). Rissspuren am linken Rand: von Bogen abgetrennt."
+                    "1 Blatt (Bl. 1). Horizontale Knickfalte. Stockflecken unten mittig-rechts. Ecke unten links abgerissen (vermutlich inkl. Firmenzeichen auf 1<sup>r</sup>). Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, 28 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen abgerissen"
+                    "Notenpapier, 28 Systeme, Format: hoch 343 × 264 mm. Firmenzeichen: vermutlich [J.E. &amp; Co.] | <em>N<sup>o</sup>. 9 | 28 linig.</em> unten links auf Bl. 1<sup>r</sup>"
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
@@ -501,7 +501,7 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "1 Blatt. Rissspuren am linken Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte, diagonale Knickfalte unten rechts."
+                    "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte, diagonale Knickfalte unten rechts."
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 347 × 267 mm, Firmenzeichen ### unten links auf Bl. 1<sup>r</sup>"
@@ -855,7 +855,7 @@
                     {
                         "item": "M 32",
                         "itemLinkTo": {},
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 32 Textfassung 2)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 2)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -890,7 +890,7 @@
                     {
                         "item": "M 32 Sk3",
                         "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32 Textfassung 3)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 3)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -911,7 +911,7 @@
                     {
                         "item": "M 32 Sk4",
                         "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32 Textfassung 3)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 3)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -953,7 +953,7 @@
                     {
                         "item": "M 32 Sk5",
                         "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32 Textfassung 3)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 3)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -974,7 +974,7 @@
                     {
                         "item": "M 32 Sk4.1",
                         "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32 Textfassung 3)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 3)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -1027,7 +1027,7 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "1 Blatt. Horizontale Knickfalte. Zahlreiche Risse und Knicke am rechten, oberen und unteren Rand. Rötliche Verfärbung oben links und rechts. Rissspuren am linken Rand: von Bogen abgetrennt."
+                    "1 Blatt (Bl. 1). Horizontale Knickfalte. Zahlreiche Risse und Knicke am rechten, oberen und unteren Rand. Rötliche Verfärbung oben links und rechts. Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 28 Systeme, Format: hoch 347 × 264 mm, Firmenzeichen ### unten links auf Bl. 1<sup>r</sup>"
@@ -1345,7 +1345,7 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "1 Blatt: Linke obere Ecke mit Bleistift eingefärbt. Rissspuren am rechten Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte."
+                    "1 Blatt (Bl. 1). Linke obere Ecke mit Bleistift eingefärbt. Rissspuren am rechten Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte."
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5</em> | <em>18 linig.</em> unten links auf Bl. 1<sup>v</sup>"
@@ -1686,7 +1686,7 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "1 Bogen (Bl. 1/2): Der Bogen ist Bestandteil (Bl. 1/2) eines größeren Konvoluts aus 2 Bögen (Bl. 1/2, 3/4), 1 Blatt (Bl. 5) und 1 Bogen (Bl. 6/7). Horizontale und vertikale Knickfalte, seitlich leicht eingerissen."
+                    "1 Bogen (Bl. 1/2). Horizontale und vertikale Knickfalte, seitlich leicht eingerissen."
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 28 Systeme, Format: hoch 342 × 264 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 9</em> | <em>28 linig.</em> unten links auf Bl. 1<sup>1</sup>–2<sup>r</sup>"
@@ -3334,10 +3334,10 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "1 Blatt (Bl. 1), 1 Bogen (Bl. 2/3): Blatt und Bogen sind Bestandteil (Bl. 1, 2/3) eines größeren Konvolutes bestehend aus 1 Blatt (Bl. 1), 1 Bogen (Bl. 2/3) und 1 Blatt (Bl. 4). Horizontale Knickfalte auf Blatt und Bogen. Kleiner Stockfleck oben rechts auf Blatt und Bogen. Ecke unten rechts von Bl. 1 abgerissen. Bogen unten in der Falte eingerissen."
+                    "1 Blatt (Bl. 1), 1 Bogen (Bl. 2/3). Horizontale Knickfalte auf Blatt und Bogen. Kleiner Stockfleck oben rechts auf Blatt und Bogen. Ecke unten rechts von Bl. 1 abgerissen. Bogen unten in der Falte eingerissen."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, 28 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen ### unten links auf Bl. 1<sup>r</sup>–3<sup>r</sup>"
+                    "Notenpapier, 28 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen ### unten links auf Bl. 1<sup>r</sup>, 2<sup>r</sup> und 3<sup>r</sup>"
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
@@ -3353,7 +3353,7 @@
                     {
                         "item": "M* 409",
                         "itemLinkTo": {},
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409 Textfassung 1)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409: Textfassung 1)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -3381,7 +3381,7 @@
                     {
                         "item": "M* 409",
                         "itemLinkTo": {},
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409 Textfassung 2)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409: Textfassung 2)",
                         "folios": [
                             {
                                 "folio": "1r",
