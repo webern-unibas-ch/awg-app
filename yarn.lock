@@ -4288,12 +4288,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.19.39":
-  version: 18.19.39
-  resolution: "@types/node@npm:18.19.39"
+"@types/node@npm:^18.19.40":
+  version: 18.19.40
+  resolution: "@types/node@npm:18.19.40"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10c0/a9eb33bc093beba6bd5d4e839de7d1d1f496cd7e741c2f6c7161318dba0f37227bb25d8306907194992488d6c59a7363a419d72298549483d33402227a2d435b
+  checksum: 10c0/e91c139cbfa7593d9634fc75fa73de787c35c0ca949f629bf65a66bb0909c6de508b974c5953bf3ab910474847287b92366bed632ac6bc14d78fa81b1ddf049f
   languageName: node
   linkType: hard
 
@@ -5382,7 +5382,7 @@ __metadata:
     "@popperjs/core": "npm:^2.11.8"
     "@types/d3": "npm:^7.4.3"
     "@types/jasmine": "npm:~5.1.4"
-    "@types/node": "npm:^18.19.39"
+    "@types/node": "npm:^18.19.40"
     "@typescript-eslint/eslint-plugin": "npm:^7.16.1"
     "@typescript-eslint/parser": "npm:^7.16.1"
     angular-cli-ghpages: "npm:^2.0.1"
