@@ -17,12 +17,13 @@
             "linkTo": "source_B"
         },
         {
-            "siglum": "[C]",
+            "siglum": "C",
             "siglumAddendum": "",
+            "missing": true,
             "type": "Autograph von <br /><span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 1.",
             "location": "Verschollen.",
             "hasDescription": false,
-            "linkTo": "source_C"
+            "linkTo": ""
         },
         {
             "siglum": "D",
@@ -33,20 +34,22 @@
             "linkTo": "source_D"
         },
         {
-            "siglum": "[E]",
+            "siglum": "E",
             "siglumAddendum": "",
+            "missing": true,
             "type": "Abschrift fremder Hand von <br /><span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 1.",
             "location": "Verschollen.",
             "hasDescription": false,
-            "linkTo": "source_E"
+            "linkTo": ""
         },
         {
-            "siglum": "[F]",
+            "siglum": "F",
             "siglumAddendum": "",
+            "missing": true,
             "type": "Korrekturfahne von <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>.",
             "location": "Verschollen.",
             "hasDescription": false,
-            "linkTo": "source_F"
+            "linkTo": ""
         },
         {
             "siglum": "G",

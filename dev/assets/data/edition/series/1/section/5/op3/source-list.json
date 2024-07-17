@@ -81,12 +81,13 @@
             "linkTo": "source_J"
         },
         {
-            "siglum": "[K]",
+            "siglum": "K",
             "siglumAddendum": "",
+            "missing": true,
             "type": "Stichvorlage für <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_L'})\"><strong>L</strong></a>.",
             "location": "Verschollen.",
             "hasDescription": false,
-            "linkTo": "source_K"
+            "linkTo": ""
         },
         {
             "siglum": "L",
