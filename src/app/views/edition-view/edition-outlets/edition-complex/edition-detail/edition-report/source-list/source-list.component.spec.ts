@@ -70,10 +70,10 @@ describe('SourceListComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one table with table body (no text sources), but no rows (tr) yet', () => {
-                const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
+            it('... should contain one div.card with with div.card-body, but no tables yet', () => {
+                const divCardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
 
-                getAndExpectDebugElementByCss(tableBodyDes[0], 'tr', 0, 0);
+                getAndExpectDebugElementByCss(divCardBodyDes[0], 'table', 0, 0);
             });
         });
     });
@@ -92,15 +92,24 @@ describe('SourceListComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.card', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
+            describe('... without any sources', () => {
+                beforeEach(() => {
+                    expectedSourceListData = {
+                        sources: [],
+                        textSources: [],
+                    };
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
+                });
+
+                it('... should contain no tables with in div.card-body', () => {
+                    const divCardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
+
+                    getAndExpectDebugElementByCss(divCardBodyDes[0], 'table', 0, 0);
+                });
             });
 
-            it('... should contain one div.card-body in div.card', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
-            });
-
-            describe('... if text sources are not present', () => {
+            describe('... with only musical sources', () => {
                 it('... should contain one table with table body in div.card-body', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.card-body > table > tbody', 1, 1);
                 });
@@ -127,7 +136,41 @@ describe('SourceListComponent (DONE)', () => {
                     });
                 });
 
-                it('... should contain siglum link in header column (th)', () => {
+                it('... should contain siglum container span in header column (th)', () => {
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
+
+                    const rowDes = getAndExpectDebugElementByCss(
+                        tableBodyDes[0],
+                        'tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+
+                        const containerDes = getAndExpectDebugElementByCss(
+                            columnDes[0],
+                            'span.awg-source-list-siglum-container',
+                            1,
+                            1
+                        );
+                        const containerEl = containerDes[0].nativeElement;
+
+                        const expectedSiglum =
+                            expectedSourceListData.sources[index].siglum +
+                            expectedSourceListData.sources[index].siglumAddendum;
+
+                        if (expectedSourceListData.sources[index].missing) {
+                            expectToBe(containerEl.textContent.trim(), `[${expectedSiglum}]`);
+                        } else {
+                            expectToBe(containerEl.textContent.trim(), expectedSiglum.trim());
+                        }
+                    });
+                });
+
+                it('... should contain siglum link as link text in header column (th)', () => {
                     expectedSourceListData.sources[2].missing = false;
 
                     component.sourceListData = expectedSourceListData;
@@ -143,8 +186,14 @@ describe('SourceListComponent (DONE)', () => {
 
                     rowDes.forEach((rowDe, index) => {
                         const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+                        const containerDes = getAndExpectDebugElementByCss(
+                            columnDes[0],
+                            'span.awg-source-list-siglum-container',
+                            1,
+                            1
+                        );
 
-                        const anchorDes = getAndExpectDebugElementByCss(columnDes[0], 'a', 1, 1);
+                        const anchorDes = getAndExpectDebugElementByCss(containerDes[0], 'a', 1, 1);
                         const anchorEl = anchorDes[0].nativeElement;
 
                         const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 1, 1);
@@ -160,7 +209,7 @@ describe('SourceListComponent (DONE)', () => {
                     });
                 });
 
-                it('... should display siglum addendum if present in header column (th)', () => {
+                it('... should display siglum addendum as link text if present in header column (th)', () => {
                     expectedSourceListData.sources[0].siglumAddendum = 'a';
                     expectedSourceListData.sources[1].siglumAddendum = 'b';
                     expectedSourceListData.sources[2].siglumAddendum = 'H';
@@ -179,8 +228,14 @@ describe('SourceListComponent (DONE)', () => {
 
                     rowDes.forEach((rowDe, index) => {
                         const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+                        const containerDes = getAndExpectDebugElementByCss(
+                            columnDes[0],
+                            'span.awg-source-list-siglum-container',
+                            1,
+                            1
+                        );
 
-                        const anchorDes = getAndExpectDebugElementByCss(columnDes[0], 'a', 1, 1);
+                        const anchorDes = getAndExpectDebugElementByCss(containerDes[0], 'a', 1, 1);
                         const anchorEl = anchorDes[0].nativeElement;
 
                         const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 2, 2);
@@ -204,7 +259,7 @@ describe('SourceListComponent (DONE)', () => {
                     });
                 });
 
-                it('... should display missing sources in brackets in header column (th)', () => {
+                it('... should display missing sources in brackets as link text in header column (th)', () => {
                     expectedSourceListData.sources[0].missing = true;
                     expectedSourceListData.sources[1].missing = true;
                     expectedSourceListData.sources[2].missing = true;
@@ -222,30 +277,42 @@ describe('SourceListComponent (DONE)', () => {
 
                     rowDes.forEach((rowDe, index) => {
                         const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+                        const containerDes = getAndExpectDebugElementByCss(
+                            columnDes[0],
+                            'span.awg-source-list-siglum-container',
+                            1,
+                            1
+                        );
 
-                        const anchorDes = getAndExpectDebugElementByCss(columnDes[0], 'a', 1, 1);
+                        const anchorDes = getAndExpectDebugElementByCss(containerDes[0], 'a', 1, 1);
                         const anchorEl = anchorDes[0].nativeElement;
 
                         const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 3, 3);
 
-                        // First span is opening bracket
-                        // Last span is closing bracket
+                        const openingBracketDes = spanDes[0];
                         const siglumDes = spanDes[1];
+                        const closingBracketDes = spanDes[2];
+
+                        const openingBracketEl = openingBracketDes.nativeElement;
                         const siglumEl = siglumDes.nativeElement;
+                        const closingBracketEl = closingBracketDes.nativeElement;
 
                         const expectedSiglum = expectedSourceListData.sources[index].siglum;
 
                         expectToBe(anchorEl.textContent.trim(), `[${expectedSiglum}]`);
+
+                        expectToBe(openingBracketEl.textContent.trim(), '[');
+                        expectToBe(closingBracketEl.textContent.trim(), ']');
 
                         expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
                         expect(siglumEl).toHaveClass('awg-source-list-siglum');
                     });
                 });
 
-                it('... should display missing sources with addendum in brackets in header column (th)', () => {
+                it('... should display missing sources with addendum in brackets as link text in header column (th)', () => {
                     expectedSourceListData.sources[0].siglumAddendum = 'a';
                     expectedSourceListData.sources[1].siglumAddendum = 'H';
-                    expectedSourceListData.sources[2].siglumAddendum = 'F1-2';
+                    expectedSourceListData.sources[2].siglumAddendum = 'F1-F2';
 
                     expectedSourceListData.sources[0].missing = true;
                     expectedSourceListData.sources[1].missing = true;
@@ -264,30 +331,159 @@ describe('SourceListComponent (DONE)', () => {
 
                     rowDes.forEach((rowDe, index) => {
                         const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+                        const containerDes = getAndExpectDebugElementByCss(
+                            columnDes[0],
+                            'span.awg-source-list-siglum-container',
+                            1,
+                            1
+                        );
 
-                        const anchorDes = getAndExpectDebugElementByCss(columnDes[0], 'a', 1, 1);
+                        const anchorDes = getAndExpectDebugElementByCss(containerDes[0], 'a', 1, 1);
                         const anchorEl = anchorDes[0].nativeElement;
 
                         const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 4, 4);
 
-                        // First span is opening bracket
-                        // Last span is closing bracket
+                        const openingBracketDes = spanDes[0];
                         const siglumDes = spanDes[1];
-                        const siglumEl = siglumDes.nativeElement;
-
                         const siglumAddendumDes = spanDes[2];
+                        const closingBracketDes = spanDes[3];
+
+                        const openingBracketEl = openingBracketDes.nativeElement;
+                        const siglumEl = siglumDes.nativeElement;
                         const siglumAddendumEl = siglumAddendumDes.nativeElement;
+                        const closingBracketEl = closingBracketDes.nativeElement;
 
                         const expectedSiglum = expectedSourceListData.sources[index].siglum;
                         const expectedAddendum = expectedSourceListData.sources[index].siglumAddendum;
 
                         expectToBe(anchorEl.textContent.trim(), `[${expectedSiglum}${expectedAddendum}]`);
 
+                        expectToBe(openingBracketEl.textContent.trim(), '[');
+                        expectToBe(closingBracketEl.textContent.trim(), ']');
+
                         expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
                         expect(siglumEl).toHaveClass('awg-source-list-siglum');
 
                         expectToBe(siglumAddendumEl.textContent.trim(), expectedAddendum.trim());
                         expect(siglumAddendumEl).toHaveClass('awg-source-list-siglum-addendum');
+                    });
+                });
+
+                it('... should contain link to report fragment for sources with description and linkTo value', fakeAsync(() => {
+                    expectedSourceListData = {
+                        sources: [
+                            {
+                                siglum: 'A',
+                                siglumAddendum: '',
+                                type: 'Test type 3',
+                                location: 'Test location 3.',
+                                hasDescription: true,
+                                linkTo: 'source_A',
+                            },
+                        ],
+                    };
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
+
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
+
+                    const anchorDes = getAndExpectDebugElementByCss(
+                        tableBodyDes[0],
+                        'tr > th > span.awg-source-list-siglum-container > a',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    clickAndAwaitChanges(anchorDes[0], fixture);
+
+                    expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: 'source_A' });
+                }));
+
+                it('... should contain link to openModal for sources without description but linkTo value', fakeAsync(() => {
+                    expectedSourceListData = {
+                        sources: [
+                            {
+                                siglum: 'B',
+                                siglumAddendum: '',
+                                type: 'Test type 3',
+                                location: 'Test location 3.',
+                                hasDescription: false,
+                                linkTo: 'MODAL_TEXT',
+                            },
+                        ],
+                    };
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
+
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
+
+                    const anchorDes = getAndExpectDebugElementByCss(
+                        tableBodyDes[0],
+                        'tr > th > span.awg-source-list-siglum-container > a',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    clickAndAwaitChanges(anchorDes[0], fixture);
+
+                    expectSpyCall(openModalSpy, 1, 'MODAL_TEXT');
+                }));
+
+                it('... should contain no link for missing sources without description and linkTo value', () => {
+                    expectedSourceListData = {
+                        sources: [
+                            {
+                                siglum: 'C',
+                                siglumAddendum: '',
+                                missing: true,
+                                type: 'Test type 3',
+                                location: 'Test location 3.',
+                                hasDescription: false,
+                                linkTo: '',
+                            },
+                        ],
+                    };
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
+
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'table > tbody > tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+                        const containerDes = getAndExpectDebugElementByCss(
+                            columnDes[0],
+                            'span.awg-source-list-siglum-container',
+                            1,
+                            1
+                        );
+
+                        getAndExpectDebugElementByCss(containerDes[0], 'a', 0, 0);
+
+                        const spanDes = getAndExpectDebugElementByCss(containerDes[0], 'span', 3, 3);
+
+                        const openingBracketDes = spanDes[0];
+                        const siglumDes = spanDes[1];
+                        const closingBracketDes = spanDes[2];
+
+                        const openingBracketEl = openingBracketDes.nativeElement;
+                        const siglumEl = siglumDes.nativeElement;
+                        const closingBracketEl = closingBracketDes.nativeElement;
+
+                        const expectedSiglum = expectedSourceListData.sources[index].siglum;
+
+                        expectToBe(openingBracketEl.textContent.trim(), '[');
+                        expectToBe(closingBracketEl.textContent.trim(), ']');
+
+                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
+                        expect(siglumEl).toHaveClass('awg-source-list-siglum');
                     });
                 });
 
@@ -313,7 +509,7 @@ describe('SourceListComponent (DONE)', () => {
                 });
             });
 
-            describe('... if text sources are present', () => {
+            describe('... with musical and text sources', () => {
                 beforeEach(() => {
                     expectedSourceListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceListDataWithTexts));
                     component.sourceListData = expectedSourceListData;
@@ -507,8 +703,15 @@ describe('SourceListComponent (DONE)', () => {
             });
 
             it('... should trigger on click', fakeAsync(() => {
-                // Get anhors in description
-                const anchorDes = getAndExpectDebugElementByCss(compDe, 'table tr > th > a', 3, 3);
+                const expectedSourcesLength = expectedSourceListData.sources.length;
+                const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
+
+                const anchorDes = getAndExpectDebugElementByCss(
+                    tableBodyDes[0],
+                    'tr > th > span.awg-source-list-siglum-container > a',
+                    expectedSourcesLength,
+                    expectedSourcesLength
+                );
 
                 // Everything but first anchor uses modal
                 // Click on first anchor
@@ -578,8 +781,15 @@ describe('SourceListComponent (DONE)', () => {
             });
 
             it('... should trigger on click', fakeAsync(() => {
-                // Get anhors in th column
-                const anchorDes = getAndExpectDebugElementByCss(compDe, 'table tr > th > a', 3, 3);
+                const expectedSourcesLength = expectedSourceListData.sources.length;
+                const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
+
+                const anchorDes = getAndExpectDebugElementByCss(
+                    tableBodyDes[0],
+                    'tr > th > span.awg-source-list-siglum-container > a',
+                    expectedSourcesLength,
+                    expectedSourcesLength
+                );
 
                 // Everything but first anchor uses modal
                 // Click on second anchor
