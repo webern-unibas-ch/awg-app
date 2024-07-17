@@ -3,18 +3,6 @@ import { DebugElement, NgModule } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { click, clickAndAwaitChanges } from '@testing/click-helper';
-import {
-    expectSpyCall,
-    expectToBe,
-    expectToContain,
-    expectToEqual,
-    getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective,
-} from '@testing/expect-helper';
-import { RouterLinkStubDirective } from '@testing/router-stubs';
-
 import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
@@ -27,6 +15,18 @@ import {
     IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
 import { NgbCollapseModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { click, clickAndAwaitChanges } from '@testing/click-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
+import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { LOGOSDATA } from '@awg-core/core-data';
 import { Logos } from '@awg-core/core-models';
