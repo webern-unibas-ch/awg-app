@@ -79,11 +79,6 @@ export class EditionComplex {
     section: EditionRouteConstant;
 
     /**
-     * The route for the current type of an edition.
-     */
-    type: EditionRouteConstant;
-
-    /**
      * The base route of an edition complex.
      *
      * @example 'edition/complex/op12
@@ -105,8 +100,7 @@ export class EditionComplex {
         titleStatement: EditionTitleStatement,
         respStatement: EditionRespStatement,
         series?: EditionRouteConstant,
-        section?: EditionRouteConstant,
-        type?: EditionRouteConstant
+        section?: EditionRouteConstant
     ) {
         if (!titleStatement?.catalogueType || !titleStatement?.catalogueNumber) {
             return;
@@ -135,7 +129,6 @@ export class EditionComplex {
 
         this.series = series || new EditionRouteConstant();
         this.section = section || new EditionRouteConstant();
-        this.type = type || new EditionRouteConstant();
 
         // Set base route
         const rootPath = EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.COMPLEX.route;

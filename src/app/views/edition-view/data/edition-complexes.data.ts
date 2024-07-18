@@ -2,7 +2,6 @@ import { AppConfig } from '@awg-app/app.config';
 import {
     EDITION_CATALOGUE_TYPE_CONSTANTS,
     EDITION_ROUTE_CONSTANTS,
-    EDITION_TYPE_CONSTANTS,
 } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 
@@ -32,8 +31,7 @@ export class EDITION_COMPLEXES {
             lastModified: '21. März 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_2,
-        EDITION_ROUTE_CONSTANTS.SECTION_2A,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_2A
     );
 
     /**
@@ -55,8 +53,7 @@ export class EDITION_COMPLEXES {
             lastModified: '19. Januar 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_2,
-        EDITION_ROUTE_CONSTANTS.SECTION_2A,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_2A
     );
 
     /**
@@ -78,8 +75,7 @@ export class EDITION_COMPLEXES {
             lastModified: '19. Januar 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_2,
-        EDITION_ROUTE_CONSTANTS.SECTION_2A,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_2A
     );
 
     /**
@@ -101,8 +97,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Mai 2023',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_2,
-        EDITION_ROUTE_CONSTANTS.SECTION_2A,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_2A
     );
 
     /**
@@ -124,8 +119,7 @@ export class EDITION_COMPLEXES {
             lastModified: '8. Februar 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_2,
-        EDITION_ROUTE_CONSTANTS.SECTION_2A,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_2A
     );
 
     /**
@@ -147,8 +141,7 @@ export class EDITION_COMPLEXES {
             lastModified: '19. Januar 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_2,
-        EDITION_ROUTE_CONSTANTS.SECTION_2A,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_2A
     );
 
     /**
@@ -170,8 +163,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -193,8 +185,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -216,8 +207,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -239,8 +229,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -262,8 +251,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -285,8 +273,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -308,8 +295,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -331,8 +317,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -354,8 +339,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -377,8 +361,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -400,8 +383,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -423,8 +405,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -446,8 +427,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -469,8 +449,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -492,8 +471,7 @@ export class EDITION_COMPLEXES {
             lastModified: '---',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -515,8 +493,7 @@ export class EDITION_COMPLEXES {
             lastModified: '---',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -538,8 +515,7 @@ export class EDITION_COMPLEXES {
             lastModified: '---',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -561,8 +537,7 @@ export class EDITION_COMPLEXES {
             lastModified: '---',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -584,8 +559,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -607,8 +581,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Juni 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -630,8 +603,7 @@ export class EDITION_COMPLEXES {
             lastModified: '9. April 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -653,8 +625,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Mai 2023',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_3,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_3
     );
 
     /**
@@ -676,8 +647,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Mai 2023',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_2,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_2
     );
 
     /**
@@ -699,8 +669,7 @@ export class EDITION_COMPLEXES {
             lastModified: '17. April 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -722,8 +691,7 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Mai 2023',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_1,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_1
     );
 
     /**
@@ -745,8 +713,7 @@ export class EDITION_COMPLEXES {
             lastModified: '17. April 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_5
     );
 
     /**
@@ -768,7 +735,6 @@ export class EDITION_COMPLEXES {
             lastModified: '6. Mai 2023',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
-        EDITION_ROUTE_CONSTANTS.SECTION_2,
-        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SECTION_2
     );
 }
