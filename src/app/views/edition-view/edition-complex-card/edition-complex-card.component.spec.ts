@@ -206,7 +206,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
                 cardFooterDe.forEach((cardFooter, index) => {
                     if (!expectedComplexes[index].disabled) {
                         const pDe = getAndExpectDebugElementByCss(cardFooter, 'p.awg-edition-responsibility', 1, 1);
-                        const editors = expectedComplexes[index].complex.responsibilityStatement.editors;
+                        const editors = expectedComplexes[index].complex.respStatement.editors;
                         const editorDe = getAndExpectDebugElementByCss(
                             pDe[0],
                             'span.editor',
@@ -233,7 +233,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
                 cardFooterDe.forEach((cardFooter, index) => {
                     if (!expectedComplexes[index].disabled) {
                         const pDe = getAndExpectDebugElementByCss(cardFooter, 'p.awg-edition-responsibility', 1, 1);
-                        const editors = expectedComplexes[index].complex.responsibilityStatement.editors;
+                        const editors = expectedComplexes[index].complex.respStatement.editors;
                         const editorDe = getAndExpectDebugElementByCss(
                             pDe[0],
                             'span.editor',
@@ -266,7 +266,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
 
                         expectToBe(
                             versionEl.textContent.trim(),
-                            expectedComplexes[index].complex.responsibilityStatement.lastModified
+                            expectedComplexes[index].complex.respStatement.lastModified
                         );
                     } else {
                         getAndExpectDebugElementByCss(cardFooter, 'p.awg-edition-responsibility', 0, 0);

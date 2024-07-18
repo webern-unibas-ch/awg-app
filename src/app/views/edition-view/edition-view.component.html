@@ -81,11 +81,7 @@
             <div class="awg-edition-responsibility mt-3 mb-5">
                 <p>
                     Ediert von
-                    @for (
-                        editor of selectedEditionComplex.responsibilityStatement.editors;
-                        track editor;
-                        let isLast = $last
-                    ) {
+                    @for (editor of selectedEditionComplex.respStatement.editors; track editor; let isLast = $last) {
                         <span class="editor">
                             <a href="{{ editor.homepage }}">{{ editor.name }}</a>
                             @if (!isLast) {
@@ -95,7 +91,7 @@
                     }
                     <br />
                     Versionsdatum:
-                    <span class="version">{{ selectedEditionComplex.responsibilityStatement.lastModified }}</span>
+                    <span class="version">{{ selectedEditionComplex.respStatement.lastModified }}</span>
                 </p>
             </div>
         </div>

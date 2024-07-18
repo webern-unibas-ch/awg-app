@@ -350,7 +350,7 @@ describe('EditionViewComponent (DONE)', () => {
                 it('... should have one paragraph with editor and version in responsibility div', () => {
                     const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-responsibility > p', 1, 1);
 
-                    const editors = expectedSelectedEditionComplex.responsibilityStatement.editors;
+                    const editors = expectedSelectedEditionComplex.respStatement.editors;
 
                     getAndExpectDebugElementByCss(pDes[0], 'span.editor', editors.length, editors.length);
                     getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
@@ -359,7 +359,7 @@ describe('EditionViewComponent (DONE)', () => {
                 it('... should display editor and version in responsibility div', () => {
                     const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-responsibility > p', 1, 1);
 
-                    const expectedEditors = expectedSelectedEditionComplex.responsibilityStatement.editors;
+                    const expectedEditors = expectedSelectedEditionComplex.respStatement.editors;
                     const editorDes = getAndExpectDebugElementByCss(
                         pDes[0],
                         'span.editor > a',
@@ -377,10 +377,7 @@ describe('EditionViewComponent (DONE)', () => {
                         expectToBe(editorEl.innerText, expectedEditors[i].name);
                     });
 
-                    expectToBe(
-                        versionEl.innerText,
-                        expectedSelectedEditionComplex.responsibilityStatement.lastModified
-                    );
+                    expectToBe(versionEl.innerText, expectedSelectedEditionComplex.respStatement.lastModified);
                 });
             });
 

@@ -29,12 +29,12 @@ export class EditionTitleStatement {
 }
 
 /**
- * The EditionResponsibilityStatement class.
+ * The EditionRespStatement class.
  *
  * It is used in the context of the edition view
  * to store information about the responsibility statement of an edition complex.
  */
-export class EditionResponsibilityStatement {
+export class EditionRespStatement {
     /**
      * The editors of an edition complex.
      */
@@ -61,7 +61,7 @@ export class EditionComplex {
     /**
      * The responsibility statement of the current edition complex.
      */
-    responsibilityStatement: EditionResponsibilityStatement;
+    respStatement: EditionRespStatement;
 
     /**
      * The id for the current edition complex.
@@ -96,14 +96,14 @@ export class EditionComplex {
      * It initializes the class with an edition complex Object from the EditionConstants.
      *
      * @param {EditionTitleStatement} titleStatement The given TitleStatement for the edition complex.
-     * @param {EditionResponsibilityStatement} responsibilityStatement The given ResponsibilityStatement for the edition complex.
+     * @param {EditionRespStatement} respStatement The given ResponsibilityStatement for the edition complex.
      * @param {EditionRouteConstant} series The given series.
      * @param {EditionRouteConstant} section The given section.
      * @param {EditionRouteConstant} type The given edition type.
      */
     constructor(
         titleStatement: EditionTitleStatement,
-        responsibilityStatement: EditionResponsibilityStatement,
+        respStatement: EditionRespStatement,
         series?: EditionRouteConstant,
         section?: EditionRouteConstant,
         type?: EditionRouteConstant
@@ -118,7 +118,7 @@ export class EditionComplex {
 
         // Set dynamic routes
         this.titleStatement = titleStatement;
-        this.responsibilityStatement = responsibilityStatement || new EditionResponsibilityStatement();
+        this.respStatement = respStatement || new EditionRespStatement();
 
         this.complexId = new EditionRouteConstant();
         if (this.titleStatement.catalogueType === EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS) {
