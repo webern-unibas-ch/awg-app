@@ -1,0 +1,697 @@
+{
+    "editionComplexes": [
+        {
+            "id": "M22",
+            "titleStatement": {
+                "title": "Studienkomposition für Klavier/Streichquartett",
+                "catalogueType": "MNR",
+                "catalogueNumber": "22"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Michael Matter",
+                        "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                    }
+                ],
+                "lastModified": "21. März 2024"
+            },
+            "pubStatement": {
+                "series": "2",
+                "section": "2a"
+            }
+        },
+        {
+            "id": "M30",
+            "titleStatement": {
+                "title": "Studienkomposition für Klavier",
+                "catalogueType": "MNR",
+                "catalogueNumber": "30"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Michael Matter",
+                        "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                    }
+                ],
+                "lastModified": "19. Januar 2024"
+            },
+            "pubStatement": {
+                "series": "2",
+                "section": "2a"
+            }
+        },
+        {
+            "id": "M31",
+            "titleStatement": {
+                "title": "Studienkomposition für Klavier",
+                "catalogueType": "MNR",
+                "catalogueNumber": "31"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Michael Matter",
+                        "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                    }
+                ],
+                "lastModified": "19. Januar 2024"
+            },
+            "pubStatement": {
+                "series": "2",
+                "section": "2a"
+            }
+        },
+        {
+            "id": "M34",
+            "titleStatement": {
+                "title": "Studienkomposition für Klavier",
+                "catalogueType": "MNR",
+                "catalogueNumber": "34"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Michael Matter",
+                        "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                    }
+                ],
+                "lastModified": "6. Mai 2023"
+            },
+            "pubStatement": {
+                "series": "2",
+                "section": "2a"
+            }
+        },
+        {
+            "id": "M35_42",
+            "titleStatement": {
+                "title": "Studienkomposition für Klavier",
+                "catalogueType": "MNR",
+                "catalogueNumber": "35/42"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Michael Matter",
+                        "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                    }
+                ],
+                "lastModified": "8. Februar 2024"
+            },
+            "pubStatement": {
+                "series": "2",
+                "section": "2a"
+            }
+        },
+        {
+            "id": "M37",
+            "titleStatement": {
+                "title": "Studienkomposition für Klavier",
+                "catalogueType": "MNR",
+                "catalogueNumber": "37"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Michael Matter",
+                        "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                    }
+                ],
+                "lastModified": "19. Januar 2024"
+            },
+            "pubStatement": {
+                "series": "2",
+                "section": "2a"
+            }
+        },
+        {
+            "id": "M133",
+            "titleStatement": {
+                "title": "„Dies ist ein Lied“",
+                "catalogueType": "MNR",
+                "catalogueNumber": "133"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                    }
+                ],
+                "lastModified": "6. Juni 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M134",
+            "titleStatement": {
+                "title": "„Im Windesweben“",
+                "catalogueType": "MNR",
+                "catalogueNumber": "134"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                    }
+                ],
+                "lastModified": "6. Juni 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M135",
+            "titleStatement": {
+                "title": "„An Bachesranft“",
+                "catalogueType": "MNR",
+                "catalogueNumber": "135"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                    }
+                ],
+                "lastModified": "6. Juni 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M136",
+            "titleStatement": {
+                "title": "„Im Morgentaun“",
+                "catalogueType": "MNR",
+                "catalogueNumber": "136"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                    }
+                ],
+                "lastModified": "6. Juni 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M137",
+            "titleStatement": {
+                "title": "„Kahl reckt der Baum“",
+                "catalogueType": "MNR",
+                "catalogueNumber": "137"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                    }
+                ],
+                "lastModified": "6. Juni 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M138",
+            "titleStatement": {
+                "title": "<em>Eingang</em> („Welt der Gestalten“)",
+                "catalogueType": "MNR",
+                "catalogueNumber": "138"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                    }
+                ],
+                "lastModified": "6. Juni 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M139",
+            "titleStatement": {
+                "title": "„Noch zwingt mich Treue“",
+                "catalogueType": "MNR",
+                "catalogueNumber": "139"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                    }
+                ],
+                "lastModified": "6. Juni 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M140",
+            "titleStatement": {
+                "title": "„Ja Heil und Dank dir“",
+                "catalogueType": "MNR",
+                "catalogueNumber": "140"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                    }
+                ],
+                "lastModified": "6. Juni 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M141",
+            "titleStatement": {
+                "title": "„So ich traurig bin“",
+                "catalogueType": "MNR",
+                "catalogueNumber": "141"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "6. Juni 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M142",
+            "titleStatement": {
+                "title": "„Ihr tratet zu dem Herde“",
+                "catalogueType": "MNR",
+                "catalogueNumber": "142"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "6. Juni 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M143",
+            "titleStatement": {
+                "title": "„Erwachen aus dem tiefsten Traumesschoße“",
+                "catalogueType": "MNR",
+                "catalogueNumber": "143"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "6. Juni 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M144",
+            "titleStatement": {
+                "title": "<em>Kunfttag I</em> („Dem bist du Kind“)",
+                "catalogueType": "MNR",
+                "catalogueNumber": "144"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "6. Juni 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M145",
+            "titleStatement": {
+                "title": "<em>Trauer I</em> („So wart bis ich dies dir noch künde“)",
+                "catalogueType": "MNR",
+                "catalogueNumber": "145"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "6. Juni 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M146",
+            "titleStatement": {
+                "title": "„Das lockere Saatgefilde“",
+                "catalogueType": "MNR",
+                "catalogueNumber": "146"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "6. Juni 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M212",
+            "titleStatement": {
+                "title": "„Der Tag ist vergangen“",
+                "catalogueType": "MNR",
+                "catalogueNumber": "212"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "---"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M213",
+            "titleStatement": {
+                "title": "„Schien mir’s, als ich sah die Sonne“",
+                "catalogueType": "MNR",
+                "catalogueNumber": "213"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "---"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M216",
+            "titleStatement": {
+                "title": "Gleich und Gleich („Ein Blumenglöckchen“)",
+                "catalogueType": "MNR",
+                "catalogueNumber": "216"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "---"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "M217",
+            "titleStatement": {
+                "title": "Die geheimnisvolle Flöte („An einem Abend“)",
+                "catalogueType": "MNR",
+                "catalogueNumber": "217"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "---"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "OP3",
+            "titleStatement": {
+                "title": "<em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em>",
+                "catalogueType": "OPUS",
+                "catalogueNumber": "3"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "6. Juni 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "OP4",
+            "titleStatement": {
+                "title": "<em>Fünf Lieder nach Gedichten von Stefan George</em>",
+                "catalogueType": "OPUS",
+                "catalogueNumber": "4"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "6. Juni 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "OP12",
+            "titleStatement": {
+                "title": "<em>Vier Lieder</em>",
+                "catalogueType": "OPUS",
+                "catalogueNumber": "12"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "9. April 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "OP19",
+            "titleStatement": {
+                "title": "<em>Zwei Lieder für gemischten Chor und Ensemble</em>",
+                "catalogueType": "OPUS",
+                "catalogueNumber": "19"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "6. Mai 2023"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "3"
+            }
+        },
+        {
+            "id": "OP22",
+            "titleStatement": {
+                "title": "Quartett für Geige, Klarinette, Tenorsaxophon und Klavier",
+                "catalogueType": "OPUS",
+                "catalogueNumber": "22"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "6. Mai 2023"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "2"
+            }
+        },
+        {
+            "id": "OP23",
+            "titleStatement": {
+                "title": "<em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em>",
+                "catalogueType": "OPUS",
+                "catalogueNumber": "23"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "17. April 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "OP24",
+            "titleStatement": {
+                "title": "<em>Konzert für neun Instrumente</em>",
+                "catalogueType": "OPUS",
+                "catalogueNumber": "24"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "6. Mai 2023"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "1"
+            }
+        },
+        {
+            "id": "OP25",
+            "titleStatement": {
+                "title": "<em>Drei Lieder nach Gedichten von Hildegard Jone</em>",
+                "catalogueType": "OPUS",
+                "catalogueNumber": "25"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "17. April 2024"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "5"
+            }
+        },
+        {
+            "id": "OP27",
+            "titleStatement": {
+                "title": "Variationen für Klavier",
+                "catalogueType": "OPUS",
+                "catalogueNumber": "27"
+            },
+            "respStatement": {
+                "editors": [
+                    {
+                        "name": "Thomas Ahrend",
+                        "homepage": "https://www.anton-webern.ch/index.php?id"
+                    }
+                ],
+                "lastModified": "6. Mai 2023"
+            },
+            "pubStatement": {
+                "series": "1",
+                "section": "2"
+            }
+        }
+    ]
+}
