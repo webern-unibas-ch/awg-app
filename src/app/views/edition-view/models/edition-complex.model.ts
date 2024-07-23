@@ -109,10 +109,9 @@ export class EditionComplex {
      * @param {EditionRouteConstant} section The given section.
      */
     constructor(
-        titleStatement: EditionTitleStatement,
+        titleStatement: { title: string; catalogueType: string; catalogueNumber: string },
         respStatement: EditionRespStatement,
-        series?: EditionRouteConstant,
-        section?: EditionRouteConstant
+        pubStatement?: { series: string; section: string }
     ) {
         if (!titleStatement?.catalogueType || !titleStatement?.catalogueNumber) {
             return;
@@ -123,35 +122,53 @@ export class EditionComplex {
         const spacer = '&nbsp;';
 
         // Set dynamic routes
-        this.titleStatement = titleStatement;
+        this.titleStatement = {
+            ...titleStatement,
+            catalogueType: this._mapCatalogueType(titleStatement.catalogueType),
+        };
         this.respStatement = respStatement ?? new EditionRespStatement();
 
-        this.complexId = new EditionRouteConstant();
-        switch (this.titleStatement.catalogueType) {
-            case EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS:
-                this.complexId.route = EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS.route;
-                break;
-            case EDITION_CATALOGUE_TYPE_CONSTANTS.MNR:
-                this.complexId.route = EDITION_CATALOGUE_TYPE_CONSTANTS.MNR.route;
-                break;
-            case EDITION_CATALOGUE_TYPE_CONSTANTS.MNR_PLUS:
-                this.complexId.route = EDITION_CATALOGUE_TYPE_CONSTANTS.MNR_PLUS.route;
-                break;
-            default:
-                this.complexId.route = '';
-        }
+        this.pubStatement = {
+            series: this._mapPubStatement('SERIES_', pubStatement?.series),
+            section: this._mapPubStatement('SECTION_', pubStatement?.section),
+        };
 
+        this.complexId = new EditionRouteConstant();
+        this.complexId.route = this.titleStatement.catalogueType.route;
         // For routes, replace slashes in catalogue number with underscores
         this.complexId.route += this.titleStatement.catalogueNumber.replace(/\//g, '_');
         this.complexId.short = `${this.titleStatement.catalogueType.short}${spacer}${this.titleStatement.catalogueNumber}`;
         this.complexId.full = `${this.titleStatement.title} ${this.complexId.short}`;
 
-        this.pubStatement = new EditionPubStatement();
-        this.pubStatement.series = series ?? new EditionRouteConstant();
-        this.pubStatement.section = section ?? new EditionRouteConstant();
-
         // Set base route
         const rootPath = `${EDITION_ROUTE_CONSTANTS.EDITION.route}${EDITION_ROUTE_CONSTANTS.COMPLEX.route}`;
         this.baseRoute = `${rootPath}${this.complexId.route}${delimiter}`;
+    }
+
+    /**
+     * Private method: _mapCatalogueType.
+     *
+     * It maps the catalogue type to the corresponding route constant.
+     *
+     * @param {string} catalogueType The given catalogue type.
+     *
+     * @returns {EditionRouteConstant} The corresponding route constant.
+     */
+    private _mapCatalogueType(catalogueType: string): EditionRouteConstant {
+        return EDITION_CATALOGUE_TYPE_CONSTANTS[catalogueType.toUpperCase()] ?? new EditionRouteConstant();
+    }
+
+    /**
+     * Private method: _mapPubStatement.
+     *
+     * It maps the publication statement to the corresponding route constant.
+     *
+     * @param {string} prefix The given prefix.
+     * @param {string} value The given value.
+     *
+     * @returns {EditionRouteConstant} The corresponding route constant.
+     */
+    private _mapPubStatement(prefix: string, value?: string): EditionRouteConstant {
+        return EDITION_ROUTE_CONSTANTS[`${prefix}${value?.toUpperCase()}`] ?? new EditionRouteConstant();
     }
 }
