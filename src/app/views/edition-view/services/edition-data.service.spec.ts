@@ -60,9 +60,9 @@ describe('EditionDataService (DONE)', () => {
         delimiter +
         EDITION_ROUTE_CONSTANTS.SERIES.route +
         delimiter +
-        expectedEditionComplex.series.route +
+        expectedEditionComplex.pubStatement.series.route +
         EDITION_ROUTE_CONSTANTS.SECTION.route +
-        expectedEditionComplex.section.route +
+        expectedEditionComplex.pubStatement.section.route +
         expectedEditionComplex.complexId.route;
     const expectedAssetPath = expectedAssetPathBaseRoute + expectedComplexRoute;
     let regexBase = new RegExp(expectedAssetPath);

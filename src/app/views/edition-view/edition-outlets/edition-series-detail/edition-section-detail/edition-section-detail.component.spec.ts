@@ -15,7 +15,8 @@ import {
 } from '@testing/expect-helper';
 import { ActivatedRouteStub } from '@testing/router-stubs';
 
-import { EDITION_OUTLINE_DATA } from '@awg-app/views/edition-view/data';
+import { EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionOutlineComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
@@ -341,7 +342,11 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                     const pDe = getAndExpectDebugElementByCss(divDe[0], 'p', 1, 1);
                     const pEl = pDe[0].nativeElement;
 
-                    const expectedNoComplexesMsg = `[Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von AWG ${expectedSelectedSeries.series.short}/${expectedSelectedSection.section.short}.]`;
+                    const awg = EDITION_ROUTE_CONSTANTS.EDITION.route;
+                    const series = expectedSelectedSeries.series.short;
+                    const section = expectedSelectedSection.section.short;
+
+                    const expectedNoComplexesMsg = `[Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von ${awg} ${series}/${section}.]`;
 
                     expectToBe(pEl.textContent.trim(), expectedNoComplexesMsg.trim());
                 });

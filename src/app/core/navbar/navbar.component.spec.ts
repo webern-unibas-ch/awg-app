@@ -567,7 +567,11 @@ describe('NavbarComponent (DONE)', () => {
                         const headerSpanDe = getAndExpectDebugElementByCss(headerDe[0], 'span', 1, 1);
                         const headerSpanEl = headerSpanDe[0].nativeElement;
 
-                        const headerSiglum = `[AWG ${expectedEditionComplexes[index].series.short}/${expectedEditionComplexes[index].section.short}] `;
+                        const awg = EDITION_ROUTE_CONSTANTS.EDITION.route;
+                        const series = expectedEditionComplexes[index].pubStatement.series.short;
+                        const section = expectedEditionComplexes[index].pubStatement.section.short;
+
+                        const headerSiglum = `[${awg} ${series}/${section}] `;
                         const headerId = expectedEditionComplexes[index].complexId.full;
 
                         expectToContain(headerEl.textContent, headerSiglum);

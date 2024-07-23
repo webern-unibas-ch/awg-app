@@ -47,6 +47,24 @@ export class EditionRespStatement {
 }
 
 /**
+ * The EditionPubStatement class.
+ *
+ * It is used in the context of the edition view
+ * to store information about the publication statement of an edition complex.
+ */
+export class EditionPubStatement {
+    /**
+     * The route for the current series.
+     */
+    series: EditionRouteConstant;
+
+    /**
+     * The route for the current section.
+     */
+    section: EditionRouteConstant;
+}
+
+/**
  * The EditionComplex class.
  *
  * It is used in the context of the edition view
@@ -64,19 +82,14 @@ export class EditionComplex {
     respStatement: EditionRespStatement;
 
     /**
+     * The publication statement of the current edition complex.
+     */
+    pubStatement: EditionPubStatement;
+
+    /**
      * The id for the current edition complex.
      */
     complexId: EditionRouteConstant;
-
-    /**
-     * The route for the current series.
-     */
-    series: EditionRouteConstant;
-
-    /**
-     * The route for the current section.
-     */
-    section: EditionRouteConstant;
 
     /**
      * The base route of an edition complex.
@@ -94,7 +107,6 @@ export class EditionComplex {
      * @param {EditionRespStatement} respStatement The given ResponsibilityStatement for the edition complex.
      * @param {EditionRouteConstant} series The given series.
      * @param {EditionRouteConstant} section The given section.
-     * @param {EditionRouteConstant} type The given edition type.
      */
     constructor(
         titleStatement: EditionTitleStatement,
@@ -112,26 +124,34 @@ export class EditionComplex {
 
         // Set dynamic routes
         this.titleStatement = titleStatement;
-        this.respStatement = respStatement || new EditionRespStatement();
+        this.respStatement = respStatement ?? new EditionRespStatement();
 
         this.complexId = new EditionRouteConstant();
-        if (this.titleStatement.catalogueType === EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS) {
-            this.complexId.route = EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS.route;
-        } else if (this.titleStatement.catalogueType === EDITION_CATALOGUE_TYPE_CONSTANTS.MNR) {
-            this.complexId.route = EDITION_CATALOGUE_TYPE_CONSTANTS.MNR.route;
-        } else if (this.titleStatement.catalogueType === EDITION_CATALOGUE_TYPE_CONSTANTS.MNR_PLUS) {
-            this.complexId.route = EDITION_CATALOGUE_TYPE_CONSTANTS.MNR_PLUS.route;
+        switch (this.titleStatement.catalogueType) {
+            case EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS:
+                this.complexId.route = EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS.route;
+                break;
+            case EDITION_CATALOGUE_TYPE_CONSTANTS.MNR:
+                this.complexId.route = EDITION_CATALOGUE_TYPE_CONSTANTS.MNR.route;
+                break;
+            case EDITION_CATALOGUE_TYPE_CONSTANTS.MNR_PLUS:
+                this.complexId.route = EDITION_CATALOGUE_TYPE_CONSTANTS.MNR_PLUS.route;
+                break;
+            default:
+                this.complexId.route = '';
         }
+
         // For routes, replace slashes in catalogue number with underscores
         this.complexId.route += this.titleStatement.catalogueNumber.replace(/\//g, '_');
-        this.complexId.short = this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
+        this.complexId.short = `${this.titleStatement.catalogueType.short}${spacer}${this.titleStatement.catalogueNumber}`;
         this.complexId.full = `${this.titleStatement.title} ${this.complexId.short}`;
 
-        this.series = series || new EditionRouteConstant();
-        this.section = section || new EditionRouteConstant();
+        this.pubStatement = new EditionPubStatement();
+        this.pubStatement.series = series ?? new EditionRouteConstant();
+        this.pubStatement.section = section ?? new EditionRouteConstant();
 
         // Set base route
-        const rootPath = EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.COMPLEX.route;
-        this.baseRoute = rootPath + this.complexId.route + delimiter;
+        const rootPath = `${EDITION_ROUTE_CONSTANTS.EDITION.route}${EDITION_ROUTE_CONSTANTS.COMPLEX.route}`;
+        this.baseRoute = `${rootPath}${this.complexId.route}${delimiter}`;
     }
 }

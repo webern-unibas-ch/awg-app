@@ -199,9 +199,9 @@ export class EditionDataService {
             delimiter +
             EDITION_ROUTE_CONSTANTS.SERIES.route +
             delimiter +
-            editionComplex.series.route +
+            editionComplex.pubStatement.series.route +
             EDITION_ROUTE_CONSTANTS.SECTION.route +
-            editionComplex.section.route +
+            editionComplex.pubStatement.section.route +
             editionComplex.complexId.route;
         return EDITION_ASSETS_DATA.BASE_ROUTE + complexRoute;
     }

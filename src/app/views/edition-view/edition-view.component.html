@@ -60,18 +60,22 @@
                     {{ editionRouteConstants.EDITION?.short }}
                 </a>
                 /
-                <a [routerLink]="[editionRouteConstants.SERIES.route, selectedEditionComplex.series.route]">
-                    {{ selectedEditionComplex.series.full }}
+                <a
+                    [routerLink]="[
+                        editionRouteConstants.SERIES.route,
+                        selectedEditionComplex.pubStatement.series.route,
+                    ]">
+                    {{ selectedEditionComplex.pubStatement.series.full }}
                 </a>
                 /
                 <a
                     [routerLink]="[
                         editionRouteConstants.SERIES.route,
-                        selectedEditionComplex.series.route,
+                        selectedEditionComplex.pubStatement.series.route,
                         'section',
-                        selectedEditionComplex.section.route,
+                        selectedEditionComplex.pubStatement.section.route,
                     ]">
-                    {{ selectedEditionComplex.section.full }}
+                    {{ selectedEditionComplex.pubStatement.section.full }}
                 </a>
             </h6>
             <h3 class="awg-edition-info-header">

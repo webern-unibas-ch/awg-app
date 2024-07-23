@@ -313,7 +313,11 @@ describe('IntroComponent (DONE)', () => {
                 const shortComplexSpan = mockDocument.createElement('span');
                 shortComplexSpan.innerHTML = expectedEditionComplex.complexId.short;
 
-                const introPlaceholder = `[Die Einleitung zum Editionskomplex ${fullComplexSpan.textContent} erscheint im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
+                const awg = EDITION_ROUTE_CONSTANTS.EDITION.route;
+                const series = expectedEditionComplex.pubStatement.series.short;
+                const section = expectedEditionComplex.pubStatement.section.short;
+
+                const introPlaceholder = `[Die Einleitung zum Editionskomplex ${fullComplexSpan.textContent} erscheint im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${awg} ${series}/${section}.]`;
 
                 expectToBe(pEl.textContent.trim(), introPlaceholder);
             }));

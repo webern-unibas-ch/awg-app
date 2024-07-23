@@ -12,7 +12,6 @@ import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import {
     EDITION_CATALOGUE_TYPE_CONSTANTS,
     EDITION_ROUTE_CONSTANTS,
-    EDITION_TYPE_CONSTANTS,
 } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
@@ -240,8 +239,7 @@ describe('EditionComplexComponent (DONE)', () => {
                         lastModified: '---',
                     },
                     EDITION_ROUTE_CONSTANTS.SERIES_1,
-                    EDITION_ROUTE_CONSTANTS.SECTION_5,
-                    EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+                    EDITION_ROUTE_CONSTANTS.SECTION_5
                 );
                 expectedSelectedEditionComplexId = 'op100';
                 expectedEditionComplexes[expectedSelectedEditionComplexId.toUpperCase()] = opusComplex;
@@ -271,8 +269,7 @@ describe('EditionComplexComponent (DONE)', () => {
                         lastModified: '---',
                     },
                     EDITION_ROUTE_CONSTANTS.SERIES_1,
-                    EDITION_ROUTE_CONSTANTS.SECTION_5,
-                    EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+                    EDITION_ROUTE_CONSTANTS.SECTION_5
                 );
                 expectedSelectedEditionComplexId = 'm100';
                 expectedEditionComplexes[expectedSelectedEditionComplexId.toUpperCase()] = mnrComplex;
@@ -302,8 +299,7 @@ describe('EditionComplexComponent (DONE)', () => {
                         lastModified: '---',
                     },
                     EDITION_ROUTE_CONSTANTS.SERIES_1,
-                    EDITION_ROUTE_CONSTANTS.SECTION_5,
-                    EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+                    EDITION_ROUTE_CONSTANTS.SECTION_5
                 );
                 expectedSelectedEditionComplexId = 'mPlus100';
                 expectedEditionComplexes[expectedSelectedEditionComplexId.toUpperCase()] = mnrPlusComplex;
@@ -328,7 +324,6 @@ describe('EditionComplexComponent (DONE)', () => {
                         catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
                         catalogueNumber: '100',
                     },
-                    null,
                     null,
                     null,
                     null
@@ -357,8 +352,7 @@ describe('EditionComplexComponent (DONE)', () => {
                         lastModified: '---',
                     },
                     EDITION_ROUTE_CONSTANTS.SERIES_1,
-                    EDITION_ROUTE_CONSTANTS.SECTION_5,
-                    EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+                    EDITION_ROUTE_CONSTANTS.SECTION_5
                 );
                 expectedSelectedEditionComplexId = 'op100';
                 expectedEditionComplexes[expectedSelectedEditionComplexId.toUpperCase()] = incompleteComplex;
