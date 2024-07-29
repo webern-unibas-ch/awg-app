@@ -35,6 +35,16 @@ export class EditionService {
     private readonly _editionComplexStream$ = this._editionComplexSubject.asObservable();
 
     /**
+     * Private replay subject to flag preface view.
+     */
+    private _isPrefaceViewSubject = new ReplaySubject<boolean>(this._bufferSize);
+
+    /**
+     * Private readonly isPrefaceView stream as observable (`ReplaySubject`).
+     */
+    private readonly _isPrefaceViewStream$ = this._isPrefaceViewSubject.asObservable();
+
+    /**
      * Private replay subject to flag row table view.
      */
     private _isRowTableViewSubject = new ReplaySubject<boolean>(this._bufferSize);
@@ -215,6 +225,41 @@ export class EditionService {
      */
     clearSelectedEditionSection(): void {
         this._selectedEditionSectionSubject.next(null);
+    }
+
+    /**
+     * Public method: getIsPrefaceView.
+     *
+     * It provides the latest isPrefaceView flag from the isPrefaceView stream.
+     *
+     * @returns {Observable<boolean>} The isPrefaceView stream as observable.
+     */
+    getIsPrefaceView(): Observable<boolean> {
+        return this._isPrefaceViewStream$;
+    }
+
+    /**
+     * Public method: updateIsPrefaceView.
+     *
+     * It updates the isPrefaceView stream with the given boolean value.
+     *
+     * @param {boolean} isView The given isPrefaceView flag.
+     *
+     * @returns {void} Sets the next isPrefaceView flag to the stream.
+     */
+    updateIsPrefaceView(isView: boolean): void {
+        this._isPrefaceViewSubject.next(isView);
+    }
+
+    /**
+     * Public method: clearIsPrefaceView.
+     *
+     * It clears the isPrefaceView stream.
+     *
+     * @returns {void} Clears the isPrefaceView stream.
+     */
+    clearIsPrefaceView(): void {
+        this._isPrefaceViewSubject.next(null);
     }
 
     /**

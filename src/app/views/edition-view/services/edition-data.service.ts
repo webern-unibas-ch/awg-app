@@ -13,6 +13,7 @@ import {
     FolioConvoluteList,
     GraphList,
     IntroList,
+    PrefaceList,
     SourceDescriptionList,
     SourceEvaluationList,
     SourceList,
@@ -119,6 +120,26 @@ export class EditionDataService {
         return introData$.pipe(
             // Default empty value
             defaultIfEmpty(new IntroList()),
+            // Take only first request (JSON fetch)
+            take(1)
+        );
+    }
+
+    /**
+     * Public method: getEditionPrefaceData.
+     *
+     * It provides the data from a JSON file
+     * for the preface of the edition view.
+     *
+     * @returns {Observable<PrefaceList>} The observable with the PrefaceList data.
+     */
+    getEditionPrefaceData(): Observable<PrefaceList> {
+        this._assetPath = EDITION_ASSETS_DATA.BASE_ROUTE;
+        const prefaceData$: Observable<PrefaceList> = this._getPrefaceData();
+
+        return prefaceData$.pipe(
+            // Default empty value
+            defaultIfEmpty(new PrefaceList()),
             // Take only first request (JSON fetch)
             take(1)
         );
@@ -247,6 +268,21 @@ export class EditionDataService {
      */
     private _getIntroData(): Observable<IntroList> {
         const file = EDITION_ASSETS_DATA.FILES.introFile;
+        const url = `${this._assetPath}/${file}`;
+        return this._getJsonData(url);
+    }
+
+    /**
+     * Private method: _getPrefaceData.
+     *
+     * It sets the path to the JSON file with
+     * the preface data and triggers
+     * the method to get the JSON data.
+     *
+     * @returns {Observable<PrefaceList>} The observable with the Preface data.
+     */
+    private _getPrefaceData(): Observable<PrefaceList> {
+        const file = EDITION_ASSETS_DATA.FILES.prefaceFile;
         const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }

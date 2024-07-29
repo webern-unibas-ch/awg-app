@@ -121,7 +121,13 @@ const EDITION_VIEW_ROUTES: Routes = [
                 ],
             },
             {
-                // Overview of row tables.
+                path: 'preface',
+                loadChildren: () =>
+                    import('./edition-outlets/edition-preface/edition-preface.module').then(
+                        m => m.EditionPrefaceModule
+                    ),
+            },
+            {
                 path: 'row-tables',
                 loadChildren: () =>
                     import('./edition-outlets/edition-row-tables/edition-row-tables.module').then(
