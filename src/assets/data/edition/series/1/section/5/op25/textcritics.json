@@ -341,8 +341,7 @@
             "id": "M_317_Sk2_1_1",
             "label": "M 317 Sk2.1.1",
             "description": [
-                "<strong>Sk2.1.1</strong> formuliert eine Variante des Anfangs von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1'})\"><strong>Sk2.1</strong></a> auf der Grundlage des 1.–5. Reihentons von Reihe B in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2'})\"><strong>Sk2</strong></a>.",
-                "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
+                "<strong>Sk2.1.1</strong> formuliert eine Variante des Anfangs von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1'})\"><strong>Sk2.1</strong></a> auf der Grundlage des 1.–5. Reihentons von Reihe B in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2'})\"><strong>Sk2</strong></a>."
             ],
             "comments": [],
             "linkBoxes": [
@@ -496,8 +495,7 @@
             "id": "M_317_Sk2_1_2_1",
             "label": "M 317 Sk2.1.2.1",
             "description": [
-                "<strong>Sk2.1.2.1</strong> formuliert eine rhythmisch-metrische Variante des Anfangs von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_2'})\"><strong>Sk2.1.2</strong></a>.",
-                "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
+                "<strong>Sk2.1.2.1</strong> formuliert eine rhythmisch-metrische Variante des Anfangs von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_2'})\"><strong>Sk2.1.2</strong></a>."
             ],
             "comments": [],
             "linkBoxes": [
@@ -570,8 +568,7 @@
             "id": "M_317_Sk2_1_3",
             "label": "M 317 Sk2.1.3",
             "description": [
-                "Die in <strong>Sk2.1.3</strong> notierten Tonbuchstaben <em>c</em>, <em>f</em>, <em>gis</em> und <em>a</em> beziehen sich vermutlich auf noch fehlende Reihentöne bei der Niederschrift von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2'})\"><strong>Sk2</strong></a> (Reihe B), <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1'})\"><strong>Sk2.1</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_2'})\"><strong>Sk2.1.2</strong></a>.",
-                "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
+                "Die in <strong>Sk2.1.3</strong> notierten Tonbuchstaben <em>c</em>, <em>f</em>, <em>gis</em> und <em>a</em> beziehen sich vermutlich auf noch fehlende Reihentöne bei der Niederschrift von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2'})\"><strong>Sk2</strong></a> (Reihe B), <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1'})\"><strong>Sk2.1</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk2_1_2'})\"><strong>Sk2.1.2</strong></a>."
             ],
             "comments": [],
             "linkBoxes": [
@@ -1141,8 +1138,7 @@
             "id": "M_317_Sk3_1_3_1",
             "label": "M 317 Sk3.1.3.1",
             "description": [
-                "<strong>Sk3.1.3.1</strong> notiert das Ergebnis der in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>Sk3.1.3</strong></a> erkennbaren Änderung des 10.–11. Reihentons von G<sub>g</sub> und U<sub>g</sub> bzw. des 2.–3. Reihentons von K<sub>gis</sub> und KU<sub>fis</sub> am Beispiel von G<sub>g</sub> noch einmal in einem einheitlichen Oktavregister.",
-                "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
+                "<strong>Sk3.1.3.1</strong> notiert das Ergebnis der in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>Sk3.1.3</strong></a> erkennbaren Änderung des 10.–11. Reihentons von G<sub>g</sub> und U<sub>g</sub> bzw. des 2.–3. Reihentons von K<sub>gis</sub> und KU<sub>fis</sub> am Beispiel von G<sub>g</sub> noch einmal in einem einheitlichen Oktavregister."
             ],
             "comments": [],
             "linkBoxes": [
@@ -1721,8 +1717,7 @@
             "id": "M_317_Sk4_2",
             "label": "M 317 Sk4.2",
             "description": [
-                "<strong>Sk4.2</strong> formuliert vermutlich den Ansatz zu einer Variante der Singstimme in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\"><strong>Sk4</strong></a> T. 13.",
-                "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
+                "<strong>Sk4.2</strong> formuliert vermutlich den Ansatz zu einer Variante der Singstimme in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\"><strong>Sk4</strong></a> T. 13."
             ],
             "comments": [],
             "linkBoxes": [
