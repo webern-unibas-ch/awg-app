@@ -435,191 +435,284 @@ describe('TextcriticsListComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
                 });
 
-                it('... should contain no item body with div and paragraphs if description and comment arrays are empty', () => {
-                    const textcritics = expectedTextcriticsData.textcritics[0];
-                    const bodyDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
-                        1,
-                        1,
-                        'open'
-                    );
+                describe('...  if description array is empty', () => {
+                    it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaDescriptionComponent', () => {
+                        const textcritics = expectedTextcriticsData.textcritics[0];
 
-                    getAndExpectDebugElementByCss(bodyDes[0], 'div', 0, 0);
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+
+                        getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
+
+                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 0, 0);
+                    });
+
+                    it('... should display a no content message (small.text-muted) in another paragraph within item body div', () => {
+                        const textcritics = expectedTextcriticsData.textcritics[0];
+
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 2, 2);
+
+                        // Get small element of second paragraph
+                        const smallDes = getAndExpectDebugElementByCss(pDes[1], 'small', 1, 1);
+                        const smallEl = smallDes[0].nativeElement;
+
+                        expectToContain(smallEl.textContent, '[Nicht vorhanden.]');
+                        expect(smallEl).toHaveClass('text-muted');
+                    });
                 });
 
-                it('... should contain item body with div, small caps paragraph, first EditionTkaLabelComponent and EditionTkaDescriptionComponent if description array is not empty', () => {
-                    const textcritics = expectedTextcriticsData.textcritics[1];
+                describe('...  if description array is not empty', () => {
+                    it('... should contain item body with div, small caps paragraph, first EditionTkaLabelComponent and EditionTkaDescriptionComponent', () => {
+                        const textcritics = expectedTextcriticsData.textcritics[1];
 
-                    const bodyDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
-                        1,
-                        1,
-                        'open'
-                    );
-                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
-                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
-                    getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
 
-                    getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 1, 1);
+                    });
+
+                    it('... should pass down `id` data to first EditionTkaLabelComponent (stubbed)', () => {
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+
+                        const labelDes = getAndExpectDebugElementByDirective(
+                            pDes[0],
+                            EditionTkaLabelStubComponent,
+                            1,
+                            1
+                        );
+                        const labelCmp = labelDes[0].injector.get(
+                            EditionTkaLabelStubComponent
+                        ) as EditionTkaLabelStubComponent;
+
+                        expectToBe(labelCmp.id, expectedTextcriticsData.textcritics[1].id);
+                    });
+
+                    it('... should pass down `labelType` data to first EditionTkaLabelComponent (stubbed)', () => {
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+
+                        const labelDes = getAndExpectDebugElementByDirective(
+                            pDes[0],
+                            EditionTkaLabelStubComponent,
+                            1,
+                            1
+                        );
+                        const labelCmp = labelDes[0].injector.get(
+                            EditionTkaLabelStubComponent
+                        ) as EditionTkaLabelStubComponent;
+
+                        expectToBe(labelCmp.labelType, 'evaluation');
+                    });
+
+                    it('... should pass down `description` data to EditionTkaDescriptionComponent (stubbed)', () => {
+                        const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionTkaDescriptionStubComponent,
+                            1,
+                            1
+                        );
+                        const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
+                            EditionTkaDescriptionStubComponent
+                        ) as EditionTkaDescriptionStubComponent;
+
+                        expectToEqual(
+                            editionTkaDescriptionCmp.textcriticalDescriptions,
+                            expectedTextcriticsData.textcritics[1].description
+                        );
+                    });
                 });
 
-                it('... should pass down `id` data to first EditionTkaLabelComponent (stubbed)', () => {
-                    const bodyDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
-                        1,
-                        1,
-                        'open'
-                    );
-                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
-                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+                describe('...  if commments array is empty', () => {
+                    it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaTableComponent', () => {
+                        const textcritics = expectedTextcriticsData.textcritics[0];
 
-                    const labelDes = getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
-                    const labelCmp = labelDes[0].injector.get(
-                        EditionTkaLabelStubComponent
-                    ) as EditionTkaLabelStubComponent;
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
-                    expectToBe(labelCmp.id, expectedTextcriticsData.textcritics[1].id);
+                        getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
+
+                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaTableStubComponent, 0, 0);
+                    });
+
+                    it('... should display a no content message (small.text-muted) in another paragraph within item body div', () => {
+                        const textcritics = expectedTextcriticsData.textcritics[0];
+
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 2, 2);
+
+                        // Get small element of second paragraph
+                        const smallDes = getAndExpectDebugElementByCss(pDes[1], 'small', 1, 1);
+                        const smallEl = smallDes[0].nativeElement;
+
+                        expectToContain(smallEl.textContent, '[Nicht vorhanden.]');
+                        expect(smallEl).toHaveClass('text-muted');
+                    });
                 });
 
-                it('... should pass down `labelType` data to first EditionTkaLabelComponent (stubbed)', () => {
-                    const bodyDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
-                        1,
-                        1,
-                        'open'
-                    );
-                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
-                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+                describe('...  if comments array is not empty', () => {
+                    it('... should contain item body with div, small caps paragraph, second EditionTkaLabelComponent and EditionTkaTableComponent', () => {
+                        const textcritics = expectedTextcriticsData.textcritics[1];
 
-                    const labelDes = getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
-                    const labelCmp = labelDes[0].injector.get(
-                        EditionTkaLabelStubComponent
-                    ) as EditionTkaLabelStubComponent;
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
-                    expectToBe(labelCmp.labelType, 'evaluation');
-                });
+                        getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
 
-                it('... should pass down `description` data to EditionTkaDescriptionComponent (stubbed)', () => {
-                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionTkaDescriptionStubComponent,
-                        1,
-                        1
-                    );
-                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
-                        EditionTkaDescriptionStubComponent
-                    ) as EditionTkaDescriptionStubComponent;
+                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaTableStubComponent, 1, 1);
+                    });
 
-                    expectToEqual(
-                        editionTkaDescriptionCmp.textcriticalDescriptions,
-                        expectedTextcriticsData.textcritics[1].description
-                    );
-                });
+                    it('... should pass down `id` data to second EditionTkaLabelComponent (stubbed)', () => {
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
-                it('... should contain item body with div, small caps paragraph, second EditionTkaLabelComponent and EditionTkaTableComponent if comments array is not empty', () => {
-                    const textcritics = expectedTextcriticsData.textcritics[1];
+                        const labelDes = getAndExpectDebugElementByDirective(
+                            pDes[0],
+                            EditionTkaLabelStubComponent,
+                            1,
+                            1
+                        );
+                        const labelCmp = labelDes[0].injector.get(
+                            EditionTkaLabelStubComponent
+                        ) as EditionTkaLabelStubComponent;
 
-                    const bodyDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
-                        1,
-                        1,
-                        'open'
-                    );
-                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
-                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+                        expectToBe(labelCmp.id, expectedTextcriticsData.textcritics[1].id);
+                    });
 
-                    getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
+                    it('... should pass down `labelType` data to second EditionTkaLabelComponent (stubbed)', () => {
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
-                    getAndExpectDebugElementByDirective(divDes[0], EditionTkaTableStubComponent, 1, 1);
-                });
+                        const labelDes = getAndExpectDebugElementByDirective(
+                            pDes[0],
+                            EditionTkaLabelStubComponent,
+                            1,
+                            1
+                        );
+                        const labelCmp = labelDes[0].injector.get(
+                            EditionTkaLabelStubComponent
+                        ) as EditionTkaLabelStubComponent;
 
-                it('... should pass down `id` data to second EditionTkaLabelComponent (stubbed)', () => {
-                    const bodyDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
-                        1,
-                        1,
-                        'open'
-                    );
-                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
-                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+                        expectToBe(labelCmp.labelType, 'comment');
+                    });
 
-                    const labelDes = getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
-                    const labelCmp = labelDes[0].injector.get(
-                        EditionTkaLabelStubComponent
-                    ) as EditionTkaLabelStubComponent;
+                    it('... should pass down `comments` to EditionTkaTableComponent (stubbed)', () => {
+                        const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionTkaTableStubComponent,
+                            1,
+                            1
+                        );
+                        const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                            EditionTkaTableStubComponent
+                        ) as EditionTkaTableStubComponent;
 
-                    expectToBe(labelCmp.id, expectedTextcriticsData.textcritics[1].id);
-                });
+                        expectToEqual(
+                            editionTkaTableCmp.textcriticalComments,
+                            expectedTextcriticsData.textcritics[1].comments
+                        );
+                    });
 
-                it('... should pass down `labelType` data to second EditionTkaLabelComponent (stubbed)', () => {
-                    const bodyDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
-                        1,
-                        1,
-                        'open'
-                    );
-                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
-                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+                    it('... should pass down `isRowTable` to EditionTkaTableComponent (stubbed)', () => {
+                        const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionTkaTableStubComponent,
+                            1,
+                            1
+                        );
+                        const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                            EditionTkaTableStubComponent
+                        ) as EditionTkaTableStubComponent;
 
-                    const labelDes = getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
-                    const labelCmp = labelDes[0].injector.get(
-                        EditionTkaLabelStubComponent
-                    ) as EditionTkaLabelStubComponent;
+                        expectToEqual(editionTkaTableCmp.isRowTable, expectedTextcriticsData.textcritics[1].rowtable);
+                    });
 
-                    expectToBe(labelCmp.labelType, 'comment');
-                });
+                    it('... should pass down `isSketchId` to EditionTkaTableComponent (stubbed)', () => {
+                        const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionTkaTableStubComponent,
+                            1,
+                            1
+                        );
+                        const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                            EditionTkaTableStubComponent
+                        ) as EditionTkaTableStubComponent;
 
-                it('... should pass down `comments` to EditionTkaTableComponent (stubbed)', () => {
-                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionTkaTableStubComponent,
-                        1,
-                        1
-                    );
-                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
-                        EditionTkaTableStubComponent
-                    ) as EditionTkaTableStubComponent;
-
-                    expectToEqual(
-                        editionTkaTableCmp.textcriticalComments,
-                        expectedTextcriticsData.textcritics[1].comments
-                    );
-                });
-
-                it('... should pass down `isRowTable` to EditionTkaTableComponent (stubbed)', () => {
-                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionTkaTableStubComponent,
-                        1,
-                        1
-                    );
-                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
-                        EditionTkaTableStubComponent
-                    ) as EditionTkaTableStubComponent;
-
-                    expectToEqual(editionTkaTableCmp.isRowTable, expectedTextcriticsData.textcritics[1].rowtable);
-                });
-
-                it('... should pass down `isSketchId` to EditionTkaTableComponent (stubbed)', () => {
-                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionTkaTableStubComponent,
-                        1,
-                        1
-                    );
-                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
-                        EditionTkaTableStubComponent
-                    ) as EditionTkaTableStubComponent;
-
-                    expectToEqual(editionTkaTableCmp.isSketchId, false);
+                        expectToEqual(editionTkaTableCmp.isSketchId, false);
+                    });
                 });
             });
         });
