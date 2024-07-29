@@ -35,6 +35,14 @@ export class EditionViewComponent implements OnInit {
     editionViewId = 'awg-edition-view';
 
     /**
+     * Public variable: isPrefaceView$.
+     *
+     * Observable that keeps the information
+     * about the flag for the preface view.
+     */
+    isPrefaceView$: Observable<boolean>;
+
+    /**
      * Public variable: isRowTableView$.
      *
      * Observable that keeps the information
@@ -113,6 +121,7 @@ export class EditionViewComponent implements OnInit {
         this.selectedEditionSeries$ = this.editionService.getSelectedEditionSeries().pipe(delay(0));
         this.selectedEditionSection$ = this.editionService.getSelectedEditionSection().pipe(delay(0));
         this.selectedEditionComplex$ = this.editionService.getEditionComplex().pipe(delay(0));
+        this.isPrefaceView$ = this.editionService.getIsPrefaceView().pipe(delay(0));
         this.isRowTableView$ = this.editionService.getIsRowTableView().pipe(delay(0));
     }
 

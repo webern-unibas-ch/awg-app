@@ -44,6 +44,7 @@ function generateExpectedOrderOfRouterlinks(editionComplexes: EditionComplex[]):
         ['/home'],
         [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.SERIES.route],
         [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.ROWTABLES.route],
+        [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.PREFACE.route],
     ];
 
     const editionLinks = editionComplexes.flatMap(complex => [
@@ -453,7 +454,7 @@ describe('NavbarComponent (DONE)', () => {
                 expectToEqual(faIconIns, expectedContactIcon);
             });
 
-            describe('... second nav-item link', () => {
+            describe('... second nav-item link (edition)', () => {
                 let navItemDe: DebugElement[];
                 let navItemLinkDe: DebugElement[];
 
@@ -466,7 +467,6 @@ describe('NavbarComponent (DONE)', () => {
                 }));
 
                 it('... should have a dropdown menu', () => {
-                    // Expect dropdown menu
                     getAndExpectDebugElementByCss(navItemDe[1], 'div.dropdown-menu', 1, 1);
                 });
 
@@ -482,48 +482,56 @@ describe('NavbarComponent (DONE)', () => {
                     expectToBe(headerEl.textContent, 'Allgemein');
                 });
 
-                it('... should be followed by 2 dropdown items', () => {
-                    const firstItemDe = getAndExpectDebugElementByCss(
+                it('... should be followed by 3 dropdown items for edition overview, rowtables and preface', () => {
+                    const overviewDe = getAndExpectDebugElementByCss(
                         navItemDe[1],
                         'div.dropdown-menu > a.dropdown-item:nth-child(2)',
                         1,
                         1
                     );
-                    const secondItemDe = getAndExpectDebugElementByCss(
+                    const rowtablesDe = getAndExpectDebugElementByCss(
                         navItemDe[1],
                         'div.dropdown-menu > a.dropdown-item:nth-child(3)',
                         1,
                         1
                     );
+                    const prefaceDe = getAndExpectDebugElementByCss(
+                        navItemDe[1],
+                        'div.dropdown-menu > a.dropdown-item:nth-child(4)',
+                        1,
+                        1
+                    );
 
-                    const firstItemEl = firstItemDe[0].nativeElement;
-                    const secondItemEl = secondItemDe[0].nativeElement;
+                    const overviewEl = overviewDe[0].nativeElement;
+                    const rowtablesEl = rowtablesDe[0].nativeElement;
+                    const prefaceEl = prefaceDe[0].nativeElement;
 
-                    expectToBe(firstItemEl.textContent, EDITION_ROUTE_CONSTANTS.SERIES.full);
-                    expectToBe(secondItemEl.textContent, EDITION_ROUTE_CONSTANTS.ROWTABLES.full);
+                    expectToBe(overviewEl.textContent, EDITION_ROUTE_CONSTANTS.SERIES.full);
+                    expectToBe(rowtablesEl.textContent, EDITION_ROUTE_CONSTANTS.ROWTABLES.full);
+                    expectToBe(prefaceEl.textContent, EDITION_ROUTE_CONSTANTS.PREFACE.full);
                 });
 
                 it('... should have another dropdown header `Auswahl Skizzenkomplexe` surrounded by dividers', () => {
                     getAndExpectDebugElementByCss(
                         navItemDe[1],
-                        'div.dropdown-menu > div.dropdown-divider:nth-child(4)',
+                        'div.dropdown-menu > div.dropdown-divider:nth-child(5)',
                         1,
                         1
                     );
-                    getAndExpectDebugElementByCss(
-                        navItemDe[1],
-                        'div.dropdown-menu > div.dropdown-divider:nth-child(6)',
-                        1,
-                        1
-                    );
-
                     const headerDe = getAndExpectDebugElementByCss(
                         navItemDe[1],
-                        'div.dropdown-menu > h6.dropdown-header:nth-child(5)',
+                        'div.dropdown-menu > h6.dropdown-header:nth-child(6)',
                         1,
                         1
                     );
                     const headerEl = headerDe[0].nativeElement;
+
+                    getAndExpectDebugElementByCss(
+                        navItemDe[1],
+                        'div.dropdown-menu > div.dropdown-divider:nth-child(7)',
+                        1,
+                        1
+                    );
 
                     expectToBe(headerEl.textContent, 'Auswahl Skizzenkomplexe');
                 });

@@ -3,6 +3,22 @@
 <div>
     <awg-scroll-to-top />
 
+    @if (isPrefaceView$ | async; as isPrefaceView) {
+        <div class="awg-edition-preface para">
+            <h6 class="awg-edition-info-breadcrumb">
+                <a [routerLink]="[editionRouteConstants.SERIES.route]">
+                    {{ editionRouteConstants.EDITION?.short }}
+                </a>
+                /
+                <span>{{ editionRouteConstants.PREFACE.short }}</span>
+            </h6>
+            <!-- Jumbotron -->
+            <awg-edition-jumbotron
+                [jumbotronId]="editionViewId"
+                [jumbotronTitle]="editionRouteConstants.PREFACE.full"></awg-edition-jumbotron>
+        </div>
+    }
+
     @if (isRowTableView$ | async; as isRowTableView) {
         <div class="awg-edition-row-tables para">
             <h6 class="awg-edition-info-breadcrumb">
