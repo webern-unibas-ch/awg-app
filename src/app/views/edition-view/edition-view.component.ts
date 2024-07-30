@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { delay, Observable } from 'rxjs';
 
@@ -81,12 +81,10 @@ export class EditionViewComponent implements OnInit {
      * EditionService, ActivatedRoute and Router.
      *
      * @param {EditionService} editionService Instance of the EditionService.
-     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
      * @param {Router} router Instance of the Angular router.
      */
     constructor(
         private editionService: EditionService,
-        private route: ActivatedRoute,
         private router: Router
     ) {}
 

@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { EditionRowTablesList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
-import { Observable } from 'rxjs';
 
 /**
  * The EditionRowTables component.
