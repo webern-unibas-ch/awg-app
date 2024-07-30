@@ -18,6 +18,7 @@ describe('EditionService (DONE)', () => {
     let expectedEditionSeries: EditionOutlineSeries;
     let expectedEditionSeriesRoute: string;
     let expectedEditionSection: EditionOutlineSection;
+    let expectedIsPrefaceView: boolean;
     let expectedIsRowTableView: boolean;
 
     beforeEach(() => {
@@ -33,6 +34,7 @@ describe('EditionService (DONE)', () => {
         expectedEditionSeriesRoute = EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.SERIES.route;
         expectedEditionSeries = EDITION_OUTLINE_DATA[0];
         expectedEditionSection = EDITION_OUTLINE_DATA[0].sections[0];
+        expectedIsPrefaceView = true;
         expectedIsRowTableView = true;
     });
 
@@ -54,6 +56,14 @@ describe('EditionService (DONE)', () => {
 
     it('... should have _editionComplexStream$', () => {
         expect((editionService as any)._editionComplexStream$).toBeTruthy();
+    });
+
+    it('... should have _isPrefaceViewSubject', () => {
+        expect((editionService as any)._isPrefaceViewSubject).toBeTruthy();
+    });
+
+    it('... should have _isPrefaceViewStream$', () => {
+        expect((editionService as any)._isPrefaceViewStream$).toBeTruthy();
     });
 
     it('... should have _isRowTableViewSubject', () => {
@@ -147,7 +157,7 @@ describe('EditionService (DONE)', () => {
                 editionService.clearEditionComplex();
             }));
 
-            it('... should overwrite existing search results', waitForAsync(() => {
+            it('... should overwrite existing values', waitForAsync(() => {
                 editionService.getEditionComplex().subscribe({
                     next: (editionComplex: EditionComplex) => {
                         expectToEqual(editionComplex, expectedEditionComplex);
@@ -271,7 +281,7 @@ describe('EditionService (DONE)', () => {
                 editionService.clearSelectedEditionSeries();
             }));
 
-            it('... should overwrite existing search results', waitForAsync(() => {
+            it('... should overwrite existing values', waitForAsync(() => {
                 editionService.getSelectedEditionSeries().subscribe({
                     next: (editionSeries: EditionOutlineSeries) => {
                         expectToEqual(editionSeries, expectedEditionSeries);
@@ -378,7 +388,7 @@ describe('EditionService (DONE)', () => {
                 editionService.clearSelectedEditionSection();
             }));
 
-            it('... should overwrite existing search results', waitForAsync(() => {
+            it('... should overwrite existing values', waitForAsync(() => {
                 editionService.getSelectedEditionSection().subscribe({
                     next: (editionSection: EditionOutlineSection) => {
                         expectToEqual(editionSection, expectedEditionSection);
@@ -391,6 +401,94 @@ describe('EditionService (DONE)', () => {
                 // Clear editionSection
                 expectedEditionSection = null;
                 editionService.clearSelectedEditionSection();
+            }));
+        });
+    });
+
+    describe('PrefaceView', () => {
+        describe('#getIsPrefaceView()', () => {
+            it('... should have a method `getIsPrefaceView`', () => {
+                expect(editionService.getIsPrefaceView).toBeDefined();
+            });
+
+            it('... should return isPrefaceView', waitForAsync(() => {
+                editionService.getIsPrefaceView().subscribe({
+                    next: (isRowTableView: boolean) => {
+                        expectToBe(isRowTableView, expectedIsPrefaceView);
+                    },
+                });
+
+                // Set isPrefaceView (with default value)
+                editionService.updateIsPrefaceView(expectedIsPrefaceView);
+            }));
+
+            it('... should return updated isPrefaceView', waitForAsync(() => {
+                editionService.getIsPrefaceView().subscribe({
+                    next: (isPrefaceView: boolean) => {
+                        expectToBe(isPrefaceView, expectedIsPrefaceView);
+                    },
+                });
+
+                // Set isPrefaceView (with default value)
+                editionService.updateIsPrefaceView(expectedIsPrefaceView);
+
+                // Update isPrefaceView
+                expectedIsPrefaceView = false;
+                editionService.updateIsPrefaceView(expectedIsPrefaceView);
+            }));
+        });
+
+        describe('#updateIsPrefaceView()', () => {
+            it('... should have a method `updateIsPrefaceView`', () => {
+                expect(editionService.updateIsPrefaceView).toBeDefined();
+            });
+
+            it('... should emit updated isPrefaceView', waitForAsync(() => {
+                editionService.getIsPrefaceView().subscribe({
+                    next: (isPrefaceView: boolean) => {
+                        expectToBe(isPrefaceView, expectedIsPrefaceView);
+                    },
+                });
+
+                // Set isPrefaceView (with default value)
+                editionService.updateIsPrefaceView(expectedIsPrefaceView);
+
+                // Update isPrefaceView
+                expectedIsPrefaceView = false;
+                editionService.updateIsPrefaceView(expectedIsPrefaceView);
+            }));
+        });
+
+        describe('#clearIsPrefaceView()', () => {
+            it('... should have a method `clearIsPrefaceView`', () => {
+                expect(editionService.clearIsPrefaceView).toBeDefined();
+            });
+
+            it('... should update isPrefaceView with null value', waitForAsync(() => {
+                editionService.getIsPrefaceView().subscribe({
+                    next: (isPrefaceView: boolean) => {
+                        expectToBe(isPrefaceView, expectedIsPrefaceView);
+                    },
+                });
+
+                // Clear isPrefaceView
+                expectedIsPrefaceView = null;
+                editionService.clearIsPrefaceView();
+            }));
+
+            it('... should overwrite existing values', waitForAsync(() => {
+                editionService.getIsPrefaceView().subscribe({
+                    next: (isPrefaceView: boolean) => {
+                        expectToBe(isPrefaceView, expectedIsPrefaceView);
+                    },
+                });
+
+                // Update isPrefaceView
+                editionService.updateIsPrefaceView(expectedIsPrefaceView);
+
+                // Clear isPrefaceView
+                expectedIsPrefaceView = null;
+                editionService.clearIsPrefaceView();
             }));
         });
     });
@@ -466,7 +564,7 @@ describe('EditionService (DONE)', () => {
                 editionService.clearIsRowTableView();
             }));
 
-            it('... should overwrite existing search results', waitForAsync(() => {
+            it('... should overwrite existing values', waitForAsync(() => {
                 editionService.getIsRowTableView().subscribe({
                     next: (isRowTableView: boolean) => {
                         expectToBe(isRowTableView, expectedIsRowTableView);

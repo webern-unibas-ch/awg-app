@@ -84,6 +84,15 @@ export const EDITION_GLYPHS_DATA = {
     },
 
     /**
+     * The glyph of a musical pedal symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%AE
+     */
+    PEADL: {
+        alt: '[ped]',
+        hex: '\uD834\uDDAE',
+    },
+
+    /**
      * The glyph of a musical pianissimo (double piano) symbol.
      * Cf. https://graphemica.com/%F0%9D%86%8F
      */
