@@ -5539,11 +5539,11 @@ __metadata:
     eslint-plugin-angular: "npm:^4.1.0"
     eslint-plugin-deprecation: "npm:^3.0.0"
     eslint-plugin-import: "npm:^2.29.1"
-    eslint-plugin-jsdoc: "npm:^48.8.3"
+    eslint-plugin-jsdoc: "npm:^48.9.2"
     eslint-plugin-prettier: "npm:^5.2.1"
     font-awesome: "npm:^4.7.0"
     gzipper: "npm:^7.2.0"
-    husky: "npm:^9.1.2"
+    husky: "npm:^9.1.4"
     jasmine-core: "npm:~5.2.0"
     json2typescript: "npm:^1.5.1"
     karma: "npm:~6.4.3"
@@ -8224,9 +8224,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsdoc@npm:^48.8.3":
-  version: 48.8.3
-  resolution: "eslint-plugin-jsdoc@npm:48.8.3"
+"eslint-plugin-jsdoc@npm:^48.9.2":
+  version: 48.9.2
+  resolution: "eslint-plugin-jsdoc@npm:48.9.2"
   dependencies:
     "@es-joy/jsdoccomment": "npm:~0.46.0"
     are-docs-informative: "npm:^0.0.2"
@@ -8240,7 +8240,7 @@ __metadata:
     synckit: "npm:^0.9.1"
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0 || ^9.0.0
-  checksum: 10c0/78d893614b188617de5a03d8163406455e3b739fd7b86192eb05a29cf8e7f06909a6f6a1b9dc2acd31e5ae2bccd94600eaea247d277f58c3c946c0fdb36a57f7
+  checksum: 10c0/efcc8dbd0d2f1374682e97f08e1bcfe77109cb0f6b82862bcf389d3a60a2374fecbfb0a060bb1977228856f973e1bb6cac1f2bbfd95e2a9dd43f81daf9f191c1
   languageName: node
   linkType: hard
 
@@ -9802,12 +9802,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^9.1.2":
-  version: 9.1.2
-  resolution: "husky@npm:9.1.2"
+"husky@npm:^9.1.4":
+  version: 9.1.4
+  resolution: "husky@npm:9.1.4"
   bin:
     husky: bin.js
-  checksum: 10c0/7e25c31ef98ac35d357147005d6e5d87db2abca7297e7c5aac931de3699acd32a3f1a9f8e53f101daeab818f0cfe9d18fa7e34f7cf5c9c4437c3665123456dea
+  checksum: 10c0/f5185003bef9ad9ec3f40e821963e4c12409b993fdcab89e3d660bed7d8c9d8bfd399f05222e27e0ead6589601fb1bb08d1a589c51751a4ab0547ead3429b8de
   languageName: node
   linkType: hard
 
