@@ -322,6 +322,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expectToBe(component.getGlyph('[#]'), '\u266F'); // SHARP
                 expectToBe(component.getGlyph('[a]'), '\u266E'); // NATURAL
                 expectToBe(component.getGlyph('[f]'), '\uD834\uDD91'); // FORTE
+                expectToBe(component.getGlyph('[ped]'), '\uD834\uDDAE'); // PEDAL
             });
 
             it('... should return an empty string for an invalid glyph alt value', () => {
