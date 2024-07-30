@@ -317,6 +317,9 @@
                             <a href="#routedEditionIntroComponents" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro-routing.module.ts" ><b>routedEditionIntroComponents</b>&nbsp;&nbsp;&nbsp;(src/.../edition-intro-routing.module.ts)</a>
                         </li>
                         <li>
+                            <a href="#routedEditionPrefaceComponents" title="src/app/views/edition-view/edition-outlets/edition-preface/edition-preface-routing.module.ts" ><b>routedEditionPrefaceComponents</b>&nbsp;&nbsp;&nbsp;(src/.../edition-preface-routing.module.ts)</a>
+                        </li>
+                        <li>
                             <a href="#routedEditionReportComponents" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report-routing.module.ts" ><b>routedEditionReportComponents</b>&nbsp;&nbsp;&nbsp;(src/.../edition-report-routing.module.ts)</a>
                         </li>
                         <li>
@@ -617,7 +620,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;0.12.3-111-g358f6944c&#x27;</code>
+                        <i>Default value : </i><code>&#x27;0.12.3-120-gaf3160b02&#x27;</code>
                     </td>
                 </tr>
 
@@ -649,7 +652,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;29. July 2024&#x27;</code>
+                        <i>Default value : </i><code>&#x27;30. July 2024&#x27;</code>
                     </td>
                 </tr>
 
@@ -1603,6 +1606,7 @@
         folioConvoluteFile: &#x27;folio-convolute.json&#x27;,
         graphFile: &#x27;graph.json&#x27;,
         introFile: &#x27;intro.json&#x27;,
+        prefaceFile: &#x27;preface.json&#x27;,
         rowTablesFile: &#x27;row-tables.json&#x27;,
         sourceListFile: &#x27;source-list.json&#x27;,
         sourceDescriptionListFile: &#x27;source-description.json&#x27;,
@@ -1854,6 +1858,15 @@ to store firm signs data.</p>
     FORTISSIMO3: {
         alt: &#x27;[fff]&#x27;,
         hex: &#x27;\uD834\uDD91\uD834\uDD91\uD834\uDD91&#x27;,
+    },
+
+    /**
+     * The glyph of a musical pedal symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%AE
+     */
+    PEADL: {
+        alt: &#x27;[ped]&#x27;,
+        hex: &#x27;\uD834\uDDAE&#x27;,
     },
 
     /**
@@ -3166,6 +3179,32 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
      * It provides a mocked modal snippet string.
      */
     mockModalSnippet: &#x27;OP12_SHEET_COMING_SOON&#x27;,
+
+    /**
+     * Test helper data constant: mockPreface Data.
+     *
+     * It provides a mocked preface data object.
+     */
+    mockPrefaceData: {
+        preface: [
+            {
+                id: &#x27;de&#x27;,
+                content: [
+                    &quot;&lt;span class&#x3D;&#x27;no-indent&#x27;&gt;Die AWG gliedert sich in drei Serien:&lt;/span&gt;&quot;,
+                    &quot;&lt;span class&#x3D;&#x27;no-indent spacebreak&#x27;&gt;Sie werden nicht zu dem für den Druck typischen &lt;span class&#x3D;&#x27;unicode&#x27;&gt;{{ref.getGlyph(&#x27;[ped]&#x27;)}}&lt;/span&gt;.-Zeichen vereinheitlicht.&lt;/span&gt;&quot;,
+                    &quot;&lt;span class&#x3D;&#x27;small spacebreak&#x27;&gt;Zugang zur AWG-Online-Edition: &lt;a href&#x3D;&#x27;https://edition.anton-webern.ch&#x27; class&#x3D;&#x27;link&#x27;&gt;edition.anton-webern.ch&lt;/a&gt;&lt;/span&gt;&quot;,
+                ],
+            },
+            {
+                id: &#x27;en&#x27;,
+                content: [
+                    &quot;&lt;span class&#x3D;&#x27;no-indent&#x27;&gt;The AWG is divided into three series:&lt;/span&gt;&quot;,
+                    &quot;&lt;span class&#x3D;&#x27;no-indent spacebreak&#x27;&gt;They are not unified to the &lt;span class&#x3D;&#x27;unicode&#x27;&gt;{{ref.getGlyph(&#x27;[ped]&#x27;)}}&lt;/span&gt;. character typical for printing.&lt;/span&gt;&quot;,
+                    &quot;&lt;span class&#x3D;&#x27;small spacebreak&#x27;&gt;Access to the AWG online edition: &lt;a href&#x3D;&#x27;https://edition.anton-webern.ch&#x27; class&#x3D;&#x27;link&#x27;&gt;edition.anton-webern.ch&lt;/a&gt;&lt;/span&gt;&quot;,
+                ],
+            },
+        ],
+    },
 
     /**
      * Test helper data constant: mockRowTablesData.
@@ -5656,6 +5695,42 @@ and <a href="../components/TimelineComponent.html">TimelineComponent</a>.</p>
         </tbody>
     </table>
 </section>
+    <h3>src/app/views/edition-view/edition-outlets/edition-preface/edition-preface-routing.module.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routedEditionPrefaceComponents"></a>
+                    <span class="name">
+                        <span ><b>routedEditionPrefaceComponents</b></span>
+                        <a href="#routedEditionPrefaceComponents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[EditionPrefaceComponent]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Routed components of the <a href="../modules/EditionPrefaceModule.html">EditionPrefaceModule</a>:
+<a href="../components/EditionPrefaceComponent.html">EditionPrefaceComponent</a>.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
     <h3>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report-routing.module.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -5793,7 +5868,6 @@ and <a href="../components/TimelineComponent.html">TimelineComponent</a>.</p>
     EditionSectionDetailComponent,
     EditionSeriesComponent,
     EditionSeriesDetailComponent,
-    EditionTypeComponent,
 ]</code>
                     </td>
                 </tr>
@@ -5802,8 +5876,7 @@ and <a href="../components/TimelineComponent.html">TimelineComponent</a>.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Routed components of the <a href="../modules/EditionViewModule.html">EditionViewModule</a>:
 <a href="../components/EditionViewComponent.html">EditionViewComponent</a>, <a href="../components/EditionDetailNavComponent.html">EditionDetailNavComponent</a>,
-<a href="../components/EditionSectionsComponent.html">EditionSectionsComponent</a>, <a href="../components/EditionSeriesComponent.html">EditionSeriesComponent</a>
-and <a href="../components/EditionTypeComponent.html">EditionTypeComponent</a>.</p>
+<a href="../components/EditionSectionsComponent.html">EditionSectionsComponent</a> and <a href="../components/EditionSeriesComponent.html">EditionSeriesComponent</a>.</p>
 </div>
                 </td>
             </tr>
