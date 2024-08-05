@@ -48,7 +48,7 @@ describe('EditionViewComponent (DONE)', () => {
     let getSelectionsFromRouteSpy: Spy;
     let routeToSidenavSpy: Spy;
 
-    let editionServiceGetEditionComplexSpy: Spy;
+    let editionServiceGetSelectedEditionComplexSpy: Spy;
     let editionServiceGetSelectedEditionSeriesSpy: Spy;
     let editionServiceGetSelectedEditionSectionSpy: Spy;
     let editionServiceGetIsPrefaceViewSpy: Spy;
@@ -128,7 +128,10 @@ describe('EditionViewComponent (DONE)', () => {
         routeToSidenavSpy = spyOn(component, 'routeToSidenav').and.callThrough();
 
         // Spies for service methods
-        editionServiceGetEditionComplexSpy = spyOn(mockEditionService, 'getEditionComplex').and.callThrough();
+        editionServiceGetSelectedEditionComplexSpy = spyOn(
+            mockEditionService,
+            'getSelectedEditionComplex'
+        ).and.callThrough();
         editionServiceGetIsPrefaceViewSpy = spyOn(mockEditionService, 'getIsPrefaceView').and.callThrough();
         editionServiceGetIsRowTableViewSpy = spyOn(mockEditionService, 'getIsRowTableView').and.callThrough();
         editionServiceGetSelectedEditionSeriesSpy = spyOn(
@@ -215,7 +218,7 @@ describe('EditionViewComponent (DONE)', () => {
             });
 
             it('... should not have called EditionService', () => {
-                expectSpyCall(editionServiceGetEditionComplexSpy, 0);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 0);
                 expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 0);
                 expectSpyCall(editionServiceGetSelectedEditionSectionSpy, 0);
             });
@@ -628,7 +631,7 @@ describe('EditionViewComponent (DONE)', () => {
 
             it('... should get selectedEditionComplex$ (via EditionService)', waitForAsync(() => {
                 expectSpyCall(getSelectionsFromRouteSpy, 1);
-                expectSpyCall(editionServiceGetEditionComplexSpy, 1);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
 
                 expect(component.selectedEditionComplex$).toBeDefined();
                 component.selectedEditionComplex$.subscribe({

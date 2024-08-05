@@ -64,7 +64,7 @@ describe('IntroComponent (DONE)', () => {
 
     let editionDataServiceGetEditionIntroDataSpy: Spy;
     let getEditionIntroDataSpy: Spy;
-    let getEditionComplexSpy: Spy;
+    let editionServiceGetSelectedEditionComplexSpy: Spy;
     let navigateWithComplexIdSpy: Spy;
     let navigateToIntroFragmentSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
@@ -125,7 +125,7 @@ describe('IntroComponent (DONE)', () => {
         editionDataServiceGetEditionIntroDataSpy = spyOn(editionDataService, 'getEditionIntroData').and.returnValue(
             observableOf(expectedEditionIntroData)
         );
-        getEditionComplexSpy = spyOn(editionService, 'getEditionComplex').and.returnValue(
+        editionServiceGetSelectedEditionComplexSpy = spyOn(editionService, 'getSelectedEditionComplex').and.returnValue(
             observableOf(expectedEditionComplex)
         );
         getEditionIntroDataSpy = spyOn(component, 'getEditionIntroData').and.callThrough();
@@ -186,14 +186,12 @@ describe('IntroComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have called `getEditionComplex()`', () => {
-            // `getEditionReportData()` called immediately after init
-            expectSpyCall(getEditionComplexSpy, 1);
+        it('... should have called `getEditionIntroData()`', () => {
+            expectSpyCall(getEditionIntroDataSpy, 1);
         });
 
-        it('... should have called `getEditionIntroData()`', () => {
-            // `getEditionIntroData()` called immediately after init
-            expectSpyCall(getEditionIntroDataSpy, 1);
+        it('... should have triggered `getSelectedEditionComplex()` method from EditionService', () => {
+            expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
         });
 
         it('... should have editionComplex', () => {
@@ -333,7 +331,7 @@ describe('IntroComponent (DONE)', () => {
             });
 
             it('... should have got `editionComplex` from editionService', () => {
-                expectSpyCall(getEditionComplexSpy, 1);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
 
                 expectToEqual(component.editionComplex, expectedEditionComplex);
             });

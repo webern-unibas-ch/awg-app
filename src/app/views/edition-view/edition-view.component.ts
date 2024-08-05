@@ -61,9 +61,7 @@ export class EditionViewComponent implements OnInit {
     /**
      * Public variable: selectedEditionSection$.
      *
-     * It keeps the selected section of the edition as an Observable of EditionOutlineSection;
-;
-.
+     * It keeps the selected section of the edition as an Observable of EditionOutlineSection.
      */
     selectedEditionSection$: Observable<EditionOutlineSection>;
 

@@ -37,13 +37,13 @@ describe('EditionDetailNavComponent (DONE)', () => {
     let expectedEditionComplex: EditionComplex;
 
     let setButtonsSpy: Spy;
-    let getEditionComplexSpy: Spy;
+    let getSelectedEditionComplexSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         // Create a fake service object with a `getData()` spy
-        const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionComplex']);
+        const mockEditionService = jasmine.createSpyObj('EditionService', ['getSelectedEditionComplex']);
         // Make the spy return a synchronous Observable with the test data
-        getEditionComplexSpy = mockEditionService.getEditionComplex.and.returnValue(
+        getSelectedEditionComplexSpy = mockEditionService.getSelectedEditionComplex.and.returnValue(
             observableOf(EDITION_COMPLEXES.OP12)
         );
 
@@ -116,7 +116,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
             });
 
             it('... should not have been called', () => {
-                expectSpyCall(getEditionComplexSpy, 0);
+                expectSpyCall(getSelectedEditionComplexSpy, 0);
             });
         });
 
@@ -149,7 +149,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
 
         describe('#getEditionComplex()', () => {
             it('... should have been called', () => {
-                expectSpyCall(getEditionComplexSpy, 1);
+                expectSpyCall(getSelectedEditionComplexSpy, 1);
             });
         });
 

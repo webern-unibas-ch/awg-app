@@ -84,7 +84,7 @@ describe('EditionSheetsComponent', () => {
     let mockEditionSheetsService: Partial<EditionSheetsService>;
 
     let editionDataServiceGetEditionSheetsDataSpy: Spy;
-    let editionServiceGetEditionComplexSpy: Spy;
+    let editionServiceGetSelectedEditionComplexSpy: Spy;
     let editionSheetsServiceSelectSvgSheetByIdSpy: Spy;
     let editionSheetsServiceSelectConvoluteSpy: Spy;
     let getEditionSheetsDataSpy: Spy;
@@ -192,9 +192,10 @@ describe('EditionSheetsComponent', () => {
             mockEditionDataService,
             'getEditionSheetsData'
         ).and.returnValue(observableOf([expectedFolioConvoluteData, expectedSvgSheetsData, expectedTextcriticsData]));
-        editionServiceGetEditionComplexSpy = spyOn(mockEditionService, 'getEditionComplex').and.returnValue(
-            observableOf(expectedEditionComplex)
-        );
+        editionServiceGetSelectedEditionComplexSpy = spyOn(
+            mockEditionService,
+            'getSelectedEditionComplex'
+        ).and.returnValue(observableOf(expectedEditionComplex));
         editionSheetsServiceSelectSvgSheetByIdSpy = spyOn(
             mockEditionSheetsService,
             'selectSvgSheetById'
