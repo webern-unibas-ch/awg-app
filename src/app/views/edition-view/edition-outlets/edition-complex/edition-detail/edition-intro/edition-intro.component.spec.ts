@@ -217,7 +217,7 @@ describe('IntroComponent (DONE)', () => {
 
                 getAndExpectDebugElementByCss(
                     divDes[0],
-                    'p.awg-intro-paragraph',
+                    'p.awg-intro-para',
                     expectedEditionIntroData.intro[0].content.length,
                     expectedEditionIntroData.intro[0].content.length
                 );
@@ -229,7 +229,7 @@ describe('IntroComponent (DONE)', () => {
 
                 const pDes = getAndExpectDebugElementByCss(
                     divDes[0],
-                    'p.awg-intro-paragraph',
+                    'p.awg-intro-para',
                     expectedEditionIntroData.intro[0].content.length,
                     expectedEditionIntroData.intro[0].content.length
                 );
@@ -369,7 +369,7 @@ describe('IntroComponent (DONE)', () => {
                 // Find paragraphs
                 const pDes = getAndExpectDebugElementByCss(
                     divDes[0],
-                    'p.awg-intro-paragraph',
+                    'p.awg-intro-para',
                     expectedEditionIntroData.intro[0].content.length,
                     expectedEditionIntroData.intro[0].content.length
                 );
@@ -533,7 +533,7 @@ describe('IntroComponent (DONE)', () => {
                 // Find paragraphs
                 const pDes = getAndExpectDebugElementByCss(
                     divDes[0],
-                    'p.awg-intro-paragraph',
+                    'p.awg-intro-para',
                     expectedEditionIntroData.intro[0].content.length,
                     expectedEditionIntroData.intro[0].content.length
                 );
@@ -697,7 +697,7 @@ describe('IntroComponent (DONE)', () => {
                 // Find paragraphs
                 const pDes = getAndExpectDebugElementByCss(
                     divDes[0],
-                    'p.awg-intro-paragraph',
+                    'p.awg-intro-para',
                     expectedEditionIntroData.intro[0].content.length,
                     expectedEditionIntroData.intro[0].content.length
                 );
@@ -761,7 +761,7 @@ describe('IntroComponent (DONE)', () => {
                 // Find paragraphs
                 const pDes = getAndExpectDebugElementByCss(
                     divDes[0],
-                    'p.awg-intro-paragraph',
+                    'p.awg-intro-para',
                     expectedEditionIntroData.intro[0].content.length,
                     expectedEditionIntroData.intro[0].content.length
                 );

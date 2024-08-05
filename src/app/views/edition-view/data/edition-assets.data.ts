@@ -18,6 +18,7 @@ export const EDITION_ASSETS_DATA = {
         folioConvoluteFile: 'folio-convolute.json',
         graphFile: 'graph.json',
         introFile: 'intro.json',
+        prefaceFile: 'preface.json',
         rowTablesFile: 'row-tables.json',
         sourceListFile: 'source-list.json',
         sourceDescriptionListFile: 'source-description.json',

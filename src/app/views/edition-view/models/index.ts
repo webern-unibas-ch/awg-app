@@ -25,6 +25,7 @@ import { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioFormat, F
 
 import { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';
 import { Intro, IntroList } from './intro.model';
+import { Preface, PrefaceList } from './preface.model';
 
 import {
     SourceDescription,
@@ -77,6 +78,8 @@ export {
     GraphSparqlQuery,
     Intro,
     IntroList,
+    Preface,
+    PrefaceList,
     Source,
     SourceDescription,
     SourceDescriptionList,

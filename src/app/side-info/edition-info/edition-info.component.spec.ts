@@ -26,6 +26,7 @@ import { EditionInfoComponent } from './edition-info.component';
 function generateExpectedOrderOfRouterlinks(editionComplexes: EditionComplex[]): string[][] {
     const editionOverviewLink = [[EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.SERIES.route]];
     const rowTablesLink = [[EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.ROWTABLES.route]];
+    const prefaceLink = [[EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.PREFACE.route]];
 
     const editionLinks = editionComplexes.flatMap(complex => {
         const routes = [[complex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route]];
@@ -35,12 +36,13 @@ function generateExpectedOrderOfRouterlinks(editionComplexes: EditionComplex[]):
         return routes;
     });
 
-    return [...editionOverviewLink, ...rowTablesLink, ...editionLinks];
+    return [...editionOverviewLink, ...rowTablesLink, ...prefaceLink, ...editionLinks];
 }
 
 function generateExpectedOrderOfHeaders(editionComplexes: EditionComplex[]): string[] {
     const editionOverviewHeader = EDITION_ROUTE_CONSTANTS.SERIES.full;
     const rowTablesHeader = EDITION_ROUTE_CONSTANTS.ROWTABLES.full;
+    const prefaceHeader = EDITION_ROUTE_CONSTANTS.PREFACE.full;
 
     const editionHeaders = editionComplexes.flatMap(complex => {
         if (complex === EDITION_COMPLEXES.OP25) {
@@ -49,7 +51,7 @@ function generateExpectedOrderOfHeaders(editionComplexes: EditionComplex[]): str
         return [EDITION_TYPE_CONSTANTS.SKETCH_EDITION.full];
     });
 
-    return [editionOverviewHeader, rowTablesHeader, ...editionHeaders];
+    return [editionOverviewHeader, rowTablesHeader, prefaceHeader, ...editionHeaders];
 }
 
 describe('EditionInfoComponent (DONE)', () => {
@@ -207,7 +209,7 @@ describe('EditionInfoComponent (DONE)', () => {
                 });
             });
 
-            it('... should display item header buttons with rowtables and edition series', () => {
+            it('... should display item header buttons', () => {
                 // Header debug elements
                 const itemHeaderDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-header', 3, 3);
 
@@ -265,7 +267,7 @@ describe('EditionInfoComponent (DONE)', () => {
                 expectToContain(itemBodyEl.classList, 'show');
             });
 
-            it('... should contain item body with 5 paragraphs in first item', () => {
+            it('... should contain item body with 3 paragraphs in first item', () => {
                 // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 3, 3);
 
@@ -273,7 +275,7 @@ describe('EditionInfoComponent (DONE)', () => {
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
                 // Paragraph
-                getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 2, 2);
+                getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 3, 3);
             });
 
             it('... should contain item body with 5 paragraphs in second item', () => {

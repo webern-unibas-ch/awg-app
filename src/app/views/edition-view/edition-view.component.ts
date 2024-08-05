@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { delay, Observable } from 'rxjs';
 
@@ -33,6 +33,14 @@ export class EditionViewComponent implements OnInit {
      * It keeps the id of the edition view section.
      */
     editionViewId = 'awg-edition-view';
+
+    /**
+     * Public variable: isPrefaceView$.
+     *
+     * Observable that keeps the information
+     * about the flag for the preface view.
+     */
+    isPrefaceView$: Observable<boolean>;
 
     /**
      * Public variable: isRowTableView$.
@@ -73,7 +81,6 @@ export class EditionViewComponent implements OnInit {
      * EditionService, ActivatedRoute and Router.
      *
      * @param {EditionService} editionService Instance of the EditionService.
-     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
      * @param {Router} router Instance of the Angular router.
      */
     constructor(
@@ -112,6 +119,7 @@ export class EditionViewComponent implements OnInit {
         this.selectedEditionSeries$ = this.editionService.getSelectedEditionSeries().pipe(delay(0));
         this.selectedEditionSection$ = this.editionService.getSelectedEditionSection().pipe(delay(0));
         this.selectedEditionComplex$ = this.editionService.getSelectedEditionComplex().pipe(delay(0));
+        this.isPrefaceView$ = this.editionService.getIsPrefaceView().pipe(delay(0));
         this.isRowTableView$ = this.editionService.getIsRowTableView().pipe(delay(0));
     }
 
