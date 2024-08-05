@@ -10,7 +10,7 @@
 import { D3Selection } from './d3-selection.model';
 import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
 
-import { EditionComplex, EditionTitleStatement } from './edition-complex.model';
+import { EditionComplex, EditionComplexTitleStatement } from './edition-complex.model';
 import { EditionOutlineComplex, EditionOutlineSection, EditionOutlineSeries } from './edition-outline.model';
 import { EditionRouteConstant } from './edition-route-constant.model';
 import { EditionRowTables, EditionRowTablesList } from './edition-row-tables.model';
@@ -46,6 +46,7 @@ export {
     D3Selection,
     D3ZoomBehaviour,
     EditionComplex,
+    EditionComplexTitleStatement,
     EditionOutlineComplex,
     EditionOutlineSection,
     EditionOutlineSeries,
@@ -58,7 +59,6 @@ export {
     EditionSvgOverlayTypes,
     EditionSvgSheet,
     EditionSvgSheetList,
-    EditionTitleStatement,
     Folio,
     FolioCalculation,
     FolioCalculationLine,

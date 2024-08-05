@@ -6,12 +6,12 @@ import {
 import { EditionRouteConstant } from './edition-route-constant.model';
 
 /**
- * The EditionTitleStatement class.
+ * The EditionComplexTitleStatement class.
  *
  * It is used in the context of the edition view
  * to store information about the title statement of an edition complex.
  */
-export class EditionTitleStatement {
+export class EditionComplexTitleStatement {
     /**
      * The title of a title statement.
      */
@@ -29,12 +29,12 @@ export class EditionTitleStatement {
 }
 
 /**
- * The EditionRespStatement class.
+ * The EditionComplexRespStatement class.
  *
  * It is used in the context of the edition view
  * to store information about the responsibility statement of an edition complex.
  */
-export class EditionRespStatement {
+export class EditionComplexRespStatement {
     /**
      * The editors of an edition complex.
      */
@@ -47,12 +47,12 @@ export class EditionRespStatement {
 }
 
 /**
- * The EditionPubStatement class.
+ * The EditionComplexPubStatement class.
  *
  * It is used in the context of the edition view
  * to store information about the publication statement of an edition complex.
  */
-export class EditionPubStatement {
+export class EditionComplexPubStatement {
     /**
      * The route for the current series.
      */
@@ -74,17 +74,17 @@ export class EditionComplex {
     /**
      * The title statement of the current edition complex.
      */
-    titleStatement: EditionTitleStatement;
+    titleStatement: EditionComplexTitleStatement;
 
     /**
      * The responsibility statement of the current edition complex.
      */
-    respStatement: EditionRespStatement;
+    respStatement: EditionComplexRespStatement;
 
     /**
      * The publication statement of the current edition complex.
      */
-    pubStatement: EditionPubStatement;
+    pubStatement: EditionComplexPubStatement;
 
     /**
      * The id for the current edition complex.
@@ -103,15 +103,14 @@ export class EditionComplex {
      *
      * It initializes the class with an edition complex Object from the EditionConstants.
      *
-     * @param {EditionTitleStatement} titleStatement The given TitleStatement for the edition complex.
-     * @param {EditionRespStatement} respStatement The given ResponsibilityStatement for the edition complex.
-     * @param {EditionRouteConstant} series The given series.
-     * @param {EditionRouteConstant} section The given section.
+     * @param {{ title: string; catalogueType: string; catalogueNumber: string }} titleStatement The given TitleStatement for the edition complex.
+     * @param {EditionComplexRespStatement} respStatement The given ResponsibilityStatement for the edition complex.
+     * @param {{ series: string; section: string }} pubStatement The given PublicationStatement for the edition complex.
      */
     constructor(
         titleStatement: { title: string; catalogueType: string; catalogueNumber: string },
-        respStatement: EditionRespStatement,
-        pubStatement?: { series: string; section: string }
+        respStatement: EditionComplexRespStatement,
+        pubStatement: { series: string; section: string }
     ) {
         if (!titleStatement?.catalogueType || !titleStatement?.catalogueNumber) {
             return;
@@ -126,7 +125,8 @@ export class EditionComplex {
             ...titleStatement,
             catalogueType: this._mapCatalogueType(titleStatement.catalogueType),
         };
-        this.respStatement = respStatement ?? new EditionRespStatement();
+
+        this.respStatement = respStatement ?? new EditionComplexRespStatement();
 
         this.pubStatement = {
             series: this._mapPubStatement('SERIES_', pubStatement?.series),
