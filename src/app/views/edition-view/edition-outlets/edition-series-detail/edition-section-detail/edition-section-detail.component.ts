@@ -66,17 +66,17 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getSection();
+        this.updateSectionFromRoute();
     }
 
     /**
-     * Public method: getSection.
+     * Public method: updateSectionFromRoute.
      *
-     * It gets the selected section by ID from the EditionService.
+     * It fetches the route params to get the id of the current section and updates the edition service.
      *
-     * @returns {void} Gets the edition section.
+     * @returns {void} Updates the edition section.
      */
-    getSection(): void {
+    updateSectionFromRoute(): void {
         const sectionId = this.route.snapshot.paramMap.get('id');
 
         this.editionService

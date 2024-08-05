@@ -9,10 +9,7 @@ import { expectSpyCall, expectToEqual } from '@testing/expect-helper';
 import { ActivatedRouteStub } from '@testing/router-stubs';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import {
-    EDITION_CATALOGUE_TYPE_CONSTANTS,
-    EDITION_ROUTE_CONSTANTS,
-} from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
@@ -28,10 +25,10 @@ describe('EditionComplexComponent (DONE)', () => {
 
     let mockEditionComplexSubject: ReplaySubject<EditionComplex>;
 
-    let getEditionComplexFromRouteSpy: Spy;
-    let editionServiceGetEditionComplexSpy: Spy;
-    let editionServiceUpdateEditionComplexSpy: Spy;
-    let editionServiceClearEditionComplexSpy: Spy;
+    let updateEditionComplexFromRouteSpy: Spy;
+    let editionServiceGetSelectedEditionComplexSpy: Spy;
+    let editionServiceUpdateSelectedEditionComplexSpy: Spy;
+    let editionServiceClearSelectedEditionComplexSpy: Spy;
 
     let expectedEditionComplexes: typeof EDITION_COMPLEXES;
     let expectedSelectedEditionComplex: EditionComplex;
@@ -43,10 +40,10 @@ describe('EditionComplexComponent (DONE)', () => {
 
         // Mock edition service
         mockEditionService = {
-            getEditionComplex: (): Observable<EditionComplex> => mockEditionComplexSubject.asObservable(),
-            updateEditionComplex: (editionComplex: EditionComplex): void =>
+            getSelectedEditionComplex: (): Observable<EditionComplex> => mockEditionComplexSubject.asObservable(),
+            updateSelectedEditionComplex: (editionComplex: EditionComplex): void =>
                 mockEditionComplexSubject.next(editionComplex),
-            clearEditionComplex: (): void => mockEditionComplexSubject.next(null),
+            clearSelectedEditionComplex: (): void => mockEditionComplexSubject.next(null),
         };
 
         // Mocked activated route
@@ -75,10 +72,19 @@ describe('EditionComplexComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        getEditionComplexFromRouteSpy = spyOn(component, 'getEditionComplexFromRoute').and.callThrough();
-        editionServiceGetEditionComplexSpy = spyOn(mockEditionService, 'getEditionComplex').and.callThrough();
-        editionServiceUpdateEditionComplexSpy = spyOn(mockEditionService, 'updateEditionComplex').and.callThrough();
-        editionServiceClearEditionComplexSpy = spyOn(mockEditionService, 'clearEditionComplex').and.callThrough();
+        updateEditionComplexFromRouteSpy = spyOn(component, 'updateEditionComplexFromRoute').and.callThrough();
+        editionServiceGetSelectedEditionComplexSpy = spyOn(
+            mockEditionService,
+            'getSelectedEditionComplex'
+        ).and.callThrough();
+        editionServiceUpdateSelectedEditionComplexSpy = spyOn(
+            mockEditionService,
+            'updateSelectedEditionComplex'
+        ).and.callThrough();
+        editionServiceClearSelectedEditionComplexSpy = spyOn(
+            mockEditionService,
+            'clearSelectedEditionComplex'
+        ).and.callThrough();
     });
 
     it('... should create', () => {
@@ -94,13 +100,13 @@ describe('EditionComplexComponent (DONE)', () => {
             expectToEqual(component.editionRouteConstants, expectedEditionRouteConstants);
         });
 
-        describe('#getEditionComplexFromRoute()', () => {
-            it('... should have a method `getEditionComplexFromRoute`', () => {
-                expect(component.getEditionComplexFromRoute).toBeDefined();
+        describe('#updateEditionComplexFromRoute()', () => {
+            it('... should have a method `updateEditionComplexFromRoute`', () => {
+                expect(component.updateEditionComplexFromRoute).toBeDefined();
             });
 
             it('... should not have been called', () => {
-                expectSpyCall(getEditionComplexFromRouteSpy, 0);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 0);
             });
         });
     });
@@ -115,16 +121,16 @@ describe('EditionComplexComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#getEditionComplexFromRoute()', () => {
+        describe('#updateEditionComplexFromRoute()', () => {
             it('... should have been called', () => {
-                expectSpyCall(getEditionComplexFromRouteSpy, 1);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
             });
 
             it('... should get id from router', () => {
-                expectSpyCall(getEditionComplexFromRouteSpy, 1);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
 
                 expectSpyCall(
-                    editionServiceUpdateEditionComplexSpy,
+                    editionServiceUpdateSelectedEditionComplexSpy,
                     1,
                     expectedEditionComplexes[expectedSelectedEditionComplexId]
                 );
@@ -132,8 +138,8 @@ describe('EditionComplexComponent (DONE)', () => {
 
             it('... should get correct id from router', () => {
                 // Call with op. 12 (default)
-                expectSpyCall(getEditionComplexFromRouteSpy, 1);
-                expectSpyCall(editionServiceUpdateEditionComplexSpy, 1, expectedEditionComplexes.OP12);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
+                expectSpyCall(editionServiceUpdateSelectedEditionComplexSpy, 1, expectedEditionComplexes.OP12);
 
                 // ----------------
                 // Change to op. 25
@@ -142,8 +148,8 @@ describe('EditionComplexComponent (DONE)', () => {
                 // Trigger initial data binding
                 fixture.detectChanges();
 
-                expectSpyCall(getEditionComplexFromRouteSpy, 1);
-                expectSpyCall(editionServiceUpdateEditionComplexSpy, 2, expectedEditionComplexes.OP25);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
+                expectSpyCall(editionServiceUpdateSelectedEditionComplexSpy, 2, expectedEditionComplexes.OP25);
 
                 // ------------------
                 // Change to non-existing id
@@ -152,8 +158,8 @@ describe('EditionComplexComponent (DONE)', () => {
                 // Trigger initial data binding
                 fixture.detectChanges();
 
-                expectSpyCall(getEditionComplexFromRouteSpy, 1);
-                expectSpyCall(editionServiceUpdateEditionComplexSpy, 3, expectedEditionComplexes['fail']);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
+                expectSpyCall(editionServiceUpdateSelectedEditionComplexSpy, 3, expectedEditionComplexes['fail']);
 
                 // ------------------
                 // Change to empty id
@@ -162,8 +168,8 @@ describe('EditionComplexComponent (DONE)', () => {
                 // Trigger initial data binding
                 fixture.detectChanges();
 
-                expectSpyCall(getEditionComplexFromRouteSpy, 1);
-                expectSpyCall(editionServiceUpdateEditionComplexSpy, 4, expectedEditionComplexes['']);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
+                expectSpyCall(editionServiceUpdateSelectedEditionComplexSpy, 4, expectedEditionComplexes['']);
 
                 // ----------------------
                 // Change to another key
@@ -172,27 +178,27 @@ describe('EditionComplexComponent (DONE)', () => {
                 // Trigger initial data binding
                 fixture.detectChanges();
 
-                expectSpyCall(getEditionComplexFromRouteSpy, 1);
-                expectSpyCall(editionServiceUpdateEditionComplexSpy, 5, expectedEditionComplexes['']);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
+                expectSpyCall(editionServiceUpdateSelectedEditionComplexSpy, 5, expectedEditionComplexes['']);
             });
 
             it('... should have updated selectedEditionComplex$ (via EditionService)', () => {
-                expectSpyCall(getEditionComplexFromRouteSpy, 1);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
                 expectSpyCall(
-                    editionServiceUpdateEditionComplexSpy,
+                    editionServiceUpdateSelectedEditionComplexSpy,
                     1,
                     expectedEditionComplexes[expectedSelectedEditionComplexId]
                 );
             });
 
             it('... should get edition complex from EditionService and set selectedEditionComplex$', () => {
-                expectSpyCall(getEditionComplexFromRouteSpy, 1);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
                 expectSpyCall(
-                    editionServiceUpdateEditionComplexSpy,
+                    editionServiceUpdateSelectedEditionComplexSpy,
                     1,
                     expectedEditionComplexes[expectedSelectedEditionComplexId]
                 );
-                expectSpyCall(editionServiceGetEditionComplexSpy, 1);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
 
                 expect(component.selectedEditionComplex$).toBeDefined();
             });
@@ -200,13 +206,13 @@ describe('EditionComplexComponent (DONE)', () => {
             it('... should get correct edition complex from EditionService when complex id changes', () => {
                 // ----------------
                 // Check for op. 12
-                expectSpyCall(getEditionComplexFromRouteSpy, 1);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
                 expectSpyCall(
-                    editionServiceUpdateEditionComplexSpy,
+                    editionServiceUpdateSelectedEditionComplexSpy,
                     1,
                     expectedEditionComplexes[expectedSelectedEditionComplexId]
                 );
-                expectSpyCall(editionServiceGetEditionComplexSpy, 1);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
 
                 // ----------------
                 // Change to op. 25
@@ -216,13 +222,13 @@ describe('EditionComplexComponent (DONE)', () => {
                 // Apply changes
                 fixture.detectChanges();
 
-                expectSpyCall(getEditionComplexFromRouteSpy, 1);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
                 expectSpyCall(
-                    editionServiceUpdateEditionComplexSpy,
+                    editionServiceUpdateSelectedEditionComplexSpy,
                     2,
                     expectedEditionComplexes[expectedSelectedEditionComplexId]
                 );
-                expectSpyCall(editionServiceGetEditionComplexSpy, 2);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 2);
 
                 expect(component.selectedEditionComplex$).toBeDefined();
             });
@@ -231,28 +237,27 @@ describe('EditionComplexComponent (DONE)', () => {
                 const opusComplex = new EditionComplex(
                     {
                         title: 'Test Opus Complex',
-                        catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
+                        catalogueType: 'OPUS',
                         catalogueNumber: '100',
                     },
                     {
                         editors: [],
                         lastModified: '---',
                     },
-                    EDITION_ROUTE_CONSTANTS.SERIES_1,
-                    EDITION_ROUTE_CONSTANTS.SECTION_5
+                    { series: '1', section: '5' }
                 );
                 expectedSelectedEditionComplexId = 'op100';
                 expectedEditionComplexes[expectedSelectedEditionComplexId.toUpperCase()] = opusComplex;
 
                 mockActivatedRoute.testParamMap = { complexId: expectedSelectedEditionComplexId };
-                editionServiceUpdateEditionComplexSpy.and.callThrough();
+                editionServiceUpdateSelectedEditionComplexSpy.and.callThrough();
 
                 // Apply changes
                 fixture.detectChanges();
 
-                expectSpyCall(getEditionComplexFromRouteSpy, 1);
-                expectSpyCall(editionServiceUpdateEditionComplexSpy, 2, opusComplex);
-                expectSpyCall(editionServiceGetEditionComplexSpy, 2);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
+                expectSpyCall(editionServiceUpdateSelectedEditionComplexSpy, 2, opusComplex);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 2);
 
                 expect(component.selectedEditionComplex$).toBeDefined();
             });
@@ -261,28 +266,27 @@ describe('EditionComplexComponent (DONE)', () => {
                 const mnrComplex = new EditionComplex(
                     {
                         title: 'Test M Complex',
-                        catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+                        catalogueType: 'MNR',
                         catalogueNumber: '100',
                     },
                     {
                         editors: [],
                         lastModified: '---',
                     },
-                    EDITION_ROUTE_CONSTANTS.SERIES_1,
-                    EDITION_ROUTE_CONSTANTS.SECTION_5
+                    { series: '1', section: '5' }
                 );
                 expectedSelectedEditionComplexId = 'm100';
                 expectedEditionComplexes[expectedSelectedEditionComplexId.toUpperCase()] = mnrComplex;
 
                 mockActivatedRoute.testParamMap = { complexId: expectedSelectedEditionComplexId };
-                editionServiceUpdateEditionComplexSpy.and.callThrough();
+                editionServiceUpdateSelectedEditionComplexSpy.and.callThrough();
 
                 // Apply changes
                 fixture.detectChanges();
 
-                expectSpyCall(getEditionComplexFromRouteSpy, 1);
-                expectSpyCall(editionServiceUpdateEditionComplexSpy, 2, mnrComplex);
-                expectSpyCall(editionServiceGetEditionComplexSpy, 2);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
+                expectSpyCall(editionServiceUpdateSelectedEditionComplexSpy, 2, mnrComplex);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 2);
 
                 expect(component.selectedEditionComplex$).toBeDefined();
             });
@@ -291,28 +295,27 @@ describe('EditionComplexComponent (DONE)', () => {
                 const mnrPlusComplex = new EditionComplex(
                     {
                         title: 'Test M* Complex',
-                        catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR_PLUS,
+                        catalogueType: 'MNR_PLUS',
                         catalogueNumber: '100',
                     },
                     {
                         editors: [],
                         lastModified: '---',
                     },
-                    EDITION_ROUTE_CONSTANTS.SERIES_1,
-                    EDITION_ROUTE_CONSTANTS.SECTION_5
+                    { series: '1', section: '5' }
                 );
                 expectedSelectedEditionComplexId = 'mPlus100';
                 expectedEditionComplexes[expectedSelectedEditionComplexId.toUpperCase()] = mnrPlusComplex;
 
                 mockActivatedRoute.testParamMap = { complexId: expectedSelectedEditionComplexId };
-                editionServiceUpdateEditionComplexSpy.and.callThrough();
+                editionServiceUpdateSelectedEditionComplexSpy.and.callThrough();
 
                 // Apply changes
                 fixture.detectChanges();
 
-                expectSpyCall(getEditionComplexFromRouteSpy, 1);
-                expectSpyCall(editionServiceUpdateEditionComplexSpy, 2, mnrPlusComplex);
-                expectSpyCall(editionServiceGetEditionComplexSpy, 2);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
+                expectSpyCall(editionServiceUpdateSelectedEditionComplexSpy, 2, mnrPlusComplex);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 2);
 
                 expect(component.selectedEditionComplex$).toBeDefined();
             });
@@ -321,10 +324,9 @@ describe('EditionComplexComponent (DONE)', () => {
                 const incompleteComplex = new EditionComplex(
                     {
                         title: 'Test Incomplete Complex',
-                        catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
+                        catalogueType: 'OPUS',
                         catalogueNumber: '100',
                     },
-                    null,
                     null,
                     null
                 );
@@ -332,14 +334,14 @@ describe('EditionComplexComponent (DONE)', () => {
                 expectedEditionComplexes[expectedSelectedEditionComplexId.toUpperCase()] = incompleteComplex;
 
                 mockActivatedRoute.testParamMap = { complexId: expectedSelectedEditionComplexId };
-                editionServiceUpdateEditionComplexSpy.and.callThrough();
+                editionServiceUpdateSelectedEditionComplexSpy.and.callThrough();
 
                 // Apply changes
                 fixture.detectChanges();
 
-                expectSpyCall(getEditionComplexFromRouteSpy, 1);
-                expectSpyCall(editionServiceUpdateEditionComplexSpy, 2, incompleteComplex);
-                expectSpyCall(editionServiceGetEditionComplexSpy, 2);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
+                expectSpyCall(editionServiceUpdateSelectedEditionComplexSpy, 2, incompleteComplex);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 2);
 
                 expect(component.selectedEditionComplex$).toBeDefined();
             });
@@ -351,21 +353,20 @@ describe('EditionComplexComponent (DONE)', () => {
                         editors: [],
                         lastModified: '---',
                     },
-                    EDITION_ROUTE_CONSTANTS.SERIES_1,
-                    EDITION_ROUTE_CONSTANTS.SECTION_5
+                    { series: '1', section: '5' }
                 );
                 expectedSelectedEditionComplexId = 'op100';
                 expectedEditionComplexes[expectedSelectedEditionComplexId.toUpperCase()] = incompleteComplex;
 
                 mockActivatedRoute.testParamMap = { complexId: expectedSelectedEditionComplexId };
-                editionServiceUpdateEditionComplexSpy.and.callThrough();
+                editionServiceUpdateSelectedEditionComplexSpy.and.callThrough();
 
                 // Apply changes
                 fixture.detectChanges();
 
-                expectSpyCall(getEditionComplexFromRouteSpy, 1);
-                expectSpyCall(editionServiceUpdateEditionComplexSpy, 2, incompleteComplex);
-                expectSpyCall(editionServiceGetEditionComplexSpy, 2);
+                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
+                expectSpyCall(editionServiceUpdateSelectedEditionComplexSpy, 2, incompleteComplex);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 2);
 
                 expect(component.selectedEditionComplex$).toBeDefined();
             });
@@ -375,7 +376,7 @@ describe('EditionComplexComponent (DONE)', () => {
             it('... should have cleared selectedEditionComplex$ on destroy (via EditionService)', () => {
                 component.ngOnDestroy();
 
-                expectSpyCall(editionServiceClearEditionComplexSpy, 1);
+                expectSpyCall(editionServiceClearSelectedEditionComplexSpy, 1);
             });
         });
     });

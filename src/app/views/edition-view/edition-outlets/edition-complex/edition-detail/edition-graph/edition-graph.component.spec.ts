@@ -80,7 +80,7 @@ describe('EditionGraphComponent (DONE)', () => {
         };
         // Mocked editionService
         mockEditionService = {
-            getEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
+            getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
         };
 
         TestBed.configureTestingModule({

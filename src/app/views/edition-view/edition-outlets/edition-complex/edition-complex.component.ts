@@ -61,21 +61,21 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
      * when initializing the component.
      */
     ngOnInit(): void {
-        this.getEditionComplexFromRoute();
+        this.updateEditionComplexFromRoute();
     }
 
     /**
-     * Public method: getEditionComplexFromRoute.
+     * Public method: updateEditionComplexFromRoute.
      *
-     * It subscribes to the route params to get the id of the current edition complex and load it from the edition service.
+     * It fetches the route params to get the id of the current edition complex and updates the edition service.
      *
-     * @returns {void} Gets the current edition complex from the edition service.
+     * @returns {void} Updates the current edition complex from the route.
      */
-    getEditionComplexFromRoute(): void {
+    updateEditionComplexFromRoute(): void {
         this.route.paramMap.subscribe(params => {
             const id: string = params.get('complexId') || '';
-            this.editionService.updateEditionComplex(EDITION_COMPLEXES[id.toUpperCase()]);
-            this.selectedEditionComplex$ = this.editionService.getEditionComplex().pipe(delay(0));
+            this.editionService.updateSelectedEditionComplex(EDITION_COMPLEXES[id.toUpperCase()]);
+            this.selectedEditionComplex$ = this.editionService.getSelectedEditionComplex().pipe(delay(0));
         });
     }
 
@@ -89,6 +89,6 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
      */
     ngOnDestroy() {
         // Remove selected edition complex
-        this.editionService.clearEditionComplex();
+        this.editionService.clearSelectedEditionComplex();
     }
 }

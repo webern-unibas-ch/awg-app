@@ -36,7 +36,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
     let mockActivatedRoute: ActivatedRouteStub;
     let mockEditionService: Partial<EditionService>;
 
-    let getSectionSpy: Spy;
+    let updateSectionFromRouteSpy: Spy;
     let editionServiceGetSelectedEditionSeriesSpy: Spy;
     let editionServiceGetEditionSectionByIdSpy: Spy;
     let editionServiceUpdateSelectedEditionSectionSpy: Spy;
@@ -82,7 +82,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        getSectionSpy = spyOn(component, 'getSection').and.callThrough();
+        updateSectionFromRouteSpy = spyOn(component, 'updateSectionFromRoute').and.callThrough();
         editionServiceGetSelectedEditionSeriesSpy = spyOn(
             mockEditionService,
             'getSelectedEditionSeries'
@@ -107,13 +107,13 @@ describe('EditionSectionDetailComponent (DONE)', () => {
             expect(component.selectedSection).toBeUndefined();
         });
 
-        describe('#getSection()', () => {
-            it('... should have a method `getSection`', () => {
-                expect(component.getSection).toBeDefined();
+        describe('#updateSectionFromRoute()', () => {
+            it('... should have a method `updateSectionFromRoute`', () => {
+                expect(component.updateSectionFromRoute).toBeDefined();
             });
 
             it('... should not have been called', () => {
-                expectSpyCall(getSectionSpy, 0);
+                expectSpyCall(updateSectionFromRouteSpy, 0);
             });
         });
 
@@ -137,9 +137,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#getSection()', () => {
+        describe('#updateSectionFromRoute()', () => {
             it('... should have been called', () => {
-                expectSpyCall(getSectionSpy, 1);
+                expectSpyCall(updateSectionFromRouteSpy, 1);
             });
 
             it('... should have called editionService.getSelectedEditionSeries', () => {
@@ -147,7 +147,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
             });
 
             it('... should have set selectedSeries (via EditionService)', waitForAsync(() => {
-                expectSpyCall(getSectionSpy, 1);
+                expectSpyCall(updateSectionFromRouteSpy, 1);
                 expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 1);
 
                 expectToEqual(component.selectedSeries, expectedSelectedSeries);
@@ -158,7 +158,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
             });
 
             it('... should have set selectedSection (via EditionService)', waitForAsync(() => {
-                expectSpyCall(getSectionSpy, 1);
+                expectSpyCall(updateSectionFromRouteSpy, 1);
                 expectSpyCall(editionServiceGetEditionSectionByIdSpy, 1, [expectedSeriesId, expectedSectionId]);
 
                 expectToEqual(component.selectedSection, expectedSelectedSection);

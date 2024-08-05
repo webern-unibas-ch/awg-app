@@ -131,7 +131,7 @@ describe('EditionSheetsComponent', () => {
             ): Observable<(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]> => observableOf([]),
         };
         mockEditionService = {
-            getEditionComplex: (): Observable<EditionComplex> => observableOf(),
+            getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(),
         };
         mockEditionSheetsService = {
             selectSvgSheetById: (sheets: EditionSvgSheetList['sheets'], id: string): EditionSvgSheet =>

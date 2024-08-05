@@ -145,7 +145,7 @@ describe('EditionReportComponent', () => {
                 observableOf(expectedEditionReportData),
         };
         mockEditionService = {
-            getEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
+            getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
         };
 
         TestBed.configureTestingModule({

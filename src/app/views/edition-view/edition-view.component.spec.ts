@@ -72,10 +72,10 @@ describe('EditionViewComponent (DONE)', () => {
 
         // Mock edition service
         mockEditionService = {
-            getEditionComplex: (): Observable<EditionComplex> =>
+            getSelectedEditionComplex: (): Observable<EditionComplex> =>
                 // Return op. 12 by default
                 observableOf(EDITION_COMPLEXES[expectedSelectedEditionComplexId]),
-            updateEditionComplex: (editionComplex: EditionComplex): void => {
+            updateSelectedEditionComplex: (editionComplex: EditionComplex): void => {
                 // Intentional empty test override
             },
             getSelectedEditionSeries: (): Observable<EditionOutlineSeries> =>

@@ -78,7 +78,6 @@ export class EditionViewComponent implements OnInit {
      */
     constructor(
         private editionService: EditionService,
-        private route: ActivatedRoute,
         private router: Router
     ) {}
 
@@ -112,7 +111,7 @@ export class EditionViewComponent implements OnInit {
     getSelectionsFromRoute(): void {
         this.selectedEditionSeries$ = this.editionService.getSelectedEditionSeries().pipe(delay(0));
         this.selectedEditionSection$ = this.editionService.getSelectedEditionSection().pipe(delay(0));
-        this.selectedEditionComplex$ = this.editionService.getEditionComplex().pipe(delay(0));
+        this.selectedEditionComplex$ = this.editionService.getSelectedEditionComplex().pipe(delay(0));
         this.isRowTableView$ = this.editionService.getIsRowTableView().pipe(delay(0));
     }
 

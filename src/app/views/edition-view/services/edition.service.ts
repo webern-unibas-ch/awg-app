@@ -25,14 +25,10 @@ export class EditionService {
     private _bufferSize = 1;
 
     /**
-     * Private replay subject to handle edition complex.
      */
-    private _editionComplexSubject = new ReplaySubject<EditionComplex>(this._bufferSize);
 
     /**
-     * Private readonly edition complex stream as observable (`ReplaySubject`).
      */
-    private readonly _editionComplexStream$ = this._editionComplexSubject.asObservable();
 
     /**
      * Private replay subject to flag row table view.
@@ -43,6 +39,16 @@ export class EditionService {
      * Private readonly isRowTableView stream as observable (`ReplaySubject`).
      */
     private readonly _isRowTableViewStream$ = this._isRowTableViewSubject.asObservable();
+
+    /**
+     * Private replay subject to handle the selected edition complex.
+     */
+    private _selectedEditionComplexSubject = new ReplaySubject<EditionComplex>(this._bufferSize);
+
+    /**
+     * Private readonly edition complex stream as observable (`ReplaySubject`).
+     */
+    private readonly _selectedEditionComplexStream$ = this._selectedEditionComplexSubject.asObservable();
 
     /**
      * Private replay subject to handle the selected edition series.
@@ -65,38 +71,38 @@ export class EditionService {
     private readonly _selectedEditionSectionStream$ = this._selectedEditionSectionSubject.asObservable();
 
     /**
-     * Public method: getEditionComplex.
+     * Public method: getSelectedEditionComplex.
      *
-     * It provides the latest edition complex from the edition complex stream.
+     * It provides the latest selected edition complex from the edition complex stream.
      *
      * @returns {Observable<EditionComplex>} The edition complex stream as observable.
      */
-    getEditionComplex(): Observable<EditionComplex> {
-        return this._editionComplexStream$;
+    getSelectedEditionComplex(): Observable<EditionComplex> {
+        return this._selectedEditionComplexStream$;
     }
 
     /**
-     * Public method: updateEditionComplex.
+     * Public method: updateSelectedEditionComplex.
      *
-     * It updates the edition complex stream with the given edition complex.
+     * It updates the selected edition complex stream with the given edition complex.
      *
      * @param {EditionComplex} editionComplex The given edition complex.
      *
      * @returns {void} Sets the next edition complex to the stream.
      */
-    updateEditionComplex(editionComplex: EditionComplex): void {
-        this._editionComplexSubject.next(editionComplex);
+    updateSelectedEditionComplex(editionComplex: EditionComplex): void {
+        this._selectedEditionComplexSubject.next(editionComplex);
     }
 
     /**
-     * Public method: clearEditionComplex.
+     * Public method: clearSelectedEditionComplex.
      *
-     * It clears the edition complex stream.
+     * It clears the selected edition complex stream.
      *
      * @returns {void} Clears the edition complex stream.
      */
-    clearEditionComplex(): void {
-        this._editionComplexSubject.next(null);
+    clearSelectedEditionComplex(): void {
+        this._selectedEditionComplexSubject.next(null);
     }
 
     /**
