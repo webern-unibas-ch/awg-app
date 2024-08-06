@@ -396,8 +396,8 @@ describe('EditionViewComponent (DONE)', () => {
                     const hEl = hDes[0].nativeElement;
 
                     const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
-                    const series = expectedSelectedEditionComplex.pubStatement.series.short;
-                    const section = expectedSelectedEditionComplex.pubStatement.section.short;
+                    const series = expectedSelectedEditionComplex.pubStatement.series.full;
+                    const section = expectedSelectedEditionComplex.pubStatement.section.full;
                     const expectedBreadCrumb = `${awg} / ${series} / ${section}`;
 
                     expectToBe(hEl.innerText, expectedBreadCrumb);
@@ -544,7 +544,7 @@ describe('EditionViewComponent (DONE)', () => {
                         const hEl = hDes[0].nativeElement;
 
                         const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
-                        const series = expectedSelectedEditionComplex.pubStatement.series.short;
+                        const series = expectedSelectedEditionComplex.pubStatement.series.full;
                         const expectedBreadCrumb = `${awg} / ${series} /`;
 
                         expectToBe(hEl.innerText, expectedBreadCrumb);
@@ -566,8 +566,8 @@ describe('EditionViewComponent (DONE)', () => {
                         const hEl = hDes[0].nativeElement;
 
                         const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
-                        const series = expectedSelectedEditionComplex.pubStatement.series.short;
-                        const section = expectedSelectedEditionComplex.pubStatement.section.short;
+                        const series = expectedSelectedEditionComplex.pubStatement.series.full;
+                        const section = expectedSelectedEditionComplex.pubStatement.section.full;
                         const expectedBreadCrumb = `${awg} / ${series} / ${section}`;
 
                         expectToBe(hEl.innerText, expectedBreadCrumb);

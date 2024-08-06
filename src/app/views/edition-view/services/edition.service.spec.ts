@@ -50,14 +50,6 @@ describe('EditionService (DONE)', () => {
         expectToBe((editionService as any)._bufferSize, 1);
     });
 
-    it('... should have _editionComplexSubject', () => {
-        expect((editionService as any)._editionComplexSubject).toBeTruthy();
-    });
-
-    it('... should have _editionComplexStream$', () => {
-        expect((editionService as any)._editionComplexStream$).toBeTruthy();
-    });
-
     it('... should have _isPrefaceViewSubject', () => {
         expect((editionService as any)._isPrefaceViewSubject).toBeTruthy();
     });
@@ -72,6 +64,14 @@ describe('EditionService (DONE)', () => {
 
     it('... should have _isRowTableViewStream$', () => {
         expect((editionService as any)._isRowTableViewStream$).toBeTruthy();
+    });
+
+    it('... should have _selectedEditionComplexSubject', () => {
+        expect((editionService as any)._selectedEditionComplexSubject).toBeTruthy();
+    });
+
+    it('... should have _selectedEditionComplexStream$', () => {
+        expect((editionService as any)._selectedEditionComplexStream$$).toBeTruthy();
     });
 
     it('... should have _selectedEditionSeriesSubject', () => {
