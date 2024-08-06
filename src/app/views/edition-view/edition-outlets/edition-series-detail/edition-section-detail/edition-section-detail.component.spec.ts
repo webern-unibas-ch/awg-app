@@ -342,7 +342,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                     const pDe = getAndExpectDebugElementByCss(divDe[0], 'p', 1, 1);
                     const pEl = pDe[0].nativeElement;
 
-                    const awg = EDITION_ROUTE_CONSTANTS.EDITION.route;
+                    const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                     const series = expectedSelectedSeries.series.short;
                     const section = expectedSelectedSection.section.short;
 

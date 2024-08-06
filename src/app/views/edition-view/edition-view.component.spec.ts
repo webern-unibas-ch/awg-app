@@ -395,7 +395,7 @@ describe('EditionViewComponent (DONE)', () => {
                     );
                     const hEl = hDes[0].nativeElement;
 
-                    const awg = EDITION_ROUTE_CONSTANTS.EDITION.route;
+                    const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                     const series = expectedSelectedEditionComplex.pubStatement.series.short;
                     const section = expectedSelectedEditionComplex.pubStatement.section.short;
                     const expectedBreadCrumb = `${awg} / ${series} / ${section}`;
@@ -519,7 +519,7 @@ describe('EditionViewComponent (DONE)', () => {
                         );
                         const hEl = hDes[0].nativeElement;
 
-                        const awg = EDITION_ROUTE_CONSTANTS.EDITION.route;
+                        const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                         const expectedBreadCrumb = `${awg} /`;
 
                         expectToBe(hEl.innerText, expectedBreadCrumb);
@@ -543,7 +543,7 @@ describe('EditionViewComponent (DONE)', () => {
                         );
                         const hEl = hDes[0].nativeElement;
 
-                        const awg = EDITION_ROUTE_CONSTANTS.EDITION.route;
+                        const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                         const series = expectedSelectedEditionComplex.pubStatement.series.short;
                         const expectedBreadCrumb = `${awg} / ${series} /`;
 
@@ -565,7 +565,7 @@ describe('EditionViewComponent (DONE)', () => {
                         );
                         const hEl = hDes[0].nativeElement;
 
-                        const awg = EDITION_ROUTE_CONSTANTS.EDITION.route;
+                        const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                         const series = expectedSelectedEditionComplex.pubStatement.series.short;
                         const section = expectedSelectedEditionComplex.pubStatement.section.short;
                         const expectedBreadCrumb = `${awg} / ${series} / ${section}`;

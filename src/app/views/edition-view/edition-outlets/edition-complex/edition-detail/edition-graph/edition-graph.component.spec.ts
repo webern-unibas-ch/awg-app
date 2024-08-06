@@ -304,7 +304,7 @@ describe('EditionGraphComponent (DONE)', () => {
                     const shortComplexSpan = mockDocument.createElement('span');
                     shortComplexSpan.innerHTML = expectedEditionComplex.complexId.short;
 
-                    const awg = EDITION_ROUTE_CONSTANTS.EDITION.route;
+                    const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                     const series = expectedEditionComplex.pubStatement.series.short;
                     const section = expectedEditionComplex.pubStatement.section.short;
 

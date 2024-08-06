@@ -575,7 +575,7 @@ describe('NavbarComponent (DONE)', () => {
                         const headerSpanDe = getAndExpectDebugElementByCss(headerDe[0], 'span', 1, 1);
                         const headerSpanEl = headerSpanDe[0].nativeElement;
 
-                        const awg = EDITION_ROUTE_CONSTANTS.EDITION.route;
+                        const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                         const series = expectedEditionComplexes[index].pubStatement.series.short;
                         const section = expectedEditionComplexes[index].pubStatement.section.short;
 
