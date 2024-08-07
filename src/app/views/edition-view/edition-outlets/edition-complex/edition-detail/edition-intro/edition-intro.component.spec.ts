@@ -22,8 +22,8 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
+import { EditionComplexesService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionSvgSheet, IntroList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
@@ -109,7 +109,7 @@ describe('IntroComponent (DONE)', () => {
         editionService = TestBed.inject(EditionService);
 
         // Test data
-        expectedEditionComplex = EDITION_COMPLEXES.OP12;
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
         expectedEditionComplexBaseRoute = '/edition/complex/op12/';
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';

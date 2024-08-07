@@ -17,7 +17,7 @@ import {
 import { mockEditionOutline } from '@testing/mock-data/mockEditionOutline';
 import { ActivatedRouteStub, RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EditionComplexesService } from '@awg-core/services';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
@@ -54,16 +54,20 @@ describe('EditionViewComponent (DONE)', () => {
     let editionServiceGetIsPrefaceViewSpy: Spy;
     let editionServiceGetIsRowTableViewSpy: Spy;
 
+    let expectedSelectedEditionComplexId: string;
     let expectedSelectedEditionComplex: EditionComplex;
     let expectedSelectedEditionSeries: EditionOutlineSeries;
     let expectedSelectedEditionSection: EditionOutlineSection;
     let expectedIsPrefaceView: boolean;
     let expectedIsRowTableView: boolean;
 
-    const expectedSelectedEditionComplexId = 'OP12';
     const expectedTitle = 'Inhalt';
     const expectedId = 'awg-edition-view';
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
+
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
 
     beforeEach(waitForAsync(() => {
         // Mock router with spy object
@@ -76,7 +80,7 @@ describe('EditionViewComponent (DONE)', () => {
         mockEditionService = {
             getSelectedEditionComplex: (): Observable<EditionComplex> =>
                 // Return op. 12 by default
-                observableOf(EDITION_COMPLEXES[expectedSelectedEditionComplexId]),
+                observableOf(EditionComplexesService.getEditionComplexById(expectedSelectedEditionComplexId)),
             updateSelectedEditionComplex: (editionComplex: EditionComplex): void => {
                 // Intentional empty test override
             },
@@ -85,7 +89,7 @@ describe('EditionViewComponent (DONE)', () => {
             getSelectedEditionSeries: (): Observable<EditionOutlineSeries> =>
                 observableOf(expectedSelectedEditionSeries),
             getSelectedEditionSection: (): Observable<EditionOutlineSection> =>
-                observableOf(expectedSelectedEditionSeries.sections[0]),
+                observableOf(expectedSelectedEditionSection),
         };
 
         TestBed.configureTestingModule({
@@ -117,9 +121,12 @@ describe('EditionViewComponent (DONE)', () => {
         // Test data
         expectedIsPrefaceView = false;
         expectedIsRowTableView = true;
-        expectedSelectedEditionComplex = EDITION_COMPLEXES[expectedSelectedEditionComplexId]; // Op. 12
-        expectedSelectedEditionSeries = mockEditionOutline[0];
-        expectedSelectedEditionSection = expectedSelectedEditionSeries.sections[0];
+        expectedSelectedEditionComplexId = 'OP12';
+        expectedSelectedEditionComplex = EditionComplexesService.getEditionComplexById(
+            expectedSelectedEditionComplexId
+        );
+        expectedSelectedEditionSeries = mockEditionOutline[0]; // Series 1
+        expectedSelectedEditionSection = expectedSelectedEditionSeries.sections[4];
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -636,7 +643,10 @@ describe('EditionViewComponent (DONE)', () => {
                 expect(component.selectedEditionComplex$).toBeDefined();
                 component.selectedEditionComplex$.subscribe({
                     next: (complex: EditionComplex) => {
-                        expectToEqual(complex, EDITION_COMPLEXES[expectedSelectedEditionComplexId]);
+                        expectToEqual(
+                            complex,
+                            EditionComplexesService.getEditionComplexById(expectedSelectedEditionComplexId)
+                        );
                     },
                 });
             }));

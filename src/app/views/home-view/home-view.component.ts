@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { MetaPage, MetaSectionTypes } from '@awg-app/core/core-models';
-import { CoreService } from '@awg-app/core/services';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
+import { CoreService, EditionComplexesService } from '@awg-core/services';
 import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 
@@ -49,17 +48,17 @@ export class HomeViewComponent implements OnInit {
      * It keeps the array of displayed edition complexes.
      */
     readonly DISPLAYED_EDITION_COMPLEXES: EditionComplex[] = [
-        EDITION_COMPLEXES.OP3,
-        EDITION_COMPLEXES.OP4,
-        EDITION_COMPLEXES.OP12,
-        EDITION_COMPLEXES.OP23,
-        EDITION_COMPLEXES.OP25,
-        EDITION_COMPLEXES.M22,
-        EDITION_COMPLEXES.M30,
-        EDITION_COMPLEXES.M31,
-        EDITION_COMPLEXES.M34,
-        EDITION_COMPLEXES.M35_42,
-        EDITION_COMPLEXES.M37,
+        EditionComplexesService.getEditionComplexById('OP3'),
+        EditionComplexesService.getEditionComplexById('OP4'),
+        EditionComplexesService.getEditionComplexById('OP12'),
+        EditionComplexesService.getEditionComplexById('OP23'),
+        EditionComplexesService.getEditionComplexById('OP25'),
+        EditionComplexesService.getEditionComplexById('M22'),
+        EditionComplexesService.getEditionComplexById('M30'),
+        EditionComplexesService.getEditionComplexById('M31'),
+        EditionComplexesService.getEditionComplexById('M34'),
+        EditionComplexesService.getEditionComplexById('M35_42'),
+        EditionComplexesService.getEditionComplexById('M37'),
     ];
 
     /**

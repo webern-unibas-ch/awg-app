@@ -12,9 +12,9 @@ import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDir
 import { mockEditionData } from '@testing/mock-data';
 import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
 
+import { EditionComplexesService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
@@ -172,7 +172,7 @@ describe('EditionSheetsComponent', () => {
         mockActivatedRoute.testQueryParamMap = { id: '' };
 
         // Test data
-        expectedEditionComplex = EDITION_COMPLEXES.OP12;
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
         expectedComplexId = 'op12';
         expectedNextComplexId = 'testComplex2';
         expectedEditionComplexBaseRoute = `/edition/complex/${expectedComplexId}/`;

@@ -10,7 +10,7 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EditionComplexesService } from '@awg-core/services';
 import { EditionOutlineComplex } from '@awg-views/edition-view/models';
 
 import { EditionComplexCardComponent } from './edition-complex-card.component';
@@ -25,6 +25,10 @@ describe('EditionComplexCardComponent (DONE)', () => {
 
     let expectedComplexes: EditionOutlineComplex[];
 
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
+
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [EditionComplexCardComponent, RouterLinkStubDirective],
@@ -38,11 +42,11 @@ describe('EditionComplexCardComponent (DONE)', () => {
 
         // Test data
         expectedComplexes = [
-            { complex: EDITION_COMPLEXES.OP12, disabled: false },
-            { complex: EDITION_COMPLEXES.OP23, disabled: false },
-            { complex: EDITION_COMPLEXES.OP25, disabled: true },
-            { complex: EDITION_COMPLEXES.M212, disabled: false },
-            { complex: EDITION_COMPLEXES.M213, disabled: true },
+            { complex: EditionComplexesService.getEditionComplexById('OP12'), disabled: false },
+            { complex: EditionComplexesService.getEditionComplexById('OP23'), disabled: false },
+            { complex: EditionComplexesService.getEditionComplexById('OP25'), disabled: true },
+            { complex: EditionComplexesService.getEditionComplexById('M212'), disabled: false },
+            { complex: EditionComplexesService.getEditionComplexById('M213'), disabled: true },
         ];
     });
 

@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { delay, Observable } from 'rxjs';
+import { delay, EMPTY, Observable } from 'rxjs';
 
-import { UtilityService } from '@awg-app/core/services';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EditionComplexesService, UtilityService } from '@awg-core/services';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
@@ -74,8 +73,14 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
     updateEditionComplexFromRoute(): void {
         this.route.paramMap.subscribe(params => {
             const id: string = params.get('complexId') || '';
-            this.editionService.updateSelectedEditionComplex(EDITION_COMPLEXES[id.toUpperCase()]);
-            this.selectedEditionComplex$ = this.editionService.getSelectedEditionComplex().pipe(delay(0));
+            const complex = EditionComplexesService.getEditionComplexById(id.toUpperCase());
+
+            if (complex) {
+                this.editionService.updateSelectedEditionComplex(complex);
+                this.selectedEditionComplex$ = this.editionService.getSelectedEditionComplex().pipe(delay(0));
+            } else {
+                this.selectedEditionComplex$ = EMPTY;
+            }
         });
     }
 

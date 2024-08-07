@@ -4,7 +4,8 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { EDITION_COMPLEXES, EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
+import { EditionComplexesService } from '@awg-core/services';
+import { EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
@@ -21,6 +22,10 @@ describe('EditionService (DONE)', () => {
     let expectedIsPrefaceView: boolean;
     let expectedIsRowTableView: boolean;
 
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [EditionService],
@@ -29,7 +34,7 @@ describe('EditionService (DONE)', () => {
         editionService = TestBed.inject(EditionService);
 
         // Test data (default)
-        expectedEditionComplex = EDITION_COMPLEXES.OP12;
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
         expectedEditionOutline = EDITION_OUTLINE_DATA;
         expectedEditionSeriesRoute = EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.SERIES.route;
         expectedEditionSeries = EDITION_OUTLINE_DATA[0];
@@ -71,7 +76,7 @@ describe('EditionService (DONE)', () => {
     });
 
     it('... should have _selectedEditionComplexStream$', () => {
-        expect((editionService as any)._selectedEditionComplexStream$$).toBeTruthy();
+        expect((editionService as any)._selectedEditionComplexStream$).toBeTruthy();
     });
 
     it('... should have _selectedEditionSeriesSubject', () => {
@@ -114,7 +119,7 @@ describe('EditionService (DONE)', () => {
                 editionService.updateSelectedEditionComplex(expectedEditionComplex);
 
                 // Update editionComplex
-                expectedEditionComplex = EDITION_COMPLEXES.OP25;
+                expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP25');
                 editionService.updateSelectedEditionComplex(expectedEditionComplex);
             }));
         });
@@ -135,7 +140,7 @@ describe('EditionService (DONE)', () => {
                 editionService.updateSelectedEditionComplex(expectedEditionComplex);
 
                 // Update editionComplex
-                expectedEditionComplex = EDITION_COMPLEXES.OP25;
+                expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP25');
                 editionService.updateSelectedEditionComplex(expectedEditionComplex);
             }));
         });

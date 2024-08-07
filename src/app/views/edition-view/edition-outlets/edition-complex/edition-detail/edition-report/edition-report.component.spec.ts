@@ -19,8 +19,8 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
+import { EditionComplexesService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
@@ -180,7 +180,7 @@ describe('EditionReportComponent', () => {
         // Test data
         expectedPanelId = 'awg-sources-panel';
         expectedReportFragment = 'source_A';
-        expectedEditionComplex = EDITION_COMPLEXES.OP12;
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
         expectedEditionComplexBaseRoute = '/edition/complex/op12/';
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';

@@ -15,9 +15,11 @@ import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
-import { EDITION_ASSETS_DATA, EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EditionComplexesService } from '@awg-core/services';
+import { EDITION_ASSETS_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
@@ -41,7 +43,6 @@ import {
     TextcriticsList,
 } from '@awg-views/edition-view/models';
 
-import { mockEditionData } from '@testing/mock-data';
 import { EditionDataService } from './edition-data.service';
 
 describe('EditionDataService (DONE)', () => {
@@ -55,31 +56,29 @@ describe('EditionDataService (DONE)', () => {
     let expectedPrefaceData: PrefaceList;
     let expectedRowTablesData: EditionRowTablesList;
 
-    const expectedEditionComplex: EditionComplex = EDITION_COMPLEXES.OP12;
-    const expectedAssetPathBaseRoute = EDITION_ASSETS_DATA.BASE_ROUTE;
-    const delimiter = '/';
-    const expectedComplexRoute =
-        delimiter +
-        EDITION_ROUTE_CONSTANTS.SERIES.route +
-        delimiter +
-        expectedEditionComplex.pubStatement.series.route +
-        EDITION_ROUTE_CONSTANTS.SECTION.route +
-        expectedEditionComplex.pubStatement.section.route +
-        expectedEditionComplex.complexId.route;
-    const expectedAssetPath = expectedAssetPathBaseRoute + expectedComplexRoute;
-    let regexBase = new RegExp(expectedAssetPath);
+    let expectedEditionComplex: EditionComplex;
+    let expectedComplexRoute: string;
+    let expectedAssetPath: string;
+    let regexBase: RegExp;
 
+    let expectedFolioConvoluteFilePath: string;
+    let expectedGraphFilePath: string;
+    let expectedIntroFilePath: string;
+    let expectedPrefaceFilePath: string;
+    let expectedRowTablesFilePath: string;
+    let expectedSheetsFilePath: string;
+    let expectedSourceListFilePath: string;
+    let expectedSourceDescriptionFilePath: string;
+    let expectedSourceEvaluationFilePath: string;
+    let expectedTextcriticsFilePath: string;
+
+    const delimiter = '/';
+    const expectedAssetPathBaseRoute = EDITION_ASSETS_DATA.BASE_ROUTE;
     const files = EDITION_ASSETS_DATA.FILES;
-    const expectedFolioConvoluteFilePath = `${expectedAssetPath}/${files.folioConvoluteFile}`;
-    const expectedGraphFilePath = `${expectedAssetPath}/${files.graphFile}`;
-    const expectedIntroFilePath = `${expectedAssetPath}/${files.introFile}`;
-    const expectedPrefaceFilePath = `${expectedAssetPathBaseRoute}/${files.prefaceFile}`;
-    const expectedRowTablesFilePath = `${expectedAssetPathBaseRoute}/${files.rowTablesFile}`;
-    const expectedSheetsFilePath = `${expectedAssetPath}/${files.svgSheetsFile}`;
-    const expectedSourceListFilePath = `${expectedAssetPath}/${files.sourceListFile}`;
-    const expectedSourceDescriptionFilePath = `${expectedAssetPath}/${files.sourceDescriptionListFile}`;
-    const expectedSourceEvaluationFilePath = `${expectedAssetPath}/${files.sourceEvaluationListFile}`;
-    const expectedTextcriticsFilePath = `${expectedAssetPath}/${files.textcriticsFile}`;
+
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -93,6 +92,29 @@ describe('EditionDataService (DONE)', () => {
         httpTestingController = TestBed.inject(HttpTestingController);
 
         // Test data
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
+        expectedComplexRoute =
+            delimiter +
+            EDITION_ROUTE_CONSTANTS.SERIES.route +
+            delimiter +
+            expectedEditionComplex.pubStatement.series.route +
+            EDITION_ROUTE_CONSTANTS.SECTION.route +
+            expectedEditionComplex.pubStatement.section.route +
+            expectedEditionComplex.complexId.route;
+        expectedAssetPath = expectedAssetPathBaseRoute + expectedComplexRoute;
+        regexBase = new RegExp(expectedAssetPath);
+
+        expectedFolioConvoluteFilePath = `${expectedAssetPath}/${files.folioConvoluteFile}`;
+        expectedGraphFilePath = `${expectedAssetPath}/${files.graphFile}`;
+        expectedIntroFilePath = `${expectedAssetPath}/${files.introFile}`;
+        expectedPrefaceFilePath = `${expectedAssetPathBaseRoute}/${files.prefaceFile}`;
+        expectedRowTablesFilePath = `${expectedAssetPathBaseRoute}/${files.rowTablesFile}`;
+        expectedSheetsFilePath = `${expectedAssetPath}/${files.svgSheetsFile}`;
+        expectedSourceListFilePath = `${expectedAssetPath}/${files.sourceListFile}`;
+        expectedSourceDescriptionFilePath = `${expectedAssetPath}/${files.sourceDescriptionListFile}`;
+        expectedSourceEvaluationFilePath = `${expectedAssetPath}/${files.sourceEvaluationListFile}`;
+        expectedTextcriticsFilePath = `${expectedAssetPath}/${files.textcriticsFile}`;
+
         expectedPrefaceData = JSON.parse(JSON.stringify(mockEditionData.mockPrefaceData));
         expectedRowTablesData = JSON.parse(JSON.stringify(mockEditionData.mockRowTablesData));
 

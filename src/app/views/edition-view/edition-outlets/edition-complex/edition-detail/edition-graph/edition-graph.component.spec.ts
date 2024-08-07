@@ -20,8 +20,9 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
+import { EditionComplexesService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EDITION_COMPLEXES, EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
+import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, Graph, GraphList, GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
@@ -112,7 +113,7 @@ describe('EditionGraphComponent (DONE)', () => {
         // TestData (default)
         expectedIsFullscreen = false;
 
-        expectedEditionComplex = EDITION_COMPLEXES.OP12;
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
 
         expectedEditionGraphDataEmpty = JSON.parse(JSON.stringify(mockEditionData.mockGraphEmptyData));
 
@@ -132,10 +133,10 @@ describe('EditionGraphComponent (DONE)', () => {
         editionDataServiceGetEditionGraphDataSpy = spyOn(editionDataService, 'getEditionGraphData').and.callFake(
             (editionComplex: EditionComplex) => {
                 switch (editionComplex) {
-                    case EDITION_COMPLEXES.OP12: {
+                    case EditionComplexesService.getEditionComplexById('OP12'): {
                         return observableOf(expectedEditionGraphDataEmpty);
                     }
-                    case EDITION_COMPLEXES.OP25: {
+                    case EditionComplexesService.getEditionComplexById('OP25'): {
                         return observableOf(expectedEditionGraphDataOp25);
                     }
                     default: {
@@ -217,7 +218,9 @@ describe('EditionGraphComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            editionServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(EDITION_COMPLEXES.OP12));
+            editionServiceGetSelectedEditionComplexSpy.and.returnValue(
+                observableOf(EditionComplexesService.getEditionComplexById('OP12'))
+            );
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -587,14 +590,16 @@ describe('EditionGraphComponent (DONE)', () => {
             it('... should update editionComplex when editionService emits changed value', waitForAsync(() => {
                 // ----------------
                 // Change to op. 25
-                editionServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(EDITION_COMPLEXES.OP25));
+                editionServiceGetSelectedEditionComplexSpy.and.returnValue(
+                    observableOf(EditionComplexesService.getEditionComplexById('OP25'))
+                );
 
                 component.getEditionGraphData();
                 detectChangesOnPush(fixture);
 
                 expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 2);
 
-                expectToEqual(component.editionComplex, EDITION_COMPLEXES.OP25);
+                expectToEqual(component.editionComplex, EditionComplexesService.getEditionComplexById('OP25'));
             }));
 
             it('... should trigger editionDataService.getEditionGraph', () => {
@@ -608,14 +613,19 @@ describe('EditionGraphComponent (DONE)', () => {
             it('... should re-trigger editionDataService.getEditionGraph with updated editionComplex', waitForAsync(() => {
                 // ----------------
                 // Change to op. 25
-                // ExpectedEditionComplex = EDITION_COMPLEXES.op25;
-                editionServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(EDITION_COMPLEXES.OP25));
+                editionServiceGetSelectedEditionComplexSpy.and.returnValue(
+                    observableOf(EditionComplexesService.getEditionComplexById('OP25'))
+                );
 
                 component.getEditionGraphData();
                 detectChangesOnPush(fixture);
 
                 expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 2);
-                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 2, EDITION_COMPLEXES.OP25);
+                expectSpyCall(
+                    editionDataServiceGetEditionGraphDataSpy,
+                    2,
+                    EditionComplexesService.getEditionComplexById('OP25')
+                );
             }));
 
             it('... should get editionGraphData from editionDataService and set editionGraphData$', waitForAsync(() => {
@@ -633,14 +643,19 @@ describe('EditionGraphComponent (DONE)', () => {
 
                 // ----------------
                 // Change to op. 25
-                // ExpectedEditionComplex = EDITION_COMPLEXES.op25;
-                editionServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(EDITION_COMPLEXES.OP25));
+                editionServiceGetSelectedEditionComplexSpy.and.returnValue(
+                    observableOf(EditionComplexesService.getEditionComplexById('OP25'))
+                );
 
                 component.getEditionGraphData();
                 detectChangesOnPush(fixture);
 
                 expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 2);
-                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 2, EDITION_COMPLEXES.OP25);
+                expectSpyCall(
+                    editionDataServiceGetEditionGraphDataSpy,
+                    2,
+                    EditionComplexesService.getEditionComplexById('OP25')
+                );
 
                 expectAsync(lastValueFrom(component.editionGraphData$)).toBeResolved();
                 expectAsync(lastValueFrom(component.editionGraphData$)).toBeResolvedTo(expectedEditionGraphDataOp25);
