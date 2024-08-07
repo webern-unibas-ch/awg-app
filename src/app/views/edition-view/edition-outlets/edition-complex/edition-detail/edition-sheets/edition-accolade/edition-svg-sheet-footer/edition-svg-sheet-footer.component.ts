@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-import { UtilityService } from '@awg-app/core/services';
-import { TextcriticalComment, Textcritics } from '@awg-app/views/edition-view/models';
+import { UtilityService } from '@awg-core/services';
+import { TextcriticalComment, Textcritics } from '@awg-views/edition-view/models';
 
 /**
  * The EditionSvgSheetFooter component.

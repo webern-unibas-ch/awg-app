@@ -16,10 +16,10 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { UtilityService } from '@awg-app/core/services';
-import { EditionSvgSheet, TextcriticalComment, Textcritics } from '@awg-app/views/edition-view/models';
+import { UtilityService } from '@awg-core/services';
+import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { EditionSvgSheet, TextcriticalComment, Textcritics } from '@awg-views/edition-view/models';
 
-import { CompileHtmlComponent } from '@awg-app/shared/compile-html';
 import { EditionSvgSheetFooterComponent } from './edition-svg-sheet-footer.component';
 
 // Mock components

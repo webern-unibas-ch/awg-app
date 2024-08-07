@@ -16,7 +16,7 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { UtilityService } from '@awg-app/core/services';
+import { UtilityService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { TextcriticalComment, TextcriticsList } from '@awg-views/edition-view/models';
 

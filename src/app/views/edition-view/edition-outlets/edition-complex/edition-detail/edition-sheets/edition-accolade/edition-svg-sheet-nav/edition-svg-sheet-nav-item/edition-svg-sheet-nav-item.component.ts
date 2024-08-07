@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { UtilityService } from '@awg-app/core/services';
-import { EditionSvgSheet } from '@awg-app/views/edition-view/models';
+
+import { UtilityService } from '@awg-core/services';
+import { EditionSvgSheet } from '@awg-views/edition-view/models';
 
 /**
  * The EditionSvgSheetNavItem component.

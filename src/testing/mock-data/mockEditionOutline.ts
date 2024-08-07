@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
-import { EDITION_COMPLEXES } from '@awg-app/views/edition-view/data';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-app/views/edition-view/edition-route-constants';
+import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 
 /**
  * Test helper data file: mockEditionOutline.

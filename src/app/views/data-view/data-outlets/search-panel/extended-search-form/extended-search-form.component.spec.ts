@@ -27,12 +27,12 @@ import {
 } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
-import { ExtendedSearchParams, SearchCompop, SearchCompopSetsList } from '@awg-app/views/data-view/models';
 import {
     PropertyTypesInResourceClassResponseJson,
     ResourceTypesInVocabularyResponseJson,
 } from '@awg-shared/api-objects';
 import { SEARCH_COMPOP_SETS_LIST } from '@awg-views/data-view/data';
+import { ExtendedSearchParams, SearchCompop, SearchCompopSetsList } from '@awg-views/data-view/models';
 import { DataApiService } from '@awg-views/data-view/services';
 
 import { ExtendedSearchFormComponent } from './extended-search-form.component';
