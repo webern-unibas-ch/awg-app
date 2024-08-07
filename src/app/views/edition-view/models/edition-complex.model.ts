@@ -6,6 +6,36 @@ import {
 import { EditionRouteConstant } from './edition-route-constant.model';
 
 /**
+ * The EditionComplexJsonInput interface.
+ *
+ * It is used in the context of the edition view
+ * to describe the structure of a JSON input for an edition complex.
+ */
+export interface EditionComplexJsonInput {
+    /**
+     * The edition complex input.
+     */
+    [key: string]: {
+        titleStatement: { title: string; catalogueType: string; catalogueNumber: string };
+        respStatement: { editors: { name: string; homepage: string }[]; lastModified: string };
+        pubStatement: { series: string; section: string };
+    };
+}
+
+/**
+ * The EditionComplexesJsonInput interface.
+ *
+ * It is used in the context of the edition view
+ * to describe the structure of a JSON input for edition complexes.
+ */
+export interface EditionComplexesJsonInput {
+    /**
+     * The edition complexes input.
+     */
+    editionComplexes: EditionComplexJsonInput[];
+}
+
+/**
  * The EditionComplexTitleStatement class.
  *
  * It is used in the context of the edition view
@@ -171,4 +201,17 @@ export class EditionComplex {
     private _mapPubStatement(prefix: string, value?: string): EditionRouteConstant {
         return EDITION_ROUTE_CONSTANTS[`${prefix}${value?.toUpperCase()}`] ?? new EditionRouteConstant();
     }
+}
+
+/**
+ * The EditionComplexesList class.
+ *
+ * It is used in the context of the edition view
+ * to describe a list of edition complexes.
+ */
+export class EditionComplexesList {
+    /**
+     * The list of edition complexes.
+     */
+    [key: string]: EditionComplex;
 }

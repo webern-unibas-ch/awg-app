@@ -9,7 +9,7 @@ import Spy = jasmine.Spy;
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { AnalyticsService } from '@awg-core/services';
+import { AnalyticsService, EditionComplexesService } from '@awg-core/services';
 
 import { AppComponent } from './app.component';
 
@@ -46,6 +46,7 @@ describe('AppComponent (DONE)', () => {
     let mockAnalyticsService: Partial<AnalyticsService>;
     let initialzeAnalyticsSpy: Spy;
     let trackpageViewSpy: Spy;
+    let initializeEditionComplexesListSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         // Create a mocked AnalyticsService  with an `initializeAnalytics` and `trackPageView` spy
@@ -73,6 +74,10 @@ describe('AppComponent (DONE)', () => {
 
         // Spies for service methods
         initialzeAnalyticsSpy = spyOn(mockAnalyticsService, 'initializeAnalytics').and.callThrough();
+        initializeEditionComplexesListSpy = spyOn(
+            EditionComplexesService,
+            'initializeEditionComplexesList'
+        ).and.callThrough();
         trackpageViewSpy = spyOn(mockAnalyticsService, 'trackPageView').and.callThrough();
     }));
 
@@ -177,6 +182,28 @@ describe('AppComponent (DONE)', () => {
                     });
                 });
             }));
+        });
+
+        describe('EditionComplexes', () => {
+            it('... should call EditionComplexesService to initialize EditionComplexesList', () => {
+                expectSpyCall(initializeEditionComplexesListSpy, 1);
+            });
+
+            it('... should make the EditionComplexesList available', () => {
+                const editionComplexesList = EditionComplexesService.getEditionComplexesList();
+
+                expect(editionComplexesList).toBeDefined();
+                expect(editionComplexesList).not.toBe({});
+
+                // Test for samples
+                expect(editionComplexesList['OP3']).toBeDefined();
+                expect(editionComplexesList['M22']).toBeDefined();
+
+                // Test for sample properties
+                expect(editionComplexesList['OP3'].titleStatement).toBeDefined();
+                expect(editionComplexesList['OP3'].respStatement).toBeDefined();
+                expect(editionComplexesList['OP3'].pubStatement).toBeDefined();
+            });
         });
 
         describe('VIEW', () => {
