@@ -67,7 +67,6 @@ describe('NavbarComponent (DONE)', () => {
     let routerLinks;
 
     let coreServiceSpy: Spy;
-    let getEditionComplexSpy: Spy;
     let isActiveRouteSpy: Spy;
     let routerSpy: Spy;
     let provideMetaDataSpy: Spy;
@@ -85,7 +84,6 @@ describe('NavbarComponent (DONE)', () => {
     let expectedStructureIcon: IconDefinition;
 
     let expectedEditionComplexes: EditionComplex[];
-    let expectedSelectedEditionComplex: EditionComplex = EDITION_COMPLEXES.OP12;
     let expectedOrderOfRouterlinks: string[][];
 
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
@@ -139,7 +137,6 @@ describe('NavbarComponent (DONE)', () => {
             EDITION_COMPLEXES.M35_42,
             EDITION_COMPLEXES.M37,
         ];
-        expectedSelectedEditionComplex = expectedEditionComplexes[0];
         expectedOrderOfRouterlinks = generateExpectedOrderOfRouterlinks(expectedEditionComplexes);
 
         expectedContactIcon = faEnvelope;
@@ -152,7 +149,6 @@ describe('NavbarComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         coreServiceSpy = spyOn(mockCoreService, 'getLogos').and.callThrough();
-        getEditionComplexSpy = spyOn(component, 'getEditionComplex').and.callThrough();
         isActiveRouteSpy = spyOn(component, 'isActiveRoute').and.callThrough();
         routerSpy = mockRouter.isActive as jasmine.Spy;
         provideMetaDataSpy = spyOn(component, 'provideMetaData').and.callThrough();
@@ -203,10 +199,6 @@ describe('NavbarComponent (DONE)', () => {
 
         it('... should not have `logos`', () => {
             expect(component.logos).toBeUndefined();
-        });
-
-        it('... should not have `selectedEditionComplex`', () => {
-            expect(component.selectedEditionComplex).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -317,20 +309,6 @@ describe('NavbarComponent (DONE)', () => {
                 expectToBe(navItemLinkSpanEl.textContent, 'Kontakt');
 
                 getAndExpectDebugElementByCss(navItemDe[4], 'a.nav-link > fa-icon', 1, 1);
-            });
-        });
-
-        describe('#getEditionComplex()', () => {
-            it('... should have a method `getEditionComplex`', () => {
-                expect(component.getEditionComplex).toBeDefined();
-            });
-
-            it('... should not have been called', () => {
-                expectSpyCall(getEditionComplexSpy, 0);
-            });
-
-            it('... should not have `selectedEditionComplex`', () => {
-                expect(component.selectedEditionComplex).toBeUndefined();
             });
         });
 
@@ -607,16 +585,6 @@ describe('NavbarComponent (DONE)', () => {
                         expectToBe(itemsEl3.textContent, 'Kritischer Bericht');
                     });
                 });
-            });
-        });
-
-        describe('#getEditionComplex()', () => {
-            it('... should have been called', () => {
-                expectSpyCall(getEditionComplexSpy, 1);
-            });
-
-            it('... should get `selectedEditionComplex`', () => {
-                expectToEqual(component.selectedEditionComplex, expectedSelectedEditionComplex);
             });
         });
 

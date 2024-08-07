@@ -71,13 +71,6 @@ export class NavbarComponent implements OnInit {
     logos: Logos;
 
     /**
-     * Public variable: selectedEditionComplex.
-     *
-     * It keeps the currently selected edition complex.
-     */
-    selectedEditionComplex: EditionComplex;
-
-    /**
      * Readonly variable: DISPLAYED_EDITION_COMPLEXES.
      *
      * It keeps the array of displayed edition complexes.
@@ -125,7 +118,6 @@ export class NavbarComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getEditionComplex();
         this.provideMetaData();
     }
 
@@ -145,17 +137,6 @@ export class NavbarComponent implements OnInit {
             fragment: 'ignored',
             matrixParams: 'ignored',
         });
-    }
-
-    /**
-     * Public method: getEditionComplex.
-     *
-     * It gets the selected edition complex.
-     *
-     * @returns {void} Sets the selectedEditionComplex variable.
-     */
-    getEditionComplex(): void {
-        this.selectedEditionComplex = this.DISPLAYED_EDITION_COMPLEXES[0];
     }
 
     /**
