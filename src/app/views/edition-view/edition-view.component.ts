@@ -102,18 +102,20 @@ export class EditionViewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getSelectionsFromRoute();
+        this.setupEditionView();
         this.routeToSidenav();
     }
 
     /**
-     * Public method: getSelectionsFromRoute.
+     * Public method: setupEditionView.
      *
-     * It loads the selected series, section, and edition complex from the edition service (if given).
+     * It sets up the edition view by loading
+     * the selected series, section, and edition complex
+     * from the edition service.
      *
-     * @returns {void} Gets the selected series, section, and edition complex from the edition service.
+     * @returns {void} Sets up the edition view.
      */
-    getSelectionsFromRoute(): void {
+    setupEditionView(): void {
         this.selectedEditionSeries$ = this.editionService.getSelectedEditionSeries().pipe(delay(0));
         this.selectedEditionSection$ = this.editionService.getSelectedEditionSection().pipe(delay(0));
         this.selectedEditionComplex$ = this.editionService.getSelectedEditionComplex().pipe(delay(0));

@@ -45,7 +45,7 @@ describe('EditionViewComponent (DONE)', () => {
     let mockActivatedRoute: ActivatedRouteStub;
     let mockEditionService: Partial<EditionService>;
 
-    let getSelectionsFromRouteSpy: Spy;
+    let setupEditionViewSpy: Spy;
     let routeToSidenavSpy: Spy;
 
     let editionServiceGetSelectedEditionComplexSpy: Spy;
@@ -124,7 +124,7 @@ describe('EditionViewComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        getSelectionsFromRouteSpy = spyOn(component, 'getSelectionsFromRoute').and.callThrough();
+        setupEditionViewSpy = spyOn(component, 'setupEditionView').and.callThrough();
         routeToSidenavSpy = spyOn(component, 'routeToSidenav').and.callThrough();
 
         // Spies for service methods
@@ -208,13 +208,13 @@ describe('EditionViewComponent (DONE)', () => {
             });
         });
 
-        describe('#getSelectionsFromRoute()', () => {
-            it('... should have a method `getSelectionsFromRoute`', () => {
-                expect(component.getSelectionsFromRoute).toBeDefined();
+        describe('#setupEditionView()', () => {
+            it('... should have a method `setupEditionView`', () => {
+                expect(component.setupEditionView).toBeDefined();
             });
 
             it('... should not have been called', () => {
-                expectSpyCall(getSelectionsFromRouteSpy, 0);
+                expectSpyCall(setupEditionViewSpy, 0);
             });
 
             it('... should not have called EditionService', () => {
@@ -576,13 +576,13 @@ describe('EditionViewComponent (DONE)', () => {
             });
         });
 
-        describe('#getSelectionsFromRoute()', () => {
+        describe('#setupEditionView()', () => {
             it('... should have been called', () => {
-                expectSpyCall(getSelectionsFromRouteSpy, 1);
+                expectSpyCall(setupEditionViewSpy, 1);
             });
 
             it('... should get isPrefaceView$ (via EditionService)', waitForAsync(() => {
-                expectSpyCall(getSelectionsFromRouteSpy, 1);
+                expectSpyCall(setupEditionViewSpy, 1);
                 expectSpyCall(editionServiceGetIsPrefaceViewSpy, 1);
 
                 expect(component.isPrefaceView$).toBeDefined();
@@ -594,7 +594,7 @@ describe('EditionViewComponent (DONE)', () => {
             }));
 
             it('... should get isRowTableView$ (via EditionService)', waitForAsync(() => {
-                expectSpyCall(getSelectionsFromRouteSpy, 1);
+                expectSpyCall(setupEditionViewSpy, 1);
                 expectSpyCall(editionServiceGetIsRowTableViewSpy, 1);
 
                 expect(component.isRowTableView$).toBeDefined();
@@ -606,7 +606,7 @@ describe('EditionViewComponent (DONE)', () => {
             }));
 
             it('... should get selectedEditionSeries$ (via EditionService)', waitForAsync(() => {
-                expectSpyCall(getSelectionsFromRouteSpy, 1);
+                expectSpyCall(setupEditionViewSpy, 1);
                 expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 1);
 
                 expect(component.selectedEditionSeries$).toBeDefined();
@@ -618,7 +618,7 @@ describe('EditionViewComponent (DONE)', () => {
             }));
 
             it('... should get selectedEditionSection$ (via EditionService)', waitForAsync(() => {
-                expectSpyCall(getSelectionsFromRouteSpy, 1);
+                expectSpyCall(setupEditionViewSpy, 1);
                 expectSpyCall(editionServiceGetSelectedEditionSectionSpy, 1);
 
                 expect(component.selectedEditionSection$).toBeDefined();
@@ -630,7 +630,7 @@ describe('EditionViewComponent (DONE)', () => {
             }));
 
             it('... should get selectedEditionComplex$ (via EditionService)', waitForAsync(() => {
-                expectSpyCall(getSelectionsFromRouteSpy, 1);
+                expectSpyCall(setupEditionViewSpy, 1);
                 expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
 
                 expect(component.selectedEditionComplex$).toBeDefined();
