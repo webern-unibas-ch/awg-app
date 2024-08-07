@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 
 import { EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
 /**
@@ -23,12 +22,6 @@ export class EditionService {
      * Private variable for the replay subject´s buffer size.
      */
     private _bufferSize = 1;
-
-    /**
-     */
-
-    /**
-     */
 
     /**
      * Private replay subject to flag preface view.
@@ -124,17 +117,6 @@ export class EditionService {
      */
     getEditionOutline(): EditionOutlineSeries[] {
         return EDITION_OUTLINE_DATA;
-    }
-
-    /**
-     * Public method: getEditionSeriesRoute.
-     *
-     * It provides the base route for the edition series section of the app.
-     *
-     * @returns {string} The edition series route.
-     */
-    getEditionSeriesRoute(): string {
-        return EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.SERIES.route;
     }
 
     /**

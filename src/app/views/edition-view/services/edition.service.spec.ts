@@ -187,18 +187,6 @@ describe('EditionService (DONE)', () => {
     });
 
     describe('EditionSeries', () => {
-        describe('#getEditionSeriesRoute()', () => {
-            it('... should have a method `getEditionSeriesRoute`', () => {
-                expect(editionService.getEditionSeriesRoute).toBeDefined();
-            });
-
-            it('... should return editionSeriesRoute', () => {
-                const route = editionService.getEditionSeriesRoute();
-
-                expectToBe(route, expectedEditionSeriesRoute);
-            });
-        });
-
         describe('#getEditionSeriesById()', () => {
             it('... should have a method `getEditionSeriesById`', () => {
                 expect(editionService.getEditionSeriesById).toBeDefined();
