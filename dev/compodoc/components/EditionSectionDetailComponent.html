@@ -230,13 +230,13 @@ of the edition view of the app.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getSection" >getSection</a>
-                            </li>
-                            <li>
                                 <a href="#ngOnDestroy" >ngOnDestroy</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#updateSectionFromRoute" >updateSectionFromRoute</a>
                             </li>
                         </ul>
                     </td>
@@ -353,50 +353,6 @@ and a public instance of the UtilityService.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getSection"></a>
-                    <span class="name">
-                        <span ><b>getSection</b></span>
-                        <a href="#getSection"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getSection()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="79"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.component.ts:79</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: getSection.</p>
-<p>It gets the selected section by ID from the EditionService.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Gets the edition section.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="ngOnDestroy"></a>
                     <span class="name">
                         <span ><b>ngOnDestroy</b></span>
@@ -472,6 +428,50 @@ when initializing the component.</p>
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateSectionFromRoute"></a>
+                    <span class="name">
+                        <span ><b>updateSectionFromRoute</b></span>
+                        <a href="#updateSectionFromRoute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateSectionFromRoute()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: updateSectionFromRoute.</p>
+<p>It fetches the route params to get the id of the current section and updates the edition service.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Updates the edition section.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -693,17 +693,17 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getSection();
+        this.updateSectionFromRoute();
     }
 
     /**
-     * Public method: getSection.
+     * Public method: updateSectionFromRoute.
      *
-     * It gets the selected section by ID from the EditionService.
+     * It fetches the route params to get the id of the current section and updates the edition service.
      *
-     * @returns {void} Gets the edition section.
+     * @returns {void} Updates the edition section.
      */
-    getSection(): void {
+    updateSectionFromRoute(): void {
         const sectionId &#x3D; this.route.snapshot.paramMap.get(&#x27;id&#x27;);
 
         this.editionService

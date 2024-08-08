@@ -218,10 +218,10 @@ of the edition view of the app.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getSeries" >getSeries</a>
+                                <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
+                                <a href="#updateSeriesFromRoute" >updateSeriesFromRoute</a>
                             </li>
                         </ul>
                     </td>
@@ -321,50 +321,6 @@ of the edition view of the app.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getSeries"></a>
-                    <span class="name">
-                        <span ><b>getSeries</b></span>
-                        <a href="#getSeries"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getSeries()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-series-detail.component.ts:58</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: getSeries.</p>
-<p>It gets the selected series by ID from the EditionService.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Gets the edition series.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <span ><b>ngOnInit</b></span>
@@ -398,6 +354,50 @@ when initializing the component.</p>
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateSeriesFromRoute"></a>
+                    <span class="name">
+                        <span ><b>updateSeriesFromRoute</b></span>
+                        <a href="#updateSeriesFromRoute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateSeriesFromRoute()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-series-detail.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: updateSeriesFromRoute.</p>
+<p>It fetches the route params to get the id of the current series and updates the edition service.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Updates the edition series.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -494,17 +494,17 @@ export class EditionSeriesDetailComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getSeries();
+        this.updateSeriesFromRoute();
     }
 
     /**
-     * Public method: getSeries.
+     * Public method: updateSeriesFromRoute.
      *
-     * It gets the selected series by ID from the EditionService.
+     * It fetches the route params to get the id of the current series and updates the edition service.
      *
-     * @returns {void} Gets the edition series.
+     * @returns {void} Updates the edition series.
      */
-    getSeries(): void {
+    updateSeriesFromRoute(): void {
         const id &#x3D; this.route.snapshot.paramMap.get(&#x27;id&#x27;);
 
         this.selectedSeries &#x3D; this.editionService.getEditionSeriesById(id);

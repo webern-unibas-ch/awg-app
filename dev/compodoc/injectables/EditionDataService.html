@@ -1147,8 +1147,8 @@ the method to get the JSON data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="94"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:94</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -1224,8 +1224,8 @@ for the graph of the edition view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="116"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:116</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="85"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:85</a></div>
                         </td>
                     </tr>
 
@@ -1301,8 +1301,8 @@ for the intro of the edition view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="136"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:136</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -1346,8 +1346,8 @@ for the preface of the edition view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="161"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:161</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="130"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:130</a></div>
                         </td>
                     </tr>
 
@@ -1427,8 +1427,8 @@ and TextcriticsList data. Only the first emit is needed.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="196"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:196</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="165"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:165</a></div>
                         </td>
                     </tr>
 
@@ -1472,8 +1472,8 @@ for the row tables of the edition view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="68"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:68</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="192"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:192</a></div>
                         </td>
                     </tr>
 
@@ -1640,37 +1640,6 @@ export class EditionDataService {
     constructor(private http: HttpClient) {}
 
     /**
-     * Public method: getEditionSheetsData.
-     *
-     * It provides the data from a JSON file
-     * for the current edition complex of the edition sheets view
-     * (folio convolute, edition svg sheets and textcritics list)
-     * as a fork-joined observable array.
-     *
-     * @param {EditionComplex} editionComplex The current edition complex.
-     *
-     * @returns {Observable&lt;[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]&gt;}
-     * The fork-joined observable array with the FolioConvoluteList,
-     * EditionSvgSheetList and TextcriticsList data.
-     * Only the first emit is needed.
-     */
-    getEditionSheetsData(
-        editionComplex: EditionComplex
-    ): Observable&lt;(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]&gt; {
-        this._assetPath &#x3D; this._setAssetPathForEditionComplex(editionComplex);
-        const folioData$: Observable&lt;FolioConvoluteList&gt; &#x3D; this._getFolioConvoluteData();
-        const svgSheetsData$: Observable&lt;EditionSvgSheetList&gt; &#x3D; this._getSvgSheetsData();
-        const textciticsListData$: Observable&lt;TextcriticsList&gt; &#x3D; this._getTextcriticsListData();
-
-        return observableForkJoin([folioData$, svgSheetsData$, textciticsListData$]).pipe(
-            // Default empty value
-            defaultIfEmpty([new FolioConvoluteList(), new EditionSvgSheetList(), new TextcriticsList()]),
-            // Take only first request (JSON fetch)
-            take(1)
-        );
-    }
-
-    /**
      * Public method: getEditionGraphData.
      *
      * It provides the data from a JSON file
@@ -1795,6 +1764,37 @@ export class EditionDataService {
     }
 
     /**
+     * Public method: getEditionSheetsData.
+     *
+     * It provides the data from a JSON file
+     * for the current edition complex of the edition sheets view
+     * (folio convolute, edition svg sheets and textcritics list)
+     * as a fork-joined observable array.
+     *
+     * @param {EditionComplex} editionComplex The current edition complex.
+     *
+     * @returns {Observable&lt;[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]&gt;}
+     * The fork-joined observable array with the FolioConvoluteList,
+     * EditionSvgSheetList and TextcriticsList data.
+     * Only the first emit is needed.
+     */
+    getEditionSheetsData(
+        editionComplex: EditionComplex
+    ): Observable&lt;(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]&gt; {
+        this._assetPath &#x3D; this._setAssetPathForEditionComplex(editionComplex);
+        const folioData$: Observable&lt;FolioConvoluteList&gt; &#x3D; this._getFolioConvoluteData();
+        const svgSheetsData$: Observable&lt;EditionSvgSheetList&gt; &#x3D; this._getSvgSheetsData();
+        const textciticsListData$: Observable&lt;TextcriticsList&gt; &#x3D; this._getTextcriticsListData();
+
+        return observableForkJoin([folioData$, svgSheetsData$, textciticsListData$]).pipe(
+            // Default empty value
+            defaultIfEmpty([new FolioConvoluteList(), new EditionSvgSheetList(), new TextcriticsList()]),
+            // Take only first request (JSON fetch)
+            take(1)
+        );
+    }
+
+    /**
      * Private method: _setAssetPathForEditionComplex.
      *
      * It sets the path to correct assets folder of a given edition complex.
@@ -1809,9 +1809,9 @@ export class EditionDataService {
             delimiter +
             EDITION_ROUTE_CONSTANTS.SERIES.route +
             delimiter +
-            editionComplex.series.route +
+            editionComplex.pubStatement.series.route +
             EDITION_ROUTE_CONSTANTS.SECTION.route +
-            editionComplex.section.route +
+            editionComplex.pubStatement.section.route +
             editionComplex.complexId.route;
         return EDITION_ASSETS_DATA.BASE_ROUTE + complexRoute;
     }

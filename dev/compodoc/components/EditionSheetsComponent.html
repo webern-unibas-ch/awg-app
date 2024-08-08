@@ -2334,7 +2334,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     private _fetchEditionComplexData(
         queryParams: ParamMap
     ): Observable&lt;EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]&gt; {
-        return this.editionService.getEditionComplex().pipe(
+        return this.editionService.getSelectedEditionComplex().pipe(
             // Set editionComplex
             tap((complex: EditionComplex) &#x3D;&gt; (this.editionComplex &#x3D; complex)),
             // Get editionSheetsData

@@ -272,17 +272,17 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>[
-        EDITION_COMPLEXES.OP3,
-        EDITION_COMPLEXES.OP4,
-        EDITION_COMPLEXES.OP12,
-        EDITION_COMPLEXES.OP23,
-        EDITION_COMPLEXES.OP25,
-        EDITION_COMPLEXES.M22,
-        EDITION_COMPLEXES.M30,
-        EDITION_COMPLEXES.M31,
-        EDITION_COMPLEXES.M34,
-        EDITION_COMPLEXES.M35_42,
-        EDITION_COMPLEXES.M37,
+        EditionComplexesService.getEditionComplexById(&#x27;OP3&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;OP4&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;OP12&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;OP23&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;OP25&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;M22&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;M30&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;M31&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;M34&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;M35_42&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;M37&#x27;),
     ]</code>
                     </td>
                 </tr>
@@ -452,7 +452,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
 
-import { EDITION_COMPLEXES } from &#x27;@awg-views/edition-view/data&#x27;;
+import { EditionComplexesService } from &#x27;@awg-core/services&#x27;;
 import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from &#x27;@awg-views/edition-view/edition-route-constants&#x27;;
 import { EditionComplex } from &#x27;@awg-views/edition-view/models&#x27;;
 
@@ -481,17 +481,17 @@ export class EditionInfoComponent {
      * It keeps the array of displayed edition complexes.
      */
     readonly DISPLAYED_EDITION_COMPLEXES: EditionComplex[] &#x3D; [
-        EDITION_COMPLEXES.OP3,
-        EDITION_COMPLEXES.OP4,
-        EDITION_COMPLEXES.OP12,
-        EDITION_COMPLEXES.OP23,
-        EDITION_COMPLEXES.OP25,
-        EDITION_COMPLEXES.M22,
-        EDITION_COMPLEXES.M30,
-        EDITION_COMPLEXES.M31,
-        EDITION_COMPLEXES.M34,
-        EDITION_COMPLEXES.M35_42,
-        EDITION_COMPLEXES.M37,
+        EditionComplexesService.getEditionComplexById(&#x27;OP3&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;OP4&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;OP12&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;OP23&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;OP25&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;M22&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;M30&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;M31&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;M34&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;M35_42&#x27;),
+        EditionComplexesService.getEditionComplexById(&#x27;M37&#x27;),
     ];
 
     /**

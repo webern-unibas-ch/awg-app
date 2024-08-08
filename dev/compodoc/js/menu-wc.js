@@ -1047,7 +1047,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/EditionComplex.html" data-type="entity-link" >EditionComplex</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EditionResponsibilityStatement.html" data-type="entity-link" >EditionResponsibilityStatement</a>
+                                <a href="classes/EditionComplexesList.html" data-type="entity-link" >EditionComplexesList</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/EditionComplexPubStatement.html" data-type="entity-link" >EditionComplexPubStatement</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/EditionComplexRespStatement.html" data-type="entity-link" >EditionComplexRespStatement</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/EditionComplexTitleStatement.html" data-type="entity-link" >EditionComplexTitleStatement</a>
                             </li>
                             <li class="link">
                                 <a href="classes/EditionRouteConstant.html" data-type="entity-link" >EditionRouteConstant</a>
@@ -1072,9 +1081,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/EditionSvgSheetList.html" data-type="entity-link" >EditionSvgSheetList</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/EditionTitleStatement.html" data-type="entity-link" >EditionTitleStatement</a>
                             </li>
                             <li class="link">
                                 <a href="classes/ExtendedSearchParams.html" data-type="entity-link" >ExtendedSearchParams</a>
@@ -1534,6 +1540,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/DataStreamerService.html" data-type="entity-link" >DataStreamerService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/EditionComplexesService.html" data-type="entity-link" >EditionComplexesService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/EditionDataService.html" data-type="entity-link" >EditionDataService</a>
                                 </li>
                                 <li class="link">
@@ -1618,6 +1627,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/Date.html" data-type="entity-link" >Date</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditionComplexesJsonInput.html" data-type="entity-link" >EditionComplexesJsonInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditionComplexJsonInput.html" data-type="entity-link" >EditionComplexJsonInput</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/EditionOutlineComplex.html" data-type="entity-link" >EditionOutlineComplex</a>

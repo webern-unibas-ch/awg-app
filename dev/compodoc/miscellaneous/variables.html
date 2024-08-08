@@ -620,7 +620,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;0.12.3-162-ga82547947&#x27;</code>
+                        <i>Default value : </i><code>&#x27;0.12.3-185-gd8b6848a9&#x27;</code>
                     </td>
                 </tr>
 
@@ -652,7 +652,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;05. August 2024&#x27;</code>
+                        <i>Default value : </i><code>&#x27;08. August 2024&#x27;</code>
                     </td>
                 </tr>
 
@@ -1603,6 +1603,7 @@
      * The names of the edition assets JSON files.
      */
     FILES: {
+        complexesFile: &#x27;edition-complexes.json&#x27;,
         folioConvoluteFile: &#x27;folio-convolute.json&#x27;,
         graphFile: &#x27;graph.json&#x27;,
         introFile: &#x27;intro.json&#x27;,
@@ -3039,6 +3040,92 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
+    /**
+     * Test helper data constant: mockEditionComplexesList.
+     *
+     * It provides a mocked editionComplexesList object.
+     */
+    mockEditionComplexesList: {
+        OP3: {
+            titleStatement: {
+                title: &#x27;&lt;em&gt;Vier Lieder&lt;/em&gt;&#x27;,
+                catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
+                catalogueNumber: &#x27;12&#x27;,
+            },
+            publicationStatement: {
+                series: EDITION_ROUTE_CONSTANTS.SERIES_1,
+                section: EDITION_ROUTE_CONSTANTS.SECTION_5,
+            },
+            respStatement: {
+                editors: [
+                    {
+                        name: &#x27;Thomas Ahrend&#x27;,
+                        homepage: &#x27;https://www.anton-webern.ch/index.php?id&#x27;,
+                    },
+                ],
+                lastModified: &#x27;7. August 2024&#x27;,
+            },
+            complexId: {
+                route: &#x27;/op12&#x27;,
+                short: &#x27;op.&amp;nbsp;12&#x27;,
+                full: &#x27;&lt;em&gt;Vier Lieder&lt;/em&gt; op.&amp;nbsp;12&#x27;,
+            },
+            baseRoute: &#x27;/edition/complex/op12/&#x27;,
+        },
+        OP25: {
+            titleStatement: {
+                title: &#x27;&lt;em&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/em&gt;&#x27;,
+                catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
+                catalogueNumber: &#x27;25&#x27;,
+            },
+            publicationStatement: {
+                series: EDITION_ROUTE_CONSTANTS.SERIES_1,
+                section: EDITION_ROUTE_CONSTANTS.SECTION_5,
+            },
+            respStatement: {
+                editors: [
+                    {
+                        name: &#x27;Thomas Ahrend&#x27;,
+                        homepage: &#x27;https://www.anton-webern.ch/index.php?id&#x27;,
+                    },
+                ],
+                lastModified: &#x27;7. August 2024&#x27;,
+            },
+            complexId: {
+                route: &#x27;/op25&#x27;,
+                short: &#x27;op.&amp;nbsp;25&#x27;,
+                full: &#x27;&lt;em&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/em&gt; op.&amp;nbsp;25&#x27;,
+            },
+            baseRoute: &#x27;/edition/complex/op25/&#x27;,
+        },
+        M22: {
+            titleStatement: {
+                title: &#x27;Studienkomposition für Klavier/Streichquartett&#x27;,
+                catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+                catalogueNumber: &#x27;22&#x27;,
+            },
+            publicationStatement: {
+                series: EDITION_ROUTE_CONSTANTS.SERIES_1,
+                section: EDITION_ROUTE_CONSTANTS.SECTION_5,
+            },
+            respStatement: {
+                editors: [
+                    {
+                        name: &#x27;Michael Matter&#x27;,
+                        homepage: &#x27;https://www.anton-webern.ch/index.php?id&#x27;,
+                    },
+                ],
+                lastModified: &#x27;7. August 2024&#x27;,
+            },
+            complexId: {
+                route: &#x27;/m22&#x27;,
+                short: &#x27;M&amp;nbsp;22&#x27;,
+                full: &#x27;Studienkomposition für Klavier/Streichquartett M&amp;nbsp;22&#x27;,
+            },
+            baseRoute: &#x27;/edition/complex/m22/&#x27;,
+        },
+    },
+
     /**
      * Test helper data constant: mockFolioConvoluteData.
      *
