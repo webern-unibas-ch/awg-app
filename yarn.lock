@@ -5555,7 +5555,7 @@ __metadata:
     eslint-plugin-angular: "npm:^4.1.0"
     eslint-plugin-deprecation: "npm:^3.0.0"
     eslint-plugin-import: "npm:^2.29.1"
-    eslint-plugin-jsdoc: "npm:^48.11.0"
+    eslint-plugin-jsdoc: "npm:^50.0.0"
     eslint-plugin-prettier: "npm:^5.2.1"
     font-awesome: "npm:^4.7.0"
     gzipper: "npm:^7.2.0"
@@ -8266,9 +8266,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsdoc@npm:^48.11.0":
-  version: 48.11.0
-  resolution: "eslint-plugin-jsdoc@npm:48.11.0"
+"eslint-plugin-jsdoc@npm:^50.0.0":
+  version: 50.0.0
+  resolution: "eslint-plugin-jsdoc@npm:50.0.0"
   dependencies:
     "@es-joy/jsdoccomment": "npm:~0.46.0"
     are-docs-informative: "npm:^0.0.2"
@@ -8283,7 +8283,7 @@ __metadata:
     synckit: "npm:^0.9.1"
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0 || ^9.0.0
-  checksum: 10c0/f78bac109e62f838c14f90ebd572a06a865f2896a16201c9324cb92be25b5ba8deb54ee1d8ea36232ee53a41c177d5d5ac80662c0fe2479d1e1e1e7633385659
+  checksum: 10c0/1d476eabdf604f4a07ef9a22fb7b13ba898d0aed81b2c428d4b6aea766b908ebdc7e6e82a16bac3f83e1013c6edba6d9a15a4015cab9a94c584ebccbd7255b70
   languageName: node
   linkType: hard
 
