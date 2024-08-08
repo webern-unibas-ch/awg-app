@@ -185,7 +185,7 @@ export class EditionComplex {
      * @returns {EditionRouteConstant} The corresponding route constant.
      */
     private _mapCatalogueType(catalogueType: string): EditionRouteConstant {
-        return EDITION_CATALOGUE_TYPE_CONSTANTS[catalogueType.toUpperCase()] ?? new EditionRouteConstant();
+        return EDITION_CATALOGUE_TYPE_CONSTANTS[catalogueType.toUpperCase()];
     }
 
     /**
@@ -199,7 +199,7 @@ export class EditionComplex {
      * @returns {EditionRouteConstant} The corresponding route constant.
      */
     private _mapPubStatement(prefix: string, value?: string): EditionRouteConstant {
-        return EDITION_ROUTE_CONSTANTS[`${prefix}${value?.toUpperCase()}`] ?? new EditionRouteConstant();
+        return EDITION_ROUTE_CONSTANTS[`${prefix}${value?.toUpperCase()}`];
     }
 }
 

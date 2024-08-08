@@ -157,6 +157,72 @@ describe('EditionComplexesService', () => {
 
             expectToEqual(editionComplexesList, expectedList);
         });
+
+        it('... should set an edition complex with opus number', () => {
+            const testComplex = new EditionComplex(
+                {
+                    title: 'Test Opus Complex',
+                    catalogueType: 'OPUS',
+                    catalogueNumber: '100',
+                },
+                {
+                    editors: [],
+                    lastModified: '---',
+                },
+                { series: '1', section: '5' }
+            );
+            const testComplexId = 'op100';
+            const expectedList = { [testComplexId.toUpperCase()]: testComplex };
+            EditionComplexesService.setEditionComplexesList(expectedList);
+
+            const editionComplexesList = EditionComplexesService.getEditionComplexesList();
+
+            expectToEqual(editionComplexesList, expectedList);
+        });
+
+        it('... should set an edition complex with M number', () => {
+            const testComplex = new EditionComplex(
+                {
+                    title: 'Test M Complex',
+                    catalogueType: 'MNR',
+                    catalogueNumber: '100',
+                },
+                {
+                    editors: [],
+                    lastModified: '---',
+                },
+                { series: '1', section: '5' }
+            );
+            const testComplexId = 'm100';
+            const expectedList = { [testComplexId.toUpperCase()]: testComplex };
+            EditionComplexesService.setEditionComplexesList(expectedList);
+
+            const editionComplexesList = EditionComplexesService.getEditionComplexesList();
+
+            expectToEqual(editionComplexesList, expectedList);
+        });
+
+        it('... should set an edition complex with M* number', () => {
+            const testComplex = new EditionComplex(
+                {
+                    title: 'Test M Complex',
+                    catalogueType: 'MNR_PLUS',
+                    catalogueNumber: '100',
+                },
+                {
+                    editors: [],
+                    lastModified: '---',
+                },
+                { series: '1', section: '5' }
+            );
+            const testComplexId = 'm_plus100';
+            const expectedList = { [testComplexId.toUpperCase()]: testComplex };
+            EditionComplexesService.setEditionComplexesList(expectedList);
+
+            const editionComplexesList = EditionComplexesService.getEditionComplexesList();
+
+            expectToEqual(editionComplexesList, expectedList);
+        });
     });
 
     describe('#_fetchEditionComplexesData()', () => {
