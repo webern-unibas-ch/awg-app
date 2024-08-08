@@ -115,7 +115,7 @@ export class EditionReportComponent implements OnInit {
     getEditionReportData(): void {
         this.editionReportData$ = this.editionService
             // Get current editionComplex from editionService
-            .getEditionComplex()
+            .getSelectedEditionComplex()
             .pipe(
                 switchMap((complex: EditionComplex) => {
                     // Set current editionComplex

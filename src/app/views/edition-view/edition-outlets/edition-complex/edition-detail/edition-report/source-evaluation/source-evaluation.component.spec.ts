@@ -16,10 +16,10 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
+import { EditionComplexesService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionComplex, EditionSvgSheet, SourceEvaluationList } from '@awg-views/edition-view/models';
+import { EditionComplex, SourceEvaluationList } from '@awg-views/edition-view/models';
 
 import { SourceEvaluationComponent } from './source-evaluation.component';
 
@@ -60,7 +60,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedEditionComplex = EDITION_COMPLEXES.OP25;
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP25');
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
@@ -223,7 +223,11 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 const shortComplexSpan = mockDocument.createElement('span');
                 shortComplexSpan.innerHTML = expectedEditionComplex.complexId.short;
 
-                const evaluationPlaceholder = `[Die Quellenbewertung zum Editionskomplex ${fullComplexSpan.textContent} erscheint im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
+                const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
+                const series = expectedEditionComplex.pubStatement.series.short;
+                const section = expectedEditionComplex.pubStatement.section.short;
+
+                const evaluationPlaceholder = `[Die Quellenbewertung zum Editionskomplex ${fullComplexSpan.textContent} erscheint im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${awg} ${series}/${section}.]`;
 
                 expectToBe(pEl.textContent.trim(), evaluationPlaceholder);
             }));

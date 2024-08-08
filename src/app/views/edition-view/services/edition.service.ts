@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 
 import { EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
 /**
@@ -23,16 +22,6 @@ export class EditionService {
      * Private variable for the replay subject´s buffer size.
      */
     private _bufferSize = 1;
-
-    /**
-     * Private replay subject to handle edition complex.
-     */
-    private _editionComplexSubject = new ReplaySubject<EditionComplex>(this._bufferSize);
-
-    /**
-     * Private readonly edition complex stream as observable (`ReplaySubject`).
-     */
-    private readonly _editionComplexStream$ = this._editionComplexSubject.asObservable();
 
     /**
      * Private replay subject to flag preface view.
@@ -55,6 +44,16 @@ export class EditionService {
     private readonly _isRowTableViewStream$ = this._isRowTableViewSubject.asObservable();
 
     /**
+     * Private replay subject to handle the selected edition complex.
+     */
+    private _selectedEditionComplexSubject = new ReplaySubject<EditionComplex>(this._bufferSize);
+
+    /**
+     * Private readonly edition complex stream as observable (`ReplaySubject`).
+     */
+    private readonly _selectedEditionComplexStream$ = this._selectedEditionComplexSubject.asObservable();
+
+    /**
      * Private replay subject to handle the selected edition series.
      */
     private _selectedEditionSeriesSubject = new ReplaySubject<EditionOutlineSeries>(this._bufferSize);
@@ -75,38 +74,38 @@ export class EditionService {
     private readonly _selectedEditionSectionStream$ = this._selectedEditionSectionSubject.asObservable();
 
     /**
-     * Public method: getEditionComplex.
+     * Public method: getSelectedEditionComplex.
      *
-     * It provides the latest edition complex from the edition complex stream.
+     * It provides the latest selected edition complex from the edition complex stream.
      *
      * @returns {Observable<EditionComplex>} The edition complex stream as observable.
      */
-    getEditionComplex(): Observable<EditionComplex> {
-        return this._editionComplexStream$;
+    getSelectedEditionComplex(): Observable<EditionComplex> {
+        return this._selectedEditionComplexStream$;
     }
 
     /**
-     * Public method: updateEditionComplex.
+     * Public method: updateSelectedEditionComplex.
      *
-     * It updates the edition complex stream with the given edition complex.
+     * It updates the selected edition complex stream with the given edition complex.
      *
      * @param {EditionComplex} editionComplex The given edition complex.
      *
      * @returns {void} Sets the next edition complex to the stream.
      */
-    updateEditionComplex(editionComplex: EditionComplex): void {
-        this._editionComplexSubject.next(editionComplex);
+    updateSelectedEditionComplex(editionComplex: EditionComplex): void {
+        this._selectedEditionComplexSubject.next(editionComplex);
     }
 
     /**
-     * Public method: clearEditionComplex.
+     * Public method: clearSelectedEditionComplex.
      *
-     * It clears the edition complex stream.
+     * It clears the selected edition complex stream.
      *
      * @returns {void} Clears the edition complex stream.
      */
-    clearEditionComplex(): void {
-        this._editionComplexSubject.next(null);
+    clearSelectedEditionComplex(): void {
+        this._selectedEditionComplexSubject.next(null);
     }
 
     /**
@@ -118,17 +117,6 @@ export class EditionService {
      */
     getEditionOutline(): EditionOutlineSeries[] {
         return EDITION_OUTLINE_DATA;
-    }
-
-    /**
-     * Public method: getEditionSeriesRoute.
-     *
-     * It provides the base route for the edition series section of the app.
-     *
-     * @returns {string} The edition series route.
-     */
-    getEditionSeriesRoute(): string {
-        return EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.SERIES.route;
     }
 
     /**

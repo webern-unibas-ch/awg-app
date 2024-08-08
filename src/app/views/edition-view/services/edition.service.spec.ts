@@ -4,7 +4,8 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { EDITION_COMPLEXES, EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
+import { EditionComplexesService } from '@awg-core/services';
+import { EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
@@ -21,6 +22,10 @@ describe('EditionService (DONE)', () => {
     let expectedIsPrefaceView: boolean;
     let expectedIsRowTableView: boolean;
 
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [EditionService],
@@ -29,7 +34,7 @@ describe('EditionService (DONE)', () => {
         editionService = TestBed.inject(EditionService);
 
         // Test data (default)
-        expectedEditionComplex = EDITION_COMPLEXES.OP12;
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
         expectedEditionOutline = EDITION_OUTLINE_DATA;
         expectedEditionSeriesRoute = EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.SERIES.route;
         expectedEditionSeries = EDITION_OUTLINE_DATA[0];
@@ -50,14 +55,6 @@ describe('EditionService (DONE)', () => {
         expectToBe((editionService as any)._bufferSize, 1);
     });
 
-    it('... should have _editionComplexSubject', () => {
-        expect((editionService as any)._editionComplexSubject).toBeTruthy();
-    });
-
-    it('... should have _editionComplexStream$', () => {
-        expect((editionService as any)._editionComplexStream$).toBeTruthy();
-    });
-
     it('... should have _isPrefaceViewSubject', () => {
         expect((editionService as any)._isPrefaceViewSubject).toBeTruthy();
     });
@@ -74,6 +71,14 @@ describe('EditionService (DONE)', () => {
         expect((editionService as any)._isRowTableViewStream$).toBeTruthy();
     });
 
+    it('... should have _selectedEditionComplexSubject', () => {
+        expect((editionService as any)._selectedEditionComplexSubject).toBeTruthy();
+    });
+
+    it('... should have _selectedEditionComplexStream$', () => {
+        expect((editionService as any)._selectedEditionComplexStream$).toBeTruthy();
+    });
+
     it('... should have _selectedEditionSeriesSubject', () => {
         expect((editionService as any)._selectedEditionSeriesSubject).toBeTruthy();
     });
@@ -87,66 +92,66 @@ describe('EditionService (DONE)', () => {
     });
 
     describe('EditionComplex', () => {
-        describe('#getEditionComplex()', () => {
-            it('... should have a method `getEditionComplex`', () => {
-                expect(editionService.getEditionComplex).toBeDefined();
+        describe('#getSelectedEditionComplex()', () => {
+            it('... should have a method `getSelectedEditionComplex`', () => {
+                expect(editionService.getSelectedEditionComplex).toBeDefined();
             });
 
             it('... should return given editionComplex', waitForAsync(() => {
-                editionService.getEditionComplex().subscribe({
+                editionService.getSelectedEditionComplex().subscribe({
                     next: (editionComplex: EditionComplex) => {
                         expectToEqual(editionComplex, expectedEditionComplex);
                     },
                 });
 
                 // Set editionComplex (with default value)
-                editionService.updateEditionComplex(expectedEditionComplex);
+                editionService.updateSelectedEditionComplex(expectedEditionComplex);
             }));
 
             it('... should return updated editionComplex', waitForAsync(() => {
-                editionService.getEditionComplex().subscribe({
+                editionService.getSelectedEditionComplex().subscribe({
                     next: (editionComplex: EditionComplex) => {
                         expectToEqual(editionComplex, expectedEditionComplex);
                     },
                 });
 
                 // Set editionComplex (with default value)
-                editionService.updateEditionComplex(expectedEditionComplex);
+                editionService.updateSelectedEditionComplex(expectedEditionComplex);
 
                 // Update editionComplex
-                expectedEditionComplex = EDITION_COMPLEXES.OP25;
-                editionService.updateEditionComplex(expectedEditionComplex);
+                expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP25');
+                editionService.updateSelectedEditionComplex(expectedEditionComplex);
             }));
         });
 
-        describe('#updateEditionComplex()', () => {
-            it('... should have a method `updateEditionComplex`', () => {
-                expect(editionService.updateEditionComplex).toBeDefined();
+        describe('#updateSelectedEditionComplex()', () => {
+            it('... should have a method `updateSelectedEditionComplex`', () => {
+                expect(editionService.updateSelectedEditionComplex).toBeDefined();
             });
 
             it('... should emit updated editionComplex', waitForAsync(() => {
-                editionService.getEditionComplex().subscribe({
+                editionService.getSelectedEditionComplex().subscribe({
                     next: (editionComplex: EditionComplex) => {
                         expectToEqual(editionComplex, expectedEditionComplex);
                     },
                 });
 
                 // Set editionComplex
-                editionService.updateEditionComplex(expectedEditionComplex);
+                editionService.updateSelectedEditionComplex(expectedEditionComplex);
 
                 // Update editionComplex
-                expectedEditionComplex = EDITION_COMPLEXES.OP25;
-                editionService.updateEditionComplex(expectedEditionComplex);
+                expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP25');
+                editionService.updateSelectedEditionComplex(expectedEditionComplex);
             }));
         });
 
-        describe('#clearEditionComplex()', () => {
-            it('... should have a method `clearEditionComplex`', () => {
-                expect(editionService.clearEditionComplex).toBeDefined();
+        describe('#clearSelectedEditionComplex()', () => {
+            it('... should have a method `clearSelectedEditionComplex`', () => {
+                expect(editionService.clearSelectedEditionComplex).toBeDefined();
             });
 
             it('... should update edition complex with null value', waitForAsync(() => {
-                editionService.getEditionComplex().subscribe({
+                editionService.getSelectedEditionComplex().subscribe({
                     next: (editionComplex: EditionComplex) => {
                         expectToEqual(editionComplex, expectedEditionComplex);
                     },
@@ -154,22 +159,22 @@ describe('EditionService (DONE)', () => {
 
                 // Clear editionComplex
                 expectedEditionComplex = null;
-                editionService.clearEditionComplex();
+                editionService.clearSelectedEditionComplex();
             }));
 
             it('... should overwrite existing values', waitForAsync(() => {
-                editionService.getEditionComplex().subscribe({
+                editionService.getSelectedEditionComplex().subscribe({
                     next: (editionComplex: EditionComplex) => {
                         expectToEqual(editionComplex, expectedEditionComplex);
                     },
                 });
 
                 // Update editionComplex
-                editionService.updateEditionComplex(expectedEditionComplex);
+                editionService.updateSelectedEditionComplex(expectedEditionComplex);
 
                 // Clear editionComplex
                 expectedEditionComplex = null;
-                editionService.clearEditionComplex();
+                editionService.clearSelectedEditionComplex();
             }));
         });
     });
@@ -187,18 +192,6 @@ describe('EditionService (DONE)', () => {
     });
 
     describe('EditionSeries', () => {
-        describe('#getEditionSeriesRoute()', () => {
-            it('... should have a method `getEditionSeriesRoute`', () => {
-                expect(editionService.getEditionSeriesRoute).toBeDefined();
-            });
-
-            it('... should return editionSeriesRoute', () => {
-                const route = editionService.getEditionSeriesRoute();
-
-                expectToBe(route, expectedEditionSeriesRoute);
-            });
-        });
-
         describe('#getEditionSeriesById()', () => {
             it('... should have a method `getEditionSeriesById`', () => {
                 expect(editionService.getEditionSeriesById).toBeDefined();

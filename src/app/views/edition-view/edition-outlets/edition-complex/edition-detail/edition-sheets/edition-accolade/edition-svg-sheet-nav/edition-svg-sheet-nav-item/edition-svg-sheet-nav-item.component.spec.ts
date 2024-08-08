@@ -13,7 +13,7 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { EditionSvgSheet } from '@awg-app/views/edition-view/models';
+import { EditionSvgSheet } from '@awg-views/edition-view/models';
 
 import { EditionSvgSheetNavItemComponent } from './edition-svg-sheet-nav-item.component';
 

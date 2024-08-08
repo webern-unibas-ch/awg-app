@@ -51,37 +51,6 @@ export class EditionDataService {
     constructor(private http: HttpClient) {}
 
     /**
-     * Public method: getEditionSheetsData.
-     *
-     * It provides the data from a JSON file
-     * for the current edition complex of the edition sheets view
-     * (folio convolute, edition svg sheets and textcritics list)
-     * as a fork-joined observable array.
-     *
-     * @param {EditionComplex} editionComplex The current edition complex.
-     *
-     * @returns {Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]>}
-     * The fork-joined observable array with the FolioConvoluteList,
-     * EditionSvgSheetList and TextcriticsList data.
-     * Only the first emit is needed.
-     */
-    getEditionSheetsData(
-        editionComplex: EditionComplex
-    ): Observable<(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]> {
-        this._assetPath = this._setAssetPathForEditionComplex(editionComplex);
-        const folioData$: Observable<FolioConvoluteList> = this._getFolioConvoluteData();
-        const svgSheetsData$: Observable<EditionSvgSheetList> = this._getSvgSheetsData();
-        const textciticsListData$: Observable<TextcriticsList> = this._getTextcriticsListData();
-
-        return observableForkJoin([folioData$, svgSheetsData$, textciticsListData$]).pipe(
-            // Default empty value
-            defaultIfEmpty([new FolioConvoluteList(), new EditionSvgSheetList(), new TextcriticsList()]),
-            // Take only first request (JSON fetch)
-            take(1)
-        );
-    }
-
-    /**
      * Public method: getEditionGraphData.
      *
      * It provides the data from a JSON file
@@ -206,6 +175,37 @@ export class EditionDataService {
     }
 
     /**
+     * Public method: getEditionSheetsData.
+     *
+     * It provides the data from a JSON file
+     * for the current edition complex of the edition sheets view
+     * (folio convolute, edition svg sheets and textcritics list)
+     * as a fork-joined observable array.
+     *
+     * @param {EditionComplex} editionComplex The current edition complex.
+     *
+     * @returns {Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]>}
+     * The fork-joined observable array with the FolioConvoluteList,
+     * EditionSvgSheetList and TextcriticsList data.
+     * Only the first emit is needed.
+     */
+    getEditionSheetsData(
+        editionComplex: EditionComplex
+    ): Observable<(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]> {
+        this._assetPath = this._setAssetPathForEditionComplex(editionComplex);
+        const folioData$: Observable<FolioConvoluteList> = this._getFolioConvoluteData();
+        const svgSheetsData$: Observable<EditionSvgSheetList> = this._getSvgSheetsData();
+        const textciticsListData$: Observable<TextcriticsList> = this._getTextcriticsListData();
+
+        return observableForkJoin([folioData$, svgSheetsData$, textciticsListData$]).pipe(
+            // Default empty value
+            defaultIfEmpty([new FolioConvoluteList(), new EditionSvgSheetList(), new TextcriticsList()]),
+            // Take only first request (JSON fetch)
+            take(1)
+        );
+    }
+
+    /**
      * Private method: _setAssetPathForEditionComplex.
      *
      * It sets the path to correct assets folder of a given edition complex.
@@ -220,9 +220,9 @@ export class EditionDataService {
             delimiter +
             EDITION_ROUTE_CONSTANTS.SERIES.route +
             delimiter +
-            editionComplex.series.route +
+            editionComplex.pubStatement.series.route +
             EDITION_ROUTE_CONSTANTS.SECTION.route +
-            editionComplex.section.route +
+            editionComplex.pubStatement.section.route +
             editionComplex.complexId.route;
         return EDITION_ASSETS_DATA.BASE_ROUTE + complexRoute;
     }

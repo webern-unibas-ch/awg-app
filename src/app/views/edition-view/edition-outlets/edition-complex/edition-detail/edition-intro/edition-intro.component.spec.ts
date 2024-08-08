@@ -22,8 +22,8 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
+import { EditionComplexesService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionSvgSheet, IntroList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
@@ -64,7 +64,7 @@ describe('IntroComponent (DONE)', () => {
 
     let editionDataServiceGetEditionIntroDataSpy: Spy;
     let getEditionIntroDataSpy: Spy;
-    let getEditionComplexSpy: Spy;
+    let editionServiceGetSelectedEditionComplexSpy: Spy;
     let navigateWithComplexIdSpy: Spy;
     let navigateToIntroFragmentSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
@@ -83,7 +83,7 @@ describe('IntroComponent (DONE)', () => {
                 observableOf(expectedEditionIntroData),
         };
         mockEditionService = {
-            getEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
+            getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
         };
 
         TestBed.configureTestingModule({
@@ -109,7 +109,7 @@ describe('IntroComponent (DONE)', () => {
         editionService = TestBed.inject(EditionService);
 
         // Test data
-        expectedEditionComplex = EDITION_COMPLEXES.OP12;
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
         expectedEditionComplexBaseRoute = '/edition/complex/op12/';
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
@@ -125,7 +125,7 @@ describe('IntroComponent (DONE)', () => {
         editionDataServiceGetEditionIntroDataSpy = spyOn(editionDataService, 'getEditionIntroData').and.returnValue(
             observableOf(expectedEditionIntroData)
         );
-        getEditionComplexSpy = spyOn(editionService, 'getEditionComplex').and.returnValue(
+        editionServiceGetSelectedEditionComplexSpy = spyOn(editionService, 'getSelectedEditionComplex').and.returnValue(
             observableOf(expectedEditionComplex)
         );
         getEditionIntroDataSpy = spyOn(component, 'getEditionIntroData').and.callThrough();
@@ -186,14 +186,12 @@ describe('IntroComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have called `getEditionComplex()`', () => {
-            // `getEditionReportData()` called immediately after init
-            expectSpyCall(getEditionComplexSpy, 1);
+        it('... should have called `getEditionIntroData()`', () => {
+            expectSpyCall(getEditionIntroDataSpy, 1);
         });
 
-        it('... should have called `getEditionIntroData()`', () => {
-            // `getEditionIntroData()` called immediately after init
-            expectSpyCall(getEditionIntroDataSpy, 1);
+        it('... should have triggered `getSelectedEditionComplex()` method from EditionService', () => {
+            expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
         });
 
         it('... should have editionComplex', () => {
@@ -313,7 +311,11 @@ describe('IntroComponent (DONE)', () => {
                 const shortComplexSpan = mockDocument.createElement('span');
                 shortComplexSpan.innerHTML = expectedEditionComplex.complexId.short;
 
-                const introPlaceholder = `[Die Einleitung zum Editionskomplex ${fullComplexSpan.textContent} erscheint im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
+                const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
+                const series = expectedEditionComplex.pubStatement.series.short;
+                const section = expectedEditionComplex.pubStatement.section.short;
+
+                const introPlaceholder = `[Die Einleitung zum Editionskomplex ${fullComplexSpan.textContent} erscheint im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${awg} ${series}/${section}.]`;
 
                 expectToBe(pEl.textContent.trim(), introPlaceholder);
             }));
@@ -329,7 +331,7 @@ describe('IntroComponent (DONE)', () => {
             });
 
             it('... should have got `editionComplex` from editionService', () => {
-                expectSpyCall(getEditionComplexSpy, 1);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
 
                 expectToEqual(component.editionComplex, expectedEditionComplex);
             });

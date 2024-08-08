@@ -6,12 +6,42 @@ import {
 import { EditionRouteConstant } from './edition-route-constant.model';
 
 /**
- * The EditionTitleStatement class.
+ * The EditionComplexJsonInput interface.
+ *
+ * It is used in the context of the edition view
+ * to describe the structure of a JSON input for an edition complex.
+ */
+export interface EditionComplexJsonInput {
+    /**
+     * The edition complex input.
+     */
+    [key: string]: {
+        titleStatement: { title: string; catalogueType: string; catalogueNumber: string };
+        respStatement: { editors: { name: string; homepage: string }[]; lastModified: string };
+        pubStatement: { series: string; section: string };
+    };
+}
+
+/**
+ * The EditionComplexesJsonInput interface.
+ *
+ * It is used in the context of the edition view
+ * to describe the structure of a JSON input for edition complexes.
+ */
+export interface EditionComplexesJsonInput {
+    /**
+     * The edition complexes input.
+     */
+    editionComplexes: EditionComplexJsonInput[];
+}
+
+/**
+ * The EditionComplexTitleStatement class.
  *
  * It is used in the context of the edition view
  * to store information about the title statement of an edition complex.
  */
-export class EditionTitleStatement {
+export class EditionComplexTitleStatement {
     /**
      * The title of a title statement.
      */
@@ -29,12 +59,12 @@ export class EditionTitleStatement {
 }
 
 /**
- * The EditionResponsibilityStatement class.
+ * The EditionComplexRespStatement class.
  *
  * It is used in the context of the edition view
  * to store information about the responsibility statement of an edition complex.
  */
-export class EditionResponsibilityStatement {
+export class EditionComplexRespStatement {
     /**
      * The editors of an edition complex.
      */
@@ -47,27 +77,12 @@ export class EditionResponsibilityStatement {
 }
 
 /**
- * The EditionComplex class.
+ * The EditionComplexPubStatement class.
  *
  * It is used in the context of the edition view
- * to store information about an edition complex.
+ * to store information about the publication statement of an edition complex.
  */
-export class EditionComplex {
-    /**
-     * The title statement of the current edition complex.
-     */
-    titleStatement: EditionTitleStatement;
-
-    /**
-     * The responsibility statement of the current edition complex.
-     */
-    responsibilityStatement: EditionResponsibilityStatement;
-
-    /**
-     * The id for the current edition complex.
-     */
-    complexId: EditionRouteConstant;
-
+export class EditionComplexPubStatement {
     /**
      * The route for the current series.
      */
@@ -77,11 +92,34 @@ export class EditionComplex {
      * The route for the current section.
      */
     section: EditionRouteConstant;
+}
+
+/**
+ * The EditionComplex class.
+ *
+ * It is used in the context of the edition view
+ * to store information about an edition complex.
+ */
+export class EditionComplex {
+    /**
+     * The title statement of the current edition complex.
+     */
+    titleStatement: EditionComplexTitleStatement;
 
     /**
-     * The route for the current type of an edition.
+     * The responsibility statement of the current edition complex.
      */
-    type: EditionRouteConstant;
+    respStatement: EditionComplexRespStatement;
+
+    /**
+     * The publication statement of the current edition complex.
+     */
+    pubStatement: EditionComplexPubStatement;
+
+    /**
+     * The id for the current edition complex.
+     */
+    complexId: EditionRouteConstant;
 
     /**
      * The base route of an edition complex.
@@ -95,18 +133,14 @@ export class EditionComplex {
      *
      * It initializes the class with an edition complex Object from the EditionConstants.
      *
-     * @param {EditionTitleStatement} titleStatement The given TitleStatement for the edition complex.
-     * @param {EditionResponsibilityStatement} responsibilityStatement The given ResponsibilityStatement for the edition complex.
-     * @param {EditionRouteConstant} series The given series.
-     * @param {EditionRouteConstant} section The given section.
-     * @param {EditionRouteConstant} type The given edition type.
+     * @param {{ title: string; catalogueType: string; catalogueNumber: string }} titleStatement The given TitleStatement for the edition complex.
+     * @param {EditionComplexRespStatement} respStatement The given ResponsibilityStatement for the edition complex.
+     * @param {{ series: string; section: string }} pubStatement The given PublicationStatement for the edition complex.
      */
     constructor(
-        titleStatement: EditionTitleStatement,
-        responsibilityStatement: EditionResponsibilityStatement,
-        series?: EditionRouteConstant,
-        section?: EditionRouteConstant,
-        type?: EditionRouteConstant
+        titleStatement: { title: string; catalogueType: string; catalogueNumber: string },
+        respStatement: EditionComplexRespStatement,
+        pubStatement: { series: string; section: string }
     ) {
         if (!titleStatement?.catalogueType || !titleStatement?.catalogueNumber) {
             return;
@@ -117,28 +151,67 @@ export class EditionComplex {
         const spacer = '&nbsp;';
 
         // Set dynamic routes
-        this.titleStatement = titleStatement;
-        this.responsibilityStatement = responsibilityStatement || new EditionResponsibilityStatement();
+        this.titleStatement = {
+            ...titleStatement,
+            catalogueType: this._mapCatalogueType(titleStatement.catalogueType),
+        };
+
+        this.respStatement = respStatement ?? new EditionComplexRespStatement();
+
+        this.pubStatement = {
+            series: this._mapPubStatement('SERIES_', pubStatement?.series),
+            section: this._mapPubStatement('SECTION_', pubStatement?.section),
+        };
 
         this.complexId = new EditionRouteConstant();
-        if (this.titleStatement.catalogueType === EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS) {
-            this.complexId.route = EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS.route;
-        } else if (this.titleStatement.catalogueType === EDITION_CATALOGUE_TYPE_CONSTANTS.MNR) {
-            this.complexId.route = EDITION_CATALOGUE_TYPE_CONSTANTS.MNR.route;
-        } else if (this.titleStatement.catalogueType === EDITION_CATALOGUE_TYPE_CONSTANTS.MNR_PLUS) {
-            this.complexId.route = EDITION_CATALOGUE_TYPE_CONSTANTS.MNR_PLUS.route;
-        }
+        this.complexId.route = this.titleStatement.catalogueType.route;
         // For routes, replace slashes in catalogue number with underscores
         this.complexId.route += this.titleStatement.catalogueNumber.replace(/\//g, '_');
-        this.complexId.short = this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
+        this.complexId.short = `${this.titleStatement.catalogueType.short}${spacer}${this.titleStatement.catalogueNumber}`;
         this.complexId.full = `${this.titleStatement.title} ${this.complexId.short}`;
 
-        this.series = series || new EditionRouteConstant();
-        this.section = section || new EditionRouteConstant();
-        this.type = type || new EditionRouteConstant();
-
         // Set base route
-        const rootPath = EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.COMPLEX.route;
-        this.baseRoute = rootPath + this.complexId.route + delimiter;
+        const rootPath = `${EDITION_ROUTE_CONSTANTS.EDITION.route}${EDITION_ROUTE_CONSTANTS.COMPLEX.route}`;
+        this.baseRoute = `${rootPath}${this.complexId.route}${delimiter}`;
     }
+
+    /**
+     * Private method: _mapCatalogueType.
+     *
+     * It maps the catalogue type to the corresponding route constant.
+     *
+     * @param {string} catalogueType The given catalogue type.
+     *
+     * @returns {EditionRouteConstant} The corresponding route constant.
+     */
+    private _mapCatalogueType(catalogueType: string): EditionRouteConstant {
+        return EDITION_CATALOGUE_TYPE_CONSTANTS[catalogueType.toUpperCase()];
+    }
+
+    /**
+     * Private method: _mapPubStatement.
+     *
+     * It maps the publication statement to the corresponding route constant.
+     *
+     * @param {string} prefix The given prefix.
+     * @param {string} value The given value.
+     *
+     * @returns {EditionRouteConstant} The corresponding route constant.
+     */
+    private _mapPubStatement(prefix: string, value?: string): EditionRouteConstant {
+        return EDITION_ROUTE_CONSTANTS[`${prefix}${value?.toUpperCase()}`];
+    }
+}
+
+/**
+ * The EditionComplexesList class.
+ *
+ * It is used in the context of the edition view
+ * to describe a list of edition complexes.
+ */
+export class EditionComplexesList {
+    /**
+     * The list of edition complexes.
+     */
+    [key: string]: EditionComplex;
 }

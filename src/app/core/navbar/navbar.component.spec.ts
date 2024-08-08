@@ -30,9 +30,8 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { LOGOSDATA } from '@awg-core/core-data';
 import { Logos } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
+import { CoreService, EditionComplexesService } from '@awg-core/services';
 
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 
@@ -67,7 +66,6 @@ describe('NavbarComponent (DONE)', () => {
     let routerLinks;
 
     let coreServiceSpy: Spy;
-    let getEditionComplexSpy: Spy;
     let isActiveRouteSpy: Spy;
     let routerSpy: Spy;
     let provideMetaDataSpy: Spy;
@@ -85,7 +83,6 @@ describe('NavbarComponent (DONE)', () => {
     let expectedStructureIcon: IconDefinition;
 
     let expectedEditionComplexes: EditionComplex[];
-    let expectedSelectedEditionComplex: EditionComplex = EDITION_COMPLEXES.OP12;
     let expectedOrderOfRouterlinks: string[][];
 
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
@@ -127,19 +124,18 @@ describe('NavbarComponent (DONE)', () => {
         expectedLogos = LOGOSDATA;
 
         expectedEditionComplexes = [
-            EDITION_COMPLEXES.OP3,
-            EDITION_COMPLEXES.OP4,
-            EDITION_COMPLEXES.OP12,
-            EDITION_COMPLEXES.OP23,
-            EDITION_COMPLEXES.OP25,
-            EDITION_COMPLEXES.M22,
-            EDITION_COMPLEXES.M30,
-            EDITION_COMPLEXES.M31,
-            EDITION_COMPLEXES.M34,
-            EDITION_COMPLEXES.M35_42,
-            EDITION_COMPLEXES.M37,
+            EditionComplexesService.getEditionComplexById('OP3'),
+            EditionComplexesService.getEditionComplexById('OP4'),
+            EditionComplexesService.getEditionComplexById('OP12'),
+            EditionComplexesService.getEditionComplexById('OP23'),
+            EditionComplexesService.getEditionComplexById('OP25'),
+            EditionComplexesService.getEditionComplexById('M22'),
+            EditionComplexesService.getEditionComplexById('M30'),
+            EditionComplexesService.getEditionComplexById('M31'),
+            EditionComplexesService.getEditionComplexById('M34'),
+            EditionComplexesService.getEditionComplexById('M35_42'),
+            EditionComplexesService.getEditionComplexById('M37'),
         ];
-        expectedSelectedEditionComplex = expectedEditionComplexes[0];
         expectedOrderOfRouterlinks = generateExpectedOrderOfRouterlinks(expectedEditionComplexes);
 
         expectedContactIcon = faEnvelope;
@@ -152,7 +148,6 @@ describe('NavbarComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         coreServiceSpy = spyOn(mockCoreService, 'getLogos').and.callThrough();
-        getEditionComplexSpy = spyOn(component, 'getEditionComplex').and.callThrough();
         isActiveRouteSpy = spyOn(component, 'isActiveRoute').and.callThrough();
         routerSpy = mockRouter.isActive as jasmine.Spy;
         provideMetaDataSpy = spyOn(component, 'provideMetaData').and.callThrough();
@@ -203,10 +198,6 @@ describe('NavbarComponent (DONE)', () => {
 
         it('... should not have `logos`', () => {
             expect(component.logos).toBeUndefined();
-        });
-
-        it('... should not have `selectedEditionComplex`', () => {
-            expect(component.selectedEditionComplex).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -317,20 +308,6 @@ describe('NavbarComponent (DONE)', () => {
                 expectToBe(navItemLinkSpanEl.textContent, 'Kontakt');
 
                 getAndExpectDebugElementByCss(navItemDe[4], 'a.nav-link > fa-icon', 1, 1);
-            });
-        });
-
-        describe('#getEditionComplex()', () => {
-            it('... should have a method `getEditionComplex`', () => {
-                expect(component.getEditionComplex).toBeDefined();
-            });
-
-            it('... should not have been called', () => {
-                expectSpyCall(getEditionComplexSpy, 0);
-            });
-
-            it('... should not have `selectedEditionComplex`', () => {
-                expect(component.selectedEditionComplex).toBeUndefined();
             });
         });
 
@@ -575,7 +552,11 @@ describe('NavbarComponent (DONE)', () => {
                         const headerSpanDe = getAndExpectDebugElementByCss(headerDe[0], 'span', 1, 1);
                         const headerSpanEl = headerSpanDe[0].nativeElement;
 
-                        const headerSiglum = `[AWG ${expectedEditionComplexes[index].series.short}/${expectedEditionComplexes[index].section.short}] `;
+                        const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
+                        const series = expectedEditionComplexes[index].pubStatement.series.short;
+                        const section = expectedEditionComplexes[index].pubStatement.section.short;
+
+                        const headerSiglum = `[${awg} ${series}/${section}] `;
                         const headerId = expectedEditionComplexes[index].complexId.full;
 
                         expectToContain(headerEl.textContent, headerSiglum);
@@ -603,16 +584,6 @@ describe('NavbarComponent (DONE)', () => {
                         expectToBe(itemsEl3.textContent, 'Kritischer Bericht');
                     });
                 });
-            });
-        });
-
-        describe('#getEditionComplex()', () => {
-            it('... should have been called', () => {
-                expectSpyCall(getEditionComplexSpy, 1);
-            });
-
-            it('... should get `selectedEditionComplex`', () => {
-                expectToEqual(component.selectedEditionComplex, expectedSelectedEditionComplex);
             });
         });
 
