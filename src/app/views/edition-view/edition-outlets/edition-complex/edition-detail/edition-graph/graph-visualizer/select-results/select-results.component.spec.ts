@@ -152,9 +152,7 @@ describe('SelectResultsComponent (DONE)', () => {
         it('... should have `queryResult` input', waitForAsync(() => {
             expectToEqual(component.queryResult$, expectedQueryResult$);
             expectAsync(lastValueFrom(component.queryResult$)).toBeResolved();
-            expectAsync(lastValueFrom(component.queryResult$))
-                .withContext(`should be resolved to ${expectedQueryResult}}`)
-                .toBeResolvedTo(expectedQueryResult);
+            expectAsync(lastValueFrom(component.queryResult$)).toBeResolvedTo(expectedQueryResult);
         }));
 
         it('... should have `queryTime` input', () => {

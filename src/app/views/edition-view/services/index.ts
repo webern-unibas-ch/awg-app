@@ -12,4 +12,4 @@ import { EditionSheetsService } from './edition-sheets.service';
 import { EditionSvgDrawingService } from './edition-svg-drawing.service';
 import { EditionService } from './edition.service';
 
-export { EditionDataService, EditionSheetsService, EditionSvgDrawingService, EditionService };
+export { EditionDataService, EditionService, EditionSheetsService, EditionSvgDrawingService };

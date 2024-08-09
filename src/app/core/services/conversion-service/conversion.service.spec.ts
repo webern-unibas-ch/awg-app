@@ -73,7 +73,7 @@ describe('ConversionService', () => {
 
                 const result = conversionService.convertFullTextSearchResults(searchResponse);
 
-                expect(result).toEqual(searchResponse);
+                expectToEqual(result, searchResponse);
             });
 
             it('... subjects are null', () => {
@@ -82,7 +82,7 @@ describe('ConversionService', () => {
 
                 const result = conversionService.convertFullTextSearchResults(searchResponse);
 
-                expect(result).toEqual(searchResponse);
+                expectToEqual(result, searchResponse);
             });
 
             it('... subjects are empty', () => {
@@ -91,7 +91,7 @@ describe('ConversionService', () => {
 
                 const result = conversionService.convertFullTextSearchResults(searchResponse);
 
-                expect(result).toEqual(searchResponse);
+                expectToEqual(result, searchResponse);
             });
         });
 
@@ -245,7 +245,7 @@ describe('ConversionService', () => {
 
             const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
 
-            expect(typeof result).toEqual('string');
+            expectToBe(typeof result, 'string');
         });
 
         describe('... should return correct text', () => {
@@ -339,7 +339,7 @@ describe('ConversionService', () => {
 
                 const result = (conversionService as any)._cleanSubjectValueLabels(subject);
 
-                expect(result.valuelabel).toBeNull();
+                expectToBe(result.valuelabel, null);
                 expectToBe(result.obj_id, '');
             });
 
@@ -463,7 +463,7 @@ describe('ConversionService', () => {
 
             const result = (conversionService as any)._convertDateValue(dateObj);
 
-            expect(typeof result).toEqual('string');
+            expectToBe(typeof result, 'string');
         });
 
         it('should return the converted date string without " (G)"', () => {
@@ -543,7 +543,7 @@ describe('ConversionService', () => {
 
             const result = (conversionService as any)._convertLinkValue(valueId, firstProp, restype);
 
-            expect(typeof result).toEqual('string');
+            expectToBe(typeof result, 'string');
         });
 
         it('... should return a linked value', () => {
@@ -642,7 +642,7 @@ describe('ConversionService', () => {
 
             const result = (conversionService as any)._convertRichtextValue(str, JSON.stringify(jsonAttrs));
 
-            expect(typeof result).toEqual('string');
+            expectToBe(typeof result, 'string');
         });
 
         it('... should correctly convert a rich text value with Standoff to HTML', () => {
@@ -728,7 +728,7 @@ describe('ConversionService', () => {
 
             const result = (conversionService as any)._convertStandoffToHTML(str, JSON.stringify(jsonAttrs));
 
-            expect(typeof result).toEqual('string');
+            expectToBe(typeof result, 'string');
         });
 
         it('... should correctly convert a rich text value with Standoff to HTML', () => {

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { EDITION_GLYPHS_DATA } from '@awg-app/views/edition-view/data';
 
+import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
 import { TextcriticalComment, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
 
 /**

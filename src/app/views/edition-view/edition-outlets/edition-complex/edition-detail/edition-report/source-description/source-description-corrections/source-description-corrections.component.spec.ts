@@ -11,7 +11,7 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { CompileHtmlComponent } from '@awg-app/shared/compile-html';
+import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { TextcriticalComment, Textcritics } from '@awg-views/edition-view/models';
 
 import { DOCUMENT } from '@angular/common';
@@ -277,7 +277,11 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
-                    expect(editionTkaTableCmp.isRowTable).toBe(expectedCorrections[index].rowtable);
+                    if (expectedCorrections[index].rowtable) {
+                        expectToBe(editionTkaTableCmp.isRowTable, expectedCorrections[index].rowtable);
+                    } else {
+                        expect(editionTkaTableCmp.isRowTable).toBeUndefined();
+                    }
                 });
             });
 

@@ -21,6 +21,7 @@ import { LicenseComponent } from './license/license.component';
 import { ModalComponent } from './modal/modal.component';
 import { OpenStreetMapComponent } from './open-street-map/open-street-map.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
+import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 import { TablePaginationComponent } from './table/table-pagination/table-pagination.component';
 import { TableComponent } from './table/table.component';
 import { ToastComponent } from './toast/toast.component';
@@ -61,6 +62,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         ModalComponent,
         OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
+        ScrollToTopComponent,
         TableComponent,
         TablePaginationComponent,
         ToastComponent,
@@ -88,6 +90,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         ModalComponent,
         OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
+        ScrollToTopComponent,
         TableComponent,
         ToastComponent,
         TwelveToneSpinnerComponent,

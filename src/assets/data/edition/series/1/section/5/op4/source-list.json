@@ -17,12 +17,13 @@
             "linkTo": "source_B"
         },
         {
-            "siglum": "[C]",
+            "siglum": "C",
             "siglumAddendum": "",
+            "missing": true,
             "type": "Autograph von <br /><span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 1.",
             "location": "Verschollen.",
             "hasDescription": false,
-            "linkTo": "source_C"
+            "linkTo": ""
         },
         {
             "siglum": "D",
@@ -33,26 +34,28 @@
             "linkTo": "source_D"
         },
         {
-            "siglum": "[E]",
+            "siglum": "E",
             "siglumAddendum": "",
+            "missing": true,
             "type": "Abschrift fremder Hand von <br /><span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 1.",
             "location": "Verschollen.",
             "hasDescription": false,
-            "linkTo": "source_E"
+            "linkTo": ""
         },
         {
-            "siglum": "[F]",
+            "siglum": "F",
             "siglumAddendum": "",
+            "missing": true,
             "type": "Korrekturfahne von <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>.",
             "location": "Verschollen.",
             "hasDescription": false,
-            "linkTo": "source_F"
+            "linkTo": ""
         },
         {
             "siglum": "G",
             "siglumAddendum": "",
             "type": "Druck von <br /><span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 1.",
-            "location": "Beilage in: Der blaue Reiter, München: Piper, 1912.",
+            "location": "Beilage in: <em>Der blaue Reiter</em>, München: Piper, 1912.",
             "hasDescription": true,
             "linkTo": "source_G"
         },
@@ -75,7 +78,7 @@
         {
             "siglum": "I",
             "siglumAddendum": "",
-            "type": "Abschrift fremder Hand von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span><em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 3 <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Noch zwingt mich Treue“ M 139: Textfassung 3 <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Ja Heil und Dank dir“ M 140: Textfassung 2 <br /><span class=\"tab\"></span>IV<span class=\"tab\"></span>„So ich traurig bin“ M 141: Textfassung 2 <br /><span class=\"tab\"></span>V<span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 3. <br />Stichvorlage für <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>.",
+            "type": "Abschrift fremder Hand von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span><em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 3 <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Noch zwingt mich Treue“ M 139: Textfassung 3 <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Ja Heil und Dank dir“ M 140: Textfassung 2 <br /><span class=\"tab\"></span>IV<span class=\"tab\"></span>„So ich traurig bin“ M 141: Textfassung 2 <br /><span class=\"tab\"></span>V<span class=\"tab\"></span>„Ihr tratet zu dem Herde“ M 142: Textfassung 3.<br />Stichvorlage für <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
             "hasDescription": true,
             "linkTo": "source_I"

@@ -12,6 +12,7 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
@@ -216,7 +217,7 @@ describe('EditionSvgSheetViewerComponent', () => {
 
     it('... injected service should use provided mockValue', () => {
         const svgDrawingService = TestBed.inject(EditionSvgDrawingService);
-        expect(svgDrawingService === mockEditionSvgDrawingService).toBe(true);
+        expectToBe(svgDrawingService === mockEditionSvgDrawingService, true);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -414,9 +415,9 @@ describe('EditionSvgSheetViewerComponent', () => {
                     expectToBe(buttonEl.getAttribute('title'), 'Reset zoom');
                     expectToBe(buttonEl.getAttribute('type'), 'submit');
 
-                    expect(buttonEl.classList).toContain('btn');
-                    expect(buttonEl.classList).toContain('btn-sm');
-                    expect(buttonEl.classList).toContain('btn-outline-info');
+                    expectToContain(buttonEl.classList, 'btn');
+                    expectToContain(buttonEl.classList, 'btn-sm');
+                    expectToContain(buttonEl.classList, 'btn-outline-info');
                 });
 
                 it('... should display compress icon in button', () => {
@@ -739,11 +740,13 @@ describe('EditionSvgSheetViewerComponent', () => {
                         const overlayGroupRectSelection = expectedOverlayGroups.select(
                             `#${overlay.id} rect.${expectedOverlayType}`
                         );
-                        expect(serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[0]).toEqual(overlay);
-                        expect(serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[1]).toEqual(
+                        expectToEqual(serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[0], overlay);
+                        expectToEqual(
+                            serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[1],
                             overlayGroupRectSelection
                         );
-                        expect(serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[2]).toEqual(
+                        expectToBe(
+                            serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[2],
                             EditionSvgOverlayActionTypes.fill
                         );
                     });
@@ -758,7 +761,8 @@ describe('EditionSvgSheetViewerComponent', () => {
                     expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalledTimes(expectedOverlayGroups.nodes().length);
 
                     expectedOverlayGroups.nodes().forEach((_node, index) => {
-                        expect(serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[2]).toEqual(
+                        expectToBe(
+                            serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[2],
                             EditionSvgOverlayActionTypes.fill
                         );
                     });
@@ -773,7 +777,8 @@ describe('EditionSvgSheetViewerComponent', () => {
                     expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalledTimes(expectedOverlayGroups.nodes().length);
 
                     expectedOverlayGroups.nodes().forEach((_node, index) => {
-                        expect(serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[2]).toEqual(
+                        expectToBe(
+                            serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[2],
                             EditionSvgOverlayActionTypes.transparent
                         );
                     });
@@ -815,17 +820,17 @@ describe('EditionSvgSheetViewerComponent', () => {
                 let expectedZoom = null;
                 component.onZoomChange(expectedZoom);
 
-                expect(component.sliderConfig.value).toBe(expectedZoom);
+                expectToBe(component.sliderConfig.value, expectedZoom);
 
                 expectedZoom = 5;
                 component.onZoomChange(expectedZoom);
 
-                expect(component.sliderConfig.value).toBe(expectedZoom);
+                expectToBe(component.sliderConfig.value, expectedZoom);
 
                 expectedZoom = expectedSliderConfig.initial;
                 component.onZoomChange(expectedZoom);
 
-                expect(component.sliderConfig.value).toBe(expectedSliderConfig.initial);
+                expectToBe(component.sliderConfig.value, expectedSliderConfig.initial);
             });
 
             it('... should trigger `_rescaleZoom` function', () => {
@@ -1363,7 +1368,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                         it(`... for stepSize ${stepSize} and given value ${givenValue} returns ${expectedNearestStep}`, () => {
                             component.sliderConfig.stepSize = stepSize;
                             const result = (component as any)._roundToScaleStepDecimalPrecision(givenValue);
-                            expect(result).toBe(expectedNearestStep);
+                            expectToBe(result, expectedNearestStep);
                         });
                     }
                 }

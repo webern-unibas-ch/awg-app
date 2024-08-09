@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
+import {
+    EDITION_CATALOGUE_TYPE_CONSTANTS,
+    EDITION_ROUTE_CONSTANTS,
+} from '@awg-views/edition-view/edition-route-constants';
+
 /**
  * Test helper data file: mockEditionData.
  *
@@ -8,6 +13,92 @@
  * Exposed to be called from tests.
  */
 export const mockEditionData = {
+    /**
+     * Test helper data constant: mockEditionComplexesList.
+     *
+     * It provides a mocked editionComplexesList object.
+     */
+    mockEditionComplexesList: {
+        OP3: {
+            titleStatement: {
+                title: '<em>Vier Lieder</em>',
+                catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
+                catalogueNumber: '12',
+            },
+            publicationStatement: {
+                series: EDITION_ROUTE_CONSTANTS.SERIES_1,
+                section: EDITION_ROUTE_CONSTANTS.SECTION_5,
+            },
+            respStatement: {
+                editors: [
+                    {
+                        name: 'Thomas Ahrend',
+                        homepage: 'https://www.anton-webern.ch/index.php?id',
+                    },
+                ],
+                lastModified: '7. August 2024',
+            },
+            complexId: {
+                route: '/op12',
+                short: 'op.&nbsp;12',
+                full: '<em>Vier Lieder</em> op.&nbsp;12',
+            },
+            baseRoute: '/edition/complex/op12/',
+        },
+        OP25: {
+            titleStatement: {
+                title: '<em>Drei Lieder nach Gedichten von Hildegard Jone</em>',
+                catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
+                catalogueNumber: '25',
+            },
+            publicationStatement: {
+                series: EDITION_ROUTE_CONSTANTS.SERIES_1,
+                section: EDITION_ROUTE_CONSTANTS.SECTION_5,
+            },
+            respStatement: {
+                editors: [
+                    {
+                        name: 'Thomas Ahrend',
+                        homepage: 'https://www.anton-webern.ch/index.php?id',
+                    },
+                ],
+                lastModified: '7. August 2024',
+            },
+            complexId: {
+                route: '/op25',
+                short: 'op.&nbsp;25',
+                full: '<em>Drei Lieder nach Gedichten von Hildegard Jone</em> op.&nbsp;25',
+            },
+            baseRoute: '/edition/complex/op25/',
+        },
+        M22: {
+            titleStatement: {
+                title: 'Studienkomposition für Klavier/Streichquartett',
+                catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+                catalogueNumber: '22',
+            },
+            publicationStatement: {
+                series: EDITION_ROUTE_CONSTANTS.SERIES_1,
+                section: EDITION_ROUTE_CONSTANTS.SECTION_5,
+            },
+            respStatement: {
+                editors: [
+                    {
+                        name: 'Michael Matter',
+                        homepage: 'https://www.anton-webern.ch/index.php?id',
+                    },
+                ],
+                lastModified: '7. August 2024',
+            },
+            complexId: {
+                route: '/m22',
+                short: 'M&nbsp;22',
+                full: 'Studienkomposition für Klavier/Streichquartett M&nbsp;22',
+            },
+            baseRoute: '/edition/complex/m22/',
+        },
+    },
+
     /**
      * Test helper data constant: mockFolioConvoluteData.
      *
@@ -148,6 +239,32 @@ export const mockEditionData = {
      * It provides a mocked modal snippet string.
      */
     mockModalSnippet: 'OP12_SHEET_COMING_SOON',
+
+    /**
+     * Test helper data constant: mockPreface Data.
+     *
+     * It provides a mocked preface data object.
+     */
+    mockPrefaceData: {
+        preface: [
+            {
+                id: 'de',
+                content: [
+                    "<span class='no-indent'>Die AWG gliedert sich in drei Serien:</span>",
+                    "<span class='no-indent spacebreak'>Sie werden nicht zu dem für den Druck typischen <span class='unicode'>{{ref.getGlyph('[ped]')}}</span>.-Zeichen vereinheitlicht.</span>",
+                    "<span class='small spacebreak'>Zugang zur AWG-Online-Edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></span>",
+                ],
+            },
+            {
+                id: 'en',
+                content: [
+                    "<span class='no-indent'>The AWG is divided into three series:</span>",
+                    "<span class='no-indent spacebreak'>They are not unified to the <span class='unicode'>{{ref.getGlyph('[ped]')}}</span>. character typical for printing.</span>",
+                    "<span class='small spacebreak'>Access to the AWG online edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></span>",
+                ],
+            },
+        ],
+    },
 
     /**
      * Test helper data constant: mockRowTablesData.

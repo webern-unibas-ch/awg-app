@@ -5,6 +5,8 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Observable, of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
 
+import { expectToBe } from '@testing/expect-helper';
+
 import { SearchResponseJson, SubjectItemJson } from '@awg-shared/api-objects';
 import { BibliographyService } from '@awg-views/data-view/services';
 
@@ -76,6 +78,6 @@ describe('BibliographyComponent', () => {
     });
 
     it('... injected bibliography service should use provided mockValue', () => {
-        expect(bibliographyService === mockBibliographyService).toBe(true);
+        expectToBe(bibliographyService === mockBibliographyService, true);
     });
 });

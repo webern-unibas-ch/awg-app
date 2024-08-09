@@ -8,7 +8,7 @@
         <div class="awg-intro-view p-5 border rounded-3">
             @if (utils.isNotEmptyArray(editionIntroData.intro[0].content)) {
                 @for (introParagraph of editionIntroData.intro[0].content; track introParagraph) {
-                    <p class="awg-intro-paragraph" [compile-html]="introParagraph" [compile-html-ref]="this"></p>
+                    <p class="awg-intro-para" [compile-html]="introParagraph" [compile-html-ref]="this"></p>
                 }
             } @else {
                 <p class="awg-intro-empty">
@@ -16,8 +16,8 @@
                         >[Die Einleitung zum Editionskomplex
                         <span [innerHTML]="editionComplex.complexId.full"></span> erscheint im Zusammenhang der
                         vollständigen Edition von <span [innerHTML]="editionComplex.complexId.short"></span> in
-                        {{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{
-                            editionComplex.section.short
+                        {{ editionRouteConstants.EDITION.short }} {{ editionComplex.pubStatement.series.short }}/{{
+                            editionComplex.pubStatement.section.short
                         }}.]
                     </small>
                 </p>

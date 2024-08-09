@@ -188,7 +188,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     );
                     let itemBodyEl = itemBodyDes[0].nativeElement;
 
-                    expect(itemBodyEl.classList).toContain('show');
+                    expectToContain(itemBodyEl.classList, 'show');
 
                     // Click header button
                     click(btnEl as HTMLElement);
@@ -217,7 +217,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     );
                     itemBodyEl = itemBodyDes[0].nativeElement;
 
-                    expect(itemBodyEl.classList).toContain('show');
+                    expectToContain(itemBodyEl.classList, 'show');
                 });
 
                 it('... should contain item body with two centered paragraphs', () => {
@@ -381,7 +381,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     );
                     let itemBodyEl = itemBodyDes[0].nativeElement;
 
-                    expect(itemBodyEl.classList).toContain('show');
+                    expectToContain(itemBodyEl.classList, 'show');
 
                     // Click header button
                     click(btnEl as HTMLElement);
@@ -396,7 +396,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     );
                     itemBodyEl = itemBodyDes[0].nativeElement;
 
-                    expect(itemBodyEl.classList).toContain('show');
+                    expectToContain(itemBodyEl.classList, 'show');
                 });
 
                 it('... should contain item body with two centered paragraphs', () => {

@@ -10,6 +10,8 @@ import Spy = jasmine.Spy;
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { expectToBe } from '@testing/expect-helper';
+
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
 import { SearchResponseJson } from '@awg-shared/api-objects';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
@@ -105,14 +107,14 @@ describe('SearchResultListComponent', () => {
     });
 
     it('... injected conversion service should use provided mockValue', () => {
-        expect(conversionService === mockConversionService).toBeTrue();
+        expectToBe(conversionService === mockConversionService, true);
     });
 
     it('... injected datastreamer service should use provided mockValue', () => {
-        expect(dataStreamerService === mockDataStreamerService).toBeTrue();
+        expectToBe(dataStreamerService === mockDataStreamerService, true);
     });
 
     it('... injected sideinfo service should use provided mockValue', () => {
-        expect(sideInfoService === mockSideInfoService).toBeTrue();
+        expectToBe(sideInfoService === mockSideInfoService, true);
     });
 });

@@ -251,15 +251,13 @@ describe('EditionSheetsService (DONE)', () => {
             it('if no TkA are given', () => {
                 const value = editionSheetsService.getTextcriticalCommentsForOverlays(undefined, expectedOverlays);
 
-                expect(value).toBeDefined();
-                expect(value).toEqual([]);
+                expectToEqual(value, []);
             });
 
             it('... if no overlays are given', () => {
                 const value = editionSheetsService.getTextcriticalCommentsForOverlays(expectedTka, undefined);
 
-                expect(value).toBeDefined();
-                expect(value).toEqual([]);
+                expectToEqual(value, []);
             });
         });
 
