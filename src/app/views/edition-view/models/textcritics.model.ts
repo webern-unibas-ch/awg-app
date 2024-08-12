@@ -1,6 +1,25 @@
 import { EditionSvgLinkBox } from './edition-svg-link-box.model';
 
 /**
+ * The TextcriticalBlock class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a single textcritical block
+ * from a textcritics json file.
+ */
+export class TextcriticalCommentBlock {
+    /**
+     * An optional header of the textcritical block.
+     */
+    blockHeader?: string;
+
+    /**
+     * The array of textcritical comments in the textcritical block.
+     */
+    blockComments: TextcriticalComment[];
+}
+
+/**
  * The TextcriticalComment class.
  *
  * It is used in the context of the edition view
@@ -60,7 +79,7 @@ export class Textcritics {
     /**
      * The array of textcritical comments from a textcritics list.
      */
-    comments: TextcriticalComment[];
+    comments: TextcriticalCommentBlock[];
 
     /**
      * The array of link boxes from a textcritics list.
