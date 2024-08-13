@@ -21,7 +21,7 @@ import {
     EditionSvgOverlayTypes,
     EditionSvgSheet,
     EditionSvgSheetList,
-    TextcriticalComment,
+    TextcriticalCommentBlock,
     Textcritics,
 } from '@awg-views/edition-view/models';
 
@@ -57,7 +57,7 @@ class EditionSvgSheetViewerStubComponent {
 @Component({ selector: 'awg-edition-svg-sheet-footer', template: '' })
 class EditionSvgSheetFooterStubComponent {
     @Input()
-    selectedTextcriticalComments: TextcriticalComment[];
+    selectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
     @Input()
     selectedTextcritics: Textcritics;
     @Input()
@@ -95,7 +95,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
     let expectedOverlays: EditionSvgOverlay[];
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
-    let expectedSelectedTextcriticalComments: TextcriticalComment[];
+    let expectedSelectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
     let expectedSelectedTextcritics: Textcritics;
     let expectedShowTkA: boolean;
     let expectedModalSnippet: string;
@@ -138,7 +138,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
             sheets: { workEditions: [], textEditions: [], sketchEditions: [expectedSvgSheet, expectedNextSvgSheet] },
         };
         expectedSelectedTextcritics = mockEditionData.mockTextcriticsData.textcritics.at(1);
-        expectedSelectedTextcriticalComments = expectedSelectedTextcritics.comments;
+        expectedSelectedTextcriticalCommentBlocks = expectedSelectedTextcritics.comments;
 
         const type = EditionSvgOverlayTypes.tka;
         const id = 'tka-1';
@@ -184,8 +184,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
 
-        it('... should not have `selectedTextcriticalComments`', () => {
-            expect(component.selectedTextcriticalComments).toBeUndefined();
+        it('... should not have `selectedTextcriticalCommentBlocks`', () => {
+            expect(component.selectedTextcriticalCommentBlocks).toBeUndefined();
         });
 
         it('... should not have `selectedTextcritics`', () => {
@@ -225,7 +225,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
             // Simulate the parent setting the input properties
             component.svgSheetsData = expectedSvgSheetsData;
             component.selectedSvgSheet = expectedSvgSheet;
-            component.selectedTextcriticalComments = expectedSelectedTextcriticalComments;
+            component.selectedTextcriticalCommentBlocks = expectedSelectedTextcriticalCommentBlocks;
             component.selectedTextcritics = expectedSelectedTextcritics;
             component.showTkA = expectedShowTkA;
 
@@ -241,8 +241,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
             expectToEqual(component.selectedSvgSheet, expectedSvgSheet);
         });
 
-        it('... should have `selectedTextcriticalComments` input', () => {
-            expectToEqual(component.selectedTextcriticalComments, expectedSelectedTextcriticalComments);
+        it('... should have `selectedTextcriticalCommentBlocks` input', () => {
+            expectToEqual(component.selectedTextcriticalCommentBlocks, expectedSelectedTextcriticalCommentBlocks);
         });
 
         it('... should have `selectedTextcritics` input', () => {
@@ -447,7 +447,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     expectToEqual(footerCmp.selectedTextcritics, expectedSelectedTextcritics);
                 });
 
-                it('... should pass down selectedTextcriticalComments to the EditionSvgSheetFooterComponent', () => {
+                it('... should pass down selectedTextcriticalCommentBlocks to the EditionSvgSheetFooterComponent', () => {
                     const footerDes = getAndExpectDebugElementByDirective(
                         compDe,
                         EditionSvgSheetFooterStubComponent,
@@ -458,7 +458,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
                         EditionSvgSheetFooterStubComponent
                     ) as EditionSvgSheetFooterStubComponent;
 
-                    expectToEqual(footerCmp.selectedTextcriticalComments, expectedSelectedTextcriticalComments);
+                    expectToEqual(
+                        footerCmp.selectedTextcriticalCommentBlocks,
+                        expectedSelectedTextcriticalCommentBlocks
+                    );
                 });
 
                 it('... should pass down showTkA to the EditionSvgSheetFooterComponent', () => {
