@@ -1461,6 +1461,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/TextcriticalComment.html" data-type="entity-link" >TextcriticalComment</a>
                             </li>
                             <li class="link">
+                                <a href="classes/TextcriticalCommentBlock.html" data-type="entity-link" >TextcriticalCommentBlock</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Textcritics.html" data-type="entity-link" >Textcritics</a>
                             </li>
                             <li class="link">

@@ -620,7 +620,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;0.12.3-206-g468a050cf&#x27;</code>
+                        <i>Default value : </i><code>&#x27;0.12.3-211-g8b42d8649&#x27;</code>
                     </td>
                 </tr>
 
@@ -652,7 +652,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;12. August 2024&#x27;</code>
+                        <i>Default value : </i><code>&#x27;13. August 2024&#x27;</code>
                     </td>
                 </tr>
 
@@ -4188,33 +4188,57 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 rowtable: true,
                 comments: [
                     {
-                        svgGroupId: &#x27;svg-group-1&#x27;,
-                        measure: &#x27;10&#x27;,
-                        system: &#x27;12&#x27;,
-                        position: &#x27;1. Note&#x27;,
-                        comment: &#x27;Viertelnote überschreibt Halbe Note.&#x27;,
+                        blockHeader: &#x27;blockheader 1&#x27;,
+                        blockComments: [
+                            {
+                                svgGroupId: &#x27;svg-group-1&#x27;,
+                                measure: &#x27;10&#x27;,
+                                system: &#x27;12&#x27;,
+                                position: &#x27;1. Note&#x27;,
+                                comment: &#x27;Viertelnote überschreibt Halbe Note.&#x27;,
+                            },
+                            {
+                                svgGroupId: &#x27;svg-group-2&#x27;,
+                                measure: &#x27;10&#x27;,
+                                system: &#x27;12&#x27;,
+                                position: &#x27;2. Note&#x27;,
+                                comment:
+                                    &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;&#x27;, fragmentId: &#x27;source_A&#x27;})\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test SkXYZ&lt;/strong&gt;&lt;/a&gt; T. [11] und &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt;.&quot;,
+                            },
+                            {
+                                svgGroupId: &#x27;svg-group-3&#x27;,
+                                measure: &#x27;{13}&#x27;,
+                                system: &#x27;12&#x27;,
+                                position: &#x27;3. Note&#x27;,
+                                comment: &#x27;{{ref.getGlyph(&quot;[a]&quot;)}} überschreibt {{ref.getGlyph(&quot;[b]&quot;)}}.&#x27;,
+                            },
+                            {
+                                svgGroupId: &#x27;svg-group-4&#x27;,
+                                measure: &#x27;[12]&#x27;,
+                                system: &#x27;13&#x27;,
+                                position: &#x27;&#x27;,
+                                comment: &#x27;radierte, nicht entzifferbare Schicht.&#x27;,
+                            },
+                        ],
                     },
                     {
-                        svgGroupId: &#x27;svg-group-2&#x27;,
-                        measure: &#x27;10&#x27;,
-                        system: &#x27;12&#x27;,
-                        position: &#x27;2. Note&#x27;,
-                        comment:
-                            &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;&#x27;, fragmentId: &#x27;source_A&#x27;})\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test SkXYZ&lt;/strong&gt;&lt;/a&gt; T. [11] und &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt;.&quot;,
-                    },
-                    {
-                        svgGroupId: &#x27;svg-group-3&#x27;,
-                        measure: &#x27;{13}&#x27;,
-                        system: &#x27;12&#x27;,
-                        position: &#x27;3. Note&#x27;,
-                        comment: &#x27;{{ref.getGlyph(&quot;[a]&quot;)}} überschreibt {{ref.getGlyph(&quot;[b]&quot;)}}.&#x27;,
-                    },
-                    {
-                        svgGroupId: &#x27;svg-group-4&#x27;,
-                        measure: &#x27;[12]&#x27;,
-                        system: &#x27;13&#x27;,
-                        position: &#x27;&#x27;,
-                        comment: &#x27;radierte, nicht entzifferbare Schicht.&#x27;,
+                        blockHeader: &#x27;blockheader 2&#x27;,
+                        blockComments: [
+                            {
+                                svgGroupId: &#x27;svg-group-5&#x27;,
+                                measure: &#x27;11&#x27;,
+                                system: &#x27;13&#x27;,
+                                position: &#x27;1. Note&#x27;,
+                                comment: &#x27;Viertelnote überschreibt Halbe Note.&#x27;,
+                            },
+                            {
+                                svgGroupId: &#x27;svg-group-6&#x27;,
+                                measure: &#x27;11&#x27;,
+                                system: &#x27;13&#x27;,
+                                position: &#x27;2. Note&#x27;,
+                                comment: &#x27;Halbe Note überschreibt Viertelnote.&#x27;,
+                            },
+                        ],
                     },
                 ],
                 linkBoxes: [],
