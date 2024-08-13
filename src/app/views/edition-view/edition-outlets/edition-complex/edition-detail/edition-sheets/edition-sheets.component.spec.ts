@@ -23,7 +23,7 @@ import {
     EditionSvgSheetList,
     FolioConvolute,
     FolioConvoluteList,
-    TextcriticalComment,
+    TextcriticalCommentBlock,
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
@@ -38,7 +38,7 @@ class EditionAccoladeStubComponent {
     @Input()
     selectedSvgSheet: EditionSvgSheet;
     @Input()
-    selectedTextcriticalComments: TextcriticalComment[];
+    selectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
     @Input()
     selectedTextcritics: Textcritics;
     @Input()
@@ -235,8 +235,8 @@ describe('EditionSheetsComponent', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
 
-        it('... should not have `selectedTextcriticalComments`', () => {
-            expect(component.selectedTextcriticalComments).toBeUndefined();
+        it('... should not have `selectedTextcriticalCommentBlocks`', () => {
+            expect(component.selectedTextcriticalCommentBlocks).toBeUndefined();
         });
 
         it('... should not have `selectedTextcritics`', () => {

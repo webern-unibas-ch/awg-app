@@ -42,7 +42,7 @@
                                 </p>
                                 @if (utils.isNotEmptyArray(textcritics.comments)) {
                                     <awg-edition-tka-table
-                                        [textcriticalComments]="textcritics.comments"
+                                        [textcriticalCommentBlocks]="textcritics.comments"
                                         [isRowTable]="textcritics.rowtable"
                                         [isSketchId]="utils.isSketchId(textcritics.id)"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
