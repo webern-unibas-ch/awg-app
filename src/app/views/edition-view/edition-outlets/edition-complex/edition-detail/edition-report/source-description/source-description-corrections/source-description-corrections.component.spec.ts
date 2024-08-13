@@ -12,7 +12,7 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { TextcriticalComment, Textcritics } from '@awg-views/edition-view/models';
+import { TextcriticalCommentBlock, Textcritics } from '@awg-views/edition-view/models';
 
 import { DOCUMENT } from '@angular/common';
 import { SourceDescriptionCorrectionsComponent } from './source-description-corrections.component';
@@ -21,7 +21,7 @@ import { SourceDescriptionCorrectionsComponent } from './source-description-corr
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
-    textcriticalComments: TextcriticalComment[];
+    textcriticalCommentBlocks: TextcriticalCommentBlock[];
     @Input()
     isCorrections = false;
     @Input()
@@ -254,7 +254,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
-                    expectToEqual(editionTkaTableCmp.textcriticalComments, expectedCorrections[index].comments);
+                    expectToEqual(editionTkaTableCmp.textcriticalCommentBlocks, expectedCorrections[index].comments);
                 });
             });
 
