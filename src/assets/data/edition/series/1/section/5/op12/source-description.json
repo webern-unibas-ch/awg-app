@@ -1773,511 +1773,443 @@
                         ],
                         "comments": [
                             {
-                                "svgGroupId": "TODO",
-                                "measure": "1",
-                                "system": "Klav.",
-                                "position": "1. Note",
-                                "comment": "{{ref.getGlyph('[ppp]')}} geändert zu {{ref.getGlyph('[pp]')}}."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "1",
-                                "system": "Klav. o.",
-                                "position": "1/8–2/4",
-                                "comment": "Crescendogabel zwischen den Systemen gestrichen. Crescendogabel 1–2/8, Decrescendogabel 2/8 bis Taktende über dem System hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "1<br />bis 2",
-                                "system": "Klav. o.",
-                                "position": "1/8<br />4/8",
-                                "comment": "Legatobogen geändert zu zwei Legatobögen von T. 1 1/8 bis T. 2 1/8 und T. 2 2.–3. Note."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "2",
-                                "system": "Klav. o.",
-                                "position": "2. Note",
-                                "comment": "<em>zögernd</em> geändert zu <em>rit. - - -</em> (mit Geltungsstrichelung bis Taktende).<br />{{ref.getGlyph('[ppp]')}} hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "3",
-                                "system": "Klav. u.",
-                                "position": "2–3/8",
-                                "comment": "Achtelfähnchen bei 2/8 geändert zu Balken."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "3",
-                                "system": "Ges.",
-                                "position": "6/8",
-                                "comment": "Tenutostrich hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "3<br />bis 5",
-                                "system": "Ges.",
-                                "position": "6/8<br />3/8",
-                                "comment": "Zuerst: Bogen über den Noten hinzugefügt. <br />Dann: Bogen wieder gestrichen. <br />Siehe Korrektur in T. 4 3/8 bis T. 5 3/8."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "4",
-                                "system": "Ges.",
-                                "position": "2–4/8",
-                                "comment": "Crescendogabel gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "4",
-                                "system": "Klav.",
-                                "position": "1.–2. Note",
-                                "comment": "Legatobogen und Decrescendogabel hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "4",
-                                "system": "Ges.",
-                                "position": "3–4/8",
-                                "comment": "Crescendogabel hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "4<br />bis 5",
-                                "system": "Ges.",
-                                "position": "3/8<br />3/8",
-                                "comment": "Bogen hinzugefügt. <br />Siehe Korrektur in T. 3 6/8 bis T. 5 3/8."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "4",
-                                "system": "Klav. o.",
-                                "position": "letzte Pause",
-                                "comment": "Viertelpause gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "4",
-                                "system": "Klav.",
-                                "position": "2. Note",
-                                "comment": "{{ref.getGlyph('[pp]')}} gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "5",
-                                "system": "Ges.",
-                                "position": "3–4/8",
-                                "comment": "Achtelfähnchen geändert zu Balken."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "5<br />bis 7",
-                                "system": "Ges.",
-                                "position": "4/8<br />1/4",
-                                "comment": "Bogen hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "6",
-                                "system": "Ges.",
-                                "position": "2.–4. Note",
-                                "comment": "Zunächst: Fähnchen bei 3.–4. Note geändert zu Balken über den Noten. <br />Dann: Balken bei 2.–4. Note unter den Noten hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "7",
-                                "system": "Klav. o.",
-                                "position": "2–3/8",
-                                "comment": "Achtelfähnchen geändert zu Balken."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "7",
-                                "system": "Klav.",
-                                "position": "2–3/8",
-                                "comment": "Decrescendogabel hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "7",
-                                "system": "Klav. u.",
-                                "position": "2–3/8",
-                                "comment": "Achtelfähnchen geändert zu Balken."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "7",
-                                "system": "Ges.",
-                                "position": "2.–3. Note",
-                                "comment": "Achtelfähnchen geändert zu Balken."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "7<br />bis 8",
-                                "system": "Ges.",
-                                "position": "2. Note<br />1. Note",
-                                "comment": "Bogen hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "7<br />bis 8",
-                                "system": "Ges.",
-                                "position": "3. Note<br />nach 1/4",
-                                "comment": "Ende der Crescendogabel T. 7 3. Note verlängert zu T. 8 nach 1/4."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "7<br />bis 8",
-                                "system": "Ges.",
-                                "position": "3. Note<br />3/8",
-                                "comment": "<em>dis fis e</em> unter den Noten es<sup>2</sup>–ges<sup>2</sup>–fes<sup>2</sup>."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "8",
-                                "system": "Klav. o. u.",
-                                "position": "1.–2. Note",
-                                "comment": "Stacctopunkte überschrieben zu Tenutostrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "8<br />bis 9",
-                                "system": "Ges.",
-                                "position": "3/8<br />2. Note",
-                                "comment": "Bogen hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "8<br />bis 9",
-                                "system": "Ges.",
-                                "position": "4/8<br />2. Note",
-                                "comment": "Ende der Crescendogabel T. 8 4/8 verlängert zu T. 9 2. Note."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "9",
-                                "system": "Klav.",
-                                "position": "1/4",
-                                "comment": "{{ref.getGlyph('[p]')}} geändert zu {{ref.getGlyph('[pp]')}}."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "9",
-                                "system": "Ges.",
-                                "position": "",
-                                "comment": "Drei Vierteltriolen geändert zu triolischer Viertel- und Achtelnote sowie triolischer Achtelpause und Viertelnote."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "9",
-                                "system": "Ges.",
-                                "position": "3. Note",
-                                "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "9<br />bis 11",
-                                "system": "Ges.",
-                                "position": "3. Note<br />1/4",
-                                "comment": "Bogen hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "9<br />bis 10",
-                                "system": "Klav. u.",
-                                "position": "4/8<br />1/4",
-                                "comment": "Legatobogen gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "9<br />bis 11",
-                                "system": "Klav. u.",
-                                "position": "4/8<br />1/4",
-                                "comment": "Legatobogen hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "10",
-                                "system": "Klav. o.",
-                                "position": "1., 2. Note",
-                                "comment": "Tenutostriche gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "10<br />bis 11",
-                                "system": "Klav. o.",
-                                "position": "1. Note<br />2. Note",
-                                "comment": "Legatobogen hinzugefügt. Siehe Korrektur T. 10 2. Note bis T. 11 2. Note.<br />Crescendogabel T. 10 1. Note bis nach 2. Note und Decrescendogabel T. 11 1.–2. Note geändert zu Decrescendogabel T. 10 1. Note bis T. 11 2. Note."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "10",
-                                "system": "Ges.",
-                                "position": "2–4/8",
-                                "comment": "Achtelfähnchen bei 3–4/8 geändert zu Balken."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "10<br />bis 11",
-                                "system": "Klav. o.",
-                                "position": "2. Note<br />2. Note",
-                                "comment": "Legatobogen gestrichen. Siehe Korrektur T. 10 1. Note bis T. 11 2. Note."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "10",
-                                "system": "Klav. u.",
-                                "position": "2/4",
-                                "comment": "Tenutostrich gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "11",
-                                "system": "Klav. o.",
-                                "position": "2. Note",
-                                "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "12",
-                                "system": "",
-                                "position": "Taktanfang",
-                                "comment": "<em>molto</em> (scil: „molto rit.“) gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "12/13",
-                                "system": "",
-                                "position": "Taktstrich",
-                                "comment": "Fermaten über Ges. und Klav. o. hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "13",
-                                "system": "Ges.",
-                                "position": "1/8",
-                                "comment": "Fermate gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "13",
-                                "system": "Klav. o.",
-                                "position": "",
-                                "comment": "Fermate gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "13",
-                                "system": "Klav. u.",
-                                "position": "1/4",
-                                "comment": "Fermate gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "13<br />bis 14",
-                                "system": "Ges.",
-                                "position": "2/8<br /> 2. Note?",
-                                "comment": "Bogen hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "13",
-                                "system": "Ges.",
-                                "position": "5–6/8",
-                                "comment": "Achtelfähnchen geändert zu Balken."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "13",
-                                "system": "Klav. u.",
-                                "position": "3/4",
-                                "comment": "{{ref.getGlyph('[ppp]')}} geändert zu {{ref.getGlyph('[pp]')}}."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "14",
-                                "system": "Ges.",
-                                "position": "1.–3. Note",
-                                "comment": "Achtelfähnchen geändert zu Balken."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "14",
-                                "system": "Klav. (u.)",
-                                "position": "1/8",
-                                "comment": "<em>ohne Pedal</em> gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "14",
-                                "system": "Klav. u.",
-                                "position": "1.–2. Note",
-                                "comment": "Decrescendogabel hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "14",
-                                "system": "Klav. u.",
-                                "position": "2. Note",
-                                "comment": "Decrescendogabel gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "14<br />bis 15",
-                                "system": "Ges.",
-                                "position": "3. Note<br />2/8",
-                                "comment": "Anfang des Bogens geändert von T. 14 3/8."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "14<br />bis 15",
-                                "system": "Ges.",
-                                "position": "3. Note<br />2/8",
-                                "comment": "Crescendogabel von T. 14 4/8 bis T. 15 1/8 geändert zu T. 14 3. Note bis T. 15 2/8."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "15",
-                                "system": "Ges.",
-                                "position": "2/8–8/16",
-                                "comment": "Zunächst: Fähnchen bei 3.–4. Note geändert zu Balken. <br />Dann: Balken bei 2.–4. Note hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "15",
-                                "system": "Ges.",
-                                "position": "3. Note",
-                                "comment": "{{ref.getGlyph('[pp]')}} gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "15<br />bis 16",
-                                "system": "Ges.",
-                                "position": "3. Note<br />2/4",
-                                "comment": "Crescendogabel T. 15 3.–4. Note und Decrescendogabel T. 16 1–2/4 geändert zu Decrescendogabel. <br />Anfang des Bogens T. 16 1/4 geändert zu T. 15 3. Note."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "15",
-                                "system": "Klav. o.",
-                                "position": "1.–2. Note",
-                                "comment": "{{ref.getGlyph('[pp]')}} zu 1. Note gestrichen und Crescendogabel geändert zu Decrescendogabel."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "16",
-                                "system": "Klav.",
-                                "position": "(3/4)",
-                                "comment": "Crescendogabel gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "17",
-                                "system": "Klav.",
-                                "position": "Taktanfang bis 1/4",
-                                "comment": "Decrescendogabel von T. 16 hinzugefügt. (E: Akkoladenwechsel nach T. 16.)"
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "17",
-                                "system": "Ges.",
-                                "position": "1–4/8",
-                                "comment": "Achtelfähnchen geändert zu Balken."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "17<br />bis 18",
-                                "system": "Ges.",
-                                "position": "1/8<br />2. Note",
-                                "comment": "Bogen hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "17",
-                                "system": "Ges.",
-                                "position": "2–3/8",
-                                "comment": "Crescendogabel gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "17",
-                                "system": "Klav.",
-                                "position": "2. Note",
-                                "comment": "{{ref.getGlyph('[p]')}} hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "18",
-                                "system": "Ges.",
-                                "position": "Taktanfang<br />bis 2. Note",
-                                "comment": "Decrescendogabel hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "18",
-                                "system": "Ges.",
-                                "position": "",
-                                "comment": "Drei Vierteltriolen geändert zu Viertel-, Achtelnote as<sup>1</sup>–ges<sup>1</sup> unter einer Triolenklammer und Achtelpause, Viertelnote des<sup>1</sup> unter einer Triolenklammer."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "18",
-                                "system": "Ges.",
-                                "position": "3. Note",
-                                "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "18<br />bis 21",
-                                "system": "Ges.",
-                                "position": "3. Note",
-                                "comment": "Bogen hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "19",
-                                "system": "Ges.",
-                                "position": "",
-                                "comment": "{{ref.getGlyph('[pp]')}} gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "19",
-                                "system": "Ges.",
-                                "position": "",
-                                "comment": "Ansatz zu Bogen oder Crescendogabel (bis Taktende) gestrichen."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "20",
-                                "system": "Ges.",
-                                "position": "2.–3. Note",
-                                "comment": "Crescendogabel überschrieben zu Decrescendogabel."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "21",
-                                "system": "Klav.",
-                                "position": "2/4",
-                                "comment": "{{ref.getGlyph('[pp]')}} geändert zu {{ref.getGlyph('[p]')}}."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "21<br />bis 22",
-                                "system": "Klav.",
-                                "position": "2/4",
-                                "comment": "Decrescendogabel hinzugefügt."
-                            },
-                            {
-                                "svgGroupId": "TODO",
-                                "measure": "22",
-                                "system": "Klav.",
-                                "position": "2/4",
-                                "comment": "{{ref.getGlyph('[ppp]')}} geändert zu {{ref.getGlyph('[pp]')}}."
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} geändert zu {{ref.getGlyph('[pp]')}}."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav. o.",
+                                        "position": "1/8–2/4",
+                                        "comment": "Crescendogabel zwischen den Systemen gestrichen. Crescendogabel 1–2/8, Decrescendogabel 2/8 bis Taktende über dem System hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "1<br />bis 2",
+                                        "system": "Klav. o.",
+                                        "position": "1/8<br />4/8",
+                                        "comment": "Legatobogen geändert zu zwei Legatobögen von T. 1 1/8 bis T. 2 1/8 und T. 2 2.–3. Note."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note",
+                                        "comment": "<em>zögernd</em> geändert zu <em>rit. - - -</em> (mit Geltungsstrichelung bis Taktende).<br />{{ref.getGlyph('[ppp]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav. u.",
+                                        "position": "2–3/8",
+                                        "comment": "Achtelfähnchen bei 2/8 geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "6/8",
+                                        "comment": "Tenutostrich hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "3<br />bis 5",
+                                        "system": "Ges.",
+                                        "position": "6/8<br />3/8",
+                                        "comment": "Zuerst: Bogen über den Noten hinzugefügt. <br />Dann: Bogen wieder gestrichen. <br />Siehe Korrektur in T. 4 3/8 bis T. 5 3/8."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "2–4/8",
+                                        "comment": "Crescendogabel gestrichen."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Legatobogen und Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "3–4/8",
+                                        "comment": "Crescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "4<br />bis 5",
+                                        "system": "Ges.",
+                                        "position": "3/8<br />3/8",
+                                        "comment": "Bogen hinzugefügt. <br />Siehe Korrektur in T. 3 6/8 bis T. 5 3/8."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav. o.",
+                                        "position": "letzte Pause",
+                                        "comment": "Viertelpause gestrichen."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav.",
+                                        "position": "2. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} gestrichen."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "3–4/8",
+                                        "comment": "Achtelfähnchen geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "5<br />bis 7",
+                                        "system": "Ges.",
+                                        "position": "4/8<br />1/4",
+                                        "comment": "Bogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "2.–4. Note",
+                                        "comment": "Zunächst: Fähnchen bei 3.–4. Note geändert zu Balken über den Noten. <br />Dann: Balken bei 2.–4. Note unter den Noten hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. o.",
+                                        "position": "2–3/8",
+                                        "comment": "Achtelfähnchen geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav.",
+                                        "position": "2–3/8",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. u.",
+                                        "position": "2–3/8",
+                                        "comment": "Achtelfähnchen geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "2.–3. Note",
+                                        "comment": "Achtelfähnchen geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "7<br />bis 8",
+                                        "system": "Ges.",
+                                        "position": "2. Note<br />1. Note",
+                                        "comment": "Bogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "7<br />bis 8",
+                                        "system": "Ges.",
+                                        "position": "3. Note<br />nach 1/4",
+                                        "comment": "Ende der Crescendogabel T. 7 3. Note verlängert zu T. 8 nach 1/4."
+                                    },
+                                    {
+                                        "measure": "7<br />bis 8",
+                                        "system": "Ges.",
+                                        "position": "3. Note<br />3/8",
+                                        "comment": "<em>dis fis e</em> unter den Noten es<sup>2</sup>–ges<sup>2</sup>–fes<sup>2</sup>."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. o. u.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Stacctopunkte überschrieben zu Tenutostrichen."
+                                    },
+                                    {
+                                        "measure": "8<br />bis 9",
+                                        "system": "Ges.",
+                                        "position": "3/8<br />2. Note",
+                                        "comment": "Bogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "8<br />bis 9",
+                                        "system": "Ges.",
+                                        "position": "4/8<br />2. Note",
+                                        "comment": "Ende der Crescendogabel T. 8 4/8 verlängert zu T. 9 2. Note."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav.",
+                                        "position": "1/4",
+                                        "comment": "{{ref.getGlyph('[p]')}} geändert zu {{ref.getGlyph('[pp]')}}."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Drei Vierteltriolen geändert zu triolischer Viertel- und Achtelnote sowie triolischer Achtelpause und Viertelnote."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "9<br />bis 11",
+                                        "system": "Ges.",
+                                        "position": "3. Note<br />1/4",
+                                        "comment": "Bogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "9<br />bis 10",
+                                        "system": "Klav. u.",
+                                        "position": "4/8<br />1/4",
+                                        "comment": "Legatobogen gestrichen."
+                                    },
+                                    {
+                                        "measure": "9<br />bis 11",
+                                        "system": "Klav. u.",
+                                        "position": "4/8<br />1/4",
+                                        "comment": "Legatobogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav. o.",
+                                        "position": "1., 2. Note",
+                                        "comment": "Tenutostriche gestrichen."
+                                    },
+                                    {
+                                        "measure": "10<br />bis 11",
+                                        "system": "Klav. o.",
+                                        "position": "1. Note<br />2. Note",
+                                        "comment": "Legatobogen hinzugefügt. Siehe Korrektur T. 10 2. Note bis T. 11 2. Note.<br />Crescendogabel T. 10 1. Note bis nach 2. Note und Decrescendogabel T. 11 1.–2. Note geändert zu Decrescendogabel T. 10 1. Note bis T. 11 2. Note."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "2–4/8",
+                                        "comment": "Achtelfähnchen bei 3–4/8 geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "10<br />bis 11",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note<br />2. Note",
+                                        "comment": "Legatobogen gestrichen. Siehe Korrektur T. 10 1. Note bis T. 11 2. Note."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav. u.",
+                                        "position": "2/4",
+                                        "comment": "Tenutostrich gestrichen."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>molto</em> (scil: „molto rit.“) gestrichen."
+                                    },
+                                    {
+                                        "measure": "12/13",
+                                        "system": "",
+                                        "position": "Taktstrich",
+                                        "comment": "Fermaten über Ges. und Klav. o. hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "Fermate gestrichen."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav. o.",
+                                        "position": "",
+                                        "comment": "Fermate gestrichen."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav. u.",
+                                        "position": "1/4",
+                                        "comment": "Fermate gestrichen."
+                                    },
+                                    {
+                                        "measure": "13<br />bis 14",
+                                        "system": "Ges.",
+                                        "position": "2/8<br /> 2. Note?",
+                                        "comment": "Bogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Ges.",
+                                        "position": "5–6/8",
+                                        "comment": "Achtelfähnchen geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav. u.",
+                                        "position": "3/4",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} geändert zu {{ref.getGlyph('[pp]')}}."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Ges.",
+                                        "position": "1.–3. Note",
+                                        "comment": "Achtelfähnchen geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav. (u.)",
+                                        "position": "1/8",
+                                        "comment": "<em>ohne Pedal</em> gestrichen."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav. u.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav. u.",
+                                        "position": "2. Note",
+                                        "comment": "Decrescendogabel gestrichen."
+                                    },
+                                    {
+                                        "measure": "14<br />bis 15",
+                                        "system": "Ges.",
+                                        "position": "3. Note<br />2/8",
+                                        "comment": "Anfang des Bogens geändert von T. 14 3/8."
+                                    },
+                                    {
+                                        "measure": "14<br />bis 15",
+                                        "system": "Ges.",
+                                        "position": "3. Note<br />2/8",
+                                        "comment": "Crescendogabel von T. 14 4/8 bis T. 15 1/8 geändert zu T. 14 3. Note bis T. 15 2/8."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Ges.",
+                                        "position": "2/8–8/16",
+                                        "comment": "Zunächst: Fähnchen bei 3.–4. Note geändert zu Balken. <br />Dann: Balken bei 2.–4. Note hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} gestrichen."
+                                    },
+                                    {
+                                        "measure": "15<br />bis 16",
+                                        "system": "Ges.",
+                                        "position": "3. Note<br />2/4",
+                                        "comment": "Crescendogabel T. 15 3.–4. Note und Decrescendogabel T. 16 1–2/4 geändert zu Decrescendogabel. <br />Anfang des Bogens T. 16 1/4 geändert zu T. 15 3. Note."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Klav. o.",
+                                        "position": "1.–2. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} zu 1. Note gestrichen und Crescendogabel geändert zu Decrescendogabel."
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "Klav.",
+                                        "position": "(3/4)",
+                                        "comment": "Crescendogabel gestrichen."
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Klav.",
+                                        "position": "Taktanfang bis 1/4",
+                                        "comment": "Decrescendogabel von T. 16 hinzugefügt. (E: Akkoladenwechsel nach T. 16.)"
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Ges.",
+                                        "position": "1–4/8",
+                                        "comment": "Achtelfähnchen geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "17<br />bis 18",
+                                        "system": "Ges.",
+                                        "position": "1/8<br />2. Note",
+                                        "comment": "Bogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Ges.",
+                                        "position": "2–3/8",
+                                        "comment": "Crescendogabel gestrichen."
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Klav.",
+                                        "position": "2. Note",
+                                        "comment": "{{ref.getGlyph('[p]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "18",
+                                        "system": "Ges.",
+                                        "position": "Taktanfang<br />bis 2. Note",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "18",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Drei Vierteltriolen geändert zu Viertel-, Achtelnote as<sup>1</sup>–ges<sup>1</sup> unter einer Triolenklammer und Achtelpause, Viertelnote des<sup>1</sup> unter einer Triolenklammer."
+                                    },
+                                    {
+                                        "measure": "18",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "18<br />bis 21",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "Bogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "19",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "{{ref.getGlyph('[pp]')}} gestrichen."
+                                    },
+                                    {
+                                        "measure": "19",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Ansatz zu Bogen oder Crescendogabel (bis Taktende) gestrichen."
+                                    },
+                                    {
+                                        "measure": "20",
+                                        "system": "Ges.",
+                                        "position": "2.–3. Note",
+                                        "comment": "Crescendogabel überschrieben zu Decrescendogabel."
+                                    },
+                                    {
+                                        "measure": "21",
+                                        "system": "Klav.",
+                                        "position": "2/4",
+                                        "comment": "{{ref.getGlyph('[pp]')}} geändert zu {{ref.getGlyph('[p]')}}."
+                                    },
+                                    {
+                                        "measure": "21<br />bis 22",
+                                        "system": "Klav.",
+                                        "position": "2/4",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "22",
+                                        "system": "Klav.",
+                                        "position": "2/4",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} geändert zu {{ref.getGlyph('[pp]')}}."
+                                    }
+                                ]
                             }
-                        ],
-                        "linkBoxes": []
+                        ]
                     }
                 ]
             }
@@ -2665,892 +2597,762 @@
                     }
                 ],
                 "corrections": [
-        {
-            "id": "source_F_corr",
-            "label": "Korrekturen in <strong>F</strong>",
-            "description": [
-                "Die Beschreibung der Korrekturen bezieht sich auf die Textfassungen der Werkedition von <em>Vier Lieder</em> op. 12."
-            ],
-            "comments": [
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "I  „Der Tag ist vergangen“ M 212",
-                            "system": "",
-                            "position": "",
-                            "comment": ""
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "1",
-                            "system": "Klav. o.",
-                            "position": "Taktanfang",
-                            "comment": "Rasur über dem System. Ante correcturam: Tempobezeichnung?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "2",
-                            "system": "Klav. o.",
-                            "position": "2. Note",
-                            "comment": "Rasur über dem System. Ante correcturam: <em>rit.</em>?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "3",
-                            "system": "Klav. o.",
-                            "position": "Taktanfang",
-                            "comment": "Rasur über dem System. Ante correcturam: <em>tempo</em>?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "4",
-                            "system": "Klav. u.",
-                            "position": "letzte Note",
-                            "comment": "Auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "5",
-                            "system": "Klav. o.",
-                            "position": "1. Note bis Taktende",
-                            "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "5 <br /> bis 6",
-                            "system": "Klav. u.",
-                            "position": "1. Note",
-                            "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "5 <br /> bis 7",
-                            "system": "Ges.",
-                            "position": "4/8 <br /> 1/4",
-                            "comment": "Zwei Bögen von T. 5 4/8 bis T. 6 4/16 und von T. 6 3. Note bis T. 7 1/4 über dem System rasiert."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "6",
-                            "system": "Klav. o.",
-                            "position": "1–2/4",
-                            "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "9",
-                            "system": "Ges.",
-                            "position": "1. Pause, letzte Note",
-                            "comment": "Triolenklammer hinzugefügt mit rotem Buntstift."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "10 <br /> bis 11",
-                            "system": "Klav. o.",
-                            "position": "1. Note <br /> 2. Note",
-                            "comment": "Legatobogen auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "10",
-                            "system": "Klav. u.",
-                            "position": "1/4",
-                            "comment": "Rasur unter dem System. Ende des Bogen von T. 9 letzte Note?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "10 <br /> bis 11",
-                            "system": "Klav. o.",
-                            "position": "2. Note <br /> 2. Note",
-                            "comment": "Decrescendogabel, {{ref.getGlyph('[pp]')}} auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "11",
-                            "system": "Klav. o.",
-                            "position": "2. Note",
-                            "comment": "Staccatopunkt hinzugefügt mit Bleistift."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "12",
-                            "system": "Ges.",
-                            "position": "",
-                            "comment": "Ganze Pause hinzugefügt mit Bleistift."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "13",
-                            "system": "Ges., Klav.",
-                            "position": "",
-                            "comment": "Fermaten rasiert über Ges. 1/8 und Klav. o. Ganze Pause. Fermaten über Taktstrich vor T. 13 vermutlich danach hinzugefügt."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "15",
-                            "system": "Klav. o.",
-                            "position": "1.–2. Note",
-                            "comment": "Decrescendogabel auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "21",
-                            "system": "Klav. o.",
-                            "position": "",
-                            "comment": "{{ref.getGlyph('[a]')}} zu e<sup>1</sup> verändert zu {{ref.getGlyph('[b]')}} zu es<sup>1</sup> und Verweislinie zu <em>AW</em> unter der Akkolade mit rotem Buntstift."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "21",
-                            "system": "Klav. u.",
-                            "position": "",
-                            "comment": "Rasur rechts neben g. Ante correcturam: Punktierung?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "21 <br /> bis 22",
-                            "system": "Klav. o.",
-                            "position": "2/4",
-                            "comment": "Bogen über dem System rasiert."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "II <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217",
-                            "system": "",
-                            "position": "",
-                            "comment": ""
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "5",
-                            "system": "Klav. o.",
-                            "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[p]')}} auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "5",
-                            "system": "Klav. o.",
-                            "position": "2. Note",
-                            "comment": "g<sup>2</sup> auf Rasur.  <br /> Ende der Decrescendogabel auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "5",
-                            "system": "Ges.",
-                            "position": "4/8",
-                            "comment": "{{ref.getGlyph('[p]')}} auf Rasur. <br /> Rasur am Notenhals."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "5",
-                            "system": "Ges.",
-                            "position": "6/8",
-                            "comment": "Auf Rasur. Ante correcturam: Untersatz angeglichen?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "6",
-                            "system": "Klav. u.",
-                            "position": "1. Note",
-                            "comment": "Rasur unter der Note. Ante correcturam: Dynamik?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "6",
-                            "system": "Klav.",
-                            "position": "2/8–5/16",
-                            "comment": "{{ref.getGlyph('[p]')}}, Decrescendogabel auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "6",
-                            "system": "Klav. u.",
-                            "position": "2. Note",
-                            "comment": "{{ref.getGlyph('[pp]')}} auf Rasur. Rasur unter dem System. Ante correcturam: Dynamik?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "6",
-                            "system": "Klav. o.",
-                            "position": "4/8",
-                            "comment": "Rasur unter dem System. Ante correcturam: Dynamik?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "7",
-                            "system": "Ges.",
-                            "position": "1. Note",
-                            "comment": "Rasur rechts neben dem Notenkopf. Ante correcturam: Augmentationspunkt?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "7",
-                            "system": "Klav. u.",
-                            "position": "2/4",
-                            "comment": "Viertelpause hinzugefügt mit Bleistift."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "7",
-                            "system": "Klav. u.",
-                            "position": "10/16",
-                            "comment": "Rasur über dem System. Ante correcturam: Dynamik?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "8",
-                            "system": "Klav. u.",
-                            "position": "3/16–2/4",
-                            "comment": "Decrescendogabel auf Rasur. Ante correcturam: Gabelende zuerst bis Taktende?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "9",
-                            "system": "Klav. o.",
-                            "position": "1/4",
-                            "comment": "Decrescendogabel auf Rasur. Ante correcturam: Gabelanfang zuerst in T. 8 4/8?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "12 <br /> bis 13",
-                            "system": "Klav.",
-                            "position": "letzte Note",
-                            "comment": "{{ref.getGlyph('[pp]')}}, Decrescendogabel, {{ref.getGlyph('[ppp]')}} auf Rasur. Ante correcturam: Decrescendogabel zuerst über den Taktstrich?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "13",
-                            "system": "Ges.",
-                            "position": "",
-                            "comment": "Gabeln auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "14",
-                            "system": "Klav. u.",
-                            "position": "2/4",
-                            "comment": "Notenhals auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "14 <br /> bis 16",
-                            "system": "Klav. u.",
-                            "position": "2/4 <br /> 2/4",
-                            "comment": "Bogen schwach mit Bleistift: stehengelassene Vorzeichnung? (Siehe auch Korrektur in T. 16 bis 17.)"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "16",
-                            "system": "Ges.",
-                            "position": "5/8 bis Taktende",
-                            "comment": "[mp], Crescendogabel auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "16 <br /> bis 17",
-                            "system": "Klav. u.",
-                            "position": "3/4 <br /> 2/4",
-                            "comment": "Bogen schwach mit Bleistift: stehengelassene Vorzeichnung? (Siehe auch Korrektur in T. 14 bis 16.)"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "17",
-                            "system": "Ges.",
-                            "position": "2–3/4",
-                            "comment": "Decrescendogabel auf Rasur. Ante correcturam: Gabelanfang zuerst zu 1/4?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "17",
-                            "system": "Klav. o.",
-                            "position": "9/16",
-                            "comment": "Rasur über dem System. Ante correcturam: Dynamik?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "17",
-                            "system": "Klav. o.",
-                            "position": "9–12/16",
-                            "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "17",
-                            "system": "Klav. u.",
-                            "position": "5–6/8",
-                            "comment": "Rasur unter dem System. Ante correcturam: Dynamik und Gabel?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "18",
-                            "system": "Ges.",
-                            "position": "1/4",
-                            "comment": "<em>?</em> mit rotem Buntstift: Text fehlt."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "18 <br /> bis 19",
-                            "system": "Klav. u.",
-                            "position": "1/16 <br /> 3/4",
-                            "comment": "Rasur über dem System. Ante correcturam: Bogen?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "18",
-                            "system": "Klav. o.",
-                            "position": "3/4",
-                            "comment": "{{ref.getGlyph('[p]')}} mit Bleistift, mit schwarzer Tinte nachgezogen."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "18 <br /> bis 19",
-                            "system": "Klav. o.",
-                            "position": "3/4 <br /> 3. Note",
-                            "comment": "Decrescendogabel auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "19",
-                            "system": "Klav. o.",
-                            "position": "3.–4. Note",
-                            "comment": "{{ref.getGlyph('[pp]')}} und Decrescendogabel mit schwarzer Tinte überschreiben Decrescendogabel mit Bleitstift."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "19 <br /> bis 22",
-                            "system": "Ges.",
-                            "position": "3/4 <br /> 2/4",
-                            "comment": "Rasuren über dem System. Ante correcturam: vermutlich Bogen von T. 20 1/4 bis T. 22 2/4.  <br /> (Decrescendogabel in T. 22 auf dieser Rasur.)"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "20",
-                            "system": "Klav. o.",
-                            "position": "1/16–3/8",
-                            "comment": "Rasuren über dem System. Ante correcturam: vermutlich Bogen 1/16–3/8."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "20",
-                            "system": "Klav. u.",
-                            "position": "1/8",
-                            "comment": "Staccatopunkt auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "21",
-                            "system": "Klav. o.",
-                            "position": "1.–4. Note",
-                            "comment": "Crescendogabel mit Bleistift, nachgezogen mit schwarzer Tinte."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "21",
-                            "system": "Ges.",
-                            "position": "letzte Note",
-                            "comment": "des<sup>2</sup> auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "22",
-                            "system": "Klav. o.",
-                            "position": "1. Note",
-                            "comment": "Auf Rasur. (Untersatz geändert.) <br /> {{ref.getGlyph('[p]')}} mit Bleistift, nachgezogen mit schwarzer Tinte."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "22",
-                            "system": "Klav. o.",
-                            "position": "1.–3. Note",
-                            "comment": "Rasur unter dem System. Ante correcturam: Decrescendogabel bereits ab 1. Note?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "22",
-                            "system": "Ges.",
-                            "position": "5/8",
-                            "comment": "{{ref.getGlyph('[p]')}} mit Bleistift, mit schwarzer Tinte nachgezogen."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "23 <br /> bis 24",
-                            "system": "Ges., Klav.",
-                            "position": "Taktanfang",
-                            "comment": "Auf Rasur. (Untersatzkorrektur?)"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "25–27",
-                            "system": "Klav. u.",
-                            "position": "",
-                            "comment": "Rasuren unter dem System."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "25 <br /> bis 26",
-                            "system": "Klav. o.",
-                            "position": "3/8 <br /> 2. Note",
-                            "comment": "Rasuren über dem System. Ante correcturam: Bogen bis T. 26 2. Note?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "25 <br /> bis 26",
-                            "system": "Klav.",
-                            "position": "2/4 <br /> Taktende",
-                            "comment": "{{ref.getGlyph('[pp]')}}, Decrescendogabel auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "27",
-                            "system": "Klav.",
-                            "position": "",
-                            "comment": "{{ref.getGlyph('[ppp]')}}, Decrescendogabel auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "27",
-                            "system": "Klav. u.",
-                            "position": "",
-                            "comment": "Augmentationspunkt hinzugefügt mit Bleistift."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "III „Schien mir’s, als ich sah die Sonne“ M 213",
-                            "system": "",
-                            "position": "",
-                            "comment": ""
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "4",
-                            "system": "Ges.",
-                            "position": "5–6/16",
-                            "comment": "Sechzehntelpause auf Rasur. Ante correcturam: Achtelnote d<sup>2</sup>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "5",
-                            "system": "Klav. o.",
-                            "position": "2/16–2/8",
-                            "comment": "Decrescendogabel auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "5",
-                            "system": "Klav.",
-                            "position": "3–6/16",
-                            "comment": "Rasur über den Noten."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "6",
-                            "system": "Klav. u.",
-                            "position": "",
-                            "comment": "Rasuren neben den Notenköpfen. Ante correcturam: punktierte Viertelnote."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "8",
-                            "system": "Klav. u.",
-                            "position": "2–3/8",
-                            "comment": "{{ref.getGlyph('[pp]')}}, Decrescendogabel auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "8",
-                            "system": "Ges.",
-                            "position": "6/16",
-                            "comment": "[Son-]<em>ne!</em> geändert zu [Son-]<em>ne,</em>, <em>!</em> rasiert, Komma mit Bleistift."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "11",
-                            "system": "Klav. o.",
-                            "position": "2/8–6/16",
-                            "comment": "Rasuren. Ante correcturam: vermutlich zwei zusammengebalkte Achtelnoten?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "11",
-                            "system": "Ges.",
-                            "position": "3/8",
-                            "comment": "<em>:</em> (?) überschrieben zu <em>;</em> mit Bleistift."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "12",
-                            "system": "",
-                            "position": "Taktanfang",
-                            "comment": "<em>tempo</em> auf Rasur. Ante correcturam: Geltungsstrichelung von <em>rit.</em> in T. 11 bis Ende T. 12?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "14",
-                            "system": "Klav. o.",
-                            "position": "1., 2. Note",
-                            "comment": "Rasuren über den Noten."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "15 <br /> bis 16",
-                            "system": "Ges.",
-                            "position": "3/8 <br /> Taktende",
-                            "comment": "Rasur unter den Noten. Ante correcturam: Bogen unter den Noten."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "16",
-                            "system": "",
-                            "position": "",
-                            "comment": "Geltungsstrichelung von <em>rit.</em> auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "16",
-                            "system": "Klav. o.",
-                            "position": "2. Note",
-                            "comment": "Rasuren über der Note."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "17–18",
-                            "system": "",
-                            "position": "",
-                            "comment": "Taktartvorzeichnung vor T. 17: <em>5/8</em> überschrieben zu <em>2/8</em> sowie Taktstrich nach T. 17 und Taktartvorzeichnung vor T. 18 (<em>3/8</em>) hinzugefügt."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "17",
-                            "system": "Klav. o.",
-                            "position": "Taktanfang",
-                            "comment": "Bassschlüssel auf Rasur. Ante correcturam: Violinschlüssel."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "20–21",
-                            "system": "",
-                            "position": "",
-                            "comment": "Taktartvorzeichnung vor T. 20: <em>5/8</em> überschrieben zu <em>2/8</em> sowie Taktstrich nach T. 20 hinzugefügt und Untersatz am Anfang von T. 21 geändert auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "21",
-                            "system": "Klav. u.",
-                            "position": "4/16",
-                            "comment": "Rasur über dem System."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "22",
-                            "system": "Ges.",
-                            "position": "2/16",
-                            "comment": "dis<sup>2</sup> auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "23",
-                            "system": "Klav. o.",
-                            "position": "1–2/8",
-                            "comment": "Crescendogabel auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "23",
-                            "system": "Ges.",
-                            "position": "2/16–12/32",
-                            "comment": "Gabeln auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "24",
-                            "system": "Klav. u.",
-                            "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[p]')}} auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "24 <br /> bis 25",
-                            "system": "Ges.",
-                            "position": "1. Note <br /> letzte Note",
-                            "comment": "Rasuren über dem System. Decrescendogabel in T. 25 3.–4. Note auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "25",
-                            "system": "Klav. u.",
-                            "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[p]')}} auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "25",
-                            "system": "",
-                            "position": "(2/8)",
-                            "comment": "<em>rit.- - -</em> gestrichen mit Bleistift. (Siehe Korrektur in T. 26 Taktanfang.)"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "25",
-                            "system": "Klav. o.",
-                            "position": "3/8",
-                            "comment": "[mf] auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "26",
-                            "system": "",
-                            "position": "Taktanfang",
-                            "comment": "Taktartvorzeichnung <em>4/8</em> überschrieben zu <em>2/4</em>.  <br /> <em>rit.</em> hinzugefügt mit Bleistift. (Siehe Korrektur in T. 25 [2/8].)"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "26",
-                            "system": "Klav. u.",
-                            "position": "1–2/8",
-                            "comment": "Auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "26",
-                            "system": "Ges.",
-                            "position": "1.–4. Note",
-                            "comment": "Gabeln mit Bleistift, radiert und mit schwarzer Tinte nachgezogen."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "26",
-                            "system": "Klav. o.",
-                            "position": "3.–4. Note",
-                            "comment": "Ende der Decrescendogabel auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "26",
-                            "system": "Klav. u.",
-                            "position": "8/16",
-                            "comment": "{{ref.getGlyph('[p]')}} auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "27 <br /> bis 28",
-                            "system": "Ges.",
-                            "position": "2/16 <br /> 2/8",
-                            "comment": "Rasur über den Noten. Ante correcturam: Bogen von T. 27 2/16 bis T. 28 2/8."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "28",
-                            "system": "Ges.",
-                            "position": "1–2/8",
-                            "comment": "Bogen auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "28 <br /> bis 29",
-                            "system": "Ges.",
-                            "position": "3. Note <br /> 2. Note",
-                            "comment": "Rasur über den Noten. Ante correcturam: Bogen von T. 28 3. Note bis T. 29 2. Note."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "30",
-                            "system": "",
-                            "position": "Taktanfang",
-                            "comment": "<em>accell.</em> auf Rasur. Ante correcturam: vermutlich durchgehende Geltungsstrichelung von <em>rit.</em> in T. 28 3/8 bis Ende T. 31?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "30",
-                            "system": "Klav.",
-                            "position": "1/8",
-                            "comment": "Achtelpausen auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "30",
-                            "system": "Klav. o.",
-                            "position": "vor 2/8",
-                            "comment": "Violinschlüssel auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "33",
-                            "system": "Klav.",
-                            "position": "4/32–4/16",
-                            "comment": "Auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "34",
-                            "system": "",
-                            "position": "Taktanfang",
-                            "comment": "Taktartvorzeichnung <em>4/8</em> überschrieben zu <em>2/4</em>.  <br /> Geltungsstrichelung auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "34",
-                            "system": "Klav. o.",
-                            "position": "1/4",
-                            "comment": "Oberstimmenschicht: Viertelpause auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "34–36",
-                            "system": "Klav. o.",
-                            "position": "",
-                            "comment": "Rasur zwischen den Stimmenschichten. Ante correcturam: Trillerwellenlinie über a aus Unterstimmenschicht?"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "35",
-                            "system": "",
-                            "position": "Taktanfang",
-                            "comment": "<em>sehr ruhig (</em>[Achtel] <em>= ca 100)</em> auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "38–40",
-                            "system": "",
-                            "position": "",
-                            "comment": "<em>rit. - - -</em> mit Bleistift, nachgezogen mit schwarzer Tinte."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "IV <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216",
-                            "system": "",
-                            "position": "",
-                            "comment": ""
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "2",
-                            "system": "Klav. o.",
-                            "position": "2.–4. Note",
-                            "comment": "Decrescendogabel hinzugefügt mit Bleistift."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "3",
-                            "system": "Ges.",
-                            "position": "1–2/4",
-                            "comment": "Viertelpausen und Fermate zu 2/4 hinzugefügt mit Bleistift."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "8 <br /> bis 9",
-                            "system": "Klav. u.",
-                            "position": "1/4",
-                            "comment": "e/g auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "9 <br /> bis 10",
-                            "system": "Klav. o.",
-                            "position": "2/8 <br /> 2/8",
-                            "comment": "Notenköpfe mit Bleistift nachgezogen.  <br /> Gabeln (über dem System) auf Rasur. Ante correcturam: Bogen über dem System. Post correcturam: Bogen unter dem System."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "9 <br /> bis 10",
-                            "system": "Klav. u.",
-                            "position": "2. Note",
-                            "comment": "Bogen rasiert."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "10 <br /> bis 11",
-                            "system": "Ges.",
-                            "position": "2/4 <br /> 1. Note",
-                            "comment": "Rasur über dem System. Ante correcturam: Bogen und Decrescendogabel überschneiden sich."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "11",
-                            "system": "Klav. u.",
-                            "position": "1/8",
-                            "comment": "Rasur über der Note."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "11",
-                            "system": "",
-                            "position": "3/4",
-                            "comment": "<em>rit.</em> vermutlich versetzt von Anfang T. 12. (Dort Geltungsstrichelung auf Rasur)."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "12",
-                            "system": "Klav. u.",
-                            "position": "1/4",
-                            "comment": "Auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "13",
-                            "system": "Klav. o.",
-                            "position": "",
-                            "comment": "g<sup>2</sup>/ges<sup>3</sup>/ais<sup>3</sup>, zweite Hilfslinie gestrichen und Tonnamen <em>fis</em> | <em>es</em> vor den beiden obersten Notenköpfen ergänzt mit Bleistift."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "15",
-                            "system": "Klav. o.",
-                            "position": "1/4",
-                            "comment": "Unterstimmenschicht: Viertelpause auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "15",
-                            "system": "Klav. o.",
-                            "position": "2/8",
-                            "comment": "{{ref.getGlyph('[f]')}} mit Bleistift, mit schwarzer Tinte nachgezogen."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "15",
-                            "system": "Klav. o.",
-                            "position": "2–6/8",
-                            "comment": "Rasur unter dem System."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "16",
-                            "system": "Ges.",
-                            "position": "",
-                            "comment": "Ganze Pause hinzugefügt mit Bleistift."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "16",
-                            "system": "Klav.",
-                            "position": "1.–2. Note",
-                            "comment": "{{ref.getGlyph('[p]')}}, Decrescendogabel auf Rasur."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "16",
-                            "system": "Klav.",
-                            "position": "",
-                            "comment": "Auf Rasur. Ante correcturam: Klav. u. und Klav. o. Unterstimmenschicht vermutlich Ligatur aus Viertelnote, punktierte Viertelnote C/A und e, Achtelpause. Klav. o. Oberstimmenschicht vermutlich Viertelnote cis<sup>1</sup>, Achtelpause"
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "18",
-                            "system": "Klav. o.",
-                            "position": "1/4",
-                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> hinzugefügt mit Bleistift."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "19",
-                            "system": "Klav. o.",
-                            "position": "2.–3. Note",
-                            "comment": "Oberstimmenschicht auf Rasur."
-                        }
-                    ],
-                    "linkBoxes": []
-                }
-            ]
+                    {
+                        "id": "source_F_corr",
+                        "label": "Korrekturen in <strong>F</strong>",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf die Textfassungen der Werkedition von <em>Vier Lieder</em> op. 12."
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "I  „Der Tag ist vergangen“ M 212",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav. o.",
+                                        "position": "Taktanfang",
+                                        "comment": "Rasur über dem System. Ante correcturam: Tempobezeichnung?"
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note",
+                                        "comment": "Rasur über dem System. Ante correcturam: <em>rit.</em>?"
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav. o.",
+                                        "position": "Taktanfang",
+                                        "comment": "Rasur über dem System. Ante correcturam: <em>tempo</em>?"
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav. u.",
+                                        "position": "letzte Note",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. o.",
+                                        "position": "1. Note bis Taktende",
+                                        "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
+                                    },
+                                    {
+                                        "measure": "5 <br /> bis 6",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
+                                    },
+                                    {
+                                        "measure": "5 <br /> bis 7",
+                                        "system": "Ges.",
+                                        "position": "4/8 <br /> 1/4",
+                                        "comment": "Zwei Bögen von T. 5 4/8 bis T. 6 4/16 und von T. 6 3. Note bis T. 7 1/4 über dem System rasiert."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. o.",
+                                        "position": "1–2/4",
+                                        "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "1. Pause, letzte Note",
+                                        "comment": "Triolenklammer hinzugefügt mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "10 <br /> bis 11",
+                                        "system": "Klav. o.",
+                                        "position": "1. Note <br /> 2. Note",
+                                        "comment": "Legatobogen auf Rasur."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav. u.",
+                                        "position": "1/4",
+                                        "comment": "Rasur unter dem System. Ende des Bogen von T. 9 letzte Note?"
+                                    },
+                                    {
+                                        "measure": "10 <br /> bis 11",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note <br /> 2. Note",
+                                        "comment": "Decrescendogabel, {{ref.getGlyph('[pp]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note",
+                                        "comment": "Staccatopunkt hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Ganze Pause hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Ges., Klav.",
+                                        "position": "",
+                                        "comment": "Fermaten rasiert über Ges. 1/8 und Klav. o. Ganze Pause. Fermaten über Taktstrich vor T. 13 vermutlich danach hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Klav. o.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "21",
+                                        "system": "Klav. o.",
+                                        "position": "",
+                                        "comment": "{{ref.getGlyph('[a]')}} zu e<sup>1</sup> verändert zu {{ref.getGlyph('[b]')}} zu es<sup>1</sup> und Verweislinie zu <em>AW</em> unter der Akkolade mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "21",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Rasur rechts neben g. Ante correcturam: Punktierung?"
+                                    },
+                                    {
+                                        "measure": "21 <br /> bis 22",
+                                        "system": "Klav. o.",
+                                        "position": "2/4",
+                                        "comment": "Bogen über dem System rasiert."
+                                    }
+                                ]
+                            },
+                            {
+                                "blockHeader": "II <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217",
+                                "blockComments": [
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. o.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[p]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note",
+                                        "comment": "g<sup>2</sup> auf Rasur.  <br /> Ende der Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "{{ref.getGlyph('[p]')}} auf Rasur. <br /> Rasur am Notenhals."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "6/8",
+                                        "comment": "Auf Rasur. Ante correcturam: Untersatz angeglichen?"
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "Rasur unter der Note. Ante correcturam: Dynamik?"
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav.",
+                                        "position": "2/8–5/16",
+                                        "comment": "{{ref.getGlyph('[p]')}}, Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "2. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} auf Rasur. Rasur unter dem System. Ante correcturam: Dynamik?"
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. o.",
+                                        "position": "4/8",
+                                        "comment": "Rasur unter dem System. Ante correcturam: Dynamik?"
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "Rasur rechts neben dem Notenkopf. Ante correcturam: Augmentationspunkt?"
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. u.",
+                                        "position": "2/4",
+                                        "comment": "Viertelpause hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. u.",
+                                        "position": "10/16",
+                                        "comment": "Rasur über dem System. Ante correcturam: Dynamik?"
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. u.",
+                                        "position": "3/16–2/4",
+                                        "comment": "Decrescendogabel auf Rasur. Ante correcturam: Gabelende zuerst bis Taktende?"
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav. o.",
+                                        "position": "1/4",
+                                        "comment": "Decrescendogabel auf Rasur. Ante correcturam: Gabelanfang zuerst in T. 8 4/8?"
+                                    },
+                                    {
+                                        "measure": "12 <br /> bis 13",
+                                        "system": "Klav.",
+                                        "position": "letzte Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}}, Decrescendogabel, {{ref.getGlyph('[ppp]')}} auf Rasur. Ante correcturam: Decrescendogabel zuerst über den Taktstrich?"
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Gabeln auf Rasur."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav. u.",
+                                        "position": "2/4",
+                                        "comment": "Notenhals auf Rasur."
+                                    },
+                                    {
+                                        "measure": "14 <br /> bis 16",
+                                        "system": "Klav. u.",
+                                        "position": "2/4 <br /> 2/4",
+                                        "comment": "Bogen schwach mit Bleistift: stehengelassene Vorzeichnung? (Siehe auch Korrektur in T. 16 bis 17.)"
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "Ges.",
+                                        "position": "5/8 bis Taktende",
+                                        "comment": "{{ref.getGlyph('[mp]')}}, Crescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "16 <br /> bis 17",
+                                        "system": "Klav. u.",
+                                        "position": "3/4 <br /> 2/4",
+                                        "comment": "Bogen schwach mit Bleistift: stehengelassene Vorzeichnung? (Siehe auch Korrektur in T. 14 bis 16.)"
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Ges.",
+                                        "position": "2–3/4",
+                                        "comment": "Decrescendogabel auf Rasur. Ante correcturam: Gabelanfang zuerst zu 1/4?"
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Klav. o.",
+                                        "position": "9/16",
+                                        "comment": "Rasur über dem System. Ante correcturam: Dynamik?"
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Klav. o.",
+                                        "position": "9–12/16",
+                                        "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Klav. u.",
+                                        "position": "5–6/8",
+                                        "comment": "Rasur unter dem System. Ante correcturam: Dynamik und Gabel?"
+                                    },
+                                    {
+                                        "measure": "18",
+                                        "system": "Ges.",
+                                        "position": "1/4",
+                                        "comment": "<em>?</em> mit rotem Buntstift: Text fehlt."
+                                    },
+                                    {
+                                        "measure": "18 <br /> bis 19",
+                                        "system": "Klav. u.",
+                                        "position": "1/16 <br /> 3/4",
+                                        "comment": "Rasur über dem System. Ante correcturam: Bogen?"
+                                    },
+                                    {
+                                        "measure": "18",
+                                        "system": "Klav. o.",
+                                        "position": "3/4",
+                                        "comment": "{{ref.getGlyph('[p]')}} mit Bleistift, mit schwarzer Tinte nachgezogen."
+                                    },
+                                    {
+                                        "measure": "18 <br /> bis 19",
+                                        "system": "Klav. o.",
+                                        "position": "3/4 <br /> 3. Note",
+                                        "comment": "Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "19",
+                                        "system": "Klav. o.",
+                                        "position": "3.–4. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} und Decrescendogabel mit schwarzer Tinte überschreiben Decrescendogabel mit Bleitstift."
+                                    },
+                                    {
+                                        "measure": "19 <br /> bis 22",
+                                        "system": "Ges.",
+                                        "position": "3/4 <br /> 2/4",
+                                        "comment": "Rasuren über dem System. Ante correcturam: vermutlich Bogen von T. 20 1/4 bis T. 22 2/4.  <br /> (Decrescendogabel in T. 22 auf dieser Rasur.)"
+                                    },
+                                    {
+                                        "measure": "20",
+                                        "system": "Klav. o.",
+                                        "position": "1/16–3/8",
+                                        "comment": "Rasuren über dem System. Ante correcturam: vermutlich Bogen 1/16–3/8."
+                                    },
+                                    {
+                                        "measure": "20",
+                                        "system": "Klav. u.",
+                                        "position": "1/8",
+                                        "comment": "Staccatopunkt auf Rasur."
+                                    },
+                                    {
+                                        "measure": "21",
+                                        "system": "Klav. o.",
+                                        "position": "1.–4. Note",
+                                        "comment": "Crescendogabel mit Bleistift, nachgezogen mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "21",
+                                        "system": "Ges.",
+                                        "position": "letzte Note",
+                                        "comment": "des<sup>2</sup> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "22",
+                                        "system": "Klav. o.",
+                                        "position": "1. Note",
+                                        "comment": "Auf Rasur. (Untersatz geändert.) <br /> {{ref.getGlyph('[p]')}} mit Bleistift, nachgezogen mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "22",
+                                        "system": "Klav. o.",
+                                        "position": "1.–3. Note",
+                                        "comment": "Rasur unter dem System. Ante correcturam: Decrescendogabel bereits ab 1. Note?"
+                                    },
+                                    {
+                                        "measure": "22",
+                                        "system": "Ges.",
+                                        "position": "5/8",
+                                        "comment": "{{ref.getGlyph('[p]')}} mit Bleistift, mit schwarzer Tinte nachgezogen."
+                                    },
+                                    {
+                                        "measure": "23 <br /> bis 24",
+                                        "system": "Ges., Klav.",
+                                        "position": "Taktanfang",
+                                        "comment": "Auf Rasur. (Untersatzkorrektur?)"
+                                    },
+                                    {
+                                        "measure": "25–27",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Rasuren unter dem System."
+                                    },
+                                    {
+                                        "measure": "25 <br /> bis 26",
+                                        "system": "Klav. o.",
+                                        "position": "3/8 <br /> 2. Note",
+                                        "comment": "Rasuren über dem System. Ante correcturam: Bogen bis T. 26 2. Note?"
+                                    },
+                                    {
+                                        "measure": "25 <br /> bis 26",
+                                        "system": "Klav.",
+                                        "position": "2/4 <br /> Taktende",
+                                        "comment": "{{ref.getGlyph('[pp]')}}, Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "27",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "{{ref.getGlyph('[ppp]')}}, Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "27",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Augmentationspunkt hinzugefügt mit Bleistift."
+                                    }
+                                ]
+                            },
+                            {
+                                "blockHeader": "III „Schien mir’s, als ich sah die Sonne“ M 213",
+                                "blockComments": [
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "5–6/16",
+                                        "comment": "Sechzehntelpause auf Rasur. Ante correcturam: Achtelnote d<sup>2</sup>."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. o.",
+                                        "position": "2/16–2/8",
+                                        "comment": "Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav.",
+                                        "position": "3–6/16",
+                                        "comment": "Rasur über den Noten."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Rasuren neben den Notenköpfen. Ante correcturam: punktierte Viertelnote."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. u.",
+                                        "position": "2–3/8",
+                                        "comment": "{{ref.getGlyph('[pp]')}}, Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "6/16",
+                                        "comment": "[Son-]<em>ne!</em> geändert zu [Son-]<em>ne,</em>, <em>!</em> rasiert, Komma mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. o.",
+                                        "position": "2/8–6/16",
+                                        "comment": "Rasuren. Ante correcturam: vermutlich zwei zusammengebalkte Achtelnoten?"
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "3/8",
+                                        "comment": "<em>:</em> (?) überschrieben zu <em>;</em> mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>tempo</em> auf Rasur. Ante correcturam: Geltungsstrichelung von <em>rit.</em> in T. 11 bis Ende T. 12?"
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav. o.",
+                                        "position": "1., 2. Note",
+                                        "comment": "Rasuren über den Noten."
+                                    },
+                                    {
+                                        "measure": "15 <br /> bis 16",
+                                        "system": "Ges.",
+                                        "position": "3/8 <br /> Taktende",
+                                        "comment": "Rasur unter den Noten. Ante correcturam: Bogen unter den Noten."
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Geltungsstrichelung von <em>rit.</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note",
+                                        "comment": "Rasuren über der Note."
+                                    },
+                                    {
+                                        "measure": "17–18",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Taktartvorzeichnung vor T. 17: <em>5/8</em> überschrieben zu <em>2/8</em> sowie Taktstrich nach T. 17 und Taktartvorzeichnung vor T. 18 (<em>3/8</em>) hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Klav. o.",
+                                        "position": "Taktanfang",
+                                        "comment": "Bassschlüssel auf Rasur. Ante correcturam: Violinschlüssel."
+                                    },
+                                    {
+                                        "measure": "20–21",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Taktartvorzeichnung vor T. 20: <em>5/8</em> überschrieben zu <em>2/8</em> sowie Taktstrich nach T. 20 hinzugefügt und Untersatz am Anfang von T. 21 geändert auf Rasur."
+                                    },
+                                    {
+                                        "measure": "21",
+                                        "system": "Klav. u.",
+                                        "position": "4/16",
+                                        "comment": "Rasur über dem System."
+                                    },
+                                    {
+                                        "measure": "22",
+                                        "system": "Ges.",
+                                        "position": "2/16",
+                                        "comment": "dis<sup>2</sup> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "23",
+                                        "system": "Klav. o.",
+                                        "position": "1–2/8",
+                                        "comment": "Crescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "23",
+                                        "system": "Ges.",
+                                        "position": "2/16–12/32",
+                                        "comment": "Gabeln auf Rasur."
+                                    },
+                                    {
+                                        "measure": "24",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[p]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "24 <br /> bis 25",
+                                        "system": "Ges.",
+                                        "position": "1. Note <br /> letzte Note",
+                                        "comment": "Rasuren über dem System. Decrescendogabel in T. 25 3.–4. Note auf Rasur."
+                                    },
+                                    {
+                                        "measure": "25",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[p]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "25",
+                                        "system": "",
+                                        "position": "(2/8)",
+                                        "comment": "<em>rit.- - -</em> gestrichen mit Bleistift. (Siehe Korrektur in T. 26 Taktanfang.)"
+                                    },
+                                    {
+                                        "measure": "25",
+                                        "system": "Klav. o.",
+                                        "position": "3/8",
+                                        "comment": "{{ref.getGlyph('[mf]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "26",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "Taktartvorzeichnung <em>4/8</em> überschrieben zu <em>2/4</em>.  <br /> <em>rit.</em> hinzugefügt mit Bleistift. (Siehe Korrektur in T. 25 [2/8].)"
+                                    },
+                                    {
+                                        "measure": "26",
+                                        "system": "Klav. u.",
+                                        "position": "1–2/8",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "26",
+                                        "system": "Ges.",
+                                        "position": "1.–4. Note",
+                                        "comment": "Gabeln mit Bleistift, radiert und mit schwarzer Tinte nachgezogen."
+                                    },
+                                    {
+                                        "measure": "26",
+                                        "system": "Klav. o.",
+                                        "position": "3.–4. Note",
+                                        "comment": "Ende der Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "26",
+                                        "system": "Klav. u.",
+                                        "position": "8/16",
+                                        "comment": "{{ref.getGlyph('[p]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "27 <br /> bis 28",
+                                        "system": "Ges.",
+                                        "position": "2/16 <br /> 2/8",
+                                        "comment": "Rasur über den Noten. Ante correcturam: Bogen von T. 27 2/16 bis T. 28 2/8."
+                                    },
+                                    {
+                                        "measure": "28",
+                                        "system": "Ges.",
+                                        "position": "1–2/8",
+                                        "comment": "Bogen auf Rasur."
+                                    },
+                                    {
+                                        "measure": "28 <br /> bis 29",
+                                        "system": "Ges.",
+                                        "position": "3. Note <br /> 2. Note",
+                                        "comment": "Rasur über den Noten. Ante correcturam: Bogen von T. 28 3. Note bis T. 29 2. Note."
+                                    },
+                                    {
+                                        "measure": "30",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>accell.</em> auf Rasur. Ante correcturam: vermutlich durchgehende Geltungsstrichelung von <em>rit.</em> in T. 28 3/8 bis Ende T. 31?"
+                                    },
+                                    {
+                                        "measure": "30",
+                                        "system": "Klav.",
+                                        "position": "1/8",
+                                        "comment": "Achtelpausen auf Rasur."
+                                    },
+                                    {
+                                        "measure": "30",
+                                        "system": "Klav. o.",
+                                        "position": "vor 2/8",
+                                        "comment": "Violinschlüssel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "33",
+                                        "system": "Klav.",
+                                        "position": "4/32–4/16",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "34",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "Taktartvorzeichnung <em>4/8</em> überschrieben zu <em>2/4</em>.  <br /> Geltungsstrichelung auf Rasur."
+                                    },
+                                    {
+                                        "measure": "34",
+                                        "system": "Klav. o.",
+                                        "position": "1/4",
+                                        "comment": "Oberstimmenschicht: Viertelpause auf Rasur."
+                                    },
+                                    {
+                                        "measure": "34–36",
+                                        "system": "Klav. o.",
+                                        "position": "",
+                                        "comment": "Rasur zwischen den Stimmenschichten. Ante correcturam: Trillerwellenlinie über a aus Unterstimmenschicht?"
+                                    },
+                                    {
+                                        "measure": "35",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>sehr ruhig (</em>[Achtel] <em>= ca 100)</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "38–40",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "<em>rit. - - -</em> mit Bleistift, nachgezogen mit schwarzer Tinte."
+                                    }
+                                ]
+                            },
+                            {
+                                "blockHeader": "IV <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216",
+                                "blockComments": [
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav. o.",
+                                        "position": "2.–4. Note",
+                                        "comment": "Decrescendogabel hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "1–2/4",
+                                        "comment": "Viertelpausen und Fermate zu 2/4 hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "8 <br /> bis 9",
+                                        "system": "Klav. u.",
+                                        "position": "1/4",
+                                        "comment": "e/g auf Rasur."
+                                    },
+                                    {
+                                        "measure": "9 <br /> bis 10",
+                                        "system": "Klav. o.",
+                                        "position": "2/8 <br /> 2/8",
+                                        "comment": "Notenköpfe mit Bleistift nachgezogen.  <br /> Gabeln (über dem System) auf Rasur. Ante correcturam: Bogen über dem System. Post correcturam: Bogen unter dem System."
+                                    },
+                                    {
+                                        "measure": "9 <br /> bis 10",
+                                        "system": "Klav. u.",
+                                        "position": "2. Note",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "10 <br /> bis 11",
+                                        "system": "Ges.",
+                                        "position": "2/4 <br /> 1. Note",
+                                        "comment": "Rasur über dem System. Ante correcturam: Bogen und Decrescendogabel überschneiden sich."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. u.",
+                                        "position": "1/8",
+                                        "comment": "Rasur über der Note."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "",
+                                        "position": "3/4",
+                                        "comment": "<em>rit.</em> vermutlich versetzt von Anfang T. 12. (Dort Geltungsstrichelung auf Rasur)."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav. u.",
+                                        "position": "1/4",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav. o.",
+                                        "position": "",
+                                        "comment": "g<sup>2</sup>/ges<sup>3</sup>/ais<sup>3</sup>, zweite Hilfslinie gestrichen und Tonnamen <em>fis</em> | <em>es</em> vor den beiden obersten Notenköpfen ergänzt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Klav. o.",
+                                        "position": "1/4",
+                                        "comment": "Unterstimmenschicht: Viertelpause auf Rasur."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Klav. o.",
+                                        "position": "2/8",
+                                        "comment": "{{ref.getGlyph('[f]')}} mit Bleistift, mit schwarzer Tinte nachgezogen."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Klav. o.",
+                                        "position": "2–6/8",
+                                        "comment": "Rasur unter dem System."
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Ganze Pause hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "Klav.",
+                                        "position": "1.–2. Note",
+                                        "comment": "{{ref.getGlyph('[p]')}}, Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Auf Rasur. Ante correcturam: Klav. u. und Klav. o. Unterstimmenschicht vermutlich Ligatur aus Viertelnote, punktierte Viertelnote C/A und e, Achtelpause. Klav. o. Oberstimmenschicht vermutlich Viertelnote cis<sup>1</sup>, Achtelpause"
+                                    },
+                                    {
+                                        "measure": "18",
+                                        "system": "Klav. o.",
+                                        "position": "1/4",
+                                        "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "19",
+                                        "system": "Klav. o.",
+                                        "position": "2.–3. Note",
+                                        "comment": "Oberstimmenschicht auf Rasur."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
             }
         },
         {
