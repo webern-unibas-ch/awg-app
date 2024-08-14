@@ -7,11 +7,42 @@
             "type": "Skizzen zu Studienkomposition für Klavier M 36.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
-                    "1 Bogen (Bl. 1/2)."
-                ],
+                "desc": ["1 Bogen (Bl. 1/2)."],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 349 × 265 mm, Firmenzeichen: ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
+                ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 18,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "349"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "265"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_5_LIN_18_C",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r", "2r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1/2"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "Bleistift",
@@ -28,7 +59,7 @@
                         "item": "M 34 Sk1",
                         "itemLinkTo": {
                             "complexId": "m34",
-                            "sheetId": "M_34_Sk1"
+                            "sheetId": "M_34_Sk1a"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 34)",
                         "folios": [
@@ -41,21 +72,21 @@
                                         {
                                             "system": "1–2",
                                             "measure": "1–7",
-                                            "linkTo": ""
+                                            "linkTo": "M_34_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–5",
                                             "measure": "8–14",
-                                            "linkTo": ""
+                                            "linkTo": "M_34_Sk1b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7a–8a",
                                             "measure": "15–16",
-                                            "linkTo": ""
+                                            "linkTo": "M_34_Sk1c"
                                         }
                                     ]
                                 ]
@@ -89,8 +120,8 @@
                     {
                         "item": "M 35/42 Sk1",
                         "itemLinkTo": {
-                            "complexId": "m35/42",
-                            "sheetId": "SkRT"
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 35/42)",
                         "folios": [
@@ -103,14 +134,14 @@
                                         {
                                             "system": "10–11",
                                             "measure": "1–7",
-                                            "linkTo": ""
+                                            "linkTo": "M_35_42_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13a–14a",
-                                            "measure": "8(1–/4), {8(3/4)A–9A, 10}, 8(3/4)B–9B",
-                                            "linkTo": ""
+                                            "measure": "8(1–2/4), {8(3/4)A–9A, 10}, 8(3/4)B–9B",
+                                            "linkTo": "M_35_42_Sk1b"
                                         }
                                     ]
                                 ]
@@ -121,7 +152,7 @@
                         "item": "M 36 Sk1",
                         "itemLinkTo": {
                             "complexId": "m36",
-                            "sheetId": "M_36_Sk1"
+                            "sheetId": "M_36_Sk1a"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 36)",
                         "folios": [
@@ -134,35 +165,35 @@
                                         {
                                             "system": "16–17",
                                             "measure": "1–6",
-                                            "linkTo": ""
+                                            "linkTo": "M_36_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "14c–15b",
                                             "measure": "7",
-                                            "linkTo": ""
+                                            "linkTo": "M_36_Sk1b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13b–14b",
                                             "measure": "8–11",
-                                            "linkTo": ""
+                                            "linkTo": "M_36_Sk1c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12",
                                             "measure": "12",
-                                            "linkTo": ""
+                                            "linkTo": "M_36_Sk1d"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "15a",
                                             "measure": "16",
-                                            "linkTo": ""
+                                            "linkTo": "M_36_Sk1e"
                                         }
                                     ]
                                 ]
@@ -171,10 +202,7 @@
                     },
                     {
                         "item": "M* 404 Sk1",
-                        "itemLinkTo": {
-                            "complexId": "mstar404",
-                            "sheetId": "Mstar_404_Sk1"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 404)",
                         "folios": [
                             {
@@ -223,10 +251,7 @@
                     },
                     {
                         "item": "M* 404 Sk1.1",
-                        "itemLinkTo": {
-                            "complexId": "mstar404",
-                            "sheetId": "Mstar_404_Sk1_1"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 404)",
                         "folios": [
                             {
@@ -247,10 +272,7 @@
                     },
                     {
                         "item": "M* 404 Sk1.2",
-                        "itemLinkTo": {
-                            "complexId": "mstar404",
-                            "sheetId": "Mstar_404_Sk1_2"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 404)",
                         "folios": [
                             {
@@ -271,10 +293,7 @@
                     },
                     {
                         "item": "M* 404 Sk1.3",
-                        "itemLinkTo": {
-                            "complexId": "mstar404",
-                            "sheetId": "Mstar_404_Sk1_3"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 404)",
                         "folios": [
                             {
@@ -295,10 +314,7 @@
                     },
                     {
                         "item": "M* 404 Sk1.4",
-                        "itemLinkTo": {
-                            "complexId": "mstar404",
-                            "sheetId": "Mstar_404_Sk1_4"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 404)",
                         "folios": [
                             {
@@ -319,10 +335,7 @@
                     },
                     {
                         "item": "M 38 Sk3",
-                        "itemLinkTo": {
-                            "complexId": "m38",
-                            "sheetId": "M_38_Sk3"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 38)",
                         "folios": [
                             {
@@ -378,10 +391,7 @@
                     },
                     {
                         "item": "M 39 Sk1",
-                        "itemLinkTo": {
-                            "complexId": "m39",
-                            "sheetId": "M_39_Sk1"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 39)",
                         "folios": [
                             {
@@ -458,13 +468,6 @@
                                             "measure": "13B, 14",
                                             "linkTo": ""
                                         }
-                                    ],
-                                    [
-                                        {
-                                            "system": "2b–3b",
-                                            "measure": "18–19",
-                                            "linkTo": ""
-                                        }
                                     ]
                                 ]
                             }
@@ -472,10 +475,7 @@
                     },
                     {
                         "item": "M 39 Sk1.1",
-                        "itemLinkTo": {
-                            "complexId": "m39",
-                            "sheetId": "M_39_Sk1_1"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 39)",
                         "folios": [
                             {
@@ -544,10 +544,7 @@
                     },
                     {
                         "item": "M 38 Sk2",
-                        "itemLinkTo": {
-                            "complexId": "m38",
-                            "sheetId": "M_38_Sk2"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 38)",
                         "folios": [
                             {
@@ -568,10 +565,7 @@
                     },
                     {
                         "item": "M 38 Sk1",
-                        "itemLinkTo": {
-                            "complexId": "m38",
-                            "sheetId": "M_38_Sk1"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 38)",
                         "folios": [
                             {
@@ -581,7 +575,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "Nach  18",
+                                            "system": "nach 18",
                                             "measure": "1–12",
                                             "linkTo": ""
                                         }
@@ -607,21 +601,21 @@
                                         {
                                             "system": "7–8",
                                             "measure": "1–6",
-                                            "linkTo": ""
+                                            "linkTo": "M_37_Sk3a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10–11",
                                             "measure": "7–14",
-                                            "linkTo": ""
+                                            "linkTo": "M_37_Sk3b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13–14",
                                             "measure": "15–21",
-                                            "linkTo": ""
+                                            "linkTo": "M_37_Sk3c"
                                         }
                                     ]
                                 ]
@@ -638,11 +632,42 @@
             "type": "Tintenniederschrift von Studienkomposition für Klavier M 36.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
-                    "1 Bogen (Bl. 1/2). Stockfleck und rötliche Verfärbung mittig am oberen Rand des Bogens."
-                ],
+                "desc": ["1 Bogen (Bl. 1/2). Stockfleck und rötliche Verfärbung mittig am oberen Rand des Bogens."],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 349 × 267 mm, Firmenzeichen: ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
+                ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 18,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "349"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "267"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_5_LIN_18_D",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r", "2r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1/2"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte, Bleistift",
@@ -659,7 +684,7 @@
                         "item": "M 34",
                         "itemLinkTo": {
                             "complexId": "m34",
-                            "sheetId": "M_34"
+                            "sheetId": "M_34_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 34)",
                         "folios": [
@@ -689,8 +714,8 @@
                     {
                         "item": "M 35/42",
                         "itemLinkTo": {
-                            "complexId": "m35/42",
-                            "sheetId": "SkRT"
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 35/42)",
                         "folios": [
@@ -720,8 +745,8 @@
                     {
                         "item": "M 35/42 Sk2",
                         "itemLinkTo": {
-                            "complexId": "m35/42",
-                            "sheetId": "SkRT"
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk2"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 35/42)",
                         "folios": [
@@ -745,7 +770,7 @@
                         "item": "M 36",
                         "itemLinkTo": {
                             "complexId": "m36",
-                            "sheetId": "M_36"
+                            "sheetId": "M_36_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 36)",
                         "folios": [
@@ -790,7 +815,7 @@
                         "item": "M 37",
                         "itemLinkTo": {
                             "complexId": "m37",
-                            "sheetId": "M_37"
+                            "sheetId": "M_37_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 37)",
                         "folios": [
@@ -802,7 +827,7 @@
                                     [
                                         {
                                             "system": "4–5",
-                                            "measure": "17",
+                                            "measure": "1–7",
                                             "linkTo": ""
                                         }
                                     ],
@@ -826,10 +851,7 @@
                     },
                     {
                         "item": "M 38",
-                        "itemLinkTo": {
-                            "complexId": "m38",
-                            "sheetId": "M_38"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 38)",
                         "folios": [
                             {
@@ -864,10 +886,7 @@
                     },
                     {
                         "item": "M 39",
-                        "itemLinkTo": {
-                            "complexId": "m39",
-                            "sheetId": "M_39"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 39: Textfassung 1→2)",
                         "folios": [
                             {
@@ -916,10 +935,7 @@
                     },
                     {
                         "item": "M 39 Sk2",
-                        "itemLinkTo": {
-                            "complexId": "m39",
-                            "sheetId": "M_39_Sk2"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 39: Textfassung 2)",
                         "folios": [
                             {
@@ -927,17 +943,20 @@
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
-                                    []
+                                    [
+                                        {
+                                            "system": "16a–17a (Bleistift)",
+                                            "measure": "9–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
                                 ]
                             }
                         ]
                     },
                     {
                         "item": "M 39 Sk3",
-                        "itemLinkTo": {
-                            "complexId": "m39",
-                            "sheetId": "M_39_Sk3"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 39: Textfassung 2)",
                         "folios": [
                             {
@@ -951,14 +970,7 @@
                                             "measure": "16–17(1–2/4)",
                                             "linkTo": ""
                                         }
-                                    ]
-                                ]
-                            },
-                            {
-                                "folio": "",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
+                                    ],
                                     [
                                         {
                                             "system": "16b–17b (Bleistift)",
@@ -972,10 +984,7 @@
                     },
                     {
                         "item": "M 41",
-                        "itemLinkTo": {
-                            "complexId": "m41",
-                            "sheetId": "M_41"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 41)",
                         "folios": [
                             {
