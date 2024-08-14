@@ -1,0 +1,106 @@
+{
+    "textcritics": [
+        {
+            "id": "M_43_TF1",
+            "label": "M 43 einzige Textfassung",
+            "description": [
+                "Für die Textedition der Studienkomposition für Klavier M 43 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm43', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm43', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen. <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'm43', fragmentId: 'source_B'})\"><strong>B</strong></a> B weist Korrekturen mit Tinte auf. Der Zustand vor den Korrekturen ist nicht immer zu entziffern. Der Zustand nach den Korrekturen konstituiert eine kohärente Textfassung. <br /> Hauptquelle für die Textedition der Studienkomposition für Klavier M 43 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm43', fragmentId: 'source_B'})\"><strong>B</strong></a> post correcturam."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g5910",
+                    "measure": "vor 1",
+                    "system": "Klav. o.",
+                    "position": "1. Note",
+                    "comment": "{{ref.getGlyph('[f]')}} versetzt von 2. Note."
+                },
+                {
+                    "svgGroupId": "g5914",
+                    "measure": "6",
+                    "system": "Klav.",
+                    "position": "5/8",
+                    "comment": "Ende der Decrescendogabel versetzt von zwischen 2/4 und 5/8."
+                },
+                {
+                    "svgGroupId": "g5918",
+                    "measure": "6",
+                    "system": "Klav. o.",
+                    "position": "6/8",
+                    "comment": "e korrigiert zu g mit Blick auf Stimmführung."
+                },
+                {
+                    "svgGroupId": "g5922",
+                    "measure": "9",
+                    "system": "Klav. o.",
+                    "position": "8. Note",
+                    "comment": "Achtelnote es<sup>2</sup> ergänzt mit Blick auf Ligaturbogen von 7. Note."
+                },
+                {
+                    "svgGroupId": "g5926",
+                    "measure": "10",
+                    "system": "Klav. u.",
+                    "position": "7–8/8",
+                    "comment": "Achtelnoten dis<sup>1</sup>–e<sup>1</sup> nach oben gehalst mit Blick auf Stimmführung."
+                },
+                {
+                    "svgGroupId": "g5929",
+                    "measure": "11",
+                    "system": "Klav.",
+                    "position": "Taktende",
+                    "comment": "sic. <strong>B</strong>: Kein Schlussstrich vorhanden."
+                }
+            ]
+        },
+        {
+            "id": "M_43_Sk1",
+            "label": "M 43 Sk1",
+            "description": [
+                "<strong>M 43 Sk1</strong> ist eine rhythmische Skizze zur Studienkomposition für Klavier M 43."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g2317",
+                    "measure": "7",
+                    "system": "16",
+                    "position": "1–4/8",
+                    "comment": "Viert Achtelnoten überschreiben drei Triolenachteln."
+                },
+                {
+                    "svgGroupId": "g3062",
+                    "measure": "7",
+                    "system": "16",
+                    "position": "(4/4)",
+                    "comment": "Drei Triolenachteln überschreiben vier Achtelnoten."
+                },
+                {
+                    "svgGroupId": "g3062",
+                    "measure": "7",
+                    "system": "16",
+                    "position": "(4/4)",
+                    "comment": "Drei Triolenachteln überschreiben vier Achtelnoten."
+                },
+                {
+                    "svgGroupId": "g12590",
+                    "measure": "8B",
+                    "system": "17",
+                    "position": "6/8",
+                    "comment": "sic. Lies: Viertelnote."
+                },
+                {
+                    "svgGroupId": "g15345",
+                    "measure": "10",
+                    "system": "17",
+                    "position": "1–2/8",
+                    "comment": "Zwei Achtelnoten überschreiben drei Triolenachteln."
+                },
+                {
+                    "svgGroupId": "g13704",
+                    "measure": "10",
+                    "system": "17",
+                    "position": "2/4",
+                    "comment": "Viertelnote überschreit drei Triolenachteln."
+                }
+            ]    
+        }
+    ]
+}
