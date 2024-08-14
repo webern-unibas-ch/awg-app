@@ -8,15 +8,24 @@
             }
         </tr>
     </thead>
-    @if (textcriticalComments) {
+    @if (textcriticalCommentBlocks) {
         <tbody>
-            @for (textcriticalComment of textcriticalComments; track $index) {
-                <tr>
-                    <td [innerHTML]="textcriticalComment.measure"></td>
-                    <td [innerHTML]="textcriticalComment.system"></td>
-                    <td [innerHTML]="textcriticalComment.position"></td>
-                    <td><span [compile-html]="textcriticalComment.comment" [compile-html-ref]="ref"></span></td>
-                </tr>
+            @for (textcriticalCommentBlock of textcriticalCommentBlocks; track $index) {
+                @if (textcriticalCommentBlock.blockHeader) {
+                    <tr>
+                        <td colspan="4" class="awg-edition-tka-table-block-header">
+                            <span [compile-html]="textcriticalCommentBlock.blockHeader" [compile-html-ref]="ref"></span>
+                        </td>
+                    </tr>
+                }
+                @for (textcriticalComment of textcriticalCommentBlock.blockComments; track $index) {
+                    <tr>
+                        <td [innerHTML]="textcriticalComment.measure"></td>
+                        <td [innerHTML]="textcriticalComment.system"></td>
+                        <td [innerHTML]="textcriticalComment.position"></td>
+                        <td><span [compile-html]="textcriticalComment.comment" [compile-html-ref]="ref"></span></td>
+                    </tr>
+                }
             }
         </tbody>
     }

@@ -1161,33 +1161,57 @@ export const mockEditionData = {
                 rowtable: true,
                 comments: [
                     {
-                        svgGroupId: 'svg-group-1',
-                        measure: '10',
-                        system: '12',
-                        position: '1. Note',
-                        comment: 'Viertelnote überschreibt Halbe Note.',
+                        blockHeader: 'blockheader 1',
+                        blockComments: [
+                            {
+                                svgGroupId: 'svg-group-1',
+                                measure: '10',
+                                system: '12',
+                                position: '1. Note',
+                                comment: 'Viertelnote überschreibt Halbe Note.',
+                            },
+                            {
+                                svgGroupId: 'svg-group-2',
+                                measure: '10',
+                                system: '12',
+                                position: '2. Note',
+                                comment:
+                                    "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test SkXYZ</strong></a> T. [11] und <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Test Sk1</strong></a>.",
+                            },
+                            {
+                                svgGroupId: 'svg-group-3',
+                                measure: '{13}',
+                                system: '12',
+                                position: '3. Note',
+                                comment: '{{ref.getGlyph("[a]")}} überschreibt {{ref.getGlyph("[b]")}}.',
+                            },
+                            {
+                                svgGroupId: 'svg-group-4',
+                                measure: '[12]',
+                                system: '13',
+                                position: '',
+                                comment: 'radierte, nicht entzifferbare Schicht.',
+                            },
+                        ],
                     },
                     {
-                        svgGroupId: 'svg-group-2',
-                        measure: '10',
-                        system: '12',
-                        position: '2. Note',
-                        comment:
-                            "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test SkXYZ</strong></a> T. [11] und <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Test Sk1</strong></a>.",
-                    },
-                    {
-                        svgGroupId: 'svg-group-3',
-                        measure: '{13}',
-                        system: '12',
-                        position: '3. Note',
-                        comment: '{{ref.getGlyph("[a]")}} überschreibt {{ref.getGlyph("[b]")}}.',
-                    },
-                    {
-                        svgGroupId: 'svg-group-4',
-                        measure: '[12]',
-                        system: '13',
-                        position: '',
-                        comment: 'radierte, nicht entzifferbare Schicht.',
+                        blockHeader: 'blockheader 2',
+                        blockComments: [
+                            {
+                                svgGroupId: 'svg-group-5',
+                                measure: '11',
+                                system: '13',
+                                position: '1. Note',
+                                comment: 'Viertelnote überschreibt Halbe Note.',
+                            },
+                            {
+                                svgGroupId: 'svg-group-6',
+                                measure: '11',
+                                system: '13',
+                                position: '2. Note',
+                                comment: 'Halbe Note überschreibt Viertelnote.',
+                            },
+                        ],
                     },
                 ],
                 linkBoxes: [],
