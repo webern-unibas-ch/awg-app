@@ -16,9 +16,9 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { UtilityService } from '@awg-app/core/services';
+import { UtilityService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { TextcriticalComment, TextcriticsList } from '@awg-views/edition-view/models';
+import { TextcriticalCommentBlock, TextcriticsList } from '@awg-views/edition-view/models';
 
 import { TextcriticsListComponent } from './textcritics-list.component';
 
@@ -45,7 +45,7 @@ class EditionTkaLabelStubComponent {
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
-    textcriticalComments: TextcriticalComment[];
+    textcriticalCommentBlocks: TextcriticalCommentBlock[];
     @Input()
     isCorrections = false;
     @Input()
@@ -681,7 +681,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         ) as EditionTkaTableStubComponent;
 
                         expectToEqual(
-                            editionTkaTableCmp.textcriticalComments,
+                            editionTkaTableCmp.textcriticalCommentBlocks,
                             expectedTextcriticsData.textcritics[1].comments
                         );
                     });

@@ -62,8 +62,9 @@
                     @for (editionComplex of DISPLAYED_EDITION_COMPLEXES; track editionComplex.complexId.short) {
                         <div class="awg-dropdown-complexes">
                             <h6 class="dropdown-header">
-                                [{{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{
-                                    editionComplex.section.short
+                                [{{ editionRouteConstants.EDITION.short }}
+                                {{ editionComplex.pubStatement.series.short }}/{{
+                                    editionComplex.pubStatement.section.short
                                 }}]
                                 <span [innerHTML]="editionComplex.complexId.full"></span>
                             </h6>

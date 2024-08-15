@@ -14,7 +14,7 @@ import {
     EditionSvgSheetList,
     FolioConvolute,
     FolioConvoluteList,
-    TextcriticalComment,
+    TextcriticalCommentBlock,
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
@@ -78,11 +78,11 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     selectedSvgSheet: EditionSvgSheet;
 
     /**
-     * Public variable: selectedTextcriticalComments.
+     * Public variable: selectedTextcriticalCommentBlocks.
      *
-     * It keeps the selected textcritical comments.
+     * It keeps the selected textcritical comment blocks.
      */
-    selectedTextcriticalComments: TextcriticalComment[];
+    selectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
 
     /**
      * Public variable: selectedTextcritics.
@@ -247,12 +247,12 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the selectedTextcriticalComments and showTka variable.
      */
     onOverlaySelect(overlays: EditionSvgOverlay[]): void {
-        this.selectedTextcriticalComments = this.editionSheetsService.getTextcriticalCommentsForOverlays(
+        this.selectedTextcriticalCommentBlocks = this.editionSheetsService.getTextcriticalCommentsForOverlays(
             this.selectedTextcritics.comments,
             overlays
         );
 
-        this.showTkA = this.utils.isNotEmptyArray(this.selectedTextcriticalComments);
+        this.showTkA = this.utils.isNotEmptyArray(this.selectedTextcriticalCommentBlocks);
     }
 
     /**
@@ -343,7 +343,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     private _fetchEditionComplexData(
         queryParams: ParamMap
     ): Observable<EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
-        return this.editionService.getEditionComplex().pipe(
+        return this.editionService.getSelectedEditionComplex().pipe(
             // Set editionComplex
             tap((complex: EditionComplex) => (this.editionComplex = complex)),
             // Get editionSheetsData
@@ -444,7 +444,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             this.utils.isNotEmptyObject(this.selectedTextcritics) &&
             this.utils.isNotEmptyArray(this.selectedTextcritics.comments)
         ) {
-            this.selectedTextcriticalComments = this.selectedTextcritics.comments;
+            this.selectedTextcriticalCommentBlocks = this.selectedTextcritics.comments;
         }
     }
 }

@@ -10,7 +10,7 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EditionComplexesService } from '@awg-core/services';
 import { EditionOutlineComplex } from '@awg-views/edition-view/models';
 
 import { EditionComplexCardComponent } from './edition-complex-card.component';
@@ -25,6 +25,10 @@ describe('EditionComplexCardComponent (DONE)', () => {
 
     let expectedComplexes: EditionOutlineComplex[];
 
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
+
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [EditionComplexCardComponent, RouterLinkStubDirective],
@@ -38,11 +42,11 @@ describe('EditionComplexCardComponent (DONE)', () => {
 
         // Test data
         expectedComplexes = [
-            { complex: EDITION_COMPLEXES.OP12, disabled: false },
-            { complex: EDITION_COMPLEXES.OP23, disabled: false },
-            { complex: EDITION_COMPLEXES.OP25, disabled: true },
-            { complex: EDITION_COMPLEXES.M212, disabled: false },
-            { complex: EDITION_COMPLEXES.M213, disabled: true },
+            { complex: EditionComplexesService.getEditionComplexById('OP12'), disabled: false },
+            { complex: EditionComplexesService.getEditionComplexById('OP23'), disabled: false },
+            { complex: EditionComplexesService.getEditionComplexById('OP25'), disabled: true },
+            { complex: EditionComplexesService.getEditionComplexById('M212'), disabled: false },
+            { complex: EditionComplexesService.getEditionComplexById('M213'), disabled: true },
         ];
     });
 
@@ -206,7 +210,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
                 cardFooterDe.forEach((cardFooter, index) => {
                     if (!expectedComplexes[index].disabled) {
                         const pDe = getAndExpectDebugElementByCss(cardFooter, 'p.awg-edition-responsibility', 1, 1);
-                        const editors = expectedComplexes[index].complex.responsibilityStatement.editors;
+                        const editors = expectedComplexes[index].complex.respStatement.editors;
                         const editorDe = getAndExpectDebugElementByCss(
                             pDe[0],
                             'span.editor',
@@ -233,7 +237,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
                 cardFooterDe.forEach((cardFooter, index) => {
                     if (!expectedComplexes[index].disabled) {
                         const pDe = getAndExpectDebugElementByCss(cardFooter, 'p.awg-edition-responsibility', 1, 1);
-                        const editors = expectedComplexes[index].complex.responsibilityStatement.editors;
+                        const editors = expectedComplexes[index].complex.respStatement.editors;
                         const editorDe = getAndExpectDebugElementByCss(
                             pDe[0],
                             'span.editor',
@@ -266,7 +270,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
 
                         expectToBe(
                             versionEl.textContent.trim(),
-                            expectedComplexes[index].complex.responsibilityStatement.lastModified
+                            expectedComplexes[index].complex.respStatement.lastModified
                         );
                     } else {
                         getAndExpectDebugElementByCss(cardFooter, 'p.awg-edition-responsibility', 0, 0);

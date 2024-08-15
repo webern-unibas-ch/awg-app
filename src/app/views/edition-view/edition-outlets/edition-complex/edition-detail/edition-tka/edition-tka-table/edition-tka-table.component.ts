@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { EDITION_GLYPHS_DATA } from '@awg-app/views/edition-view/data';
 
-import { TextcriticalComment, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
+import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
+import { TextcriticalCommentBlock, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
 
 /**
  * The EditionTkaTable component.
@@ -17,12 +17,12 @@ import { TextcriticalComment, TkaTableHeaderColumn } from '@awg-views/edition-vi
 })
 export class EditionTkaTableComponent {
     /**
-     * Input variable: textcriticalComments.
+     * Input variable: textcriticalCommentBlocks.
      *
-     * It keeps the textcritical comments.
+     * It keeps the textcritical comment blocks.
      */
     @Input()
-    textcriticalComments: TextcriticalComment[];
+    textcriticalCommentBlocks: TextcriticalCommentBlock[];
 
     /**
      * Input variable: isCorrections.

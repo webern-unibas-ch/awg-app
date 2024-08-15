@@ -165,7 +165,7 @@ export class EditionGraphComponent implements OnInit {
     getEditionGraphData(): void {
         this.editionGraphData$ = this.editionService
             // Get current editionComplex from editionService
-            .getEditionComplex()
+            .getSelectedEditionComplex()
             .pipe(
                 switchMap((complex: EditionComplex) => {
                     // Set current editionComplex

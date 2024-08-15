@@ -12,9 +12,9 @@ import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDir
 import { mockEditionData } from '@testing/mock-data';
 import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
 
+import { EditionComplexesService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
@@ -23,7 +23,7 @@ import {
     EditionSvgSheetList,
     FolioConvolute,
     FolioConvoluteList,
-    TextcriticalComment,
+    TextcriticalCommentBlock,
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
@@ -38,7 +38,7 @@ class EditionAccoladeStubComponent {
     @Input()
     selectedSvgSheet: EditionSvgSheet;
     @Input()
-    selectedTextcriticalComments: TextcriticalComment[];
+    selectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
     @Input()
     selectedTextcritics: Textcritics;
     @Input()
@@ -84,7 +84,7 @@ describe('EditionSheetsComponent', () => {
     let mockEditionSheetsService: Partial<EditionSheetsService>;
 
     let editionDataServiceGetEditionSheetsDataSpy: Spy;
-    let editionServiceGetEditionComplexSpy: Spy;
+    let editionServiceGetSelectedEditionComplexSpy: Spy;
     let editionSheetsServiceSelectSvgSheetByIdSpy: Spy;
     let editionSheetsServiceSelectConvoluteSpy: Spy;
     let getEditionSheetsDataSpy: Spy;
@@ -131,7 +131,7 @@ describe('EditionSheetsComponent', () => {
             ): Observable<(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]> => observableOf([]),
         };
         mockEditionService = {
-            getEditionComplex: (): Observable<EditionComplex> => observableOf(),
+            getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(),
         };
         mockEditionSheetsService = {
             selectSvgSheetById: (sheets: EditionSvgSheetList['sheets'], id: string): EditionSvgSheet =>
@@ -172,7 +172,7 @@ describe('EditionSheetsComponent', () => {
         mockActivatedRoute.testQueryParamMap = { id: '' };
 
         // Test data
-        expectedEditionComplex = EDITION_COMPLEXES.OP12;
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
         expectedComplexId = 'op12';
         expectedNextComplexId = 'testComplex2';
         expectedEditionComplexBaseRoute = `/edition/complex/${expectedComplexId}/`;
@@ -192,9 +192,10 @@ describe('EditionSheetsComponent', () => {
             mockEditionDataService,
             'getEditionSheetsData'
         ).and.returnValue(observableOf([expectedFolioConvoluteData, expectedSvgSheetsData, expectedTextcriticsData]));
-        editionServiceGetEditionComplexSpy = spyOn(mockEditionService, 'getEditionComplex').and.returnValue(
-            observableOf(expectedEditionComplex)
-        );
+        editionServiceGetSelectedEditionComplexSpy = spyOn(
+            mockEditionService,
+            'getSelectedEditionComplex'
+        ).and.returnValue(observableOf(expectedEditionComplex));
         editionSheetsServiceSelectSvgSheetByIdSpy = spyOn(
             mockEditionSheetsService,
             'selectSvgSheetById'
@@ -234,8 +235,8 @@ describe('EditionSheetsComponent', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
 
-        it('... should not have `selectedTextcriticalComments`', () => {
-            expect(component.selectedTextcriticalComments).toBeUndefined();
+        it('... should not have `selectedTextcriticalCommentBlocks`', () => {
+            expect(component.selectedTextcriticalCommentBlocks).toBeUndefined();
         });
 
         it('... should not have `selectedTextcritics`', () => {

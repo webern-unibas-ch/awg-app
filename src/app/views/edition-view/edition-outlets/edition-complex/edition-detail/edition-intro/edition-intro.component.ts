@@ -107,7 +107,7 @@ export class EditionIntroComponent implements OnInit {
     getEditionIntroData(): void {
         this.editionIntroData$ = this.editionService
             // Get current editionComplex from editionService
-            .getEditionComplex()
+            .getSelectedEditionComplex()
             .pipe(
                 switchMap((complex: EditionComplex) => {
                     // Set current editionComplex

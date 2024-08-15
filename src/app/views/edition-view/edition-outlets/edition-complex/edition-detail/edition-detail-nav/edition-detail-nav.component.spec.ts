@@ -10,8 +10,8 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
+import { EditionComplexesService } from '@awg-core/services';
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
@@ -37,14 +37,14 @@ describe('EditionDetailNavComponent (DONE)', () => {
     let expectedEditionComplex: EditionComplex;
 
     let setButtonsSpy: Spy;
-    let getEditionComplexSpy: Spy;
+    let getSelectedEditionComplexSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         // Create a fake service object with a `getData()` spy
-        const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionComplex']);
+        const mockEditionService = jasmine.createSpyObj('EditionService', ['getSelectedEditionComplex']);
         // Make the spy return a synchronous Observable with the test data
-        getEditionComplexSpy = mockEditionService.getEditionComplex.and.returnValue(
-            observableOf(EDITION_COMPLEXES.OP12)
+        getSelectedEditionComplexSpy = mockEditionService.getSelectedEditionComplex.and.returnValue(
+            observableOf(EditionComplexesService.getEditionComplexById('OP12'))
         );
 
         TestBed.configureTestingModule({
@@ -59,7 +59,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedEditionComplex = EDITION_COMPLEXES.OP12;
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
         expectedEditionRouterLinkButtons = [
             new RouterLinkButton(
                 expectedEditionComplex.baseRoute,
@@ -116,7 +116,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
             });
 
             it('... should not have been called', () => {
-                expectSpyCall(getEditionComplexSpy, 0);
+                expectSpyCall(getSelectedEditionComplexSpy, 0);
             });
         });
 
@@ -149,7 +149,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
 
         describe('#getEditionComplex()', () => {
             it('... should have been called', () => {
-                expectSpyCall(getEditionComplexSpy, 1);
+                expectSpyCall(getSelectedEditionComplexSpy, 1);
             });
         });
 

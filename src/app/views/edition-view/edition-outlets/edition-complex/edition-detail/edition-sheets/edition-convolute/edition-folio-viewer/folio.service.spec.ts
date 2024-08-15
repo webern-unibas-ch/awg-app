@@ -17,7 +17,7 @@ import {
     FolioSvgContentSegment,
     FolioSvgData,
     ViewBox,
-} from '@awg-app/views/edition-view/models';
+} from '@awg-views/edition-view/models';
 
 import { mockConsole } from '@testing/mock-helper';
 import { FolioService } from './folio.service';
