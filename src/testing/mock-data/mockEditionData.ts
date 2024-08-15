@@ -134,6 +134,36 @@ export const mockEditionData = {
                                     },
                                 ],
                             },
+                            {
+                                complexId: 'op12',
+                                sheetId: 'M_212_Sk3',
+                                sigle: 'M 212 Sk3',
+                                sigleAddendum: 'T. 3',
+                                sectionPartition: 1,
+                                sections: [
+                                    {
+                                        position: 1,
+                                        startSystem: 5,
+                                        endSystem: 7,
+                                        relativeToSystem: 'above',
+                                    },
+                                ],
+                            },
+                            {
+                                complexId: 'op12',
+                                sheetId: 'M_212_Sk2',
+                                sigle: 'M 212 Sk2',
+                                sigleAddendum: 'T. 2',
+                                sectionPartition: 1,
+                                sections: [
+                                    {
+                                        position: 1,
+                                        startSystem: 5,
+                                        endSystem: 7,
+                                        relativeToSystem: 'below',
+                                    },
+                                ],
+                            },
                         ],
                     },
                 ],
