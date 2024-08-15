@@ -2,10 +2,15 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { click } from '@testing/click-helper';
-import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectToBe,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EditionComplexesService } from '@awg-core/services';
 import { EditionOutlineComplex } from '@awg-views/edition-view/models';
 
 import { EditionComplexCardComponent } from './edition-complex-card.component';
@@ -20,6 +25,10 @@ describe('EditionComplexCardComponent (DONE)', () => {
 
     let expectedComplexes: EditionOutlineComplex[];
 
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
+
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [EditionComplexCardComponent, RouterLinkStubDirective],
@@ -33,11 +42,11 @@ describe('EditionComplexCardComponent (DONE)', () => {
 
         // Test data
         expectedComplexes = [
-            { complex: EDITION_COMPLEXES.OP12, disabled: false },
-            { complex: EDITION_COMPLEXES.OP23, disabled: false },
-            { complex: EDITION_COMPLEXES.OP25, disabled: true },
-            { complex: EDITION_COMPLEXES.M212, disabled: false },
-            { complex: EDITION_COMPLEXES.M213, disabled: true },
+            { complex: EditionComplexesService.getEditionComplexById('OP12'), disabled: false },
+            { complex: EditionComplexesService.getEditionComplexById('OP23'), disabled: false },
+            { complex: EditionComplexesService.getEditionComplexById('OP25'), disabled: true },
+            { complex: EditionComplexesService.getEditionComplexById('M212'), disabled: false },
+            { complex: EditionComplexesService.getEditionComplexById('M213'), disabled: true },
         ];
     });
 
@@ -72,8 +81,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
         });
 
         it('... should have complexes', () => {
-            expect(component.complexes).toBeTruthy();
-            expect(component.complexes).withContext(`should equal ${expectedComplexes}`).toEqual(expectedComplexes);
+            expectToEqual(component.complexes, expectedComplexes);
         });
 
         describe('VIEW', () => {
@@ -136,13 +144,11 @@ describe('EditionComplexCardComponent (DONE)', () => {
                     const cardTitleDe = getAndExpectDebugElementByCss(col, 'h5.card-title', 1, 1);
                     const cardTitleEl = cardTitleDe[0].nativeElement;
 
-                    expect(cardTitleEl.classList.contains('text-muted'))
-                        .withContext(`should be ${expectedComplexes[index].disabled}`)
-                        .toBe(expectedComplexes[index].disabled);
+                    expectToBe(cardTitleEl.classList.contains('text-muted'), expectedComplexes[index].disabled);
                 });
             });
 
-            it('... should display card titles in span.awg-edition-info-header-title', () => {
+            it('... should display complex as card title in span.awg-edition-info-header-title', () => {
                 const rowDe = getAndExpectDebugElementByCss(compDe, 'div.row', 1, 1);
                 const colDe = getAndExpectDebugElementByCss(
                     rowDe[0],
@@ -160,35 +166,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
                     );
                     const headerEl = headerDe[0].nativeElement;
 
-                    expect(headerEl.innerHTML).toBeTruthy();
-                    expect(headerEl.innerHTML)
-                        .withContext(`should be ${expectedComplexes[index].complex.titleStatement.title}`)
-                        .toBe(expectedComplexes[index].complex.titleStatement.title);
-                });
-            });
-
-            it('... should display catalogue number in span.awg-edition-info-header-catalogue', () => {
-                const rowDe = getAndExpectDebugElementByCss(compDe, 'div.row', 1, 1);
-                const colDe = getAndExpectDebugElementByCss(
-                    rowDe[0],
-                    'div.col',
-                    expectedComplexes.length,
-                    expectedComplexes.length
-                );
-                colDe.forEach((col, index) => {
-                    const cardTitleDe = getAndExpectDebugElementByCss(col, 'h5.card-title', 1, 1);
-                    const headerDe = getAndExpectDebugElementByCss(
-                        cardTitleDe[0],
-                        'span.awg-edition-info-header-catalogue',
-                        1,
-                        1
-                    );
-                    const headerEl = headerDe[0].nativeElement;
-
-                    expect(headerEl.textContent).toBeTruthy();
-                    expect(headerEl.textContent)
-                        .withContext(`should be ${expectedComplexes[index].complex.complexId.short}`)
-                        .toBe(expectedComplexes[index].complex.complexId.short);
+                    expectToBe(headerEl.innerHTML, expectedComplexes[index].complex.complexId.full);
                 });
             });
 
@@ -232,7 +210,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
                 cardFooterDe.forEach((cardFooter, index) => {
                     if (!expectedComplexes[index].disabled) {
                         const pDe = getAndExpectDebugElementByCss(cardFooter, 'p.awg-edition-responsibility', 1, 1);
-                        const editors = expectedComplexes[index].complex.responsibilityStatement.editors;
+                        const editors = expectedComplexes[index].complex.respStatement.editors;
                         const editorDe = getAndExpectDebugElementByCss(
                             pDe[0],
                             'span.editor',
@@ -243,10 +221,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
                         editorDe.forEach((editor, editorIndex) => {
                             const editorEl = editor.nativeElement;
 
-                            expect(editorEl.textContent).toBeTruthy();
-                            expect(editorEl.textContent)
-                                .withContext(`should equal ${editors[editorIndex].name}`)
-                                .toEqual(editors[editorIndex].name);
+                            expectToBe(editorEl.textContent.trim(), editors[editorIndex].name);
                         });
                     }
                 });
@@ -262,7 +237,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
                 cardFooterDe.forEach((cardFooter, index) => {
                     if (!expectedComplexes[index].disabled) {
                         const pDe = getAndExpectDebugElementByCss(cardFooter, 'p.awg-edition-responsibility', 1, 1);
-                        const editors = expectedComplexes[index].complex.responsibilityStatement.editors;
+                        const editors = expectedComplexes[index].complex.respStatement.editors;
                         const editorDe = getAndExpectDebugElementByCss(
                             pDe[0],
                             'span.editor',
@@ -274,10 +249,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
                             const anchorDe = getAndExpectDebugElementByCss(editor, 'a', 1, 1);
                             const anchorEl = anchorDe[0].nativeElement;
 
-                            expect(anchorEl.href).toBeTruthy();
-                            expect(anchorEl.href)
-                                .withContext(`should equal ${editors[editorIndex].homepage}`)
-                                .toEqual(editors[editorIndex].homepage);
+                            expectToBe(anchorEl.href, editors[editorIndex].homepage);
                         });
                     }
                 });
@@ -296,12 +268,10 @@ describe('EditionComplexCardComponent (DONE)', () => {
                         const versionDe = getAndExpectDebugElementByCss(pDe[0], 'span.version', 1, 1);
                         const versionEl = versionDe[0].nativeElement;
 
-                        expect(versionEl.textContent).toBeTruthy();
-                        expect(versionEl.textContent)
-                            .withContext(
-                                `should be ${expectedComplexes[index].complex.responsibilityStatement.lastModified}`
-                            )
-                            .toBe(expectedComplexes[index].complex.responsibilityStatement.lastModified);
+                        expectToBe(
+                            versionEl.textContent.trim(),
+                            expectedComplexes[index].complex.respStatement.lastModified
+                        );
                     } else {
                         getAndExpectDebugElementByCss(cardFooter, 'p.awg-edition-responsibility', 0, 0);
                         getAndExpectDebugElementByCss(cardFooter, 'span.version', 0, 0);
@@ -334,10 +304,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
 
                     const expectedLinkText = 'Mehr ...';
 
-                    expect(linkEl.textContent).toBeTruthy();
-                    expect(linkEl.textContent.trim())
-                        .withContext(`should be ${expectedLinkText}`)
-                        .toBe(expectedLinkText);
+                    expectToBe(linkEl.textContent.trim(), expectedLinkText);
                 });
             });
 
@@ -352,9 +319,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
                     const linkDe = getAndExpectDebugElementByCss(p, 'a', 1, 1);
                     const linkEl = linkDe[0].nativeElement;
 
-                    expect(linkEl.classList.contains('disabled'))
-                        .withContext(`should be ${expectedComplexes[index].disabled}`)
-                        .toBe(expectedComplexes[index].disabled);
+                    expectToBe(linkEl.classList.contains('disabled'), expectedComplexes[index].disabled);
                 });
             });
         });
@@ -374,14 +339,10 @@ describe('EditionComplexCardComponent (DONE)', () => {
             });
 
             it('... can get routerLinks from template', () => {
-                expect(routerLinks.length)
-                    .withContext(`should have ${expectedComplexes.length} routerLinks`)
-                    .toBe(expectedComplexes.length);
+                expectToBe(routerLinks.length, expectedComplexes.length);
 
                 routerLinks.forEach((routerLink, index) => {
-                    expect(routerLink.linkParams)
-                        .withContext(`should equal ${expectedComplexes[index].complex.baseRoute}`)
-                        .toEqual([expectedComplexes[index].complex.baseRoute]);
+                    expectToEqual(routerLink.linkParams, [expectedComplexes[index].complex.baseRoute]);
                 });
             });
 
@@ -390,14 +351,12 @@ describe('EditionComplexCardComponent (DONE)', () => {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = [expectedComplexes[index].complex.baseRoute];
 
-                    expect(routerLink.navigatedTo).toBeNull();
+                    expectToBe(routerLink.navigatedTo, null);
 
                     click(linkDe);
                     fixture.detectChanges();
 
-                    expect(routerLink.navigatedTo)
-                        .withContext(`should equal ${expectedRouterLink}`)
-                        .toEqual(expectedRouterLink);
+                    expectToEqual(routerLink.navigatedTo, expectedRouterLink);
                 });
             });
         });

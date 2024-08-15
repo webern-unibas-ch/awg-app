@@ -1,38 +1,51 @@
 <div class="awg-edition-svg-sheet-footer mt-4">
-    <div class="awg-edition-svg-sheet-footer-evaluation">
-        <p (click)="toggleTextcritics()" style="cursor: pointer">
-            @if (selectedTextcritics.description && utils.isNotEmptyArray(selectedTextcritics.description)) {
-                <span>
-                    <fa-icon [icon]="showTextcritics ? faChevronUp : faChevronRight"></fa-icon>
-                    &nbsp;
-                </span>
+    @if (utils.isNotEmptyObject(selectedTextcritics)) {
+        <div class="awg-edition-svg-sheet-footer-evaluation">
+            <p (click)="toggleTextcritics()" (keydown)="toggleTextcritics()" tabindex="0" style="cursor: pointer">
+                @if (utils.isNotEmptyArray(selectedTextcritics.description)) {
+                    <span>
+                        <fa-icon [icon]="showTextcritics ? faChevronDown : faChevronRight"></fa-icon>
+                        &nbsp;
+                    </span>
+                }
+
+                <span class="smallcaps"
+                    ><awg-edition-tka-label
+                        [id]="selectedTextcritics?.id"
+                        [labelType]="'evaluation'"></awg-edition-tka-label
+                    >:</span
+                >
+
+                @if (!utils.isNotEmptyArray(selectedTextcritics.description)) {
+                    <span>&nbsp;---</span>
+                }
+            </p>
+            @if (showTextcritics && utils.isNotEmptyArray(selectedTextcritics.description)) {
+                <awg-edition-tka-description
+                    [textcriticalDescriptions]="selectedTextcritics.description"
+                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                    (openModalRequest)="openModal($event)"
+                    (selectSvgSheetRequest)="selectSvgSheet($event)">
+                </awg-edition-tka-description>
             }
-            <span class="smallcaps">Skizzenkommentar:</span>
-            @if (selectedTextcritics.description && !utils.isNotEmptyArray(selectedTextcritics.description)) {
-                <span>&nbsp;---</span>
-            }
-        </p>
-        @if (
-            showTextcritics && selectedTextcritics.description && utils.isNotEmptyArray(selectedTextcritics.description)
-        ) {
-            <awg-edition-tka-description
-                [textcriticalDescriptions]="selectedTextcritics.description"
-                (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                (openModalRequest)="openModal($event)"
-                (selectSvgSheetRequest)="selectSvgSheet($event)">
-            </awg-edition-tka-description>
-        }
-    </div>
-    @if (showTkA) {
-        <div class="awg-edition-svg-sheet-footer-textcritics">
-            <p class="smallcaps">Textkritischer Kommentar:</p>
-            <awg-edition-tka-table
-                [textcriticalComments]="selectedTextcriticalComments"
-                [isRowTable]="selectedTextcritics.rowtable"
-                (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                (openModalRequest)="openModal($event)"
-                (selectSvgSheetRequest)="selectSvgSheet($event)">
-            </awg-edition-tka-table>
         </div>
+        @if (showTkA) {
+            <div class="awg-edition-svg-sheet-footer-textcritics">
+                <p class="smallcaps">
+                    <awg-edition-tka-label
+                        [id]="selectedTextcritics?.id"
+                        [labelType]="'comment'"></awg-edition-tka-label
+                    >:
+                </p>
+                <awg-edition-tka-table
+                    [textcriticalCommentBlocks]="selectedTextcriticalCommentBlocks"
+                    [isRowTable]="selectedTextcritics?.rowtable"
+                    [isSketchId]="utils.isSketchId(selectedTextcritics?.id)"
+                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                    (openModalRequest)="openModal($event)"
+                    (selectSvgSheetRequest)="selectSvgSheet($event)">
+                </awg-edition-tka-table>
+            </div>
+        }
     }
 </div>

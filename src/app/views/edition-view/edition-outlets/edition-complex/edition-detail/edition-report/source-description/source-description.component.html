@@ -1,6 +1,6 @@
 @if (sourceDescriptionListData) {
     <div class="awg-source-description-list">
-        @for (sourceDescription of sourceDescriptionListData.sources; track sourceDescription) {
+        @for (sourceDescription of sourceDescriptionListData.sources; track sourceDescription.id) {
             <div class="awg-source-description card mb-2" [id]="sourceDescription.id">
                 <div class="card-body">
                     <div class="awg-source-description-head">
@@ -36,39 +36,35 @@
                     @if (utils.isNotEmptyObject(sourceDescription.description)) {
                         <div class="awg-source-description-body">
                             <!-- description -->
-                            @if (utils.isNotEmptyArray(sourceDescription.description.desc)) {
-                                <p class="awg-source-description-desc">
-                                    @for (
-                                        description of sourceDescription.description.desc;
-                                        track description;
-                                        let lastDesc = $last
-                                    ) {
-                                        <span [compile-html]="description" [compile-html-ref]="ref"></span>
-                                        @if (!lastDesc) {
-                                            <br />
-                                        }
-                                    }
-                                </p>
+                            @if (sourceDescription?.description?.desc?.length) {
+                                <awg-source-description-details
+                                    [details]="sourceDescription.description.desc"
+                                    detailsLabel=""
+                                    detailsClass="desc"
+                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                                    (openModalRequest)="openModal($event)"
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- writingMaterial -->
                             @if (
-                                sourceDescription.description.writingMaterialString &&
-                                !sourceDescription.description.writingMaterial
+                                sourceDescription.description.writingMaterialStrings &&
+                                !sourceDescription.description.writingMaterials
                             ) {
-                                <p class="awg-source-description-writing-material">
-                                    <span class="smallcaps">Beschreibstoff:&nbsp;</span>
-                                    <span
-                                        [compile-html]="sourceDescription.description.writingMaterialString"
-                                        [compile-html-ref]="ref"></span>
-                                </p>
+                                <awg-source-description-details
+                                    [details]="sourceDescription.description.writingMaterialStrings"
+                                    detailsLabel="Beschreibstoff"
+                                    detailsClass="writing-materials"
+                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                                    (openModalRequest)="openModal($event)"
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
-                            @if (sourceDescription.description.writingMaterial) {
-                                <p class="awg-source-description-writing-material">
+                            @if (sourceDescription.description.writingMaterials) {
+                                <p class="awg-source-description-writing-materials">
                                     <span class="smallcaps">Beschreibstoff:&nbsp;</span>
 
                                     @for (
-                                        writingMaterial of sourceDescription?.description?.writingMaterial;
-                                        track writingMaterial;
+                                        writingMaterial of sourceDescription?.description?.writingMaterials;
+                                        track $index;
                                         let lastWritingMaterial = $last
                                     ) {
                                         @if (writingMaterial.paperType) {
@@ -115,7 +111,7 @@
                                                     >&nbsp;
                                                 }
                                             </span>
-                                            @for (location of writingMaterial.firmSign.location; track location) {
+                                            @for (location of writingMaterial.firmSign.location; track $index) {
                                                 <span [innerHTML]="getWritingMaterialItemLocation(location)"></span>
                                             }
                                         } @else {
@@ -133,7 +129,7 @@
                                                     >&nbsp;
                                                 }
                                             </span>
-                                            @for (location of writingMaterial.watermark.location; track location) {
+                                            @for (location of writingMaterial.watermark.location; track $index) {
                                                 <span [innerHTML]="getWritingMaterialItemLocation(location)"></span>
                                             }
                                             <span>&nbsp;lesbar</span>
@@ -163,64 +159,70 @@
                                 }
                             }
                             <!-- title -->
-                            @if (sourceDescription.description.title) {
-                                <p class="awg-source-description-title">
-                                    <span class="smallcaps">Titel:&nbsp;</span>
-                                    <span
-                                        [compile-html]="sourceDescription.description.title"
-                                        [compile-html-ref]="ref"></span>
-                                </p>
+                            @if (sourceDescription?.description?.titles?.length) {
+                                <awg-source-description-details
+                                    [details]="sourceDescription.description.titles"
+                                    detailsLabel="Titel"
+                                    detailsClass="titles"
+                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                                    (openModalRequest)="openModal($event)"
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- date -->
-                            @if (sourceDescription.description.date) {
-                                <p class="awg-source-description-date">
-                                    <span class="smallcaps">Datierung:&nbsp;</span>
-                                    <span
-                                        [compile-html]="sourceDescription.description.date"
-                                        [compile-html-ref]="ref"></span>
-                                </p>
+                            @if (sourceDescription?.description?.dates?.length) {
+                                <awg-source-description-details
+                                    [details]="sourceDescription.description.dates"
+                                    detailsLabel="Datierung"
+                                    detailsClass="dates"
+                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                                    (openModalRequest)="openModal($event)"
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- pagination -->
-                            @if (sourceDescription.description.pagination) {
-                                <p class="awg-source-description-pagination">
-                                    <span class="smallcaps">Paginierung:&nbsp;</span>
-                                    <span
-                                        [compile-html]="sourceDescription.description.pagination"
-                                        [compile-html-ref]="ref"></span>
-                                </p>
+                            @if (sourceDescription?.description?.paginations?.length) {
+                                <awg-source-description-details
+                                    [details]="sourceDescription.description.paginations"
+                                    detailsLabel="Paginierung"
+                                    detailsClass="paginations"
+                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                                    (openModalRequest)="openModal($event)"
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- measureNumbers -->
-                            @if (sourceDescription.description.measureNumbers) {
-                                <p class="awg-source-description-measure-numbers">
-                                    <span class="smallcaps">Taktzahlen:&nbsp;</span>
-                                    <span
-                                        [compile-html]="sourceDescription.description.measureNumbers"
-                                        [compile-html-ref]="ref"></span>
-                                </p>
+                            @if (sourceDescription?.description?.measureNumbers?.length) {
+                                <awg-source-description-details
+                                    [details]="sourceDescription.description.measureNumbers"
+                                    detailsLabel="Taktzahlen"
+                                    detailsClass="measure-numbers"
+                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                                    (openModalRequest)="openModal($event)"
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- instrumentation -->
-                            @if (sourceDescription.description.instrumentation) {
-                                <p class="awg-source-description-instrumentation">
-                                    <span class="smallcaps">Instrumentenvorsatz:&nbsp;</span>
-                                    <span
-                                        [compile-html]="sourceDescription.description.instrumentation"
-                                        [compile-html-ref]="ref"></span>
-                                </p>
+                            @if (sourceDescription?.description?.instrumentations?.length) {
+                                <awg-source-description-details
+                                    [details]="sourceDescription.description.instrumentations"
+                                    detailsLabel="Instrumentenvorsatz"
+                                    detailsClass="instrumentations"
+                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                                    (openModalRequest)="openModal($event)"
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- annotations -->
-                            @if (sourceDescription.description.annotations) {
-                                <p class="awg-source-description-annotations">
-                                    <span class="smallcaps">Eintragungen:&nbsp;</span>
-                                    <span
-                                        [compile-html]="sourceDescription.description.annotations"
-                                        [compile-html-ref]="ref"></span>
-                                </p>
+                            @if (sourceDescription?.description?.annotations?.length) {
+                                <awg-source-description-details
+                                    [details]="sourceDescription.description.annotations"
+                                    detailsLabel="Eintragungen"
+                                    detailsClass="annotations"
+                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                                    (openModalRequest)="openModal($event)"
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- content -->
-                            @if (utils.isNotEmptyArray(sourceDescription.description.content)) {
-                                <div class="awg-source-description-content">
+                            @if (sourceDescription?.description?.contents?.length) {
+                                <div class="awg-source-description-contents">
                                     <p class="no-para"><span class="smallcaps">Inhalt:</span></p>
-                                    @for (content of sourceDescription.description.content; track content) {
+                                    @for (content of sourceDescription.description.contents; track $index) {
                                         <p class="half-para">
                                             <!-- content.itemDescription -->
                                             @if (content.item || content.itemDescription) {
@@ -228,10 +230,10 @@
                                                     @if (content.item && utils.isNotEmptyObject(content.itemLinkTo)) {
                                                         <a
                                                             (click)="
-                                                                selectSvgSheet(
-                                                                    content.itemLinkTo.complexId,
-                                                                    content.itemLinkTo.sheetId
-                                                                )
+                                                                selectSvgSheet({
+                                                                    complexId: content.itemLinkTo.complexId,
+                                                                    sheetId: content.itemLinkTo.sheetId,
+                                                                })
                                                             "
                                                             ><strong>{{ content.item }}</strong></a
                                                         >
@@ -253,21 +255,21 @@
                                                 </span>
                                             }
                                             <!-- content.folios -->
-                                            @if (utils.isNotEmptyArray(content.folios)) {
-                                                @for (folio of content.folios; track folio; let lastFolio = $last) {
+                                            @if (content?.folios?.length) {
+                                                @for (folio of content.folios; track $index; let lastFolio = $last) {
                                                     @if (folio.folio) {
                                                         <span
                                                             class="awg-source-description-content-item-folio"
                                                             [ngClass]="{
-                                                                tab: content.item || content.itemDescription
+                                                                tab: content.item || content.itemDescription,
                                                             }">
                                                             @if (folio.folioLinkTo) {
                                                                 <a
                                                                     (click)="
-                                                                        selectSvgSheet(
-                                                                            content.itemLinkTo.complexId,
-                                                                            folio.folioLinkTo
-                                                                        )
+                                                                        selectSvgSheet({
+                                                                            complexId: content.itemLinkTo.complexId,
+                                                                            sheetId: folio.folioLinkTo,
+                                                                        })
                                                                     "
                                                                     ><ng-template
                                                                         *ngTemplateOutlet="
@@ -320,14 +322,14 @@
                                                     @if (utils.isNotEmptyArray(folio.systemGroups)) {
                                                         @for (
                                                             systemGroup of folio.systemGroups;
-                                                            track systemGroup;
+                                                            track $index;
                                                             let firstSystemGroup = $first;
                                                             let lastSystemGroup = $last
                                                         ) {
                                                             @for (
                                                                 system of systemGroup;
-                                                                track system;
-                                                                let i = $index;
+                                                                track $index;
+                                                                let systemIndex = $index;
                                                                 let firstSystem = $first;
                                                                 let lastSystem = $last
                                                             ) {
@@ -353,14 +355,14 @@
                                                                                 (system.measure &&
                                                                                     !firstSystemGroup &&
                                                                                     folio.folio.length === 2),
-                                                                            doubletab_two:
+                                                                            doubletab_extended:
                                                                                 (system.row &&
                                                                                     !firstSystemGroup &&
                                                                                     firstSystem &&
                                                                                     folio.folio.length > 2) ||
                                                                                 (system.measure &&
                                                                                     !firstSystemGroup &&
-                                                                                    folio.folio.length > 2)
+                                                                                    folio.folio.length > 2),
                                                                         }"
                                                                         ><ng-template
                                                                             *ngTemplateOutlet="
@@ -370,10 +372,15 @@
                                                                     ></span>
                                                                 }
                                                                 <ng-template #systemTemplate let-system
-                                                                    >&nbsp;&nbsp;System&nbsp;{{
-                                                                        system
-                                                                    }}:&nbsp;</ng-template
+                                                                    >&nbsp;&nbsp;System&nbsp;{{ system }}</ng-template
                                                                 >
+                                                                @if (
+                                                                    system.systemDescription ||
+                                                                    system.measure ||
+                                                                    system.row
+                                                                ) {
+                                                                    <span>:&nbsp;</span>
+                                                                }
                                                                 @if (system.systemDescription) {
                                                                     <span
                                                                         class="awg-source-description-content-item-system-description">
@@ -391,16 +398,18 @@
                                                                         @if (system.linkTo) {
                                                                             <a
                                                                                 (click)="
-                                                                                    selectSvgSheet(
-                                                                                        content.itemLinkTo.complexId,
-                                                                                        system.linkTo
-                                                                                    )
+                                                                                    selectSvgSheet({
+                                                                                        complexId:
+                                                                                            content.itemLinkTo
+                                                                                                .complexId,
+                                                                                        sheetId: system.linkTo,
+                                                                                    })
                                                                                 "
                                                                                 ><ng-template
                                                                                     *ngTemplateOutlet="
                                                                                         measureTemplate;
                                                                                         context: {
-                                                                                            $implicit: system.measure
+                                                                                            $implicit: system.measure,
                                                                                         }
                                                                                     "></ng-template
                                                                             ></a>
@@ -410,7 +419,7 @@
                                                                                 *ngTemplateOutlet="
                                                                                     measureTemplate;
                                                                                     context: {
-                                                                                        $implicit: system.measure
+                                                                                        $implicit: system.measure,
                                                                                     }
                                                                                 "></ng-template>
                                                                         }
@@ -427,16 +436,18 @@
                                                                         @if (system.linkTo) {
                                                                             <a
                                                                                 (click)="
-                                                                                    selectSvgSheet(
-                                                                                        content.itemLinkTo.complexId,
-                                                                                        system.linkTo
-                                                                                    )
+                                                                                    selectSvgSheet({
+                                                                                        complexId:
+                                                                                            content.itemLinkTo
+                                                                                                .complexId,
+                                                                                        sheetId: system.linkTo,
+                                                                                    })
                                                                                 "
                                                                                 ><ng-template
                                                                                     *ngTemplateOutlet="
                                                                                         rowTemplate;
                                                                                         context: {
-                                                                                            $implicit: system.row
+                                                                                            $implicit: system.row,
                                                                                         }
                                                                                     "></ng-template>
                                                                             </a>
@@ -463,7 +474,9 @@
                                                                 } @else {
                                                                     <span
                                                                         >;
-                                                                        @if ((i + 1) % systemGroup.length === 0) {
+                                                                        @if (
+                                                                            (systemIndex + 1) % systemGroup.length === 0
+                                                                        ) {
                                                                             <br />
                                                                         }
                                                                     </span>
@@ -480,6 +493,17 @@
                                         </p>
                                     }
                                 </div>
+                            }
+
+                            <!-- corrections -->
+                            @if (sourceDescription?.description?.corrections?.length) {
+                                <awg-source-description-corrections
+                                    [corrections]="sourceDescription.description.corrections"
+                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                                    (openModalRequest)="openModal($event)"
+                                    (selectSvgSheetRequest)="
+                                        selectSvgSheet($event)
+                                    "></awg-source-description-corrections>
                             }
                         </div>
                     }

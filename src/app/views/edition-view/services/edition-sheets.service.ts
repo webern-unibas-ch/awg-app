@@ -5,7 +5,7 @@ import {
     EditionSvgSheet,
     EditionSvgSheetList,
     FolioConvolute,
-    TextcriticalComment,
+    TextcriticalCommentBlock,
     Textcritics,
 } from '@awg-views/edition-view/models';
 
@@ -106,18 +106,28 @@ export class EditionSheetsService {
      *
      * It provides the textcritical comments for the selected svg overlays.
      *
-     * @param {TextcriticalComment[]} textcriticalComments The given textcritical comments.
+     * @param {TextcriticalCommentBlock[]} textcriticalCommentBlocks The given textcritical comment blocks.
      * @param {EditionSvgOverlay[]} overlays The given svg overlays.
-     * @returns {TextcriticalComment[]} Array with filtered textcritical comments.
+     * @returns {TextcriticalCommentBlock[]} Array with filtered textcritical comment block.
      */
     getTextcriticalCommentsForOverlays(
-        textcriticalComments: TextcriticalComment[],
+        textcriticalCommentBlocks: TextcriticalCommentBlock[],
         overlays: EditionSvgOverlay[]
-    ): TextcriticalComment[] {
-        if (!textcriticalComments || !overlays) {
+    ): TextcriticalCommentBlock[] {
+        if (!textcriticalCommentBlocks || !overlays) {
             return [];
         }
-        return textcriticalComments.filter(comment => overlays.some(overlay => comment.svgGroupId === overlay.id));
+        return textcriticalCommentBlocks
+            .map(block => {
+                const filteredBlock = {
+                    ...block,
+                    blockComments: block.blockComments.filter(comment =>
+                        overlays.some(overlay => comment.svgGroupId === overlay.id)
+                    ),
+                };
+                return filteredBlock;
+            })
+            .filter(block => block.blockComments.length > 0);
     }
 
     /**

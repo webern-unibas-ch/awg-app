@@ -86,6 +86,15 @@ export class EDITION_ROUTE_CONSTANTS {
     };
 
     /**
+     * The route constant for the preface.
+     */
+    static readonly PREFACE: EditionRouteConstant = {
+        route: 'preface',
+        short: 'Vorwort',
+        full: 'Vorwort / Preface',
+    };
+
+    /**
      * The route constant for the row tables.
      */
     static readonly ROWTABLES: EditionRouteConstant = {

@@ -97,7 +97,7 @@ describe('FooterComponent (DONE)', () => {
 
     it('... injected service should use provided mockValue', () => {
         const coreService = TestBed.inject(CoreService);
-        expect(mockCoreService === coreService).toBeTrue();
+        expectToBe(mockCoreService === coreService, true);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -230,8 +230,8 @@ describe('FooterComponent (DONE)', () => {
                     );
 
                     expectToBe(footerLogoCmps.length, 3);
-                    expectToEqual(footerLogoCmps[0].logo, expectedLogos['sagw']);
-                    expectToEqual(footerLogoCmps[1].logo, expectedLogos['unibas']);
+                    expectToEqual(footerLogoCmps[0].logo, expectedLogos['unibas']);
+                    expectToEqual(footerLogoCmps[1].logo, expectedLogos['sagw']);
                     expectToEqual(footerLogoCmps[2].logo, expectedLogos['snf']);
                 });
             });

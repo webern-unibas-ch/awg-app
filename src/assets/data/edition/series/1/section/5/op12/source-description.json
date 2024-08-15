@@ -18,8 +18,10 @@
                 "desc": [
                     "2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert."
                 ],
-                "writingMaterialString": "Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_9_28## auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).",
-                "writingMaterial": [
+                "writingMaterialStrings": [
+                    "Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_9_28## auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2)"
+                ],
+                "writingMaterials": [
                     {
                         "paperType": "Notenpapier",
                         "systems": {
@@ -87,7 +89,13 @@
                     "main": "Bleistift",
                     "secondary": []
                 },
-                "content": [
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "M 212 Sk1",
                         "itemLinkTo": {
@@ -242,19 +250,6 @@
                                 ]
                             }
                         ]
-                    },
-                    {
-                        "item": "",
-                        "itemLinkTo": {},
-                        "itemDescription": "",
-                        "folios": [
-                            {
-                                "folio": "2v",
-                                "folioLinkTo": "",
-                                "folioDescription": "unbeschriftet.",
-                                "systemGroups": []
-                            }
-                        ]
                     }
                 ]
             }
@@ -269,8 +264,10 @@
                 "desc": [
                     "2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert (vermutlich zwei Hälften eines ursprünglichen Blattes)."
                 ],
-                "writingMaterialString": "Notenpapier, 11 Systeme, Format: quer ca. 170 × 264 mm, Firmenzeichen: ##JE_7_22## auf Bl. 1<sup>r</sup> unten links, Wasserzeichen: <em>T</em> auf dem Kopf stehend auf Bl. 2 unten lesbar (Bl. 1–2).",
-                "writingMaterial": [
+                "writingMaterialStrings": [
+                    "Notenpapier, 11 Systeme, Format: quer ca. 170 × 264 mm, Firmenzeichen: ##JE_7_22## auf Bl. 1<sup>r</sup> unten links, Wasserzeichen: <em>T</em> auf dem Kopf stehend auf Bl. 2 unten lesbar (Bl. 1–2)"
+                ],
+                "writingMaterials": [
                     {
                         "paperType": "Notenpapier",
                         "systems": {
@@ -318,13 +315,13 @@
                     "main": "Bleistift",
                     "secondary": []
                 },
-                "title": "",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
-                "content": [
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "M 217 Sk1",
                         "itemLinkTo": {},
@@ -436,8 +433,11 @@
                 "desc": [
                     "3 Blätter (Bl. 1–3). Archivalische Paginierung <em>[1]</em> bis <em>[6]</em> unten links bzw. rechts (Bl. 3<sup>v</sup>) mit Bleistift. Bl. 3<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken Rand: Blätter von Bogen abgetrennt; Risspuren am oberen Rand von Bl. 1–2 (vermutlich zwei Hälften eines ursprünglichen Blattes); Riss (ca. 80 mm) am linken Rand (System 6) von Bl. 3; Flecken auf Bl. 3<sup>v</sup>."
                 ],
-                "writingMaterialString": "Notenpapier, 16 Systeme, Format: quer ca. 170 × 270 mm, kein Firmenzeichen (Bl. 1–2);<br />Notenpapier, 22 Systeme, Format: hoch 340 × 264 mm, Firmenzeichen: ##JE_7_22## auf Bl. 3<sup>r</sup> unten links, Wasserzeichen: <em>J. E. &amp; Co. | W I E N</em> vertikal absteigend auf Bl. 3<sup>v</sup> lesbar (Bl. 3).",
-                "writingMaterial": [
+                "writingMaterialStrings": [
+                    "Notenpapier, 16 Systeme, Format: quer ca. 170 × 270 mm, kein Firmenzeichen (Bl. 1–2)",
+                    "Notenpapier, 22 Systeme, Format: hoch 340 × 264 mm, Firmenzeichen: ##JE_7_22## auf Bl. 3<sup>r</sup> unten links, Wasserzeichen: <em>J. E. &amp; Co. | W I E N</em> vertikal absteigend auf Bl. 3<sup>v</sup> lesbar (Bl. 3)"
+                ],
+                "writingMaterials": [
                     {
                         "paperType": "Notenpapier",
                         "systems": {
@@ -516,13 +516,13 @@
                     "main": "Bleistift",
                     "secondary": []
                 },
-                "title": "",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
-                "content": [
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "M 213 Sk1",
                         "itemLinkTo": {},
@@ -774,8 +774,11 @@
                 "desc": [
                     "3 Blätter (Bl. 1–3). Archivalische Paginierung <em>[1]</em> bis <em>[6]</em> unten links bzw. rechts (Bl. 1<sup>v</sup>, 3<sup>v</sup>) mit Bleistift. Verso-Seiten mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken bzw. rechten (Bl. 2) sowie am oberen Rand: Blätter von Bogen abgetrennt und im Format verändert (Bl. 2 und 3: vermutlich zwei Hälften eines ursprünglichen Blattes)."
                 ],
-                "writingMaterialString": "Notenpapier, 9 Systeme, Format: hoch ca. 173 × 264 mm, kein Firmenzeichen (Bl. 1);<br />Notenpapier, 6 Systeme, Format: quer ca. 172–176 × 264 mm, Firmenzeichen: ##JE_2_12_C## auf Bl. 2<sup>v</sup> unten links, Wasserzeichen: <em>J. E. &amp; Co. | W I E N</em> vertikal absteigend auf Bl. 3<sup>v</sup> lesbar (Bl. 3).",
-                "writingMaterial": [
+                "writingMaterialStrings": [
+                    "Notenpapier, 9 Systeme, Format: hoch ca. 173 × 264 mm, kein Firmenzeichen (Bl. 1)",
+                    "Notenpapier, 6 Systeme, Format: quer ca. 172–176 × 264 mm, Firmenzeichen: ##JE_2_12_C## auf Bl. 2<sup>v</sup> unten links, Wasserzeichen: <em>J. E. &amp; Co. | W I E N</em> vertikal absteigend auf Bl. 3<sup>v</sup> lesbar (Bl. 3)"
+                ],
+                "writingMaterials": [
                     {
                         "paperType": "Notenpapier",
                         "systems": {
@@ -854,13 +857,13 @@
                     "main": "Bleistift",
                     "secondary": []
                 },
-                "title": "",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
-                "content": [
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotationss": [],
+                "contents": [
                     {
                         "item": "M 213 Sk1",
                         "itemLinkTo": {},
@@ -944,8 +947,10 @@
                 "desc": [
                     "1 Blatt (Bl. 1). Archivalische Paginierung von <em>[1]</em> bis <em>[2]</em> unten links (recto) bzw. links (verso). Rissspuren am linken Rand: von Bogen abgetrennt. Knickecken und Flecke auf Bl. 1<sup>r</sup> oben rechts; blaue Tintenflecke auf Bl. 1<sup>r</sup> unten rechts; Flecke auf Bl. 1<sup>v</sup>; blaue Tintenflecke auf Bl. 1<sup>v</sup> unten rechts und am rechten Rand."
                 ],
-                "writingMaterialString": "Notenpapier, 12 Systeme, Format: hoch 346 × 266 mm, Firmenzeichen: ##JE_2_12_B## auf Bl. 1<sup>r</sup> unten links.",
-                "writingMaterial": [
+                "writingMaterialStrings": [
+                    "Notenpapier, 12 Systeme, Format: hoch 346 × 266 mm, Firmenzeichen: ##JE_2_12_B## auf Bl. 1<sup>r</sup> unten links"
+                ],
+                "writingMaterials": [
                     {
                         "paperType": "Notenpapier",
                         "systems": {
@@ -982,17 +987,20 @@
                     "main": "schwarze Tinte",
                     "secondary": ["rote Tinte [Teile des Titels und vertonter Text]", "Bleistift"]
                 },
-                "title": "<em>op1[3</em>→<em>]2</em> [nach oben offen eingekreist] auf Bl. 1<sup>r</sup> oben links mit Bleistift, Korrektur und Einkreisung mit Tinte;<br /><em>„Der Tag ist vergangen.....“</em> [Mitte, rote Tinte] <em>1915</em> | <em>Anton von Webern</em> [rechts, schwarze Tinte] auf Bl. 1<sup>r</sup> oben.",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
-                "content": [
+                "titles": [
+                    "<em>op1[3</em>→<em>]2</em> [nach oben offen eingekreist] auf Bl. 1<sup>r</sup> oben links mit Bleistift, Korrektur und Einkreisung mit Tinte",
+                    "<em>„Der Tag ist vergangen.....“</em> [Mitte, rote Tinte] <em>1915</em> | <em>Anton von Webern</em> [rechts, schwarze Tinte] auf Bl. 1<sup>r</sup> oben"
+                ],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von „Der Tag ist vergangen“ <a (click)=\"ref.selectSvgSheet('op12', 'M_212_TF1')\">M 212: Textfassung 1</a>→2",
+                        "itemDescription": "Autograph von „Der Tag ist vergangen“ <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\">M 212: Textfassung 1</a>→2",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -1052,6 +1060,114 @@
                             }
                         ]
                     }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_B_corr_1",
+                        "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\">M 212: Textfassung 1</a>."
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "3–4",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Auf Tektur."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav. o.",
+                                        "position": "",
+                                        "comment": "Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav. u.",
+                                        "position": "2. Pause",
+                                        "comment": "Auf Rasur. Ante correcturam: es/as."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} gestrichen oder Tinte zerlaufen?"
+                                    },
+                                    {
+                                        "measure": "18",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "22",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[b]')}} gestrichen."
+                                    },
+                                    {
+                                        "measure": "23",
+                                        "system": "Klav. o.",
+                                        "position": "Taktanfang",
+                                        "comment": "Bassschlüssel auf Rasur."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "source_B_corr_2",
+                        "label": "Korrekturen 2 in <strong>B</strong> (mit Tinte)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\">M 212: Textfassung 1</a>."
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. o.",
+                                        "position": "3. Note",
+                                        "comment": "g/cis<sup>1</sup>/fis<sup>1</sup> ersetzt b/des<sup>1</sup>/ges<sup>1</sup>."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "Kreis unter der Note."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. u.",
+                                        "position": "Taktanfang",
+                                        "comment": "{{ref.getGlyph('[#]')}} (zu virtuellem cis) hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav.",
+                                        "position": "nach 1/4",
+                                        "comment": "Viertelpause ergänzt und damit implizit den 2/4-Takt zu einem 3/4-Takt erweitert."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav. o.",
+                                        "position": "4/8",
+                                        "comment": "{{ref.getGlyph('[a]')}} zu e<sup>2</sup> überschreibt {{ref.getGlyph('[b]')}} zu es<sup>2</sup>."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav. u.",
+                                        "position": "4/8",
+                                        "comment": "Es ersetzt {{ref.getGlyph('[a]')}}F<sub>1</sub>."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 ]
             }
         },
@@ -1063,10 +1179,13 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "10 Blätter (Bl. 1–10): 1 Blatt (Bl. 1), 2 aufeinander gelegte Bögen (Bl. 2/3, 4/5) 1 Bogen (Bl. 6/8) mit 1 eingelegten Blatt (Bl. 7), 1 Bogen (Bl. 9/10). Archivalische Paginierung <em>[1]</em> bis <em>[12]</em> (Bl. 1–6), <em>[12a]</em> bis <em>[12b]</em> (Bl. 7), <em>[13]</em> bis <em>[18]</em> (Bl. 8–10) unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 1<sup>v</sup>, 3<sup>r</sup>, 3<sup>v</sup>, 5<sup>v</sup>, 10<sup>r</sup>, 10<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet.",
-                    "Risse und Knickfalten auf Bl. 1<sup>r</sup>, Rissspuren auf Bl. 1<sup>r</sup> links: von Bogen abgetrennt; Knickfalte auf dem ganzen Bogen Bl. 2/3; Knickfalten auf Bl. 2<sup>r</sup> unten rechts, Durchschläge, Bleistift und Fingerabdrücke auf Bl. 2<sup>r</sup>; Durchschläge, verwischter Bleistift und Fingerabdrücke auf Bl. 2<sup>v</sup>, spiegelverkehrtes M. A. 35 auf Bl. 2<sup>v</sup> unten Mitte; Knickfalten und Risse auf Bl. 3<sup>r</sup> rechts; Durchschläge, verwischter Bleistift und Fingerabdrücke auf Bl. 3<sup>v</sup>; Fleck auf Bl. 4<sup>r</sup> oben lnks, Fingerabdrücke auf Bl. 4<sup>r</sup> unten; Fleck auf Bl. 5<sup>r</sup> oben lnks Fleck auf Bl. 5<sup>v</sup> oben rechts; Fingerabdrücke auf Bl. 6<sup>r</sup> unten rechts."
+                    "10 Blätter (Bl. 1–10): 1 Blatt (Bl. 1), 2 aufeinander gelegte Bögen (Bl. 2/3, 4/5) 1 Bogen (Bl. 6/8) mit 1 eingelegten Blatt (Bl. 7), 1 Bogen (Bl. 9/10). Archivalische Paginierung <em>[1]</em> bis <em>[12]</em> (Bl. 1–6), <em>[12a]</em> bis <em>[12b]</em> (Bl. 7), <em>[13]</em> bis <em>[18]</em> (Bl. 8–10) unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 1<sup>v</sup>, 3<sup>r</sup>, 3<sup>v</sup>, 5<sup>v</sup>, 10<sup>r</sup>, 10<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Risse und Knickfalten auf Bl. 1<sup>r</sup>, Rissspuren auf Bl. 1<sup>r</sup> links: von Bogen abgetrennt; Knickfalte auf dem ganzen Bogen Bl. 2/3; Knickfalten auf Bl. 2<sup>r</sup> unten rechts, Durchschläge, Bleistift und Fingerabdrücke auf Bl. 2<sup>r</sup>; Durchschläge, verwischter Bleistift und Fingerabdrücke auf Bl. 2<sup>v</sup>, spiegelverkehrtes M. A. 35 auf Bl. 2<sup>v</sup> unten Mitte; Knickfalten und Risse auf Bl. 3<sup>r</sup> rechts; Durchschläge, verwischter Bleistift und Fingerabdrücke auf Bl. 3<sup>v</sup>; Fleck auf Bl. 4<sup>r</sup> oben lnks, Fingerabdrücke auf Bl. 4<sup>r</sup> unten; Fleck auf Bl. 5<sup>r</sup> oben lnks Fleck auf Bl. 5<sup>v</sup> oben rechts; Fingerabdrücke auf Bl. 6<sup>r</sup> unten rechts."
                 ],
-                "writingMaterialString": "Notenpapier, 22 Systeme, Format: hoch 340 × 263 mm, Firmenzeichen: ##JE_7_22## recto unten links, Wasserzeichen: <em>T</em> oben recto lesbar (Bl. 1);<br />Notenpapier, 12 Systeme, Format: hoch 345 × 265 mm, Firmenzeichen: ##JE_2_12## recto unten links (Bl. 2–6, 8–10);<br />Notenpapier, 7 Systeme, Format: quer 170 × 270 mm, kein Firmenzeichen (Bl. 7).",
+                "writingMaterialStrings": [
+                    "Notenpapier, 22 Systeme, Format: hoch 340 × 263 mm, Firmenzeichen: ##JE_7_22## recto unten links, Wasserzeichen: <em>T</em> oben recto lesbar (Bl. 1)",
+                    "Notenpapier, 12 Systeme, Format: hoch 345 × 265 mm, Firmenzeichen: ##JE_2_12## recto unten links (Bl. 2–6, 8–10)",
+                    "Notenpapier, 7 Systeme, Format: quer 170 × 270 mm, kein Firmenzeichen (Bl. 7)"
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": [
@@ -1077,13 +1196,25 @@
                         "rote Tinte [Teile der Titel und vertonter Text von <em>„Der Tag ist vergangen“</em> und <em>„Schien mir’s als ich sah die Sonne“</em>]"
                     ]
                 },
-                "title": "<em>4 Klavier-Lieder</em> | [xx <em>10</em> →] <em>op. 12 | (191</em>[<em>7</em>→]<em>5 u 1917)</em> auf Bl. 1<sup>r</sup> oben rechts mit Bleistift, [xx <em>10</em>] mit rotem Buntstift;<br /><em>„Der Tag ist vergangen....“</em> [rote Tinte; Kurrentschrift] | <em>Anton <s>von</s> Webern <s>op</s></em> | <em>(aus op. 12)</em> [schwarze Tinte] auf Bl. 2<sup>r</sup> oben Mitte und rechts, <em><s>von</s></em> und <em><s>op</s></em> gestrichen mit blauer Tinte;<br /><em>Die geheimnisvolle Flöte</em> | <em>Li-Tai-Po</em> | <em>Anton von Webern</em> auf Bl. 4<sup>r</sup> oben rechts;<br /><em>„Schien mirs</em> [sic] <em>als ich sah die Sonne…“</em> | <em>Strindberg</em> [Kurrentschrift] | <em>Anton von Webern</em> auf Bl. 6<sup>r</sup> oben Mitte und rechts mit roter Tinte;<br /><em>Gleich und Gleich | Goethe</em> [Kurrentschrift] auf Bl. 9<sup>r</sup> oben rechts.",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "<em>Gesang | Klavier</em> auf Bl. 2<sup>r</sup> System 1 | 2–3;<br /><em>Singst. | Klavier</em> auf Bl. 6<sup>r</sup> System 1 | 2–3.",
-                "annotations": "<em><s>Der Tag ist vergangen  bei U. E.</s></em> [Kurrentschrift] auf Bl. 1<sup>r</sup> System 7 rechts mit Bleistift;<br /><em>Notenbeilage zu</em>  [Abstand]  <em>M. A. 35</em> auf Bl. 2<sup>r</sup> unten links und Mitte mit Bleistift.",
-                "content": [
+                "titles": [
+                    "<em>4 Klavier-Lieder</em> | [xx <em>10</em> →] <em>op. 12 | (191</em>[<em>7</em>→]<em>5 u 1917)</em> auf Bl. 1<sup>r</sup> oben rechts mit Bleistift, [xx <em>10</em>] mit rotem Buntstift",
+                    "<em>„Der Tag ist vergangen....“</em> [rote Tinte; Kurrentschrift] | <em>Anton <s>von</s> Webern <s>op</s></em> | <em>(aus op. 12)</em> [schwarze Tinte] auf Bl. 2<sup>r</sup> oben Mitte und rechts, <em><s>von</s></em> und <em><s>op</s></em> gestrichen mit blauer Tinte",
+                    "<em>Die geheimnisvolle Flöte</em> | <em>Li-Tai-Po</em> | <em>Anton von Webern</em> auf Bl. 4<sup>r</sup> oben rechts",
+                    "<em>„Schien mirs</em> [sic] <em>als ich sah die Sonne…“</em> | <em>Strindberg</em> [Kurrentschrift] | <em>Anton von Webern</em> auf Bl. 6<sup>r</sup> oben Mitte und rechts mit roter Tinte",
+                    "<em>Gleich und Gleich | Goethe</em> [Kurrentschrift] auf Bl. 9<sup>r</sup> oben rechts"
+                ],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [
+                    "<em>Gesang | Klavier</em> auf Bl. 2<sup>r</sup> System 1 | 2–3",
+                    "<em>Singst. | Klavier</em> auf Bl. 6<sup>r</sup> System 1 | 2–3"
+                ],
+                "annotations": [
+                    "<em><s>Der Tag ist vergangen  bei U. E.</s></em> [Kurrentschrift] auf Bl. 1<sup>r</sup> System 7 rechts mit Bleistift",
+                    "<em>Notenbeilage zu</em>  [Abstand]  <em>M. A. 35</em> auf Bl. 2<sup>r</sup> unten links und Mitte mit Bleistift"
+                ],
+                "contents": [
                     {
                         "item": "",
                         "itemLinkTo": {},
@@ -1471,19 +1602,25 @@
             "type": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1.",
             "location": "GB-Lbl, British Library, O. W. Neighbour Collection.",
             "description": {
-                "desc": ["1 Blatt (Bl. 1). <span class='text-danger'>[Beschreibung am Original konnte bislang nicht erfolgen.]</span>"],
-                "writingMaterialString": "Notenpapier, 12 Systeme mit vier (1 + 2 Systeme ) vorgedruckten Akkoladen, Format: hoch ### × ### mm, Firmenzeichen: ##JE_12## recto unten links.",
+                "desc": [
+                    "1 Blatt (Bl. 1). <span class='text-danger'>[Beschreibung am Original konnte bislang nicht erfolgen.]</span>"
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 12 Systeme mit vier (1 + 2 Systeme ) vorgedruckten Akkoladen, Format: hoch ### × ### mm, Firmenzeichen: ##JE_12## recto unten links"
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["evt. weitere"]
                 },
-                "title": "<em>Gleich und Gleich | Goethe</em> [Mitte] | <em>Anton Webern, op. 12</em> [rechts] recto oben.",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "<em>Gesang | Klavier</em> auf Bl. 1<sup>r</sup> System 1 | 2–3.",
-                "annotations": "",
-                "content": [
+                "titles": [
+                    "<em>Gleich und Gleich | Goethe</em> [Mitte] | <em>Anton Webern, op. 12</em> [rechts] recto oben"
+                ],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": ["<em>Gesang | Klavier</em> auf Bl. 1<sup>r</sup> System 1 | 2–3."],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "",
                         "itemLinkTo": {},
@@ -1557,21 +1694,21 @@
             "type": "Druck von „Der Tag ist vergangen“ M 212: Textfassung 2.",
             "location": "In: <em>Musikblätter des Anbruch</em> IV (Mai 1922).",
             "description": {
-                "desc": [
-                    "1 Blatt, Verso-Seite nicht bedruckt. Format: hoch 246 × 177 mm. Paginierung: 1 recto oben rechts."
-                ],
-                "writingMaterialString": "",
+                "desc": ["1 Blatt, Verso-Seite nicht bedruckt. Format: hoch 246 × 177 mm."],
+                "writingMaterialStrings": [],
                 "writingInstruments": {
                     "main": "",
                     "secondary": []
                 },
-                "title": "<em>„Der Tag ist vergangen…“</em> [Mitte] | <em>Anton Webern | (aus Op. 12).</em> [rechts] recto oben.",
-                "date": "",
-                "pagination": "<em>1</em> recto oben rechts.",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
-                "content": [
+                "titles": [
+                    "<em>„Der Tag ist vergangen…“</em> [Mitte] | <em>Anton Webern | (aus Op. 12).</em> [rechts] recto oben"
+                ],
+                "dates": [],
+                "paginations": ["<em>1</em> recto oben rechts"],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "",
                         "itemLinkTo": {},
@@ -1621,10 +1758,460 @@
             "id": "source_EH",
             "siglum": "E",
             "siglumAddendum": "H",
-            "type": "Handexemplar von <strong>E</strong> mit Korrekturen Weberns („Der Tag ist vergangen“ M 212: Fassung [2→] 3).",
+            "type": "Handexemplar von <strong>E</strong> mit Korrekturen Weberns: „Der Tag ist vergangen“ M 212: Textfassung 2→3.",
             "location": "CH-Bps, Sammlung Anton Webern, Basel, P IV 29.",
             "description": {
-                "desc": ["Siehe <a (click)=\"ref.navigateToReportFragment('source_E')\"><strong>E</strong></a>."]
+                "desc": [
+                    "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>."
+                ],
+                "corrections": [
+                    {
+                        "id": "source_EH_corr",
+                        "label": "Korrekturen in <strong>E<sup>H</sup></strong> (mit Bleistift)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: Textfassung 2."
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} geändert zu {{ref.getGlyph('[pp]')}}."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav. o.",
+                                        "position": "1/8–2/4",
+                                        "comment": "Crescendogabel zwischen den Systemen gestrichen. Crescendogabel 1–2/8, Decrescendogabel 2/8 bis Taktende über dem System hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "1<br />bis 2",
+                                        "system": "Klav. o.",
+                                        "position": "1/8<br />4/8",
+                                        "comment": "Legatobogen geändert zu zwei Legatobögen von T. 1 1/8 bis T. 2 1/8 und T. 2 2.–3. Note."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note",
+                                        "comment": "<em>zögernd</em> geändert zu <em>rit. - - -</em> (mit Geltungsstrichelung bis Taktende).<br />{{ref.getGlyph('[ppp]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav. u.",
+                                        "position": "2–3/8",
+                                        "comment": "Achtelfähnchen bei 2/8 geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "6/8",
+                                        "comment": "Tenutostrich hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "3<br />bis 5",
+                                        "system": "Ges.",
+                                        "position": "6/8<br />3/8",
+                                        "comment": "Zuerst: Bogen über den Noten hinzugefügt. <br />Dann: Bogen wieder gestrichen. <br />Siehe Korrektur in T. 4 3/8 bis T. 5 3/8."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "2–4/8",
+                                        "comment": "Crescendogabel gestrichen."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Legatobogen und Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "3–4/8",
+                                        "comment": "Crescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "4<br />bis 5",
+                                        "system": "Ges.",
+                                        "position": "3/8<br />3/8",
+                                        "comment": "Bogen hinzugefügt. <br />Siehe Korrektur in T. 3 6/8 bis T. 5 3/8."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav. o.",
+                                        "position": "letzte Pause",
+                                        "comment": "Viertelpause gestrichen."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav.",
+                                        "position": "2. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} gestrichen."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "3–4/8",
+                                        "comment": "Achtelfähnchen geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "5<br />bis 7",
+                                        "system": "Ges.",
+                                        "position": "4/8<br />1/4",
+                                        "comment": "Bogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "2.–4. Note",
+                                        "comment": "Zunächst: Fähnchen bei 3.–4. Note geändert zu Balken über den Noten. <br />Dann: Balken bei 2.–4. Note unter den Noten hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. o.",
+                                        "position": "2–3/8",
+                                        "comment": "Achtelfähnchen geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav.",
+                                        "position": "2–3/8",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. u.",
+                                        "position": "2–3/8",
+                                        "comment": "Achtelfähnchen geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "2.–3. Note",
+                                        "comment": "Achtelfähnchen geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "7<br />bis 8",
+                                        "system": "Ges.",
+                                        "position": "2. Note<br />1. Note",
+                                        "comment": "Bogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "7<br />bis 8",
+                                        "system": "Ges.",
+                                        "position": "3. Note<br />nach 1/4",
+                                        "comment": "Ende der Crescendogabel T. 7 3. Note verlängert zu T. 8 nach 1/4."
+                                    },
+                                    {
+                                        "measure": "7<br />bis 8",
+                                        "system": "Ges.",
+                                        "position": "3. Note<br />3/8",
+                                        "comment": "<em>dis fis e</em> unter den Noten es<sup>2</sup>–ges<sup>2</sup>–fes<sup>2</sup>."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. o. u.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Stacctopunkte überschrieben zu Tenutostrichen."
+                                    },
+                                    {
+                                        "measure": "8<br />bis 9",
+                                        "system": "Ges.",
+                                        "position": "3/8<br />2. Note",
+                                        "comment": "Bogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "8<br />bis 9",
+                                        "system": "Ges.",
+                                        "position": "4/8<br />2. Note",
+                                        "comment": "Ende der Crescendogabel T. 8 4/8 verlängert zu T. 9 2. Note."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav.",
+                                        "position": "1/4",
+                                        "comment": "{{ref.getGlyph('[p]')}} geändert zu {{ref.getGlyph('[pp]')}}."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Drei Vierteltriolen geändert zu triolischer Viertel- und Achtelnote sowie triolischer Achtelpause und Viertelnote."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "9<br />bis 11",
+                                        "system": "Ges.",
+                                        "position": "3. Note<br />1/4",
+                                        "comment": "Bogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "9<br />bis 10",
+                                        "system": "Klav. u.",
+                                        "position": "4/8<br />1/4",
+                                        "comment": "Legatobogen gestrichen."
+                                    },
+                                    {
+                                        "measure": "9<br />bis 11",
+                                        "system": "Klav. u.",
+                                        "position": "4/8<br />1/4",
+                                        "comment": "Legatobogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav. o.",
+                                        "position": "1., 2. Note",
+                                        "comment": "Tenutostriche gestrichen."
+                                    },
+                                    {
+                                        "measure": "10<br />bis 11",
+                                        "system": "Klav. o.",
+                                        "position": "1. Note<br />2. Note",
+                                        "comment": "Legatobogen hinzugefügt. Siehe Korrektur T. 10 2. Note bis T. 11 2. Note.<br />Crescendogabel T. 10 1. Note bis nach 2. Note und Decrescendogabel T. 11 1.–2. Note geändert zu Decrescendogabel T. 10 1. Note bis T. 11 2. Note."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "2–4/8",
+                                        "comment": "Achtelfähnchen bei 3–4/8 geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "10<br />bis 11",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note<br />2. Note",
+                                        "comment": "Legatobogen gestrichen. Siehe Korrektur T. 10 1. Note bis T. 11 2. Note."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav. u.",
+                                        "position": "2/4",
+                                        "comment": "Tenutostrich gestrichen."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>molto</em> (scil: „molto rit.“) gestrichen."
+                                    },
+                                    {
+                                        "measure": "12/13",
+                                        "system": "",
+                                        "position": "Taktstrich",
+                                        "comment": "Fermaten über Ges. und Klav. o. hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "Fermate gestrichen."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav. o.",
+                                        "position": "",
+                                        "comment": "Fermate gestrichen."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav. u.",
+                                        "position": "1/4",
+                                        "comment": "Fermate gestrichen."
+                                    },
+                                    {
+                                        "measure": "13<br />bis 14",
+                                        "system": "Ges.",
+                                        "position": "2/8<br /> 2. Note?",
+                                        "comment": "Bogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Ges.",
+                                        "position": "5–6/8",
+                                        "comment": "Achtelfähnchen geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav. u.",
+                                        "position": "3/4",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} geändert zu {{ref.getGlyph('[pp]')}}."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Ges.",
+                                        "position": "1.–3. Note",
+                                        "comment": "Achtelfähnchen geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav. (u.)",
+                                        "position": "1/8",
+                                        "comment": "<em>ohne Pedal</em> gestrichen."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav. u.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav. u.",
+                                        "position": "2. Note",
+                                        "comment": "Decrescendogabel gestrichen."
+                                    },
+                                    {
+                                        "measure": "14<br />bis 15",
+                                        "system": "Ges.",
+                                        "position": "3. Note<br />2/8",
+                                        "comment": "Anfang des Bogens geändert von T. 14 3/8."
+                                    },
+                                    {
+                                        "measure": "14<br />bis 15",
+                                        "system": "Ges.",
+                                        "position": "3. Note<br />2/8",
+                                        "comment": "Crescendogabel von T. 14 4/8 bis T. 15 1/8 geändert zu T. 14 3. Note bis T. 15 2/8."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Ges.",
+                                        "position": "2/8–8/16",
+                                        "comment": "Zunächst: Fähnchen bei 3.–4. Note geändert zu Balken. <br />Dann: Balken bei 2.–4. Note hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} gestrichen."
+                                    },
+                                    {
+                                        "measure": "15<br />bis 16",
+                                        "system": "Ges.",
+                                        "position": "3. Note<br />2/4",
+                                        "comment": "Crescendogabel T. 15 3.–4. Note und Decrescendogabel T. 16 1–2/4 geändert zu Decrescendogabel. <br />Anfang des Bogens T. 16 1/4 geändert zu T. 15 3. Note."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Klav. o.",
+                                        "position": "1.–2. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} zu 1. Note gestrichen und Crescendogabel geändert zu Decrescendogabel."
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "Klav.",
+                                        "position": "(3/4)",
+                                        "comment": "Crescendogabel gestrichen."
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Klav.",
+                                        "position": "Taktanfang bis 1/4",
+                                        "comment": "Decrescendogabel von T. 16 hinzugefügt. (E: Akkoladenwechsel nach T. 16.)"
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Ges.",
+                                        "position": "1–4/8",
+                                        "comment": "Achtelfähnchen geändert zu Balken."
+                                    },
+                                    {
+                                        "measure": "17<br />bis 18",
+                                        "system": "Ges.",
+                                        "position": "1/8<br />2. Note",
+                                        "comment": "Bogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Ges.",
+                                        "position": "2–3/8",
+                                        "comment": "Crescendogabel gestrichen."
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Klav.",
+                                        "position": "2. Note",
+                                        "comment": "{{ref.getGlyph('[p]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "18",
+                                        "system": "Ges.",
+                                        "position": "Taktanfang<br />bis 2. Note",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "18",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Drei Vierteltriolen geändert zu Viertel-, Achtelnote as<sup>1</sup>–ges<sup>1</sup> unter einer Triolenklammer und Achtelpause, Viertelnote des<sup>1</sup> unter einer Triolenklammer."
+                                    },
+                                    {
+                                        "measure": "18",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "18<br />bis 21",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "Bogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "19",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "{{ref.getGlyph('[pp]')}} gestrichen."
+                                    },
+                                    {
+                                        "measure": "19",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Ansatz zu Bogen oder Crescendogabel (bis Taktende) gestrichen."
+                                    },
+                                    {
+                                        "measure": "20",
+                                        "system": "Ges.",
+                                        "position": "2.–3. Note",
+                                        "comment": "Crescendogabel überschrieben zu Decrescendogabel."
+                                    },
+                                    {
+                                        "measure": "21",
+                                        "system": "Klav.",
+                                        "position": "2/4",
+                                        "comment": "{{ref.getGlyph('[pp]')}} geändert zu {{ref.getGlyph('[p]')}}."
+                                    },
+                                    {
+                                        "measure": "21<br />bis 22",
+                                        "system": "Klav.",
+                                        "position": "2/4",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "22",
+                                        "system": "Klav.",
+                                        "position": "2/4",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} geändert zu {{ref.getGlyph('[pp]')}}."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
             }
         },
         {
@@ -1637,18 +2224,43 @@
                 "desc": [
                     "10 Blätter (Bl. 1–10): 1 Bogen (Bl. 1/10) schließt 4 aufeinander gelegte Bögen (Bl. 2/3, 4/5, 6/7, 8/9) ein. Bl. 3<sup>r</sup>–3<sup>v</sup>, 5<sup>v</sup>, 9<sup>r</sup>–9<sup>v</sup> bis auf die Paginierung unbeschriftet, Bl. 1<sup>v</sup>, 10<sup>v</sup> unbeschriftet."
                 ],
-                "writingMaterialString": "Notenpapier, 12 Systeme, Format: hoch 340 × 268 mm, Firmenzeichen: ##??## auf Bl. 2<sup>r</sup>, 4<sup>r</sup>, 6<sup>r</sup>, 8<sup>r</sup>, 10<sup>r</sup> unten links (Bl. 1–10).",
+                "writingMaterialStrings": [
+                    "Notenpapier, 12 Systeme, Format: hoch 340 × 268 mm, Firmenzeichen: ##??## auf Bl. 2<sup>r</sup>, 4<sup>r</sup>, 6<sup>r</sup>, 8<sup>r</sup>, 10<sup>r</sup> unten links (Bl. 1–10)"
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift", "roter Buntstift", "violetter Stempelabdruck"]
                 },
-                "title": "<em>Vier Lieder</em> [unterstrichen mit Bleistift] | <em>für</em> [Pfeil zu nächsten Zeile mit Bleistift] | <em>Gesang und Klavier | von | Anton Webern | op. 12</em> auf Bl. 1<sup>r</sup> System 3–7 Mitte;<br /><em>„Der Tag ist vergangen...“ | (Volkslied)</em> [Mitte] [Abstand] [<s>xxx</s>] | <em>Anton Webern, op. 12 N<sup><u>o</u></sup> 1</em> [rechts] auf Bl. 2<sup>r</sup> System 1, [<s>xxx</s>] rasiert;<br /><em>Die geheimnisvolle Flöte | Li-Tai-Po | (aus Hans Bethges „Chinesischer Flöte“)</em> [Mitte] | <em>Anton Webern, op</em>[.] <em>12 N<sup><u>o</u></sup> 2</em> auf Bl. 4<sup>r</sup> [rechts] oben bis System 1, <em>Li-Tai-Po</em> und <em>Anton Webern, op</em>[.] <em>12 N<sup><u>o</u></sup> 2</em> auf Rasur;<br /><em>Schien mirs, als ich sah die Sonne<s>!</s> | (aus August Strindbergs „Gespenstersonate“)</em> | [<s>xxx</s>] [Mitte] <em>Anton Webern, op. 12 N<sup><u>o</u></sup> 3</em> [rechts] auf Bl. 6<sup>r</sup> oben bis System 1, <em><s>!</s></em> gestrichen mit Bleistift, [<s>xxx</s>] rasiert;<br /><em>Gleich und Gleich | (Goethe)</em> [Mitte] <em>Anton Webern, op. 12 N<sup><u>o</u></sup> 4</em> [rechts] auf Bl. 8<sup>r</sup> oben;<br /><em><s>Anton Webern | Vier Lieder |</s></em> [<del style=\"text-decoration-style: double;\">xxx</del>] <em><s>| für | Gesang und Klavier | op. 12</s></em> auf Bl. 10<sup>r</sup> System 3–7 Mitte mit schwarzer Tinte, [<del style=\"text-decoration-style: double;\">xxx</del>] rasiert, alles gestrichen mit Bleistift.",
-                "date": "",
-                "pagination": "<em>1</em> bis <em>4</em> auf Bl. 2<sup>r</sup>–3<sup>v</sup> Außenseiten oben mit Bleistift (nicht identifizierte Hs.);<br /><em>1</em> bis <em>4</em> auf Bl. 4<sup>r</sup>–5<sup>v</sup> Außenseiten oben mit Bleistift (nicht identifizierte Hs.);<br /><em>1</em> bis <em>4</em> auf Bl. 6<sup>r</sup>–7<sup>v</sup> Außenseiten oben mit Bleistift (nicht identifizierte Hs.);<br /><em>1</em> bis <em>4</em> auf Bl. 8<sup>r</sup>–9<sup>v</sup> Außenseiten oben mit Bleistift (nicht identifizierte Hs.).",
-                "measureNumbers": "",
-                "instrumentation": "<em>Gesang | Klavier</em> auf Bl. 2<sup>r</sup> System 1 | 2–3.",
-                "annotations": "<em><u>zum Satz</u></em> [dreifach unterstrichen] [links] [Pfeil nach rechts] <em>Schrift des Umschlages u. Tittelblattes</em> [sic] | <em>(gleichlautend) wie bei meinen | „geistlichen Lieder“ op. 15 U. E. No. 7629</em> auf Bl. 1<sup>r</sup> oben mit Bleistift;<br /><em>„Universal-Edition“ A.-G. | WIEN</em> [Stempel] | <em>2/4 ̅2̅5̅  </em> [Bleistift] | <em>Zum Stich!</em> [Stempel] | <span style=\"border-bottom: 1px solid black;display: inline;\"><em>U. E. 8<sup>o</sup></em></span> | <em>Stichregeln!!</em> | [Paraphe] [Bleistift] auf Bl. 1<sup>r</sup> System 3–5 rechts (nicht identifizierte Hs.);<br /><em>Aufführungsrechte vorbehalten.</em> [Abstand]<em> Droits d’exécution réserves.</em> [Stempel (schwacher Abdruck)] | <em><u>Universal-Edition</u> | Wien</em> [Bleistift] <em>Copyright 19</em>&lt;<em>25</em>&gt; <em>by Universal Edition</em> [Stempel, &lt;<em>25</em>&gt; mit Bleistift] <em>New York</em> | <em>U. E. Nr</em>[.] <em>8257</em> [Bleistift] auf Bl. 1<sup>r</sup> System 10–12 Mitte (nicht identifizierte Hs.);<br /><em>ARCHIV</em> | [darum im Kreis:] <em>DER UNIVERSAL-EDITION A. G. *</em> [alles in einem Kreis] auf Bl. 1<sup>r</sup>, 2<sup>r</sup>, 4<sup>r</sup>, 5<sup>r</sup>, 6<sup>r</sup>, 7<sup>r</sup>, 8<sup>r</sup> unten rechts mit violettem Stempelabdruck;<br /><em>Aufführungsrechte vorbehalten.</em> | <em>Droits d’exécution réserves.</em> auf Bl. 2<sup>r</sup> oben links mit Stempelabdruck;<br /><em>Copyright 19</em>&lt;<em>25</em>&gt; <em>by Universal Edition</em> auf Bl. 2<sup>r</sup> unten links als Stempelabdruck, &lt;<em>25</em>&gt; mit Bleistift (nicht identifizierte Hs.);<br /><em>Universal Edition Nr. 8257</em> auf Bl. 2<sup>r</sup> unten Mitte mit Bleistift (nicht identifizierte Hs.);<br /><em>U. E.</em> auf Bl. 2<sup>v</sup> unten Mitte mit Bleistift (nicht identifizierte Hs.);<br /><em>U. E. 8257</em> auf Bl. 4<sup>r</sup>, 6<sup>r</sup>, 8<sup>r</sup> unten Mitte mit Bleistift (nicht identifizierte Hs.);<br />Dispositionsziffern in I nach T. 3 (<em>1</em>), 7 (<em>2</em>), 11 (<em>3</em>), 14 (<em>1</em>), 17 (<em>2</em>), 23 (<em>3</em>) mit Bleistift (nicht identifizierte Hs.).",
-                "content": [
+                "titles": [
+                    "<em>Vier Lieder</em> [unterstrichen mit Bleistift] | <em>für</em> [Pfeil zu nächsten Zeile mit Bleistift] | <em>Gesang und Klavier | von | Anton Webern | op. 12</em> auf Bl. 1<sup>r</sup> System 3–7 Mitte",
+                    "<em>„Der Tag ist vergangen...“ | (Volkslied)</em> [Mitte] [Abstand] [<s>xxx</s>] | <em>Anton Webern, op. 12 N<sup><u>o</u></sup> 1</em> [rechts] auf Bl. 2<sup>r</sup> System 1, [<s>xxx</s>] rasiert",
+                    "<em>Die geheimnisvolle Flöte | Li-Tai-Po | (aus Hans Bethges „Chinesischer Flöte“)</em> [Mitte] | <em>Anton Webern, op</em>[.] <em>12 N<sup><u>o</u></sup> 2</em> auf Bl. 4<sup>r</sup> [rechts] oben bis System 1, <em>Li-Tai-Po</em> und <em>Anton Webern, op</em>[.] <em>12 N<sup><u>o</u></sup> 2</em> auf Rasur",
+                    "<em>Schien mirs, als ich sah die Sonne<s>!</s> | (aus August Strindbergs „Gespenstersonate“)</em> | [<s>xxx</s>] [Mitte] <em>Anton Webern, op. 12 N<sup><u>o</u></sup> 3</em> [rechts] auf Bl. 6<sup>r</sup> oben bis System 1, <em><s>!</s></em> gestrichen mit Bleistift, [<s>xxx</s>] rasiert",
+                    "<em>Gleich und Gleich | (Goethe)</em> [Mitte] <em>Anton Webern, op. 12 N<sup><u>o</u></sup> 4</em> [rechts] auf Bl. 8<sup>r</sup> oben",
+                    "<em><s>Anton Webern | Vier Lieder |</s></em> [<del style=\"text-decoration-style: double;\">xxx</del>] <em><s>| für | Gesang und Klavier | op. 12</s></em> auf Bl. 10<sup>r</sup> System 3–7 Mitte mit schwarzer Tinte, [<del style=\"text-decoration-style: double;\">xxx</del>] rasiert, alles gestrichen mit Bleistift"
+                ],
+                "dates": [],
+                "paginations": [
+                    "<em>1</em> bis <em>4</em> auf Bl. 2<sup>r</sup>–3<sup>v</sup> Außenseiten oben mit Bleistift (nicht identifizierte Hs.)",
+                    "<em>1</em> bis <em>4</em> auf Bl. 4<sup>r</sup>–5<sup>v</sup> Außenseiten oben mit Bleistift (nicht identifizierte Hs.)",
+                    "<em>1</em> bis <em>4</em> auf Bl. 6<sup>r</sup>–7<sup>v</sup> Außenseiten oben mit Bleistift (nicht identifizierte Hs.)",
+                    "<em>1</em> bis <em>4</em> auf Bl. 8<sup>r</sup>–9<sup>v</sup> Außenseiten oben mit Bleistift (nicht identifizierte Hs.)"
+                ],
+                "measureNumbers": [],
+                "instrumentations": ["<em>Gesang | Klavier</em> auf Bl. 2<sup>r</sup> System 1 | 2–3"],
+                "annotations": [
+                    "<em><u>zum Satz</u></em> [dreifach unterstrichen] [links] [Pfeil nach rechts] <em>Schrift des Umschlages u. Tittelblattes</em> [sic] | <em>(gleichlautend) wie bei meinen | „geistlichen Lieder“ op. 15 U. E. No. 7629</em> auf Bl. 1<sup>r</sup> oben mit Bleistift",
+                    "<em>„Universal-Edition“ A.-G. | WIEN</em> [Stempel] | <em>2/4 ̅2̅5̅  </em> [Bleistift] | <em>Zum Stich!</em> [Stempel] | <span style=\"border-bottom: 1px solid black;display: inline;\"><em>U. E. 8<sup>o</sup></em></span> | <em>Stichregeln!!</em> | [Paraphe] [Bleistift] auf Bl. 1<sup>r</sup> System 3–5 rechts (nicht identifizierte Hs.)",
+                    "<em>Aufführungsrechte vorbehalten.</em> [Abstand]<em> Droits d’exécution réserves.</em> [Stempel (schwacher Abdruck)] | <em><u>Universal-Edition</u> | Wien</em> [Bleistift] <em>Copyright 19</em>&lt;<em>25</em>&gt; <em>by Universal Edition</em> [Stempel, &lt;<em>25</em>&gt; mit Bleistift] <em>New York</em> | <em>U. E. Nr</em>[.] <em>8257</em> [Bleistift] auf Bl. 1<sup>r</sup> System 10–12 Mitte (nicht identifizierte Hs.)",
+                    "<em>ARCHIV</em> | [darum im Kreis:] <em>DER UNIVERSAL-EDITION A. G. *</em> [alles in einem Kreis] auf Bl. 1<sup>r</sup>, 2<sup>r</sup>, 4<sup>r</sup>, 5<sup>r</sup>, 6<sup>r</sup>, 7<sup>r</sup>, 8<sup>r</sup> unten rechts mit violettem Stempelabdruck",
+                    "<em>Aufführungsrechte vorbehalten.</em> | <em>Droits d’exécution réserves.</em> auf Bl. 2<sup>r</sup> oben links mit Stempelabdruck",
+                    "<em>Copyright 19</em>&lt;<em>25</em>&gt; <em>by Universal Edition</em> auf Bl. 2<sup>r</sup> unten links als Stempelabdruck, &lt;<em>25</em>&gt; mit Bleistift (nicht identifizierte Hs.)",
+                    "<em>Universal Edition Nr. 8257</em> auf Bl. 2<sup>r</sup> unten Mitte mit Bleistift (nicht identifizierte Hs.)",
+                    "<em>U. E.</em> auf Bl. 2<sup>v</sup> unten Mitte mit Bleistift (nicht identifizierte Hs.)",
+                    "<em>U. E. 8257</em> auf Bl. 4<sup>r</sup>, 6<sup>r</sup>, 8<sup>r</sup> unten Mitte mit Bleistift (nicht identifizierte Hs.)",
+                    "Dispositionsziffern in I nach T. 3 (<em>1</em>), 7 (<em>2</em>), 11 (<em>3</em>), 14 (<em>1</em>), 17 (<em>2</em>), 23 (<em>3</em>) mit Bleistift (nicht identifizierte Hs.)"
+                ],
+                "contents": [
                     {
                         "item": "",
                         "itemLinkTo": {},
@@ -1983,6 +2595,763 @@
                             }
                         ]
                     }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_F_corr",
+                        "label": "Korrekturen in <strong>F</strong>",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf die Textfassungen der Werkedition von <em>Vier Lieder</em> op. 12."
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "I  „Der Tag ist vergangen“ M 212",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav. o.",
+                                        "position": "Taktanfang",
+                                        "comment": "Rasur über dem System. Ante correcturam: Tempobezeichnung?"
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note",
+                                        "comment": "Rasur über dem System. Ante correcturam: <em>rit.</em>?"
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav. o.",
+                                        "position": "Taktanfang",
+                                        "comment": "Rasur über dem System. Ante correcturam: <em>tempo</em>?"
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav. u.",
+                                        "position": "letzte Note",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. o.",
+                                        "position": "1. Note bis Taktende",
+                                        "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
+                                    },
+                                    {
+                                        "measure": "5 <br /> bis 6",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
+                                    },
+                                    {
+                                        "measure": "5 <br /> bis 7",
+                                        "system": "Ges.",
+                                        "position": "4/8 <br /> 1/4",
+                                        "comment": "Zwei Bögen von T. 5 4/8 bis T. 6 4/16 und von T. 6 3. Note bis T. 7 1/4 über dem System rasiert."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. o.",
+                                        "position": "1–2/4",
+                                        "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "1. Pause, letzte Note",
+                                        "comment": "Triolenklammer hinzugefügt mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "10 <br /> bis 11",
+                                        "system": "Klav. o.",
+                                        "position": "1. Note <br /> 2. Note",
+                                        "comment": "Legatobogen auf Rasur."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav. u.",
+                                        "position": "1/4",
+                                        "comment": "Rasur unter dem System. Ende des Bogen von T. 9 letzte Note?"
+                                    },
+                                    {
+                                        "measure": "10 <br /> bis 11",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note <br /> 2. Note",
+                                        "comment": "Decrescendogabel, {{ref.getGlyph('[pp]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note",
+                                        "comment": "Staccatopunkt hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Ganze Pause hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Ges., Klav.",
+                                        "position": "",
+                                        "comment": "Fermaten rasiert über Ges. 1/8 und Klav. o. Ganze Pause. Fermaten über Taktstrich vor T. 13 vermutlich danach hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Klav. o.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "21",
+                                        "system": "Klav. o.",
+                                        "position": "",
+                                        "comment": "{{ref.getGlyph('[a]')}} zu e<sup>1</sup> verändert zu {{ref.getGlyph('[b]')}} zu es<sup>1</sup> und Verweislinie zu <em>AW</em> unter der Akkolade mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "21",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Rasur rechts neben g. Ante correcturam: Punktierung?"
+                                    },
+                                    {
+                                        "measure": "21 <br /> bis 22",
+                                        "system": "Klav. o.",
+                                        "position": "2/4",
+                                        "comment": "Bogen über dem System rasiert."
+                                    }
+                                ]
+                            },
+                            {
+                                "blockHeader": "II <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217",
+                                "blockComments": [
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. o.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[p]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note",
+                                        "comment": "g<sup>2</sup> auf Rasur.  <br /> Ende der Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "{{ref.getGlyph('[p]')}} auf Rasur. <br /> Rasur am Notenhals."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "6/8",
+                                        "comment": "Auf Rasur. Ante correcturam: Untersatz angeglichen?"
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "Rasur unter der Note. Ante correcturam: Dynamik?"
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav.",
+                                        "position": "2/8–5/16",
+                                        "comment": "{{ref.getGlyph('[p]')}}, Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "2. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} auf Rasur. Rasur unter dem System. Ante correcturam: Dynamik?"
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. o.",
+                                        "position": "4/8",
+                                        "comment": "Rasur unter dem System. Ante correcturam: Dynamik?"
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "Rasur rechts neben dem Notenkopf. Ante correcturam: Augmentationspunkt?"
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. u.",
+                                        "position": "2/4",
+                                        "comment": "Viertelpause hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. u.",
+                                        "position": "10/16",
+                                        "comment": "Rasur über dem System. Ante correcturam: Dynamik?"
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. u.",
+                                        "position": "3/16–2/4",
+                                        "comment": "Decrescendogabel auf Rasur. Ante correcturam: Gabelende zuerst bis Taktende?"
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav. o.",
+                                        "position": "1/4",
+                                        "comment": "Decrescendogabel auf Rasur. Ante correcturam: Gabelanfang zuerst in T. 8 4/8?"
+                                    },
+                                    {
+                                        "measure": "12 <br /> bis 13",
+                                        "system": "Klav.",
+                                        "position": "letzte Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}}, Decrescendogabel, {{ref.getGlyph('[ppp]')}} auf Rasur. Ante correcturam: Decrescendogabel zuerst über den Taktstrich?"
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Gabeln auf Rasur."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav. u.",
+                                        "position": "2/4",
+                                        "comment": "Notenhals auf Rasur."
+                                    },
+                                    {
+                                        "measure": "14 <br /> bis 16",
+                                        "system": "Klav. u.",
+                                        "position": "2/4 <br /> 2/4",
+                                        "comment": "Bogen schwach mit Bleistift: stehengelassene Vorzeichnung? (Siehe auch Korrektur in T. 16 bis 17.)"
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "Ges.",
+                                        "position": "5/8 bis Taktende",
+                                        "comment": "{{ref.getGlyph('[mp]')}}, Crescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "16 <br /> bis 17",
+                                        "system": "Klav. u.",
+                                        "position": "3/4 <br /> 2/4",
+                                        "comment": "Bogen schwach mit Bleistift: stehengelassene Vorzeichnung? (Siehe auch Korrektur in T. 14 bis 16.)"
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Ges.",
+                                        "position": "2–3/4",
+                                        "comment": "Decrescendogabel auf Rasur. Ante correcturam: Gabelanfang zuerst zu 1/4?"
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Klav. o.",
+                                        "position": "9/16",
+                                        "comment": "Rasur über dem System. Ante correcturam: Dynamik?"
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Klav. o.",
+                                        "position": "9–12/16",
+                                        "comment": "Rasur unter dem System. Ante correcturam: Gabel?"
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Klav. u.",
+                                        "position": "5–6/8",
+                                        "comment": "Rasur unter dem System. Ante correcturam: Dynamik und Gabel?"
+                                    },
+                                    {
+                                        "measure": "18",
+                                        "system": "Ges.",
+                                        "position": "1/4",
+                                        "comment": "<em>?</em> mit rotem Buntstift: Text fehlt."
+                                    },
+                                    {
+                                        "measure": "18 <br /> bis 19",
+                                        "system": "Klav. u.",
+                                        "position": "1/16 <br /> 3/4",
+                                        "comment": "Rasur über dem System. Ante correcturam: Bogen?"
+                                    },
+                                    {
+                                        "measure": "18",
+                                        "system": "Klav. o.",
+                                        "position": "3/4",
+                                        "comment": "{{ref.getGlyph('[p]')}} mit Bleistift, mit schwarzer Tinte nachgezogen."
+                                    },
+                                    {
+                                        "measure": "18 <br /> bis 19",
+                                        "system": "Klav. o.",
+                                        "position": "3/4 <br /> 3. Note",
+                                        "comment": "Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "19",
+                                        "system": "Klav. o.",
+                                        "position": "3.–4. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} und Decrescendogabel mit schwarzer Tinte überschreiben Decrescendogabel mit Bleitstift."
+                                    },
+                                    {
+                                        "measure": "19 <br /> bis 22",
+                                        "system": "Ges.",
+                                        "position": "3/4 <br /> 2/4",
+                                        "comment": "Rasuren über dem System. Ante correcturam: vermutlich Bogen von T. 20 1/4 bis T. 22 2/4.  <br /> (Decrescendogabel in T. 22 auf dieser Rasur.)"
+                                    },
+                                    {
+                                        "measure": "20",
+                                        "system": "Klav. o.",
+                                        "position": "1/16–3/8",
+                                        "comment": "Rasuren über dem System. Ante correcturam: vermutlich Bogen 1/16–3/8."
+                                    },
+                                    {
+                                        "measure": "20",
+                                        "system": "Klav. u.",
+                                        "position": "1/8",
+                                        "comment": "Staccatopunkt auf Rasur."
+                                    },
+                                    {
+                                        "measure": "21",
+                                        "system": "Klav. o.",
+                                        "position": "1.–4. Note",
+                                        "comment": "Crescendogabel mit Bleistift, nachgezogen mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "21",
+                                        "system": "Ges.",
+                                        "position": "letzte Note",
+                                        "comment": "des<sup>2</sup> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "22",
+                                        "system": "Klav. o.",
+                                        "position": "1. Note",
+                                        "comment": "Auf Rasur. (Untersatz geändert.) <br /> {{ref.getGlyph('[p]')}} mit Bleistift, nachgezogen mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "22",
+                                        "system": "Klav. o.",
+                                        "position": "1.–3. Note",
+                                        "comment": "Rasur unter dem System. Ante correcturam: Decrescendogabel bereits ab 1. Note?"
+                                    },
+                                    {
+                                        "measure": "22",
+                                        "system": "Ges.",
+                                        "position": "5/8",
+                                        "comment": "{{ref.getGlyph('[p]')}} mit Bleistift, mit schwarzer Tinte nachgezogen."
+                                    },
+                                    {
+                                        "measure": "23 <br /> bis 24",
+                                        "system": "Ges., Klav.",
+                                        "position": "Taktanfang",
+                                        "comment": "Auf Rasur. (Untersatzkorrektur?)"
+                                    },
+                                    {
+                                        "measure": "25–27",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Rasuren unter dem System."
+                                    },
+                                    {
+                                        "measure": "25 <br /> bis 26",
+                                        "system": "Klav. o.",
+                                        "position": "3/8 <br /> 2. Note",
+                                        "comment": "Rasuren über dem System. Ante correcturam: Bogen bis T. 26 2. Note?"
+                                    },
+                                    {
+                                        "measure": "25 <br /> bis 26",
+                                        "system": "Klav.",
+                                        "position": "2/4 <br /> Taktende",
+                                        "comment": "{{ref.getGlyph('[pp]')}}, Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "27",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "{{ref.getGlyph('[ppp]')}}, Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "27",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Augmentationspunkt hinzugefügt mit Bleistift."
+                                    }
+                                ]
+                            },
+                            {
+                                "blockHeader": "III „Schien mir’s, als ich sah die Sonne“ M 213",
+                                "blockComments": [
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "5–6/16",
+                                        "comment": "Sechzehntelpause auf Rasur. Ante correcturam: Achtelnote d<sup>2</sup>."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. o.",
+                                        "position": "2/16–2/8",
+                                        "comment": "Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav.",
+                                        "position": "3–6/16",
+                                        "comment": "Rasur über den Noten."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Rasuren neben den Notenköpfen. Ante correcturam: punktierte Viertelnote."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. u.",
+                                        "position": "2–3/8",
+                                        "comment": "{{ref.getGlyph('[pp]')}}, Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "6/16",
+                                        "comment": "[Son-]<em>ne!</em> geändert zu [Son-]<em>ne,</em>, <em>!</em> rasiert, Komma mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. o.",
+                                        "position": "2/8–6/16",
+                                        "comment": "Rasuren. Ante correcturam: vermutlich zwei zusammengebalkte Achtelnoten?"
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "3/8",
+                                        "comment": "<em>:</em> (?) überschrieben zu <em>;</em> mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>tempo</em> auf Rasur. Ante correcturam: Geltungsstrichelung von <em>rit.</em> in T. 11 bis Ende T. 12?"
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav. o.",
+                                        "position": "1., 2. Note",
+                                        "comment": "Rasuren über den Noten."
+                                    },
+                                    {
+                                        "measure": "15 <br /> bis 16",
+                                        "system": "Ges.",
+                                        "position": "3/8 <br /> Taktende",
+                                        "comment": "Rasur unter den Noten. Ante correcturam: Bogen unter den Noten."
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Geltungsstrichelung von <em>rit.</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note",
+                                        "comment": "Rasuren über der Note."
+                                    },
+                                    {
+                                        "measure": "17–18",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Taktartvorzeichnung vor T. 17: <em>5/8</em> überschrieben zu <em>2/8</em> sowie Taktstrich nach T. 17 und Taktartvorzeichnung vor T. 18 (<em>3/8</em>) hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Klav. o.",
+                                        "position": "Taktanfang",
+                                        "comment": "Bassschlüssel auf Rasur. Ante correcturam: Violinschlüssel."
+                                    },
+                                    {
+                                        "measure": "20–21",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Taktartvorzeichnung vor T. 20: <em>5/8</em> überschrieben zu <em>2/8</em> sowie Taktstrich nach T. 20 hinzugefügt und Untersatz am Anfang von T. 21 geändert auf Rasur."
+                                    },
+                                    {
+                                        "measure": "21",
+                                        "system": "Klav. u.",
+                                        "position": "4/16",
+                                        "comment": "Rasur über dem System."
+                                    },
+                                    {
+                                        "measure": "22",
+                                        "system": "Ges.",
+                                        "position": "2/16",
+                                        "comment": "dis<sup>2</sup> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "23",
+                                        "system": "Klav. o.",
+                                        "position": "1–2/8",
+                                        "comment": "Crescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "23",
+                                        "system": "Ges.",
+                                        "position": "2/16–12/32",
+                                        "comment": "Gabeln auf Rasur."
+                                    },
+                                    {
+                                        "measure": "24",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[p]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "24 <br /> bis 25",
+                                        "system": "Ges.",
+                                        "position": "1. Note <br /> letzte Note",
+                                        "comment": "Rasuren über dem System. Decrescendogabel in T. 25 3.–4. Note auf Rasur."
+                                    },
+                                    {
+                                        "measure": "25",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[p]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "25",
+                                        "system": "",
+                                        "position": "(2/8)",
+                                        "comment": "<em>rit.- - -</em> gestrichen mit Bleistift. (Siehe Korrektur in T. 26 Taktanfang.)"
+                                    },
+                                    {
+                                        "measure": "25",
+                                        "system": "Klav. o.",
+                                        "position": "3/8",
+                                        "comment": "{{ref.getGlyph('[mf]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "26",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "Taktartvorzeichnung <em>4/8</em> überschrieben zu <em>2/4</em>.  <br /> <em>rit.</em> hinzugefügt mit Bleistift. (Siehe Korrektur in T. 25 [2/8].)"
+                                    },
+                                    {
+                                        "measure": "26",
+                                        "system": "Klav. u.",
+                                        "position": "1–2/8",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "26",
+                                        "system": "Ges.",
+                                        "position": "1.–4. Note",
+                                        "comment": "Gabeln mit Bleistift, radiert und mit schwarzer Tinte nachgezogen."
+                                    },
+                                    {
+                                        "measure": "26",
+                                        "system": "Klav. o.",
+                                        "position": "3.–4. Note",
+                                        "comment": "Ende der Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "26",
+                                        "system": "Klav. u.",
+                                        "position": "8/16",
+                                        "comment": "{{ref.getGlyph('[p]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "27 <br /> bis 28",
+                                        "system": "Ges.",
+                                        "position": "2/16 <br /> 2/8",
+                                        "comment": "Rasur über den Noten. Ante correcturam: Bogen von T. 27 2/16 bis T. 28 2/8."
+                                    },
+                                    {
+                                        "measure": "28",
+                                        "system": "Ges.",
+                                        "position": "1–2/8",
+                                        "comment": "Bogen auf Rasur."
+                                    },
+                                    {
+                                        "measure": "28 <br /> bis 29",
+                                        "system": "Ges.",
+                                        "position": "3. Note <br /> 2. Note",
+                                        "comment": "Rasur über den Noten. Ante correcturam: Bogen von T. 28 3. Note bis T. 29 2. Note."
+                                    },
+                                    {
+                                        "measure": "30",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>accell.</em> auf Rasur. Ante correcturam: vermutlich durchgehende Geltungsstrichelung von <em>rit.</em> in T. 28 3/8 bis Ende T. 31?"
+                                    },
+                                    {
+                                        "measure": "30",
+                                        "system": "Klav.",
+                                        "position": "1/8",
+                                        "comment": "Achtelpausen auf Rasur."
+                                    },
+                                    {
+                                        "measure": "30",
+                                        "system": "Klav. o.",
+                                        "position": "vor 2/8",
+                                        "comment": "Violinschlüssel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "33",
+                                        "system": "Klav.",
+                                        "position": "4/32–4/16",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "34",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "Taktartvorzeichnung <em>4/8</em> überschrieben zu <em>2/4</em>.  <br /> Geltungsstrichelung auf Rasur."
+                                    },
+                                    {
+                                        "measure": "34",
+                                        "system": "Klav. o.",
+                                        "position": "1/4",
+                                        "comment": "Oberstimmenschicht: Viertelpause auf Rasur."
+                                    },
+                                    {
+                                        "measure": "34–36",
+                                        "system": "Klav. o.",
+                                        "position": "",
+                                        "comment": "Rasur zwischen den Stimmenschichten. Ante correcturam: Trillerwellenlinie über a aus Unterstimmenschicht?"
+                                    },
+                                    {
+                                        "measure": "35",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>sehr ruhig (</em>[Achtel] <em>= ca 100)</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "38–40",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "<em>rit. - - -</em> mit Bleistift, nachgezogen mit schwarzer Tinte."
+                                    }
+                                ]
+                            },
+                            {
+                                "blockHeader": "IV <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216",
+                                "blockComments": [
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav. o.",
+                                        "position": "2.–4. Note",
+                                        "comment": "Decrescendogabel hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "1–2/4",
+                                        "comment": "Viertelpausen und Fermate zu 2/4 hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "8 <br /> bis 9",
+                                        "system": "Klav. u.",
+                                        "position": "1/4",
+                                        "comment": "e/g auf Rasur."
+                                    },
+                                    {
+                                        "measure": "9 <br /> bis 10",
+                                        "system": "Klav. o.",
+                                        "position": "2/8 <br /> 2/8",
+                                        "comment": "Notenköpfe mit Bleistift nachgezogen.  <br /> Gabeln (über dem System) auf Rasur. Ante correcturam: Bogen über dem System. Post correcturam: Bogen unter dem System."
+                                    },
+                                    {
+                                        "measure": "9 <br /> bis 10",
+                                        "system": "Klav. u.",
+                                        "position": "2. Note",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "10 <br /> bis 11",
+                                        "system": "Ges.",
+                                        "position": "2/4 <br /> 1. Note",
+                                        "comment": "Rasur über dem System. Ante correcturam: Bogen und Decrescendogabel überschneiden sich."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. u.",
+                                        "position": "1/8",
+                                        "comment": "Rasur über der Note."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "",
+                                        "position": "3/4",
+                                        "comment": "<em>rit.</em> vermutlich versetzt von Anfang T. 12. (Dort Geltungsstrichelung auf Rasur)."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav. u.",
+                                        "position": "1/4",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav. o.",
+                                        "position": "",
+                                        "comment": "g<sup>2</sup>/ges<sup>3</sup>/ais<sup>3</sup>, zweite Hilfslinie gestrichen und Tonnamen <em>fis</em> | <em>es</em> vor den beiden obersten Notenköpfen ergänzt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Klav. o.",
+                                        "position": "1/4",
+                                        "comment": "Unterstimmenschicht: Viertelpause auf Rasur."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Klav. o.",
+                                        "position": "2/8",
+                                        "comment": "{{ref.getGlyph('[f]')}} mit Bleistift, mit schwarzer Tinte nachgezogen."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Klav. o.",
+                                        "position": "2–6/8",
+                                        "comment": "Rasur unter dem System."
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Ganze Pause hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "Klav.",
+                                        "position": "1.–2. Note",
+                                        "comment": "{{ref.getGlyph('[p]')}}, Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Auf Rasur. Ante correcturam: Klav. u. und Klav. o. Unterstimmenschicht vermutlich Ligatur aus Viertelnote, punktierte Viertelnote C/A und e, Achtelpause. Klav. o. Oberstimmenschicht vermutlich Viertelnote cis<sup>1</sup>, Achtelpause"
+                                    },
+                                    {
+                                        "measure": "18",
+                                        "system": "Klav. o.",
+                                        "position": "1/4",
+                                        "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "19",
+                                        "system": "Klav. o.",
+                                        "position": "2.–3. Note",
+                                        "comment": "Oberstimmenschicht auf Rasur."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 ]
             }
         },
@@ -1996,18 +3365,31 @@
                 "desc": [
                     "10 Seiten (S. [1]–[10]): 2 klammergeheftete ineinander gelegte Bögen (S. [1]|2/9|[10], 3|4/5|6) und 1 mit Klebstoff angeheftetes Blatt (S. 7|8) in Umschlag (S. [a–d]), Format: 306 × 230 mm. S. [10] sowie innere Seiten des Umschlags (S. [b] und [c]) nicht bedruckt. S. [d]: Verlagsanzeige (<em>ARNOLD SCHÖNBERGS WERKE</em>)."
                 ],
-                "writingMaterialString": "",
+                "writingMaterialStrings": [],
                 "writingInstruments": {
                     "main": "",
                     "secondary": []
                 },
-                "title": "<em>VIER LIEDER | für Gesang und Klavier | von | ANTON WEBERN | Op. 12</em> auf der vorderen Umschlagseite (S. [a]) sowie auf S. [1];<br /><em><span class=\"smallcaps\">Der Tag ist vergangen</span> | (Volkslied)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 1</em> [rechts] auf S. 2 oben (Kopftitel);<br /><em><span class=\"smallcaps\">Die geheimnsivolle Flöte</span> | Li-Tai-Po | (aus Hans Bethges „Chinesischer Flöte“)</em> [Mitte] | <em>Anton Webern, Op.12 Nr. 2</em> [rechts] auf S. 4 oben (Kopftitel);<br /><em><span class=\"smallcaps\">Schien mir’s, als ich sah die Sonne</span> | (aus August Strindbergs „Gespenstersonate“)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 3</em> [rechts] auf S. 6 oben (Kopftitel);<br /><em><span class=\"smallcaps\">Gleich und Gleich</span> | (Goethe)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 4</em> [rechts] auf S. 8 oben (Kopftitel).",
-                "date": "",
-                "pagination": "<em>2</em> bis <em>9</em> auf S. 2–9 Außenecken oben.",
-                "measureNumbers": "",
-                "instrumentation": "<em>Gesang | Klavier</em> auf S. 2 System 1 | 2–3",
-                "annotations": "<em>UNIVERSAL-EDITION | Nr. 8257</em> auf der vorderen Umschlagseite (S. [a]) unten;<br /><em>Aufführungsrecht vorbehalten. – Droits d'exécution réservés | UNIVERSAL-EDITION | WIEN   Copyright 1925 by Universal-Edition   NEW YORK</em> auf S. [1] unten;<br /><em>Aufführungsrecht vorbehalten. | Droits d'exécution réservés.</em> auf S. 2 oben links;<br /><em>Copyright 1925 by Universal-Edition.</em> [links] | <em>Universal-Edition Nr 8257</em> [Mitte] auf S. 2 unten;<br /><em>U. E. 8257</em> auf S. 3–9 unten Mitte;<br /><em>Stich u. Druck der Waldheim-Eberle A. G.</em> auf S. 9 unten rechts.",
-                "content": [
+                "titles": [
+                    "<em>VIER LIEDER | für Gesang und Klavier | von | ANTON WEBERN | Op. 12</em> auf der vorderen Umschlagseite (S. [a]) sowie auf S. [1]",
+                    "<em><span class=\"smallcaps\">Der Tag ist vergangen</span> | (Volkslied)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 1</em> [rechts] auf S. 2 oben (Kopftitel)",
+                    "<em><span class=\"smallcaps\">Die geheimnsivolle Flöte</span> | Li-Tai-Po | (aus Hans Bethges „Chinesischer Flöte“)</em> [Mitte] | <em>Anton Webern, Op.12 Nr. 2</em> [rechts] auf S. 4 oben (Kopftitel)",
+                    "<em><span class=\"smallcaps\">Schien mir’s, als ich sah die Sonne</span> | (aus August Strindbergs „Gespenstersonate“)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 3</em> [rechts] auf S. 6 oben (Kopftitel)",
+                    "<em><span class=\"smallcaps\">Gleich und Gleich</span> | (Goethe)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 4</em> [rechts] auf S. 8 oben (Kopftitel)"
+                ],
+                "dates": [],
+                "paginations": ["<em>2</em> bis <em>9</em> auf S. 2–9 Außenecken oben"],
+                "measureNumbers": [],
+                "instrumentations": ["<em>Gesang | Klavier</em> auf S. 2 System 1 | 2–3"],
+                "annotations": [
+                    "<em>UNIVERSAL-EDITION | Nr. 8257</em> auf der vorderen Umschlagseite (S. [a]) unten",
+                    "<em>Aufführungsrecht vorbehalten. – Droits d'exécution réservés | UNIVERSAL-EDITION | WIEN   Copyright 1925 by Universal-Edition   NEW YORK</em> auf S. [1] unten",
+                    "<em>Aufführungsrecht vorbehalten. | Droits d'exécution réservés.</em> auf S. 2 oben links",
+                    "<em>Copyright 1925 by Universal-Edition.</em> [links] | <em>Universal-Edition Nr 8257</em> [Mitte] auf S. 2 unten",
+                    "<em>U. E. 8257</em> auf S. 3–9 unten Mitte",
+                    "<em>Stich u. Druck der Waldheim-Eberle A. G.</em> auf S. 9 unten rechts"
+                ],
+                "contents": [
                     {
                         "item": "",
                         "itemLinkTo": {},
@@ -2327,8 +3709,16 @@
             "type": "Handexemplar von <strong>G</strong>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder: 59/10.",
             "description": {
-                "desc": ["Siehe <a (click)=\"ref.navigateToReportFragment('source_G')\"><strong>G</strong></a>."],
-                "annotations": "<em>So<span style=\"text-decoration:overline;\">m</span>er, 1925</em> auf S. [1] untere Hälfte links mit Bleistift;<br /><em>2 1/2 bis 3</em> nach I mit Bleistift;<br/><em>3’</em> nach II mit Bleistift;<br /><em>2 1/2</em> nach III mit Bleistift;<br /><em>2’</em> [eingerahmt] <em><s>3’</s></em> nach IV mit Bleistift, <em><s>3’</s></em> gestrichen. "
+                "desc": [
+                    "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>."
+                ],
+                "annotations": [
+                    "<em>Som̅er, 1925</em> auf S. [1] untere Hälfte links mit Bleistift",
+                    "<em>2 1/2 bis 3</em> nach I mit Bleistift",
+                    "<em>3’</em> nach II mit Bleistift",
+                    "<em>2 1/2</em> nach III mit Bleistift",
+                    "<em>2’</em> [eingerahmt] <em><s>3’</s></em> nach IV mit Bleistift, <em><s>3’</s></em> gestrichen"
+                ]
             }
         }
     ]

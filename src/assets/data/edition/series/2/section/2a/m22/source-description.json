@@ -8,20 +8,22 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "1 Blatt: Das Blatt ist Bestandteil (Bl. 4) eines größeren Konvolutes bestehend aus 1 Blatt (Bl. 1), 1 Bogen (Bl. 2/3) und 1 Blatt (Bl. 4). Horizontale Knickfalte. Stockflecken unten mittig-rechts. Ecke unten links abgerissen (inkl. Firmenzeichen auf 1<sup>r</sup>). Rissspuren am linken Rand: von Bogen abgetrennt."
+                    "1 Blatt (Bl. 1). Horizontale Knickfalte. Stockflecken unten mittig-rechts. Ecke unten links abgerissen (vermutlich inkl. Firmenzeichen auf 1<sup>r</sup>). Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
-                "writingMaterialString": "Notenpapier, 28 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen abgerissen.",
+                "writingMaterialStrings": [
+                    "Notenpapier, 28 Systeme, Format: hoch 343 × 264 mm. Firmenzeichen: vermutlich [J.E. &amp; Co.] | <em>N<sup>o</sup>. 9 | 28 linig.</em> unten links auf Bl. 1<sup>r</sup>"
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift"]
                 },
-                "title": "",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
-                "content": [
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "M* 408",
                         "itemLinkTo": {},
@@ -499,20 +501,22 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "1 Blatt. Rissspuren am linken Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte, diagonale Knickfalte unten rechts."
+                    "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte, diagonale Knickfalte unten rechts."
                 ],
-                "writingMaterialString": "Notenpapier, 18 Systeme, Format: hoch 347 × 267 mm, Firmenzeichen ### unten links auf Bl. 1<sup>r</sup>.",
+                "writingMaterialStrings": [
+                    "Notenpapier, 18 Systeme, Format: hoch 347 × 267 mm, Firmenzeichen ### unten links auf Bl. 1<sup>r</sup>"
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift"]
                 },
-                "title": "",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
-                "content": [
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "M 22 Sk13",
                         "itemLinkTo": {
@@ -851,7 +855,7 @@
                     {
                         "item": "M 32",
                         "itemLinkTo": {},
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 32 Textfassung 2)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 2)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -886,7 +890,7 @@
                     {
                         "item": "M 32 Sk3",
                         "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32 Textfassung 3)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 3)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -907,7 +911,7 @@
                     {
                         "item": "M 32 Sk4",
                         "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32 Textfassung 3)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 3)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -949,7 +953,7 @@
                     {
                         "item": "M 32 Sk5",
                         "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32 Textfassung 3)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 3)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -970,7 +974,7 @@
                     {
                         "item": "M 32 Sk4.1",
                         "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32 Textfassung 3)",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 3)",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -1023,20 +1027,22 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "1 Blatt. Horizontale Knickfalte. Zahlreiche Risse und Knicke am rechten, oberen und unteren Rand. Rötliche Verfärbung oben links und rechts. Rissspuren am linken Rand: von Bogen abgetrennt."
+                    "1 Blatt (Bl. 1). Horizontale Knickfalte. Zahlreiche Risse und Knicke am rechten, oberen und unteren Rand. Rötliche Verfärbung oben links und rechts. Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
-                "writingMaterialString": "Notenpapier, 28 Systeme, Format: hoch 347 × 264 mm, Firmenzeichen ### unten links auf Bl. 1<sup>r</sup>.",
+                "writingMaterialStrings": [
+                    "Notenpapier, 28 Systeme, Format: hoch 347 × 264 mm, Firmenzeichen ### unten links auf Bl. 1<sup>r</sup>"
+                ],
                 "writingInstruments": {
                     "main": "Bleistift",
                     "secondary": []
                 },
-                "title": "",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
-                "content": [
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "M 22 Sk24",
                         "itemLinkTo": {
@@ -1339,20 +1345,22 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "1 Blatt: Linke obere Ecke mit Bleistift eingefärbt. Rissspuren am rechten Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte."
+                    "1 Blatt (Bl. 1). Linke obere Ecke mit Bleistift eingefärbt. Rissspuren am rechten Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte."
                 ],
-                "writingMaterialString": "Notenpapier, 18 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5</em> | <em>18 linig.</em> unten links auf Bl. 1<sup>v</sup>.",
+                "writingMaterialStrings": [
+                    "Notenpapier, 18 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5</em> | <em>18 linig.</em> unten links auf Bl. 1<sup>v</sup>"
+                ],
                 "writingInstruments": {
                     "main": "Bleistift",
                     "secondary": []
                 },
-                "title": "",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
-                "content": [
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "M 22 Sk29",
                         "itemLinkTo": {
@@ -1494,7 +1502,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "18–17",
+                                            "system": "18–17 (auf dem Kopf stehend)",
                                             "measure": "{1A}, 1B, 2–8",
                                             "linkTo": ""
                                         }
@@ -1515,7 +1523,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "16–15",
+                                            "system": "16–15 (auf dem Kopf stehend)",
                                             "measure": "{1A}, 1B, 2–8, x+1",
                                             "linkTo": ""
                                         }
@@ -1539,14 +1547,14 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "14–13b",
+                                            "system": "14–13b (auf dem Kopf stehend)",
                                             "measure": "{1A–2A}, 1B–2B, 3–6",
                                             "linkTo": "M_22_Sk28a"
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "10b–9b",
+                                            "system": "10b–9b (auf dem Kopf stehend)",
                                             "measure": "7–8",
                                             "linkTo": "M_22_Sk28b"
                                         }
@@ -1584,7 +1592,7 @@
                         ]
                     },
                     {
-                        "item": "M* 401 22 Sk1.1",
+                        "item": "M* 401 Sk1.1",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 401)",
                         "folios": [
@@ -1678,20 +1686,22 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "1 Bogen (Bl. 1/2): Der Bogen ist Bestandteil (Bl. 1/2) eines größeren Konvoluts aus 2 Bögen (Bl. 1/2, 3/4), 1 Blatt (Bl. 5) und 1 Bogen (Bl. 6/7). Horizontale und vertikale Knickfalte, seitlich leicht eingerissen."
+                    "1 Bogen (Bl. 1/2). Horizontale und vertikale Knickfalte, seitlich leicht eingerissen."
                 ],
-                "writingMaterialString": "Notenpapier, 28 Systeme, Format: hoch 342 × 264 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 9</em> | <em>28 linig.</em> unten links auf Bl. 1<sup>1</sup>–2<sup>r</sup>.",
+                "writingMaterialStrings": [
+                    "Notenpapier, 28 Systeme, Format: hoch 342 × 264 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 9</em> | <em>28 linig.</em> unten links auf Bl. 1<sup>1</sup>–2<sup>r</sup>"
+                ],
                 "writingInstruments": {
                     "main": "Bleistift",
                     "secondary": []
                 },
-                "title": "",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
-                "content": [
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "M 22 Sk31",
                         "itemLinkTo": {
@@ -3114,7 +3124,22 @@
                         "item": "M* 450 Sk2",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition M* 450)",
-                        "folios": []
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "9b–10b",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
                     },
                     {
                         "item": "M 24 Sk16",
@@ -3309,24 +3334,26 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "1 Blatt (Bl. 1), 1 Bogen (Bl. 2/3): Blatt und Bogen sind Bestandteil (Bl. 1, 2/3) eines größeren Konvolutes bestehend aus 1 Blatt (Bl. 1), 1 Bogen (Bl. 2/3) und 1 Blatt (Bl. 4). Horizontale Knickfalte auf Blatt und Bogen. Kleiner Stockfleck oben rechts auf Blatt und Bogen. Ecke unten rechts von Bl. 1 abgerissen. Bogen unten in der Falte eingerissen."
+                    "1 Blatt (Bl. 1), 1 Bogen (Bl. 2/3). Horizontale Knickfalte auf Blatt und Bogen. Kleiner Stockfleck oben rechts auf Blatt und Bogen. Ecke unten rechts von Bl. 1 abgerissen. Bogen unten in der Falte eingerissen."
                 ],
-                "writingMaterialString": "Notenpapier, 28 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen ### unten links auf Bl. 1<sup>r</sup>–3<sup>r</sup>.",
+                "writingMaterialStrings": [
+                    "Notenpapier, 28 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen ### unten links auf Bl. 1<sup>r</sup>, 2<sup>r</sup> und 3<sup>r</sup>"
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift"]
                 },
-                "title": "",
-                "date": "",
-                "pagination": "",
-                "measureNumbers": "",
-                "instrumentation": "",
-                "annotations": "",
-                "content": [
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
                     {
                         "item": "M* 409",
                         "itemLinkTo": {},
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409 Textfassung 1)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409: Textfassung 1)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -3354,7 +3381,7 @@
                     {
                         "item": "M* 409",
                         "itemLinkTo": {},
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409 Textfassung 2)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409: Textfassung 2)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -3420,7 +3447,7 @@
                             "complexId": "m22",
                             "sheetId": "M_22_TF1"
                         },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22: Thema)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -3430,55 +3457,10 @@
                                     [
                                         {
                                             "system": "14–15",
-                                            "measure": "1–8",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M* 412",
-                        "itemLinkTo": {},
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 412)",
-                        "folios": [
-                            {
-                                "folio": "1r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "17–18",
-                                            "measure": "1–11",
+                                            "measure": "1–8 (Thema)",
                                             "linkTo": ""
                                         }
                                     ],
-                                    [
-                                        {
-                                            "system": "20–21",
-                                            "measure": "20–21",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 22",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_TF1"
-                        },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22: Var. I–II)",
-                        "folios": [
-                            {
-                                "folio": "1r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
                                     [
                                         {
                                             "system": "23–24",
@@ -3489,7 +3471,7 @@
                                     [
                                         {
                                             "system": "25–26",
-                                            "measure": "7–8",
+                                            "measure": "7–8 (Var. I)",
                                             "linkTo": ""
                                         }
                                     ],
@@ -3501,17 +3483,7 @@
                                         }
                                     ]
                                 ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 22",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_TF1"
-                        },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22: Var. III–X)",
-                        "folios": [
+                            },
                             {
                                 "folio": "1v",
                                 "folioLinkTo": "",
@@ -3562,7 +3534,7 @@
                                     [
                                         {
                                             "system": "14–15",
-                                            "measure": "8",
+                                            "measure": "8 (Var. VII)",
                                             "linkTo": ""
                                         }
                                     ],
@@ -3576,7 +3548,7 @@
                                     [
                                         {
                                             "system": "19–20",
-                                            "measure": "7–8",
+                                            "measure": "7–8 (Var. VIII)",
                                             "linkTo": ""
                                         }
                                     ],
@@ -3597,22 +3569,12 @@
                                     [
                                         {
                                             "system": "27–28",
-                                            "measure": "7–8",
+                                            "measure": "7–8 (Var. X)",
                                             "linkTo": ""
                                         }
                                     ]
                                 ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 22",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_TF1"
-                        },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22: Var. XI–XII)",
-                        "folios": [
+                            },
                             {
                                 "folio": "2r",
                                 "folioLinkTo": "",
@@ -3629,6 +3591,153 @@
                                         {
                                             "system": "4–5",
                                             "measure": "1–3 (Var. XII)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–14",
+                                            "measure": "1–7 (Var. XIII)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16a–17a",
+                                            "measure": "8 (Var. XIII)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16b–17b",
+                                            "measure": "1–4 (Var. XIV)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "19–20",
+                                            "measure": "1–8 (Var. XV)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "22–23",
+                                            "measure": "1–8 (Var. XVI)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "25–26",
+                                            "measure": "1–6 (Var. XVII)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "27–28",
+                                            "measure": "7–8 (Var. XVII)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–3",
+                                            "measure": "1–8 (Var. XVIII)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "1–8 (Var. XIX)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8b–9b",
+                                            "measure": "7B–8B (Var. XIX)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14–15",
+                                            "measure": "1–8 (Var. XX)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–20",
+                                            "measure": "1–6 (Var. XXI)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "22–25",
+                                            "measure": "7–8 (Var. XXI)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "3r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "1–8 (Var. XXII)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "1–8 (Var. XXIII)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 412",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 412)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "1–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "20–21",
+                                            "measure": "20–21",
                                             "linkTo": ""
                                         }
                                     ]
@@ -3679,86 +3788,6 @@
                         ]
                     },
                     {
-                        "item": "M 22",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_TF1"
-                        },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22: Var. XIII–XVII)",
-                        "folios": [
-                            {
-                                "folio": "2r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "13–14",
-                                            "measure": "1–7 (Var. XIII)",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "16a–17a",
-                                            "measure": "8",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "16b–17b",
-                                            "measure": "1–4 (Var. XIV)",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "19–20",
-                                            "measure": "1–8 (Var. XV)",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "22–23",
-                                            "measure": "1–8 (Var. XVI)",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "25–26",
-                                            "measure": "1–6 (Var. XVII)",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "27–28",
-                                            "measure": "7–8",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            },
-                            {
-                                "folio": "2v",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "2–3",
-                                            "measure": "1–8 (Var. XVIII)",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
                         "item": "M* 415",
                         "itemLinkTo": {},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 415)",
@@ -3801,82 +3830,6 @@
                         ]
                     },
                     {
-                        "item": "M 22",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_TF1"
-                        },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22: Var. XIX–XXI)",
-                        "folios": [
-                            {
-                                "folio": "2v",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "11–12",
-                                            "measure": "1–8 (Var. XIX)",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "8b–9b",
-                                            "measure": "7B–8B",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "14–15",
-                                            "measure": "1–8 (Var. XX)",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "17–20",
-                                            "measure": "1–6 (Var. XXI)",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "22–25",
-                                            "measure": "7–8",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 22",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_TF1"
-                        },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22: Var. XXII)",
-                        "folios": [
-                            {
-                                "folio": "3r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "1–4",
-                                            "measure": "1–8",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
                         "item": "M 23",
                         "itemLinkTo": {},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 23: Thema)",
@@ -3897,30 +3850,6 @@
                                         {
                                             "system": "8–9",
                                             "measure": "11–12",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 22",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_TF1"
-                        },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22: Var. XXIII)",
-                        "folios": [
-                            {
-                                "folio": "3r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "11–12",
-                                            "measure": "1–8",
                                             "linkTo": ""
                                         }
                                     ]

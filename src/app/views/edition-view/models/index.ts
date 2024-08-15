@@ -10,7 +10,13 @@
 import { D3Selection } from './d3-selection.model';
 import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
 
-import { EditionComplex, EditionTitleStatement } from './edition-complex.model';
+import {
+    EditionComplex,
+    EditionComplexesJsonInput,
+    EditionComplexesList,
+    EditionComplexJsonInput,
+    EditionComplexTitleStatement,
+} from './edition-complex.model';
 import { EditionOutlineComplex, EditionOutlineSection, EditionOutlineSeries } from './edition-outline.model';
 import { EditionRouteConstant } from './edition-route-constant.model';
 import { EditionRowTables, EditionRowTablesList } from './edition-row-tables.model';
@@ -25,6 +31,7 @@ import { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioFormat, F
 
 import { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';
 import { Intro, IntroList } from './intro.model';
+import { Preface, PrefaceList } from './preface.model';
 
 import {
     SourceDescription,
@@ -38,13 +45,18 @@ import {
 import { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
 import { Source, SourceList } from './source-list.model';
 
-import { TextcriticalComment, Textcritics, TextcriticsList } from './textcritics.model';
+import { TextcriticalComment, TextcriticalCommentBlock, Textcritics, TextcriticsList } from './textcritics.model';
+import { TkaTableHeaderColumn } from './tka-table-header.model';
 import { ViewBox } from './view-box.model';
 
 export {
     D3Selection,
     D3ZoomBehaviour,
     EditionComplex,
+    EditionComplexesJsonInput,
+    EditionComplexesList,
+    EditionComplexJsonInput,
+    EditionComplexTitleStatement,
     EditionOutlineComplex,
     EditionOutlineSection,
     EditionOutlineSeries,
@@ -57,7 +69,6 @@ export {
     EditionSvgOverlayTypes,
     EditionSvgSheet,
     EditionSvgSheetList,
-    EditionTitleStatement,
     Folio,
     FolioCalculation,
     FolioCalculationLine,
@@ -76,6 +87,8 @@ export {
     GraphSparqlQuery,
     Intro,
     IntroList,
+    Preface,
+    PrefaceList,
     Source,
     SourceDescription,
     SourceDescriptionList,
@@ -88,7 +101,9 @@ export {
     SourceEvaluationList,
     SourceList,
     TextcriticalComment,
+    TextcriticalCommentBlock,
     Textcritics,
     TextcriticsList,
+    TkaTableHeaderColumn,
     ViewBox,
 };

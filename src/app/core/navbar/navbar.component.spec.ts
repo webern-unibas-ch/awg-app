@@ -3,18 +3,6 @@ import { DebugElement, NgModule } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { click, clickAndAwaitChanges } from '@testing/click-helper';
-import {
-    expectSpyCall,
-    expectToBe,
-    expectToContain,
-    expectToEqual,
-    getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective,
-} from '@testing/expect-helper';
-import { RouterLinkStubDirective } from '@testing/router-stubs';
-
 import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
@@ -28,11 +16,22 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { NgbCollapseModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { click, clickAndAwaitChanges } from '@testing/click-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
+import { RouterLinkStubDirective } from '@testing/router-stubs';
+
 import { LOGOSDATA } from '@awg-core/core-data';
 import { Logos } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
+import { CoreService, EditionComplexesService } from '@awg-core/services';
 
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 
@@ -44,6 +43,7 @@ function generateExpectedOrderOfRouterlinks(editionComplexes: EditionComplex[]):
         ['/home'],
         [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.SERIES.route],
         [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.ROWTABLES.route],
+        [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.PREFACE.route],
     ];
 
     const editionLinks = editionComplexes.flatMap(complex => [
@@ -66,7 +66,6 @@ describe('NavbarComponent (DONE)', () => {
     let routerLinks;
 
     let coreServiceSpy: Spy;
-    let getEditionComplexSpy: Spy;
     let isActiveRouteSpy: Spy;
     let routerSpy: Spy;
     let provideMetaDataSpy: Spy;
@@ -84,7 +83,6 @@ describe('NavbarComponent (DONE)', () => {
     let expectedStructureIcon: IconDefinition;
 
     let expectedEditionComplexes: EditionComplex[];
-    let expectedSelectedEditionComplex: EditionComplex = EDITION_COMPLEXES.OP12;
     let expectedOrderOfRouterlinks: string[][];
 
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
@@ -126,16 +124,18 @@ describe('NavbarComponent (DONE)', () => {
         expectedLogos = LOGOSDATA;
 
         expectedEditionComplexes = [
-            EDITION_COMPLEXES.OP12,
-            EDITION_COMPLEXES.OP25,
-            EDITION_COMPLEXES.M22,
-            EDITION_COMPLEXES.M30,
-            EDITION_COMPLEXES.M31,
-            EDITION_COMPLEXES.M34,
-            EDITION_COMPLEXES.M35_42,
-            EDITION_COMPLEXES.M37,
+            EditionComplexesService.getEditionComplexById('OP3'),
+            EditionComplexesService.getEditionComplexById('OP4'),
+            EditionComplexesService.getEditionComplexById('OP12'),
+            EditionComplexesService.getEditionComplexById('OP23'),
+            EditionComplexesService.getEditionComplexById('OP25'),
+            EditionComplexesService.getEditionComplexById('M22'),
+            EditionComplexesService.getEditionComplexById('M30'),
+            EditionComplexesService.getEditionComplexById('M31'),
+            EditionComplexesService.getEditionComplexById('M34'),
+            EditionComplexesService.getEditionComplexById('M35_42'),
+            EditionComplexesService.getEditionComplexById('M37'),
         ];
-        expectedSelectedEditionComplex = expectedEditionComplexes[0];
         expectedOrderOfRouterlinks = generateExpectedOrderOfRouterlinks(expectedEditionComplexes);
 
         expectedContactIcon = faEnvelope;
@@ -148,7 +148,6 @@ describe('NavbarComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         coreServiceSpy = spyOn(mockCoreService, 'getLogos').and.callThrough();
-        getEditionComplexSpy = spyOn(component, 'getEditionComplex').and.callThrough();
         isActiveRouteSpy = spyOn(component, 'isActiveRoute').and.callThrough();
         routerSpy = mockRouter.isActive as jasmine.Spy;
         provideMetaDataSpy = spyOn(component, 'provideMetaData').and.callThrough();
@@ -165,7 +164,7 @@ describe('NavbarComponent (DONE)', () => {
 
     it('... injected service should use provided mockValue', () => {
         const coreService = TestBed.inject(CoreService);
-        expect(mockCoreService === coreService).toBe(true);
+        expectToBe(mockCoreService === coreService, true);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -182,7 +181,7 @@ describe('NavbarComponent (DONE)', () => {
         });
 
         it('... should have `isCollapsed = true`', () => {
-            expect(component.isCollapsed).toBeTrue();
+            expectToBe(component.isCollapsed, true);
         });
 
         it('... should have `DISPLAYED_EDITION_COMPLEXES`', () => {
@@ -199,10 +198,6 @@ describe('NavbarComponent (DONE)', () => {
 
         it('... should not have `logos`', () => {
             expect(component.logos).toBeUndefined();
-        });
-
-        it('... should not have `selectedEditionComplex`', () => {
-            expect(component.selectedEditionComplex).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -316,20 +311,6 @@ describe('NavbarComponent (DONE)', () => {
             });
         });
 
-        describe('#getEditionComplex()', () => {
-            it('... should have a method `getEditionComplex`', () => {
-                expect(component.getEditionComplex).toBeDefined();
-            });
-
-            it('... should not have been called', () => {
-                expectSpyCall(getEditionComplexSpy, 0);
-            });
-
-            it('... should not have `selectedEditionComplex`', () => {
-                expect(component.selectedEditionComplex).toBeUndefined();
-            });
-        });
-
         describe('#isActiveRoute()', () => {
             it('... should have a method `isActiveRoute`', () => {
                 expect(component.isActiveRoute).toBeDefined();
@@ -381,15 +362,15 @@ describe('NavbarComponent (DONE)', () => {
             it('... should toggle `isCollapsed`', () => {
                 component.toggleNav();
 
-                expect(component.isCollapsed).toBeFalse();
+                expectToBe(component.isCollapsed, false);
 
                 component.toggleNav();
 
-                expect(component.isCollapsed).toBeTrue();
+                expectToBe(component.isCollapsed, true);
 
                 component.toggleNav();
 
-                expect(component.isCollapsed).toBeFalse();
+                expectToBe(component.isCollapsed, false);
             });
         });
     });
@@ -450,7 +431,7 @@ describe('NavbarComponent (DONE)', () => {
                 expectToEqual(faIconIns, expectedContactIcon);
             });
 
-            describe('... second nav-item link', () => {
+            describe('... second nav-item link (edition)', () => {
                 let navItemDe: DebugElement[];
                 let navItemLinkDe: DebugElement[];
 
@@ -463,7 +444,6 @@ describe('NavbarComponent (DONE)', () => {
                 }));
 
                 it('... should have a dropdown menu', () => {
-                    // Expect dropdown menu
                     getAndExpectDebugElementByCss(navItemDe[1], 'div.dropdown-menu', 1, 1);
                 });
 
@@ -479,48 +459,56 @@ describe('NavbarComponent (DONE)', () => {
                     expectToBe(headerEl.textContent, 'Allgemein');
                 });
 
-                it('... should be followed by 2 dropdown items', () => {
-                    const firstItemDe = getAndExpectDebugElementByCss(
+                it('... should be followed by 3 dropdown items for edition overview, rowtables and preface', () => {
+                    const overviewDe = getAndExpectDebugElementByCss(
                         navItemDe[1],
                         'div.dropdown-menu > a.dropdown-item:nth-child(2)',
                         1,
                         1
                     );
-                    const secondItemDe = getAndExpectDebugElementByCss(
+                    const rowtablesDe = getAndExpectDebugElementByCss(
                         navItemDe[1],
                         'div.dropdown-menu > a.dropdown-item:nth-child(3)',
                         1,
                         1
                     );
+                    const prefaceDe = getAndExpectDebugElementByCss(
+                        navItemDe[1],
+                        'div.dropdown-menu > a.dropdown-item:nth-child(4)',
+                        1,
+                        1
+                    );
 
-                    const firstItemEl = firstItemDe[0].nativeElement;
-                    const secondItemEl = secondItemDe[0].nativeElement;
+                    const overviewEl = overviewDe[0].nativeElement;
+                    const rowtablesEl = rowtablesDe[0].nativeElement;
+                    const prefaceEl = prefaceDe[0].nativeElement;
 
-                    expectToBe(firstItemEl.textContent, EDITION_ROUTE_CONSTANTS.SERIES.full);
-                    expectToBe(secondItemEl.textContent, EDITION_ROUTE_CONSTANTS.ROWTABLES.full);
+                    expectToBe(overviewEl.textContent, EDITION_ROUTE_CONSTANTS.SERIES.full);
+                    expectToBe(rowtablesEl.textContent, EDITION_ROUTE_CONSTANTS.ROWTABLES.full);
+                    expectToBe(prefaceEl.textContent, EDITION_ROUTE_CONSTANTS.PREFACE.full);
                 });
 
                 it('... should have another dropdown header `Auswahl Skizzenkomplexe` surrounded by dividers', () => {
                     getAndExpectDebugElementByCss(
                         navItemDe[1],
-                        'div.dropdown-menu > div.dropdown-divider:nth-child(4)',
+                        'div.dropdown-menu > div.dropdown-divider:nth-child(5)',
                         1,
                         1
                     );
-                    getAndExpectDebugElementByCss(
-                        navItemDe[1],
-                        'div.dropdown-menu > div.dropdown-divider:nth-child(6)',
-                        1,
-                        1
-                    );
-
                     const headerDe = getAndExpectDebugElementByCss(
                         navItemDe[1],
-                        'div.dropdown-menu > h6.dropdown-header:nth-child(5)',
+                        'div.dropdown-menu > h6.dropdown-header:nth-child(6)',
                         1,
                         1
                     );
                     const headerEl = headerDe[0].nativeElement;
+
+                    getAndExpectDebugElementByCss(
+                        navItemDe[1],
+                        'div.dropdown-menu > div.dropdown-divider:nth-child(7)',
+                        1,
+                        1
+                    );
 
                     expectToBe(headerEl.textContent, 'Auswahl Skizzenkomplexe');
                 });
@@ -561,12 +549,18 @@ describe('NavbarComponent (DONE)', () => {
                         const headerDe = getAndExpectDebugElementByCss(complexDe, 'h6.dropdown-header', 1, 1);
                         const headerEl = headerDe[0].nativeElement;
 
-                        const headerSiglum = `[AWG ${expectedEditionComplexes[index].series.short}/${expectedEditionComplexes[index].section.short}] `;
-                        const headerId = expectedEditionComplexes[index].complexId.full;
-                        const strippedHeaderId = headerId.replace(/<em>/g, '').replace(/<\/em>/g, '');
-                        const headerLabel = headerSiglum + strippedHeaderId;
+                        const headerSpanDe = getAndExpectDebugElementByCss(headerDe[0], 'span', 1, 1);
+                        const headerSpanEl = headerSpanDe[0].nativeElement;
 
-                        expectToBe(headerEl.textContent.trim(), headerLabel.trim());
+                        const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
+                        const series = expectedEditionComplexes[index].pubStatement.series.short;
+                        const section = expectedEditionComplexes[index].pubStatement.section.short;
+
+                        const headerSiglum = `[${awg} ${series}/${section}] `;
+                        const headerId = expectedEditionComplexes[index].complexId.full;
+
+                        expectToContain(headerEl.textContent, headerSiglum);
+                        expectToBe(headerSpanEl.innerHTML.trim(), headerId.trim());
                     });
                 });
 
@@ -593,17 +587,6 @@ describe('NavbarComponent (DONE)', () => {
             });
         });
 
-        describe('#getEditionComplex()', () => {
-            it('... should have been called', () => {
-                expectSpyCall(getEditionComplexSpy, 1);
-            });
-
-            it('... should get `selectedEditionComplex`', () => {
-                expect(component.selectedEditionComplex).toBeDefined();
-                expectToEqual(component.selectedEditionComplex, expectedSelectedEditionComplex);
-            });
-        });
-
         describe('#isActiveRoute()', () => {
             it('... should have been called 2 times', () => {
                 expectSpyCall(isActiveRouteSpy, 2);
@@ -613,14 +596,14 @@ describe('NavbarComponent (DONE)', () => {
                 const expectedActiveRoute = '/active-route';
                 routerSpy.and.returnValue(true);
 
-                expect(component.isActiveRoute(expectedActiveRoute)).toBeTrue();
+                expectToBe(component.isActiveRoute(expectedActiveRoute), true);
             });
 
             it('... should return false if a given route is not active', () => {
                 const expectedActiveRoute = '/non-active-route';
                 routerSpy.and.returnValue(false);
 
-                expect(component.isActiveRoute(expectedActiveRoute)).toBeFalse();
+                expectToBe(component.isActiveRoute(expectedActiveRoute), false);
             });
         });
 
@@ -667,7 +650,7 @@ describe('NavbarComponent (DONE)', () => {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = expectedOrderOfRouterlinks[index];
 
-                    expect(routerLink.navigatedTo).toBeNull();
+                    expectToBe(routerLink.navigatedTo, null);
 
                     click(linkDe);
                     fixture.detectChanges();

@@ -76,10 +76,10 @@ describe('SelectResultsComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        const varKeys = ['Test', 'success'];
+        const varKeys = ['test', 'success'];
         const b = [
             {
-                Test: { type: 'test type', value: 'test value' },
+                test: { type: 'test type', value: 'test value' },
                 success: { type: 'success type', value: 'sucess value' },
             },
         ];
@@ -115,9 +115,25 @@ describe('SelectResultsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no div.accordion yet', () => {
+            it('... should contain one div.accordion', () => {
                 // Div.accordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+            });
+
+            it('... should contain one div.accordion-item with header and non-collapsible body yet in div.accordion', () => {
+                // Div.accordion debug element
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
+                // Header (div.accordion-header)
+                getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-header', 1, 1);
+
+                // Body (div.accordion-collapse)
+                const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
+                const itemBodyEl = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'accordion-collapse');
             });
         });
     });
@@ -136,9 +152,7 @@ describe('SelectResultsComponent (DONE)', () => {
         it('... should have `queryResult` input', waitForAsync(() => {
             expectToEqual(component.queryResult$, expectedQueryResult$);
             expectAsync(lastValueFrom(component.queryResult$)).toBeResolved();
-            expectAsync(lastValueFrom(component.queryResult$))
-                .withContext(`should be resolved to ${expectedQueryResult}}`)
-                .toBeResolvedTo(expectedQueryResult);
+            expectAsync(lastValueFrom(component.queryResult$)).toBeResolvedTo(expectedQueryResult);
         }));
 
         it('... should have `queryTime` input', () => {
@@ -150,11 +164,6 @@ describe('SelectResultsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.accordion', () => {
-                // NgbAccordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
-            });
-
             describe('not in fullscreen mode', () => {
                 it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
                     // NgbAccordion debug element

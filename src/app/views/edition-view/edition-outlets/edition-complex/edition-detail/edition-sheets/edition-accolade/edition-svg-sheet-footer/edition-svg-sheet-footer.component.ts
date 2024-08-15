@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { faChevronRight, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-import { UtilityService } from '@awg-app/core/services';
-import { TextcriticalComment, Textcritics } from '@awg-app/views/edition-view/models';
+import { UtilityService } from '@awg-core/services';
+import { TextcriticalCommentBlock, Textcritics } from '@awg-views/edition-view/models';
 
 /**
  * The EditionSvgSheetFooter component.
@@ -20,12 +20,12 @@ import { TextcriticalComment, Textcritics } from '@awg-app/views/edition-view/mo
 })
 export class EditionSvgSheetFooterComponent {
     /**
-     * Input variable: selectedTextcriticalComments.
+     * Input variable: selectedTextcriticalCommentBlocks.
      *
-     * It keeps the selected textcritical comments.
+     * It keeps the selected textcritical comment blocks.
      */
     @Input()
-    selectedTextcriticalComments: TextcriticalComment[];
+    selectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
 
     /**
      * Input variable: selectedTextcritics.
@@ -46,10 +46,10 @@ export class EditionSvgSheetFooterComponent {
     /**
      * Output variable: navigateToReportFragment.
      *
-     * It keeps an event emitter for a fragment id of the edition report.
+     * It keeps an event emitter for the selected ids of an edition complex and report fragment.
      */
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
 
     /**
      * Output variable: openModalRequest.
@@ -76,11 +76,11 @@ export class EditionSvgSheetFooterComponent {
     faChevronRight = faChevronRight;
 
     /**
-     * Public variable: faChevronRight.
+     * Public variable: faChevronDown.
      *
-     * It instantiates fontawesome's faChevronRight icon.
+     * It instantiates fontawesome's faChevronDown icon.
      */
-    faChevronUp = faChevronUp;
+    faChevronDown = faChevronDown;
 
     /**
      * Self-referring variable needed for CompileHtml library.
@@ -109,17 +109,17 @@ export class EditionSvgSheetFooterComponent {
     /**
      * Public method: navigateToReportFragment.
      *
-     * It emits a given id of a fragment of the edition report
+     * It emits the given ids of a selected edition complex and report fragment
      * to the {@link navigateToReportFragmentRequest}.
      *
-     * @param {string} id The given fragment id.
-     * @returns {void} Navigates to the edition report.
+     * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
+     * @returns {void} Emits the ids.
      */
-    navigateToReportFragment(id: string): void {
-        if (!id) {
+    navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
+        if (!reportIds?.fragmentId) {
             return;
         }
-        this.navigateToReportFragmentRequest.emit(id);
+        this.navigateToReportFragmentRequest.emit(reportIds);
     }
 
     /**

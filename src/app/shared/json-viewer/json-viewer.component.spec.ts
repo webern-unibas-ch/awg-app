@@ -6,7 +6,13 @@ import { By } from '@angular/platform-browser';
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 
 import { NgbConfig, NgbNavLink, NgbNavModule, NgbNavOutlet } from '@ng-bootstrap/ng-bootstrap';
 
@@ -131,24 +137,20 @@ describe('JsonViewerComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(bodyDe[0], 'nav[ngbNav]', 1, 1);
                 const navLinkDes = getNavLinks(fixture);
 
-                expect(navLinkDes).toBeTruthy();
-                expect(navLinkDes.length).withContext('should have 2 navLinks').toBe(2);
+                expectToBe(navLinkDes.length, 2);
             });
 
             it('... should have one Formatted and one Plain navItem and display titles', () => {
                 const navLinks = getNavLinks(fixture);
 
-                expect(navLinks[0].textContent).toBeTruthy();
-                expect(navLinks[0].textContent).withContext(`should be 'Formatted'`).toBe('Formatted');
-
-                expect(navLinks[1].textContent).toBeTruthy();
-                expect(navLinks[1].textContent).withContext(`should be 'Plain'`).toBe('Plain');
+                expectToBe(navLinks[0].textContent, 'Formatted');
+                expectToBe(navLinks[1].textContent, 'Plain');
             });
 
             it('... should not render navItem content yet', () => {
                 const navContent = getNavContents(fixture);
 
-                expect(navContent.length).withContext(`should be 0`).toBe(0);
+                expectToBe(navContent.length, 0);
             });
 
             it('... should not contain ngx-json-viewer component (stubbed)', () => {
@@ -171,7 +173,7 @@ describe('JsonViewerComponent (DONE)', () => {
             it('... should render navItem content and select first navItem (Formatted) by default', () => {
                 const navContent = getNavContents(fixture);
 
-                expect(navContent.length).toBe(1);
+                expectToBe(navContent.length, 1);
                 expectNavPanel(fixture, [true, false], ['content1']);
             });
 
@@ -211,8 +213,7 @@ describe('JsonViewerComponent (DONE)', () => {
                 const viewerDes = getAndExpectDebugElementByDirective(compDe, NgxJsonViewerStubComponent, 1, 0);
                 const viewerCmp = viewerDes[0].injector.get(NgxJsonViewerStubComponent) as NgxJsonViewerStubComponent;
 
-                expect(viewerCmp.json).toBeDefined();
-                expect(viewerCmp.json).withContext(`should equal: ${expectedData}`).toEqual(expectedData);
+                expectToEqual(viewerCmp.json, expectedData);
             });
 
             it('... should render `jsonViewerData` in Plain view', async () => {
@@ -227,9 +228,8 @@ describe('JsonViewerComponent (DONE)', () => {
                 const jsonPipe = new JsonPipe();
                 const pipedData = jsonPipe.transform(expectedData);
 
-                expect(navContent.length).withContext('should be 1').toBe(1);
-                expect(navContent[0].textContent).toBeTruthy();
-                expect(navContent[0].textContent).withContext(`should contain ${pipedData}`).toContain(pipedData);
+                expectToBe(navContent.length, 1);
+                expectToContain(navContent[0].textContent, pipedData);
             });
         });
     });

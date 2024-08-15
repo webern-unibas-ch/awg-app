@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
+import { HttpClient, HttpParams, HttpRequest, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpTestingController, TestRequest, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Data } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { JsonConvert } from 'json2typescript';
 import { of as observableOf, throwError as observableThrowError } from 'rxjs';
 import Spy = jasmine.Spy;
 
-import { expectSpyCall } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import {
     mockPropertyTypesInResourceClassResponseJson,
     mockResourceContextResponseJson,
@@ -37,9 +37,8 @@ import { DataApiService } from './data-api.service';
 
 // Helper function
 function expectParams(call: TestRequest, param: string, expectedValue: string[], length?: number) {
-    expect(call.request.params.getAll(param)).toBeTruthy();
-    expect(call.request.params.getAll(param).length).withContext(`should be ${length}`).toBe(length);
-    expect(call.request.params.getAll(param)).withContext(`should equal ${expectedValue}`).toEqual(expectedValue);
+    expectToBe(call.request.params.getAll(param).length, length);
+    expectToEqual(call.request.params.getAll(param), expectedValue);
 }
 
 describe('DataApiService (DONE)', () => {
@@ -83,8 +82,13 @@ describe('DataApiService (DONE)', () => {
         };
 
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [DataApiService, { provide: ConversionService, useValue: mockConversionService }],
+            imports: [],
+            providers: [
+                DataApiService,
+                { provide: ConversionService, useValue: mockConversionService },
+                provideHttpClient(withInterceptorsFromDi()),
+                provideHttpClientTesting(),
+            ],
         });
 
         // Inject services and http client handler
@@ -134,55 +138,38 @@ describe('DataApiService (DONE)', () => {
 
     it('... injected service should use provided mockValue', () => {
         const conversionService = TestBed.inject(ConversionService);
-        expect(mockConversionService === conversionService)
-            .withContext('should be true')
-            .toBeTrue();
+        expectToBe(mockConversionService === conversionService, true);
     });
 
     describe('default values', () => {
         it('... should have serviceName', () => {
             const expectedServiceName = 'DataApiService';
 
-            expect(dataApiService.serviceName).toBeDefined();
-            expect(dataApiService.serviceName)
-                .withContext(`should be ${expectedServiceName}`)
-                .toBe(expectedServiceName);
+            expectToBe(dataApiService.serviceName, expectedServiceName);
         });
 
         it('... should have projectId', () => {
-            expect(dataApiService.projectId).toBeDefined();
-            expect(dataApiService.projectId).withContext(`should be ${expectedProjectId}`).toBe(expectedProjectId);
+            expectToBe(dataApiService.projectId, expectedProjectId);
         });
 
         it('... should have vocabularyId', () => {
-            expect(dataApiService.vocabularyId).toBeDefined();
-            expect(dataApiService.vocabularyId)
-                .withContext(`should be ${expectedVocabularyId}`)
-                .toBe(expectedVocabularyId);
+            expectToBe(dataApiService.vocabularyId, expectedVocabularyId);
         });
 
         it('... should have defaultLanguage', () => {
-            expect(dataApiService.defaultLanguage).toBeDefined();
-            expect(dataApiService.defaultLanguage)
-                .withContext(`should be ${expectedDefaultLanguage}`)
-                .toBe(expectedDefaultLanguage);
+            expectToBe(dataApiService.defaultLanguage, expectedDefaultLanguage);
         });
 
         it('... should have resourceSuffix', () => {
-            expect(dataApiService.resourceSuffix).toBeDefined();
-            expect(dataApiService.resourceSuffix)
-                .withContext(`should be ${expectedResourceSuffix}`)
-                .toBe(expectedResourceSuffix);
+            expectToBe(dataApiService.resourceSuffix, expectedResourceSuffix);
         });
 
         it('... should have routes', () => {
-            expect(dataApiService.routes).toBeDefined();
-            expect(dataApiService.routes).withContext(`should be ${expectedRoutes}`).toEqual(expectedRoutes);
+            expectToEqual(dataApiService.routes, expectedRoutes);
         });
 
         it("... should have empty 'httpGetUrl' (inherited from ApiService)", () => {
-            expect(dataApiService.httpGetUrl).toBeDefined();
-            expect(dataApiService.httpGetUrl).withContext('should be empty string').toBe('');
+            expectToBe(dataApiService.httpGetUrl, '');
         });
     });
 
@@ -192,8 +179,7 @@ describe('DataApiService (DONE)', () => {
 
             httpClient.get<Data>('/foo/bar').subscribe({
                 next: data => {
-                    expect(data).toBeTruthy();
-                    expect(data).withContext(`should equal ${testData}`).toEqual(testData);
+                    expectToEqual(data, testData);
                 },
             });
 
@@ -203,7 +189,7 @@ describe('DataApiService (DONE)', () => {
             });
 
             // Check for GET request
-            expect(call.request.method).withContext(`should be GET`).toBe('GET');
+            expectToBe(call.request.method, 'GET');
 
             // Respond with mocked data
             call.flush(testData);
@@ -425,14 +411,9 @@ describe('DataApiService (DONE)', () => {
                         `GET to ${expectedUrl}`
                     );
 
-                    expect(call.request.method).toBeTruthy();
-                    expect(call.request.method).withContext('should be GET').toBe('GET');
-
-                    expect(call.request.responseType).toBeTruthy();
-                    expect(call.request.responseType).withContext('should be json').toBe('json');
-
-                    expect(call.request.url).toBeTruthy();
-                    expect(call.request.url).withContext(`should be ${expectedUrl}`).toBe(expectedUrl);
+                    expectToBe(call.request.method, 'GET');
+                    expectToBe(call.request.responseType, 'json');
+                    expectToBe(call.request.url, expectedUrl);
                 }));
 
                 it('... for Extended search with provided object (url does not include query)', waitForAsync(() => {
@@ -457,14 +438,9 @@ describe('DataApiService (DONE)', () => {
                         `GET to ${expectedUrl}`
                     );
 
-                    expect(call.request.method).toBeTruthy();
-                    expect(call.request.method).withContext('should be GET').toBe('GET');
-
-                    expect(call.request.responseType).toBeTruthy();
-                    expect(call.request.responseType).withContext('should be json').toBe('json');
-
-                    expect(call.request.url).toBeTruthy();
-                    expect(call.request.url).withContext(`should be ${expectedUrl}`).toBe(expectedUrl);
+                    expectToBe(call.request.method, 'GET');
+                    expectToBe(call.request.responseType, 'json');
+                    expectToBe(call.request.url, expectedUrl);
                 }));
             });
 
@@ -487,7 +463,7 @@ describe('DataApiService (DONE)', () => {
                     );
 
                     expect(call.request.params).toBeDefined();
-                    expect(call.request.params.keys().length).withContext('should be 5').toBe(5);
+                    expectToBe(call.request.params.keys().length, 5);
 
                     expectParams(call, 'searchtype', ['fulltext'], 1);
                     expectParams(call, 'filter_by_project', [expectedProjectId], 1);
@@ -516,7 +492,7 @@ describe('DataApiService (DONE)', () => {
                     );
 
                     expect(call.request.params).toBeDefined();
-                    expect(call.request.params.keys().length).withContext('should be 6').toBe(6);
+                    expectToBe(call.request.params.keys().length, 6);
 
                     expectParams(call, 'searchtype', ['extended'], 1);
                     expectParams(call, 'filter_by_project', [expectedProjectId], 1);
@@ -549,7 +525,7 @@ describe('DataApiService (DONE)', () => {
                     );
 
                     expect(call.request.params).toBeDefined();
-                    expect(call.request.params.keys().length).withContext('should be 5').toBe(5);
+                    expectToBe(call.request.params.keys().length, 5);
 
                     expectParams(call, 'searchtype', ['fulltext'], 1);
                     expectParams(call, 'filter_by_project', [expectedProjectId], 1);
@@ -587,7 +563,7 @@ describe('DataApiService (DONE)', () => {
                         );
 
                         expect(call.request.params).toBeDefined();
-                        expect(call.request.params.keys().length).withContext('should be 8').toBe(8);
+                        expectToBe(call.request.params.keys().length, 8);
 
                         expectParams(call, 'searchtype', ['extended'], 1);
                         expectParams(call, 'filter_by_project', [expectedProjectId], 1);
@@ -629,7 +605,7 @@ describe('DataApiService (DONE)', () => {
                         );
 
                         expect(call.request.params).toBeDefined();
-                        expect(call.request.params.keys().length).withContext('should be 8').toBe(8);
+                        expectToBe(call.request.params.keys().length, 8);
 
                         expectParams(call, 'searchtype', ['extended'], 1);
                         expectParams(call, 'filter_by_project', [expectedProjectId], 1);
@@ -672,7 +648,7 @@ describe('DataApiService (DONE)', () => {
                         );
 
                         expect(call.request.params).toBeDefined();
-                        expect(call.request.params.keys().length).withContext('should be 9').toBe(9);
+                        expectToBe(call.request.params.keys().length, 9);
 
                         expectParams(call, 'searchtype', ['extended'], 1);
                         expectParams(call, 'filter_by_project', [expectedProjectId], 1);
@@ -719,7 +695,7 @@ describe('DataApiService (DONE)', () => {
                         );
 
                         expect(call.request.params).toBeDefined();
-                        expect(call.request.params.keys().length).withContext('should be 9').toBe(9);
+                        expectToBe(call.request.params.keys().length, 9);
 
                         expectParams(call, 'searchtype', ['extended'], 1);
                         expectParams(call, 'filter_by_project', [expectedProjectId], 1);
@@ -823,10 +799,7 @@ describe('DataApiService (DONE)', () => {
 
                     dataApiService.getSearchData(expectedSearchParams).subscribe({
                         next: (response: SearchResponseJson) => {
-                            expect(response).toBeTruthy();
-                            expect(response)
-                                .withContext(`should equal ${expectedSearchResponseConverted}`)
-                                .toEqual(expectedSearchResponseConverted);
+                            expectToEqual(response, expectedSearchResponseConverted);
                         },
                     });
                 }));
@@ -861,9 +834,7 @@ describe('DataApiService (DONE)', () => {
                                 expectedQueryPath,
                                 expectedQueryHttpParams,
                             ]);
-                            expect(err)
-                                .withContext(`should equal ${expectedApiServiceError}`)
-                                .toEqual(expectedApiServiceError);
+                            expectToEqual(err, expectedApiServiceError);
                         },
                     });
                 }));
@@ -950,7 +921,7 @@ describe('DataApiService (DONE)', () => {
                         req => req.url.match(re) && req.method === 'GET' && req.responseType === 'json'
                     );
 
-                    expect(calls.length).withContext('should be 2 calls').toBe(2);
+                    expectToBe(calls.length, 2);
                 }));
 
                 it('... the first request being a ResourceFullResponse request', waitForAsync(() => {
@@ -966,20 +937,15 @@ describe('DataApiService (DONE)', () => {
                         req => req.url.match(re) && req.method === 'GET' && req.responseType === 'json'
                     );
 
-                    expect(calls.length).withContext('should be 2 calls').toBe(2);
+                    expectToBe(calls.length, 2);
 
                     // Call to GET https://www.salsah.org/api/resources/11398_-_local (ResourceFullResponseJson)
-                    expect(calls[0].request.method).toBeTruthy();
-                    expect(calls[0].request.method).withContext('should be GET').toBe('GET');
-
-                    expect(calls[0].request.responseType).toBeTruthy();
-                    expect(calls[0].request.responseType).withContext('should be json').toBe('json');
-
-                    expect(calls[0].request.url).toBeTruthy();
-                    expect(calls[0].request.url).withContext(`should be ${expectedUrl}`).toBe(expectedUrl);
+                    expectToBe(calls[0].request.method, 'GET');
+                    expectToBe(calls[0].request.responseType, 'json');
+                    expectToBe(calls[0].request.url, expectedUrl);
 
                     expect(calls[0].request.params).toBeDefined();
-                    expect(calls[0].request.params.keys().length).withContext('should be 0').toBe(0);
+                    expectToBe(calls[0].request.params.keys().length, 0);
                 }));
 
                 it('... the second request being a ResourceContextResponse request', waitForAsync(() => {
@@ -995,20 +961,15 @@ describe('DataApiService (DONE)', () => {
                         req => req.url.match(re) && req.method === 'GET' && req.responseType === 'json'
                     );
 
-                    expect(calls.length).withContext('should be 2 calls').toBe(2);
+                    expectToBe(calls.length, 2);
 
                     // Call to GET https://www.salsah.org/api/resources/11398_-_local?reqtype=context (ResourceContextResponseJson)
-                    expect(calls[1].request.method).toBeTruthy();
-                    expect(calls[1].request.method).withContext('should be GET').toBe('GET');
-
-                    expect(calls[1].request.responseType).toBeTruthy();
-                    expect(calls[1].request.responseType).withContext('should be json').toBe('json');
-
-                    expect(calls[1].request.url).toBeTruthy();
-                    expect(calls[1].request.url).withContext(`should be ${expectedUrl}`).toBe(expectedUrl);
+                    expectToBe(calls[0].request.method, 'GET');
+                    expectToBe(calls[0].request.responseType, 'json');
+                    expectToBe(calls[0].request.url, expectedUrl);
 
                     expect(calls[1].request.params).toBeDefined();
-                    expect(calls[1].request.params.keys().length).withContext('should be 1').toBe(1);
+                    expectToBe(calls[1].request.params.keys().length, 1);
 
                     expectParams(calls[1], 'reqtype', ['context'], 1);
                 }));
@@ -1022,7 +983,7 @@ describe('DataApiService (DONE)', () => {
 
                     dataApiService.getResourceData(expectedResourceId).subscribe((response: ResourceData) => {
                         // Two calls
-                        expect(getApiResponseSpy.calls.all().length).withContext('should be 2 calls').toBe(2);
+                        expectToBe(getApiResponseSpy.calls.all().length, 2);
                     });
 
                     // Expect two requests to url with given settings
@@ -1044,26 +1005,15 @@ describe('DataApiService (DONE)', () => {
                     dataApiService.getResourceData(expectedResourceId).subscribe({
                         next: () => {
                             // Two calls
-                            expect(getApiResponseSpy.calls.all().length).withContext('should be 2 calls').toBe(2);
+                            expectToBe(getApiResponseSpy.calls.all().length, 2);
 
                             // Shortcut
                             const firstCallArgs = getApiResponseSpy.calls.allArgs()[0];
 
                             // Check args of call
-                            expect(firstCallArgs[0].name).toBeTruthy();
-                            expect(firstCallArgs[0].name)
-                                .withContext('should be ResourceFullResponseJson')
-                                .toBe('ResourceFullResponseJson');
-
-                            expect(firstCallArgs[1]).toBeTruthy();
-                            expect(firstCallArgs[1])
-                                .withContext(`should be ${expectedQueryPath}`)
-                                .toBe(expectedQueryPath);
-
-                            expect(firstCallArgs[2]).toBeTruthy();
-                            expect(firstCallArgs[2])
-                                .withContext(`should equal ${expectedQueryHttpParams}`)
-                                .toEqual(expectedQueryHttpParams);
+                            expectToBe(firstCallArgs[0].name, 'ResourceFullResponseJson');
+                            expectToBe(firstCallArgs[1], expectedQueryPath);
+                            expectToEqual(firstCallArgs[2], expectedQueryHttpParams);
                         },
                     });
 
@@ -1086,26 +1036,15 @@ describe('DataApiService (DONE)', () => {
                     dataApiService.getResourceData(expectedResourceId).subscribe({
                         next: () => {
                             // Two calls
-                            expect(getApiResponseSpy.calls.all().length).withContext('should be 2 calls').toBe(2);
+                            expectToBe(getApiResponseSpy.calls.all().length, 2);
 
                             // Shortcut
                             const secondCallArgs = getApiResponseSpy.calls.allArgs()[1];
 
                             // Check args of call
-                            expect(secondCallArgs[0].name).toBeTruthy();
-                            expect(secondCallArgs[0].name)
-                                .withContext('should be ResourceContextResponseJson')
-                                .toBe('ResourceContextResponseJson');
-
-                            expect(secondCallArgs[1]).toBeTruthy();
-                            expect(secondCallArgs[1])
-                                .withContext(`should be ${expectedQueryPath}`)
-                                .toBe(expectedQueryPath);
-
-                            expect(secondCallArgs[2]).toBeTruthy();
-                            expect(secondCallArgs[2])
-                                .withContext(`should equal ${expectedQueryHttpParams}`)
-                                .toEqual(expectedQueryHttpParams);
+                            expectToBe(secondCallArgs[0].name, 'ResourceContextResponseJson');
+                            expectToBe(secondCallArgs[1], expectedQueryPath);
+                            expectToEqual(secondCallArgs[2], expectedQueryHttpParams);
                         },
                     });
 
@@ -1135,11 +1074,8 @@ describe('DataApiService (DONE)', () => {
 
                         dataApiService.getResourceData(expectedResourceId).subscribe({
                             next: (resourceData: ResourceData) => {
-                                expect(getApiResponseSpy.calls.all().length).withContext('should be 2 calls').toBe(2);
-                                expect(resourceData).toBeTruthy();
-                                expect(resourceData)
-                                    .withContext(`should equal ${expectedResourceData}`)
-                                    .toEqual(expectedResourceData);
+                                expectToBe(getApiResponseSpy.calls.all().length, 2);
+                                expectToEqual(resourceData, expectedResourceData);
                             },
                         });
                     }));
@@ -1170,10 +1106,8 @@ describe('DataApiService (DONE)', () => {
                             next: () => fail(expectedErrorMsg),
                             error: (err: ApiServiceError) => {
                                 // Two calls
-                                expect(getApiResponseSpy.calls.all().length).withContext('should be 2 calls').toBe(2);
-                                expect(err)
-                                    .withContext(`should equal ${expectedApiServiceError}`)
-                                    .toEqual(expectedApiServiceError);
+                                expectToBe(getApiResponseSpy.calls.all().length, 2);
+                                expectToEqual(err, expectedApiServiceError);
                             },
                         });
                     }));
@@ -1189,10 +1123,8 @@ describe('DataApiService (DONE)', () => {
                             next: () => fail(expectedErrorMsg),
                             error: (err: ApiServiceError) => {
                                 // Two calls
-                                expect(getApiResponseSpy.calls.all().length).withContext('should be 2 calls').toBe(2);
-                                expect(err)
-                                    .withContext(`should equal ${expectedApiServiceError}`)
-                                    .toEqual(expectedApiServiceError);
+                                expectToBe(getApiResponseSpy.calls.all().length, 2);
+                                expectToEqual(err, expectedApiServiceError);
                             },
                         });
                     }));
@@ -1208,10 +1140,8 @@ describe('DataApiService (DONE)', () => {
                             next: () => fail(expectedErrorMsg),
                             error: (err: ApiServiceError) => {
                                 // Two calls
-                                expect(getApiResponseSpy.calls.all().length).withContext('should be 2 calls').toBe(2);
-                                expect(err)
-                                    .withContext(`should equal ${expectedApiServiceError}`)
-                                    .toEqual(expectedApiServiceError);
+                                expectToBe(getApiResponseSpy.calls.all().length, 2);
+                                expectToEqual(err, expectedApiServiceError);
                             },
                         });
                     }));
@@ -1239,14 +1169,9 @@ describe('DataApiService (DONE)', () => {
                     `GET to ${expectedUrl}`
                 );
 
-                expect(call.request.method).toBeTruthy();
-                expect(call.request.method).withContext('should be GET').toBe('GET');
-
-                expect(call.request.responseType).toBeTruthy();
-                expect(call.request.responseType).withContext('should be json').toBe('json');
-
-                expect(call.request.url).toBeTruthy();
-                expect(call.request.url).withContext(`should be ${expectedUrl}`).toBe(expectedUrl);
+                expectToBe(call.request.method, 'GET');
+                expectToBe(call.request.responseType, 'json');
+                expectToBe(call.request.url, expectedUrl);
             }));
 
             it('... should set default query params for GET request', waitForAsync(() => {
@@ -1263,7 +1188,7 @@ describe('DataApiService (DONE)', () => {
                 );
 
                 expect(call.request.params).toBeDefined();
-                expect(call.request.params.keys().length).withContext('should be 2').toBe(2);
+                expectToBe(call.request.params.keys().length, 2);
 
                 expectParams(call, 'vocabulary', [expectedVocabularyId], 1);
                 expectParams(call, 'lang', [expectedDefaultLanguage], 1);
@@ -1297,9 +1222,7 @@ describe('DataApiService (DONE)', () => {
                     dataApiService.getResourceTypes().subscribe({
                         next: (restypes: ResourceTypesInVocabularyResponseJson) => {
                             expect(restypes).toBeTruthy();
-                            expect(restypes)
-                                .withContext(`should equal ${expectedResourceTypesInVocabularyResponseJson}`)
-                                .toEqual(expectedResourceTypesInVocabularyResponseJson);
+                            expectToEqual(restypes, expectedResourceTypesInVocabularyResponseJson);
                         },
                     });
                 }));
@@ -1328,9 +1251,7 @@ describe('DataApiService (DONE)', () => {
                                 expectedQueryPath,
                                 expectedQueryHttpParams,
                             ]);
-                            expect(err)
-                                .withContext(`should equal ${expectedApiServiceError}`)
-                                .toEqual(expectedApiServiceError);
+                            expectToEqual(err, expectedApiServiceError);
                         },
                     });
                 }));
@@ -1417,14 +1338,9 @@ describe('DataApiService (DONE)', () => {
                     `GET to ${expectedUrl}`
                 );
 
-                expect(call.request.method).toBeTruthy();
-                expect(call.request.method).withContext('should be GET').toBe('GET');
-
-                expect(call.request.responseType).toBeTruthy();
-                expect(call.request.responseType).withContext('should be json').toBe('json');
-
-                expect(call.request.url).toBeTruthy();
-                expect(call.request.url).withContext(`should be ${expectedUrl}`).toBe(expectedUrl);
+                expectToBe(call.request.method, 'GET');
+                expectToBe(call.request.responseType, 'json');
+                expectToBe(call.request.url, expectedUrl);
             }));
 
             it('... should set default query params for GET request', waitForAsync(() => {
@@ -1442,7 +1358,7 @@ describe('DataApiService (DONE)', () => {
                 );
 
                 expect(call.request.params).toBeDefined();
-                expect(call.request.params.keys().length).withContext('should be 1').toBe(1);
+                expectToBe(call.request.params.keys().length, 1);
 
                 expectParams(call, 'restype', [expectedRestype], 1);
             }));
@@ -1477,9 +1393,7 @@ describe('DataApiService (DONE)', () => {
                     dataApiService.getPropertyListsByResourceType(expectedRestype).subscribe({
                         next: (propertyList: PropertyTypesInResourceClassResponseJson) => {
                             expect(propertyList).toBeTruthy();
-                            expect(propertyList)
-                                .withContext(`should equal ${expectedPropertyTypesInResourceClassResponseJson}`)
-                                .toEqual(expectedPropertyTypesInResourceClassResponseJson);
+                            expectToEqual(propertyList, expectedPropertyTypesInResourceClassResponseJson);
                         },
                     });
                 }));
@@ -1507,9 +1421,7 @@ describe('DataApiService (DONE)', () => {
                                 expectedQueryPath,
                                 expectedQueryHttpParams,
                             ]);
-                            expect(err)
-                                .withContext(`should equal ${expectedApiServiceError}`)
-                                .toEqual(expectedApiServiceError);
+                            expectToEqual(err, expectedApiServiceError);
                         },
                     });
                 }));

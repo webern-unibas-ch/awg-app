@@ -7,10 +7,11 @@ import { faDiagramProject, faGripHorizontal, faTable } from '@fortawesome/free-s
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import Spy = jasmine.Spy;
 
-import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+
+import { ViewHandle, ViewHandleTypes } from './view-handle.model';
 
 import { ViewHandleButtonGroupComponent } from './view-handle-button-group.component';
-import { ViewHandle, ViewHandleTypes } from './view-handle.model';
 
 describe('ViewHandleButtonGroupComponent (DONE)', () => {
     let component: ViewHandleButtonGroupComponent;
@@ -178,8 +179,8 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             });
 
             it('... should create the viewHandleControlForm with correct viewHandleControl value', () => {
-                expect(component.viewHandleControlForm.controls['viewHandleControl'].value).toBeTruthy();
-                expect(component.viewHandleControlForm.controls['viewHandleControl'].value).toBe(
+                expectToBe(
+                    component.viewHandleControlForm.controls['viewHandleControl'].value,
                     expectedSelectedViewType
                 );
             });
@@ -188,8 +189,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 expect(component.viewHandleControl).toBeDefined();
                 expect(component.viewHandleControl).toBeInstanceOf(UntypedFormControl);
 
-                expect(component.viewHandleControl.value).toBeTruthy();
-                expect(component.viewHandleControl.value).toBe(expectedSelectedViewType);
+                expectToBe(component.viewHandleControl.value, expectedSelectedViewType);
             });
 
             it('... should trigger the `listenToUserInputChange()` method', () => {
@@ -355,8 +355,8 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             });
 
             it('... should return the type of a given view handle', () => {
-                expect(component.viewHandleTracker(0, expectedViewHandles[0])).toBe(ViewHandleTypes.GRAPH);
-                expect(component.viewHandleTracker(1, expectedViewHandles[1])).toBe(ViewHandleTypes.TABLE);
+                expectToBe(component.viewHandleTracker(0, expectedViewHandles[0]), ViewHandleTypes.GRAPH);
+                expectToBe(component.viewHandleTracker(1, expectedViewHandles[1]), ViewHandleTypes.TABLE);
             });
         });
 
@@ -377,7 +377,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 );
 
                 for (let i = 0; i < expectedViewHandles.length; i++) {
-                    expect(inputDes[i].nativeElement.type).toBe('radio');
+                    expectToBe(inputDes[i].nativeElement.type, 'radio');
                 }
             });
 
@@ -396,10 +396,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 );
 
                 for (let i = 0; i < expectedViewHandles.length; i++) {
-                    expect(inputDes[i].attributes['ng-reflect-value']).toBeTruthy();
-                    expect(inputDes[i].attributes['ng-reflect-value'])
-                        .withContext(`should be ${expectedViewHandles[i].type}`)
-                        .toBe(expectedViewHandles[i].type);
+                    expectToBe(inputDes[i].attributes['ng-reflect-value'], expectedViewHandles[i].type);
                 }
             });
 
@@ -421,20 +418,9 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 const inputEl2 = inputDes[1].nativeElement;
                 const inputEl3 = inputDes[2].nativeElement;
 
-                expect(inputEl1.id).toBeTruthy();
-                expect(inputEl1.id)
-                    .withContext(`should be '${expectedViewHandles}-view-button'`)
-                    .toBe(`${expectedViewHandles[0].type}-view-button`);
-
-                expect(inputEl2.id).toBeTruthy();
-                expect(inputEl2.id)
-                    .withContext(`should be '${expectedViewHandles}-view-button'`)
-                    .toBe(`${expectedViewHandles[1].type}-view-button`);
-
-                expect(inputEl3.id).toBeTruthy();
-                expect(inputEl3.id)
-                    .withContext(`should be '${expectedViewHandles}-view-button'`)
-                    .toBe(`${expectedViewHandles[2].type}-view-button`);
+                expectToBe(inputEl1.id, `${expectedViewHandles[0].type}-view-button`);
+                expectToBe(inputEl2.id, `${expectedViewHandles[1].type}-view-button`);
+                expectToBe(inputEl3.id, `${expectedViewHandles[2].type}-view-button`);
             });
 
             it('... should have as many label elements in div.btn-group as viewHandles given', () => {
@@ -491,10 +477,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 );
 
                 for (let i = 0; i < expectedViewHandles.length; i++) {
-                    expect(labelDes[i].attributes['for']).toBeTruthy();
-                    expect(labelDes[i].attributes['for'])
-                        .withContext(`should be ${expectedViewHandles[i].type}-view-button`)
-                        .toBe(`${expectedViewHandles[i].type}-view-button`);
+                    expectToBe(labelDes[i].attributes['for'], `${expectedViewHandles[i].type}-view-button`);
                 }
             });
 
@@ -513,10 +496,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 );
 
                 for (let i = 0; i < expectedViewHandles.length; i++) {
-                    expect(labelDes[i].attributes['ng-reflect-ngb-tooltip']).toBeTruthy();
-                    expect(labelDes[i].attributes['ng-reflect-ngb-tooltip'])
-                        .withContext(`should be  '${expectedViewHandles[i].type} view'`)
-                        .toBe(expectedViewHandles[i].type + ' view');
+                    expectToBe(labelDes[i].attributes['ng-reflect-ngb-tooltip'], expectedViewHandles[i].type + ' view');
                 }
             });
         });

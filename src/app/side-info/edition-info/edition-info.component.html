@@ -16,7 +16,7 @@
                                     class="awg-edition-info-header-link"
                                     [routerLink]="[
                                         editionRouteConstants.EDITION.route,
-                                        editionRouteConstants.SERIES.route
+                                        editionRouteConstants.SERIES.route,
                                     ]"
                                     >{{ editionRouteConstants.SERIES.full }}</a
                                 >
@@ -26,9 +26,19 @@
                                     class="awg-edition-info-header-link"
                                     [routerLink]="[
                                         editionRouteConstants.EDITION.route,
-                                        editionRouteConstants.ROWTABLES.route
+                                        editionRouteConstants.ROWTABLES.route,
                                     ]"
                                     >{{ editionRouteConstants.ROWTABLES.full }}</a
+                                >
+                            </p>
+                            <p>
+                                <a
+                                    class="awg-edition-info-header-link"
+                                    [routerLink]="[
+                                        editionRouteConstants.EDITION.route,
+                                        editionRouteConstants.PREFACE.route,
+                                    ]"
+                                    >{{ editionRouteConstants.PREFACE.full }}</a
                                 >
                             </p>
                         </ng-template>
@@ -46,30 +56,30 @@
                 <div ngbAccordionCollapse>
                     <div ngbAccordionBody>
                         <ng-template>
-                            @for (editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: 0 : 2; track editionComplex) {
+                            @for (
+                                editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: 0 : SLICE_INDEX;
+                                track editionComplex.complexId.short
+                            ) {
                                 <p>
                                     <span
                                         class="awg-edition-info-header-title"
-                                        [innerHTML]="editionComplex.titleStatement.title"></span
-                                    >&nbsp;<span class="awg-edition-info-header-catalogue">{{
-                                        editionComplex.complexId.short
-                                    }}</span>
+                                        [innerHTML]="editionComplex.complexId.full"></span>
                                     <br />
                                     (<a
                                         class="awg-edition-info-header-link"
                                         [routerLink]="[
                                             editionComplex.baseRoute,
-                                            editionRouteConstants.EDITION_SHEETS.route
+                                            editionRouteConstants.EDITION_SHEETS.route,
                                         ]"
                                         >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
                                     >
-                                    @if (editionComplex === DISPLAYED_EDITION_COMPLEXES[1]) {
+                                    @if (editionComplex.complexId.route.includes('op25')) {
                                         <span>&nbsp;&&nbsp;</span>
                                         <a
                                             class="awg-edition-info-header-link"
                                             [routerLink]="[
                                                 editionComplex.baseRoute,
-                                                editionRouteConstants.EDITION_GRAPH.route
+                                                editionRouteConstants.EDITION_GRAPH.route,
                                             ]"
                                             >{{ editionRouteConstants.EDITION_GRAPH.short }}</a
                                         >
@@ -94,22 +104,19 @@
                         <ng-template>
                             @for (
                                 editionComplex of DISPLAYED_EDITION_COMPLEXES
-                                    | slice: 2 : DISPLAYED_EDITION_COMPLEXES.length;
-                                track editionComplex
+                                    | slice: SLICE_INDEX : DISPLAYED_EDITION_COMPLEXES.length;
+                                track editionComplex.complexId.short
                             ) {
                                 <p>
                                     <span
                                         class="awg-edition-info-header-title"
-                                        [innerHTML]="editionComplex.titleStatement.title"></span
-                                    >&nbsp;<span class="awg-edition-info-header-catalogue">{{
-                                        editionComplex.complexId.short
-                                    }}</span>
+                                        [innerHTML]="editionComplex.complexId.full"></span>
                                     <br />
                                     (<a
                                         class="awg-edition-info-header-link"
                                         [routerLink]="[
                                             editionComplex.baseRoute,
-                                            editionRouteConstants.EDITION_SHEETS.route
+                                            editionRouteConstants.EDITION_SHEETS.route,
                                         ]"
                                         >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
                                     >

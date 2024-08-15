@@ -10,7 +10,7 @@ import {
     EditionSvgSheet,
     EditionSvgSheetList,
     FolioConvolute,
-    TextcriticalComment,
+    TextcriticalCommentBlock,
     Textcritics,
 } from '@awg-views/edition-view/models';
 
@@ -23,7 +23,7 @@ describe('EditionSheetsService (DONE)', () => {
     let expectedOverlays: EditionSvgOverlay[];
     let expectedSelectedSheet: EditionSvgSheet;
     let expectedSheets: EditionSvgSheetList['sheets'];
-    let expectedTka: TextcriticalComment[];
+    let expectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
     let expectedTextcriticsArray: Textcritics[];
 
     beforeEach(() => {
@@ -38,7 +38,7 @@ describe('EditionSheetsService (DONE)', () => {
         expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
         expectedSheets = mockEditionData.mockSvgSheetList.sheets;
         expectedTextcriticsArray = mockEditionData.mockTextcriticsData.textcritics;
-        expectedTka = expectedTextcriticsArray.at(1).comments;
+        expectedTextcriticalCommentBlocks = expectedTextcriticsArray.at(1).comments;
     });
 
     afterAll(() => {
@@ -248,62 +248,94 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         describe('... should return empty array', () => {
-            it('if no TkA are given', () => {
+            it('if no textcritical comment blocks are given', () => {
                 const value = editionSheetsService.getTextcriticalCommentsForOverlays(undefined, expectedOverlays);
 
-                expect(value).toBeDefined();
-                expect(value).toEqual([]);
+                expectToEqual(value, []);
             });
 
             it('... if no overlays are given', () => {
-                const value = editionSheetsService.getTextcriticalCommentsForOverlays(expectedTka, undefined);
+                const value = editionSheetsService.getTextcriticalCommentsForOverlays(
+                    expectedTextcriticalCommentBlocks,
+                    undefined
+                );
 
-                expect(value).toBeDefined();
-                expect(value).toEqual([]);
+                expectToEqual(value, []);
             });
-        });
 
-        it('... should find a comment for a selected item by id', () => {
-            expectedTka.forEach(tka => {
-                expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tka, tka.svgGroupId, true)];
-                const expectedResult = [tka];
+            it('... if no comments match the given overlay', () => {
+                expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'notExistingId', true)];
 
-                const filteredComments = editionSheetsService.getTextcriticalCommentsForOverlays(
-                    expectedTka,
+                const value = editionSheetsService.getTextcriticalCommentsForOverlays(
+                    expectedTextcriticalCommentBlocks,
                     expectedOverlays
                 );
 
-                expectToEqual(filteredComments, expectedResult);
+                expectToEqual(value, []);
             });
         });
 
-        it('... should find comments for multiple selected items by id', () => {
-            expectedOverlays = [
-                new EditionSvgOverlay(EditionSvgOverlayTypes.tka, expectedTka.at(0).svgGroupId, true),
-                new EditionSvgOverlay(EditionSvgOverlayTypes.tka, expectedTka.at(-1).svgGroupId, true),
-            ];
-            const expectedResult = [expectedTka.at(0), expectedTka.at(-1)];
+        it('... should find all comments of the given textcritics', () => {
+            expectedOverlays = [];
+            expectedTextcriticalCommentBlocks.forEach(textcriticalCommentBlock => {
+                textcriticalCommentBlock.blockComments.forEach(comment => {
+                    expectedOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.tka, comment.svgGroupId, true));
+                });
+            });
+
+            const expectedResult = expectedTextcriticalCommentBlocks;
 
             const filteredComments = editionSheetsService.getTextcriticalCommentsForOverlays(
-                expectedTka,
+                expectedTextcriticalCommentBlocks,
                 expectedOverlays
             );
 
             expectToEqual(filteredComments, expectedResult);
         });
 
-        it('... should find all comments of the given textcritics', () => {
-            expectedOverlays = [];
-            expectedTka.forEach(tka => {
-                expectedOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.tka, tka.svgGroupId, true));
+        it('... should find a comment for a single selected item by id', () => {
+            expectedTextcriticalCommentBlocks.forEach(textcriticalCommentBlock => {
+                textcriticalCommentBlock.blockComments.forEach(comment => {
+                    expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tka, comment.svgGroupId, true)];
+
+                    const expectedResult = [
+                        {
+                            ...textcriticalCommentBlock,
+                            blockComments: [comment],
+                        },
+                    ];
+
+                    const filteredComments = editionSheetsService.getTextcriticalCommentsForOverlays(
+                        expectedTextcriticalCommentBlocks,
+                        expectedOverlays
+                    );
+
+                    expectToEqual(filteredComments, expectedResult);
+                });
             });
+        });
+
+        it('... should find comments for multiple selected items by id', () => {
+            const selectedComments = [
+                expectedTextcriticalCommentBlocks.at(0).blockComments.at(0),
+                expectedTextcriticalCommentBlocks.at(-1).blockComments.at(0),
+            ];
+
+            expectedOverlays = selectedComments.map(
+                comment => new EditionSvgOverlay(EditionSvgOverlayTypes.tka, comment.svgGroupId, true)
+            );
+
+            const expectedResult = selectedComments.map(comment => ({
+                ...expectedTextcriticalCommentBlocks.find(block => block.blockComments.includes(comment)),
+                blockComments: [comment],
+            }));
 
             const filteredComments = editionSheetsService.getTextcriticalCommentsForOverlays(
-                expectedTka,
+                expectedTextcriticalCommentBlocks,
                 expectedOverlays
             );
 
-            expectToEqual(filteredComments, expectedTka);
+            expectToEqual(filteredComments, expectedResult);
         });
     });
 

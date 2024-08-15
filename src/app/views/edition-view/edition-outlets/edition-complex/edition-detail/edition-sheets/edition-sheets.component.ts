@@ -14,7 +14,7 @@ import {
     EditionSvgSheetList,
     FolioConvolute,
     FolioConvoluteList,
-    TextcriticalComment,
+    TextcriticalCommentBlock,
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
@@ -78,11 +78,11 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     selectedSvgSheet: EditionSvgSheet;
 
     /**
-     * Public variable: selectedTextcriticalComments.
+     * Public variable: selectedTextcriticalCommentBlocks.
      *
-     * It keeps the selected textcritical comments.
+     * It keeps the selected textcritical comment blocks.
      */
-    selectedTextcriticalComments: TextcriticalComment[];
+    selectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
 
     /**
      * Public variable: selectedTextcritics.
@@ -221,24 +221,21 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Public method: onNavigateToReportFragment.
+     * Public method: onReportFragmentNavigate.
      *
-     * It navigates to the '/report/' route with the given fragmentId.
+     * It navigates to the '/report/' route using the provided fragmentId
+     * within the context of an edition complex identified by the provided complexId.
      *
-     * @param {string}  fragmentId The given fragment id.
+     * @param {object}  reportIds The given report ids as { complexId: string, fragmentId: string }.
      * @returns {void} Navigates to the edition report.
      */
-    onNavigateToReportFragment(fragmentId: string): void {
-        if (!fragmentId) {
-            fragmentId = '';
-        }
+    onReportFragmentNavigate(reportIds: { complexId: string; fragmentId: string }): void {
+        const reportRoute = this.editionRouteConstants.EDITION_REPORT.route;
         const navigationExtras: NavigationExtras = {
-            fragment: fragmentId,
+            fragment: reportIds?.fragmentId ?? '',
         };
-        this.router.navigate(
-            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_REPORT.route],
-            navigationExtras
-        );
+
+        this._navigateWithComplexId(reportIds?.complexId, reportRoute, navigationExtras);
     }
 
     /**
@@ -250,12 +247,12 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the selectedTextcriticalComments and showTka variable.
      */
     onOverlaySelect(overlays: EditionSvgOverlay[]): void {
-        this.selectedTextcriticalComments = this.editionSheetsService.getTextcriticalCommentsForOverlays(
+        this.selectedTextcriticalCommentBlocks = this.editionSheetsService.getTextcriticalCommentsForOverlays(
             this.selectedTextcritics.comments,
             overlays
         );
 
-        this.showTkA = this.utils.isNotEmptyArray(this.selectedTextcriticalComments);
+        this.showTkA = this.utils.isNotEmptyArray(this.selectedTextcriticalCommentBlocks);
     }
 
     /**
@@ -290,25 +287,20 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**
      * Public method: onSvgSheetSelect.
      *
-     * It selects a SVG sheet by its edition complex
-     * and sheet ids and navigates to the edition sheets route
-     * with this given id.
+     * It navigates to the '/sheet/' route using the provided sheetId
+     * within the context of an edition complex identified by the provided complexId.
      *
      * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
      * @returns {void} Navigates to the edition sheets.
      */
     onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
-        // Set default complex route if none is given
-        const complexRoute = sheetIds.complexId
-            ? `/edition/complex/${sheetIds.complexId}/`
-            : this.editionComplex.baseRoute;
-
+        const sheetRoute = this.editionRouteConstants.EDITION_SHEETS.route;
         const navigationExtras: NavigationExtras = {
-            queryParams: { id: sheetIds.sheetId },
+            queryParams: { id: sheetIds?.sheetId ?? '' },
             queryParamsHandling: 'merge',
         };
 
-        this.router.navigate([complexRoute, this.editionRouteConstants.EDITION_SHEETS.route], navigationExtras);
+        this._navigateWithComplexId(sheetIds?.complexId, sheetRoute, navigationExtras);
     }
 
     /**
@@ -351,7 +343,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     private _fetchEditionComplexData(
         queryParams: ParamMap
     ): Observable<EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
-        return this.editionService.getEditionComplex().pipe(
+        return this.editionService.getSelectedEditionComplex().pipe(
             // Set editionComplex
             tap((complex: EditionComplex) => (this.editionComplex = complex)),
             // Get editionSheetsData
@@ -406,6 +398,22 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
+     * Private method: _navigateWithComplexId.
+     *
+     * It navigates to a target route using the provided complexId.
+     *
+     * @param {string} complexId The given complex id.
+     * @param {string} targetRoute The given target route.
+     * @param {NavigationExtras} navigationExtras The given navigation extras.
+     * @returns {void} Navigates to the target route.
+     */
+    private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
+        const complexRoute = complexId ? `/edition/complex/${complexId}/` : this.editionComplex.baseRoute;
+
+        this.router.navigate([complexRoute, targetRoute], navigationExtras);
+    }
+
+    /**
      * Private method: _selectSvgSheet.
      *
      * It selects an SVG sheet by the given query params.
@@ -436,7 +444,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             this.utils.isNotEmptyObject(this.selectedTextcritics) &&
             this.utils.isNotEmptyArray(this.selectedTextcritics.comments)
         ) {
-            this.selectedTextcriticalComments = this.selectedTextcritics.comments;
+            this.selectedTextcriticalCommentBlocks = this.selectedTextcritics.comments;
         }
     }
 }

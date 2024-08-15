@@ -424,28 +424,12 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Attaches the data and sets up the simulation.
      */
     private _attachData(): void {
-        // Limit result length
         const triples: Triple[] = this.graphVisualizerService.limitTriples(this.currentQueryResultTriples, this.limit);
 
-        // If type of triples is text/turtle (not array)
-        // The triples must be parsed to objects instead
-        if (typeof triples === 'string') {
-            this.graphVisualizerService.parseTripleString(triples).then((data: { triples; namespaces }) => {
-                const abrTriples: Triple[] = this.graphVisualizerService.abbreviateTriples(
-                    data.triples,
-                    data.namespaces
-                );
-                this._simulationData = this._triplesToD3GraphData(abrTriples);
+        this._simulationData = this._triplesToD3GraphData(triples);
 
-                this._setupForceSimulation();
-                this._updateSVG();
-            });
-        } else {
-            this._simulationData = this._triplesToD3GraphData(triples);
-
-            this._setupForceSimulation();
-            this._updateSVG();
-        }
+        this._setupForceSimulation();
+        this._updateSVG();
     }
 
     /**

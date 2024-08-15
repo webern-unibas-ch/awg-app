@@ -104,16 +104,14 @@ describe('OpenStreetMapComponent (DONE)', () => {
                 const mapDes = getAndExpectDebugElementByCss(compDe, 'iframe#awg-osm-embed-map', 1, 1);
                 const mapEl = mapDes[0].nativeElement;
 
-                expect(mapEl.src).toBeDefined();
-                expect(mapEl.src).toBeFalsy();
+                expectToBe(mapEl.src, '');
             });
 
             it('... should not have the link to OSM homepage yet', () => {
                 const linkDes = getAndExpectDebugElementByCss(compDe, 'div#awg-osm-link a', 1, 1);
                 const linkEl = linkDes[0].nativeElement;
 
-                expect(linkEl.href).toBeDefined();
-                expect(linkEl.href).toBeFalsy();
+                expectToBe(linkEl.href, '');
             });
         });
     });

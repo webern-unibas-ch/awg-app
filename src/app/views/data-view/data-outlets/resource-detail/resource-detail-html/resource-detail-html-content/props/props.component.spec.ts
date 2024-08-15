@@ -1,5 +1,5 @@
 import { DebugElement, SimpleChange } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
 
@@ -7,6 +7,9 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -81,10 +84,7 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should have `metaBreakLine`', () => {
-            expect(component.metaBreakLine).withContext('should be defined').toBeDefined();
-            expect(component.metaBreakLine)
-                .withContext(`should be ${expectedMetaBreakLine}`)
-                .toBe(expectedMetaBreakLine);
+            expectToBe(component.metaBreakLine, expectedMetaBreakLine);
         });
 
         it('... should not have `props` input', () => {
@@ -124,8 +124,7 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
                 const headerEl = headerDes[0].nativeElement;
 
                 // Check output
-                expect(headerEl.textContent).toBeTruthy();
-                expect(headerEl.textContent).withContext('Objektdaten').toContain('Objektdaten');
+                expectToContain(headerEl.textContent, 'Objektdaten');
             });
 
             it('... should contain no ul with props yet', () => {
@@ -144,8 +143,7 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
         });
 
         it('... should have `props` input', () => {
-            expect(component.props).withContext('should be defined').toBeDefined();
-            expect(component.props).withContext(`should be expectedProps: ${expectedProps}`).toBe(expectedProps);
+            expectToEqual(component.props, expectedProps);
         });
 
         describe('VIEW', () => {
@@ -183,16 +181,11 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
                 const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 6, 6);
 
                 htmlDes.forEach(html => {
-                    expect(html.name).toBeTruthy();
-                    expect(html.name).withContext(`should be span`).toBe('span');
+                    expectToBe(html.name, 'span');
 
                     // Check parent
-                    expect(html.parent.name).toBeTruthy();
-                    expect(html.parent.name).withContext(`should be li`).toBe('li');
-                    expect(html.parent.attributes['class']).toBeTruthy();
-                    expect(html.parent.attributes['class'])
-                        .withContext(`should be awg-prop-value`)
-                        .toBe('awg-prop-value');
+                    expectToBe(html.parent.name, 'li');
+                    expectToBe(html.parent.attributes['class'], 'awg-prop-value');
                 });
             });
         });
@@ -220,7 +213,7 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
                     });
 
                     expectSpyCall(exposeGndSpy, 1, gndRemoveEvent);
-                    expect(exposeGndSpy.calls.mostRecent().args[0]).toEqual(gndRemoveEvent);
+                    expectToEqual(exposeGndSpy.calls.mostRecent().args[0], gndRemoveEvent);
                 }));
 
                 it('... a REMOVE and SET event if props input contains a GND property', fakeAsync(() => {
@@ -234,8 +227,8 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
 
                     // Gets triggered 2x (remove all old GND values & set new GND value)
                     expectSpyCall(exposeGndSpy, 2, gndSetEvent);
-                    expect(exposeGndSpy.calls.first().args[0]).toEqual(gndRemoveEvent);
-                    expect(exposeGndSpy.calls.mostRecent().args[0]).toEqual(gndSetEvent);
+                    expectToEqual(exposeGndSpy.calls.first().args[0], gndRemoveEvent);
+                    expectToEqual(exposeGndSpy.calls.mostRecent().args[0], gndSetEvent);
                 }));
             });
 

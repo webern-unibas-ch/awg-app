@@ -71,7 +71,7 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
      */
     getEditionComplex(): void {
         this.editionService
-            .getEditionComplex()
+            .getSelectedEditionComplex()
             .pipe(takeUntil(this._destroyed$))
             .subscribe({
                 next: (complex: EditionComplex) => {

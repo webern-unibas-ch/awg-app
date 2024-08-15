@@ -8,6 +8,7 @@ import Spy = jasmine.Spy;
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectSpyCall,
+    expectToBe,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -65,11 +66,8 @@ describe('DataViewComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should have title and id', () => {
-            expect(component.searchTitle).toBeDefined();
-            expect(component.searchTitle).withContext(`should be ${expectedTitle}`).toBe(expectedTitle);
-
-            expect(component.searchId).toBeDefined();
-            expect(component.searchId).withContext(`should be ${expectedId}`).toBe(expectedId);
+            expectToBe(component.searchTitle, expectedTitle);
+            expectToBe(component.searchId, expectedId);
         });
 
         describe('#routeToSidenav()', () => {
@@ -137,9 +135,7 @@ describe('DataViewComponent (DONE)', () => {
 
                 expect(navArgs).toBeDefined();
                 expect(navArgs[0]).toBeDefined();
-                expect(outletRoute).toBeDefined();
-                expect(outletRoute).withContext(`should be: ${expectedRoute}`).toBe(expectedRoute);
-
+                expectToBe(outletRoute, expectedRoute);
                 expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
 
@@ -149,8 +145,7 @@ describe('DataViewComponent (DONE)', () => {
                 const navExtras = navArgs[1];
 
                 expect(navExtras).toBeDefined();
-                expect(navExtras.preserveFragment).toBeDefined();
-                expect(navExtras.preserveFragment).withContext('should be `preserveFragment:true`').toBe(true);
+                expectToBe(navExtras.preserveFragment, true);
 
                 expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
@@ -161,11 +156,8 @@ describe('DataViewComponent (DONE)', () => {
                 const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
-                expect(headingCmp.title).toBeTruthy();
-                expect(headingCmp.title).withContext(`should have title: ${expectedTitle}`).toBe(expectedTitle);
-
-                expect(headingCmp.id).toBeTruthy();
-                expect(headingCmp.id).withContext(`should have id: ${expectedId}`).toBe(expectedId);
+                expectToBe(headingCmp.title, expectedTitle);
+                expectToBe(headingCmp.id, expectedId);
             });
         });
     });

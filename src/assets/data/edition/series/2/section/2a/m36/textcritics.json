@@ -1,0 +1,144 @@
+{
+    "textcritics": [
+        {
+            "id": "M_36_TF1",
+            "label": "M 36 einzige Textfassung",
+            "description": [
+                "Für die Textedition der Studienkomposition für Klavier M 36 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm36', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm36', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen. <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'm36', fragmentId: 'source_B'})\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. <br /> Hauptquelle für die Textedition der Studienkomposition für Klavier M 36 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm36', fragmentId: 'source_B'})\"><strong>B</strong></a> nach Korrekturen 1."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g820",
+                            "measure": "11",
+                            "system": "Klav.",
+                            "position": "3/4",
+                            "comment": "Diastematisch undefinierter Notenkopf zwischen den Systemen weggelassen."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "M_36_Sk1",
+            "label": "M 36 Sk1",
+            "description": ["<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 36."],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g1046",
+                            "measure": "3",
+                            "system": "16",
+                            "position": "1. Note",
+                            "comment": "Halbe Note g<sup>1</sup>/c<sup>2</sup>/e<sup>2</sup> überschreibt Viertelnote c<sup>2</sup>/e<sup>2</sup>."
+                        },
+                        {
+                            "svgGroupId": "g1058",
+                            "measure": "5",
+                            "system": "16",
+                            "position": "1. Note",
+                            "comment": "Punktierte Halbe Note überschreibt Viertelnote."
+                        },
+                        {
+                            "svgGroupId": "g3",
+                            "measure": "6",
+                            "system": "17",
+                            "position": "3/4",
+                            "comment": "Metrisch falsch gesetzten Notenkopf e gestrichen."
+                        },
+                        {
+                            "svgGroupId": "g975",
+                            "measure": "7",
+                            "system": "14",
+                            "position": "1. Note",
+                            "comment": "{{ref.getGlyph('[#]')}}cis<sup>1</sup> überschreibt d<sub>1</sub>."
+                        },
+                        {
+                            "svgGroupId": "g13",
+                            "measure": "7",
+                            "system": "15",
+                            "position": "(2/4)",
+                            "comment": "Viertelnote e gstrichen? Entzifferung unsicher."
+                        },
+                        {
+                            "svgGroupId": "g1040",
+                            "measure": "8 bis </br>9",
+                            "system": "13",
+                            "position": "3/4 <br>1/4",
+                            "comment": "a<sup>1</sup>–a<sup>1</sup> überschreibt h<sup>1</sup>–h<sup>1</sup>."
+                        },
+                        {
+                            "svgGroupId": "g9",
+                            "measure": "11",
+                            "system": "13",
+                            "position": "1/4",
+                            "comment": "Oberstimmenschicht: Viertelnote überschreibt Halbe Note."
+                        },
+                        {
+                            "svgGroupId": "g10",
+                            "measure": "12",
+                            "system": "12",
+                            "position": "1. Note",
+                            "comment": "h überschreibt a."
+                        },
+                        {
+                            "svgGroupId": "g111",
+                            "measure": "12",
+                            "system": "12",
+                            "position": "2/4",
+                            "comment": "Entzifferung unsicher. Die Viertelnote mit Hilfslinien ist vergleichsweise tief gesetzt und möglicherweise auch lesbar als H<sub>1</sub> im Bassschlüssel analog Tintenniederschrift."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g2",
+                    "linkTo": {
+                        "complexId": "m36",
+                        "sheetId": "M_36_Sk1d"
+                    }
+                },
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m36",
+                        "sheetId": "M_36_Sk1e"
+                    }
+                },
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m36",
+                        "sheetId": "M_36_Sk1a"
+                    }
+                },
+                {
+                    "svgGroupId": "g8",
+                    "linkTo": {
+                        "complexId": "m36",
+                        "sheetId": "M_36_Sk1b"
+                    }
+                },
+                {
+                    "svgGroupId": "g11",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1b"
+                    }
+                },
+                {
+                    "svgGroupId": "g12",
+                    "linkTo": {
+                        "complexId": "m36",
+                        "sheetId": "M_36_Sk1c"
+                    }
+                }
+            ]
+        }
+    ]
+}

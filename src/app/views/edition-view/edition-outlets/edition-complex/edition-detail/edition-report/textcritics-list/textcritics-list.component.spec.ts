@@ -16,9 +16,9 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { UtilityService } from '@awg-app/core/services';
+import { UtilityService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { TextcriticalComment, TextcriticsList } from '@awg-views/edition-view/models';
+import { TextcriticalCommentBlock, TextcriticsList } from '@awg-views/edition-view/models';
 
 import { TextcriticsListComponent } from './textcritics-list.component';
 
@@ -28,21 +28,32 @@ class EditionTkaDescriptionStubComponent {
     @Input()
     textcriticalDescriptions: string[];
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
+@Component({ selector: 'awg-edition-tka-label', template: '' })
+class EditionTkaLabelStubComponent {
+    @Input()
+    id: string;
+    @Input() labelType: 'evaluation' | 'comment';
+}
+
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
-    textcriticalComments: TextcriticalComment[];
+    textcriticalCommentBlocks: TextcriticalCommentBlock[];
+    @Input()
+    isCorrections = false;
     @Input()
     isRowTable = false;
+    @Input()
+    isSketchId = false;
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -58,7 +69,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
     let expectedComplexId: string;
     let expectedNextComplexId: string;
-    let expectedFragment: string;
+    let expectedReportFragment: string;
     let expectedModalSnippet: string;
     let expectedNextSheetId: string;
     let expectedSheetId: string;
@@ -87,6 +98,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 TextcriticsListComponent,
                 CompileHtmlComponent,
                 EditionTkaDescriptionStubComponent,
+                EditionTkaLabelStubComponent,
                 EditionTkaTableStubComponent,
             ],
             providers: [UtilityService],
@@ -103,7 +115,7 @@ describe('TextcriticsListComponent (DONE)', () => {
         // Test data
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
-        expectedFragment = 'source_A';
+        expectedReportFragment = 'source_A';
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedNextSheetId = 'test_item_id_2';
         expectedSheetId = 'test_item_id_1';
@@ -423,60 +435,316 @@ describe('TextcriticsListComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
                 });
 
-                it('... should contain no item body with div and paragraphs if description and comment arrays are empty', () => {
-                    const textcritics = expectedTextcriticsData.textcritics[0];
-                    const bodyDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
-                        1,
-                        1,
-                        'open'
-                    );
+                describe('...  if description array is empty', () => {
+                    it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaDescriptionComponent', () => {
+                        const textcritics = expectedTextcriticsData.textcritics[0];
 
-                    getAndExpectDebugElementByCss(bodyDes[0], 'div', 0, 0);
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+
+                        getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
+
+                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 0, 0);
+                    });
+
+                    it('... should display a no content message (small.text-muted) in another paragraph within item body div', () => {
+                        const textcritics = expectedTextcriticsData.textcritics[0];
+
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 2, 2);
+
+                        // Get small element of second paragraph
+                        const smallDes = getAndExpectDebugElementByCss(pDes[1], 'small', 1, 1);
+                        const smallEl = smallDes[0].nativeElement;
+
+                        expectToContain(smallEl.textContent, '[Nicht vorhanden.]');
+                        expect(smallEl).toHaveClass('text-muted');
+                    });
                 });
 
-                it('... should contain item body with div, paragraph and EditionTkaDescriptionComponent if description array is not empty', () => {
-                    const textcritics = expectedTextcriticsData.textcritics[1];
-                    const bodyDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
-                        1,
-                        1,
-                        'open'
-                    );
+                describe('...  if description array is not empty', () => {
+                    it('... should contain item body with div, small caps paragraph, first EditionTkaLabelComponent and EditionTkaDescriptionComponent', () => {
+                        const textcritics = expectedTextcriticsData.textcritics[1];
 
-                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
-                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
-                    const pEl0 = pDes[0].nativeElement;
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
-                    expectToBe(pEl0.textContent, 'Skizzenkommentar:');
+                        getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
 
-                    // EditionTkaDescriptionStubComponent
-                    getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 1, 1);
+                    });
+
+                    it('... should pass down `id` data to first EditionTkaLabelComponent (stubbed)', () => {
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+
+                        const labelDes = getAndExpectDebugElementByDirective(
+                            pDes[0],
+                            EditionTkaLabelStubComponent,
+                            1,
+                            1
+                        );
+                        const labelCmp = labelDes[0].injector.get(
+                            EditionTkaLabelStubComponent
+                        ) as EditionTkaLabelStubComponent;
+
+                        expectToBe(labelCmp.id, expectedTextcriticsData.textcritics[1].id);
+                    });
+
+                    it('... should pass down `labelType` data to first EditionTkaLabelComponent (stubbed)', () => {
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+
+                        const labelDes = getAndExpectDebugElementByDirective(
+                            pDes[0],
+                            EditionTkaLabelStubComponent,
+                            1,
+                            1
+                        );
+                        const labelCmp = labelDes[0].injector.get(
+                            EditionTkaLabelStubComponent
+                        ) as EditionTkaLabelStubComponent;
+
+                        expectToBe(labelCmp.labelType, 'evaluation');
+                    });
+
+                    it('... should pass down `description` data to EditionTkaDescriptionComponent (stubbed)', () => {
+                        const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionTkaDescriptionStubComponent,
+                            1,
+                            1
+                        );
+                        const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
+                            EditionTkaDescriptionStubComponent
+                        ) as EditionTkaDescriptionStubComponent;
+
+                        expectToEqual(
+                            editionTkaDescriptionCmp.textcriticalDescriptions,
+                            expectedTextcriticsData.textcritics[1].description
+                        );
+                    });
                 });
 
-                it('... should contain item body with div, paragraph and EditionTkaTableComponent if comments array is not empty', () => {
-                    const textcritics = expectedTextcriticsData.textcritics[1];
-                    const bodyDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
-                        1,
-                        1,
-                        'open'
-                    );
+                describe('...  if commments array is empty', () => {
+                    it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaTableComponent', () => {
+                        const textcritics = expectedTextcriticsData.textcritics[0];
 
-                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
-                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
-                    const pEl0 = pDes[0].nativeElement;
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
-                    expectToBe(pEl0.textContent, 'Textkritischer Kommentar:');
+                        getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
 
-                    // EditionTkaTableStubComponent
-                    getAndExpectDebugElementByDirective(bodyDes[0], EditionTkaTableStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaTableStubComponent, 0, 0);
+                    });
+
+                    it('... should display a no content message (small.text-muted) in another paragraph within item body div', () => {
+                        const textcritics = expectedTextcriticsData.textcritics[0];
+
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 2, 2);
+
+                        // Get small element of second paragraph
+                        const smallDes = getAndExpectDebugElementByCss(pDes[1], 'small', 1, 1);
+                        const smallEl = smallDes[0].nativeElement;
+
+                        expectToContain(smallEl.textContent, '[Nicht vorhanden.]');
+                        expect(smallEl).toHaveClass('text-muted');
+                    });
                 });
 
-                it('... should pass down `description` data to EditionTkaDescriptionComponent (stubbed)', () => {
+                describe('...  if comments array is not empty', () => {
+                    it('... should contain item body with div, small caps paragraph, second EditionTkaLabelComponent and EditionTkaTableComponent', () => {
+                        const textcritics = expectedTextcriticsData.textcritics[1];
+
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+
+                        getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
+
+                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaTableStubComponent, 1, 1);
+                    });
+
+                    it('... should pass down `id` data to second EditionTkaLabelComponent (stubbed)', () => {
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+
+                        const labelDes = getAndExpectDebugElementByDirective(
+                            pDes[0],
+                            EditionTkaLabelStubComponent,
+                            1,
+                            1
+                        );
+                        const labelCmp = labelDes[0].injector.get(
+                            EditionTkaLabelStubComponent
+                        ) as EditionTkaLabelStubComponent;
+
+                        expectToBe(labelCmp.id, expectedTextcriticsData.textcritics[1].id);
+                    });
+
+                    it('... should pass down `labelType` data to second EditionTkaLabelComponent (stubbed)', () => {
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            1,
+                            1,
+                            'open'
+                        );
+                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
+                        const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+
+                        const labelDes = getAndExpectDebugElementByDirective(
+                            pDes[0],
+                            EditionTkaLabelStubComponent,
+                            1,
+                            1
+                        );
+                        const labelCmp = labelDes[0].injector.get(
+                            EditionTkaLabelStubComponent
+                        ) as EditionTkaLabelStubComponent;
+
+                        expectToBe(labelCmp.labelType, 'comment');
+                    });
+
+                    it('... should pass down `comments` to EditionTkaTableComponent (stubbed)', () => {
+                        const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionTkaTableStubComponent,
+                            1,
+                            1
+                        );
+                        const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                            EditionTkaTableStubComponent
+                        ) as EditionTkaTableStubComponent;
+
+                        expectToEqual(
+                            editionTkaTableCmp.textcriticalCommentBlocks,
+                            expectedTextcriticsData.textcritics[1].comments
+                        );
+                    });
+
+                    it('... should pass down `isRowTable` to EditionTkaTableComponent (stubbed)', () => {
+                        const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionTkaTableStubComponent,
+                            1,
+                            1
+                        );
+                        const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                            EditionTkaTableStubComponent
+                        ) as EditionTkaTableStubComponent;
+
+                        expectToEqual(editionTkaTableCmp.isRowTable, expectedTextcriticsData.textcritics[1].rowtable);
+                    });
+
+                    it('... should pass down `isSketchId` to EditionTkaTableComponent (stubbed)', () => {
+                        const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionTkaTableStubComponent,
+                            1,
+                            1
+                        );
+                        const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                            EditionTkaTableStubComponent
+                        ) as EditionTkaTableStubComponent;
+
+                        expectToEqual(editionTkaTableCmp.isSketchId, false);
+                    });
+                });
+            });
+        });
+
+        describe('#navigateToReportFragment()', () => {
+            it('... should have a method `navigateToReportFragment`', () => {
+                expect(component.navigateToReportFragment).toBeDefined();
+            });
+
+            describe('... should trigger on event from', () => {
+                it('... EditionTkaDescriptionComponent', () => {
+                    // Open second item
+                    const header1Des = getAndExpectDebugElementByCss(
+                        compDe,
+                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                        1,
+                        1
+                    );
+
+                    // Header Button
+                    const btn1Des = getAndExpectDebugElementByCss(
+                        header1Des[0],
+                        'div.accordion-button > button.btn',
+                        2,
+                        2
+                    );
+                    const btn1El = btn1Des[0].nativeElement;
+
+                    // Click header buttons to open body
+                    click(btn1El as HTMLElement);
+                    detectChangesOnPush(fixture);
+
                     const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
                         compDe,
                         EditionTkaDescriptionStubComponent,
@@ -487,13 +755,35 @@ describe('TextcriticsListComponent (DONE)', () => {
                         EditionTkaDescriptionStubComponent
                     ) as EditionTkaDescriptionStubComponent;
 
-                    expectToEqual(
-                        editionTkaDescriptionCmp.textcriticalDescriptions,
-                        expectedTextcriticsData.textcritics[1].description
-                    );
+                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+
+                    editionTkaDescriptionCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+
+                    expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
                 });
 
-                it('... should pass down `comments` and `rowtable` data to EditionTkaTableComponent (stubbed)', () => {
+                it('... EditionTkaTableComponent', () => {
+                    // Open second item
+                    const header1Des = getAndExpectDebugElementByCss(
+                        compDe,
+                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                        1,
+                        1
+                    );
+
+                    // Header Button
+                    const btn1Des = getAndExpectDebugElementByCss(
+                        header1Des[0],
+                        'div.accordion-button > button.btn',
+                        2,
+                        2
+                    );
+                    const btn1El = btn1Des[0].nativeElement;
+
+                    // Click header buttons to open body
+                    click(btn1El as HTMLElement);
+                    detectChangesOnPush(fixture);
+
                     const editionTkaTableDes = getAndExpectDebugElementByDirective(
                         compDe,
                         EditionTkaTableStubComponent,
@@ -504,79 +794,66 @@ describe('TextcriticsListComponent (DONE)', () => {
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
-                    expectToEqual(
-                        editionTkaTableCmp.textcriticalComments,
-                        expectedTextcriticsData.textcritics[1].comments
-                    );
-                    expectToEqual(editionTkaTableCmp.isRowTable, expectedTextcriticsData.textcritics[1].rowtable);
+                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+
+                    editionTkaTableCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+
+                    expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
                 });
-            });
-        });
-
-        describe('#navigateToReportFragment()', () => {
-            it('... should have a method `navigateToReportFragment`', () => {
-                expect(component.navigateToReportFragment).toBeDefined();
-            });
-
-            it('... should trigger on event from EditionTkaTableComponent', () => {
-                // Open second item
-                const header1Des = getAndExpectDebugElementByCss(
-                    compDe,
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
-                    1,
-                    1
-                );
-
-                // Header Button
-                const btn1Des = getAndExpectDebugElementByCss(header1Des[0], 'div.accordion-button > button.btn', 2, 2);
-                const btn1El = btn1Des[0].nativeElement;
-
-                // Click header buttons to open body
-                click(btn1El as HTMLElement);
-                detectChangesOnPush(fixture);
-
-                const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditionTkaTableStubComponent,
-                    1,
-                    1
-                );
-                const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
-                    EditionTkaTableStubComponent
-                ) as EditionTkaTableStubComponent;
-
-                editionTkaTableCmp.navigateToReportFragmentRequest.emit(expectedFragment);
-
-                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
             });
 
             describe('... should not emit anything if', () => {
-                it('... id is undefined', () => {
+                it('... paraemeter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
-                it('... id is null', () => {
+                it('... parameter is null', () => {
                     component.navigateToReportFragment(null);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
-                it('... id is empty string', () => {
-                    component.navigateToReportFragment('');
+                it('... fragment id is undefined', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... fragment id is null', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... fragment id is empty string', () => {
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
             });
 
-            it('... should emit id of selected report fragment', () => {
-                component.navigateToReportFragment(expectedFragment);
+            it('... should emit id of selected report fragment within same complex', () => {
+                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                component.navigateToReportFragment(expectedReportIds);
 
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedFragment);
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
 
                 const otherFragment = 'source_B';
-                component.navigateToReportFragment(otherFragment);
+                const expectedNextReportIds = { complexId: expectedComplexId, fragmentId: otherFragment };
+                component.navigateToReportFragment(expectedNextReportIds);
 
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, otherFragment);
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
+            });
+
+            it('... should emit id of selected report fragment for another complex', () => {
+                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                component.navigateToReportFragment(expectedReportIds);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
+
+                const otherFragment = 'source_B';
+                const expectedNextReportIds = { complexId: expectedNextComplexId, fragmentId: otherFragment };
+                component.navigateToReportFragment(expectedNextReportIds);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
             });
         });
 
@@ -585,36 +862,80 @@ describe('TextcriticsListComponent (DONE)', () => {
                 expect(component.openModal).toBeDefined();
             });
 
-            it('... should trigger on event from EditionTkaTableComponent', () => {
-                // Open second item
-                const header1Des = getAndExpectDebugElementByCss(
-                    compDe,
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
-                    1,
-                    1
-                );
+            describe('... should trigger on event from', () => {
+                it('... EditionTkaDescriptionComponent', () => {
+                    // Open second item
+                    const header1Des = getAndExpectDebugElementByCss(
+                        compDe,
+                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                        1,
+                        1
+                    );
 
-                // Header Button
-                const btn1Des = getAndExpectDebugElementByCss(header1Des[0], 'div.accordion-button > button.btn', 2, 2);
-                const btn1El = btn1Des[0].nativeElement;
+                    // Header Button
+                    const btn1Des = getAndExpectDebugElementByCss(
+                        header1Des[0],
+                        'div.accordion-button > button.btn',
+                        2,
+                        2
+                    );
+                    const btn1El = btn1Des[0].nativeElement;
 
-                // Click header buttons to open body
-                click(btn1El as HTMLElement);
-                detectChangesOnPush(fixture);
+                    // Click header buttons to open body
+                    click(btn1El as HTMLElement);
+                    detectChangesOnPush(fixture);
 
-                const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditionTkaTableStubComponent,
-                    1,
-                    1
-                );
-                const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
-                    EditionTkaTableStubComponent
-                ) as EditionTkaTableStubComponent;
+                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionTkaDescriptionStubComponent,
+                        1,
+                        1
+                    );
+                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
+                        EditionTkaDescriptionStubComponent
+                    ) as EditionTkaDescriptionStubComponent;
 
-                editionTkaTableCmp.openModalRequest.emit(expectedModalSnippet);
+                    editionTkaDescriptionCmp.openModalRequest.emit(expectedModalSnippet);
 
-                expectSpyCall(openModalSpy, 1, expectedModalSnippet);
+                    expectSpyCall(openModalSpy, 1, expectedModalSnippet);
+                });
+
+                it('... EditionTkaTableComponent', () => {
+                    // Open second item
+                    const header1Des = getAndExpectDebugElementByCss(
+                        compDe,
+                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                        1,
+                        1
+                    );
+
+                    // Header Button
+                    const btn1Des = getAndExpectDebugElementByCss(
+                        header1Des[0],
+                        'div.accordion-button > button.btn',
+                        2,
+                        2
+                    );
+                    const btn1El = btn1Des[0].nativeElement;
+
+                    // Click header buttons to open body
+                    click(btn1El as HTMLElement);
+                    detectChangesOnPush(fixture);
+
+                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionTkaTableStubComponent,
+                        1,
+                        1
+                    );
+                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                        EditionTkaTableStubComponent
+                    ) as EditionTkaTableStubComponent;
+
+                    editionTkaTableCmp.openModalRequest.emit(expectedModalSnippet);
+
+                    expectSpyCall(openModalSpy, 1, expectedModalSnippet);
+                });
             });
 
             describe('... should not emit anything if ', () => {

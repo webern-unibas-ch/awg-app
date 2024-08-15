@@ -1,5 +1,12 @@
-import { HTTP_INTERCEPTORS, HttpClient, HttpInterceptor, HttpResponse } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
+import {
+    HTTP_INTERCEPTORS,
+    HttpClient,
+    HttpInterceptor,
+    HttpResponse,
+    provideHttpClient,
+    withInterceptorsFromDi,
+} from '@angular/common/http';
+import { HttpTestingController, TestRequest, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Data } from '@angular/router';
 
@@ -31,7 +38,7 @@ describe('LoadingInterceptor (DONE)', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
+            imports: [],
             providers: [
                 LoadingService,
                 {
@@ -39,6 +46,8 @@ describe('LoadingInterceptor (DONE)', () => {
                     useClass: LoadingInterceptor,
                     multi: true,
                 },
+                provideHttpClient(withInterceptorsFromDi()),
+                provideHttpClientTesting(),
             ],
         });
 

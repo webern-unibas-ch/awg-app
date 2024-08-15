@@ -10,21 +10,23 @@
         {{ editionRouteConstants.SECTION_5.full }}
     </h6>
 
-    @for (editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: 0 : 2; track editionComplex) {
-        <h3 class="awg-edition-info-header">
-            <span class="awg-edition-info-header-title" [innerHTML]="editionComplex.titleStatement.title"></span
-            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionComplex.complexId.short }}</span> (<a
+    @for (
+        editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: 0 : SLICE_INDEX;
+        track editionComplex.complexId.short
+    ) {
+        <h4 class="awg-edition-info-header">
+            <span class="awg-edition-info-header-title" [innerHTML]="editionComplex.complexId.full"></span> (<a
                 [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
                 >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
             >
-            @if (editionComplex === DISPLAYED_EDITION_COMPLEXES[1]) {
+            @if (editionComplex.complexId.route.includes('op25')) {
                 <span>&nbsp;&&nbsp;</span>
                 <a [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_GRAPH.route]">{{
                     editionRouteConstants.EDITION_GRAPH.short
                 }}</a>
             }
             <span>)</span>
-        </h3>
+        </h4>
     }
 </div>
 <div class="para">
@@ -34,16 +36,15 @@
     </h6>
 
     @for (
-        editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: 2 : DISPLAYED_EDITION_COMPLEXES.length;
-        track editionComplex
+        editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: SLICE_INDEX : DISPLAYED_EDITION_COMPLEXES.length;
+        track editionComplex.complexId.short
     ) {
-        <h3 class="awg-edition-info-header">
-            <span class="awg-edition-info-header-title" [innerHTML]="editionComplex.titleStatement.title"></span
-            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionComplex.complexId.short }}</span> (<a
+        <h4 class="awg-edition-info-header">
+            <span class="awg-edition-info-header-title" [innerHTML]="editionComplex.complexId.full"></span> (<a
                 [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
                 >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
             >)
-        </h3>
+        </h4>
     }
 </div>
 
@@ -69,9 +70,15 @@
     </p>
     <p>
         Über den Menüpunkt <em>Edition</em> sind ausgewählte Skizzeneditionen zu
-        @for (editionComplex of DISPLAYED_EDITION_COMPLEXES; track editionComplex; let i = $index; let n = $count) {
-            <a [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
-                >{{ editionComplex.complexId.short }}
+        @for (
+            editionComplex of DISPLAYED_EDITION_COMPLEXES;
+            track editionComplex.complexId.short;
+            let i = $index;
+            let n = $count
+        ) {
+            <a
+                [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
+                [innerHTML]="editionComplex.complexId.short">
             </a>
             @if (i < n - 2) {
                 <span>, </span>

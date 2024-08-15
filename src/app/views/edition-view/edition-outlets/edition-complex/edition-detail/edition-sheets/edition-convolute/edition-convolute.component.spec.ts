@@ -10,6 +10,7 @@ import { click } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
@@ -126,7 +127,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
         });
 
         it('... should have faSquare', () => {
-            expectToBe(component.faSquare, faSquare);
+            expectToEqual(component.faSquare, faSquare);
         });
 
         it('... should have folioLegends', () => {
@@ -134,13 +135,25 @@ describe('EditionConvoluteComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no div.accordion yet', () => {
+            it('... should contain one div.accordion', () => {
                 // Div.accordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
-            it('... should contain no EditionFolioViewerComponent (stubbed) yet', () => {
-                getAndExpectDebugElementByDirective(compDe, EditionFolioViewerStubComponent, 0, 0);
+            it('... should contain one div.accordion-item with header and non-collapsible body yet in div.accordion', () => {
+                // Div.accordion debug element
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
+                // Header (div.accordion-header)
+                getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-header', 1, 1);
+
+                // Body (div.accordion-collapse)
+                const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
+                const itemBodyEl = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'accordion-collapse');
             });
         });
     });
@@ -164,17 +177,25 @@ describe('EditionConvoluteComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.accordion', () => {
-                // NgbAccordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
-            });
-
-            it('... should contain one item in div.accordion', () => {
+            it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
                 // NgbAccordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                // Div.accordion-item
-                getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
+                // Item (div.accordion-item)
+                const itemDes = getAndExpectDebugElementByCss(
+                    accordionDes[0],
+                    'div#awg-convolute-view.accordion-item',
+                    1,
+                    1
+                );
+                // Header (div.accordion-header)
+                getAndExpectDebugElementByCss(itemDes[0], 'div#awg-convolute-view > div.accordion-header', 1, 1);
+
+                // Body open (div.accordion-collapse)
+                const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div#awg-convolute-view-collapse', 1, 1);
+                const itemBodyEl = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'show');
             });
 
             it('... should contain header title for the item (div.accordion-header)', () => {
@@ -381,7 +402,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 const reportLinkDe = linkDes[0]; // Contact link DebugElement
                 const reportLink = routerLinks[0]; // Contact link directive
 
-                expect(reportLink.navigatedTo).toBeNull();
+                expectToBe(reportLink.navigatedTo, null);
 
                 click(reportLinkDe);
                 fixture.detectChanges();
@@ -393,7 +414,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 const reportLinkDe = linkDes[0]; // Contact link DebugElement
                 const reportLink = routerLinks[0]; // Contact link directive
 
-                expect(reportLink.navigatedTo).toBeNull();
+                expectToBe(reportLink.navigatedTo, null);
 
                 click(reportLinkDe);
                 fixture.detectChanges();

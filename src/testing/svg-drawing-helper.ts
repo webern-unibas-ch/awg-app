@@ -1,4 +1,4 @@
-import { D3Selection, EditionSvgLinkBox, EditionSvgOverlay } from '@awg-app/views/edition-view/models';
+import { D3Selection, EditionSvgLinkBox, EditionSvgOverlay } from '@awg-views/edition-view/models';
 
 import * as D3_SELECTION from 'd3-selection';
 

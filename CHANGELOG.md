@@ -1,6 +1,339 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [0.12.3](https://github.com/webern-unibas-ch/awg-app/compare/v0.12.2...v0.12.3) (2024-07-01)
+
+### Features
+
+-   **assets:** add source descriptions for George-Lieder ([ab8dfc4](https://github.com/webern-unibas-ch/awg-app/commit/ab8dfc474551a43785ad350167b13484ba9c6cf0); thanks to [@masthom](https://github.com/masthom))
+-   **edition:** activate edition complexes for George-Lieder ([12b5b2e](https://github.com/webern-unibas-ch/awg-app/commit/12b5b2e239e5cef56d5e601e540653be102c9a4a))
+-   **edition:** add corrections to source description ([c8936f4](https://github.com/webern-unibas-ch/awg-app/commit/c8936f4318cc1e7174cfae50462a3a0572de09a8))
+-   **edition:** add George Lieder to menus ([e752649](https://github.com/webern-unibas-ch/awg-app/commit/e75264915e2c58cb8489990d0e2312056fac1c8e))
+-   **edition:** enable cross-complex report navigation ([139b5b2](https://github.com/webern-unibas-ch/awg-app/commit/139b5b287854686e707aa63263a5aa6cde9984b7))
+-   **edition:** plurify sourceDesc details and move into component ([66a00a9](https://github.com/webern-unibas-ch/awg-app/commit/66a00a9af5707a25a983fe29d7d7f440b8f2e423))
+
+### Bug Fixes
+
+-   **app:** add corresponding keyboard event to mouse events ([31921e0](https://github.com/webern-unibas-ch/awg-app/commit/31921e0e674518e7a45e8d15d9cd7df4820a3ac6))
+-   **app:** fix expensive track-by indices ([7d67440](https://github.com/webern-unibas-ch/awg-app/commit/7d6744005e6b4f74359f69fd52c6c7549d756c1e))
+-   **assets:** activate cross-complex report links in op3 and op4 ([28cdf78](https://github.com/webern-unibas-ch/awg-app/commit/28cdf78156289f17e74b4d359b9b9f6e90034f0d))
+-   **assets:** add correction ids ([fa2e8e0](https://github.com/webern-unibas-ch/awg-app/commit/fa2e8e07d1046baca6ead1972eb29f7d52ae1f67))
+-   **assets:** add more placeholder files for George-Lieder ([3459e39](https://github.com/webern-unibas-ch/awg-app/commit/3459e396dfdfe5ccd67562acf533cd4749076079))
+-   **assets:** add placeholder files for George-Lieder ([2b4b3f9](https://github.com/webern-unibas-ch/awg-app/commit/2b4b3f99eab57a728833c92ef6fe956e583dbb80))
+-   **assets:** apply new source desc model to assets ([91ee49a](https://github.com/webern-unibas-ch/awg-app/commit/91ee49a4c3707d9f063e098e40ead98d23b7d4cd))
+-   **assets:** fix description and link of corrections in m212 ([f4041a9](https://github.com/webern-unibas-ch/awg-app/commit/f4041a95acfc86657d361f7e21f9f52fcbaddd63))
+-   **assets:** fix tabs and quotes in source-list op. 23 ([821c748](https://github.com/webern-unibas-ch/awg-app/commit/821c7483969e8c1e957d3ff36f62356019268d32); thanks to [@masthom](https://github.com/masthom))
+-   **assets:** mark reversed systems in m22 ([521f378](https://github.com/webern-unibas-ch/awg-app/commit/521f378405658583d060bf19b9ad1d0f6ef6f42c))
+-   **assets:** remove redundant file ([20d90d0](https://github.com/webern-unibas-ch/awg-app/commit/20d90d058a7566a1f04b5b3869fc0e9c7eaa45ea))
+-   **assets:** remove unused ids from corrections in op12 ([32ca1c8](https://github.com/webern-unibas-ch/awg-app/commit/32ca1c898bd5642ced9feae36414af3d62b871b0))
+-   **assets:** use updated method signature with data ([374206c](https://github.com/webern-unibas-ch/awg-app/commit/374206c8f7c3b79b414f5ff59bf12e6f55a5c036))
+-   **assets:** various fixes in source descriptions ([35a6c79](https://github.com/webern-unibas-ch/awg-app/commit/35a6c79a45ca2fc75d30f4dc447e6c5e02e0e831); thanks to [@masthom](https://github.com/masthom))
+-   **core:** improve typings for distinctSubject conversion ([3d01d67](https://github.com/webern-unibas-ch/awg-app/commit/3d01d67a58556d6c8d2f02b5d85b9b7561faf585))
+-   **core:** simplify conversion of date values ([cdf2512](https://github.com/webern-unibas-ch/awg-app/commit/cdf25129e41d746dea15b3b81b78923f1fa60c12))
+-   **core:** simplify conversion of link values ([d95fb2e](https://github.com/webern-unibas-ch/awg-app/commit/d95fb2ecfe89996368b5f80570486f2be830fba8))
+-   **core:** update SNF logo ([6be9daf](https://github.com/webern-unibas-ch/awg-app/commit/6be9daf7b82092c1857fb8b709fbb9f2c48476ae))
+-   **edition:** allow edited sheets to be empty ([243b292](https://github.com/webern-unibas-ch/awg-app/commit/243b292ebfa9e2bfc0d564c2077cba664ee00b8e))
+-   **edition:** do not add punctuation marks for source description desc ([582dc59](https://github.com/webern-unibas-ch/awg-app/commit/582dc59ebde0d4a64ef71ceaf5d24fb0da4d6625))
+-   **edition:** do not display colon for stand-alone systems in SourceDesc ([4a03e0f](https://github.com/webern-unibas-ch/awg-app/commit/4a03e0fdb4181e2032148cbc656c22d3fc40e114))
+-   **edition:** fix track-by indices in SourceDescriptionComponent ([b97c3dd](https://github.com/webern-unibas-ch/awg-app/commit/b97c3ddab087ee9338bde7c70afd52766582785f))
+-   **edition:** use correct headings for source desc corrections ([8144b19](https://github.com/webern-unibas-ch/awg-app/commit/8144b1961416ae3e090308da90f4faffbae3f7d8))
+-   **edition:** use non-breakable space for catalogue numbers ([f880854](https://github.com/webern-unibas-ch/awg-app/commit/f880854fbce74ce99206185755445757b4a1503b))
+-   **edition:** use optional chaining for navigation with complex ids ([718662c](https://github.com/webern-unibas-ch/awg-app/commit/718662c5706ed503f9e3b79f8f18ecd3df198480))
+-   **search:** fix track-by indices for SearchResultList ([9a76ae3](https://github.com/webern-unibas-ch/awg-app/commit/9a76ae3ec0f6b80ac325451944cabcca9abe5d37))
+-   **search:** removed unused conversionService from SearchPanel ([12e90fa](https://github.com/webern-unibas-ch/awg-app/commit/12e90fa9a50afa2145973b2ef6b178d749dd7eff))
+
+### Code Refactoring
+
+-   **edition:** improve display of evaluation labels in SheetFooter ([555e821](https://github.com/webern-unibas-ch/awg-app/commit/555e821f78b8eec4ee724a3c52326ba1220e70dd))
+-   **edition:** move corrections into separate component ([02ae6cb](https://github.com/webern-unibas-ch/awg-app/commit/02ae6cb05a547a1443ff9c9f2b72143071bcdecc))
+-   **edition:** move sheet viewer nav into separate component ([b17d6ab](https://github.com/webern-unibas-ch/awg-app/commit/b17d6ab79b940844b265c6a8969566d5007a09c3))
+-   **edition:** move source description into own module ([512193e](https://github.com/webern-unibas-ch/awg-app/commit/512193ef60cb275cddc79f6193d92f119ad0474a))
+-   **edition:** rename doubletab_two -> doubletab_extended ([d450570](https://github.com/webern-unibas-ch/awg-app/commit/d45057075b88487953f30c6c06d2bad3f5c1693a))
+-   **edition:** rename SourceDescriptionDetails component ([8cfd983](https://github.com/webern-unibas-ch/awg-app/commit/8cfd9834356d27b5399b3b4ec2c91ad6fb50fc87))
+-   **edition:** rename writingMaterial -> writingMaterials ([869e8d1](https://github.com/webern-unibas-ch/awg-app/commit/869e8d13fd79e6fca33ad7f83095b5b806537b67))
+-   **edition:** unify signature of selectSvgSheet method ([49048c7](https://github.com/webern-unibas-ch/awg-app/commit/49048c784f7536502d25cf1fceaad275af458b02))
+-   **shared:** simplify and reduce size of spinner ([79b533c](https://github.com/webern-unibas-ch/awg-app/commit/79b533c95a084af86c6da8f1469999e729ad9525))
+
+### Tests
+
+-   **app:** fix test errors after bootstrap update ([217f20b](https://github.com/webern-unibas-ch/awg-app/commit/217f20b2a2f17a13989ce159d5897fa5eaebefd4))
+-   **edition:** add tests for source description corrections ([dfa2ad3](https://github.com/webern-unibas-ch/awg-app/commit/dfa2ad333e62452319c6d4ec0d82de61fc1de473))
+-   **edition:** add tests for SourceDescriptionDetail component ([462c9c4](https://github.com/webern-unibas-ch/awg-app/commit/462c9c474244ade8c65760b2dee4c5e4e8a9f60e))
+-   **edition:** adjust test to refactored method signature ([fc55037](https://github.com/webern-unibas-ch/awg-app/commit/fc5503767dfd357bba118b08ffadc6e339c0b409))
+
+### Continuous Integration
+
+-   **gh-actions:** bring back test build on any branch ([e553020](https://github.com/webern-unibas-ch/awg-app/commit/e553020fb7044d75cc99e05c33a5a7c7a009f54f))
+-   **gh-actions:** improve wording of step names ([4ccc665](https://github.com/webern-unibas-ch/awg-app/commit/4ccc665f85c465093631eea8e7025801246412dc))
+-   **gh-actions:** remove existing files when updating dev ([1ba131e](https://github.com/webern-unibas-ch/awg-app/commit/1ba131e6557bed8b7a9e4d685c151f2c6668381c))
+-   **gh-actions:** remove unused variable ([47b6bf8](https://github.com/webern-unibas-ch/awg-app/commit/47b6bf83b2f2a9040c6a50721c680260b60bb8f1))
+-   **gh-actions:** update yarn installation in build workflow ([9fa49d9](https://github.com/webern-unibas-ch/awg-app/commit/9fa49d9a7ce1084751cd5c487425c69ac8d62da0))
+
+### Documentation
+
+-   **core:** fix typo in JDN date model ([7ec7bbc](https://github.com/webern-unibas-ch/awg-app/commit/7ec7bbcb1d708ced7bb3a69815c6ca87a43b3542))
+-   **README:** update install instructions ([#1583](https://github.com/webern-unibas-ch/awg-app/issues/1583)) ([27b2755](https://github.com/webern-unibas-ch/awg-app/commit/27b275502c666b3a38a31e6029579575460c375f))
+
+### Styles
+
+-   **app:** fix linting errors after update ([cb014cd](https://github.com/webern-unibas-ch/awg-app/commit/cb014cd862ce97a7fdfc452749b0ef5e9e38b895))
+
+### Build System
+
+-   **app:** fix npm scripts after yarn update ([fe0f688](https://github.com/webern-unibas-ch/awg-app/commit/fe0f688f66ba448e7ac49b79806beb7615fc7214))
+-   **app:** update yarn.lock after upgrade ([6c17e5b](https://github.com/webern-unibas-ch/awg-app/commit/6c17e5b2ed9fbe6afd4cd3bc93ebbdf2a0a571d0))
+-   **app:** upgrade yarn to 4.3.0 ([07564b6](https://github.com/webern-unibas-ch/awg-app/commit/07564b6f8acf892d8951e70824e3a4d0606fc658))
+-   **app:** upgrade yarn to berry ([0f79e9a](https://github.com/webern-unibas-ch/awg-app/commit/0f79e9a7f0eb6f96c910050714be5a00d3ad0f59))
+-   **deps-dev:** bump @types/node from 18.19.33 to 18.19.34 ([ae7d3f1](https://github.com/webern-unibas-ch/awg-app/commit/ae7d3f1cc5cf890c1f27292c49e4267ccef7adfd))
+-   **deps-dev:** bump @types/node from 18.19.34 to 18.19.36 ([420a6cc](https://github.com/webern-unibas-ch/awg-app/commit/420a6cc54b16066790c76ead58f10e0f04724284))
+-   **deps-dev:** bump @types/node from 18.19.36 to 18.19.37 ([d686f91](https://github.com/webern-unibas-ch/awg-app/commit/d686f916bd08bf0bf7d7004995666319d4fa0f0f))
+-   **deps-dev:** bump @types/node from 18.19.37 to 18.19.38 ([479ebfd](https://github.com/webern-unibas-ch/awg-app/commit/479ebfd09cb654376c83867a6835dfc461764994))
+-   **deps-dev:** bump @types/node from 18.19.38 to 18.19.39 ([646b0e1](https://github.com/webern-unibas-ch/awg-app/commit/646b0e15b04ef20b5b14179981d267d15fc32e3d))
+-   **deps-dev:** bump angular-cli-ghpages from 2.0.0 to 2.0.1 ([2655871](https://github.com/webern-unibas-ch/awg-app/commit/2655871380eff9c97a082809da0b2e3ca0a1527b))
+-   **deps-dev:** bump eslint-plugin-deprecation from 2.0.0 to 3.0.0 ([2553be7](https://github.com/webern-unibas-ch/awg-app/commit/2553be74cdf042a7f375780a91045b4b8aa03822))
+-   **deps-dev:** bump eslint-plugin-jsdoc from 48.2.12 to 48.4.0 ([ffdeca5](https://github.com/webern-unibas-ch/awg-app/commit/ffdeca5f38e629e0085a7767eeecb9aeb3587a46))
+-   **deps-dev:** bump eslint-plugin-jsdoc from 48.2.7 to 48.2.8 ([7b53094](https://github.com/webern-unibas-ch/awg-app/commit/7b530949a3416ae056162ade0d03ab406135e493))
+-   **deps-dev:** bump eslint-plugin-jsdoc from 48.2.8 to 48.2.9 ([30a912b](https://github.com/webern-unibas-ch/awg-app/commit/30a912b0c9b12bac9e2c951247e4e8f082270052))
+-   **deps-dev:** bump eslint-plugin-jsdoc from 48.2.9 to 48.2.12 ([bb1ad94](https://github.com/webern-unibas-ch/awg-app/commit/bb1ad94089a4fdb744d902701bf4a842dd02a4ea))
+-   **deps-dev:** bump eslint-plugin-jsdoc from 48.4.0 to 48.5.0 ([9c87878](https://github.com/webern-unibas-ch/awg-app/commit/9c87878db3b2ce89f2ad6f7ec7812acab02226a9))
+-   **deps-dev:** bump lint-staged from 15.2.5 to 15.2.6 ([dc180dd](https://github.com/webern-unibas-ch/awg-app/commit/dc180ddd786ec5da8c31ef9e21900a93702145f0))
+-   **deps-dev:** bump lint-staged from 15.2.6 to 15.2.7 ([4b5ec58](https://github.com/webern-unibas-ch/awg-app/commit/4b5ec58355dacb94ef70f61b4e2ed350e17370db))
+-   **deps-dev:** bump prettier from 3.2.5 to 3.3.0 ([293ef60](https://github.com/webern-unibas-ch/awg-app/commit/293ef606bb39ba248c7f46b80ff569a518a1b6a4))
+-   **deps-dev:** bump prettier from 3.3.1 to 3.3.2 ([9940cd4](https://github.com/webern-unibas-ch/awg-app/commit/9940cd4540ef7b01fc6a377a3b1881bddda68f89))
+-   **deps-dev:** bump the angular-cli-devkit group with 2 updates ([6d9ba31](https://github.com/webern-unibas-ch/awg-app/commit/6d9ba31c565f26983ecaa8d1dc151f6500082b69))
+-   **deps-dev:** bump the angular-cli-devkit group with 2 updates ([4439c34](https://github.com/webern-unibas-ch/awg-app/commit/4439c34b72db363cc679ab7fea4946e4ce4065f5))
+-   **deps-dev:** bump the angular-cli-devkit group with 2 updates ([2904a50](https://github.com/webern-unibas-ch/awg-app/commit/2904a50e6926055603201ef32f765d35bed2c408))
+-   **deps-dev:** bump the angular-cli-devkit group with 2 updates ([c1fa46f](https://github.com/webern-unibas-ch/awg-app/commit/c1fa46f369f89c5b2babaca2b09776d81a8bd8b4))
+-   **deps-dev:** bump the angular-eslint group with 5 updates ([82fe089](https://github.com/webern-unibas-ch/awg-app/commit/82fe08989986dc2d26267e52bb3dadc0802fbd8c))
+-   **deps-dev:** bump the typescript-eslint group with 2 updates ([388f40d](https://github.com/webern-unibas-ch/awg-app/commit/388f40dbfbde0423ee98a8abf2311c4b9266e853))
+-   **deps-dev:** bump the typescript-eslint group with 2 updates ([f3b856e](https://github.com/webern-unibas-ch/awg-app/commit/f3b856e0efdce0fc59406b8cbcc6cb9048761735))
+-   **deps-dev:** bump the typescript-eslint group with 2 updates ([1459e3a](https://github.com/webern-unibas-ch/awg-app/commit/1459e3a63699fa54add5b90748a2184d831a4950))
+-   **deps-dev:** bump the typescript-eslint group with 2 updates ([61a228f](https://github.com/webern-unibas-ch/awg-app/commit/61a228f27df5699ef3bce404088de7c4b70e2e90))
+-   **deps-dev:** bump typescript from 5.4.5 to 5.5.2 ([8656459](https://github.com/webern-unibas-ch/awg-app/commit/8656459490dac26de38a9c4455e07be13fe05b4c))
+-   **deps:** bump @fortawesome/angular-fontawesome from 0.14.1 to 0.15.0 ([718f64c](https://github.com/webern-unibas-ch/awg-app/commit/718f64ccf5ba089cf66cce71d4f29b4fec12d0c2))
+-   **deps:** bump @ng-bootstrap/ng-bootstrap from 16.0.0 to 17.0.0 ([6a565fc](https://github.com/webern-unibas-ch/awg-app/commit/6a565fcb656d12080f98acdc6e41506d53272135))
+-   **deps:** bump actions/checkout from 4.1.6 to 4.1.7 ([493a1ba](https://github.com/webern-unibas-ch/awg-app/commit/493a1babbab2af514b9f1df348153f0ca863ce1e))
+-   **deps:** bump actions/dependency-review-action from 4.3.2 to 4.3.3 ([9ef8618](https://github.com/webern-unibas-ch/awg-app/commit/9ef86180d64dcd8efafe9a9cc394f6152858b6f0))
+-   **deps:** bump codecov/codecov-action from 4.4.1 to 4.5.0 ([c0a0504](https://github.com/webern-unibas-ch/awg-app/commit/c0a050416df3c00fee51cd0b373f0fdf57e40f79))
+-   **deps:** bump github/codeql-action from 3.25.6 to 3.25.7 ([ab2788f](https://github.com/webern-unibas-ch/awg-app/commit/ab2788f4881bc4345c068c0f6b8f4c7b84b5bca5))
+-   **deps:** bump github/codeql-action from 3.25.7 to 3.25.8 ([87922bd](https://github.com/webern-unibas-ch/awg-app/commit/87922bd8aed8216c947b901114eae636bbb112cd))
+-   **deps:** bump github/codeql-action from 3.25.8 to 3.25.10 ([051ea2f](https://github.com/webern-unibas-ch/awg-app/commit/051ea2f230e9f2f60c34ccb6138107d73c1bace4))
+-   **deps:** bump n3 from 1.17.3 to 1.17.4 ([832201e](https://github.com/webern-unibas-ch/awg-app/commit/832201e09fc622d5e7faa8f13e67ac35052800d5))
+-   **deps:** bump rdfstore from v0.9.18-alpha.15 to v0.9.18-alpha.16 ([452a6e0](https://github.com/webern-unibas-ch/awg-app/commit/452a6e0d953c8ad3e01f26f99bc42b67d1146897))
+-   **deps:** bump softprops/action-gh-release from 2.0.5 to 2.0.6 ([e41deab](https://github.com/webern-unibas-ch/awg-app/commit/e41deab5d38f3cab4090784f69b3344859d3c6b8))
+-   **deps:** bump SonarSource/sonarcloud-github-action ([165efc6](https://github.com/webern-unibas-ch/awg-app/commit/165efc60ade60d1f1f2c6a87f3ea0863d1649198))
+-   **deps:** bump step-security/harden-runner from 2.8.0 to 2.8.1 ([d10e1c1](https://github.com/webern-unibas-ch/awg-app/commit/d10e1c15e1607d3af128a2f052f06262de9c0457))
+-   **deps:** bump stream from 0.0.2 to 0.0.3 ([01100ac](https://github.com/webern-unibas-ch/awg-app/commit/01100acb1912bce48fd25fca0a28e4b3b1a59c4e))
+-   **deps:** bump the angular group with 11 updates ([70aa18c](https://github.com/webern-unibas-ch/awg-app/commit/70aa18c4bea9530ca11a6423b86ba62104aa93f1))
+-   **deps:** bump the angular group with 11 updates ([f08b99d](https://github.com/webern-unibas-ch/awg-app/commit/f08b99d67268435d182d62fdb2c09d76b42dacb9))
+-   **deps:** bump the angular group with 11 updates ([1ef99cb](https://github.com/webern-unibas-ch/awg-app/commit/1ef99cb50be7379c8a3b8fd241997da4bef75994))
+-   **deps:** bump the angular group with 11 updates ([d0cbd38](https://github.com/webern-unibas-ch/awg-app/commit/d0cbd3844a8702bd408596aac678b8ec4d762958))
+-   **deps:** bump ws from 7.5.9 to 7.5.10 ([97dc4b4](https://github.com/webern-unibas-ch/awg-app/commit/97dc4b4801582158dd910afce5d31f11562cb456))
+-   **deps:** bump zone.js from 0.14.6 to 0.14.7 ([fcfbfce](https://github.com/webern-unibas-ch/awg-app/commit/fcfbfce82db2c449ae86bd494329a5c1b448d9f0))
+-   **deps:** remove `@fortawesome/fontawesome-svg-core` from deps ([b406378](https://github.com/webern-unibas-ch/awg-app/commit/b406378f4f746db94bf6d844fd8e36ffd4b245a5))
+
+## [0.12.2](https://github.com/webern-unibas-ch/awg-app/compare/v0.12.1...v0.12.2) (2024-05-31)
+
+### Features
+
+-   **edition:** add TkaTableHeader model ([7d24681](https://github.com/webern-unibas-ch/awg-app/commit/7d2468181f450de9afb538e9d70d6d759e4641f8))
+-   **edition:** prepare TkaTableHeader for corrections ([db4b708](https://github.com/webern-unibas-ch/awg-app/commit/db4b708248e156e50d4b4c3cfc4bf0856477af5e))
+
+### Bug Fixes
+
+-   **app:** fix linting errors and warnings ([33db68d](https://github.com/webern-unibas-ch/awg-app/commit/33db68d28cb3c5ec411407edc2ebe89ec1593ec0))
+-   **assets:** fix source description op. 25 D ([21359e3](https://github.com/webern-unibas-ch/awg-app/commit/21359e369a269e900403e1b72d503f6902f43c78); thanks to [@masthom](https://github.com/masthom))
+-   **core:** simplify conversion of full text search response ([7548f51](https://github.com/webern-unibas-ch/awg-app/commit/7548f511e22be7b3decf81c9a21b9c656532e116))
+-   **edition:** don't adjust comment label for corrections ([25056f4](https://github.com/webern-unibas-ch/awg-app/commit/25056f44212b75a0b3e9abb57753d97752fbe38f))
+-   **edition:** fix direction of arrows in SheetFooter ([9085158](https://github.com/webern-unibas-ch/awg-app/commit/908515849e6a35c7d7c157bc8d1dba0ce32ad76a))
+-   **edition:** include check for rowtable sketch ids (SkRT) ([b8e0e94](https://github.com/webern-unibas-ch/awg-app/commit/b8e0e9489de1c916aec7b5068fe2d05341f57963))
+-   **edition:** pass down info about sketches to TkaTable ([df6f608](https://github.com/webern-unibas-ch/awg-app/commit/df6f60806c2848057d8f8b519a06093c5942bf1d))
+-   **edition:** remove placeholder for now available sources ([e122641](https://github.com/webern-unibas-ch/awg-app/commit/e12264195abe451311b03107a47d3e131c43a382))
+-   **edition:** simplify check for sketches ([2eee26f](https://github.com/webern-unibas-ch/awg-app/commit/2eee26f3de30a53d39ecd6c3d1771f580001e6ba))
+-   **edition:** use correct string for source evaluation ([a93aac9](https://github.com/webern-unibas-ch/awg-app/commit/a93aac9b1fa73377264c32f18378f86e09658783))
+-   **edition:** use correct string for textcritical comments ([71182dd](https://github.com/webern-unibas-ch/awg-app/commit/71182dd5486f8ea1dae6ae9a4bd6a86cb289b0a3))
+-   **edition:** use tka label component in SheetViewerSwitch ([7619f8a](https://github.com/webern-unibas-ch/awg-app/commit/7619f8a516302f113be8a672846b944c9b2f9b57))
+
+### Code Refactoring
+
+-   **edition:** improve creation of TkaTableHeader ([cf84944](https://github.com/webern-unibas-ch/awg-app/commit/cf84944d7e2ec0da47938e7f177998404b342d9b))
+-   **edition:** move isSketchId check into utility service ([e1bb971](https://github.com/webern-unibas-ch/awg-app/commit/e1bb9710e06a1a6c307b384c4ff33cc405ec4841))
+-   **edition:** move logic for tka label into component ([c092f46](https://github.com/webern-unibas-ch/awg-app/commit/c092f466e4701609195298d13254cba4aecb5d6e))
+-   **edition:** rename isTextcriticsForSketch -> isSketchId ([a3bddf4](https://github.com/webern-unibas-ch/awg-app/commit/a3bddf4ece151f0605b0fed45d4a7af342ab82b5))
+
+### Tests
+
+-   **core:** fix tests for cleanSubjectValueLabels ([f8c7a5d](https://github.com/webern-unibas-ch/awg-app/commit/f8c7a5d8fe7a5f8d7a43ee9499e204c4a4539886))
+-   **edition:** add tests for TkaTableHeaders ([b6a8da7](https://github.com/webern-unibas-ch/awg-app/commit/b6a8da75158d8aeb3a2e796237a2c8ff0508d8ee))
+-   **edition:** fix test limitation ([ddac1d1](https://github.com/webern-unibas-ch/awg-app/commit/ddac1d19a058805e330e8b240ca7825525fd6a01))
+-   **edition:** fix tests after changes ([2f71abd](https://github.com/webern-unibas-ch/awg-app/commit/2f71abdc4a68a46d629fba09f03be7f5f8244343))
+
+### Continuous Integration
+
+-   **app:** upgrade node to 20.13 ([bac64ac](https://github.com/webern-unibas-ch/awg-app/commit/bac64ac2f995a81caf174939c7150550bc6493a1))
+-   **gh-actions:** remove ratchet comment ([405416f](https://github.com/webern-unibas-ch/awg-app/commit/405416f73ff57fb3e4ba0bcfcef4cb7d472a0f55))
+
+### Documentation
+
+-   **README:** udpate supported minimal node version ([7f8117a](https://github.com/webern-unibas-ch/awg-app/commit/7f8117a131b32b8297caebbe0dcccfd1a28afbb6))
+
+### Build System
+
+-   **app:** add nx/cache to gitignore file ([6a443ef](https://github.com/webern-unibas-ch/awg-app/commit/6a443ef3e8b95acb82a4b2ba0807562b480f2f67))
+-   **app:** adjust config values after update to Angular v18 ([f1f363c](https://github.com/webern-unibas-ch/awg-app/commit/f1f363cf3188dc86ed513238c1be0fae907176dd))
+-   **app:** adjust content files after update to Angular v18 ([746ab15](https://github.com/webern-unibas-ch/awg-app/commit/746ab15e3bc080b1961d6fda7d0346518b6be1c2))
+-   **app:** update to Angular v18 ([0a927b1](https://github.com/webern-unibas-ch/awg-app/commit/0a927b1427fcb6753361f69afcd6cfa8ce0fc1e6))
+-   **app:** update to angular-eslint v18 ([d1abdef](https://github.com/webern-unibas-ch/awg-app/commit/d1abdef0da81519a4e83b199ab91ebe44c6bd50f))
+-   **deps-dev:** bump @compodoc/compodoc from 1.1.24 to 1.1.25 ([5d8b109](https://github.com/webern-unibas-ch/awg-app/commit/5d8b10954181116e98b8bfb2d7d31f838b346990))
+-   **deps-dev:** bump angular-cli-ghpages from 1.0.7 to 2.0.0 ([c882929](https://github.com/webern-unibas-ch/awg-app/commit/c8829293107ef3717556ef3c27a773f26790c852))
+-   **deps-dev:** bump eslint-plugin-jsdoc from 48.2.4 to 48.2.5 ([44999bc](https://github.com/webern-unibas-ch/awg-app/commit/44999bc64cb4098e8dfb755b64897c481651ac8c))
+-   **deps-dev:** bump eslint-plugin-jsdoc from 48.2.5 to 48.2.6 ([f9e178d](https://github.com/webern-unibas-ch/awg-app/commit/f9e178d54030154e1fc98473749abc2637dacc6d))
+-   **deps-dev:** bump eslint-plugin-jsdoc from 48.2.6 to 48.2.7 ([e7cae49](https://github.com/webern-unibas-ch/awg-app/commit/e7cae4913fc46bc391ba4ee03a15aca3cd4ad7d1))
+-   **deps-dev:** bump lint-staged from 15.2.4 to 15.2.5 ([295fee9](https://github.com/webern-unibas-ch/awg-app/commit/295fee9dd1b088619da3b8099e1dc0a6957245c4))
+-   **deps-dev:** bump the angular-eslint group across 1 directory with 5 updates ([a995dd7](https://github.com/webern-unibas-ch/awg-app/commit/a995dd7fa96889b1188ccfb233067db164041f4e))
+-   **deps-dev:** bump the typescript-eslint group with 2 updates ([b9b7989](https://github.com/webern-unibas-ch/awg-app/commit/b9b79894663e7a84ffb31a945a0bd99a1b448a9a))
+-   **deps:** bump actions/checkout from 4.1.5 to 4.1.6 ([f92b7cd](https://github.com/webern-unibas-ch/awg-app/commit/f92b7cd97492a7fa53aa00376128320a6fa66df5))
+-   **deps:** bump codecov/codecov-action from 4.4.0 to 4.4.1 ([ecc91d3](https://github.com/webern-unibas-ch/awg-app/commit/ecc91d349dc19534b5b178ab0bff1f5a89ba0a04))
+-   **deps:** bump github/codeql-action from 3.25.5 to 3.25.6 ([d4ca50e](https://github.com/webern-unibas-ch/awg-app/commit/d4ca50e8b6e039243f8b579f0c377026adf78ba4))
+-   **deps:** bump SonarSource/sonarcloud-github-action ([0586455](https://github.com/webern-unibas-ch/awg-app/commit/05864559d60eabf622b5d51c20e99a97ee0a4f48))
+-   **deps:** bump the angular group with 11 updates ([566e4bc](https://github.com/webern-unibas-ch/awg-app/commit/566e4bc190fb5fccfa6521933465fdd55bcab5a3))
+-   **deps:** bump zone.js from 0.14.2 to 0.14.6 ([30b5647](https://github.com/webern-unibas-ch/awg-app/commit/30b5647420ab78b431db611bbdf76b8fedd35f51))
+-   **deps:** update .github/workflows/ci_workflow.yml ([ca3c2f6](https://github.com/webern-unibas-ch/awg-app/commit/ca3c2f6aeffc10fa2eb7568e36bd32ef814f2de7))
+
+## [0.12.1](https://github.com/webern-unibas-ch/awg-app/compare/v0.12.0...v0.12.1) (2024-05-15)
+
+### Features
+
+-   **app:** add DSP_API_URL to AppConfig ([e634f0c](https://github.com/webern-unibas-ch/awg-app/commit/e634f0c8b7bfa5a98483152353573a7d77d22874))
+-   **assets:** update files for m22 ([33b6944](https://github.com/webern-unibas-ch/awg-app/commit/33b6944deacbe8482f8bdfd16ffb23b8d3e3c738); thanks to [@chael-mi](https://github.com/chael-mi))
+-   **core:** add dev preview to footer ([4f24429](https://github.com/webern-unibas-ch/awg-app/commit/4f24429650532a5d5eea4f4994d59b58e1cfed59))
+
+### Bug Fixes
+
+-   **app:** use bracket notation to access logos ([f9139e4](https://github.com/webern-unibas-ch/awg-app/commit/f9139e4dc519ecc6f38e3ae61dbf390313cf75ad))
+-   **assets:** fix files for m22 ([2e0b73e](https://github.com/webern-unibas-ch/awg-app/commit/2e0b73ed62eb759cb17fd87909aa806876723f0d); thanks to [@chael-mi](https://github.com/chael-mi))
+-   **assets:** fix link boxes and textcritics for m22 ([4b12f0e](https://github.com/webern-unibas-ch/awg-app/commit/4b12f0e93dc0dee4a4c0cd176594c39b8604067e))
+-   **assets:** fix lost changes in files for m22 ([7bd616a](https://github.com/webern-unibas-ch/awg-app/commit/7bd616a31c528e96794b8f5f968dab8ba46b629c); thanks to [@chael-mi](https://github.com/chael-mi))
+-   **assets:** fix source descriptions op12 & 23 ([d559ff0](https://github.com/webern-unibas-ch/awg-app/commit/d559ff0d4b6f1189bb32ac9453e71cfd134676ec))
+-   **assets:** fix source evaluation for TF1 of m22 ([#1478](https://github.com/webern-unibas-ch/awg-app/issues/1478)) ([440e4bd](https://github.com/webern-unibas-ch/awg-app/commit/440e4bdbf63429654c00fb63e5c031d704ac09cd); thanks to [@chael-mi](https://github.com/chael-mi))
+-   **assets:** pathify svg files for m22 ([#1480](https://github.com/webern-unibas-ch/awg-app/issues/1480)) ([92230c0](https://github.com/webern-unibas-ch/awg-app/commit/92230c05e3ed576b4a2a0db4ca8a01bd47c54763); thanks to [@chael-mi](https://github.com/chael-mi))
+-   **assets:** rename and format files for m22 ([fcd18a2](https://github.com/webern-unibas-ch/awg-app/commit/fcd18a25b199a0a98dae65d9ec9554b021c69ab3))
+-   **assets:** update files for m22 ([#1491](https://github.com/webern-unibas-ch/awg-app/issues/1491)) ([8caf1df](https://github.com/webern-unibas-ch/awg-app/commit/8caf1dfd3141733d32b8e6e52205cb74ac56bd1b); thanks to [@chael-mi](https://github.com/chael-mi))
+-   **assets:** update source description for op12 ([b90d23d](https://github.com/webern-unibas-ch/awg-app/commit/b90d23d37e2c5499ba7e9c6438f9155224dba104); thanks to [@masthom](https://github.com/masthom))
+-   **assets:** update source descriptions for AWG I/5 ([d53de7b](https://github.com/webern-unibas-ch/awg-app/commit/d53de7bb7b2b442b56edb401220fcb50da46db5f); thanks to [@masthom](https://github.com/masthom))
+-   **core:** remove obsolete app dev url ([9a5e0ca](https://github.com/webern-unibas-ch/awg-app/commit/9a5e0ca72f96348969d53631e0174ed05c35bafb))
+-   **home:** fix link to DaSCH mission statement ([c2fce5b](https://github.com/webern-unibas-ch/awg-app/commit/c2fce5b67c55fcae43636d772ecce42908560cc4))
+-   **search:** fix html hierarchy in ResourceDetailHeader ([5f0688b](https://github.com/webern-unibas-ch/awg-app/commit/5f0688bb03a9361bb81d6e8654d6cb1ca1211864))
+-   **search:** fix tracking id for searchResponse subjects ([643d06a](https://github.com/webern-unibas-ch/awg-app/commit/643d06aca043a0a93228998d14eeaef5d9d7b1e9))
+-   **search:** remove additional quotation marks in search results ([5559278](https://github.com/webern-unibas-ch/awg-app/commit/5559278eb3aa8c196423002848bc4036fad81dd2))
+
+### Code Refactoring
+
+-   **core:** improve preparation of fulltext search results ([#1495](https://github.com/webern-unibas-ch/awg-app/issues/1495)) ([6ee433d](https://github.com/webern-unibas-ch/awg-app/commit/6ee433d94e5df99afac1ec9d1c99c68f24fd58a1))
+-   **core:** improve preparation of fulltext search result text ([936d6f7](https://github.com/webern-unibas-ch/awg-app/commit/936d6f7ba38d7a2961c0642560f5230a83ac553e))
+-   **core:** make replaceParagraphTags static method ([a3bf9e9](https://github.com/webern-unibas-ch/awg-app/commit/a3bf9e919d326a083888d05515e716d56a621980))
+-   **core:** simplify conversion of richtext values ([fc9ffba](https://github.com/webern-unibas-ch/awg-app/commit/fc9ffba363a430c813581f74b074f8614ebf749f))
+
+### Tests
+
+-   **core:** add tests for dev preview ([7685d49](https://github.com/webern-unibas-ch/awg-app/commit/7685d49fa910d3b680e4ce5d074e58ef63f8a27b))
+
+### Continuous Integration
+
+-   **gh-actions:** add permissions ([42b9017](https://github.com/webern-unibas-ch/awg-app/commit/42b9017843f6c605508e80f7969a736728cd4217))
+-   **gh-actions:** adjust baseHref ([12a1b43](https://github.com/webern-unibas-ch/awg-app/commit/12a1b434cdb5499a208aae1615a0c96f5c11f66a))
+-   **gh-actions:** adjust build workflow for dev ([47aa7e4](https://github.com/webern-unibas-ch/awg-app/commit/47aa7e426980c3fcdb1831431bafedfc2e26d5c6))
+-   **gh-actions:** adjust gitHead variable ([baf3558](https://github.com/webern-unibas-ch/awg-app/commit/baf35580fe34a1eaee7fa4db5b9f28ee0682c9c3))
+-   **gh-actions:** Apply security best practices [StepSecurity] ([a3e6ca0](https://github.com/webern-unibas-ch/awg-app/commit/a3e6ca005d8780ab191e93fffff99e644ba9c24e))
+-   **gh-actions:** bring back node setup ([3722f6a](https://github.com/webern-unibas-ch/awg-app/commit/3722f6a157bc4667fdadee209f6218682dcac1b9))
+-   **gh-actions:** build dev build once more ([e0741f4](https://github.com/webern-unibas-ch/awg-app/commit/e0741f461729608ffa0e16487e5b1b633a089d51))
+-   **gh-actions:** change baseHref for dev build ([e7d8756](https://github.com/webern-unibas-ch/awg-app/commit/e7d87565c7b62494190c9638ecda0c1844b2fa7c))
+-   **gh-actions:** copy only content of dist folder ([5454fc5](https://github.com/webern-unibas-ch/awg-app/commit/5454fc5fcea87979bea688cdaa3464dc887261cb))
+-   **gh-actions:** create visualize-repo.yml ([3f4dab2](https://github.com/webern-unibas-ch/awg-app/commit/3f4dab20cf9f402013e1e67f85d6ce67195ed89f))
+-   **gh-actions:** deploy to website dev ([6699039](https://github.com/webern-unibas-ch/awg-app/commit/669903953ea63002d9d12df45672265a23bbd2f2))
+-   **gh-actions:** deploy to website dev (dry-run) ([886a072](https://github.com/webern-unibas-ch/awg-app/commit/886a072638ceb9401f70c76e3e9d53013c1690cf))
+-   **gh-actions:** dry run deployment from develop ([2e8b295](https://github.com/webern-unibas-ch/awg-app/commit/2e8b295cb84583d868adca1480f34b3221564eb1))
+-   **gh-actions:** fix env variable ([f487bf0](https://github.com/webern-unibas-ch/awg-app/commit/f487bf0a67a2fc399d54cad7ba14c1d61149d7ca))
+-   **gh-actions:** fix file syntax ([2ef9f0b](https://github.com/webern-unibas-ch/awg-app/commit/2ef9f0ba97a158ff6d30c2c947b80e1149ba7c2b))
+-   **gh-actions:** fix typo ([f5753cc](https://github.com/webern-unibas-ch/awg-app/commit/f5753cc8ad8ca68c2b2ea81f13790d9d62e7f61b))
+-   **gh-actions:** fix typoin branch name ([7a39969](https://github.com/webern-unibas-ch/awg-app/commit/7a3996955bdededc6df062afdb8599db49e938da))
+-   **gh-actions:** get git sha and fix typo ([a9ab2e5](https://github.com/webern-unibas-ch/awg-app/commit/a9ab2e56f1d439338ec0f4364122ffebfcb75291))
+-   **gh-actions:** get sha from describe ([af2f3ab](https://github.com/webern-unibas-ch/awg-app/commit/af2f3ab543aa39f0c431ca7bf8c852568478f1b9))
+-   **gh-actions:** move script args to package.json ([2bcafd0](https://github.com/webern-unibas-ch/awg-app/commit/2bcafd00d036b67ad394706cca59488854dfcc22))
+-   **gh-actions:** reduce retention period for artifacts ([c288149](https://github.com/webern-unibas-ch/awg-app/commit/c288149d7a0a32399b6778f18569718c7fef9196))
+-   **gh-actions:** refactor deploy_dev job ([7f3ddfb](https://github.com/webern-unibas-ch/awg-app/commit/7f3ddfbb4dc54b2870ec5f10266025729e0da95f))
+-   **gh-actions:** remove deprecated svgo action ([4bf7a70](https://github.com/webern-unibas-ch/awg-app/commit/4bf7a70c70b49029293e150cf45e8d684caff190))
+-   **gh-actions:** remove dry-run ([e622158](https://github.com/webern-unibas-ch/awg-app/commit/e622158cb4db867164f69a56c982a041c7c63244))
+-   **gh-actions:** remove dry-run flag ([ef98c75](https://github.com/webern-unibas-ch/awg-app/commit/ef98c757d54ddaa58ae859f8030d4d5e295c4478))
+-   **gh-actions:** remove obsolete node setup ([6129f6e](https://github.com/webern-unibas-ch/awg-app/commit/6129f6e4f8c36e637ca2dcdba95d330d2004a52a))
+-   **gh-actions:** switch to deploy key ([b6e4957](https://github.com/webern-unibas-ch/awg-app/commit/b6e4957c7b052628e4182cab187b1716e5455777))
+-   **gh-actions:** update ci_workflow.yml ([1706573](https://github.com/webern-unibas-ch/awg-app/commit/1706573158538ff5606c3361fccd79085c6094b0))
+-   **gh-actions:** update codeql.yml ([8219c4e](https://github.com/webern-unibas-ch/awg-app/commit/8219c4e4b1e8e60b24acef88f7de1bf265b7696f))
+-   **gh-actions:** update dev version on build ([ab43248](https://github.com/webern-unibas-ch/awg-app/commit/ab43248e77e78540ad3c0571a09cffb70b975787))
+-   **gh-actions:** update scorecards.yml ([5204d88](https://github.com/webern-unibas-ch/awg-app/commit/5204d886db51a1492912f827d2ddca80f39c22cf))
+-   **gh-actions:** update visualize-repo.yml ([ecccb8e](https://github.com/webern-unibas-ch/awg-app/commit/ecccb8ee43b90c0b8eb73994242a5b332689a26d))
+-   **gh-actions:** upload build artifact only for latest node version ([a1726cf](https://github.com/webern-unibas-ch/awg-app/commit/a1726cfbb8f6840726603eec7774a5d555896a52))
+-   **gh-actions:** upload build artifacts ([dbbaa58](https://github.com/webern-unibas-ch/awg-app/commit/dbbaa58dc5214428d1cfa10bfbb50dbc82c4f4b2))
+-   **gh-actions:** use correct directory ([f1db97e](https://github.com/webern-unibas-ch/awg-app/commit/f1db97ed409000a6736bf8ac51863464384dd508))
+-   **gh-actions:** use dev repo for develop build ([ca5a601](https://github.com/webern-unibas-ch/awg-app/commit/ca5a60172b2b433f9223354c59bdf9dc74201489))
+-   **gh-actions:** use different build scripts for develop/main ([49f8b34](https://github.com/webern-unibas-ch/awg-app/commit/49f8b34ecfb59ca8e0da6655662f2af039722485))
+-   **gh-actions:** use existing deploy command ([2ff00e9](https://github.com/webern-unibas-ch/awg-app/commit/2ff00e98b21fe9d4cad22e827173923f6e7a0bc6))
+-   **gh-actions:** use prebuilt artifacts ([19f0a24](https://github.com/webern-unibas-ch/awg-app/commit/19f0a245f2f5cb91bd20d9dc8c3093aa3a14fe02))
+-   **gh-actions:** use script instead of direct command ([acb2a52](https://github.com/webern-unibas-ch/awg-app/commit/acb2a5277964713fe8a3f1e7f989752e570e7522))
+
+### Documentation
+
+-   **app:** create SECURITY.md ([ee97005](https://github.com/webern-unibas-ch/awg-app/commit/ee9700566cd919a008a08c5b8f70b972a6bbc29a))
+-   **CONTRIBUTING:** update contribution guidelines ([3ec4889](https://github.com/webern-unibas-ch/awg-app/commit/3ec48891f5bbbca61caefa79fa0d3dce483855e7))
+-   **README:** add OSSF best pratices badge ([80ee019](https://github.com/webern-unibas-ch/awg-app/commit/80ee019bc1e01f7a52e81adc6f22129d5642ded2))
+-   **README:** add sample image of the app ([ff3b009](https://github.com/webern-unibas-ch/awg-app/commit/ff3b0090abd7d534db17f758686e4b0d6ac35f9c))
+-   **README:** fix typo in TOC ([39a2a44](https://github.com/webern-unibas-ch/awg-app/commit/39a2a444cd75b2ea361ec7baa3fd7c206bf4a5c6))
+-   **README:** update codecov badge ([c652dcd](https://github.com/webern-unibas-ch/awg-app/commit/c652dcd82d3cd5e0957d9b2a142a20cb097bd399))
+-   **README:** update README.md ([6f8c4db](https://github.com/webern-unibas-ch/awg-app/commit/6f8c4dbff580c1e4ffe192f7aada5dbd7b269e31))
+-   **README:** update README.md ([496b8d4](https://github.com/webern-unibas-ch/awg-app/commit/496b8d4e7c19d9e9ac15e37c5a5cb083cb893825))
+-   **README:** update README.md ([44a00af](https://github.com/webern-unibas-ch/awg-app/commit/44a00af977219949da1d4f25a92d31ff9573224b))
+
+### Styles
+
+-   **app:** rename class caps -> smallcaps ([#1485](https://github.com/webern-unibas-ch/awg-app/issues/1485)) ([c5a7427](https://github.com/webern-unibas-ch/awg-app/commit/c5a7427f93c55b6d61dea0775f4816f044462ddb))
+-   **search:** fix grid and badge classes in search result list ([cf1c29c](https://github.com/webern-unibas-ch/awg-app/commit/cf1c29c98b5cabeaa17a5b337b16e35f158af6fa))
+
+### Build System
+
+-   **app:** move build attachments into separate script ([46a0f0b](https://github.com/webern-unibas-ch/awg-app/commit/46a0f0be6c2efb358a5589d31796cc891163b4ef))
+-   **app:** update zenodo config file ([8b33b13](https://github.com/webern-unibas-ch/awg-app/commit/8b33b13cc72f66615da26342c3985d88070bb1ff))
+-   **deps-dev:** bump @compodoc/compodoc from 1.1.23 to 1.1.24 ([18b5741](https://github.com/webern-unibas-ch/awg-app/commit/18b57411e4dba4ee6d18ca8ab4695ed6e05af084))
+-   **deps-dev:** bump @types/node from 18.19.31 to 18.19.32 ([827fb66](https://github.com/webern-unibas-ch/awg-app/commit/827fb66b7dc6101b704d6507f82d90d44bb9dcac))
+-   **deps-dev:** bump @types/node from 18.19.32 to 18.19.33 ([8f7bd32](https://github.com/webern-unibas-ch/awg-app/commit/8f7bd3230f95e72e88717c9b5aa3c33d8b1a26c8))
+-   **deps-dev:** bump commit-and-tag-version from 12.4.0 to 12.4.1 ([2a75acf](https://github.com/webern-unibas-ch/awg-app/commit/2a75acf30ff113f8abd979f9f65a4a26283cf170))
+-   **deps-dev:** bump conventional-recommended-bump from 9.0.0 to 10.0.0 ([f3951cc](https://github.com/webern-unibas-ch/awg-app/commit/f3951cc6366cf07bcf427fc9fe651f15f5865eaa))
+-   **deps-dev:** bump eslint-plugin-jsdoc from 48.2.3 to 48.2.4 ([d269688](https://github.com/webern-unibas-ch/awg-app/commit/d269688af5be5d38347a59d8cb86795d2ed22045))
+-   **deps-dev:** bump the angular-cli-devkit group with 2 updates ([156cdde](https://github.com/webern-unibas-ch/awg-app/commit/156cdde2e9fe5d710ccc7277cd5e8e5df1d40bb7))
+-   **deps-dev:** bump the angular-cli-devkit group with 2 updates ([5f720d0](https://github.com/webern-unibas-ch/awg-app/commit/5f720d02e3ccbd9abecdc07dd02f3b6f635b989f))
+-   **deps-dev:** bump the angular-eslint group with 5 updates ([30416a5](https://github.com/webern-unibas-ch/awg-app/commit/30416a5b52fbec24fccd37f6dcf200e8decc2fc4))
+-   **deps-dev:** bump the angular-eslint group with 5 updates ([27dff2c](https://github.com/webern-unibas-ch/awg-app/commit/27dff2cd40dd93b3a95b181feab65598dfaebe97))
+-   **deps-dev:** bump the typescript-eslint group with 2 updates ([f3eadf1](https://github.com/webern-unibas-ch/awg-app/commit/f3eadf1b79b43a1c6c2c1427551da7f4178d6de2))
+-   **deps-dev:** bump the typescript-eslint group with 2 updates ([00bd33b](https://github.com/webern-unibas-ch/awg-app/commit/00bd33b5dde00ece41468b6f3f668bfc397970e8))
+-   **deps-dev:** replace deprecated standard-version lib ([08276a5](https://github.com/webern-unibas-ch/awg-app/commit/08276a530f820fc8af0f7b978a1348462cd97011))
+-   **deps:** bump actions/checkout from 3.6.0 to 4.1.4 ([ef2ed29](https://github.com/webern-unibas-ch/awg-app/commit/ef2ed29e87490cf67b6cc47ba92162cd0c852145))
+-   **deps:** bump actions/checkout from 4.1.3 to 4.1.4 ([e77f141](https://github.com/webern-unibas-ch/awg-app/commit/e77f141e37dc0629fb75ead9122dd7de8fab747c))
+-   **deps:** bump actions/checkout from 4.1.4 to 4.1.5 ([c07d798](https://github.com/webern-unibas-ch/awg-app/commit/c07d798ea6df79fd54e92f9d85ba46c87f77824c))
+-   **deps:** bump actions/dependency-review-action from 2.5.1 to 4.3.1 ([e177336](https://github.com/webern-unibas-ch/awg-app/commit/e17733654d1ad113648f37cdd4504bb52c58ddbf))
+-   **deps:** bump actions/dependency-review-action from 4.3.1 to 4.3.2 ([69f33b6](https://github.com/webern-unibas-ch/awg-app/commit/69f33b6fe33736191adbeef3c636666753b3955d))
+-   **deps:** bump actions/upload-artifact from 3.1.3 to 4.3.3 ([9c3ddad](https://github.com/webern-unibas-ch/awg-app/commit/9c3ddadb365737c8f164a250e865bc54930d1d58))
+-   **deps:** bump codecov/codecov-action from 4.3.0 to 4.3.1 ([6fb176a](https://github.com/webern-unibas-ch/awg-app/commit/6fb176a8c7a3e889b026e2a2144bd722abb46519))
+-   **deps:** bump codecov/codecov-action from 4.3.1 to 4.4.0 ([98642d2](https://github.com/webern-unibas-ch/awg-app/commit/98642d2b36921d84b0b66aceff80005e62b40d79))
+-   **deps:** bump ejs from 3.1.9 to 3.1.10 ([36c3416](https://github.com/webern-unibas-ch/awg-app/commit/36c34163d18854800dd7ee566406003bcb875e2a))
+-   **deps:** bump github/codeql-action from 3.25.3 to 3.25.4 ([c369f84](https://github.com/webern-unibas-ch/awg-app/commit/c369f848aa4e4d0188546860f21f2466a903531f))
+-   **deps:** bump github/codeql-action from 3.25.4 to 3.25.5 ([2c810d2](https://github.com/webern-unibas-ch/awg-app/commit/2c810d2f144455a2daf5d3613d345848b574ce03))
+-   **deps:** bump ossf/scorecard-action from 2.0.6 to 2.3.1 ([9be10cf](https://github.com/webern-unibas-ch/awg-app/commit/9be10cfe31b0ac9a4422562c46aff726f170fad3))
+-   **deps:** bump ossf/scorecard-action from 2.3.1 to 2.3.3 ([ea380f6](https://github.com/webern-unibas-ch/awg-app/commit/ea380f6e4407a0b7d703f7c8570547ce45e17b56))
+-   **deps:** bump softprops/action-gh-release from 2.0.4 to 2.0.5 ([164013a](https://github.com/webern-unibas-ch/awg-app/commit/164013a87cabe4d537f232ae94cd0128a50b1f19))
+-   **deps:** bump step-security/harden-runner from 2.7.0 to 2.7.1 ([7bbbc48](https://github.com/webern-unibas-ch/awg-app/commit/7bbbc4891d4d904ecdae193c3dff573c7cfe3da7))
+-   **deps:** bump the angular group with 11 updates ([31dcc27](https://github.com/webern-unibas-ch/awg-app/commit/31dcc27e8da6cdc6fe2e941649b0c19032723b93))
+-   **deps:** bump the angular group with 11 updates ([4436d0d](https://github.com/webern-unibas-ch/awg-app/commit/4436d0df081e92d87e1bd0a034980eacd816d517))
+-   **deps:** bump the angular group with 11 updates ([5bcee59](https://github.com/webern-unibas-ch/awg-app/commit/5bcee59c0d545816fd01c085c33900648222f123))
 
 ## [0.12.0](https://github.com/webern-unibas-ch/awg-app/compare/v0.11.7...v0.12.0) (2024-04-23)
 

@@ -4,7 +4,7 @@ import {
     EditionSvgOverlay,
     EditionSvgSheet,
     EditionSvgSheetList,
-    TextcriticalComment,
+    TextcriticalCommentBlock,
     Textcritics,
 } from '@awg-views/edition-view/models';
 
@@ -41,12 +41,12 @@ export class EditionAccoladeComponent {
     selectedSvgSheet: EditionSvgSheet;
 
     /**
-     * Input variable: selectedTextcriticalComments.
+     * Input variable: selectedTextcriticalCommentBlocks.
      *
-     * It keeps the selected textcritical comments.
+     * It keeps the selected textcritical comment blocks.
      */
     @Input()
-    selectedTextcriticalComments: TextcriticalComment[];
+    selectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
 
     /**
      * Input variable: selectedTextcritics.
@@ -75,10 +75,10 @@ export class EditionAccoladeComponent {
     /**
      * Output variable: navigateToReportFragment.
      *
-     * It keeps an event emitter for a fragment id of the edition report.
+     * It keeps an event emitter for the selected ids of an edition complex and report fragment.
      */
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
 
     /**
      * Output variable: openModalRequest.
@@ -133,17 +133,17 @@ export class EditionAccoladeComponent {
     /**
      * Public method: navigateToReportFragment.
      *
-     * It emits a given id of a fragment of the edition report
+     * It emits the given ids of a selected edition complex and report fragment
      * to the {@link navigateToReportFragmentRequest}.
      *
-     * @param {string} id The given fragment id.
-     * @returns {void} Navigates to the edition report.
+     * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
+     * @returns {void} Emits the ids.
      */
-    navigateToReportFragment(id: string): void {
-        if (!id) {
+    navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
+        if (!reportIds?.fragmentId) {
             return;
         }
-        this.navigateToReportFragmentRequest.emit(id);
+        this.navigateToReportFragmentRequest.emit(reportIds);
     }
 
     /**

@@ -31,7 +31,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
     let editionServiceUpdateIsRowTablesViewSpy: Spy;
     let editionServiceClearIsRowTablesViewSpy: Spy;
-    let editionDataServiceGetRowTablesSpy: Spy;
+    let editionDataServiceGetRowTablesDataSpy: Spy;
 
     let mockEditionService: Partial<EditionService>;
     let mockEditionDataService: Partial<EditionDataService>;
@@ -78,7 +78,10 @@ describe('EditionRowTablesComponent (DONE)', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         editionServiceUpdateIsRowTablesViewSpy = spyOn(mockEditionService, 'updateIsRowTableView').and.callThrough();
         editionServiceClearIsRowTablesViewSpy = spyOn(mockEditionService, 'clearIsRowTableView').and.callThrough();
-        editionDataServiceGetRowTablesSpy = spyOn(mockEditionDataService, 'getEditionRowTablesData').and.callThrough();
+        editionDataServiceGetRowTablesDataSpy = spyOn(
+            mockEditionDataService,
+            'getEditionRowTablesData'
+        ).and.callThrough();
     });
 
     it('... should create', () => {
@@ -95,7 +98,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
         });
 
         it('... should not have called EditionDataService', () => {
-            expectSpyCall(editionDataServiceGetRowTablesSpy, 0);
+            expectSpyCall(editionDataServiceGetRowTablesDataSpy, 0);
         });
 
         describe('VIEW', () => {
@@ -116,14 +119,12 @@ describe('EditionRowTablesComponent (DONE)', () => {
         });
 
         it('... should have called EditionDataService', () => {
-            expectSpyCall(editionDataServiceGetRowTablesSpy, 1);
+            expectSpyCall(editionDataServiceGetRowTablesDataSpy, 1);
         });
 
         it('... should have rowTablesData$', waitForAsync(() => {
             expectAsync(lastValueFrom(component.rowTablesData$)).toBeResolved();
-            expectAsync(lastValueFrom(component.rowTablesData$))
-                .withContext(`should be resolved to ${expectedRowTablesData}`)
-                .toBeResolvedTo(expectedRowTablesData);
+            expectAsync(lastValueFrom(component.rowTablesData$)).toBeResolvedTo(expectedRowTablesData);
         }));
 
         describe('VIEW', () => {
@@ -299,7 +300,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = ['../complex' + expectedRowTablesData.rowTables[index].route, 'sheets'];
 
-                    expect(routerLink.navigatedTo).toBeNull();
+                    expectToBe(routerLink.navigatedTo, null);
 
                     click(linkDe);
                     fixture.detectChanges();

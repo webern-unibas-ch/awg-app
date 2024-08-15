@@ -2,7 +2,7 @@
 @if (folioSvgDataArray) {
     <div class="container-fluid svgGrid">
         <div class="row svgRow">
-            @for (folioSvgData of folioSvgDataArray; track folioSvgData) {
+            @for (folioSvgData of folioSvgDataArray; track folioSvgData.sheet?.folioId) {
                 <div class="col-sm-6 col-lg-{{ 12 / folioSvgDataArray?.length }} svgCol">
                     <span class="text-muted">[{{ folioSvgData.sheet?.folioId }}]</span>
                     <svg id="folio-{{ selectedSvgSheet?.id }}-{{ folioSvgData.sheet?.folioId }}"></svg>
