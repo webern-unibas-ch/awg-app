@@ -86,6 +86,7 @@ export const EDITION_OUTLINE_DATA: EditionOutlineSeries[] = [
                         { complex: EDITION_COMPLEXES.M35_42, disabled: false },
                         { complex: EDITION_COMPLEXES.M36, disabled: false },
                         { complex: EDITION_COMPLEXES.M37, disabled: false },
+                        { complex: EDITION_COMPLEXES.M38, disabled: false },
                     ],
                 },
                 disabled: false,
