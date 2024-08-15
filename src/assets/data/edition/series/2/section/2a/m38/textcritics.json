@@ -46,7 +46,7 @@
             "id": "M_38_Sk1",
             "label": "M 38 Sk1",
             "description": [
-                "<strong>Sk1</strong> enthält einen rhythmischen Entwurf des Melodieverlaufs der <a (click)=\"ref.selectSvgSheet('m38', 'M_38_TF1')\" ><strong>Studienkomposition für Klavier M 38</strong></a>."
+                "<strong>Sk1</strong> enthält einen rhythmischen Entwurf des Melodieverlaufs der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M_38_TF1'})\" ><strong>Studienkomposition für Klavier M 38</strong></a>."
             ],
             "comments": [
                 {
@@ -74,7 +74,7 @@
                             "comment": "Achtelnote überschreibt punktierte Halbe Note."
                         },
                         {
-                            "svgGroupId": "g1045 ",
+                            "svgGroupId": "g1045",
                             "measure": "10",
                             "system": "nach 18",
                             "position": "2/8–6/8",
@@ -95,7 +95,7 @@
             "id": "M_38_Sk2",
             "label": "M 38 Sk2",
             "description": [
-                "<strong>Sk2</strong> enthält eine flüchtige, teils nur rhythmisch formulierte Darstellung des Zwischenthemas der <a (click)=\"ref.selectSvgSheet('m38', 'M_38_TF1')\" ><strong>Studienkomposition für Klavier M 38</strong></a>."
+                "<strong>Sk2</strong> enthält eine flüchtige, teils nur rhythmisch formulierte Darstellung des Zwischenthemas der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M_38_TF1'})\" ><strong>Studienkomposition für Klavier M 38</strong></a>."
             ],
             "comments": [
                 {
@@ -110,13 +110,29 @@
                         }
                     ]
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1",
+                    "linkTo": {
+                        "complexId": "m37",
+                        "sheetId": "M_37_Sk1"
+                    }
+                },
+                {
+                    "svgGroupId": "g2",
+                    "linkTo": {
+                        "complexId": "m37",
+                        "sheetId": "M_37_Sk2"
+                    }
+                }
             ]
         },
         {
             "id": "M_38_Sk3",
             "label": "M 38 Sk3",
             "description": [
-                "<strong>Sk3</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet('m38', 'M_38_TF1')\" ><strong>Studienkomposition für Klavier M 38</strong></a>."
+                "<strong>Sk3</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M_38_TF1'})\" ><strong>Studienkomposition für Klavier M 38</strong></a>."
             ],
             "comments": [
                 {
