@@ -34,10 +34,24 @@
                             { "complex": "OP25", "disabled": false }
                         ],
                         "mnr": [
+                            { "complex": "M133", "disabled": true },
+                            { "complex": "M134", "disabled": true },
+                            { "complex": "M135", "disabled": true },
+                            { "complex": "M136", "disabled": true },
+                            { "complex": "M137", "disabled": true },
+                            { "complex": "M138", "disabled": true },
+                            { "complex": "M139", "disabled": true },
+                            { "complex": "M140", "disabled": true },
+                            { "complex": "M141", "disabled": true },
+                            { "complex": "M142", "disabled": true },
                             { "complex": "M143", "disabled": false },
                             { "complex": "M144", "disabled": false },
                             { "complex": "M145", "disabled": false },
-                            { "complex": "M146", "disabled": false }
+                            { "complex": "M146", "disabled": false },
+                            { "complex": "M213", "disabled": true },
+                            { "complex": "M212", "disabled": true },
+                            { "complex": "M216", "disabled": true },
+                            { "complex": "M217", "disabled": true }
                         ]
                     },
                     "disabled": false
@@ -62,7 +76,9 @@
                             { "complex": "M31", "disabled": false },
                             { "complex": "M34", "disabled": false },
                             { "complex": "M35_42", "disabled": false },
-                            { "complex": "M37", "disabled": false }
+                            { "complex": "M36", "disabled": false },
+                            { "complex": "M37", "disabled": false },
+                            { "complex": "M38", "disabled": false }
                         ]
                     },
                     "disabled": false
