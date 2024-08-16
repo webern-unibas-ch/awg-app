@@ -1,22 +1,105 @@
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EditionComplexesService } from '@awg-views/edition-view/services';
+
 import { EditionComplex } from './edition-complex.model';
 import { EditionRouteConstant } from './edition-route-constant.model';
 
 /**
- * The EditionOutlineSeries interface.
+ * The EditionOutlineSeriesJsonData interface.
  *
  * It is used in the context of the edition view
- * to structure outline information of the edition series.
+ * to describe the structure of a JSON data for an edition outline series.
  */
-export interface EditionOutlineSeries {
+export interface EditionOutlineSeriesJsonData {
     /**
-     * The series route of an edition series.
+     * The series data.
      */
-    series: EditionRouteConstant;
+    series: string;
 
     /**
-     * The section route of an edition series.
+     * The sections data.
      */
-    sections: EditionOutlineSection[];
+    sections: EditionOutlineSectionsJsonData[];
+}
+
+/**
+ * The EditionOutlineSectionsJsonData interface.
+ *
+ * It is used in the context of the edition view
+ * to describe the structure of a JSON data for an edition outline sections.
+ */
+export interface EditionOutlineSectionsJsonData {
+    /**
+     * The section data.
+     */
+    section: string;
+
+    /**
+     * The complexTypes data
+     */
+    complexTypes: {
+        opus: [{ complex: string; disabled: boolean }];
+        mnr: [{ complex: string; disabled: boolean }];
+    };
+
+    /**
+     * Boolean flag if a section is disabled.
+     */
+    disabled: boolean;
+}
+
+/**
+ * The EditionOutlineJsonData interface.
+ *
+ * It is used in the context of the edition view
+ * to describe the structure of a JSON data for an edition outline.
+ */
+export interface EditionOutlineJsonData {
+    /**
+     * The edition outline data.
+     */
+    editionOutline: EditionOutlineSeriesJsonData[];
+}
+
+/**
+ * The EditionOutlineComplex interface.
+ *
+ * It is used in the context of the edition view
+ * to structure outline information of an edition complex.
+ */
+export interface EditionOutlineComplexItem {
+    /**
+     * The edition complex.
+     */
+    complex: EditionComplex;
+
+    /**
+     * Boolean flag if an edition complex is disabled.
+     */
+    disabled: boolean;
+
+    /**
+     * The sub-complexes of an edition complex.
+     */
+    subComplexes?: EditionOutlineComplexItem[];
+}
+
+/**
+ * The EditionOutlineComplexTypes interface.
+ *
+ * It is used in the context of the edition view
+ * to structure outline information of the edition complex types.
+ */
+export interface EditionOutlineComplexTypes {
+    /**
+     * The opus parts of an edition complex.
+     */
+    opus: EditionOutlineComplexItem[];
+
+    /**
+     * The mnr parts of an edition complex.
+     */
+    mnr: EditionOutlineComplexItem[];
 }
 
 /**
@@ -43,37 +126,98 @@ export interface EditionOutlineSection {
 }
 
 /**
- * The EditionOutlineComplexTypes interface.
+ * The EditionOutlineSeries interface.
  *
  * It is used in the context of the edition view
- * to structure outline information of the edition complex types.
+ * to structure outline information of the edition series.
  */
-export interface EditionOutlineComplexTypes {
+export interface EditionOutlineSeries {
     /**
-     * The opus parts of an edition complex.
+     * The series route of an edition series.
      */
-    opus: EditionOutlineComplexItem[];
+    series: EditionRouteConstant;
 
     /**
-     * The mnr parts of an edition complex.
+     * The section route of an edition series.
      */
-    mnr: EditionOutlineComplexItem[];
+    sections: EditionOutlineSection[];
 }
 
 /**
- * The EditionOutlineComplex interface.
+ * The EditionOutline interface.
  *
  * It is used in the context of the edition view
- * to structure outline information of an edition complex.
+ * to structure outline information of the edition.
  */
-export interface EditionOutlineComplexItem {
+export class EditionOutline {
     /**
-     * The edition complex.
+     * The outline of the edition.
      */
-    complex: EditionComplex;
+    outline: EditionOutlineSeries[];
 
     /**
-     * Boolean flag if an edition complex is disabled.
+     * Constructor of the EditionOutline class.
+     *
+     * It initializes the class with an edition outline Object.
+     *
+     * @param {EditionOutlineSeriesJsonData[]} outlineData The given edition outline.
      */
-    disabled: boolean;
+    constructor(outlineData: EditionOutlineSeriesJsonData[]) {
+        if (!outlineData) {
+            return;
+        }
+
+        this.outline = outlineData.map(this._mapSeries);
+    }
+
+    /**
+     * Private method: _mapSeries.
+     *
+     * It maps the series data.
+     *
+     * @param {EditionOutlineSeriesJsonData} series The given series data.
+     *
+     * @returns {EditionOutlineSeries} The mapped series.
+     */
+    private _mapSeries = ({ series, sections }: EditionOutlineSeriesJsonData): EditionOutlineSeries => ({
+        series: EDITION_ROUTE_CONSTANTS['SERIES_' + series],
+        sections: sections.map(this._mapSection),
+    });
+
+    /**
+     * Private method: _mapSection.
+     *
+     * It maps the section data.
+     *
+     * @param {EditionOutlineSectionsJsonData} section The given section data.
+     *
+     * @returns {EditionOutlineSection} The mapped section.
+     */
+    private _mapSection = ({
+        section,
+        complexTypes,
+        disabled,
+    }: EditionOutlineSectionsJsonData): EditionOutlineSection => ({
+        section: EDITION_ROUTE_CONSTANTS['SECTION_' + section],
+        complexTypes: {
+            opus: this._mapComplexItems(complexTypes.opus),
+            mnr: this._mapComplexItems(complexTypes.mnr),
+        },
+        disabled,
+    });
+
+    /**
+     * Private method: _mapComplexItems.
+     *
+     * It maps the complex items.
+     *
+     * @param {EditionOutlineComplexItem[]} complexItems The given complex items.
+     *
+     * @returns {EditionOutlineComplexItem[]} The mapped complex items.
+     */
+    private _mapComplexItems = (complexItems: { complex: string; disabled: boolean }[]): EditionOutlineComplexItem[] =>
+        complexItems.map(({ complex, disabled }) => ({
+            complex: EditionComplexesService.getEditionComplexById(complex),
+            disabled,
+        }));
 }

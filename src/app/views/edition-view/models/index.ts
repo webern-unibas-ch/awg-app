@@ -17,7 +17,13 @@ import {
     EditionComplexJsonInput,
     EditionComplexTitleStatement,
 } from './edition-complex.model';
-import { EditionOutlineComplexItem, EditionOutlineSection, EditionOutlineSeries } from './edition-outline.model';
+import {
+    EditionOutline,
+    EditionOutlineComplexItem,
+    EditionOutlineJsonData,
+    EditionOutlineSection,
+    EditionOutlineSeries,
+} from './edition-outline.model';
 import { EditionRouteConstant } from './edition-route-constant.model';
 import { EditionRowTables, EditionRowTablesList } from './edition-row-tables.model';
 import { EditionSvgLinkBox } from './edition-svg-link-box.model';
@@ -57,7 +63,9 @@ export {
     EditionComplexesList,
     EditionComplexJsonInput,
     EditionComplexTitleStatement,
+    EditionOutline,
     EditionOutlineComplexItem,
+    EditionOutlineJsonData,
     EditionOutlineSection,
     EditionOutlineSeries,
     EditionRouteConstant,
