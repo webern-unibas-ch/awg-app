@@ -10,7 +10,7 @@ import { EditionComplex } from '@awg-views/edition-view/models';
 
 import { EditionComplexesService } from './edition-complexes.service';
 
-describe('EditionComplexesService', () => {
+describe('EditionComplexesService (DONE)', () => {
     let initializeEditionComplexesListSpy: Spy;
     let setEditionComplexesListSpy: Spy;
     let fetchEditionComplexesDataSpy: Spy;
