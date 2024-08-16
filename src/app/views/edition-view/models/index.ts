@@ -12,9 +12,9 @@ import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
 
 import {
     EditionComplex,
-    EditionComplexesJsonInput,
+    EditionComplexesJsonData,
     EditionComplexesList,
-    EditionComplexJsonInput,
+    EditionComplexJsonData,
     EditionComplexTitleStatement,
 } from './edition-complex.model';
 import {
@@ -59,9 +59,9 @@ export {
     D3Selection,
     D3ZoomBehaviour,
     EditionComplex,
-    EditionComplexesJsonInput,
+    EditionComplexesJsonData,
     EditionComplexesList,
-    EditionComplexJsonInput,
+    EditionComplexJsonData,
     EditionComplexTitleStatement,
     EditionOutline,
     EditionOutlineComplexItem,

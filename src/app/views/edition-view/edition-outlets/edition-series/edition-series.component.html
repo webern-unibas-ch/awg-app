@@ -1,6 +1,6 @@
 @if (editionOutline) {
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        @for (series of editionOutline; track series) {
+        @for (series of editionOutline; track series.series.full) {
             <div class="col">
                 <div class="card h-100">
                     <h5 class="card-header">
@@ -8,7 +8,7 @@
                     </h5>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-                            @for (section of series.sections; track section) {
+                            @for (section of series.sections; track section.section.full) {
                                 <li class="list-group-item">
                                     @if (!section.disabled) {
                                         <a [routerLink]="[series.series.route, 'section', section.section.route]">{{
