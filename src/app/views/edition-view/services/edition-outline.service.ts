@@ -25,7 +25,7 @@ export class EditionOutlineService {
      *
      * It keeps the edition outline.
      */
-    private static _editionOutline: EditionOutlineSeries[];
+    private static _editionOutline: EditionOutlineSeries[] = [];
 
     /**
      * Static method: initEditionOutline.

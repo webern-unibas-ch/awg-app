@@ -2,6 +2,7 @@
 import { Location } from '@angular/common';
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { Title } from '@angular/platform-browser';
 import { Router, RouterModule, Routes } from '@angular/router';
 
 import Spy = jasmine.Spy;
@@ -11,9 +12,7 @@ import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '
 
 import { AnalyticsService, EditionInitService } from '@awg-core/services';
 
-import { Title } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { EditionComplexesService, EditionOutlineService } from './views/edition-view/services';
 
 // Mock components
 @Component({ selector: 'awg-navbar', template: '' })
@@ -221,38 +220,6 @@ describe('AppComponent (DONE)', () => {
         describe('EditionInit', () => {
             it('... should call EditionInitService to initialize edition', () => {
                 expectSpyCall(initializeEditionSpy, 1);
-            });
-
-            it('... should make the EditionComplexesList available', () => {
-                const editionComplexesList = EditionComplexesService.getEditionComplexesList();
-
-                expect(editionComplexesList).toBeDefined();
-                expect(editionComplexesList).not.toBe({});
-
-                // Test for samples
-                expect(editionComplexesList['OP3']).toBeDefined();
-                expect(editionComplexesList['M22']).toBeDefined();
-
-                // Test for sample properties
-                expect(editionComplexesList['OP3'].titleStatement).toBeDefined();
-                expect(editionComplexesList['OP3'].respStatement).toBeDefined();
-                expect(editionComplexesList['OP3'].pubStatement).toBeDefined();
-            });
-
-            it('... should make the EditionOutline available', () => {
-                const editionOutline = EditionOutlineService.getEditionOutline();
-
-                expect(editionOutline).toBeDefined();
-                expect(editionOutline).not.toBe([]);
-
-                // Test for samples
-                expect(editionOutline['OP3']).toBeDefined();
-                expect(editionOutline['M22']).toBeDefined();
-
-                // Test for sample properties
-                expect(editionOutline['OP3'].titleStatement).toBeDefined();
-                expect(editionOutline['OP3'].respStatement).toBeDefined();
-                expect(editionOutline['OP3'].pubStatement).toBeDefined();
             });
         });
 

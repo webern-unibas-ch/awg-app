@@ -13,12 +13,11 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { mockEditionOutline } from '@testing/mock-data/mockEditionOutline';
 import { ActivatedRouteStub } from '@testing/router-stubs';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionOutlineComplexItem, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionSectionDetailComponent } from './edition-section-detail.component';
 
@@ -46,6 +45,11 @@ describe('EditionSectionDetailComponent (DONE)', () => {
     let expectedSeriesId: string;
     let expectedSectionId: string;
 
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+        EditionOutlineService.initializeEditionOutline();
+    });
+
     beforeEach(async () => {
         // Mock edition service
         mockEditionService = {
@@ -71,8 +75,8 @@ describe('EditionSectionDetailComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // TestData
-        expectedSelectedSeries = JSON.parse(JSON.stringify(mockEditionOutline[0]));
-        expectedSelectedSection = { ...expectedSelectedSeries.sections[4] };
+        expectedSelectedSeries = EditionOutlineService.getEditionOutline()[0];
+        expectedSelectedSection = expectedSelectedSeries.sections[4];
         expectedSeriesId = expectedSelectedSeries.series.route;
         expectedSectionId = expectedSelectedSection.section.route;
 
@@ -153,7 +157,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                 expectToEqual(component.selectedSeries, expectedSelectedSeries);
             }));
 
-            it('... should have called editionService.getEditionSectionById', () => {
+            it('... should have called EditionOutlineService.getEditionSectionById', () => {
                 expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 1, [expectedSeriesId, expectedSectionId]);
             });
 
@@ -178,7 +182,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                     }));
 
                     it('... if selected section has empty opus complexes, but given mnr complexes', waitForAsync(() => {
-                        component.selectedSection.complexTypes.opus = undefined;
+                        const shallowCopy = { ...component.selectedSection };
+                        shallowCopy.complexTypes = { ...component.selectedSection.complexTypes, opus: undefined };
+                        component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
@@ -186,7 +192,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                     }));
 
                     it('... if selected section has empty mnr complexes, but given opus complexes', waitForAsync(() => {
-                        component.selectedSection.complexTypes.mnr = undefined;
+                        const shallowCopy = { ...component.selectedSection };
+                        shallowCopy.complexTypes = { ...component.selectedSection.complexTypes, mnr: undefined };
+                        component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
@@ -201,7 +209,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                     });
 
                     it('... should contain no inner div.awg-edition-section-detail-opus if no opus complexes are given', () => {
-                        component.selectedSection.complexTypes.opus = undefined;
+                        const shallowCopy = { ...component.selectedSection };
+                        shallowCopy.complexTypes = { ...component.selectedSection.complexTypes, opus: undefined };
+                        component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
                         const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
@@ -262,7 +272,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                     });
 
                     it('... should contain no inner div.awg-edition-section-detail-mnr if no mnr complexes are given', () => {
-                        component.selectedSection.complexTypes.mnr = undefined;
+                        const shallowCopy = { ...component.selectedSection };
+                        shallowCopy.complexTypes = { ...component.selectedSection.complexTypes, mnr: undefined };
+                        component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
                         const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
@@ -305,7 +317,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
             describe('... with no complexes', () => {
                 describe('... should contain no outer div.awg-edition-section-detail, but 1 div.alert-info ...', () => {
                     it('... if selectedSection has no complexes...', waitForAsync(() => {
-                        component.selectedSection.complexTypes = undefined;
+                        const shallowCopy = { ...component.selectedSection };
+                        shallowCopy.complexTypes = undefined;
+                        component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 0, 0);
@@ -313,9 +327,13 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                     }));
 
                     it('... if selectedSection has empty opus and mnr complexes', waitForAsync(() => {
-                        component.selectedSection = expectedSelectedSeries.sections[4];
-                        component.selectedSection.complexTypes.opus = undefined;
-                        component.selectedSection.complexTypes.mnr = undefined;
+                        const shallowCopy = { ...component.selectedSection };
+                        shallowCopy.complexTypes = {
+                            ...component.selectedSection.complexTypes,
+                            opus: undefined,
+                            mnr: undefined,
+                        };
+                        component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 0, 0);
@@ -324,7 +342,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                 });
 
                 it('... should contain 1 p.text-muted in div.alert-info', () => {
-                    component.selectedSection.complexTypes = undefined;
+                    const shallowCopy = { ...component.selectedSection };
+                    shallowCopy.complexTypes = undefined;
+                    component.selectedSection = shallowCopy;
                     fixture.detectChanges();
 
                     const divDe = getAndExpectDebugElementByCss(compDe, 'div.alert-info', 1, 1);
@@ -335,7 +355,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                 });
 
                 it('... should display info message in p.text-muted', () => {
-                    component.selectedSection.complexTypes = undefined;
+                    const shallowCopy = { ...component.selectedSection };
+                    shallowCopy.complexTypes = undefined;
+                    component.selectedSection = shallowCopy;
                     fixture.detectChanges();
 
                     const divDe = getAndExpectDebugElementByCss(compDe, 'div.alert-info', 1, 1);

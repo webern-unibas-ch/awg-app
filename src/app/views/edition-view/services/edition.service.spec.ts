@@ -3,11 +3,10 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
-import { mockEditionOutline } from '@testing/mock-data/mockEditionOutline';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionComplexesService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { EditionService } from './edition.service';
 
@@ -24,6 +23,7 @@ describe('EditionService (DONE)', () => {
 
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
+        EditionOutlineService.initializeEditionOutline();
     });
 
     beforeEach(() => {
@@ -35,7 +35,7 @@ describe('EditionService (DONE)', () => {
 
         // Test data (default)
         expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
-        expectedEditionOutline = JSON.parse(JSON.stringify(mockEditionOutline));
+        expectedEditionOutline = EditionOutlineService.getEditionOutline();
         expectedEditionSeriesRoute = EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.SERIES.route;
         expectedEditionSeries = expectedEditionOutline[0];
         expectedEditionSection = expectedEditionOutline[0].sections[0];

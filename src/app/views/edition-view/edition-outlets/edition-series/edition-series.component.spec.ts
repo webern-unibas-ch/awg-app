@@ -16,7 +16,7 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionSeriesComponent } from './edition-series.component';
 
@@ -34,6 +34,11 @@ describe('EditionSeriesComponent (DONE)', () => {
     let serviceGetEditionOutlineSpy: Spy;
 
     let expectedEditionOutline: EditionOutlineSeries[];
+
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+        EditionOutlineService.initializeEditionOutline();
+    });
 
     beforeEach(waitForAsync(() => {
         // Mock edition service
@@ -54,7 +59,7 @@ describe('EditionSeriesComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedEditionOutline = JSON.parse(JSON.stringify(mockEditionOutline));
+        expectedEditionOutline = EditionOutlineService.getEditionOutline();
 
         // Spies
         clearSelectionsSpy = spyOn(component, 'clearSelections').and.callThrough();
@@ -93,7 +98,7 @@ describe('EditionSeriesComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Component.editionOutline = expectedEditionOutline;
+            component.editionOutline = expectedEditionOutline;
 
             // Trigger initial data binding
             fixture.detectChanges();

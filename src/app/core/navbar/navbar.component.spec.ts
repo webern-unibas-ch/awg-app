@@ -116,6 +116,10 @@ describe('NavbarComponent (DONE)', () => {
         }).compileComponents();
     }));
 
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
+
     beforeEach(() => {
         fixture = TestBed.createComponent(NavbarComponent);
         component = fixture.componentInstance;

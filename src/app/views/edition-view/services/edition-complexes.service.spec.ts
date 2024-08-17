@@ -54,7 +54,7 @@ describe('EditionComplexesService (DONE)', () => {
 
             expectSpyCall(initializeEditionComplexesListSpy, 1);
             expectSpyCall(fetchEditionComplexesDataSpy, 1);
-            expectSpyCall(setEditionComplexesListSpy, 1, editionComplexesList);
+            expectSpyCall(setEditionComplexesListSpy, 1, [editionComplexesList]);
         });
 
         it('... should initialize the edition complexes list', () => {
