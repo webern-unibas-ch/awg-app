@@ -35,7 +35,7 @@ class EditionJumbotronStubComponent {
 @Component({ selector: 'awg-scroll-to-top', template: '' })
 class ScrollToTopStubComponent {}
 
-fdescribe('EditionViewComponent (DONE)', () => {
+describe('EditionViewComponent (DONE)', () => {
     let component: EditionViewComponent;
     let fixture: ComponentFixture<EditionViewComponent>;
     let compDe: DebugElement;
