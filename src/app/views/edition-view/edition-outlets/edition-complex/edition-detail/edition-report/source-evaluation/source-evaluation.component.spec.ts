@@ -16,10 +16,10 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EditionComplexesService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, SourceEvaluationList } from '@awg-views/edition-view/models';
+import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 import { SourceEvaluationComponent } from './source-evaluation.component';
 

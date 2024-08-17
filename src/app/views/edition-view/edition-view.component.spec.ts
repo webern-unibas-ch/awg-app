@@ -17,10 +17,9 @@ import {
 import { mockEditionOutline } from '@testing/mock-data/mockEditionOutline';
 import { ActivatedRouteStub, RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
-import { EditionComplexesService } from '@awg-core/services';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionViewComponent } from './edition-view.component';
 
@@ -36,7 +35,7 @@ class EditionJumbotronStubComponent {
 @Component({ selector: 'awg-scroll-to-top', template: '' })
 class ScrollToTopStubComponent {}
 
-describe('EditionViewComponent (DONE)', () => {
+fdescribe('EditionViewComponent (DONE)', () => {
     let component: EditionViewComponent;
     let fixture: ComponentFixture<EditionViewComponent>;
     let compDe: DebugElement;
@@ -125,7 +124,7 @@ describe('EditionViewComponent (DONE)', () => {
         expectedSelectedEditionComplex = EditionComplexesService.getEditionComplexById(
             expectedSelectedEditionComplexId
         );
-        expectedSelectedEditionSeries = mockEditionOutline[0]; // Series 1
+        expectedSelectedEditionSeries = JSON.parse(JSON.stringify(mockEditionOutline[0])); // Series 1
         expectedSelectedEditionSection = expectedSelectedEditionSeries.sections[4];
 
         // Spies on component functions

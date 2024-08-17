@@ -10,8 +10,8 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EditionComplexesService } from '@awg-core/services';
-import { EditionOutlineComplex } from '@awg-views/edition-view/models';
+import { EditionOutlineComplexItem } from '@awg-views/edition-view/models';
+import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 import { EditionComplexCardComponent } from './edition-complex-card.component';
 
@@ -23,7 +23,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let expectedComplexes: EditionOutlineComplex[];
+    let expectedComplexes: EditionOutlineComplexItem[];
 
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();

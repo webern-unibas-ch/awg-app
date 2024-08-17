@@ -11,12 +11,12 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { mockEditionOutline } from '@testing/mock-data/mockEditionOutline';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionSeriesComponent } from './edition-series.component';
 
@@ -36,11 +36,12 @@ describe('EditionSeriesComponent (DONE)', () => {
     let expectedEditionOutline: EditionOutlineSeries[];
 
     beforeEach(waitForAsync(() => {
+        // Mock edition service
         mockEditionService = {
             clearSelectedEditionSeries: () => {},
             clearSelectedEditionSection: () => {},
-            getEditionOutline: (): EditionOutlineSeries[] => EDITION_OUTLINE_DATA,
         };
+
         TestBed.configureTestingModule({
             declarations: [EditionSeriesComponent, RouterLinkStubDirective],
             providers: [{ provide: EditionService, useValue: mockEditionService }],
@@ -53,7 +54,7 @@ describe('EditionSeriesComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedEditionOutline = EDITION_OUTLINE_DATA;
+        expectedEditionOutline = JSON.parse(JSON.stringify(mockEditionOutline));
 
         // Spies
         clearSelectionsSpy = spyOn(component, 'clearSelections').and.callThrough();
@@ -66,7 +67,7 @@ describe('EditionSeriesComponent (DONE)', () => {
             mockEditionService,
             'clearSelectedEditionSection'
         ).and.callThrough();
-        serviceGetEditionOutlineSpy = spyOn(mockEditionService, 'getEditionOutline').and.callThrough();
+        serviceGetEditionOutlineSpy = spyOn(EditionOutlineService, 'getEditionOutline').and.callThrough();
     });
 
     it('... should create', () => {
@@ -419,7 +420,7 @@ describe('EditionSeriesComponent (DONE)', () => {
 
             it('... can get correct linkParams from template', () => {
                 let linkIndex = 0;
-                EDITION_OUTLINE_DATA.forEach((series, _seriesIndex) => {
+                expectedEditionOutline.forEach((series, _seriesIndex) => {
                     series.sections.forEach((section, _sectionIndex) => {
                         if (!section.disabled) {
                             // Check the router link for the section
@@ -519,7 +520,7 @@ describe('EditionSeriesComponent (DONE)', () => {
             });
 
             it('...should set `editionOutline`', () => {
-                const anotherEditionOutline = JSON.parse(JSON.stringify(EDITION_OUTLINE_DATA));
+                const anotherEditionOutline = JSON.parse(JSON.stringify(mockEditionOutline));
                 anotherEditionOutline[0].series = EDITION_ROUTE_CONSTANTS.SERIES_2;
 
                 serviceGetEditionOutlineSpy.and.returnValue(anotherEditionOutline);

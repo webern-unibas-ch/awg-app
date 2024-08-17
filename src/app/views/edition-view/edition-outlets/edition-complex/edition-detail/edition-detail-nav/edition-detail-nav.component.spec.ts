@@ -10,11 +10,10 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
-import { EditionComplexesService } from '@awg-core/services';
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionDetailNavComponent } from './edition-detail-nav.component';
 

@@ -9,10 +9,11 @@ import Spy = jasmine.Spy;
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { AnalyticsService, EditionComplexesService } from '@awg-core/services';
+import { AnalyticsService, EditionInitService } from '@awg-core/services';
 
 import { Title } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
+import { EditionComplexesService, EditionOutlineService } from './views/edition-view/services';
 
 // Mock components
 @Component({ selector: 'awg-navbar', template: '' })
@@ -51,12 +52,13 @@ describe('AppComponent (DONE)', () => {
     let titleService: Title;
 
     let mockAnalyticsService: Partial<AnalyticsService>;
+    let mockEditionInitService: Partial<EditionInitService>;
 
     let getTitleSpy: Spy;
     let setTitleSpy: Spy;
     let initialzeAnalyticsSpy: Spy;
     let trackpageViewSpy: Spy;
-    let initializeEditionComplexesListSpy: Spy;
+    let initializeEditionSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         // Create a mocked AnalyticsService  with an `initializeAnalytics` and `trackPageView` spy
@@ -65,6 +67,13 @@ describe('AppComponent (DONE)', () => {
                 // Intentional empty test override
             },
             trackPageView: (page: string): void => {
+                // Intentional empty test override
+            },
+        };
+
+        // Create a mocked EditionInitService with an `initializeEdition` spy
+        mockEditionInitService = {
+            initializeEdition: (): void => {
                 // Intentional empty test override
             },
         };
@@ -79,17 +88,18 @@ describe('AppComponent (DONE)', () => {
                 RoutedTestMockComponent,
                 RoutedTest2MockComponent,
             ],
-            providers: [{ provide: AnalyticsService, useValue: mockAnalyticsService }, Title],
+            providers: [
+                { provide: AnalyticsService, useValue: mockAnalyticsService },
+                { provide: EditionInitService, useValue: mockEditionInitService },
+                Title,
+            ],
         }).compileComponents();
 
         // Spies for service methods
         getTitleSpy = spyOn(Title.prototype, 'getTitle').and.returnValue('Default Page Title');
         setTitleSpy = spyOn(Title.prototype, 'setTitle').and.callThrough();
         initialzeAnalyticsSpy = spyOn(mockAnalyticsService, 'initializeAnalytics').and.callThrough();
-        initializeEditionComplexesListSpy = spyOn(
-            EditionComplexesService,
-            'initializeEditionComplexesList'
-        ).and.callThrough();
+        initializeEditionSpy = spyOn(mockEditionInitService, 'initializeEdition').and.callThrough();
         trackpageViewSpy = spyOn(mockAnalyticsService, 'trackPageView').and.callThrough();
     }));
 
@@ -127,9 +137,12 @@ describe('AppComponent (DONE)', () => {
         expect(component).toBeTruthy();
     }));
 
-    it('... injected service should use provided mockValue', () => {
+    it('... injected services should use provided mockValues', () => {
         const analyticsService = TestBed.inject(AnalyticsService);
         expectToBe(analyticsService === mockAnalyticsService, true);
+
+        const editionInitService = TestBed.inject(EditionInitService);
+        expectToBe(editionInitService === mockEditionInitService, true);
     });
 
     describe('router setup (self-test)', () => {
@@ -205,9 +218,9 @@ describe('AppComponent (DONE)', () => {
             }));
         });
 
-        describe('EditionComplexes', () => {
-            it('... should call EditionComplexesService to initialize EditionComplexesList', () => {
-                expectSpyCall(initializeEditionComplexesListSpy, 1);
+        describe('EditionInit', () => {
+            it('... should call EditionInitService to initialize edition', () => {
+                expectSpyCall(initializeEditionSpy, 1);
             });
 
             it('... should make the EditionComplexesList available', () => {
@@ -224,6 +237,22 @@ describe('AppComponent (DONE)', () => {
                 expect(editionComplexesList['OP3'].titleStatement).toBeDefined();
                 expect(editionComplexesList['OP3'].respStatement).toBeDefined();
                 expect(editionComplexesList['OP3'].pubStatement).toBeDefined();
+            });
+
+            it('... should make the EditionOutline available', () => {
+                const editionOutline = EditionOutlineService.getEditionOutline();
+
+                expect(editionOutline).toBeDefined();
+                expect(editionOutline).not.toBe([]);
+
+                // Test for samples
+                expect(editionOutline['OP3']).toBeDefined();
+                expect(editionOutline['M22']).toBeDefined();
+
+                // Test for sample properties
+                expect(editionOutline['OP3'].titleStatement).toBeDefined();
+                expect(editionOutline['OP3'].respStatement).toBeDefined();
+                expect(editionOutline['OP3'].pubStatement).toBeDefined();
             });
         });
 

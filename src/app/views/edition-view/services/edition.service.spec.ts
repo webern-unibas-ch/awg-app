@@ -3,11 +3,11 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { mockEditionOutline } from '@testing/mock-data/mockEditionOutline';
 
-import { EditionComplexesService } from '@awg-core/services';
-import { EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
+import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 import { EditionService } from './edition.service';
 
@@ -35,10 +35,10 @@ describe('EditionService (DONE)', () => {
 
         // Test data (default)
         expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
-        expectedEditionOutline = EDITION_OUTLINE_DATA;
+        expectedEditionOutline = JSON.parse(JSON.stringify(mockEditionOutline));
         expectedEditionSeriesRoute = EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.SERIES.route;
-        expectedEditionSeries = EDITION_OUTLINE_DATA[0];
-        expectedEditionSection = EDITION_OUTLINE_DATA[0].sections[0];
+        expectedEditionSeries = expectedEditionOutline[0];
+        expectedEditionSection = expectedEditionOutline[0].sections[0];
         expectedIsPrefaceView = true;
         expectedIsRowTableView = true;
     });
@@ -179,31 +179,7 @@ describe('EditionService (DONE)', () => {
         });
     });
 
-    describe('#getEditionOutline()', () => {
-        it('... should have a method `getEditionOutline`', () => {
-            expect(editionService.getEditionOutline).toBeDefined();
-        });
-
-        it('... should return editionOutline', () => {
-            const outline = editionService.getEditionOutline();
-
-            expectToEqual(outline, expectedEditionOutline);
-        });
-    });
-
     describe('EditionSeries', () => {
-        describe('#getEditionSeriesById()', () => {
-            it('... should have a method `getEditionSeriesById`', () => {
-                expect(editionService.getEditionSeriesById).toBeDefined();
-            });
-
-            it('... should return editionSeries with given id', () => {
-                const series = editionService.getEditionSeriesById(EDITION_ROUTE_CONSTANTS.SERIES_1.route);
-
-                expectToEqual(series, expectedEditionSeries);
-            });
-        });
-
         describe('#getSelectedEditionSeries()', () => {
             it('... should have a method `getSelectedEditionSeries`', () => {
                 expect(editionService.getSelectedEditionSeries).toBeDefined();
@@ -231,7 +207,7 @@ describe('EditionService (DONE)', () => {
                 editionService.updateSelectedEditionSeries(expectedEditionSeries);
 
                 // Update editionSeries
-                expectedEditionSeries = EDITION_OUTLINE_DATA[1];
+                expectedEditionSeries = expectedEditionOutline[1];
                 editionService.updateSelectedEditionSeries(expectedEditionSeries);
             }));
         });
@@ -252,7 +228,7 @@ describe('EditionService (DONE)', () => {
                 editionService.updateSelectedEditionSeries(expectedEditionSeries);
 
                 // Update editionSeries
-                expectedEditionSeries = EDITION_OUTLINE_DATA[1];
+                expectedEditionSeries = expectedEditionOutline[1];
                 editionService.updateSelectedEditionSeries(expectedEditionSeries);
             }));
         });
@@ -292,25 +268,6 @@ describe('EditionService (DONE)', () => {
     });
 
     describe('EditionSection', () => {
-        describe('#getEditionSectionById()', () => {
-            it('... should have a method `getEditionSectionById`', () => {
-                expect(editionService.getEditionSectionById).toBeDefined();
-            });
-
-            it('... should return editionSection with given id', () => {
-                expectedEditionOutline[0].sections.forEach((section, index) => {
-                    expectedEditionSection = section;
-
-                    const getSection = editionService.getEditionSectionById(
-                        EDITION_ROUTE_CONSTANTS.SERIES_1.route,
-                        EDITION_ROUTE_CONSTANTS[`SECTION_${index + 1}`].route
-                    );
-
-                    expectToEqual(getSection, expectedEditionSection);
-                });
-            });
-        });
-
         describe('#getSelectedEditionSection()', () => {
             it('... should have a method  `getSelectedEditionSection`', () => {
                 expect(editionService.getSelectedEditionSection).toBeDefined();
@@ -338,7 +295,7 @@ describe('EditionService (DONE)', () => {
                 editionService.updateSelectedEditionSection(expectedEditionSection);
 
                 // Update editionSection
-                expectedEditionSection = EDITION_OUTLINE_DATA[0].sections[4];
+                expectedEditionSection = expectedEditionOutline[0].sections[4];
                 editionService.updateSelectedEditionSection(expectedEditionSection);
             }));
         });
@@ -359,7 +316,7 @@ describe('EditionService (DONE)', () => {
                 editionService.updateSelectedEditionSection(expectedEditionSection);
 
                 // Update editionSection
-                expectedEditionSection = EDITION_OUTLINE_DATA[0].sections[4];
+                expectedEditionSection = expectedEditionOutline[0].sections[4];
                 editionService.updateSelectedEditionSection(expectedEditionSection);
             }));
         });
