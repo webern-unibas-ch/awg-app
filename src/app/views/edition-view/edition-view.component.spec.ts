@@ -14,12 +14,11 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { mockEditionOutline } from '@testing/mock-data/mockEditionOutline';
 import { ActivatedRouteStub, RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionViewComponent } from './edition-view.component';
 
@@ -66,6 +65,7 @@ describe('EditionViewComponent (DONE)', () => {
 
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
+        EditionOutlineService.initializeEditionOutline();
     });
 
     beforeEach(waitForAsync(() => {
@@ -77,14 +77,14 @@ describe('EditionViewComponent (DONE)', () => {
 
         // Mock edition service
         mockEditionService = {
+            getIsPrefaceView: (): Observable<boolean> => observableOf(expectedIsPrefaceView),
+            getIsRowTableView: (): Observable<boolean> => observableOf(expectedIsRowTableView),
             getSelectedEditionComplex: (): Observable<EditionComplex> =>
                 // Return op. 12 by default
                 observableOf(EditionComplexesService.getEditionComplexById(expectedSelectedEditionComplexId)),
             updateSelectedEditionComplex: (editionComplex: EditionComplex): void => {
                 // Intentional empty test override
             },
-            getIsPrefaceView: (): Observable<boolean> => observableOf(expectedIsPrefaceView),
-            getIsRowTableView: (): Observable<boolean> => observableOf(expectedIsRowTableView),
             getSelectedEditionSeries: (): Observable<EditionOutlineSeries> =>
                 observableOf(expectedSelectedEditionSeries),
             getSelectedEditionSection: (): Observable<EditionOutlineSection> =>
@@ -101,10 +101,7 @@ describe('EditionViewComponent (DONE)', () => {
             ],
             providers: [
                 { provide: EditionService, useValue: mockEditionService },
-                {
-                    provide: ActivatedRoute,
-                    useValue: mockActivatedRoute,
-                },
+                { provide: ActivatedRoute, useValue: mockActivatedRoute },
                 { provide: Router, useValue: mockRouter },
             ],
         }).compileComponents();
@@ -124,8 +121,8 @@ describe('EditionViewComponent (DONE)', () => {
         expectedSelectedEditionComplex = EditionComplexesService.getEditionComplexById(
             expectedSelectedEditionComplexId
         );
-        expectedSelectedEditionSeries = JSON.parse(JSON.stringify(mockEditionOutline[0])); // Series 1
-        expectedSelectedEditionSection = expectedSelectedEditionSeries.sections[4];
+        expectedSelectedEditionSeries = EditionOutlineService.getEditionOutline()[0]; // Series 1
+        expectedSelectedEditionSection = expectedSelectedEditionSeries.sections[4]; // Section 5
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
