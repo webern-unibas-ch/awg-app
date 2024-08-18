@@ -30,10 +30,11 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { LOGOSDATA } from '@awg-core/core-data';
 import { Logos } from '@awg-core/core-models';
-import { CoreService, EditionComplexesService } from '@awg-core/services';
+import { CoreService } from '@awg-core/services';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
+import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 import { NavbarComponent } from './navbar.component';
 
@@ -114,6 +115,10 @@ describe('NavbarComponent (DONE)', () => {
             ],
         }).compileComponents();
     }));
+
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(NavbarComponent);

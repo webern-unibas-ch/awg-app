@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { EditionComplex, EditionComplexesList, EditionComplexJsonInput } from '@awg-views/edition-view/models';
+import { EditionComplex, EditionComplexesList, EditionComplexJsonData } from '@awg-views/edition-view/models';
 
 import * as jsonEditionComplexes from 'assets/data/edition/edition-complexes.json';
 
@@ -84,7 +84,7 @@ export class EditionComplexesService {
         const complexesData = (jsonEditionComplexes as any).default;
         const editionComplexesList: EditionComplexesList = {};
 
-        complexesData.editionComplexes.forEach((complex: EditionComplexJsonInput) => {
+        complexesData.editionComplexes.forEach((complex: EditionComplexJsonData) => {
             Object.entries(complex).forEach(([complexKey, complexValue]) => {
                 editionComplexesList[complexKey] = new EditionComplex(
                     complexValue.titleStatement,

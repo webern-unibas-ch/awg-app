@@ -21,7 +21,6 @@ describe('EditionSeriesDetailComponent', () => {
     beforeEach(async () => {
         // Mock edition service
         mockEditionService = {
-            getEditionSeriesById: (seriesId: string): EditionOutlineSeries => expectedEditionSeries,
             updateSelectedEditionSeries: (editionSeries: EditionOutlineSeries): void => {},
         };
 

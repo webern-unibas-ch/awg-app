@@ -15,17 +15,16 @@ import {
 } from '@testing/expect-helper';
 import { ActivatedRouteStub } from '@testing/router-stubs';
 
-import { EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionOutlineComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionOutlineComplexItem, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
+import { EditionComplexesService, EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionSectionDetailComponent } from './edition-section-detail.component';
 
 @Component({ selector: 'awg-edition-complex-card', template: '' })
 class EditionComplexCardStubComponent {
     @Input()
-    complexes: EditionOutlineComplex[];
+    complexes: EditionOutlineComplexItem[];
 }
 
 describe('EditionSectionDetailComponent (DONE)', () => {
@@ -38,7 +37,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
 
     let updateSectionFromRouteSpy: Spy;
     let editionServiceGetSelectedEditionSeriesSpy: Spy;
-    let editionServiceGetEditionSectionByIdSpy: Spy;
+    let editionOutlineServiceGetEditionSectionByIdSpy: Spy;
     let editionServiceUpdateSelectedEditionSectionSpy: Spy;
 
     let expectedSelectedSeries: EditionOutlineSeries;
@@ -46,13 +45,15 @@ describe('EditionSectionDetailComponent (DONE)', () => {
     let expectedSeriesId: string;
     let expectedSectionId: string;
 
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+        EditionOutlineService.initializeEditionOutline();
+    });
+
     beforeEach(async () => {
         // Mock edition service
         mockEditionService = {
             getSelectedEditionSeries: (): Observable<EditionOutlineSeries> => observableOf(expectedSelectedSeries),
-
-            getEditionSectionById: (seriesId: string, sectionId: string): EditionOutlineSection =>
-                expectedSelectedSection,
             updateSelectedEditionSection: (editionSection: EditionOutlineSection): void => {},
         };
 
@@ -74,8 +75,8 @@ describe('EditionSectionDetailComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // TestData
-        expectedSelectedSeries = JSON.parse(JSON.stringify(EDITION_OUTLINE_DATA[0]));
-        expectedSelectedSection = { ...expectedSelectedSeries.sections[4] };
+        expectedSelectedSeries = EditionOutlineService.getEditionOutline()[0];
+        expectedSelectedSection = expectedSelectedSeries.sections[4];
         expectedSeriesId = expectedSelectedSeries.series.route;
         expectedSectionId = expectedSelectedSection.section.route;
 
@@ -87,10 +88,13 @@ describe('EditionSectionDetailComponent (DONE)', () => {
             mockEditionService,
             'getSelectedEditionSeries'
         ).and.callThrough();
-        editionServiceGetEditionSectionByIdSpy = spyOn(mockEditionService, 'getEditionSectionById').and.callThrough();
         editionServiceUpdateSelectedEditionSectionSpy = spyOn(
             mockEditionService,
             'updateSelectedEditionSection'
+        ).and.callThrough();
+        editionOutlineServiceGetEditionSectionByIdSpy = spyOn(
+            EditionOutlineService,
+            'getEditionSectionById'
         ).and.callThrough();
     });
 
@@ -153,13 +157,13 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                 expectToEqual(component.selectedSeries, expectedSelectedSeries);
             }));
 
-            it('... should have called editionService.getEditionSectionById', () => {
-                expectSpyCall(editionServiceGetEditionSectionByIdSpy, 1, [expectedSeriesId, expectedSectionId]);
+            it('... should have called EditionOutlineService.getEditionSectionById', () => {
+                expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 1, [expectedSeriesId, expectedSectionId]);
             });
 
-            it('... should have set selectedSection (via EditionService)', waitForAsync(() => {
+            it('... should have set selectedSection (via EditionOutlineService)', waitForAsync(() => {
                 expectSpyCall(updateSectionFromRouteSpy, 1);
-                expectSpyCall(editionServiceGetEditionSectionByIdSpy, 1, [expectedSeriesId, expectedSectionId]);
+                expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 1, [expectedSeriesId, expectedSectionId]);
 
                 expectToEqual(component.selectedSection, expectedSelectedSection);
             }));
@@ -178,7 +182,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                     }));
 
                     it('... if selected section has empty opus complexes, but given mnr complexes', waitForAsync(() => {
-                        component.selectedSection.complexes.opus = undefined;
+                        const shallowCopy = { ...component.selectedSection };
+                        shallowCopy.complexTypes = { ...component.selectedSection.complexTypes, opus: undefined };
+                        component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
@@ -186,7 +192,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                     }));
 
                     it('... if selected section has empty mnr complexes, but given opus complexes', waitForAsync(() => {
-                        component.selectedSection.complexes.mnr = undefined;
+                        const shallowCopy = { ...component.selectedSection };
+                        shallowCopy.complexTypes = { ...component.selectedSection.complexTypes, mnr: undefined };
+                        component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
@@ -201,7 +209,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                     });
 
                     it('... should contain no inner div.awg-edition-section-detail-opus if no opus complexes are given', () => {
-                        component.selectedSection.complexes.opus = undefined;
+                        const shallowCopy = { ...component.selectedSection };
+                        shallowCopy.complexTypes = { ...component.selectedSection.complexTypes, opus: undefined };
+                        component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
                         const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
@@ -251,7 +261,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                             EditionComplexCardStubComponent
                         ) as EditionComplexCardStubComponent;
 
-                        expectToEqual(complexCardCmp.complexes, expectedSelectedSection.complexes.opus);
+                        expectToEqual(complexCardCmp.complexes, expectedSelectedSection.complexTypes.opus);
                     });
                 });
 
@@ -262,7 +272,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                     });
 
                     it('... should contain no inner div.awg-edition-section-detail-mnr if no mnr complexes are given', () => {
-                        component.selectedSection.complexes.mnr = undefined;
+                        const shallowCopy = { ...component.selectedSection };
+                        shallowCopy.complexTypes = { ...component.selectedSection.complexTypes, mnr: undefined };
+                        component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
                         const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
@@ -297,7 +309,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                             EditionComplexCardStubComponent
                         ) as EditionComplexCardStubComponent;
 
-                        expectToEqual(complexCardCmp.complexes, expectedSelectedSection.complexes.mnr);
+                        expectToEqual(complexCardCmp.complexes, expectedSelectedSection.complexTypes.mnr);
                     });
                 });
             });
@@ -305,7 +317,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
             describe('... with no complexes', () => {
                 describe('... should contain no outer div.awg-edition-section-detail, but 1 div.alert-info ...', () => {
                     it('... if selectedSection has no complexes...', waitForAsync(() => {
-                        component.selectedSection.complexes = undefined;
+                        const shallowCopy = { ...component.selectedSection };
+                        shallowCopy.complexTypes = undefined;
+                        component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 0, 0);
@@ -313,9 +327,13 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                     }));
 
                     it('... if selectedSection has empty opus and mnr complexes', waitForAsync(() => {
-                        component.selectedSection = expectedSelectedSeries.sections[4];
-                        component.selectedSection.complexes.opus = undefined;
-                        component.selectedSection.complexes.mnr = undefined;
+                        const shallowCopy = { ...component.selectedSection };
+                        shallowCopy.complexTypes = {
+                            ...component.selectedSection.complexTypes,
+                            opus: undefined,
+                            mnr: undefined,
+                        };
+                        component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 0, 0);
@@ -324,7 +342,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                 });
 
                 it('... should contain 1 p.text-muted in div.alert-info', () => {
-                    component.selectedSection.complexes = undefined;
+                    const shallowCopy = { ...component.selectedSection };
+                    shallowCopy.complexTypes = undefined;
+                    component.selectedSection = shallowCopy;
                     fixture.detectChanges();
 
                     const divDe = getAndExpectDebugElementByCss(compDe, 'div.alert-info', 1, 1);
@@ -335,7 +355,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                 });
 
                 it('... should display info message in p.text-muted', () => {
-                    component.selectedSection.complexes = undefined;
+                    const shallowCopy = { ...component.selectedSection };
+                    shallowCopy.complexTypes = undefined;
+                    component.selectedSection = shallowCopy;
                     fixture.detectChanges();
 
                     const divDe = getAndExpectDebugElementByCss(compDe, 'div.alert-info', 1, 1);

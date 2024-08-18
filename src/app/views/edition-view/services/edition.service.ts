@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 
 import { Observable, ReplaySubject } from 'rxjs';
 
-import { EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
 /**
@@ -106,45 +105,6 @@ export class EditionService {
      */
     clearSelectedEditionComplex(): void {
         this._selectedEditionComplexSubject.next(null);
-    }
-
-    /**
-     * Public method: getEditionOutline.
-     *
-     * It provides the outline of the edition with its series.
-     *
-     * @returns {EditionOutlineSeries[]} The edition outline.
-     */
-    getEditionOutline(): EditionOutlineSeries[] {
-        return EDITION_OUTLINE_DATA;
-    }
-
-    /**
-     * Public method: getEditionSeriesById.
-     *
-     * It finds a series of the edition by a given id.
-     *
-     * @param {string} seriesId The given series id.
-     *
-     * @returns {EditionOutlineSeries} The found edition series.
-     */
-    getEditionSeriesById(seriesId: string): EditionOutlineSeries {
-        return EDITION_OUTLINE_DATA.find(series => series.series.route === seriesId);
-    }
-
-    /**
-     * Public method: getEditionSectionById.
-     *
-     * It finds a section of an edition series by a given id.
-     *
-     * @param {string} seriesId The given series id.
-     * @param {string} sectionId The given series id.
-     *
-     * @returns {EditionOutlineSection} The found edition section.
-     */
-    getEditionSectionById(seriesId: string, sectionId: string): EditionOutlineSection {
-        const series = this.getEditionSeriesById(seriesId);
-        return series.sections.find(section => section.section.route === sectionId);
     }
 
     /**
