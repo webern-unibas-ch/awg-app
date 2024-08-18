@@ -1,8 +1,8 @@
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EditionRouteConstant } from '@awg-views/edition-view/models';
 import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 import { EditionComplex } from './edition-complex.model';
-import { EditionRouteConstant } from './edition-route-constant.model';
 
 /**
  * The EditionOutlineSeriesJsonData interface.
@@ -175,43 +175,57 @@ export class EditionOutline {
      *
      * It maps the series data.
      *
-     * @param {EditionOutlineSeriesJsonData} series The given series data.
+     * @param {EditionOutlineSeriesJsonData} data The series data to map.
+     * @param {string} data.series The given series string.
+     * @param {EditionOutlineSectionsJsonData[]} data.sections The given sections data.
      *
      * @returns {EditionOutlineSeries} The mapped series.
      */
-    private _mapSeries = ({ series, sections }: EditionOutlineSeriesJsonData): EditionOutlineSeries => ({
-        series: EDITION_ROUTE_CONSTANTS['SERIES_' + series],
-        sections: sections.map(this._mapSection),
-    });
+    private _mapSeries = ({ series, sections }: EditionOutlineSeriesJsonData): EditionOutlineSeries => {
+        const seriesConstant: EditionRouteConstant = EDITION_ROUTE_CONSTANTS['SERIES_' + series];
+        return {
+            series: seriesConstant,
+            sections: sections.map(section => this._mapSection(section, series)),
+        };
+    };
 
     /**
      * Private method: _mapSection.
      *
      * It maps the section data.
      *
-     * @param {EditionOutlineSectionsJsonData} section The given section data.
+     * @param {EditionOutlineSectionsJsonData} data The section data to map.
+     * @param {string} data.section The given section string.
+     * @param {Object} data.complexTypes The given complex types data.
+     * @param {boolean} data.disabled The given disabled flag.
      *
      * @returns {EditionOutlineSection} The mapped section.
      */
-    private _mapSection = ({
-        section,
-        complexTypes,
-        disabled,
-    }: EditionOutlineSectionsJsonData): EditionOutlineSection => ({
-        section: EDITION_ROUTE_CONSTANTS['SECTION_' + section],
-        complexTypes: {
-            opus: this._mapComplexItems(complexTypes.opus),
-            mnr: this._mapComplexItems(complexTypes.mnr),
-        },
-        disabled,
-    });
+    private _mapSection = (
+        { section, complexTypes, disabled }: EditionOutlineSectionsJsonData,
+        series: string
+    ): EditionOutlineSection => {
+        const sectionConstant: EditionRouteConstant =
+            series === '3' && section === '5'
+                ? EDITION_ROUTE_CONSTANTS.SERIES_3_SECTION_5
+                : EDITION_ROUTE_CONSTANTS['SECTION_' + section];
+
+        return {
+            section: sectionConstant,
+            complexTypes: {
+                opus: this._mapComplexItems(complexTypes.opus),
+                mnr: this._mapComplexItems(complexTypes.mnr),
+            },
+            disabled,
+        };
+    };
 
     /**
      * Private method: _mapComplexItems.
      *
      * It maps the complex items.
      *
-     * @param {EditionOutlineComplexItem[]} complexItems The given complex items.
+     * @param {EditionOutlineComplexItem[]} complexItems The complex items to map.
      *
      * @returns {EditionOutlineComplexItem[]} The mapped complex items.
      */
