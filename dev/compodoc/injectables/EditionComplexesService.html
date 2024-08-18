@@ -116,7 +116,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/core/services/edition-complexes/edition-complexes.service.ts</code>
+            <code>src/app/views/edition-view/services/edition-complexes.service.ts</code>
         </p>
 
 
@@ -224,7 +224,7 @@
                     <tr>
                         <td class="col-md-4">
                             <div class="io-line">Defined in <a href="" data-line="82"
-                                    class="link-to-prism">src/app/core/services/edition-complexes/edition-complexes.service.ts:82</a></div>
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:82</a></div>
                         </td>
                     </tr>
 
@@ -271,7 +271,7 @@ for the complexes of the edition view.</p>
                     <tr>
                         <td class="col-md-4">
                             <div class="io-line">Defined in <a href="" data-line="46"
-                                    class="link-to-prism">src/app/core/services/edition-complexes/edition-complexes.service.ts:46</a></div>
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -349,7 +349,7 @@ for the complexes of the edition view.</p>
                     <tr>
                         <td class="col-md-4">
                             <div class="io-line">Defined in <a href="" data-line="57"
-                                    class="link-to-prism">src/app/core/services/edition-complexes/edition-complexes.service.ts:57</a></div>
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -395,7 +395,7 @@ for the complexes of the edition view.</p>
                     <tr>
                         <td class="col-md-4">
                             <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/app/core/services/edition-complexes/edition-complexes.service.ts:32</a></div>
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -441,7 +441,7 @@ for the complexes of the edition view.</p>
                     <tr>
                         <td class="col-md-4">
                             <div class="io-line">Defined in <a href="" data-line="70"
-                                    class="link-to-prism">src/app/core/services/edition-complexes/edition-complexes.service.ts:70</a></div>
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -528,7 +528,7 @@ for the complexes of the edition view.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/core/services/edition-complexes/edition-complexes.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/views/edition-view/services/edition-complexes.service.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -550,7 +550,7 @@ for the complexes of the edition view.</p>
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
-import { EditionComplex, EditionComplexesList, EditionComplexJsonInput } from &#x27;@awg-views/edition-view/models&#x27;;
+import { EditionComplex, EditionComplexesList, EditionComplexJsonData } from &#x27;@awg-views/edition-view/models&#x27;;
 
 import * as jsonEditionComplexes from &#x27;assets/data/edition/edition-complexes.json&#x27;;
 
@@ -634,7 +634,7 @@ export class EditionComplexesService {
         const complexesData &#x3D; (jsonEditionComplexes as any).default;
         const editionComplexesList: EditionComplexesList &#x3D; {};
 
-        complexesData.editionComplexes.forEach((complex: EditionComplexJsonInput) &#x3D;&gt; {
+        complexesData.editionComplexes.forEach((complex: EditionComplexJsonData) &#x3D;&gt; {
             Object.entries(complex).forEach(([complexKey, complexValue]) &#x3D;&gt; {
                 editionComplexesList[complexKey] &#x3D; new EditionComplex(
                     complexValue.titleStatement,

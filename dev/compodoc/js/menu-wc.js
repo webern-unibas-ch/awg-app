@@ -1035,9 +1035,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/EDITION_CATALOGUE_TYPE_CONSTANTS.html" data-type="entity-link" >EDITION_CATALOGUE_TYPE_CONSTANTS</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EDITION_COMPLEXES.html" data-type="entity-link" >EDITION_COMPLEXES</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/EDITION_ROUTE_CONSTANTS.html" data-type="entity-link" >EDITION_ROUTE_CONSTANTS</a>
                             </li>
                             <li class="link">
@@ -1057,6 +1054,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/EditionComplexTitleStatement.html" data-type="entity-link" >EditionComplexTitleStatement</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/EditionOutline.html" data-type="entity-link" >EditionOutline</a>
                             </li>
                             <li class="link">
                                 <a href="classes/EditionRouteConstant.html" data-type="entity-link" >EditionRouteConstant</a>
@@ -1549,6 +1549,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/EditionDataService.html" data-type="entity-link" >EditionDataService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/EditionInitService.html" data-type="entity-link" >EditionInitService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/EditionOutlineService.html" data-type="entity-link" >EditionOutlineService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/EditionService.html" data-type="entity-link" >EditionService</a>
                                 </li>
                                 <li class="link">
@@ -1632,22 +1638,31 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/Date.html" data-type="entity-link" >Date</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/EditionComplexesJsonInput.html" data-type="entity-link" >EditionComplexesJsonInput</a>
+                                <a href="interfaces/EditionComplexesJsonData.html" data-type="entity-link" >EditionComplexesJsonData</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/EditionComplexJsonInput.html" data-type="entity-link" >EditionComplexJsonInput</a>
+                                <a href="interfaces/EditionComplexJsonData.html" data-type="entity-link" >EditionComplexJsonData</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/EditionOutlineComplex.html" data-type="entity-link" >EditionOutlineComplex</a>
+                                <a href="interfaces/EditionOutlineComplexItem.html" data-type="entity-link" >EditionOutlineComplexItem</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/EditionOutlineComplexTypes.html" data-type="entity-link" >EditionOutlineComplexTypes</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/EditionOutlineJsonData.html" data-type="entity-link" >EditionOutlineJsonData</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/EditionOutlineSection.html" data-type="entity-link" >EditionOutlineSection</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/EditionOutlineSectionsJsonData.html" data-type="entity-link" >EditionOutlineSectionsJsonData</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/EditionOutlineSeries.html" data-type="entity-link" >EditionOutlineSeries</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditionOutlineSeriesJsonData.html" data-type="entity-link" >EditionOutlineSeriesJsonData</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IFolioLegend.html" data-type="entity-link" >IFolioLegend</a>

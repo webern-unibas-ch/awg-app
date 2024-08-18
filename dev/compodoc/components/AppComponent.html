@@ -190,7 +190,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(activatedRoute: ActivatedRoute, analyticsService: <a href="../injectables/AnalyticsService.html" target="_self">AnalyticsService</a>, ngbConfig: NgbConfig, router: Router, titleService: Title)</code>
+<code>constructor(activatedRoute: ActivatedRoute, analyticsService: <a href="../injectables/AnalyticsService.html" target="_self">AnalyticsService</a>, editionInitService: <a href="../injectables/EditionInitService.html" target="_self">EditionInitService</a>, ngbConfig: NgbConfig, router: Router, titleService: Title)</code>
                     </td>
                 </tr>
                         <tr>
@@ -246,6 +246,20 @@
                                                         <td>
                                                                 <p>Instance of the AnalyticsService.</p>
 
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>editionInitService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EditionInitService.html" target="_self" >EditionInitService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
                                                         </td>
                                                 </tr>
                                                 <tr>
@@ -323,7 +337,7 @@ import { filter, map } from &#x27;rxjs/operators&#x27;;
 
 import { NgbConfig } from &#x27;@ng-bootstrap/ng-bootstrap&#x27;;
 
-import { AnalyticsService, EditionComplexesService } from &#x27;@awg-core/services&#x27;;
+import { AnalyticsService, EditionInitService } from &#x27;@awg-core/services&#x27;;
 
 /**
  * The main component of the AWG App.
@@ -350,6 +364,7 @@ export class AppComponent {
     constructor(
         private readonly activatedRoute: ActivatedRoute,
         private analyticsService: AnalyticsService,
+        private editionInitService: EditionInitService,
         ngbConfig: NgbConfig,
         private readonly router: Router,
         private titleService: Title
@@ -364,8 +379,8 @@ export class AppComponent {
         // Init analytics
         this.analyticsService.initializeAnalytics();
 
-        // Init edition complexes
-        EditionComplexesService.initializeEditionComplexesList();
+        // Init edition complexes and outline
+        this.editionInitService.initializeEdition();
 
         // Track router events
         this.router.events

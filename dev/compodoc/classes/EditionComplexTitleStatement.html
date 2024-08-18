@@ -293,14 +293,14 @@ import {
 import { EditionRouteConstant } from &#x27;./edition-route-constant.model&#x27;;
 
 /**
- * The EditionComplexJsonInput interface.
+ * The EditionComplexJsonData interface.
  *
  * It is used in the context of the edition view
- * to describe the structure of a JSON input for an edition complex.
+ * to describe the structure of a JSON data for an edition complex.
  */
-export interface EditionComplexJsonInput {
+export interface EditionComplexJsonData {
     /**
-     * The edition complex input.
+     * The edition complex data.
      */
     [key: string]: {
         titleStatement: { title: string; catalogueType: string; catalogueNumber: string };
@@ -310,16 +310,16 @@ export interface EditionComplexJsonInput {
 }
 
 /**
- * The EditionComplexesJsonInput interface.
+ * The EditionComplexesJsonData interface.
  *
  * It is used in the context of the edition view
- * to describe the structure of a JSON input for edition complexes.
+ * to describe the structure of a JSON data for edition complexes.
  */
-export interface EditionComplexesJsonInput {
+export interface EditionComplexesJsonData {
     /**
-     * The edition complexes input.
+     * The edition complexes data.
      */
-    editionComplexes: EditionComplexJsonInput[];
+    editionComplexes: EditionComplexJsonData[];
 }
 
 /**
