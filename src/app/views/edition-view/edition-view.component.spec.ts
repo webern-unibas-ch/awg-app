@@ -381,11 +381,11 @@ describe('EditionViewComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);
                 });
 
-                it('... should have an h6, an h3 and a responsibility div in div.awg-edition-complex', () => {
+                it('... should have an h6 (breadcrumb), a JumbotronComponent (stubbed) and a responsibility div in div.awg-edition-complex', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);
 
-                    getAndExpectDebugElementByCss(divDes[0], 'h6', 1, 1);
-                    getAndExpectDebugElementByCss(divDes[0], 'h3.awg-edition-info-header', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], EditionJumbotronStubComponent, 1, 1);
                     getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-responsibility', 1, 1);
                 });
 
@@ -406,19 +406,21 @@ describe('EditionViewComponent (DONE)', () => {
                     expectToBe(hEl.innerText, expectedBreadCrumb);
                 });
 
-                it('... should display edition complex title in awg-edition-info-header', () => {
-                    const hDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-edition-complex > h3.awg-edition-info-header',
+                it('... should pass down `editionViewId` and `title` to JumbotronComponent (stubbed)', () => {
+                    // Get debug and native element of JumbotronComponent
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);
+                    const jumbotronDes = getAndExpectDebugElementByDirective(
+                        divDes[0],
+                        EditionJumbotronStubComponent,
                         1,
                         1
                     );
-                    const titleDes = getAndExpectDebugElementByCss(hDes[0], '.awg-edition-info-header-title', 1, 1);
-                    const titleEl = titleDes[0].nativeElement;
+                    const jumbotronCmp = jumbotronDes[0].injector.get(
+                        EditionJumbotronStubComponent
+                    ) as EditionJumbotronStubComponent;
 
-                    const expectedHeaderTitle = expectedSelectedEditionComplex.complexId.full;
-
-                    expectToBe(titleEl.innerHTML, expectedHeaderTitle);
+                    expectToBe(jumbotronCmp.jumbotronId, expectedId);
+                    expectToBe(jumbotronCmp.jumbotronTitle, expectedSelectedEditionComplex.complexId.full);
                 });
 
                 it('... should have one paragraph with editor and version in responsibility div', () => {
