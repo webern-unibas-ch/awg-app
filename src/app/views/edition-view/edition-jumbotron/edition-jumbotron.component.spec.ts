@@ -64,14 +64,14 @@ describe('EditionJumbotronComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have an h1 in jumbotron', () => {
+            it('... should have a heading (h3) in jumbotron', () => {
                 const jumbotronDes = getAndExpectDebugElementByCss(compDe, 'div.awg-jumbotron', 1, 1);
 
-                getAndExpectDebugElementByCss(jumbotronDes[0], 'h1', 1, 1);
+                getAndExpectDebugElementByCss(jumbotronDes[0], 'h3', 1, 1);
             });
 
-            it('... should pass down `jumbotronId` and `jumbotronTitle`to jumbotron h1', () => {
-                const headingDes = getAndExpectDebugElementByCss(compDe, 'div.awg-jumbotron > h1', 1, 1);
+            it('... should pass down `jumbotronId` and `jumbotronTitle`to jumbotron heading', () => {
+                const headingDes = getAndExpectDebugElementByCss(compDe, 'div.awg-jumbotron > h3', 1, 1);
                 const headingEl = headingDes[0].nativeElement;
 
                 expectToBe(headingEl.id, expectedId);
