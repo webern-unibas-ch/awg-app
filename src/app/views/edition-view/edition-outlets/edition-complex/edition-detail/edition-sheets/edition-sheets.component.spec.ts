@@ -10,7 +10,6 @@ import Spy = jasmine.Spy;
 import {
     expectSpyCall,
     expectToBe,
-    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
@@ -77,6 +76,12 @@ class EditionConvoluteStubComponent {
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+}
+
+@Component({ selector: 'awg-error-alert', template: '' })
+class ErrorAlertStubComponent {
+    @Input()
+    errorObject: any;
 }
 
 @Component({ selector: 'awg-modal', template: '' })
@@ -175,6 +180,7 @@ describe('EditionSheetsComponent', () => {
                 EditionSheetsComponent,
                 EditionConvoluteStubComponent,
                 EditionAccoladeStubComponent,
+                ErrorAlertStubComponent,
                 ModalStubComponent,
                 TwelveToneSpinnerStubComponent,
             ],
@@ -298,7 +304,7 @@ describe('EditionSheetsComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have a `div`', () => {
+            it('... should contain a `div`', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
             });
 
@@ -308,21 +314,23 @@ describe('EditionSheetsComponent', () => {
                 getAndExpectDebugElementByDirective(divDes[0], ModalStubComponent, 1, 1);
             });
 
-            it('... should not have a nested div.errorMessage', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 0, 0);
+            it('... should not contain an error alert component (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], ErrorAlertStubComponent, 0, 0);
             });
 
-            it('... should not have a loading spinner (stubbed)', () => {
+            it('... should not contain a loading spinner component (stubbed)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
                 getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
             });
 
-            it('... should not have an AccoladeComponent (stubbed)', () => {
+            it('... should not contain an AccoladeComponent (stubbed)', () => {
                 getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 0, 0);
             });
 
-            it('... should not have a ConvoluteComponent (stubbed)', () => {
+            it('... should not contain a ConvoluteComponent (stubbed)', () => {
                 getAndExpectDebugElementByDirective(compDe, EditionConvoluteStubComponent, 0, 0);
             });
         });
@@ -351,7 +359,7 @@ describe('EditionSheetsComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have one div.awg-sheets-view', () => {
+            it('... should contain one div.awg-sheets-view', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-sheets-view', 1, 1);
             });
 
@@ -376,18 +384,20 @@ describe('EditionSheetsComponent', () => {
                     detectChangesOnPush(fixture);
                 }));
 
-                it('... should not have sheets view, but one div.errorMessage with centered danger alert', waitForAsync(() => {
+                it('... should not contain sheets view, but one ErrorAlertComponent (stubbed)', waitForAsync(() => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-sheets-view', 0, 0);
-                    const errorDes = getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 1, 1);
 
-                    getAndExpectDebugElementByCss(errorDes[0], 'div.text-center > div.alert-danger', 1, 1);
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], ErrorAlertStubComponent, 1, 1);
                 }));
 
-                it('... should display errorMessage', waitForAsync(() => {
-                    const alertDes = getAndExpectDebugElementByCss(compDe, 'div.alert-danger', 1, 1);
-                    const alertEl = alertDes[0].nativeElement;
+                it('... should pass down error object to ErrorAlertComponent', waitForAsync(() => {
+                    const errorAlertDes = getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 1, 1);
+                    const errorAlertCmp = errorAlertDes[0].injector.get(
+                        ErrorAlertStubComponent
+                    ) as ErrorAlertStubComponent;
 
-                    expectToContain(alertEl.textContent, jsonPipe.transform(expectedError));
+                    expectToEqual(errorAlertCmp.errorObject, expectedError);
                 }));
             });
 
@@ -398,7 +408,8 @@ describe('EditionSheetsComponent', () => {
                         detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-sheets-view', 0, 0);
-                        getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
+
                         getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                     });
                 });

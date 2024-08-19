@@ -21,7 +21,6 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
-    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
@@ -44,6 +43,12 @@ import { EditionComplexesService, EditionDataService, EditionService } from '@aw
 import { EditionReportComponent } from './edition-report.component';
 
 // Mock components
+@Component({ selector: 'awg-error-alert', template: '' })
+class ErrorAlertStubComponent {
+    @Input()
+    errorObject: any;
+}
+
 @Component({ selector: 'awg-modal', template: '' })
 class ModalStubComponent {
     open(_modalContentSnippetKey: string): void {}
@@ -171,6 +176,7 @@ describe('EditionReportComponent', () => {
             declarations: [
                 CompileHtmlComponent,
                 EditionReportComponent,
+                ErrorAlertStubComponent,
                 ModalStubComponent,
                 SourceListStubComponent,
                 SourceDescriptionStubComponent,
@@ -257,6 +263,16 @@ describe('EditionReportComponent', () => {
         });
 
         describe('VIEW', () => {
+            it('... should contain a `div`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+            });
+
+            it('... should contain one modal component (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], ModalStubComponent, 1, 1);
+            });
+
             it('... should contain no div.accordion yet', () => {
                 // Div.accordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
@@ -276,6 +292,18 @@ describe('EditionReportComponent', () => {
 
             it('... should not contain textcritics list component (stubbed) yet', () => {
                 getAndExpectDebugElementByDirective(compDe, TextcriticsListStubComponent, 0, 0);
+            });
+
+            it('... should not contain an error alert component (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], ErrorAlertStubComponent, 0, 0);
+            });
+
+            it('... should not contain a loading spinner component (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
             });
         });
     });
@@ -309,7 +337,6 @@ describe('EditionReportComponent', () => {
 
         describe('VIEW', () => {
             it('... should contain one div.accordion', () => {
-                // NgbAccordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
@@ -381,18 +408,20 @@ describe('EditionReportComponent', () => {
                     detectChangesOnPush(fixture);
                 }));
 
-                it('... should not have report view, but one div.errorMessage with centered danger alert', waitForAsync(() => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-report-view', 0, 0);
-                    const errorDes = getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 1, 1);
+                it('... should not contain report view, but one ErrorAlertComponent (stubbed)', waitForAsync(() => {
+                    getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
 
-                    getAndExpectDebugElementByCss(errorDes[0], 'div.text-center > div.alert-danger', 1, 1);
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], ErrorAlertStubComponent, 1, 1);
                 }));
 
-                it('... should display errorMessage', waitForAsync(() => {
-                    const alertDes = getAndExpectDebugElementByCss(compDe, 'div.alert-danger', 1, 1);
-                    const alertEl = alertDes[0].nativeElement;
+                it('... should pass down error object to ErrorAlertComponent', waitForAsync(() => {
+                    const errorAlertDes = getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 1, 1);
+                    const errorAlertCmp = errorAlertDes[0].injector.get(
+                        ErrorAlertStubComponent
+                    ) as ErrorAlertStubComponent;
 
-                    expectToContain(alertEl.textContent, jsonPipe.transform(expectedError));
+                    expectToEqual(errorAlertCmp.errorObject, expectedError);
                 }));
             });
 
@@ -404,7 +433,7 @@ describe('EditionReportComponent', () => {
                         detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-report-view', 0, 0);
-                        getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
                         getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
@@ -414,7 +443,7 @@ describe('EditionReportComponent', () => {
                         detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-report-view', 0, 0);
-                        getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
                         getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
@@ -424,7 +453,7 @@ describe('EditionReportComponent', () => {
                         detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-report-view', 0, 0);
-                        getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
                         getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                     });
                 });
