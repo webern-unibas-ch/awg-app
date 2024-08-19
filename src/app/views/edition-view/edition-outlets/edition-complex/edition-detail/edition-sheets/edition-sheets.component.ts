@@ -408,11 +408,8 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
 
             // Reset selectedSvgSheet if no sheetId is provided
             if (sheetIdFromQueryParams === '') {
-                this.selectedSvgSheet = null;
+                this.selectedSvgSheet = undefined;
             }
-
-            // Stop loading spinner
-            this.isLoading = false;
 
             // Navigate once more to the selected sheet
             this.onSvgSheetSelect({

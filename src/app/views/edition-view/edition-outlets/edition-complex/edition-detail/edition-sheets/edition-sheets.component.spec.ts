@@ -117,6 +117,7 @@ describe('EditionSheetsComponent', () => {
     let navigateWithComplexIdSpy: Spy;
     let navigationSpy: Spy;
     let onSvgSheetSelectSpy: Spy;
+    let selectSvgSheetSpy: Spy;
 
     let expectedEditionComplex: EditionComplex;
     let expectedFolioConvoluteData: FolioConvoluteList;
@@ -235,11 +236,15 @@ describe('EditionSheetsComponent', () => {
         editionSheetsServiceSelectConvoluteSpy = spyOn(mockEditionSheetsService, 'selectConvolute').and.returnValue(
             expectedFolioConvoluteData[0]
         );
+
+        navigationSpy = mockRouter.navigate as jasmine.Spy;
+
         getEditionSheetsDataSpy = spyOn(component, 'getEditionSheetsData').and.callThrough();
         navigateToReportFragmentSpy = spyOn(component, 'onReportFragmentNavigate').and.callThrough();
-        navigateWithComplexIdSpy = spyOn(component as any, '_navigateWithComplexId').and.callThrough();
-        navigationSpy = mockRouter.navigate as jasmine.Spy;
         onSvgSheetSelectSpy = spyOn(component, 'onSvgSheetSelect').and.callThrough();
+
+        navigateWithComplexIdSpy = spyOn(component as any, '_navigateWithComplexId').and.callThrough();
+        selectSvgSheetSpy = spyOn(component as any, '_selectSvgSheet').and.callThrough();
     });
 
     it('... should create', () => {
@@ -647,6 +652,232 @@ describe('EditionSheetsComponent', () => {
                         expectedNavigationExtras,
                     ]);
                 });
+            });
+        });
+
+        describe('#_assignData()', () => {
+            it('... should have a method `_assignData`', () => {
+                expect((component as any)._assignData).toBeDefined();
+            });
+
+            it('... should assign data from the service to the component', () => {
+                component.folioConvoluteData = undefined;
+                component.svgSheetsData = undefined;
+                component.textcriticsData = undefined;
+                detectChangesOnPush(fixture);
+
+                const expectedData = [expectedFolioConvoluteData, expectedSvgSheetsData, expectedTextcriticsData];
+
+                (component as any)._assignData(expectedData);
+
+                expectToEqual(component.folioConvoluteData, expectedFolioConvoluteData);
+                expectToEqual(component.svgSheetsData, expectedSvgSheetsData);
+                expectToEqual(component.textcriticsData, expectedTextcriticsData);
+            });
+        });
+
+        describe('#_getDefaultSheetId()', () => {
+            it('... should have a method `_getDefaultSheetId`', () => {
+                expect((component as any)._getDefaultSheetId).toBeDefined();
+            });
+
+            describe('... should return an empty string if', () => {
+                it('... should return an empty string if svgSheetsData is undefined', () => {
+                    component.svgSheetsData = undefined;
+                    detectChangesOnPush(fixture);
+
+                    const result = (component as any)._getDefaultSheetId();
+
+                    expectToBe(result, '');
+                });
+
+                it('... should return an empty string if svgSheetsData.sheets.sketchEditions is an empty array', () => {
+                    component.svgSheetsData = { sheets: { sketchEditions: [] } } as EditionSvgSheetList;
+                    detectChangesOnPush(fixture);
+
+                    const result = (component as any)._getDefaultSheetId();
+
+                    expectToBe(result, '');
+                });
+            });
+
+            it('... should return the id of the first sketch sheet by default (no partials)', () => {
+                const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
+
+                component.svgSheetsData = {
+                    sheets: { sketchEditions: [mockSheet1] },
+                } as EditionSvgSheetList;
+                detectChangesOnPush(fixture);
+
+                const result = (component as any)._getDefaultSheetId();
+
+                expectToBe(result, mockSheet1.id);
+            });
+
+            it('... should return the id and first partial of the first sketch sheet by default if partials are present', () => {
+                const mockSheet1 = {
+                    id: 'sheet1',
+                    content: [
+                        { svg: '', image: '', partial: 'a' },
+                        { svg: '', image: '', partial: 'b' },
+                    ],
+                } as EditionSvgSheet;
+                component.svgSheetsData = {
+                    sheets: { sketchEditions: [mockSheet1] },
+                } as EditionSvgSheetList;
+                detectChangesOnPush(fixture);
+
+                const result = (component as any)._getDefaultSheetId();
+
+                expectToBe(result, 'sheet1a');
+            });
+
+            it('... should return the first id and partial of the first sketch sheet from a list of multiple sheets', () => {
+                const mockSheet1 = {
+                    id: 'sheet1',
+                    content: [
+                        { svg: '', image: '', partial: 'a' },
+                        { svg: '', image: '', partial: 'b' },
+                    ],
+                } as EditionSvgSheet;
+                const mockSheet2 = {
+                    id: 'sheet2',
+                    content: [
+                        { svg: '', image: '', partial: 'c' },
+                        { svg: '', image: '', partial: 'd' },
+                    ],
+                } as EditionSvgSheet;
+                component.svgSheetsData = {
+                    sheets: { sketchEditions: [mockSheet1, mockSheet2] },
+                } as EditionSvgSheetList;
+
+                const result = (component as any)._getDefaultSheetId();
+
+                expectToBe(result, 'sheet1a');
+            });
+
+            it('... should return the first id and partial of the first sketch sheet from a list of multiple edition types', () => {
+                const mockSheet1 = {
+                    id: 'sheet1',
+                    content: [
+                        { svg: '', image: '', partial: 'a' },
+                        { svg: '', image: '', partial: 'b' },
+                    ],
+                } as EditionSvgSheet;
+                const mockSheet2 = { id: 'sheet2', content: [] } as EditionSvgSheet;
+                const mockSheet3 = {
+                    id: 'sheet3',
+                    content: [
+                        { svg: '', image: '', partial: 'c' },
+                        { svg: '', image: '', partial: 'd' },
+                    ],
+                } as EditionSvgSheet;
+                component.svgSheetsData = {
+                    sheets: {
+                        workEditions: [mockSheet1],
+                        textEditions: [mockSheet2],
+                        sketchEditions: [mockSheet3],
+                    },
+                } as EditionSvgSheetList;
+
+                const result = (component as any)._getDefaultSheetId();
+
+                expectToBe(result, 'sheet3c');
+            });
+        });
+
+        describe('#_handleQueryParams()', () => {
+            it('... should have a method `_handleQueryParams`', () => {
+                expect((component as any)._handleQueryParams).toBeDefined();
+            });
+
+            describe('... with svgSheetsData available and id given from query params', () => {
+                it('... should trigger `_selectSvgSheet` with the correct sheet id', () => {
+                    const sheetId = 'test-TF1';
+                    mockActivatedRoute.testQueryParamMap = { id: sheetId };
+                    detectChangesOnPush(fixture);
+
+                    (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
+
+                    expectSpyCall(selectSvgSheetSpy, 2, sheetId);
+                });
+            });
+
+            describe('... with svgSheetsData available and id not given from query params', () => {
+                it('... should trigger `onSvgSheetSelect` with snapshotQueryParamsId on first page load', () => {
+                    mockActivatedRoute.testQueryParamMap = { id: '' };
+                    (component as any)._isFirstPageLoad = true;
+
+                    const snapShotSheetId = 'test-TF1';
+                    component.snapshotQueryParamsId = snapShotSheetId;
+                    detectChangesOnPush(fixture);
+
+                    (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
+
+                    expectSpyCall(onSvgSheetSelectSpy, 3, {
+                        complexId: '',
+                        sheetId: snapShotSheetId,
+                    });
+                });
+
+                it('... should trigger `onSvgSheetSelect` with default id on subsequent page loads', () => {
+                    mockActivatedRoute.testQueryParamMap = { id: '' };
+                    (component as any)._isFirstPageLoad = false;
+
+                    const defaultSheetId = 'test-1';
+                    const snapShotSheetId = 'test-TF1';
+                    component.snapshotQueryParamsId = snapShotSheetId;
+                    detectChangesOnPush(fixture);
+
+                    (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
+
+                    expectSpyCall(onSvgSheetSelectSpy, 3, {
+                        complexId: '',
+                        sheetId: defaultSheetId,
+                    });
+                });
+            });
+
+            describe('... with svgSheetsData not available and id not given from query params', () => {
+                it('... should trigger `onSvgSheetSelect` with no id', () => {
+                    mockActivatedRoute.testQueryParamMap = { id: '' };
+                    (component as any)._isFirstPageLoad = true;
+
+                    component.svgSheetsData = undefined;
+                    component.snapshotQueryParamsId = '';
+                    detectChangesOnPush(fixture);
+
+                    (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
+
+                    expectSpyCall(onSvgSheetSelectSpy, 3, {
+                        complexId: '',
+                        sheetId: '',
+                    });
+                });
+                it('... should reset selectedSvgSheet to undefined', () => {
+                    mockActivatedRoute.testQueryParamMap = { id: '' };
+                    (component as any)._isFirstPageLoad = true;
+
+                    component.svgSheetsData = undefined;
+                    component.snapshotQueryParamsId = '';
+                    detectChangesOnPush(fixture);
+
+                    (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
+
+                    expect(component.selectedSvgSheet).toBeUndefined();
+                });
+            });
+
+            it('... should set _isFirstPageLoad and isLoading to false after handling query params', () => {
+                component.isLoading = true;
+                (component as any)._isFirstPageLoad = true;
+                mockActivatedRoute.testQueryParamMap = { id: 'sheetId' };
+                detectChangesOnPush(fixture);
+
+                (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
+
+                expectToBe((component as any)._isFirstPageLoad, false);
+                expectToBe(component.isLoading, false);
             });
         });
 
