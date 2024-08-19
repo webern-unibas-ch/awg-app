@@ -97,23 +97,12 @@
             }
         </div>
     } @else {
+        <!-- error message -->
         @if (errorObject) {
-            <div class="errorMessage">
-                <div class="col-12 text-center">
-                    <div class="alert alert-danger">{{ errorObject | json }}</div>
-                </div>
-            </div>
+            <awg-error-alert [errorObject]="errorObject"></awg-error-alert>
+        } @else {
+            <!-- loading spinner -->
+            <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
         }
     }
-
-    <!-- error message -->
-    <ng-template #error>
-        @if (errorObject) {
-            <div class="errorMessage">
-                <div class="col-12 text-center">
-                    <div class="alert alert-danger">{{ errorObject | json }}</div>
-                </div>
-            </div>
-        }
-    </ng-template>
 </div>

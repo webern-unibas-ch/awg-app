@@ -35,13 +35,10 @@
     } @else {
         <!-- error message -->
         @if (errorObject) {
-            <div class="errorMessage">
-                <div class="col-12 text-center">
-                    <div class="alert alert-danger">
-                        {{ errorObject }}
-                    </div>
-                </div>
-            </div>
+            <awg-error-alert [errorObject]="errorObject"></awg-error-alert>
+        } @else {
+            <!-- loading spinner -->
+            <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
         }
     }
 </div>
