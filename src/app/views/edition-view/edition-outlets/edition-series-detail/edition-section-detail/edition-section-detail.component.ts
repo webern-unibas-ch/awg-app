@@ -5,8 +5,8 @@ import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
 import { UtilityService } from '@awg-core/services';
-import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionOutlineComplexItem, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
+import { EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionSectionDetail component.
@@ -66,17 +66,17 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getSection();
+        this.updateSectionFromRoute();
     }
 
     /**
-     * Public method: getSection.
+     * Public method: updateSectionFromRoute.
      *
-     * It gets the selected section by ID from the EditionService.
+     * It fetches the route params to get the id of the current section and updates the edition service.
      *
-     * @returns {void} Gets the edition section.
+     * @returns {void} Updates the edition section.
      */
-    getSection(): void {
+    updateSectionFromRoute(): void {
         const sectionId = this.route.snapshot.paramMap.get('id');
 
         this.editionService
@@ -88,7 +88,7 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
             .subscribe(series => {
                 this.selectedSeries = series;
                 const seriesId = series.series.route;
-                this.selectedSection = this.editionService.getEditionSectionById(seriesId, sectionId);
+                this.selectedSection = EditionOutlineService.getEditionSectionById(seriesId, sectionId);
                 this.editionService.updateSelectedEditionSection(this.selectedSection);
             });
     }

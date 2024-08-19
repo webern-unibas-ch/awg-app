@@ -15,12 +15,14 @@ import { CompileHtmlModule } from './compile-html';
 //
 // Shared components
 import { AddressComponent } from './address/address.component';
+import { ErrorAlertComponent } from './error-alert/error-alert.component';
 import { HeadingComponent } from './heading/heading.component';
 import { JsonViewerComponent } from './json-viewer/json-viewer.component';
 import { LicenseComponent } from './license/license.component';
 import { ModalComponent } from './modal/modal.component';
 import { OpenStreetMapComponent } from './open-street-map/open-street-map.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
+import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 import { TablePaginationComponent } from './table/table-pagination/table-pagination.component';
 import { TableComponent } from './table/table.component';
 import { ToastComponent } from './toast/toast.component';
@@ -55,12 +57,14 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
     ],
     declarations: [
         AddressComponent,
+        ErrorAlertComponent,
         HeadingComponent,
         JsonViewerComponent,
         LicenseComponent,
         ModalComponent,
         OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
+        ScrollToTopComponent,
         TableComponent,
         TablePaginationComponent,
         ToastComponent,
@@ -82,12 +86,14 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         SharedNgbootstrapModule,
 
         AddressComponent,
+        ErrorAlertComponent,
         HeadingComponent,
         JsonViewerComponent,
         LicenseComponent,
         ModalComponent,
         OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
+        ScrollToTopComponent,
         TableComponent,
         ToastComponent,
         TwelveToneSpinnerComponent,

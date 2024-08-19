@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionSeriesDetail component.
@@ -45,20 +45,20 @@ export class EditionSeriesDetailComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getSeries();
+        this.updateSeriesFromRoute();
     }
 
     /**
-     * Public method: getSeries.
+     * Public method: updateSeriesFromRoute.
      *
-     * It gets the selected series by ID from the EditionService.
+     * It fetches the route params to get the id of the current series and updates the edition service.
      *
-     * @returns {void} Gets the edition series.
+     * @returns {void} Updates the edition series.
      */
-    getSeries(): void {
+    updateSeriesFromRoute(): void {
         const id = this.route.snapshot.paramMap.get('id');
 
-        this.selectedSeries = this.editionService.getEditionSeriesById(id);
+        this.selectedSeries = EditionOutlineService.getEditionSeriesById(id);
         this.editionService.updateSelectedEditionSeries(this.selectedSeries);
     }
 }

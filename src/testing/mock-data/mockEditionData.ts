@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
+import {
+    EDITION_CATALOGUE_TYPE_CONSTANTS,
+    EDITION_ROUTE_CONSTANTS,
+} from '@awg-views/edition-view/edition-route-constants';
+
 /**
  * Test helper data file: mockEditionData.
  *
@@ -8,6 +13,92 @@
  * Exposed to be called from tests.
  */
 export const mockEditionData = {
+    /**
+     * Test helper data constant: mockEditionComplexesList.
+     *
+     * It provides a mocked editionComplexesList object.
+     */
+    mockEditionComplexesList: {
+        OP3: {
+            titleStatement: {
+                title: '<em>Vier Lieder</em>',
+                catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
+                catalogueNumber: '12',
+            },
+            publicationStatement: {
+                series: EDITION_ROUTE_CONSTANTS.SERIES_1,
+                section: EDITION_ROUTE_CONSTANTS.SECTION_5,
+            },
+            respStatement: {
+                editors: [
+                    {
+                        name: 'Thomas Ahrend',
+                        homepage: 'https://www.anton-webern.ch/index.php?id',
+                    },
+                ],
+                lastModified: '7. August 2024',
+            },
+            complexId: {
+                route: '/op12',
+                short: 'op.&nbsp;12',
+                full: '<em>Vier Lieder</em> op.&nbsp;12',
+            },
+            baseRoute: '/edition/complex/op12/',
+        },
+        OP25: {
+            titleStatement: {
+                title: '<em>Drei Lieder nach Gedichten von Hildegard Jone</em>',
+                catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
+                catalogueNumber: '25',
+            },
+            publicationStatement: {
+                series: EDITION_ROUTE_CONSTANTS.SERIES_1,
+                section: EDITION_ROUTE_CONSTANTS.SECTION_5,
+            },
+            respStatement: {
+                editors: [
+                    {
+                        name: 'Thomas Ahrend',
+                        homepage: 'https://www.anton-webern.ch/index.php?id',
+                    },
+                ],
+                lastModified: '7. August 2024',
+            },
+            complexId: {
+                route: '/op25',
+                short: 'op.&nbsp;25',
+                full: '<em>Drei Lieder nach Gedichten von Hildegard Jone</em> op.&nbsp;25',
+            },
+            baseRoute: '/edition/complex/op25/',
+        },
+        M22: {
+            titleStatement: {
+                title: 'Studienkomposition für Klavier/Streichquartett',
+                catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+                catalogueNumber: '22',
+            },
+            publicationStatement: {
+                series: EDITION_ROUTE_CONSTANTS.SERIES_1,
+                section: EDITION_ROUTE_CONSTANTS.SECTION_5,
+            },
+            respStatement: {
+                editors: [
+                    {
+                        name: 'Michael Matter',
+                        homepage: 'https://www.anton-webern.ch/index.php?id',
+                    },
+                ],
+                lastModified: '7. August 2024',
+            },
+            complexId: {
+                route: '/m22',
+                short: 'M&nbsp;22',
+                full: 'Studienkomposition für Klavier/Streichquartett M&nbsp;22',
+            },
+            baseRoute: '/edition/complex/m22/',
+        },
+    },
+
     /**
      * Test helper data constant: mockFolioConvoluteData.
      *
@@ -40,6 +131,36 @@ export const mockEditionData = {
                                         position: 1,
                                         startSystem: 2,
                                         endSystem: 4,
+                                    },
+                                ],
+                            },
+                            {
+                                complexId: 'op12',
+                                sheetId: 'M_212_Sk3',
+                                sigle: 'M 212 Sk3',
+                                sigleAddendum: 'T. 3',
+                                sectionPartition: 1,
+                                sections: [
+                                    {
+                                        position: 1,
+                                        startSystem: 5,
+                                        endSystem: 7,
+                                        relativeToSystem: 'above',
+                                    },
+                                ],
+                            },
+                            {
+                                complexId: 'op12',
+                                sheetId: 'M_212_Sk2',
+                                sigle: 'M 212 Sk2',
+                                sigleAddendum: 'T. 2',
+                                sectionPartition: 1,
+                                sections: [
+                                    {
+                                        position: 1,
+                                        startSystem: 5,
+                                        endSystem: 7,
+                                        relativeToSystem: 'below',
                                     },
                                 ],
                             },
@@ -148,6 +269,32 @@ export const mockEditionData = {
      * It provides a mocked modal snippet string.
      */
     mockModalSnippet: 'OP12_SHEET_COMING_SOON',
+
+    /**
+     * Test helper data constant: mockPreface Data.
+     *
+     * It provides a mocked preface data object.
+     */
+    mockPrefaceData: {
+        preface: [
+            {
+                id: 'de',
+                content: [
+                    "<span class='no-indent'>Die AWG gliedert sich in drei Serien:</span>",
+                    "<span class='no-indent spacebreak'>Sie werden nicht zu dem für den Druck typischen <span class='unicode'>{{ref.getGlyph('[ped]')}}</span>.-Zeichen vereinheitlicht.</span>",
+                    "<span class='small spacebreak'>Zugang zur AWG-Online-Edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></span>",
+                ],
+            },
+            {
+                id: 'en',
+                content: [
+                    "<span class='no-indent'>The AWG is divided into three series:</span>",
+                    "<span class='no-indent spacebreak'>They are not unified to the <span class='unicode'>{{ref.getGlyph('[ped]')}}</span>. character typical for printing.</span>",
+                    "<span class='small spacebreak'>Access to the AWG online edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></span>",
+                ],
+            },
+        ],
+    },
 
     /**
      * Test helper data constant: mockRowTablesData.
@@ -1044,33 +1191,57 @@ export const mockEditionData = {
                 rowtable: true,
                 comments: [
                     {
-                        svgGroupId: 'svg-group-1',
-                        measure: '10',
-                        system: '12',
-                        position: '1. Note',
-                        comment: 'Viertelnote überschreibt Halbe Note.',
+                        blockHeader: 'blockheader 1',
+                        blockComments: [
+                            {
+                                svgGroupId: 'svg-group-1',
+                                measure: '10',
+                                system: '12',
+                                position: '1. Note',
+                                comment: 'Viertelnote überschreibt Halbe Note.',
+                            },
+                            {
+                                svgGroupId: 'svg-group-2',
+                                measure: '10',
+                                system: '12',
+                                position: '2. Note',
+                                comment:
+                                    "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test SkXYZ</strong></a> T. [11] und <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Test Sk1</strong></a>.",
+                            },
+                            {
+                                svgGroupId: 'svg-group-3',
+                                measure: '{13}',
+                                system: '12',
+                                position: '3. Note',
+                                comment: '{{ref.getGlyph("[a]")}} überschreibt {{ref.getGlyph("[b]")}}.',
+                            },
+                            {
+                                svgGroupId: 'svg-group-4',
+                                measure: '[12]',
+                                system: '13',
+                                position: '',
+                                comment: 'radierte, nicht entzifferbare Schicht.',
+                            },
+                        ],
                     },
                     {
-                        svgGroupId: 'svg-group-2',
-                        measure: '10',
-                        system: '12',
-                        position: '2. Note',
-                        comment:
-                            "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test SkXYZ</strong></a> T. [11] und <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Test Sk1</strong></a>.",
-                    },
-                    {
-                        svgGroupId: 'svg-group-3',
-                        measure: '{13}',
-                        system: '12',
-                        position: '3. Note',
-                        comment: '{{ref.getGlyph("[a]")}} überschreibt {{ref.getGlyph("[b]")}}.',
-                    },
-                    {
-                        svgGroupId: 'svg-group-4',
-                        measure: '[12]',
-                        system: '13',
-                        position: '',
-                        comment: 'radierte, nicht entzifferbare Schicht.',
+                        blockHeader: 'blockheader 2',
+                        blockComments: [
+                            {
+                                svgGroupId: 'svg-group-5',
+                                measure: '11',
+                                system: '13',
+                                position: '1. Note',
+                                comment: 'Viertelnote überschreibt Halbe Note.',
+                            },
+                            {
+                                svgGroupId: 'svg-group-6',
+                                measure: '11',
+                                system: '13',
+                                position: '2. Note',
+                                comment: 'Halbe Note überschreibt Viertelnote.',
+                            },
+                        ],
                     },
                 ],
                 linkBoxes: [],

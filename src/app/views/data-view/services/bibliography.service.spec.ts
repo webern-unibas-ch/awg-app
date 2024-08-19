@@ -9,7 +9,7 @@ import Spy = jasmine.Spy;
 
 import { JsonConvert } from 'json2typescript';
 
-import { expectSpyCall } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockResourceFullResponseJson, mockSearchResponseJson } from '@testing/mock-data';
 
 import { AppConfig } from '@awg-app/app.config';
@@ -74,45 +74,28 @@ describe('BibliographyService (DONE)', () => {
         it('... should have serviceName', () => {
             const expectedServiceName = 'BibliographyService';
 
-            expect(bibliographyService.serviceName).toBeDefined();
-            expect(bibliographyService.serviceName)
-                .withContext(`should be ${expectedServiceName}`)
-                .toBe(expectedServiceName);
+            expectToBe(bibliographyService.serviceName, expectedServiceName);
         });
 
         it('... should have projectId', () => {
-            expect(bibliographyService.projectId).toBeDefined();
-            expect(bibliographyService.projectId).withContext(`should be ${expectedProjectId}`).toBe(expectedProjectId);
+            expectToBe(bibliographyService.projectId, expectedProjectId);
         });
 
         it('... should have resTypeId', () => {
-            expect(bibliographyService.resTypeId).toBeDefined();
-            expect(bibliographyService.resTypeId).withContext(`should be ${expectedResTypeId}`).toBe(expectedResTypeId);
+            expectToBe(bibliographyService.resTypeId, expectedResTypeId);
         });
 
         it('... should have bibShortTitlePropertyId', () => {
-            expect(bibliographyService.bibShortTitlePropertyId).toBeDefined();
-            expect(bibliographyService.bibShortTitlePropertyId)
-                .withContext(`should be ${expectedBibShortTitlePropertyId}`)
-                .toBe(expectedBibShortTitlePropertyId);
+            expectToBe(bibliographyService.bibShortTitlePropertyId, expectedBibShortTitlePropertyId);
         });
 
         it('... should have routes', () => {
-            expect(bibliographyService.resourcesRoute).toBeDefined();
-            expect(bibliographyService.resourcesRoute)
-                .withContext(`should be ${expectedResourcesRoute}`)
-                .toBe(expectedResourcesRoute);
-
-            expect(bibliographyService.searchRoute).toBeDefined();
-            expect(bibliographyService.searchRoute)
-                .withContext(`should be ${expectedSearchRoute}`)
-                .toBe(expectedSearchRoute);
+            expectToBe(bibliographyService.resourcesRoute, expectedResourcesRoute);
+            expectToBe(bibliographyService.searchRoute, expectedSearchRoute);
         });
 
         it("... should have empty 'httpGetUrl' (inherited from ApiService)", () => {
-            expect(bibliographyService.httpGetUrl).toBeDefined();
-            expect(bibliographyService.httpGetUrl).not.toBeTruthy();
-            expect(bibliographyService.httpGetUrl).withContext(`should be empty string`).toBe('');
+            expectToBe(bibliographyService.httpGetUrl, '');
         });
     });
 
@@ -122,8 +105,7 @@ describe('BibliographyService (DONE)', () => {
 
             httpClient.get<Data>('/foo/bar').subscribe({
                 next: data => {
-                    expect(data).toBeTruthy();
-                    expect(data).withContext(`should equal ${testData}`).toEqual(testData);
+                    expectToEqual(data, testData);
                 },
             });
 
@@ -133,7 +115,7 @@ describe('BibliographyService (DONE)', () => {
             });
 
             // Check for GET request
-            expect(call.request.method).toEqual('GET');
+            expectToEqual(call.request.method, 'GET');
 
             // Respond with mocked data
             call.flush(testData);
@@ -159,9 +141,9 @@ describe('BibliographyService (DONE)', () => {
                     `GET to ${expectedUrl}`
                 );
 
-                expect(call.request.method).withContext('should be GET').toBe('GET');
-                expect(call.request.responseType).withContext('should be json').toBe('json');
-                expect(call.request.url).withContext(`should be ${expectedUrl}`).toBe(expectedUrl);
+                expectToBe(call.request.method, 'GET');
+                expectToBe(call.request.responseType, 'json');
+                expectToBe(call.request.url, expectedUrl);
             }));
 
             it('... should set filter params for GET request', waitForAsync(() => {
@@ -177,22 +159,17 @@ describe('BibliographyService (DONE)', () => {
                     `GET to ${expectedUrl}`
                 );
 
-                expect(call.request.method).withContext('should be GET').toBe('GET');
-                expect(call.request.responseType).withContext('should be json').toBe('json');
-                expect(call.request.url).withContext(`should be ${expectedUrl}`).toBe(expectedUrl);
+                expectToBe(call.request.method, 'GET');
+                expectToBe(call.request.responseType, 'json');
+                expectToBe(call.request.url, expectedUrl);
+
                 expect(call.request.params).toBeDefined();
-                expect(call.request.params.keys().length).withContext('should be 5').toBe(5);
-                expect(call.request.params.get('searchtype')).withContext('should be extended').toBe('extended');
-                expect(call.request.params.get('filter_by_project'))
-                    .withContext(`should be ${expectedProjectId}`)
-                    .toBe(expectedProjectId);
-                expect(call.request.params.get('filter_by_restype'))
-                    .withContext(`should be ${expectedResTypeId}`)
-                    .toBe(expectedResTypeId);
-                expect(call.request.params.get('property_id'))
-                    .withContext(`should be ${expectedBibShortTitlePropertyId}`)
-                    .toBe(expectedBibShortTitlePropertyId);
-                expect(call.request.params.get('compop')).withContext('should be EXISTS').toBe('EXISTS');
+                expectToBe(call.request.params.keys().length, 5);
+                expectToBe(call.request.params.get('searchtype'), 'extended');
+                expectToBe(call.request.params.get('filter_by_project'), expectedProjectId);
+                expectToBe(call.request.params.get('filter_by_restype'), expectedResTypeId);
+                expectToBe(call.request.params.get('property_id'), expectedBibShortTitlePropertyId);
+                expectToBe(call.request.params.get('compop'), 'EXISTS');
             }));
 
             it('... should call getApiResponse (via ApiService) with filter params', waitForAsync(() => {
@@ -225,10 +202,7 @@ describe('BibliographyService (DONE)', () => {
 
                     bibliographyService.getBibliographyList().subscribe({
                         next: (response: SearchResponseJson) => {
-                            expect(response).toBeTruthy();
-                            expect(response)
-                                .withContext(`shoud equal ${expectedSearchResponseJson}`)
-                                .toEqual(expectedSearchResponseJson);
+                            expectToEqual(response, expectedSearchResponseJson);
                         },
                     });
                 }));
@@ -260,9 +234,7 @@ describe('BibliographyService (DONE)', () => {
                                 expectedQueryPath,
                                 expectedQueryHttpParams,
                             ]);
-                            expect(err)
-                                .withContext(`shoud equal ${expectedApiServiceError}`)
-                                .toEqual(expectedApiServiceError);
+                            expectToEqual(err, expectedApiServiceError);
                         },
                     });
                 }));
@@ -286,7 +258,7 @@ describe('BibliographyService (DONE)', () => {
                 // Expect one request to url with given settings
                 httpTestingController.expectOne((req: HttpRequest<any>) => {
                     expect(req.params).toBeDefined();
-                    expect(req.params.keys().length).withContext('should be 0').toBe(0);
+                    expectToBe(req.params.keys().length, 0);
 
                     return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
                 }, `GET to ${expectedUrl}`);
@@ -320,10 +292,7 @@ describe('BibliographyService (DONE)', () => {
 
                     bibliographyService.getBibliographyItemDetail(expectedResourceId).subscribe({
                         next: (response: ResourceFullResponseJson) => {
-                            expect(response).toBeTruthy();
-                            expect(response)
-                                .withContext(`should equal ${expectedResourceFullResponseJson}`)
-                                .toEqual(expectedResourceFullResponseJson);
+                            expectToEqual(response, expectedResourceFullResponseJson);
                         },
                     });
                 }));
@@ -351,9 +320,7 @@ describe('BibliographyService (DONE)', () => {
                                 expectedQueryPath,
                                 expectedQueryHttpParams,
                             ]);
-                            expect(err)
-                                .withContext(`shoud equal ${expectedApiServiceError}`)
-                                .toEqual(expectedApiServiceError);
+                            expectToEqual(err, expectedApiServiceError);
                         },
                     });
                 }));

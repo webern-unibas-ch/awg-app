@@ -1,3 +1,5 @@
+import { expectToBe } from '@testing/expect-helper';
+
 import { PrefixForm } from '../models';
 import { PrefixPipe } from './prefix.pipe';
 
@@ -15,12 +17,12 @@ describe('PrefixPipe', () => {
 
         it('... should transform the short form of a known default RDF prefix into its long form', () => {
             const pipe = new PrefixPipe();
-            const shortForm = 'rdf:';
+            const shortForm = 'rdf';
             const longForm = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
 
             const transformedValue = pipe.transform(shortForm, PrefixForm.LONG);
 
-            expect(transformedValue).toBe(longForm);
+            expectToBe(transformedValue, longForm);
         });
 
         it('... should transform the long form of a known default RDF prefix into its short form', () => {
@@ -30,7 +32,7 @@ describe('PrefixPipe', () => {
 
             const transformedValue = pipe.transform(longForm, PrefixForm.SHORT);
 
-            expect(transformedValue).toBe(shortForm);
+            expectToBe(transformedValue, shortForm);
         });
 
         it('... should not transform a short value that is not in the list of default RDF prefixes', () => {
@@ -39,7 +41,7 @@ describe('PrefixPipe', () => {
 
             const transformedValue = pipe.transform(shortForm, PrefixForm.LONG);
 
-            expect(transformedValue).toBe(shortForm);
+            expectToBe(transformedValue, shortForm);
         });
 
         it('... should not transform a long value that is not in the list of default RDF prefixes', () => {
@@ -48,7 +50,7 @@ describe('PrefixPipe', () => {
 
             const transformedValue = pipe.transform(longForm, PrefixForm.SHORT);
 
-            expect(transformedValue).toBe(longForm);
+            expectToBe(transformedValue, longForm);
         });
 
         it('... should throw an error if the prefixForm is not equal to PrefixForm.SHORT or PrefixForm.LONG', () => {

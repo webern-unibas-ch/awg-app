@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { UtilityService } from '@awg-app/core/services';
 
+import { UtilityService } from '@awg-core/services';
 import { SourceList } from '@awg-views/edition-view/models';
 
 /**

@@ -2,7 +2,7 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { METADATA } from '@awg-core/core-data';
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
@@ -63,11 +63,8 @@ describe('AddressComponent (DONE)', () => {
                 const headerDes = getAndExpectDebugElementByCss(compDe, 'address p#awg-address-header a', 1, 1);
                 const headerEl = headerDes[0].nativeElement;
 
-                expect(headerEl.href).toBeDefined();
-                expect(headerEl.href).toBeFalsy();
-
-                expect(headerEl.textContent).toBeDefined();
-                expect(headerEl.textContent).toBeFalsy();
+                expectToBe(headerEl.href, '');
+                expectToBe(headerEl.textContent, '');
             });
 
             it('... should not render the address content information yet', () => {
@@ -93,25 +90,14 @@ describe('AddressComponent (DONE)', () => {
                 const phoneEl = phoneDes[0].nativeElement;
                 const emailEl = emailDes[0].nativeElement;
 
-                expect(institutionEl.textContent).toBeDefined();
-                expect(institutionEl.textContent).toBeFalsy();
+                expectToBe(institutionEl.textContent, '');
+                expectToBe(streetEl.textContent, '');
+                expectToBe(postalCityEl.textContent, '');
+                expectToBe(countryEl.textContent, '');
 
-                expect(streetEl.textContent).toBeDefined();
-                expect(streetEl.textContent).toBeFalsy();
-
-                expect(postalCityEl.textContent).toBeDefined();
-                expect(postalCityEl.textContent).toBeFalsy();
-
-                expect(countryEl.textContent).toBeDefined();
-                expect(countryEl.textContent).toBeFalsy();
-
-                expect(phoneEl.textContent).toBeDefined();
-                expect(phoneEl.textContent).toBeFalsy();
-
-                expect(emailEl.href).toBeDefined();
-                expect(emailEl.href).toBeFalsy();
-                expect(emailEl.textContent).toBeDefined();
-                expect(emailEl.textContent).toBeFalsy();
+                expectToBe(phoneEl.textContent, '');
+                expectToBe(emailEl.href, '');
+                expectToBe(emailEl.textContent, '');
             });
         });
     });
@@ -131,15 +117,8 @@ describe('AddressComponent (DONE)', () => {
                 const headerDes = getAndExpectDebugElementByCss(compDe, 'address p#awg-address-header a', 1, 1);
                 const headerEl = headerDes[0].nativeElement;
 
-                expect(headerEl.href).toBeTruthy();
-                expect(headerEl.href)
-                    .withContext(`should be ${expectedPageMetaData.awgProjectUrl}`)
-                    .toBe(expectedPageMetaData.awgProjectUrl);
-
-                expect(headerEl.textContent).toBeTruthy();
-                expect(headerEl.textContent)
-                    .withContext(`should be ${expectedPageMetaData.awgProjectName}`)
-                    .toBe(expectedPageMetaData.awgProjectName);
+                expectToBe(headerEl.href, expectedPageMetaData.awgProjectUrl);
+                expectToBe(headerEl.textContent, expectedPageMetaData.awgProjectName);
             });
 
             it('... should render the address content institution information', () => {
@@ -151,10 +130,7 @@ describe('AddressComponent (DONE)', () => {
                 );
                 const institutionEl = institutionDes[0].nativeElement;
 
-                expect(institutionEl.textContent).toBeTruthy();
-                expect(institutionEl.textContent)
-                    .withContext(`should be ${expectedContactMetaData.address.institution}`)
-                    .toBe(expectedContactMetaData.address.institution);
+                expectToBe(institutionEl.textContent, expectedContactMetaData.address.institution);
             });
 
             it('... should render the address content street information', () => {
@@ -166,10 +142,7 @@ describe('AddressComponent (DONE)', () => {
                 );
                 const streetEl = streetDes[0].nativeElement;
 
-                expect(streetEl.textContent).toBeTruthy();
-                expect(streetEl.textContent)
-                    .withContext(`should be ${expectedContactMetaData.address.street}`)
-                    .toBe(expectedContactMetaData.address.street);
+                expectToBe(streetEl.textContent, expectedContactMetaData.address.street);
             });
 
             it('... should render the address content postal city information', () => {
@@ -184,10 +157,7 @@ describe('AddressComponent (DONE)', () => {
                 const expectedPostalCity =
                     expectedContactMetaData.address.postalCode + '\xA0' + expectedContactMetaData.address.city;
 
-                expect(postalCityEl.textContent).toBeTruthy();
-                expect(postalCityEl.textContent)
-                    .withContext(`should be ${expectedPostalCity}`)
-                    .toBe(expectedPostalCity);
+                expectToBe(postalCityEl.textContent, expectedPostalCity);
             });
 
             it('... should render the address content country information', () => {
@@ -199,10 +169,7 @@ describe('AddressComponent (DONE)', () => {
                 );
                 const countryEl = countryDes[0].nativeElement;
 
-                expect(countryEl.textContent).toBeTruthy();
-                expect(countryEl.textContent)
-                    .withContext(`should be ${expectedContactMetaData.address.country}`)
-                    .toBe(expectedContactMetaData.address.country);
+                expectToBe(countryEl.textContent, expectedContactMetaData.address.country);
             });
 
             it('... should render the address content phone information', () => {
@@ -217,8 +184,7 @@ describe('AddressComponent (DONE)', () => {
                 const expectedPhone =
                     expectedContactMetaData.phone.label + '\xA0' + expectedContactMetaData.phone.number;
 
-                expect(phoneEl.textContent).toBeTruthy();
-                expect(phoneEl.textContent).withContext(`should be ${expectedPhone}`).toBe(expectedPhone);
+                expectToBe(phoneEl.textContent, expectedPhone);
             });
 
             it('... should render the address content email information', () => {
@@ -230,14 +196,8 @@ describe('AddressComponent (DONE)', () => {
                 );
                 const emailEl = emailDes[0].nativeElement;
 
-                expect(emailEl.href).toBeTruthy();
-                expect(emailEl.href)
-                    .withContext(`should be ${expectedContactMetaData.email.mailto}`)
-                    .toBe(expectedContactMetaData.email.mailto);
-                expect(emailEl.textContent).toBeTruthy();
-                expect(emailEl.textContent)
-                    .withContext(`should be ${expectedContactMetaData.email.safeString}`)
-                    .toBe(expectedContactMetaData.email.safeString);
+                expectToBe(emailEl.href, expectedContactMetaData.email.mailto);
+                expectToBe(emailEl.textContent, expectedContactMetaData.email.safeString);
             });
         });
     });

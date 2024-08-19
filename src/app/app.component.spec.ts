@@ -2,6 +2,7 @@
 import { Location } from '@angular/common';
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { Title } from '@angular/platform-browser';
 import { Router, RouterModule, Routes } from '@angular/router';
 
 import Spy = jasmine.Spy;
@@ -9,7 +10,7 @@ import Spy = jasmine.Spy;
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { AnalyticsService } from '@awg-core/services';
+import { AnalyticsService, EditionInitService } from '@awg-core/services';
 
 import { AppComponent } from './app.component';
 
@@ -30,9 +31,14 @@ export class RoutedTestMockComponent {}
 export class RoutedTest2MockComponent {}
 
 export const MOCK_ROUTES: Routes = [
-    { path: '', redirectTo: 'test', pathMatch: 'full' },
-    { path: 'test', component: RoutedTestMockComponent },
-    { path: 'test2', component: RoutedTest2MockComponent },
+    { path: '', redirectTo: 'test1', pathMatch: 'full' },
+    { path: 'test1', component: RoutedTestMockComponent, data: { title: 'Custom Page Title 1' } },
+    {
+        path: 'test2',
+        component: RoutedTest2MockComponent,
+        data: {},
+        children: [{ path: 'test3', component: RoutedTestMockComponent, data: { title: 'Custom Page Title 3' } }],
+    },
 ];
 
 describe('AppComponent (DONE)', () => {
@@ -40,12 +46,18 @@ describe('AppComponent (DONE)', () => {
     let fixture: ComponentFixture<AppComponent>;
     let compDe: DebugElement;
 
-    let router: Router;
     let location: Location;
+    let router: Router;
+    let titleService: Title;
 
     let mockAnalyticsService: Partial<AnalyticsService>;
+    let mockEditionInitService: Partial<EditionInitService>;
+
+    let getTitleSpy: Spy;
+    let setTitleSpy: Spy;
     let initialzeAnalyticsSpy: Spy;
     let trackpageViewSpy: Spy;
+    let initializeEditionSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         // Create a mocked AnalyticsService  with an `initializeAnalytics` and `trackPageView` spy
@@ -54,6 +66,13 @@ describe('AppComponent (DONE)', () => {
                 // Intentional empty test override
             },
             trackPageView: (page: string): void => {
+                // Intentional empty test override
+            },
+        };
+
+        // Create a mocked EditionInitService with an `initializeEdition` spy
+        mockEditionInitService = {
+            initializeEdition: (): void => {
                 // Intentional empty test override
             },
         };
@@ -68,11 +87,18 @@ describe('AppComponent (DONE)', () => {
                 RoutedTestMockComponent,
                 RoutedTest2MockComponent,
             ],
-            providers: [{ provide: AnalyticsService, useValue: mockAnalyticsService }],
+            providers: [
+                { provide: AnalyticsService, useValue: mockAnalyticsService },
+                { provide: EditionInitService, useValue: mockEditionInitService },
+                Title,
+            ],
         }).compileComponents();
 
         // Spies for service methods
+        getTitleSpy = spyOn(Title.prototype, 'getTitle').and.returnValue('Default Page Title');
+        setTitleSpy = spyOn(Title.prototype, 'setTitle').and.callThrough();
         initialzeAnalyticsSpy = spyOn(mockAnalyticsService, 'initializeAnalytics').and.callThrough();
+        initializeEditionSpy = spyOn(mockEditionInitService, 'initializeEdition').and.callThrough();
         trackpageViewSpy = spyOn(mockAnalyticsService, 'trackPageView').and.callThrough();
     }));
 
@@ -84,8 +110,9 @@ describe('AppComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        router = TestBed.inject(Router);
         location = TestBed.inject(Location);
+        router = TestBed.inject(Router);
+        titleService = TestBed.inject(Title);
 
         // Workaround for ngZone issue;
         // Cf. https://github.com/angular/angular/issues/25837
@@ -109,9 +136,12 @@ describe('AppComponent (DONE)', () => {
         expect(component).toBeTruthy();
     }));
 
-    it('... injected service should use provided mockValue', () => {
+    it('... injected services should use provided mockValues', () => {
         const analyticsService = TestBed.inject(AnalyticsService);
-        expect(analyticsService === mockAnalyticsService).toBe(true);
+        expectToBe(analyticsService === mockAnalyticsService, true);
+
+        const editionInitService = TestBed.inject(EditionInitService);
+        expectToBe(editionInitService === mockEditionInitService, true);
     });
 
     describe('router setup (self-test)', () => {
@@ -119,18 +149,18 @@ describe('AppComponent (DONE)', () => {
             expectToBe(location.path(), '');
         }));
 
-        it("... should redirect to /test from '' redirect", waitForAsync(() => {
+        it("... should redirect to /test1 from '' redirect", waitForAsync(() => {
             fixture.ngZone.run(() => {
                 router.navigate(['']).then(() => {
-                    expectToBe(location.path(), '/test');
+                    expectToBe(location.path(), '/test1');
                 });
             });
         }));
 
-        it("... should navigate to 'test' from /test", waitForAsync(() => {
+        it("... should navigate to 'test1' from /test1", waitForAsync(() => {
             fixture.ngZone.run(() => {
-                router.navigate(['/test']).then(() => {
-                    expectToBe(location.path(), '/test');
+                router.navigate(['/test1']).then(() => {
+                    expectToBe(location.path(), '/test1');
                 });
             });
         }));
@@ -139,6 +169,14 @@ describe('AppComponent (DONE)', () => {
             fixture.ngZone.run(() => {
                 router.navigate(['/test2']).then(() => {
                     expectToBe(location.path(), '/test2');
+                });
+            });
+        }));
+
+        it("... should navigate to '/test2/test3' from /test2/test3", waitForAsync(() => {
+            fixture.ngZone.run(() => {
+                router.navigate(['/test2/test3']).then(() => {
+                    expectToBe(location.path(), '/test2/test3');
                 });
             });
         }));
@@ -157,7 +195,7 @@ describe('AppComponent (DONE)', () => {
             it('... should call AnalyticsService to track page view after navigation', waitForAsync(() => {
                 fixture.ngZone.run(() => {
                     router.navigate(['']).then(() => {
-                        expectSpyCall(trackpageViewSpy, 1, '/test');
+                        expectSpyCall(trackpageViewSpy, 1, '/test1');
                     });
                 });
             }));
@@ -165,18 +203,24 @@ describe('AppComponent (DONE)', () => {
             it('... should call AnalyticsService to track page view after navigation changed', waitForAsync(() => {
                 fixture.ngZone.run(() => {
                     router.navigate(['']).then(() => {
-                        expectSpyCall(trackpageViewSpy, 1, '/test');
+                        expectSpyCall(trackpageViewSpy, 1, '/test1');
 
-                        router.navigate(['test2']).then(() => {
+                        router.navigate(['/test2']).then(() => {
                             expectSpyCall(trackpageViewSpy, 2, '/test2');
 
-                            router.navigate(['test']).then(() => {
-                                expectSpyCall(trackpageViewSpy, 3, '/test');
+                            router.navigate(['/test1']).then(() => {
+                                expectSpyCall(trackpageViewSpy, 3, '/test1');
                             });
                         });
                     });
                 });
             }));
+        });
+
+        describe('EditionInit', () => {
+            it('... should call EditionInitService to initialize edition', () => {
+                expectSpyCall(initializeEditionSpy, 1);
+            });
         });
 
         describe('VIEW', () => {
@@ -191,6 +235,36 @@ describe('AppComponent (DONE)', () => {
             it('... should contain one footer component (stubbed)', () => {
                 getAndExpectDebugElementByDirective(compDe, FooterStubComponent, 1, 1);
             });
+        });
+
+        describe('Title', () => {
+            it('... should have called getTitle', () => {
+                expectSpyCall(getTitleSpy, 1);
+            });
+
+            it('... should not have called setTitle', () => {
+                expectSpyCall(setTitleSpy, 0);
+            });
+
+            it('... should set the custom page title from route data if available', waitForAsync(() => {
+                fixture.ngZone.run(() => {
+                    router.navigate(['/test1']).then(() => {
+                        expectSpyCall(setTitleSpy, 1, 'Custom Page Title 1');
+
+                        router.navigate(['/test2/test3']).then(() => {
+                            expectSpyCall(setTitleSpy, 2, 'Custom Page Title 3');
+                        });
+                    });
+                });
+            }));
+
+            it('... should set the default page title if route data title is not available', waitForAsync(() => {
+                fixture.ngZone.run(() => {
+                    router.navigate(['/test2']).then(() => {
+                        expectSpyCall(setTitleSpy, 1, 'Default Page Title');
+                    });
+                });
+            }));
         });
     });
 });

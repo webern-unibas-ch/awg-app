@@ -6,7 +6,7 @@ import { filter, map } from 'rxjs/operators';
 
 import { NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { AnalyticsService } from '@awg-core/services';
+import { AnalyticsService, EditionInitService } from '@awg-core/services';
 
 /**
  * The main component of the AWG App.
@@ -33,6 +33,7 @@ export class AppComponent {
     constructor(
         private readonly activatedRoute: ActivatedRoute,
         private analyticsService: AnalyticsService,
+        private editionInitService: EditionInitService,
         ngbConfig: NgbConfig,
         private readonly router: Router,
         private titleService: Title
@@ -46,6 +47,9 @@ export class AppComponent {
 
         // Init analytics
         this.analyticsService.initializeAnalytics();
+
+        // Init edition complexes and outline
+        this.editionInitService.initializeEdition();
 
         // Track router events
         this.router.events

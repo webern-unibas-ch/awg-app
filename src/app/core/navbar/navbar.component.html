@@ -50,14 +50,21 @@
                         routerLinkActive="active"
                         >{{ editionRouteConstants.ROWTABLES.full }}</a
                     >
+                    <a
+                        class="dropdown-item"
+                        [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.PREFACE.route]"
+                        routerLinkActive="active"
+                        >{{ editionRouteConstants.PREFACE.full }}</a
+                    >
                     <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Auswahl Skizzenkomplexe</h6>
                     <div class="dropdown-divider"></div>
                     @for (editionComplex of DISPLAYED_EDITION_COMPLEXES; track editionComplex.complexId.short) {
                         <div class="awg-dropdown-complexes">
                             <h6 class="dropdown-header">
-                                [{{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{
-                                    editionComplex.section.short
+                                [{{ editionRouteConstants.EDITION.short }}
+                                {{ editionComplex.pubStatement.series.short }}/{{
+                                    editionComplex.pubStatement.section.short
                                 }}]
                                 <span [innerHTML]="editionComplex.complexId.full"></span>
                             </h6>

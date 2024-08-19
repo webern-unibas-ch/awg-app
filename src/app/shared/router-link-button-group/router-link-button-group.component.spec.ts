@@ -203,7 +203,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                 const fulltextLinkDe = linkDes[0]; // Fulltext link DebugElement
                 const fulltextLink = routerLinks[0]; // Fulltext link directive
 
-                expect(fulltextLink.navigatedTo).toBeNull();
+                expectToBe(fulltextLink.navigatedTo, null);
 
                 click(fulltextLinkDe);
                 fixture.detectChanges();
@@ -216,7 +216,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = expectedOrderOfRouterlinks[index];
 
-                    expect(routerLink.navigatedTo).toBeNull();
+                    expectToBe(routerLink.navigatedTo, null);
 
                     click(linkDe);
                     fixture.detectChanges();

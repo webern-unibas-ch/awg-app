@@ -7,6 +7,8 @@ import Spy = jasmine.Spy;
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectSpyCall,
+    expectToBe,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -14,8 +16,8 @@ import {
 import { AppConfig } from '@awg-app/app.config';
 import { METADATA } from '@awg-core/core-data';
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
-
 import { CoreService } from '@awg-core/services';
+
 import { ContactInfoComponent } from './contact-info.component';
 
 // Mock address component
@@ -103,13 +105,12 @@ describe('ContactInfoComponent (DONE)', () => {
 
     it('... injected service should use provided mockValue', () => {
         const coreService = TestBed.inject(CoreService);
-        expect(mockCoreService === coreService).toBe(true);
+        expectToBe(mockCoreService === coreService, true);
     });
 
     describe('BEFORE initial data binding', () => {
         it('... should have contact info header', () => {
-            expect(component.contactInfoHeader).toBeDefined();
-            expect(component.contactInfoHeader).toBe(expectedContactInfoHeader);
+            expectToBe(component.contactInfoHeader, expectedContactInfoHeader);
         });
 
         it('... should not have metadata nor open street map links', () => {
@@ -153,8 +154,7 @@ describe('ContactInfoComponent (DONE)', () => {
                 const headerDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-contact-info-header', 1, 1);
                 const headerEl = headerDes[0].nativeElement;
 
-                expect(headerEl).toBeDefined();
-                expect(headerEl.textContent).toBeFalsy();
+                expectToBe(headerEl.textContent, '');
             });
 
             it('... should contain one address component (stubbed)', () => {
@@ -204,17 +204,11 @@ describe('ContactInfoComponent (DONE)', () => {
             });
 
             it('... should return pageMetaData', () => {
-                expect(component.pageMetaData).toBeDefined();
-                expect(component.pageMetaData)
-                    .withContext(`should be ${expectedPageMetaData}`)
-                    .toBe(expectedPageMetaData);
+                expectToEqual(component.pageMetaData, expectedPageMetaData);
             });
 
             it('... should return contactMetaData', () => {
-                expect(component.contactMetaData).toBeDefined();
-                expect(component.contactMetaData)
-                    .withContext(`should be ${expectedContactMetaData}`)
-                    .toBe(expectedContactMetaData);
+                expectToEqual(component.contactMetaData, expectedContactMetaData);
             });
         });
 
@@ -224,17 +218,11 @@ describe('ContactInfoComponent (DONE)', () => {
             });
 
             it('... should return osmEmbedUrl', () => {
-                expect(component.osmEmbedUrl).toBeDefined();
-                expect(component.osmEmbedUrl)
-                    .withContext(`should equal ${expectedOsmEmbedUrl}`)
-                    .toEqual(expectedOsmEmbedUrl);
+                expectToEqual(component.osmEmbedUrl, expectedOsmEmbedUrl);
             });
 
             it('... should return osmLinkUrl', () => {
-                expect(component.osmLinkUrl).toBeDefined();
-                expect(component.osmLinkUrl)
-                    .withContext(`should equal ${expectedOsmLinkUrl}`)
-                    .toEqual(expectedOsmLinkUrl);
+                expectToEqual(component.osmLinkUrl, expectedOsmLinkUrl);
             });
         });
 
@@ -243,38 +231,23 @@ describe('ContactInfoComponent (DONE)', () => {
                 const headerDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-contact-info-header', 1, 1);
                 const headerEl = headerDes[0].nativeElement;
 
-                expect(headerEl).toBeDefined();
-                expect(headerEl.textContent)
-                    .withContext(`should be ${expectedContactInfoHeader}`)
-                    .toBe(expectedContactInfoHeader);
+                expectToBe(headerEl.textContent, expectedContactInfoHeader);
             });
 
             it('... should pass down `pageMetaData` and `contactMetaData` to address component', () => {
                 const addressDes = getAndExpectDebugElementByDirective(compDe, AddressStubComponent, 1, 1);
                 const addressCmp = addressDes[0].injector.get(AddressStubComponent) as AddressStubComponent;
 
-                expect(addressCmp.pageMetaData).toBeTruthy();
-                expect(addressCmp.pageMetaData)
-                    .withContext(`should be ${expectedPageMetaData}`)
-                    .toBe(expectedPageMetaData);
-
-                expect(addressCmp.contactMetaData).toBeTruthy();
-                expect(addressCmp.contactMetaData)
-                    .withContext(`should be ${expectedContactMetaData}`)
-                    .toBe(expectedContactMetaData);
+                expectToEqual(addressCmp.pageMetaData, expectedPageMetaData);
+                expectToEqual(addressCmp.contactMetaData, expectedContactMetaData);
             });
 
             it('... should pass down `osmEmbedUrl` and `osmLinkUrl` to OpenStreetMap component', () => {
                 const osmDes = getAndExpectDebugElementByDirective(compDe, OpenStreetMapStubComponent, 1, 1);
                 const osmCmp = osmDes[0].injector.get(OpenStreetMapStubComponent) as OpenStreetMapStubComponent;
 
-                expect(osmCmp.osmEmbedUrl).toBeTruthy();
-                expect(osmCmp.osmEmbedUrl)
-                    .withContext(`should equal ${expectedOsmEmbedUrl}`)
-                    .toEqual(expectedOsmEmbedUrl);
-
-                expect(osmCmp.osmLinkUrl).toBeTruthy();
-                expect(osmCmp.osmLinkUrl).withContext(`should equal ${expectedOsmLinkUrl}`).toEqual(expectedOsmLinkUrl);
+                expectToEqual(osmCmp.osmEmbedUrl, expectedOsmEmbedUrl);
+                expectToEqual(osmCmp.osmLinkUrl, expectedOsmLinkUrl);
             });
         });
     });

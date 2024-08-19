@@ -1,14 +1,23 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { JsonPipe } from '@angular/common';
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
-import { EmptyError, lastValueFrom, Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
+import {
+    EMPTY,
+    EmptyError,
+    lastValueFrom,
+    Observable,
+    of as observableOf,
+    throwError as observableThrowError,
+} from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { NgbAccordionModule, NgbConfig, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -20,7 +29,6 @@ import { mockEditionData } from '@testing/mock-data';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
@@ -30,11 +38,17 @@ import {
     SourceList,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionReportComponent } from './edition-report.component';
 
 // Mock components
+@Component({ selector: 'awg-error-alert', template: '' })
+class ErrorAlertStubComponent {
+    @Input()
+    errorObject: any;
+}
+
 @Component({ selector: 'awg-modal', template: '' })
 class ModalStubComponent {
     open(_modalContentSnippetKey: string): void {}
@@ -86,6 +100,9 @@ export class TextcriticsListStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
+@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+class TwelveToneSpinnerStubComponent {}
+
 describe('EditionReportComponent', () => {
     let component: EditionReportComponent;
     let fixture: ComponentFixture<EditionReportComponent>;
@@ -116,13 +133,15 @@ describe('EditionReportComponent', () => {
 
     let editionDataServiceGetEditionReportDataSpy: Spy;
     let getEditionReportDataSpy: Spy;
-    let getEditionComplexSpy: Spy;
+    let editionServiceGetSelectedEditionComplexSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
     let navigateWithComplexIdSpy: Spy;
     let navigationSpy: Spy;
     let modalOpenSpy: Spy;
     let onModalOpenSpy: Spy;
     let selectSvgSheetSpy: Spy;
+
+    const jsonPipe = new JsonPipe();
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -132,6 +151,10 @@ describe('EditionReportComponent', () => {
             config.animation = false;
         }
     }
+
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
 
     beforeEach(waitForAsync(() => {
         // Mock router with spy object
@@ -145,7 +168,7 @@ describe('EditionReportComponent', () => {
                 observableOf(expectedEditionReportData),
         };
         mockEditionService = {
-            getEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
+            getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
         };
 
         TestBed.configureTestingModule({
@@ -153,12 +176,14 @@ describe('EditionReportComponent', () => {
             declarations: [
                 CompileHtmlComponent,
                 EditionReportComponent,
+                ErrorAlertStubComponent,
                 ModalStubComponent,
                 SourceListStubComponent,
                 SourceDescriptionStubComponent,
                 SourceEvaluationStubComponent,
                 TextcriticsListStubComponent,
                 RouterOutletStubComponent,
+                TwelveToneSpinnerStubComponent,
             ],
             providers: [
                 { provide: EditionDataService, useValue: mockEditionDataService },
@@ -180,7 +205,7 @@ describe('EditionReportComponent', () => {
         // Test data
         expectedPanelId = 'awg-sources-panel';
         expectedReportFragment = 'source_A';
-        expectedEditionComplex = EDITION_COMPLEXES.OP12;
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
         expectedEditionComplexBaseRoute = '/edition/complex/op12/';
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
@@ -204,7 +229,7 @@ describe('EditionReportComponent', () => {
         editionDataServiceGetEditionReportDataSpy = spyOn(editionDataService, 'getEditionReportData').and.returnValue(
             observableOf(expectedEditionReportData)
         );
-        getEditionComplexSpy = spyOn(editionService, 'getEditionComplex').and.returnValue(
+        editionServiceGetSelectedEditionComplexSpy = spyOn(editionService, 'getSelectedEditionComplex').and.returnValue(
             observableOf(expectedEditionComplex)
         );
         getEditionReportDataSpy = spyOn(component, 'getEditionReportData').and.callThrough();
@@ -238,6 +263,16 @@ describe('EditionReportComponent', () => {
         });
 
         describe('VIEW', () => {
+            it('... should contain a `div`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+            });
+
+            it('... should contain one modal component (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], ModalStubComponent, 1, 1);
+            });
+
             it('... should contain no div.accordion yet', () => {
                 // Div.accordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
@@ -258,6 +293,18 @@ describe('EditionReportComponent', () => {
             it('... should not contain textcritics list component (stubbed) yet', () => {
                 getAndExpectDebugElementByDirective(compDe, TextcriticsListStubComponent, 0, 0);
             });
+
+            it('... should not contain an error alert component (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], ErrorAlertStubComponent, 0, 0);
+            });
+
+            it('... should not contain a loading spinner component (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
+            });
         });
     });
 
@@ -271,14 +318,12 @@ describe('EditionReportComponent', () => {
             fixture.detectChanges();
         });
 
-        it('... should have called `getEditionComplex()`', () => {
-            // `getEditionReportData()` called immediately after init
-            expectSpyCall(getEditionComplexSpy, 1);
+        it('... should have called `getEditionReportData()`', () => {
+            expectSpyCall(getEditionReportDataSpy, 1);
         });
 
-        it('... should have called `getEditionReportData()`', () => {
-            // `getEditionReportData()` called immediately after init
-            expectSpyCall(getEditionReportDataSpy, 1);
+        it('... should have triggered `getSelectedEditionComplex()` method from EditionService', () => {
+            expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
         });
 
         it('... should have editionComplex', () => {
@@ -287,14 +332,11 @@ describe('EditionReportComponent', () => {
 
         it('... should have editionReportData$', waitForAsync(() => {
             expectAsync(lastValueFrom(component.editionReportData$)).toBeResolved();
-            expectAsync(lastValueFrom(component.editionReportData$))
-                .withContext(`should be resolved to ${expectedEditionReportData}`)
-                .toBeResolvedTo(expectedEditionReportData);
+            expectAsync(lastValueFrom(component.editionReportData$)).toBeResolvedTo(expectedEditionReportData);
         }));
 
         describe('VIEW', () => {
             it('... should contain one div.accordion', () => {
-                // NgbAccordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
@@ -352,6 +394,70 @@ describe('EditionReportComponent', () => {
 
                 expectToEqual(textcriticsCmp.textcriticsData, expectedTextcriticsData);
             });
+
+            describe('on error', () => {
+                const expectedError = { status: 404, statusText: 'got Error' };
+
+                beforeEach(waitForAsync(() => {
+                    // Spy on editionDataService to return an error
+                    editionDataServiceGetEditionReportDataSpy.and.returnValue(
+                        observableThrowError(() => expectedError)
+                    );
+
+                    component.getEditionReportData();
+                    detectChangesOnPush(fixture);
+                }));
+
+                it('... should not contain report view, but one ErrorAlertComponent (stubbed)', waitForAsync(() => {
+                    getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
+
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], ErrorAlertStubComponent, 1, 1);
+                }));
+
+                it('... should pass down error object to ErrorAlertComponent', waitForAsync(() => {
+                    const errorAlertDes = getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 1, 1);
+                    const errorAlertCmp = errorAlertDes[0].injector.get(
+                        ErrorAlertStubComponent
+                    ) as ErrorAlertStubComponent;
+
+                    expectToEqual(errorAlertCmp.errorObject, expectedError);
+                }));
+            });
+
+            describe('on loading', () => {
+                describe('... should contain only TwelveToneSpinnerComponent (stubbed) if ... ', () => {
+                    it('... editionReportData$ is EMPTY', () => {
+                        // Mock empty observable
+                        component.editionReportData$ = EMPTY;
+                        detectChangesOnPush(fixture);
+
+                        getAndExpectDebugElementByCss(compDe, 'div.awg-report-view', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+
+                    it('... editionReportData$ is undefined', () => {
+                        // Mock undefined response
+                        component.editionReportData$ = observableOf(undefined);
+                        detectChangesOnPush(fixture);
+
+                        getAndExpectDebugElementByCss(compDe, 'div.awg-report-view', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+
+                    it('... editionReportData$ is null', () => {
+                        // Mock null response
+                        component.editionReportData$ = observableOf(null);
+                        detectChangesOnPush(fixture);
+
+                        getAndExpectDebugElementByCss(compDe, 'div.awg-report-view', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+                });
+            });
         });
 
         describe('#getEditionReportData()', () => {
@@ -364,7 +470,7 @@ describe('EditionReportComponent', () => {
             });
 
             it('... should have got `editionComplex` from editionService', () => {
-                expectSpyCall(getEditionComplexSpy, 1);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
 
                 expectToEqual(component.editionComplex, expectedEditionComplex);
             });
@@ -380,12 +486,12 @@ describe('EditionReportComponent', () => {
 
                 // Init new switchMap
                 component.getEditionReportData();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectAsync(lastValueFrom(component.editionReportData$)).toBeRejected();
                 expectAsync(lastValueFrom(component.editionReportData$)).toBeRejectedWithError(EmptyError);
 
-                expect(component.errorObject).toEqual(expectedError);
+                expectToEqual(component.errorObject, expectedError);
             }));
         });
 
@@ -534,14 +640,14 @@ describe('EditionReportComponent', () => {
 
             it('... should open modal with given id', () => {
                 component.onModalOpen(expectedModalSnippet);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
                 expectSpyCall(modalOpenSpy, 1, expectedModalSnippet);
 
                 const otherSnippet = 'otherSnippet';
                 component.onModalOpen(otherSnippet);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(onModalOpenSpy, 2, otherSnippet);
                 expectSpyCall(modalOpenSpy, 2, otherSnippet);
@@ -682,7 +788,7 @@ describe('EditionReportComponent', () => {
                 };
 
                 component.onReportFragmentNavigate(expectedReportIds);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(navigateWithComplexIdSpy, 1, [
                     expectedReportIds.complexId,
@@ -702,7 +808,7 @@ describe('EditionReportComponent', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -721,7 +827,7 @@ describe('EditionReportComponent', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -740,7 +846,7 @@ describe('EditionReportComponent', () => {
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -976,7 +1082,7 @@ describe('EditionReportComponent', () => {
                 };
 
                 component.onSvgSheetSelect(expectedSheetIds);
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(navigateWithComplexIdSpy, 1, [
                     expectedSheetIds.complexId,
@@ -996,7 +1102,7 @@ describe('EditionReportComponent', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1015,7 +1121,7 @@ describe('EditionReportComponent', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1034,7 +1140,7 @@ describe('EditionReportComponent', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1054,7 +1160,7 @@ describe('EditionReportComponent', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1072,7 +1178,7 @@ describe('EditionReportComponent', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1091,7 +1197,7 @@ describe('EditionReportComponent', () => {
                     };
 
                     component.onSvgSheetSelect(expectedSheetIds);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1114,7 +1220,7 @@ describe('EditionReportComponent', () => {
                     const expectedNavigationExtras = { fragment: '' };
 
                     (component as any)._navigateWithComplexId(undefined, expectedTargetRoute, expectedNavigationExtras);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1133,7 +1239,7 @@ describe('EditionReportComponent', () => {
                     const expectedNavigationExtras = { fragment: '' };
 
                     (component as any)._navigateWithComplexId(null, expectedTargetRoute, expectedNavigationExtras);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [null, expectedTargetRoute, expectedNavigationExtras]);
                     expectSpyCall(navigationSpy, 1, [
@@ -1148,7 +1254,7 @@ describe('EditionReportComponent', () => {
                     const expectedNavigationExtras = { fragment: '' };
 
                     (component as any)._navigateWithComplexId('', expectedTargetRoute, expectedNavigationExtras);
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, ['', expectedTargetRoute, expectedNavigationExtras]);
                     expectSpyCall(navigationSpy, 1, [
@@ -1167,7 +1273,7 @@ describe('EditionReportComponent', () => {
                         expectedTargetRoute,
                         expectedNavigationExtras
                     );
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedEditionComplex.complexId.route.replace('/', ''),
@@ -1192,7 +1298,7 @@ describe('EditionReportComponent', () => {
                         expectedTargetRoute,
                         expectedNavigationExtras
                     );
-                    fixture.detectChanges();
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedNextComplexId,
@@ -1218,7 +1324,7 @@ describe('EditionReportComponent', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -1241,7 +1347,7 @@ describe('EditionReportComponent', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -1266,7 +1372,7 @@ describe('EditionReportComponent', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -1289,7 +1395,7 @@ describe('EditionReportComponent', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -1317,7 +1423,7 @@ describe('EditionReportComponent', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -1341,7 +1447,7 @@ describe('EditionReportComponent', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -1367,7 +1473,7 @@ describe('EditionReportComponent', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -1391,7 +1497,7 @@ describe('EditionReportComponent', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -1418,7 +1524,7 @@ describe('EditionReportComponent', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -1441,7 +1547,7 @@ describe('EditionReportComponent', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -1466,7 +1572,7 @@ describe('EditionReportComponent', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -1489,7 +1595,7 @@ describe('EditionReportComponent', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        fixture.detectChanges();
+                        detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,

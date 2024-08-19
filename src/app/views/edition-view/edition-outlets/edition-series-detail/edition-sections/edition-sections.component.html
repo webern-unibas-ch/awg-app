@@ -1,8 +1,8 @@
 @if (selectedSeries$ | async; as selectedSeries) {
     <div class="row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
-        @for (section of selectedSeries.sections; track section) {
+        @for (section of selectedSeries.sections; track $index) {
             <div class="col">
-                <div class="card h-100">
+                <div class="card h-100 shadow">
                     <div class="card-body">
                         <h5 class="card-title" [ngClass]="{ 'text-muted': section.disabled }">
                             {{ section.section.full }}

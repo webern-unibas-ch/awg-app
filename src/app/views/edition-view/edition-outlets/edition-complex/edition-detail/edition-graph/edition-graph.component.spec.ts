@@ -2,7 +2,14 @@ import { DOCUMENT, JsonPipe } from '@angular/common';
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { EmptyError, lastValueFrom, Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
+import {
+    EMPTY,
+    EmptyError,
+    lastValueFrom,
+    Observable,
+    of as observableOf,
+    throwError as observableThrowError,
+} from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
@@ -21,14 +28,20 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EDITION_COMPLEXES, EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
+import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, Graph, GraphList, GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionGraphComponent } from './edition-graph.component';
 
 // Mock components
+@Component({ selector: 'awg-error-alert', template: '' })
+class ErrorAlertStubComponent {
+    @Input()
+    errorObject: any;
+}
+
 @Component({ selector: 'awg-graph-visualizer', template: '' })
 class GraphVisualizerStubComponent {
     @Input()
@@ -46,6 +59,9 @@ class ModalStubComponent {
     }
 }
 
+@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+class TwelveToneSpinnerStubComponent {}
+
 describe('EditionGraphComponent (DONE)', () => {
     let component: EditionGraphComponent;
     let fixture: ComponentFixture<EditionGraphComponent>;
@@ -61,9 +77,7 @@ describe('EditionGraphComponent (DONE)', () => {
     let modalOpenSpy: Spy;
     let compGetEditonGraphDataSpy: Spy;
     let editionDataServiceGetEditionGraphDataSpy: Spy;
-    let editionServiceGetEditionComplexSpy: Spy;
-
-    const jsonPipe = new JsonPipe();
+    let editionServiceGetSelectedEditionComplexSpy: Spy;
 
     let expectedEditionComplex: EditionComplex;
     let expectedEditionGraphDataEmpty: GraphList;
@@ -71,6 +85,12 @@ describe('EditionGraphComponent (DONE)', () => {
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
     let expectedIsFullscreen: boolean;
+
+    const jsonPipe = new JsonPipe();
+
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
 
     beforeEach(waitForAsync(() => {
         // Mocked editionDataService
@@ -80,16 +100,18 @@ describe('EditionGraphComponent (DONE)', () => {
         };
         // Mocked editionService
         mockEditionService = {
-            getEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
+            getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
         };
 
         TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule],
             declarations: [
                 EditionGraphComponent,
+                ErrorAlertStubComponent,
                 GraphVisualizerStubComponent,
                 ModalStubComponent,
                 CompileHtmlComponent,
+                TwelveToneSpinnerStubComponent,
             ],
             providers: [
                 { provide: EditionDataService, useValue: mockEditionDataService },
@@ -112,7 +134,7 @@ describe('EditionGraphComponent (DONE)', () => {
         // TestData (default)
         expectedIsFullscreen = false;
 
-        expectedEditionComplex = EDITION_COMPLEXES.OP12;
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
 
         expectedEditionGraphDataEmpty = JSON.parse(JSON.stringify(mockEditionData.mockGraphEmptyData));
 
@@ -125,14 +147,17 @@ describe('EditionGraphComponent (DONE)', () => {
         // Spies on component methods
         compGetEditonGraphDataSpy = spyOn(component, 'getEditionGraphData').and.callThrough();
 
-        editionServiceGetEditionComplexSpy = spyOn(editionService, 'getEditionComplex').and.callThrough();
+        editionServiceGetSelectedEditionComplexSpy = spyOn(
+            editionService,
+            'getSelectedEditionComplex'
+        ).and.callThrough();
         editionDataServiceGetEditionGraphDataSpy = spyOn(editionDataService, 'getEditionGraphData').and.callFake(
             (editionComplex: EditionComplex) => {
                 switch (editionComplex) {
-                    case EDITION_COMPLEXES.OP12: {
+                    case EditionComplexesService.getEditionComplexById('OP12'): {
                         return observableOf(expectedEditionGraphDataEmpty);
                     }
-                    case EDITION_COMPLEXES.OP25: {
+                    case EditionComplexesService.getEditionComplexById('OP25'): {
                         return observableOf(expectedEditionGraphDataOp25);
                     }
                     default: {
@@ -152,11 +177,11 @@ describe('EditionGraphComponent (DONE)', () => {
     });
 
     it('... injected editionService should use provided mockValue', () => {
-        expect(mockEditionService === editionService).toBe(true);
+        expectToBe(mockEditionService === editionService, true);
     });
 
     it('... injected editionDataService should use provided mockValue', () => {
-        expect(mockEditionDataService === editionDataService).toBe(true);
+        expectToBe(mockEditionDataService === editionDataService, true);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -172,7 +197,7 @@ describe('EditionGraphComponent (DONE)', () => {
         });
 
         it('... should have `errorObject` = null', () => {
-            expect(component.errorObject).toBeNull();
+            expectToBe(component.errorObject, null);
         });
 
         it('... should have `isFullscreen`', () => {
@@ -192,7 +217,7 @@ describe('EditionGraphComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have a `div`', () => {
+            it('... should contain a `div`', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
             });
 
@@ -202,19 +227,29 @@ describe('EditionGraphComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], ModalStubComponent, 1, 1);
             });
 
-            it('... should not have a nested div.awg-graph-view', () => {
+            it('... should contain no div.awg-graph-view yet', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 0, 0);
             });
 
-            it('... should not have a nested div.errorMessage', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 0, 0);
+            it('... should not contain an error alert component (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], ErrorAlertStubComponent, 0, 0);
+            });
+
+            it('... should not contain a loading spinner component (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
             });
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            editionServiceGetEditionComplexSpy.and.returnValue(observableOf(EDITION_COMPLEXES.OP12));
+            editionServiceGetSelectedEditionComplexSpy.and.returnValue(
+                observableOf(EditionComplexesService.getEditionComplexById('OP12'))
+            );
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -225,11 +260,11 @@ describe('EditionGraphComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have one div.awg-graph-view', () => {
+            it('... should contain one div.awg-graph-view', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 1, 1);
             });
 
-            it('... should not contain a div.awg-graph-view if graph data is not provided', waitForAsync(() => {
+            it('... should not contain a div in div.awg-graph-view if graph data is not provided', waitForAsync(() => {
                 const noGraphData = new GraphList();
                 noGraphData.graph = undefined;
 
@@ -241,7 +276,7 @@ describe('EditionGraphComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div', 0, 0);
             }));
 
-            it('... should contain a div.awg-graph-view if graph data is provided', () => {
+            it('... should contain a div in div.awg-graph-view if graph data is provided', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div', 1, 1);
             });
 
@@ -301,7 +336,11 @@ describe('EditionGraphComponent (DONE)', () => {
                     const shortComplexSpan = mockDocument.createElement('span');
                     shortComplexSpan.innerHTML = expectedEditionComplex.complexId.short;
 
-                    const graphPlaceholder = `[Die Graph-Visualisierungen zum Editionskomplex ${fullComplexSpan.textContent} erscheinen im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
+                    const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
+                    const series = expectedEditionComplex.pubStatement.series.short;
+                    const section = expectedEditionComplex.pubStatement.section.short;
+
+                    const graphPlaceholder = `[Die Graph-Visualisierungen zum Editionskomplex ${fullComplexSpan.textContent} erscheinen im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${awg} ${series}/${section}.]`;
 
                     expectToBe(pEl.textContent.trim(), graphPlaceholder);
                 }));
@@ -546,19 +585,55 @@ describe('EditionGraphComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
                 }));
 
-                it('... should not have graph view, but one div.errorMessage with centered danger alert', waitForAsync(() => {
+                it('... should not contain graph view, but one ErrorAlertComponent (stubbed)', waitForAsync(() => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 0, 0);
-                    const errorDes = getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 1, 1);
 
-                    getAndExpectDebugElementByCss(errorDes[0], 'div.text-center > div.alert-danger', 1, 1);
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], ErrorAlertStubComponent, 1, 1);
                 }));
 
-                it('... should display errorMessage', waitForAsync(() => {
-                    const alertDes = getAndExpectDebugElementByCss(compDe, 'div.alert-danger', 1, 1);
-                    const alertEl = alertDes[0].nativeElement;
+                it('... should pass down error object to ErrorAlertComponent', waitForAsync(() => {
+                    const errorAlertDes = getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 1, 1);
+                    const errorAlertCmp = errorAlertDes[0].injector.get(
+                        ErrorAlertStubComponent
+                    ) as ErrorAlertStubComponent;
 
-                    expectToContain(alertEl.textContent, jsonPipe.transform(expectedError));
+                    expectToEqual(errorAlertCmp.errorObject, expectedError);
                 }));
+            });
+
+            describe('on loading', () => {
+                describe('... should contain only TwelveToneSpinnerComponent (stubbed) if ... ', () => {
+                    it('... editionGraphData$ is EMPTY', () => {
+                        // Mock empty observable
+                        component.editionGraphData$ = EMPTY;
+                        detectChangesOnPush(fixture);
+
+                        getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+
+                    it('... editionGraphData$ is undefined', () => {
+                        // Mock undefined response
+                        component.editionGraphData$ = observableOf(undefined);
+                        detectChangesOnPush(fixture);
+
+                        getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+
+                    it('... editionGraphData$ is null', () => {
+                        // Mock null response
+                        component.editionGraphData$ = observableOf(null);
+                        detectChangesOnPush(fixture);
+
+                        getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+                });
             });
         });
 
@@ -567,12 +642,12 @@ describe('EditionGraphComponent (DONE)', () => {
                 expect(component.getEditionGraphData).toBeDefined();
             });
 
-            it('... should trigger editionService.getEditionComplex', () => {
-                expectSpyCall(editionServiceGetEditionComplexSpy, 1);
+            it('... should trigger editionService.getSelectedEditionComplex', () => {
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
             });
 
             it('... should get current editionComplex from editionService', () => {
-                expectSpyCall(editionServiceGetEditionComplexSpy, 1);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
 
                 expectToEqual(component.editionComplex, expectedEditionComplex);
             });
@@ -580,14 +655,16 @@ describe('EditionGraphComponent (DONE)', () => {
             it('... should update editionComplex when editionService emits changed value', waitForAsync(() => {
                 // ----------------
                 // Change to op. 25
-                editionServiceGetEditionComplexSpy.and.returnValue(observableOf(EDITION_COMPLEXES.OP25));
+                editionServiceGetSelectedEditionComplexSpy.and.returnValue(
+                    observableOf(EditionComplexesService.getEditionComplexById('OP25'))
+                );
 
                 component.getEditionGraphData();
                 detectChangesOnPush(fixture);
 
-                expectSpyCall(editionServiceGetEditionComplexSpy, 2);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 2);
 
-                expectToEqual(component.editionComplex, EDITION_COMPLEXES.OP25);
+                expectToEqual(component.editionComplex, EditionComplexesService.getEditionComplexById('OP25'));
             }));
 
             it('... should trigger editionDataService.getEditionGraph', () => {
@@ -601,14 +678,19 @@ describe('EditionGraphComponent (DONE)', () => {
             it('... should re-trigger editionDataService.getEditionGraph with updated editionComplex', waitForAsync(() => {
                 // ----------------
                 // Change to op. 25
-                // ExpectedEditionComplex = EDITION_COMPLEXES.op25;
-                editionServiceGetEditionComplexSpy.and.returnValue(observableOf(EDITION_COMPLEXES.OP25));
+                editionServiceGetSelectedEditionComplexSpy.and.returnValue(
+                    observableOf(EditionComplexesService.getEditionComplexById('OP25'))
+                );
 
                 component.getEditionGraphData();
                 detectChangesOnPush(fixture);
 
-                expectSpyCall(editionServiceGetEditionComplexSpy, 2);
-                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 2, EDITION_COMPLEXES.OP25);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 2);
+                expectSpyCall(
+                    editionDataServiceGetEditionGraphDataSpy,
+                    2,
+                    EditionComplexesService.getEditionComplexById('OP25')
+                );
             }));
 
             it('... should get editionGraphData from editionDataService and set editionGraphData$', waitForAsync(() => {
@@ -618,9 +700,7 @@ describe('EditionGraphComponent (DONE)', () => {
                 detectChangesOnPush(fixture);
 
                 expectAsync(lastValueFrom(component.editionGraphData$)).toBeResolved();
-                expectAsync(lastValueFrom(component.editionGraphData$))
-                    .withContext(`should be resolved to ${expectedEditionGraphDataEmpty}`)
-                    .toBeResolvedTo(expectedEditionGraphDataEmpty);
+                expectAsync(lastValueFrom(component.editionGraphData$)).toBeResolvedTo(expectedEditionGraphDataEmpty);
             }));
 
             it('... should update editionGraphData$ when editionService emits changed value', waitForAsync(() => {
@@ -628,19 +708,22 @@ describe('EditionGraphComponent (DONE)', () => {
 
                 // ----------------
                 // Change to op. 25
-                // ExpectedEditionComplex = EDITION_COMPLEXES.op25;
-                editionServiceGetEditionComplexSpy.and.returnValue(observableOf(EDITION_COMPLEXES.OP25));
+                editionServiceGetSelectedEditionComplexSpy.and.returnValue(
+                    observableOf(EditionComplexesService.getEditionComplexById('OP25'))
+                );
 
                 component.getEditionGraphData();
                 detectChangesOnPush(fixture);
 
-                expectSpyCall(editionServiceGetEditionComplexSpy, 2);
-                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 2, EDITION_COMPLEXES.OP25);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 2);
+                expectSpyCall(
+                    editionDataServiceGetEditionGraphDataSpy,
+                    2,
+                    EditionComplexesService.getEditionComplexById('OP25')
+                );
 
                 expectAsync(lastValueFrom(component.editionGraphData$)).toBeResolved();
-                expectAsync(lastValueFrom(component.editionGraphData$))
-                    .withContext(`should be resolved to ${expectedEditionGraphDataOp25}`)
-                    .toBeResolvedTo(expectedEditionGraphDataOp25);
+                expectAsync(lastValueFrom(component.editionGraphData$)).toBeResolvedTo(expectedEditionGraphDataOp25);
             }));
 
             it('... should return empty observable and set errorObject if switchMap fails', waitForAsync(() => {

@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 
-import { Observable, Subject, combineLatest } from 'rxjs';
-import { switchMap, takeUntil, tap } from 'rxjs/operators';
+import { EMPTY, Observable, Subject, combineLatest } from 'rxjs';
+import { catchError, switchMap, takeUntil, tap } from 'rxjs/operators';
 
 import { UtilityService } from '@awg-core/services';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
@@ -14,7 +14,7 @@ import {
     EditionSvgSheetList,
     FolioConvolute,
     FolioConvoluteList,
-    TextcriticalComment,
+    TextcriticalCommentBlock,
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
@@ -50,11 +50,18 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     editionComplex: EditionComplex;
 
     /**
-     * Public variable: errorMessage.
+     * Public variable: errorObject.
      *
-     * It keeps an errorMessage for the service calls.
+     * It keeps an errorObject for the service calls.
      */
-    errorMessage: string = undefined;
+    errorObject = null;
+
+    /**
+     * Public variable: isLoading.
+     *
+     * It keeps the loading status of the edition sheets.
+     */
+    isLoading = true;
 
     /**
      * Public variable: folioConvoluteData.
@@ -78,11 +85,11 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     selectedSvgSheet: EditionSvgSheet;
 
     /**
-     * Public variable: selectedTextcriticalComments.
+     * Public variable: selectedTextcriticalCommentBlocks.
      *
-     * It keeps the selected textcritical comments.
+     * It keeps the selected textcritical comment blocks.
      */
-    selectedTextcriticalComments: TextcriticalComment[];
+    selectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
 
     /**
      * Public variable: selectedTextcritics.
@@ -183,18 +190,28 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Gets the current edition complex and all necessary edition data.
      */
     getEditionSheetsData(): void {
+        this.errorObject = null;
+
         this.snapshotQueryParamsId = this.route.snapshot.queryParamMap.get('id');
 
         combineLatest([this.route.paramMap, this.route.queryParamMap])
             .pipe(
                 switchMap(([_params, queryParams]) => this._fetchEditionComplexData(queryParams)),
+                // Error handling
+                catchError(err => {
+                    this.errorObject = err;
+                    this.isLoading = false;
+                    return EMPTY;
+                }),
                 takeUntil(this._destroyed$)
             )
             .subscribe({
-                next: () => {},
+                next: () => {
+                    this.isLoading = false;
+                },
                 error: err => {
-                    console.error(err);
-                    this.errorMessage = err;
+                    this.errorObject = err;
+                    this.isLoading = false;
                 },
             });
     }
@@ -247,12 +264,12 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the selectedTextcriticalComments and showTka variable.
      */
     onOverlaySelect(overlays: EditionSvgOverlay[]): void {
-        this.selectedTextcriticalComments = this.editionSheetsService.getTextcriticalCommentsForOverlays(
+        this.selectedTextcriticalCommentBlocks = this.editionSheetsService.getTextcriticalCommentsForOverlays(
             this.selectedTextcritics.comments,
             overlays
         );
 
-        this.showTkA = this.utils.isNotEmptyArray(this.selectedTextcriticalComments);
+        this.showTkA = this.utils.isNotEmptyArray(this.selectedTextcriticalCommentBlocks);
     }
 
     /**
@@ -343,7 +360,8 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     private _fetchEditionComplexData(
         queryParams: ParamMap
     ): Observable<EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
-        return this.editionService.getEditionComplex().pipe(
+        this.isLoading = true;
+        return this.editionService.getSelectedEditionComplex().pipe(
             // Set editionComplex
             tap((complex: EditionComplex) => (this.editionComplex = complex)),
             // Get editionSheetsData
@@ -388,6 +406,12 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
                     ? this.snapshotQueryParamsId
                     : this._getDefaultSheetId();
 
+            // Reset selectedSvgSheet if no sheetId is provided
+            if (sheetIdFromQueryParams === '') {
+                this.selectedSvgSheet = undefined;
+            }
+
+            // Navigate once more to the selected sheet
             this.onSvgSheetSelect({
                 complexId: '',
                 sheetId: sheetIdFromQueryParams,
@@ -395,6 +419,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         }
 
         this._isFirstPageLoad = false;
+        this.isLoading = false;
     }
 
     /**
@@ -444,7 +469,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             this.utils.isNotEmptyObject(this.selectedTextcritics) &&
             this.utils.isNotEmptyArray(this.selectedTextcritics.comments)
         ) {
-            this.selectedTextcriticalComments = this.selectedTextcritics.comments;
+            this.selectedTextcriticalCommentBlocks = this.selectedTextcritics.comments;
         }
     }
 }

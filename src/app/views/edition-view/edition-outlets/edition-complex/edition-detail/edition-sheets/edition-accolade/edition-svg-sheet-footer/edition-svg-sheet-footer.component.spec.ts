@@ -16,10 +16,10 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { UtilityService } from '@awg-app/core/services';
-import { EditionSvgSheet, TextcriticalComment, Textcritics } from '@awg-app/views/edition-view/models';
+import { UtilityService } from '@awg-core/services';
+import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { EditionSvgSheet, TextcriticalCommentBlock, Textcritics } from '@awg-views/edition-view/models';
 
-import { CompileHtmlComponent } from '@awg-app/shared/compile-html';
 import { EditionSvgSheetFooterComponent } from './edition-svg-sheet-footer.component';
 
 // Mock components
@@ -45,7 +45,7 @@ class EditionTkaLabelStubComponent {
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
-    textcriticalComments: TextcriticalComment[];
+    textcriticalCommentBlocks: TextcriticalCommentBlock[];
     @Input()
     isCorrections = false;
     @Input()
@@ -80,7 +80,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedSelectedTextcritics: Textcritics;
-    let expectedSelectedTextcriticalComments: TextcriticalComment[];
+    let expectedSelectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
     let expectedShowTka: boolean;
     let expectedModalSnippet: string;
 
@@ -114,7 +114,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
         expectedSelectedTextcritics = JSON.parse(JSON.stringify(mockEditionData.mockTextcriticsData.textcritics.at(1)));
-        expectedSelectedTextcriticalComments = expectedSelectedTextcritics.comments;
+        expectedSelectedTextcriticalCommentBlocks = expectedSelectedTextcritics.comments;
         expectedShowTka = true;
 
         expectedChevronDownIcon = faChevronDown;
@@ -139,8 +139,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `selectedTextcriticalComments`', () => {
-            expect(component.selectedTextcriticalComments).toBeUndefined();
+        it('... should not have `selectedTextcriticalCommentBlocks`', () => {
+            expect(component.selectedTextcriticalCommentBlocks).toBeUndefined();
         });
 
         it('... should not have `selectedTextcritics`', () => {
@@ -182,7 +182,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.selectedTextcritics = expectedSelectedTextcritics;
-            component.selectedTextcriticalComments = expectedSelectedTextcriticalComments;
+            component.selectedTextcriticalCommentBlocks = expectedSelectedTextcriticalCommentBlocks;
             component.showTkA = expectedShowTka;
 
             // Trigger initial data binding
@@ -193,8 +193,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             expectToEqual(component.selectedTextcritics, expectedSelectedTextcritics);
         });
 
-        it('... should have `selectedTextcriticalComments` input', () => {
-            expectToEqual(component.selectedTextcriticalComments, expectedSelectedTextcriticalComments);
+        it('... should have `selectedTextcriticalCommentBlocks` input', () => {
+            expectToEqual(component.selectedTextcriticalCommentBlocks, expectedSelectedTextcriticalCommentBlocks);
         });
 
         it('... should have `showTkA` input', () => {
@@ -240,7 +240,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
 
                 expect(iconDe[0].children[0]).toBeTruthy();
                 expect(iconDe[0].children[0].classes).toBeTruthy();
-                expect(iconDe[0].children[0].classes['fa-chevron-right']).toBeTrue();
+                expectToBe(iconDe[0].children[0].classes['fa-chevron-right'], true);
             });
 
             it('... should contain fa-icon with chevronDown in evaluation paragraph if showTextcritics = true', () => {
@@ -257,7 +257,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
 
                 expect(iconDe[0].children[0]).toBeTruthy();
                 expect(iconDe[0].children[0].classes).toBeTruthy();
-                expect(iconDe[0].children[0].classes['fa-chevron-down']).toBeTrue();
+                expectToBe(iconDe[0].children[0].classes['fa-chevron-down'], true);
             });
 
             it('... should contain a span.smallcaps in evaluation paragraph with first EditionTkaLabelComponent', () => {
@@ -449,11 +449,11 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expectToBe(labelCmp.labelType, 'comment');
             });
 
-            it('... should pass down `selectedTextcriticalComments` to the EditionTkaTableComponent', () => {
+            it('... should pass down `selectedTextcriticalCommentBlocks` to the EditionTkaTableComponent', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
 
-                expectToEqual(tableCmp.textcriticalComments, expectedSelectedTextcriticalComments);
+                expectToEqual(tableCmp.textcriticalCommentBlocks, expectedSelectedTextcriticalCommentBlocks);
             });
 
             it('... should pass down `isRowTable` to the EditionTkaTableComponent', () => {
@@ -714,17 +714,17 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             it('... should toggle `showTextcritics`', () => {
-                expect(component.showTextcritics).toBe(false);
+                expectToBe(component.showTextcritics, false);
 
                 component.toggleTextcritics();
                 detectChangesOnPush(fixture);
 
-                expect(component.showTextcritics).toBe(true);
+                expectToBe(component.showTextcritics, true);
 
                 component.toggleTextcritics();
                 detectChangesOnPush(fixture);
 
-                expect(component.showTextcritics).toBe(false);
+                expectToBe(component.showTextcritics, false);
             });
         });
     });

@@ -1,50 +1,56 @@
 <div class="card">
     <div class="card-body">
-        <table aria-label="Table for list of sources" class="table table-hover borderless awg-source-list-sources">
-            <tbody>
-                @for (source of sourceListData.sources; track $index; let sourceIndex = $index) {
-                    <tr>
-                        <th scope="row" id="{{ source.siglum }}{{ source.siglumAddendum }}">
-                            @if (source.hasDescription === true) {
-                                <a (click)="navigateToReportFragment({ complexId: '', fragmentId: source.linkTo })">
-                                    @if (source.missing) {
-                                        <span>[</span>
+        @if (utils.isNotEmptyArray(sourceListData.sources)) {
+            <table aria-label="Table for list of sources" class="table table-hover borderless awg-source-list-sources">
+                <tbody>
+                    @for (source of sourceListData.sources; track $index; let sourceIndex = $index) {
+                        <tr>
+                            <th scope="row" id="{{ source.siglum }}{{ source.siglumAddendum }}">
+                                <span class="awg-source-list-siglum-container">
+                                    <ng-template #siglum>
+                                        <span class="awg-source-list-siglum">{{ source.siglum }}</span>
+                                        @if (source.siglumAddendum) {
+                                            <span class="awg-source-list-siglum-addendum">
+                                                <sup>{{ source.siglumAddendum }}</sup>
+                                            </span>
+                                        }
+                                    </ng-template>
+                                    <ng-template #siglumMissingOrNot>
+                                        @if (source.missing) {
+                                            <span>[</span>
+                                        }
+                                        <ng-container *ngTemplateOutlet="siglum"></ng-container>
+                                        @if (source.missing) {
+                                            <span>]</span>
+                                        }
+                                    </ng-template>
+
+                                    @if (source.hasDescription || source.linkTo) {
+                                        <a
+                                            (click)="
+                                                source.hasDescription
+                                                    ? navigateToReportFragment({
+                                                          complexId: '',
+                                                          fragmentId: source.linkTo,
+                                                      })
+                                                    : openModal(source.linkTo)
+                                            ">
+                                            <ng-container *ngTemplateOutlet="siglumMissingOrNot"></ng-container>
+                                        </a>
+                                    } @else {
+                                        <ng-container *ngTemplateOutlet="siglumMissingOrNot"></ng-container>
                                     }
-                                    <span class="awg-source-list-siglum">{{ source.siglum }}</span>
-                                    @if (source.siglumAddendum) {
-                                        <span class="awg-source-list-siglum-addendum">
-                                            <sup>{{ source.siglumAddendum }}</sup>
-                                        </span>
-                                    }
-                                    @if (source.missing) {
-                                        <span>]</span>
-                                    }
-                                </a>
-                            } @else {
-                                <a (click)="openModal(source.linkTo)">
-                                    @if (source.missing) {
-                                        <span>[</span>
-                                    }
-                                    <span class="awg-source-list-siglum">{{ source.siglum }}</span>
-                                    @if (source.siglumAddendum) {
-                                        <span class="awg-source-list-siglum-addendum">
-                                            <sup>{{ source.siglumAddendum }}</sup>
-                                        </span>
-                                    }
-                                    @if (source.missing) {
-                                        <span>]</span>
-                                    }
-                                </a>
-                            }
-                        </th>
-                        <td>
-                            <span [compile-html]="source.type" [compile-html-ref]="ref"></span> <br />
-                            <span class="text-muted" [innerHTML]="source.location"></span>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                                </span>
+                            </th>
+                            <td>
+                                <span [compile-html]="source.type" [compile-html-ref]="ref"></span> <br />
+                                <span class="text-muted" [innerHTML]="source.location"></span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
         @if (utils.isNotEmptyArray(sourceListData.textSources)) {
             <table
                 aria-label="Table for list of text sources"

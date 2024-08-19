@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { delay, Observable } from 'rxjs';
 
@@ -35,6 +35,14 @@ export class EditionViewComponent implements OnInit {
     editionViewId = 'awg-edition-view';
 
     /**
+     * Public variable: isPrefaceView$.
+     *
+     * Observable that keeps the information
+     * about the flag for the preface view.
+     */
+    isPrefaceView$: Observable<boolean>;
+
+    /**
      * Public variable: isRowTableView$.
      *
      * Observable that keeps the information
@@ -53,9 +61,7 @@ export class EditionViewComponent implements OnInit {
     /**
      * Public variable: selectedEditionSection$.
      *
-     * It keeps the selected section of the edition as an Observable of EditionOutlineSection;
-;
-.
+     * It keeps the selected section of the edition as an Observable of EditionOutlineSection.
      */
     selectedEditionSection$: Observable<EditionOutlineSection>;
 
@@ -73,12 +79,10 @@ export class EditionViewComponent implements OnInit {
      * EditionService, ActivatedRoute and Router.
      *
      * @param {EditionService} editionService Instance of the EditionService.
-     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
      * @param {Router} router Instance of the Angular router.
      */
     constructor(
         private editionService: EditionService,
-        private route: ActivatedRoute,
         private router: Router
     ) {}
 
@@ -98,21 +102,24 @@ export class EditionViewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getSelectionsFromRoute();
+        this.setupEditionView();
         this.routeToSidenav();
     }
 
     /**
-     * Public method: getSelectionsFromRoute.
+     * Public method: setupEditionView.
      *
-     * It loads the selected series, section, and edition complex from the edition service (if given).
+     * It sets up the edition view by loading
+     * the selected series, section, and edition complex
+     * from the edition service.
      *
-     * @returns {void} Gets the selected series, section, and edition complex from the edition service.
+     * @returns {void} Sets up the edition view.
      */
-    getSelectionsFromRoute(): void {
+    setupEditionView(): void {
         this.selectedEditionSeries$ = this.editionService.getSelectedEditionSeries().pipe(delay(0));
         this.selectedEditionSection$ = this.editionService.getSelectedEditionSection().pipe(delay(0));
-        this.selectedEditionComplex$ = this.editionService.getEditionComplex().pipe(delay(0));
+        this.selectedEditionComplex$ = this.editionService.getSelectedEditionComplex().pipe(delay(0));
+        this.isPrefaceView$ = this.editionService.getIsPrefaceView().pipe(delay(0));
         this.isRowTableView$ = this.editionService.getIsRowTableView().pipe(delay(0));
     }
 

@@ -52,11 +52,10 @@ describe('ViewContainerComponent (DONE)', () => {
 
                 // Main outlet should not be named
                 expect(routletDes[0].attributes).toBeDefined();
-                expect(routletDes[0].attributes['name']).not.toBeDefined();
+                expect(routletDes[0].attributes['name']).toBeUndefined();
 
                 // Secondary outlet should be named 'side'
                 expect(routletDes[1].attributes).toBeDefined();
-                expect(routletDes[1].attributes['name']).toBeDefined();
                 expectToBe(routletDes[1].attributes['name'], 'side');
             });
         });

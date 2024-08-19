@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
-import { EDITION_COMPLEXES } from '@awg-app/views/edition-view/data';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-app/views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 /**
  * Test helper data file: mockEditionOutline.
@@ -17,37 +17,37 @@ export const mockEditionOutline = [
         sections: [
             {
                 section: EDITION_ROUTE_CONSTANTS.SECTION_1,
-                complexes: { opus: [], mnr: [] },
+                complexTypes: { opus: [], mnr: [] },
                 disabled: true,
             },
             {
                 section: EDITION_ROUTE_CONSTANTS.SECTION_2,
-                complexes: { opus: [], mnr: [] },
+                complexTypes: { opus: [], mnr: [] },
                 disabled: true,
             },
             {
                 section: EDITION_ROUTE_CONSTANTS.SECTION_3,
-                complexes: { opus: [], mnr: [] },
+                complexTypes: { opus: [], mnr: [] },
                 disabled: true,
             },
             {
                 section: EDITION_ROUTE_CONSTANTS.SECTION_4,
-                complexes: { opus: [], mnr: [] },
+                complexTypes: { opus: [], mnr: [] },
                 disabled: true,
             },
             {
                 section: EDITION_ROUTE_CONSTANTS.SECTION_5,
-                complexes: {
+                complexTypes: {
                     opus: [
-                        { complex: EDITION_COMPLEXES.OP12, disabled: false },
-                        { complex: EDITION_COMPLEXES.OP23, disabled: false },
-                        { complex: EDITION_COMPLEXES.OP25, disabled: false },
+                        { complex: EditionComplexesService.getEditionComplexById('OP12'), disabled: false },
+                        { complex: EditionComplexesService.getEditionComplexById('OP23'), disabled: false },
+                        { complex: EditionComplexesService.getEditionComplexById('OP25'), disabled: false },
                     ],
                     mnr: [
-                        { complex: EDITION_COMPLEXES.M212, disabled: false },
-                        { complex: EDITION_COMPLEXES.M213, disabled: false },
-                        { complex: EDITION_COMPLEXES.M216, disabled: false },
-                        { complex: EDITION_COMPLEXES.M217, disabled: false },
+                        { complex: EditionComplexesService.getEditionComplexById('M212'), disabled: false },
+                        { complex: EditionComplexesService.getEditionComplexById('M213'), disabled: false },
+                        { complex: EditionComplexesService.getEditionComplexById('M216'), disabled: false },
+                        { complex: EditionComplexesService.getEditionComplexById('M217'), disabled: false },
                     ],
                 },
                 disabled: true,

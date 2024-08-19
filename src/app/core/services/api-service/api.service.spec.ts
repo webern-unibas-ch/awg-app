@@ -92,8 +92,7 @@ describe('ApiService', () => {
         });
 
         it("... should have empty 'httpGetUrl'", () => {
-            expect(apiService.httpGetUrl).toBeDefined();
-            expect(apiService.httpGetUrl).toBeFalsy();
+            expectToBe(apiService.httpGetUrl, '');
         });
     });
 
@@ -159,6 +158,7 @@ describe('ApiService', () => {
                 expectToBe(call.request.method, 'GET');
                 expectToBe(call.request.responseType, 'json');
                 expectToEqual(call.request.url, expectedUrl);
+
                 expect(call.request.params).toBeDefined();
                 expectToBe(call.request.params.keys().length, 0);
             }));
@@ -182,6 +182,7 @@ describe('ApiService', () => {
                 expectToBe(call.request.method, 'GET');
                 expectToBe(call.request.responseType, 'json');
                 expectToEqual(call.request.url, expectedUrl);
+
                 expect(call.request.params).toBeDefined();
                 expectToBe(call.request.params.keys().length, 2);
                 expectToBe(call.request.params.get('searchtype'), expectedSearchType);

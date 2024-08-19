@@ -1,13 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { delay, Observable } from 'rxjs';
+import { delay, EMPTY, Observable } from 'rxjs';
 
-import { UtilityService } from '@awg-app/core/services';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { UtilityService } from '@awg-core/services';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionComplex component.
@@ -61,21 +60,27 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
      * when initializing the component.
      */
     ngOnInit(): void {
-        this.getEditionComplexFromRoute();
+        this.updateEditionComplexFromRoute();
     }
 
     /**
-     * Public method: getEditionComplexFromRoute.
+     * Public method: updateEditionComplexFromRoute.
      *
-     * It subscribes to the route params to get the id of the current edition complex and load it from the edition service.
+     * It fetches the route params to get the id of the current edition complex and updates the edition service.
      *
-     * @returns {void} Gets the current edition complex from the edition service.
+     * @returns {void} Updates the current edition complex from the route.
      */
-    getEditionComplexFromRoute(): void {
+    updateEditionComplexFromRoute(): void {
         this.route.paramMap.subscribe(params => {
             const id: string = params.get('complexId') || '';
-            this.editionService.updateEditionComplex(EDITION_COMPLEXES[id.toUpperCase()]);
-            this.selectedEditionComplex$ = this.editionService.getEditionComplex().pipe(delay(0));
+            const complex = EditionComplexesService.getEditionComplexById(id.toUpperCase());
+
+            if (complex) {
+                this.editionService.updateSelectedEditionComplex(complex);
+                this.selectedEditionComplex$ = this.editionService.getSelectedEditionComplex().pipe(delay(0));
+            } else {
+                this.selectedEditionComplex$ = EMPTY;
+            }
         });
     }
 
@@ -89,6 +94,6 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
      */
     ngOnDestroy() {
         // Remove selected edition complex
-        this.editionService.clearEditionComplex();
+        this.editionService.clearSelectedEditionComplex();
     }
 }
