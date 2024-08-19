@@ -204,7 +204,7 @@ from a textcritics json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/views/edition-view/models/textcritics.model.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/edition-view/models/textcritics.model.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -236,7 +236,7 @@ from a textcritics json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/views/edition-view/models/textcritics.model.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/views/edition-view/models/textcritics.model.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -268,7 +268,7 @@ from a textcritics json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/views/edition-view/models/textcritics.model.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/views/edition-view/models/textcritics.model.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -301,7 +301,7 @@ from a textcritics json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/views/edition-view/models/textcritics.model.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/models/textcritics.model.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -333,7 +333,7 @@ from a textcritics json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/views/edition-view/models/textcritics.model.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/edition-view/models/textcritics.model.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -359,6 +359,25 @@ from a textcritics json file.</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EditionSvgLinkBox } from &#x27;./edition-svg-link-box.model&#x27;;
+
+/**
+ * The TextcriticalBlock class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a single textcritical block
+ * from a textcritics json file.
+ */
+export class TextcriticalCommentBlock {
+    /**
+     * An optional header of the textcritical block.
+     */
+    blockHeader?: string;
+
+    /**
+     * The array of textcritical comments in the textcritical block.
+     */
+    blockComments: TextcriticalComment[];
+}
 
 /**
  * The TextcriticalComment class.
@@ -420,7 +439,7 @@ export class Textcritics {
     /**
      * The array of textcritical comments from a textcritics list.
      */
-    comments: TextcriticalComment[];
+    comments: TextcriticalCommentBlock[];
 
     /**
      * The array of link boxes from a textcritics list.

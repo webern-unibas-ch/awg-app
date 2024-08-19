@@ -205,7 +205,7 @@ to calculate the labels of the systems on the folio canvas.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="762" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:762</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="774" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:774</a></div>
                             </td>
                         </tr>
 
@@ -332,7 +332,7 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="752" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:752</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="764" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:764</a></div>
                         </td>
                     </tr>
 
@@ -372,7 +372,7 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="757" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:757</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="769" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:769</a></div>
                         </td>
                     </tr>
 
@@ -406,7 +406,7 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="762" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:762</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="774" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:774</a></div>
                         </td>
                     </tr>
 
@@ -448,8 +448,8 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="791"
-                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:791</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="803"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:803</a></div>
                         </td>
                     </tr>
 
@@ -761,8 +761,20 @@ export class FolioCalculationContentSegmentVertices {
         const systemIndex &#x3D; isStart ? section.startSystem - 1 : section.endSystem - 1;
         const systemLines &#x3D; this.systems.SYSTEMS_LINES.SYSTEMS_ARRAYS[systemIndex];
 
+        let offset &#x3D; 0;
+        switch (section.relativeToSystem) {
+            case &#x27;below&#x27;:
+                offset &#x3D; 20;
+                break;
+            case &#x27;above&#x27;:
+                offset &#x3D; -20;
+                break;
+            default:
+                offset &#x3D; 0;
+        }
+
         const yValue &#x3D; isStart ? systemLines.at(0).START_POINT.y : systemLines.at(-1).END_POINT.y;
-        const correction &#x3D; this.segmentOffsetCorrection * (isStart ? -1 : 1);
+        const correction &#x3D; this.segmentOffsetCorrection * (isStart ? -1 : 1) + offset;
 
         return round(yValue + correction, 2);
     }

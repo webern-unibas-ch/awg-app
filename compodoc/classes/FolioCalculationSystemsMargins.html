@@ -230,7 +230,7 @@ to calculate the margins of the systems on the folio canvas.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="578" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:578</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="590" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:590</a></div>
                             </td>
                         </tr>
 
@@ -303,7 +303,7 @@ from the sheet and the number of systems.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="543" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:543</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="555" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:555</a></div>
                         </td>
                     </tr>
 
@@ -337,7 +337,7 @@ from the sheet and the number of systems.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="553" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:553</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="565" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:565</a></div>
                         </td>
                     </tr>
 
@@ -371,7 +371,7 @@ from the sheet and the number of systems.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="558" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:558</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="570" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:570</a></div>
                         </td>
                     </tr>
 
@@ -405,7 +405,7 @@ from the sheet and the number of systems.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="563" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:563</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="575" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:575</a></div>
                         </td>
                     </tr>
 
@@ -439,7 +439,7 @@ from the sheet and the number of systems.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="568" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:568</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="580" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:580</a></div>
                         </td>
                     </tr>
 
@@ -473,7 +473,7 @@ from the sheet and the number of systems.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="573" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:573</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="585" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:585</a></div>
                         </td>
                     </tr>
 
@@ -513,7 +513,7 @@ from the sheet and the number of systems.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="548" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:548</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="560" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:560</a></div>
                         </td>
                     </tr>
 
@@ -547,7 +547,7 @@ from the sheet and the number of systems.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="578" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:578</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="590" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:590</a></div>
                         </td>
                     </tr>
 
@@ -589,8 +589,8 @@ from the sheet and the number of systems.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="617"
-                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:617</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="629"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:629</a></div>
                         </td>
                     </tr>
 
@@ -950,8 +950,20 @@ export class FolioCalculationContentSegmentVertices {
         const systemIndex &#x3D; isStart ? section.startSystem - 1 : section.endSystem - 1;
         const systemLines &#x3D; this.systems.SYSTEMS_LINES.SYSTEMS_ARRAYS[systemIndex];
 
+        let offset &#x3D; 0;
+        switch (section.relativeToSystem) {
+            case &#x27;below&#x27;:
+                offset &#x3D; 20;
+                break;
+            case &#x27;above&#x27;:
+                offset &#x3D; -20;
+                break;
+            default:
+                offset &#x3D; 0;
+        }
+
         const yValue &#x3D; isStart ? systemLines.at(0).START_POINT.y : systemLines.at(-1).END_POINT.y;
-        const correction &#x3D; this.segmentOffsetCorrection * (isStart ? -1 : 1);
+        const correction &#x3D; this.segmentOffsetCorrection * (isStart ? -1 : 1) + offset;
 
         return round(yValue + correction, 2);
     }

@@ -334,7 +334,7 @@ export class PrefixPipe implements PipeTransform {
             case PrefixForm.LONG: {
                 this.defaultPrefixes.forEach((p: Prefix) &#x3D;&gt; {
                     if (value.indexOf(p.prefixName) !&#x3D;&#x3D; -1) {
-                        transformedValue &#x3D; value.replace(p.prefixName + &#x27;:&#x27;, p.prefixIri);
+                        transformedValue &#x3D; value.replace(p.prefixName, p.prefixIri);
                     }
                 });
                 break;

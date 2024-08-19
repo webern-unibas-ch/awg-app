@@ -139,7 +139,6 @@ import { EditionSeriesComponent } from &#x27;./edition-outlets/edition-series&#x
 import { EditionSeriesDetailComponent } from &#x27;./edition-outlets/edition-series-detail&#x27;;
 import { EditionSectionDetailComponent } from &#x27;./edition-outlets/edition-series-detail/edition-section-detail&#x27;;
 import { EditionSectionsComponent } from &#x27;./edition-outlets/edition-series-detail/edition-sections&#x27;;
-import { EditionTypeComponent } from &#x27;./edition-outlets/edition-type&#x27;;
 import { EditionViewComponent } from &#x27;./edition-view.component&#x27;;
 
 /* Routes of the EditionViewModule */
@@ -253,7 +252,13 @@ const EDITION_VIEW_ROUTES: Routes &#x3D; [
                 ],
             },
             {
-                // Overview of row tables.
+                path: &#x27;preface&#x27;,
+                loadChildren: () &#x3D;&gt;
+                    &quot;import(&#x27;./edition-outlets/edition-preface/edition-preface.module&#x27;).then(\n\
+                        m &#x3D;&gt; m.EditionPrefaceModule\n\
+                    )&quot;,
+            },
+            {
                 path: &#x27;row-tables&#x27;,
                 loadChildren: () &#x3D;&gt;
                     &quot;import(&#x27;./edition-outlets/edition-row-tables/edition-row-tables.module&#x27;).then(\n\
@@ -267,8 +272,7 @@ const EDITION_VIEW_ROUTES: Routes &#x3D; [
 /**
  * Routed components of the {@link EditionViewModule}:
  * {@link EditionViewComponent}, {@link EditionDetailNavComponent},
- * {@link EditionSectionsComponent}, {@link EditionSeriesComponent}
- * and {@link EditionTypeComponent}.
+ * {@link EditionSectionsComponent} and {@link EditionSeriesComponent}.
  */
 export const routedEditionViewComponents &#x3D; [
     EditionViewComponent,
@@ -278,7 +282,6 @@ export const routedEditionViewComponents &#x3D; [
     EditionSectionDetailComponent,
     EditionSeriesComponent,
     EditionSeriesDetailComponent,
-    EditionTypeComponent,
 ];
 
 /**

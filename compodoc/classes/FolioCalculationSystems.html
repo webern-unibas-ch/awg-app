@@ -227,7 +227,7 @@ to calculate the values of the systems on the folio canvas.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="848" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:848</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="860" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:860</a></div>
                             </td>
                         </tr>
 
@@ -336,7 +336,7 @@ from the calculated folio sheet, the systems string and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="818" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:818</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="830" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:830</a></div>
                         </td>
                     </tr>
 
@@ -370,7 +370,7 @@ from the calculated folio sheet, the systems string and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="823" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:823</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="835" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:835</a></div>
                         </td>
                     </tr>
 
@@ -404,7 +404,7 @@ from the calculated folio sheet, the systems string and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="843" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:843</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="855" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:855</a></div>
                         </td>
                     </tr>
 
@@ -438,7 +438,7 @@ from the calculated folio sheet, the systems string and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="828" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:828</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="840" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:840</a></div>
                         </td>
                     </tr>
 
@@ -472,7 +472,7 @@ from the calculated folio sheet, the systems string and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="833" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:833</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="845" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:845</a></div>
                         </td>
                     </tr>
 
@@ -506,7 +506,7 @@ from the calculated folio sheet, the systems string and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="838" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:838</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="850" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:850</a></div>
                         </td>
                     </tr>
 
@@ -540,7 +540,7 @@ from the calculated folio sheet, the systems string and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="848" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:848</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="860" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:860</a></div>
                         </td>
                     </tr>
 
@@ -582,8 +582,8 @@ from the calculated folio sheet, the systems string and the zoom factor.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="901"
-                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:901</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="913"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:913</a></div>
                         </td>
                     </tr>
 
@@ -660,8 +660,8 @@ from the calculated folio sheet, the systems string and the zoom factor.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="884"
-                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:884</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="896"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:896</a></div>
                         </td>
                     </tr>
 
@@ -973,8 +973,20 @@ export class FolioCalculationContentSegmentVertices {
         const systemIndex &#x3D; isStart ? section.startSystem - 1 : section.endSystem - 1;
         const systemLines &#x3D; this.systems.SYSTEMS_LINES.SYSTEMS_ARRAYS[systemIndex];
 
+        let offset &#x3D; 0;
+        switch (section.relativeToSystem) {
+            case &#x27;below&#x27;:
+                offset &#x3D; 20;
+                break;
+            case &#x27;above&#x27;:
+                offset &#x3D; -20;
+                break;
+            default:
+                offset &#x3D; 0;
+        }
+
         const yValue &#x3D; isStart ? systemLines.at(0).START_POINT.y : systemLines.at(-1).END_POINT.y;
-        const correction &#x3D; this.segmentOffsetCorrection * (isStart ? -1 : 1);
+        const correction &#x3D; this.segmentOffsetCorrection * (isStart ? -1 : 1) + offset;
 
         return round(yValue + correction, 2);
     }

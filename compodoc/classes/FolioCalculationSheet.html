@@ -207,7 +207,7 @@ to calculate the values of a sheet on the folio canvas.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="513" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:513</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="525" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:525</a></div>
                             </td>
                         </tr>
 
@@ -293,7 +293,7 @@ to calculate the values of a sheet on the folio canvas.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="503" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:503</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="515" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:515</a></div>
                         </td>
                     </tr>
 
@@ -328,7 +328,7 @@ to calculate the values of a sheet on the folio canvas.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="513" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:513</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="525" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:525</a></div>
                         </td>
                     </tr>
 
@@ -362,7 +362,7 @@ to calculate the values of a sheet on the folio canvas.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="488" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:488</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="500" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:500</a></div>
                         </td>
                     </tr>
 
@@ -396,7 +396,7 @@ to calculate the values of a sheet on the folio canvas.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="498" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:498</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="510" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:510</a></div>
                         </td>
                     </tr>
 
@@ -430,7 +430,7 @@ to calculate the values of a sheet on the folio canvas.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="493" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:493</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="505" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:505</a></div>
                         </td>
                     </tr>
 
@@ -465,7 +465,7 @@ to calculate the values of a sheet on the folio canvas.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="508" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:508</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="520" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:520</a></div>
                         </td>
                     </tr>
 
@@ -769,8 +769,20 @@ export class FolioCalculationContentSegmentVertices {
         const systemIndex &#x3D; isStart ? section.startSystem - 1 : section.endSystem - 1;
         const systemLines &#x3D; this.systems.SYSTEMS_LINES.SYSTEMS_ARRAYS[systemIndex];
 
+        let offset &#x3D; 0;
+        switch (section.relativeToSystem) {
+            case &#x27;below&#x27;:
+                offset &#x3D; 20;
+                break;
+            case &#x27;above&#x27;:
+                offset &#x3D; -20;
+                break;
+            default:
+                offset &#x3D; 0;
+        }
+
         const yValue &#x3D; isStart ? systemLines.at(0).START_POINT.y : systemLines.at(-1).END_POINT.y;
-        const correction &#x3D; this.segmentOffsetCorrection * (isStart ? -1 : 1);
+        const correction &#x3D; this.segmentOffsetCorrection * (isStart ? -1 : 1) + offset;
 
         return round(yValue + correction, 2);
     }
