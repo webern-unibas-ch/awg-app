@@ -8,7 +8,7 @@
 } @else {
     <!-- error message -->
     @if (errorMessage) {
-        <div class="errorMessage">
+        <div class="awg-error-message">
             <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
             <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>
             <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>
