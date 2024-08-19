@@ -1,19 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { JsonPipe } from '@angular/common';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
-import { Observable, of as observableOf } from 'rxjs';
+import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
 import Spy = jasmine.Spy;
 
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
@@ -33,6 +38,7 @@ import {
     EditionSheetsService,
 } from '@awg-views/edition-view/services';
 
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { EditionSheetsComponent } from './edition-sheets.component';
 
 @Component({ selector: 'awg-edition-accolade', template: '' })
@@ -73,6 +79,16 @@ class EditionConvoluteStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
+@Component({ selector: 'awg-modal', template: '' })
+class ModalStubComponent {
+    modalContent: string;
+    open(modalContentSnippetKey: string): void {
+        this.modalContent = modalContentSnippetKey;
+    }
+}
+@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+class TwelveToneSpinnerStubComponent {}
+
 describe('EditionSheetsComponent', () => {
     let component: EditionSheetsComponent;
     let fixture: ComponentFixture<EditionSheetsComponent>;
@@ -109,6 +125,12 @@ describe('EditionSheetsComponent', () => {
     let expectedSheetId: string;
     let expectedReportFragment: string;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
+
+    const jsonPipe = new JsonPipe();
+
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
 
     beforeEach(waitForAsync(() => {
         // Mock router with spy object
@@ -148,13 +170,13 @@ describe('EditionSheetsComponent', () => {
         };
 
         TestBed.configureTestingModule({
-            imports: [NgbModalModule],
             declarations: [
                 CompileHtmlComponent,
                 EditionSheetsComponent,
                 EditionConvoluteStubComponent,
                 EditionAccoladeStubComponent,
-                ModalComponent,
+                ModalStubComponent,
+                TwelveToneSpinnerStubComponent,
             ],
             providers: [
                 { provide: EditionDataService, useValue: mockEditionDataService },
@@ -223,8 +245,12 @@ describe('EditionSheetsComponent', () => {
             expect(component.editionComplex).toBeUndefined();
         });
 
-        it('... should not have `errorMessage`', () => {
-            expect(component.errorMessage).toBeUndefined();
+        it('... should have `errorObject` = null', () => {
+            expectToBe(component.errorObject, null);
+        });
+
+        it('... should have `isLoading===true`', () => {
+            expectToBe(component.isLoading, true);
         });
 
         it('... should not have `folioConvoluteData`', () => {
@@ -270,6 +296,36 @@ describe('EditionSheetsComponent', () => {
         it('... should have `editionRouteConstants` getter', () => {
             expectToEqual(component.editionRouteConstants, expectedEditionRouteConstants);
         });
+
+        describe('VIEW', () => {
+            it('... should have a `div`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+            });
+
+            it('... should contain one modal component (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], ModalStubComponent, 1, 1);
+            });
+
+            it('... should not have a nested div.errorMessage', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 0, 0);
+            });
+
+            it('... should not have a loading spinner (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
+            });
+
+            it('... should not have an AccoladeComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 0, 0);
+            });
+
+            it('... should not have a ConvoluteComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, EditionConvoluteStubComponent, 0, 0);
+            });
+        });
     });
 
     describe('AFTER initial data binding', () => {
@@ -292,6 +348,61 @@ describe('EditionSheetsComponent', () => {
             mockActivatedRoute.testUrl = changedRouteUrl;
 
             expectToEqual(mockActivatedRoute.snapshot.url[0].path, changedPath);
+        });
+
+        describe('VIEW', () => {
+            it('... should have one div.awg-sheets-view', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-sheets-view', 1, 1);
+            });
+
+            it('... should contain one AccoladeComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+            });
+
+            it('... should contain no ConvoluteComponent (stubbed) if no convolute is provided', () => {
+                getAndExpectDebugElementByDirective(compDe, EditionConvoluteStubComponent, 0, 0);
+            });
+
+            describe('on error', () => {
+                const expectedError = { status: 404, statusText: 'got Error' };
+
+                beforeEach(waitForAsync(() => {
+                    // Spy on editionDataService to return an error
+                    editionDataServiceGetEditionSheetsDataSpy.and.returnValue(
+                        observableThrowError(() => expectedError)
+                    );
+
+                    component.getEditionSheetsData();
+                    detectChangesOnPush(fixture);
+                }));
+
+                it('... should not have sheets view, but one div.errorMessage with centered danger alert', waitForAsync(() => {
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-sheets-view', 0, 0);
+                    const errorDes = getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 1, 1);
+
+                    getAndExpectDebugElementByCss(errorDes[0], 'div.text-center > div.alert-danger', 1, 1);
+                }));
+
+                it('... should display errorMessage', waitForAsync(() => {
+                    const alertDes = getAndExpectDebugElementByCss(compDe, 'div.alert-danger', 1, 1);
+                    const alertEl = alertDes[0].nativeElement;
+
+                    expectToContain(alertEl.textContent, jsonPipe.transform(expectedError));
+                }));
+            });
+
+            describe('on loading', () => {
+                describe('... should contain only TwelveToneSpinnerComponent (stubbed) if ... ', () => {
+                    it('... isLoading is true', () => {
+                        component.isLoading = true;
+                        detectChangesOnPush(fixture);
+
+                        getAndExpectDebugElementByCss(compDe, 'div.awg-sheets-view', 0, 0);
+                        getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+                });
+            });
         });
 
         describe('#onReportFragmentNavigate()', () => {

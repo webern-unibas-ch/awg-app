@@ -2,7 +2,14 @@ import { DOCUMENT, JsonPipe } from '@angular/common';
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { EmptyError, lastValueFrom, Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
+import {
+    EMPTY,
+    EmptyError,
+    lastValueFrom,
+    Observable,
+    of as observableOf,
+    throwError as observableThrowError,
+} from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
@@ -46,6 +53,9 @@ class ModalStubComponent {
     }
 }
 
+@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+class TwelveToneSpinnerStubComponent {}
+
 describe('EditionGraphComponent (DONE)', () => {
     let component: EditionGraphComponent;
     let fixture: ComponentFixture<EditionGraphComponent>;
@@ -63,14 +73,18 @@ describe('EditionGraphComponent (DONE)', () => {
     let editionDataServiceGetEditionGraphDataSpy: Spy;
     let editionServiceGetSelectedEditionComplexSpy: Spy;
 
-    const jsonPipe = new JsonPipe();
-
     let expectedEditionComplex: EditionComplex;
     let expectedEditionGraphDataEmpty: GraphList;
     let expectedEditionGraphDataOp25: GraphList;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
     let expectedIsFullscreen: boolean;
+
+    const jsonPipe = new JsonPipe();
+
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
 
     beforeEach(waitForAsync(() => {
         // Mocked editionDataService
@@ -90,6 +104,7 @@ describe('EditionGraphComponent (DONE)', () => {
                 GraphVisualizerStubComponent,
                 ModalStubComponent,
                 CompileHtmlComponent,
+                TwelveToneSpinnerStubComponent,
             ],
             providers: [
                 { provide: EditionDataService, useValue: mockEditionDataService },
@@ -234,7 +249,7 @@ describe('EditionGraphComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 1, 1);
             });
 
-            it('... should not contain a div.awg-graph-view if graph data is not provided', waitForAsync(() => {
+            it('... should not contain a div in div.awg-graph-view if graph data is not provided', waitForAsync(() => {
                 const noGraphData = new GraphList();
                 noGraphData.graph = undefined;
 
@@ -246,7 +261,7 @@ describe('EditionGraphComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div', 0, 0);
             }));
 
-            it('... should contain a div.awg-graph-view if graph data is provided', () => {
+            it('... should contain a div in div.awg-graph-view if graph data is provided', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div', 1, 1);
             });
 
@@ -568,6 +583,40 @@ describe('EditionGraphComponent (DONE)', () => {
 
                     expectToContain(alertEl.textContent, jsonPipe.transform(expectedError));
                 }));
+            });
+
+            describe('on loading', () => {
+                describe('... should contain only TwelveToneSpinnerComponent (stubbed) if ... ', () => {
+                    it('... editionGraphData$ is EMPTY', () => {
+                        // Mock empty observable
+                        component.editionGraphData$ = EMPTY;
+                        detectChangesOnPush(fixture);
+
+                        getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 0, 0);
+                        getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+
+                    it('... editionGraphData$ is undefined', () => {
+                        // Mock undefined response
+                        component.editionGraphData$ = observableOf(undefined);
+                        detectChangesOnPush(fixture);
+
+                        getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 0, 0);
+                        getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+
+                    it('... editionGraphData$ is null', () => {
+                        // Mock null response
+                        component.editionGraphData$ = observableOf(null);
+                        detectChangesOnPush(fixture);
+
+                        getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 0, 0);
+                        getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+                });
             });
         });
 

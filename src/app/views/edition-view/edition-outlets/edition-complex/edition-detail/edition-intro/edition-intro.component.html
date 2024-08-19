@@ -37,11 +37,12 @@
         @if (errorObject) {
             <div class="errorMessage">
                 <div class="col-12 text-center">
-                    <div class="alert alert-danger">
-                        {{ errorObject }}
-                    </div>
+                    <div class="alert alert-danger">{{ errorObject | json }}</div>
                 </div>
             </div>
+        } @else {
+            <!-- loading spinner -->
+            <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
         }
     }
 </div>
