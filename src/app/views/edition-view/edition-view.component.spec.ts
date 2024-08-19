@@ -14,13 +14,11 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { mockEditionOutline } from '@testing/mock-data/mockEditionOutline';
 import { ActivatedRouteStub, RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
-import { EditionComplexesService } from '@awg-core/services';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionViewComponent } from './edition-view.component';
 
@@ -67,6 +65,7 @@ describe('EditionViewComponent (DONE)', () => {
 
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
+        EditionOutlineService.initializeEditionOutline();
     });
 
     beforeEach(waitForAsync(() => {
@@ -78,14 +77,14 @@ describe('EditionViewComponent (DONE)', () => {
 
         // Mock edition service
         mockEditionService = {
+            getIsPrefaceView: (): Observable<boolean> => observableOf(expectedIsPrefaceView),
+            getIsRowTableView: (): Observable<boolean> => observableOf(expectedIsRowTableView),
             getSelectedEditionComplex: (): Observable<EditionComplex> =>
                 // Return op. 12 by default
                 observableOf(EditionComplexesService.getEditionComplexById(expectedSelectedEditionComplexId)),
             updateSelectedEditionComplex: (editionComplex: EditionComplex): void => {
                 // Intentional empty test override
             },
-            getIsPrefaceView: (): Observable<boolean> => observableOf(expectedIsPrefaceView),
-            getIsRowTableView: (): Observable<boolean> => observableOf(expectedIsRowTableView),
             getSelectedEditionSeries: (): Observable<EditionOutlineSeries> =>
                 observableOf(expectedSelectedEditionSeries),
             getSelectedEditionSection: (): Observable<EditionOutlineSection> =>
@@ -102,10 +101,7 @@ describe('EditionViewComponent (DONE)', () => {
             ],
             providers: [
                 { provide: EditionService, useValue: mockEditionService },
-                {
-                    provide: ActivatedRoute,
-                    useValue: mockActivatedRoute,
-                },
+                { provide: ActivatedRoute, useValue: mockActivatedRoute },
                 { provide: Router, useValue: mockRouter },
             ],
         }).compileComponents();
@@ -125,8 +121,8 @@ describe('EditionViewComponent (DONE)', () => {
         expectedSelectedEditionComplex = EditionComplexesService.getEditionComplexById(
             expectedSelectedEditionComplexId
         );
-        expectedSelectedEditionSeries = mockEditionOutline[0]; // Series 1
-        expectedSelectedEditionSection = expectedSelectedEditionSeries.sections[4];
+        expectedSelectedEditionSeries = EditionOutlineService.getEditionOutline()[0]; // Series 1
+        expectedSelectedEditionSection = expectedSelectedEditionSeries.sections[4]; // Section 5
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -385,11 +381,11 @@ describe('EditionViewComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);
                 });
 
-                it('... should have an h6, an h3 and a responsibility div in div.awg-edition-complex', () => {
+                it('... should have an h6 (breadcrumb), a JumbotronComponent (stubbed) and a responsibility div in div.awg-edition-complex', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);
 
-                    getAndExpectDebugElementByCss(divDes[0], 'h6', 1, 1);
-                    getAndExpectDebugElementByCss(divDes[0], 'h3.awg-edition-info-header', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], EditionJumbotronStubComponent, 1, 1);
                     getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-responsibility', 1, 1);
                 });
 
@@ -410,19 +406,21 @@ describe('EditionViewComponent (DONE)', () => {
                     expectToBe(hEl.innerText, expectedBreadCrumb);
                 });
 
-                it('... should display edition complex title in awg-edition-info-header', () => {
-                    const hDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-edition-complex > h3.awg-edition-info-header',
+                it('... should pass down `editionViewId` and `title` to JumbotronComponent (stubbed)', () => {
+                    // Get debug and native element of JumbotronComponent
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);
+                    const jumbotronDes = getAndExpectDebugElementByDirective(
+                        divDes[0],
+                        EditionJumbotronStubComponent,
                         1,
                         1
                     );
-                    const titleDes = getAndExpectDebugElementByCss(hDes[0], '.awg-edition-info-header-title', 1, 1);
-                    const titleEl = titleDes[0].nativeElement;
+                    const jumbotronCmp = jumbotronDes[0].injector.get(
+                        EditionJumbotronStubComponent
+                    ) as EditionJumbotronStubComponent;
 
-                    const expectedHeaderTitle = expectedSelectedEditionComplex.complexId.full;
-
-                    expectToBe(titleEl.innerHTML, expectedHeaderTitle);
+                    expectToBe(jumbotronCmp.jumbotronId, expectedId);
+                    expectToBe(jumbotronCmp.jumbotronTitle, expectedSelectedEditionComplex.complexId.full);
                 });
 
                 it('... should have one paragraph with editor and version in responsibility div', () => {

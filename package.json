@@ -94,7 +94,7 @@
         "@angular/platform-browser-dynamic": "^18.2.0",
         "@angular/platform-server": "^18.2.0",
         "@angular/router": "^18.2.0",
-        "@codemirror/legacy-modes": "^6.4.0",
+        "@codemirror/legacy-modes": "^6.4.1",
         "@fortawesome/angular-fontawesome": "^0.15.0",
         "@fortawesome/free-solid-svg-icons": "^6.6.0",
         "@kolkov/ngx-gallery": "2.0.1",

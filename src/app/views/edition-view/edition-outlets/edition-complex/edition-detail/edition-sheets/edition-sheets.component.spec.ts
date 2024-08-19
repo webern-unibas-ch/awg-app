@@ -12,7 +12,6 @@ import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDir
 import { mockEditionData } from '@testing/mock-data';
 import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
 
-import { EditionComplexesService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
@@ -27,7 +26,12 @@ import {
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService, EditionSheetsService } from '@awg-views/edition-view/services';
+import {
+    EditionComplexesService,
+    EditionDataService,
+    EditionService,
+    EditionSheetsService,
+} from '@awg-views/edition-view/services';
 
 import { EditionSheetsComponent } from './edition-sheets.component';
 

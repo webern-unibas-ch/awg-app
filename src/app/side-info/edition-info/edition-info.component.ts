@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { EditionComplexesService } from '@awg-core/services';
 import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
+import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionInfo component.

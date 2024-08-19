@@ -12,7 +12,7 @@ import { ApiService } from './api-service';
 import { ConversionService } from './conversion-service';
 import { CoreService } from './core-service';
 import { DataStreamerService } from './data-streamer-service';
-import { EditionComplexesService } from './edition-complexes/edition-complexes.service';
+import { EditionInitService } from './edition-init-service';
 import { GndService } from './gnd-service';
 import { HttpCacheService } from './http-cache';
 import { LoadingService } from './loading-service';
@@ -26,7 +26,7 @@ export {
     ConversionService,
     CoreService,
     DataStreamerService,
-    EditionComplexesService,
+    EditionInitService,
     GndService,
     HttpCacheService,
     LoadingService,

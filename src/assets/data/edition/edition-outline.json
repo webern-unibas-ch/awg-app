@@ -1,0 +1,139 @@
+{
+    "editionOutline": [
+        {
+            "series": "1",
+            "sections": [
+                {
+                    "section": "1",
+                    "complexTypes": { "opus": [], "mnr": [] },
+                    "disabled": true
+                },
+                {
+                    "section": "2",
+                    "complexTypes": { "opus": [], "mnr": [] },
+                    "disabled": true
+                },
+                {
+                    "section": "3",
+                    "complexTypes": { "opus": [], "mnr": [] },
+                    "disabled": true
+                },
+                {
+                    "section": "4",
+                    "complexTypes": { "opus": [], "mnr": [] },
+                    "disabled": true
+                },
+                {
+                    "section": "5",
+                    "complexTypes": {
+                        "opus": [
+                            { "complex": "OP3", "disabled": false },
+                            { "complex": "OP4", "disabled": false },
+                            { "complex": "OP12", "disabled": false },
+                            { "complex": "OP23", "disabled": false },
+                            { "complex": "OP25", "disabled": false }
+                        ],
+                        "mnr": [
+                            { "complex": "M133", "disabled": true },
+                            { "complex": "M134", "disabled": true },
+                            { "complex": "M135", "disabled": true },
+                            { "complex": "M136", "disabled": true },
+                            { "complex": "M137", "disabled": true },
+                            { "complex": "M138", "disabled": true },
+                            { "complex": "M139", "disabled": true },
+                            { "complex": "M140", "disabled": true },
+                            { "complex": "M141", "disabled": true },
+                            { "complex": "M142", "disabled": true },
+                            { "complex": "M143", "disabled": false },
+                            { "complex": "M144", "disabled": false },
+                            { "complex": "M145", "disabled": false },
+                            { "complex": "M146", "disabled": false },
+                            { "complex": "M213", "disabled": true },
+                            { "complex": "M212", "disabled": true },
+                            { "complex": "M216", "disabled": true },
+                            { "complex": "M217", "disabled": true }
+                        ]
+                    },
+                    "disabled": false
+                }
+            ]
+        },
+        {
+            "series": "2",
+            "sections": [
+                {
+                    "section": "1",
+                    "complexTypes": { "opus": [], "mnr": [] },
+                    "disabled": true
+                },
+                {
+                    "section": "2A",
+                    "complexTypes": {
+                        "opus": [],
+                        "mnr": [
+                            { "complex": "M22", "disabled": false },
+                            { "complex": "M30", "disabled": false },
+                            { "complex": "M31", "disabled": false },
+                            { "complex": "M34", "disabled": false },
+                            { "complex": "M35_42", "disabled": false },
+                            { "complex": "M36", "disabled": false },
+                            { "complex": "M37", "disabled": false },
+                            { "complex": "M38", "disabled": false }
+                        ]
+                    },
+                    "disabled": false
+                },
+                {
+                    "section": "2B",
+                    "complexTypes": { "opus": [], "mnr": [] },
+                    "disabled": true
+                },
+                {
+                    "section": "3",
+                    "complexTypes": { "opus": [], "mnr": [] },
+                    "disabled": true
+                },
+                {
+                    "section": "4",
+                    "complexTypes": { "opus": [], "mnr": [] },
+                    "disabled": true
+                },
+                {
+                    "section": "5",
+                    "complexTypes": { "opus": [], "mnr": [] },
+                    "disabled": true
+                }
+            ]
+        },
+        {
+            "series": "3",
+            "sections": [
+                {
+                    "section": "1",
+                    "complexTypes": { "opus": [], "mnr": [] },
+                    "disabled": true
+                },
+                {
+                    "section": "2",
+                    "complexTypes": { "opus": [], "mnr": [] },
+                    "disabled": true
+                },
+                {
+                    "section": "3",
+                    "complexTypes": { "opus": [], "mnr": [] },
+                    "disabled": true
+                },
+                {
+                    "section": "4",
+                    "complexTypes": { "opus": [], "mnr": [] },
+                    "disabled": true
+                },
+                {
+                    "section": "5",
+                    "complexTypes": { "opus": [], "mnr": [] },
+                    "disabled": true
+                }
+            ]
+        }
+    ]
+}
