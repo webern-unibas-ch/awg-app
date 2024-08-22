@@ -1,0 +1,52 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 32 Textfassung 1.<br />Enthält auch Skizzen zu und Tintenniederschrift von Studienkomposition für Streichquartett M 68 Textfassung 1–3.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_A"
+        },
+        {
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 32 Textfassung 1–2.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 33, Studienkomposition für Streichquartett M 68 und zu „Du bist mein, ich bin dein“ M 9 sowie nicht identifizierte Skizze.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_B"
+        },
+        {
+            "siglum": "C",
+            "siglumAddendum": "",
+            "type": "Skizze zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 32 Textfassung 3.<br />Enthält auch Skizzen zu und Tintenniederschrift von Studienkomposition für Klavier M 22 und M* 413–414.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_C"
+        },
+        {
+            "siglum": "D",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 32 Textfassung 1→2→3.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 33 Textfassung 1→2.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_D"
+        },
+        {
+            "siglum": "E",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 32 Textfassung 2 T. 21–41.<br />Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 32 Textfassung 3.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 22 und M* 413–414.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_E"
+        },
+        {
+            "siglum": "F",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 32 Textfassung 3 T. 21–41, T. 49–69.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_F"
+        }
+    ]
+}
