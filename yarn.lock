@@ -2646,12 +2646,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:^19.4.0":
-  version: 19.4.0
-  resolution: "@commitlint/cli@npm:19.4.0"
+"@commitlint/cli@npm:^19.4.1":
+  version: 19.4.1
+  resolution: "@commitlint/cli@npm:19.4.1"
   dependencies:
     "@commitlint/format": "npm:^19.3.0"
-    "@commitlint/lint": "npm:^19.2.2"
+    "@commitlint/lint": "npm:^19.4.1"
     "@commitlint/load": "npm:^19.4.0"
     "@commitlint/read": "npm:^19.4.0"
     "@commitlint/types": "npm:^19.0.3"
@@ -2659,7 +2659,7 @@ __metadata:
     yargs: "npm:^17.0.0"
   bin:
     commitlint: cli.js
-  checksum: 10c0/b3f4a0b07ae18c59bcc7c4a10fa5e265271d1f76b94d1c64371104b0f9cdabf8480c941382c3de5db53513b3c4785acc02f9445a1f357361ff4f5ff4ecdf5f4b
+  checksum: 10c0/a829b91e690b3dd44fab9661d7defdb3bd2556f014e122a004b3ffaf25673f2c0916a112db651a9af3168f8ebdc91828d1ee4db7a1f3cef7e7f4ff9b9699aabf
   languageName: node
   linkType: hard
 
@@ -2670,12 +2670,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/config-angular@npm:^19.3.0":
-  version: 19.3.0
-  resolution: "@commitlint/config-angular@npm:19.3.0"
+"@commitlint/config-angular@npm:^19.4.1":
+  version: 19.4.1
+  resolution: "@commitlint/config-angular@npm:19.4.1"
   dependencies:
     "@commitlint/config-angular-type-enum": "npm:^19.1.0"
-  checksum: 10c0/b20966ea62f65f5254740c592c1ef5ca1504cee716f9f24455a57ecd25a10a76c67403d978d9a286b3dd7171d6aa27a1d980406d1504111af0a292c853374a63
+  checksum: 10c0/3b7ffe70cecab2c7b34902dbd161ffc365d91a1ad564d42eea22de374b769e5a9219a7e2a6ec9df02d6236904786914cc3229c7b501346716ba97c4d2727af06
   languageName: node
   linkType: hard
 
@@ -2730,15 +2730,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/lint@npm:^19.2.2":
-  version: 19.2.2
-  resolution: "@commitlint/lint@npm:19.2.2"
+"@commitlint/lint@npm:^19.4.1":
+  version: 19.4.1
+  resolution: "@commitlint/lint@npm:19.4.1"
   dependencies:
     "@commitlint/is-ignored": "npm:^19.2.2"
     "@commitlint/parse": "npm:^19.0.3"
-    "@commitlint/rules": "npm:^19.0.3"
+    "@commitlint/rules": "npm:^19.4.1"
     "@commitlint/types": "npm:^19.0.3"
-  checksum: 10c0/e7b3ca6027fecc1a3eda0ee8c21ecef0071ddddc7711a922cc6eb53a590c7e4f00d550b01134a5ebaaae603a0afbeaf65809b12f8099e08cace9d594cb69ff4b
+  checksum: 10c0/d3b455c23480f64fb4939eb78266eee687048a5e3c4203207fb25f6b7bd1f369a8529c659018db20765a6a57f6c161d3f80a01422ca7883b1a4405cd064d8fd6
   languageName: node
   linkType: hard
 
@@ -2805,16 +2805,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/rules@npm:^19.0.3":
-  version: 19.0.3
-  resolution: "@commitlint/rules@npm:19.0.3"
+"@commitlint/rules@npm:^19.4.1":
+  version: 19.4.1
+  resolution: "@commitlint/rules@npm:19.4.1"
   dependencies:
     "@commitlint/ensure": "npm:^19.0.3"
     "@commitlint/message": "npm:^19.0.0"
     "@commitlint/to-lines": "npm:^19.0.0"
     "@commitlint/types": "npm:^19.0.3"
     execa: "npm:^8.0.1"
-  checksum: 10c0/4a9a3f2fb838949707650a6bf2a016ec2b0ec570cb151d1005d01bdeb2e27adff5e5eab3c06a302c6834a88e2ec39090a5482bb57f2da51e6609c2b89e33d948
+  checksum: 10c0/d2052d193dc04b6fc0588ea57eab8490c408bd725f8c4bdb8aa274dc3b5a6ba45d23b718675c6e69304c4fe6c8e92e45b6d6c9de9a5fef266a50e7a71cf3058a
   languageName: node
   linkType: hard
 
@@ -6081,8 +6081,8 @@ __metadata:
     "@angular/platform-server": "npm:^18.2.0"
     "@angular/router": "npm:^18.2.0"
     "@codemirror/legacy-modes": "npm:^6.4.1"
-    "@commitlint/cli": "npm:^19.4.0"
-    "@commitlint/config-angular": "npm:^19.3.0"
+    "@commitlint/cli": "npm:^19.4.1"
+    "@commitlint/config-angular": "npm:^19.4.1"
     "@compodoc/compodoc": "npm:^1.1.25"
     "@fortawesome/angular-fontawesome": "npm:^0.15.0"
     "@fortawesome/free-solid-svg-icons": "npm:^6.6.0"
