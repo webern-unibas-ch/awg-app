@@ -3930,9 +3930,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ng-bootstrap/ng-bootstrap@npm:^17.0.0":
-  version: 17.0.0
-  resolution: "@ng-bootstrap/ng-bootstrap@npm:17.0.0"
+"@ng-bootstrap/ng-bootstrap@npm:^17.0.1":
+  version: 17.0.1
+  resolution: "@ng-bootstrap/ng-bootstrap@npm:17.0.1"
   dependencies:
     tslib: "npm:^2.3.0"
   peerDependencies:
@@ -3942,7 +3942,7 @@ __metadata:
     "@angular/localize": ^18.0.0
     "@popperjs/core": ^2.11.8
     rxjs: ^6.5.3 || ^7.4.0
-  checksum: 10c0/155588196668ab73c189db82f7afc4386fb1561a7df79198a0e846cbf914361a40fe35b240cfe4130608f3a7923e3d1622dc89c44206d6b84f7541914d0d89e2
+  checksum: 10c0/9892a7b99596491f9144669c6ccc28574160ed79e6c7045fea9c922cac0896dc02b6de00cc115ae1830f46233a5fafbca5af985533a02085e409769ff7c210af
   languageName: node
   linkType: hard
 
@@ -6087,7 +6087,7 @@ __metadata:
     "@fortawesome/angular-fontawesome": "npm:^0.15.0"
     "@fortawesome/free-solid-svg-icons": "npm:^6.6.0"
     "@kolkov/ngx-gallery": "npm:2.0.1"
-    "@ng-bootstrap/ng-bootstrap": "npm:^17.0.0"
+    "@ng-bootstrap/ng-bootstrap": "npm:^17.0.1"
     "@popperjs/core": "npm:^2.11.8"
     "@types/d3": "npm:^7.4.3"
     "@types/jasmine": "npm:~5.1.4"
