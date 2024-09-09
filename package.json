@@ -114,7 +114,7 @@
         "rdfstore": "musicenfanthen/rdfstore-js#v0.9.18-alpha.16",
         "rxjs": "~7.8.1",
         "stream": "^0.0.3",
-        "tslib": "^2.6.2",
+        "tslib": "^2.7.0",
         "zone.js": "~0.14.10"
     },
     "devDependencies": {
