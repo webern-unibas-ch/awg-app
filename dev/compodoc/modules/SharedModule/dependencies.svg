@@ -28,13 +28,13 @@
 <title>cluster_SharedModule_imports</title>
 <polygon fill="none" stroke="black" points="2690,-78 2690,-130 3172,-130 3172,-78 2690,-78"/>
 </g>
-<g id="clust20" class="cluster">
-<title>cluster_SharedModule_exports</title>
-<polygon fill="none" stroke="black" points="83,-208 83,-260 3106,-260 3106,-208 83,-208"/>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster_SharedModule_declarations</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 2682,-130 2682,-78 16,-78"/>
+</g>
+<g id="clust20" class="cluster">
+<title>cluster_SharedModule_exports</title>
+<polygon fill="none" stroke="black" points="83,-208 83,-260 3106,-260 3106,-208 83,-208"/>
 </g>
 <!-- AddressComponent -->
 <g id="node1" class="node">
