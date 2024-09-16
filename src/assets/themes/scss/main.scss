@@ -380,22 +380,37 @@ span.facet-badge {
 %inlineblock {
     display: inline-block;
 }
+@mixin tab($margin) {
+    @extend %inlineblock;
+    margin-left: $margin;
+}
 
 .tab {
-    @extend %inlineblock;
-    margin-left: 25px;
+    @include tab(25px);
 }
 .singletab {
-    @extend %inlineblock;
-    margin-left: 50px;
+    @include tab(50px);
 }
 .doubletab {
-    @extend %inlineblock;
-    margin-left: 60px;
+    @include tab(60px);
 }
 .doubletab_extended {
-    @extend %inlineblock;
-    margin-left: 70px;
+    @include tab(70px);
+}
+.tab75 {
+    @include tab(75px);
+}
+.tab100 {
+    @include tab(100px);
+}
+.tab150 {
+    @include tab(150px);
+}
+.tab200 {
+    @include tab(200px);
+}
+.tab250 {
+    @include tab(250px);
 }
 
 .indent {
