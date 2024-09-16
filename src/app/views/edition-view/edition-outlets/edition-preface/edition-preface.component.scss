@@ -27,6 +27,8 @@
 .awg-preface-para {
     margin: 0;
     text-indent: 25px;
+    text-align: justify;
+    text-justify: inter-word;
 
     &::ng-deep {
         .heading {
