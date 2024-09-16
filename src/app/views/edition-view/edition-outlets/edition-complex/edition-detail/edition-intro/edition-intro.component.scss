@@ -1,12 +1,24 @@
+.awg-intro-footnote,
+.awg-intro-para {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
 .awg-intro-para {
     margin: 0;
     text-indent: 25px;
 
     &::ng-deep {
+        p {
+            margin-bottom: 0 !important;
+        }
+        table > tbody > tr > td {
+            padding-right: 10px;
+        }
         .heading {
             display: block;
+            margin-top: 25px;
             margin-bottom: 25px;
-            font-size: 1.5em;
             font-weight: bold;
         }
         .heading,
@@ -14,17 +26,22 @@
         .no-indent {
             text-indent: 0;
         }
-        .small:not(.spacebreak),
-        .no-indent {
-            margin-left: -25px;
-        }
         .spacebreak {
             display: block;
-            margin-bottom: 25px;
+            margin-top: 25px;
 
             &.no-indent {
                 margin-left: 0;
             }
         }
+    }
+}
+
+.awg-intro-nav .nav {
+    position: sticky;
+    top: 0;
+
+    a.active {
+        color: #000;
     }
 }

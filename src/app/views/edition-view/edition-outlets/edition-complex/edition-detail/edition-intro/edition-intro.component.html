@@ -6,31 +6,84 @@
     <!-- intro -->
     @if (editionIntroData$ | async; as editionIntroData) {
         <div class="awg-intro-view p-5 border rounded-3">
-            @if (utils.isNotEmptyArray(editionIntroData.intro[0].content)) {
-                @for (introParagraph of editionIntroData.intro[0].content; track introParagraph) {
-                    <p class="awg-intro-para" [compile-html]="introParagraph" [compile-html-ref]="this"></p>
+            <div class="row">
+                @if (utils.isNotEmptyArray(editionIntroData.intro[0].content)) {
+                    <div class="col-12 col-xl-10">
+                        @for (introBlock of editionIntroData.intro[0].content; track $index) {
+                            <section class="awg-intro-section" [id]="introBlock.blockId">
+                                @if (introBlock.blockHeader) {
+                                    <div class="awg-intro-para">
+                                        <p class="heading" [innerHTML]="introBlock.blockHeader"></p>
+                                    </div>
+                                }
+                                @if (introBlock.blockContent.length > 0) {
+                                    @for (blockContent of introBlock.blockContent; track $index) {
+                                        <div
+                                            class="awg-intro-para"
+                                            [compile-html]="blockContent"
+                                            [compile-html-ref]="this"></div>
+                                    }
+                                }
+                            </section>
+                        }
+                        @if (utils.isNotEmptyArray(editionIntroData.intro[0].footnotes)) {
+                            <hr />
+                            <section class="awg-intro-section" id="comments">
+                                <h5>Anmerkungen</h5>
+                                <div class="awg-intro-footnotes">
+                                    @for (footnote of editionIntroData.intro[0].footnotes; track $index) {
+                                        <small
+                                            ><p
+                                                class="awg-intro-footnote"
+                                                [compile-html]="footnote"
+                                                [compile-html-ref]="this"></p
+                                        ></small>
+                                    }
+                                </div>
+                            </section>
+                        }
+                    </div>
+
+                    <div class="col-12 col-xl-2 d-none d-xl-block awg-intro-nav">
+                        <ul class="nav flex-column">
+                            <hr class="mt-0 mb-2" />
+                            @for (introBlock of editionIntroData.intro[0].content; track $index) {
+                                @if (introBlock.blockHeader) {
+                                    <li class="nav-item small">
+                                        <a
+                                            class="nav-link awg-intro-nav-link pt-0"
+                                            [routerLink]="'.'"
+                                            [fragment]="introBlock.blockId"
+                                            [innerHTML]="introBlock.blockHeader"></a>
+                                    </li>
+                                }
+                            }
+                            @if (utils.isNotEmptyArray(editionIntroData.intro[0].footnotes)) {
+                                <hr class="mb-2" />
+                                <li class="nav-item small">
+                                    <a class="nav-link awg-intro-nav-link pt-0" [routerLink]="'.'" fragment="comments"
+                                        >Anmerkungen</a
+                                    >
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                } @else {
+                    <div class="col-12">
+                        <p class="awg-intro-empty">
+                            <small class="text-muted"
+                                >[Die Einleitung zum Editionskomplex
+                                <span [innerHTML]="editionComplex.complexId.full"></span> erscheint im Zusammenhang der
+                                vollständigen Edition von <span [innerHTML]="editionComplex.complexId.short"></span> in
+                                {{ editionRouteConstants.EDITION.short }}
+                                {{ editionComplex.pubStatement.series.short }}/{{
+                                    editionComplex.pubStatement.section.short
+                                }}.]
+                            </small>
+                        </p>
+                    </div>
                 }
-            } @else {
-                <p class="awg-intro-empty">
-                    <small class="text-muted"
-                        >[Die Einleitung zum Editionskomplex
-                        <span [innerHTML]="editionComplex.complexId.full"></span> erscheint im Zusammenhang der
-                        vollständigen Edition von <span [innerHTML]="editionComplex.complexId.short"></span> in
-                        {{ editionRouteConstants.EDITION.short }} {{ editionComplex.pubStatement.series.short }}/{{
-                            editionComplex.pubStatement.section.short
-                        }}.]
-                    </small>
-                </p>
-            }
-            @if (utils.isNotEmptyArray(editionIntroData.intro[0].footnotes)) {
-                <hr />
-                <h5>Anmerkungen</h5>
-                @for (footnote of editionIntroData.intro[0].footnotes; track footnote) {
-                    <small
-                        ><p class="awg-intro-footnote" [compile-html]="footnote" [compile-html-ref]="this"></p
-                    ></small>
-                }
-            }
+            </div>
         </div>
     } @else {
         <!-- error message -->

@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationExtras, Router } from '@angular/router';
 
-import { EMPTY, Observable } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
+import { EMPTY, fromEvent, Observable } from 'rxjs';
+import { catchError, switchMap, throttleTime } from 'rxjs/operators';
 
 import { UtilityService } from '@awg-core/services';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
@@ -74,6 +75,8 @@ export class EditionIntroComponent implements OnInit {
         public utils: UtilityService
     ) {
         this.ref = this;
+
+        this._initScrollListener();
     }
 
     /**
@@ -190,6 +193,19 @@ export class EditionIntroComponent implements OnInit {
     }
 
     /**
+     * Private method: _initScrollListener.
+     *
+     * It initializes the scroll listener for the window.
+     *
+     * @returns {void} Initializes the scroll listener.
+     */
+    private _initScrollListener(): void {
+        fromEvent(window, 'scroll')
+            .pipe(throttleTime(200), takeUntilDestroyed())
+            .subscribe(event => this._onWindowScroll(event));
+    }
+
+    /**
      * Private method: _navigateWithComplexId.
      *
      * It navigates to a target route using the provided complexId.
@@ -203,5 +219,42 @@ export class EditionIntroComponent implements OnInit {
         const complexRoute = complexId ? `/edition/complex/${complexId}/` : this.editionComplex.baseRoute;
 
         this.router.navigate([complexRoute, targetRoute], navigationExtras);
+    }
+
+    /**
+     * Private method: _onWindowScroll.
+     *
+     * It handles the scroll event on the window
+     * and highlights the corresponding section in the intro navigation.
+     *
+     * @param {Event} event The given event.
+     * @returns {void} Highlights the corresponding section in the intro navigation
+     * on window scroll.
+     */
+    private _onWindowScroll(event: Event): void {
+        const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+        const sections: NodeListOf<HTMLElement> = document.querySelectorAll('.awg-intro-section');
+        const navLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('a.awg-intro-nav-link');
+
+        let activeSectionFound = false;
+
+        sections.forEach((section: HTMLElement) => {
+            const sectionTop = section.offsetTop - 10;
+            const sectionBottom = section.offsetTop + section.offsetHeight;
+
+            if (!activeSectionFound && sectionTop <= scrollPosition && sectionBottom > scrollPosition) {
+                navLinks.forEach((navLink: HTMLAnchorElement) => {
+                    navLink.classList.toggle('active', navLink.hash.includes(section.id));
+
+                    activeSectionFound = true;
+                });
+            }
+        });
+
+        if (!activeSectionFound) {
+            navLinks.forEach((navLink: HTMLAnchorElement) => {
+                navLink.classList.remove('active');
+            });
+        }
     }
 }
