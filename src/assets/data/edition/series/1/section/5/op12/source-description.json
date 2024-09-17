@@ -1592,8 +1592,274 @@
                             }
                         ]
                     }
-                ]
-            }
+                ],
+                "corrections": [
+        {
+            "id": "source_Ca_corr",
+            "label": "Korrekturen in <strong>C<sup>a</sup></strong>",
+            "description": ["Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: Textfassung 2."],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "3",
+                            "system": "Ges.",
+                            "position": "5/8",
+                            "comment": "Rasur über System."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "5",
+                            "system": "Klav. o.",
+                            "position": "1. Note",
+                            "comment": "Auf Rasur."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "5",
+                            "system": "Ges.",
+                            "position": "3–4/8",
+                            "comment": "e<sup>1</sup> und fis<sup>1</sup> überschreiben nicht zu identifizierende Tonhöhen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "7",
+                            "system": "Klav. o.",
+                            "position": "2/8",
+                            "comment": "Auf Rasur."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "7",
+                            "system": "Klav. u.",
+                            "position": "3/8",
+                            "comment": "Staccatopunkt auf Rasur."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "3–4/8",
+                            "comment": "Auf Rasur."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "9",
+                            "system": "Ges.",
+                            "position": "1.–3. Note",
+                            "comment": "Crescendogabel gestrichen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "9",
+                            "system": "Klav.",
+                            "position": "4/8",
+                            "comment": "<em>Ped.</em> gestrichen mit blauer Tinte."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "10",
+                            "system": "Klav. u.",
+                            "position": "",
+                            "comment": "Rasuren unter dem System."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "10",
+                            "system": "Klav.",
+                            "position": "2/4",
+                            "comment": "Pedalaufhebung gestrichen mit blauer Tinte."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "11 <br /> bis 12",
+                            "system": "",
+                            "position": "",
+                            "comment": "<em>sehr langsam</em> in T. 11 3/4 gestrichen und geändert zu <em>rit.</em> (T. 11), <em>molto</em> (T. 12) und Geltungsstrichelung mit blauer Tinte."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "11",
+                            "system": "Klav. o.",
+                            "position": "1. Note",
+                            "comment": "({{ref.getGlyph('[b]')}}) zu es<sup>1</sup>/as<sup>1</sup> gestrichen mit blauer Tinte. <br /> <em>zögernd</em> gestrichen mit blauer Tinte."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "11",
+                            "system": "Klav. o.",
+                            "position": "1. Note",
+                            "comment": "Crescendogabel geändert zu Decrescendogabel mit Bleistift."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "11",
+                            "system": "Klav. u.",
+                            "position": "1. Note",
+                            "comment": "({{ref.getGlyph('[a]')}}) zu F/e gestrichen mit blauer Tinte."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "13",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "<em>I. Zeitmaß </em>geändert zu <em>tempo</em> mit blauer Tinte."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "13",
+                            "system": "Ges.",
+                            "position": "1/8",
+                            "comment": "Auf Rasur."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "13",
+                            "system": "Ges.",
+                            "position": "",
+                            "comment": "Rasur über dem System."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "14",
+                            "system": "Ges.",
+                            "position": "1.–2. Note",
+                            "comment": "Crescendogabel gestrichen mit blauer Tinte."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "14",
+                            "system": "Ges.",
+                            "position": "1.–3. Note",
+                            "comment": "Triolenklammer hinzugefügt mit Bleistift (Hs.?)"
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "14",
+                            "system": "Klav. u.",
+                            "position": "1/8",
+                            "comment": "Auf Rasur. <br /> ({{ref.getGlyph('[a]')}}) zu e/a gestrichen mit blauer Tinte."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "14 <br /> bis 15",
+                            "system": "Ges.",
+                            "position": "4. Note <br /> 2/8",
+                            "comment": "Crescendogabel ergänzt mit blauer Tinte."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "15",
+                            "system": "Klav. o.",
+                            "position": "(2/4)",
+                            "comment": "Triolenklammer hinzugefügt mit Bleistift (Hs.?)"
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "15",
+                            "system": "Klav. o.",
+                            "position": "2. Note",
+                            "comment": "Auf Rasur."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "15",
+                            "system": "Klav. u.",
+                            "position": "4/8",
+                            "comment": "Auf Rasur."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "16",
+                            "system": "Klav. o.",
+                            "position": "3/4",
+                            "comment": "Unterstimmenschicht: fis<sup>1</sup> geändert zu ges<sup>1</sup>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "16",
+                            "system": "Klav. u.",
+                            "position": "3/4",
+                            "comment": "cis geändert zu des."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "17",
+                            "system": "Klav. o.",
+                            "position": "1. Note",
+                            "comment": "Crescendogabel gestrichen mit Bleistift."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "17",
+                            "system": "Klav. o.",
+                            "position": "2. Note",
+                            "comment": "Unterstimmenschicht: des<sup>1</sup>/ges<sup>1</sup> überschreibt cis<sup>1</sup>/fis<sup>1</sup>; Pfeil zu Notennamen <em>ges | <u>des</u></em><u> am rechten Seitenrand. </u>"
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "20",
+                            "system": "Klav. o.",
+                            "position": "(2/4)",
+                            "comment": "Decrescendogabel gestrichen mit blauer Tinte."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "21",
+                            "system": "Klav. o.",
+                            "position": "1. Note",
+                            "comment": "{{ref.getGlyph('[p]')}} geändert zu {{ref.getGlyph('[pp]')}} mit blauer Tinte."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "21 <br /> bis 22",
+                            "system": "Klav. o.",
+                            "position": "1. Note <br /> 2/4",
+                            "comment": "Legatobogen ergänzt mit Bleistift."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "22",
+                            "system": "Klav. o.",
+                            "position": "1/4",
+                            "comment": "({{ref.getGlyph('[b]')}}) zu es<sup>1</sup> und ({{ref.getGlyph('[a]')}}) zu c<sup>2</sup> (nach Akkoladenwechsel) gestrichen mit Bleistift (Hs. ?)."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "22",
+                            "system": "Klav. o.",
+                            "position": "1–2/4",
+                            "comment": "Decrescendogabel gestrichen mit Bleistift."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "22",
+                            "system": "Klav. u.",
+                            "position": "",
+                            "comment": "({{ref.getGlyph('[a]')}}) zu H/g (nach Akkoladenwechsel) gestrichen mit Bleistift (Hs. ?)."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "22",
+                            "system": "Klav. o.",
+                            "position": "2/4",
+                            "comment": "{{ref.getGlyph('[pp]')}} geändert zu {{ref.getGlyph('[ppp]')}} mit blauer Tinte."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "22 <br /> bis 23",
+                            "system": "Klav. o.",
+                            "position": "2/4",
+                            "comment": "Gis<sub>1</sub>/Cis geändert zu As<sub>1</sub>/Des."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
         },
         {
             "id": "source_D",
