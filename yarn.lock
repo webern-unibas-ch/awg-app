@@ -6072,7 +6072,7 @@ __metadata:
     angular-cli-ghpages: "npm:^2.0.1"
     bootstrap: "npm:^5.3.3"
     codemirror: "npm:^6.0.1"
-    commit-and-tag-version: "npm:^12.4.3"
+    commit-and-tag-version: "npm:^12.4.4"
     conventional-recommended-bump: "npm:^10.0.0"
     d3-drag: "npm:^3.0.0"
     d3-fetch: "npm:^3.0.1"
@@ -6879,9 +6879,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commit-and-tag-version@npm:^12.4.3":
-  version: 12.4.3
-  resolution: "commit-and-tag-version@npm:12.4.3"
+"commit-and-tag-version@npm:^12.4.4":
+  version: 12.4.4
+  resolution: "commit-and-tag-version@npm:12.4.4"
   dependencies:
     chalk: "npm:^2.4.2"
     conventional-changelog: "npm:4.0.0"
@@ -6901,7 +6901,7 @@ __metadata:
     yargs: "npm:^17.7.2"
   bin:
     commit-and-tag-version: bin/cli.js
-  checksum: 10c0/e0edbcc940d3d61d32fffd195c0df756b3a80316e6b0dce119847a435b430439926c0bac6e7d4f5d3a7eac30121ca5f8d175e9ce6748b1ddca711193635e768c
+  checksum: 10c0/f5c888d341594780aa0c08d2f5e64fa39ebbc0580d925a281b08b69e607cf54a2c9322e822c1b9835f9551ed08eb4b166b9cbb0e9376995474910b561779795d
   languageName: node
   linkType: hard
 
