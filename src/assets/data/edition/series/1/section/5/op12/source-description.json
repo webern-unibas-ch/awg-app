@@ -1857,6 +1857,14 @@
                     ]
                 }
             ]
+        },
+        {
+            "id": "source_Cb_corr",
+            "label": "Korrekturen in <strong>C<sup>b</sup></strong>",
+            "description": [
+                "<strong>C<sup>b</sup></strong> weist zwei voneinander unterscheidbare Korrekturschichten auf: mit Tinte ggf. auf Rasur (Korrekturen 1) und mit Bleistift (Korrekturen 2). Der Zustand vor und nach Korrekturen 1 ist nicht eindeutig entzifferbar. Korrekturen 2 betreffen die Überarbeitung zu der in <strong>F</strong> etablierten Textfassung von <em>Die geheimnisvolle Flöte</em> M 217. Auf eine tabellarische Darstellung der beiden Korrekturschichten wird verzichtet, da sie auf Grund der zahlreichen Abweichungen der Grundschicht zu der edierten einzigen Textfassung nicht praktikabel ist."
+            ],
+            "comments": [ ]
         }
     ]
 }
