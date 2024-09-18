@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { Logos } from '@awg-core/core-models';
-import { CoreService, EditionComplexesService } from '@awg-core/services';
+import { CoreService } from '@awg-core/services';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
+import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 /**
  * The Header component.

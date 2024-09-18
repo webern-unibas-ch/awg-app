@@ -16,9 +16,9 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from 'testing/router-stubs';
 
-import { EditionComplexesService } from '@awg-core/services';
 import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
+import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 import { EditionInfoComponent } from './edition-info.component';
 

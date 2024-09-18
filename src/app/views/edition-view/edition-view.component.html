@@ -102,14 +102,15 @@
                     {{ selectedEditionComplex.pubStatement.section.full }}
                 </a>
             </h6>
-            <h3 class="awg-edition-info-header">
-                <span class="awg-edition-info-header-title" [innerHTML]="selectedEditionComplex.complexId.full"></span>
-            </h3>
+            <awg-edition-jumbotron
+                [jumbotronId]="editionViewId"
+                [jumbotronTitle]="selectedEditionComplex.complexId.full"></awg-edition-jumbotron>
+
             <!-- declamation -->
             <div class="awg-edition-responsibility mt-3 mb-5">
                 <p>
                     Ediert von
-                    @for (editor of selectedEditionComplex.respStatement.editors; track editor; let isLast = $last) {
+                    @for (editor of selectedEditionComplex.respStatement.editors; track $index; let isLast = $last) {
                         <span class="editor">
                             <a href="{{ editor.homepage }}">{{ editor.name }}</a>
                             @if (!isLast) {

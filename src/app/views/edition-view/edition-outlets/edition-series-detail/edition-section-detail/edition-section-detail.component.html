@@ -1,19 +1,20 @@
 @if (
     selectedSection &&
-    utils.isNotEmptyObject(selectedSection.complexes) &&
-    (utils.isNotEmptyArray(selectedSection.complexes.opus) || utils.isNotEmptyArray(selectedSection.complexes.mnr))
+    utils.isNotEmptyObject(selectedSection.complexTypes) &&
+    (utils.isNotEmptyArray(selectedSection.complexTypes.opus) ||
+        utils.isNotEmptyArray(selectedSection.complexTypes.mnr))
 ) {
     <div class="awg-edition-section-detail">
-        @if (utils.isNotEmptyArray(selectedSection.complexes.opus)) {
-            <div class="awg-edition-section-detail-opus para p-3 border rounded-3">
+        @if (utils.isNotEmptyArray(selectedSection.complexTypes.opus)) {
+            <div class="awg-edition-section-detail-opus para p-3 shadow border rounded-3">
                 <h5>nach Opusnummer:</h5>
-                <awg-edition-complex-card [complexes]="selectedSection.complexes.opus"></awg-edition-complex-card>
+                <awg-edition-complex-card [complexes]="selectedSection.complexTypes.opus"></awg-edition-complex-card>
             </div>
         }
-        @if (utils.isNotEmptyArray(selectedSection.complexes.mnr)) {
-            <div class="awg-edition-section-detail-mnr p-3 border rounded-3">
+        @if (utils.isNotEmptyArray(selectedSection.complexTypes.mnr)) {
+            <div class="awg-edition-section-detail-mnr p-3 shadow border rounded-3">
                 <h5>nach Moldenhauer-Nummer:</h5>
-                <awg-edition-complex-card [complexes]="selectedSection.complexes.mnr"></awg-edition-complex-card>
+                <awg-edition-complex-card [complexes]="selectedSection.complexTypes.mnr"></awg-edition-complex-card>
             </div>
         }
     </div>

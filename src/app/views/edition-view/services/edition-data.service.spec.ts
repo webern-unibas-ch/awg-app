@@ -18,7 +18,6 @@ import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
-import { EditionComplexesService } from '@awg-core/services';
 import { EDITION_ASSETS_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
@@ -42,6 +41,7 @@ import {
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
+import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 import { EditionDataService } from './edition-data.service';
 

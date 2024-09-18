@@ -84,10 +84,28 @@ export const EDITION_GLYPHS_DATA = {
     },
 
     /**
+     * The glyph of a musical mezzo forte symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%90
+     */
+    MEZZOFORTE: {
+        alt: '[mf]',
+        hex: '\uD834\uDD90\uD834\uDD91',
+    },
+
+    /**
+     * The glyph of a musical mezzo piano symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%90
+     */
+    MEZZOPIANO: {
+        alt: '[mp]',
+        hex: '\uD834\uDD90\uD834\uDD8F',
+    },
+
+    /**
      * The glyph of a musical pedal symbol.
      * Cf. https://graphemica.com/%F0%9D%86%AE
      */
-    PEADL: {
+    PEDAL: {
         alt: '[ped]',
         hex: '\uD834\uDDAE',
     },

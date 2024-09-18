@@ -2,7 +2,14 @@ import { DOCUMENT, JsonPipe } from '@angular/common';
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { EmptyError, lastValueFrom, Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
+import {
+    EMPTY,
+    EmptyError,
+    lastValueFrom,
+    Observable,
+    of as observableOf,
+    throwError as observableThrowError,
+} from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
@@ -20,16 +27,21 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { EditionComplexesService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, Graph, GraphList, GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionGraphComponent } from './edition-graph.component';
 
 // Mock components
+@Component({ selector: 'awg-error-alert', template: '' })
+class ErrorAlertStubComponent {
+    @Input()
+    errorObject: any;
+}
+
 @Component({ selector: 'awg-graph-visualizer', template: '' })
 class GraphVisualizerStubComponent {
     @Input()
@@ -46,6 +58,9 @@ class ModalStubComponent {
         this.modalContent = modalContentSnippetKey;
     }
 }
+
+@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+class TwelveToneSpinnerStubComponent {}
 
 describe('EditionGraphComponent (DONE)', () => {
     let component: EditionGraphComponent;
@@ -64,14 +79,18 @@ describe('EditionGraphComponent (DONE)', () => {
     let editionDataServiceGetEditionGraphDataSpy: Spy;
     let editionServiceGetSelectedEditionComplexSpy: Spy;
 
-    const jsonPipe = new JsonPipe();
-
     let expectedEditionComplex: EditionComplex;
     let expectedEditionGraphDataEmpty: GraphList;
     let expectedEditionGraphDataOp25: GraphList;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
     let expectedIsFullscreen: boolean;
+
+    const jsonPipe = new JsonPipe();
+
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
 
     beforeEach(waitForAsync(() => {
         // Mocked editionDataService
@@ -88,9 +107,11 @@ describe('EditionGraphComponent (DONE)', () => {
             imports: [FontAwesomeTestingModule],
             declarations: [
                 EditionGraphComponent,
+                ErrorAlertStubComponent,
                 GraphVisualizerStubComponent,
                 ModalStubComponent,
                 CompileHtmlComponent,
+                TwelveToneSpinnerStubComponent,
             ],
             providers: [
                 { provide: EditionDataService, useValue: mockEditionDataService },
@@ -196,7 +217,7 @@ describe('EditionGraphComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have a `div`', () => {
+            it('... should contain a `div`', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
             });
 
@@ -206,12 +227,20 @@ describe('EditionGraphComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], ModalStubComponent, 1, 1);
             });
 
-            it('... should not have a nested div.awg-graph-view', () => {
+            it('... should contain no div.awg-graph-view yet', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 0, 0);
             });
 
-            it('... should not have a nested div.errorMessage', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 0, 0);
+            it('... should not contain an error alert component (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], ErrorAlertStubComponent, 0, 0);
+            });
+
+            it('... should not contain a loading spinner component (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
             });
         });
     });
@@ -231,11 +260,11 @@ describe('EditionGraphComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have one div.awg-graph-view', () => {
+            it('... should contain one div.awg-graph-view', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 1, 1);
             });
 
-            it('... should not contain a div.awg-graph-view if graph data is not provided', waitForAsync(() => {
+            it('... should not contain a div in div.awg-graph-view if graph data is not provided', waitForAsync(() => {
                 const noGraphData = new GraphList();
                 noGraphData.graph = undefined;
 
@@ -247,7 +276,7 @@ describe('EditionGraphComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div', 0, 0);
             }));
 
-            it('... should contain a div.awg-graph-view if graph data is provided', () => {
+            it('... should contain a div in div.awg-graph-view if graph data is provided', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div', 1, 1);
             });
 
@@ -556,19 +585,55 @@ describe('EditionGraphComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
                 }));
 
-                it('... should not have graph view, but one div.errorMessage with centered danger alert', waitForAsync(() => {
+                it('... should not contain graph view, but one ErrorAlertComponent (stubbed)', waitForAsync(() => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 0, 0);
-                    const errorDes = getAndExpectDebugElementByCss(compDe, 'div.errorMessage', 1, 1);
 
-                    getAndExpectDebugElementByCss(errorDes[0], 'div.text-center > div.alert-danger', 1, 1);
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], ErrorAlertStubComponent, 1, 1);
                 }));
 
-                it('... should display errorMessage', waitForAsync(() => {
-                    const alertDes = getAndExpectDebugElementByCss(compDe, 'div.alert-danger', 1, 1);
-                    const alertEl = alertDes[0].nativeElement;
+                it('... should pass down error object to ErrorAlertComponent', waitForAsync(() => {
+                    const errorAlertDes = getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 1, 1);
+                    const errorAlertCmp = errorAlertDes[0].injector.get(
+                        ErrorAlertStubComponent
+                    ) as ErrorAlertStubComponent;
 
-                    expectToContain(alertEl.textContent, jsonPipe.transform(expectedError));
+                    expectToEqual(errorAlertCmp.errorObject, expectedError);
                 }));
+            });
+
+            describe('on loading', () => {
+                describe('... should contain only TwelveToneSpinnerComponent (stubbed) if ... ', () => {
+                    it('... editionGraphData$ is EMPTY', () => {
+                        // Mock empty observable
+                        component.editionGraphData$ = EMPTY;
+                        detectChangesOnPush(fixture);
+
+                        getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+
+                    it('... editionGraphData$ is undefined', () => {
+                        // Mock undefined response
+                        component.editionGraphData$ = observableOf(undefined);
+                        detectChangesOnPush(fixture);
+
+                        getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+
+                    it('... editionGraphData$ is null', () => {
+                        // Mock null response
+                        component.editionGraphData$ = observableOf(null);
+                        detectChangesOnPush(fixture);
+
+                        getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+                });
             });
         });
 

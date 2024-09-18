@@ -43,17 +43,6 @@ export class EditionSectionsComponent implements OnInit {
     }
 
     /**
-     * Public method: getSeries.
-     *
-     * It gets the selected series from the EditionService.
-     *
-     * @returns {void} Gets the edition series.
-     */
-    getSeries(): void {
-        this.selectedSeries$ = this.editionService.getSelectedEditionSeries();
-    }
-
-    /**
      * Public method: clearSelectedSection.
      *
      * It clears the selected section from the EditionService.
@@ -62,5 +51,16 @@ export class EditionSectionsComponent implements OnInit {
      */
     clearSelectedSection(): void {
         this.editionService.clearSelectedEditionSection();
+    }
+
+    /**
+     * Public method: getSeries.
+     *
+     * It gets the selected series from the EditionService.
+     *
+     * @returns {void} Gets the edition series.
+     */
+    getSeries(): void {
+        this.selectedSeries$ = this.editionService.getSelectedEditionSeries();
     }
 }

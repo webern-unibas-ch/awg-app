@@ -277,8 +277,20 @@ export class FolioCalculationContentSegmentVertices {
         const systemIndex = isStart ? section.startSystem - 1 : section.endSystem - 1;
         const systemLines = this.systems.SYSTEMS_LINES.SYSTEMS_ARRAYS[systemIndex];
 
+        let offset = 0;
+        switch (section.relativeToSystem) {
+            case 'below':
+                offset = 20;
+                break;
+            case 'above':
+                offset = -20;
+                break;
+            default:
+                offset = 0;
+        }
+
         const yValue = isStart ? systemLines.at(0).START_POINT.y : systemLines.at(-1).END_POINT.y;
-        const correction = this.segmentOffsetCorrection * (isStart ? -1 : 1);
+        const correction = this.segmentOffsetCorrection * (isStart ? -1 : 1) + offset;
 
         return round(yValue + correction, 2);
     }

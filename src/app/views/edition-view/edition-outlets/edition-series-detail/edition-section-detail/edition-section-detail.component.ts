@@ -5,8 +5,8 @@ import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
 import { UtilityService } from '@awg-core/services';
-import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionOutlineComplexItem, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
+import { EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionSectionDetail component.
@@ -88,7 +88,7 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
             .subscribe(series => {
                 this.selectedSeries = series;
                 const seriesId = series.series.route;
-                this.selectedSection = this.editionService.getEditionSectionById(seriesId, sectionId);
+                this.selectedSection = EditionOutlineService.getEditionSectionById(seriesId, sectionId);
                 this.editionService.updateSelectedEditionSection(this.selectedSection);
             });
     }
