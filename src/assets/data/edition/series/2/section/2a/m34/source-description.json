@@ -4,7 +4,7 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 34.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 35–38, M 39 Textfassung 1→2 und M* 404.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 34.<br />Enthält auch Skizzen zu Studienkompositionen für Klavier M 35/42, M 36–39 und M* 404.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": ["1 Bogen (Bl. 1/2)."],
@@ -335,7 +335,10 @@
                     },
                     {
                         "item": "M 38 Sk3",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m38",
+                            "sheetId": "M_38_Sk3a"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 38)",
                         "folios": [
                             {
@@ -347,21 +350,21 @@
                                         {
                                             "system": "15–16c",
                                             "measure": "1–4",
-                                            "linkTo": ""
+                                            "linkTo": "M_38_Sk3a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13b–14b",
                                             "measure": "5",
-                                            "linkTo": ""
+                                            "linkTo": "M_38_Sk3b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "17c–18",
                                             "measure": "6–8",
-                                            "linkTo": ""
+                                            "linkTo": "M_38_Sk3c"
                                         }
                                     ]
                                 ]
@@ -375,14 +378,14 @@
                                         {
                                             "system": "1–2",
                                             "measure": "9–10, {11A–12A}, 11B–12B",
-                                            "linkTo": ""
+                                            "linkTo": "M_38_Sk3d"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–5",
                                             "measure": "13–17",
-                                            "linkTo": ""
+                                            "linkTo": "M_38_Sk3e"
                                         }
                                     ]
                                 ]
@@ -544,7 +547,10 @@
                     },
                     {
                         "item": "M 38 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m38",
+                            "sheetId": "M_38_Sk2"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 38)",
                         "folios": [
                             {
@@ -565,7 +571,10 @@
                     },
                     {
                         "item": "M 38 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m38",
+                            "sheetId": "M_38_Sk1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 38)",
                         "folios": [
                             {
@@ -629,7 +638,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 34.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 35–38, M 39 Textfassung 1→2 und M 41 sowie Skizzen zu Studienkomposition für Klavier M 35/42 und M 39 Textfassung 2.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 34.<br />Enthält auch Tintenniederschrift zu Studienkompositionen für Klavier M 35/42, M 36–38, M 39 Textfassung 1→2 und M 41 sowie Skizzen zu Studienkomposition für Klavier M 35/42 und M 39 Textfassung 2.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": ["1 Bogen (Bl. 1/2). Stockfleck und rötliche Verfärbung mittig am oberen Rand des Bogens."],
@@ -851,7 +860,10 @@
                     },
                     {
                         "item": "M 38",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m38",
+                            "sheetId": "M_38_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 38)",
                         "folios": [
                             {

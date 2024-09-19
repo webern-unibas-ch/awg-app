@@ -24,7 +24,9 @@
         {
             "id": "M_36_Sk1",
             "label": "M 36 Sk1",
-            "description": ["<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 36."],
+            "description": [
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm36', sheetId: 'M_36_TF1'})\" ><strong>Studienkomposition für Klavier M 36</strong></a>, bei der die Reprise mit Ausnahme des neuen Schlussakkords (T. 16) nicht ausnotiert ist."
+            ],
             "comments": [
                 {
                     "blockHeader": "",
@@ -48,7 +50,7 @@
                             "measure": "6",
                             "system": "17",
                             "position": "3/4",
-                            "comment": "Metrisch falsch gesetzten Notenkopf e gestrichen."
+                            "comment": "Metrisch falsch gesetzter Notenkopf e gestrichen."
                         },
                         {
                             "svgGroupId": "g975",

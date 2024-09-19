@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionSeries component.
@@ -64,6 +64,6 @@ export class EditionSeriesComponent implements OnInit {
      * @returns {void} Gets the edition outline.
      */
     getEditionOutline(): void {
-        this.editionOutline = this.editionService.getEditionOutline();
+        this.editionOutline = EditionOutlineService.getEditionOutline();
     }
 }

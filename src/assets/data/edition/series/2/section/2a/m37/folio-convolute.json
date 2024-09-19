@@ -61,7 +61,7 @@
                             "sections": [
                                 {
                                     "position": 2,
-                                    "startSystem": 7,
+                                    "startSystem": 6,
                                     "endSystem": 8
                                 }
                             ]
@@ -171,7 +171,50 @@
                         "height": 349,
                         "width": 265
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m38",
+                            "sheetId": "M_38_Sk3b",
+                            "sigle": "M 38 Sk3",
+                            "sigleAddendum": "T. 5",
+                            "sectionPartition": 4,
+                            "sections": [
+                                {
+                                    "position": 4,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m38",
+                            "sheetId": "M_38_Sk3a",
+                            "sigle": "M 38 Sk3",
+                            "sigleAddendum": "T. 1–4",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 15,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m38",
+                            "sheetId": "M_38_Sk3c",
+                            "sigle": "M 38 Sk3",
+                            "sigleAddendum": "T. 6–8",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "2r",
@@ -208,6 +251,34 @@
                                     "endSystem": 18
                                 }
                             ]
+                        },
+                        {
+                            "complexId": "m38",
+                            "sheetId": "M_38_Sk2",
+                            "sigle": "M 38 Sk2",
+                            "sigleAddendum": "",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 18,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m38",
+                            "sheetId": "M_38_Sk1",
+                            "sigle": "M 38 Sk1",
+                            "sigleAddendum": "",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 18,
+                                    "endSystem": 18,
+                                    "relativeToSystem": "below"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -219,6 +290,32 @@
                         "width": 265
                     },
                     "content": [
+                        {
+                            "complexId": "m38",
+                            "sheetId": "M_38_Sk3d",
+                            "sigle": "M 38 Sk3",
+                            "sigleAddendum": "T. 9–12B",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m38",
+                            "sheetId": "M_38_Sk3e",
+                            "sigle": "M 38 Sk3",
+                            "sigleAddendum": "T. 13–17",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
                         {
                             "complexId": "m37",
                             "sheetId": "M_37_Sk3a",

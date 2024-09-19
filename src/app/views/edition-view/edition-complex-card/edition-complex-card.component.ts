@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { EditionOutlineComplex } from '@awg-views/edition-view/models';
+import { EditionOutlineComplexItem } from '@awg-views/edition-view/models';
 
 /**
  * The EditionComplexCard component.
@@ -16,10 +16,10 @@ import { EditionOutlineComplex } from '@awg-views/edition-view/models';
 })
 export class EditionComplexCardComponent {
     /**
-     * Input variable: complex.
+     * Input variable: complexes.
      *
-     * It keeps the complex of the card view.
+     * It keeps the complexes of the card view.
      */
     @Input()
-    complexes: EditionOutlineComplex[];
+    complexes: EditionOutlineComplexItem[];
 }

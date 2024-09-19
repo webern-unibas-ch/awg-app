@@ -19,9 +19,9 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { METADATA } from '@awg-core/core-data';
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
-import { EditionComplexesService } from '@awg-core/services';
 import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
+import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 import { HomeViewComponent } from './home-view.component';
 
