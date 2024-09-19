@@ -57,7 +57,7 @@ jobs:
                   echo "SHA: ${{ steps.get-sha.outputs.SHA }}"
 
             - name: Set up node ${{ matrix.node-version}}
-              uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
+              uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4.0.4
               with:
                   node-version: ${{ matrix.node-version }}
 
@@ -65,7 +65,7 @@ jobs:
               run: corepack enable
 
             - name: Get yarn cache ${{ matrix.node-version}}
-              uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
+              uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4.0.4
               with:
                   cache: 'yarn'
 
@@ -215,7 +215,7 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
             - name: Set up node ${{ matrix.node-version}}
-              uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
+              uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4.0.4
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: 'yarn'
