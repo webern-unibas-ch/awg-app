@@ -4,8 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
-import { UtilityService } from '@awg-core/services';
-import { EditionOutlineComplexItem, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -21,20 +19,6 @@ import { EditionOutlineService, EditionService } from '@awg-views/edition-view/s
 })
 export class EditionSectionDetailComponent implements OnInit, OnDestroy {
     /**
-     * Public variable: selectedSeries.
-     *
-     * It keeps the selected series of the edition.
-     */
-    selectedSeries: EditionOutlineSeries;
-
-    /**
-     * Public variable: selectedSection.
-     *
-     * It keeps the selected section of the edition.
-     */
-    selectedSection: EditionOutlineSection;
-
-    /**
      * Private variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
@@ -44,17 +28,14 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
     /**
      * Constructor of the EditionSectionDetailComponent.
      *
-     * It declares private instances of the Angular ActivatedRoute and the EditionService,
-     * and a public instance of the UtilityService.
+     * It declares private instances of the Angular ActivatedRoute and the EditionService.
      *
      * @param {ActivatedRoute} route Instance of the ActivatedRoute.
      * @param {EditionService} editionService Instance of the EditionService.
-     * @param {UtilityService} utils Instance of the UtilityService.
      */
     constructor(
         private route: ActivatedRoute,
-        private editionService: EditionService,
-        public utils: UtilityService
+        private editionService: EditionService
     ) {
         // Intentionally left empty until implemented
     }
@@ -86,10 +67,9 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
                 filter(series => !!series)
             )
             .subscribe(series => {
-                this.selectedSeries = series;
-                const seriesId = series.series.route;
-                this.selectedSection = EditionOutlineService.getEditionSectionById(seriesId, sectionId);
-                this.editionService.updateSelectedEditionSection(this.selectedSection);
+                const seriesId = series?.series?.route;
+                const selectedSection = EditionOutlineService.getEditionSectionById(seriesId, sectionId);
+                this.editionService.updateSelectedEditionSection(selectedSection);
             });
     }
 

@@ -6,6 +6,7 @@ import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edi
 import { EditionSeriesComponent } from './edition-outlets/edition-series';
 import { EditionSeriesDetailComponent } from './edition-outlets/edition-series-detail';
 import { EditionSectionDetailComponent } from './edition-outlets/edition-series-detail/edition-section-detail';
+import { EditionSectionDetailOverviewComponent } from './edition-outlets/edition-series-detail/edition-section-detail-overview/edition-section-detail-overview.component';
 import { EditionSectionsComponent } from './edition-outlets/edition-series-detail/edition-sections';
 import { EditionViewComponent } from './edition-view.component';
 
@@ -34,6 +35,12 @@ const EDITION_VIEW_ROUTES: Routes = [
                         // Section by id (1, 2, 3, 4, 5).
                         path: 'section/:id',
                         component: EditionSectionDetailComponent,
+                        children: [
+                            {
+                                path: '',
+                                component: EditionSectionDetailOverviewComponent,
+                            },
+                        ],
                     },
                     {
                         path: 'sections/:id',
@@ -148,6 +155,7 @@ export const routedEditionViewComponents = [
     EditionDetailNavComponent,
     EditionSectionsComponent,
     EditionSectionDetailComponent,
+    EditionSectionDetailOverviewComponent,
     EditionSeriesComponent,
     EditionSeriesDetailComponent,
 ];
