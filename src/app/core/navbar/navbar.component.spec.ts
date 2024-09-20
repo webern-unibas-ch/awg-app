@@ -584,9 +584,9 @@ describe('NavbarComponent (DONE)', () => {
                         const itemsEl2 = itemsDe[1].nativeElement;
                         const itemsEl3 = itemsDe[2].nativeElement;
 
-                        expectToBe(itemsEl1.textContent, 'Einleitung');
-                        expectToBe(itemsEl2.textContent, 'Edierte Notentexte');
-                        expectToBe(itemsEl3.textContent, 'Kritischer Bericht');
+                        expectToBe(itemsEl1.textContent, EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full);
+                        expectToBe(itemsEl2.textContent, EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.full);
+                        expectToBe(itemsEl3.textContent, EDITION_ROUTE_CONSTANTS.EDITION_REPORT.full);
                     });
                 });
             });

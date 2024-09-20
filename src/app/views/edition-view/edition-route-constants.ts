@@ -152,7 +152,7 @@ export class EDITION_ROUTE_CONSTANTS {
      * The route constant for the series.
      */
     static readonly SECTION: EditionRouteConstant = {
-        route: '/section/',
+        route: 'section',
         short: 'Abteilung',
         full: 'Abteilungsübersicht',
     };
@@ -244,7 +244,7 @@ export class EDITION_ROUTE_CONSTANTS {
     static readonly EDITION_INTRO: EditionRouteConstant = {
         route: 'intro',
         short: 'Einleitung',
-        full: 'Einleitung',
+        full: 'Einleitung / Introduction',
     };
 
     /**

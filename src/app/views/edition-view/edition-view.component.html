@@ -123,7 +123,7 @@
             <awg-edition-jumbotron
                 [jumbotronId]="editionViewId"
                 [jumbotronTitle]="
-                    (isIntroView$ | async) === null ? editionViewTitle : 'Einleitung/Introduction'
+                    (isIntroView$ | async) === null ? editionViewTitle : editionRouteConstants.EDITION_INTRO.full
                 "></awg-edition-jumbotron>
         </div>
     }

@@ -98,7 +98,9 @@ describe('EditionDataService (DONE)', () => {
             EDITION_ROUTE_CONSTANTS.SERIES.route +
             delimiter +
             expectedEditionComplex.pubStatement.series.route +
+            delimiter +
             EDITION_ROUTE_CONSTANTS.SECTION.route +
+            delimiter +
             expectedEditionComplex.pubStatement.section.route +
             expectedEditionComplex.complexId.route;
         expectedAssetPath = expectedAssetPathBaseRoute + expectedComplexRoute;

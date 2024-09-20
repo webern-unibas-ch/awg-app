@@ -221,7 +221,9 @@ export class EditionDataService {
             EDITION_ROUTE_CONSTANTS.SERIES.route +
             delimiter +
             editionComplex.pubStatement.series.route +
+            delimiter +
             EDITION_ROUTE_CONSTANTS.SECTION.route +
+            delimiter +
             editionComplex.pubStatement.section.route +
             editionComplex.complexId.route;
         return EDITION_ASSETS_DATA.BASE_ROUTE + complexRoute;

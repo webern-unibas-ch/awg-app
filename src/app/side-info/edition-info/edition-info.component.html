@@ -4,6 +4,7 @@
         <h5 id="awg-edition-info-header">{{ editionInfoHeader }}</h5>
         <p>&#9671;</p>
         <div ngbAccordion>
+            <!-- Allgemein -->
             <div ngbAccordionItem [collapsed]="false">
                 <div ngbAccordionHeader>
                     <button ngbAccordionButton>Allgemein</button>
@@ -45,6 +46,7 @@
                     </div>
                 </div>
             </div>
+            <!-- AWG I/5 -->
             <div ngbAccordionItem [collapsed]="false">
                 <div ngbAccordionHeader>
                     <button ngbAccordionButton>
@@ -56,6 +58,22 @@
                 <div ngbAccordionCollapse>
                     <div ngbAccordionBody>
                         <ng-template>
+                            <p>
+                                <a
+                                    class="awg-edition-info-header-link"
+                                    [routerLink]="[
+                                        editionRouteConstants.EDITION.route,
+                                        editionRouteConstants.SERIES.route,
+                                        editionRouteConstants.SERIES_1.route,
+                                        editionRouteConstants.SECTION.route,
+                                        editionRouteConstants.SECTION_5.route,
+                                        editionRouteConstants.EDITION_INTRO.route,
+                                    ]"
+                                    ><span class="awg-edition-info-header-title">{{
+                                        editionRouteConstants.EDITION_INTRO.full
+                                    }}</span></a
+                                >
+                            </p>
                             @for (
                                 editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: 0 : SLICE_INDEX;
                                 track editionComplex.complexId.short
@@ -91,6 +109,7 @@
                     </div>
                 </div>
             </div>
+            <!-- AWG II/2a -->
             <div ngbAccordionItem [collapsed]="false">
                 <div ngbAccordionHeader>
                     <button ngbAccordionButton>

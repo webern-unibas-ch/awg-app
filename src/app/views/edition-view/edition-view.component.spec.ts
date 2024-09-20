@@ -521,7 +521,7 @@ describe('EditionViewComponent (DONE)', () => {
                     expectToBe(jumbotronCmp.jumbotronTitle, expectedTitle);
                 });
 
-                it('... should pass down `Einleitung/Introduction` as title to JumbotronComponent (stubbed) if `isIntroView=true`', () => {
+                it('... should pass down full edition intro const as title to JumbotronComponent (stubbed) if `isIntroView=true`', () => {
                     component.isIntroView$ = observableOf(true);
                     fixture.detectChanges();
 
@@ -538,7 +538,7 @@ describe('EditionViewComponent (DONE)', () => {
                     ) as EditionJumbotronStubComponent;
 
                     expectToBe(jumbotronCmp.jumbotronId, expectedId);
-                    expectToBe(jumbotronCmp.jumbotronTitle, 'Einleitung/Introduction');
+                    expectToBe(jumbotronCmp.jumbotronTitle, EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full);
                 });
 
                 describe('... breadcrumb header (h6)', () => {
