@@ -49,6 +49,7 @@ describe('EditionViewComponent (DONE)', () => {
     let editionServiceGetSelectedEditionComplexSpy: Spy;
     let editionServiceGetSelectedEditionSeriesSpy: Spy;
     let editionServiceGetSelectedEditionSectionSpy: Spy;
+    let editionServiceGetIsIntroViewSpy: Spy;
     let editionServiceGetIsPrefaceViewSpy: Spy;
     let editionServiceGetIsRowTableViewSpy: Spy;
 
@@ -56,6 +57,7 @@ describe('EditionViewComponent (DONE)', () => {
     let expectedSelectedEditionComplex: EditionComplex;
     let expectedSelectedEditionSeries: EditionOutlineSeries;
     let expectedSelectedEditionSection: EditionOutlineSection;
+    let expectedIsIntroView: boolean;
     let expectedIsPrefaceView: boolean;
     let expectedIsRowTableView: boolean;
 
@@ -77,6 +79,7 @@ describe('EditionViewComponent (DONE)', () => {
 
         // Mock edition service
         mockEditionService = {
+            getIsIntroView: (): Observable<boolean> => observableOf(expectedIsIntroView),
             getIsPrefaceView: (): Observable<boolean> => observableOf(expectedIsPrefaceView),
             getIsRowTableView: (): Observable<boolean> => observableOf(expectedIsRowTableView),
             getSelectedEditionComplex: (): Observable<EditionComplex> =>
@@ -115,6 +118,7 @@ describe('EditionViewComponent (DONE)', () => {
         mockEditionService = TestBed.inject(EditionService);
 
         // Test data
+        expectedIsIntroView = false;
         expectedIsPrefaceView = false;
         expectedIsRowTableView = true;
         expectedSelectedEditionComplexId = 'OP12';
@@ -135,6 +139,7 @@ describe('EditionViewComponent (DONE)', () => {
             mockEditionService,
             'getSelectedEditionComplex'
         ).and.callThrough();
+        editionServiceGetIsIntroViewSpy = spyOn(mockEditionService, 'getIsIntroView').and.callThrough();
         editionServiceGetIsPrefaceViewSpy = spyOn(mockEditionService, 'getIsPrefaceView').and.callThrough();
         editionServiceGetIsRowTableViewSpy = spyOn(mockEditionService, 'getIsRowTableView').and.callThrough();
         editionServiceGetSelectedEditionSeriesSpy = spyOn(
@@ -163,6 +168,10 @@ describe('EditionViewComponent (DONE)', () => {
 
         it('... should have `editionRouteConstants`', () => {
             expectToEqual(component.editionRouteConstants, expectedEditionRouteConstants);
+        });
+
+        it('... should not have `isIntroView$`', () => {
+            expect(component.isIntroView$).toBeUndefined();
         });
 
         it('... should not have `isPrefaceView$`', () => {
@@ -224,6 +233,10 @@ describe('EditionViewComponent (DONE)', () => {
                 expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 0);
                 expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 0);
                 expectSpyCall(editionServiceGetSelectedEditionSectionSpy, 0);
+            });
+
+            it('... should not have set isIntroView$', () => {
+                expect(component.isIntroView$).toBeUndefined();
             });
 
             it('... should not have set isPrefaceView$', () => {
@@ -491,7 +504,7 @@ describe('EditionViewComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(divDes[0], EditionJumbotronStubComponent, 1, 1);
                 });
 
-                it('... should pass down `editionViewId` and `title` to JumbotronComponent (stubbed)', () => {
+                it('... should pass down `editionViewId` and `editionViewTitle` to JumbotronComponent (stubbed)', () => {
                     // Get debug and native element of JumbotronComponent
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
                     const jumbotronDes = getAndExpectDebugElementByDirective(
@@ -506,6 +519,26 @@ describe('EditionViewComponent (DONE)', () => {
 
                     expectToBe(jumbotronCmp.jumbotronId, expectedId);
                     expectToBe(jumbotronCmp.jumbotronTitle, expectedTitle);
+                });
+
+                it('... should pass down `Einleitung/Introduction` as title to JumbotronComponent (stubbed) if `isIntroView=true`', () => {
+                    component.isIntroView$ = observableOf(true);
+                    fixture.detectChanges();
+
+                    // Get debug and native element of JumbotronComponent
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
+                    const jumbotronDes = getAndExpectDebugElementByDirective(
+                        divDes[0],
+                        EditionJumbotronStubComponent,
+                        1,
+                        1
+                    );
+                    const jumbotronCmp = jumbotronDes[0].injector.get(
+                        EditionJumbotronStubComponent
+                    ) as EditionJumbotronStubComponent;
+
+                    expectToBe(jumbotronCmp.jumbotronId, expectedId);
+                    expectToBe(jumbotronCmp.jumbotronTitle, 'Einleitung/Introduction');
                 });
 
                 describe('... breadcrumb header (h6)', () => {
@@ -585,6 +618,18 @@ describe('EditionViewComponent (DONE)', () => {
             it('... should have been called', () => {
                 expectSpyCall(setupEditionViewSpy, 1);
             });
+
+            it('... should get isIntroView$ (via EditionService)', waitForAsync(() => {
+                expectSpyCall(setupEditionViewSpy, 1);
+                expectSpyCall(editionServiceGetIsIntroViewSpy, 1);
+
+                expect(component.isIntroView$).toBeDefined();
+                component.isIntroView$.subscribe({
+                    next: (isView: boolean) => {
+                        expectToBe(isView, expectedIsIntroView);
+                    },
+                });
+            }));
 
             it('... should get isPrefaceView$ (via EditionService)', waitForAsync(() => {
                 expectSpyCall(setupEditionViewSpy, 1);

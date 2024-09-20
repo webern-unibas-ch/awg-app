@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationExtras, Router } from '@angular/router';
 
@@ -23,7 +23,7 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
     styleUrls: ['./edition-intro.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditionIntroComponent implements OnInit {
+export class EditionIntroComponent implements OnDestroy, OnInit {
     /**
      * ViewChild variable: modal.
      *
@@ -99,6 +99,18 @@ export class EditionIntroComponent implements OnInit {
     }
 
     /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     *
+     * Destroys subscriptions.
+     */
+    ngOnDestroy() {
+        this.editionService.clearIsIntroView();
+    }
+
+    /**
      * Public method: getEditionIntroData.
      *
      * It gets the current edition complex of the edition service
@@ -108,6 +120,8 @@ export class EditionIntroComponent implements OnInit {
      * @returns {void} Gets the current edition complex and the corresponding intro data.
      */
     getEditionIntroData(): void {
+        this.editionService.updateIsIntroView(true);
+
         this.editionIntroData$ = this.editionService
             // Get current editionComplex from editionService
             .getSelectedEditionComplex()

@@ -18,6 +18,7 @@ describe('EditionService (DONE)', () => {
     let expectedEditionSeries: EditionOutlineSeries;
     let expectedEditionSeriesRoute: string;
     let expectedEditionSection: EditionOutlineSection;
+    let expectedIsIntroView: boolean;
     let expectedIsPrefaceView: boolean;
     let expectedIsRowTableView: boolean;
 
@@ -39,6 +40,7 @@ describe('EditionService (DONE)', () => {
         expectedEditionSeriesRoute = EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.SERIES.route;
         expectedEditionSeries = expectedEditionOutline[0];
         expectedEditionSection = expectedEditionOutline[0].sections[0];
+        expectedIsIntroView = true;
         expectedIsPrefaceView = true;
         expectedIsRowTableView = true;
     });
@@ -53,6 +55,14 @@ describe('EditionService (DONE)', () => {
 
     it('... should have bufferSize = 1', () => {
         expectToBe((editionService as any)._bufferSize, 1);
+    });
+
+    it('... should have _isIntroViewSubject', () => {
+        expect((editionService as any)._isIntroViewSubject).toBeTruthy();
+    });
+
+    it('... should have _isIntroViewStream$', () => {
+        expect((editionService as any)._isIntroViewStream$).toBeTruthy();
     });
 
     it('... should have _isPrefaceViewSubject', () => {
@@ -355,6 +365,94 @@ describe('EditionService (DONE)', () => {
         });
     });
 
+    describe('IntroView', () => {
+        describe('#getIsIntroView()', () => {
+            it('... should have a method `getIsIntroView`', () => {
+                expect(editionService.getIsIntroView).toBeDefined();
+            });
+
+            it('... should return isIntroView', waitForAsync(() => {
+                editionService.getIsIntroView().subscribe({
+                    next: (isIntroView: boolean) => {
+                        expectToBe(isIntroView, expectedIsIntroView);
+                    },
+                });
+
+                // Set isIntroView (with default value)
+                editionService.updateIsIntroView(expectedIsIntroView);
+            }));
+
+            it('... should return updated isIntroView', waitForAsync(() => {
+                editionService.getIsIntroView().subscribe({
+                    next: (isIntroView: boolean) => {
+                        expectToBe(isIntroView, expectedIsIntroView);
+                    },
+                });
+
+                // Set isIntroView (with default value)
+                editionService.updateIsIntroView(expectedIsIntroView);
+
+                // Update isIntroView
+                expectedIsIntroView = false;
+                editionService.updateIsIntroView(expectedIsIntroView);
+            }));
+        });
+
+        describe('#updateIsIntroView()', () => {
+            it('... should have a method `updateIsIntroView`', () => {
+                expect(editionService.updateIsIntroView).toBeDefined();
+            });
+
+            it('... should emit updated isIntroView', waitForAsync(() => {
+                editionService.getIsIntroView().subscribe({
+                    next: (isIntroView: boolean) => {
+                        expectToBe(isIntroView, expectedIsIntroView);
+                    },
+                });
+
+                // Set isIntroView (with default value)
+                editionService.updateIsIntroView(expectedIsIntroView);
+
+                // Update isIntroView
+                expectedIsIntroView = false;
+                editionService.updateIsIntroView(expectedIsIntroView);
+            }));
+        });
+
+        describe('#clearIsIntroView()', () => {
+            it('... should have a method `clearIsIntroView`', () => {
+                expect(editionService.clearIsIntroView).toBeDefined();
+            });
+
+            it('... should update isIntroView with null value', waitForAsync(() => {
+                editionService.getIsIntroView().subscribe({
+                    next: (isIntroView: boolean) => {
+                        expectToBe(isIntroView, expectedIsIntroView);
+                    },
+                });
+
+                // Clear isIntroView
+                expectedIsIntroView = null;
+                editionService.clearIsIntroView();
+            }));
+
+            it('... should overwrite existing values', waitForAsync(() => {
+                editionService.getIsIntroView().subscribe({
+                    next: (isIntroView: boolean) => {
+                        expectToBe(isIntroView, expectedIsIntroView);
+                    },
+                });
+
+                // Update isIntroView
+                editionService.updateIsIntroView(expectedIsIntroView);
+
+                // Clear isIntroView
+                expectedIsIntroView = null;
+                editionService.clearIsIntroView();
+            }));
+        });
+    });
+
     describe('PrefaceView', () => {
         describe('#getIsPrefaceView()', () => {
             it('... should have a method `getIsPrefaceView`', () => {
@@ -363,8 +461,8 @@ describe('EditionService (DONE)', () => {
 
             it('... should return isPrefaceView', waitForAsync(() => {
                 editionService.getIsPrefaceView().subscribe({
-                    next: (isRowTableView: boolean) => {
-                        expectToBe(isRowTableView, expectedIsPrefaceView);
+                    next: (isPrefaceView: boolean) => {
+                        expectToBe(isPrefaceView, expectedIsPrefaceView);
                     },
                 });
 

@@ -23,6 +23,16 @@ export class EditionService {
     private _bufferSize = 1;
 
     /**
+     * Private replay subject to flag intro view.
+     */
+    private _isIntroViewSubject = new ReplaySubject<boolean>(this._bufferSize);
+
+    /**
+     * Private readonly isIntroView stream as observable (`ReplaySubject`).
+     */
+    private readonly _isIntroViewStream$ = this._isIntroViewSubject.asObservable();
+
+    /**
      * Private replay subject to flag preface view.
      */
     private _isPrefaceViewSubject = new ReplaySubject<boolean>(this._bufferSize);
@@ -173,6 +183,41 @@ export class EditionService {
      */
     clearSelectedEditionSection(): void {
         this._selectedEditionSectionSubject.next(null);
+    }
+
+    /**
+     * Public method: getIsIntroView.
+     *
+     * It provides the latest isIntroView flag from the isIntroView stream.
+     *
+     * @returns {Observable<boolean>} The isIntroView stream as observable.
+     */
+    getIsIntroView(): Observable<boolean> {
+        return this._isIntroViewStream$;
+    }
+
+    /**
+     * Public method: updateIsIntroView.
+     *
+     * It updates the isIntroView stream with the given boolean value.
+     *
+     * @param {boolean} isView The given isIntroView flag.
+     *
+     * @returns {void} Sets the next isIntroView flag to the stream.
+     */
+    updateIsIntroView(isView: boolean): void {
+        this._isIntroViewSubject.next(isView);
+    }
+
+    /**
+     * Public method: clearIsIntroView.
+     *
+     * It clears the isIntroView stream.
+     *
+     * @returns {void} Clears the isIntroView stream.
+     */
+    clearIsIntroView(): void {
+        this._isIntroViewSubject.next(null);
     }
 
     /**
