@@ -12,7 +12,7 @@
         <tbody>
             @for (textcriticalCommentBlock of textcriticalCommentBlocks; track $index) {
                 @if (textcriticalCommentBlock.blockHeader) {
-                    <tr>
+                    <tr class="table-light table-group-divider">
                         <td colspan="4" class="awg-edition-tka-table-block-header">
                             <span [compile-html]="textcriticalCommentBlock.blockHeader" [compile-html-ref]="ref"></span>
                         </td>

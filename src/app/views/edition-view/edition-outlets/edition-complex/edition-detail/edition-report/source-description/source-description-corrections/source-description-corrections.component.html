@@ -12,14 +12,16 @@
                     [compile-html]="description"
                     [compile-html-ref]="ref"></p>
             }
-            <awg-edition-tka-table
-                [textcriticalCommentBlocks]="correction.comments"
-                [isCorrections]="true"
-                [isRowTable]="correction.rowtable"
-                (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                (openModalRequest)="openModal($event)"
-                (selectSvgSheetRequest)="selectSvgSheet($event)">
-            </awg-edition-tka-table>
+            @if (correction.comments.length > 0) {
+                <awg-edition-tka-table
+                    [textcriticalCommentBlocks]="correction.comments"
+                    [isCorrections]="true"
+                    [isRowTable]="correction.rowtable"
+                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                    (openModalRequest)="openModal($event)"
+                    (selectSvgSheetRequest)="selectSvgSheet($event)">
+                </awg-edition-tka-table>
+            }
         </details>
     }
 </div>
