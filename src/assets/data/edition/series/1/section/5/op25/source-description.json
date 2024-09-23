@@ -3092,18 +3092,6 @@
                     }
                 ]
             }
-        },
-        {
-            "id": "notA",
-            "siglum": "",
-            "siglumAddendum": "",
-            "type": "",
-            "location": "",
-            "description": {
-                "desc": [
-                    "<small class=\"text-muted\">[Die Beschreibung der in den Quellen gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 in AWG I/5.]</small>"
-                ]
-            }
         }
     ]
 }
