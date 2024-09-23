@@ -15,8 +15,8 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EditionOutlineSection, EditionOutlineSeries } from '@awg-app/views/edition-view/models';
-import { EditionComplexesService, EditionOutlineService, EditionService } from '@awg-app/views/edition-view/services';
+import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
+import { EditionComplexesService, EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionSectionsComponent } from './edition-sections.component';
 

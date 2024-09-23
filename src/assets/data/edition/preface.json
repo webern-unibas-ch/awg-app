@@ -1,7 +1,7 @@
 {
     "preface": [
         {
-            "id": "de",
+            "id": "de-preface",
             "content": [
                 "<span class='no-indent'> Die Anton Webern Gesamtausgabe (AWG) versteht sich als historisch-kritische Gesamtausgabe der Kompositionen Anton Weberns. Sie ist <i>historisch</i>, indem sie die Kompositionen durch Dokumentation verschiedener Textfassungen und ihrer Skizzen als in sich chronologisch differenzierte Editionskomplexe präsentiert sowie deren Entstehung in den Zusammenhang der Biographie des Komponisten und der allgemeinen Musikgeschichte einordnet. Sie ist <i>kritisch</i>, indem sie sämtliche erreichbaren Quellen vergleicht und textkritisch prüft. Sie ist eine <i>Gesamt</i>ausgabe, indem sie die auf Grundlage dieser Quellenkritik erkennbaren Textfassungen und Skizzen sämtlicher, auch fragmentarischer Kompositionen ediert. Sie ist eine Gesamt<i>ausgabe</i>, indem sie Notentexte mit dem methodischen Bewusstsein vorlegt, dass eine Edition grundsätzlich eine Interpretation des durch die Quellen bezeugten Texts darstellt.</span>",
                 "<span class='no-indent spacebreak'>Die AWG gliedert sich in drei Serien:</span>",
@@ -41,7 +41,7 @@
             ]
         },
         {
-            "id": "en",
+            "id": "en-preface",
             "content": [
                 "<span class='no-indent'>The <i>Anton Webern Gesamtausgabe</i> (AWG) is a historical-critical complete edition of Anton Webern’s compositions. It is <i>historical</i> in that it documents different versions of the musical text (<i>Textfassungen</i>) plus related sketches for each composition, organized chronologically and grouped together in clusters where the common circumstances of their composition imply that they should be presented together (such clusters are in the German-language documentation of the <i>Anton Webern Gesamtausgabe</i> referred to throughout as <i>Editionskomplexe</i>). The AWG also situates these compositions and their genesis in the context of the composer’s biography and of general music history. It is <i>critical</i> in that it compares all the available sources and examines them critically. It is a <i>complete</i> edition in that it uses the aforementioned critical appraisal of the sources to edit all the recognizable versions and sketches of Webern’s compositions, including those that are extant as fragments. It is a complete <i>edition</i> in that its methodological basis for presenting a musical text presupposes an awareness that such an edition is fundamentally an interpretation of the text to which the sources bear witness.</span>",
                 "<span class='no-indent spacebreak'>The AWG is divided into three series:</span>",
