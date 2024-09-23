@@ -1,20 +1,50 @@
 @if (
     selectedSection &&
-    utils.isNotEmptyObject(selectedSection.complexTypes) &&
-    (utils.isNotEmptyArray(selectedSection.complexTypes.opus) ||
-        utils.isNotEmptyArray(selectedSection.complexTypes.mnr))
+    (utils.isNotEmptyArray(selectedSection?.content?.complexTypes?.opus) ||
+        utils.isNotEmptyArray(selectedSection?.content?.complexTypes?.mnr))
 ) {
     <div class="awg-edition-section-detail">
-        @if (utils.isNotEmptyArray(selectedSection.complexTypes.opus)) {
-            <div class="awg-edition-section-detail-opus para p-3 shadow border rounded-3">
-                <h5>nach Opusnummer:</h5>
-                <awg-edition-complex-card [complexes]="selectedSection.complexTypes.opus"></awg-edition-complex-card>
+        @if (!selectedSection?.content?.intro.disabled) {
+            <div class="awg-edition-section-detail-intro para p-3 shadow border rounded-3">
+                <h5>Einleitung:</h5>
+                <div class="card awg-edition-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title" [ngClass]="{ 'text-muted': selectedSection?.content?.intro.disabled }">
+                            <span class="awg-edition-info-header-title" [innerHTML]="'Einleitung'"></span>
+                        </h5>
+                    </div>
+                    <div class="card-footer">
+                        <p class="text-end">
+                            <a
+                                [routerLink]="[
+                                    '/edition',
+                                    'series',
+                                    selectedSeries?.series.route,
+                                    'section',
+                                    selectedSection?.section.route,
+                                    'intro',
+                                ]"
+                                class="btn btn-outline-info"
+                                [ngClass]="{ disabled: selectedSection?.content?.intro.disabled }"
+                                >Mehr ...
+                            </a>
+                        </p>
+                    </div>
+                </div>
             </div>
         }
-        @if (utils.isNotEmptyArray(selectedSection.complexTypes.mnr)) {
+        @if (utils.isNotEmptyArray(selectedSection?.content?.complexTypes?.opus)) {
+            <div class="awg-edition-section-detail-opus para p-3 shadow border rounded-3">
+                <h5>nach Opusnummer:</h5>
+                <awg-edition-complex-card
+                    [complexes]="selectedSection.content.complexTypes.opus"></awg-edition-complex-card>
+            </div>
+        }
+        @if (utils.isNotEmptyArray(selectedSection?.content?.complexTypes?.mnr)) {
             <div class="awg-edition-section-detail-mnr p-3 shadow border rounded-3">
                 <h5>nach Moldenhauer-Nummer:</h5>
-                <awg-edition-complex-card [complexes]="selectedSection.complexTypes.mnr"></awg-edition-complex-card>
+                <awg-edition-complex-card
+                    [complexes]="selectedSection.content.complexTypes.mnr"></awg-edition-complex-card>
             </div>
         }
     </div>

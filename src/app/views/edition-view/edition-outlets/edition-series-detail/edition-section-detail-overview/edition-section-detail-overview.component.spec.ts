@@ -160,8 +160,11 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     }));
 
                     it('... if selected section has empty opus complexes, but given mnr complexes', waitForAsync(() => {
-                        const shallowCopy = { ...component.selectedSection };
-                        shallowCopy.complexTypes = { ...component.selectedSection.complexTypes, opus: undefined };
+                        const shallowCopy = { ...component?.selectedSection };
+                        shallowCopy.content.complexTypes = {
+                            ...component.selectedSection?.content?.complexTypes,
+                            opus: undefined,
+                        };
                         component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
@@ -170,8 +173,11 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     }));
 
                     it('... if selected section has empty mnr complexes, but given opus complexes', waitForAsync(() => {
-                        const shallowCopy = { ...component.selectedSection };
-                        shallowCopy.complexTypes = { ...component.selectedSection.complexTypes, mnr: undefined };
+                        const shallowCopy = { ...component?.selectedSection };
+                        shallowCopy.content.complexTypes = {
+                            ...component?.selectedSection?.content?.complexTypes,
+                            mnr: undefined,
+                        };
                         component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
@@ -187,8 +193,11 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     });
 
                     it('... should contain no inner div.awg-edition-section-detail-opus if no opus complexes are given', () => {
-                        const shallowCopy = { ...component.selectedSection };
-                        shallowCopy.complexTypes = { ...component.selectedSection.complexTypes, opus: undefined };
+                        const shallowCopy = { ...component?.selectedSection };
+                        shallowCopy.content.complexTypes = {
+                            ...component?.selectedSection?.content?.complexTypes,
+                            opus: undefined,
+                        };
                         component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
@@ -239,7 +248,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                             EditionComplexCardStubComponent
                         ) as EditionComplexCardStubComponent;
 
-                        expectToEqual(complexCardCmp.complexes, expectedSelectedSection.complexTypes.opus);
+                        expectToEqual(complexCardCmp.complexes, expectedSelectedSection.content.complexTypes.opus);
                     });
                 });
 
@@ -250,8 +259,11 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     });
 
                     it('... should contain no inner div.awg-edition-section-detail-mnr if no mnr complexes are given', () => {
-                        const shallowCopy = { ...component.selectedSection };
-                        shallowCopy.complexTypes = { ...component.selectedSection.complexTypes, mnr: undefined };
+                        const shallowCopy = { ...component?.selectedSection };
+                        shallowCopy.content.complexTypes = {
+                            ...component?.selectedSection?.content?.complexTypes,
+                            mnr: undefined,
+                        };
                         component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
@@ -287,7 +299,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                             EditionComplexCardStubComponent
                         ) as EditionComplexCardStubComponent;
 
-                        expectToEqual(complexCardCmp.complexes, expectedSelectedSection.complexTypes.mnr);
+                        expectToEqual(complexCardCmp.complexes, expectedSelectedSection.content.complexTypes.mnr);
                     });
                 });
             });
@@ -296,7 +308,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                 describe('... should contain no outer div.awg-edition-section-detail, but 1 div.alert-info ...', () => {
                     it('... if selectedSection has no complexes...', waitForAsync(() => {
                         const shallowCopy = { ...component.selectedSection };
-                        shallowCopy.complexTypes = undefined;
+                        shallowCopy.content.complexTypes = undefined;
                         component.selectedSection = shallowCopy;
                         fixture.detectChanges();
 
@@ -306,8 +318,8 @@ describe('EditionSectionDetailOverviewComponent', () => {
 
                     it('... if selectedSection has empty opus and mnr complexes', waitForAsync(() => {
                         const shallowCopy = { ...component.selectedSection };
-                        shallowCopy.complexTypes = {
-                            ...component.selectedSection.complexTypes,
+                        shallowCopy.content.complexTypes = {
+                            ...component.selectedSection.content.complexTypes,
                             opus: undefined,
                             mnr: undefined,
                         };
@@ -321,7 +333,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
 
                 it('... should contain 1 p.text-muted in div.alert-info', () => {
                     const shallowCopy = { ...component.selectedSection };
-                    shallowCopy.complexTypes = undefined;
+                    shallowCopy.content.complexTypes = undefined;
                     component.selectedSection = shallowCopy;
                     fixture.detectChanges();
 
@@ -334,7 +346,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
 
                 it('... should display info message in p.text-muted', () => {
                     const shallowCopy = { ...component.selectedSection };
-                    shallowCopy.complexTypes = undefined;
+                    shallowCopy.content.complexTypes = undefined;
                     component.selectedSection = shallowCopy;
                     fixture.detectChanges();
 

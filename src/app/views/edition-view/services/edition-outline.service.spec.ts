@@ -103,27 +103,34 @@ describe('EditionOutlineService (DONE)', () => {
                     sections: [
                         {
                             section: '5',
-                            complexTypes: {
-                                opus: [
-                                    {
-                                        complex: '',
-                                        disabled: true,
-                                    },
-                                ],
-                                mnr: [{ complex: '', disabled: true }],
+                            content: {
+                                intro: { disabled: true },
+                                complexTypes: {
+                                    opus: [
+                                        {
+                                            complex: '',
+                                            disabled: true,
+                                        },
+                                    ],
+                                    mnr: [{ complex: '', disabled: true }],
+                                },
                             },
+
                             disabled: true,
                         },
                         {
                             section: '4',
-                            complexTypes: {
-                                opus: [
-                                    {
-                                        complex: '',
-                                        disabled: true,
-                                    },
-                                ],
-                                mnr: [{ complex: '', disabled: true }],
+                            content: {
+                                intro: { disabled: false },
+                                complexTypes: {
+                                    opus: [
+                                        {
+                                            complex: '',
+                                            disabled: true,
+                                        },
+                                    ],
+                                    mnr: [{ complex: '', disabled: true }],
+                                },
                             },
                             disabled: false,
                         },
@@ -161,12 +168,18 @@ describe('EditionOutlineService (DONE)', () => {
                     sections: [
                         {
                             section: EDITION_ROUTE_CONSTANTS.SECTION_5,
-                            complexTypes: { opus: [], mnr: [] },
+                            content: {
+                                intro: { disabled: true },
+                                complexTypes: { opus: [], mnr: [] },
+                            },
                             disabled: true,
                         },
                         {
                             section: EDITION_ROUTE_CONSTANTS.SECTION_4,
-                            complexTypes: { opus: [], mnr: [] },
+                            content: {
+                                intro: { disabled: false },
+                                complexTypes: { opus: [], mnr: [] },
+                            },
                             disabled: false,
                         },
                     ],
@@ -192,12 +205,18 @@ describe('EditionOutlineService (DONE)', () => {
                     sections: [
                         {
                             section: EDITION_ROUTE_CONSTANTS.SECTION_5,
-                            complexTypes: { opus: [], mnr: [] },
+                            content: {
+                                intro: { disabled: true },
+                                complexTypes: { opus: [], mnr: [] },
+                            },
                             disabled: true,
                         },
                         {
                             section: EDITION_ROUTE_CONSTANTS.SECTION_4,
-                            complexTypes: { opus: [], mnr: [] },
+                            content: {
+                                intro: { disabled: false },
+                                complexTypes: { opus: [], mnr: [] },
+                            },
                             disabled: false,
                         },
                     ],

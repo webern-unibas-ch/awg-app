@@ -5,21 +5,26 @@ import { EditionComplexesService } from '@awg-views/edition-view/services';
 import { EditionComplex } from './edition-complex.model';
 
 /**
- * The EditionOutlineSeriesJsonData interface.
+ * The EditionOutlineSectionsContentJsonData interface.
  *
  * It is used in the context of the edition view
- * to describe the structure of a JSON data for an edition outline series.
+ * to describe the structure of a JSON data for an edition outline sections content.
  */
-export interface EditionOutlineSeriesJsonData {
+export interface EditionOutlineSectionsContentJsonData {
     /**
-     * The series data.
+     * The intro data.
      */
-    series: string;
+    intro: {
+        disabled: boolean;
+    };
 
     /**
-     * The sections data.
+     * The complex types data.
      */
-    sections: EditionOutlineSectionsJsonData[];
+    complexTypes: {
+        opus: [{ complex: string; disabled: boolean }];
+        mnr: [{ complex: string; disabled: boolean }];
+    };
 }
 
 /**
@@ -35,17 +40,32 @@ export interface EditionOutlineSectionsJsonData {
     section: string;
 
     /**
-     * The complexTypes data
+     * The section content data.
      */
-    complexTypes: {
-        opus: [{ complex: string; disabled: boolean }];
-        mnr: [{ complex: string; disabled: boolean }];
-    };
+    content: EditionOutlineSectionsContentJsonData;
 
     /**
      * Boolean flag if a section is disabled.
      */
     disabled: boolean;
+}
+
+/**
+ * The EditionOutlineSeriesJsonData interface.
+ *
+ * It is used in the context of the edition view
+ * to describe the structure of a JSON data for an edition outline series.
+ */
+export interface EditionOutlineSeriesJsonData {
+    /**
+     * The series data.
+     */
+    series: string;
+
+    /**
+     * The sections data.
+     */
+    sections: EditionOutlineSectionsJsonData[];
 }
 
 /**
@@ -103,6 +123,37 @@ export interface EditionOutlineComplexTypes {
 }
 
 /**
+ * The EditionOutlineIntroItem interface.
+ *
+ * It is used in the context of the edition view
+ * to structure outline information of the edition intro.
+ */
+export interface EditionOutlineIntroItem {
+    /**
+     * Boolean flag if an intro is disabled.
+     */
+    disabled: boolean;
+}
+
+/**
+ * The EditionOutlineSectionContent interface.
+ *
+ * It is used in the context of the edition view
+ * to structure outline information of the edition section content.
+ */
+export interface EditionOutlineSectionContent {
+    /**
+     * The intro of an edition section.
+     */
+    intro: EditionOutlineIntroItem;
+
+    /**
+     * The edition complex types of an edition section.
+     */
+    complexTypes: EditionOutlineComplexTypes;
+}
+
+/**
  * The EditionOutlineSection interface.
  *
  * It is used in the context of the edition view
@@ -115,9 +166,9 @@ export interface EditionOutlineSection {
     section: EditionRouteConstant;
 
     /**
-     * The edition complex types of an edition section.
+     * The section content of an edition section.
      */
-    complexTypes: EditionOutlineComplexTypes;
+    content: EditionOutlineSectionContent;
 
     /**
      * Boolean flag if an edition section is disabled.
@@ -202,7 +253,7 @@ export class EditionOutline {
      * @returns {EditionOutlineSection} The mapped section.
      */
     private _mapSection = (
-        { section, complexTypes, disabled }: EditionOutlineSectionsJsonData,
+        { section, disabled, content }: EditionOutlineSectionsJsonData,
         series: string
     ): EditionOutlineSection => {
         const sectionConstant: EditionRouteConstant =
@@ -212,13 +263,27 @@ export class EditionOutline {
 
         return {
             section: sectionConstant,
-            complexTypes: {
-                opus: this._mapComplexItems(complexTypes.opus),
-                mnr: this._mapComplexItems(complexTypes.mnr),
-            },
+            content: this._mapSectionContent(content),
             disabled,
         };
     };
+
+    /**
+     * Private method: _mapContent.
+     *
+     * It maps the content data.
+     *
+     * @param {EditionOutlineSectionsContentJsonData} content The content data to map.
+     *
+     * @returns {EditionOutlineSectionContent} The mapped content.
+     */
+    private _mapSectionContent = (content: EditionOutlineSectionsContentJsonData): EditionOutlineSectionContent => ({
+        intro: { disabled: content.intro.disabled },
+        complexTypes: {
+            opus: this._mapComplexItems(content.complexTypes.opus),
+            mnr: this._mapComplexItems(content.complexTypes.mnr),
+        },
+    });
 
     /**
      * Private method: _mapComplexItems.
