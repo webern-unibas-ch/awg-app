@@ -32,6 +32,13 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     @ViewChild('modal', { static: true }) modal: ModalComponent;
 
     /**
+     * Public variable: currentLanguage.
+     *
+     * It keeps the current language of the edition intro: 0 for German, 1 for English.
+     */
+    currentLanguage = 0;
+
+    /**
      * Public variable: editionComplex.
      *
      * It keeps the information about the current edition complex.
@@ -204,6 +211,18 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
         };
 
         this._navigateWithComplexId(sheetIds?.complexId, sheetRoute, navigationExtras);
+    }
+
+    /**
+     * Public method: setLanguage.
+     *
+     * It sets the current language of the edition intro.
+     *
+     * @param {number} language The given language number.
+     * @returns {void} Sets the current language.
+     */
+    setLanguage(language: number): void {
+        this.currentLanguage = language;
     }
 
     /**

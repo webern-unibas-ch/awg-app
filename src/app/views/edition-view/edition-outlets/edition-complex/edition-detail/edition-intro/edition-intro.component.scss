@@ -1,37 +1,41 @@
-.awg-intro-footnote,
-.awg-intro-para {
-    text-align: justify;
-    text-justify: inter-word;
-}
+.awg-intro-content {
+    margin-top: 25px;
 
-.awg-intro-para {
-    margin: 0;
-    text-indent: 25px;
+    .awg-intro-footnote,
+    .awg-intro-para {
+        text-align: justify;
+        text-justify: inter-word;
+    }
 
-    &::ng-deep {
-        p {
-            margin-bottom: 0 !important;
-        }
-        table > tbody > tr > td {
-            padding-right: 10px;
-        }
-        .heading {
-            display: block;
-            margin-top: 25px;
-            margin-bottom: 25px;
-            font-weight: bold;
-        }
-        .heading,
-        .small,
-        .no-indent {
-            text-indent: 0;
-        }
-        .spacebreak {
-            display: block;
-            margin-top: 25px;
+    .awg-intro-para {
+        margin: 0;
+        text-indent: 25px;
 
-            &.no-indent {
-                margin-left: 0;
+        &::ng-deep {
+            p {
+                margin-bottom: 0 !important;
+            }
+            table > tbody > tr > td {
+                padding-right: 10px;
+            }
+            .heading {
+                display: block;
+                margin-top: 25px;
+                margin-bottom: 25px;
+                font-weight: bold;
+            }
+            .heading,
+            .small,
+            .no-indent {
+                text-indent: 0;
+            }
+            .spacebreak {
+                display: block;
+                margin-top: 25px;
+
+                &.no-indent {
+                    margin-left: 0;
+                }
             }
         }
     }
@@ -41,7 +45,15 @@
     position: sticky;
     top: 0;
 
-    a.active {
-        color: #000;
+    .nav-item {
+        text-align: end;
+
+        a.active {
+            color: #000;
+        }
+
+        .nav-link {
+            padding-right: 0;
+        }
     }
 }

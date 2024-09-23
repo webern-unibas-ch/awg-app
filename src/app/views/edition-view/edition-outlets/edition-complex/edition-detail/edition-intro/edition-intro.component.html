@@ -7,9 +7,9 @@
     @if (editionIntroData$ | async; as editionIntroData) {
         <div class="awg-intro-view p-5 border rounded-3">
             <div class="row">
-                @if (utils.isNotEmptyArray(editionIntroData.intro[0].content)) {
-                    <div class="col-12 col-xl-10">
-                        @for (introBlock of editionIntroData.intro[0].content; track $index) {
+                @if (utils.isNotEmptyArray(editionIntroData.intro[currentLanguage].content)) {
+                    <div class="col-12 col-xl-10 awg-intro-content">
+                        @for (introBlock of editionIntroData.intro[currentLanguage].content; track $index) {
                             <section class="awg-intro-section" [id]="introBlock.blockId">
                                 @if (introBlock.blockHeader) {
                                     <div class="awg-intro-para">
@@ -26,12 +26,12 @@
                                 }
                             </section>
                         }
-                        @if (utils.isNotEmptyArray(editionIntroData.intro[0].footnotes)) {
-                            <hr />
-                            <section class="awg-intro-section" id="comments">
+                        @if (utils.isNotEmptyArray(editionIntroData.intro[currentLanguage].footnotes)) {
+                            <section class="awg-intro-section mt-5" id="comments">
+                                <hr />
                                 <h5>Anmerkungen</h5>
                                 <div class="awg-intro-footnotes">
-                                    @for (footnote of editionIntroData.intro[0].footnotes; track $index) {
+                                    @for (footnote of editionIntroData.intro[currentLanguage].footnotes; track $index) {
                                         <small
                                             ><p
                                                 class="awg-intro-footnote"
@@ -46,8 +46,12 @@
 
                     <div class="col-12 col-xl-2 d-none d-xl-block awg-intro-nav">
                         <ul class="nav flex-column">
+                            <awg-language-switcher
+                                [currentLanguage]="currentLanguage"
+                                (languageChangeRequest)="setLanguage($event)">
+                            </awg-language-switcher>
                             <hr class="mt-0 mb-2" />
-                            @for (introBlock of editionIntroData.intro[0].content; track $index) {
+                            @for (introBlock of editionIntroData.intro[currentLanguage].content; track $index) {
                                 @if (introBlock.blockHeader) {
                                     <li class="nav-item small">
                                         <a
@@ -58,7 +62,7 @@
                                     </li>
                                 }
                             }
-                            @if (utils.isNotEmptyArray(editionIntroData.intro[0].footnotes)) {
+                            @if (utils.isNotEmptyArray(editionIntroData.intro[currentLanguage].footnotes)) {
                                 <hr class="mb-2" />
                                 <li class="nav-item small">
                                     <a class="nav-link awg-intro-nav-link pt-0" [routerLink]="'.'" fragment="comments"
