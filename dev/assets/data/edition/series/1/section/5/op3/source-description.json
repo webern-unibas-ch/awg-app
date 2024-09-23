@@ -230,7 +230,47 @@
                             }
                         ]
                     }
-                ]
+                ],
+                "corrections": [
+        {
+            "id": "source_B_corr",
+            "label": "Korrekturen in <strong>B</strong>",
+            "description": [
+                "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: Textfassung 2."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "measure": "1",
+                            "system": "Klav. o.",
+                            "position": "2. Note",
+                            "comment": "{{ref.getGlyph('[b]')}} zu b<sup>2</sup> nachgezogen. (Zunächst zu hoch [ces<sup>3</sup>] angesetzt.)"
+                        },
+                        {
+                            "measure": "7",
+                            "system": "Klav.",
+                            "position": "10–12/16",
+                            "comment": "Auf Tektur. Rechts neben Tektur in Klav. o. mit Bleistift zwei oben zusammengebalkte Sechzehntelnoten {{ref.getGlyph('[a]')}}c<sup>3</sup>–{{ref.getGlyph('[a]')}}d<sup>2</sup>/h<sup>2</sup>, radiert."
+                        },
+                        {
+                            "measure": "8",
+                            "system": "Klav.",
+                            "position": "1–4/16",
+                            "comment": "Klav. u. 1–4/16 auf Rasur, Klav. o. (2/16) rasiert. Ante correcturam: vermutlich wie Textfassung 1."
+                        },
+                        {
+                            "measure": "10",
+                            "system": "Klav. o.",
+                            "position": "2. Note",
+                            "comment": "{{ref.getGlyph('[a]')}} zu f<sup>1</sup> hinzugefügt mit Bleistift."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
             }
         },
         {
