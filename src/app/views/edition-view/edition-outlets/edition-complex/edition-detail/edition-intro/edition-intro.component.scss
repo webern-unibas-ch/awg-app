@@ -5,6 +5,15 @@
     .awg-intro-para {
         text-align: justify;
         text-justify: inter-word;
+
+        &::ng-deep {
+            .link-todo {
+                background-color: chartreuse;
+            }
+            .errata {
+                background-color: red;
+            }
+        }
     }
 
     .awg-intro-para {

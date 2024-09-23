@@ -29,7 +29,7 @@
                         @if (utils.isNotEmptyArray(editionIntroData.intro[currentLanguage].footnotes)) {
                             <section class="awg-intro-section mt-5" id="comments">
                                 <hr />
-                                <h5>Anmerkungen</h5>
+                                <h5>{{ currentLanguage === 0 ? 'Anmerkungen' : 'Footnotes' }}</h5>
                                 <div class="awg-intro-footnotes">
                                     @for (footnote of editionIntroData.intro[currentLanguage].footnotes; track $index) {
                                         <small
@@ -65,8 +65,11 @@
                             @if (utils.isNotEmptyArray(editionIntroData.intro[currentLanguage].footnotes)) {
                                 <hr class="mb-2" />
                                 <li class="nav-item small">
-                                    <a class="nav-link awg-intro-nav-link pt-0" [routerLink]="'.'" fragment="comments"
-                                        >Anmerkungen</a
+                                    <a
+                                        class="nav-link awg-intro-nav-link pt-0"
+                                        [routerLink]="'.'"
+                                        fragment="comments"
+                                        >{{ currentLanguage === 0 ? 'Anmerkungen' : 'Footnotes' }}</a
                                     >
                                 </li>
                             }
