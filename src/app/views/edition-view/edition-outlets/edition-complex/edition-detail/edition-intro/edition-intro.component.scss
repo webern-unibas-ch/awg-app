@@ -1,7 +1,7 @@
 .awg-intro-content {
-    margin-top: 25px;
+    margin-top: 1.5em;
 
-    .awg-intro-footnote,
+    .awg-intro-note,
     .awg-intro-para {
         text-align: justify;
         text-justify: inter-word;
@@ -10,41 +10,73 @@
             .link-todo {
                 background-color: chartreuse;
             }
+
+            .corrigenda {
+                background-color: burlywood;
+            }
+
             .errata {
                 background-color: red;
+            }
+
+            .note-1-dig {
+                margin-left: 1.3em;
+                text-indent: -1.3em;
+            }
+
+            .note-2-dig {
+                margin-left: 1.8em;
+                text-indent: -1.8em;
+            }
+
+            .note-3-dig {
+                margin-left: 2.3em;
+                text-indent: -2.3em;
             }
         }
     }
 
     .awg-intro-para {
         margin: 0;
-        text-indent: 25px;
+        text-indent: 1.5em;
 
         &::ng-deep {
             p {
                 margin-bottom: 0 !important;
             }
+
             table > tbody > tr > td {
                 padding-right: 10px;
             }
+
             .heading {
                 display: block;
-                margin-top: 25px;
-                margin-bottom: 25px;
                 font-weight: bold;
+                margin: 1.5em 0;
+                text-indent: 0;
             }
-            .heading,
+
             .small,
             .no-indent {
                 text-indent: 0;
             }
+
             .spacebreak {
                 display: block;
-                margin-top: 25px;
+                margin-top: 1em;
+
+                &.list {
+                    text-indent: 0;
+                }
 
                 &.no-indent {
                     margin-left: 0;
                 }
+            }
+
+            .list {
+                margin-left: 1em;
+                text-indent: -1em;
             }
         }
     }

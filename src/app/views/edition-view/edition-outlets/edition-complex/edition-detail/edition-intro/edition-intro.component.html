@@ -33,10 +33,10 @@
                                 <div class="awg-intro-notes">
                                     @for (note of editionIntroData.intro[currentLanguage].notes; track $index) {
                                         <small
-                                            ><p
+                                            ><div
                                                 class="awg-intro-note"
                                                 [compile-html]="note"
-                                                [compile-html-ref]="this"></p
+                                                [compile-html-ref]="this"></div
                                         ></small>
                                     }
                                 </div>
