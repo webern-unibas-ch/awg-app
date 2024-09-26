@@ -39,6 +39,16 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     currentLanguage = 0;
 
     /**
+     * Public variable: notesLables.
+     *
+     * It keeps the labels for the notes in the edition intro.
+     */
+    notesLables: Map<number, string> = new Map([
+        [0, 'Anmerkungen'],
+        [1, 'Notes'],
+    ]);
+
+    /**
      * Public variable: editionComplex.
      *
      * It keeps the information about the current edition complex.

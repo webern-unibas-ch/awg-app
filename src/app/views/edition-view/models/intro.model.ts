@@ -41,9 +41,9 @@ export class Intro {
     content: IntroBlock[];
 
     /**
-     * The footnotes array of an intro.
+     * The notes array of an intro.
      */
-    footnotes: string[];
+    notes: string[];
 }
 
 /**

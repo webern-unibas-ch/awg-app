@@ -26,16 +26,16 @@
                                 }
                             </section>
                         }
-                        @if (utils.isNotEmptyArray(editionIntroData.intro[currentLanguage].footnotes)) {
-                            <section class="awg-intro-section mt-5" id="comments">
+                        @if (utils.isNotEmptyArray(editionIntroData.intro[currentLanguage].notes)) {
+                            <section class="awg-intro-section mt-5" id="notes">
                                 <hr />
-                                <h5>{{ currentLanguage === 0 ? 'Anmerkungen' : 'Footnotes' }}</h5>
-                                <div class="awg-intro-footnotes">
-                                    @for (footnote of editionIntroData.intro[currentLanguage].footnotes; track $index) {
+                                <h5>{{ notesLables.get(currentLanguage) }}</h5>
+                                <div class="awg-intro-notes">
+                                    @for (note of editionIntroData.intro[currentLanguage].notes; track $index) {
                                         <small
                                             ><p
-                                                class="awg-intro-footnote"
-                                                [compile-html]="footnote"
+                                                class="awg-intro-note"
+                                                [compile-html]="note"
                                                 [compile-html-ref]="this"></p
                                         ></small>
                                     }
@@ -62,15 +62,12 @@
                                     </li>
                                 }
                             }
-                            @if (utils.isNotEmptyArray(editionIntroData.intro[currentLanguage].footnotes)) {
+                            @if (utils.isNotEmptyArray(editionIntroData.intro[currentLanguage].notes)) {
                                 <hr class="mb-2" />
                                 <li class="nav-item small">
-                                    <a
-                                        class="nav-link awg-intro-nav-link pt-0"
-                                        [routerLink]="'.'"
-                                        fragment="comments"
-                                        >{{ currentLanguage === 0 ? 'Anmerkungen' : 'Footnotes' }}</a
-                                    >
+                                    <a class="nav-link awg-intro-nav-link pt-0" [routerLink]="'.'" fragment="notes">{{
+                                        notesLables.get(currentLanguage)
+                                    }}</a>
                                 </li>
                             }
                         </ul>
