@@ -7,6 +7,7 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
@@ -198,6 +199,24 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
 
                     expect(summaryEl).toBeTruthy();
                     expectToBe(summaryEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
+                });
+            });
+
+            it('... should contain a round-bordered div container for each detail', () => {
+                const detailsDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'details.awg-source-description-correction-details',
+                    expectedCorrections.length,
+                    expectedCorrections.length
+                );
+
+                detailsDes.forEach((detailsDe, index) => {
+                    const divDes = getAndExpectDebugElementByCss(detailsDe, 'div', 1, 1);
+                    const divEl = divDes[0].nativeElement;
+
+                    expect(divEl).toBeTruthy();
+                    expectToContain(divEl.classList, 'border');
+                    expectToContain(divEl.classList, 'rounded-3');
                 });
             });
 
