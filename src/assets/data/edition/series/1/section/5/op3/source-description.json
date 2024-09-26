@@ -649,297 +649,297 @@
                     }
                 ],
                 "corrections": [
-    {
-      "id": "source_C_corr",
-      "label": "Korrekturen in <strong>C</strong>",
-      "description": [
-        "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: Textfassung 3."
-      ],
-      "comments": [
-        {
-          "blockHeader": "",
-          "blockComments": [
-            {
-              "measure": "1",
-              "system": "",
-              "position": "Taktanfang",
-              "comment": "<em>Ganz wenig bewegt (</em>[Achtelnote]<em>)</em> auf Rasur."
-            },
-            {
-              "measure": "1",
-              "system": "Klav. u.",
-              "position": "",
-              "comment": "Teilweise auf Rasur."
-            },
-            {
-              "measure": "1",
-              "system": "Ges.",
-              "position": "2/4",
-              "comment": "Auf Rasur. Ante correcturam: vermutlich Achtelpause, Achtelnote d<sup>1</sup> (siehe Textfassung 2)."
-            },
-            {
-              "measure": "1",
-              "system": "Klav. o.",
-              "position": "2–3/4",
-              "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 2."
-            },
-            {
-              "measure": "2",
-              "system": "Ges.",
-              "position": "1.–2. Note",
-              "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten fis<sup>1</sup>–f<sup>1</sup> (siehe Textfassung 2)."
-            },
-            {
-              "measure": "2",
-              "system": "Klav.",
-              "position": "",
-              "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 2."
-            },
-            {
-              "measure": "2",
-              "system": "Ges.",
-              "position": "3/8",
-              "comment": "Auf Rasur. Ante correcturam: vermutlich as<sup>1</sup> (siehe Textfassung 2)."
-            },
-            {
-              "measure": "3",
-              "system": "Klav. o.",
-              "position": "(1/4)",
-              "comment": "Rasur unter 1. Note. Ante correcturam: vermutlich Unterstimmenschicht Viertelnote b/e<sup>1</sup> (siehe Textfassung 2)."
-            },
-            {
-              "measure": "3",
-              "system": "Klav. u.",
-              "position": "Taktanfang bis 6/8",
-              "comment": "Fortsetzung des Legatobogens bis 6/8 (siehe Textfassung 2) rasiert."
-            },
-            {
-              "measure": "3",
-              "system": "Klav. o.",
-              "position": "2–6/8",
-              "comment": "Fortsetzung des Legatobogens bis 6/8 (siehe Textfassung 2) rasiert."
-            },
-            {
-              "measure": "3",
-              "system": "Klav.",
-              "position": "6/8",
-              "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
-            },
-            {
-              "measure": "3 <br /> bis 4",
-              "system": "Klav.",
-              "position": "6/8 <br /> 2/8",
-              "comment": "Crescendo-/Decrescendogabel hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
-            },
-            {
-              "measure": "3 <br /> bis 4",
-              "system": "Klav. u.",
-              "position": "6/8 <br /> 6/8",
-              "comment": "Legatobogen rasiert und neu gesetzt in T. 3 6/8 bis T. 4 1/4 und T. 4 4–6/8."
-            },
-            {
-              "measure": "4",
-              "system": "Ges.",
-              "position": "2/8",
-              "comment": "Text: auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Von</em> (siehe Textfassung 2)."
-            },
-            {
-              "measure": "4",
-              "system": "Ges.",
-              "position": "2.–3. Note",
-              "comment": "3. Note auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten g<sup>1</sup>–fis<sup>1</sup> (siehe Textfassung 2). D. h. Augementationspunkt zu 2. Note vermutlich hinzugefügt."
-            },
-            {
-              "measure": "5",
-              "system": "Klav. u.",
-              "position": "1. Note",
-              "comment": "Auf Rasur."
-            },
-            {
-              "measure": "5",
-              "system": "",
-              "position": "4/8",
-              "comment": "<em>Tempo</em> auf Rasur. Weitere Rasur ohne neuen Text an entsprechender Position über Klav. o."
-            },
-            {
-              "measure": "5",
-              "system": "Ges.",
-              "position": "4/8",
-              "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
-            },
-            {
-              "measure": "5",
-              "system": "Klav. o.",
-              "position": "4/8",
-              "comment": "{{ref.getGlyph('[ppp]')}} hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
-            },
-            {
-              "measure": "5 <br /> bis 6",
-              "system": "Ges.",
-              "position": "4/8 <br /> 1. Note",
-              "comment": "Crescendogabel hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
-            },
-            {
-              "measure": "6",
-              "system": "Ges.",
-              "position": "1.–2. Note",
-              "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten es<sup>2</sup>–cis<sup>2</sup> (siehe Textfassung 2)."
-            },
-            {
-              "measure": "6",
-              "system": "Klav. o.",
-              "position": "",
-              "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 2."
-            },
-            {
-              "measure": "6",
-              "system": "Klav. u.",
-              "position": "1/8",
-              "comment": "{{ref.getGlyph('[ppp]')}} und {{ref.getGlyph('[a]')}} hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
-            },
-            {
-              "measure": "6",
-              "system": "Klav. u.",
-              "position": "5/16",
-              "comment": "Rasur unter der Note. Ante correcturam: vermutlich {{ref.getGlyph('[ppp]')}} (siehe Textfassung 2)."
-            },
-            {
-              "measure": "6",
-              "system": "Klav. u.",
-              "position": "5–11/16",
-              "comment": "Crescendo-/Decrescendogabel hinzugefügt."
-            },
-            {
-              "measure": "6",
-              "system": "Ges.",
-              "position": "5.–6. Note",
-              "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten gis<sup>1</sup>–h<sup>1</sup> (siehe Textfassung 2)."
-            },
-            {
-              "measure": "6",
-              "system": "Klav. u.",
-              "position": "11–12/16",
-              "comment": "Ein durchgehender Legatobogen T. 6 5/16 bis T. 7 12. Note (siehe Textfassung 2) teilweise rasiert und geändert; Ende des ersten Legatobogens zu 11/16 und Anfang des zweiten Legatobogens zu 12/16 gesetzt. Siehe auch Korrektur zu T. 7 6–7/32 und T. 7 10.–12. Note."
-            },
-            {
-              "measure": "7",
-              "system": "Klav. o.",
-              "position": "1.–4. Note",
-              "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 2."
-            },
-            {
-              "measure": "7 <br /> bis 8",
-              "system": "",
-              "position": "3/16 <br /> 1/8",
-              "comment": "<em>rit. - - -</em> hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift. <em>rit. - - -</em> auch über Klav. o. ab T. 7 1/8 zuerst mit Bleistift, dann radiert."
-            },
-            {
-              "measure": "7",
-              "system": "Ges.",
-              "position": "3/16–12/16",
-              "comment": "Auf Rasur. Ante correcturam: vermutlich: wie Textfassung 2. Text: <em>ein</em> zu 3/16 (ante correcturam: vermutlich Großschreibung <em>Ein</em>) und (<em>leicht-be-schwing-</em>)<em>tes</em> zu 12/16 neu notiert."
-            },
-            {
-              "measure": "7",
-              "system": "Klav. u.",
-              "position": "6–7/32",
-              "comment": "Ein durchgehender Legatobogen T. 6 5/16 bis T. 7 12. Note (siehe Textfassung 2) teilweise rasiert und geändert; Ende des zweiten Legatobogens zu 6/32 und Anfang des dritten Legatobogens zu 7/32 gesetzt. Siehe Korrektur zu T. 6 11–12/16 und T. 7 10.–12. Note."
-            },
-            {
-              "measure": "7",
-              "system": "Klav. u.",
-              "position": "10.–12. Note",
-              "comment": "Ein durchgehender Legatobogen T. 6 5/16 bis T. 7 12. Note (siehe Textfassung 2) teilweise rasiert und geändert; Ende des dritten Legatobogens zu 10. Note gesetzt und Staccatopunkte zu 11.–12. Note hinzugefügt. Siehe Korrektur zu T. 6 11–12/16 und T. 7 6–7/32."
-            },
-            {
-              "measure": "7",
-              "system": "Klav. o.",
-              "position": "11–12/16",
-              "comment": "Staccatopunkte auf Rasur. Ante correcturam: Legatobogen (siehe Textfassung 2). <br /> Decrescendogabel auf Rasur hinzugefügt."
-            },
-            {
-              "measure": "8",
-              "system": "Klav. u.",
-              "position": "2/16",
-              "comment": "{{ref.getGlyph('[ppp]')}} hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
-            },
-            {
-              "measure": "8",
-              "system": "",
-              "position": "2/8",
-              "comment": "<em>etwas langsamer | als tempo I.</em> auf Rasur."
-            },
-            {
-              "measure": "8",
-              "system": "Ges.",
-              "position": "2/8",
-              "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
-            },
-            {
-              "measure": "8",
-              "system": "Ges.",
-              "position": "2.–3. Note",
-              "comment": "3. Note auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten e<sup>1</sup>–es<sup>1</sup> (siehe Textfassung 2). D. h. Augmentationspunkt zu 2. Note vermutlich hinzugefügt."
-            },
-            {
-              "measure": "8",
-              "system": "Klav.",
-              "position": "4/8",
-              "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
-            },
-            {
-              "measure": "8 <br /> bis 10",
-              "system": "Klav.",
-              "position": "4/8 <br /> 1/8",
-              "comment": "Auf Rasuren. Ante correcturam: vermutlich wie Textfassung 2."
-            },
-            {
-              "measure": "8",
-              "system": "Ges.",
-              "position": "5–6/8",
-              "comment": "Achtelfähnchen geändert zu Balken.  <br /> Silbenbogen hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
-            },
-            {
-              "measure": "9",
-              "system": "Ges.",
-              "position": "1/4",
-              "comment": "Text: auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Möcht</em> (siehe Textfassung 2)."
-            },
-            {
-              "measure": "9",
-              "system": "Ges.",
-              "position": "4.–5. Note",
-              "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten g<sup>1</sup>–fis<sup>1</sup> (siehe Textfassung 2) mit Silbenbogen."
-            },
-            {
-              "measure": "10",
-              "system": "Ges.",
-              "position": "(1/4)",
-              "comment": "Auf Rasur. Ante correcturam: vermutlich Achtelpause, Achtelnote {{ref.getGlyph('[a]')}}f<sup>1</sup> (siehe Textfassung 2)."
-            },
-            {
-              "measure": "10",
-              "system": "Ges.",
-              "position": "3–4/8",
-              "comment": "Text: auf Rasur. Ante correcturam: vermutlich <em>rühr-te</em> (siehe Textfassung 2)."
-            },
-            {
-              "measure": "10",
-              "system": "Klav.",
-              "position": "2. Note",
-              "comment": "{{ref.getGlyph('[ppp]')}} hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
-            },
-            {
-              "measure": "10 <br /> bis 11",
-              "system": "Klav. u.",
-              "position": "2. Note <br /> 1/4",
-              "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 2."
-            }
-          ]
-        }
-      ]
-    }
-  ]
+                    {
+                        "id": "source_C_corr",
+                        "label": "Korrekturen in <strong>C</strong>",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: Textfassung 3."
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>Ganz wenig bewegt (</em>[Achtelnote]<em>)</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Teilweise auf Rasur."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Ges.",
+                                        "position": "2/4",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich Achtelpause, Achtelnote d<sup>1</sup> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav. o.",
+                                        "position": "2–3/4",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten fis<sup>1</sup>–f<sup>1</sup> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "3/8",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich as<sup>1</sup> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav. o.",
+                                        "position": "(1/4)",
+                                        "comment": "Rasur unter 1. Note. Ante correcturam: vermutlich Unterstimmenschicht Viertelnote b/e<sup>1</sup> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav. u.",
+                                        "position": "Taktanfang bis 6/8",
+                                        "comment": "Fortsetzung des Legatobogens bis 6/8 (siehe Textfassung 2) rasiert."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav. o.",
+                                        "position": "2–6/8",
+                                        "comment": "Fortsetzung des Legatobogens bis 6/8 (siehe Textfassung 2) rasiert."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav.",
+                                        "position": "6/8",
+                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "3 <br /> bis 4",
+                                        "system": "Klav.",
+                                        "position": "6/8 <br /> 2/8",
+                                        "comment": "Crescendo-/Decrescendogabel hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "3 <br /> bis 4",
+                                        "system": "Klav. u.",
+                                        "position": "6/8 <br /> 6/8",
+                                        "comment": "Legatobogen rasiert und neu gesetzt in T. 3 6/8 bis T. 4 1/4 und T. 4 4–6/8."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "2/8",
+                                        "comment": "Text: auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Von</em> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "2.–3. Note",
+                                        "comment": "3. Note auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten g<sup>1</sup>–fis<sup>1</sup> (siehe Textfassung 2). D. h. Augementationspunkt zu 2. Note vermutlich hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "",
+                                        "position": "4/8",
+                                        "comment": "<em>Tempo</em> auf Rasur. Weitere Rasur ohne neuen Text an entsprechender Position über Klav. o."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. o.",
+                                        "position": "4/8",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "5 <br /> bis 6",
+                                        "system": "Ges.",
+                                        "position": "4/8 <br /> 1. Note",
+                                        "comment": "Crescendogabel hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten es<sup>2</sup>–cis<sup>2</sup> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. o.",
+                                        "position": "",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "1/8",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} und {{ref.getGlyph('[a]')}} hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "5/16",
+                                        "comment": "Rasur unter der Note. Ante correcturam: vermutlich {{ref.getGlyph('[ppp]')}} (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "5–11/16",
+                                        "comment": "Crescendo-/Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "5.–6. Note",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten gis<sup>1</sup>–h<sup>1</sup> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "11–12/16",
+                                        "comment": "Ein durchgehender Legatobogen T. 6 5/16 bis T. 7 12. Note (siehe Textfassung 2) teilweise rasiert und geändert; Ende des ersten Legatobogens zu 11/16 und Anfang des zweiten Legatobogens zu 12/16 gesetzt. Siehe auch Korrektur zu T. 7 6–7/32 und T. 7 10.–12. Note."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. o.",
+                                        "position": "1.–4. Note",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "7 <br /> bis 8",
+                                        "system": "",
+                                        "position": "3/16 <br /> 1/8",
+                                        "comment": "<em>rit. - - -</em> hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift. <em>rit. - - -</em> auch über Klav. o. ab T. 7 1/8 zuerst mit Bleistift, dann radiert."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "3/16–12/16",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich: wie Textfassung 2. Text: <em>ein</em> zu 3/16 (ante correcturam: vermutlich Großschreibung <em>Ein</em>) und (<em>leicht-be-schwing-</em>)<em>tes</em> zu 12/16 neu notiert."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. u.",
+                                        "position": "6–7/32",
+                                        "comment": "Ein durchgehender Legatobogen T. 6 5/16 bis T. 7 12. Note (siehe Textfassung 2) teilweise rasiert und geändert; Ende des zweiten Legatobogens zu 6/32 und Anfang des dritten Legatobogens zu 7/32 gesetzt. Siehe Korrektur zu T. 6 11–12/16 und T. 7 10.–12. Note."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. u.",
+                                        "position": "10.–12. Note",
+                                        "comment": "Ein durchgehender Legatobogen T. 6 5/16 bis T. 7 12. Note (siehe Textfassung 2) teilweise rasiert und geändert; Ende des dritten Legatobogens zu 10. Note gesetzt und Staccatopunkte zu 11.–12. Note hinzugefügt. Siehe Korrektur zu T. 6 11–12/16 und T. 7 6–7/32."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. o.",
+                                        "position": "11–12/16",
+                                        "comment": "Staccatopunkte auf Rasur. Ante correcturam: Legatobogen (siehe Textfassung 2). <br /> Decrescendogabel auf Rasur hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. u.",
+                                        "position": "2/16",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "",
+                                        "position": "2/8",
+                                        "comment": "<em>etwas langsamer | als tempo I.</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "2/8",
+                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "2.–3. Note",
+                                        "comment": "3. Note auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten e<sup>1</sup>–es<sup>1</sup> (siehe Textfassung 2). D. h. Augmentationspunkt zu 2. Note vermutlich hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav.",
+                                        "position": "4/8",
+                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "8 <br /> bis 10",
+                                        "system": "Klav.",
+                                        "position": "4/8 <br /> 1/8",
+                                        "comment": "Auf Rasuren. Ante correcturam: vermutlich wie Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "5–6/8",
+                                        "comment": "Achtelfähnchen geändert zu Balken.  <br /> Silbenbogen hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "1/4",
+                                        "comment": "Text: auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Möcht</em> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "4.–5. Note",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten g<sup>1</sup>–fis<sup>1</sup> (siehe Textfassung 2) mit Silbenbogen."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "(1/4)",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich Achtelpause, Achtelnote {{ref.getGlyph('[a]')}}f<sup>1</sup> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "3–4/8",
+                                        "comment": "Text: auf Rasur. Ante correcturam: vermutlich <em>rühr-te</em> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav.",
+                                        "position": "2. Note",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} hinzugefügt mit schwarzer Tinte auf Vorzeichnung mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "10 <br /> bis 11",
+                                        "system": "Klav. u.",
+                                        "position": "2. Note <br /> 1/4",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 2."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
             }
         },
         {
