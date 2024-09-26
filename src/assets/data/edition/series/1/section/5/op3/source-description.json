@@ -146,272 +146,280 @@
                     }
                 ],
                 "corrections": [
-                        {
-                            "id": "source_Aa_corr1",
-                            "label": "Korrekturen 1 in <strong>A<sup>a</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
-                            "description": ["Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: Textfassung 1."],
-                            "comments": [
-                                {
-                                    "blockHeader": "",
-                                    "blockComments": [
-                                        {
-                                            "measure": "4 <br /> bis 5",
-                                            "system": "Klav. u.",
-                                            "position": "4/8 <br /> 3/8",
-                                            "comment": "Legatobogen nach T. 4 6/8 rasiert."
-                                        },
-                                        {
-                                            "measure": "5",
-                                            "system": "Klav. u.",
-                                            "position": "1.–3. Note",
-                                            "comment": "Auf Rasur."
-                                        },
-                                        {
-                                            "measure": "5 <br /> bis 7",
-                                            "system": "Klav.",
-                                            "position": "4/8 <br /> (2/4)",
-                                            "comment": "Zuerst: auf Rasur. Ante correcturam teilweise zu entziffern: Klav. o. T. 5 4/8 bis T. 6 3/8 und T. 7 1/8 eine Oktave tiefer.  <br /> Dann T. 6 6/8: Akzidenzien rasiert und h<sup>2</sup> korrigiert zu c<sup>3</sup>. (Entzifferung nicht eindeutig, mehrmals nachgezogen: möglicherweise bleibt h<sup>2</sup>?). Siehe TkA zu T 6 6/8."
-                                        },
-                                        {
-                                            "measure": "7",
-                                            "system": "Ges.",
-                                            "position": "2/8",
-                                            "comment": "Text: Kleinschreibung <em>e</em>[in] überschrieben zu <em>E</em>[in]."
-                                        },
-                                        {
-                                            "measure": "8",
-                                            "system": "Ges.",
-                                            "position": "2/8",
-                                            "comment": "Text: Kleinschreibung <em>n</em>[ur] überschrieben zu <em>N</em>[ur]."
-                                        },
-                                        {
-                                            "measure": "8",
-                                            "system": "Klav. u.",
-                                            "position": "3/16",
-                                            "comment": "Notenkopf auf Rasur."
-                                        },
-                                        {
-                                            "measure": "8",
-                                            "system": "Klav. u.",
-                                            "position": "3/4",
-                                            "comment": "Notenkopf von zu e und {{ref.getGlyph('[a]')}} auf Rasur."
-                                        },
-                                        {
-                                            "measure": "9",
-                                            "system": "Ges.",
-                                            "position": "1/4",
-                                            "comment": "Notenhals auf Rasur. Ante correcturam: Achtelfähnchen. <br /> Text: Kleinschreibung <em>m</em>[öcht] überschrieben zu <em>M</em>[öcht]."
-                                        },
-                                        {
-                                            "measure": "11",
-                                            "system": "",
-                                            "position": "",
-                                            "comment": "Taktvorzeichnung auf Rasur, Schlusstaktstrich nach 1. Note rasiert."
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "source_Aa_corr2",
-                            "label": "Korrekturen 2 in <strong>A<sup>a</sup></strong> (mit Bleistift)",
-                            "description": ["Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: Textfassung 1."],
-                            "comments": [
-                                {
-                                    "blockHeader": "",
-                                    "blockComments": [
-                                        {
-                                            "measure": "2",
-                                            "system": "Klav. u.",
-                                            "position": "1/8",
-                                            "comment": "Achtelnote E getilgt durch Einkreisung und ersetzt durch Achtelpause. Siehe Textfassung 2."
-                                        },
-                                        {
-                                            "measure": "6 <br /> bis 7",
-                                            "system": "Klav.",
-                                            "position": "",
-                                            "comment": "Korrekturskizzen über, unter und nach den Systemen.  <br /> System 9–13:  <br /> ##Abbildung## <br /> System 15–18:  <br /> ##Abbildung## <br /> Siehe Textfassung 2."
-                                        },
-                                        {
-                                            "measure": "11",
-                                            "system": "Klav. o.",
-                                            "position": "1. Note",
-                                            "comment": "Fermate hinzugefügt."
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "source_Ab_corr1",
-                            "label": "Korrekturen 1 in <strong>A<sup>b</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
-                            "description": ["Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: Textfassung 1."],
-                            "comments": [
-                                {
-                                    "blockHeader": "",
-                                    "blockComments": [
-                                        {
-                                            "measure": "vor 1",
-                                            "system": "Klav. u.",
-                                            "position": "",
-                                            "comment": "Violinschlüssel überschreibt Bassschlüssel."
-                                        },
-                                        {
-                                            "measure": "1",
-                                            "system": "Klav. u.",
-                                            "position": "5/16",
-                                            "comment": "f<sup>1</sup> gestrichen und geändert zu a<sup>1</sup>."
-                                        },
-                                        {
-                                            "measure": "2",
-                                            "system": "Klav.",
-                                            "position": "9.–12. Note",
-                                            "comment": "Auf Rasur."
-                                        },
-                                        {
-                                            "measure": "3",
-                                            "system": "Ges.",
-                                            "position": "3. Note",
-                                            "comment": "Text: Kleinschreibung <em>n</em>[ur] überschrieben zu <em>N</em>[ur]."
-                                        },
-                                        {
-                                            "measure": "4",
-                                            "system": "Klav. u.",
-                                            "position": "4.–8. Note",
-                                            "comment": "Auf Rasur."
-                                        },
-                                        {
-                                            "measure": "4",
-                                            "system": "Klav. o.",
-                                            "position": "8.–9. Note",
-                                            "comment": "Auf Rasur."
-                                        },
-                                        {
-                                            "measure": "4",
-                                            "system": "",
-                                            "position": "Taktende",
-                                            "comment": "Taktstrich rasiert und weiter rechts neu gezogen."
-                                        },
-                                        {
-                                            "measure": "5",
-                                            "system": "Klav. o.",
-                                            "position": "3. Note",
-                                            "comment": "{{ref.getGlyph('[b]')}}-Akzidenz auf Höhe zu as<sup>1</sup> überschrieben auf Höhe zu b<sup>1</sup>."
-                                        },
-                                        {
-                                            "measure": "5",
-                                            "system": "Klav. o.",
-                                            "position": "5–8/16",
-                                            "comment": "Fortsetzung des von T. 4 kommenden Legatobogens bis 8/16 rasiert und Ende versetzt zu 5/16, Bogen 5–8/16 hinzugefügt."
-                                        },
-                                        {
-                                            "measure": "5",
-                                            "system": "Klav. u.",
-                                            "position": "3.–5. Note",
-                                            "comment": "Auf Rasur."
-                                        },
-                                        {
-                                            "measure": "5",
-                                            "system": "Klav. o.",
-                                            "position": "8.–10. Note",
-                                            "comment": "Auf Rasur. Ante correcturam: vermutlich Notenhälse und Balken über den Noten."
-                                        },
-                                        {
-                                            "measure": "6",
-                                            "system": "Klav. u.",
-                                            "position": "4/16",
-                                            "comment": "{{ref.getGlyph('[b]')}} überschrieben zu {{ref.getGlyph('[a]')}}."
-                                        },
-                                        {
-                                            "measure": "6",
-                                            "system": "Klav. u.",
-                                            "position": "17–20/23",
-                                            "comment": "Auf Rasur. Siehe TkA zu 19–20/32."
-                                        },
-                                        {
-                                            "measure": "8",
-                                            "system": "Ges.",
-                                            "position": "4/8",
-                                            "comment": "Text: Kleinschreibung <em>n</em>[un] überschrieben zu <em>N</em>[un]."
-                                        },
-                                        {
-                                            "measure": "8",
-                                            "system": "Klav. u.",
-                                            "position": "9/16",
-                                            "comment": "{{ref.getGlyph('[a]')}} überschrieben zu {{ref.getGlyph('[b]')}}."
-                                        },
-                                        {
-                                            "measure": "8",
-                                            "system": "Ges.",
-                                            "position": "7. Note",
-                                            "comment": "Text: Kleinschreibung <em>u</em>[m] überschrieben zu <em>U</em>[m]."
-                                        },
-                                        {
-                                            "measure": "9",
-                                            "system": "Ges.",
-                                            "position": "7. Note",
-                                            "comment": "Text: <em>tage</em>, Endsilbe [-]<em>ge</em> gestrichen und zu 8. Note versetzt."
-                                        },
-                                        {
-                                            "measure": "10",
-                                            "system": "Klav. o.",
-                                            "position": "10/16",
-                                            "comment": "Sechzehntelpause gestrichen. Siehe TkA."
-                                        },
-                                        {
-                                            "measure": "10",
-                                            "system": "",
-                                            "position": "4/4",
-                                            "comment": "Auf Rasur. Ante correcturam: Schlusstaktstrich. Siehe TkA zu T. 10 Taktanfang."
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "source_Ab_corr2",
-                            "label": "Korrekturen 2 in <strong>A<sup>b</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
-                            "description": ["Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: Textfassung 1."],
-                            "comments": [
-                                {
-                                    "blockHeader": "",
-                                    "blockComments": [
-                                        {
-                                            "measure": "3–5",
-                                            "system": "Klav. u.",
-                                            "position": "",
-                                            "comment": "Korrekturskizzen unter der Akkoalde (System 14–15): <br /> ##Abbildung## <br /> Siehe Textfassung 2."
-                                        },
-                                        {
-                                            "measure": "6",
-                                            "system": "Klav. u.",
-                                            "position": "5–11/16",
-                                            "comment": "Korrekturskizzen unter der Akkoalde (System 16–18): <br /> ##Abbildung## <br /> Siehe Textfassung 2."
-                                        },
-                                        {
-                                            "measure": "8",
-                                            "system": "Klav.",
-                                            "position": "9–16/16",
-                                            "comment": "Korrekturskizzen unter und nach der Akkoalde (System 4, 6): <br /> ##Abbildung##"
-                                        },
-                                        {
-                                            "measure": "9",
-                                            "system": "Klav. u.",
-                                            "position": "1. Note",
-                                            "comment": "Es gestrichen und geändert zu G."
-                                        },
-                                        {
-                                            "measure": "10",
-                                            "system": "Klav.",
-                                            "position": "",
-                                            "comment": "Korrekturskizzen unter der Akkoalde (System 14–18): <br /> ##Abbildung## <br /> Siehe Textfassung 2."
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
+                    {
+                        "id": "source_Aa_corr1",
+                        "label": "Korrekturen 1 in <strong>A<sup>a</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: Textfassung 1."
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "4 <br /> bis 5",
+                                        "system": "Klav. u.",
+                                        "position": "4/8 <br /> 3/8",
+                                        "comment": "Legatobogen nach T. 4 6/8 rasiert."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. u.",
+                                        "position": "1.–3. Note",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "5 <br /> bis 7",
+                                        "system": "Klav.",
+                                        "position": "4/8 <br /> (2/4)",
+                                        "comment": "Zuerst: auf Rasur. Ante correcturam teilweise zu entziffern: Klav. o. T. 5 4/8 bis T. 6 3/8 und T. 7 1/8 eine Oktave tiefer.  <br /> Dann T. 6 6/8: Akzidenzien rasiert und h<sup>2</sup> korrigiert zu c<sup>3</sup>. (Entzifferung nicht eindeutig, mehrmals nachgezogen: möglicherweise bleibt h<sup>2</sup>?). Siehe TkA zu T 6 6/8."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "2/8",
+                                        "comment": "Text: Kleinschreibung <em>e</em>[in] überschrieben zu <em>E</em>[in]."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "2/8",
+                                        "comment": "Text: Kleinschreibung <em>n</em>[ur] überschrieben zu <em>N</em>[ur]."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. u.",
+                                        "position": "3/16",
+                                        "comment": "Notenkopf auf Rasur."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. u.",
+                                        "position": "3/4",
+                                        "comment": "Notenkopf von zu e und {{ref.getGlyph('[a]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "1/4",
+                                        "comment": "Notenhals auf Rasur. Ante correcturam: Achtelfähnchen. <br /> Text: Kleinschreibung <em>m</em>[öcht] überschrieben zu <em>M</em>[öcht]."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Taktvorzeichnung auf Rasur, Schlusstaktstrich nach 1. Note rasiert."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "source_Aa_corr2",
+                        "label": "Korrekturen 2 in <strong>A<sup>a</sup></strong> (mit Bleistift)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: Textfassung 1."
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav. u.",
+                                        "position": "1/8",
+                                        "comment": "Achtelnote E getilgt durch Einkreisung und ersetzt durch Achtelpause. Siehe Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "6 <br /> bis 7",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Korrekturskizzen über, unter und nach den Systemen.  <br /> System 9–13:  <br /> ##Abbildung## <br /> System 15–18:  <br /> ##Abbildung## <br /> Siehe Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. o.",
+                                        "position": "1. Note",
+                                        "comment": "Fermate hinzugefügt."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "source_Ab_corr1",
+                        "label": "Korrekturen 1 in <strong>A<sup>b</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: Textfassung 1."
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "vor 1",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Violinschlüssel überschreibt Bassschlüssel."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav. u.",
+                                        "position": "5/16",
+                                        "comment": "f<sup>1</sup> gestrichen und geändert zu a<sup>1</sup>."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav.",
+                                        "position": "9.–12. Note",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "Text: Kleinschreibung <em>n</em>[ur] überschrieben zu <em>N</em>[ur]."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav. u.",
+                                        "position": "4.–8. Note",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav. o.",
+                                        "position": "8.–9. Note",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "",
+                                        "position": "Taktende",
+                                        "comment": "Taktstrich rasiert und weiter rechts neu gezogen."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. o.",
+                                        "position": "3. Note",
+                                        "comment": "{{ref.getGlyph('[b]')}}-Akzidenz auf Höhe zu as<sup>1</sup> überschrieben auf Höhe zu b<sup>1</sup>."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. o.",
+                                        "position": "5–8/16",
+                                        "comment": "Fortsetzung des von T. 4 kommenden Legatobogens bis 8/16 rasiert und Ende versetzt zu 5/16, Bogen 5–8/16 hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. u.",
+                                        "position": "3.–5. Note",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. o.",
+                                        "position": "8.–10. Note",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich Notenhälse und Balken über den Noten."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "4/16",
+                                        "comment": "{{ref.getGlyph('[b]')}} überschrieben zu {{ref.getGlyph('[a]')}}."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "17–20/23",
+                                        "comment": "Auf Rasur. Siehe TkA zu 19–20/32."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "Text: Kleinschreibung <em>n</em>[un] überschrieben zu <em>N</em>[un]."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. u.",
+                                        "position": "9/16",
+                                        "comment": "{{ref.getGlyph('[a]')}} überschrieben zu {{ref.getGlyph('[b]')}}."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "7. Note",
+                                        "comment": "Text: Kleinschreibung <em>u</em>[m] überschrieben zu <em>U</em>[m]."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "7. Note",
+                                        "comment": "Text: <em>tage</em>, Endsilbe [-]<em>ge</em> gestrichen und zu 8. Note versetzt."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav. o.",
+                                        "position": "10/16",
+                                        "comment": "Sechzehntelpause gestrichen. Siehe TkA."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "",
+                                        "position": "4/4",
+                                        "comment": "Auf Rasur. Ante correcturam: Schlusstaktstrich. Siehe TkA zu T. 10 Taktanfang."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "source_Ab_corr2",
+                        "label": "Korrekturen 2 in <strong>A<sup>b</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: Textfassung 1."
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "3–5",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Korrekturskizzen unter der Akkoalde (System 14–15): <br /> ##Abbildung## <br /> Siehe Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "5–11/16",
+                                        "comment": "Korrekturskizzen unter der Akkoalde (System 16–18): <br /> ##Abbildung## <br /> Siehe Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav.",
+                                        "position": "9–16/16",
+                                        "comment": "Korrekturskizzen unter und nach der Akkoalde (System 4, 6): <br /> ##Abbildung##"
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "Es gestrichen und geändert zu G."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Korrekturskizzen unter der Akkoalde (System 14–18): <br /> ##Abbildung## <br /> Siehe Textfassung 2."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
         },
         {
             "id": "source_B",

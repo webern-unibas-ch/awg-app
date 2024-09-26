@@ -6,22 +6,24 @@
                 class="half-para awg-source-description-correction-summary"
                 [compile-html]="correction.label + ':'"
                 [compile-html-ref]="ref"></summary>
-            @for (description of correction.description; track description) {
-                <p
-                    class="awg-source-description-correction-desc"
-                    [compile-html]="description"
-                    [compile-html-ref]="ref"></p>
-            }
-            @if (correction.comments.length > 0) {
-                <awg-edition-tka-table
-                    [textcriticalCommentBlocks]="correction.comments"
-                    [isCorrections]="true"
-                    [isRowTable]="correction.rowtable"
-                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                    (openModalRequest)="openModal($event)"
-                    (selectSvgSheetRequest)="selectSvgSheet($event)">
-                </awg-edition-tka-table>
-            }
+            <div class="p-3 border rounded-3">
+                @for (description of correction.description; track description) {
+                    <p
+                        class="awg-source-description-correction-desc mb-0"
+                        [compile-html]="description"
+                        [compile-html-ref]="ref"></p>
+                }
+                @if (correction.comments.length > 0) {
+                    <awg-edition-tka-table
+                        [textcriticalCommentBlocks]="correction.comments"
+                        [isCorrections]="true"
+                        [isRowTable]="correction.rowtable"
+                        (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                        (openModalRequest)="openModal($event)"
+                        (selectSvgSheetRequest)="selectSvgSheet($event)">
+                    </awg-edition-tka-table>
+                }
+            </div>
         </details>
     }
 </div>
