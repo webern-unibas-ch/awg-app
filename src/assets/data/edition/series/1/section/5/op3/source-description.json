@@ -1425,1062 +1425,1062 @@
                 ],
                 "corrections": [
                     {
-                    "id": "source_Ea_corr",
-                    "label": "Korrekturen in <strong>E<sup>a</sup></strong>",
-                    "description": [
-                        "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: Textfassung 4."
-                    ],
-                    "comments": [
-                        {
-                        "blockHeader": "",
-                        "blockComments": [
+                        "id": "source_Ea_corr",
+                        "label": "Korrekturen in <strong>E<sup>a</sup></strong>",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: Textfassung 4."
+                        ],
+                        "comments": [
                             {
-                            "measure": "1",
-                            "system": "",
-                            "position": "Taktanfang",
-                            "comment": "<em>etwas zögernd</em> gestrichen mit grünem Buntstift."
-                            },
-                            {
-                            "measure": "1",
-                            "system": "Klav. o.",
-                            "position": "2/8",
-                            "comment": "{{ref.getGlyph('[ppp]')}} geändert zu {{ref.getGlyph('[pp]')}} mit grünem Buntstift."
-                            },
-                            {
-                            "measure": "1",
-                            "system": "Ges.",
-                            "position": "(2/4)",
-                            "comment": "Triole aus Viertelnote, Achtelpause geändert zu Viertelnote; Bogen nach Viertelnote gestrichen mit rotem Buntstift. <br /> &lt; &gt; hinzugefügt mit grünem Buntstift."
-                            },
-                            {
-                            "measure": "1 <br /> bis 2",
-                            "system": "Ges.",
-                            "position": "1. Note <br /> 5/8",
-                            "comment": "Bogen hinzugefügt mit rotem Buntstift."
-                            },
-                            {
-                            "measure": "1",
-                            "system": "Klav. o.",
-                            "position": "letzte Note",
-                            "comment": "{{ref.getGlyph('[pp]')}} geändert zu {{ref.getGlyph('[ppp]')}} mit grünem Buntstift."
-                            },
-                            {
-                            "measure": "3",
-                            "system": "Ges.",
-                            "position": "5–6/8",
-                            "comment": "Wellenlinie über den Noten mit rotem Buntstift."
-                            },
-                            {
-                            "measure": "4",
-                            "system": "Ges.",
-                            "position": "5–6/8",
-                            "comment": "Wellenlinie über den Noten mit rotem Buntstift."
-                            },
-                            {
-                            "measure": "5",
-                            "system": "Ges.",
-                            "position": "4/8",
-                            "comment": "{{ref.getGlyph('[pp]')}} überschrieben zu {{ref.getGlyph('[p]')}} mit grünem Buntstift, dann {{ref.getGlyph('[p]')}} geändert zu [mp] mit rotem Buntstift."
-                            },
-                            {
-                            "measure": "7",
-                            "system": "Ges.",
-                            "position": "",
-                            "comment": "Markierung der Viertel-Zählzeiten mit <em>1</em>, <em>2</em>, <em>3</em>, <em>4</em> und Klammern (Zählzeiten 1–3) über dem System mit rotem Buntstift."
-                            },
-                            {
-                            "measure": "7",
-                            "system": "Ges.",
-                            "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[ppp]')}} überschrieben zu {{ref.getGlyph('[pp]')}} mit rotem Buntstift."
-                            },
-                            {
-                            "measure": "7",
-                            "system": "Ges.",
-                            "position": "4.–5. Note",
-                            "comment": "Decrescendogabel hinzugefügt, Legatobogen gestrichen mit rotem Buntstift."
-                            },
-                            {
-                            "measure": "8",
-                            "system": "Klav. o.",
-                            "position": "(1/16)",
-                            "comment": "Rasur."
-                            },
-                            {
-                            "measure": "8",
-                            "system": "Ges.",
-                            "position": "2/8",
-                            "comment": "Achtelnote c<sup>1</sup> sowie <em>Etwas</em> <em>langsamer | als Tempo I.</em> auf Rasur."
-                            },
-                            {
-                            "measure": "9",
-                            "system": "Klav. u.",
-                            "position": "",
-                            "comment": "Teilweise auf Rasur."
-                            },
-                            {
-                            "measure": "9",
-                            "system": "Klav. o.",
-                            "position": "2. Note",
-                            "comment": "Notenkopf eingekreist mit grünem Buntstift."
-                            },
-                            {
-                            "measure": "10",
-                            "system": "Ges., Klav. o.",
-                            "position": "(4/8)",
-                            "comment": "Markierungen zur korrekten Untersatz-Position von Ges. 4/8 im Verhältnis zu Klav. o. 2.–4. Note mit Bleistift und grünem Buntstift."
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>etwas zögernd</em> gestrichen mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav. o.",
+                                        "position": "2/8",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} geändert zu {{ref.getGlyph('[pp]')}} mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Ges.",
+                                        "position": "(2/4)",
+                                        "comment": "Triole aus Viertelnote, Achtelpause geändert zu Viertelnote; Bogen nach Viertelnote gestrichen mit rotem Buntstift. <br /> &lt; &gt; hinzugefügt mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "1 <br /> bis 2",
+                                        "system": "Ges.",
+                                        "position": "1. Note <br /> 5/8",
+                                        "comment": "Bogen hinzugefügt mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav. o.",
+                                        "position": "letzte Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} geändert zu {{ref.getGlyph('[ppp]')}} mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "5–6/8",
+                                        "comment": "Wellenlinie über den Noten mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "5–6/8",
+                                        "comment": "Wellenlinie über den Noten mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "{{ref.getGlyph('[pp]')}} überschrieben zu {{ref.getGlyph('[p]')}} mit grünem Buntstift, dann {{ref.getGlyph('[p]')}} geändert zu [mp] mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Markierung der Viertel-Zählzeiten mit <em>1</em>, <em>2</em>, <em>3</em>, <em>4</em> und Klammern (Zählzeiten 1–3) über dem System mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} überschrieben zu {{ref.getGlyph('[pp]')}} mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "4.–5. Note",
+                                        "comment": "Decrescendogabel hinzugefügt, Legatobogen gestrichen mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. o.",
+                                        "position": "(1/16)",
+                                        "comment": "Rasur."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "2/8",
+                                        "comment": "Achtelnote c<sup>1</sup> sowie <em>Etwas</em> <em>langsamer | als Tempo I.</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Teilweise auf Rasur."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note",
+                                        "comment": "Notenkopf eingekreist mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges., Klav. o.",
+                                        "position": "(4/8)",
+                                        "comment": "Markierungen zur korrekten Untersatz-Position von Ges. 4/8 im Verhältnis zu Klav. o. 2.–4. Note mit Bleistift und grünem Buntstift."
+                                    }
+                                ]
                             }
                         ]
-                        }
-                    ]
                     },
                     {
-                    "id": "source_Eb_corr1",
-                    "label": "Korrekturen 1 in <strong>E<sup>b</sup></strong> (mit Tinte ggf. auf Rasur)",
-                    "description": [
-                        "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: Textfassung 2."
-                    ],
-                    "comments": [
-                        {
-                        "blockHeader": "",
-                        "blockComments": [
+                        "id": "source_Eb_corr1",
+                        "label": "Korrekturen 1 in <strong>E<sup>b</sup></strong> (mit Tinte ggf. auf Rasur)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: Textfassung 2."
+                        ],
+                        "comments": [
                             {
-                            "measure": "3",
-                            "system": "Ges.",
-                            "position": "3. Note",
-                            "comment": "Text: Anfang von <em>nur</em> nachgezogen."
-                            },
-                            {
-                            "measure": "3",
-                            "system": "Klav. u.",
-                            "position": "1.–2. Note",
-                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 1."
-                            },
-                            {
-                            "measure": "3",
-                            "system": "Ges.",
-                            "position": "5/8",
-                            "comment": "Text: Komma hinzugefügt. Siehe TkA."
-                            },
-                            {
-                            "measure": "3",
-                            "system": "Klav. o.",
-                            "position": "6.–7. Note",
-                            "comment": "Auf Rasur."
-                            },
-                            {
-                            "measure": "4",
-                            "system": "Ges.",
-                            "position": "1.–3. Note",
-                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 1."
-                            },
-                            {
-                            "measure": "6",
-                            "system": "Klav.",
-                            "position": "1.–4. Note",
-                            "comment": "Bogen bis 5/16 in Klav. u. rasiert und geändert bis zu 4. Note."
-                            },
-                            {
-                            "measure": "6",
-                            "system": "Klav. u.",
-                            "position": "6–12/16",
-                            "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 1."
-                            },
-                            {
-                            "measure": "6",
-                            "system": "Ges.",
-                            "position": "4. Note",
-                            "comment": "Text: <em>ein</em> auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Ein</em> (siehe Textfassung 1)."
-                            },
-                            {
-                            "measure": "7",
-                            "system": "Ges.",
-                            "position": "1/8",
-                            "comment": "Auf Rasur. Ante correcturam: vermutlich dis<sup>1</sup> (siehe Textfassung 1)."
-                            },
-                            {
-                            "measure": "8",
-                            "system": "Ges.",
-                            "position": "4/8",
-                            "comment": "Text: <em>nun</em> auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Nun</em> (siehe Textfassung 1)."
-                            },
-                            {
-                            "measure": "8",
-                            "system": "Klav. u.",
-                            "position": "2/2",
-                            "comment": "Vermutlich Viertelpause zu 4/4 rasiert (siehe Textfassung 1) und Halbe Pause hinzugefügt."
-                            },
-                            {
-                            "measure": "8",
-                            "system": "Ges.",
-                            "position": "vorletze Note",
-                            "comment": "Text: <em>um</em> auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Um</em> (siehe Textfassung 1)."
-                            },
-                            {
-                            "measure": "9",
-                            "system": "Klav. u.",
-                            "position": "2.–3. Note",
-                            "comment": "Auf Rasur."
-                            },
-                            {
-                            "measure": "9",
-                            "system": "Klav. u.",
-                            "position": "6.–7. Note",
-                            "comment": "Auf Rasur."
-                            },
-                            {
-                            "measure": "9",
-                            "system": "Ges.",
-                            "position": "5–6/8",
-                            "comment": "Text: {{ref.getGlyph('[a]')}}<em>-lle</em> auf Rasur. Ante correcturam: vermutlich <em>-lle</em> bereits zu 5/8."
-                            },
-                            {
-                            "measure": "9",
-                            "system": "Ges.",
-                            "position": "letzte Note",
-                            "comment": "Text: <em>in</em> auf Rasur. Ante correcturam: vermutlich Großschreibung <em>In</em> (siehe Textfassung 1)."
-                            },
-                            {
-                            "measure": "10",
-                            "system": "Klav. o.",
-                            "position": "5/16–6/8",
-                            "comment": "Auf Rasur."
-                            },
-                            {
-                            "measure": "10",
-                            "system": "Ges, Klav. o.",
-                            "position": "4/4",
-                            "comment": "Viertelpause auf Rasur. Ante correcturam: Schlusstaktstrich nach 3/4."
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "Text: Anfang von <em>nur</em> nachgezogen."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav. u.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 1."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "5/8",
+                                        "comment": "Text: Komma hinzugefügt. Siehe TkA."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav. o.",
+                                        "position": "6.–7. Note",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "1.–3. Note",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 1."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav.",
+                                        "position": "1.–4. Note",
+                                        "comment": "Bogen bis 5/16 in Klav. u. rasiert und geändert bis zu 4. Note."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "6–12/16",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 1."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "4. Note",
+                                        "comment": "Text: <em>ein</em> auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Ein</em> (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich dis<sup>1</sup> (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "Text: <em>nun</em> auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Nun</em> (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. u.",
+                                        "position": "2/2",
+                                        "comment": "Vermutlich Viertelpause zu 4/4 rasiert (siehe Textfassung 1) und Halbe Pause hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "vorletze Note",
+                                        "comment": "Text: <em>um</em> auf Rasur. Ante correcturam: vermutlich Großschreibung <em>Um</em> (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav. u.",
+                                        "position": "2.–3. Note",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav. u.",
+                                        "position": "6.–7. Note",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "5–6/8",
+                                        "comment": "Text: [a]<em>-lle</em> auf Rasur. Ante correcturam: vermutlich <em>-lle</em> bereits zu 5/8."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "letzte Note",
+                                        "comment": "Text: <em>in</em> auf Rasur. Ante correcturam: vermutlich Großschreibung <em>In</em> (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav. o.",
+                                        "position": "5/16–6/8",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges, Klav. o.",
+                                        "position": "4/4",
+                                        "comment": "Viertelpause auf Rasur. Ante correcturam: Schlusstaktstrich nach 3/4."
+                                    }
+                                ]
                             }
                         ]
-                        }
-                    ]
                     },
                     {
-                    "id": "source_Eb_corr2",
-                    "label": "Korrekturen 2 in <strong>E<sup>b</sup></strong> (mit Bleistift und grünem Buntstift)",
-                    "description": [
-                        "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: Textfassung 2."
-                    ],
-                    "comments": [
-                        {
-                        "blockHeader": "",
-                        "blockComments": [
+                        "id": "source_Eb_corr2",
+                        "label": "Korrekturen 2 in <strong>E<sup>b</sup></strong> (mit Bleistift und grünem Buntstift)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: Textfassung 2."
+                        ],
+                        "comments": [
                             {
-                            "measure": "1",
-                            "system": "",
-                            "position": "Taktanfang",
-                            "comment": "<em>Bewegt</em> mit Bleistift."
-                            },
-                            {
-                            "measure": "2",
-                            "system": "Ges.",
-                            "position": "3–4/8",
-                            "comment": "Wellenlinie über den Noten mit grünem Buntstift."
-                            },
-                            {
-                            "measure": "3",
-                            "system": "Klav. o.",
-                            "position": "1/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu a mit Bleistift."
-                            },
-                            {
-                            "measure": "3",
-                            "system": "Ges.",
-                            "position": "3–5/8",
-                            "comment": "Wellenlinie über den Noten mit grünem Buntstift."
-                            },
-                            {
-                            "measure": "3 <br /> bis 4",
-                            "system": "",
-                            "position": "(5/8) <br /> Taktanfang",
-                            "comment": "<em>rit.- - - langsamer</em> gestrichen mit Bleistift."
-                            },
-                            {
-                            "measure": "4",
-                            "system": "Ges.",
-                            "position": "8/16",
-                            "comment": "Sechzehntelfähnchen hinzugefügt mit Bleistift. Siehe Korrekturen 1 1.–3. Note."
-                            },
-                            {
-                            "measure": "5",
-                            "system": "Klav.",
-                            "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[ppp]')}} hinzugefügt mit Bleistift."
-                            },
-                            {
-                            "measure": "5",
-                            "system": "Ges.",
-                            "position": "3.–4. Note",
-                            "comment": "Wellenlinie über den Noten mit grünem Buntstift."
-                            },
-                            {
-                            "measure": "6",
-                            "system": "",
-                            "position": "Taktanfang",
-                            "comment": "<em>langsam</em> gestrichen mit Bleistift."
-                            },
-                            {
-                            "measure": "6",
-                            "system": "",
-                            "position": "(2/4)",
-                            "comment": "Zuerst: <em>rit</em> zu (4/8) hinzugefügt mit grünem Buntstift.  <br /> Dann: <em>rit</em> gestrichen und <em>Rit</em> zu 3/8 hinzugefügt mit grünem Buntstift."
-                            },
-                            {
-                            "measure": "7 <br /> bis 8",
-                            "system": "",
-                            "position": "2/8 <br /> Taktanfang",
-                            "comment": "<em>acell. - - - tempo</em> hinzugefügt zunächst mit Bleistift, dann mit schwarzer Tinte nachgezogen. (Siehe Textfassung 3.)"
-                            },
-                            {
-                            "measure": "8",
-                            "system": "Ges.",
-                            "position": "4/8",
-                            "comment": "{{ref.getGlyph('[a]')}} hinzugefügt mit Bleistift."
-                            },
-                            {
-                            "measure": "8",
-                            "system": "Ges.",
-                            "position": "3. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} hinzugefügt mit Bleistift."
-                            },
-                            {
-                            "measure": "9",
-                            "system": "Ges.",
-                            "position": "2/8",
-                            "comment": "{{ref.getGlyph('[a]')}} hinzugefügt mit Bleistift."
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>Bewegt</em> mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "3–4/8",
+                                        "comment": "Wellenlinie über den Noten mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav. o.",
+                                        "position": "1/8",
+                                        "comment": "{{ref.getGlyph('[a]')}} zu a mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "3–5/8",
+                                        "comment": "Wellenlinie über den Noten mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "3 <br /> bis 4",
+                                        "system": "",
+                                        "position": "(5/8) <br /> Taktanfang",
+                                        "comment": "<em>rit.- - - langsamer</em> gestrichen mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "8/16",
+                                        "comment": "Sechzehntelfähnchen hinzugefügt mit Bleistift. Siehe Korrekturen 1 1.–3. Note."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "3.–4. Note",
+                                        "comment": "Wellenlinie über den Noten mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>langsam</em> gestrichen mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "",
+                                        "position": "(2/4)",
+                                        "comment": "Zuerst: <em>rit</em> zu (4/8) hinzugefügt mit grünem Buntstift.  <br /> Dann: <em>rit</em> gestrichen und <em>Rit</em> zu 3/8 hinzugefügt mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "7 <br /> bis 8",
+                                        "system": "",
+                                        "position": "2/8 <br /> Taktanfang",
+                                        "comment": "<em>acell. - - - tempo</em> hinzugefügt zunächst mit Bleistift, dann mit schwarzer Tinte nachgezogen. (Siehe Textfassung 3.)"
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "{{ref.getGlyph('[a]')}} hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "{{ref.getGlyph('[a]')}} hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "2/8",
+                                        "comment": "{{ref.getGlyph('[a]')}} hinzugefügt mit Bleistift."
+                                    }
+                                ]
                             }
                         ]
-                        }
-                    ]
                     },
                     {
-                    "id": "source_Ec_corr1",
-                    "label": "Korrekturen 1 in <strong>E<sup>c</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
-                    "description": [
-                        "Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: Textfassung 1."
-                    ],
-                    "comments": [
-                        {
-                        "blockHeader": "",
-                        "blockComments": [
+                        "id": "source_Ec_corr1",
+                        "label": "Korrekturen 1 in <strong>E<sup>c</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: Textfassung 1."
+                        ],
+                        "comments": [
                             {
-                            "measure": "vor 1",
-                            "system": "",
-                            "position": "",
-                            "comment": "<em>Leicht und zart</em> auf Rasur."
-                            },
-                            {
-                            "measure": "vor 1",
-                            "system": "Klav. o./u.",
-                            "position": "1. Pause  <br /> bis letzte Note",
-                            "comment": "Bögen gestrichen."
-                            },
-                            {
-                            "measure": "vor 1 <br /> bis 3",
-                            "system": "Ges.",
-                            "position": "2/8 <br /> 4. Note",
-                            "comment": "Bogen rasiert."
-                            },
-                            {
-                            "measure": "3 <br /> bis 5",
-                            "system": "Ges.",
-                            "position": "6/8 <br /> 1/8",
-                            "comment": "Bogen rasiert."
-                            },
-                            {
-                            "measure": "5 <br /> bis 7",
-                            "system": "Ges.",
-                            "position": "4/16 <br /> vorletzte Note",
-                            "comment": "Bogen rasiert."
-                            },
-                            {
-                            "measure": "6 <br /> bis 10",
-                            "system": "Klav. o.",
-                            "position": "1/8 <br /> 1/8",
-                            "comment": "Bogen rasiert. Bögen T. 6 1/8 bis T. 7 3. Note sowie T. 7 4. Note bis T. 10 1/8 vermutlich hinzugefügt."
-                            },
-                            {
-                            "measure": "8–12",
-                            "system": "",
-                            "position": "",
-                            "comment": "Auf Tektur."
-                            },
-                            {
-                            "measure": "8",
-                            "system": "Ges.",
-                            "position": "3–4/8",
-                            "comment": "Text: Rasur nach <em>bleicht</em>."
-                            },
-                            {
-                            "measure": "8 <br /> bis 11",
-                            "system": "Ges.",
-                            "position": "4/8 <br /> letzte Note",
-                            "comment": "Bogen rasiert."
-                            },
-                            {
-                            "measure": "10 <br /> bis 12",
-                            "system": "Klav.",
-                            "position": "2. Note <br /> 2/4",
-                            "comment": "Bogen gestrichen. Bogen in T. 10 2. Note bis 8/16 auf Rasur hinzugefügt."
-                            },
-                            {
-                            "measure": "12",
-                            "system": "Klav. u.",
-                            "position": "1. Note",
-                            "comment": "A auf Rasur."
-                            },
-                            {
-                            "measure": "13 <br /> bis 14",
-                            "system": "Ges.",
-                            "position": "1/8 <br /> letzte Note",
-                            "comment": "Bogen rasiert."
-                            },
-                            {
-                            "measure": "14",
-                            "system": "Klav.",
-                            "position": "1. Note <br /> bis 2/4",
-                            "comment": "Ligaturbögen auf Rasur."
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "vor 1",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "<em>Leicht und zart</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "vor 1",
+                                        "system": "Klav. o./u.",
+                                        "position": "1. Pause  <br /> bis letzte Note",
+                                        "comment": "Bögen gestrichen."
+                                    },
+                                    {
+                                        "measure": "vor 1 <br /> bis 3",
+                                        "system": "Ges.",
+                                        "position": "2/8 <br /> 4. Note",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "3 <br /> bis 5",
+                                        "system": "Ges.",
+                                        "position": "6/8 <br /> 1/8",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "5 <br /> bis 7",
+                                        "system": "Ges.",
+                                        "position": "4/16 <br /> vorletzte Note",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "6 <br /> bis 10",
+                                        "system": "Klav. o.",
+                                        "position": "1/8 <br /> 1/8",
+                                        "comment": "Bogen rasiert. Bögen T. 6 1/8 bis T. 7 3. Note sowie T. 7 4. Note bis T. 10 1/8 vermutlich hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "8–12",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Auf Tektur."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "3–4/8",
+                                        "comment": "Text: Rasur nach <em>bleicht</em>."
+                                    },
+                                    {
+                                        "measure": "8 <br /> bis 11",
+                                        "system": "Ges.",
+                                        "position": "4/8 <br /> letzte Note",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "10 <br /> bis 12",
+                                        "system": "Klav.",
+                                        "position": "2. Note <br /> 2/4",
+                                        "comment": "Bogen gestrichen. Bogen in T. 10 2. Note bis 8/16 auf Rasur hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "A auf Rasur."
+                                    },
+                                    {
+                                        "measure": "13 <br /> bis 14",
+                                        "system": "Ges.",
+                                        "position": "1/8 <br /> letzte Note",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav.",
+                                        "position": "1. Note <br /> bis 2/4",
+                                        "comment": "Ligaturbögen auf Rasur."
+                                    }
+                                ]
                             }
                         ]
-                        }
-                    ]
                     },
                     {
-                    "id": "source_Ec_cor2",
-                    "label": "Korrekturen 2 in <strong>E<sup>c</sup></strong> (mit Bleistift)",
-                    "description": [
-                        "Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: Textfassung 1."
-                    ],
-                    "comments": [
-                        {
-                        "blockHeader": "",
-                        "blockComments": [
+                        "id": "source_Ec_cor2",
+                        "label": "Korrekturen 2 in <strong>E<sup>c</sup></strong> (mit Bleistift)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: Textfassung 1."
+                        ],
+                        "comments": [
                             {
-                            "measure": "2",
-                            "system": "Klav.",
-                            "position": "1–3/8",
-                            "comment": "Korrekturskizzen zu Textfassung 2."
-                            },
-                            {
-                            "measure": "3–7",
-                            "system": "Klav.",
-                            "position": "",
-                            "comment": "Korrekturskizzen zu Textfassung 2."
-                            },
-                            {
-                            "measure": "4",
-                            "system": "Ges.",
-                            "position": "Taktanfang",
-                            "comment": "2/4-Taktvorzeichnung geändert zu 3/4. Siehe Textfassung 2."
-                            },
-                            {
-                            "measure": "4",
-                            "system": "Ges.",
-                            "position": "1. Note",
-                            "comment": "Achtelnote geändert zu punktierter Viertelnote. Siehe Textfassung 2."
-                            },
-                            {
-                            "measure": "4",
-                            "system": "",
-                            "position": "(2/4)",
-                            "comment": "<em>im Tempo</em> hinzugefügt."
-                            },
-                            {
-                            "measure": "6",
-                            "system": "",
-                            "position": "Taktanfang",
-                            "comment": "<em>tempo</em> hinzugefügt."
-                            },
-                            {
-                            "measure": "8 <br /> bis 9",
-                            "system": "",
-                            "position": "Taktanfang <br /> Taktende",
-                            "comment": "Zuerst: <em>rit. - - -</em> hinzugefügt.  <br /> Dann: Position von <em>rit.</em> geändert zu T. 9 Taktanfang."
-                            },
-                            {
-                            "measure": "11",
-                            "system": "Ges.",
-                            "position": "",
-                            "comment": "Korrekturskizzen zu Textfassung 2."
-                            },
-                            {
-                            "measure": "11",
-                            "system": "Klav. o.",
-                            "position": "1. Note",
-                            "comment": "<em>8va</em> hinzugefügt. Siehe Textfassung 2."
-                            },
-                            {
-                            "measure": "11",
-                            "system": "Ges.",
-                            "position": "2.–3. Note",
-                            "comment": "NB-Formulierung gestrichen."
-                            },
-                            {
-                            "measure": "12",
-                            "system": "Klav.",
-                            "position": "3. Note",
-                            "comment": "Tenutostrich hinzugefügt."
-                            },
-                            {
-                            "measure": "14–15",
-                            "system": "Klav.",
-                            "position": "",
-                            "comment": "Korrekturskizzen zu Textfassung 2."
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav.",
+                                        "position": "1–3/8",
+                                        "comment": "Korrekturskizzen zu Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "3–7",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Korrekturskizzen zu Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "Taktanfang",
+                                        "comment": "2/4-Taktvorzeichnung geändert zu 3/4. Siehe Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "Achtelnote geändert zu punktierter Viertelnote. Siehe Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "",
+                                        "position": "(2/4)",
+                                        "comment": "<em>im Tempo</em> hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>tempo</em> hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "8 <br /> bis 9",
+                                        "system": "",
+                                        "position": "Taktanfang <br /> Taktende",
+                                        "comment": "Zuerst: <em>rit. - - -</em> hinzugefügt.  <br /> Dann: Position von <em>rit.</em> geändert zu T. 9 Taktanfang."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Korrekturskizzen zu Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. o.",
+                                        "position": "1. Note",
+                                        "comment": "<em>8va</em> hinzugefügt. Siehe Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "2.–3. Note",
+                                        "comment": "NB-Formulierung gestrichen."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav.",
+                                        "position": "3. Note",
+                                        "comment": "Tenutostrich hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "14–15",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Korrekturskizzen zu Textfassung 2."
+                                    }
+                                ]
                             }
                         ]
-                        }
-                    ]
                     },
                     {
-                    "id": "source_Ed_corr1",
-                    "label": "Korrekturen 1 in <strong>E<sup>d</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
-                    "description": [
-                        "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 1."
-                    ],
-                    "comments": [
-                        {
-                        "blockHeader": "",
-                        "blockComments": [
+                        "id": "source_Ed_corr1",
+                        "label": "Korrekturen 1 in <strong>E<sup>d</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 1."
+                        ],
+                        "comments": [
                             {
-                            "measure": "2",
-                            "system": "Ges.",
-                            "position": "3–4/8",
-                            "comment": "Zwei Achtelnoten geändert zu triolischer Viertelnote und Achtelnote. Siehe Textfassung2."
-                            },
-                            {
-                            "measure": "2",
-                            "system": "Ges.",
-                            "position": "8/8",
-                            "comment": "Achtelnote geändert zu Sechzehntelnote und zu (16/16) versetzt. Siehe auch Korrekturen 2 7/8."
-                            },
-                            {
-                            "measure": "5 <br /> bis 6",
-                            "system": "Ges.",
-                            "position": "3/8",
-                            "comment": "Auf Rasur geändert zu rhythmischer Formulierung von Textfassung 2. Entzifferung ante correcturam unsicher: siehe TkA."
-                            },
-                            {
-                            "measure": "5",
-                            "system": "Klav. u.",
-                            "position": "5/16–24/32",
-                            "comment": "Auf Tektur."
-                            },
-                            {
-                            "measure": "7",
-                            "system": "Ges.",
-                            "position": "",
-                            "comment": "Auf Rasur geändert zu rhythmischer Formulierung von Textfassung 2. Entzifferung ante correcturam unsicher: siehe TkA zu 1–4/8."
-                            },
-                            {
-                            "measure": "7",
-                            "system": "Klav. o.",
-                            "position": "1–2/4",
-                            "comment": "Auf Rasur geändert zu rhythmischer Formulierung von Textfassung 2. Entzifferung ante correcturam unsicher: siehe TkA."
-                            },
-                            {
-                            "measure": "7",
-                            "system": "Klav. o.",
-                            "position": "letzte Note",
-                            "comment": "Fortführung des Bogens nach T. 8 geändert zu Ende des Bogens in T. 7 letzte Note. Siehe Textfassung 2."
-                            },
-                            {
-                            "measure": "8",
-                            "system": "Ges.",
-                            "position": "3–6/8",
-                            "comment": "Teilweise auf Rasur geändert zu rhythmischer Formulierung von Textfassung 2."
-                            },
-                            {
-                            "measure": "9",
-                            "system": "Ges.",
-                            "position": "3–4/8",
-                            "comment": "Zwei Achtelnoten geändert zu triolischer Viertelnote und Achtelnote. Siehe Textfassung2."
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "3–4/8",
+                                        "comment": "Zwei Achtelnoten geändert zu triolischer Viertelnote und Achtelnote. Siehe Textfassung2."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "8/8",
+                                        "comment": "Achtelnote geändert zu Sechzehntelnote und zu (16/16) versetzt. Siehe auch Korrekturen 2 7/8."
+                                    },
+                                    {
+                                        "measure": "5 <br /> bis 6",
+                                        "system": "Ges.",
+                                        "position": "3/8",
+                                        "comment": "Auf Rasur geändert zu rhythmischer Formulierung von Textfassung 2. Entzifferung ante correcturam unsicher: siehe TkA."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. u.",
+                                        "position": "5/16–24/32",
+                                        "comment": "Auf Tektur."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Auf Rasur geändert zu rhythmischer Formulierung von Textfassung 2. Entzifferung ante correcturam unsicher: siehe TkA zu 1–4/8."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. o.",
+                                        "position": "1–2/4",
+                                        "comment": "Auf Rasur geändert zu rhythmischer Formulierung von Textfassung 2. Entzifferung ante correcturam unsicher: siehe TkA."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. o.",
+                                        "position": "letzte Note",
+                                        "comment": "Fortführung des Bogens nach T. 8 geändert zu Ende des Bogens in T. 7 letzte Note. Siehe Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "3–6/8",
+                                        "comment": "Teilweise auf Rasur geändert zu rhythmischer Formulierung von Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "3–4/8",
+                                        "comment": "Zwei Achtelnoten geändert zu triolischer Viertelnote und Achtelnote. Siehe Textfassung2."
+                                    }
+                                ]
                             }
                         ]
-                        }
-                    ]
                     },
                     {
-                    "id": "source_Ed_corr2",
-                    "label": "Korrekturen 2 in <strong>E<sup>d</sup></strong> (mit türkisem Buntstift)",
-                    "description": [
-                        "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 2."
-                    ],
-                    "comments": [
-                        {
-                        "blockHeader": "",
-                        "blockComments": [
+                        "id": "source_Ed_corr2",
+                        "label": "Korrekturen 2 in <strong>E<sup>d</sup></strong> (mit türkisem Buntstift)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 2."
+                        ],
+                        "comments": [
                             {
-                            "measure": "vor 1",
-                            "system": "Ges.",
-                            "position": "letzte Note",
-                            "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
-                            },
-                            {
-                            "measure": "2",
-                            "system": "Ges.",
-                            "position": "1–2/8",
-                            "comment": "Zäsurzeichen zwischen den Noten hinzugefügt."
-                            },
-                            {
-                            "measure": "2",
-                            "system": "Ges.",
-                            "position": "2.–4. Note",
-                            "comment": "Crescendogabel hinzugefügt."
-                            },
-                            {
-                            "measure": "2",
-                            "system": "Ges.",
-                            "position": "6/8 bis letzte Note",
-                            "comment": "Decrescendogabel hinzugefügt."
-                            },
-                            {
-                            "measure": "2",
-                            "system": "Ges.",
-                            "position": "7/8",
-                            "comment": "Achtelnote geändert zu punktierter Achtelnote. Siehe auch Korrekturen 1 8/8."
-                            },
-                            {
-                            "measure": "3",
-                            "system": "Ges.",
-                            "position": "2. Note",
-                            "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
-                            },
-                            {
-                            "measure": "3",
-                            "system": "Ges., Klav.",
-                            "position": "(3/8)",
-                            "comment": "Fermate hinzugefügt."
-                            },
-                            {
-                            "measure": "3",
-                            "system": "Ges.",
-                            "position": "3.–6. Note",
-                            "comment": "Decrescendogabel hinzugefügt."
-                            },
-                            {
-                            "measure": "4",
-                            "system": "Ges.",
-                            "position": "2–4/8",
-                            "comment": "Decrescendogabel hinzugefügt."
-                            },
-                            {
-                            "measure": "5",
-                            "system": "Ges.",
-                            "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
-                            },
-                            {
-                            "measure": "5",
-                            "system": "Ges.",
-                            "position": "2., 3. Note",
-                            "comment": "Pfeile zu Klav. u. zur Bestimmung des korrekten Untersatzes."
-                            },
-                            {
-                            "measure": "6",
-                            "system": "Ges.",
-                            "position": "1/4",
-                            "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
-                            },
-                            {
-                            "measure": "7",
-                            "system": "",
-                            "position": "Taktanfang",
-                            "comment": "<em>sehr ruhig</em> (siehe Textfassung 1) gestrichen und geändert zu <em>langsamer als zu Beginn</em>."
-                            },
-                            {
-                            "measure": "7",
-                            "system": "Ges.",
-                            "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
-                            },
-                            {
-                            "measure": "7",
-                            "system": "Ges.",
-                            "position": "3.–5. Note",
-                            "comment": "Crescendogabel hinzugefügt."
-                            },
-                            {
-                            "measure": "8",
-                            "system": "Ges.",
-                            "position": "1.–3. Note",
-                            "comment": "Decrescendogabel hinzugefügt."
-                            },
-                            {
-                            "measure": "8",
-                            "system": "Ges.",
-                            "position": "4.–5. Note",
-                            "comment": "Crescendogabel hinzugefügt."
-                            },
-                            {
-                            "measure": "8",
-                            "system": "Ges.",
-                            "position": "12/16–7/8",
-                            "comment": "Decrescendogabel hinzugefügt."
-                            },
-                            {
-                            "measure": "9 <br /> bis 10",
-                            "system": "",
-                            "position": "Taktanfang <br /> Taktende",
-                            "comment": "<em>Rit</em>[.] <em>- - - </em>hinzugefügt."
-                            },
-                            {
-                            "measure": "9",
-                            "system": "Ges.",
-                            "position": "2/8",
-                            "comment": "{{ref.getGlyph('[ppp]')}} hinzugefügt."
-                            },
-                            {
-                            "measure": "9",
-                            "system": "Klav. u.",
-                            "position": "2/8",
-                            "comment": "dis<sup>1</sup> zu gis<sup>1</sup> hinzugefügt. (Notiert in Klav. o.)"
-                            },
-                            {
-                            "measure": "9",
-                            "system": "Ges.",
-                            "position": "2/8–5/8",
-                            "comment": "Bogen hinzugefügt."
-                            },
-                            {
-                            "measure": "9",
-                            "system": "Klav. o.",
-                            "position": "5. Note",
-                            "comment": "{{ref.getGlyph('[b]')}} zu b<sup>1</sup> hinzugefügt."
-                            },
-                            {
-                            "measure": "9",
-                            "system": "Ges.",
-                            "position": "8/8",
-                            "comment": "<em>wie ein Hauch</em> (siehe T. 10 1/8) bereits hier hinzugefügt."
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "vor 1",
+                                        "system": "Ges.",
+                                        "position": "letzte Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "1–2/8",
+                                        "comment": "Zäsurzeichen zwischen den Noten hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "2.–4. Note",
+                                        "comment": "Crescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "6/8 bis letzte Note",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "7/8",
+                                        "comment": "Achtelnote geändert zu punktierter Achtelnote. Siehe auch Korrekturen 1 8/8."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "2. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges., Klav.",
+                                        "position": "(3/8)",
+                                        "comment": "Fermate hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "3.–6. Note",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "2–4/8",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "2., 3. Note",
+                                        "comment": "Pfeile zu Klav. u. zur Bestimmung des korrekten Untersatzes."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "1/4",
+                                        "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>sehr ruhig</em> (siehe Textfassung 1) gestrichen und geändert zu <em>langsamer als zu Beginn</em>."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "3.–5. Note",
+                                        "comment": "Crescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "1.–3. Note",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "4.–5. Note",
+                                        "comment": "Crescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "12/16–7/8",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "9 <br /> bis 10",
+                                        "system": "",
+                                        "position": "Taktanfang <br /> Taktende",
+                                        "comment": "<em>Rit</em>[.] <em>- - - </em>hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "2/8",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav. u.",
+                                        "position": "2/8",
+                                        "comment": "dis<sup>1</sup> zu gis<sup>1</sup> hinzugefügt. (Notiert in Klav. o.)"
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "2/8–5/8",
+                                        "comment": "Bogen hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav. o.",
+                                        "position": "5. Note",
+                                        "comment": "{{ref.getGlyph('[b]')}} zu b<sup>1</sup> hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "8/8",
+                                        "comment": "<em>wie ein Hauch</em> (siehe T. 10 1/8) bereits hier hinzugefügt."
+                                    }
+                                ]
                             }
                         ]
-                        }
-                    ]
                     },
                     {
-                    "id": "source_Ee_corr1",
-                    "label": "Korrekturen 1 in <strong>E<sup>e</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
-                    "description": [
-                        "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: Textfassung 2."
-                    ],
-                    "comments": [
-                        {
-                        "blockHeader": "",
-                        "blockComments": [
+                        "id": "source_Ee_corr1",
+                        "label": "Korrekturen 1 in <strong>E<sup>e</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: Textfassung 2."
+                        ],
+                        "comments": [
                             {
-                            "measure": "1",
-                            "system": "Klav. u.",
-                            "position": "4–5/8",
-                            "comment": "Auf Rasur. Ante correcturam: vermutlich 3–5/8 wie Textfassung 1."
-                            },
-                            {
-                            "measure": "2",
-                            "system": "Ges.",
-                            "position": "1/4",
-                            "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
-                            },
-                            {
-                            "measure": "2",
-                            "system": "Klav. o.",
-                            "position": "2. Note",
-                            "comment": "Auf Rasur. Ante correcturam: vermutlich 2/4–5/8 wie Textfassung 1."
-                            },
-                            {
-                            "measure": "2",
-                            "system": "Klav. u.",
-                            "position": "2.–3. Note",
-                            "comment": "Auf Rasur. Ante correcturam: vermutlich 3–5/8 wie Textfassung 1."
-                            },
-                            {
-                            "measure": "2",
-                            "system": "Ges.",
-                            "position": "6/8",
-                            "comment": "Text: Großschreibung <em>Im</em> geändert zu Kleinschreibung <em>im</em>."
-                            },
-                            {
-                            "measure": "3",
-                            "system": "Ges.",
-                            "position": "4/8",
-                            "comment": "Text: Großschreibung <em>Sein</em> geändert zu Kleinschreibung <em>sein</em>."
-                            },
-                            {
-                            "measure": "4",
-                            "system": "Ges.",
-                            "position": "1/8",
-                            "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
-                            },
-                            {
-                            "measure": "4",
-                            "system": "Ges.",
-                            "position": "4/8",
-                            "comment": "Text: Großschreibung <em>Laß</em> überschrieben zu Kleinschreibung <em>laß</em>."
-                            },
-                            {
-                            "measure": "6",
-                            "system": "Klav. u.",
-                            "position": "",
-                            "comment": "Auf Tektur."
-                            },
-                            {
-                            "measure": "6",
-                            "system": "Ges.",
-                            "position": "2/8",
-                            "comment": "Text: Großschreibung <em>Vor</em> geändert zu Kleinschreibung <em>vor</em>."
-                            },
-                            {
-                            "measure": "8",
-                            "system": "Ges.",
-                            "position": "1–2/8",
-                            "comment": "Auf Rasur."
-                            },
-                            {
-                            "measure": "8",
-                            "system": "Klav. u.",
-                            "position": "1/8",
-                            "comment": "Unterstimmenschicht: [sf] gestrichen."
-                            },
-                            {
-                            "measure": "10",
-                            "system": "Ges.",
-                            "position": "1.–2. Note",
-                            "comment": "Zwei Achtelnoten geändert zu triolischer Viertelnote und Achtelnote."
-                            },
-                            {
-                            "measure": "10",
-                            "system": "Ges.",
-                            "position": "2. Note",
-                            "comment": "Text: Großschreibung <em>Mit</em> geändert zu Kleinschreibung <em>mit</em>."
-                            },
-                            {
-                            "measure": "12",
-                            "system": "Ges.",
-                            "position": "2/8",
-                            "comment": "Text: Großschreibung <em>Noch</em> geändert zu Kleinschreibung <em>noch</em>."
-                            },
-                            {
-                            "measure": "13",
-                            "system": "Ges.",
-                            "position": "4/8, 3/4",
-                            "comment": "Auf Rasur. (Vermutlich Untersatz-Korrektur.)"
-                            },
-                            {
-                            "measure": "13–15",
-                            "system": "Klav.",
-                            "position": "",
-                            "comment": "Teilweise auf Rasur. Ante correcturam: vermutlich wie Textfassung 1. Siehe auch Korrekturen 3 T. 14 Klav. u."
-                            },
-                            {
-                            "measure": "16 <br /> bis [17]",
-                            "system": "",
-                            "position": "",
-                            "comment": "Zusätzlicher Takt [17] (wie Textfassung 1) gestrichen und Schlusstaktstrich nach T. 16 hinzugefügt."
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav. u.",
+                                        "position": "4–5/8",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich 3–5/8 wie Textfassung 1."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "1/4",
+                                        "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich 2/4–5/8 wie Textfassung 1."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav. u.",
+                                        "position": "2.–3. Note",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich 3–5/8 wie Textfassung 1."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "6/8",
+                                        "comment": "Text: Großschreibung <em>Im</em> geändert zu Kleinschreibung <em>im</em>."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "Text: Großschreibung <em>Sein</em> geändert zu Kleinschreibung <em>sein</em>."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "Text: Großschreibung <em>Laß</em> überschrieben zu Kleinschreibung <em>laß</em>."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Auf Tektur."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "2/8",
+                                        "comment": "Text: Großschreibung <em>Vor</em> geändert zu Kleinschreibung <em>vor</em>."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "1–2/8",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. u.",
+                                        "position": "1/8",
+                                        "comment": "Unterstimmenschicht: {{ref.getGlyph('[sf]')}} gestrichen."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Zwei Achtelnoten geändert zu triolischer Viertelnote und Achtelnote."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "2. Note",
+                                        "comment": "Text: Großschreibung <em>Mit</em> geändert zu Kleinschreibung <em>mit</em>."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Ges.",
+                                        "position": "2/8",
+                                        "comment": "Text: Großschreibung <em>Noch</em> geändert zu Kleinschreibung <em>noch</em>."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Ges.",
+                                        "position": "4/8, 3/4",
+                                        "comment": "Auf Rasur. (Vermutlich Untersatz-Korrektur.)"
+                                    },
+                                    {
+                                        "measure": "13–15",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Teilweise auf Rasur. Ante correcturam: vermutlich wie Textfassung 1. Siehe auch Korrekturen 3 T. 14 Klav. u."
+                                    },
+                                    {
+                                        "measure": "16 <br /> bis [17]",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Zusätzlicher Takt [17] (wie Textfassung 1) gestrichen und Schlusstaktstrich nach T. 16 hinzugefügt."
+                                    }
+                                ]
                             }
                         ]
-                        }
-                    ]
                     },
                     {
-                    "id": "source_Ee_corr2",
-                    "label": "Korrekturen 2 in <strong>E<sup>d</sup></strong> (mit türkisem Buntstift)",
-                    "description": [
-                        "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: Textfassung 2."
-                    ],
-                    "comments": [
-                        {
-                        "blockHeader": "",
-                        "blockComments": [
+                        "id": "source_Ee_corr2",
+                        "label": "Korrekturen 2 in <strong>E<sup>d</sup></strong> (mit türkisem Buntstift)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: Textfassung 2."
+                        ],
+                        "comments": [
                             {
-                            "measure": "1",
-                            "system": "Klav. o.",
-                            "position": "1.–2. Note",
-                            "comment": "Bogen gestrichen."
-                            },
-                            {
-                            "measure": "1",
-                            "system": "Klav. u.",
-                            "position": "1.–2. Note",
-                            "comment": "Oberstimmenschicht: Bogen gestrichen."
-                            },
-                            {
-                            "measure": "1",
-                            "system": "Klav. u.",
-                            "position": "3–5/8",
-                            "comment": "Unterstimmenschicht. Bogen gestrichen."
-                            },
-                            {
-                            "measure": "2",
-                            "system": "Ges.",
-                            "position": "1/4",
-                            "comment": "Viertelnote geändert zu Achtelnote, Achtelpause."
-                            },
-                            {
-                            "measure": "2",
-                            "system": "Klav. u.",
-                            "position": "3. Note",
-                            "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} hinzugefügt."
-                            },
-                            {
-                            "measure": "2",
-                            "system": "Ges.",
-                            "position": "4–6/8",
-                            "comment": "Crescendogabel hinzugefügt."
-                            },
-                            {
-                            "measure": "3",
-                            "system": "Ges.",
-                            "position": "4.–6. Note",
-                            "comment": "Decrescendogabel hinzugefügt."
-                            },
-                            {
-                            "measure": "4",
-                            "system": "Ges.",
-                            "position": "4/8",
-                            "comment": "{{ref.getGlyph('[ppp]')}} hinzugefügt."
-                            },
-                            {
-                            "measure": "6",
-                            "system": "Ges.",
-                            "position": "3/8",
-                            "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
-                            },
-                            {
-                            "measure": "7",
-                            "system": "Ges.",
-                            "position": "4/8",
-                            "comment": "[mf] hinzugefügt."
-                            },
-                            {
-                            "measure": "8",
-                            "system": "Ges.",
-                            "position": "1–2/8",
-                            "comment": "Decrescendogabel hinzugefügt."
-                            },
-                            {
-                            "measure": "9",
-                            "system": "Ges.",
-                            "position": "4–6/8",
-                            "comment": "Crescendogabel hinzugefügt."
-                            },
-                            {
-                            "measure": "10",
-                            "system": "Ges.",
-                            "position": "3–6/8",
-                            "comment": "Decrescendogabel hinzugefügt."
-                            },
-                            {
-                            "measure": "11",
-                            "system": "Ges.",
-                            "position": "2–4/8",
-                            "comment": "Crescendogabel hinzugefügt."
-                            },
-                            {
-                            "measure": "11",
-                            "system": "Ges.",
-                            "position": "4.–5. Note",
-                            "comment": "Decrescendogabel hinzugefügt."
-                            },
-                            {
-                            "measure": "12",
-                            "system": "Ges.",
-                            "position": "2–4/8",
-                            "comment": "Crescendogabel hinzugefügt."
-                            },
-                            {
-                            "measure": "12",
-                            "system": "Ges.",
-                            "position": "4. Note",
-                            "comment": "Tenutostrich hinzugefügt mit blauem Buntstift."
-                            },
-                            {
-                            "measure": "12",
-                            "system": "Ges.",
-                            "position": "5.–6. Note",
-                            "comment": "Decrescendogabel hinzugefügt mit blauem Buntstift."
-                            },
-                            {
-                            "measure": "13",
-                            "system": "Ges-",
-                            "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
-                            },
-                            {
-                            "measure": "13",
-                            "system": "Ges.",
-                            "position": "1.–3. Note",
-                            "comment": "Decrescendogabel hinzugefügt."
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav. o.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Bogen gestrichen."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav. u.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Oberstimmenschicht: Bogen gestrichen."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav. u.",
+                                        "position": "3–5/8",
+                                        "comment": "Unterstimmenschicht. Bogen gestrichen."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "1/4",
+                                        "comment": "Viertelnote geändert zu Achtelnote, Achtelpause."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav. u.",
+                                        "position": "3. Note",
+                                        "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "4–6/8",
+                                        "comment": "Crescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "4.–6. Note",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "3/8",
+                                        "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "{{ref.getGlyph('[mf]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "1–2/8",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "4–6/8",
+                                        "comment": "Crescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "3–6/8",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "2–4/8",
+                                        "comment": "Crescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "4.–5. Note",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Ges.",
+                                        "position": "2–4/8",
+                                        "comment": "Crescendogabel hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Ges.",
+                                        "position": "4. Note",
+                                        "comment": "Tenutostrich hinzugefügt mit blauem Buntstift."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Ges.",
+                                        "position": "5.–6. Note",
+                                        "comment": "Decrescendogabel hinzugefügt mit blauem Buntstift."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Ges-",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Ges.",
+                                        "position": "1.–3. Note",
+                                        "comment": "Decrescendogabel hinzugefügt."
+                                    }
+                                ]
                             }
                         ]
-                        }
-                    ]
                     },
                     {
-                    "id": "source_Ee_corr3",
-                    "label": "Korrekturen 3 in <strong>E<sup>e</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
-                    "description": [
-                        "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: Textfassung 2."
-                    ],
-                    "comments": [
-                        {
-                        "blockHeader": "",
-                        "blockComments": [
+                        "id": "source_Ee_corr3",
+                        "label": "Korrekturen 3 in <strong>E<sup>e</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: Textfassung 2."
+                        ],
+                        "comments": [
                             {
-                            "measure": "2",
-                            "system": "Ges.",
-                            "position": "5/8",
-                            "comment": "fis<sup>1</sup> geändert zu ges<sup>1</sup>."
-                            },
-                            {
-                            "measure": "3",
-                            "system": "Ges.",
-                            "position": "1–2/8",
-                            "comment": "Zwei Achtelnoten geändert zu punktierter Achtelnote, Sechzehntelnote. Siehe Korrekturen in <strong>G</strong>."
-                            },
-                            {
-                            "measure": "3",
-                            "system": "Ges.",
-                            "position": "5–6/8",
-                            "comment": "Zwei Achtelnoten geändert zu punktierter Achtelnote, Sechzehntelnote. Siehe Korrekturen in <strong>G</strong>."
-                            },
-                            {
-                            "measure": "4",
-                            "system": "Ges.",
-                            "position": "5/8",
-                            "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
-                            },
-                            {
-                            "measure": "5",
-                            "system": "Ges.",
-                            "position": "3.–4. Note",
-                            "comment": "Zwei Achtelnoten geändert zu triolischer Viertelnote und Achtelnote. {{ref.getGlyph('[a]')}} zu g<sup>1</sup> hinzugefügt. Siehe Korrekturen in <strong>G</strong>."
-                            },
-                            {
-                            "measure": "6",
-                            "system": "Ges.",
-                            "position": "letzte Note",
-                            "comment": "Ausrufezeichen nach [he-]<em>ben</em> hinzugefügt."
-                            },
-                            {
-                            "measure": "10",
-                            "system": "Ges.",
-                            "position": "5–6/8",
-                            "comment": "Kleinschreibung <em>gunst</em> überschrieben zu Großschreibung <em>Gunst</em>."
-                            },
-                            {
-                            "measure": "10",
-                            "system": "Ges.",
-                            "position": "6/8",
-                            "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
-                            },
-                            {
-                            "measure": "14",
-                            "system": "Klav. u.",
-                            "position": "5/8",
-                            "comment": "Notenkopf und Akzidens rasiert."
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "5/8",
+                                        "comment": "fis<sup>1</sup> geändert zu ges<sup>1</sup>."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "1–2/8",
+                                        "comment": "Zwei Achtelnoten geändert zu punktierter Achtelnote, Sechzehntelnote. Siehe Korrekturen in <strong>G</strong>."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "5–6/8",
+                                        "comment": "Zwei Achtelnoten geändert zu punktierter Achtelnote, Sechzehntelnote. Siehe Korrekturen in <strong>G</strong>."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "5/8",
+                                        "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "3.–4. Note",
+                                        "comment": "Zwei Achtelnoten geändert zu triolischer Viertelnote und Achtelnote. {{ref.getGlyph('[a]')}} zu g<sup>1</sup> hinzugefügt. Siehe Korrekturen in <strong>G</strong>."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "letzte Note",
+                                        "comment": "Ausrufezeichen nach [he-]<em>ben</em> hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "5–6/8",
+                                        "comment": "Kleinschreibung <em>gunst</em> überschrieben zu Großschreibung <em>Gunst</em>."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "6/8",
+                                        "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav. u.",
+                                        "position": "5/8",
+                                        "comment": "Notenkopf und Akzidens rasiert."
+                                    }
+                                ]
                             }
-                          ]
-                        }
-                      ]
+                        ]
                     }
                 ]
             }
