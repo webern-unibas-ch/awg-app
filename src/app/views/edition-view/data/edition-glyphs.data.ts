@@ -136,4 +136,22 @@ export const EDITION_GLYPHS_DATA = {
         alt: '[p]',
         hex: '\uD834\uDD8F',
     },
+
+    /**
+     * The glyph of a musical subito forte symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%8D
+     */
+    SUBITO_FORTE: {
+        alt: '[sf]',
+        hex: '\uD834\uDD8D\uD834\uDD91',
+    },
+
+    /**
+     * The glyph of a musical subito piano symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%8D
+     */
+    SUBITO_PIANO: {
+        alt: '[sp]',
+        hex: '\uD834\uDD8D\uD834\uDD8F',
+    },
 } as const;
