@@ -79,7 +79,7 @@ jobs:
 
             - name: Upload code coverage
               if: matrix.node-version == 20.13 # upload coverage report for current node version only
-              uses: codecov/codecov-action@e28ff129e5465c2c0dcc6f003fc735cb6ae0c673 # v4.5.0
+              uses: codecov/codecov-action@b9fd7d16f6d7d1b5d2bec1a2887e65ceed900238 # v4.6.0
               env:
                   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
               with:
@@ -88,7 +88,7 @@ jobs:
 
             - name: Perform SonarCloud Analysis
               if: matrix.node-version == 20.13 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarCloud analysis only for current node version and not with pull requests or forks(token issue)
-              uses: SonarSource/sonarcloud-github-action@eb211723266fe8e83102bac7361f0a05c3ac1d1b # v3.0.0
+              uses: SonarSource/sonarcloud-github-action@383f7e52eae3ab0510c3cb0e7d9d150bbaeab838 # v3.1.0
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
