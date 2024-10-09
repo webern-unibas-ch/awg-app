@@ -44,7 +44,7 @@ jobs:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+              uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4.2.1
               with:
                   fetch-depth: 0 # Get all history and branches
 
@@ -109,7 +109,7 @@ jobs:
             - name: Upload build artifacts (main && develop)
               # upload build artifacts for current node version and main or develop branch only
               if: matrix.node-version == 20.13 && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
-              uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # ratchet:actions/upload-artifact@v4.4.0
+              uses: actions/upload-artifact@84480863f228bb9747b473957fcc9e309aa96097 # v4.4.2
               with:
                   name: dist
                   path: ${{ github.workspace }}/${{ env.DIST_DIR }}
@@ -141,7 +141,7 @@ jobs:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+              uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4.2.1
               with:
                   # ref (branch, tag or SHA) to check out
                   ref: ${{ env.DEV_GH_PAGES_BRANCH }}
@@ -213,7 +213,7 @@ jobs:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+              uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4.2.1
             - name: Set up node ${{ matrix.node-version}}
               uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4.0.4
               with:

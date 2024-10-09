@@ -4644,6 +4644,194 @@
                             }
                         ]
                     }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_H_corr1",
+                        "label": "Korrekturen 1 in <strong>H</strong> (mit schwarzer Tinte ggf. auf Rasur)",
+                        "description": ["Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: Textfassung 2."],
+                        "comments": [
+                            {
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav.",
+                                        "position": "5/16",
+                                        "comment": "Auf Rasur. Ante correcturam: gis<sup>2</sup> in Klav. o.; Klav. u. möglicherweise Viertelpause."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav. u.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 1."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "(Redundante) Taktvorzeichnung 3/4 (siehe Textfassung 1) gestrichen."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich es<sup>1</sup> (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "ais auf Rasur. Ante correcturam: vermutlich b (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. o",
+                                        "position": "2. Note bis 4/8",
+                                        "comment": "Unterstimmenschicht: Bogen von cis<sup>1</sup> zu es<sup>1</sup> rasiert."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "ais und Tenutostrich auf Rasur. Ante correcturam: vermutlich b (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. u.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. o.",
+                                        "position": "3. Note",
+                                        "comment": "<em>8va</em>-Linie bis zwischen 3–4/8 nach 3. Note gestrichen."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "letzte Note",
+                                        "comment": "dis<sup>1</sup> mit Tenutostrich auf Rasur. Siehe Korrekturen 2."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "",
+                                        "position": "2. TH",
+                                        "comment": "Geltungsstrichelung von <em>Rit.</em> auf Rasur."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "source_H_corr2",
+                        "label": "Korrekturen 2 in <strong>H</strong> (mit Bleistift und Buntstift)",
+                        "description": ["Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: Textfassung 2."],
+                        "comments": [
+                            {
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "vor 1",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Metronomzahl <em>90</em> hinzugefügt mit grünem Buntstift (Hs. ?)."
+                                    },
+                                    {
+                                        "measure": "vor 1",
+                                        "system": "Ges.",
+                                        "position": "2/8",
+                                        "comment": "Vertikaler Strich zu Klav. hinzugefügt mit grünem Buntstift (zur Verdeutlichung des Untersatzes) (Hs. ?)."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "6/8",
+                                        "comment": "Vertikaler Strich zu Klav. hinzugefügt mit grünem Buntstift (zur Verdeutlichung des Untersatzes) (Hs. ?)."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav.",
+                                        "position": "1/16",
+                                        "comment": "<em>Tempo</em> über Klav. o. eingekreist mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "1.–2. Note",
+                                        "comment": "(Zusätzliche) Decresendogabel hinzugefügt mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "2.–3. Note",
+                                        "comment": "Crescendogabel 2. Note bis Taktende gestrichen mit rotem Buntstift und geändert zu Crescendogabel 2/4 bis Taktende."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Zählzeiten <em>1</em> und <em>2</em> mit verdeutlichenden Klammern über dem System hinzugefügt mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "2. Note",
+                                        "comment": "Vertikaler Strich zu Klav. o. hinzugefügt mit grünem Buntstift (zur Verdeutlichung des Untersatzes) (Hs. ?)."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "Tenutostrich hinzugefügt mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "2/8",
+                                        "comment": "{{ref.getGlyph('ppp')}} geändert zu {{ref.getGlyph('pp')}} mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "9 <br /> bis 10",
+                                        "system": "Ges.",
+                                        "position": "2/8 <br /> 1/4",
+                                        "comment": "Decrescendogabel hinzugefügt mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "fis<sup>1</sup> geändert zu ges<sup>1</sup> mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "1/4",
+                                        "comment": "gis<sup>1</sup> geändert zu as<sup>1</sup> mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "letzte Note",
+                                        "comment": "dis<sup>1</sup> überschrieben zu es<sup>1</sup> mit Bleistift. Siehe Textfassung 3."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "Staccato-Punkt hinzugefügt mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav. o.",
+                                        "position": "nach 3/8",
+                                        "comment": "Zäsurzeichen hinzugefügt mit grünem Buntstift."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 ]
             }
         },
