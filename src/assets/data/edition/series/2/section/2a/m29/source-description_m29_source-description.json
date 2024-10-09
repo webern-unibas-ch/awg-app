@@ -1,0 +1,666 @@
+{
+    "sources": [
+        {
+            "id": "source_A",
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Skizzen.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Blatt (Bl. 1). Linke obere Ecke mit Bleistift eingefärbt. Rissspuren am rechten Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte."
+                ],
+                "writingMaterialString": "Notenpapier, 18 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5</em> | <em>18 linig.</em> unten links auf Bl. 1<sup>v</sup>.",
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": []
+                },
+                "title": "",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "M 22 Sk29",
+                        "itemLinkTo": "M_22_Sk29",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XX)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 400 Sk1",
+                        "itemLinkTo": "Mstar_400_Sk1",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 400)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–4",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 29 Sk1",
+                        "itemLinkTo": "M_29_Sk1",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 29)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5–6",
+                                            "measure": "1–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "11–19",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9a–10a",
+                                            "measure": "20–24",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 29 Sk2",
+                        "itemLinkTo": "M_29_Sk2",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 29)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11a–12a",
+                                            "measure": "x+1 bis x+3",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 29 Sk3",
+                        "itemLinkTo": "M_29_Sk3",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 29)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11b–12b",
+                                            "measure": "{x+1A bis x+2A}, x+1B bis x+2B, x+3 bis x+5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13a",
+                                            "measure": "{x+6}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 415 Sk1",
+                        "itemLinkTo": "Mstar_415_Sk1",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 415)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–17",
+                                            "measure": "{1A}, 1B, 2–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 416 Sk1",
+                        "itemLinkTo": "Mstar_416_Sk1",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 416)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "16–15",
+                                            "measure": "{1A}, 1B, 2–8, x+1",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 22 Sk28",
+                        "itemLinkTo": "M_22_Sk28",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XIX)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14–13b",
+                                            "measure": "{1A–2A}, 1B–2B, 3–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10b–9b",
+                                            "measure": "7–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 401 Sk1",
+                        "itemLinkTo": "Mstar_401_Sk1",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 401)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3a–4a",
+                                            "measure": "12–16",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 401 Sk1.1",
+                        "itemLinkTo": "Mstar_401_Sk1_1",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 401)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3b–4b",
+                                            "measure": "13–16",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 401 Sk1.2",
+                        "itemLinkTo": "Mstar_401_Sk1_2",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 401)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5–6",
+                                            "measure": "9–12",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 29 Sk4",
+                        "itemLinkTo": "M_29_Sk4",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 29)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "1–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–10",
+                                            "measure": "11–18, {19A–20A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "{21A}, 19B–21B, 22, {23A}, 23B, 24–26",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–14",
+                                            "measure": "32, {33A–34A}, {33B(2–3/4)}, 33C, 34B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_B",
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Blatt (Bl. 1). Rötliche Verfärbung am oberen Rand rechts. Rissspuren am rechten Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte."
+                ],
+                "writingMaterialString": "Notenpapier, 18 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5</em> | <em>18 linig.</em> unten links auf Bl. 1<sup>v</sup>.",
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": [
+                        "schwarze Tinte"
+                    ]
+                },
+                "title": "",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "M 29",
+                        "itemLinkTo": "M_29",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 29)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3–4",
+                                            "measure": "9–16",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–6",
+                                            "measure": "",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "26–34",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 29 Sk5",
+                        "itemLinkTo": "M_29_Sk5",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 29)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "9–10",
+                                            "measure": "1–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11a–12a",
+                                            "measure": "7–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68 Sk2",
+                        "itemLinkTo": "M_68_Sk2",
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    []
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68 Sk1.1",
+                        "itemLinkTo": "M_68_Sk1_1",
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11c–12c",
+                                            "measure": "9–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68 Sk1",
+                        "itemLinkTo": "M_68_Sk1",
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13–14a",
+                                            "measure": "1–8, {9A}, 9B, 10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "15a–16a",
+                                            "measure": "11–13, {14}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68 Sk3",
+                        "itemLinkTo": "M_68_Sk3",
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "1–4",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68 Sk4",
+                        "itemLinkTo": "M_68_Sk4",
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–9, 10A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3–4",
+                                            "measure": "{11A–14A, 12B–13B, 13C}, 10B–11B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–6",
+                                            "measure": "12C, {13D, 14B}, 13E, 14C, 15–18",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "19­–26, {27A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–10",
+                                            "measure": "27B, 28–30, 31A, {31B, 32A, 31C}, 31D, 32B, 33",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68 Sk5",
+                        "itemLinkTo": "M_68_Sk5",
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "39–46",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68 Sk4.1",
+                        "itemLinkTo": "M_68_Sk4_1",
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13a–14a",
+                                            "measure": "23–24",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68 Sk11",
+                        "itemLinkTo": "M_68_Sk11",
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68: Textfassung 2)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13b–14b",
+                                            "measure": "41–46",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "15–18b",
+                                            "measure": "47–52, {53A–54A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17a–18a",
+                                            "measure": "{53B–54B}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68 Sk11.1",
+                        "itemLinkTo": "M_68_Sk11_1",
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68: Textfassung 2)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "17c–18c",
+                                            "measure": "48–50",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
