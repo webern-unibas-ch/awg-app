@@ -109,7 +109,7 @@ jobs:
             - name: Upload build artifacts (main && develop)
               # upload build artifacts for current node version and main or develop branch only
               if: matrix.node-version == 20.13 && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
-              uses: actions/upload-artifact@84480863f228bb9747b473957fcc9e309aa96097 # ratchet:actions/upload-artifact@v4.4.2
+              uses: actions/upload-artifact@84480863f228bb9747b473957fcc9e309aa96097 # v4.4.2
               with:
                   name: dist
                   path: ${{ github.workspace }}/${{ env.DIST_DIR }}
