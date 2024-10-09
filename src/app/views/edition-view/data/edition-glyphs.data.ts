@@ -84,6 +84,51 @@ export const EDITION_GLYPHS_DATA = {
     },
 
     /**
+     * The glyph of a musical eighth note symbol.
+     * Cf. https://graphemica.com/%F0%9D%85%A0
+     */
+    NOTE_EIGHTH: {
+        alt: '[Achtelnote]',
+        hex: '\uD834\uDD60',
+    },
+
+    /**
+     * The glyph of a musical half note symbol.
+     * Cf. https://graphemica.com/%F0%9D%85%9E
+     */
+    NOTE_HALF: {
+        alt: '[Halbe Note]',
+        hex: '\uD834\uDD5E',
+    },
+
+    /**
+     * The glyph of a musical quarter note symbol.
+     * Cf. https://graphemica.com/%F0%9D%85%9F
+     */
+    NOTE_QUARTER: {
+        alt: '[Viertelnote]',
+        hex: '\uD834\uDD5F',
+    },
+
+    /**
+     * The glyph of a musical sixteenth note symbol.
+     * Cf. https://graphemica.com/%F0%9D%85%A1
+     */
+    NOTE_SIXTEENTH: {
+        alt: '[Sechzehntelnote]',
+        hex: '\uD834\uDD61',
+    },
+
+    /**
+     * The glyph of a musical whole note symbol.
+     * Cf. https://graphemica.com/%F0%9D%85%9D
+     */
+    NOTE_WHOLE: {
+        alt: '[Ganze Note]',
+        hex: '\uD834\uDD5D',
+    },
+
+    /**
      * The glyph of a musical mezzo forte symbol.
      * Cf. https://graphemica.com/%F0%9D%86%90
      */
