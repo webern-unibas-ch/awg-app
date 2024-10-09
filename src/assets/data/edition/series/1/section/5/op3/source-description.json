@@ -663,7 +663,7 @@
                                         "measure": "1",
                                         "system": "",
                                         "position": "Taktanfang",
-                                        "comment": "<em>Ganz wenig bewegt (</em>[Achtelnote]<em>)</em> auf Rasur."
+                                        "comment": "<em>Ganz wenig bewegt (</em>{{ref.getGlyph('[Achtelnote]')}}<em>)</em> auf Rasur."
                                     },
                                     {
                                         "measure": "1",
@@ -2733,7 +2733,7 @@
                                         "measure": "1",
                                         "system": "",
                                         "position": "Taktanfang",
-                                        "comment": "<em>Ganz wenig bewegt (</em>[Achtelnote]<em>)</em> hinzugefügt."
+                                        "comment": "<em>Ganz wenig bewegt (</em>{{ref.getGlyph('[Achtelnote]')}}<em>)</em> hinzugefügt."
                                     },
                                     {
                                         "measure": "1",
