@@ -3077,7 +3077,7 @@
                         "id": "source_Gc_corr",
                         "label": "Korrekturen in <strong>G<sup>c</sup></strong>",
                         "description": [
-                            "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 2. Abweichungen der Grundschicht von <strong>G<sup>c</sup></strong>c zu dieser Textfassung sind mit dem Vermerk „sic“ gekennzeichnet."
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 2. Abweichungen der Grundschicht von <strong>G<sup>c</sup></strong> zu dieser Textfassung sind mit dem Vermerk „sic“ gekennzeichnet."
                         ],
                         "comments": [
                             {
@@ -3099,7 +3099,7 @@
                                         "measure": "vor 1",
                                         "system": "Klav.",
                                         "position": "",
-                                        "comment": "<em>Ped</em>[.] <em>- - -</em> [Pedalaufhebung] hinzugefügt mit Bleistift."
+                                        "comment": "<em>Ped</em>[.] <em>- - -</em> [Pedal-Aufhebung] hinzugefügt mit Bleistift."
                                     },
                                     {
                                         "measure": "1",
@@ -3237,7 +3237,7 @@
                                         "measure": "6",
                                         "system": "Klav.",
                                         "position": "letzte Note",
-                                        "comment": "Pedalauflösung gestrichen mit Bleistift."
+                                        "comment": "Pedal-Aufhebung gestrichen mit Bleistift."
                                     },
                                     {
                                         "measure": "7",
