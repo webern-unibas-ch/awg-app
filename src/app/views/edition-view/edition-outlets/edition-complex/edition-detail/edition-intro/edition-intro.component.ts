@@ -245,7 +245,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     private _initScrollListener(): void {
         fromEvent(window, 'scroll')
             .pipe(throttleTime(200), takeUntilDestroyed())
-            .subscribe(event => this._onWindowScroll(event));
+            .subscribe(event => this._onIntroScroll(event));
     }
 
     /**
@@ -265,37 +265,37 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     }
 
     /**
-     * Private method: _onWindowScroll.
+     * Private method: _onIntroScroll.
      *
-     * It handles the scroll event on the window
+     * It handles the scroll event on the intro window
      * and highlights the corresponding section in the intro navigation.
      *
      * @param {Event} event The given event.
      * @returns {void} Highlights the corresponding section in the intro navigation
      * on window scroll.
      */
-    private _onWindowScroll(event: Event): void {
+    private _onIntroScroll(event: Event): void {
         const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-        const sections: NodeListOf<HTMLElement> = document.querySelectorAll('.awg-intro-section');
-        const navLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('a.awg-intro-nav-link');
+        const introSections: NodeListOf<HTMLElement> = document.querySelectorAll('.awg-intro-section');
+        const introNavLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('a.awg-intro-nav-link');
 
-        let activeSectionFound = false;
+        let activeIntroSectionFound = false;
 
-        sections.forEach((section: HTMLElement) => {
-            const sectionTop = section.offsetTop - 10;
-            const sectionBottom = section.offsetTop + section.offsetHeight;
+        introSections.forEach((introSection: HTMLElement) => {
+            const introSectionTop = introSection.offsetTop - 10;
+            const introSectionBottom = introSection.offsetTop + introSection.offsetHeight;
 
-            if (!activeSectionFound && sectionTop <= scrollPosition && sectionBottom > scrollPosition) {
-                navLinks.forEach((navLink: HTMLAnchorElement) => {
-                    navLink.classList.toggle('active', navLink.hash.includes(section.id));
+            if (!activeIntroSectionFound && introSectionTop <= scrollPosition && introSectionBottom > scrollPosition) {
+                introNavLinks.forEach((navLink: HTMLAnchorElement) => {
+                    navLink.classList.toggle('active', navLink.hash.includes(introSection.id));
 
-                    activeSectionFound = true;
+                    activeIntroSectionFound = true;
                 });
             }
         });
 
-        if (!activeSectionFound) {
-            navLinks.forEach((navLink: HTMLAnchorElement) => {
+        if (!activeIntroSectionFound) {
+            introNavLinks.forEach((navLink: HTMLAnchorElement) => {
                 navLink.classList.remove('active');
             });
         }
