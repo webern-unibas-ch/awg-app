@@ -4935,6 +4935,194 @@
                             }
                         ]
                     }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_I_corr1",
+                        "label": "Korrekturen 1 in <strong>I</strong> (mit schwarzer Tinte [Text: rote Tinte] ggf. auf Rasur)",
+                        "description": ["Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 2."],
+                        "comments": [
+                            {
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "Text: Großschreibung <em>Kir-</em>(<em>schen</em>[<em>-</em>]<em>flor</em>) überschrieben zu <em>kir-</em>(<em>schen</em>[-]<em>flor</em>) mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav. u.",
+                                        "position": "5–6/8",
+                                        "comment": "Auf Rasur. Ante correcruram: vermutlich cis–Cis (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav. o.",
+                                        "position": "1.–3. Note",
+                                        "comment": "Oberstimmenschicht: Auf Rasur. Ante correcruram: vermutlich zwei Achtelnoten es<sup>1</sup>/ges<sup>1</sup>–d/f (siehe Textfassung 1)"
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. u.",
+                                        "position": "6.–9. Note",
+                                        "comment": "Decrescendogabel nachgezogen."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>Fließend</em> über Ges. auf Rasur. (Über Klav.: ohne Rasur. Siehe TkA zu T. 6 bis 7.)"
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav. o.",
+                                        "position": "4.–5. Note",
+                                        "comment": "Bogen auf Rasur. Ante correcturam: Staccatopunkte."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav. o.",
+                                        "position": "letzte Note",
+                                        "comment": "ges<sup>1</sup> auf Rasur. Ante correcturam: vermutlich fis<sup>1</sup> (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav. u.",
+                                        "position": "letzte Note",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich H/gis (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('ppp')}} geändert zu {{ref.getGlyph('pp')}}."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav.",
+                                        "position": "5/8",
+                                        "comment": "Auf Rasur."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "source_I_corr2",
+                        "label": "Korrekturen 2 in <strong>I</strong> (mit Bleistift und Buntstift)",
+                        "description": ["Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 2."],
+                        "comments": [
+                            {
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "vor 1",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Pedal-Aufhebung hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "vor 1 <br /> bis 1",
+                                        "system": "Ges.",
+                                        "position": "2/8",
+                                        "comment": "Crescendogabel hinzugefügt mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Ges.",
+                                        "position": "2.–4. Note",
+                                        "comment": "Decrescendogabel hinzugefügt mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Ges.",
+                                        "position": "5.–6. Note",
+                                        "comment": "Crescendogabel hinzugefügt mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "Decrescendogabel hinzugefügt mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "2. Note",
+                                        "comment": "{{ref.getGlyph('pp')}} hinzugefügt mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "nach 2. Note",
+                                        "comment": "Vertikaler Strich hinzugefügt mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "nach 5. Note",
+                                        "comment": "Vertikaler Strich hinzugefügt mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav. o.",
+                                        "position": "letzte Note",
+                                        "comment": "Unterstimmenschicht: {{ref.getGlyph('a')}} überschrieben zu {{ref.getGlyph('b')}} mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "nach 1/4",
+                                        "comment": "Zäsurzeichen hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "2. Note",
+                                        "comment": "Strich zu Klav. hinzugefügt mit rotem Buntstift (zur Verdeutlichung des Untersatzes)."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. o.",
+                                        "position": "8. Note",
+                                        "comment": "Strich zu Klav. u. hinzugefügt mit Bleistift (zur Verdeutlichung des Untersatzes)."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. o.",
+                                        "position": "8. Note",
+                                        "comment": "<em>rechte Hand</em> hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "Strich zu Klav. hinzugefügt mit rotem Buntstift (zur Verdeutlichung des Untersatzes)."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. u.",
+                                        "position": "8. Note",
+                                        "comment": "<em>l. H.</em> hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "6/16",
+                                        "comment": "Pedal-Aufhebung hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav.",
+                                        "position": "5/8",
+                                        "comment": "Fermatenzeichen hinzugefügt mit Bleistift."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 ]
             }
         },
@@ -5014,6 +5202,40 @@
                                             "linkTo": ""
                                         }
                                     ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_J_corr",
+                        "label": "Korrekturen in <strong>J</strong>",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: Textfassung 4."
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "3/8",
+                                        "comment": "<em>+</em> über dem System hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "2/8",
+                                        "comment": "{{ref.getGlyph('pp')}} geändert zu {{ref.getGlyph('p')}} mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Ges.",
+                                        "position": "5. Note bis Taktende",
+                                        "comment": "Decrescendogabel hinzugefügt mit rotem Buntstift."
+                                    }
                                 ]
                             }
                         ]
