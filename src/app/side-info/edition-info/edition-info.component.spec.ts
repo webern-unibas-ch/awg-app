@@ -352,7 +352,7 @@ describe('EditionInfoComponent (DONE)', () => {
 
                     if (index === 0) {
                         // The first title should be the intro title
-                        expectToBe(titleEl.innerHTML, EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full);
+                        expectToBe(titleEl.innerText, EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full);
                     } else {
                         // Subsequent titles should be the edition complex titles
                         expectToBe(titleEl.innerHTML, expectedEditionComplexes[index - 1].complexId.full);

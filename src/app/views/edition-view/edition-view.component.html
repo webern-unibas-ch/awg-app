@@ -103,13 +103,31 @@
                     </a>
                     /
                     @if (selectedEditionSection$ | async; as selectedSection) {
+                        <ng-template #breadCrumbSection>
+                            {{ selectedSection?.section.full }}
+                        </ng-template>
+
                         <a [routerLink]="['./series', selectedSeries.series.route]">
                             <ng-container *ngTemplateOutlet="breadCrumbSeries"></ng-container>
                         </a>
                         /
-                        <span>
-                            {{ selectedSection?.section.full }}
-                        </span>
+                        @if (isIntroView$ | async) {
+                            <a
+                                [routerLink]="[
+                                    './series',
+                                    selectedSeries.series.route,
+                                    'section',
+                                    selectedSection.section.route,
+                                ]">
+                                <ng-container *ngTemplateOutlet="breadCrumbSection"></ng-container>
+                            </a>
+                            /
+                            <span>{{ editionRouteConstants.EDITION_INTRO.full }}</span>
+                        } @else {
+                            <span>
+                                <ng-container *ngTemplateOutlet="breadCrumbSection"></ng-container>
+                            </span>
+                        }
                     } @else {
                         <ng-container *ngTemplateOutlet="breadCrumbSeries"></ng-container>
                         /

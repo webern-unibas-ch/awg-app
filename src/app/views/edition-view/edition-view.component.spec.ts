@@ -542,73 +542,230 @@ describe('EditionViewComponent (DONE)', () => {
                 });
 
                 describe('... breadcrumb header (h6)', () => {
-                    it('... should display edition base root (AWG) if no series and section is given', () => {
-                        component.selectedEditionSeries$ = observableOf(null);
-                        component.selectedEditionSection$ = observableOf(null);
+                    describe('... if no series and section is given', () => {
+                        it('... should display edition base root (AWG)', () => {
+                            component.selectedEditionSeries$ = observableOf(null);
+                            component.selectedEditionSection$ = observableOf(null);
 
-                        // Trigger data binding
-                        fixture.detectChanges();
+                            // Trigger data binding
+                            fixture.detectChanges();
 
-                        const hDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
-                            1,
-                            1
-                        );
-                        const hEl = hDes[0].nativeElement;
+                            const hDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
+                                1,
+                                1
+                            );
+                            const hEl = hDes[0].nativeElement;
 
-                        const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
-                        const expectedBreadCrumb = `${awg} /`;
+                            const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
+                            const expectedBreadCrumb = `${awg} /`;
 
-                        expectToBe(hEl.innerText, expectedBreadCrumb);
+                            expectToBe(hEl.innerText, expectedBreadCrumb);
+                        });
+
+                        it('... should have no back link to edition series overview', () => {
+                            const expectedLinkLength = 0;
+
+                            component.selectedEditionSeries$ = observableOf(null);
+                            component.selectedEditionSection$ = observableOf(null);
+
+                            // Trigger data binding
+                            fixture.detectChanges();
+
+                            const hDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
+                                1,
+                                1
+                            );
+                            getAndExpectDebugElementByCss(hDes[0], 'a', expectedLinkLength, expectedLinkLength);
+                        });
                     });
 
-                    it('... should display edition series if series, but no section is given', () => {
-                        component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries);
-                        component.selectedEditionSection$ = observableOf(null);
+                    describe('... if series, but no section is given', () => {
+                        it('... should display edition series', () => {
+                            component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries);
+                            component.selectedEditionSection$ = observableOf(null);
 
-                        // Trigger data binding
-                        fixture.detectChanges();
+                            // Trigger data binding
+                            fixture.detectChanges();
 
-                        // Trigger data binding
-                        fixture.detectChanges();
+                            // Trigger data binding
+                            fixture.detectChanges();
 
-                        const hDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
-                            1,
-                            1
-                        );
-                        const hEl = hDes[0].nativeElement;
+                            const hDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
+                                1,
+                                1
+                            );
+                            const hEl = hDes[0].nativeElement;
 
-                        const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
-                        const series = expectedSelectedEditionComplex.pubStatement.series.full;
-                        const expectedBreadCrumb = `${awg} / ${series} /`;
+                            const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
+                            const series = expectedSelectedEditionComplex.pubStatement.series.full;
+                            const expectedBreadCrumb = `${awg} / ${series} /`;
 
-                        expectToBe(hEl.innerText, expectedBreadCrumb);
+                            expectToBe(hEl.innerText, expectedBreadCrumb);
+                        });
+
+                        it('... should have a back link to edition series overview', () => {
+                            const expectedLinkLength = 1;
+
+                            component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries);
+                            component.selectedEditionSection$ = observableOf(null);
+
+                            // Trigger data binding
+                            fixture.detectChanges();
+
+                            const hDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
+                                1,
+                                1
+                            );
+                            getAndExpectDebugElementByCss(hDes[0], 'a', expectedLinkLength, expectedLinkLength);
+                            const linkDes = getAndExpectDebugElementByDirective(
+                                hDes[0],
+                                RouterLinkStubDirective,
+                                expectedLinkLength,
+                                expectedLinkLength
+                            );
+                            const routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+                            const expectedRoute = EDITION_ROUTE_CONSTANTS.SERIES.route;
+
+                            expectToBe(routerLinks.length, expectedLinkLength);
+                            expectToEqual(routerLinks[0].linkParams, [expectedRoute]);
+                        });
                     });
 
-                    it('... should display edition series and section if both are given', () => {
-                        component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries);
-                        component.selectedEditionSection$ = observableOf(expectedSelectedEditionSection);
+                    describe('... if series and section are given', () => {
+                        it('... should display edition series and section', () => {
+                            component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries);
+                            component.selectedEditionSection$ = observableOf(expectedSelectedEditionSection);
 
-                        // Trigger data binding
-                        fixture.detectChanges();
+                            // Trigger data binding
+                            fixture.detectChanges();
 
-                        const hDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
-                            1,
-                            1
-                        );
-                        const hEl = hDes[0].nativeElement;
+                            const hDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
+                                1,
+                                1
+                            );
+                            const hEl = hDes[0].nativeElement;
 
-                        const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
-                        const series = expectedSelectedEditionComplex.pubStatement.series.full;
-                        const section = expectedSelectedEditionComplex.pubStatement.section.full;
-                        const expectedBreadCrumb = `${awg} / ${series} / ${section}`;
+                            const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
+                            const series = expectedSelectedEditionComplex.pubStatement.series.full;
+                            const section = expectedSelectedEditionComplex.pubStatement.section.full;
+                            const expectedBreadCrumb = `${awg} / ${series} / ${section}`;
 
-                        expectToBe(hEl.innerText, expectedBreadCrumb);
+                            expectToBe(hEl.innerText, expectedBreadCrumb);
+                        });
+
+                        it('... should have two back links to series overview and current edition series', () => {
+                            const expectedLinkLength = 2;
+
+                            component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries);
+                            component.selectedEditionSection$ = observableOf(expectedSelectedEditionSection);
+
+                            // Trigger data binding
+                            fixture.detectChanges();
+
+                            const hDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
+                                1,
+                                1
+                            );
+                            getAndExpectDebugElementByCss(hDes[0], 'a', expectedLinkLength, expectedLinkLength);
+                            const linkDes = getAndExpectDebugElementByDirective(
+                                hDes[0],
+                                RouterLinkStubDirective,
+                                expectedLinkLength,
+                                expectedLinkLength
+                            );
+                            const routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+                            const expectedSeriesRoute = EDITION_ROUTE_CONSTANTS.SERIES.route;
+                            const expectedSeriesNumberRoute = expectedSelectedEditionSeries.series.route;
+
+                            expectToBe(routerLinks.length, expectedLinkLength);
+                            expectToEqual(routerLinks[0].linkParams, [expectedSeriesRoute]);
+                            expectToEqual(routerLinks[1].linkParams, [
+                                './' + expectedSeriesRoute,
+                                expectedSeriesNumberRoute,
+                            ]);
+                        });
+                    });
+
+                    describe('... if series, section, and isIntroView$ is given', () => {
+                        it('... should display edition series, section and intro heading', () => {
+                            component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries);
+                            component.selectedEditionSection$ = observableOf(expectedSelectedEditionSection);
+                            component.isIntroView$ = observableOf(true);
+
+                            // Trigger data binding
+                            fixture.detectChanges();
+
+                            const hDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
+                                1,
+                                1
+                            );
+                            const hEl = hDes[0].nativeElement;
+
+                            const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
+                            const series = expectedSelectedEditionComplex.pubStatement.series.full;
+                            const section = expectedSelectedEditionComplex.pubStatement.section.full;
+                            const intro = EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full;
+                            const expectedBreadCrumb = `${awg} / ${series} / ${section} / ${intro}`;
+
+                            expectToBe(hEl.innerText, expectedBreadCrumb);
+                        });
+
+                        it('... should have three back links to series overview, current edition series and section overview', () => {
+                            const expectedLinkLength = 3;
+
+                            component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries);
+                            component.selectedEditionSection$ = observableOf(expectedSelectedEditionSection);
+                            component.isIntroView$ = observableOf(true);
+
+                            // Trigger data binding
+                            fixture.detectChanges();
+
+                            const hDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
+                                1,
+                                1
+                            );
+                            getAndExpectDebugElementByCss(hDes[0], 'a', expectedLinkLength, expectedLinkLength);
+                            const linkDes = getAndExpectDebugElementByDirective(
+                                hDes[0],
+                                RouterLinkStubDirective,
+                                expectedLinkLength,
+                                expectedLinkLength
+                            );
+                            const routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+                            const expectedSeriesRoute = EDITION_ROUTE_CONSTANTS.SERIES.route;
+                            const expectedSeriesNumberRoute = expectedSelectedEditionSeries.series.route;
+                            const expectedSectionRoute = EDITION_ROUTE_CONSTANTS.SECTION.route;
+                            const expectedSectionNumberRoute = expectedSelectedEditionSection.section.route;
+
+                            expectToBe(routerLinks.length, expectedLinkLength);
+                            expectToEqual(routerLinks[0].linkParams, [expectedSeriesRoute]);
+                            expectToEqual(routerLinks[1].linkParams, [
+                                './' + expectedSeriesRoute,
+                                expectedSeriesNumberRoute,
+                            ]);
+                            expectToEqual(routerLinks[2].linkParams, [
+                                './' + expectedSeriesRoute,
+                                expectedSeriesNumberRoute,
+                                expectedSectionRoute,
+                                expectedSectionNumberRoute,
+                            ]);
+                        });
                     });
                 });
             });

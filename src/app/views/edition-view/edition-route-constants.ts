@@ -244,7 +244,7 @@ export class EDITION_ROUTE_CONSTANTS {
     static readonly EDITION_INTRO: EditionRouteConstant = {
         route: 'intro',
         short: 'Einleitung',
-        full: 'Einleitung / Introduction',
+        full: 'Einleitung / Introduction',
     };
 
     /**
