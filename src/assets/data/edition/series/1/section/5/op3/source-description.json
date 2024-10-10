@@ -4997,7 +4997,7 @@
                                         "measure": "10",
                                         "system": "Klav.",
                                         "position": "1. Note",
-                                        "comment": "{{ref.getGlyph('ppp')}} geändert zu {{ref.getGlyph('pp')}}."
+                                        "comment": "{{ref.getGlyph('[ppp]')}} geändert zu {{ref.getGlyph('[pp]')}}."
                                     },
                                     {
                                         "measure": "10",
