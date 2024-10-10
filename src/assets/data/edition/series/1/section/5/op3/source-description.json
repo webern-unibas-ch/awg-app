@@ -5051,7 +5051,7 @@
                                         "measure": "3",
                                         "system": "Ges.",
                                         "position": "2. Note",
-                                        "comment": "{{ref.getGlyph('pp')}} hinzugefügt mit grünem Buntstift."
+                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt mit grünem Buntstift."
                                     },
                                     {
                                         "measure": "3",
