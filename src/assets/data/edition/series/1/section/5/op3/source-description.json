@@ -5069,7 +5069,7 @@
                                         "measure": "3",
                                         "system": "Klav. o.",
                                         "position": "letzte Note",
-                                        "comment": "Unterstimmenschicht: {{ref.getGlyph('a')}} überschrieben zu {{ref.getGlyph('b')}} mit grünem Buntstift."
+                                        "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} überschrieben zu {{ref.getGlyph('[b]')}} mit grünem Buntstift."
                                     },
                                     {
                                         "measure": "5",
