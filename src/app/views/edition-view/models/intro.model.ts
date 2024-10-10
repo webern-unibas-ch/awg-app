@@ -20,6 +20,11 @@ export class IntroBlock {
      * The content array of an intro block.
      */
     blockContent: string[];
+
+    /**
+     * The notes array of an intro block.
+     */
+    blockNotes?: string[];
 }
 
 /**
@@ -38,12 +43,7 @@ export class Intro {
     /**
      * The content array of an intro.
      */
-    content: IntroBlock[];
-
-    /**
-     * The notes array of an intro.
-     */
-    notes: string[];
+    content?: IntroBlock[];
 }
 
 /**
