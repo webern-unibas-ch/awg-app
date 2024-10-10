@@ -5228,7 +5228,7 @@
                                         "measure": "11",
                                         "system": "Ges.",
                                         "position": "2/8",
-                                        "comment": "{{ref.getGlyph('pp')}} geändert zu {{ref.getGlyph('p')}} mit rotem Buntstift."
+                                        "comment": "{{ref.getGlyph('[pp]')}} geändert zu {{ref.getGlyph('[p]')}} mit rotem Buntstift."
                                     },
                                     {
                                         "measure": "12",
