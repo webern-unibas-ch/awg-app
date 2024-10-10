@@ -6,7 +6,7 @@ import { delay, EMPTY, Observable } from 'rxjs';
 import { UtilityService } from '@awg-core/services';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionComplex component.
@@ -75,8 +75,17 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
             const id: string = params.get('complexId') || '';
             const complex = EditionComplexesService.getEditionComplexById(id.toUpperCase());
 
-            if (complex) {
+            if (this.utils.isNotEmptyObject(complex)) {
+                const series = EditionOutlineService.getEditionSeriesById(complex.pubStatement.series.route);
+                const section = EditionOutlineService.getEditionSectionById(
+                    complex.pubStatement.series.route,
+                    complex.pubStatement.section.route
+                );
+
+                this.editionService.updateSelectedEditionSeries(series);
+                this.editionService.updateSelectedEditionSection(section);
                 this.editionService.updateSelectedEditionComplex(complex);
+
                 this.selectedEditionComplex$ = this.editionService.getSelectedEditionComplex().pipe(delay(0));
             } else {
                 this.selectedEditionComplex$ = EMPTY;
@@ -93,7 +102,8 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        // Remove selected edition complex
         this.editionService.clearSelectedEditionComplex();
+        this.editionService.clearSelectedEditionSeries();
+        this.editionService.clearSelectedEditionSection();
     }
 }
