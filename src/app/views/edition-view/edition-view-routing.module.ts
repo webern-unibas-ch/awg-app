@@ -51,6 +51,13 @@ const EDITION_VIEW_ROUTES: Routes = [
                         component: EditionSectionDetailComponent,
                         children: [
                             {
+                                path: 'intro',
+                                loadChildren: () =>
+                                    import(
+                                        './edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.module'
+                                    ).then(m => m.EditionIntroModule),
+                            },
+                            {
                                 path: '',
                                 component: EditionSectionDetailOverviewComponent,
                             },
