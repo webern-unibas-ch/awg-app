@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationExtras, Router } from '@angular/router';
 
-import { EMPTY, fromEvent, Observable } from 'rxjs';
-import { catchError, switchMap, throttleTime } from 'rxjs/operators';
+import { combineLatest, EMPTY, fromEvent, Observable, of as observableOf } from 'rxjs';
+import { catchError, map, startWith, switchMap, throttleTime } from 'rxjs/operators';
 
 import { UtilityService } from '@awg-core/services';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
@@ -18,7 +18,7 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
  * of the edition view of the app.
  */
 @Component({
-    selector: 'awg-intro',
+    selector: 'awg-edition-intro',
     templateUrl: './edition-intro.component.html',
     styleUrls: ['./edition-intro.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -125,6 +125,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      */
     ngOnDestroy() {
         this.editionService.clearIsIntroView();
+        this.editionIntroData$ = null;
     }
 
     /**
@@ -139,49 +140,49 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     getEditionIntroData(): void {
         this.editionService.updateIsIntroView(true);
 
-        this.editionIntroData$ = this.editionService
-            // Get current editionComplex from editionService
-            .getSelectedEditionComplex()
-            .pipe(
-                switchMap((complex: EditionComplex) => {
-                    // Set current editionComplex
-                    this.editionComplex = complex;
-                    // Get intro data from editionDataService
-                    return this.editionDataService.getEditionIntroData(this.editionComplex);
-                }),
-                // Error handling
-                catchError(err => {
-                    this.errorObject = err;
+        this.editionIntroData$ = combineLatest([
+            this.editionService.getSelectedEditionSeries(),
+            this.editionService.getSelectedEditionSection(),
+            this.editionService.getSelectedEditionComplex().pipe(startWith(null)),
+        ]).pipe(
+            switchMap(([series, section, complex]) => {
+                if (series && section) {
+                    return this._fetchAndFilterIntroData(series.series.route, section.section.route, complex);
+                } else {
                     return EMPTY;
-                })
-            );
+                }
+            }),
+            catchError(err => {
+                this.errorObject = err;
+                return EMPTY;
+            })
+        );
     }
 
     /**
-     * Public method: navigateToIntroFragment.
+     * Public method: onIntroFragmentNavigate.
      *
      * It navigates to the '/intro/' route with the given complexId and fragmentId.
      *
      * @param {string} fragmentId The given fragment id.
      * @returns {void} Navigates to the edition intro fragment.
      */
-    navigateToIntroFragment(introIds: { complexId: string; fragmentId: string }): void {
-        const introRoute = this.editionRouteConstants.EDITION_INTRO.route;
+    onIntroFragmentNavigate(introIds: { complexId: string; fragmentId: string }): void {
         const navigationExtras: NavigationExtras = {
             fragment: introIds?.fragmentId ?? '',
         };
-        this._navigateWithComplexId(introIds?.complexId, introRoute, navigationExtras);
+        this.router.navigate([], navigationExtras);
     }
 
     /**
-     * Public method: navigateToReportFragment.
+     * Public method: onReportFragmentNavigate.
      *
      * It navigates to the '/report/' route with the given complexId and fragmentId.
      *
-     * @param {string}  fragmentId The given fragment id.
+     * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
      * @returns {void} Navigates to the edition report fragment.
      */
-    navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
+    onReportFragmentNavigate(reportIds: { complexId: string; fragmentId: string }): void {
         const reportRoute = this.editionRouteConstants.EDITION_REPORT.route;
         const navigationExtras: NavigationExtras = {
             fragment: reportIds?.fragmentId ?? '',
@@ -190,14 +191,14 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     }
 
     /**
-     * Public method: openModal.
+     * Public method: onModalOpen.
      *
      * It opens the {@link ModalComponent} with a given id of a modal snippet text.
      *
      * @param {string} id The given modal snippet id.
      * @returns {void} Opens the modal with the snippet id.
      */
-    openModal(id: string): void {
+    onModalOpen(id: string): void {
         if (!id) {
             return;
         }
@@ -205,7 +206,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     }
 
     /**
-     * Public method: selectSvgSheet.
+     * Public method: onSvgSheetSelect.
      *
      * It navigates to the '/sheet/' route using the provided sheetId
      * within the context of an edition complex identified by the provided complexId.
@@ -213,7 +214,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
      * @returns {void} Navigates to the edition sheets.
      */
-    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
+    onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
         const sheetRoute = this.editionRouteConstants.EDITION_SHEETS.route;
         const navigationExtras: NavigationExtras = {
             queryParams: { id: sheetIds?.sheetId ?? '' },
@@ -224,15 +225,67 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     }
 
     /**
-     * Public method: setLanguage.
+     * Public method: onLanguageSet.
      *
      * It sets the current language of the edition intro.
      *
      * @param {number} language The given language number.
      * @returns {void} Sets the current language.
      */
-    setLanguage(language: number): void {
+    onLanguageSet(language: number): void {
         this.currentLanguage = language;
+    }
+
+    /**
+     * Private method: _fetchAndFilterIntroData.
+     *
+     * It fetches the intro data and, if needed,
+     * filters it by a given block id for the edition complex.
+     *
+     * @param {string} seriesRoute The given series route.
+     * @param {string} sectionRoute The given section route.
+     * @param {EditionComplex} complex The given edition complex.
+     * @returns {Observable<IntroList>} The filtered intro data.
+     */
+    private _fetchAndFilterIntroData(
+        seriesRoute: string,
+        sectionRoute: string,
+        complex: EditionComplex | null
+    ): Observable<IntroList> {
+        return this.editionDataService.getEditionSectionIntroData(seriesRoute, sectionRoute).pipe(
+            switchMap(sectionIntroData => {
+                if (complex) {
+                    this.editionComplex = complex;
+                    return this.editionDataService.getEditionComplexIntroData(this.editionComplex).pipe(
+                        map(complexIntroData => {
+                            const blockId = complexIntroData.intro[0].id;
+                            return this._filterSectionIntroDataById(sectionIntroData, blockId);
+                        })
+                    );
+                } else {
+                    return observableOf(sectionIntroData);
+                }
+            })
+        );
+    }
+
+    /**
+     * Private method: _filterSectionIntroDataById.
+     *
+     * It filters the section intro data by a given block id.
+     *
+     * @param {IntroList} sectionIntroData The given section intro data.
+     * @param {string} blockId The given block id.
+     * @returns {IntroList} The filtered section intro data.
+     */
+    private _filterSectionIntroDataById(sectionIntroData: IntroList, blockId: string): IntroList {
+        return {
+            ...sectionIntroData,
+            intro: sectionIntroData.intro.map(section => ({
+                ...section,
+                content: section.content.filter(contentBlock => contentBlock.blockId === blockId),
+            })),
+        };
     }
 
     /**
@@ -276,8 +329,8 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      */
     private _onIntroScroll(event: Event): void {
         const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-        const introSections: NodeListOf<HTMLElement> = document.querySelectorAll('.awg-intro-section');
-        const introNavLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('a.awg-intro-nav-link');
+        const introSections: NodeListOf<HTMLElement> = document.querySelectorAll('.awg-edition-intro-section');
+        const introNavLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('a.awg-edition-intro-nav-link');
 
         let activeIntroSectionFound = false;
 

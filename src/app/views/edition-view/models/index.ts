@@ -36,7 +36,7 @@ import { FolioSvgContentSegment, FolioSvgData } from './folio-svg-data.model';
 import { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioFormat, FolioSection } from './folio.model';
 
 import { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';
-import { Intro, IntroList } from './intro.model';
+import { Intro, IntroBlock, IntroList } from './intro.model';
 import { Preface, PrefaceList } from './preface.model';
 
 import {
@@ -94,6 +94,7 @@ export {
     GraphRDFData,
     GraphSparqlQuery,
     Intro,
+    IntroBlock,
     IntroList,
     Preface,
     PrefaceList,

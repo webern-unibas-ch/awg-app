@@ -13,6 +13,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionOutlineComplexItem, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
@@ -53,7 +54,11 @@ describe('EditionSectionDetailOverviewComponent', () => {
         };
 
         await TestBed.configureTestingModule({
-            declarations: [EditionSectionDetailOverviewComponent, EditionComplexCardStubComponent],
+            declarations: [
+                EditionSectionDetailOverviewComponent,
+                EditionComplexCardStubComponent,
+                RouterLinkStubDirective,
+            ],
             providers: [{ provide: EditionService, useValue: mockEditionService }],
         }).compileComponents();
 
@@ -142,16 +147,14 @@ describe('EditionSectionDetailOverviewComponent', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
             });
 
-            it('... should contain one div.alert-info', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.alert-info', 1, 1);
+            it('... should contain no div.alert-info', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.alert-info', 0, 0);
             });
 
             it('... should contain one awg-edition-complex-card', () => {
                 getAndExpectDebugElementByCss(compDe, 'awg-edition-complex-card', 1, 1);
             });
-        });
 
-        describe('VIEW', () => {
             describe('... with given complexes', () => {
                 describe('... should contain 1 outer div.awg-edition-section-detail, but no div.alert-info ...', () => {
                     it('... if selected section is given and not empty', waitForAsync(() => {
