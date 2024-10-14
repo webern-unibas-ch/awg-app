@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { DOCUMENT, JsonPipe } from '@angular/common';
-import { Component, DebugElement, Input } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { Router, RouterModule } from '@angular/router';
 
 import {
     EMPTY,
     EmptyError,
+    isEmpty,
     lastValueFrom,
     Observable,
     of as observableOf,
@@ -18,8 +19,6 @@ import Spy = jasmine.Spy;
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { clickAndAwaitChanges } from '@testing/click-helper';
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -28,15 +27,14 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
-import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
     EditionOutlineSection,
     EditionOutlineSeries,
     EditionSvgSheet,
+    IntroBlock,
     IntroList,
 } from '@awg-views/edition-view/models';
 import {
@@ -49,6 +47,41 @@ import {
 import { EditionIntroComponent } from './edition-intro.component';
 
 // Mock components
+@Component({ selector: 'awg-edition-intro-content', template: '' })
+class EditionIntroContentStubComponent {
+    @Input()
+    introBlockContent: IntroBlock[];
+    @Input()
+    notesLabel: string;
+    @Output()
+    navigateToIntroFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+}
+
+@Component({ selector: 'awg-edition-intro-empty', template: '' })
+class EditionIntroEmptyStubComponent {
+    @Input()
+    editionComplex: EditionComplex;
+    @Input()
+    editionLabel: string;
+}
+
+@Component({ selector: 'awg-edition-intro-nav', template: '' })
+class EditionIntroNavStubComponent {
+    @Input()
+    introBlockContent: IntroBlock[];
+    @Input()
+    notesLabel: string;
+    @Input()
+    currentLanguage: number;
+    @Output() languageChangeRequest = new EventEmitter<number>();
+}
+
 @Component({ selector: 'awg-error-alert', template: '' })
 class ErrorAlertStubComponent {
     @Input()
@@ -63,7 +96,7 @@ class ModalStubComponent {
 @Component({ selector: 'awg-twelve-tone-spinner', template: '' })
 class TwelveToneSpinnerStubComponent {}
 
-fdescribe('IntroComponent (DONE)', () => {
+describe('IntroComponent (DONE)', () => {
     let component: EditionIntroComponent;
     let fixture: ComponentFixture<EditionIntroComponent>;
     let compDe: DebugElement;
@@ -71,19 +104,25 @@ fdescribe('IntroComponent (DONE)', () => {
     let mockDocument: Document;
     let mockRouter;
 
+    let editionDataServiceGetEditionSectionIntroDataSpy: Spy;
     let editionDataServiceGetEditionComplexIntroDataSpy: Spy;
     let editionServiceGetSelectedEditionComplexSpy: Spy;
     let editionServiceGetSelectedEditionSectionSpy: Spy;
     let editionServiceGetSelectedEditionSeriesSpy: Spy;
+    let editionServiceUpdateIsIntroViewSpy: Spy;
+    let editionServiceClearIsIntroViewSpy: Spy;
 
-    let componentOpenModalSpy: Spy;
     let getEditionIntroDataSpy: Spy;
     let navigateWithComplexIdSpy: Spy;
-    let navigateToIntroFragmentSpy: Spy;
-    let navigateToReportFragmentSpy: Spy;
     let navigationSpy: Spy;
-    let modalOpenSpy: Spy;
-    let selectSvgSheetSpy: Spy;
+    let openModalSpy: Spy;
+    let onIntroFragmentNavigateSpy: Spy;
+    let onLanguageSetSpy: Spy;
+    let onModalOpenSpy: Spy;
+    let onReportFragmentNavigateSpy: Spy;
+    let onSvgSheetSelectSpy: Spy;
+
+    let fetchAndFilterIntroDataSpy: Spy;
 
     let mockEditionDataService: Partial<EditionDataService>;
     let mockEditionService: Partial<EditionService>;
@@ -91,12 +130,17 @@ fdescribe('IntroComponent (DONE)', () => {
     let editionService: Partial<EditionService>;
     let mockIsIntroViewSubject: ReplaySubject<boolean>;
 
+    let expectedCurrentLaguage: number;
+    let expectedNotesLabels: Map<number, string>;
     let expectedEditionComplex: EditionComplex;
+    let expectedEditionIntroData: IntroList;
+    let expectedErrorObject: any;
+
     let expectedEditionComplexBaseRoute: string;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
-    let expectedEditionIntroData: IntroList;
-    let expectedEditionIntroEmptyData: IntroList;
+    let expectedEditionIntroComplexData: IntroList;
+    let expectedEditionIntroFilteredData: IntroList;
     let expectedIntroFragment: string;
     let expectedReportFragment: string;
     let expectedModalSnippet: string;
@@ -121,28 +165,28 @@ fdescribe('IntroComponent (DONE)', () => {
         mockIsIntroViewSubject = new ReplaySubject<boolean>(1);
 
         mockEditionService = {
-            getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
-            getSelectedEditionSeries: (): Observable<EditionOutlineSeries> =>
-                observableOf(expectedSelectedEditionSeries),
-            getSelectedEditionSection: (): Observable<EditionOutlineSection> =>
-                observableOf(expectedSelectedEditionSection),
+            getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(null),
+            getSelectedEditionSeries: (): Observable<EditionOutlineSeries> => observableOf(null),
+            getSelectedEditionSection: (): Observable<EditionOutlineSection> => observableOf(null),
             updateIsIntroView: (isView: boolean): void => mockIsIntroViewSubject.next(isView),
             clearIsIntroView: (): void => mockIsIntroViewSubject.next(null),
         };
 
         mockEditionDataService = {
-            getEditionComplexIntroData: (editionComplex: EditionComplex): Observable<IntroList> =>
-                observableOf(expectedEditionIntroData),
+            getEditionComplexIntroData: (editionComplex: EditionComplex): Observable<IntroList> => observableOf(null),
+            getEditionSectionIntroData: (seriesRoute: string, sectionRoute: string): Observable<IntroList> =>
+                observableOf(null),
         };
 
         TestBed.configureTestingModule({
             imports: [NgbModalModule, RouterModule],
             declarations: [
-                CompileHtmlComponent,
                 EditionIntroComponent,
+                EditionIntroContentStubComponent,
+                EditionIntroEmptyStubComponent,
+                EditionIntroNavStubComponent,
                 ErrorAlertStubComponent,
                 ModalStubComponent,
-                RouterLinkStubDirective,
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
@@ -165,15 +209,23 @@ fdescribe('IntroComponent (DONE)', () => {
         editionService = TestBed.inject(EditionService);
 
         // Test data
+        expectedCurrentLaguage = 0;
+        expectedNotesLabels = new Map([
+            [0, 'Anmerkungen'],
+            [1, 'Notes'],
+        ]);
+        expectedEditionIntroData = JSON.parse(JSON.stringify(mockEditionData.mockIntroData));
+        expectedEditionIntroComplexData = JSON.parse(JSON.stringify(mockEditionData.mockIntroComplexData));
+        expectedEditionIntroFilteredData = JSON.parse(JSON.stringify(mockEditionData.mockIntroFilteredData));
         expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
+        expectedErrorObject = null;
+
         expectedEditionComplexBaseRoute = '/edition/complex/op12/';
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedIntroFragment = 'note-80';
         expectedReportFragment = 'source_A';
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
-        expectedEditionIntroData = JSON.parse(JSON.stringify(mockEditionData.mockIntroData));
-        expectedEditionIntroEmptyData = JSON.parse(JSON.stringify(mockEditionData.mockIntroEmptyData));
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
 
@@ -186,28 +238,36 @@ fdescribe('IntroComponent (DONE)', () => {
         );
 
         // Spies on functions
+        fetchAndFilterIntroDataSpy = spyOn(component as any, '_fetchAndFilterIntroData').and.callThrough();
         getEditionIntroDataSpy = spyOn(component, 'getEditionIntroData').and.callThrough();
-        navigateToIntroFragmentSpy = spyOn(component, 'navigateToIntroFragment').and.callThrough();
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
         navigateWithComplexIdSpy = spyOn(component as any, '_navigateWithComplexId').and.callThrough();
         navigationSpy = mockRouter.navigate as jasmine.Spy;
-        modalOpenSpy = spyOn(component.modal, 'open').and.callThrough();
-        componentOpenModalSpy = spyOn(component, 'openModal').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
+        openModalSpy = spyOn(component.modal, 'open').and.callThrough();
+        onIntroFragmentNavigateSpy = spyOn(component, 'onIntroFragmentNavigate').and.callThrough();
+        onLanguageSetSpy = spyOn(component, 'onLanguageSet').and.callThrough();
+        onModalOpenSpy = spyOn(component, 'onModalOpen').and.callThrough();
+        onReportFragmentNavigateSpy = spyOn(component, 'onReportFragmentNavigate').and.callThrough();
+        onSvgSheetSelectSpy = spyOn(component, 'onSvgSheetSelect').and.callThrough();
 
         editionDataServiceGetEditionComplexIntroDataSpy = spyOn(
             editionDataService,
             'getEditionComplexIntroData'
-        ).and.returnValue(observableOf(expectedEditionIntroData));
-        editionServiceGetSelectedEditionComplexSpy = spyOn(editionService, 'getSelectedEditionComplex').and.returnValue(
-            observableOf(expectedEditionComplex)
-        );
-        editionServiceGetSelectedEditionSeriesSpy = spyOn(editionService, 'getSelectedEditionSeries').and.returnValue(
-            observableOf(expectedSelectedEditionSeries)
-        );
-        editionServiceGetSelectedEditionSectionSpy = spyOn(editionService, 'getSelectedEditionSection').and.returnValue(
-            observableOf(expectedSelectedEditionSection)
-        );
+        ).and.callThrough();
+        editionDataServiceGetEditionSectionIntroDataSpy = spyOn(
+            editionDataService,
+            'getEditionSectionIntroData'
+        ).and.callThrough();
+        editionServiceGetSelectedEditionComplexSpy = spyOn(
+            editionService,
+            'getSelectedEditionComplex'
+        ).and.callThrough();
+        editionServiceGetSelectedEditionSeriesSpy = spyOn(editionService, 'getSelectedEditionSeries').and.callThrough();
+        editionServiceGetSelectedEditionSectionSpy = spyOn(
+            editionService,
+            'getSelectedEditionSection'
+        ).and.callThrough();
+        editionServiceUpdateIsIntroViewSpy = spyOn(editionService, 'updateIsIntroView').and.callThrough();
+        editionServiceClearIsIntroViewSpy = spyOn(editionService, 'clearIsIntroView').and.callThrough();
     });
 
     afterAll(() => {
@@ -219,6 +279,14 @@ fdescribe('IntroComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
+        it('... should have `currentLanguage`', () => {
+            expectToBe(component.currentLanguage, expectedCurrentLaguage);
+        });
+
+        it('... should have `notesLabels`', () => {
+            expectToEqual(component.notesLabels, expectedNotesLabels);
+        });
+
         it('... should not have `editionIntroData$`', () => {
             expect(component.editionIntroData$).toBeUndefined();
         });
@@ -227,12 +295,16 @@ fdescribe('IntroComponent (DONE)', () => {
             expect(component.editionComplex).toBeUndefined();
         });
 
+        it('... should have `errorObject = null`', () => {
+            expectToBe(component.errorObject, null);
+        });
+
         it('... should have `editionRouteConstants`', () => {
             expectToEqual(component.editionRouteConstants, expectedEditionRouteConstants);
         });
 
         describe('VIEW', () => {
-            it('... should contain a `div`', () => {
+            it('... should contain an outer `div`', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
             });
 
@@ -240,8 +312,26 @@ fdescribe('IntroComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(compDe, ModalStubComponent, 1, 1);
             });
 
-            it('... should contain no div.awg-edition-intro-view yet', () => {
+            it('... should not contain a div.awg-edition-intro-view yet', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
+            });
+
+            it('... should not contain an edition intro content component (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], EditionIntroContentStubComponent, 0, 0);
+            });
+
+            it('... should not contain an edition intro nav component (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], EditionIntroNavStubComponent, 0, 0);
+            });
+
+            it('... should not contain an edition intro empty component (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], EditionIntroEmptyStubComponent, 0, 0);
             });
 
             it('... should not contain an error alert component (stubbed)', () => {
@@ -258,11 +348,16 @@ fdescribe('IntroComponent (DONE)', () => {
         });
     });
 
-    fdescribe('AFTER initial data binding', () => {
+    describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
-            component.editionIntroData$ = observableOf(expectedEditionIntroData);
-            component.editionComplex = expectedEditionComplex;
+            // Simulate the services returning the observable properties
+            editionServiceGetSelectedEditionSeriesSpy.and.returnValue(observableOf(expectedSelectedEditionSeries));
+            editionServiceGetSelectedEditionSectionSpy.and.returnValue(observableOf(expectedSelectedEditionSection));
+            editionServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(expectedEditionComplex));
+            editionDataServiceGetEditionSectionIntroDataSpy.and.returnValue(observableOf(expectedEditionIntroData));
+            editionDataServiceGetEditionComplexIntroDataSpy.and.returnValue(
+                observableOf(expectedEditionIntroComplexData)
+            );
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -272,152 +367,107 @@ fdescribe('IntroComponent (DONE)', () => {
             expectSpyCall(getEditionIntroDataSpy, 1);
         });
 
-        it('... should have triggered `getSelectedEditionComplex()` method from EditionService', () => {
-            expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
-        });
-
-        it('... should have editionComplex', () => {
-            expectToEqual(component.editionComplex, expectedEditionComplex);
-        });
-
-        it('... should have editionIntroData$', waitForAsync(() => {
-            expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolved();
-            expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolvedTo(expectedEditionIntroData);
-        }));
-
         describe('VIEW', () => {
             it('... should contain one div.awg-edition-intro-view', () => {
                 // Div debug element
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
             });
 
-            it('... should contain as many intro paragraph elements in div.awg-edition-intro-view as content items in intro data', () => {
+            it('... should contain one div.row in div.awg-edition-intro-view', () => {
                 // Div debug element
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
 
-                getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'p.awg-edition-intro-para',
-                    expectedEditionIntroData.intro[0].content.length,
-                    expectedEditionIntroData.intro[0].content.length
-                );
+                getAndExpectDebugElementByCss(divDes[0], 'div.row', 1, 1);
             });
 
-            it('... should have one anchor in first paragraph, and 3 in the second one', () => {
-                // Div debug element
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+            describe('... if intro data is given', () => {
+                it('... should contain one EditionIntroContentComponent (stubbed)', waitForAsync(() => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], EditionIntroContentStubComponent, 1, 1);
+                }));
 
-                const pDes = getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'p.awg-edition-intro-para',
-                    expectedEditionIntroData.intro[0].content.length,
-                    expectedEditionIntroData.intro[0].content.length
-                );
+                it('... should pass down `introBlockContent` and `notesLabel` to EditionIntroContentComponent', waitForAsync(() => {
+                    const editionIntroContentDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionIntroContentStubComponent,
+                        1,
+                        1
+                    );
+                    const editionIntroContentCmp = editionIntroContentDes[0].injector.get(
+                        EditionIntroContentStubComponent
+                    ) as EditionIntroContentStubComponent;
 
-                getAndExpectDebugElementByCss(pDes[0], 'a', 1, 1);
-                getAndExpectDebugElementByCss(pDes[1], 'a', 3, 3);
+                    expectToEqual(
+                        editionIntroContentCmp.introBlockContent,
+                        expectedEditionIntroFilteredData.intro[expectedCurrentLaguage].content
+                    );
+                    expectToEqual(editionIntroContentCmp.notesLabel, expectedNotesLabels.get(expectedCurrentLaguage));
+                }));
+
+                it('... should contain one EditionIntroNavComponent (stubbed)', waitForAsync(() => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], EditionIntroNavStubComponent, 1, 1);
+                }));
+
+                it('... should pass down `introBlockContent`, `notesLabel` and `currentLanguage` to EditionIntroNavComponent', waitForAsync(() => {
+                    const editionIntroNavDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionIntroNavStubComponent,
+                        1,
+                        1
+                    );
+                    const editionIntroNavCmp = editionIntroNavDes[0].injector.get(
+                        EditionIntroNavStubComponent
+                    ) as EditionIntroNavStubComponent;
+
+                    expectToEqual(
+                        editionIntroNavCmp.introBlockContent,
+                        expectedEditionIntroFilteredData.intro[expectedCurrentLaguage].content
+                    );
+                    expectToEqual(editionIntroNavCmp.notesLabel, expectedNotesLabels.get(expectedCurrentLaguage));
+                    expectToEqual(editionIntroNavCmp.currentLanguage, expectedCurrentLaguage);
+                }));
             });
 
-            it('... should contain as many note paragraphs in div.awg-edition-intro-view as note items in intro data', () => {
-                // Div debug element
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+            describe('... if intro data is empty', () => {
+                it('... should contain one EditionIntroEmptyComponent (stubbed)', waitForAsync(() => {
+                    // Simulate the parent setting an empty content array
+                    component.editionIntroData$ = observableOf(expectedEditionIntroComplexData);
+                    fixture.detectChanges();
 
-                getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'p.awg-edition-intro-note',
-                    0, // TODO: expectedEditionIntroData.intro[0].notes.length,
-                    0 // TODO: expectedEditionIntroData.intro[0].notes.length,
-                );
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], EditionIntroEmptyStubComponent, 1, 1);
+                }));
+
+                it('... should pass down `editionComplex` and `editionLabel` to EditionIntroEmptyComponent', waitForAsync(() => {
+                    // Simulate the parent setting an empty content array
+                    component.editionIntroData$ = observableOf(expectedEditionIntroComplexData);
+                    fixture.detectChanges();
+
+                    const editionIntroEmptyDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionIntroEmptyStubComponent,
+                        1,
+                        1
+                    );
+                    const editionIntroEmptyCmp = editionIntroEmptyDes[0].injector.get(
+                        EditionIntroEmptyStubComponent
+                    ) as EditionIntroEmptyStubComponent;
+
+                    expectToEqual(editionIntroEmptyCmp.editionComplex, expectedEditionComplex);
+                    expectToEqual(editionIntroEmptyCmp.editionLabel, expectedEditionRouteConstants.EDITION.short);
+                }));
             });
-
-            it('... should have each note paragraph embedded in small element', () => {
-                // Div debug element
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-
-                getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'small p.awg-edition-intro-note',
-                    0, // TODO: expectedEditionIntroData.intro[0].notes.length,
-                    0 // TODO: expectedEditionIntroData.intro[0].notes.length,
-                );
-            });
-
-            it('... should have one anchor in note paragraph', () => {
-                // Div debug element
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-
-                const pDes = getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'p.awg-edition-intro-note',
-                    0, // TODO: expectedEditionIntroData.intro[0].notes.length,
-                    0 // TODO: expectedEditionIntroData.intro[0].notes.length,
-                );
-
-                getAndExpectDebugElementByCss(pDes[0], 'a', 1, 1);
-            });
-
-            it('... should contain one horizontal line and header for notes ', () => {
-                // Div debug element
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-
-                getAndExpectDebugElementByCss(divDes[0], 'hr', 1, 1);
-                const headerDe = getAndExpectDebugElementByCss(divDes[0], 'h5', 1, 1);
-                const headerEl = headerDe[0].nativeElement;
-
-                expectToBe(headerEl.textContent.trim(), 'Anmerkungen');
-            });
-
-            it('... should contain a placeholder if content of intro data is empty', waitForAsync(() => {
-                // Simulate the parent setting an empty content array
-                component.editionIntroData$ = observableOf(expectedEditionIntroEmptyData);
-                detectChangesOnPush(fixture);
-
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-edition-intro-empty', 1, 1);
-
-                getAndExpectDebugElementByCss(pDes[0], 'small.text-muted', 1, 1);
-            }));
-
-            it('... should display placeholder in paragraph', waitForAsync(() => {
-                // Simulate the parent setting an empty content array
-                component.editionIntroData$ = observableOf(expectedEditionIntroEmptyData);
-                detectChangesOnPush(fixture);
-
-                const pDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-edition-intro-view > p.awg-edition-intro-empty',
-                    1,
-                    1
-                );
-                const pEl = pDes[0].nativeElement;
-
-                // Create intro placeholder
-                const fullComplexSpan = mockDocument.createElement('span');
-                fullComplexSpan.innerHTML = expectedEditionComplex.complexId.full;
-
-                const shortComplexSpan = mockDocument.createElement('span');
-                shortComplexSpan.innerHTML = expectedEditionComplex.complexId.short;
-
-                const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
-                const series = expectedEditionComplex.pubStatement.series.short;
-                const section = expectedEditionComplex.pubStatement.section.short;
-
-                const introPlaceholder = `[Die Einleitung zum Editionskomplex ${fullComplexSpan.textContent} erscheint im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${awg} ${series}/${section}.]`;
-
-                expectToBe(pEl.textContent.trim(), introPlaceholder);
-            }));
 
             describe('on error', () => {
                 const expectedError = { status: 404, statusText: 'got Error' };
 
                 beforeEach(waitForAsync(() => {
                     // Spy on editionDataService to return an error
-                    editionDataServiceGetEditionComplexIntroDataSpy.and.returnValue(
-                        observableThrowError(() => expectedError)
-                    );
+                    fetchAndFilterIntroDataSpy.and.returnValue(observableThrowError(() => expectedError));
 
                     component.getEditionIntroData();
-                    detectChangesOnPush(fixture);
+                    fixture.detectChanges();
                 }));
 
                 it('... should not contain intro view, but one ErrorAlertComponent (stubbed)', waitForAsync(() => {
@@ -442,7 +492,7 @@ fdescribe('IntroComponent (DONE)', () => {
                     it('... editionIntroData$ is EMPTY', () => {
                         // Mock empty observable
                         component.editionIntroData$ = EMPTY;
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
                         getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
@@ -452,7 +502,7 @@ fdescribe('IntroComponent (DONE)', () => {
                     it('... editionIntroData$ is undefined', () => {
                         // Mock undefined response
                         component.editionIntroData$ = observableOf(undefined);
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
                         getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
@@ -462,7 +512,7 @@ fdescribe('IntroComponent (DONE)', () => {
                     it('... editionIntroData$ is null', () => {
                         // Mock null response
                         component.editionIntroData$ = observableOf(null);
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
                         getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
@@ -477,229 +527,421 @@ fdescribe('IntroComponent (DONE)', () => {
                 expect(component.getEditionIntroData).toBeDefined();
             });
 
-            it('... should have been called', () => {
-                expectSpyCall(getEditionIntroDataSpy, 1);
+            it('... should trigger and update `isIntroView = true` in EditionService', () => {
+                expectSpyCall(editionServiceUpdateIsIntroViewSpy, 1, true);
             });
 
-            it('... should have got `editionComplex` from editionService', () => {
+            it('... should trigger `getSelectedEditionSeries()` method from EditionService', () => {
+                expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 1);
+
+                component.getEditionIntroData();
+
+                expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 2);
+            });
+
+            it('... should trigger `getSelectedEditionSection()` method from EditionService', () => {
+                expectSpyCall(editionServiceGetSelectedEditionSectionSpy, 1);
+
+                component.getEditionIntroData();
+
+                expectSpyCall(editionServiceGetSelectedEditionSectionSpy, 2);
+            });
+
+            it('... should trigger `getSelectedEditionComplex()` method from EditionService', () => {
                 expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
 
-                expectToEqual(component.editionComplex, expectedEditionComplex);
-            });
-
-            it('... should have got editionIntroData from editionDataService', () => {
-                expectSpyCall(editionDataServiceGetEditionComplexIntroDataSpy, 1);
-            });
-
-            it('... should return empty observable and set errorObject if switchMap fails', waitForAsync(() => {
-                const expectedError = { status: 404, statusText: 'error' };
-                // Spy on editionDataService to return an error
-                editionDataServiceGetEditionComplexIntroDataSpy.and.returnValue(
-                    observableThrowError(() => expectedError)
-                );
-
-                // Init new switchMap
                 component.getEditionIntroData();
-                detectChangesOnPush(fixture);
 
-                expectAsync(lastValueFrom(component.editionIntroData$)).toBeRejected();
-                expectAsync(lastValueFrom(component.editionIntroData$)).toBeRejectedWithError(EmptyError);
+                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 2);
+            });
 
-                expectToEqual(component.errorObject, expectedError);
-            }));
+            describe('... without given complex', () => {
+                beforeEach(fakeAsync(() => {
+                    // Simulate the services returning the observable properties
+                    editionServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
+
+                    tick();
+
+                    component.getEditionIntroData();
+                    fixture.detectChanges();
+                }));
+
+                it('... should have full editionIntroData$', waitForAsync(() => {
+                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolved();
+                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolvedTo(expectedEditionIntroData);
+                }));
+
+                it('... should not have editionComplex', () => {
+                    expect(component.editionComplex).toBeUndefined();
+                });
+
+                it('... should have triggered `_fetchAndFilterIntroData()` method with series, section and complex=null', () => {
+                    expectSpyCall(fetchAndFilterIntroDataSpy, 4, [
+                        expectedSelectedEditionSeries.series.route,
+                        expectedSelectedEditionSection.section.route,
+                        null,
+                    ]);
+                });
+            });
+
+            describe('... with given complex', () => {
+                it('... should have filtered editionIntroData$', waitForAsync(() => {
+                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolved();
+                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolvedTo(
+                        expectedEditionIntroFilteredData
+                    );
+                }));
+
+                it('... should have set editionComplex', () => {
+                    expectToEqual(component.editionComplex, expectedEditionComplex);
+                });
+
+                it('... should have triggered `_fetchAndFilterIntroData()` method with series, section, and complex', () => {
+                    expectSpyCall(fetchAndFilterIntroDataSpy, 2, [
+                        expectedSelectedEditionSeries.series.route,
+                        expectedSelectedEditionSection.section.route,
+                        expectedEditionComplex,
+                    ]);
+                });
+            });
+
+            describe('... without series or section (EMPTY)', () => {
+                describe('... should have editionIntroData$ = EMPTY if', () => {
+                    it('... no series is given', fakeAsync(() => {
+                        // Simulate the services returning the observable properties
+                        editionServiceGetSelectedEditionSeriesSpy.and.returnValue(observableOf(null));
+                        editionServiceGetSelectedEditionSectionSpy.and.returnValue(
+                            observableOf(expectedSelectedEditionSection)
+                        );
+                        editionServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
+
+                        component.getEditionIntroData();
+                        tick();
+
+                        component.editionIntroData$.pipe(isEmpty()).subscribe({
+                            next: isEmptyData => {
+                                expectToBe(isEmptyData, true);
+                            },
+                            error: err => {
+                                fail(`Observable emitted an error: ${err}`);
+                            },
+                        });
+                    }));
+
+                    it('... no section is given', fakeAsync(() => {
+                        // Simulate the services returning the observable properties
+                        editionServiceGetSelectedEditionSeriesSpy.and.returnValue(
+                            observableOf(expectedSelectedEditionSeries)
+                        );
+                        editionServiceGetSelectedEditionSectionSpy.and.returnValue(observableOf(null));
+                        editionServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
+
+                        component.getEditionIntroData();
+                        tick();
+
+                        component.editionIntroData$.pipe(isEmpty()).subscribe({
+                            next: isEmptyData => {
+                                expectToBe(isEmptyData, true);
+                            },
+                            error: err => {
+                                fail(`Observable emitted an error: ${err}`);
+                            },
+                        });
+                    }));
+
+                    it('... no series and no section are given', fakeAsync(() => {
+                        // Simulate the services returning the observable properties
+                        editionServiceGetSelectedEditionSeriesSpy.and.returnValue(observableOf(null));
+                        editionServiceGetSelectedEditionSectionSpy.and.returnValue(observableOf(null));
+                        editionServiceGetSelectedEditionComplexSpy.and.returnValue(
+                            observableOf(expectedEditionComplex)
+                        );
+
+                        component.getEditionIntroData();
+                        tick();
+
+                        component.editionIntroData$.pipe(isEmpty()).subscribe({
+                            next: isEmptyData => {
+                                expectToBe(isEmptyData, true);
+                            },
+                            error: err => {
+                                fail(`Observable emitted an error: ${err}`);
+                            },
+                        });
+                    }));
+                });
+            });
+
+            describe('... on error', () => {
+                it('... should return empty observable and set errorObject if switchMap fails', fakeAsync(() => {
+                    const expectedError = { status: 404, statusText: 'error' };
+                    // Spy on switchMap method to return an error
+                    fetchAndFilterIntroDataSpy.and.returnValue(observableThrowError(() => expectedError));
+
+                    component.getEditionIntroData();
+                    tick();
+
+                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeRejected();
+                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeRejectedWithError(EmptyError);
+
+                    expectToEqual(component.errorObject, expectedError);
+                }));
+            });
         });
 
-        describe('#navigateToIntroFragment()', () => {
-            it('... should have a method `navigateToIntroFragment`', () => {
-                expect(component.navigateToIntroFragment).toBeDefined();
+        describe('#onIntroFragmentNavigate()', () => {
+            it('... should have a method `onIntroFragmentNavigate`', () => {
+                expect(component.onIntroFragmentNavigate).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-
-                // Find paragraphs
-                const pDes = getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'p.awg-edition-intro-para',
-                    expectedEditionIntroData.intro[0].content.length,
-                    expectedEditionIntroData.intro[0].content.length
+            it('... should trigger on event from EditionIntroContentComponent', () => {
+                const editionIntroContentDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    EditionIntroContentStubComponent,
+                    1,
+                    1
                 );
+                const editionIntroContentCmp = editionIntroContentDes[0].injector.get(
+                    EditionIntroContentStubComponent
+                ) as EditionIntroContentStubComponent;
 
-                // Find anchor in second paragraph
-                const anchorDes = getAndExpectDebugElementByCss(pDes[1], 'a', 3, 3);
-
-                // CLick on anchor (with navigateToIntroFragment call)
-                clickAndAwaitChanges(anchorDes[2], fixture);
-
-                expectSpyCall(navigateToIntroFragmentSpy, 1, {
-                    complexId: expectedComplexId,
-                    fragmentId: expectedIntroFragment,
-                });
-            }));
-
-            it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
-                expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                 const expectedIntroIds = { complexId: expectedComplexId, fragmentId: expectedIntroFragment };
 
-                const expectedIntroRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
+                editionIntroContentCmp.navigateToIntroFragmentRequest.emit(expectedIntroIds);
+
+                expectSpyCall(onIntroFragmentNavigateSpy, 1, expectedIntroIds);
+            });
+
+            it('... should navigate (to same page) with correct parameters', () => {
+                expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
+                const expectedIntroIds = { complexId: expectedComplexId, fragmentId: expectedIntroFragment };
                 const expectedNavigationExtras = {
                     fragment: expectedIntroIds.fragmentId,
                 };
 
-                component.navigateToIntroFragment(expectedIntroIds);
-                detectChangesOnPush(fixture);
+                component.onIntroFragmentNavigate(expectedIntroIds);
+                fixture.detectChanges();
 
-                expectSpyCall(navigateWithComplexIdSpy, 1, [
-                    expectedIntroIds.complexId,
-                    expectedIntroRoute,
-                    expectedNavigationExtras,
-                ]);
+                expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
             });
 
-            describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
+            describe('... should navigate (to same page) with empty fragment id if', () => {
                 it('... fragment id is undefined', () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedIntroIds = { complexId: expectedComplexId, fragmentId: undefined };
-
-                    const expectedIntroRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                     const expectedNavigationExtras = {
                         fragment: '',
                     };
 
-                    component.navigateToIntroFragment(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    component.onIntroFragmentNavigate(expectedIntroIds);
+                    fixture.detectChanges();
 
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedIntroIds.complexId,
-                        expectedIntroRoute,
-                        expectedNavigationExtras,
-                    ]);
+                    expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
 
                 it('... fragment id is null', () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedIntroIds = { complexId: expectedComplexId, fragmentId: null };
-
-                    const expectedIntroRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                     const expectedNavigationExtras = {
                         fragment: '',
                     };
 
-                    component.navigateToIntroFragment(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    component.onIntroFragmentNavigate(expectedIntroIds);
+                    fixture.detectChanges();
 
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedIntroIds.complexId,
-                        expectedIntroRoute,
-                        expectedNavigationExtras,
-                    ]);
+                    expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
 
                 it('... fragment id is empty string', () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedIntroIds = { complexId: expectedComplexId, fragmentId: '' };
-
-                    const expectedIntroRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                     const expectedNavigationExtras = {
                         fragment: '',
                     };
 
-                    component.navigateToIntroFragment(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    component.onIntroFragmentNavigate(expectedIntroIds);
+                    fixture.detectChanges();
 
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedIntroIds.complexId,
-                        expectedIntroRoute,
-                        expectedNavigationExtras,
-                    ]);
+                    expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
             });
 
-            describe('... should call `_navigateWithComplexId()` method with undefined complex id if', () => {
+            describe('... should navigate (to same page) with undefined complex id if', () => {
                 it('... introIds are undefined', () => {
                     const expectedIntroIds = undefined;
-
-                    const expectedIntroRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                     const expectedNavigationExtras = {
                         fragment: '',
                     };
 
-                    component.navigateToIntroFragment(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    component.onIntroFragmentNavigate(expectedIntroIds);
+                    fixture.detectChanges();
 
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        undefined,
-                        expectedIntroRoute,
-                        expectedNavigationExtras,
-                    ]);
+                    expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
 
                 it('... introIds are null', () => {
                     const expectedIntroIds = null;
-
-                    const expectedIntroRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                     const expectedNavigationExtras = {
                         fragment: '',
                     };
 
-                    component.navigateToIntroFragment(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    component.onIntroFragmentNavigate(expectedIntroIds);
+                    fixture.detectChanges();
 
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        undefined,
-                        expectedIntroRoute,
-                        expectedNavigationExtras,
-                    ]);
+                    expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
 
                 it('... fragment id is empty string', () => {
                     expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
                     const expectedIntroIds = { complexId: expectedComplexId, fragmentId: '' };
-
-                    const expectedIntroRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                     const expectedNavigationExtras = {
                         fragment: '',
                     };
 
-                    component.navigateToIntroFragment(expectedIntroIds);
-                    detectChangesOnPush(fixture);
+                    component.onIntroFragmentNavigate(expectedIntroIds);
+                    fixture.detectChanges();
 
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedIntroIds.complexId,
-                        expectedIntroRoute,
-                        expectedNavigationExtras,
-                    ]);
+                    expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                 });
             });
         });
 
-        describe('#navigateToReportFragment()', () => {
-            it('... should have a method `navigateToReportFragment`', () => {
-                expect(component.navigateToReportFragment).toBeDefined();
+        describe('#onLanguageSet()', () => {
+            it('... should have a method `onLanguageSet`', () => {
+                expect(component.onLanguageSet).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-
-                // Find paragraphs
-                const pDes = getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'p.awg-edition-intro-para',
-                    expectedEditionIntroData.intro[0].content.length,
-                    expectedEditionIntroData.intro[0].content.length
+            it('... should trigger on event from EditionIntroNavComponent', () => {
+                const editionIntroNavDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    EditionIntroNavStubComponent,
+                    1,
+                    1
                 );
+                const editionIntroNavCmp = editionIntroNavDes[0].injector.get(
+                    EditionIntroNavStubComponent
+                ) as EditionIntroNavStubComponent;
 
-                // Find anchor in first paragraph
-                const anchorDes = getAndExpectDebugElementByCss(pDes[0], 'a', 1, 1);
+                editionIntroNavCmp.languageChangeRequest.emit(expectedCurrentLaguage);
 
-                // CLick on anchor (with navigateToReportFragment call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                expectSpyCall(onLanguageSetSpy, 1, expectedCurrentLaguage);
+            });
 
-                expectSpyCall(navigateToReportFragmentSpy, 1, {
-                    complexId: expectedComplexId,
-                    fragmentId: expectedReportFragment,
+            it('... should set `currentLanguage` to the given language', () => {
+                component.onLanguageSet(expectedCurrentLaguage);
+                fixture.detectChanges();
+
+                expectToBe(component.currentLanguage, expectedCurrentLaguage);
+
+                const newLanguage = 1;
+
+                component.onLanguageSet(newLanguage);
+
+                expect(component.currentLanguage).toBe(newLanguage);
+            });
+
+            it('... should not change `currentLanguage` if the same language is passed', () => {
+                const initialLanguage = component.currentLanguage;
+
+                component.onLanguageSet(initialLanguage);
+
+                expect(component.currentLanguage).toBe(initialLanguage);
+            });
+
+            it('... should change `currentLanguage` if a different language is passed', () => {
+                const initialLanguage = component.currentLanguage;
+                const newLanguage = initialLanguage === 0 ? 1 : 0;
+
+                component.onLanguageSet(newLanguage);
+
+                expect(component.currentLanguage).not.toBe(initialLanguage);
+
+                expect(component.currentLanguage).toBe(newLanguage);
+            });
+        });
+
+        describe('#onModalOpen()', () => {
+            it('... should have a method `onModalOpen`', () => {
+                expect(component.onModalOpen).toBeDefined();
+            });
+
+            it('... should trigger on event from EditionIntroContentComponent', () => {
+                const editionIntroContentDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    EditionIntroContentStubComponent,
+                    1,
+                    1
+                );
+                const editionIntroContentCmp = editionIntroContentDes[0].injector.get(
+                    EditionIntroContentStubComponent
+                ) as EditionIntroContentStubComponent;
+
+                editionIntroContentCmp.openModalRequest.emit(expectedModalSnippet);
+
+                expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
+            });
+
+            it('... should open modal with given id', () => {
+                component.onModalOpen(expectedModalSnippet);
+                fixture.detectChanges();
+
+                expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
+                expectSpyCall(openModalSpy, 1, expectedModalSnippet);
+
+                const otherSnippet = 'otherSnippet';
+                component.onModalOpen(otherSnippet);
+                fixture.detectChanges();
+
+                expectSpyCall(onModalOpenSpy, 2, otherSnippet);
+                expectSpyCall(openModalSpy, 2, otherSnippet);
+            });
+
+            describe('... should not do anything if ', () => {
+                it('... id is undefined', () => {
+                    component.onModalOpen(undefined);
+
+                    expectSpyCall(onModalOpenSpy, 1);
+                    expectSpyCall(openModalSpy, 0);
                 });
-            }));
+
+                it('... id is null', () => {
+                    component.onModalOpen(null);
+
+                    expectSpyCall(onModalOpenSpy, 1);
+                    expectSpyCall(openModalSpy, 0);
+                });
+
+                it('... id is empty string', () => {
+                    component.onModalOpen('');
+
+                    expectSpyCall(onModalOpenSpy, 1);
+                    expectSpyCall(openModalSpy, 0);
+                });
+            });
+        });
+
+        describe('#onReportFragmentNavigate()', () => {
+            it('... should have a method `onReportFragmentNavigate`', () => {
+                expect(component.onReportFragmentNavigate).toBeDefined();
+            });
+
+            it('... should trigger on event from EditionIntroContentComponent', () => {
+                const editionIntroContentDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    EditionIntroContentStubComponent,
+                    1,
+                    1
+                );
+                const editionIntroContentCmp = editionIntroContentDes[0].injector.get(
+                    EditionIntroContentStubComponent
+                ) as EditionIntroContentStubComponent;
+
+                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+
+                editionIntroContentCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+
+                expectSpyCall(onReportFragmentNavigateSpy, 1, expectedReportIds);
+            });
 
             it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
                 expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
@@ -710,8 +952,8 @@ fdescribe('IntroComponent (DONE)', () => {
                     fragment: expectedReportIds.fragmentId,
                 };
 
-                component.navigateToReportFragment(expectedReportIds);
-                detectChangesOnPush(fixture);
+                component.onReportFragmentNavigate(expectedReportIds);
+                fixture.detectChanges();
 
                 expectSpyCall(navigateWithComplexIdSpy, 1, [
                     expectedReportIds.complexId,
@@ -730,8 +972,8 @@ fdescribe('IntroComponent (DONE)', () => {
                         fragment: '',
                     };
 
-                    component.navigateToReportFragment(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    component.onReportFragmentNavigate(expectedReportIds);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -749,8 +991,8 @@ fdescribe('IntroComponent (DONE)', () => {
                         fragment: '',
                     };
 
-                    component.navigateToReportFragment(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    component.onReportFragmentNavigate(expectedReportIds);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -768,8 +1010,8 @@ fdescribe('IntroComponent (DONE)', () => {
                         fragment: '',
                     };
 
-                    component.navigateToReportFragment(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    component.onReportFragmentNavigate(expectedReportIds);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -788,8 +1030,8 @@ fdescribe('IntroComponent (DONE)', () => {
                         fragment: '',
                     };
 
-                    component.navigateToReportFragment(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    component.onReportFragmentNavigate(expectedReportIds);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -806,8 +1048,8 @@ fdescribe('IntroComponent (DONE)', () => {
                         fragment: '',
                     };
 
-                    component.navigateToReportFragment(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    component.onReportFragmentNavigate(expectedReportIds);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -825,8 +1067,8 @@ fdescribe('IntroComponent (DONE)', () => {
                         fragment: '',
                     };
 
-                    component.navigateToReportFragment(expectedReportIds);
-                    detectChangesOnPush(fixture);
+                    component.onReportFragmentNavigate(expectedReportIds);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedReportIds.complexId,
@@ -837,94 +1079,28 @@ fdescribe('IntroComponent (DONE)', () => {
             });
         });
 
-        describe('#openModal()', () => {
-            it('... should have a method `openModal`', () => {
-                expect(component.openModal).toBeDefined();
+        describe('#onSvgSheetSelect()', () => {
+            it('... should have a method `onSvgSheetSelect`', () => {
+                expect(component.onSvgSheetSelect).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-
-                // Find paragraphs
-                const pDes = getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'p.awg-edition-intro-para',
-                    expectedEditionIntroData.intro[0].content.length,
-                    expectedEditionIntroData.intro[0].content.length
+            it('... should trigger on event from EditionIntroContentComponent', () => {
+                const editionIntroContentDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    EditionIntroContentStubComponent,
+                    1,
+                    1
                 );
+                const editionIntroContentCmp = editionIntroContentDes[0].injector.get(
+                    EditionIntroContentStubComponent
+                ) as EditionIntroContentStubComponent;
 
-                // Find anchors in second paragraph
-                const anchorDes = getAndExpectDebugElementByCss(pDes[1], 'a', 3, 3);
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
 
-                // CLick on anchor (with openModal call)
-                clickAndAwaitChanges(anchorDes[1], fixture);
+                editionIntroContentCmp.selectSvgSheetRequest.emit(expectedSheetIds);
 
-                expectSpyCall(componentOpenModalSpy, 1, expectedModalSnippet);
-            }));
-
-            it('... should open modal with given id', () => {
-                component.openModal(expectedModalSnippet);
-                detectChangesOnPush(fixture);
-
-                expectSpyCall(componentOpenModalSpy, 1, expectedModalSnippet);
-                expectSpyCall(modalOpenSpy, 1, expectedModalSnippet);
-
-                const otherSnippet = 'otherSnippet';
-                component.openModal(otherSnippet);
-                detectChangesOnPush(fixture);
-
-                expectSpyCall(componentOpenModalSpy, 2, otherSnippet);
-                expectSpyCall(modalOpenSpy, 2, otherSnippet);
+                expectSpyCall(onSvgSheetSelectSpy, 1, expectedSheetIds);
             });
-
-            describe('... should not do anything if ', () => {
-                it('... id is undefined', () => {
-                    component.openModal(undefined);
-
-                    expectSpyCall(componentOpenModalSpy, 1);
-                    expectSpyCall(modalOpenSpy, 0);
-                });
-
-                it('... id is null', () => {
-                    component.openModal(null);
-
-                    expectSpyCall(componentOpenModalSpy, 1);
-                    expectSpyCall(modalOpenSpy, 0);
-                });
-
-                it('... id is empty string', () => {
-                    component.openModal('');
-
-                    expectSpyCall(componentOpenModalSpy, 1);
-                    expectSpyCall(modalOpenSpy, 0);
-                });
-            });
-        });
-
-        describe('#selectSvgSheet()', () => {
-            it('... should have a method `selectSvgSheet`', () => {
-                expect(component.selectSvgSheet).toBeDefined();
-            });
-
-            it('... should trigger on click', fakeAsync(() => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-
-                // Find paragraphs
-                const pDes = getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'p.awg-edition-intro-para',
-                    expectedEditionIntroData.intro[0].content.length,
-                    expectedEditionIntroData.intro[0].content.length
-                );
-
-                // Find anchors in second paragraph
-                const anchorDes = getAndExpectDebugElementByCss(pDes[1], 'a', 3, 3);
-
-                // CLick on anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
-
-                expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSvgSheet.id });
-            }));
 
             it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
                 expectedComplexId = expectedEditionComplex.complexId.route.replace('/', '');
@@ -935,8 +1111,8 @@ fdescribe('IntroComponent (DONE)', () => {
                     queryParams: { id: expectedSheetIds.sheetId },
                 };
 
-                component.selectSvgSheet(expectedSheetIds);
-                detectChangesOnPush(fixture);
+                component.onSvgSheetSelect(expectedSheetIds);
+                fixture.detectChanges();
 
                 expectSpyCall(navigateWithComplexIdSpy, 1, [
                     expectedSheetIds.complexId,
@@ -955,8 +1131,8 @@ fdescribe('IntroComponent (DONE)', () => {
                         queryParams: { id: '' },
                     };
 
-                    component.selectSvgSheet(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    component.onSvgSheetSelect(expectedSheetIds);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -974,8 +1150,8 @@ fdescribe('IntroComponent (DONE)', () => {
                         queryParams: { id: '' },
                     };
 
-                    component.selectSvgSheet(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    component.onSvgSheetSelect(expectedSheetIds);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -993,8 +1169,8 @@ fdescribe('IntroComponent (DONE)', () => {
                         queryParams: { id: '' },
                     };
 
-                    component.selectSvgSheet(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    component.onSvgSheetSelect(expectedSheetIds);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1013,8 +1189,8 @@ fdescribe('IntroComponent (DONE)', () => {
                         queryParams: { id: '' },
                     };
 
-                    component.selectSvgSheet(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    component.onSvgSheetSelect(expectedSheetIds);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1031,8 +1207,8 @@ fdescribe('IntroComponent (DONE)', () => {
                         queryParams: { id: '' },
                     };
 
-                    component.selectSvgSheet(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    component.onSvgSheetSelect(expectedSheetIds);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1050,8 +1226,8 @@ fdescribe('IntroComponent (DONE)', () => {
                         queryParams: { id: '' },
                     };
 
-                    component.selectSvgSheet(expectedSheetIds);
-                    detectChangesOnPush(fixture);
+                    component.onSvgSheetSelect(expectedSheetIds);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedSheetIds.complexId,
@@ -1059,6 +1235,302 @@ fdescribe('IntroComponent (DONE)', () => {
                         expectedNavigationExtras,
                     ]);
                 });
+            });
+        });
+
+        describe('#_fetchAndFilterIntroData()', () => {
+            it('... should have a method `_fetchAndFilterIntroData`', () => {
+                expect((component as any)._fetchAndFilterIntroData).toBeDefined();
+            });
+
+            describe('... without given complex', () => {
+                it('... should trigger `getEditionSectionIntroData()` method from EditionDataService with correct parameters', () => {
+                    const seriesRoute = expectedSelectedEditionSeries.series.route;
+                    const sectionRoute = expectedSelectedEditionSection.section.route;
+
+                    expectSpyCall(editionDataServiceGetEditionSectionIntroDataSpy, 2);
+
+                    (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, null);
+
+                    expectSpyCall(editionDataServiceGetEditionSectionIntroDataSpy, 3, [seriesRoute, sectionRoute]);
+                });
+
+                it('... should return the correct edition intro data for a given series and section', done => {
+                    const seriesRoute = expectedSelectedEditionSeries.series.route;
+                    const sectionRoute = expectedSelectedEditionSection.section.route;
+
+                    const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, null);
+
+                    result$.subscribe({
+                        next: (data: Observable<IntroList>) => {
+                            expectToEqual(data, expectedEditionIntroData);
+                            done();
+                        },
+                        error: (err: any) => {
+                            fail(`Observable emitted an error: ${err}`);
+                            done();
+                        },
+                    });
+                });
+            });
+
+            describe('... with given complex', () => {
+                beforeEach(() => {
+                    editionDataServiceGetEditionSectionIntroDataSpy.and.returnValue(
+                        observableOf(expectedEditionIntroData)
+                    );
+                    editionDataServiceGetEditionComplexIntroDataSpy.and.returnValue(
+                        observableOf(expectedEditionIntroComplexData)
+                    );
+                });
+
+                it('... should trigger `getEditionSectionIntroData()` method from EditionDataService with correct parameters', () => {
+                    const seriesRoute = expectedSelectedEditionSeries.series.route;
+                    const sectionRoute = expectedSelectedEditionSection.section.route;
+                    const complex = expectedEditionComplex;
+
+                    expectSpyCall(editionDataServiceGetEditionSectionIntroDataSpy, 2);
+
+                    (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
+
+                    expectSpyCall(editionDataServiceGetEditionSectionIntroDataSpy, 3, [seriesRoute, sectionRoute]);
+                });
+
+                it('... should set `editionComplex`', done => {
+                    const seriesRoute = expectedSelectedEditionSeries.series.route;
+                    const sectionRoute = expectedSelectedEditionSection.section.route;
+                    const complex = expectedEditionComplex;
+
+                    const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
+
+                    result$.subscribe({
+                        next: (_data: Observable<IntroList>) => {
+                            expectToEqual(component.editionComplex, complex);
+                            done();
+                        },
+                        error: (err: any) => {
+                            fail(`Observable emitted an error: ${err}`);
+                            done();
+                        },
+                    });
+                });
+
+                it('... should trigger `getEditionComplexIntroData()` method from EditionDataService with complex', done => {
+                    const seriesRoute = expectedSelectedEditionSeries.series.route;
+                    const sectionRoute = expectedSelectedEditionSection.section.route;
+                    const complex = expectedEditionComplex;
+
+                    expectSpyCall(editionDataServiceGetEditionComplexIntroDataSpy, 1, complex);
+
+                    const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
+
+                    result$.subscribe({
+                        next: (_data: Observable<IntroList>) => {
+                            expectSpyCall(editionDataServiceGetEditionComplexIntroDataSpy, 2, complex);
+                            done();
+                        },
+                        error: (err: any) => {
+                            fail(`Observable emitted an error: ${err}`);
+                            done();
+                        },
+                    });
+                });
+
+                it('... should trigger `_filterSectionIntroDataById()` method with correct parameters', done => {
+                    const seriesRoute = expectedSelectedEditionSeries.series.route;
+                    const sectionRoute = expectedSelectedEditionSection.section.route;
+                    const complex = expectedEditionComplex;
+                    const expectedBlockId = expectedEditionIntroComplexData.intro[0].id;
+
+                    const filterSectionIntroDataByIdSpy = spyOn(
+                        component as any,
+                        '_filterSectionIntroDataById'
+                    ).and.callThrough();
+
+                    const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
+
+                    result$.subscribe({
+                        next: (_data: Observable<IntroList>) => {
+                            expectSpyCall(filterSectionIntroDataByIdSpy, 1, [
+                                expectedEditionIntroData,
+                                expectedBlockId,
+                            ]);
+                            done();
+                        },
+                        error: (err: any) => {
+                            fail(`Observable emitted an error: ${err}`);
+                            done();
+                        },
+                    });
+                });
+
+                it('... should return the correct fltered edition intro data for a given series, section and complex', done => {
+                    const seriesRoute = expectedSelectedEditionSeries.series.route;
+                    const sectionRoute = expectedSelectedEditionSection.section.route;
+                    const complex = expectedEditionComplex;
+
+                    const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
+
+                    result$.subscribe({
+                        next: (data: Observable<IntroList>) => {
+                            expectToEqual(data, expectedEditionIntroFilteredData);
+                            done();
+                        },
+                        error: (err: any) => {
+                            fail(`Observable emitted an error: ${err}`);
+                            done();
+                        },
+                    });
+                });
+            });
+        });
+
+        describe('#_filterSectionIntroDataById()', () => {
+            it('... should have a method `_filterSectionIntroDataById`', () => {
+                expect((component as any)._filterSectionIntroDataById).toBeDefined();
+            });
+
+            it('... should return the correct section intro data for a given block id', () => {
+                const blockId = 'test_block_id_2';
+                const expectedBlock = expectedEditionIntroData.intro[0].content.find(
+                    block => block.blockId === blockId
+                );
+
+                const result = (component as any)._filterSectionIntroDataById(expectedEditionIntroData, blockId);
+
+                expect(result).toBeDefined();
+                expect(result.intro[0]).toBeDefined();
+                expectToBe(result.intro[0].id, expectedEditionIntroData.intro[0].id);
+                expectToEqual(result.intro[0].content, [expectedBlock]);
+            });
+
+            describe('... should return an empty content array if', () => {
+                it('... no block id is given', () => {
+                    const result = (component as any)._filterSectionIntroDataById(expectedEditionIntroData, undefined);
+
+                    expect(result).toBeDefined();
+                    expect(result.intro[0]).toBeDefined();
+                    expectToBe(result.intro[0].id, expectedEditionIntroData.intro[0].id);
+                    expectToEqual(result.intro[0].content, []);
+                });
+
+                it('... no intro data section is found for given block id', () => {
+                    const blockId = 'notExistingId';
+                    const result = (component as any)._filterSectionIntroDataById(expectedEditionIntroData, blockId);
+
+                    expect(result).toBeDefined();
+                    expect(result.intro[0]).toBeDefined();
+                    expectToBe(result.intro[0].id, expectedEditionIntroData.intro[0].id);
+                    expectToEqual(result.intro[0].content, []);
+                });
+            });
+        });
+
+        describe('#__initScrollListener()', () => {
+            it('... should have a method `_initScrollListener`', () => {
+                expect((component as any)._initScrollListener).toBeDefined();
+            });
+
+            it('.... should trigger `_onIntroScroll` method when window is scrolled', () => {
+                const onIntroScrollSpy = spyOn(component as any, '_onIntroScroll');
+
+                (component as any)._initScrollListener();
+
+                window.dispatchEvent(new Event('scroll'));
+
+                expect(onIntroScrollSpy).toHaveBeenCalled();
+            });
+        });
+
+        describe('#_onIntroScroll()', () => {
+            let intro: HTMLDivElement;
+            let navLink1: HTMLAnchorElement;
+            let navLink2: HTMLAnchorElement;
+
+            beforeEach(() => {
+                // Set up the DOM
+                intro = mockDocument.createElement('div');
+                intro.classList.add('awg-edition-intro');
+                mockDocument.body.appendChild(intro);
+
+                const introSection1 = mockDocument.createElement('div');
+                introSection1.classList.add('awg-edition-intro-section');
+                introSection1.id = 'section1';
+                introSection1.style.position = 'absolute'; // Needed to get a fixed scroll target
+                introSection1.style.top = '100px';
+                introSection1.style.height = '100px';
+                intro.appendChild(introSection1);
+
+                const introSection2 = mockDocument.createElement('div');
+                introSection2.classList.add('awg-edition-intro-section');
+                introSection2.id = 'section2';
+                introSection2.style.position = 'absolute'; // Needed to get a fixed scroll target
+                introSection2.style.top = '300px';
+                introSection2.style.height = '100px';
+                intro.appendChild(introSection2);
+
+                navLink1 = mockDocument.createElement('a');
+                navLink1.classList.add('awg-edition-intro-nav-link');
+                navLink1.href = '#section1';
+                intro.appendChild(navLink1);
+
+                navLink2 = mockDocument.createElement('a');
+                navLink2.classList.add('awg-edition-intro-nav-link');
+                navLink2.href = '#section2';
+                intro.appendChild(navLink2);
+
+                const screenSizeBy2 = mockDocument.documentElement.clientHeight * 2;
+                mockDocument.body.style.minHeight = screenSizeBy2 + 'px';
+            });
+
+            it('... should have a method `_onIntroScroll`', () => {
+                expect((component as any)._onIntroScroll).toBeDefined();
+            });
+
+            it('... should update nav link classes based on scroll position (document.documentElement.scrollTop)', () => {
+                // Spy on window.scrollTo
+                spyOn(window, 'scrollTo').and.callFake((...args: any[]) => {
+                    const y: number = args.length === 1 && typeof args[0] === 'object' ? args[0].top : args[1];
+                    // Mock the scroll position
+                    Object.defineProperty(mockDocument.documentElement, 'scrollTop', { value: y, writable: true });
+                });
+
+                // Scroll to a specific position
+                window.scrollTo(0, 150);
+                window.dispatchEvent(new Event('scroll'));
+                fixture.detectChanges();
+
+                (component as any)._onIntroScroll(new Event('scroll'));
+
+                expectToBe(navLink1.classList.contains('active'), true);
+                expectToBe(navLink2.classList.contains('active'), false);
+            });
+
+            it('... should update nav link classes based on scroll position (window.scrollY)', () => {
+                // Spy on window.scrollTo
+                spyOn(window, 'scrollTo').and.callFake((...args: any[]) => {
+                    const y: number = args.length === 1 && typeof args[0] === 'object' ? args[0].top : args[1];
+                    // Mock the scroll position
+                    Object.defineProperty(window, 'scrollY', { value: y, writable: true });
+                });
+
+                // Scroll to a specific position
+                window.scrollTo(0, 150);
+                window.dispatchEvent(new Event('scroll'));
+                fixture.detectChanges();
+
+                (component as any)._onIntroScroll(new Event('scroll'));
+
+                expectToBe(navLink1.classList.contains('active'), true);
+                expectToBe(navLink2.classList.contains('active'), false);
+            });
+
+            afterEach(() => {
+                // Clean up the DOM
+                while (intro.firstChild) {
+                    intro.removeChild(intro.firstChild);
+                }
+                mockDocument.body.removeChild(intro);
             });
         });
 
@@ -1074,7 +1546,7 @@ fdescribe('IntroComponent (DONE)', () => {
                     const expectedNavigationExtras = { fragment: '' };
 
                     (component as any)._navigateWithComplexId(undefined, expectedTargetRoute, expectedNavigationExtras);
-                    detectChangesOnPush(fixture);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         undefined,
@@ -1093,7 +1565,7 @@ fdescribe('IntroComponent (DONE)', () => {
                     const expectedNavigationExtras = { fragment: '' };
 
                     (component as any)._navigateWithComplexId(null, expectedTargetRoute, expectedNavigationExtras);
-                    detectChangesOnPush(fixture);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [null, expectedTargetRoute, expectedNavigationExtras]);
                     expectSpyCall(navigationSpy, 1, [
@@ -1108,7 +1580,7 @@ fdescribe('IntroComponent (DONE)', () => {
                     const expectedNavigationExtras = { fragment: '' };
 
                     (component as any)._navigateWithComplexId('', expectedTargetRoute, expectedNavigationExtras);
-                    detectChangesOnPush(fixture);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, ['', expectedTargetRoute, expectedNavigationExtras]);
                     expectSpyCall(navigationSpy, 1, [
@@ -1127,7 +1599,7 @@ fdescribe('IntroComponent (DONE)', () => {
                         expectedTargetRoute,
                         expectedNavigationExtras
                     );
-                    detectChangesOnPush(fixture);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedEditionComplex.complexId.route.replace('/', ''),
@@ -1152,7 +1624,7 @@ fdescribe('IntroComponent (DONE)', () => {
                         expectedTargetRoute,
                         expectedNavigationExtras
                     );
-                    detectChangesOnPush(fixture);
+                    fixture.detectChanges();
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         expectedNextComplexId,
@@ -1178,7 +1650,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -1201,7 +1673,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -1226,7 +1698,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -1249,7 +1721,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -1274,7 +1746,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -1297,7 +1769,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
@@ -1325,7 +1797,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -1349,7 +1821,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -1375,7 +1847,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -1399,7 +1871,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -1425,7 +1897,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -1449,7 +1921,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedComplexId,
@@ -1476,7 +1948,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -1499,7 +1971,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -1524,7 +1996,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -1547,7 +2019,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -1572,7 +2044,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,
@@ -1595,7 +2067,7 @@ fdescribe('IntroComponent (DONE)', () => {
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
-                        detectChangesOnPush(fixture);
+                        fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             expectedNextComplexId,

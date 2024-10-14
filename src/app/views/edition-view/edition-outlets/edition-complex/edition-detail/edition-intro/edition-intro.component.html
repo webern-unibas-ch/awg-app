@@ -11,7 +11,7 @@
                     <awg-edition-intro-content
                         class="col-12 col-xl-10"
                         [introBlockContent]="editionIntroData?.intro[currentLanguage]?.content"
-                        [notesLabel]="notesLables.get(currentLanguage)"
+                        [notesLabel]="notesLabels.get(currentLanguage)"
                         (navigateToIntroFragmentRequest)="onIntroFragmentNavigate($event)"
                         (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
                         (openModalRequest)="onModalOpen($event)"
@@ -20,7 +20,7 @@
                     <awg-edition-intro-nav
                         class="col-12 col-xl-2 d-none d-xl-block"
                         [introBlockContent]="editionIntroData?.intro[currentLanguage]?.content"
-                        [notesLabel]="notesLables.get(currentLanguage)"
+                        [notesLabel]="notesLabels.get(currentLanguage)"
                         [currentLanguage]="currentLanguage"
                         (languageChangeRequest)="onLanguageSet($event)"></awg-edition-intro-nav>
                 } @else {

@@ -237,27 +237,60 @@ export const mockEditionData = {
     mockIntroData: {
         intro: [
             {
-                id: 'op12',
+                id: 'test_intro',
                 content: [
-                    "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: 'testComplex1', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.",
-                    "In <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test Sk1</strong></a> neu skizziert.<sup id='footnote-80-backlink' class='footnote-link'><a (click)=\"ref.navigateToIntroFragment({complexId: 'testComplex1', fragmentId: 'footnote-80'})\">80</a></sup>",
-                ],
-                footnotes: [
-                    "<span id='footnote-80' class='footnote'><a class='footnote-backlink' (click)=\"ref.navigateToIntroFragment({complexId: 'testComplex1', fragmentId: 'footnote-80-backlink'})\">80</a> | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).</span>",
+                    {
+                        blockId: 'test_block_id_1',
+                        blockHeader: 'Test block header 1',
+                        blockContent: [
+                            "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: 'testComplex1', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.",
+                            "In <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test Sk1</strong></a> neu skizziert.<sup id='note-80-backlink' class='note-link'><a (click)=\"ref.navigateToIntroFragment({complexId: 'testComplex1', fragmentId: 'note-80'})\">80</a></sup>",
+                        ],
+                        blockNotes: [
+                            "<span id='note-80' class='note'><a class='note-backlink' (click)=\"ref.navigateToIntroFragment({complexId: 'testComplex1', fragmentId: 'note-80-backlink'})\">80</a> | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).</span>",
+                        ],
+                    },
+                    {
+                        blockId: 'test_block_id_2',
+                        blockHeader: 'Test block header 2',
+                        blockContent: ['Test block content 2'],
+                        blockNotes: ['Test block notes 2'],
+                    },
                 ],
             },
         ],
     },
 
     /**
-     * Test helper data constant: mockIntroEmptyData.
+     * Test helper data constant: mockIntroFilteredData.
      *
-     * It provides a mocked intro data object with empty content.
+     * It provides a mocked intro data object with filtered content.
      */
-    mockIntroEmptyData: {
+    mockIntroFilteredData: {
         intro: [
             {
-                id: 'op12',
+                id: 'test_intro',
+                content: [
+                    {
+                        blockId: 'test_block_id_2',
+                        blockHeader: 'Test block header 2',
+                        blockContent: ['Test block content 2'],
+                        blockNotes: ['Test block notes 2'],
+                    },
+                ],
+            },
+        ],
+    },
+
+    /**
+     * Test helper data constant: mockIntroComplexData.
+     *
+     * It provides a mocked intro data object of an edition complex.
+     */
+    mockIntroComplexData: {
+        intro: [
+            {
+                id: 'test_block_id_2',
                 content: [],
             },
         ],

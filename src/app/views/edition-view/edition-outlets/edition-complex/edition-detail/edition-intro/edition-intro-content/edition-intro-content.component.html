@@ -1,31 +1,39 @@
-<div class="awg-edition-intro-content">
-    @for (introBlock of introBlockContent; track $index) {
-        <section class="awg-edition-intro-section" [id]="introBlock.blockId">
-            @if (introBlock.blockHeader) {
-                <div class="awg-edition-intro-para">
-                    <p class="heading" [innerHTML]="introBlock.blockHeader"></p>
-                </div>
-            }
-            @if (introBlock.blockContent.length > 0) {
-                @for (blockContent of introBlock.blockContent; track $index) {
-                    <div class="awg-edition-intro-para" [compile-html]="blockContent" [compile-html-ref]="this"></div>
+@if (introBlockContent) {
+    <div class="awg-edition-intro-content">
+        @for (introBlock of introBlockContent; track $index) {
+            <section class="awg-edition-intro-section" [id]="introBlock.blockId">
+                @if (introBlock.blockHeader) {
+                    <div class="awg-edition-intro-block">
+                        <p class="heading" [innerHTML]="introBlock.blockHeader"></p>
+                    </div>
                 }
-            }
-        </section>
-    }
-    <section class="awg-edition-intro-section mt-5" id="notes">
-        <hr />
-        <h5>{{ notesLabel }}</h5>
-        <div class="awg-edition-intro-notes">
-            @for (introBlock of introBlockContent; track $index) {
-                @if (introBlock.blockNotes.length > 0) {
-                    @for (note of introBlock.blockNotes; track $index) {
-                        <small
-                            ><div class="awg-edition-intro-note" [compile-html]="note" [compile-html-ref]="this"></div
-                        ></small>
+                @if (introBlock.blockContent.length > 0) {
+                    @for (blockContent of introBlock.blockContent; track $index) {
+                        <div
+                            class="awg-edition-intro-block"
+                            [compile-html]="blockContent"
+                            [compile-html-ref]="this"></div>
                     }
                 }
-            }
-        </div>
-    </section>
-</div>
+            </section>
+        }
+        <section class="awg-edition-intro-section mt-5" id="notes">
+            <hr />
+            <h5>{{ notesLabel }}</h5>
+            <div class="awg-edition-intro-notes">
+                @for (introBlock of introBlockContent; track $index) {
+                    @if (introBlock.blockNotes.length > 0) {
+                        @for (note of introBlock.blockNotes; track $index) {
+                            <small
+                                ><div
+                                    class="awg-edition-intro-note"
+                                    [compile-html]="note"
+                                    [compile-html-ref]="this"></div
+                            ></small>
+                        }
+                    }
+                }
+            </div>
+        </section>
+    </div>
+}

@@ -1,5 +1,5 @@
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { lastValueFrom, Observable, of as observableOf, ReplaySubject } from 'rxjs';
 import Spy = jasmine.Spy;
@@ -229,7 +229,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
                 expect(component.setLanguage).toBeDefined();
             });
 
-            it('... should trigger on event from LanguageSwitcherComponent', fakeAsync(() => {
+            it('... should trigger on event from LanguageSwitcherComponent', () => {
                 const switcherDes = getAndExpectDebugElementByDirective(compDe, LanguageSwitcherStubComponent, 1, 1);
                 const switcherCmp = switcherDes[0].injector.get(
                     LanguageSwitcherStubComponent
@@ -244,7 +244,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
                 switcherCmp.languageChangeRequest.emit(1);
 
                 expectSpyCall(setLanguageSpy, 2, 1);
-            }));
+            });
 
             it('... should set the currentLanguage to 0 when called with 0', () => {
                 component.setLanguage(0);
