@@ -1260,7 +1260,341 @@
                 "measureNumbers": [],
                 "instrumentations": [],
                 "annotations": [],
-                "contents": []
+                "contents": [],
+                "corrections": [
+                    {
+                        "id": "source_GH_corr",
+                        "label": "Korrekturen in <strong>G<sup>H</sup></strong>",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Ihr tratet zu dem Herde“ M 142: Textfassung 2."
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "vor 1",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>Sehr </em>hinzugefügt vor <em>Langsam (</em>{{ref.getGlyph('[Viertelnote]')}}<em>)</em> mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "vor 1",
+                                        "system": "Klav.",
+                                        "position": "Taktanfang",
+                                        "comment": "Taktartvorzeichnung <em>2/4 </em>hinzugefügt mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "vor 1",
+                                        "system": "Klav.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Crescendogabel<em> </em>hinzugefügt mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Decrescendogabel<em> </em>hinzugefügt mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav.",
+                                        "position": "Taktanfang",
+                                        "comment": "Taktartvorzeichnung <em>3/4</em> hinzugefügt mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "2 <br /> bis 3",
+                                        "system": "Klav. u",
+                                        "position": "letzte Note <br /> 2/8",
+                                        "comment": "Unterstimmenschicht: Bogen<em> </em>hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "3 <br /> bis 5",
+                                        "system": "Klav. u.",
+                                        "position": "1/4 <br /> 6. Note",
+                                        "comment": "Oberstimmenschicht: Bogen (siehe Textfassung 1) gestrichen mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav.",
+                                        "position": "3.–5. Note",
+                                        "comment": "Bögen über und unter dem System<em> </em>hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav. u.",
+                                        "position": "letzte Note",
+                                        "comment": "{{ref.getGlyph('[a]')}} zu A/c<em> </em>hinzugefügt mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges., Klav.",
+                                        "position": "Taktanfang",
+                                        "comment": "Taktartvorzeichnung <em>2/4</em> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav. u.",
+                                        "position": "2. Note",
+                                        "comment": "{{ref.getGlyph('[mf]')}} hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav. u.",
+                                        "position": "2.–3. Note",
+                                        "comment": "Bögen über und unter dem System<em> </em>hinzugefügt mit roter Tinte.  <br /> Decrescendogabel<em> </em>hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "4 <br /> bis 5",
+                                        "system": "Klav. u.",
+                                        "position": "2/4 <br /> 2/8",
+                                        "comment": "Notation wie Textfassung 1 geändert zu Textfassung 2 mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "4 <br /> bis 5",
+                                        "system": "Ges.",
+                                        "position": "4/8 <br /> 1/8",
+                                        "comment": "Crescendogabel<em> </em>hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges., Klav.",
+                                        "position": "Taktanfang",
+                                        "comment": "Taktartvorzeichnung <em>4/4 </em>hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. u.",
+                                        "position": "1.–4. Note",
+                                        "comment": "Oberstimmenschicht: Decrescendogabel<em> </em>hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. u.",
+                                        "position": "3.–4. Note",
+                                        "comment": "Unterstimmenschicht: Crescendogabel<em> </em>hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. u.",
+                                        "position": "2.–6. Note",
+                                        "comment": "Unterstimmenschicht: Bogen<em> </em>hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. u.",
+                                        "position": "3/4 bis 6. Note",
+                                        "comment": "Oberstimmenschicht: Ligaturbögen zu 6. Note gestrichen,  <br /> 6. Note gestrichen und korrigiert zu Achtelpause mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. u.",
+                                        "position": "3/4 bis 6. Note",
+                                        "comment": "Unterstimmenschicht: Decrescendogabel<em> </em>hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. u.",
+                                        "position": "6. Note",
+                                        "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu A<em> </em>hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "5 <br /> bis 8",
+                                        "system": "Klav.",
+                                        "position": "vorletzte Note <br /> 1/4",
+                                        "comment": "Bogen (siehe Textfassung 1) in T. 6–8 gestrichen mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "Taktartvorzeichnung <em>2/4</em> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>bewegter</em> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav.",
+                                        "position": "1/4",
+                                        "comment": "Arpeggioschlangen hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. o.",
+                                        "position": "1/4",
+                                        "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "Taktartvorzeichnung <em>3/4</em> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. o.",
+                                        "position": "1/4",
+                                        "comment": "{{ref.getGlyph('[a]')}} zu c<sup>2</sup> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. u.",
+                                        "position": "2/4",
+                                        "comment": "{{ref.getGlyph('[a]')}} zu G/c hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "{{ref.getGlyph('[a]')}} zu c<sup>2</sup> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "Taktartvorzeichnung <em>2/4</em> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. u.",
+                                        "position": "1/4",
+                                        "comment": "{{ref.getGlyph('[a]')}} zu G/c hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "8 <br /> bis 12",
+                                        "system": "Klav. o.",
+                                        "position": "2/4 <br /> 1/8",
+                                        "comment": "Bogen (siehe Textfassung 1) gestrichen in T. 9–11."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav.",
+                                        "position": "Taktanfang",
+                                        "comment": "Taktartvorzeichnung <em>3/4</em> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav. u.",
+                                        "position": "2/4",
+                                        "comment": "<em>express.</em> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. o.",
+                                        "position": "1/4",
+                                        "comment": "<em>express.</em> hinzugefügt mit roter Tinte. <br /> Arpeggioschlange hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. o.",
+                                        "position": "1–2/4",
+                                        "comment": "Crescendogabel hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. o.",
+                                        "position": "2/4",
+                                        "comment": "Arpeggioschlange hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>Tempo I.</em> über Akkolade hinzugefügt mit roter Tinte. Über Klav. o. <em>I.</em> nach <em>tempo</em> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav. o.",
+                                        "position": "1/8–4/16",
+                                        "comment": "Fähnchen (siehe Textfassung 1) überschrieben zu Balken mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav. o.",
+                                        "position": "3–4/8",
+                                        "comment": "Oberstimmenschicht: Ligatur aus zwei zusammengebalkten Achtelnoten a<sup>1</sup> (siehe Textfassung 1) geändert zu Viertelnote a<sup>1</sup>. Unterstimmenschicht: Achtelpause zu 3/8 hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav. o.",
+                                        "position": "(4–5/8)",
+                                        "comment": "Oberstimmenschicht: Decrescendogabel hinzugefügt mit roter Tinte. Unterstimmenschicht: Ligatur aus 2 Achtelnoten h/d<sup>1</sup> (siehe Textfassung 1) geändert zu Viertelnote h/d<sup>1</sup> mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav. o.",
+                                        "position": "6/8",
+                                        "comment": "Unterstimmenschicht: Achtelpause hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "12 <br /> bis 13",
+                                        "system": "Ges.",
+                                        "position": "letzte Note <br /> 3/8",
+                                        "comment": "Bogen von T. 12 1. Note (siehe Textfassung 1) geändert zu Bogen von T. 12 letzte Note mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>sehr langsam</em> geändert zu <em>sehr ruhig</em> mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav. o.",
+                                        "position": "",
+                                        "comment": "Notation wie Textfassung 1 geändert zu Textfassung 2 mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "14 <br /> bis 15",
+                                        "system": "",
+                                        "position": "Taktanfang <br /> Taktende",
+                                        "comment": "<em>rit. - - -</em> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav.",
+                                        "position": "Taktanfang",
+                                        "comment": "Taktartvorzeichnung <em>2/4</em> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav. o",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[b]')}} zu b<sup>1</sup>, {{ref.getGlyph('[a]')}} zu h/f<sup>1</sup> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note",
+                                        "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav.",
+                                        "position": "(3/8)",
+                                        "comment": "<em>Ped.</em> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Klav.",
+                                        "position": "Taktanfang",
+                                        "comment": "Taktartvorzeichnung <em>3/4</em> hinzugefügt mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Klav. u.",
+                                        "position": "1.–4. Note",
+                                        "comment": "1.–2. Note auf Rasur. 3.–4. Note: D<sub>1</sub> gestrichen und geändert zu H mit roter Tinte. Ante correcturam: wie Textfassung 1."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
             }
         },
         {
