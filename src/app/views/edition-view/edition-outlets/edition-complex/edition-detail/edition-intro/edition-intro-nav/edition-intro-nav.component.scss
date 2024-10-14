@@ -1,16 +1,18 @@
-.awg-edition-intro-nav .nav {
+.awg-edition-intro-nav {
     position: sticky;
     top: 0;
 
-    .nav-item {
-        text-align: end;
+    .nav {
+        .nav-item {
+            text-align: end;
 
-        a.active {
-            color: #000;
-        }
+            a.active {
+                color: #000;
+            }
 
-        .nav-link {
-            padding-right: 0;
+            .nav-link {
+                padding-right: 0;
+            }
         }
     }
 }
