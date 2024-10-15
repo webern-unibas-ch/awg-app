@@ -1276,7 +1276,7 @@
                                         "measure": "vor 1",
                                         "system": "",
                                         "position": "Taktanfang",
-                                        "comment": "<em>Sehr </em>hinzugefügt vor <em>Langsam (</em>{{ref.getGlyph('[Viertelnote]')}}<em>)</em> mit schwarzer Tinte."
+                                        "comment": "<em>Sehr</em> hinzugefügt vor <em>Langsam (</em>{{ref.getGlyph('[Viertelnote]')}}<em>)</em> mit schwarzer Tinte."
                                     },
                                     {
                                         "measure": "vor 1",
