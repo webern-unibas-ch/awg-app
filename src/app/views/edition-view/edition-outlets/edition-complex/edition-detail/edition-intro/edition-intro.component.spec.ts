@@ -63,14 +63,6 @@ class EditionIntroContentStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-edition-intro-empty', template: '' })
-class EditionIntroEmptyStubComponent {
-    @Input()
-    editionComplex: EditionComplex;
-    @Input()
-    editionLabel: string;
-}
-
 @Component({ selector: 'awg-edition-intro-nav', template: '' })
 class EditionIntroNavStubComponent {
     @Input()
@@ -80,6 +72,13 @@ class EditionIntroNavStubComponent {
     @Input()
     currentLanguage: number;
     @Output() languageChangeRequest = new EventEmitter<number>();
+}
+@Component({ selector: 'awg-edition-intro-placeholder', template: '' })
+class EditionIntroPlaceholderStubComponent {
+    @Input()
+    editionComplex: EditionComplex;
+    @Input()
+    editionLabel: string;
 }
 
 @Component({ selector: 'awg-error-alert', template: '' })
@@ -183,7 +182,7 @@ describe('IntroComponent (DONE)', () => {
             declarations: [
                 EditionIntroComponent,
                 EditionIntroContentStubComponent,
-                EditionIntroEmptyStubComponent,
+                EditionIntroPlaceholderStubComponent,
                 EditionIntroNavStubComponent,
                 ErrorAlertStubComponent,
                 ModalStubComponent,
@@ -331,7 +330,7 @@ describe('IntroComponent (DONE)', () => {
             it('... should not contain an edition intro empty component (stubbed)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
-                getAndExpectDebugElementByDirective(divDes[0], EditionIntroEmptyStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], EditionIntroPlaceholderStubComponent, 0, 0);
             });
 
             it('... should not contain an error alert component (stubbed)', () => {
@@ -430,32 +429,32 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... if intro data is empty', () => {
-                it('... should contain one EditionIntroEmptyComponent (stubbed)', waitForAsync(() => {
+                it('... should contain one EditionIntroPlaceholderComponent (stubbed)', waitForAsync(() => {
                     // Simulate the parent setting an empty content array
                     component.editionIntroData$ = observableOf(expectedEditionIntroComplexData);
                     fixture.detectChanges();
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-                    getAndExpectDebugElementByDirective(divDes[0], EditionIntroEmptyStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], EditionIntroPlaceholderStubComponent, 1, 1);
                 }));
 
-                it('... should pass down `editionComplex` and `editionLabel` to EditionIntroEmptyComponent', waitForAsync(() => {
+                it('... should pass down `editionComplex` and `editionLabel` to EditionIntroPlaceholderComponent', waitForAsync(() => {
                     // Simulate the parent setting an empty content array
                     component.editionIntroData$ = observableOf(expectedEditionIntroComplexData);
                     fixture.detectChanges();
 
-                    const editionIntroEmptyDes = getAndExpectDebugElementByDirective(
+                    const editionIntroPlaceholderDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionIntroEmptyStubComponent,
+                        EditionIntroPlaceholderStubComponent,
                         1,
                         1
                     );
-                    const editionIntroEmptyCmp = editionIntroEmptyDes[0].injector.get(
-                        EditionIntroEmptyStubComponent
-                    ) as EditionIntroEmptyStubComponent;
+                    const editionIntroPlaceholderCmp = editionIntroPlaceholderDes[0].injector.get(
+                        EditionIntroPlaceholderStubComponent
+                    ) as EditionIntroPlaceholderStubComponent;
 
-                    expectToEqual(editionIntroEmptyCmp.editionComplex, expectedEditionComplex);
-                    expectToEqual(editionIntroEmptyCmp.editionLabel, expectedEditionRouteConstants.EDITION.short);
+                    expectToEqual(editionIntroPlaceholderCmp.editionComplex, expectedEditionComplex);
+                    expectToEqual(editionIntroPlaceholderCmp.editionLabel, expectedEditionRouteConstants.EDITION.short);
                 }));
             });
 

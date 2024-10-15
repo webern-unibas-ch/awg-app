@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@awg-shared/shared.module';
 
 import { EditionIntroContentComponent } from './edition-intro-content';
-import { EditionIntroEmptyComponent } from './edition-intro-empty';
 import { EditionIntroNavComponent } from './edition-intro-nav';
+import { EditionIntroPlaceholderComponent } from './edition-intro-placeholder';
 
 import { EditionIntroRoutingModule, routedEditionIntroComponents } from './edition-intro-routing.module';
 
@@ -19,8 +19,8 @@ import { EditionIntroRoutingModule, routedEditionIntroComponents } from './editi
     imports: [SharedModule, EditionIntroRoutingModule],
     declarations: [
         EditionIntroContentComponent,
-        EditionIntroEmptyComponent,
         EditionIntroNavComponent,
+        EditionIntroPlaceholderComponent,
         routedEditionIntroComponents,
     ],
 })

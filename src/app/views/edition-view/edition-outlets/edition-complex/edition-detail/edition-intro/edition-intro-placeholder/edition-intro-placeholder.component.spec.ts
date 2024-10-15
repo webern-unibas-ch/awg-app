@@ -8,11 +8,11 @@ import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testi
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionComplexesService } from '@awg-views/edition-view/services';
 
-import { EditionIntroEmptyComponent } from './edition-intro-empty.component';
+import { EditionIntroPlaceholderComponent } from './edition-intro-placeholder.component';
 
-describe('EditionIntroEmptyComponent (DONE)', () => {
-    let component: EditionIntroEmptyComponent;
-    let fixture: ComponentFixture<EditionIntroEmptyComponent>;
+describe('EditionIntroPlaceholderComponent (DONE)', () => {
+    let component: EditionIntroPlaceholderComponent;
+    let fixture: ComponentFixture<EditionIntroPlaceholderComponent>;
     let compDe: DebugElement;
 
     let mockDocument: Document;
@@ -26,10 +26,10 @@ describe('EditionIntroEmptyComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [EditionIntroEmptyComponent],
+            declarations: [EditionIntroPlaceholderComponent],
         }).compileComponents();
 
-        fixture = TestBed.createComponent(EditionIntroEmptyComponent);
+        fixture = TestBed.createComponent(EditionIntroPlaceholderComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -58,12 +58,12 @@ describe('EditionIntroEmptyComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain a `div.awg-edition-intro-empty`', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-empty', 1, 1);
+            it('... should contain a `div.awg-edition-intro-placeholder`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-placeholder', 1, 1);
             });
 
             it('... should contain a small, text-muted paragraph in div', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-empty', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-placeholder', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                 const pEl = pDes[0].nativeElement;
 
@@ -93,7 +93,7 @@ describe('EditionIntroEmptyComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should display small, text-muted placeholder in paragraph', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-empty', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-placeholder', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                 const pEl = pDes[0].nativeElement;
 

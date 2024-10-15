@@ -24,10 +24,10 @@
                         [currentLanguage]="currentLanguage"
                         (languageChangeRequest)="onLanguageSet($event)"></awg-edition-intro-nav>
                 } @else {
-                    <awg-edition-intro-empty
+                    <awg-edition-intro-placeholder
                         class="col-12"
                         [editionComplex]="editionComplex"
-                        [editionLabel]="editionRouteConstants.EDITION.short"></awg-edition-intro-empty>
+                        [editionLabel]="editionRouteConstants.EDITION.short"></awg-edition-intro-placeholder>
                 }
             </div>
         </div>
