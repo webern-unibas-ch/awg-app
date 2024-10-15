@@ -1324,7 +1324,7 @@
                                         "measure": "3",
                                         "system": "Klav. u.",
                                         "position": "letzte Note",
-                                        "comment": "{{ref.getGlyph('[a]')}} zu A/c<em> </em>hinzugefügt mit schwarzer Tinte."
+                                        "comment": "{{ref.getGlyph('[a]')}} zu A/c hinzugefügt mit schwarzer Tinte."
                                     },
                                     {
                                         "measure": "4",
