@@ -17,7 +17,7 @@ import { mockEditionData } from '@testing/mock-data';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
 import { PrefaceList } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionPrefaceComponent } from './edition-preface.component';
 
@@ -36,11 +36,11 @@ describe('EditionPrefaceComponent (DONE)', () => {
 
     let getGlyphSpy: Spy;
     let setLanguageSpy: Spy;
-    let editionServiceUpdateIsPrefaceViewSpy: Spy;
-    let editionServiceClearIsPrefaceViewSpy: Spy;
     let editionDataServiceGetPrefaceDataSpy: Spy;
+    let editionStateServiceUpdateIsPrefaceViewSpy: Spy;
+    let editionStateServiceClearIsPrefaceViewSpy: Spy;
 
-    let mockEditionService: Partial<EditionService>;
+    let mockEditionStateService: Partial<EditionStateService>;
     let mockEditionDataService: Partial<EditionDataService>;
     let mockIsPrefaceViewSubject: ReplaySubject<boolean>;
 
@@ -50,7 +50,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
     beforeEach(async () => {
         mockIsPrefaceViewSubject = new ReplaySubject<boolean>(1);
 
-        mockEditionService = {
+        mockEditionStateService = {
             updateIsPrefaceView: (isView: boolean): void => mockIsPrefaceViewSubject.next(isView),
             clearIsPrefaceView: (): void => mockIsPrefaceViewSubject.next(null),
         };
@@ -62,8 +62,8 @@ describe('EditionPrefaceComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             declarations: [CompileHtmlComponent, EditionPrefaceComponent, LanguageSwitcherStubComponent],
             providers: [
-                { provide: EditionService, useValue: mockEditionService },
                 { provide: EditionDataService, useValue: mockEditionDataService },
+                { provide: EditionStateService, useValue: mockEditionStateService },
             ],
         }).compileComponents();
     });
@@ -73,7 +73,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        mockEditionService = TestBed.inject(EditionService);
+        mockEditionStateService = TestBed.inject(EditionStateService);
         mockEditionDataService = TestBed.inject(EditionDataService);
 
         // Test data
@@ -85,9 +85,15 @@ describe('EditionPrefaceComponent (DONE)', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         getGlyphSpy = spyOn(component, 'getGlyph').and.callThrough();
         setLanguageSpy = spyOn(component, 'setLanguage').and.callThrough();
-        editionServiceUpdateIsPrefaceViewSpy = spyOn(mockEditionService, 'updateIsPrefaceView').and.callThrough();
-        editionServiceClearIsPrefaceViewSpy = spyOn(mockEditionService, 'clearIsPrefaceView').and.callThrough();
         editionDataServiceGetPrefaceDataSpy = spyOn(mockEditionDataService, 'getEditionPrefaceData').and.callThrough();
+        editionStateServiceUpdateIsPrefaceViewSpy = spyOn(
+            mockEditionStateService,
+            'updateIsPrefaceView'
+        ).and.callThrough();
+        editionStateServiceClearIsPrefaceViewSpy = spyOn(
+            mockEditionStateService,
+            'clearIsPrefaceView'
+        ).and.callThrough();
     });
 
     it('... should create', () => {
@@ -111,8 +117,8 @@ describe('EditionPrefaceComponent (DONE)', () => {
             expectToEqual(component.ref, component);
         });
 
-        it('... should not have called EditionService', () => {
-            expectSpyCall(editionServiceUpdateIsPrefaceViewSpy, 0);
+        it('... should not have called EditionStateService', () => {
+            expectSpyCall(editionStateServiceUpdateIsPrefaceViewSpy, 0);
         });
 
         it('... should not have called EditionDataService', () => {
@@ -136,8 +142,8 @@ describe('EditionPrefaceComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have updated IsPrefaceViewFlag (via EditionService)', () => {
-            expectSpyCall(editionServiceUpdateIsPrefaceViewSpy, 1, true);
+        it('... should have updated IsPrefaceViewFlag (via EditionStateService)', () => {
+            expectSpyCall(editionStateServiceUpdateIsPrefaceViewSpy, 1, true);
         });
 
         it('... should have called EditionDataService', () => {
@@ -260,10 +266,10 @@ describe('EditionPrefaceComponent (DONE)', () => {
         });
 
         describe('#ngOnDestroy()', () => {
-            it('... should have cleared isPrefaceView$ on destroy (via EditionService)', () => {
+            it('... should have cleared isPrefaceView$ on destroy (via EditionStateService)', () => {
                 component.ngOnDestroy();
 
-                expectSpyCall(editionServiceClearIsPrefaceViewSpy, 1);
+                expectSpyCall(editionStateServiceClearIsPrefaceViewSpy, 1);
             });
         });
     });

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { EditionRowTablesList } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionRowTables component.
@@ -26,13 +26,13 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
     /**
      * Constructor of the EditionRowTablesComponent.
      *
-     * It declares private instances of the EditionService and EditionDataService.
+     * It declares private instances of the EditionStateService and EditionDataService.
      *
-     * @param {EditionService} editionService Instance of the EditionService.
+     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
      * @param {EditionDataService} editionDataService Instance of the EditionDataService.
      */
     constructor(
-        private editionService: EditionService,
+        private editionStateService: EditionStateService,
         private editionDataService: EditionDataService
     ) {}
 
@@ -43,7 +43,7 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
      * when initializing the component.
      */
     ngOnInit(): void {
-        this.editionService.updateIsRowTableView(true);
+        this.editionStateService.updateIsRowTableView(true);
         this.rowTablesData$ = this.editionDataService.getEditionRowTablesData();
     }
 
@@ -56,6 +56,6 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        this.editionService.clearIsRowTableView();
+        this.editionStateService.clearIsRowTableView();
     }
 }

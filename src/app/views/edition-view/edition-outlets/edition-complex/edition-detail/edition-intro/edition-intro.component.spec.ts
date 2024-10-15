@@ -41,7 +41,7 @@ import {
     EditionComplexesService,
     EditionDataService,
     EditionOutlineService,
-    EditionService,
+    EditionStateService,
 } from '@awg-views/edition-view/services';
 
 import { EditionIntroComponent } from './edition-intro.component';
@@ -105,11 +105,11 @@ describe('IntroComponent (DONE)', () => {
 
     let editionDataServiceGetEditionSectionIntroDataSpy: Spy;
     let editionDataServiceGetEditionComplexIntroDataSpy: Spy;
-    let editionServiceGetSelectedEditionComplexSpy: Spy;
-    let editionServiceGetSelectedEditionSectionSpy: Spy;
-    let editionServiceGetSelectedEditionSeriesSpy: Spy;
-    let editionServiceUpdateIsIntroViewSpy: Spy;
-    let editionServiceClearIsIntroViewSpy: Spy;
+    let editionStateServiceGetSelectedEditionComplexSpy: Spy;
+    let editionStateServiceGetSelectedEditionSectionSpy: Spy;
+    let editionStateServiceGetSelectedEditionSeriesSpy: Spy;
+    let editionStateServiceUpdateIsIntroViewSpy: Spy;
+    let editionStateServiceClearIsIntroViewSpy: Spy;
 
     let getEditionIntroDataSpy: Spy;
     let navigateWithComplexIdSpy: Spy;
@@ -124,9 +124,9 @@ describe('IntroComponent (DONE)', () => {
     let fetchAndFilterIntroDataSpy: Spy;
 
     let mockEditionDataService: Partial<EditionDataService>;
-    let mockEditionService: Partial<EditionService>;
+    let mockEditionStateService: Partial<EditionStateService>;
     let editionDataService: Partial<EditionDataService>;
-    let editionService: Partial<EditionService>;
+    let editionStateService: Partial<EditionStateService>;
     let mockIsIntroViewSubject: ReplaySubject<boolean>;
 
     let expectedCurrentLaguage: number;
@@ -163,7 +163,7 @@ describe('IntroComponent (DONE)', () => {
         // Mock services
         mockIsIntroViewSubject = new ReplaySubject<boolean>(1);
 
-        mockEditionService = {
+        mockEditionStateService = {
             getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(null),
             getSelectedEditionSeries: (): Observable<EditionOutlineSeries> => observableOf(null),
             getSelectedEditionSection: (): Observable<EditionOutlineSection> => observableOf(null),
@@ -190,7 +190,7 @@ describe('IntroComponent (DONE)', () => {
             ],
             providers: [
                 { provide: EditionDataService, useValue: mockEditionDataService },
-                { provide: EditionService, useValue: mockEditionService },
+                { provide: EditionStateService, useValue: mockEditionStateService },
                 { provide: Router, useValue: mockRouter },
             ],
         }).compileComponents();
@@ -205,7 +205,7 @@ describe('IntroComponent (DONE)', () => {
 
         // Inject services from root
         editionDataService = TestBed.inject(EditionDataService);
-        editionService = TestBed.inject(EditionService);
+        editionStateService = TestBed.inject(EditionStateService);
 
         // Test data
         expectedCurrentLaguage = 0;
@@ -256,17 +256,20 @@ describe('IntroComponent (DONE)', () => {
             editionDataService,
             'getEditionSectionIntroData'
         ).and.callThrough();
-        editionServiceGetSelectedEditionComplexSpy = spyOn(
-            editionService,
+        editionStateServiceGetSelectedEditionComplexSpy = spyOn(
+            editionStateService,
             'getSelectedEditionComplex'
         ).and.callThrough();
-        editionServiceGetSelectedEditionSeriesSpy = spyOn(editionService, 'getSelectedEditionSeries').and.callThrough();
-        editionServiceGetSelectedEditionSectionSpy = spyOn(
-            editionService,
+        editionStateServiceGetSelectedEditionSeriesSpy = spyOn(
+            editionStateService,
+            'getSelectedEditionSeries'
+        ).and.callThrough();
+        editionStateServiceGetSelectedEditionSectionSpy = spyOn(
+            editionStateService,
             'getSelectedEditionSection'
         ).and.callThrough();
-        editionServiceUpdateIsIntroViewSpy = spyOn(editionService, 'updateIsIntroView').and.callThrough();
-        editionServiceClearIsIntroViewSpy = spyOn(editionService, 'clearIsIntroView').and.callThrough();
+        editionStateServiceUpdateIsIntroViewSpy = spyOn(editionStateService, 'updateIsIntroView').and.callThrough();
+        editionStateServiceClearIsIntroViewSpy = spyOn(editionStateService, 'clearIsIntroView').and.callThrough();
     });
 
     afterAll(() => {
@@ -350,9 +353,11 @@ describe('IntroComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the services returning the observable properties
-            editionServiceGetSelectedEditionSeriesSpy.and.returnValue(observableOf(expectedSelectedEditionSeries));
-            editionServiceGetSelectedEditionSectionSpy.and.returnValue(observableOf(expectedSelectedEditionSection));
-            editionServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(expectedEditionComplex));
+            editionStateServiceGetSelectedEditionSeriesSpy.and.returnValue(observableOf(expectedSelectedEditionSeries));
+            editionStateServiceGetSelectedEditionSectionSpy.and.returnValue(
+                observableOf(expectedSelectedEditionSection)
+            );
+            editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(expectedEditionComplex));
             editionDataServiceGetEditionSectionIntroDataSpy.and.returnValue(observableOf(expectedEditionIntroData));
             editionDataServiceGetEditionComplexIntroDataSpy.and.returnValue(
                 observableOf(expectedEditionIntroComplexData)
@@ -526,38 +531,38 @@ describe('IntroComponent (DONE)', () => {
                 expect(component.getEditionIntroData).toBeDefined();
             });
 
-            it('... should trigger and update `isIntroView = true` in EditionService', () => {
-                expectSpyCall(editionServiceUpdateIsIntroViewSpy, 1, true);
+            it('... should trigger and update `isIntroView = true` in EditionStateService', () => {
+                expectSpyCall(editionStateServiceUpdateIsIntroViewSpy, 1, true);
             });
 
-            it('... should trigger `getSelectedEditionSeries()` method from EditionService', () => {
-                expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 1);
+            it('... should trigger `getSelectedEditionSeries()` method from EditionStateService', () => {
+                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 1);
 
                 component.getEditionIntroData();
 
-                expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 2);
+                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 2);
             });
 
-            it('... should trigger `getSelectedEditionSection()` method from EditionService', () => {
-                expectSpyCall(editionServiceGetSelectedEditionSectionSpy, 1);
+            it('... should trigger `getSelectedEditionSection()` method from EditionStateService', () => {
+                expectSpyCall(editionStateServiceGetSelectedEditionSectionSpy, 1);
 
                 component.getEditionIntroData();
 
-                expectSpyCall(editionServiceGetSelectedEditionSectionSpy, 2);
+                expectSpyCall(editionStateServiceGetSelectedEditionSectionSpy, 2);
             });
 
-            it('... should trigger `getSelectedEditionComplex()` method from EditionService', () => {
-                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
+            it('... should trigger `getSelectedEditionComplex()` method from EditionStateService', () => {
+                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 1);
 
                 component.getEditionIntroData();
 
-                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 2);
+                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 2);
             });
 
             describe('... without given complex', () => {
                 beforeEach(fakeAsync(() => {
                     // Simulate the services returning the observable properties
-                    editionServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
+                    editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
 
                     tick();
 
@@ -608,11 +613,11 @@ describe('IntroComponent (DONE)', () => {
                 describe('... should have editionIntroData$ = EMPTY if', () => {
                     it('... no series is given', fakeAsync(() => {
                         // Simulate the services returning the observable properties
-                        editionServiceGetSelectedEditionSeriesSpy.and.returnValue(observableOf(null));
-                        editionServiceGetSelectedEditionSectionSpy.and.returnValue(
+                        editionStateServiceGetSelectedEditionSeriesSpy.and.returnValue(observableOf(null));
+                        editionStateServiceGetSelectedEditionSectionSpy.and.returnValue(
                             observableOf(expectedSelectedEditionSection)
                         );
-                        editionServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
+                        editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
 
                         component.getEditionIntroData();
                         tick();
@@ -629,11 +634,11 @@ describe('IntroComponent (DONE)', () => {
 
                     it('... no section is given', fakeAsync(() => {
                         // Simulate the services returning the observable properties
-                        editionServiceGetSelectedEditionSeriesSpy.and.returnValue(
+                        editionStateServiceGetSelectedEditionSeriesSpy.and.returnValue(
                             observableOf(expectedSelectedEditionSeries)
                         );
-                        editionServiceGetSelectedEditionSectionSpy.and.returnValue(observableOf(null));
-                        editionServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
+                        editionStateServiceGetSelectedEditionSectionSpy.and.returnValue(observableOf(null));
+                        editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
 
                         component.getEditionIntroData();
                         tick();
@@ -650,9 +655,9 @@ describe('IntroComponent (DONE)', () => {
 
                     it('... no series and no section are given', fakeAsync(() => {
                         // Simulate the services returning the observable properties
-                        editionServiceGetSelectedEditionSeriesSpy.and.returnValue(observableOf(null));
-                        editionServiceGetSelectedEditionSectionSpy.and.returnValue(observableOf(null));
-                        editionServiceGetSelectedEditionComplexSpy.and.returnValue(
+                        editionStateServiceGetSelectedEditionSeriesSpy.and.returnValue(observableOf(null));
+                        editionStateServiceGetSelectedEditionSectionSpy.and.returnValue(observableOf(null));
+                        editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(
                             observableOf(expectedEditionComplex)
                         );
 

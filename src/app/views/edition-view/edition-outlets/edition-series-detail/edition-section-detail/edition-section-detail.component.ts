@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
-import { EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
+import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionSectionDetail component.
@@ -28,14 +28,14 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
     /**
      * Constructor of the EditionSectionDetailComponent.
      *
-     * It declares private instances of the Angular ActivatedRoute and the EditionService.
+     * It declares private instances of the Angular ActivatedRoute and the EditionStateService.
      *
      * @param {ActivatedRoute} route Instance of the ActivatedRoute.
-     * @param {EditionService} editionService Instance of the EditionService.
+     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
      */
     constructor(
         private route: ActivatedRoute,
-        private editionService: EditionService
+        private editionStateService: EditionStateService
     ) {
         // Intentionally left empty until implemented
     }
@@ -53,14 +53,15 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
     /**
      * Public method: updateSectionFromRoute.
      *
-     * It fetches the route params to get the id of the current section and updates the edition service.
+     * It fetches the route params to get the id of the current section
+     * and updates the EditionStateService.
      *
      * @returns {void} Updates the edition section.
      */
     updateSectionFromRoute(): void {
         const sectionId = this.route.snapshot.paramMap.get('id');
 
-        this.editionService
+        this.editionStateService
             .getSelectedEditionSeries()
             .pipe(
                 takeUntil(this._destroyed$),
@@ -69,7 +70,7 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
             .subscribe(series => {
                 const seriesId = series?.series?.route;
                 const selectedSection = EditionOutlineService.getEditionSectionById(seriesId, sectionId);
-                this.editionService.updateSelectedEditionSection(selectedSection);
+                this.editionStateService.updateSelectedEditionSection(selectedSection);
             });
     }
 

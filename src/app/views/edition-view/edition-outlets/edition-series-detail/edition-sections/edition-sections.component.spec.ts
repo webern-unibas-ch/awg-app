@@ -16,7 +16,7 @@ import {
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionSectionsComponent } from './edition-sections.component';
 
@@ -25,12 +25,12 @@ describe('EditionSectionsComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSectionsComponent>;
     let compDe: DebugElement;
 
-    let mockEditionService: Partial<EditionService>;
+    let mockEditionStateService: Partial<EditionStateService>;
 
     let clearSelectedSectionSpy: Spy;
     let getSeriesSpy: Spy;
-    let editionServiceClearSelectedEditionSectionSpy: Spy;
-    let editionServiceGetSelectedEditionSeriesSpy: Spy;
+    let editionStateServiceClearSelectedEditionSectionSpy: Spy;
+    let editionStateServiceGetSelectedEditionSeriesSpy: Spy;
 
     let expectedSelectedSeries: EditionOutlineSeries;
     let expectedSelectedSection: EditionOutlineSection;
@@ -41,15 +41,15 @@ describe('EditionSectionsComponent (DONE)', () => {
     });
 
     beforeEach(waitForAsync(() => {
-        // Mock edition service
-        mockEditionService = {
+        // Mock edition state service
+        mockEditionStateService = {
             getSelectedEditionSeries: (): Observable<EditionOutlineSeries> => observableOf(expectedSelectedSeries),
             clearSelectedEditionSection: (): void => {},
         };
 
         TestBed.configureTestingModule({
             declarations: [EditionSectionsComponent, RouterLinkStubDirective],
-            providers: [{ provide: EditionService, useValue: mockEditionService }],
+            providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
         }).compileComponents();
     }));
 
@@ -68,12 +68,12 @@ describe('EditionSectionsComponent (DONE)', () => {
 
         clearSelectedSectionSpy = spyOn(component, 'clearSelectedSection').and.callThrough();
         getSeriesSpy = spyOn(component, 'getSeries').and.callThrough();
-        editionServiceClearSelectedEditionSectionSpy = spyOn(
-            mockEditionService,
+        editionStateServiceClearSelectedEditionSectionSpy = spyOn(
+            mockEditionStateService,
             'clearSelectedEditionSection'
         ).and.callThrough();
-        editionServiceGetSelectedEditionSeriesSpy = spyOn(
-            mockEditionService,
+        editionStateServiceGetSelectedEditionSeriesSpy = spyOn(
+            mockEditionStateService,
             'getSelectedEditionSeries'
         ).and.callThrough();
     });
@@ -330,12 +330,12 @@ describe('EditionSectionsComponent (DONE)', () => {
                 expect(component.clearSelectedSection).toBeDefined();
             });
 
-            it('...should call `clearSelectedEditionSeries` from EditionService', () => {
-                expectSpyCall(editionServiceClearSelectedEditionSectionSpy, 1);
+            it('...should call `clearSelectedEditionSeries` from EditionStateService', () => {
+                expectSpyCall(editionStateServiceClearSelectedEditionSectionSpy, 1);
 
                 component.clearSelectedSection();
 
-                expectSpyCall(editionServiceClearSelectedEditionSectionSpy, 2);
+                expectSpyCall(editionStateServiceClearSelectedEditionSectionSpy, 2);
             });
         });
 
@@ -344,12 +344,12 @@ describe('EditionSectionsComponent (DONE)', () => {
                 expect(component.getSeries).toBeDefined();
             });
 
-            it('...should call `getSelectedEditionSeries` from EditionService', () => {
-                expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 1);
+            it('...should call `getSelectedEditionSeries` from EditionStateService', () => {
+                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 1);
 
                 component.getSeries();
 
-                expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 2);
+                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 2);
             });
 
             it('...should set `selectedSeries$`', () => {

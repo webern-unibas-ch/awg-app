@@ -16,7 +16,7 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionSeriesComponent } from './edition-series.component';
 
@@ -25,7 +25,7 @@ describe('EditionSeriesComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSeriesComponent>;
     let compDe: DebugElement;
 
-    let mockEditionService: Partial<EditionService>;
+    let mockEditionStateService: Partial<EditionStateService>;
 
     let clearSelectionsSpy: Spy;
     let getEditionOutlineSpy: Spy;
@@ -41,15 +41,15 @@ describe('EditionSeriesComponent (DONE)', () => {
     });
 
     beforeEach(waitForAsync(() => {
-        // Mock edition service
-        mockEditionService = {
+        // Mock edition state service
+        mockEditionStateService = {
             clearSelectedEditionSeries: () => {},
             clearSelectedEditionSection: () => {},
         };
 
         TestBed.configureTestingModule({
             declarations: [EditionSeriesComponent, RouterLinkStubDirective],
-            providers: [{ provide: EditionService, useValue: mockEditionService }],
+            providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
         }).compileComponents();
     }));
 
@@ -65,11 +65,11 @@ describe('EditionSeriesComponent (DONE)', () => {
         clearSelectionsSpy = spyOn(component, 'clearSelections').and.callThrough();
         getEditionOutlineSpy = spyOn(component, 'getEditionOutline').and.callThrough();
         serviceClearSelectedEditionSeriesSpy = spyOn(
-            mockEditionService,
+            mockEditionStateService,
             'clearSelectedEditionSeries'
         ).and.callThrough();
         serviceClearSelectedEditionSectionSpy = spyOn(
-            mockEditionService,
+            mockEditionStateService,
             'clearSelectedEditionSection'
         ).and.callThrough();
         serviceGetEditionOutlineSpy = spyOn(EditionOutlineService, 'getEditionOutline').and.callThrough();
@@ -80,8 +80,8 @@ describe('EditionSeriesComponent (DONE)', () => {
     });
 
     it('... injected service should use provided mockValue', () => {
-        const editionService = TestBed.inject(EditionService);
-        expectToBe(mockEditionService === editionService, true);
+        const editionStateService = TestBed.inject(EditionStateService);
+        expectToBe(mockEditionStateService === editionStateService, true);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -494,7 +494,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                 expect(component.clearSelections).toBeDefined();
             });
 
-            it('...should call `clearSelectedEditionSeries` from EditionService', () => {
+            it('...should call `clearSelectedEditionSeries` from EditionStateService', () => {
                 expectSpyCall(serviceClearSelectedEditionSectionSpy, 1);
 
                 component.clearSelections();
@@ -502,7 +502,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                 expectSpyCall(serviceClearSelectedEditionSeriesSpy, 2);
             });
 
-            it('...should call `clearSelectedEditionSection` from EditionService', () => {
+            it('...should call `clearSelectedEditionSection` from EditionStateService', () => {
                 expectSpyCall(serviceClearSelectedEditionSectionSpy, 1);
 
                 component.clearSelections();
@@ -516,7 +516,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                 expect(component.getEditionOutline).toBeDefined();
             });
 
-            it('...should call `getEditionOutline` from EditionService', () => {
+            it('...should call `getEditionOutline` from EditionStateService', () => {
                 expectSpyCall(serviceGetEditionOutlineSpy, 1);
 
                 component.getEditionOutline();

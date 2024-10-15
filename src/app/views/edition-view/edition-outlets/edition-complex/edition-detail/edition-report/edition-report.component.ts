@@ -13,7 +13,7 @@ import {
     SourceList,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionReport component.
@@ -76,12 +76,12 @@ export class EditionReportComponent implements OnInit {
      * to get the report data and a private Router instance.
      *
      * @param {EditionDataService} editionDataService Instance of the EditionDataService.
-     * @param {EditionService} editionService Instance of the EditionService.
+     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
      * @param {Router} router Instance of the Router.
      */
     constructor(
         private editionDataService: EditionDataService,
-        private editionService: EditionService,
+        private editionStateService: EditionStateService,
         private router: Router
     ) {}
 
@@ -113,22 +113,16 @@ export class EditionReportComponent implements OnInit {
      * @returns {void} Sets the editionReportData observable.
      */
     getEditionReportData(): void {
-        this.editionReportData$ = this.editionService
-            // Get current editionComplex from editionService
-            .getSelectedEditionComplex()
-            .pipe(
-                switchMap((complex: EditionComplex) => {
-                    // Set current editionComplex
-                    this.editionComplex = complex;
-                    // Get intro data from editionDataService
-                    return this.editionDataService.getEditionReportData(this.editionComplex);
-                }),
-                // Error handling
-                catchError(err => {
-                    this.errorObject = err;
-                    return EMPTY;
-                })
-            );
+        this.editionReportData$ = this.editionStateService.getSelectedEditionComplex().pipe(
+            switchMap((complex: EditionComplex) => {
+                this.editionComplex = complex;
+                return this.editionDataService.getEditionReportData(this.editionComplex);
+            }),
+            catchError(err => {
+                this.errorObject = err;
+                return EMPTY;
+            })
+        );
     }
 
     /**

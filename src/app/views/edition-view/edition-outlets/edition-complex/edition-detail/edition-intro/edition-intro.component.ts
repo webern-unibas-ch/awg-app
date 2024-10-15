@@ -8,7 +8,7 @@ import { UtilityService } from '@awg-core/services';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, IntroList } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionIntro component.
@@ -77,17 +77,17 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     /**
      * Constructor of the EditionIntroComponent.
      *
-     * It declares private instances of the EditionDataService, EditionService,
+     * It declares private instances of the EditionDataService, EditionStateService,
      * and the Angular Router; as well as a public instance of the UtilityService.
      *
      * @param {EditionDataService} editionDataService Instance of the EditionDataService.
-     * @param {EditionService} editionService Instance of the EditionService.
+     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
      * @param {Router} router Instance of the Router.
      * @param {UtilityService} utils Instance of the UtilityService.
      */
     constructor(
         private editionDataService: EditionDataService,
-        private editionService: EditionService,
+        private editionStateService: EditionStateService,
         private router: Router,
         public utils: UtilityService
     ) {
@@ -122,7 +122,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        this.editionService.clearIsIntroView();
+        this.editionStateService.clearIsIntroView();
         this.editionIntroData$ = null;
 
         this._destroyed$.next(true);
@@ -132,19 +132,19 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     /**
      * Public method: getEditionIntroData.
      *
-     * It gets the current edition complex of the edition service
+     * It gets the current edition complex from the EditionStateService
      * and the observable of the corresponding intro data
      * from the EditionDataService.
      *
      * @returns {void} Gets the current edition complex and the corresponding intro data.
      */
     getEditionIntroData(): void {
-        this.editionService.updateIsIntroView(true);
+        this.editionStateService.updateIsIntroView(true);
 
         this.editionIntroData$ = combineLatest([
-            this.editionService.getSelectedEditionSeries(),
-            this.editionService.getSelectedEditionSection(),
-            this.editionService.getSelectedEditionComplex().pipe(startWith(null)),
+            this.editionStateService.getSelectedEditionSeries(),
+            this.editionStateService.getSelectedEditionSection(),
+            this.editionStateService.getSelectedEditionComplex().pipe(startWith(null)),
         ]).pipe(
             switchMap(([series, section, complex]) => {
                 if (series && section) {

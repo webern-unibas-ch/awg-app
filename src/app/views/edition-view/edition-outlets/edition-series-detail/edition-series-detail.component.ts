@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
+import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionSeriesDetail component.
@@ -26,14 +26,14 @@ export class EditionSeriesDetailComponent implements OnInit {
     /**
      * Constructor of the EditionSeriesDetailComponent.
      *
-     * It declares private instances of the Angular ActivatedRoute and the EditionService.
+     * It declares private instances of the Angular ActivatedRoute and the EditionStateService.
      *
      * @param {ActivatedRoute} route Instance of the ActivatedRoute.
-     * @param {EditionService} editionService Instance of the EditionService.
+     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
      */
     constructor(
         private route: ActivatedRoute,
-        private editionService: EditionService
+        private editionStateService: EditionStateService
     ) {
         // Intentionally left empty until implemented
     }
@@ -51,7 +51,8 @@ export class EditionSeriesDetailComponent implements OnInit {
     /**
      * Public method: updateSeriesFromRoute.
      *
-     * It fetches the route params to get the id of the current series and updates the edition service.
+     * It fetches the route params to get the id of the current series
+     * and updates the EditionStateService.
      *
      * @returns {void} Updates the edition series.
      */
@@ -59,6 +60,6 @@ export class EditionSeriesDetailComponent implements OnInit {
         const id = this.route.snapshot.paramMap.get('id');
 
         this.selectedSeries = EditionOutlineService.getEditionSeriesById(id);
-        this.editionService.updateSelectedEditionSeries(this.selectedSeries);
+        this.editionStateService.updateSelectedEditionSeries(this.selectedSeries);
     }
 }

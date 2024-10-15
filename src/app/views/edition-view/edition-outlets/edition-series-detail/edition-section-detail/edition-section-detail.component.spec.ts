@@ -10,7 +10,7 @@ import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/exp
 import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionSectionDetailComponent } from './edition-section-detail.component';
 
@@ -20,12 +20,12 @@ describe('EditionSectionDetailComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let mockActivatedRoute: ActivatedRouteStub;
-    let mockEditionService: Partial<EditionService>;
+    let mockEditionStateService: Partial<EditionStateService>;
 
     let updateSectionFromRouteSpy: Spy;
-    let editionServiceGetSelectedEditionSeriesSpy: Spy;
     let editionOutlineServiceGetEditionSectionByIdSpy: Spy;
-    let editionServiceUpdateSelectedEditionSectionSpy: Spy;
+    let editionStateServiceGetSelectedEditionSeriesSpy: Spy;
+    let editionStateServiceUpdateSelectedEditionSectionSpy: Spy;
 
     let expectedSelectedSeries: EditionOutlineSeries;
     let expectedSelectedSection: EditionOutlineSection;
@@ -38,8 +38,8 @@ describe('EditionSectionDetailComponent (DONE)', () => {
     });
 
     beforeEach(async () => {
-        // Mock edition service
-        mockEditionService = {
+        // Mock edition state service
+        mockEditionStateService = {
             getSelectedEditionSeries: (): Observable<EditionOutlineSeries> => observableOf(expectedSelectedSeries),
             updateSelectedEditionSection: (editionSection: EditionOutlineSection): void => {},
         };
@@ -51,7 +51,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
             declarations: [EditionSectionDetailComponent, RouterOutletStubComponent],
             providers: [
                 { provide: ActivatedRoute, useValue: mockActivatedRoute },
-                { provide: EditionService, useValue: mockEditionService },
+                { provide: EditionStateService, useValue: mockEditionStateService },
             ],
         }).compileComponents();
     });
@@ -71,17 +71,17 @@ describe('EditionSectionDetailComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         updateSectionFromRouteSpy = spyOn(component, 'updateSectionFromRoute').and.callThrough();
-        editionServiceGetSelectedEditionSeriesSpy = spyOn(
-            mockEditionService,
-            'getSelectedEditionSeries'
-        ).and.callThrough();
-        editionServiceUpdateSelectedEditionSectionSpy = spyOn(
-            mockEditionService,
-            'updateSelectedEditionSection'
-        ).and.callThrough();
         editionOutlineServiceGetEditionSectionByIdSpy = spyOn(
             EditionOutlineService,
             'getEditionSectionById'
+        ).and.callThrough();
+        editionStateServiceGetSelectedEditionSeriesSpy = spyOn(
+            mockEditionStateService,
+            'getSelectedEditionSeries'
+        ).and.callThrough();
+        editionStateServiceUpdateSelectedEditionSectionSpy = spyOn(
+            mockEditionStateService,
+            'updateSelectedEditionSection'
         ).and.callThrough();
     });
 
@@ -125,16 +125,16 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                 expectSpyCall(updateSectionFromRouteSpy, 1);
             });
 
-            it('... should have called editionService.getSelectedEditionSeries', () => {
-                expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 1);
+            it('... should have called editionStateService.getSelectedEditionSeries', () => {
+                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 1);
             });
 
             it('... should have called EditionOutlineService.getEditionSectionById', () => {
                 expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 1, [expectedSeriesId, expectedSectionId]);
             });
 
-            it('... should have called editionService.updateSelectedEditionSection with selectedSection', () => {
-                expectSpyCall(editionServiceUpdateSelectedEditionSectionSpy, 1, expectedSelectedSection);
+            it('... should have called editionStateService.updateSelectedEditionSection with selectedSection', () => {
+                expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 1, expectedSelectedSection);
             });
         });
 

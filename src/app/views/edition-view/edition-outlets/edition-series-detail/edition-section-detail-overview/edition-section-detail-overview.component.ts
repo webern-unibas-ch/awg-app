@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { UtilityService } from '@awg-core/services';
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionSectionDetailOverview component.
@@ -34,14 +34,14 @@ export class EditionSectionDetailOverviewComponent implements OnInit {
     /**
      * Constructor of the EditionSectionDetailComponent.
      *
-     * It declares private instances of the EditionService,
+     * It declares private instances of the EditionStateService,
      * and a public instance of the UtilityService.
      *
-     * @param {EditionService} editionService Instance of the EditionService.
+     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
      * @param {UtilityService} utils Instance of the UtilityService.
      */
     constructor(
-        private editionService: EditionService,
+        private editionStateService: EditionStateService,
         public utils: UtilityService
     ) {
         // Intentionally left empty until implemented
@@ -65,7 +65,7 @@ export class EditionSectionDetailOverviewComponent implements OnInit {
      * @returns {void} Sets up the section detail overview.
      */
     setupSectionDetailOverview(): void {
-        this.editionService.getSelectedEditionSeries().subscribe(series => (this.selectedSeries = series));
-        this.editionService.getSelectedEditionSection().subscribe(section => (this.selectedSection = section));
+        this.editionStateService.getSelectedEditionSeries().subscribe(series => (this.selectedSeries = series));
+        this.editionStateService.getSelectedEditionSection().subscribe(section => (this.selectedSection = section));
     }
 }

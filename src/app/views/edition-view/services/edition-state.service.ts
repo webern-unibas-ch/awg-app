@@ -5,10 +5,10 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
 /**
- * The Edition service.
+ * The EditionState service.
  *
- * It handles the provision of the current edition complex and
- * other parts of the edition outline.
+ * It handles the provision of the current state
+ * of an edition complex and other parts of the edition outline.
  *
  * Provided in: `root`.
  * @used in the {@link EditionSheetsComponent}.
@@ -16,7 +16,7 @@ import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@aw
 @Injectable({
     providedIn: 'root',
 })
-export class EditionService {
+export class EditionStateService {
     /**
      * Private variable for the replay subject´s buffer size.
      */

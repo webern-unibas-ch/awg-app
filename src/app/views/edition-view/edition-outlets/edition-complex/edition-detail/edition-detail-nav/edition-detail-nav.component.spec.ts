@@ -13,7 +13,7 @@ import { RouterOutletStubComponent } from '@testing/router-stubs';
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionDetailNavComponent } from './edition-detail-nav.component';
 
@@ -40,15 +40,15 @@ describe('EditionDetailNavComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         // Create a fake service object with a `getData()` spy
-        const mockEditionService = jasmine.createSpyObj('EditionService', ['getSelectedEditionComplex']);
+        const mockEditionStateService = jasmine.createSpyObj('EditionStateService', ['getSelectedEditionComplex']);
         // Make the spy return a synchronous Observable with the test data
-        getSelectedEditionComplexSpy = mockEditionService.getSelectedEditionComplex.and.returnValue(
+        getSelectedEditionComplexSpy = mockEditionStateService.getSelectedEditionComplex.and.returnValue(
             observableOf(EditionComplexesService.getEditionComplexById('OP12'))
         );
 
         TestBed.configureTestingModule({
             declarations: [EditionDetailNavComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
-            providers: [{ provide: EditionService, useValue: mockEditionService }],
+            providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
         }).compileComponents();
     }));
 

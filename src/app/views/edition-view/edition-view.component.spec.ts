@@ -18,7 +18,7 @@ import { ActivatedRouteStub, RouterLinkStubDirective, RouterOutletStubComponent 
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionViewComponent } from './edition-view.component';
 
@@ -41,17 +41,17 @@ describe('EditionViewComponent (DONE)', () => {
 
     let mockRouter;
     let mockActivatedRoute: ActivatedRouteStub;
-    let mockEditionService: Partial<EditionService>;
+    let mockEditionStateService: Partial<EditionStateService>;
 
     let setupEditionViewSpy: Spy;
     let routeToSidenavSpy: Spy;
 
-    let editionServiceGetSelectedEditionComplexSpy: Spy;
-    let editionServiceGetSelectedEditionSeriesSpy: Spy;
-    let editionServiceGetSelectedEditionSectionSpy: Spy;
-    let editionServiceGetIsIntroViewSpy: Spy;
-    let editionServiceGetIsPrefaceViewSpy: Spy;
-    let editionServiceGetIsRowTableViewSpy: Spy;
+    let editionStateServiceGetSelectedEditionComplexSpy: Spy;
+    let editionStateServiceGetSelectedEditionSeriesSpy: Spy;
+    let editionStateServiceGetSelectedEditionSectionSpy: Spy;
+    let editionStateServiceGetIsIntroViewSpy: Spy;
+    let editionStateServiceGetIsPrefaceViewSpy: Spy;
+    let editionStateServiceGetIsRowTableViewSpy: Spy;
 
     let expectedSelectedEditionComplexId: string;
     let expectedSelectedEditionComplex: EditionComplex;
@@ -77,8 +77,8 @@ describe('EditionViewComponent (DONE)', () => {
         // Mock activated route with stub class
         mockActivatedRoute = new ActivatedRouteStub();
 
-        // Mock edition service
-        mockEditionService = {
+        // Mock edition state service
+        mockEditionStateService = {
             getIsIntroView: (): Observable<boolean> => observableOf(expectedIsIntroView),
             getIsPrefaceView: (): Observable<boolean> => observableOf(expectedIsPrefaceView),
             getIsRowTableView: (): Observable<boolean> => observableOf(expectedIsRowTableView),
@@ -103,7 +103,7 @@ describe('EditionViewComponent (DONE)', () => {
                 ScrollToTopStubComponent,
             ],
             providers: [
-                { provide: EditionService, useValue: mockEditionService },
+                { provide: EditionStateService, useValue: mockEditionStateService },
                 { provide: ActivatedRoute, useValue: mockActivatedRoute },
                 { provide: Router, useValue: mockRouter },
             ],
@@ -115,7 +115,7 @@ describe('EditionViewComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        mockEditionService = TestBed.inject(EditionService);
+        mockEditionStateService = TestBed.inject(EditionStateService);
 
         // Test data
         expectedIsIntroView = false;
@@ -135,19 +135,19 @@ describe('EditionViewComponent (DONE)', () => {
         routeToSidenavSpy = spyOn(component, 'routeToSidenav').and.callThrough();
 
         // Spies for service methods
-        editionServiceGetSelectedEditionComplexSpy = spyOn(
-            mockEditionService,
+        editionStateServiceGetSelectedEditionComplexSpy = spyOn(
+            mockEditionStateService,
             'getSelectedEditionComplex'
         ).and.callThrough();
-        editionServiceGetIsIntroViewSpy = spyOn(mockEditionService, 'getIsIntroView').and.callThrough();
-        editionServiceGetIsPrefaceViewSpy = spyOn(mockEditionService, 'getIsPrefaceView').and.callThrough();
-        editionServiceGetIsRowTableViewSpy = spyOn(mockEditionService, 'getIsRowTableView').and.callThrough();
-        editionServiceGetSelectedEditionSeriesSpy = spyOn(
-            mockEditionService,
+        editionStateServiceGetIsIntroViewSpy = spyOn(mockEditionStateService, 'getIsIntroView').and.callThrough();
+        editionStateServiceGetIsPrefaceViewSpy = spyOn(mockEditionStateService, 'getIsPrefaceView').and.callThrough();
+        editionStateServiceGetIsRowTableViewSpy = spyOn(mockEditionStateService, 'getIsRowTableView').and.callThrough();
+        editionStateServiceGetSelectedEditionSeriesSpy = spyOn(
+            mockEditionStateService,
             'getSelectedEditionSeries'
         ).and.callThrough();
-        editionServiceGetSelectedEditionSectionSpy = spyOn(
-            mockEditionService,
+        editionStateServiceGetSelectedEditionSectionSpy = spyOn(
+            mockEditionStateService,
             'getSelectedEditionSection'
         ).and.callThrough();
     });
@@ -229,10 +229,10 @@ describe('EditionViewComponent (DONE)', () => {
                 expectSpyCall(setupEditionViewSpy, 0);
             });
 
-            it('... should not have called EditionService', () => {
-                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 0);
-                expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 0);
-                expectSpyCall(editionServiceGetSelectedEditionSectionSpy, 0);
+            it('... should not have called EditionStateService', () => {
+                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 0);
+                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 0);
+                expectSpyCall(editionStateServiceGetSelectedEditionSectionSpy, 0);
             });
 
             it('... should not have set isIntroView$', () => {
@@ -776,9 +776,9 @@ describe('EditionViewComponent (DONE)', () => {
                 expectSpyCall(setupEditionViewSpy, 1);
             });
 
-            it('... should get isIntroView$ (via EditionService)', waitForAsync(() => {
+            it('... should get isIntroView$ (via EditionStateService)', waitForAsync(() => {
                 expectSpyCall(setupEditionViewSpy, 1);
-                expectSpyCall(editionServiceGetIsIntroViewSpy, 1);
+                expectSpyCall(editionStateServiceGetIsIntroViewSpy, 1);
 
                 expect(component.isIntroView$).toBeDefined();
                 component.isIntroView$.subscribe({
@@ -788,9 +788,9 @@ describe('EditionViewComponent (DONE)', () => {
                 });
             }));
 
-            it('... should get isPrefaceView$ (via EditionService)', waitForAsync(() => {
+            it('... should get isPrefaceView$ (via EditionStateService)', waitForAsync(() => {
                 expectSpyCall(setupEditionViewSpy, 1);
-                expectSpyCall(editionServiceGetIsPrefaceViewSpy, 1);
+                expectSpyCall(editionStateServiceGetIsPrefaceViewSpy, 1);
 
                 expect(component.isPrefaceView$).toBeDefined();
                 component.isPrefaceView$.subscribe({
@@ -800,9 +800,9 @@ describe('EditionViewComponent (DONE)', () => {
                 });
             }));
 
-            it('... should get isRowTableView$ (via EditionService)', waitForAsync(() => {
+            it('... should get isRowTableView$ (via EditionStateService)', waitForAsync(() => {
                 expectSpyCall(setupEditionViewSpy, 1);
-                expectSpyCall(editionServiceGetIsRowTableViewSpy, 1);
+                expectSpyCall(editionStateServiceGetIsRowTableViewSpy, 1);
 
                 expect(component.isRowTableView$).toBeDefined();
                 component.isRowTableView$.subscribe({
@@ -812,9 +812,9 @@ describe('EditionViewComponent (DONE)', () => {
                 });
             }));
 
-            it('... should get selectedEditionSeries$ (via EditionService)', waitForAsync(() => {
+            it('... should get selectedEditionSeries$ (via EditionStateService)', waitForAsync(() => {
                 expectSpyCall(setupEditionViewSpy, 1);
-                expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 1);
+                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 1);
 
                 expect(component.selectedEditionSeries$).toBeDefined();
                 component.selectedEditionSeries$.subscribe({
@@ -824,9 +824,9 @@ describe('EditionViewComponent (DONE)', () => {
                 });
             }));
 
-            it('... should get selectedEditionSection$ (via EditionService)', waitForAsync(() => {
+            it('... should get selectedEditionSection$ (via EditionStateService)', waitForAsync(() => {
                 expectSpyCall(setupEditionViewSpy, 1);
-                expectSpyCall(editionServiceGetSelectedEditionSectionSpy, 1);
+                expectSpyCall(editionStateServiceGetSelectedEditionSectionSpy, 1);
 
                 expect(component.selectedEditionSection$).toBeDefined();
                 component.selectedEditionSection$.subscribe({
@@ -836,9 +836,9 @@ describe('EditionViewComponent (DONE)', () => {
                 });
             }));
 
-            it('... should get selectedEditionComplex$ (via EditionService)', waitForAsync(() => {
+            it('... should get selectedEditionComplex$ (via EditionStateService)', waitForAsync(() => {
                 expectSpyCall(setupEditionViewSpy, 1);
-                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
+                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 1);
 
                 expect(component.selectedEditionComplex$).toBeDefined();
                 component.selectedEditionComplex$.subscribe({

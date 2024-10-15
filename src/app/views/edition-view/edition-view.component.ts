@@ -5,7 +5,7 @@ import { delay, Observable } from 'rxjs';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionView component.
@@ -84,13 +84,13 @@ export class EditionViewComponent implements OnInit {
      * Constructor of the EditionViewComponent.
      *
      * It declares private instances of
-     * EditionService, ActivatedRoute and Router.
+     * EditionStateService, ActivatedRoute and Router.
      *
-     * @param {EditionService} editionService Instance of the EditionService.
+     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
      * @param {Router} router Instance of the Angular router.
      */
     constructor(
-        private editionService: EditionService,
+        private editionStateService: EditionStateService,
         private router: Router
     ) {}
 
@@ -119,17 +119,17 @@ export class EditionViewComponent implements OnInit {
      *
      * It sets up the edition view by loading
      * the selected series, section, and edition complex
-     * from the edition service.
+     * from the EditionStateService.
      *
      * @returns {void} Sets up the edition view.
      */
     setupEditionView(): void {
-        this.selectedEditionSeries$ = this.editionService.getSelectedEditionSeries().pipe(delay(0));
-        this.selectedEditionSection$ = this.editionService.getSelectedEditionSection().pipe(delay(0));
-        this.selectedEditionComplex$ = this.editionService.getSelectedEditionComplex().pipe(delay(0));
-        this.isIntroView$ = this.editionService.getIsIntroView().pipe(delay(0));
-        this.isPrefaceView$ = this.editionService.getIsPrefaceView().pipe(delay(0));
-        this.isRowTableView$ = this.editionService.getIsRowTableView().pipe(delay(0));
+        this.selectedEditionSeries$ = this.editionStateService.getSelectedEditionSeries().pipe(delay(0));
+        this.selectedEditionSection$ = this.editionStateService.getSelectedEditionSection().pipe(delay(0));
+        this.selectedEditionComplex$ = this.editionStateService.getSelectedEditionComplex().pipe(delay(0));
+        this.isIntroView$ = this.editionStateService.getIsIntroView().pipe(delay(0));
+        this.isPrefaceView$ = this.editionStateService.getIsPrefaceView().pipe(delay(0));
+        this.isRowTableView$ = this.editionStateService.getIsRowTableView().pipe(delay(0));
     }
 
     /**
