@@ -1,10 +1,13 @@
+import { DOCUMENT } from '@angular/common';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
@@ -14,7 +17,6 @@ import { mockEditionData } from '@testing/mock-data';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { TextcriticalCommentBlock, Textcritics } from '@awg-views/edition-view/models';
 
-import { DOCUMENT } from '@angular/common';
 import { SourceDescriptionCorrectionsComponent } from './source-description-corrections.component';
 
 // Mock components
@@ -200,6 +202,24 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 });
             });
 
+            it('... should contain a round-bordered div container for each detail', () => {
+                const detailsDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'details.awg-source-description-correction-details',
+                    expectedCorrections.length,
+                    expectedCorrections.length
+                );
+
+                detailsDes.forEach((detailsDe, index) => {
+                    const divDes = getAndExpectDebugElementByCss(detailsDe, 'div', 1, 1);
+                    const divEl = divDes[0].nativeElement;
+
+                    expect(divEl).toBeTruthy();
+                    expectToContain(divEl.classList, 'border');
+                    expectToContain(divEl.classList, 'rounded-3');
+                });
+            });
+
             it('... should contain a paragraph with as many descriptions as each corrections detail has', () => {
                 const detailsDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -222,7 +242,23 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain one EditionTkaTableComponent in each corrections detail', () => {
+            it('... should contain no EditionTkaTableComponent in corrections detail if no comments are given', () => {
+                component.corrections[0].comments = [];
+                detectChangesOnPush(fixture);
+
+                const detailsDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'details.awg-source-description-correction-details',
+                    expectedCorrections.length,
+                    expectedCorrections.length
+                );
+
+                detailsDes.forEach((detailsDe, _index) => {
+                    getAndExpectDebugElementByDirective(detailsDe, EditionTkaTableStubComponent, 0, 0);
+                });
+            });
+
+            it('... should contain one EditionTkaTableComponent in each corrections detail if comments are given', () => {
                 const detailsDes = getAndExpectDebugElementByCss(
                     compDe,
                     'details.awg-source-description-correction-details',
