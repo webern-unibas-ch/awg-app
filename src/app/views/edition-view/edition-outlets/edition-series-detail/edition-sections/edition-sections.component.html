@@ -3,6 +3,19 @@
         @for (section of selectedSeries.sections; track $index) {
             <div class="col">
                 <div class="card h-100 shadow">
+                    @if (!section.disabled) {
+                        <img
+                            [src]="
+                                'assets/img/edition/series/' +
+                                selectedSeries.series.route +
+                                '/section/' +
+                                section.section.route +
+                                '/cover.jpg'
+                            "
+                            title="AWG {{ selectedSeries.series.short }}/{{ section.section.short }}"
+                            class="card-img-top"
+                            alt="In Vorbereitung" />
+                    }
                     <div class="card-body">
                         <h5 class="card-title" [ngClass]="{ 'text-muted': section.disabled }">
                             {{ section.section.full }}

@@ -129,6 +129,112 @@ describe('EditionSectionsComponent (DONE)', () => {
                 );
             });
 
+            describe('... cover image', () => {
+                it('... should contain one img.card-img-top in each div.card for non-disabled sections', () => {
+                    const expectedSectionsLength = expectedSelectedSeries.sections.length;
+
+                    const cardDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.card',
+                        expectedSectionsLength,
+                        expectedSectionsLength
+                    );
+
+                    cardDes.forEach((cardDe, index) => {
+                        const expectedSection = expectedSelectedSeries.sections[index];
+
+                        if (!expectedSection.disabled) {
+                            getAndExpectDebugElementByCss(cardDe, 'img.card-img-top', 1, 1);
+                        } else {
+                            getAndExpectDebugElementByCss(cardDe, 'img.card-img-top', 0, 0);
+                        }
+                    });
+                });
+
+                it('... should have correct src in img.card-img-top for non-disabled sections', () => {
+                    const expectedSectionsLength = expectedSelectedSeries.sections.length;
+
+                    const cardDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.card',
+                        expectedSectionsLength,
+                        expectedSectionsLength
+                    );
+
+                    cardDes.forEach((cardDe, index) => {
+                        const expectedSection = expectedSelectedSeries.sections[index];
+
+                        if (!expectedSection.disabled) {
+                            const imgDes = getAndExpectDebugElementByCss(cardDe, 'img.card-img-top', 1, 1);
+                            const imgEl = imgDes[0].nativeElement;
+
+                            const expectedSrc =
+                                'assets/img/edition/series/' +
+                                expectedSelectedSeries.series.route +
+                                '/section/' +
+                                expectedSection.section.route +
+                                '/cover.jpg';
+
+                            expectToContain(imgEl.src, expectedSrc);
+                        } else {
+                            getAndExpectDebugElementByCss(cardDe, 'img.card-img-top', 0, 0);
+                        }
+                    });
+                });
+
+                it('... should have correct alt in img.card-img-top for non-disabled sections', () => {
+                    const expectedSectionsLength = expectedSelectedSeries.sections.length;
+
+                    const cardDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.card',
+                        expectedSectionsLength,
+                        expectedSectionsLength
+                    );
+
+                    cardDes.forEach((cardDe, index) => {
+                        const expectedSection = expectedSelectedSeries.sections[index];
+
+                        if (!expectedSection.disabled) {
+                            const imgDes = getAndExpectDebugElementByCss(cardDe, 'img.card-img-top', 1, 1);
+                            const imgEl = imgDes[0].nativeElement;
+
+                            const expectedAlt = 'In Vorbereitung';
+
+                            expectToBe(imgEl.alt, expectedAlt);
+                        } else {
+                            getAndExpectDebugElementByCss(cardDe, 'img.card-img-top', 0, 0);
+                        }
+                    });
+                });
+
+                it('... should have correct title in img.card-img-top for non-disabled sections', () => {
+                    const expectedSectionsLength = expectedSelectedSeries.sections.length;
+
+                    const cardDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.card',
+                        expectedSectionsLength,
+                        expectedSectionsLength
+                    );
+
+                    cardDes.forEach((cardDe, index) => {
+                        const expectedSection = expectedSelectedSeries.sections[index];
+
+                        if (!expectedSection.disabled) {
+                            const imgDes = getAndExpectDebugElementByCss(cardDe, 'img.card-img-top', 1, 1);
+                            const imgEl = imgDes[0].nativeElement;
+
+                            const expectedTitle = `AWG ${expectedSelectedSeries.series.short}/${expectedSection.section.short}`;
+
+                            expectToBe(imgEl.title, expectedTitle);
+                        } else {
+                            getAndExpectDebugElementByCss(cardDe, 'img.card-img-top', 0, 0);
+                        }
+                    });
+                });
+            });
+
             describe('... div.card-body', () => {
                 it('... should contain one div.card-body in each div.card', () => {
                     const expectedSectionsLength = expectedSelectedSeries.sections.length;
