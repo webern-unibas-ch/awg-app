@@ -130,6 +130,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
 
                 getAndExpectDebugElementByCss(cardDes[0], 'div.card-footer', 1, 1);
             });
+
             it('... should have text-end paragraph in div.card-footer', () => {
                 const cardFooterDes = getAndExpectDebugElementByCss(compDe, 'div.card-footer', 1, 1);
 

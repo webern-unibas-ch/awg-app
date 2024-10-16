@@ -7,18 +7,6 @@
         text-justify: inter-word;
 
         &::ng-deep {
-            .link-todo {
-                background-color: chartreuse;
-            }
-
-            .corrigenda {
-                background-color: burlywood;
-            }
-
-            .errata {
-                background-color: red;
-            }
-
             .note-1-dig {
                 margin-left: 1.3em;
                 text-indent: -1.3em;
