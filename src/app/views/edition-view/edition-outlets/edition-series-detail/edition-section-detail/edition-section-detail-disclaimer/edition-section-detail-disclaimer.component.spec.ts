@@ -50,7 +50,7 @@ describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
                 const pDe = getAndExpectDebugElementByCss(divDe[0], 'p', 1, 1);
                 const pEl = pDe[0].nativeElement;
 
-                const expectedDisclaimer = `[Die online verfügbaren Inhalte werden sukzessive erweitert und ergänzt.]`;
+                const expectedDisclaimer = `[Die online verfügbaren Inhalte werden sukzessive ergänzt und erweitert.]`;
 
                 expectToBe(pEl.textContent.trim(), expectedDisclaimer.trim());
             });
