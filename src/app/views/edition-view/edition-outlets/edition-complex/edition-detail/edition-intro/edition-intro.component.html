@@ -6,8 +6,20 @@
     <!-- intro -->
     @if (editionIntroData$ | async; as editionIntroData) {
         <div class="awg-edition-intro-view p-5 border rounded-3">
-            <div class="row">
+            <div class="row justify-content-center">
                 @if (utils.isNotEmptyArray(editionIntroData.intro[currentLanguage].content)) {
+                    @if (editionComplex) {
+                        <awg-edition-intro-partial-disclaimer
+                            class="col-12 col-xl-6"
+                            [editionComplex]="editionComplex"
+                            [editionLabel]="editionRouteConstants.EDITION.short"
+                            [editionRoute]="editionRouteConstants.EDITION.route"
+                            [seriesRoute]="editionRouteConstants.SERIES.route"
+                            [sectionRoute]="editionRouteConstants.SECTION.route"
+                            [introRoute]="
+                                editionRouteConstants.EDITION_INTRO.route
+                            "></awg-edition-intro-partial-disclaimer>
+                    }
                     <awg-edition-intro-content
                         class="col-12 col-xl-10"
                         [introBlockContent]="editionIntroData?.intro[currentLanguage]?.content"

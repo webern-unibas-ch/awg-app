@@ -73,6 +73,23 @@ class EditionIntroNavStubComponent {
     currentLanguage: number;
     @Output() languageChangeRequest = new EventEmitter<number>();
 }
+
+@Component({ selector: 'awg-edition-intro-partial-disclaimer', template: '' })
+class EditionIntroPartialDisclaimerStubComponent {
+    @Input()
+    editionComplex: EditionComplex;
+    @Input()
+    editionLabel: string;
+    @Input()
+    editionRoute: string;
+    @Input()
+    seriesRoute: string;
+    @Input()
+    sectionRoute: string;
+    @Input()
+    introRoute: string;
+}
+
 @Component({ selector: 'awg-edition-intro-placeholder', template: '' })
 class EditionIntroPlaceholderStubComponent {
     @Input()
@@ -182,6 +199,7 @@ describe('IntroComponent (DONE)', () => {
             declarations: [
                 EditionIntroComponent,
                 EditionIntroContentStubComponent,
+                EditionIntroPartialDisclaimerStubComponent,
                 EditionIntroPlaceholderStubComponent,
                 EditionIntroNavStubComponent,
                 ErrorAlertStubComponent,
@@ -318,6 +336,12 @@ describe('IntroComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
             });
 
+            it('... should not contain an edition intro partial disclaimer component (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], EditionIntroPartialDisclaimerStubComponent, 0, 0);
+            });
+
             it('... should not contain an edition intro content component (stubbed)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
@@ -385,52 +409,168 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('... if intro data is given', () => {
-                it('... should contain one EditionIntroContentComponent (stubbed)', waitForAsync(() => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-                    getAndExpectDebugElementByDirective(divDes[0], EditionIntroContentStubComponent, 1, 1);
-                }));
+                describe('... with complex', () => {
+                    it('... should contain one EditionIntroPartialDisclaimerComponent (stubbed)', waitForAsync(() => {
+                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                        getAndExpectDebugElementByDirective(
+                            divDes[0],
+                            EditionIntroPartialDisclaimerStubComponent,
+                            1,
+                            1
+                        );
+                    }));
 
-                it('... should pass down `introBlockContent` and `notesLabel` to EditionIntroContentComponent', waitForAsync(() => {
-                    const editionIntroContentDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionIntroContentStubComponent,
-                        1,
-                        1
-                    );
-                    const editionIntroContentCmp = editionIntroContentDes[0].injector.get(
-                        EditionIntroContentStubComponent
-                    ) as EditionIntroContentStubComponent;
+                    it('... should pass down `editionComplex`, `editionLabel`, and routes to EditionIntroPartialDisclaimerComponent', waitForAsync(() => {
+                        const editionIntroPartialDisclaimerDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionIntroPartialDisclaimerStubComponent,
+                            1,
+                            1
+                        );
+                        const editionIntroPartialDisclaimerCmp = editionIntroPartialDisclaimerDes[0].injector.get(
+                            EditionIntroPartialDisclaimerStubComponent
+                        ) as EditionIntroPartialDisclaimerStubComponent;
 
-                    expectToEqual(
-                        editionIntroContentCmp.introBlockContent,
-                        expectedEditionIntroFilteredData.intro[expectedCurrentLaguage].content
-                    );
-                    expectToEqual(editionIntroContentCmp.notesLabel, expectedNotesLabels.get(expectedCurrentLaguage));
-                }));
+                        expectToEqual(editionIntroPartialDisclaimerCmp.editionComplex, expectedEditionComplex);
+                        expectToEqual(
+                            editionIntroPartialDisclaimerCmp.editionLabel,
+                            expectedEditionRouteConstants.EDITION.short
+                        );
+                        expectToEqual(
+                            editionIntroPartialDisclaimerCmp.editionRoute,
+                            expectedEditionRouteConstants.EDITION.route
+                        );
+                        expectToEqual(
+                            editionIntroPartialDisclaimerCmp.seriesRoute,
+                            expectedEditionRouteConstants.SERIES.route
+                        );
+                        expectToEqual(
+                            editionIntroPartialDisclaimerCmp.sectionRoute,
+                            expectedEditionRouteConstants.SECTION.route
+                        );
+                        expectToEqual(
+                            editionIntroPartialDisclaimerCmp.introRoute,
+                            expectedEditionRouteConstants.EDITION_INTRO.route
+                        );
+                    }));
 
-                it('... should contain one EditionIntroNavComponent (stubbed)', waitForAsync(() => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-                    getAndExpectDebugElementByDirective(divDes[0], EditionIntroNavStubComponent, 1, 1);
-                }));
+                    it('... should contain one EditionIntroContentComponent (stubbed)', waitForAsync(() => {
+                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                        getAndExpectDebugElementByDirective(divDes[0], EditionIntroContentStubComponent, 1, 1);
+                    }));
 
-                it('... should pass down `introBlockContent`, `notesLabel` and `currentLanguage` to EditionIntroNavComponent', waitForAsync(() => {
-                    const editionIntroNavDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionIntroNavStubComponent,
-                        1,
-                        1
-                    );
-                    const editionIntroNavCmp = editionIntroNavDes[0].injector.get(
-                        EditionIntroNavStubComponent
-                    ) as EditionIntroNavStubComponent;
+                    it('... should pass down `introBlockContent` and `notesLabel` to EditionIntroContentComponent', waitForAsync(() => {
+                        const editionIntroContentDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionIntroContentStubComponent,
+                            1,
+                            1
+                        );
+                        const editionIntroContentCmp = editionIntroContentDes[0].injector.get(
+                            EditionIntroContentStubComponent
+                        ) as EditionIntroContentStubComponent;
 
-                    expectToEqual(
-                        editionIntroNavCmp.introBlockContent,
-                        expectedEditionIntroFilteredData.intro[expectedCurrentLaguage].content
-                    );
-                    expectToEqual(editionIntroNavCmp.notesLabel, expectedNotesLabels.get(expectedCurrentLaguage));
-                    expectToEqual(editionIntroNavCmp.currentLanguage, expectedCurrentLaguage);
-                }));
+                        expectToEqual(
+                            editionIntroContentCmp.introBlockContent,
+                            expectedEditionIntroFilteredData.intro[expectedCurrentLaguage].content
+                        );
+                        expectToEqual(
+                            editionIntroContentCmp.notesLabel,
+                            expectedNotesLabels.get(expectedCurrentLaguage)
+                        );
+                    }));
+
+                    it('... should contain one EditionIntroNavComponent (stubbed)', waitForAsync(() => {
+                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                        getAndExpectDebugElementByDirective(divDes[0], EditionIntroNavStubComponent, 1, 1);
+                    }));
+
+                    it('... should pass down `introBlockContent`, `notesLabel` and `currentLanguage` to EditionIntroNavComponent', waitForAsync(() => {
+                        const editionIntroNavDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionIntroNavStubComponent,
+                            1,
+                            1
+                        );
+                        const editionIntroNavCmp = editionIntroNavDes[0].injector.get(
+                            EditionIntroNavStubComponent
+                        ) as EditionIntroNavStubComponent;
+
+                        expectToEqual(
+                            editionIntroNavCmp.introBlockContent,
+                            expectedEditionIntroFilteredData.intro[expectedCurrentLaguage].content
+                        );
+                        expectToEqual(editionIntroNavCmp.notesLabel, expectedNotesLabels.get(expectedCurrentLaguage));
+                        expectToEqual(editionIntroNavCmp.currentLanguage, expectedCurrentLaguage);
+                    }));
+                });
+
+                describe('... without complex', () => {
+                    beforeEach(() => {
+                        component.editionComplex = undefined;
+                        fixture.detectChanges();
+                    });
+
+                    it('... should not contain an edition intro partial disclaimer component (stubbed)', () => {
+                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                        getAndExpectDebugElementByDirective(
+                            divDes[0],
+                            EditionIntroPartialDisclaimerStubComponent,
+                            0,
+                            0
+                        );
+                    });
+
+                    it('... should contain one EditionIntroContentComponent (stubbed)', waitForAsync(() => {
+                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                        getAndExpectDebugElementByDirective(divDes[0], EditionIntroContentStubComponent, 1, 1);
+                    }));
+
+                    it('... should pass down `introBlockContent` and `notesLabel` to EditionIntroContentComponent', waitForAsync(() => {
+                        const editionIntroContentDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionIntroContentStubComponent,
+                            1,
+                            1
+                        );
+                        const editionIntroContentCmp = editionIntroContentDes[0].injector.get(
+                            EditionIntroContentStubComponent
+                        ) as EditionIntroContentStubComponent;
+
+                        expectToEqual(
+                            editionIntroContentCmp.introBlockContent,
+                            expectedEditionIntroFilteredData.intro[expectedCurrentLaguage].content
+                        );
+                        expectToEqual(
+                            editionIntroContentCmp.notesLabel,
+                            expectedNotesLabels.get(expectedCurrentLaguage)
+                        );
+                    }));
+
+                    it('... should contain one EditionIntroNavComponent (stubbed)', waitForAsync(() => {
+                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                        getAndExpectDebugElementByDirective(divDes[0], EditionIntroNavStubComponent, 1, 1);
+                    }));
+
+                    it('... should pass down `introBlockContent`, `notesLabel` and `currentLanguage` to EditionIntroNavComponent', waitForAsync(() => {
+                        const editionIntroNavDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionIntroNavStubComponent,
+                            1,
+                            1
+                        );
+                        const editionIntroNavCmp = editionIntroNavDes[0].injector.get(
+                            EditionIntroNavStubComponent
+                        ) as EditionIntroNavStubComponent;
+
+                        expectToEqual(
+                            editionIntroNavCmp.introBlockContent,
+                            expectedEditionIntroFilteredData.intro[expectedCurrentLaguage].content
+                        );
+                        expectToEqual(editionIntroNavCmp.notesLabel, expectedNotesLabels.get(expectedCurrentLaguage));
+                        expectToEqual(editionIntroNavCmp.currentLanguage, expectedCurrentLaguage);
+                    }));
+                });
             });
 
             describe('... if intro data is empty', () => {

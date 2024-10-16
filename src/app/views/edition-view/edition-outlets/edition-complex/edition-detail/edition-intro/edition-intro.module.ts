@@ -4,6 +4,7 @@ import { SharedModule } from '@awg-shared/shared.module';
 
 import { EditionIntroContentComponent } from './edition-intro-content';
 import { EditionIntroNavComponent } from './edition-intro-nav';
+import { EditionIntroPartialDisclaimerComponent } from './edition-intro-partial-disclaimer';
 import { EditionIntroPlaceholderComponent } from './edition-intro-placeholder';
 
 import { EditionIntroRoutingModule, routedEditionIntroComponents } from './edition-intro-routing.module';
@@ -20,6 +21,7 @@ import { EditionIntroRoutingModule, routedEditionIntroComponents } from './editi
     declarations: [
         EditionIntroContentComponent,
         EditionIntroNavComponent,
+        EditionIntroPartialDisclaimerComponent,
         EditionIntroPlaceholderComponent,
         routedEditionIntroComponents,
     ],

@@ -74,7 +74,7 @@ describe('EditionInfoComponent (DONE)', () => {
     let routerLinks;
 
     let expectedEditionComplexes: EditionComplex[];
-    let expectedOrderOfRouterlinks: string[][];
+    let expectedOrderOfRouterLinks: string[][];
     let expectedOrderOfHeaders: string[];
 
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
@@ -122,7 +122,7 @@ describe('EditionInfoComponent (DONE)', () => {
             EditionComplexesService.getEditionComplexById('M35_42'),
             EditionComplexesService.getEditionComplexById('M37'),
         ];
-        expectedOrderOfRouterlinks = generateExpectedOrderOfRouterlinks(expectedEditionComplexes);
+        expectedOrderOfRouterLinks = generateExpectedOrderOfRouterlinks(expectedEditionComplexes);
         expectedOrderOfHeaders = generateExpectedOrderOfHeaders(expectedEditionComplexes);
     });
 
@@ -367,8 +367,8 @@ describe('EditionInfoComponent (DONE)', () => {
                 linkDes = getAndExpectDebugElementByDirective(
                     compDe,
                     RouterLinkStubDirective,
-                    expectedOrderOfRouterlinks.length,
-                    expectedOrderOfRouterlinks.length
+                    expectedOrderOfRouterLinks.length,
+                    expectedOrderOfRouterLinks.length
                 );
 
                 // Get attached link directive instances using each DebugElement's injector
@@ -376,19 +376,20 @@ describe('EditionInfoComponent (DONE)', () => {
             });
 
             it('... can get correct number of routerLinks from template', () => {
-                expectToBe(routerLinks.length, expectedOrderOfRouterlinks.length);
+                expectToBe(routerLinks.length, expectedOrderOfRouterLinks.length);
             });
 
             it('... can get correct linkParams from template', () => {
-                routerLinks.forEach((routerLink, index) => {
-                    expectToEqual(routerLink.linkParams, expectedOrderOfRouterlinks[index]);
+                routerLinks.forEach((routerLink: RouterLinkStubDirective, index: number) => {
+                    const expectedRouterLink = expectedOrderOfRouterLinks[index];
+                    expectToEqual(routerLink.linkParams, expectedRouterLink);
                 });
             });
 
             it('... can click all links in template', () => {
-                routerLinks.forEach((routerLink, index) => {
+                routerLinks.forEach((routerLink: RouterLinkStubDirective, index: number) => {
                     const linkDe = linkDes[index];
-                    const expectedRouterLink = expectedOrderOfRouterlinks[index];
+                    const expectedRouterLink = expectedOrderOfRouterLinks[index];
 
                     expectToBe(routerLink.navigatedTo, null);
 
