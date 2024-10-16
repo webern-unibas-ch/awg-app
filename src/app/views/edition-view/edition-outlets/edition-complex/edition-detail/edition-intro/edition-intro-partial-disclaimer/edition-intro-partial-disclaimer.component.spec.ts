@@ -18,7 +18,7 @@ import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 import { EditionIntroPartialDisclaimerComponent } from './edition-intro-partial-disclaimer.component';
 
-describe('EditionIntroPartialDisclaimerComponent', () => {
+describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
     let component: EditionIntroPartialDisclaimerComponent;
     let fixture: ComponentFixture<EditionIntroPartialDisclaimerComponent>;
     let compDe: DebugElement;

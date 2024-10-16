@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UtilityService } from '@awg-core/services';
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionStateService } from '@awg-views/edition-view/services';
+import { Observable } from 'rxjs';
 
 /**
  * The EditionSectionDetailOverview component.
@@ -20,16 +21,16 @@ export class EditionSectionDetailOverviewComponent implements OnInit {
     /**
      * Public variable: selectedSeries.
      *
-     * It keeps the selected series of the edition.
+     * It keeps the observable of the selected series of the edition.
      */
-    selectedSeries: EditionOutlineSeries;
+    selectedSeries$: Observable<EditionOutlineSeries>;
 
     /**
-     * Public variable: selectedSection.
+     * Public variable: selectedSection$.
      *
-     * It keeps the selected section of the edition.
+     * It keeps the observable of the selected section of the edition.
      */
-    selectedSection: EditionOutlineSection;
+    selectedSection$: Observable<EditionOutlineSection>;
 
     /**
      * Constructor of the EditionSectionDetailComponent.
@@ -65,7 +66,7 @@ export class EditionSectionDetailOverviewComponent implements OnInit {
      * @returns {void} Sets up the section detail overview.
      */
     setupSectionDetailOverview(): void {
-        this.editionStateService.getSelectedEditionSeries().subscribe(series => (this.selectedSeries = series));
-        this.editionStateService.getSelectedEditionSection().subscribe(section => (this.selectedSection = section));
+        this.selectedSeries$ = this.editionStateService.getSelectedEditionSeries();
+        this.selectedSection$ = this.editionStateService.getSelectedEditionSection();
     }
 }

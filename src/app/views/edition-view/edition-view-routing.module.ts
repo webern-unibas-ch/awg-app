@@ -5,8 +5,6 @@ import { EditionComplexComponent } from './edition-outlets/edition-complex';
 import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component';
 import { EditionSeriesComponent } from './edition-outlets/edition-series';
 import { EditionSeriesDetailComponent } from './edition-outlets/edition-series-detail';
-import { EditionSectionDetailComponent } from './edition-outlets/edition-series-detail/edition-section-detail';
-import { EditionSectionDetailOverviewComponent } from './edition-outlets/edition-series-detail/edition-section-detail-overview/edition-section-detail-overview.component';
 import { EditionSectionsComponent } from './edition-outlets/edition-series-detail/edition-sections';
 import { EditionViewComponent } from './edition-view.component';
 
@@ -48,20 +46,10 @@ const EDITION_VIEW_ROUTES: Routes = [
                     {
                         // Section by id (1, 2, 3, 4, 5).
                         path: 'section/:id',
-                        component: EditionSectionDetailComponent,
-                        children: [
-                            {
-                                path: 'intro',
-                                loadChildren: () =>
-                                    import(
-                                        './edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.module'
-                                    ).then(m => m.EditionIntroModule),
-                            },
-                            {
-                                path: '',
-                                component: EditionSectionDetailOverviewComponent,
-                            },
-                        ],
+                        loadChildren: () =>
+                            import(
+                                './edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.module'
+                            ).then(m => m.EditionSectionDetailModule),
                     },
                     {
                         path: 'sections/:id',
@@ -140,8 +128,6 @@ export const routedEditionViewComponents = [
     EditionComplexComponent,
     EditionDetailNavComponent,
     EditionSectionsComponent,
-    EditionSectionDetailComponent,
-    EditionSectionDetailOverviewComponent,
     EditionSeriesComponent,
     EditionSeriesDetailComponent,
 ];
