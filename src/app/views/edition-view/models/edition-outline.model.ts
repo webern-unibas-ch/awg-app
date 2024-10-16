@@ -16,6 +16,7 @@ export interface EditionOutlineSectionsContentJsonData {
      */
     intro: {
         disabled: boolean;
+        preview?: string;
     };
 
     /**
@@ -133,6 +134,11 @@ export interface EditionOutlineIntroItem {
      * Boolean flag if an intro is disabled.
      */
     disabled: boolean;
+
+    /**
+     * The preview of an intro.
+     */
+    preview?: string;
 }
 
 /**
@@ -278,7 +284,7 @@ export class EditionOutline {
      * @returns {EditionOutlineSectionContent} The mapped content.
      */
     private _mapSectionContent = (content: EditionOutlineSectionsContentJsonData): EditionOutlineSectionContent => ({
-        intro: { disabled: content.intro.disabled },
+        intro: { disabled: content.intro.disabled, preview: content.intro.preview || '' },
         complexTypes: {
             opus: this._mapComplexItems(content.complexTypes.opus),
             mnr: this._mapComplexItems(content.complexTypes.mnr),

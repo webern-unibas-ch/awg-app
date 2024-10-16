@@ -39,7 +39,10 @@
                     "section": "5",
                     "disabled": false,
                     "content": {
-                        "intro": { "disabled": false },
+                        "intro": {
+                            "disabled": false,
+                            "preview": "Die in Serie I Abteilung 5 versammelten Klavierlieder beinhalten die erkennbaren Textfassungen der zu Lebzeiten Anton Weberns mit Opuszahlen versehenen und gedruckten oder zum Druck vorgesehenen Klavierlieder (op. 3, 4, 12, 23 und 25) sowie verschiedene dem Entstehungsprozess einiger dieser Editionskomplexe zuzuordnende Einzellieder (George-Lieder M 143–146). Weitere zu Lebzeiten Weberns nicht publizierte Lied-Komplexe, auch wenn sie mit später obsolet gewordenen Opuszahlen versehen wurden (z. B. Dehmel-Lieder M 83, 119, 130–131), werden in Serie II Abteilung 5 ediert."
+                        },
                         "complexTypes": {
                             "opus": [
                                 { "complex": "OP3", "disabled": false },
