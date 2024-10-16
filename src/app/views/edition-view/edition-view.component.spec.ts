@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { DOCUMENT } from '@angular/common';
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -39,8 +40,10 @@ describe('EditionViewComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionViewComponent>;
     let compDe: DebugElement;
 
-    let mockRouter;
     let mockActivatedRoute: ActivatedRouteStub;
+    let mockDocument: Document;
+    let mockRouter;
+
     let mockEditionStateService: Partial<EditionStateService>;
 
     let setupEditionViewSpy: Spy;
@@ -115,6 +118,7 @@ describe('EditionViewComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
+        mockDocument = TestBed.inject(DOCUMENT);
         mockEditionStateService = TestBed.inject(EditionStateService);
 
         // Test data
@@ -414,7 +418,14 @@ describe('EditionViewComponent (DONE)', () => {
                     const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                     const series = expectedSelectedEditionComplex.pubStatement.series.full;
                     const section = expectedSelectedEditionComplex.pubStatement.section.full;
-                    const expectedBreadCrumb = `${awg} / ${series} / ${section}`;
+
+                    // Handle non-breaking space by converting HTML to text
+                    const complex = expectedSelectedEditionComplex.complexId.short;
+                    const complexHtml = mockDocument.createElement('span');
+                    complexHtml.innerHTML = complex;
+                    const complexText = complexHtml.innerText;
+
+                    const expectedBreadCrumb = `${awg} / ${series} / ${section} / ${complexText}`;
 
                     expectToBe(hEl.innerText, expectedBreadCrumb);
                 });
