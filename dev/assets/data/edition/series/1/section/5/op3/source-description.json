@@ -4940,7 +4940,9 @@
                     {
                         "id": "source_I_corr1",
                         "label": "Korrekturen 1 in <strong>I</strong> (mit schwarzer Tinte [Text: rote Tinte] ggf. auf Rasur)",
-                        "description": ["Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 2."],
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 2."
+                        ],
                         "comments": [
                             {
                                 "blockHeader": "",
@@ -5012,7 +5014,9 @@
                     {
                         "id": "source_I_corr2",
                         "label": "Korrekturen 2 in <strong>I</strong> (mit Bleistift und Buntstift)",
-                        "description": ["Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 2."],
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 2."
+                        ],
                         "comments": [
                             {
                                 "blockHeader": "",

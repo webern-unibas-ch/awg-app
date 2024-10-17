@@ -323,6 +323,9 @@
                             <a href="#routedEditionRowTablesComponents" title="src/app/views/edition-view/edition-outlets/edition-row-tables/edition-row-tables-routing.module.ts" ><b>routedEditionRowTablesComponents</b>&nbsp;&nbsp;&nbsp;(src/.../edition-row-tables-routing.module.ts)</a>
                         </li>
                         <li>
+                            <a href="#routedEditionSectionDetailComponents" title="src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail-routing.module.ts" ><b>routedEditionSectionDetailComponents</b>&nbsp;&nbsp;&nbsp;(src/.../edition-section-detail-routing.module.ts)</a>
+                        </li>
+                        <li>
                             <a href="#routedEditionSheetsComponents" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-routing.module.ts" ><b>routedEditionSheetsComponents</b>&nbsp;&nbsp;&nbsp;(src/.../edition-sheets-routing.module.ts)</a>
                         </li>
                         <li>
@@ -617,7 +620,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;0.14.0-224-gb8569b284&#x27;</code>
+                        <i>Default value : </i><code>&#x27;0.14.0-265-gcf10c52be&#x27;</code>
                     </td>
                 </tr>
 
@@ -649,7 +652,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;16. October 2024&#x27;</code>
+                        <i>Default value : </i><code>&#x27;17. October 2024&#x27;</code>
                     </td>
                 </tr>
 
@@ -3172,27 +3175,60 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
     mockIntroData: {
         intro: [
             {
-                id: &#x27;op12&#x27;,
+                id: &#x27;test_intro&#x27;,
                 content: [
-                    &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;testComplex1&#x27;, fragmentId: &#x27;source_A&#x27;})\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern.&quot;,
-                    &quot;In &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; werden T. [11]–[12] aus &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; neu skizziert.&lt;sup id&#x3D;&#x27;footnote-80-backlink&#x27; class&#x3D;&#x27;footnote-link&#x27;&gt;&lt;a (click)&#x3D;\&quot;ref.navigateToIntroFragment({complexId: &#x27;testComplex1&#x27;, fragmentId: &#x27;footnote-80&#x27;})\&quot;&gt;80&lt;/a&gt;&lt;/sup&gt;&quot;,
-                ],
-                footnotes: [
-                    &quot;&lt;span id&#x3D;&#x27;footnote-80&#x27; class&#x3D;&#x27;footnote&#x27;&gt;&lt;a class&#x3D;&#x27;footnote-backlink&#x27; (click)&#x3D;\&quot;ref.navigateToIntroFragment({complexId: &#x27;testComplex1&#x27;, fragmentId: &#x27;footnote-80-backlink&#x27;})\&quot;&gt;80&lt;/a&gt; | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).&lt;/span&gt;&quot;,
+                    {
+                        blockId: &#x27;test_block_id_1&#x27;,
+                        blockHeader: &#x27;Test block header 1&#x27;,
+                        blockContent: [
+                            &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;testComplex1&#x27;, fragmentId: &#x27;source_A&#x27;})\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern.&quot;,
+                            &quot;In &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; werden T. [11]–[12] aus &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; neu skizziert.&lt;sup id&#x3D;&#x27;note-80-backlink&#x27; class&#x3D;&#x27;note-link&#x27;&gt;&lt;a (click)&#x3D;\&quot;ref.navigateToIntroFragment({complexId: &#x27;testComplex1&#x27;, fragmentId: &#x27;note-80&#x27;})\&quot;&gt;80&lt;/a&gt;&lt;/sup&gt;&quot;,
+                        ],
+                        blockNotes: [
+                            &quot;&lt;span id&#x3D;&#x27;note-80&#x27; class&#x3D;&#x27;note&#x27;&gt;&lt;a class&#x3D;&#x27;note-backlink&#x27; (click)&#x3D;\&quot;ref.navigateToIntroFragment({complexId: &#x27;testComplex1&#x27;, fragmentId: &#x27;note-80-backlink&#x27;})\&quot;&gt;80&lt;/a&gt; | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).&lt;/span&gt;&quot;,
+                        ],
+                    },
+                    {
+                        blockId: &#x27;test_block_id_2&#x27;,
+                        blockHeader: &#x27;Test block header 2&#x27;,
+                        blockContent: [&#x27;Test block content 2&#x27;],
+                        blockNotes: [&#x27;Test block notes 2&#x27;],
+                    },
                 ],
             },
         ],
     },
 
     /**
-     * Test helper data constant: mockIntroEmptyData.
+     * Test helper data constant: mockIntroFilteredData.
      *
-     * It provides a mocked intro data object with empty content.
+     * It provides a mocked intro data object with filtered content.
      */
-    mockIntroEmptyData: {
+    mockIntroFilteredData: {
         intro: [
             {
-                id: &#x27;op12&#x27;,
+                id: &#x27;test_intro&#x27;,
+                content: [
+                    {
+                        blockId: &#x27;test_block_id_2&#x27;,
+                        blockHeader: &#x27;Test block header 2&#x27;,
+                        blockContent: [&#x27;Test block content 2&#x27;],
+                        blockNotes: [&#x27;Test block notes 2&#x27;],
+                    },
+                ],
+            },
+        ],
+    },
+
+    /**
+     * Test helper data constant: mockIntroComplexData.
+     *
+     * It provides a mocked intro data object of an edition complex.
+     */
+    mockIntroComplexData: {
+        intro: [
+            {
+                id: &#x27;test_block_id_2&#x27;,
                 content: [],
             },
         ],
@@ -5852,6 +5888,45 @@ and <a href="../components/TimelineComponent.html">TimelineComponent</a>.</p>
         </tbody>
     </table>
 </section>
+    <h3>src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail-routing.module.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routedEditionSectionDetailComponents"></a>
+                    <span class="name">
+                        <span ><b>routedEditionSectionDetailComponents</b></span>
+                        <a href="#routedEditionSectionDetailComponents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    EditionSectionDetailComponent,
+    EditionSectionDetailOverviewComponent,
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Routed components of the <a href="../modules/EditionSectionDetailModule.html">EditionSectionDetailModule</a>:
+<a href="../components/EditionSectionDetailComponent.html">EditionSectionDetailComponent</a> and <a href="../components/EditionSectionDetailOverviewComponent.html">EditionSectionDetailOverviewComponent</a>.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
     <h3>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-routing.module.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -5914,7 +5989,6 @@ and <a href="../components/TimelineComponent.html">TimelineComponent</a>.</p>
     EditionComplexComponent,
     EditionDetailNavComponent,
     EditionSectionsComponent,
-    EditionSectionDetailComponent,
     EditionSeriesComponent,
     EditionSeriesDetailComponent,
 ]</code>
