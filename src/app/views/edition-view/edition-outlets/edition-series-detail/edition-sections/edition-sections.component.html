@@ -1,33 +1,41 @@
 @if (selectedSeries$ | async; as selectedSeries) {
-    <div class="row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
+    <div class="awg-edition-sections-grid row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
         @for (section of selectedSeries.sections; track $index) {
             <div class="col">
-                <div class="card h-100 shadow">
-                    @if (!section.disabled) {
-                        <img
-                            [src]="
-                                'assets/img/edition/series/' +
-                                selectedSeries.series.route +
-                                '/section/' +
-                                section.section.route +
-                                '/cover.jpg'
-                            "
-                            title="AWG {{ selectedSeries.series.short }}/{{ section.section.short }}"
-                            class="card-img-top"
-                            alt="In Vorbereitung" />
-                    }
-                    <div class="card-body">
-                        <h5 class="card-title" [ngClass]="{ 'text-muted': section.disabled }">
-                            {{ section.section.full }}
-                        </h5>
-                    </div>
-                    <div class="card-footer text-end">
-                        <a
-                            [routerLink]="[section.section.route]"
-                            class="btn btn-outline-info"
-                            [ngClass]="{ disabled: section.disabled }"
-                            >Mehr ...
-                        </a>
+                <div class="card awg-edition-section-card h-100 shadow">
+                    <div class="row g-0 h-100">
+                        @if (!section.disabled) {
+                            <div class="col-4 col-sm-2 col-md-12 awg-img-container">
+                                <img
+                                    [src]="
+                                        'assets/img/edition/series/' +
+                                        selectedSeries.series.route +
+                                        '/section/' +
+                                        section.section.route +
+                                        '/cover.jpg'
+                                    "
+                                    title="AWG {{ selectedSeries.series.short }}/{{ section.section.short }}"
+                                    class="card-img-top img-fluid"
+                                    alt="In Vorbereitung" />
+                            </div>
+                        }
+                        <div
+                            [ngClass]="{ 'col-8 col-sm-10': !section.disabled }"
+                            class="col-md-12 d-flex flex-column awg-edition-section-card-content">
+                            <div class="card-body flex-grow-1" [ngClass]="{ 'awg-card-border-top': !section.disabled }">
+                                <h5 class="card-title" [ngClass]="{ 'text-muted': section.disabled }">
+                                    {{ section.section.full }}
+                                </h5>
+                            </div>
+                            <div class="card-footer text-end">
+                                <a
+                                    [routerLink]="[section.section.route]"
+                                    class="btn btn-outline-info"
+                                    [ngClass]="{ disabled: section.disabled }"
+                                    >Mehr ...
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

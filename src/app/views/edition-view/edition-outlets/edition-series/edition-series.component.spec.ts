@@ -90,8 +90,8 @@ describe('EditionSeriesComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should not contain one div.row', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.row', 0, 0);
+            it('... should not contain one div.awg-edition-series-grid yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series-grid', 0, 0);
             });
         });
     });
@@ -117,19 +117,19 @@ describe('EditionSeriesComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.row', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.row', 1, 1);
+            it('... should contain one div.awg-edition-series-grid', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series-grid', 1, 1);
             });
 
-            it('... should contain as many div.col in div.row as there are series', () => {
+            it('... should contain as many div.col in div.awg-edition-series-grid as there are series', () => {
                 const expectedSeriesLength = expectedEditionOutline.length;
 
-                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.row', 1, 1);
+                const gridDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series-grid', 1, 1);
 
-                getAndExpectDebugElementByCss(rowDes[0], 'div.col', expectedSeriesLength, expectedSeriesLength);
+                getAndExpectDebugElementByCss(gridDes[0], 'div.col', expectedSeriesLength, expectedSeriesLength);
             });
 
-            it('... should contain a div.card in each div.col', () => {
+            it('... should contain a div.awg-edition-series-card in each div.col', () => {
                 const expectedSeriesLength = expectedEditionOutline.length;
 
                 const colDes = getAndExpectDebugElementByCss(
@@ -140,16 +140,16 @@ describe('EditionSeriesComponent (DONE)', () => {
                 );
 
                 colDes.forEach(colDe => {
-                    getAndExpectDebugElementByCss(colDe, 'div.card', 1, 1);
+                    getAndExpectDebugElementByCss(colDe, 'div.awg-edition-series-card', 1, 1);
                 });
             });
 
-            it('... should contain a h5.card-header in each div.card', () => {
+            it('... should contain a h5.card-header in each div.awg-edition-series-card', () => {
                 const expectedSeriesLength = expectedEditionOutline.length;
 
                 const cardDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.card',
+                    'div.awg-edition-series-card',
                     expectedSeriesLength,
                     expectedSeriesLength
                 );
@@ -164,7 +164,7 @@ describe('EditionSeriesComponent (DONE)', () => {
 
                 const cardDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.card',
+                    'div.awg-edition-series-card',
                     expectedSeriesLength,
                     expectedSeriesLength
                 );
@@ -178,12 +178,12 @@ describe('EditionSeriesComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain a div.card-body in each div.card', () => {
+            it('... should contain a div.card-body in each div.awg-edition-series-card', () => {
                 const expectedSeriesLength = expectedEditionOutline.length;
 
                 const cardDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.card',
+                    'div.awg-edition-series-card',
                     expectedSeriesLength,
                     expectedSeriesLength
                 );
@@ -193,140 +193,12 @@ describe('EditionSeriesComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain a ul.list-group in each div.card-body', () => {
-                const expectedSeriesLength = expectedEditionOutline.length;
-
-                const cardBodyDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.card-body',
-                    expectedSeriesLength,
-                    expectedSeriesLength
-                );
-
-                cardBodyDes.forEach(cardBodyDe => {
-                    getAndExpectDebugElementByCss(cardBodyDe, 'ul.list-group', 1, 1);
-                });
-            });
-
-            it('... should contain as many li.list-group-item in ul.list-group as there are sections in a series', () => {
-                const expectedSeriesLength = expectedEditionOutline.length;
-
-                const ulDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'ul.list-group',
-                    expectedSeriesLength,
-                    expectedSeriesLength
-                );
-
-                ulDes.forEach((ulDe, index) => {
-                    const expectedSectionsLength = expectedEditionOutline[index].sections.length;
-
-                    getAndExpectDebugElementByCss(
-                        ulDe,
-                        'li.list-group-item',
-                        expectedSectionsLength,
-                        expectedSectionsLength
-                    );
-                });
-            });
-
-            it('... should display section name in each li.list-group-item', () => {
-                const expectedSeriesLength = expectedEditionOutline.length;
-
-                const ulDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'ul.list-group',
-                    expectedSeriesLength,
-                    expectedSeriesLength
-                );
-
-                ulDes.forEach((ulDe, index) => {
-                    const expectedSections = expectedEditionOutline[index].sections;
-
-                    const liDes = getAndExpectDebugElementByCss(
-                        ulDe,
-                        'li.list-group-item',
-                        expectedSections.length,
-                        expectedSections.length
-                    );
-
-                    liDes.forEach((liDe, liIndex) => {
-                        const expectedSection = expectedSections[liIndex].section;
-                        const liEl = liDe.nativeElement;
-
-                        expectToBe(liEl.textContent.trim(), expectedSection.full);
-                    });
-                });
-            });
-
-            it('... should contain a routerLink and no span.text-muted in li.list-group-item if section is not disabled', () => {
-                const expectedSeriesLength = expectedEditionOutline.length;
-
-                const ulDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'ul.list-group',
-                    expectedSeriesLength,
-                    expectedSeriesLength
-                );
-
-                ulDes.forEach((ulDe, index) => {
-                    const expectedSections = expectedEditionOutline[index].sections;
-
-                    const liDes = getAndExpectDebugElementByCss(
-                        ulDe,
-                        'li.list-group-item',
-                        expectedSections.length,
-                        expectedSections.length
-                    );
-
-                    liDes.forEach((liDe, liIndex) => {
-                        const expectedSection = expectedSections[liIndex];
-
-                        if (!expectedSection.disabled) {
-                            getAndExpectDebugElementByDirective(liDe, RouterLinkStubDirective, 1, 1);
-                            getAndExpectDebugElementByCss(liDe, 'span.text-muted', 0, 0);
-                        }
-                    });
-                });
-            });
-
-            it('... should contain no router link, but a span.text-muted in li.list-group-item if section is disabled', () => {
-                const expectedSeriesLength = expectedEditionOutline.length;
-
-                const ulDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'ul.list-group',
-                    expectedSeriesLength,
-                    expectedSeriesLength
-                );
-
-                ulDes.forEach((ulDe, index) => {
-                    const expectedSections = expectedEditionOutline[index].sections;
-
-                    const liDes = getAndExpectDebugElementByCss(
-                        ulDe,
-                        'li.list-group-item',
-                        expectedSections.length,
-                        expectedSections.length
-                    );
-
-                    liDes.forEach((liDe, liIndex) => {
-                        const expectedSection = expectedSections[liIndex];
-
-                        if (expectedSection.disabled) {
-                            getAndExpectDebugElementByDirective(liDe, RouterLinkStubDirective, 0, 0);
-                            getAndExpectDebugElementByCss(liDe, 'span.text-muted', 1, 1);
-                        }
-                    });
-                });
-            });
-
-            it('... should contain a div.card-footer in each div.card', () => {
+            it('... should contain a div.card-footer in each div.awg-edition-series-card', () => {
                 const expectedSeriesLength = expectedEditionOutline.length;
 
                 const cardDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.card',
+                    'div.awg-edition-series-card',
                     expectedSeriesLength,
                     expectedSeriesLength
                 );
@@ -336,75 +208,207 @@ describe('EditionSeriesComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain a routerLink in each div.card-footer', () => {
-                const expectedSeriesLength = expectedEditionOutline.length;
+            describe('... div.card-body', () => {
+                it('... should contain a ul.list-group in each div.card-body', () => {
+                    const expectedSeriesLength = expectedEditionOutline.length;
 
-                const cardDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.card',
-                    expectedSeriesLength,
-                    expectedSeriesLength
-                );
+                    const cardBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.card-body',
+                        expectedSeriesLength,
+                        expectedSeriesLength
+                    );
 
-                cardDes.forEach((cardDe, _index) => {
-                    const footerDes = getAndExpectDebugElementByCss(cardDe, 'div.card-footer', 1, 1);
-                    getAndExpectDebugElementByDirective(footerDes[0], RouterLinkStubDirective, 1, 1);
+                    cardBodyDes.forEach(cardBodyDe => {
+                        getAndExpectDebugElementByCss(cardBodyDe, 'ul.list-group', 1, 1);
+                    });
+                });
+
+                it('... should contain as many li.list-group-item in ul.list-group as there are sections in a series', () => {
+                    const expectedSeriesLength = expectedEditionOutline.length;
+
+                    const ulDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'ul.list-group',
+                        expectedSeriesLength,
+                        expectedSeriesLength
+                    );
+
+                    ulDes.forEach((ulDe, index) => {
+                        const expectedSectionsLength = expectedEditionOutline[index].sections.length;
+
+                        getAndExpectDebugElementByCss(
+                            ulDe,
+                            'li.list-group-item',
+                            expectedSectionsLength,
+                            expectedSectionsLength
+                        );
+                    });
+                });
+
+                it('... should display section name in each li.list-group-item', () => {
+                    const expectedSeriesLength = expectedEditionOutline.length;
+
+                    const ulDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'ul.list-group',
+                        expectedSeriesLength,
+                        expectedSeriesLength
+                    );
+
+                    ulDes.forEach((ulDe, index) => {
+                        const expectedSections = expectedEditionOutline[index].sections;
+
+                        const liDes = getAndExpectDebugElementByCss(
+                            ulDe,
+                            'li.list-group-item',
+                            expectedSections.length,
+                            expectedSections.length
+                        );
+
+                        liDes.forEach((liDe, liIndex) => {
+                            const expectedSection = expectedSections[liIndex].section;
+                            const liEl = liDe.nativeElement;
+
+                            expectToBe(liEl.textContent.trim(), expectedSection.full);
+                        });
+                    });
+                });
+
+                it('... should contain a routerLink and no span.text-muted in li.list-group-item if section is not disabled', () => {
+                    const expectedSeriesLength = expectedEditionOutline.length;
+
+                    const ulDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'ul.list-group',
+                        expectedSeriesLength,
+                        expectedSeriesLength
+                    );
+
+                    ulDes.forEach((ulDe, index) => {
+                        const expectedSections = expectedEditionOutline[index].sections;
+
+                        const liDes = getAndExpectDebugElementByCss(
+                            ulDe,
+                            'li.list-group-item',
+                            expectedSections.length,
+                            expectedSections.length
+                        );
+
+                        liDes.forEach((liDe, liIndex) => {
+                            const expectedSection = expectedSections[liIndex];
+
+                            if (!expectedSection.disabled) {
+                                getAndExpectDebugElementByDirective(liDe, RouterLinkStubDirective, 1, 1);
+                                getAndExpectDebugElementByCss(liDe, 'span.text-muted', 0, 0);
+                            }
+                        });
+                    });
+                });
+
+                it('... should contain no router link, but a span.text-muted in li.list-group-item if section is disabled', () => {
+                    const expectedSeriesLength = expectedEditionOutline.length;
+
+                    const ulDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'ul.list-group',
+                        expectedSeriesLength,
+                        expectedSeriesLength
+                    );
+
+                    ulDes.forEach((ulDe, index) => {
+                        const expectedSections = expectedEditionOutline[index].sections;
+
+                        const liDes = getAndExpectDebugElementByCss(
+                            ulDe,
+                            'li.list-group-item',
+                            expectedSections.length,
+                            expectedSections.length
+                        );
+
+                        liDes.forEach((liDe, liIndex) => {
+                            const expectedSection = expectedSections[liIndex];
+
+                            if (expectedSection.disabled) {
+                                getAndExpectDebugElementByDirective(liDe, RouterLinkStubDirective, 0, 0);
+                                getAndExpectDebugElementByCss(liDe, 'span.text-muted', 1, 1);
+                            }
+                        });
+                    });
                 });
             });
 
-            it('... should have correct routerLink in each div.card-footer', () => {
-                const expectedSeriesLength = expectedEditionOutline.length;
+            describe('... div.card-footer', () => {
+                it('... should contain a routerLink in each div.card-footer', () => {
+                    const expectedSeriesLength = expectedEditionOutline.length;
 
-                const cardDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.card',
-                    expectedSeriesLength,
-                    expectedSeriesLength
-                );
-
-                cardDes.forEach((cardDe, index) => {
-                    const expectedSeries = expectedEditionOutline[index].series;
-
-                    const footerDes = getAndExpectDebugElementByCss(cardDe, 'div.card-footer', 1, 1);
-
-                    const footerLinkDes = getAndExpectDebugElementByDirective(
-                        footerDes[0],
-                        RouterLinkStubDirective,
-                        1,
-                        1
+                    const cardDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-edition-series-card',
+                        expectedSeriesLength,
+                        expectedSeriesLength
                     );
-                    const footerLink = footerLinkDes[0].injector.get(RouterLinkStubDirective);
 
-                    const expectedLinkParams = [expectedSeries.route];
-
-                    expectToEqual(footerLink.linkParams, expectedLinkParams);
+                    cardDes.forEach((cardDe, _index) => {
+                        const footerDes = getAndExpectDebugElementByCss(cardDe, 'div.card-footer', 1, 1);
+                        getAndExpectDebugElementByDirective(footerDes[0], RouterLinkStubDirective, 1, 1);
+                    });
                 });
-            });
 
-            it('... should display correct text in each routerLink in div.card-footer', () => {
-                const expectedSeriesLength = expectedEditionOutline.length;
+                it('... should have correct routerLink in each div.card-footer', () => {
+                    const expectedSeriesLength = expectedEditionOutline.length;
 
-                const cardDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.card',
-                    expectedSeriesLength,
-                    expectedSeriesLength
-                );
-
-                cardDes.forEach((cardDe, _index) => {
-                    const footerDes = getAndExpectDebugElementByCss(cardDe, 'div.card-footer', 1, 1);
-
-                    const footerLinkDes = getAndExpectDebugElementByDirective(
-                        footerDes[0],
-                        RouterLinkStubDirective,
-                        1,
-                        1
+                    const cardDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-edition-series-card',
+                        expectedSeriesLength,
+                        expectedSeriesLength
                     );
-                    const footerLinkEl = footerLinkDes[0].nativeElement;
 
-                    const expectedLinkText = 'Mehr ...';
+                    cardDes.forEach((cardDe, index) => {
+                        const expectedSeries = expectedEditionOutline[index].series;
 
-                    expectToBe(footerLinkEl.textContent.trim(), expectedLinkText);
+                        const footerDes = getAndExpectDebugElementByCss(cardDe, 'div.card-footer', 1, 1);
+
+                        const footerLinkDes = getAndExpectDebugElementByDirective(
+                            footerDes[0],
+                            RouterLinkStubDirective,
+                            1,
+                            1
+                        );
+                        const footerLink = footerLinkDes[0].injector.get(RouterLinkStubDirective);
+
+                        const expectedLinkParams = [expectedSeries.route];
+
+                        expectToEqual(footerLink.linkParams, expectedLinkParams);
+                    });
+                });
+
+                it('... should display correct text in each routerLink in div.card-footer', () => {
+                    const expectedSeriesLength = expectedEditionOutline.length;
+
+                    const cardDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.card',
+                        expectedSeriesLength,
+                        expectedSeriesLength
+                    );
+
+                    cardDes.forEach((cardDe, _index) => {
+                        const footerDes = getAndExpectDebugElementByCss(cardDe, 'div.card-footer', 1, 1);
+
+                        const footerLinkDes = getAndExpectDebugElementByDirective(
+                            footerDes[0],
+                            RouterLinkStubDirective,
+                            1,
+                            1
+                        );
+                        const footerLinkEl = footerLinkDes[0].nativeElement;
+
+                        const expectedLinkText = 'Mehr ...';
+
+                        expectToBe(footerLinkEl.textContent.trim(), expectedLinkText);
+                    });
                 });
             });
         });
