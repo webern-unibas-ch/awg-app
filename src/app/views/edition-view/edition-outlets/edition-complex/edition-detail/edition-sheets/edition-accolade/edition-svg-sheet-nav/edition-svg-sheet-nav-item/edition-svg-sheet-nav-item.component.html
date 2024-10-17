@@ -1,6 +1,15 @@
 <h6 class="card-title">
     {{ navItemLabel }}:
-    @if (!utils.isNotEmptyArray(svgSheets)) {
+    @if (navItemLabel === 'Werkeditionen') {
+        <span class="text-danger"
+            >&nbsp;<fa-icon
+                [icon]="faCalendarXmark"
+                [ngbPopover]="disclaimerWorkEditions"
+                popoverTitle="Disclaimer"
+                placement="end"
+                triggers="mouseenter:mouseleave"></fa-icon>
+        </span>
+    } @else if (!utils.isNotEmptyArray(svgSheets)) {
         <span>---</span>
     }
 </h6>
