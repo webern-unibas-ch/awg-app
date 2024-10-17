@@ -33,8 +33,8 @@ import {
 import {
     EditionComplexesService,
     EditionDataService,
-    EditionService,
     EditionSheetsService,
+    EditionStateService,
 } from '@awg-views/edition-view/services';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -105,13 +105,13 @@ describe('EditionSheetsComponent', () => {
     const expectedPath = 'sheets';
 
     let mockEditionDataService: Partial<EditionDataService>;
-    let mockEditionService: Partial<EditionService>;
     let mockEditionSheetsService: Partial<EditionSheetsService>;
+    let mockEditionStateService: Partial<EditionStateService>;
 
     let editionDataServiceGetEditionSheetsDataSpy: Spy;
-    let editionServiceGetSelectedEditionComplexSpy: Spy;
     let editionSheetsServiceSelectSvgSheetByIdSpy: Spy;
     let editionSheetsServiceSelectConvoluteSpy: Spy;
+    let editionStateServiceGetSelectedEditionComplexSpy: Spy;
     let getEditionSheetsDataSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
     let navigateWithComplexIdSpy: Spy;
@@ -162,7 +162,7 @@ describe('EditionSheetsComponent', () => {
                 editionComplex: EditionComplex
             ): Observable<(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]> => observableOf([]),
         };
-        mockEditionService = {
+        mockEditionStateService = {
             getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(),
         };
         mockEditionSheetsService = {
@@ -187,7 +187,7 @@ describe('EditionSheetsComponent', () => {
             ],
             providers: [
                 { provide: EditionDataService, useValue: mockEditionDataService },
-                { provide: EditionService, useValue: mockEditionService },
+                { provide: EditionStateService, useValue: mockEditionStateService },
                 { provide: Router, useValue: mockRouter },
                 {
                     provide: ActivatedRoute,
@@ -225,8 +225,8 @@ describe('EditionSheetsComponent', () => {
             mockEditionDataService,
             'getEditionSheetsData'
         ).and.returnValue(observableOf([expectedFolioConvoluteData, expectedSvgSheetsData, expectedTextcriticsData]));
-        editionServiceGetSelectedEditionComplexSpy = spyOn(
-            mockEditionService,
+        editionStateServiceGetSelectedEditionComplexSpy = spyOn(
+            mockEditionStateService,
             'getSelectedEditionComplex'
         ).and.returnValue(observableOf(expectedEditionComplex));
         editionSheetsServiceSelectSvgSheetByIdSpy = spyOn(

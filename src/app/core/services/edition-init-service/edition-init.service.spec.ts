@@ -6,8 +6,8 @@ import Spy = jasmine.Spy;
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToEqual } from '@testing/expect-helper';
 
-import { EDITION_ROUTE_CONSTANTS } from '@awg-app/views/edition-view/edition-route-constants';
-import { EditionComplexesService, EditionOutlineService } from '@awg-app/views/edition-view/services';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EditionComplexesService, EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { EditionInitService } from './edition-init.service';
 

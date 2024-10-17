@@ -38,7 +38,7 @@ import {
     SourceList,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionReportComponent } from './edition-report.component';
 
@@ -111,9 +111,9 @@ describe('EditionReportComponent', () => {
     let mockRouter;
 
     let mockEditionDataService: Partial<EditionDataService>;
-    let mockEditionService: Partial<EditionService>;
+    let mockEditionStateService: Partial<EditionStateService>;
     let editionDataService: Partial<EditionDataService>;
-    let editionService: Partial<EditionService>;
+    let editionStateService: Partial<EditionStateService>;
 
     let expectedEditionComplex: EditionComplex;
     let expectedEditionReportData: (SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[];
@@ -133,7 +133,7 @@ describe('EditionReportComponent', () => {
 
     let editionDataServiceGetEditionReportDataSpy: Spy;
     let getEditionReportDataSpy: Spy;
-    let editionServiceGetSelectedEditionComplexSpy: Spy;
+    let editionStateServiceGetSelectedEditionComplexSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
     let navigateWithComplexIdSpy: Spy;
     let navigationSpy: Spy;
@@ -167,7 +167,7 @@ describe('EditionReportComponent', () => {
             ): Observable<(SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[]> =>
                 observableOf(expectedEditionReportData),
         };
-        mockEditionService = {
+        mockEditionStateService = {
             getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
         };
 
@@ -187,7 +187,7 @@ describe('EditionReportComponent', () => {
             ],
             providers: [
                 { provide: EditionDataService, useValue: mockEditionDataService },
-                { provide: EditionService, useValue: mockEditionService },
+                { provide: EditionStateService, useValue: mockEditionStateService },
                 { provide: Router, useValue: mockRouter },
             ],
         }).compileComponents();
@@ -200,7 +200,7 @@ describe('EditionReportComponent', () => {
 
         // Inject services from root
         editionDataService = TestBed.inject(EditionDataService);
-        editionService = TestBed.inject(EditionService);
+        editionStateService = TestBed.inject(EditionStateService);
 
         // Test data
         expectedPanelId = 'awg-sources-panel';
@@ -229,9 +229,10 @@ describe('EditionReportComponent', () => {
         editionDataServiceGetEditionReportDataSpy = spyOn(editionDataService, 'getEditionReportData').and.returnValue(
             observableOf(expectedEditionReportData)
         );
-        editionServiceGetSelectedEditionComplexSpy = spyOn(editionService, 'getSelectedEditionComplex').and.returnValue(
-            observableOf(expectedEditionComplex)
-        );
+        editionStateServiceGetSelectedEditionComplexSpy = spyOn(
+            editionStateService,
+            'getSelectedEditionComplex'
+        ).and.returnValue(observableOf(expectedEditionComplex));
         getEditionReportDataSpy = spyOn(component, 'getEditionReportData').and.callThrough();
         navigateToReportFragmentSpy = spyOn(component, 'onReportFragmentNavigate').and.callThrough();
         navigateWithComplexIdSpy = spyOn(component as any, '_navigateWithComplexId').and.callThrough();
@@ -322,8 +323,8 @@ describe('EditionReportComponent', () => {
             expectSpyCall(getEditionReportDataSpy, 1);
         });
 
-        it('... should have triggered `getSelectedEditionComplex()` method from EditionService', () => {
-            expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
+        it('... should have triggered `getSelectedEditionComplex()` method from EditionStateService', () => {
+            expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 1);
         });
 
         it('... should have editionComplex', () => {
@@ -469,8 +470,8 @@ describe('EditionReportComponent', () => {
                 expectSpyCall(getEditionReportDataSpy, 1);
             });
 
-            it('... should have got `editionComplex` from editionService', () => {
-                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
+            it('... should have got `editionComplex` from editionStateService', () => {
+                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 1);
 
                 expectToEqual(component.editionComplex, expectedEditionComplex);
             });

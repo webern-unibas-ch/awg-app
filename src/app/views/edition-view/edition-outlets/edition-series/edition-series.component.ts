@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionOutlineService, EditionService } from '@awg-views/edition-view/services';
+import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionSeries component.
@@ -25,11 +25,11 @@ export class EditionSeriesComponent implements OnInit {
     /**
      * Constructor of the EditionSeriesComponent.
      *
-     * It declares a private instance of the EditionService.
+     * It declares a private instance of the EditionStateService.
      *
-     * @param {EditionService} editionService Instance of the EditionService.
+     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
      */
-    constructor(private editionService: EditionService) {
+    constructor(private editionStateService: EditionStateService) {
         // Intentionally left empty until implemented
     }
 
@@ -47,19 +47,19 @@ export class EditionSeriesComponent implements OnInit {
     /**
      * Public method: clearSelectedSeries.
      *
-     * It clears the selected series from the EditionService.
+     * It clears the selected series from the EditionStateService.
      *
      * @returns {void} Clears the edition series.
      */
     clearSelections(): void {
-        this.editionService.clearSelectedEditionSeries();
-        this.editionService.clearSelectedEditionSection();
+        this.editionStateService.clearSelectedEditionSeries();
+        this.editionStateService.clearSelectedEditionSection();
     }
 
     /**
      * Public method: getEditionOutline.
      *
-     * It gets the outline with array of series from the EditionService.
+     * It gets the outline with array of series from the EditionStateService.
      *
      * @returns {void} Gets the edition outline.
      */

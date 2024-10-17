@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionOverview component.
@@ -45,11 +45,11 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
     /**
      * Constructor of the EditionDetailNavComponent.
      *
-     * It declares a private instance of EditionService.
+     * It declares a private instance of EditionStateService.
      *
-     * @param {EditionService} editionService Instance of the EditionService.
+     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
      */
-    constructor(private editionService: EditionService) {}
+    constructor(private editionStateService: EditionStateService) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -65,12 +65,12 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
      * Public method: getEditionComplex.
      *
      * It subscribes to the current edition complex
-     * of the edition service.
+     * of the EditionStateService.
      *
      * @returns {void} Gets the current edition complex.
      */
     getEditionComplex(): void {
-        this.editionService
+        this.editionStateService
             .getSelectedEditionComplex()
             .pipe(takeUntil(this._destroyed$))
             .subscribe({

@@ -3,18 +3,18 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { EditionOutlineComplexItem } from '@awg-views/edition-view/models';
 
 /**
- * The EditionComplexCard component.
+ * The EditionSectionDetailComplexCard component.
  *
  * It contains the card style view of an edition complex
  * for the edition view of the app.
  */
 @Component({
-    selector: 'awg-edition-complex-card',
-    templateUrl: './edition-complex-card.component.html',
-    styleUrls: ['./edition-complex-card.component.scss'],
+    selector: 'awg-edition-section-detail-complex-card',
+    templateUrl: './edition-section-detail-complex-card.component.html',
+    styleUrls: ['./edition-section-detail-complex-card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditionComplexCardComponent {
+export class EditionSectionDetailComplexCardComponent {
     /**
      * Input variable: complexes.
      *

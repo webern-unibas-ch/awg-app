@@ -5,10 +5,10 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
 /**
- * The Edition service.
+ * The EditionState service.
  *
- * It handles the provision of the current edition complex and
- * other parts of the edition outline.
+ * It handles the provision of the current state
+ * of an edition complex and other parts of the edition outline.
  *
  * Provided in: `root`.
  * @used in the {@link EditionSheetsComponent}.
@@ -16,11 +16,21 @@ import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@aw
 @Injectable({
     providedIn: 'root',
 })
-export class EditionService {
+export class EditionStateService {
     /**
      * Private variable for the replay subject´s buffer size.
      */
     private _bufferSize = 1;
+
+    /**
+     * Private replay subject to flag intro view.
+     */
+    private _isIntroViewSubject = new ReplaySubject<boolean>(this._bufferSize);
+
+    /**
+     * Private readonly isIntroView stream as observable (`ReplaySubject`).
+     */
+    private readonly _isIntroViewStream$ = this._isIntroViewSubject.asObservable();
 
     /**
      * Private replay subject to flag preface view.
@@ -173,6 +183,41 @@ export class EditionService {
      */
     clearSelectedEditionSection(): void {
         this._selectedEditionSectionSubject.next(null);
+    }
+
+    /**
+     * Public method: getIsIntroView.
+     *
+     * It provides the latest isIntroView flag from the isIntroView stream.
+     *
+     * @returns {Observable<boolean>} The isIntroView stream as observable.
+     */
+    getIsIntroView(): Observable<boolean> {
+        return this._isIntroViewStream$;
+    }
+
+    /**
+     * Public method: updateIsIntroView.
+     *
+     * It updates the isIntroView stream with the given boolean value.
+     *
+     * @param {boolean} isView The given isIntroView flag.
+     *
+     * @returns {void} Sets the next isIntroView flag to the stream.
+     */
+    updateIsIntroView(isView: boolean): void {
+        this._isIntroViewSubject.next(isView);
+    }
+
+    /**
+     * Public method: clearIsIntroView.
+     *
+     * It clears the isIntroView stream.
+     *
+     * @returns {void} Clears the isIntroView stream.
+     */
+    clearIsIntroView(): void {
+        this._isIntroViewSubject.next(null);
     }
 
     /**

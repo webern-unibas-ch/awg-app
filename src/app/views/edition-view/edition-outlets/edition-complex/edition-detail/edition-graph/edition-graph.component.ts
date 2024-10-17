@@ -18,7 +18,7 @@ import { UtilityService } from '@awg-core/services';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, GraphList } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { GraphVisualizerComponent } from './graph-visualizer';
 
@@ -102,17 +102,17 @@ export class EditionGraphComponent implements OnInit {
     /**
      * Constructor of the EditionGraphComponent.
      *
-     * It declares a private instances of the EditionDataService and EditionService;
+     * It declares a private instances of the EditionDataService and EditionStateService;
      * injects the DOCUMENT; and declares a public instance of the UtilityService.
      *
      * @param {EditionDataService} editionDataService Instance of the EditionDataService.
-     * @param {EditionService} editionService Instance of the EditionService.
+     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
      * @param {DOCUMENT} document Instance of DOCUMENT
      * @param {UtilityService} utils Instance of the UtilityService.
      */
     constructor(
         private editionDataService: EditionDataService,
-        private editionService: EditionService,
+        private editionStateService: EditionStateService,
         @Inject(DOCUMENT) private document: any,
         public utils: UtilityService
     ) {
@@ -156,31 +156,23 @@ export class EditionGraphComponent implements OnInit {
     /**
      * Public method: getEditionGraphData.
      *
-     * It gets the current edition complex of the edition service
+     * It gets the current edition complex from the EditionStateService
      * and the observable of the corresponding graph data
      * from the EditionDataService.
      *
      * @returns {void} Gets the current edition complex and the corresponding graph data.
      */
     getEditionGraphData(): void {
-        this.editionGraphData$ = this.editionService
-            // Get current editionComplex from editionService
-            .getSelectedEditionComplex()
-            .pipe(
-                switchMap((complex: EditionComplex) => {
-                    // Set current editionComplex
-                    this.editionComplex = complex;
-                    // Get graph data from editionDataService
-                    return this.editionDataService.getEditionGraphData(this.editionComplex);
-                }),
-                // Error handling
-                catchError(err => {
-                    // Set error object
-                    this.errorObject = err;
-                    // Return empty observable to complete observable without data
-                    return EMPTY;
-                })
-            );
+        this.editionGraphData$ = this.editionStateService.getSelectedEditionComplex().pipe(
+            switchMap((complex: EditionComplex) => {
+                this.editionComplex = complex;
+                return this.editionDataService.getEditionGraphData(this.editionComplex);
+            }),
+            catchError(err => {
+                this.errorObject = err;
+                return EMPTY;
+            })
+        );
     }
 
     /**

@@ -1,0 +1,15 @@
+@media (max-width: 768px) {
+    .awg-img-container {
+        max-height: 150px;
+        overflow: hidden;
+        border-right: 1px solid var(--bs-card-border-color);
+    }
+    img {
+        object-fit: contain;
+        height: 100%;
+    }
+}
+
+.awg-card-border-top {
+    border-top: 1px solid var(--bs-card-border-color);
+}

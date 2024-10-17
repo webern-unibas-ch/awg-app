@@ -1,8 +1,8 @@
 @if (editionOutline) {
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="awg-edition-series-grid row row-cols-1 row-cols-md-3 g-4">
         @for (series of editionOutline; track $index) {
             <div class="col">
-                <div class="card h-100 shadow">
+                <div class="card awg-edition-series-card h-100 shadow">
                     <h5 class="card-header">
                         {{ series.series.full }}
                     </h5>

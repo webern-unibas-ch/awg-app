@@ -73,17 +73,40 @@ export class EditionDataService {
     }
 
     /**
-     * Public method: getEditionIntroData.
+     * Public method: getEditionComplexIntroData.
      *
      * It provides the data from a JSON file
-     * for the intro of the edition view.
+     * for the intro of an edition complex of the edition view.
      *
      * @param {EditionComplex} editionComplex The current edition complex.
      *
      * @returns {Observable<IntroList>} The observable with the IntroList data.
      */
-    getEditionIntroData(editionComplex: EditionComplex): Observable<IntroList> {
+    getEditionComplexIntroData(editionComplex: EditionComplex): Observable<IntroList> {
         this._assetPath = this._setAssetPathForEditionComplex(editionComplex);
+        const introData$: Observable<IntroList> = this._getIntroData();
+
+        return introData$.pipe(
+            // Default empty value
+            defaultIfEmpty(new IntroList()),
+            // Take only first request (JSON fetch)
+            take(1)
+        );
+    }
+
+    /**
+     * Public method: getEditionSectionIntroData.
+     *
+     * It provides the data from a JSON file
+     * for the intro of an edition section of the edition view.
+     *
+     * @param {string} seriesRoute The current series route.
+     * @param {string} sectionRoute The current section route.
+     *
+     * @returns {Observable<IntroList>} The observable with the IntroList data.
+     */
+    getEditionSectionIntroData(seriesRoute: string, sectionRoute: string): Observable<IntroList> {
+        this._assetPath = this._setAssetPathForSectionIntro(seriesRoute, sectionRoute);
         const introData$: Observable<IntroList> = this._getIntroData();
 
         return introData$.pipe(
@@ -206,6 +229,35 @@ export class EditionDataService {
     }
 
     /**
+     * Private method: _generateAssetPath.
+     *
+     * It generates the path to the correct assets folder
+     * of a given edition complex or section.
+     *
+     * @param {string} seriesRoute The current series route.
+     * @param {string} sectionRoute The current section route.
+     * @param {string} [complexIdRoute] The current complex id route.
+     *
+     * @returns {string} The path to the correct assets folder of a given edition complex or section.
+     */
+    private _generateAssetPath(seriesRoute: string, sectionRoute: string, complexIdRoute?: string): string {
+        const delimiter = '/';
+        let route =
+            delimiter +
+            EDITION_ROUTE_CONSTANTS.SERIES.route +
+            delimiter +
+            seriesRoute +
+            delimiter +
+            EDITION_ROUTE_CONSTANTS.SECTION.route +
+            delimiter +
+            sectionRoute;
+        if (complexIdRoute) {
+            route += complexIdRoute;
+        }
+        return EDITION_ASSETS_DATA.BASE_ROUTE + route;
+    }
+
+    /**
      * Private method: _setAssetPathForEditionComplex.
      *
      * It sets the path to correct assets folder of a given edition complex.
@@ -215,16 +267,25 @@ export class EditionDataService {
      * @returns {string} The path to the correct assets folder of a given edition complex.
      */
     private _setAssetPathForEditionComplex(editionComplex: EditionComplex): string {
-        const delimiter = '/';
-        const complexRoute =
-            delimiter +
-            EDITION_ROUTE_CONSTANTS.SERIES.route +
-            delimiter +
-            editionComplex.pubStatement.series.route +
-            EDITION_ROUTE_CONSTANTS.SECTION.route +
-            editionComplex.pubStatement.section.route +
-            editionComplex.complexId.route;
-        return EDITION_ASSETS_DATA.BASE_ROUTE + complexRoute;
+        return this._generateAssetPath(
+            editionComplex.pubStatement.series.route,
+            editionComplex.pubStatement.section.route,
+            editionComplex.complexId.route
+        );
+    }
+
+    /**
+     * Private method: _setAssetPathForSectionIntro.
+     *
+     * It sets the path to correct assets folder of an intro of a given edition section.
+     *
+     * @param {string} seriesRoute The current series route.
+     * @param {string} sectionRoute The current section route.
+     *
+     * @returns {string} The path to the correct assets folder of an intro of a given edition section.
+     */
+    private _setAssetPathForSectionIntro(seriesRoute: string, sectionRoute: string): string {
+        return this._generateAssetPath(seriesRoute, sectionRoute);
     }
 
     /**

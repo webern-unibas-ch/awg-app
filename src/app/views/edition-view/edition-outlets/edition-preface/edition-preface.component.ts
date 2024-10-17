@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
 import { PrefaceList } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionPreface component.
@@ -46,14 +46,14 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
     /**
      * Constructor of the EditionPrefaceComponent.
      *
-     * It declares private instances of the EditionService and EditionDataService
+     * It declares private instances of the EditionStateService and EditionDataService
      * and the self-referring ref variable needed for CompileHtml library.
      *
-     * @param {EditionService} editionService Instance of the EditionService.
+     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
      * @param {EditionDataService} editionDataService Instance of the EditionDataService.
      */
     constructor(
-        private editionService: EditionService,
+        private editionStateService: EditionStateService,
         private editionDataService: EditionDataService
     ) {
         this.ref = this;
@@ -66,7 +66,7 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit(): void {
-        this.editionService.updateIsPrefaceView(true);
+        this.editionStateService.updateIsPrefaceView(true);
         this.prefaceData$ = this.editionDataService.getEditionPrefaceData();
     }
 
@@ -104,6 +104,6 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        this.editionService.clearIsPrefaceView();
+        this.editionStateService.clearIsPrefaceView();
     }
 }

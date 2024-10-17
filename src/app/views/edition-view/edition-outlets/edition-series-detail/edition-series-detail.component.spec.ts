@@ -5,7 +5,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ActivatedRouteStub } from '@testing/router-stubs';
 
 import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionSeriesDetailComponent } from './edition-series-detail.component';
 
@@ -14,13 +14,13 @@ describe('EditionSeriesDetailComponent', () => {
     let fixture: ComponentFixture<EditionSeriesDetailComponent>;
     let compDe: DebugElement;
 
-    let mockEditionService: Partial<EditionService>;
+    let mockEditionStateService: Partial<EditionStateService>;
 
     let expectedEditionSeries: EditionOutlineSeries;
 
     beforeEach(async () => {
-        // Mock edition service
-        mockEditionService = {
+        // Mock edition state service
+        mockEditionStateService = {
             updateSelectedEditionSeries: (editionSeries: EditionOutlineSeries): void => {},
         };
 
@@ -32,7 +32,7 @@ describe('EditionSeriesDetailComponent', () => {
             declarations: [EditionSeriesDetailComponent],
             providers: [
                 { provide: ActivatedRoute, useValue: mockActivatedRoute },
-                { provide: EditionService, useValue: mockEditionService },
+                { provide: EditionStateService, useValue: mockEditionStateService },
             ],
         }).compileComponents();
     });

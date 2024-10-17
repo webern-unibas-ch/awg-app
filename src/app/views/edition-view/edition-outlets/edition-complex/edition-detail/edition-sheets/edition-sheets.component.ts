@@ -18,7 +18,7 @@ import {
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService, EditionSheetsService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionSheetsService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionSheets component.
@@ -144,12 +144,12 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * Constructor of the EditionSheetsComponent.
      *
      * It declares private instances of
-     * EditionDataService, EditionSheetsService, EditionService, UtilityService,
+     * EditionDataService, EditionSheetsService, EditionStateService, UtilityService,
      * ActivatedRoute and Router.
      *
      * @param {EditionDataService} editionDataService Instance of the EditionDataService.
      * @param {EditionSheetsService} editionSheetsService Instance of the EditionSheetsService.
-     * @param {EditionService} editionService Instance of the EditionService.
+     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
      * @param {UtilityService} utils Instance of the UtilityService.
      * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
      * @param {Router} router Instance of the Angular Router.
@@ -157,7 +157,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     constructor(
         private editionDataService: EditionDataService,
         private editionSheetsService: EditionSheetsService,
-        private editionService: EditionService,
+        private editionStateService: EditionStateService,
         private utils: UtilityService,
         private route: ActivatedRoute,
         private router: Router
@@ -361,7 +361,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         queryParams: ParamMap
     ): Observable<EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
         this.isLoading = true;
-        return this.editionService.getSelectedEditionComplex().pipe(
+        return this.editionStateService.getSelectedEditionComplex().pipe(
             // Set editionComplex
             tap((complex: EditionComplex) => (this.editionComplex = complex)),
             // Get editionSheetsData

@@ -1,0 +1,27 @@
+@if (selectedSeries && selectedSection) {
+    <div class="card awg-edition-card h-100">
+        <h5 class="card-header">
+            <span class="awg-edition-info-header-title" [innerHTML]="'Einleitung'"></span>
+        </h5>
+        <div class="card-body d-flex flex-column">
+            <p class="card-text">{{ selectedSection?.content?.intro.preview }} …</p>
+        </div>
+        <div class="card-footer d-flex flex-column">
+            <p class="mt-auto text-end">
+                <a
+                    [routerLink]="[
+                        '/edition',
+                        'series',
+                        selectedSeries?.series.route,
+                        'section',
+                        selectedSection?.section.route,
+                        'intro',
+                    ]"
+                    class="btn btn-outline-info"
+                    [ngClass]="{ disabled: selectedSection?.content?.intro.disabled }"
+                    >Mehr ...
+                </a>
+            </p>
+        </div>
+    </div>
+}
