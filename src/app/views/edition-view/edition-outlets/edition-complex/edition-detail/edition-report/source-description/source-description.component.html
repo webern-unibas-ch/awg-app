@@ -27,10 +27,7 @@
                                 [compile-html-ref]="ref"></p>
                         }
                         @if (sourceDescription.location) {
-                            <p
-                                class="awg-source-description-location"
-                                [compile-html]="sourceDescription.location"
-                                [compile-html-ref]="ref"></p>
+                            <p class="awg-source-description-location" [awgAbbr]="sourceDescription.location"></p>
                         }
                     </div>
                     @if (utils.isNotEmptyObject(sourceDescription.description)) {
@@ -298,9 +295,9 @@
                                                     <ng-template #folioTemplate let-folio>
                                                         <span>
                                                             @if (folio.isPage) {
-                                                                <span>S.&nbsp;</span>
+                                                                <span><span [awgAbbr]="'S.'"></span>&nbsp;</span>
                                                             } @else {
-                                                                <span>Bl.&nbsp;</span>
+                                                                <span><span [awgAbbr]="'Bl.'"></span>&nbsp;</span>
                                                             }
                                                             @if (
                                                                 folio.folio.endsWith('v') || folio.folio.endsWith('r')
@@ -425,7 +422,9 @@
                                                                         }
                                                                         <ng-template #measureTemplate let-measure
                                                                             ><span
-                                                                                >T.&nbsp;{{ measure }}</span
+                                                                                ><span [awgAbbr]="'T.'"></span>&nbsp;{{
+                                                                                    measure
+                                                                                }}</span
                                                                             ></ng-template
                                                                         ></span
                                                                     >

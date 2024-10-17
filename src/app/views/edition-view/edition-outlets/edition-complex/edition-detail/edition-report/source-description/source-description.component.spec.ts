@@ -16,6 +16,7 @@ import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { UtilityService } from '@awg-core/services';
+import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_FIRM_SIGNS_DATA } from '@awg-views/edition-view/data';
 import {
@@ -88,6 +89,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 SourceDescriptionDetailsStubComponent,
                 SourceDescriptionCorrectionsStubComponent,
                 CompileHtmlComponent,
+                AbbrDirective,
                 RouterLinkStubDirective,
             ],
             providers: [UtilityService],

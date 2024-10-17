@@ -7,6 +7,7 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectToBe } from '@testing/expect-helper';
 import { ExternalLinkDirective } from './external-link.directive';
 
+// Test external link component
 @Component({
     template: `<a href="https://coryrylan.com/blog/managing-external-links-safely-in-angular">Link External</a>
 

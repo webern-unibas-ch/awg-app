@@ -32,6 +32,7 @@ import { ViewHandleButtonGroupComponent } from './view-handle-button-group/view-
 
 //
 // Shared directives
+import { AbbrDirective } from './abbr/abbr.directive';
 import { ExternalLinkDirective } from './external-link/external-link.directive';
 
 //
@@ -72,6 +73,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         ToastComponent,
         TwelveToneSpinnerComponent,
         ViewHandleButtonGroupComponent,
+        AbbrDirective,
         ExternalLinkDirective,
         OrderByPipe,
     ],
@@ -101,6 +103,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         ToastComponent,
         TwelveToneSpinnerComponent,
         ViewHandleButtonGroupComponent,
+        AbbrDirective,
         ExternalLinkDirective,
         OrderByPipe,
     ],
