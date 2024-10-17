@@ -10,6 +10,7 @@ import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
+import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { SourceList } from '@awg-views/edition-view/models';
 
@@ -31,7 +32,7 @@ describe('SourceListComponent (DONE)', () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [RouterModule],
-            declarations: [SourceListComponent, CompileHtmlComponent, RouterLinkStubDirective],
+            declarations: [SourceListComponent, CompileHtmlComponent, AbbrDirective, RouterLinkStubDirective],
         }).compileComponents();
     }));
 

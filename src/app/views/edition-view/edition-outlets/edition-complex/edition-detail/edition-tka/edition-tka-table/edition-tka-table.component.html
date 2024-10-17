@@ -20,8 +20,8 @@
                 }
                 @for (textcriticalComment of textcriticalCommentBlock.blockComments; track $index) {
                     <tr>
-                        <td [innerHTML]="textcriticalComment.measure"></td>
-                        <td [innerHTML]="textcriticalComment.system"></td>
+                        <td [awgAbbr]="textcriticalComment.measure"></td>
+                        <td [awgAbbr]="textcriticalComment.system"></td>
                         <td [innerHTML]="textcriticalComment.position"></td>
                         <td><span [compile-html]="textcriticalComment.comment" [compile-html-ref]="ref"></span></td>
                     </tr>
