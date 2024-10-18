@@ -1,56 +1,8 @@
 <!-- content: home -->
 
-<!-- heading -->
-<awg-heading [title]="homeViewTitle" [id]="homeViewId"></awg-heading>
-
-<!-- header -->
-<div class="para">
-    <h6 class="awg-breadcrumb">
-        {{ editionRouteConstants.EDITION.short }} / {{ editionRouteConstants.SERIES_1.full }} /
-        {{ editionRouteConstants.SECTION_5.full }}
-    </h6>
-
-    @for (
-        editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: 0 : SLICE_INDEX;
-        track editionComplex.complexId.short
-    ) {
-        <h4 class="awg-edition-info-header">
-            <span class="awg-edition-info-header-title" [innerHTML]="editionComplex.complexId.full"></span> (<a
-                [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
-                >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
-            >
-            @if (editionComplex.complexId.route.includes('op25')) {
-                <span>&nbsp;&&nbsp;</span>
-                <a [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_GRAPH.route]">{{
-                    editionRouteConstants.EDITION_GRAPH.short
-                }}</a>
-            }
-            <span>)</span>
-        </h4>
-    }
-</div>
-<div class="para">
-    <h6 class="awg-breadcrumb">
-        {{ editionRouteConstants.EDITION.short }} / {{ editionRouteConstants.SERIES_2.full }} /
-        {{ editionRouteConstants.SECTION_2A.full }}
-    </h6>
-
-    @for (
-        editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: SLICE_INDEX : DISPLAYED_EDITION_COMPLEXES.length;
-        track editionComplex.complexId.short
-    ) {
-        <h4 class="awg-edition-info-header">
-            <span class="awg-edition-info-header-title" [innerHTML]="editionComplex.complexId.full"></span> (<a
-                [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
-                >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
-            >)
-        </h4>
-    }
-</div>
-
 <!-- description -->
-<div class="para">
-    <p>Willkommen bei der AWG-APP, dem Prototyp einer Online-Edition der Anton Webern Gesamtausgabe, Basel (AWG).</p>
+<div class="awg-edition-home-view p-5 border rounded-3">
+    <p>Willkommen bei der AWG-APP, der Online-Edition der Anton Webern Gesamtausgabe, Basel (AWG).</p>
     <p>
         Die online zugänglichen Bestandteile und Datenbestände der AWG-Online-Edition werden als Open Data über diese
         Webapplikation präsentiert und über das Software-Framework
@@ -64,7 +16,7 @@
         <a id="dasch-mission-link" href="{{ pageMetaData?.daschUrl + 'mission' }}">Mission Statement DaSCH</a>).
     </p>
     <p>
-        Der Protoyp simuliert bereits in weiten Teilen eine Datenabfrage über die Programmierschnittstelle (API) von
+        Die AWG-APP simuliert bereits in weiten Teilen eine Datenabfrage über die Programmierschnittstelle (API) von
         SALSAH (zukünftig DSP). Die für reale Abfragen im Bereich Online-Edition notwendige
         <a [routerLink]="['/structure']">Datenstruktur</a> wird zur Zeit von der AWG implementiert.
     </p>
@@ -100,7 +52,7 @@
         Briefe &amp; Supplements, Chronologie) abgefragt werden können.
     </p>
     <p>
-        Bei diesem Prototyp handelt es sich um eine fortlaufende Weiterentwicklung einer
+        Bei dieser Applikation handelt es sich um eine fortlaufende Weiterentwicklung einer
         <a href="https://www.anton-webern.ch/assets/editions/BeispieleditionAWG_3_Skizzen_op12_Online_klein.pdf"
             >prospektiven Simulation (PDF)</a
         >
@@ -110,5 +62,5 @@
         <a id="compodoc-link" href="{{ pageMetaData?.compodocUrl }}">dokumentiert</a>
         (vgl. <a [routerLink]="['/contact']" fragment="awg-documentation">Dokumentation</a>).
     </p>
-    <p>Der Prototyp und die Suche werden in ihrer Funktionalität sukzessiv erweitert.</p>
+    <p>Die Online-Edition und die Suche werden in ihrer Funktionalität sukzessiv erweitert.</p>
 </div>
