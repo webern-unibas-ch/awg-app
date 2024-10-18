@@ -261,13 +261,13 @@ describe('NavbarComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(ulDe[1], 'li.nav-item', 2, 2);
             });
 
-            it('... should have `awg-app` label and fa-icon on first nav-item link', () => {
+            it('... should have `AWG-APP` label and fa-icon on first nav-item link', () => {
                 const navItemDe = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
                 const navItemLinkSpanDe = getAndExpectDebugElementByCss(navItemDe[0], 'a.nav-link > span', 2, 2);
                 const navItemLinkSpanEl1 = navItemLinkSpanDe[0].nativeElement;
                 const navItemLinkSpanEl2 = navItemLinkSpanDe[1].nativeElement;
 
-                expectToBe(navItemLinkSpanEl1.textContent, 'awg-app');
+                expectToBe(navItemLinkSpanEl1.textContent, 'AWG-APP');
 
                 expectToBe(navItemLinkSpanEl2.textContent, '(current)');
                 expectToContain(navItemLinkSpanEl2.classList, 'sr-only');
