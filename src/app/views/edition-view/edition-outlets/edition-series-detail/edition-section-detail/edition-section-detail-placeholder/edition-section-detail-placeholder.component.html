@@ -1,6 +1,8 @@
-<div class="alert alert-info" role="alert">
-    <p class="no-para text-muted text-center">
-        [Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von AWG
-        {{ selectedSeries?.series.short }}/{{ selectedSection?.section.short }}.]
-    </p>
-</div>
+<awg-alert-info
+    [infoMessage]="
+        '[Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von AWG ' +
+        selectedSeries?.series.short +
+        '/' +
+        selectedSection?.section.short +
+        '.]'
+    "></awg-alert-info>

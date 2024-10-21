@@ -128,10 +128,6 @@ describe('EditionSectionDetailOverviewComponent', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 0, 0);
             });
 
-            it('... should contain no div.alert-info', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.alert-info', 0, 0);
-            });
-
             it('... should contain no EditionSectionDisclaimer (stubbed)', () => {
                 getAndExpectDebugElementByDirective(compDe, EditionSectionDetailDisclaimerStubComponent, 0, 0);
             });
