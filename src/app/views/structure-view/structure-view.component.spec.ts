@@ -80,13 +80,13 @@ describe('StructureViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one heading component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+            it('... should contain one `div.awg-structure-view`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view', 1, 1);
             });
 
-            it('... should contain three `p` & one `svg` element', () => {
-                getAndExpectDebugElementByCss(compDe, 'p', 3, 3);
-                getAndExpectDebugElementByCss(compDe, 'svg', 1, 1);
+            it('... should contain one heading component (stubbed) in `div.awg-structure-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
             });
 
             it('... should not pass down `title` and `id` to heading component', () => {
@@ -95,6 +95,17 @@ describe('StructureViewComponent (DONE)', () => {
 
                 expect(headingCmp.title).toBeUndefined();
                 expect(headingCmp.id).toBeUndefined();
+            });
+
+            it('... should contain one `div.awg-structure-view-content` in `div.awg-structure-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-structure-view-content', 1, 1);
+            });
+
+            it('... should contain three `p` & one `svg` element in div.awg-structure-view-content', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view-content', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'p', 3, 3);
+                getAndExpectDebugElementByCss(divDes[0], 'svg', 1, 1);
             });
         });
     });

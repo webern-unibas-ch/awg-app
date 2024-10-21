@@ -1,68 +1,69 @@
 <!-- resource detail box -->
-
-<!-- loading spinner -->
-@if (isLoading$ | async) {
-    <div>
-        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
-    </div>
-} @else {
-    <!-- error message -->
-    @if (errorMessage) {
-        <div class="awg-error-message">
-            <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
-            <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>
-            <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>
+<div class="awg-resource-view p-5 border rounded-3">
+    <!-- loading spinner -->
+    @if (isLoading$ | async) {
+        <div>
+            <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
         </div>
-    }
-    <!-- async data -->
-    @if (resourceData) {
-        <div class="awg-resource-detail-tabs">
-            <!-- resourceDetailData header -->
-            @if (resourceData.detail.header) {
-                <awg-resource-detail-header
-                    [header]="resourceData.detail.header"
-                    [resourceUrl]="httpGetUrl"
-                    (resourceRequest)="navigateToResource($event)"></awg-resource-detail-header>
-            }
-            <!-- resourceDetailData body -->
-            <nav
-                ngbNav
-                #resourceDetailNav="ngbNav"
-                class="nav-tabs"
-                [activeId]="selectedResourceDetailTabId"
-                (navChange)="onResourceDetailTabChange($event)">
-                <ng-container ngbNavItem="html">
-                    <a ngbNavLink class="awg-resource-detail-long-tab">{{ resourceDetailTabTitles?.html }}</a>
-                    <ng-template ngbNavContent>
-                        <!-- html visualisation -->
-                        <awg-resource-detail-html
-                            [resourceDetailData]="resourceData.detail"
-                            (gndRequest)="exposeGnd($event)"
-                            (resourceRequest)="navigateToResource($event)">
-                        </awg-resource-detail-html>
-                    </ng-template>
-                </ng-container>
-                <ng-container ngbNavItem="converted-json">
-                    <a ngbNavLink class="ms-auto">{{ resourceDetailTabTitles?.converted }}</a>
-                    <ng-template ngbNavContent>
-                        <!-- converted json visualisation -->
-                        <awg-resource-detail-json-converted [resourceJsonConvertedData]="resourceData.jsonConverted">
-                        </awg-resource-detail-json-converted>
-                    </ng-template>
-                </ng-container>
-                <ng-container ngbNavItem="raw-json">
-                    <a ngbNavLink>{{ resourceDetailTabTitles?.raw }}</a>
-                    <ng-template ngbNavContent>
-                        <!-- raw json visualisation -->
-                        <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData.jsonRaw">
-                        </awg-resource-detail-json-raw>
-                    </ng-template>
-                </ng-container>
-            </nav>
-            <div [ngbNavOutlet]="resourceDetailNav"></div>
-        </div>
-    }
-    <!--
+    } @else {
+        <!-- error message -->
+        @if (errorMessage) {
+            <div class="awg-error-message">
+                <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
+                <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>
+                <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>
+            </div>
+        }
+        <!-- async data -->
+        @if (resourceData) {
+            <div class="awg-resource-detail-tabs">
+                <!-- resourceDetailData header -->
+                @if (resourceData.detail.header) {
+                    <awg-resource-detail-header
+                        [header]="resourceData.detail.header"
+                        [resourceUrl]="httpGetUrl"
+                        (resourceRequest)="navigateToResource($event)"></awg-resource-detail-header>
+                }
+                <!-- resourceDetailData body -->
+                <nav
+                    ngbNav
+                    #resourceDetailNav="ngbNav"
+                    class="nav-tabs"
+                    [activeId]="selectedResourceDetailTabId"
+                    (navChange)="onResourceDetailTabChange($event)">
+                    <ng-container ngbNavItem="html">
+                        <a ngbNavLink class="awg-resource-detail-long-tab">{{ resourceDetailTabTitles?.html }}</a>
+                        <ng-template ngbNavContent>
+                            <!-- html visualisation -->
+                            <awg-resource-detail-html
+                                [resourceDetailData]="resourceData.detail"
+                                (gndRequest)="exposeGnd($event)"
+                                (resourceRequest)="navigateToResource($event)">
+                            </awg-resource-detail-html>
+                        </ng-template>
+                    </ng-container>
+                    <ng-container ngbNavItem="converted-json">
+                        <a ngbNavLink class="ms-auto">{{ resourceDetailTabTitles?.converted }}</a>
+                        <ng-template ngbNavContent>
+                            <!-- converted json visualisation -->
+                            <awg-resource-detail-json-converted
+                                [resourceJsonConvertedData]="resourceData.jsonConverted">
+                            </awg-resource-detail-json-converted>
+                        </ng-template>
+                    </ng-container>
+                    <ng-container ngbNavItem="raw-json">
+                        <a ngbNavLink>{{ resourceDetailTabTitles?.raw }}</a>
+                        <ng-template ngbNavContent>
+                            <!-- raw json visualisation -->
+                            <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData.jsonRaw">
+                            </awg-resource-detail-json-raw>
+                        </ng-template>
+                    </ng-container>
+                </nav>
+                <div [ngbNavOutlet]="resourceDetailNav"></div>
+            </div>
+        }
+        <!--
   TODO: remove
   <ul class="nav nav-tabs nav-justified" role="tablist">
     <li class="active awg-resource-detail-long-tab"><a data-toggle="tab" href="#html">{{ tabTitles?.html }}</a></li>
@@ -77,4 +78,5 @@
     </li>
   </ul>
   -->
-}
+    }
+</div>

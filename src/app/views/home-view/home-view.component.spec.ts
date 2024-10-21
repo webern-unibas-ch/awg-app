@@ -71,7 +71,7 @@ describe('HomeViewComponent (DONE)', () => {
 
     let mockRouter: Partial<Router>;
 
-    const expectedTitle = 'Beispieleditionen ausgewählter Skizzen';
+    const expectedTitle = 'AWG-APP: die Online-Edition der Anton Webern Gesamtausgabe';
     const expectedId = 'awg-home-view';
     const expectedSliceIndex = 5;
 
@@ -81,6 +81,10 @@ describe('HomeViewComponent (DONE)', () => {
 
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
     const expectedEditionTypeConstants: typeof EDITION_TYPE_CONSTANTS = EDITION_TYPE_CONSTANTS;
+
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+    });
 
     beforeEach(waitForAsync(() => {
         // Router spy object
@@ -161,12 +165,18 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one `awg-heading` component', () => {
-                getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+            it('... should contain one `div.awg-home-view`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
+            });
+
+            it('... should contain one `awg-heading` component in `div.awg-home-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
             });
 
             it('... should not pass down `title` and `id` to heading component', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
                 expect(headingCmp.title).toBeUndefined();

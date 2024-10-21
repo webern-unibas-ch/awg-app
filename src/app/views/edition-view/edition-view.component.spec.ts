@@ -199,28 +199,33 @@ describe('EditionViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one ScrollToTop component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, ScrollToTopStubComponent, 1, 1);
+            it('... should contain one `div.awg-edition-view`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
             });
 
-            it('... should contain one outer div', () => {
-                getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+            it('... should contain one ScrollToTop component (stubbed) in `div.awg-edition-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], ScrollToTopStubComponent, 1, 1);
             });
 
-            it('... should contain no div.awg-edition-row-tables yet', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 0, 0);
+            it('... should contain no `div.awg-edition-row-tables` in `div.awg-edition-view` yet', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-row-tables', 0, 0);
             });
 
-            it('... should contain no div.awg-edition-complex yet', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 0, 0);
+            it('... should contain no `div.awg-edition-complex` in `div.awg-edition-view` yet', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-complex', 0, 0);
             });
 
-            it('... should contain no div.awg-edition-series yet', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 0, 0);
+            it('... should contain no `div.awg-edition-series` in `div.awg-edition-view` yet', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-series', 0, 0);
             });
 
-            it('... should contain one router outlet (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 1, 1);
+            it('... should contain one router outlet (stubbed) in `div.awg-edition-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], RouterOutletStubComponent, 1, 1);
             });
         });
 
@@ -290,11 +295,12 @@ describe('EditionViewComponent (DONE)', () => {
                     fixture.detectChanges();
                 }));
 
-                it('... should have one div.awg-edition-preface', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-preface', 1, 1);
+                it('... should have one `div.awg-edition-preface` in `div.awg-edition-view`', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-preface', 1, 1);
                 });
 
-                it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed)', () => {
+                it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed) in `div.awg-edition-preface`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-preface', 1, 1);
 
                     getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
@@ -342,11 +348,12 @@ describe('EditionViewComponent (DONE)', () => {
                     fixture.detectChanges();
                 }));
 
-                it('... should have one div.awg-edition-row-tables', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 1, 1);
+                it('... should have one `div.awg-edition-row-tables` in `div.awg-edition-view`', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-row-tables', 1, 1);
                 });
 
-                it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed)', () => {
+                it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed) in `div.awg-edition-row-tables`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 1, 1);
 
                     getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
@@ -394,11 +401,12 @@ describe('EditionViewComponent (DONE)', () => {
                     fixture.detectChanges();
                 }));
 
-                it('... should have one div.awg-edition-complex', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);
+                it('... should have one `div.awg-edition-complex` in `div.awg-edition-view`', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-complex', 1, 1);
                 });
 
-                it('... should have an h6 (breadcrumb), a JumbotronComponent (stubbed) and a responsibility div in div.awg-edition-complex', () => {
+                it('... should have an h6 (breadcrumb), a JumbotronComponent (stubbed) and a responsibility div in `div.awg-edition-complex`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);
 
                     getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
@@ -491,23 +499,27 @@ describe('EditionViewComponent (DONE)', () => {
                     fixture.detectChanges();
                 }));
 
-                it('... should not have a div.awg-edition-preface', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-preface', 0, 0);
+                it('... should not have a `div.awg-edition-preface` in `div.awg-edition-view`', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-preface', 0, 0);
                 });
 
-                it('... should not have a div.awg-edition-row-tables', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 0, 0);
+                it('... should not have a `div.awg-edition-row-tables` in `div.awg-edition-view`', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-row-tables', 0, 0);
                 });
 
-                it('... should not have a div.awg-edition-complex', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 0, 0);
+                it('... should not have a `div.awg-edition-complex` in `div.awg-edition-view`', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-complex', 0, 0);
                 });
 
-                it('... should have one div.awg-edition-series', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
+                it('... should have one `div.awg-edition-series` in `div.awg-edition-view`', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-series', 1, 1);
                 });
 
-                it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed)', () => {
+                it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed) in `div.awg-edition-series`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
 
                     getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
