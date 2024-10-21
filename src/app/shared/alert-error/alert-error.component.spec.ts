@@ -4,11 +4,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { ErrorAlertComponent } from './error-alert.component';
+import { AlertErrorComponent } from './alert-error.component';
 
-describe('ErrorAlertComponent', () => {
-    let component: ErrorAlertComponent;
-    let fixture: ComponentFixture<ErrorAlertComponent>;
+describe('AlertErrorComponent', () => {
+    let component: AlertErrorComponent;
+    let fixture: ComponentFixture<AlertErrorComponent>;
     let compDe: DebugElement;
 
     let expectedErrorObject: any;
@@ -17,10 +17,10 @@ describe('ErrorAlertComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ErrorAlertComponent],
+            declarations: [AlertErrorComponent],
         }).compileComponents();
 
-        fixture = TestBed.createComponent(ErrorAlertComponent);
+        fixture = TestBed.createComponent(AlertErrorComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
