@@ -918,7 +918,7 @@
                                         "measure": "5",
                                         "system": "Klav.",
                                         "position": "(2/4)",
-                                        "comment": "{{ref.getGlyph('[sf]')}} auf Rasur. Ante correcturam: vermutlich [sfz] (siehe Textfassung 1)."
+                                        "comment": "{{ref.getGlyph('[sf]')}} auf Rasur. Ante correcturam: vermutlich {{ref.getGlyph('[sfz]')}} (siehe Textfassung 1)."
                                     },
                                     {
                                         "measure": "5 <br /> bis 7",
