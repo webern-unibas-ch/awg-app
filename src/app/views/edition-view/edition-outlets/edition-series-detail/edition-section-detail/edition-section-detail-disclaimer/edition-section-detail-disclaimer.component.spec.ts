@@ -1,24 +1,36 @@
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { EditionSectionDetailDisclaimerComponent } from './edition-section-detail-disclaimer.component';
+
+// Mock components
+@Component({ selector: 'awg-alert-info', template: '' })
+class AlertInfoStubComponent {
+    @Input()
+    infoMessage: string;
+}
 
 describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
     let component: EditionSectionDetailDisclaimerComponent;
     let fixture: ComponentFixture<EditionSectionDetailDisclaimerComponent>;
     let compDe: DebugElement;
 
+    let expectedInfoMessage: string;
+
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [EditionSectionDetailDisclaimerComponent],
+            declarations: [EditionSectionDetailDisclaimerComponent, AlertInfoStubComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(EditionSectionDetailDisclaimerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
+
+        // Test data
+        expectedInfoMessage = `Die online verfügbaren Editionsinhalte werden sukzessive ergänzt und erweitert.`;
     });
 
     afterAll(() => {
@@ -31,31 +43,32 @@ describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         describe('VIEW', () => {
-            it('... should contain one div.alert-info', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.alert-info', 1, 1);
+            it('... should contain an AlertInfoComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, AlertInfoStubComponent, 1, 1);
             });
 
-            it('... should contain one centered, muted, small paragraph in div.alert-info', () => {
-                const divDe = getAndExpectDebugElementByCss(compDe, 'div.alert-info', 1, 1);
-                const pDe = getAndExpectDebugElementByCss(divDe[0], 'p', 1, 1);
-                const pEl = pDe[0].nativeElement;
+            it('... should not pass down infoMessage to AlertInfoComponent yet', () => {
+                const alertInfoDes = getAndExpectDebugElementByDirective(compDe, AlertInfoStubComponent, 1, 1);
+                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
 
-                expectToContain(pEl.classList, 'small');
-                expectToContain(pEl.classList, 'text-muted');
-                expectToContain(pEl.classList, 'text-center');
-            });
-
-            it('... should display disclaimer in paragraph', () => {
-                const divDe = getAndExpectDebugElementByCss(compDe, 'div.alert-info', 1, 1);
-                const pDe = getAndExpectDebugElementByCss(divDe[0], 'p', 1, 1);
-                const pEl = pDe[0].nativeElement;
-
-                const expectedDisclaimer = `[Die online verfügbaren Editionsinhalte werden sukzessive ergänzt und erweitert.]`;
-
-                expectToBe(pEl.textContent.trim(), expectedDisclaimer.trim());
+                expect(alertInfoCmp.infoMessage).toBeUndefined();
             });
         });
     });
 
-    // No tests for the 'AFTER initial data binding' phase needed
+    describe('AFTER initial data binding', () => {
+        beforeEach(() => {
+            // Trigger initial data binding
+            fixture.detectChanges();
+        });
+
+        describe('VIEW', () => {
+            it('... should pass down infoMessage to AlertInfoComponent', () => {
+                const alertInfoDes = getAndExpectDebugElementByDirective(compDe, AlertInfoStubComponent, 1, 1);
+                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
+
+                expectToEqual(alertInfoCmp.infoMessage, expectedInfoMessage);
+            });
+        });
+    });
 });

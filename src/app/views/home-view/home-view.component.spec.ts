@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 
 import Spy = jasmine.Spy;
 
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
+
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
 import {
@@ -34,6 +36,12 @@ class HeadingStubComponent {
     id: string;
 }
 
+@Component({ selector: 'awg-alert-info', template: '' })
+class AlertInfoStubComponent {
+    @Input()
+    infoMessage: string;
+}
+
 /** Helper function */
 function generateExpectedOrderOfRouterlinks(editionComplexes: EditionComplex[]): string[][] {
     const editionAndGraphLinks = editionComplexes.flatMap(complex => {
@@ -61,7 +69,7 @@ function generateExpectedOrderOfRouterlinks(editionComplexes: EditionComplex[]):
     return [...editionAndGraphLinks, ...structureLinks, ...editionLinks, ...otherLinks];
 }
 
-describe('HomeViewComponent (DONE)', () => {
+fdescribe('HomeViewComponent (DONE)', () => {
     let component: HomeViewComponent;
     let fixture: ComponentFixture<HomeViewComponent>;
     let compDe: DebugElement;
@@ -91,7 +99,8 @@ describe('HomeViewComponent (DONE)', () => {
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
         TestBed.configureTestingModule({
-            declarations: [HomeViewComponent, HeadingStubComponent, RouterLinkStubDirective],
+            imports: [FontAwesomeTestingModule],
+            declarations: [HomeViewComponent, AlertInfoStubComponent, HeadingStubComponent, RouterLinkStubDirective],
             providers: [{ provide: Router, useValue: mockRouter }],
         }).compileComponents();
     }));

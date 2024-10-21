@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import {
     NgbAccordionModule,
+    NgbAlertModule,
     NgbCollapseModule,
     NgbDropdownModule,
     NgbModalModule,
@@ -14,6 +15,7 @@ import {
 @NgModule({
     imports: [
         NgbAccordionModule,
+        NgbAlertModule,
         NgbCollapseModule,
         NgbDropdownModule,
         NgbModalModule,
@@ -25,6 +27,7 @@ import {
     ],
     exports: [
         NgbAccordionModule,
+        NgbAlertModule,
         NgbCollapseModule,
         NgbDropdownModule,
         NgbModalModule,

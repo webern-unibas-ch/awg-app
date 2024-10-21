@@ -16,6 +16,7 @@ import { CompileHtmlModule } from './compile-html';
 // Shared components
 import { AddressComponent } from './address/address.component';
 import { AlertErrorComponent } from './alert-error/alert-error.component';
+import { AlertInfoComponent } from './alert-info/alert-info.component';
 import { HeadingComponent } from './heading/heading.component';
 import { JsonViewerComponent } from './json-viewer/json-viewer.component';
 import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
@@ -60,6 +61,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
     declarations: [
         AddressComponent,
         AlertErrorComponent,
+        AlertInfoComponent,
         HeadingComponent,
         JsonViewerComponent,
         LanguageSwitcherComponent,
@@ -91,6 +93,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
 
         AddressComponent,
         AlertErrorComponent,
+        AlertInfoComponent,
         HeadingComponent,
         JsonViewerComponent,
         LanguageSwitcherComponent,

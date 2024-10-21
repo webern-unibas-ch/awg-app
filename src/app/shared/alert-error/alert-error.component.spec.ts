@@ -38,17 +38,17 @@ describe('AlertErrorComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have an outer div.awg-error-message', () => {
+            it('... should have an outer `div.awg-error-message`', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-error-message', 1, 1);
             });
 
-            it('... should have a centered danger alert in div.awg-error-message', () => {
+            it('... should have a centered danger alert in `div.awg-error-message`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-error-message ', 1, 1);
 
                 getAndExpectDebugElementByCss(divDes[0], 'div.text-center > div.alert-danger', 1, 1);
             });
 
-            it('... should not display an error message in div.alert yet', () => {
+            it('... should not display an error message in `div.alert-danger` yet', () => {
                 const alertDes = getAndExpectDebugElementByCss(compDe, 'div.alert-danger', 1, 1);
                 const alertEl = alertDes[0].nativeElement;
 
@@ -66,7 +66,7 @@ describe('AlertErrorComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should display an error message in div.alert', () => {
+            it('... should display an error message in `div.alert-danger`', () => {
                 const alertDes = getAndExpectDebugElementByCss(compDe, 'div.alert-danger', 1, 1);
                 const alertEl = alertDes[0].nativeElement;
 
