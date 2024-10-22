@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Location } from '@angular/common';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
 import { Router, RouterModule, Routes } from '@angular/router';
@@ -19,7 +19,9 @@ import { AppComponent } from './app.component';
 class NavbarStubComponent {}
 
 @Component({ selector: 'awg-view-container', template: '' })
-class ViewContainerStubComponent {}
+class ViewContainerStubComponent {
+    @Input() showSideOutlet: boolean;
+}
 
 @Component({ selector: 'awg-footer', template: '' })
 class FooterStubComponent {}
@@ -32,12 +34,22 @@ export class RoutedTest2MockComponent {}
 
 export const MOCK_ROUTES: Routes = [
     { path: '', redirectTo: 'test1', pathMatch: 'full' },
-    { path: 'test1', component: RoutedTestMockComponent, data: { title: 'Custom Page Title 1' } },
+    {
+        path: 'test1',
+        component: RoutedTestMockComponent,
+        data: { title: 'Custom Page Title 1', showSideOutlet: undefined },
+    },
     {
         path: 'test2',
         component: RoutedTest2MockComponent,
         data: {},
-        children: [{ path: 'test3', component: RoutedTestMockComponent, data: { title: 'Custom Page Title 3' } }],
+        children: [
+            {
+                path: 'test3',
+                component: RoutedTestMockComponent,
+                data: { title: 'Custom Page Title 3', showSideOutlet: false },
+            },
+        ],
     },
 ];
 
@@ -58,6 +70,8 @@ describe('AppComponent (DONE)', () => {
     let initialzeAnalyticsSpy: Spy;
     let trackpageViewSpy: Spy;
     let initializeEditionSpy: Spy;
+
+    let expectedShowSideOutlet: boolean;
 
     beforeEach(waitForAsync(() => {
         // Create a mocked AnalyticsService  with an `initializeAnalytics` and `trackPageView` spy
@@ -113,6 +127,9 @@ describe('AppComponent (DONE)', () => {
         location = TestBed.inject(Location);
         router = TestBed.inject(Router);
         titleService = TestBed.inject(Title);
+
+        // Test data
+        expectedShowSideOutlet = true;
 
         // Workaround for ngZone issue;
         // Cf. https://github.com/angular/angular/issues/25837
@@ -183,6 +200,33 @@ describe('AppComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
+        it('... should have `showSideOutlet=true`', () => {
+            expectToBe(component.showSideOutlet, true);
+        });
+
+        describe('VIEW', () => {
+            it('... should contain one header component (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, NavbarStubComponent, 1, 1);
+            });
+
+            it('... should contain one view container component (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, ViewContainerStubComponent, 1, 1);
+            });
+
+            it('... should not pass down `showSideOutlet` to view container component yet', () => {
+                const viewContainerDes = getAndExpectDebugElementByDirective(compDe, ViewContainerStubComponent, 1, 1);
+                const viewContainerCmp = viewContainerDes[0].injector.get(
+                    ViewContainerStubComponent
+                ) as ViewContainerStubComponent;
+
+                expect(viewContainerCmp.showSideOutlet).toBeUndefined();
+            });
+
+            it('... should contain one footer component (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, FooterStubComponent, 1, 1);
+            });
+        });
+
         describe('Analytics', () => {
             it('... should call AnalyticsService to initialize Analytics', waitForAsync(() => {
                 expectSpyCall(initialzeAnalyticsSpy, 1);
@@ -223,20 +267,6 @@ describe('AppComponent (DONE)', () => {
             });
         });
 
-        describe('VIEW', () => {
-            it('... should contain one header component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, NavbarStubComponent, 1, 1);
-            });
-
-            it('... should contain one view container component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, ViewContainerStubComponent, 1, 1);
-            });
-
-            it('... should contain one footer component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, FooterStubComponent, 1, 1);
-            });
-        });
-
         describe('Title', () => {
             it('... should have called getTitle', () => {
                 expectSpyCall(getTitleSpy, 1);
@@ -265,6 +295,51 @@ describe('AppComponent (DONE)', () => {
                     });
                 });
             }));
+        });
+
+        describe('SideOutlet', () => {
+            it('... should set showSideOutlet to true if undefined in route data', waitForAsync(() => {
+                fixture.ngZone.run(() => {
+                    router.navigate(['/test1']).then(() => {
+                        expectToBe(component.showSideOutlet, true);
+                    });
+                });
+            }));
+
+            it('... should set showSideOutlet to true if not given in route data', waitForAsync(() => {
+                fixture.ngZone.run(() => {
+                    router.navigate(['/test2']).then(() => {
+                        expectToBe(component.showSideOutlet, true);
+                    });
+                });
+            }));
+
+            it('... should set showSideOutlet to false if given so in route data', waitForAsync(() => {
+                fixture.ngZone.run(() => {
+                    router.navigate(['/test2/test3']).then(() => {
+                        expectToBe(component.showSideOutlet, false);
+                    });
+                });
+            }));
+        });
+    });
+
+    describe('AFTER initial data binding', () => {
+        beforeEach(() => {
+            // Trigger initial data binding
+            fixture.detectChanges();
+        });
+
+        describe('VIEW', () => {
+            it('... should pass down `showSideOutlet` to view container component', () => {
+                const viewContainerDes = getAndExpectDebugElementByDirective(compDe, ViewContainerStubComponent, 1, 1);
+                const viewContainerCmp = viewContainerDes[0].injector.get(
+                    ViewContainerStubComponent
+                ) as ViewContainerStubComponent;
+
+                expect(viewContainerCmp.showSideOutlet).toBeDefined();
+                expect(viewContainerCmp.showSideOutlet).toBe(expectedShowSideOutlet);
+            });
         });
     });
 });

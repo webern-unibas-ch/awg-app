@@ -117,7 +117,6 @@ export class HomeViewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.routeToSidenav();
         this.provideMetaData();
     }
 
@@ -131,20 +130,5 @@ export class HomeViewComponent implements OnInit {
      */
     provideMetaData(): void {
         this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.page);
-    }
-
-    /**
-     * Public method: routeToSidenav.
-     *
-     * It activates the secondary outlet with the edition-info.
-     *
-     * @returns {void} Activates the edition-info side outlet.
-     */
-    routeToSidenav(): void {
-        // Opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: 'editionInfo' } }], {
-            preserveFragment: true,
-            queryParamsHandling: 'preserve',
-        });
     }
 }

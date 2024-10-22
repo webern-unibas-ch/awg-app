@@ -8,7 +8,7 @@ const STRUCTURE_VIEW_ROUTES: Routes = [
     {
         path: '',
         component: StructureViewComponent,
-        data: { title: 'AWG Online Edition – Structure' },
+        data: { title: 'AWG Online Edition – Structure', showSideOutlet: true },
     },
 ];
 

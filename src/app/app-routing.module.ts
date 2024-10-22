@@ -14,7 +14,7 @@ const APP_ROUTES: Routes = [
     {
         path: 'home',
         component: HomeViewComponent,
-        data: { title: 'AWG Online Edition – Home' },
+        data: { title: 'AWG Online Edition – Home', showSideOutlet: false },
     },
 
     // Lazy loaded routes

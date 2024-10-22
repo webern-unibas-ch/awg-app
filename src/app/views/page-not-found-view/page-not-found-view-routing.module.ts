@@ -8,7 +8,7 @@ const PAGE_NOT_FOUND_VIEW_ROUTES: Routes = [
     {
         path: '',
         component: PageNotFoundViewComponent,
-        data: { title: 'AWG Online Edition – 404' },
+        data: { title: 'AWG Online Edition – 404', showSideOutlet: true },
     },
 ];
 

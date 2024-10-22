@@ -8,7 +8,7 @@ const EDITION_PREFACE_ROUTES: Routes = [
     {
         path: '',
         component: EditionPrefaceComponent,
-        data: { title: 'AWG Online Edition – Preface' },
+        data: { title: 'AWG Online Edition – Preface', showSideOutlet: true },
     },
 ];
 

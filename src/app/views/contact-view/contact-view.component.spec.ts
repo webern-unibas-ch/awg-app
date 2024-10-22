@@ -83,7 +83,7 @@ describe('ContactViewComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'provideMetaData').and.callThrough();
-        spyOn(component, 'routeToSidenav').and.callThrough();
+        spyOn(component, 'routeToSideOutlet').and.callThrough();
     });
 
     afterAll(() => {
@@ -125,13 +125,13 @@ describe('ContactViewComponent (DONE)', () => {
             expect(component.today).toBeUndefined();
         });
 
-        describe('#routeToSidenav()', () => {
-            it('... should have a method `routeToSidenav`', () => {
-                expect(component.routeToSidenav).toBeDefined();
+        describe('#routeToSideOutlet()', () => {
+            it('... should have a method `routeToSideOutlet`', () => {
+                expect(component.routeToSideOutlet).toBeDefined();
             });
 
             it('... should not have been called', () => {
-                expect(component.routeToSidenav).not.toHaveBeenCalled();
+                expect(component.routeToSideOutlet).not.toHaveBeenCalled();
             });
         });
 
@@ -230,7 +230,7 @@ describe('ContactViewComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#routeToSideNav()', () => {
+        describe('#routeToSideOutlet()', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {
@@ -240,7 +240,7 @@ describe('ContactViewComponent (DONE)', () => {
 
             it('... should have been called', () => {
                 // Router navigation triggerd by onInit
-                expect(component.routeToSidenav).toHaveBeenCalled();
+                expect(component.routeToSideOutlet).toHaveBeenCalled();
             });
 
             it('... should have triggered `router.navigate`', () => {

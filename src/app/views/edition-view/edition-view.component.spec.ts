@@ -47,7 +47,7 @@ describe('EditionViewComponent (DONE)', () => {
     let mockEditionStateService: Partial<EditionStateService>;
 
     let setupEditionViewSpy: Spy;
-    let routeToSidenavSpy: Spy;
+    let routeToSideOutletSpy: Spy;
 
     let editionStateServiceGetSelectedEditionComplexSpy: Spy;
     let editionStateServiceGetSelectedEditionSeriesSpy: Spy;
@@ -136,7 +136,7 @@ describe('EditionViewComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         setupEditionViewSpy = spyOn(component, 'setupEditionView').and.callThrough();
-        routeToSidenavSpy = spyOn(component, 'routeToSidenav').and.callThrough();
+        routeToSideOutletSpy = spyOn(component, 'routeToSideOutlet').and.callThrough();
 
         // Spies for service methods
         editionStateServiceGetSelectedEditionComplexSpy = spyOn(
@@ -269,13 +269,13 @@ describe('EditionViewComponent (DONE)', () => {
             });
         });
 
-        describe('#routeToSidenav()', () => {
-            it('... should have a method `routeToSidenav`', () => {
-                expect(component.routeToSidenav).toBeDefined();
+        describe('#routeToSideOutlet()', () => {
+            it('... should have a method `routeToSideOutlet`', () => {
+                expect(component.routeToSideOutlet).toBeDefined();
             });
 
             it('... should not have been called', () => {
-                expectSpyCall(routeToSidenavSpy, 0);
+                expectSpyCall(routeToSideOutletSpy, 0);
             });
         });
     });
@@ -875,7 +875,7 @@ describe('EditionViewComponent (DONE)', () => {
             }));
         });
 
-        describe('#routeToSideNav()', () => {
+        describe('#routeToSideOutlet()', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {
@@ -885,7 +885,7 @@ describe('EditionViewComponent (DONE)', () => {
 
             it('... should have been called', () => {
                 // Router navigation triggerd by onInit
-                expectSpyCall(routeToSidenavSpy, 1);
+                expectSpyCall(routeToSideOutletSpy, 1);
             });
 
             it('... should have triggered `router.navigate`', () => {

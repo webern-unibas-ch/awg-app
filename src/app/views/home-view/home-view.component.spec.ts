@@ -10,7 +10,6 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
 import {
-    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
@@ -132,7 +131,6 @@ fdescribe('HomeViewComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'provideMetaData').and.callThrough();
-        spyOn(component, 'routeToSidenav').and.callThrough();
     });
 
     afterAll(() => {
@@ -274,16 +272,6 @@ fdescribe('HomeViewComponent (DONE)', () => {
 
             it('... should not have been called', () => {
                 expect(component.provideMetaData).not.toHaveBeenCalled();
-            });
-        });
-
-        describe('#routeToSidenav()', () => {
-            it('... should have a method `routeToSidenav`', () => {
-                expect(component.routeToSidenav).toBeDefined();
-            });
-
-            it('... should not have been called', () => {
-                expect(component.routeToSidenav).not.toHaveBeenCalled();
             });
         });
     });
@@ -456,49 +444,6 @@ fdescribe('HomeViewComponent (DONE)', () => {
 
             it('... should return pageMetaData', () => {
                 expectToEqual(component.pageMetaData, expectedPageMetaData);
-            });
-        });
-
-        describe('#routeToSideNav()', () => {
-            let navigationSpy: Spy;
-
-            beforeEach(() => {
-                // Create spy of mockrouter SpyObj
-                navigationSpy = mockRouter.navigate as jasmine.Spy;
-            });
-
-            it('... should have been called', () => {
-                // Router navigation triggerd by onInit
-                expect(component.routeToSidenav).toHaveBeenCalled();
-            });
-
-            it('... should have triggered `router.navigate`', () => {
-                expectSpyCall(navigationSpy, 1);
-            });
-
-            it('... should tell ROUTER to navigate to `editionInfo` outlet', () => {
-                const expectedRoute = 'editionInfo';
-
-                // Catch args passed to navigation spy
-                const navArgs = navigationSpy.calls.first().args;
-                const outletRoute = navArgs[0][0].outlets.side;
-
-                expect(navArgs).toBeDefined();
-                expect(navArgs[0]).toBeDefined();
-                expectToBe(outletRoute, expectedRoute);
-
-                expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
-            });
-
-            it('... should tell ROUTER to navigate with `preserveFragment:true`', () => {
-                // Catch args passed to navigation spy
-                const navArgs = navigationSpy.calls.first().args;
-                const navExtras = navArgs[1];
-
-                expect(navExtras).toBeDefined();
-                expectToBe(navExtras.preserveFragment, true);
-
-                expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
         });
 

@@ -8,7 +8,7 @@ const EDITION_GRAPH_ROUTES: Routes = [
     {
         path: '',
         component: EditionGraphComponent,
-        data: { title: 'AWG Online Edition – Graph' },
+        data: { title: 'AWG Online Edition – Graph', showSideOutlet: true },
     },
 ];
 
