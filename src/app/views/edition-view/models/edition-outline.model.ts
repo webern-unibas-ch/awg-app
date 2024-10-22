@@ -230,7 +230,6 @@ export class EditionOutline {
         }
 
         this.outline = outlineData.map(this._mapSeries);
-        console.log('EditionOutline: ', this.outline);
     }
 
     /**
@@ -269,7 +268,7 @@ export class EditionOutline {
         seriesConstant: EditionRouteConstant
     ): EditionOutlineSection => {
         const sectionConstant: EditionRouteConstant =
-            seriesConstant.short === '3' && section === '5'
+            seriesConstant.route === '3' && section === '5'
                 ? EDITION_ROUTE_CONSTANTS.SERIES_3_SECTION_5
                 : EDITION_ROUTE_CONSTANTS['SECTION_' + section];
 
