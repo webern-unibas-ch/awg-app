@@ -3486,6 +3486,396 @@
                             }
                         ]
                     }
+                ], 
+                "corrections": [
+                    {
+                        "id": "source_I_corr",
+                        "label": "Korrekturen in <strong>I</strong>",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf die Textfassungen der Werkedition von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4"
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "I <em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 3",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>Ruhevoll (</em>{{ref.getGlyph('[Achtelnote]')}} <em>= ca <s>58</s></em> &lt;<em>58</em>&gt;<em>)</em>, <em><s>58</s></em> gestrichen mit Bleistift, &lt;<em>58</em>&gt; hinzugefügt mit schwarzer Tinte (Hs. Webern?)."
+                                    },
+                                    {
+                                        "measure": "1–13",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Auf zahlreichen Rasuren. Ante correcturam: u. a. in der Regel Fähnchen bei Achtelnoten (wie Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "1–15",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Auf zahlreichen Rasuren."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav. o.",
+                                        "position": "8/8",
+                                        "comment": "{{ref.getGlyph('[a]')}} zu h<sup>1</sup> gestrichen mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "2/8",
+                                        "comment": "{{ref.getGlyph('[b]')}} geändert zu {{ref.getGlyph('[a]')}} mit Bleistift, {{ref.getGlyph('[a]')}} nachgezogen mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "3.–4. Note",
+                                        "comment": "<em>weis-ser</em> überschrieben zu <em>weißer</em> mit blauem Buntstift."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav. u.",
+                                        "position": "1. Pause",
+                                        "comment": "Auf Rasur, etwas unleserlich durch Papierbeschädigung bei Rasur. Daneben <em>×</em> und am linken Seitenrand Halbe Pause mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav. o.",
+                                        "position": "7/4",
+                                        "comment": "{{ref.getGlyph('[b]')}} zu es<sup>2</sup> gestrichen mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} im System zu Klav. o. gestrichen und zwischen den Klav.-Systemen neu notiert mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "vorletzte bis letzte Note",
+                                        "comment": "Silbentrennstrich bei [mar[-]]<em>mor-nen</em> hinzugefügt mit blauem Buntstift."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav. o.",
+                                        "position": "9–12/16",
+                                        "comment": "Auf Tektur."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. u.",
+                                        "position": "1/8",
+                                        "comment": "Fortsetzung des Bogens von T. 7 Klav. o. (nach Seitenwechsel) hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav. u.",
+                                        "position": "6/8",
+                                        "comment": "{{ref.getGlyph('[b]')}} zu e<sup>1</sup> geändert zu {{ref.getGlyph('[a]')}} mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav. o.",
+                                        "position": "12/8",
+                                        "comment": "<em>molto espress.</em> zwischen 7. und 8. Note gestrichen und neu notiert bei 12/8 mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "6/4",
+                                        "comment": "{{ref.getGlyph('[pp]')}} bei 13/8 gestrichen und neu notiert bei 6/4 mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "11 <br /> bis 12",
+                                        "system": "Ges.",
+                                        "position": "13/8 <br /> 2/8",
+                                        "comment": "Decrescendogabel T. 11 13/8 bis T. 12 1/8 über dem System gestrichen mit Bleistift. Decrescendogabel T. 13/8 bis T. 12 2/8 unter dem System möglicherweise dann hinzugefügt mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav. o.",
+                                        "position": "1. Note",
+                                        "comment": "Unterstimmenschicht: Fortsetzung (nach Seitenwechsel) eines Ligaturbogens zu fis hinzugefügt mit Bleistift. T. 13: Anfang nur eines Bogens (Ligatur- oder Legatobogen?)."
+                                    }
+                                ]
+                            },
+                            {
+                                "blockHeader": "II „Noch zwingt mich Treue“ M 139: Textfassung 3",
+                                "blockComments": [
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "({{ref.getGlyph('[a]')}}) gestrichen mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. o.",
+                                        "position": "1.–4. Note",
+                                        "comment": "Crescendo-. Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "6/8",
+                                        "comment": "<em>Mein</em> geändert zu <em>mein</em> mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav.",
+                                        "position": "2/8",
+                                        "comment": "Pedal-Aufhebung bei 1/4 gestrichen mit Bleistift und neu notiert bei 2/8 mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Klav. u.",
+                                        "position": "4.–5. Note",
+                                        "comment": "Ligaturbogen zu G–G hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav. o.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[p]')}} überschreibt Anfang der Crescendogabel, vermutlich hinzugefügt mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "10 <br /> bis 11",
+                                        "system": "Ges.",
+                                        "position": "letzte Note <br /> 1/4",
+                                        "comment": "Silbenlängenstrich hinzugefügt mit blauem Buntstift."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. o.",
+                                        "position": "6/8",
+                                        "comment": "{{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[a]')}}."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Ges.",
+                                        "position": "1–2/8",
+                                        "comment": "Silbentrennstrich von <em>An-ruf</em> hinzugefügt mit blauem Buntstift."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Ges.",
+                                        "position": "4–5/8",
+                                        "comment": "Silbentrennung von <em>em-pfan</em>[-gen] geändert zu <em>emp-fan</em>[-gen] mit blauem Buntstift."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav.",
+                                        "position": "letzte Note",
+                                        "comment": "Ende des Bogens über den Takt hinaus (vor Seitenwechsel) gestrichen und neu notiert bis letzte Note mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Ges.",
+                                        "position": "1.–4. Note",
+                                        "comment": "Crescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[f]')}} bei 1. Pause gestrichen und neu notiert bei 1. Note mit schwaruer Tinte."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav. o.",
+                                        "position": "6/16",
+                                        "comment": "{{ref.getGlyph('[b]')}} zu des<sup>3</sup> überschreibt {{ref.getGlyph('[a]')}}, {{ref.getGlyph('[a]')}} zu a<sup>2</sup> überschreibt {{ref.getGlyph('[b]')}} mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "18",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Crescendogabel in Klav. o über dem System und in Klav. u. unter dem System gestrichen mit Bleistift, Gabel zwischen den System vermutlich hinzugefügt mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "19",
+                                        "system": "Klav.",
+                                        "position": "1/4",
+                                        "comment": "Decrescendogabel in Klav. o über dem System und in Klav. u. unter dem System gestrichen mit Bleistift, Gabel zwischen den System vermutlich hinzugefügt mit schwarzer Tinte."
+                                    }
+                                ]
+                            },
+                            {
+                                "blockHeader": "III „Ja Heil und Dank dir“ M 140: Textfassung 2",
+                                "blockComments": [
+                                    {
+                                        "measure": "vor 1",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Ges.",
+                                        "position": "letzte Note",
+                                        "comment": "Decrescendogabel von &lt; &gt; gestrichen mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Klav. o.",
+                                        "position": "5.–6. Note",
+                                        "comment": "Augmentationspunkt zu 5. Note und Sechzehntelbalken zu 6. Note hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>rückkehrend</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "1. Pause bis 6/8",
+                                        "comment": "Decrescendogabel über dem System gestrichen mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "Notenhals auf Rasur, nachgezogen mit blauem Buntstift."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. o.",
+                                        "position": "15/16",
+                                        "comment": "Violinschlüssel nach 15/16 hinzugefügt mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "Achtelnote überschreibt Achtelpause mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. u.",
+                                        "position": "5–6/8",
+                                        "comment": "Bogenansatz unter den Noten gestrichen und über den Noten neu notiert mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "{{ref.getGlyph('[a]')}} gestrichen und geändert zu {{ref.getGlyph('[b]')}} mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav. u.",
+                                        "position": "2/2",
+                                        "comment": "Halbe Pause hinzugefügt mit Bleistift."
+                                    }
+                                ]
+                            },
+                            {
+                                "blockHeader": "IV „So ich traurig bin“ M 141: Textfassung 2",
+                                "blockComments": [
+                                    {
+                                        "measure": "1–15",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Auf zahlreichen Rasuren. Ante correcturam: Fähnchen bei Achtelnoten (wie Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav. o.",
+                                        "position": "1. Note",
+                                        "comment": "Unterstimmenschicht: {{ref.getGlyph('[ppp]')}} gestrichen mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Nach unten orientierter Notenhals zu Gis gestrichen mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav. u.",
+                                        "position": "2/8",
+                                        "comment": "Achtelpause hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. o.",
+                                        "position": "3/16 bzw. 2/8",
+                                        "comment": "Sechzehntelpause in Oberstimmenschicht und Achtelpause in Unterstimmenschicht überschreiben eine Sechzehntelpause mit grünem Buntstift."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. o.",
+                                        "position": "6/16",
+                                        "comment": "{{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[b]')}} mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Rasur zwischen den Systemen. Ante correcturam: vermutlich Crescendogabel (siehe Textfassung 1)."
+                                    }
+                                ]
+                            },
+                            {
+                                "blockHeader": "V „Ihr tratet zu dem Herde“ M 142: Textfassung 3",
+                                "blockComments": [
+                                    {
+                                        "measure": "1–15",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Auf zahlreichen Rasuren. Ante correcturam: Fähnchen bei Achtelnoten (wie Textfassung 1 und 2)."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav. u.",
+                                        "position": "3. Note",
+                                        "comment": "{{ref.getGlyph('[ppp]')}} unter dem System gestrichen. ##zwischen den Systemen neu notiert? siehe nächste Korrektur##"
+                                    },
+                                    {
+                                        "measure": "1 <br /> bis 5",
+                                        "system": "Klav.",
+                                        "position": "1. Pause <br /> (3/4)",
+                                        "comment": "sic: rechte Hand als Oberstimmenschicht in Klav. u. notiert. Markierung und Anmerkung <em>× Anmerkung für | den Stecher: | rechte Hand ins obere | System (Baßschlüssel)</em> am rechten Seitenrand sowie Bassschlüssel in Klav. o. T. 1 vor 1. Pause sowie Violinschlüssel in Klav. o. T. 5 vor 2. Pause hinzugefügt mit rotem Buntstift."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Silbentrennstrich bei <em>Su-chen</em> hinzugefügt mit blauem Buntstift."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "3.–4. Note",
+                                        "comment": "Silbentrennstrich bei <em>Ta-sten</em> hinzugefügt mit blauem Buntstift."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav.",
+                                        "position": "2.–3. Note",
+                                        "comment": "Decrescendogabel unter Klav. u. gestrichen und zwischen den Systemen neu notiert mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav. o.",
+                                        "position": "2/4–5/8",
+                                        "comment": "Decrescendogabel im System gestrichen und über dem System neu notiert mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav. o.",
+                                        "position": "4. Note",
+                                        "comment": "Oberstimmenschicht: Viertelnote überschreibt Achtelnote mit Bleistift."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 ]
             }
         },
