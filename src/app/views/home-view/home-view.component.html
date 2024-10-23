@@ -25,16 +25,21 @@
                 <a [routerLink]="['/structure']">Datenstruktur</a> wird zur Zeit von der AWG implementiert.
             </p>
             <p>
-                Über den Menüpunkt <em>Edition</em> sind ausgewählte Skizzeneditionen zu
-                @for (
-                    editionComplex of DISPLAYED_EDITION_COMPLEXES;
-                    track editionComplex.complexId.short;
-                    let i = $index;
-                    let n = $count
-                ) {
+                Über den Menüpunkt <em>Edition</em> sind die Online-Editionen zu den Abteilungen
+                @for (section of DISPLAYED_SECTIONS; track $index; let i = $index; let n = $count) {
                     <a
-                        [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
-                        [innerHTML]="editionComplex.complexId.short">
+                        [routerLink]="[
+                            editionRouteConstants.EDITION.route,
+                            editionRouteConstants.SERIES.route,
+                            section?.seriesParent?.route,
+                            editionRouteConstants.SECTION.route,
+                            section?.section?.route,
+                        ]"
+                        ><span>
+                            {{ editionRouteConstants.EDITION.short }} {{ section.seriesParent.short }}/{{
+                                section.section.short
+                            }}</span
+                        >
                     </a>
                     @if (i < n - 2) {
                         <span>, </span>
@@ -61,10 +66,7 @@
                 <a id="compodoc-link" href="{{ pageMetaData?.compodocUrl }}">dokumentiert</a>
                 (vgl. <a [routerLink]="['/contact']" fragment="awg-documentation">Dokumentation</a>).
             </p>
-            <awg-alert-info
-                [infoMessage]="
-                    'Die Online-Edition und die Suche werden in ihrer Funktionalität sukzessiv erweitert.'
-                "></awg-alert-info>
+            <awg-alert-info [infoMessage]="disclaimerInfoMessage"></awg-alert-info>
         </div>
 
         <div class="awg-home-view-grid row row-cols-1 row-cols-xl-3 g-4">
