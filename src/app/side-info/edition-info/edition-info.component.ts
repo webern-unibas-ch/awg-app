@@ -92,8 +92,8 @@ export class EditionInfoComponent implements OnInit {
      * @returns {EditionOutlineComplexItem[]} The combined complexes.
      */
     combineComplexes(section: EditionOutlineSection): EditionOutlineComplexItem[] {
-        const opusComplexes = section.content.complexTypes.opus || [];
-        const mnrComplexes = section.content.complexTypes.mnr || [];
+        const opusComplexes = section?.content?.complexTypes?.opus || [];
+        const mnrComplexes = section?.content?.complexTypes?.mnr || [];
         return [...opusComplexes, ...mnrComplexes];
     }
 }

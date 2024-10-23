@@ -14,32 +14,38 @@
                         <ng-template
                             ><p>
                                 <a
-                                    class="awg-edition-info-header-link"
+                                    class="awg-edition-info-item-link"
                                     [routerLink]="[
                                         editionRouteConstants.EDITION.route,
                                         editionRouteConstants.SERIES.route,
                                     ]"
-                                    >{{ editionRouteConstants.SERIES.full }}</a
+                                    ><span class="awg-edition-info-item-title">{{
+                                        editionRouteConstants.SERIES.full
+                                    }}</span></a
                                 >
                             </p>
                             <p>
                                 <a
-                                    class="awg-edition-info-header-link"
+                                    class="awg-edition-info-item-link"
                                     [routerLink]="[
                                         editionRouteConstants.EDITION.route,
                                         editionRouteConstants.ROWTABLES.route,
                                     ]"
-                                    >{{ editionRouteConstants.ROWTABLES.full }}</a
+                                    ><span class="awg-edition-info-item-title">{{
+                                        editionRouteConstants.ROWTABLES.full
+                                    }}</span></a
                                 >
                             </p>
                             <p>
                                 <a
-                                    class="awg-edition-info-header-link"
+                                    class="awg-edition-info-item-link"
                                     [routerLink]="[
                                         editionRouteConstants.EDITION.route,
                                         editionRouteConstants.PREFACE.route,
                                     ]"
-                                    >{{ editionRouteConstants.PREFACE.full }}</a
+                                    ><span class="awg-edition-info-item-title">{{
+                                        editionRouteConstants.PREFACE.full
+                                    }}</span></a
                                 >
                             </p>
                         </ng-template>
@@ -62,19 +68,19 @@
                                 @if (!section.content.intro.disabled) {
                                     <p>
                                         <a
-                                            class="awg-edition-info-header-link"
+                                            class="awg-edition-info-item-link"
                                             [routerLink]="[
                                                 editionRouteConstants.EDITION.route,
                                                 editionRouteConstants.SERIES.route,
-                                                section.seriesParent.route,
+                                                section?.seriesParent?.route,
                                                 editionRouteConstants.SECTION.route,
-                                                section.section.route,
+                                                section?.section?.route,
                                                 editionRouteConstants.EDITION_INTRO.route,
                                             ]"
-                                            ><span class="awg-edition-info-header-title">{{
-                                                editionRouteConstants.EDITION_INTRO.full
-                                            }}</span></a
-                                        >
+                                            ><span
+                                                class="awg-edition-info-item-title"
+                                                [innerHTML]="editionRouteConstants.EDITION_INTRO.full"></span
+                                        ></a>
                                     </p>
                                 }
 
@@ -84,7 +90,9 @@
                                         track editionComplex.complex.complexId.short
                                     ) {
                                         <ng-template #editionInfoComplex>
-                                            <span [innerHTML]="editionComplex.complex.complexId.full"></span>
+                                            <span
+                                                class="awg-edition-info-item-title"
+                                                [innerHTML]="editionComplex.complex.complexId.full"></span>
                                         </ng-template>
 
                                         <p>
@@ -96,7 +104,7 @@
                                                     </span>
                                                 } @else {
                                                     <a
-                                                        class="awg-edition-info-header-link"
+                                                        class="awg-edition-info-item-link"
                                                         [routerLink]="[
                                                             editionComplex.complex.baseRoute,
                                                             editionRouteConstants.EDITION_SHEETS.route,
