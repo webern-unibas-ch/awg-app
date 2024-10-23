@@ -6371,9 +6371,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"angular-cli-ghpages@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "angular-cli-ghpages@npm:2.0.1"
+"angular-cli-ghpages@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "angular-cli-ghpages@npm:2.0.3"
   dependencies:
     "@angular-devkit/architect": "npm:~0.1800.0"
     "@angular-devkit/core": "npm:^18.0.0"
@@ -6384,7 +6384,7 @@ __metadata:
   bin:
     angular-cli-ghpages: angular-cli-ghpages
     ngh: angular-cli-ghpages
-  checksum: 10c0/4843c9aa71cc7a6ff5bb11546620d365369d78a92f2df08ed13c9931b263f10598fd7e6626c0e49514aad18641776a32a3599681eaaf81aaefb0ca95bfc04388
+  checksum: 10c0/4009fe7ace1050263aec6697c432986e1db43cda251a89a6e0a0496d49a1b5414de51d8108069fc1faaea4f8bbd27ad58b2207ae33e584c2a45a183715ddab8e
   languageName: node
   linkType: hard
 
@@ -6734,7 +6734,7 @@ __metadata:
     "@types/node": "npm:^20.14.14"
     "@typescript-eslint/eslint-plugin": "npm:^8.11.0"
     "@typescript-eslint/parser": "npm:^8.11.0"
-    angular-cli-ghpages: "npm:^2.0.1"
+    angular-cli-ghpages: "npm:^2.0.3"
     bootstrap: "npm:^5.3.3"
     codemirror: "npm:^6.0.1"
     commit-and-tag-version: "npm:^12.5.0"
