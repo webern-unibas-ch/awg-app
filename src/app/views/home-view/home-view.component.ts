@@ -1,13 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
-import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionComplex } from '@awg-views/edition-view/models';
-import { EditionComplexesService } from '@awg-views/edition-view/services';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EditionOutlineService } from '@awg-views/edition-view/services';
 
 /**
  * The HomeView component.
@@ -30,12 +28,20 @@ export class HomeViewComponent implements OnInit {
     faArrowRight = faArrowRight;
 
     /**
+     * Public variable: disclaimerInfoMessage.
+     *
+     * It keeps the disclaimer info message for the home view section.
+     */
+    disclaimerInfoMessage =
+        'Die Online-Edition und die Datenbank-Suche werden in ihrer Funktionalität kontinuierlich erweitert.';
+
+    /**
      * Public variable: homeViewTitle.
      *
      * It keeps the title for the heading component
      * of the home view section.
      */
-    homeViewTitle = 'AWG-APP: die Online-Edition der Anton Webern Gesamtausgabe';
+    homeViewTitle = 'Anton Webern Gesamtausgabe: Online-Edition';
 
     /**
      * Public variable: homeId.
@@ -53,44 +59,24 @@ export class HomeViewComponent implements OnInit {
     pageMetaData: MetaPage;
 
     /**
-     * Readonly variable: DISPLAYED_EDITION_COMPLEXES.
+     * Readonly variable: DISPLAYED_SECTIONS.
      *
-     * It keeps the array of displayed edition complexes.
+     * It keeps the array of displayed sections.
      */
-    readonly DISPLAYED_EDITION_COMPLEXES: EditionComplex[] = [
-        EditionComplexesService.getEditionComplexById('OP3'),
-        EditionComplexesService.getEditionComplexById('OP4'),
-        EditionComplexesService.getEditionComplexById('OP12'),
-        EditionComplexesService.getEditionComplexById('OP23'),
-        EditionComplexesService.getEditionComplexById('OP25'),
-        EditionComplexesService.getEditionComplexById('M22'),
-        EditionComplexesService.getEditionComplexById('M30'),
-        EditionComplexesService.getEditionComplexById('M31'),
-        EditionComplexesService.getEditionComplexById('M34'),
-        EditionComplexesService.getEditionComplexById('M35_42'),
-        EditionComplexesService.getEditionComplexById('M37'),
+    readonly DISPLAYED_SECTIONS = [
+        EditionOutlineService.getEditionSectionById('1', '5'),
+        EditionOutlineService.getEditionSectionById('2', '2a'),
     ];
-
-    /**
-     * Readonly variable: sliceIndex.
-     *
-     * It keeps the index for the slice of edition complexes.
-     */
-    readonly SLICE_INDEX = 5;
 
     /**
      * Constructor of the HomeViewComponent.
      *
      * It declares a private CoreService instance
-     * to get the metadata and a private Router instance.
+     * to get the metadata.
      *
      * @param {CoreService} coreService Instance of the CoreService.
-     * @param {Router} router Instance of the Angular router.
      */
-    constructor(
-        private coreService: CoreService,
-        private router: Router
-    ) {}
+    constructor(private coreService: CoreService) {}
 
     /**
      * Getter variable: editionRouteConstants.
@@ -99,15 +85,6 @@ export class HomeViewComponent implements OnInit {
      **/
     get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
         return EDITION_ROUTE_CONSTANTS;
-    }
-
-    /**
-     * Getter variable: editionTypeConstants.
-     *
-     *  It returns the EDITION_TYPES.
-     **/
-    get editionTypeConstants(): typeof EDITION_TYPE_CONSTANTS {
-        return EDITION_TYPE_CONSTANTS;
     }
 
     /**
