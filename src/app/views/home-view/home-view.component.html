@@ -56,8 +56,10 @@
             </p> -->
 
             <p>
-                Über die <em>Datenbank-Suche</em> können Kontextmaterialien (Werklisten [nach Opuszahl bzw.
+                Über die (externe) <em>Datenbank-Suche</em> können Kontextmaterialien (Werklisten [nach Opuszahl bzw.
                 Moldenhauer-Nummer], Personeninformationen, Briefe &amp; Supplements, Chronologie) abgefragt werden.
+                <br />
+                Über <em>Anton Webern Gesamtausgabe</em> gelangen Sie zur Projekt-Website.
             </p>
 
             <p>
@@ -77,7 +79,7 @@
                 Der Programmcode der Applikation ist als Open Access-Projekt frei zugänglich auf
                 <a id="github-link" href="{{ pageMetaData?.githubUrl }}">GitHub</a> sowie
                 <a id="zenodo-link" href="{{ pageMetaData?.zenodoUrl }}">Zenodo</a> abgelegt und vollumfänglich
-                <a id="compodoc-link" href="{{ pageMetaData?.compodocUrl }}">dokumentiert</a>.
+                <a [routerLink]="['/contact']" fragment="awg-documentation">dokumentiert</a>.
             </p>
         </div>
     </div>
