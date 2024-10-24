@@ -4,8 +4,6 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
 
-import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
 import {
@@ -22,10 +20,18 @@ import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionOutlineSection } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService } from '@awg-views/edition-view/services';
+import { HOME_VIEW_CARD_DATA } from '@awg-views/home-view/data';
+import { HomeViewCard } from '@awg-views/home-view/models';
 
 import { HomeViewComponent } from './home-view.component';
 
 // Mock heading component
+@Component({ selector: 'awg-alert-info', template: '' })
+class AlertInfoStubComponent {
+    @Input()
+    infoMessage: string;
+}
+
 @Component({ selector: 'awg-heading', template: '' })
 class HeadingStubComponent {
     @Input()
@@ -34,10 +40,10 @@ class HeadingStubComponent {
     id: string;
 }
 
-@Component({ selector: 'awg-alert-info', template: '' })
-class AlertInfoStubComponent {
+@Component({ selector: 'awg-home-view-card', template: '' })
+class HomeViewCardStubComponent {
     @Input()
-    infoMessage: string;
+    cardData: HomeViewCard;
 }
 
 /** Helper function */
@@ -46,7 +52,13 @@ function getRouterlinks(sections: EditionOutlineSection[]): string[][] {
 
     const structureLinks = [['/structure']];
 
-    const sectionLinks = sections.map(section => [EDITION.route, SERIES.route, section?.seriesParent?.route, SECTION.route, section?.section?.route]);
+    const sectionLinks = sections.map(section => [
+        EDITION.route,
+        SERIES.route,
+        section?.seriesParent?.route,
+        SECTION.route,
+        section?.section?.route,
+    ]);
 
     const otherLinks = [
         ['/edition', ROWTABLES.route],
@@ -58,7 +70,7 @@ function getRouterlinks(sections: EditionOutlineSection[]): string[][] {
     return [...structureLinks, ...sectionLinks, ...otherLinks];
 }
 
-fdescribe('HomeViewComponent (DONE)', () => {
+describe('HomeViewComponent (DONE)', () => {
     let component: HomeViewComponent;
     let fixture: ComponentFixture<HomeViewComponent>;
     let compDe: DebugElement;
@@ -66,10 +78,11 @@ fdescribe('HomeViewComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
+    const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
     let expectedTitle: string;
     let expectedId: string;
     let expectedDisclaimerInfoMessage: string;
-    const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
+    let expectedHomeViewCardData: HomeViewCard[];
     let expectedPageMetaData: MetaPage;
     let expectedSections: EditionOutlineSection[];
 
@@ -82,8 +95,13 @@ fdescribe('HomeViewComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule],
-            declarations: [HomeViewComponent, AlertInfoStubComponent, HeadingStubComponent, RouterLinkStubDirective],
+            declarations: [
+                HomeViewComponent,
+                AlertInfoStubComponent,
+                HeadingStubComponent,
+                HomeViewCardStubComponent,
+                RouterLinkStubDirective,
+            ],
         }).compileComponents();
     }));
 
@@ -97,6 +115,7 @@ fdescribe('HomeViewComponent (DONE)', () => {
         expectedId = 'awg-home-view';
         expectedDisclaimerInfoMessage =
             'Die Online-Edition und die Datenbank-Suche werden in ihrer Funktionalität kontinuierlich erweitert.';
+        expectedHomeViewCardData = HOME_VIEW_CARD_DATA;
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
         expectedSections = [
             EditionOutlineService.getEditionSectionById('1', '5'),
@@ -138,6 +157,10 @@ fdescribe('HomeViewComponent (DONE)', () => {
 
         it('... should have `disclaimerInfoMessage`', () => {
             expectToBe(component.disclaimerInfoMessage, expectedDisclaimerInfoMessage);
+        });
+
+        it('... should have `homeViewCardData`', () => {
+            expectToEqual(component.homeViewCardData, expectedHomeViewCardData);
         });
 
         it('... should not have pageMetaData', () => {
@@ -237,6 +260,11 @@ fdescribe('HomeViewComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-grid', 1, 1);
             });
+
+            it('... should not contain any HomeViewCardComponent in `div.awg-home-view-grid` yet', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-grid', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], HomeViewCardStubComponent, 0, 0);
+            });
         });
 
         describe('#provideMetaData()', () => {
@@ -322,12 +350,52 @@ fdescribe('HomeViewComponent (DONE)', () => {
                 });
             });
 
-            it('... should pass down infoMessage to AlertInfoComponent yet', () => {
+            it('... should pass down infoMessage to AlertInfoComponent', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
                 const alertInfoDes = getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
                 const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
 
                 expectToBe(alertInfoCmp.infoMessage, expectedDisclaimerInfoMessage);
+            });
+
+            it('... should contain as many `div.col` in `div.awg-home-view-grid` as entries in `homeViewCardData`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-grid', 1, 1);
+
+                getAndExpectDebugElementByCss(
+                    divDes[0],
+                    'div.col',
+                    expectedHomeViewCardData.length,
+                    expectedHomeViewCardData.length
+                );
+            });
+
+            it('... should contain as many HomeViewCardComponents in `div.awg-home-view-grid > div.col` as entries in `homeViewCardData`', () => {
+                const colDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-home-view-grid > div.col',
+                    expectedHomeViewCardData.length,
+                    expectedHomeViewCardData.length
+                );
+
+                colDes.forEach(colDe => {
+                    getAndExpectDebugElementByDirective(colDe, HomeViewCardStubComponent, 1, 1);
+                });
+            });
+
+            it('... should pass down `cardData` to HomeViewCardComponents', () => {
+                const colDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-home-view-grid > div.col',
+                    expectedHomeViewCardData.length,
+                    expectedHomeViewCardData.length
+                );
+
+                colDes.forEach((colDe, index) => {
+                    const cardDes = getAndExpectDebugElementByDirective(colDe, HomeViewCardStubComponent, 1, 1);
+                    const cardCmp = cardDes[0].injector.get(HomeViewCardStubComponent) as HomeViewCardStubComponent;
+
+                    expectToEqual(cardCmp.cardData, expectedHomeViewCardData[index]);
+                });
             });
         });
 

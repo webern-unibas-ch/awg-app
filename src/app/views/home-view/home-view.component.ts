@@ -1,17 +1,18 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
 
+import { HOME_VIEW_CARD_DATA } from '@awg-views/home-view/data';
+import { HomeViewCard } from '@awg-views/home-view/models';
+
 /**
  * The HomeView component.
  *
  * It contains the home view section of the app
- * with basic information about the application.
+ * with the landing page.
  */
 @Component({
     selector: 'awg-home-view',
@@ -20,13 +21,6 @@ import { EditionOutlineService } from '@awg-views/edition-view/services';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeViewComponent implements OnInit {
-    /**
-     * Public variable: faArrowRight.
-     *
-     * It instantiates fontawesome's faArrowRight icon.
-     */
-    faArrowRight = faArrowRight;
-
     /**
      * Public variable: disclaimerInfoMessage.
      *
@@ -52,9 +46,16 @@ export class HomeViewComponent implements OnInit {
     homeViewId = 'awg-home-view';
 
     /**
+     * Public variable: homeViewCardData.
+     *
+     * It keeps the data for the home view cards.
+     */
+    homeViewCardData: HomeViewCard[] = HOME_VIEW_CARD_DATA;
+
+    /**
      * Public variable: pageMetaData.
      *
-     * It keeps the page metadata for the contact view.
+     * It keeps the page metadata for the home view.
      */
     pageMetaData: MetaPage;
 

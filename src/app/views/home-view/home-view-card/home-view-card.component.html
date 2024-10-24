@@ -1,0 +1,22 @@
+<div class="card awg-home-view-card h-100 shadow text-center">
+    <img [src]="cardData.imgSrc" class="card-img-top" [alt]="cardData.imgAlt" />
+    <div class="card-body">
+        <h5 class="card-title">{{ cardData.title }}</h5>
+        <p class="card-text">{{ cardData.text }}</p>
+    </div>
+    <div class="card-footer">
+        <ng-template #linkTemplate>
+            <span><fa-icon [icon]="faArrowRight"></fa-icon> {{ cardData.linkText }}</span>
+        </ng-template>
+
+        @if (cardData.linkRouter) {
+            <a [routerLink]="cardData.linkRouter" class="btn btn-info text-light"
+                ><ng-container *ngTemplateOutlet="linkTemplate"></ng-container
+            ></a>
+        } @else if (cardData.linkHref) {
+            <a href="{{ cardData.linkHref }}" class="btn btn-info text-light"
+                ><ng-container *ngTemplateOutlet="linkTemplate"></ng-container
+            ></a>
+        }
+    </div>
+</div>
