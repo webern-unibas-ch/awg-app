@@ -117,11 +117,26 @@ describe('EditionSeriesComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.awg-edition-series-grid', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series-grid', 1, 1);
+            it('... should contain one `div.awg-edition-series`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
             });
 
-            it('... should contain as many div.col in div.awg-edition-series-grid as there are series', () => {
+            it('... should contain one `div.awg-edition-series-text` in `div.awg-edition-series`', () => {
+                const seriesDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
+                getAndExpectDebugElementByCss(seriesDes[0], 'div.awg-edition-series-text', 1, 1);
+            });
+
+            it('... should contain two paragraphs in `div.awg-edition-series-text`', () => {
+                const textDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series-text', 1, 1);
+                getAndExpectDebugElementByCss(textDes[0], 'p', 2, 2);
+            });
+
+            it('... should contain one `div.awg-edition-series-grid` in `div.awg-edition-series`', () => {
+                const seriesDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
+                getAndExpectDebugElementByCss(seriesDes[0], 'div.awg-edition-series-grid', 1, 1);
+            });
+
+            it('... should contain as many div.col in `div.awg-edition-series-grid` as there are series', () => {
                 const expectedSeriesLength = expectedEditionOutline.length;
 
                 const gridDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series-grid', 1, 1);
