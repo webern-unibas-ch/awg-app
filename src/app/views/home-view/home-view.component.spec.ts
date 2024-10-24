@@ -51,8 +51,6 @@ class HomeViewCardStubComponent {
 function getRouterlinks(sections: EditionOutlineSection[]): string[][] {
     const { EDITION, SERIES, SECTION, ROWTABLES } = EDITION_ROUTE_CONSTANTS;
 
-    const structureLinks = [['/structure']];
-
     const sectionLinks = sections.map(section => [
         EDITION.route,
         SERIES.route,
@@ -60,15 +58,9 @@ function getRouterlinks(sections: EditionOutlineSection[]): string[][] {
         SECTION.route,
         section?.section?.route,
     ]);
+    const rowTablesLink = [[EDITION.route, ROWTABLES.route]];
 
-    const otherLinks = [
-        ['/edition', ROWTABLES.route],
-        ['/data/search', 'fulltext'],
-        ['/data/search', 'extended'],
-        ['/contact'],
-    ];
-
-    return [...structureLinks, ...sectionLinks, ...otherLinks];
+    return [...sectionLinks, ...rowTablesLink];
 }
 
 describe('HomeViewComponent (DONE)', () => {
@@ -115,7 +107,7 @@ describe('HomeViewComponent (DONE)', () => {
         expectedTitle = 'Anton Webern Gesamtausgabe: Online-Edition';
         expectedId = 'awg-home-view';
         expectedDisclaimerInfoMessage =
-            'Die Online-Edition und die Datenbank-Suche werden in ihrer Funktionalität kontinuierlich erweitert.';
+            'Die Online-Edition wird in Bezug auf Umfang und Funktionalität kontinuierlich erweitert.';
         expectedHomeViewCardData = HOME_VIEW_CARD_DATA;
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
         expectedSections = [
@@ -193,6 +185,29 @@ describe('HomeViewComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-content', 1, 1);
             });
 
+            it('... should contain an AlertInfoComponent (stubbed) in `div.awg-home-view-content`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
+            });
+
+            it('... should not pass down infoMessage to AlertInfoComponent yet', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
+                const alertInfoDes = getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
+                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
+
+                expect(alertInfoCmp.infoMessage).toBeUndefined();
+            });
+
+            it('... should contain one `div.awg-home-view-grid` in `div.awg-home-view-content`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-grid', 1, 1);
+            });
+
+            it('... should not contain any HomeViewCardComponent in `div.awg-home-view-grid` yet', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-grid', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], HomeViewCardStubComponent, 0, 0);
+            });
+
             it('... should contain one `div.awg-home-view-text` in `div.awg-home-view-content`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-text', 1, 1);
@@ -235,6 +250,15 @@ describe('HomeViewComponent (DONE)', () => {
                     expectToBe(githubEl.href, '');
                 });
 
+                it('... Zenodo', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
+                    const zenodoDes = getAndExpectDebugElementByCss(divDes[0], 'a#zenodo-link', 1, 1);
+                    const zenodoEl = zenodoDes[0].nativeElement;
+
+                    expect(zenodoEl).toBeDefined();
+                    expectToBe(zenodoEl.href, '');
+                });
+
                 it('... Compodoc', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
                     const compodocDes = getAndExpectDebugElementByCss(divDes[0], 'a#compodoc-link', 1, 1);
@@ -243,29 +267,6 @@ describe('HomeViewComponent (DONE)', () => {
                     expect(compodocEl).toBeDefined();
                     expectToBe(compodocEl.href, '');
                 });
-            });
-
-            it('... should contain an AlertInfoComponent (stubbed) in `div.awg-home-view-text`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
-            });
-
-            it('... should not pass down infoMessage to AlertInfoComponent yet', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
-                const alertInfoDes = getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
-                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
-
-                expect(alertInfoCmp.infoMessage).toBeUndefined();
-            });
-
-            it('... should contain one `div.awg-home-view-grid` in `div.awg-home-view-content`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-grid', 1, 1);
-            });
-
-            it('... should not contain any HomeViewCardComponent in `div.awg-home-view-grid` yet', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-grid', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], HomeViewCardStubComponent, 0, 0);
             });
         });
 
@@ -297,6 +298,11 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should contain one `awg-heading` component in `div.awg-home-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
+            });
+
             it('... should pass down `title` and `id` to heading component', () => {
                 const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
@@ -304,6 +310,74 @@ describe('HomeViewComponent (DONE)', () => {
                 expectToBe(headingCmp.title, expectedTitle);
 
                 expectToBe(headingCmp.id, expectedId);
+            });
+
+            it('... should contain one `div.awg-home-view-content` in `div.awg-home-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-content', 1, 1);
+            });
+
+            it('... should contain an AlertInfoComponent (stubbed) in `div.awg-home-view-content`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
+            });
+
+            it('... should pass down infoMessage to AlertInfoComponent', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
+                const alertInfoDes = getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
+                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
+
+                expectToBe(alertInfoCmp.infoMessage, expectedDisclaimerInfoMessage);
+            });
+
+            it('... should contain one `div.awg-home-view-grid` in `div.awg-home-view-content`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-grid', 1, 1);
+            });
+
+            it('... should contain as many `div.col` in `div.awg-home-view-grid` as entries in `homeViewCardData`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-grid', 1, 1);
+
+                getAndExpectDebugElementByCss(
+                    divDes[0],
+                    'div.col',
+                    expectedHomeViewCardData.length,
+                    expectedHomeViewCardData.length
+                );
+            });
+
+            it('... should contain as many HomeViewCardComponents in `div.awg-home-view-grid > div.col` as entries in `homeViewCardData`', () => {
+                const colDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-home-view-grid > div.col',
+                    expectedHomeViewCardData.length,
+                    expectedHomeViewCardData.length
+                );
+
+                colDes.forEach(colDe => {
+                    getAndExpectDebugElementByDirective(colDe, HomeViewCardStubComponent, 1, 1);
+                });
+            });
+
+            it('... should pass down `cardData` to HomeViewCardComponents', () => {
+                const colDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-home-view-grid > div.col',
+                    expectedHomeViewCardData.length,
+                    expectedHomeViewCardData.length
+                );
+
+                colDes.forEach((colDe, index) => {
+                    const cardDes = getAndExpectDebugElementByDirective(colDe, HomeViewCardStubComponent, 1, 1);
+                    const cardCmp = cardDes[0].injector.get(HomeViewCardStubComponent) as HomeViewCardStubComponent;
+
+                    expectToEqual(cardCmp.cardData, expectedHomeViewCardData[index]);
+                });
+            });
+
+            it('... should contain one `div.awg-home-view-text` in `div.awg-home-view-content`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-text', 1, 1);
             });
 
             describe('... should render links to', () => {
@@ -351,6 +425,16 @@ describe('HomeViewComponent (DONE)', () => {
                     expectToBe(githubEl.textContent, 'GitHub');
                 });
 
+                it('... Zenodo', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
+                    const zenodoDes = getAndExpectDebugElementByCss(divDes[0], 'a#zenodo-link', 1, 1);
+                    const zenodoEl = zenodoDes[0].nativeElement;
+
+                    expect(zenodoEl).toBeDefined();
+                    expectToBe(zenodoEl.href, expectedPageMetaData.zenodoUrl);
+                    expectToBe(zenodoEl.textContent, 'Zenodo');
+                });
+
                 it('... Compodoc', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
                     const compodocDes = getAndExpectDebugElementByCss(divDes[0], 'a#compodoc-link', 1, 1);
@@ -359,54 +443,6 @@ describe('HomeViewComponent (DONE)', () => {
                     expect(compodocEl).toBeDefined();
                     expectToContain(compodocEl.href, expectedPageMetaData.compodocUrl);
                     expectToBe(compodocEl.textContent, 'dokumentiert');
-                });
-            });
-
-            it('... should pass down infoMessage to AlertInfoComponent', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
-                const alertInfoDes = getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
-                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
-
-                expectToBe(alertInfoCmp.infoMessage, expectedDisclaimerInfoMessage);
-            });
-
-            it('... should contain as many `div.col` in `div.awg-home-view-grid` as entries in `homeViewCardData`', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-grid', 1, 1);
-
-                getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'div.col',
-                    expectedHomeViewCardData.length,
-                    expectedHomeViewCardData.length
-                );
-            });
-
-            it('... should contain as many HomeViewCardComponents in `div.awg-home-view-grid > div.col` as entries in `homeViewCardData`', () => {
-                const colDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-home-view-grid > div.col',
-                    expectedHomeViewCardData.length,
-                    expectedHomeViewCardData.length
-                );
-
-                colDes.forEach(colDe => {
-                    getAndExpectDebugElementByDirective(colDe, HomeViewCardStubComponent, 1, 1);
-                });
-            });
-
-            it('... should pass down `cardData` to HomeViewCardComponents', () => {
-                const colDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-home-view-grid > div.col',
-                    expectedHomeViewCardData.length,
-                    expectedHomeViewCardData.length
-                );
-
-                colDes.forEach((colDe, index) => {
-                    const cardDes = getAndExpectDebugElementByDirective(colDe, HomeViewCardStubComponent, 1, 1);
-                    const cardCmp = cardDes[0].injector.get(HomeViewCardStubComponent) as HomeViewCardStubComponent;
-
-                    expectToEqual(cardCmp.cardData, expectedHomeViewCardData[index]);
                 });
             });
         });
