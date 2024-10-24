@@ -30,7 +30,7 @@ describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedInfoMessage = `Die online verfügbaren Editionsinhalte werden kontinuierlich erweitert.`;
+        expectedInfoMessage = `Die Online-Edition wird in Bezug auf Umfang und Funktionalität kontinuierlich erweitert.`;
     });
 
     afterAll(() => {

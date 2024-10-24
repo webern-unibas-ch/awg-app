@@ -64,7 +64,7 @@ describe('EditionViewComponent (DONE)', () => {
     let expectedIsPrefaceView: boolean;
     let expectedIsRowTableView: boolean;
 
-    const expectedTitle = 'Inhalt';
+    const expectedTitle = 'Editionsübersicht';
     const expectedId = 'awg-edition-view';
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
