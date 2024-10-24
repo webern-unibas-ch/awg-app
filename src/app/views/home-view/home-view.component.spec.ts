@@ -8,7 +8,6 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
 import {
     expectToBe,
-    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
@@ -58,8 +57,9 @@ function getRouterlinks(sections: EditionOutlineSection[]): string[][] {
         section?.section?.route,
     ]);
     const rowTablesLink = [[EDITION.route, ROWTABLES.route]];
+    const contactLink = [['/contact']];
 
-    return [...sectionLinks, ...rowTablesLink];
+    return [...sectionLinks, ...rowTablesLink, ...contactLink];
 }
 
 describe('HomeViewComponent (DONE)', () => {
@@ -256,15 +256,6 @@ describe('HomeViewComponent (DONE)', () => {
                     expect(zenodoEl).toBeDefined();
                     expectToBe(zenodoEl.href, '');
                 });
-
-                it('... Compodoc', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
-                    const compodocDes = getAndExpectDebugElementByCss(divDes[0], 'a#compodoc-link', 1, 1);
-                    const compodocEl = compodocDes[0].nativeElement;
-
-                    expect(compodocEl).toBeDefined();
-                    expectToBe(compodocEl.href, '');
-                });
             });
         });
 
@@ -421,16 +412,6 @@ describe('HomeViewComponent (DONE)', () => {
                     expect(zenodoEl).toBeDefined();
                     expectToBe(zenodoEl.href, expectedPageMetaData.zenodoUrl);
                     expectToBe(zenodoEl.textContent, 'Zenodo');
-                });
-
-                it('... Compodoc', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
-                    const compodocDes = getAndExpectDebugElementByCss(divDes[0], 'a#compodoc-link', 1, 1);
-                    const compodocEl = compodocDes[0].nativeElement;
-
-                    expect(compodocEl).toBeDefined();
-                    expectToContain(compodocEl.href, expectedPageMetaData.compodocUrl);
-                    expectToBe(compodocEl.textContent, 'dokumentiert');
                 });
             });
         });
