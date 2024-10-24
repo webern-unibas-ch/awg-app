@@ -13,7 +13,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { LOGOSDATA, METADATA } from '@awg-core/core-data';
+import { LOGOS_DATA, META_DATA } from '@awg-core/core-data';
 import { Logo, Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 
 import { FooterPoweredbyComponent } from './footer-poweredby.component';
@@ -46,8 +46,8 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedLogos = LOGOSDATA;
-        expectedPageMetaData = METADATA[MetaSectionTypes.page];
+        expectedLogos = LOGOS_DATA;
+        expectedPageMetaData = META_DATA[MetaSectionTypes.page];
         expectedScrewdriverWrenchIcon = faScrewdriverWrench;
     });
 

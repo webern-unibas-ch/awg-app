@@ -6,7 +6,7 @@ import { Meta, MetaContact, MetaPage, MetaStructure } from '@awg-core/core-model
  *
  * It provides metadata used for the page framework.
  */
-const METAPAGE: MetaPage = {
+const META_PAGE: MetaPage = {
     yearStart: 2015,
     yearCurrent: new Date().getFullYear(),
     awgAppUrl: AppConfig.AWG_APP_URL,
@@ -27,7 +27,7 @@ const METAPAGE: MetaPage = {
  *
  * It provides metadata used for the structure view.
  */
-const METASTRUCTURE: MetaStructure = {
+const META_STRUCTURE: MetaStructure = {
     authors: [
         {
             name: 'Stefan Münnich',
@@ -42,7 +42,7 @@ const METASTRUCTURE: MetaStructure = {
  *
  * It provides metadata used for the contact view.
  */
-const METACONTACT: MetaContact = {
+const META_CONTACT: MetaContact = {
     address: {
         institution: 'Musikwissenschaftliches Seminar der Universität Basel',
         street: 'Petersgraben 27/29',
@@ -68,8 +68,8 @@ const METACONTACT: MetaContact = {
  *
  * Available main sections: `page`, `edition`, `structure`, `contact`.
  */
-export const METADATA: Meta = {
-    page: METAPAGE,
-    structure: METASTRUCTURE,
-    contact: METACONTACT,
+export const META_DATA: Meta = {
+    page: META_PAGE,
+    structure: META_STRUCTURE,
+    contact: META_CONTACT,
 };
