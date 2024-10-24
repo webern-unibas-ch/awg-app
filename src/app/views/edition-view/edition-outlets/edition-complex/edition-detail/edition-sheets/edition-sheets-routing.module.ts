@@ -8,7 +8,7 @@ const EDITION_SHEETS_ROUTES: Routes = [
     {
         path: '',
         component: EditionSheetsComponent,
-        data: { title: 'AWG Online Edition – Sheets' },
+        data: { title: 'AWG Online Edition – Sheets', showSideOutlet: true },
     },
 ];
 

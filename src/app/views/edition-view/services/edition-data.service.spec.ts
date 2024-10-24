@@ -647,7 +647,6 @@ describe('EditionDataService (DONE)', () => {
                 editionDataService.getEditionSectionIntroData(expectedSeriesRoute, expectedSectionRoute).subscribe({
                     next: res => {
                         expect(res).toBeTruthy();
-                        console.log('res', res);
                     },
                     error: () => {
                         fail('should not call error');

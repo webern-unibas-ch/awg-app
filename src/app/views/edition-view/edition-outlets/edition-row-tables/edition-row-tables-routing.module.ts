@@ -8,7 +8,7 @@ const EDITION_ROW_TABLES_ROUTES: Routes = [
     {
         path: '',
         component: EditionRowTablesComponent,
-        data: { title: 'AWG Online Edition – Row tables' },
+        data: { title: 'AWG Online Edition – Row tables', showSideOutlet: true },
     },
 ];
 

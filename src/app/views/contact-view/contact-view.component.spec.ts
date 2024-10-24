@@ -16,7 +16,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { METADATA } from '@awg-core/core-data';
+import { META_DATA } from '@awg-core/core-data';
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
@@ -56,7 +56,7 @@ describe('ContactViewComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         // Mock service for test purposes
-        mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
+        mockCoreService = { getMetaDataSection: sectionType => META_DATA[sectionType] };
 
         // Router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
@@ -76,14 +76,14 @@ describe('ContactViewComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedPageMetaData = METADATA[MetaSectionTypes.page];
-        expectedContactMetaData = METADATA[MetaSectionTypes.contact];
+        expectedPageMetaData = META_DATA[MetaSectionTypes.page];
+        expectedContactMetaData = META_DATA[MetaSectionTypes.contact];
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'provideMetaData').and.callThrough();
-        spyOn(component, 'routeToSidenav').and.callThrough();
+        spyOn(component, 'routeToSideOutlet').and.callThrough();
     });
 
     afterAll(() => {
@@ -125,13 +125,13 @@ describe('ContactViewComponent (DONE)', () => {
             expect(component.today).toBeUndefined();
         });
 
-        describe('#routeToSidenav()', () => {
-            it('... should have a method `routeToSidenav`', () => {
-                expect(component.routeToSidenav).toBeDefined();
+        describe('#routeToSideOutlet()', () => {
+            it('... should have a method `routeToSideOutlet`', () => {
+                expect(component.routeToSideOutlet).toBeDefined();
             });
 
             it('... should not have been called', () => {
-                expect(component.routeToSidenav).not.toHaveBeenCalled();
+                expect(component.routeToSideOutlet).not.toHaveBeenCalled();
             });
         });
 
@@ -146,32 +146,19 @@ describe('ContactViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain 3 heading components (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 3, 3);
+            it('... should contain one `div.awg-contact-view`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
             });
 
-            it('... should contain 1 `div.awg-citation-description` with 5 `p` elements', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-citation-description', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div.awg-citation-description > p', 5, 5);
-            });
-
-            it('... should contain 1 `div.awg-documentation-description` with 2 `p` elements', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-documentation-description', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div.awg-documentation-description > p', 2, 2);
-            });
-
-            it('... should contain 1 `div.awg-imprint-description` with 5 `p` elements', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-imprint-description', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div.awg-imprint-description > p', 5, 5);
-            });
-
-            it('... should contain 1 `div#awg-disclaimer` with 17 `p` elements', () => {
-                getAndExpectDebugElementByCss(compDe, 'div#awg-disclaimer', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div#awg-disclaimer > p', 17, 17);
+            it('... should contain 3 heading components (stubbed) in `div.awg-contact-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 3, 3);
             });
 
             it('... should not pass down `title` and `id` to heading components', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 3, 3);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
+
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 3, 3);
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
                 expect(headingCmps[0].title).toBeUndefined();
@@ -182,6 +169,30 @@ describe('ContactViewComponent (DONE)', () => {
 
                 expect(headingCmps[2].title).toBeUndefined();
                 expect(headingCmps[2].id).toBeUndefined();
+            });
+
+            it('... should contain 1 `div.awg-citation-description` with 5 `p` elements in `div.awg-contact-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-citation-description', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-citation-description > p', 5, 5);
+            });
+
+            it('... should contain 1 `div.awg-documentation-description` with 2 `p` elements in `div.awg-contact-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-documentation-description', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-documentation-description > p', 2, 2);
+            });
+
+            it('... should contain 1 `div.awg-imprint-description` with 5 `p` elements in `div.awg-contact-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-imprint-description', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-imprint-description > p', 5, 5);
+            });
+
+            it('... should contain 1 `div#awg-disclaimer` with 17 `p` elements in `div.awg-contact-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div#awg-disclaimer', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div#awg-disclaimer > p', 17, 17);
             });
 
             it('... should not render `version`, `versionReleaseDate` and `today` yet', () => {
@@ -219,7 +230,7 @@ describe('ContactViewComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#routeToSideNav()', () => {
+        describe('#routeToSideOutlet()', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {
@@ -229,7 +240,7 @@ describe('ContactViewComponent (DONE)', () => {
 
             it('... should have been called', () => {
                 // Router navigation triggerd by onInit
-                expect(component.routeToSidenav).toHaveBeenCalled();
+                expect(component.routeToSideOutlet).toHaveBeenCalled();
             });
 
             it('... should have triggered `router.navigate`', () => {
@@ -280,7 +291,9 @@ describe('ContactViewComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should pass down `title` and `id` to heading components', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 3, 3);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
+
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 3, 3);
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
                 expectToBe(headingCmps[0].title, expectedCitationTitle);

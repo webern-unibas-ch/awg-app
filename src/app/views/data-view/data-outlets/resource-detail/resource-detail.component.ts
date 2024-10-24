@@ -131,7 +131,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit() {
-        this.routeToSidenav();
+        this.routeToSideOutlet();
         this.getResourceData();
     }
 
@@ -259,13 +259,13 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Public method: routeToSidenav.
+     * Public method: routeToSideOutlet.
      *
-     * It activates the secondary outlet with the resource-info.
+     * It activates the side outlet with the resource-info.
      *
      * @returns {void} Activates the resource-info side outlet.
      */
-    routeToSidenav(): void {
+    routeToSideOutlet(): void {
         this.router.navigate([{ outlets: { side: 'resourceInfo' } }], {
             preserveFragment: true,
             queryParamsHandling: 'preserve',

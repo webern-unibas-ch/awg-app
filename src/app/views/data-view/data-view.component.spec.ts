@@ -53,7 +53,7 @@ describe('DataViewComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        spyOn(component, 'routeToSidenav').and.callThrough();
+        spyOn(component, 'routeToSideOutlet').and.callThrough();
     });
 
     afterAll(() => {
@@ -70,35 +70,43 @@ describe('DataViewComponent (DONE)', () => {
             expectToBe(component.searchId, expectedId);
         });
 
-        describe('#routeToSidenav()', () => {
-            it('... should have a method `routeToSidenav`', () => {
-                expect(component.routeToSidenav).toBeDefined();
+        describe('#routeToSideOutlet()', () => {
+            it('... should have a method `routeToSideOutlet`', () => {
+                expect(component.routeToSideOutlet).toBeDefined();
             });
 
             it('... should not have been called', () => {
-                expect(component.routeToSidenav).not.toHaveBeenCalled();
+                expect(component.routeToSideOutlet).not.toHaveBeenCalled();
             });
         });
 
         describe('VIEW', () => {
-            it('... should contain one heading component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+            it('... should contain one `div.awg-data-view`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-data-view', 1, 1);
             });
 
-            it('... should contain one help block div', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.help-block', 1, 1);
-            });
-
-            it('... should contain one router outlet (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 1, 1);
+            it('... should contain one heading component (stubbed) in `div.awg-data-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-data-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
             });
 
             it('... should not pass down `title` and `id` to heading component', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-data-view', 1, 1);
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
                 expect(headingCmp.title).toBeUndefined();
                 expect(headingCmp.id).toBeUndefined();
+            });
+
+            it('... should contain one help block div in `div.awg-data-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-data-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.help-block', 1, 1);
+            });
+
+            it('... should contain one router outlet (stubbed) in `div.awg-data-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-data-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], RouterOutletStubComponent, 1, 1);
             });
         });
     });
@@ -109,7 +117,7 @@ describe('DataViewComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#routeToSideNav()', () => {
+        describe('#routeToSideOutlet()', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {
@@ -119,7 +127,7 @@ describe('DataViewComponent (DONE)', () => {
 
             it('... should have been called', () => {
                 // Router navigation triggerd by onInit
-                expect(component.routeToSidenav).toHaveBeenCalled();
+                expect(component.routeToSideOutlet).toHaveBeenCalled();
             });
 
             it('... should have triggered `router.navigate`', () => {
@@ -153,7 +161,8 @@ describe('DataViewComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should pass down `title` and `id` to heading component', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-data-view', 1, 1);
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
                 expectToBe(headingCmp.title, expectedTitle);

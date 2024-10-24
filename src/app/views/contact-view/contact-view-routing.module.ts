@@ -8,7 +8,7 @@ const CONTACT_VIEW_ROUTES: Routes = [
     {
         path: '',
         component: ContactViewComponent,
-        data: { title: 'AWG Online Edition – Contact' },
+        data: { title: 'AWG Online Edition – Contact', showSideOutlet: true },
     },
 ];
 

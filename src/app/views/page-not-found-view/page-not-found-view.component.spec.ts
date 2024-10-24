@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -14,6 +14,15 @@ import {
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { PageNotFoundViewComponent } from './page-not-found-view.component';
+
+// Mock components
+@Component({ selector: 'awg-heading', template: '' })
+class HeadingStubComponent {
+    @Input()
+    title: string;
+    @Input()
+    id: string;
+}
 
 describe('PageNotFoundViewComponent (DONE)', () => {
     let component: PageNotFoundViewComponent;
@@ -30,7 +39,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [PageNotFoundViewComponent, RouterLinkStubDirective],
+            declarations: [PageNotFoundViewComponent, HeadingStubComponent, RouterLinkStubDirective],
         }).compileComponents();
     }));
 
@@ -60,32 +69,67 @@ describe('PageNotFoundViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one `div.awg-page-not-found`', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found', 1, 1);
+            it('... should contain one `div.awg-page-not-found-view`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-view', 1, 1);
             });
 
-            it('... should contain one `h2` title and on `h5` subtitle', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found > h2', 1, 1);
-
-                getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found > h5', 1, 1);
+            it('... should contain one `awg-heading` component in `div.awg-page-not-found-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
             });
 
-            it('... should contain one body with text-centered div', () => {
-                getAndExpectDebugElementByCss(
+            it('... should not pass down `title` and `id` to heading component', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-view', 1, 1);
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
+                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+
+                expect(headingCmp.title).toBeUndefined();
+                expect(headingCmp.id).toBeUndefined();
+            });
+
+            it('... should contain one text-centered body', () => {
+                const bodyDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.awg-page-not-found > div.awg-page-not-found-body.text-center',
+                    'div.awg-page-not-found-view > div.awg-page-not-found-body',
                     1,
                     1
                 );
+                const bodyEl = bodyDes[0].nativeElement;
+
+                expectToContain(bodyEl.classList, 'text-center');
+            });
+
+            it('... should contain one `h5` subtitle in body', () => {
+                const bodyDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-page-not-found-view > div.awg-page-not-found-body',
+                    1,
+                    1
+                );
+                getAndExpectDebugElementByCss(bodyDes[0], 'h5#awg-page-not-found-subtitle', 1, 1);
+            });
+
+            it('... should not render subtitle yet', () => {
+                const bodyDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-page-not-found-view > div.awg-page-not-found-body',
+                    1,
+                    1
+                );
+                const subtitleDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5#awg-page-not-found-subtitle', 1, 1);
+                const subtitleEl = subtitleDes[0].nativeElement;
+
+                expectToBe(subtitleEl.textContent, '');
             });
 
             it('... should contain one div with img (empty yet) in body', () => {
-                const imgDes = getAndExpectDebugElementByCss(
+                const bodyDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.awg-page-not-found-body > div.awg-page-not-found-image > img',
+                    'div.awg-page-not-found-view > div.awg-page-not-found-body',
                     1,
                     1
                 );
+                const imgDes = getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-page-not-found-image > img', 1, 1);
                 const imgEl = imgDes[0].nativeElement;
 
                 expectToBe(imgEl.src, '');
@@ -97,17 +141,6 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-page-not-found-body > p', 2, 2);
                 getAndExpectDebugElementByCss(bodyDes[0], 'p#awg-page-not-found-contact', 1, 1);
                 getAndExpectDebugElementByCss(bodyDes[0], 'p#awg-page-not-found-back', 1, 1);
-            });
-
-            it('... should not render pageNotFoundTitle or pageNotFoundSubtitle yet', () => {
-                const titleDes = getAndExpectDebugElementByCss(compDe, 'h2#awg-page-not-found-title', 1, 1);
-                const titleEl = titleDes[0].nativeElement;
-
-                const subtitleDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-page-not-found-subtitle', 1, 1);
-                const subtitleEl = subtitleDes[0].nativeElement;
-
-                expectToBe(titleEl.textContent, '');
-                expectToBe(subtitleEl.textContent, '');
             });
 
             it('... should not render contact url yet', () => {
@@ -126,25 +159,63 @@ describe('PageNotFoundViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should render pageNotFoundTitle in the `h2`-element', () => {
-                const titleDes = getAndExpectDebugElementByCss(compDe, 'h2#awg-page-not-found-title', 1, 1);
-                const titleEl = titleDes[0].nativeElement;
-
-                expectToContain(titleEl.textContent, expectedPageNotFoundTitle);
+            it('... should contain one `awg-heading` component in `div.awg-page-not-found-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
             });
 
-            it('... should render pageNotFoundSubTitle in the `h5`-element', () => {
-                const subtitleDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-page-not-found-subtitle', 1, 1);
+            it('... should pass down `title` and `id` to heading component', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-view', 1, 1);
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
+                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+
+                expectToBe(headingCmp.title, expectedPageNotFoundTitle);
+                expectToBe(headingCmp.id, 'awg-page-not-found-title');
+            });
+
+            it('... should contain one `h5` subtitle in body', () => {
+                const bodyDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-page-not-found-view > div.awg-page-not-found-body',
+                    1,
+                    1
+                );
+                getAndExpectDebugElementByCss(bodyDes[0], 'h5#awg-page-not-found-subtitle', 1, 1);
+            });
+
+            it('... should render subtitle', () => {
+                const bodyDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-page-not-found-view > div.awg-page-not-found-body',
+                    1,
+                    1
+                );
+                const subtitleDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5#awg-page-not-found-subtitle', 1, 1);
                 const subtitleEl = subtitleDes[0].nativeElement;
 
                 expectToContain(subtitleEl.textContent, expectedPageNotFoundSubTitle);
             });
 
-            it('... should render image', () => {
-                const imgDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-image > img', 1, 1);
+            it('... should contain one div with rendered img in body', () => {
+                const bodyDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-page-not-found-view > div.awg-page-not-found-body',
+                    1,
+                    1
+                );
+                const imgDes = getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-page-not-found-image > img', 1, 1);
                 const imgEl = imgDes[0].nativeElement;
 
                 expectToContain(imgEl.src, expectedPageNotFoundImgPath);
+                expectToBe(imgEl.alt, 'Page not found');
+            });
+
+            it('... should contain 2 paragraphs (contact and back) in body', () => {
+                const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-body', 1, 1);
+
+                getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-page-not-found-body > p', 2, 2);
+                getAndExpectDebugElementByCss(bodyDes[0], 'p#awg-page-not-found-contact', 1, 1);
+                getAndExpectDebugElementByCss(bodyDes[0], 'p#awg-page-not-found-back', 1, 1);
             });
 
             it('... should render contact url', () => {

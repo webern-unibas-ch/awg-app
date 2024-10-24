@@ -78,8 +78,8 @@ class EditionConvoluteStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-error-alert', template: '' })
-class ErrorAlertStubComponent {
+@Component({ selector: 'awg-alert-error', template: '' })
+class AlertErrorStubComponent {
     @Input()
     errorObject: any;
 }
@@ -181,7 +181,7 @@ describe('EditionSheetsComponent', () => {
                 EditionSheetsComponent,
                 EditionConvoluteStubComponent,
                 EditionAccoladeStubComponent,
-                ErrorAlertStubComponent,
+                AlertErrorStubComponent,
                 ModalStubComponent,
                 TwelveToneSpinnerStubComponent,
             ],
@@ -319,10 +319,10 @@ describe('EditionSheetsComponent', () => {
                 getAndExpectDebugElementByDirective(divDes[0], ModalStubComponent, 1, 1);
             });
 
-            it('... should not contain an error alert component (stubbed)', () => {
+            it('... should not contain an AlertErrorComponent (stubbed)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
-                getAndExpectDebugElementByDirective(divDes[0], ErrorAlertStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 0, 0);
             });
 
             it('... should not contain a loading spinner component (stubbed)', () => {
@@ -389,20 +389,20 @@ describe('EditionSheetsComponent', () => {
                     detectChangesOnPush(fixture);
                 }));
 
-                it('... should not contain sheets view, but one ErrorAlertComponent (stubbed)', waitForAsync(() => {
+                it('... should not contain sheets view, but one AlertErrorComponent (stubbed)', waitForAsync(() => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-sheets-view', 0, 0);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
-                    getAndExpectDebugElementByDirective(divDes[0], ErrorAlertStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 1, 1);
                 }));
 
-                it('... should pass down error object to ErrorAlertComponent', waitForAsync(() => {
-                    const errorAlertDes = getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 1, 1);
-                    const errorAlertCmp = errorAlertDes[0].injector.get(
-                        ErrorAlertStubComponent
-                    ) as ErrorAlertStubComponent;
+                it('... should pass down error object to AlertErrorComponent', waitForAsync(() => {
+                    const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 1, 1);
+                    const alertErrorCmp = alertErrorDes[0].injector.get(
+                        AlertErrorStubComponent
+                    ) as AlertErrorStubComponent;
 
-                    expectToEqual(errorAlertCmp.errorObject, expectedError);
+                    expectToEqual(alertErrorCmp.errorObject, expectedError);
                 }));
             });
 
@@ -413,7 +413,7 @@ describe('EditionSheetsComponent', () => {
                         detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-sheets-view', 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
 
                         getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                     });

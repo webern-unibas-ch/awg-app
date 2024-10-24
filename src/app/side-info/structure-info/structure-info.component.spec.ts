@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { METADATA } from '@awg-core/core-data';
+import { META_DATA } from '@awg-core/core-data';
 import { MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
@@ -22,7 +22,7 @@ describe('StructureInfoComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         // Stub service for test purposes
-        mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
+        mockCoreService = { getMetaDataSection: sectionType => META_DATA[sectionType] };
 
         TestBed.configureTestingModule({
             declarations: [StructureInfoComponent],
@@ -36,7 +36,7 @@ describe('StructureInfoComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedStructureMetaData = METADATA[MetaSectionTypes.structure];
+        expectedStructureMetaData = META_DATA[MetaSectionTypes.structure];
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see

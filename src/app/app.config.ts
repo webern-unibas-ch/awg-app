@@ -188,4 +188,14 @@ export class AppConfig {
 
         return osmApi + '?' + bbox + '&' + layer + '&' + marker;
     }
+
+    /**
+     * Getter for the URL of the Zenodo record
+     * ({@link https://doi.org/10.5281/zenodo.4717678}).
+     *
+     * @returns {string}
+     */
+    public static get AWG_APP_ZENODO_URL(): string {
+        return 'https://doi.org/10.5281/zenodo.4717678';
+    }
 }

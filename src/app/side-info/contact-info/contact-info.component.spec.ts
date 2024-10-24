@@ -14,7 +14,7 @@ import {
 } from '@testing/expect-helper';
 
 import { AppConfig } from '@awg-app/app.config';
-import { METADATA } from '@awg-core/core-data';
+import { META_DATA } from '@awg-core/core-data';
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
@@ -61,7 +61,7 @@ describe('ContactInfoComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         // Mock service for test purposes
-        mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
+        mockCoreService = { getMetaDataSection: sectionType => META_DATA[sectionType] };
 
         TestBed.configureTestingModule({
             imports: [BrowserModule],
@@ -78,8 +78,8 @@ describe('ContactInfoComponent (DONE)', () => {
         domSanitizer = TestBed.inject(DomSanitizer);
 
         // Test data
-        expectedPageMetaData = METADATA[MetaSectionTypes.page];
-        expectedContactMetaData = METADATA[MetaSectionTypes.contact];
+        expectedPageMetaData = META_DATA[MetaSectionTypes.page];
+        expectedContactMetaData = META_DATA[MetaSectionTypes.contact];
 
         // Link values for open streets map
         expectedUnsafeOsmEmbedUrl = AppConfig.UNSAFE_OSM_EMBED_URL;

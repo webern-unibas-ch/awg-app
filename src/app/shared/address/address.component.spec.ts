@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { METADATA } from '@awg-core/core-data';
+import { META_DATA } from '@awg-core/core-data';
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 
 import { AddressComponent } from './address.component';
@@ -29,8 +29,8 @@ describe('AddressComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedPageMetaData = METADATA[MetaSectionTypes.page];
-        expectedContactMetaData = METADATA[MetaSectionTypes.contact];
+        expectedPageMetaData = META_DATA[MetaSectionTypes.page];
+        expectedContactMetaData = META_DATA[MetaSectionTypes.contact];
     });
 
     afterAll(() => {

@@ -47,7 +47,7 @@ describe('EditionViewComponent (DONE)', () => {
     let mockEditionStateService: Partial<EditionStateService>;
 
     let setupEditionViewSpy: Spy;
-    let routeToSidenavSpy: Spy;
+    let routeToSideOutletSpy: Spy;
 
     let editionStateServiceGetSelectedEditionComplexSpy: Spy;
     let editionStateServiceGetSelectedEditionSeriesSpy: Spy;
@@ -64,7 +64,7 @@ describe('EditionViewComponent (DONE)', () => {
     let expectedIsPrefaceView: boolean;
     let expectedIsRowTableView: boolean;
 
-    const expectedTitle = 'Inhalt';
+    const expectedTitle = 'Editionsübersicht';
     const expectedId = 'awg-edition-view';
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
@@ -136,7 +136,7 @@ describe('EditionViewComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         setupEditionViewSpy = spyOn(component, 'setupEditionView').and.callThrough();
-        routeToSidenavSpy = spyOn(component, 'routeToSidenav').and.callThrough();
+        routeToSideOutletSpy = spyOn(component, 'routeToSideOutlet').and.callThrough();
 
         // Spies for service methods
         editionStateServiceGetSelectedEditionComplexSpy = spyOn(
@@ -199,28 +199,33 @@ describe('EditionViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one ScrollToTop component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, ScrollToTopStubComponent, 1, 1);
+            it('... should contain one `div.awg-edition-view`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
             });
 
-            it('... should contain one outer div', () => {
-                getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+            it('... should contain one ScrollToTop component (stubbed) in `div.awg-edition-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], ScrollToTopStubComponent, 1, 1);
             });
 
-            it('... should contain no div.awg-edition-row-tables yet', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 0, 0);
+            it('... should contain no `div.awg-edition-row-tables` in `div.awg-edition-view` yet', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-row-tables', 0, 0);
             });
 
-            it('... should contain no div.awg-edition-complex yet', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 0, 0);
+            it('... should contain no `div.awg-edition-complex` in `div.awg-edition-view` yet', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-complex', 0, 0);
             });
 
-            it('... should contain no div.awg-edition-series yet', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 0, 0);
+            it('... should contain no `div.awg-edition-series` in `div.awg-edition-view` yet', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-series', 0, 0);
             });
 
-            it('... should contain one router outlet (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 1, 1);
+            it('... should contain one router outlet (stubbed) in `div.awg-edition-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], RouterOutletStubComponent, 1, 1);
             });
         });
 
@@ -264,13 +269,13 @@ describe('EditionViewComponent (DONE)', () => {
             });
         });
 
-        describe('#routeToSidenav()', () => {
-            it('... should have a method `routeToSidenav`', () => {
-                expect(component.routeToSidenav).toBeDefined();
+        describe('#routeToSideOutlet()', () => {
+            it('... should have a method `routeToSideOutlet`', () => {
+                expect(component.routeToSideOutlet).toBeDefined();
             });
 
             it('... should not have been called', () => {
-                expectSpyCall(routeToSidenavSpy, 0);
+                expectSpyCall(routeToSideOutletSpy, 0);
             });
         });
     });
@@ -290,11 +295,12 @@ describe('EditionViewComponent (DONE)', () => {
                     fixture.detectChanges();
                 }));
 
-                it('... should have one div.awg-edition-preface', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-preface', 1, 1);
+                it('... should have one `div.awg-edition-preface` in `div.awg-edition-view`', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-preface', 1, 1);
                 });
 
-                it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed)', () => {
+                it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed) in `div.awg-edition-preface`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-preface', 1, 1);
 
                     getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
@@ -342,11 +348,12 @@ describe('EditionViewComponent (DONE)', () => {
                     fixture.detectChanges();
                 }));
 
-                it('... should have one div.awg-edition-row-tables', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 1, 1);
+                it('... should have one `div.awg-edition-row-tables` in `div.awg-edition-view`', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-row-tables', 1, 1);
                 });
 
-                it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed)', () => {
+                it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed) in `div.awg-edition-row-tables`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 1, 1);
 
                     getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
@@ -394,11 +401,12 @@ describe('EditionViewComponent (DONE)', () => {
                     fixture.detectChanges();
                 }));
 
-                it('... should have one div.awg-edition-complex', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);
+                it('... should have one `div.awg-edition-complex` in `div.awg-edition-view`', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-complex', 1, 1);
                 });
 
-                it('... should have an h6 (breadcrumb), a JumbotronComponent (stubbed) and a responsibility div in div.awg-edition-complex', () => {
+                it('... should have an h6 (breadcrumb), a JumbotronComponent (stubbed) and a responsibility div in `div.awg-edition-complex`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);
 
                     getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
@@ -491,23 +499,27 @@ describe('EditionViewComponent (DONE)', () => {
                     fixture.detectChanges();
                 }));
 
-                it('... should not have a div.awg-edition-preface', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-preface', 0, 0);
+                it('... should not have a `div.awg-edition-preface` in `div.awg-edition-view`', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-preface', 0, 0);
                 });
 
-                it('... should not have a div.awg-edition-row-tables', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 0, 0);
+                it('... should not have a `div.awg-edition-row-tables` in `div.awg-edition-view`', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-row-tables', 0, 0);
                 });
 
-                it('... should not have a div.awg-edition-complex', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 0, 0);
+                it('... should not have a `div.awg-edition-complex` in `div.awg-edition-view`', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-complex', 0, 0);
                 });
 
-                it('... should have one div.awg-edition-series', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
+                it('... should have one `div.awg-edition-series` in `div.awg-edition-view`', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-series', 1, 1);
                 });
 
-                it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed)', () => {
+                it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed) in `div.awg-edition-series`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
 
                     getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
@@ -863,7 +875,7 @@ describe('EditionViewComponent (DONE)', () => {
             }));
         });
 
-        describe('#routeToSideNav()', () => {
+        describe('#routeToSideOutlet()', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {
@@ -873,7 +885,7 @@ describe('EditionViewComponent (DONE)', () => {
 
             it('... should have been called', () => {
                 // Router navigation triggerd by onInit
-                expectSpyCall(routeToSidenavSpy, 1);
+                expectSpyCall(routeToSideOutletSpy, 1);
             });
 
             it('... should have triggered `router.navigate`', () => {

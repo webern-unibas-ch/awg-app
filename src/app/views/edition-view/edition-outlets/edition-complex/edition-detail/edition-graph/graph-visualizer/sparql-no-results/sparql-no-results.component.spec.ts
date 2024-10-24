@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { LOGOSDATA } from '@awg-core/core-data';
+import { LOGOS_DATA } from '@awg-core/core-data';
 import { Logos } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
@@ -36,7 +36,7 @@ describe('SparqlNoResultsComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedLogos = LOGOSDATA;
+        expectedLogos = LOGOS_DATA;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see

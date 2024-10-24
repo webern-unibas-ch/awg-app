@@ -8,7 +8,7 @@ const EDITION_REPORT_ROUTES: Routes = [
     {
         path: '',
         component: EditionReportComponent,
-        data: { title: 'AWG Online Edition – Report' },
+        data: { title: 'AWG Online Edition – Report', showSideOutlet: true },
     },
 ];
 

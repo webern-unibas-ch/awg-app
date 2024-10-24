@@ -28,7 +28,7 @@
             "email": "101800133+AMWilke@users.noreply.github.com"
         }
     ],
-    "description": "Prototype Web Application for the Online Edition of the Anton Webern Gesamtausgabe (Musicological Seminar of the University of Basel)",
+    "description": "A web application for the Online Edition of the Anton Webern Gesamtausgabe (Musicological Seminar of the University of Basel)",
     "keywords": [
         "angular",
         "anton-webern",

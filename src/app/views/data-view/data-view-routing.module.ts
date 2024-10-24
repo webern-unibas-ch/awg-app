@@ -29,12 +29,12 @@ const DATA_VIEW_ROUTES: Routes = [
                             },
                             {
                                 path: 'fulltext',
-                                data: { title: 'AWG Online Edition – Fulltext Search' },
+                                data: { title: 'AWG Online Edition – Fulltext Search', showSideOutlet: true },
                                 component: SearchPanelComponent,
                             },
                             {
                                 path: 'extended',
-                                data: { title: 'AWG Online Edition – Extended Search' },
+                                data: { title: 'AWG Online Edition – Extended Search', showSideOutlet: true },
                                 component: SearchPanelComponent,
                             },
                             {
@@ -58,7 +58,7 @@ const DATA_VIEW_ROUTES: Routes = [
     {
         path: 'resource/:id',
         component: ResourceDetailComponent,
-        data: { title: 'AWG Online Edition – Resource Detail' },
+        data: { title: 'AWG Online Edition – Resource Detail', showSideOutlet: true },
         children: [
             {
                 path: '',
@@ -67,17 +67,17 @@ const DATA_VIEW_ROUTES: Routes = [
             },
             {
                 path: 'html',
-                data: { title: 'AWG Online Edition – Resource Detail HTML' },
+                data: { title: 'AWG Online Edition – Resource Detail HTML', showSideOutlet: true },
                 component: ResourceDetailComponent,
             },
             {
                 path: 'converted-json',
-                data: { title: 'AWG Online Edition – Resource Detail JSON Converted' },
+                data: { title: 'AWG Online Edition – Resource Detail JSON Converted', showSideOutlet: true },
                 component: ResourceDetailComponent,
             },
             {
                 path: 'raw-json',
-                data: { title: 'AWG Online Edition – Resource Detail JSON Raw' },
+                data: { title: 'AWG Online Edition – Resource Detail JSON Raw', showSideOutlet: true },
                 component: ResourceDetailComponent,
             },
         ],

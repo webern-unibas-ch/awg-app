@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 /**
  * The ViewContainer component.
@@ -12,5 +12,13 @@ import { Component } from '@angular/core';
     selector: 'awg-view-container',
     templateUrl: './view-container.component.html',
     styleUrls: ['./view-container.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ViewContainerComponent {}
+export class ViewContainerComponent {
+    /**
+     * Input variable: showSideOutlet.
+     *
+     * It keeps track of the side outlet.
+     */
+    @Input() showSideOutlet = true;
+}

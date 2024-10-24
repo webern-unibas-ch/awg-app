@@ -25,19 +25,19 @@
             <li class="nav-item">
                 <a class="nav-link d-flex" [routerLink]="['/home']" routerLinkActive="active">
                     <!-- do not show text on sm devices, change order from md devices up -->
-                    <span class="d-sm-none d-md-inline order-md-2">awg-app</span>
-                    <fa-icon [icon]="faHome"></fa-icon>
+                    <span class="d-sm-none d-md-inline order-md-2">{{ navbarLabels.home }}</span>
+                    <fa-icon [icon]="navbarIcons.home"></fa-icon>
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item" ngbDropdown [class.active]="isActiveRoute('/edition')">
                 <a id="dropdownNavEdition" class="nav-link d-flex" ngbDropdownToggle>
                     <!-- do not show text on sm devices, change order from md devices up -->
-                    <span class="d-sm-none d-md-inline">Edition</span>
-                    <fa-icon [icon]="faFileAlt" class="order-md-minus-1"></fa-icon>
+                    <span class="d-sm-none d-md-inline">{{ navbarLabels.edition }}</span>
+                    <fa-icon [icon]="navbarIcons.edition" class="order-md-minus-1"></fa-icon>
                 </a>
                 <div ngbDropdownMenu aria-labelledby="dropdownNavEdition">
-                    <h6 class="dropdown-header">Allgemein</h6>
+                    <h6 class="dropdown-header">{{ navbarLabels.general }}</h6>
                     <a
                         class="dropdown-item"
                         [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.SERIES.route]"
@@ -57,7 +57,7 @@
                         >{{ editionRouteConstants.PREFACE.full }}</a
                     >
                     <div class="dropdown-divider"></div>
-                    <h6 class="dropdown-header">Auswahl Skizzenkomplexe</h6>
+                    <h6 class="dropdown-header">{{ navbarLabels.complexes }}</h6>
                     <div class="dropdown-divider"></div>
                     @for (editionComplex of DISPLAYED_EDITION_COMPLEXES; track editionComplex.complexId.short) {
                         <div class="awg-dropdown-complexes">
@@ -94,8 +94,8 @@
             <li class="nav-item">
                 <a class="nav-link d-flex" [routerLink]="['/structure']" routerLinkActive="active">
                     <!-- do not show text on sm devices, change order from md devices up -->
-                    <span class="d-sm-none d-md-inline order-md-2">Strukturmodell</span>
-                    <fa-icon [icon]="faNetworkWired"></fa-icon>
+                    <span class="d-sm-none d-md-inline order-md-2">{{ navbarLabels.structure }}</span>
+                    <fa-icon [icon]="navbarIcons.structure"></fa-icon>
                 </a>
             </li>
         </ul>
@@ -109,18 +109,16 @@
 
         <!-- right nav links, auto vertical align -->
         <ul class="navbar-nav my-auto">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/data']" routerLinkActive="active">
-                    <!-- do not show text on sm devices -->
-                    <span class="d-sm-none d-lg-inline">Suche</span>
-                    <fa-icon [icon]="faSearch"></fa-icon>
+                    <span class="d-sm-none d-lg-inline">{{ navbarLabels.search }}</span>
+                    <fa-icon [icon]="navbarIcons.search"></fa-icon>
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/contact']" routerLinkActive="active">
-                    <!-- do not show text on sm devices-->
-                    <span class="d-sm-none d-lg-inline">Kontakt</span>
-                    <fa-icon [icon]="faEnvelope"></fa-icon>
+                    <span class="d-sm-none d-lg-inline">{{ navbarLabels.contact }}</span>
+                    <fa-icon [icon]="navbarIcons.contact"></fa-icon>
                 </a>
             </li>
         </ul>

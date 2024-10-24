@@ -13,7 +13,7 @@ import {
     getAndExpectDebugElementByCss,
 } from '@testing/expect-helper';
 
-import { LOGOSDATA } from '@awg-core/core-data';
+import { LOGOS_DATA } from '@awg-core/core-data';
 import { Logo } from '@awg-core/core-models';
 
 import { FooterLogoComponent } from './footer-logo.component';
@@ -44,9 +44,9 @@ describe('FooterLogoComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedLeftMainFooterLogo = LOGOSDATA['unibas'];
-        expectedRightMainFooterLogo = LOGOSDATA['sagw'];
-        expectedNonMainFooterLogo = LOGOSDATA['angular'];
+        expectedLeftMainFooterLogo = LOGOS_DATA['unibas'];
+        expectedRightMainFooterLogo = LOGOS_DATA['sagw'];
+        expectedNonMainFooterLogo = LOGOS_DATA['angular'];
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -100,7 +100,7 @@ describe('FooterLogoComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.logo = LOGOSDATA['sagw'];
+            component.logo = LOGOS_DATA['sagw'];
 
             // Trigger initial data binding
             fixture.detectChanges();

@@ -8,7 +8,7 @@ const EDITION_INTRO_ROUTES: Routes = [
     {
         path: '',
         component: EditionIntroComponent,
-        data: { title: 'AWG Online Edition – Intro' },
+        data: { title: 'AWG Online Edition – Intro', showSideOutlet: true },
     },
 ];
 

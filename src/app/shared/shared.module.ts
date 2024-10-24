@@ -15,7 +15,8 @@ import { CompileHtmlModule } from './compile-html';
 //
 // Shared components
 import { AddressComponent } from './address/address.component';
-import { ErrorAlertComponent } from './error-alert/error-alert.component';
+import { AlertErrorComponent } from './alert-error/alert-error.component';
+import { AlertInfoComponent } from './alert-info/alert-info.component';
 import { HeadingComponent } from './heading/heading.component';
 import { JsonViewerComponent } from './json-viewer/json-viewer.component';
 import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
@@ -59,7 +60,8 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
     ],
     declarations: [
         AddressComponent,
-        ErrorAlertComponent,
+        AlertErrorComponent,
+        AlertInfoComponent,
         HeadingComponent,
         JsonViewerComponent,
         LanguageSwitcherComponent,
@@ -90,7 +92,8 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         SharedNgbootstrapModule,
 
         AddressComponent,
-        ErrorAlertComponent,
+        AlertErrorComponent,
+        AlertInfoComponent,
         HeadingComponent,
         JsonViewerComponent,
         LanguageSwitcherComponent,

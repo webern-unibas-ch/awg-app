@@ -108,7 +108,7 @@ export class ContactViewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.routeToSidenav();
+        this.routeToSideOutlet();
         this.provideMetaData();
         this.today = Date.now();
     }
@@ -127,13 +127,13 @@ export class ContactViewComponent implements OnInit {
     }
 
     /**
-     * Public method: routeToSidenav.
+     * Public method: routeToSideOutlet.
      *
-     * It activates the secondary outlet with the contact-info.
+     * It activates the side outlet with the contact-info.
      *
      * @returns {void} Activates the contact-info side outlet.
      */
-    routeToSidenav(): void {
+    routeToSideOutlet(): void {
         // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: 'contactInfo' } }], {
             preserveFragment: true,

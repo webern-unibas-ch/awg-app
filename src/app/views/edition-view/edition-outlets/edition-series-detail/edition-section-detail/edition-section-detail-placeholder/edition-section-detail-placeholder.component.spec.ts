@@ -1,13 +1,20 @@
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { EditionSectionDetailPlaceholderComponent } from './edition-section-detail-placeholder.component';
+
+// Mock components
+@Component({ selector: 'awg-alert-info', template: '' })
+class AlertInfoStubComponent {
+    @Input()
+    infoMessage: string;
+}
 
 describe('EditionSectionDetailPlaceholderComponent', () => {
     let component: EditionSectionDetailPlaceholderComponent;
@@ -17,13 +24,15 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
     let expectedSelectedSeries: EditionOutlineSeries;
     let expectedSelectedSection: EditionOutlineSection;
 
+    let expectedInfoMessage: string;
+
     beforeAll(() => {
         EditionOutlineService.initializeEditionOutline();
     });
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [EditionSectionDetailPlaceholderComponent],
+            declarations: [EditionSectionDetailPlaceholderComponent, AlertInfoStubComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(EditionSectionDetailPlaceholderComponent);
@@ -33,6 +42,10 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
         // Test data
         expectedSelectedSeries = JSON.parse(JSON.stringify(EditionOutlineService.getEditionOutline()[0]));
         expectedSelectedSection = JSON.parse(JSON.stringify(expectedSelectedSeries.sections[4]));
+
+        const series = expectedSelectedSeries.series.short;
+        const section = expectedSelectedSection.section.short;
+        expectedInfoMessage = `[Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von AWG ${series}/${section}.]`;
     });
 
     afterAll(() => {
@@ -53,17 +66,15 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.alert-info', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.alert-info', 1, 1);
+            it('... should contain an AlertInfoComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, AlertInfoStubComponent, 1, 1);
             });
 
-            it('... should contain one centered, muted paragraph in div.alert-info', () => {
-                const divDe = getAndExpectDebugElementByCss(compDe, 'div.alert-info', 1, 1);
-                const pDe = getAndExpectDebugElementByCss(divDe[0], 'p', 1, 1);
-                const pEl = pDe[0].nativeElement;
+            it('... should not pass down infoMessage to AlertInfoComponent yet', () => {
+                const alertInfoDes = getAndExpectDebugElementByDirective(compDe, AlertInfoStubComponent, 1, 1);
+                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
 
-                expectToContain(pEl.classList, 'text-muted');
-                expectToContain(pEl.classList, 'text-center');
+                expect(alertInfoCmp.infoMessage).toBeUndefined();
             });
         });
     });
@@ -78,17 +89,11 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should display placeholder in paragraph', () => {
-                const divDe = getAndExpectDebugElementByCss(compDe, 'div.alert-info', 1, 1);
-                const pDe = getAndExpectDebugElementByCss(divDe[0], 'p', 1, 1);
-                const pEl = pDe[0].nativeElement;
+            it('... should pass down infoMessage to AlertInfoComponent', () => {
+                const alertInfoDes = getAndExpectDebugElementByDirective(compDe, AlertInfoStubComponent, 1, 1);
+                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
 
-                const series = expectedSelectedSeries.series.short;
-                const section = expectedSelectedSection.section.short;
-
-                const expectedPlaceholder = `[Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von AWG ${series}/${section}.]`;
-
-                expectToBe(pEl.textContent.trim(), expectedPlaceholder.trim());
+                expectToEqual(alertInfoCmp.infoMessage, expectedInfoMessage);
             });
         });
     });

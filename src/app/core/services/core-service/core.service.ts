@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { LOGOSDATA, METADATA } from '@awg-core/core-data';
+import { LOGOS_DATA, META_DATA } from '@awg-core/core-data';
 import { Logos, Meta, MetaSectionTypes } from '@awg-core/core-models';
 
 /**
@@ -24,7 +24,7 @@ export class CoreService {
      * @returns {Meta[S]} The sectionType S of the metadata object.
      */
     getMetaDataSection<S extends MetaSectionTypes>(sectionType: S): Meta[S] {
-        return METADATA[sectionType];
+        return META_DATA[sectionType];
     }
 
     /**
@@ -35,7 +35,7 @@ export class CoreService {
      * @returns {Meta} The complete metadata object.
      */
     getMetaData(): Meta {
-        return METADATA;
+        return META_DATA;
     }
 
     /**
@@ -46,6 +46,6 @@ export class CoreService {
      * @returns {Logos} The app-wide logos object.
      */
     getLogos(): Logos {
-        return LOGOSDATA;
+        return LOGOS_DATA;
     }
 }

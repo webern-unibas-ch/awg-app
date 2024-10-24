@@ -7,7 +7,7 @@ import { Logos } from '@awg-core/core-models';
  *
  * Available logos: `unibas`, `snf`, `angular`, `bootstrap`.
  */
-export const LOGOSDATA: Logos = {
+export const LOGOS_DATA: Logos = {
     angular: {
         id: 'angularlogo',
         src: 'assets/img/logos/angular.svg',

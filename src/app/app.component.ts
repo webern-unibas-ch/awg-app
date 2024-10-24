@@ -20,6 +20,13 @@ import { AnalyticsService, EditionInitService } from '@awg-core/services';
 })
 export class AppComponent {
     /**
+     * Public variable: showSideOutlet.
+     *
+     * It keeps track of the side outlet.
+     */
+    showSideOutlet = true;
+
+    /**
      * Constructor of the AppComponent.
      *
      * It declares private instances of the Angular router and the AnalyticsService.
@@ -59,21 +66,26 @@ export class AppComponent {
                     // Track page view on every NavigationEnd
                     this.analyticsService.trackPageView(event.urlAfterRedirects);
 
-                    // Get page title from route data
-                    let child = this.activatedRoute.firstChild;
-                    while (child.firstChild) {
-                        child = child.firstChild;
+                    // Get page title and sideOutlet info from route data
+                    let route = this.activatedRoute.firstChild;
+                    while (route?.firstChild) {
+                        route = route.firstChild;
                     }
-                    if (child.snapshot.data['title']) {
-                        return child.snapshot.data['title'];
+                    if (route.snapshot.data['title']) {
+                        return {
+                            pageTitle: route.snapshot.data['title'],
+                            showSideOutlet: route.snapshot.data['showSideOutlet'] ?? true,
+                        };
                     }
-                    return appTitle;
+                    return { pageTitle: appTitle, showSideOutlet: true };
                 })
             )
             .subscribe({
-                next: (pageTitle: string) => {
+                next: ({ pageTitle, showSideOutlet }) => {
                     // Set page title
                     this.titleService.setTitle(pageTitle);
+                    // Set showSideOutlet
+                    this.showSideOutlet = showSideOutlet;
                 },
             });
     }
