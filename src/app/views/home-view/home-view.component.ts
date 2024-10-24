@@ -26,8 +26,7 @@ export class HomeViewComponent implements OnInit {
      *
      * It keeps the disclaimer info message for the home view section.
      */
-    disclaimerInfoMessage =
-        'Die Online-Edition und die Datenbank-Suche werden in ihrer Funktionalität kontinuierlich erweitert.';
+    disclaimerInfoMessage = 'Die Online-Edition wird in Bezug auf Umfang und Funktionalität kontinuierlich erweitert.';
 
     /**
      * Public variable: homeViewTitle.

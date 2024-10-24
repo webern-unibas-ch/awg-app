@@ -20,6 +20,7 @@ const META_PAGE: MetaPage = {
     salsahUrl: AppConfig.SALSAH_URL,
     version: AppConfig.AWG_APP_VERSION,
     versionReleaseDate: AppConfig.AWG_APP_VERSION_RELEASE_DATE,
+    zenodoUrl: AppConfig.AWG_APP_ZENODO_URL,
 };
 
 /**

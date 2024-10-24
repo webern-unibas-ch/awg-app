@@ -23,7 +23,7 @@ export const HOME_VIEW_CARD_DATA: HomeViewCard[] = [
         linkText: 'Zu den Graph-Visualisierungen',
     },
     {
-        title: 'Datenbank-Suche',
+        title: 'Datenbank-Suche (DSP)',
         text: 'Finden Sie biografische und werkgeschichtliche Kontextinformationen in der DSP-Datenbank.',
         imgSrc: 'assets/img/home/database_sample.png',
         imgAlt: 'Search',
