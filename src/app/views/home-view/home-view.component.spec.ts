@@ -24,7 +24,7 @@ import { HomeViewCard } from '@awg-views/home-view/models';
 
 import { HomeViewComponent } from './home-view.component';
 
-// Mock heading component
+// Mock components
 @Component({ selector: 'awg-alert-info', template: '' })
 class AlertInfoStubComponent {
     @Input()
