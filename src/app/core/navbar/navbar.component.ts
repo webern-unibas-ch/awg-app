@@ -59,7 +59,7 @@ export class NavbarComponent implements OnInit {
         contact: 'Kontakt',
         edition: 'Edition',
         general: 'Allgemein',
-        search: 'Datennbank-Suche',
+        search: 'Datenbank-Suche',
         structure: 'Strukturmodell',
     };
 
