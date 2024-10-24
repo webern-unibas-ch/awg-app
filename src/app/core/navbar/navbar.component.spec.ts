@@ -28,7 +28,7 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { LOGOSDATA } from '@awg-core/core-data';
+import { LOGOS_DATA } from '@awg-core/core-data';
 import { Logos } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
@@ -125,7 +125,7 @@ describe('NavbarComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedLogos = LOGOSDATA;
+        expectedLogos = LOGOS_DATA;
 
         expectedEditionComplexes = [
             EditionComplexesService.getEditionComplexById('OP3'),

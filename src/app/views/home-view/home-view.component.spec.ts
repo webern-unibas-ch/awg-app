@@ -15,7 +15,7 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { METADATA } from '@awg-core/core-data';
+import { META_DATA } from '@awg-core/core-data';
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionOutlineSection } from '@awg-views/edition-view/models';
@@ -116,7 +116,7 @@ describe('HomeViewComponent (DONE)', () => {
         expectedDisclaimerInfoMessage =
             'Die Online-Edition und die Datenbank-Suche werden in ihrer Funktionalität kontinuierlich erweitert.';
         expectedHomeViewCardData = HOME_VIEW_CARD_DATA;
-        expectedPageMetaData = METADATA[MetaSectionTypes.page];
+        expectedPageMetaData = META_DATA[MetaSectionTypes.page];
         expectedSections = [
             EditionOutlineService.getEditionSectionById('1', '5'),
             EditionOutlineService.getEditionSectionById('2', '2a'),

@@ -16,7 +16,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { METADATA } from '@awg-core/core-data';
+import { META_DATA } from '@awg-core/core-data';
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
@@ -56,7 +56,7 @@ describe('ContactViewComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         // Mock service for test purposes
-        mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
+        mockCoreService = { getMetaDataSection: sectionType => META_DATA[sectionType] };
 
         // Router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
@@ -76,8 +76,8 @@ describe('ContactViewComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedPageMetaData = METADATA[MetaSectionTypes.page];
-        expectedContactMetaData = METADATA[MetaSectionTypes.contact];
+        expectedPageMetaData = META_DATA[MetaSectionTypes.page];
+        expectedContactMetaData = META_DATA[MetaSectionTypes.contact];
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
