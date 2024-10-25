@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { faCalendarXmark } from '@fortawesome/free-regular-svg-icons';
+import { faCalendarXmark } from '@fortawesome/free-solid-svg-icons';
 
 import { UtilityService } from '@awg-core/services';
 import { EditionSvgSheet } from '@awg-views/edition-view/models';
