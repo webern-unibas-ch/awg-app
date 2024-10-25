@@ -25,16 +25,21 @@
                 <a [routerLink]="['/structure']">Datenstruktur</a> wird zur Zeit von der AWG implementiert.
             </p>
             <p>
-                Über den Menüpunkt <em>Edition</em> sind ausgewählte Skizzeneditionen zu
-                @for (
-                    editionComplex of DISPLAYED_EDITION_COMPLEXES;
-                    track editionComplex.complexId.short;
-                    let i = $index;
-                    let n = $count
-                ) {
+                Über den Menüpunkt <em>Edition</em> sind die Online-Editionen zu den Abteilungen
+                @for (section of DISPLAYED_SECTIONS; track $index; let i = $index; let n = $count) {
                     <a
-                        [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
-                        [innerHTML]="editionComplex.complexId.short">
+                        [routerLink]="[
+                            editionRouteConstants.EDITION.route,
+                            editionRouteConstants.SERIES.route,
+                            section?.seriesParent?.route,
+                            editionRouteConstants.SECTION.route,
+                            section?.section?.route,
+                        ]"
+                        ><span>
+                            {{ editionRouteConstants.EDITION.short }} {{ section.seriesParent.short }}/{{
+                                section.section.short
+                            }}</span
+                        >
                     </a>
                     @if (i < n - 2) {
                         <span>, </span>
@@ -61,58 +66,15 @@
                 <a id="compodoc-link" href="{{ pageMetaData?.compodocUrl }}">dokumentiert</a>
                 (vgl. <a [routerLink]="['/contact']" fragment="awg-documentation">Dokumentation</a>).
             </p>
-            <awg-alert-info
-                [infoMessage]="
-                    'Die Online-Edition und die Suche werden in ihrer Funktionalität sukzessiv erweitert.'
-                "></awg-alert-info>
+            <awg-alert-info [infoMessage]="disclaimerInfoMessage"></awg-alert-info>
         </div>
 
-        <div class="awg-home-view-grid row row-cols-1 row-cols-xl-3 g-4">
-            <div class="col">
-                <div class="card awg-home-view-card h-100 shadow text-center">
-                    <img src="assets/img/home/edition_sample.jpg" class="card-img-top" alt="Edition Overview" />
-                    <div class="card-body">
-                        <h5 class="card-title">Editionsübersicht</h5>
-                        <p class="card-text">Entdecken Sie die Online-Edition und ihre Inhalte.</p>
-                    </div>
-                    <div class="card-footer">
-                        <a [routerLink]="['/edition', 'series']" class="btn btn-info text-light"
-                            ><fa-icon [icon]="faArrowRight"></fa-icon> Zur Editionsübersicht</a
-                        >
-                    </div>
+        <div class="awg-home-view-grid row row-cols-1 row-cols-lg-2 row-cols-xl-4 g-4">
+            @for (cardData of homeViewCardData; track $index) {
+                <div class="col">
+                    <awg-home-view-card [cardData]="cardData"></awg-home-view-card>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card awg-home-view-card h-100 shadow text-center">
-                    <img src="assets/img/home/graph_sample.png" class="card-img-top" alt="Graph" />
-                    <div class="card-body">
-                        <h5 class="card-title">Graph-Visualisierungen (beta)</h5>
-                        <p class="card-text">Erkunden Sie die graphische Repräsentation der Editionsdaten.</p>
-                    </div>
-                    <div class="card-footer">
-                        <a [routerLink]="['/edition', 'complex', 'op25', 'graph']" class="btn btn-info text-light"
-                            ><fa-icon [icon]="faArrowRight"></fa-icon> Zu den Graph-Visualisierungen</a
-                        >
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card awg-home-view-card h-100 shadow text-center">
-                    <img src="assets/img/home/awg.jpg" class="card-img-top" alt="Edition Project" />
-                    <div class="card-body">
-                        <h5 class="card-title">Anton Webern Gesamtausgabe</h5>
-                        <p class="card-text">
-                            Informieren Sie sich über die Anton Webern Gesamtausgabe, die Webern-Forschung und Anton
-                            Webern.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="https://www.anton-webern.ch" class="btn btn-info text-light"
-                            ><fa-icon [icon]="faArrowRight"></fa-icon> Zur Projekt-Website</a
-                        >
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </div>

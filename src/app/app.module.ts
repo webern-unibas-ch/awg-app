@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from '@awg-core/core.module';
 import { SharedModule } from '@awg-shared/shared.module';
 import { SideInfoModule } from '@awg-side-info/side-info.module';
+import { HomeViewModule } from '@awg-views/home-view/home-view.module';
 import { AppComponent } from './app.component';
 
 /* Routing Module */
@@ -25,7 +26,15 @@ registerLocaleData(localeDeDE);
  * as well as the {@link CoreModule}, {@link SharedModule} and {@link SideInfoModule}.
  */
 @NgModule({
-    imports: [BrowserModule, BrowserAnimationsModule, CoreModule, SharedModule, SideInfoModule, AppRoutingModule],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        CoreModule,
+        HomeViewModule,
+        SharedModule,
+        SideInfoModule,
+        AppRoutingModule,
+    ],
     declarations: [AppComponent, routedAppComponents],
     providers: [
         { provide: LOCALE_ID, useValue: 'de-DE' }, // Change global LOCALE-ID
