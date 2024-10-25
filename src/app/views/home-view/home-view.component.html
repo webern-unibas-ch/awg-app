@@ -5,7 +5,7 @@
 
     <!-- content-->
     <div class="awg-home-view-content">
-        <div class="awg-home-view-text">
+        <div class="awg-home-view-text para">
             <p>Willkommen bei der AWG-APP, der Online-Edition der Anton Webern Gesamtausgabe, Basel (AWG).</p>
             <p>
                 Die online zugänglichen Bestandteile und Datenbestände der AWG-Online-Edition werden als Open Data über
@@ -61,11 +61,10 @@
                 <a id="compodoc-link" href="{{ pageMetaData?.compodocUrl }}">dokumentiert</a>
                 (vgl. <a [routerLink]="['/contact']" fragment="awg-documentation">Dokumentation</a>).
             </p>
-            <div class="alert alert-info" role="alert">
-                <p class="no-para text-muted text-center small">
-                    Die Online-Edition und die Suche werden in ihrer Funktionalität sukzessiv erweitert.
-                </p>
-            </div>
+            <awg-alert-info
+                [infoMessage]="
+                    'Die Online-Edition und die Suche werden in ihrer Funktionalität sukzessiv erweitert.'
+                "></awg-alert-info>
         </div>
 
         <div class="awg-home-view-grid row row-cols-1 row-cols-xl-3 g-4">

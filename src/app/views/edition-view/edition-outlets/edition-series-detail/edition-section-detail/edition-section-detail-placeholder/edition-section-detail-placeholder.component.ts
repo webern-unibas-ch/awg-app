@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-app/views/edition-view/models';
 
@@ -12,6 +12,7 @@ import { EditionOutlineSection, EditionOutlineSeries } from '@awg-app/views/edit
     selector: 'awg-edition-section-detail-placeholder',
     templateUrl: './edition-section-detail-placeholder.component.html',
     styleUrls: ['./edition-section-detail-placeholder.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionSectionDetailPlaceholderComponent {
     /**
