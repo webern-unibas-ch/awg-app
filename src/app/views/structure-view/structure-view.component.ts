@@ -46,17 +46,17 @@ export class StructureViewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.routeToSidenav();
+        this.navigateToSideOutlet();
     }
 
     /**
-     * Public method: routeToSidenav.
+     * Public method: navigateToSideOutlet.
      *
-     * It activates the secondary outlet with the structure-info.
+     * It activates the side outlet with the structure-info.
      *
      * @returns {void} Activates the structure-info side outlet.
      */
-    routeToSidenav(): void {
+    navigateToSideOutlet(): void {
         // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: 'structureInfo' } }], {
             preserveFragment: true,

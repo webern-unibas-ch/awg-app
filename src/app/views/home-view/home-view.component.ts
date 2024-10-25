@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
@@ -77,10 +76,7 @@ export class HomeViewComponent implements OnInit {
      *
      * @param {CoreService} coreService Instance of the CoreService.
      */
-    constructor(
-        private coreService: CoreService,
-        private router: Router
-    ) {}
+    constructor(private coreService: CoreService) {}
 
     /**
      * Getter variable: editionRouteConstants.
@@ -98,7 +94,6 @@ export class HomeViewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.routeToSidenav();
         this.provideMetaData();
     }
 
@@ -112,20 +107,5 @@ export class HomeViewComponent implements OnInit {
      */
     provideMetaData(): void {
         this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.page);
-    }
-
-    /**
-     * Public method: routeToSidenav.
-     *
-     * It activates the secondary outlet with the edition-info.
-     *
-     * @returns {void} Activates the edition-info side outlet.
-     */
-    routeToSidenav(): void {
-        // Opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: 'editionInfo' } }], {
-            preserveFragment: true,
-            queryParamsHandling: 'preserve',
-        });
     }
 }

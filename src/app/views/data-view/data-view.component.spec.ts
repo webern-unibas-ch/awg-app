@@ -32,6 +32,8 @@ describe('DataViewComponent (DONE)', () => {
 
     let mockRouter: Partial<Router>;
 
+    let navigateToSideOutletSpy: Spy;
+
     const expectedTitle = 'Suche';
     const expectedId = 'search';
 
@@ -53,7 +55,7 @@ describe('DataViewComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        spyOn(component, 'routeToSidenav').and.callThrough();
+        navigateToSideOutletSpy = spyOn(component, 'navigateToSideOutlet').and.callThrough();
     });
 
     afterAll(() => {
@@ -70,13 +72,13 @@ describe('DataViewComponent (DONE)', () => {
             expectToBe(component.searchId, expectedId);
         });
 
-        describe('#routeToSidenav()', () => {
-            it('... should have a method `routeToSidenav`', () => {
-                expect(component.routeToSidenav).toBeDefined();
+        describe('#navigateToSideOutlet()', () => {
+            it('... should have a method `navigateToSideOutlet`', () => {
+                expect(component.navigateToSideOutlet).toBeDefined();
             });
 
             it('... should not have been called', () => {
-                expect(component.routeToSidenav).not.toHaveBeenCalled();
+                expectSpyCall(navigateToSideOutletSpy, 0);
             });
         });
 
@@ -117,45 +119,44 @@ describe('DataViewComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#routeToSideNav()', () => {
-            let navigationSpy: Spy;
+        describe('#navigateToSideOutlet()', () => {
+            let routerNavigateSpy: Spy;
 
             beforeEach(() => {
                 // Create spy of mockrouter SpyObj
-                navigationSpy = mockRouter.navigate as jasmine.Spy;
+                routerNavigateSpy = mockRouter.navigate as jasmine.Spy;
             });
 
             it('... should have been called', () => {
-                // Router navigation triggerd by onInit
-                expect(component.routeToSidenav).toHaveBeenCalled();
+                expectSpyCall(navigateToSideOutletSpy, 1);
             });
 
             it('... should have triggered `router.navigate`', () => {
-                expectSpyCall(navigationSpy, 1);
+                expectSpyCall(routerNavigateSpy, 1);
             });
 
             it('... should tell ROUTER to navigate to `searchInfo` outlet', () => {
                 const expectedRoute = 'searchInfo';
 
                 // Catch args passed to navigation spy
-                const navArgs = navigationSpy.calls.first().args;
+                const navArgs = routerNavigateSpy.calls.first().args;
                 const outletRoute = navArgs[0][0].outlets.side;
 
                 expect(navArgs).toBeDefined();
                 expect(navArgs[0]).toBeDefined();
                 expectToBe(outletRoute, expectedRoute);
-                expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
+                expect(routerNavigateSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
 
             it('... should tell ROUTER to navigate with `preserveFragment:true`', () => {
                 // Catch args passed to navigation spy
-                const navArgs = navigationSpy.calls.first().args;
+                const navArgs = routerNavigateSpy.calls.first().args;
                 const navExtras = navArgs[1];
 
                 expect(navExtras).toBeDefined();
                 expectToBe(navExtras.preserveFragment, true);
 
-                expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
+                expect(routerNavigateSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
         });
 

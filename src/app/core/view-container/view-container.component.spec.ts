@@ -34,13 +34,21 @@ describe('ViewContainerComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         describe('VIEW', () => {
+            it('... should contain one `div.container-fluid`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.container-fluid', 1, 1);
+            });
+
+            it('... should contain one `div.row` in `div.container-fluid`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row', 1, 1);
+            });
+
             it('... should contain two child divs in `div.row` in `div.container-fluid`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row > div', 2, 2);
                 const divEl0 = divDes[0].nativeElement;
                 const divEl1 = divDes[1].nativeElement;
 
                 expect(divEl0).toHaveClass('awg-maincontent');
-                expect(divEl1).toHaveClass('awg-sidenav');
+                expect(divEl1).toHaveClass('awg-side-outlet');
             });
 
             it('... should contain two router outlets (stubbed)', () => {
