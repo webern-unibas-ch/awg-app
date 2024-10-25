@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
@@ -21,12 +23,19 @@ import { EditionComplexesService } from '@awg-views/edition-view/services';
 })
 export class HomeViewComponent implements OnInit {
     /**
+     * Public variable: faArrowRight.
+     *
+     * It instantiates fontawesome's faArrowRight icon.
+     */
+    faArrowRight = faArrowRight;
+
+    /**
      * Public variable: homeViewTitle.
      *
      * It keeps the title for the heading component
      * of the home view section.
      */
-    homeViewTitle = 'Beispieleditionen ausgewählter Skizzen';
+    homeViewTitle = 'AWG-APP: die Online-Edition der Anton Webern Gesamtausgabe';
 
     /**
      * Public variable: homeId.
