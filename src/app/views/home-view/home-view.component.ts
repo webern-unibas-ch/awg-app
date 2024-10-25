@@ -11,7 +11,7 @@ import { EditionComplexesService } from '@awg-views/edition-view/services';
  * The HomeView component.
  *
  * It contains the home view section of the app
- * with basic information about the prototype.
+ * with basic information about the application.
  */
 @Component({
     selector: 'awg-home-view',
