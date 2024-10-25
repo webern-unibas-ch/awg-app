@@ -46,17 +46,17 @@ export class DataViewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.routeToSidenav();
+        this.navigateToSideOutlet();
     }
 
     /**
-     * Public method: routeToSidenav.
+     * Public method: navigateToSideOutlet.
      *
-     * It activates the secondary outlet with the search-info.
+     * It activates the side outlet with the search-info.
      *
      * @returns {void} Activates the search-info side outlet.
      */
-    routeToSidenav(): void {
+    navigateToSideOutlet(): void {
         // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: 'searchInfo' } }], {
             preserveFragment: true,

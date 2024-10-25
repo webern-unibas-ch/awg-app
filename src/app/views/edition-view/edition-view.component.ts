@@ -111,7 +111,7 @@ export class EditionViewComponent implements OnInit {
      */
     ngOnInit() {
         this.setupEditionView();
-        this.routeToSidenav();
+        this.navigateToSideOutlet();
     }
 
     /**
@@ -133,13 +133,13 @@ export class EditionViewComponent implements OnInit {
     }
 
     /**
-     * Public method: routeToSidenav.
+     * Public method: navigateToSideOutlet.
      *
-     * It activates the secondary outlet with the edition-info.
+     * It activates the side outlet with the edition-info.
      *
      * @returns {void} Activates the edition-info side outlet.
      */
-    routeToSidenav(): void {
+    navigateToSideOutlet(): void {
         // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: 'editionInfo' } }], {
             preserveFragment: true,
