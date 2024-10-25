@@ -168,6 +168,12 @@ to structure outline information of the edition sections.</p>
                                             section
                                         </a>
                                 </li>
+                                <li>
+                                        <a href="#seriesParent" 
+>
+                                            seriesParent
+                                        </a>
+                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -291,6 +297,45 @@ to structure outline information of the edition sections.</p>
                             <tr>
                                 <td class="col-md-4">
                                     <div class="io-description"><p>The section route of an edition section.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="seriesParent"></a>
+                                        <span class="name "><b>seriesParent</b>
+                                            <a href="#seriesParent">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>seriesParent:         <code><a href="../classes/EditionRouteConstant.html" target="_self" >EditionRouteConstant</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../classes/EditionRouteConstant.html" target="_self" >EditionRouteConstant</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The series parent route of an edition section.</p>
 </div>
                                 </td>
                             </tr>
@@ -470,6 +515,11 @@ export interface EditionOutlineSectionContent {
  */
 export interface EditionOutlineSection {
     /**
+     * The series parent route of an edition section.
+     */
+    seriesParent: EditionRouteConstant;
+
+    /**
      * The section route of an edition section.
      */
     section: EditionRouteConstant;
@@ -545,7 +595,7 @@ export class EditionOutline {
         const seriesConstant: EditionRouteConstant &#x3D; EDITION_ROUTE_CONSTANTS[&#x27;SERIES_&#x27; + series];
         return {
             series: seriesConstant,
-            sections: sections.map(section &#x3D;&gt; this._mapSection(section, series)),
+            sections: sections.map(section &#x3D;&gt; this._mapSection(section, seriesConstant)),
         };
     };
 
@@ -563,14 +613,15 @@ export class EditionOutline {
      */
     private _mapSection &#x3D; (
         { section, disabled, content }: EditionOutlineSectionsJsonData,
-        series: string
+        seriesConstant: EditionRouteConstant
     ): EditionOutlineSection &#x3D;&gt; {
         const sectionConstant: EditionRouteConstant &#x3D;
-            series &#x3D;&#x3D;&#x3D; &#x27;3&#x27; &amp;&amp; section &#x3D;&#x3D;&#x3D; &#x27;5&#x27;
+            seriesConstant.route &#x3D;&#x3D;&#x3D; &#x27;3&#x27; &amp;&amp; section &#x3D;&#x3D;&#x3D; &#x27;5&#x27;
                 ? EDITION_ROUTE_CONSTANTS.SERIES_3_SECTION_5
                 : EDITION_ROUTE_CONSTANTS[&#x27;SECTION_&#x27; + section];
 
         return {
+            seriesParent: seriesConstant,
             section: sectionConstant,
             content: this._mapSectionContent(content),
             disabled,

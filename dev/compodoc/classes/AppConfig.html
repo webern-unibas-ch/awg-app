@@ -207,6 +207,9 @@
                                 <li>
                                     <a href="#UNSAFE_OSM_EMBED_URL" >UNSAFE_OSM_EMBED_URL</a>
                                 </li>
+                                <li>
+                                    <a href="#AWG_APP_ZENODO_URL" >AWG_APP_ZENODO_URL</a>
+                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -870,6 +873,42 @@ of the AWG edition website (awg-app).
 
             </tbody>
         </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="AWG_APP_ZENODO_URL"></a>
+                        <span class="name"><b>AWG_APP_ZENODO_URL</b><a href="#AWG_APP_ZENODO_URL"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>AWG_APP_ZENODO_URL()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/app/app.config.ts:198</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Getter for the URL of the Zenodo record
+(<a href="https://doi.org/10.5281/zenodo.4717678">https://doi.org/10.5281/zenodo.4717678</a>).</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
 </section>
     </div>
 
@@ -1064,6 +1103,16 @@ export class AppConfig {
         const marker &#x3D; &#x27;47.55896585846639%2C7.584506571292877&#x27;;
 
         return osmApi + &#x27;?&#x27; + bbox + &#x27;&amp;&#x27; + layer + &#x27;&amp;&#x27; + marker;
+    }
+
+    /**
+     * Getter for the URL of the Zenodo record
+     * ({@link https://doi.org/10.5281/zenodo.4717678}).
+     *
+     * @returns {string}
+     */
+    public static get AWG_APP_ZENODO_URL(): string {
+        return &#x27;https://doi.org/10.5281/zenodo.4717678&#x27;;
     }
 }
 </code></pre>

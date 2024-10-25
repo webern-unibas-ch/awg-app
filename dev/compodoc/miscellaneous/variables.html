@@ -188,6 +188,9 @@
                             <a href="#gtag" title="src/app/core/services/analytics-sercvice/analytics.service.ts" ><b>gtag</b>&nbsp;&nbsp;&nbsp;(src/.../analytics.service.ts)</a>
                         </li>
                         <li>
+                            <a href="#HOME_VIEW_CARD_DATA" title="src/app/views/home-view/data/home-view-card.data.ts" ><b>HOME_VIEW_CARD_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../home-view-card.data.ts)</a>
+                        </li>
+                        <li>
                             <a href="#htmlConverter" title="src/app/core/services/conversion-service/conversion.service.ts" ><b>htmlConverter</b>&nbsp;&nbsp;&nbsp;(src/.../conversion.service.ts)</a>
                         </li>
                         <li>
@@ -200,7 +203,7 @@
                             <a href="#localStore" title="src/testing/mock-helper/mock-storage.ts" ><b>localStore</b>&nbsp;&nbsp;&nbsp;(src/.../mock-storage.ts)</a>
                         </li>
                         <li>
-                            <a href="#LOGOSDATA" title="src/app/core/core-data/logos.data.ts" ><b>LOGOSDATA</b>&nbsp;&nbsp;&nbsp;(src/.../logos.data.ts)</a>
+                            <a href="#LOGOS_DATA" title="src/app/core/core-data/logos.data.ts" ><b>LOGOS_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../logos.data.ts)</a>
                         </li>
                         <li>
                             <a href="#LT" title="src/app/views/data-view/data/search-compop.data.ts" ><b>LT</b>&nbsp;&nbsp;&nbsp;(src/.../search-compop.data.ts)</a>
@@ -215,16 +218,16 @@
                             <a href="#MATCH_BOOLEAN" title="src/app/views/data-view/data/search-compop.data.ts" ><b>MATCH_BOOLEAN</b>&nbsp;&nbsp;&nbsp;(src/.../search-compop.data.ts)</a>
                         </li>
                         <li>
-                            <a href="#METACONTACT" title="src/app/core/core-data/meta.data.ts" ><b>METACONTACT</b>&nbsp;&nbsp;&nbsp;(src/.../meta.data.ts)</a>
+                            <a href="#META_CONTACT" title="src/app/core/core-data/meta.data.ts" ><b>META_CONTACT</b>&nbsp;&nbsp;&nbsp;(src/.../meta.data.ts)</a>
                         </li>
                         <li>
-                            <a href="#METADATA" title="src/app/core/core-data/meta.data.ts" ><b>METADATA</b>&nbsp;&nbsp;&nbsp;(src/.../meta.data.ts)</a>
+                            <a href="#META_DATA" title="src/app/core/core-data/meta.data.ts" ><b>META_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../meta.data.ts)</a>
                         </li>
                         <li>
-                            <a href="#METAPAGE" title="src/app/core/core-data/meta.data.ts" ><b>METAPAGE</b>&nbsp;&nbsp;&nbsp;(src/.../meta.data.ts)</a>
+                            <a href="#META_PAGE" title="src/app/core/core-data/meta.data.ts" ><b>META_PAGE</b>&nbsp;&nbsp;&nbsp;(src/.../meta.data.ts)</a>
                         </li>
                         <li>
-                            <a href="#METASTRUCTURE" title="src/app/core/core-data/meta.data.ts" ><b>METASTRUCTURE</b>&nbsp;&nbsp;&nbsp;(src/.../meta.data.ts)</a>
+                            <a href="#META_STRUCTURE" title="src/app/core/core-data/meta.data.ts" ><b>META_STRUCTURE</b>&nbsp;&nbsp;&nbsp;(src/.../meta.data.ts)</a>
                         </li>
                         <li>
                             <a href="#mockAnalytics" title="src/testing/mock-helper/mock-analytics.ts" ><b>mockAnalytics</b>&nbsp;&nbsp;&nbsp;(src/.../mock-analytics.ts)</a>
@@ -620,7 +623,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;0.14.0-301-g431b979d8&#x27;</code>
+                        <i>Default value : </i><code>&#x27;0.14.0-335-gad8e537c5&#x27;</code>
                     </td>
                 </tr>
 
@@ -652,7 +655,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;24. October 2024&#x27;</code>
+                        <i>Default value : </i><code>&#x27;25. October 2024&#x27;</code>
                     </td>
                 </tr>
 
@@ -2226,6 +2229,75 @@ to store graph images data.</p>
         </tbody>
     </table>
 </section>
+    <h3>src/app/views/home-view/data/home-view-card.data.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="HOME_VIEW_CARD_DATA"></a>
+                    <span class="name">
+                        <span ><b>HOME_VIEW_CARD_DATA</b></span>
+                        <a href="#HOME_VIEW_CARD_DATA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/HomeViewCard.html" target="_self" >HomeViewCard[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+        title: &#x27;Editionsübersicht&#x27;,
+        text: &#x27;Entdecken Sie die Online-Edition und ihre Inhalte.&#x27;,
+        imgSrc: &#x27;assets/img/home/edition_sample.jpg&#x27;,
+        imgAlt: &#x27;Edition Overview&#x27;,
+        linkRouter: [&#x27;/edition&#x27;, &#x27;series&#x27;],
+        linkText: &#x27;Zur Editionsübersicht&#x27;,
+    },
+    {
+        title: &#x27;Graph-Visualisierungen (beta)&#x27;,
+        text: &#x27;Erkunden Sie die graphische Repräsentation der Editionsdaten.&#x27;,
+        imgSrc: &#x27;assets/img/home/graph_sample.png&#x27;,
+        imgAlt: &#x27;Graph&#x27;,
+        linkRouter: [&#x27;/edition&#x27;, &#x27;complex&#x27;, &#x27;op25&#x27;, &#x27;graph&#x27;],
+        linkText: &#x27;Zu den Graph-Visualisierungen&#x27;,
+    },
+    {
+        title: &#x27;Datenbank-Suche (DSP)&#x27;,
+        text: &#x27;Finden Sie biografische und werkgeschichtliche Kontextinformationen in der DSP-Datenbank.&#x27;,
+        imgSrc: &#x27;assets/img/home/database_sample.png&#x27;,
+        imgAlt: &#x27;Search&#x27;,
+        linkHref: &#x27;https://app.dasch.swiss/project/ot7I2nU-SdeXIf17LX_h3g&#x27;,
+        linkText: &#x27;Zur Datenbank-Suche&#x27;,
+    },
+    {
+        title: &#x27;Anton Webern Gesamtausgabe&#x27;,
+        text: &#x27;Informieren Sie sich über die Anton Webern Gesamtausgabe, die Webern-Forschung und Anton Webern.&#x27;,
+        imgSrc: &#x27;assets/img/home/awg.jpg&#x27;,
+        imgAlt: &#x27;Edition Project&#x27;,
+        linkHref: &#x27;https://anton-webern.ch/&#x27;,
+        linkText: &#x27;Zur Projekt-Website&#x27;,
+    },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The HOME_VIEW_CARD_DATA constant.</p>
+<p>It contains the data for the home view cards.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
     <h3>src/app/core/interceptors/interceptor-providers.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -2438,10 +2510,10 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="LOGOSDATA"></a>
+                    <a name="LOGOS_DATA"></a>
                     <span class="name">
-                        <span ><b>LOGOSDATA</b></span>
-                        <a href="#LOGOSDATA"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>LOGOS_DATA</b></span>
+                        <a href="#LOGOS_DATA"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -2524,10 +2596,10 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="METACONTACT"></a>
+                    <a name="META_CONTACT"></a>
                     <span class="name">
-                        <span ><b>METACONTACT</b></span>
-                        <a href="#METACONTACT"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>META_CONTACT</b></span>
+                        <a href="#META_CONTACT"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -2574,10 +2646,10 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="METADATA"></a>
+                    <a name="META_DATA"></a>
                     <span class="name">
-                        <span ><b>METADATA</b></span>
-                        <a href="#METADATA"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>META_DATA</b></span>
+                        <a href="#META_DATA"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -2590,9 +2662,9 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
-    page: METAPAGE,
-    structure: METASTRUCTURE,
-    contact: METACONTACT,
+    page: META_PAGE,
+    structure: META_STRUCTURE,
+    contact: META_CONTACT,
 }</code>
                     </td>
                 </tr>
@@ -2612,10 +2684,10 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="METAPAGE"></a>
+                    <a name="META_PAGE"></a>
                     <span class="name">
-                        <span ><b>METAPAGE</b></span>
-                        <a href="#METAPAGE"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>META_PAGE</b></span>
+                        <a href="#META_PAGE"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -2641,6 +2713,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
     salsahUrl: AppConfig.SALSAH_URL,
     version: AppConfig.AWG_APP_VERSION,
     versionReleaseDate: AppConfig.AWG_APP_VERSION_RELEASE_DATE,
+    zenodoUrl: AppConfig.AWG_APP_ZENODO_URL,
 }</code>
                     </td>
                 </tr>
@@ -2659,10 +2732,10 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="METASTRUCTURE"></a>
+                    <a name="META_STRUCTURE"></a>
                     <span class="name">
-                        <span ><b>METASTRUCTURE</b></span>
-                        <a href="#METASTRUCTURE"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>META_STRUCTURE</b></span>
+                        <a href="#META_STRUCTURE"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
