@@ -2,7 +2,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable, of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
@@ -15,7 +14,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { ActivatedRouteStub, RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
+import { RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
@@ -40,14 +39,11 @@ describe('EditionViewComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionViewComponent>;
     let compDe: DebugElement;
 
-    let mockActivatedRoute: ActivatedRouteStub;
     let mockDocument: Document;
-    let mockRouter;
 
     let mockEditionStateService: Partial<EditionStateService>;
 
     let setupEditionViewSpy: Spy;
-    let navigateToSideOutletSpy: Spy;
 
     let editionStateServiceGetSelectedEditionComplexSpy: Spy;
     let editionStateServiceGetSelectedEditionSeriesSpy: Spy;
@@ -74,12 +70,6 @@ describe('EditionViewComponent (DONE)', () => {
     });
 
     beforeEach(waitForAsync(() => {
-        // Mock router with spy object
-        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
-
-        // Mock activated route with stub class
-        mockActivatedRoute = new ActivatedRouteStub();
-
         // Mock edition state service
         mockEditionStateService = {
             getIsIntroView: (): Observable<boolean> => observableOf(expectedIsIntroView),
@@ -105,11 +95,7 @@ describe('EditionViewComponent (DONE)', () => {
                 RouterLinkStubDirective,
                 ScrollToTopStubComponent,
             ],
-            providers: [
-                { provide: EditionStateService, useValue: mockEditionStateService },
-                { provide: ActivatedRoute, useValue: mockActivatedRoute },
-                { provide: Router, useValue: mockRouter },
-            ],
+            providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
         }).compileComponents();
     }));
 
@@ -136,7 +122,6 @@ describe('EditionViewComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         setupEditionViewSpy = spyOn(component, 'setupEditionView').and.callThrough();
-        navigateToSideOutletSpy = spyOn(component, 'navigateToSideOutlet').and.callThrough();
 
         // Spies for service methods
         editionStateServiceGetSelectedEditionComplexSpy = spyOn(
@@ -266,16 +251,6 @@ describe('EditionViewComponent (DONE)', () => {
 
             it('... should not have set selectedSection$', () => {
                 expect(component.selectedEditionSection$).toBeUndefined();
-            });
-        });
-
-        describe('#navigateToSideOutlet()', () => {
-            it('... should have a method `navigateToSideOutlet`', () => {
-                expect(component.navigateToSideOutlet).toBeDefined();
-            });
-
-            it('... should not have been called', () => {
-                expectSpyCall(navigateToSideOutletSpy, 0);
             });
         });
     });
@@ -873,49 +848,6 @@ describe('EditionViewComponent (DONE)', () => {
                     },
                 });
             }));
-        });
-
-        describe('#navigateToSideOutlet()', () => {
-            let routerNavigateSpy: Spy;
-
-            beforeEach(() => {
-                // Create spy of mockrouter SpyObj
-                routerNavigateSpy = mockRouter.navigate as jasmine.Spy;
-            });
-
-            it('... should have been called', () => {
-                // Router navigation triggerd by onInit
-                expectSpyCall(navigateToSideOutletSpy, 1);
-            });
-
-            it('... should have triggered `router.navigate`', () => {
-                expectSpyCall(routerNavigateSpy, 1);
-            });
-
-            it('... should tell ROUTER to navigate to `editionInfo` outlet', () => {
-                const expectedRoute = 'editionInfo';
-
-                // Catch args passed to navigation spy
-                const navArgs = routerNavigateSpy.calls.first().args;
-                const outletRoute = navArgs[0][0].outlets.side;
-
-                expect(navArgs).toBeDefined();
-                expect(navArgs[0]).toBeDefined();
-                expectToBe(outletRoute, expectedRoute);
-
-                expect(routerNavigateSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
-            });
-
-            it('... should tell ROUTER to navigate with `preserveFragment:true`', () => {
-                // Catch args passed to navigation spy
-                const navArgs = routerNavigateSpy.calls.first().args;
-                const navExtras = navArgs[1];
-
-                expect(navExtras).toBeDefined();
-                expectToBe(navExtras.preserveFragment, true);
-
-                expect(routerNavigateSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
-            });
         });
     });
 });

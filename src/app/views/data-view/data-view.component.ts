@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 /**
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
     templateUrl: './data-view.component.html',
     styleUrls: ['./data-view.component.scss'],
 })
-export class DataViewComponent implements OnInit {
+export class DataViewComponent implements OnInit, OnDestroy {
     /**
      * Public variable: searchTitle.
      *
@@ -62,5 +62,15 @@ export class DataViewComponent implements OnInit {
             preserveFragment: true,
             queryParamsHandling: 'preserve',
         });
+    }
+
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods when destroying the component.
+     */
+    ngOnDestroy() {
+        // Navigate to an empty outlet to clear the side outlet
+        this.router.navigate([{ outlets: { side: null } }]);
     }
 }

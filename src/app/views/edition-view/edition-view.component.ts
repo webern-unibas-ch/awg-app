@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { delay, Observable } from 'rxjs';
 
@@ -18,6 +17,7 @@ import { EditionStateService } from '@awg-views/edition-view/services';
     selector: 'awg-edition-view',
     templateUrl: './edition-view.component.html',
     styleUrls: ['./edition-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Default,
 })
 export class EditionViewComponent implements OnInit {
     /**
@@ -83,16 +83,11 @@ export class EditionViewComponent implements OnInit {
     /**
      * Constructor of the EditionViewComponent.
      *
-     * It declares private instances of
-     * EditionStateService, ActivatedRoute and Router.
+     * It declares a private instance of the EditionStateService.
      *
      * @param {EditionStateService} editionStateService Instance of the EditionStateService.
-     * @param {Router} router Instance of the Angular router.
      */
-    constructor(
-        private editionStateService: EditionStateService,
-        private router: Router
-    ) {}
+    constructor(private editionStateService: EditionStateService) {}
 
     /**
      * Getter variable: editionRouteConstants.
@@ -111,7 +106,6 @@ export class EditionViewComponent implements OnInit {
      */
     ngOnInit() {
         this.setupEditionView();
-        this.navigateToSideOutlet();
     }
 
     /**
@@ -130,19 +124,5 @@ export class EditionViewComponent implements OnInit {
         this.isIntroView$ = this.editionStateService.getIsIntroView().pipe(delay(0));
         this.isPrefaceView$ = this.editionStateService.getIsPrefaceView().pipe(delay(0));
         this.isRowTableView$ = this.editionStateService.getIsRowTableView().pipe(delay(0));
-    }
-
-    /**
-     * Public method: navigateToSideOutlet.
-     *
-     * It activates the side outlet with the edition-info.
-     *
-     * @returns {void} Activates the edition-info side outlet.
-     */
-    navigateToSideOutlet(): void {
-        // Opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: 'editionInfo' } }], {
-            preserveFragment: true,
-        });
     }
 }

@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
@@ -15,7 +14,7 @@ import { CoreService } from '@awg-core/services';
     selector: 'awg-contact-view',
     templateUrl: './contact-view.component.html',
     styleUrls: ['./contact-view.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.Default,
 })
 export class ContactViewComponent implements OnInit {
     /**
@@ -91,15 +90,11 @@ export class ContactViewComponent implements OnInit {
      * Constructor of the ContactViewComponent.
      *
      * It declares a private CoreService instance
-     * to get the metadata and a private Router instance.
+     * to get the metadata.
      *
      * @param {CoreService} coreService Instance of the CoreService.
-     * @param {Router} router Instance of the Angular router.
      */
-    constructor(
-        private coreService: CoreService,
-        private router: Router
-    ) {}
+    constructor(private coreService: CoreService) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -108,7 +103,6 @@ export class ContactViewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.navigateToSideOutlet();
         this.provideMetaData();
         this.today = Date.now();
     }
@@ -124,20 +118,5 @@ export class ContactViewComponent implements OnInit {
     provideMetaData(): void {
         this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.page);
         this.contactMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.contact);
-    }
-
-    /**
-     * Public method: navigateToSideOutlet.
-     *
-     * It activates the side outlet with the contact-info.
-     *
-     * @returns {void} Activates the contact-info side outlet.
-     */
-    navigateToSideOutlet(): void {
-        // Opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: 'contactInfo' } }], {
-            preserveFragment: true,
-            queryParamsHandling: 'preserve',
-        });
     }
 }

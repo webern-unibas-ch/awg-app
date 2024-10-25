@@ -2,7 +2,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Router } from '@angular/router';
 
 import Spy = jasmine.Spy;
 
@@ -37,11 +36,9 @@ describe('ContactViewComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let mockCoreService: Partial<CoreService>;
-    let mockRouter: Partial<Router>;
 
     const datePipe = new DatePipe('en');
     let dateSpy: Spy;
-    let navigateToSideOutletSpy: Spy;
     let provideMetaDataSpy: Spy;
 
     let expectedToday;
@@ -60,15 +57,9 @@ describe('ContactViewComponent (DONE)', () => {
         // Mock service for test purposes
         mockCoreService = { getMetaDataSection: sectionType => META_DATA[sectionType] };
 
-        // Router spy object
-        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
-
         TestBed.configureTestingModule({
             declarations: [ContactViewComponent, HeadingStubComponent],
-            providers: [
-                { provide: CoreService, useValue: mockCoreService },
-                { provide: Router, useValue: mockRouter },
-            ],
+            providers: [{ provide: CoreService, useValue: mockCoreService }],
         }).compileComponents();
     }));
 
@@ -85,7 +76,6 @@ describe('ContactViewComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         provideMetaDataSpy = spyOn(component, 'provideMetaData').and.callThrough();
-        navigateToSideOutletSpy = spyOn(component, 'navigateToSideOutlet').and.callThrough();
     });
 
     afterAll(() => {
@@ -125,16 +115,6 @@ describe('ContactViewComponent (DONE)', () => {
             expect(component.pageMetaData).toBeUndefined();
             expect(component.contactMetaData).toBeUndefined();
             expect(component.today).toBeUndefined();
-        });
-
-        describe('#navigateToSideOutlet()', () => {
-            it('... should have a method `navigateToSideOutlet`', () => {
-                expect(component.navigateToSideOutlet).toBeDefined();
-            });
-
-            it('... should not have been called', () => {
-                expectSpyCall(navigateToSideOutletSpy, 0);
-            });
         });
 
         describe('#provideMetaData()', () => {
@@ -232,44 +212,9 @@ describe('ContactViewComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#navigateToSideOutlet()', () => {
-            let routerNavigateSpy: Spy;
-
-            beforeEach(() => {
-                // Create spy of mockrouter SpyObj
-                routerNavigateSpy = mockRouter.navigate as jasmine.Spy;
-            });
-
-            it('... should have been called', () => {
-                expectSpyCall(navigateToSideOutletSpy, 1);
-            });
-
-            it('... should have triggered `router.navigate`', () => {
-                expectSpyCall(routerNavigateSpy, 1);
-            });
-
-            it('... should tell ROUTER to navigate to `contactInfo` outlet', () => {
-                const expectedRoute = 'contactInfo';
-
-                // Catch args passed to navigation spy
-                const navArgs = routerNavigateSpy.calls.first().args;
-                const outletRoute = navArgs[0][0].outlets.side;
-
-                expect(navArgs).toBeDefined();
-                expect(navArgs[0]).toBeDefined();
-                expectToBe(outletRoute, expectedRoute);
-                expect(routerNavigateSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
-            });
-
-            it('... should tell ROUTER to navigate with `preserveFragment:true`', () => {
-                // Catch args passed to navigation spy
-                const navArgs = routerNavigateSpy.calls.first().args;
-                const navExtras = navArgs[1];
-
-                expect(navExtras).toBeDefined();
-                expectToBe(navExtras.preserveFragment, true);
-                expect(routerNavigateSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
-            });
+        it('... should have `today`', () => {
+            expectSpyCall(dateSpy, 1);
+            expectToBe(component.today, expectedToday);
         });
 
         describe('#provideMetaData()', () => {
@@ -281,11 +226,6 @@ describe('ContactViewComponent (DONE)', () => {
                 expectToEqual(component.pageMetaData, expectedPageMetaData);
                 expectToEqual(component.contactMetaData, expectedContactMetaData);
             });
-        });
-
-        it('... should have `today`', () => {
-            expectSpyCall(dateSpy, 1);
-            expectToBe(component.today, expectedToday);
         });
 
         describe('VIEW', () => {
