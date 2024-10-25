@@ -99,8 +99,24 @@ describe('EditionOutlineService (DONE)', () => {
         it('... should set the edition outline', () => {
             const expectedOutline = new EditionOutline([
                 {
-                    series: '2',
+                    series: '3',
                     sections: [
+                        {
+                            section: '4',
+                            content: {
+                                intro: { disabled: false },
+                                complexTypes: {
+                                    opus: [
+                                        {
+                                            complex: '',
+                                            disabled: true,
+                                        },
+                                    ],
+                                    mnr: [{ complex: '', disabled: true }],
+                                },
+                            },
+                            disabled: false,
+                        },
                         {
                             section: '5',
                             content: {
@@ -117,22 +133,6 @@ describe('EditionOutlineService (DONE)', () => {
                             },
 
                             disabled: true,
-                        },
-                        {
-                            section: '4',
-                            content: {
-                                intro: { disabled: false },
-                                complexTypes: {
-                                    opus: [
-                                        {
-                                            complex: '',
-                                            disabled: true,
-                                        },
-                                    ],
-                                    mnr: [{ complex: '', disabled: true }],
-                                },
-                            },
-                            disabled: false,
                         },
                     ],
                 },
@@ -167,6 +167,7 @@ describe('EditionOutlineService (DONE)', () => {
                     series: EDITION_ROUTE_CONSTANTS.SERIES_2,
                     sections: [
                         {
+                            seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_2,
                             section: EDITION_ROUTE_CONSTANTS.SECTION_5,
                             content: {
                                 intro: { disabled: true },
@@ -175,6 +176,7 @@ describe('EditionOutlineService (DONE)', () => {
                             disabled: true,
                         },
                         {
+                            seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_2,
                             section: EDITION_ROUTE_CONSTANTS.SECTION_4,
                             content: {
                                 intro: { disabled: false },
@@ -204,6 +206,7 @@ describe('EditionOutlineService (DONE)', () => {
                     series: EDITION_ROUTE_CONSTANTS.SERIES_2,
                     sections: [
                         {
+                            seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_2,
                             section: EDITION_ROUTE_CONSTANTS.SECTION_5,
                             content: {
                                 intro: { disabled: true },
@@ -212,6 +215,7 @@ describe('EditionOutlineService (DONE)', () => {
                             disabled: true,
                         },
                         {
+                            seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_2,
                             section: EDITION_ROUTE_CONSTANTS.SECTION_4,
                             content: {
                                 intro: { disabled: false },
