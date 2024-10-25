@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 import Spy = jasmine.Spy;
 
@@ -68,6 +69,8 @@ describe('HomeViewComponent (DONE)', () => {
     let fixture: ComponentFixture<HomeViewComponent>;
     let compDe: DebugElement;
 
+    let mockRouter: Partial<Router>;
+
     let linkDes: DebugElement[];
     let routerLinks;
 
@@ -87,6 +90,9 @@ describe('HomeViewComponent (DONE)', () => {
     });
 
     beforeEach(waitForAsync(() => {
+        // Router spy object
+        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+
         TestBed.configureTestingModule({
             declarations: [
                 HomeViewComponent,
@@ -95,6 +101,7 @@ describe('HomeViewComponent (DONE)', () => {
                 HomeViewCardStubComponent,
                 RouterLinkStubDirective,
             ],
+            providers: [{ provide: Router, useValue: mockRouter }],
         }).compileComponents();
     }));
 
