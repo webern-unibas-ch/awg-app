@@ -250,13 +250,13 @@ sections for citation, documentation and imprint.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#navigateToSideOutlet" >navigateToSideOutlet</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
                                 <a href="#provideMetaData" >provideMetaData</a>
-                            </li>
-                            <li>
-                                <a href="#routeToSidenav" >routeToSidenav</a>
                             </li>
                         </ul>
                     </td>
@@ -357,6 +357,50 @@ to get the metadata and a private Router instance.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="navigateToSideOutlet"></a>
+                    <span class="name">
+                        <span ><b>navigateToSideOutlet</b></span>
+                        <a href="#navigateToSideOutlet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToSideOutlet()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="136"
+                                    class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:136</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: navigateToSideOutlet.</p>
+<p>It activates the side outlet with the contact-info.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Activates the contact-info side outlet.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <span ><b>ngOnInit</b></span>
@@ -433,50 +477,6 @@ the metadata for the contact view.</p>
                         </div>
                             <div class="io-description">
                                 <p>Sets the pageMetaData variable.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="routeToSidenav"></a>
-                    <span class="name">
-                        <span ><b>routeToSidenav</b></span>
-                        <a href="#routeToSidenav"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>routeToSidenav()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="136"
-                                    class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:136</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: routeToSidenav.</p>
-<p>It activates the secondary outlet with the contact-info.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Activates the contact-info side outlet.</p>
 
                             </div>
                 </td>
@@ -970,7 +970,7 @@ export class ContactViewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.routeToSidenav();
+        this.navigateToSideOutlet();
         this.provideMetaData();
         this.today &#x3D; Date.now();
     }
@@ -989,13 +989,13 @@ export class ContactViewComponent implements OnInit {
     }
 
     /**
-     * Public method: routeToSidenav.
+     * Public method: navigateToSideOutlet.
      *
-     * It activates the secondary outlet with the contact-info.
+     * It activates the side outlet with the contact-info.
      *
      * @returns {void} Activates the contact-info side outlet.
      */
-    routeToSidenav(): void {
+    navigateToSideOutlet(): void {
         // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: &#x27;contactInfo&#x27; } }], {
             preserveFragment: true,

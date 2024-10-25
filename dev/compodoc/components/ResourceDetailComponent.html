@@ -257,6 +257,9 @@ and the <a href="../components/ResourceDetailJsonRawComponent.html">ResourceDeta
                                 <a href="#navigateToResource" >navigateToResource</a>
                             </li>
                             <li>
+                                <a href="#navigateToSideOutlet" >navigateToSideOutlet</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnDestroy" >ngOnDestroy</a>
                             </li>
                             <li>
@@ -264,9 +267,6 @@ and the <a href="../components/ResourceDetailJsonRawComponent.html">ResourceDeta
                             </li>
                             <li>
                                 <a href="#onResourceDetailTabChange" >onResourceDetailTabChange</a>
-                            </li>
-                            <li>
-                                <a href="#routeToSidenav" >routeToSidenav</a>
                             </li>
                             <li>
                                 <a href="#updateResourceId" >updateResourceId</a>
@@ -655,6 +655,50 @@ not exists (first call), use resourceId.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="navigateToSideOutlet"></a>
+                    <span class="name">
+                        <span ><b>navigateToSideOutlet</b></span>
+                        <a href="#navigateToSideOutlet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToSideOutlet()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="268"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:268</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: navigateToSideOutlet.</p>
+<p>It activates the side outlet with the resource-info.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Activates the resource-info side outlet.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngOnDestroy"></a>
                     <span class="name">
                         <span ><b>ngOnDestroy</b></span>
@@ -803,50 +847,6 @@ tab change request to update the URL.</p>
                         </div>
                             <div class="io-description">
                                 <p>Routes to itself with the given id as route.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="routeToSidenav"></a>
-                    <span class="name">
-                        <span ><b>routeToSidenav</b></span>
-                        <a href="#routeToSidenav"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>routeToSidenav()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="268"
-                                    class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:268</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: routeToSidenav.</p>
-<p>It activates the secondary outlet with the resource-info.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Activates the resource-info side outlet.</p>
 
                             </div>
                 </td>
@@ -1401,7 +1401,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit() {
-        this.routeToSidenav();
+        this.navigateToSideOutlet();
         this.getResourceData();
     }
 
@@ -1529,13 +1529,13 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Public method: routeToSidenav.
+     * Public method: navigateToSideOutlet.
      *
-     * It activates the secondary outlet with the resource-info.
+     * It activates the side outlet with the resource-info.
      *
      * @returns {void} Activates the resource-info side outlet.
      */
-    routeToSidenav(): void {
+    navigateToSideOutlet(): void {
         this.router.navigate([{ outlets: { side: &#x27;resourceInfo&#x27; } }], {
             preserveFragment: true,
             queryParamsHandling: &#x27;preserve&#x27;,
