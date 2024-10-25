@@ -119,6 +119,17 @@ describe('DataViewComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
+        describe('VIEW', () => {
+            it('... should pass down `title` and `id` to heading component', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-data-view', 1, 1);
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
+                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+
+                expectToBe(headingCmp.title, expectedTitle);
+                expectToBe(headingCmp.id, expectedId);
+            });
+        });
+
         describe('#navigateToSideOutlet()', () => {
             let routerNavigateSpy: Spy;
 
@@ -140,12 +151,12 @@ describe('DataViewComponent (DONE)', () => {
 
                 // Catch args passed to navigation spy
                 const navArgs = routerNavigateSpy.calls.first().args;
-                const outletRoute = navArgs[0][0].outlets.side;
-
                 expect(navArgs).toBeDefined();
                 expect(navArgs[0]).toBeDefined();
-                expectToBe(outletRoute, expectedRoute);
                 expect(routerNavigateSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
+
+                const outletRoute = navArgs[0][0].outlets.side;
+                expectToBe(outletRoute, expectedRoute);
             });
 
             it('... should tell ROUTER to navigate with `preserveFragment:true`', () => {
@@ -155,19 +166,23 @@ describe('DataViewComponent (DONE)', () => {
 
                 expect(navExtras).toBeDefined();
                 expectToBe(navExtras.preserveFragment, true);
-
                 expect(routerNavigateSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
         });
 
-        describe('VIEW', () => {
-            it('... should pass down `title` and `id` to heading component', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-data-view', 1, 1);
-                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
-                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+        describe('#ngOnDestroy()', () => {
+            it('... should tell ROUTER to clear side outlet', () => {
+                const routerNavigateSpy = mockRouter.navigate as jasmine.Spy;
 
-                expectToBe(headingCmp.title, expectedTitle);
-                expectToBe(headingCmp.id, expectedId);
+                component.ngOnDestroy();
+
+                const navArgs = routerNavigateSpy.calls.mostRecent().args;
+                expect(navArgs).toBeDefined();
+                expect(navArgs[0]).toBeDefined();
+                expect(routerNavigateSpy).toHaveBeenCalledWith(navArgs[0]);
+
+                const outletRoute = navArgs[0][0].outlets.side;
+                expectToBe(outletRoute, null);
             });
         });
     });
