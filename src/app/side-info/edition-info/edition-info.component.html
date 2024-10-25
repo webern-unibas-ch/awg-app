@@ -46,106 +46,74 @@
                     </div>
                 </div>
             </div>
-            <!-- AWG I/5 -->
-            <div ngbAccordionItem [collapsed]="true">
-                <div ngbAccordionHeader>
-                    <button ngbAccordionButton>
-                        {{ editionRouteConstants.EDITION.short }} {{ editionRouteConstants.SERIES_1.short }}/{{
-                            editionRouteConstants.SECTION_5.short
-                        }}
-                    </button>
-                </div>
-                <div ngbAccordionCollapse>
-                    <div ngbAccordionBody>
-                        <ng-template>
-                            <p>
-                                <a
-                                    class="awg-edition-info-header-link"
-                                    [routerLink]="[
-                                        editionRouteConstants.EDITION.route,
-                                        editionRouteConstants.SERIES.route,
-                                        editionRouteConstants.SERIES_1.route,
-                                        editionRouteConstants.SECTION.route,
-                                        editionRouteConstants.SECTION_5.route,
-                                        editionRouteConstants.EDITION_INTRO.route,
-                                    ]"
-                                    ><span class="awg-edition-info-header-title">{{
-                                        editionRouteConstants.EDITION_INTRO.full
-                                    }}</span></a
-                                >
-                            </p>
-                            @for (
-                                editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: 0 : SLICE_INDEX;
-                                track editionComplex.complexId.short
-                            ) {
-                                <p>
-                                    <span
-                                        class="awg-edition-info-header-title"
-                                        [innerHTML]="editionComplex.complexId.full"></span>
-                                    <br />
-                                    (<a
-                                        class="awg-edition-info-header-link"
-                                        [routerLink]="[
-                                            editionComplex.baseRoute,
-                                            editionRouteConstants.EDITION_SHEETS.route,
-                                        ]"
-                                        >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
-                                    >
-                                    @if (editionComplex.complexId.route.includes('op25')) {
-                                        <span>&nbsp;&&nbsp;</span>
+            <!-- Displayed Sections -->
+            @for (section of DISPLAYED_SECTIONS; track $index) {
+                <div ngbAccordionItem [collapsed]="selectedEditionSection !== section">
+                    <div ngbAccordionHeader>
+                        <button ngbAccordionButton>
+                            {{ editionRouteConstants.EDITION.short }} {{ section.seriesParent.short }}/{{
+                                section.section.short
+                            }}
+                        </button>
+                    </div>
+                    <div ngbAccordionCollapse>
+                        <div ngbAccordionBody>
+                            <ng-template>
+                                @if (!section.content.intro.disabled) {
+                                    <p>
                                         <a
                                             class="awg-edition-info-header-link"
                                             [routerLink]="[
-                                                editionComplex.baseRoute,
-                                                editionRouteConstants.EDITION_GRAPH.route,
+                                                editionRouteConstants.EDITION.route,
+                                                editionRouteConstants.SERIES.route,
+                                                section.seriesParent.route,
+                                                editionRouteConstants.SECTION.route,
+                                                section.section.route,
+                                                editionRouteConstants.EDITION_INTRO.route,
                                             ]"
-                                            >{{ editionRouteConstants.EDITION_GRAPH.short }}</a
+                                            ><span class="awg-edition-info-header-title">{{
+                                                editionRouteConstants.EDITION_INTRO.full
+                                            }}</span></a
                                         >
+                                    </p>
+                                }
+
+                                @if (combineComplexes(section).length > 0) {
+                                    @for (
+                                        editionComplex of combineComplexes(section);
+                                        track editionComplex.complex.complexId.short
+                                    ) {
+                                        <ng-template #editionInfoComplex>
+                                            <span [innerHTML]="editionComplex.complex.complexId.full"></span>
+                                        </ng-template>
+
+                                        <p>
+                                            <span>
+                                                @if (editionComplex.disabled) {
+                                                    <span class="text-muted">
+                                                        <ng-container
+                                                            *ngTemplateOutlet="editionInfoComplex"></ng-container>
+                                                    </span>
+                                                } @else {
+                                                    <a
+                                                        class="awg-edition-info-header-link"
+                                                        [routerLink]="[
+                                                            editionComplex.complex.baseRoute,
+                                                            editionRouteConstants.EDITION_SHEETS.route,
+                                                        ]">
+                                                        <ng-container
+                                                            *ngTemplateOutlet="editionInfoComplex"></ng-container>
+                                                    </a>
+                                                }
+                                            </span>
+                                        </p>
                                     }
-                                    <span>)</span>
-                                </p>
-                            }
-                        </ng-template>
+                                }
+                            </ng-template>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- AWG II/2a -->
-            <div ngbAccordionItem [collapsed]="true">
-                <div ngbAccordionHeader>
-                    <button ngbAccordionButton>
-                        {{ editionRouteConstants.EDITION.short }} {{ editionRouteConstants.SERIES_2.short }}/{{
-                            editionRouteConstants.SECTION_2A.short
-                        }}
-                    </button>
-                </div>
-                <div ngbAccordionCollapse>
-                    <div ngbAccordionBody>
-                        <ng-template>
-                            @for (
-                                editionComplex of DISPLAYED_EDITION_COMPLEXES
-                                    | slice: SLICE_INDEX : DISPLAYED_EDITION_COMPLEXES.length;
-                                track editionComplex.complexId.short
-                            ) {
-                                <p>
-                                    <span
-                                        class="awg-edition-info-header-title"
-                                        [innerHTML]="editionComplex.complexId.full"></span>
-                                    <br />
-                                    (<a
-                                        class="awg-edition-info-header-link"
-                                        [routerLink]="[
-                                            editionComplex.baseRoute,
-                                            editionRouteConstants.EDITION_SHEETS.route,
-                                        ]"
-                                        >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
-                                    >
-                                    <span>)</span>
-                                </p>
-                            }
-                        </ng-template>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </div>

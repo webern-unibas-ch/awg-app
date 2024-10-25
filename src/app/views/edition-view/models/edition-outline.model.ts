@@ -167,6 +167,11 @@ export interface EditionOutlineSectionContent {
  */
 export interface EditionOutlineSection {
     /**
+     * The series parent route of an edition section.
+     */
+    seriesParent: EditionRouteConstant;
+
+    /**
      * The section route of an edition section.
      */
     section: EditionRouteConstant;
@@ -225,6 +230,7 @@ export class EditionOutline {
         }
 
         this.outline = outlineData.map(this._mapSeries);
+        console.log('EditionOutline: ', this.outline);
     }
 
     /**
@@ -242,7 +248,7 @@ export class EditionOutline {
         const seriesConstant: EditionRouteConstant = EDITION_ROUTE_CONSTANTS['SERIES_' + series];
         return {
             series: seriesConstant,
-            sections: sections.map(section => this._mapSection(section, series)),
+            sections: sections.map(section => this._mapSection(section, seriesConstant)),
         };
     };
 
@@ -260,14 +266,15 @@ export class EditionOutline {
      */
     private _mapSection = (
         { section, disabled, content }: EditionOutlineSectionsJsonData,
-        series: string
+        seriesConstant: EditionRouteConstant
     ): EditionOutlineSection => {
         const sectionConstant: EditionRouteConstant =
-            series === '3' && section === '5'
+            seriesConstant.short === '3' && section === '5'
                 ? EDITION_ROUTE_CONSTANTS.SERIES_3_SECTION_5
                 : EDITION_ROUTE_CONSTANTS['SECTION_' + section];
 
         return {
+            seriesParent: seriesConstant,
             section: sectionConstant,
             content: this._mapSectionContent(content),
             disabled,
