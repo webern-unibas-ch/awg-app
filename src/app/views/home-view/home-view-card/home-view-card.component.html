@@ -10,11 +10,11 @@
         </ng-template>
 
         @if (cardData.linkRouter) {
-            <a [routerLink]="cardData.linkRouter" class="btn btn-info text-light"
+            <a [routerLink]="cardData.linkRouter" class="btn btn-info text-light stretched-link"
                 ><ng-container *ngTemplateOutlet="linkTemplate"></ng-container
             ></a>
         } @else if (cardData.linkHref) {
-            <a href="{{ cardData.linkHref }}" class="btn btn-info text-light"
+            <a href="{{ cardData.linkHref }}" class="btn btn-info text-light stretched-link"
                 ><ng-container *ngTemplateOutlet="linkTemplate"></ng-container
             ></a>
         }
