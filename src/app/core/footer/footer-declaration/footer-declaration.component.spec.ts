@@ -12,7 +12,7 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { METADATA } from '@awg-core/core-data';
+import { META_DATA } from '@awg-core/core-data';
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 
 import { FooterDeclarationComponent } from './footer-declaration.component';
@@ -39,7 +39,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedPageMetaData = METADATA[MetaSectionTypes.page];
+        expectedPageMetaData = META_DATA[MetaSectionTypes.page];
     });
 
     afterAll(() => {

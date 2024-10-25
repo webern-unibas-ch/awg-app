@@ -28,7 +28,7 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { LOGOSDATA } from '@awg-core/core-data';
+import { LOGOS_DATA } from '@awg-core/core-data';
 import { Logos } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
@@ -39,21 +39,24 @@ import { EditionComplexesService } from '@awg-views/edition-view/services';
 import { NavbarComponent } from './navbar.component';
 
 /** Helper function */
-function generateExpectedOrderOfRouterlinks(editionComplexes: EditionComplex[]): string[][] {
+function getRouterlinks(editionComplexes: EditionComplex[]): string[][] {
+    const { EDITION, SERIES, ROWTABLES, PREFACE, EDITION_INTRO, EDITION_SHEETS, EDITION_REPORT } =
+        EDITION_ROUTE_CONSTANTS;
+
     const baseLinks = [
         ['/home'],
-        [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.SERIES.route],
-        [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.ROWTABLES.route],
-        [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.PREFACE.route],
+        [EDITION.route, SERIES.route],
+        [EDITION.route, ROWTABLES.route],
+        [EDITION.route, PREFACE.route],
     ];
 
     const editionLinks = editionComplexes.flatMap(complex => [
-        [complex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route],
-        [complex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route],
-        [complex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route],
+        [complex.baseRoute, EDITION_INTRO.route],
+        [complex.baseRoute, EDITION_SHEETS.route],
+        [complex.baseRoute, EDITION_REPORT.route],
     ]);
 
-    const otherLinks = [['/structure'], ['/data'], ['/contact']];
+    const otherLinks = [['/structure'], ['/contact']];
 
     return [...baseLinks, ...editionLinks, ...otherLinks];
 }
@@ -83,7 +86,7 @@ describe('NavbarComponent (DONE)', () => {
         [key: string]: string;
     };
     let expectedEditionComplexes: EditionComplex[];
-    let expectedOrderOfRouterlinks: string[][];
+    let expectedRouterlinks: string[][];
 
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
@@ -125,7 +128,7 @@ describe('NavbarComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedLogos = LOGOSDATA;
+        expectedLogos = LOGOS_DATA;
 
         expectedEditionComplexes = [
             EditionComplexesService.getEditionComplexById('OP3'),
@@ -140,7 +143,7 @@ describe('NavbarComponent (DONE)', () => {
             EditionComplexesService.getEditionComplexById('M35_42'),
             EditionComplexesService.getEditionComplexById('M37'),
         ];
-        expectedOrderOfRouterlinks = generateExpectedOrderOfRouterlinks(expectedEditionComplexes);
+        expectedRouterlinks = getRouterlinks(expectedEditionComplexes);
 
         expectedNavbarIcons = {
             contact: faEnvelope,
@@ -155,7 +158,7 @@ describe('NavbarComponent (DONE)', () => {
             contact: 'Kontakt',
             edition: 'Edition',
             general: 'Allgemein',
-            search: 'Datennbank-Suche',
+            search: 'Datenbank-Suche',
             structure: 'Strukturmodell',
         };
 
@@ -259,16 +262,16 @@ describe('NavbarComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(navbarCollapseDes[0], 'ul.navbar-nav', 2, 2);
             });
 
-            it('... should contain 3 nav-items in first ul.navbar-nav, and 2 nav-items in second ul.navbar-nav', () => {
+            it('... should contain 3 nav-items in first ul.navbar-nav, and 1 nav-items in second ul.navbar-nav', () => {
                 const navbarCollapseDes = getAndExpectDebugElementByCss(compDe, 'div.navbar-collapse', 1, 1);
                 const ulDes = getAndExpectDebugElementByCss(navbarCollapseDes[0], 'ul.navbar-nav', 2, 2);
 
                 getAndExpectDebugElementByCss(ulDes[0], 'li.nav-item', 3, 3);
-                getAndExpectDebugElementByCss(ulDes[1], 'li.nav-item', 2, 2);
+                getAndExpectDebugElementByCss(ulDes[1], 'li.nav-item', 1, 1);
             });
 
             it('... should have fa-icon on first nav-item link', () => {
-                const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
+                const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
                 const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > span', 2, 2);
                 const navItemLinkSpanEl2 = navItemLinkSpanDes[1].nativeElement;
 
@@ -279,27 +282,21 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... should have fa-icon on second nav-item link', () => {
-                const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
+                const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
 
                 getAndExpectDebugElementByCss(navItemDes[1], 'a.nav-link > fa-icon', 1, 1);
             });
 
             it('... should have fa-icon on third nav-item link', () => {
-                const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
+                const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
 
                 getAndExpectDebugElementByCss(navItemDes[2], 'a.nav-link > fa-icon', 1, 1);
             });
 
             it('... should have fa-icon on fourth nav-item link', () => {
-                const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
+                const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
 
                 getAndExpectDebugElementByCss(navItemDes[3], 'a.nav-link > fa-icon', 1, 1);
-            });
-
-            it('... should have fa-icon on fifth nav-item link', () => {
-                const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
-
-                getAndExpectDebugElementByCss(navItemDes[4], 'a.nav-link > fa-icon', 1, 1);
             });
         });
 
@@ -377,7 +374,7 @@ describe('NavbarComponent (DONE)', () => {
             let navItemDes: DebugElement[];
 
             beforeEach(() => {
-                navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
+                navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
             });
 
             it('... should render awg project url in navbar-brand link', () => {
@@ -598,36 +595,18 @@ describe('NavbarComponent (DONE)', () => {
                 });
             });
 
-            describe('... fourth nav-item link (search)', () => {
-                it('... should have search label and fa-icon', () => {
-                    const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[3], 'a.nav-link > span', 1, 1);
-                    const navItemLinkSpanEl = navItemLinkSpanDes[0].nativeElement;
-
-                    expectToBe(navItemLinkSpanEl.textContent, expectedNavbarLabels['search']);
-
-                    getAndExpectDebugElementByCss(navItemDes[3], 'a.nav-link > fa-icon', 1, 1);
-                });
-
-                it('... should display search icon', () => {
-                    const faIconDes = getAndExpectDebugElementByCss(navItemDes[3], 'a.nav-link > fa-icon', 1, 1);
-                    const faIconIns = faIconDes[0].componentInstance.icon;
-
-                    expectToEqual(faIconIns, expectedNavbarIcons['search']);
-                });
-            });
-
-            describe('... fifth nav-item link (contact)', () => {
+            describe('... fourth nav-item link (contact)', () => {
                 it('... should have contact label and fa-icon', () => {
-                    const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[4], 'a.nav-link > span', 1, 1);
+                    const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[3], 'a.nav-link > span', 1, 1);
                     const navItemLinkSpanEl = navItemLinkSpanDes[0].nativeElement;
 
                     expectToBe(navItemLinkSpanEl.textContent, expectedNavbarLabels['contact']);
 
-                    getAndExpectDebugElementByCss(navItemDes[4], 'a.nav-link > fa-icon', 1, 1);
+                    getAndExpectDebugElementByCss(navItemDes[3], 'a.nav-link > fa-icon', 1, 1);
                 });
 
                 it('... should display contact icon', () => {
-                    const faIconDes = getAndExpectDebugElementByCss(navItemDes[4], 'a.nav-link > fa-icon', 1, 1);
+                    const faIconDes = getAndExpectDebugElementByCss(navItemDes[3], 'a.nav-link > fa-icon', 1, 1);
                     const faIconIns = faIconDes[0].componentInstance.icon;
 
                     expectToEqual(faIconIns, expectedNavbarIcons['contact']);
@@ -675,8 +654,8 @@ describe('NavbarComponent (DONE)', () => {
                 linkDes = getAndExpectDebugElementByDirective(
                     compDe,
                     RouterLinkStubDirective,
-                    expectedOrderOfRouterlinks.length,
-                    expectedOrderOfRouterlinks.length
+                    expectedRouterlinks.length,
+                    expectedRouterlinks.length
                 );
 
                 // Get attached link directive instances using each DebugElement's injector
@@ -684,19 +663,19 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can get correct numer of routerLinks from template', () => {
-                expectToBe(routerLinks.length, expectedOrderOfRouterlinks.length);
+                expectToBe(routerLinks.length, expectedRouterlinks.length);
             });
 
             it('... can get correct linkParams from template', () => {
                 routerLinks.forEach((routerLink, index) => {
-                    expectToEqual(routerLink.linkParams, expectedOrderOfRouterlinks[index]);
+                    expectToEqual(routerLink.linkParams, expectedRouterlinks[index]);
                 });
             });
 
             it('... can click all links in template', () => {
                 routerLinks.forEach((routerLink, index) => {
                     const linkDe = linkDes[index];
-                    const expectedRouterLink = expectedOrderOfRouterlinks[index];
+                    const expectedRouterLink = expectedRouterlinks[index];
 
                     expectToBe(routerLink.navigatedTo, null);
 

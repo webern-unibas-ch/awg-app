@@ -5,27 +5,21 @@
 
     <!-- content-->
     <div class="awg-home-view-content">
-        <div class="awg-home-view-text para">
+        <awg-alert-info [infoMessage]="disclaimerInfoMessage"></awg-alert-info>
+
+        <div class="awg-home-view-grid row row-cols-1 row-cols-lg-2 row-cols-xl-4 g-4 para">
+            @for (cardData of homeViewCardData; track $index) {
+                <div class="col">
+                    <awg-home-view-card [cardData]="cardData"></awg-home-view-card>
+                </div>
+            }
+        </div>
+
+        <div class="awg-home-view-text">
             <p>Willkommen bei der AWG-APP, der Online-Edition der Anton Webern Gesamtausgabe, Basel (AWG).</p>
+
             <p>
-                Die online zugänglichen Bestandteile und Datenbestände der AWG-Online-Edition werden als Open Data über
-                diese Webapplikation präsentiert und über das Software-Framework
-                <a id="dsp-link" href="{{ pageMetaData?.daschUrl + 'dsp-app' }}">DaSCH Service Platform (DSP)</a> des
-                <a id="dasch-link" href="{{ pageMetaData?.daschUrl }}"
-                    >Swiss National Data & Service Center for the Humanities (DaSCH)</a
-                >
-                aufbereitet, zugänglich gehalten und langfristig aufbewahrt. Das DaSCH garantiert eine Zugänglichkeit
-                der Daten gemäss FAIR-Prinzipien, die Zuweisung von digitalen Identifikatoren, maschinenlesbaren
-                Metadaten und den langfristigen Betrieb der technischen Infrastruktur (vgl.
-                <a id="dasch-mission-link" href="{{ pageMetaData?.daschUrl + 'mission' }}">Mission Statement DaSCH</a>).
-            </p>
-            <p>
-                Die AWG-APP simuliert bereits in weiten Teilen eine Datenabfrage über die Programmierschnittstelle (API)
-                von SALSAH (zukünftig DSP). Die für reale Abfragen im Bereich Online-Edition notwendige
-                <a [routerLink]="['/structure']">Datenstruktur</a> wird zur Zeit von der AWG implementiert.
-            </p>
-            <p>
-                Über den Menüpunkt <em>Edition</em> sind die Online-Editionen zu den Abteilungen
+                Über den Menüpunkt <em>Edition</em> sind aktuell die Online-Editionen zu den Abteilungen
                 @for (section of DISPLAYED_SECTIONS; track $index; let i = $index; let n = $count) {
                     <a
                         [routerLink]="[
@@ -51,30 +45,42 @@
                 <a [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.ROWTABLES.route]"
                     >Reihentabellen</a
                 >
-                Weberns zugänglich. Bestandteile der Online-Edition umfassen Einleitungen, die edierten Notentexte,
-                kritische Berichte sowie Graph-Visualisierungen (beta).
+                Weberns zugänglich. Bestandteile der Online-Edition umfassen Einleitungen, die edierten Notentexte
+                (Text- und Skizzeneditionen), Kritische Berichte sowie Graph-Visualisierungen (beta).
             </p>
+
+            <!-- <p>
+                Die AWG-APP simuliert bereits in weiten Teilen eine Datenabfrage über die Programmierschnittstelle (API)
+                von SALSAH (zukünftig DSP). Die für reale Abfragen im Bereich Online-Edition notwendige
+                <a [routerLink]="['/structure']">Datenstruktur</a> wird zur Zeit von der AWG implementiert.
+            </p> -->
+
             <p>
-                Zusätzlich werden eine einfache <a [routerLink]="['/data/search', 'fulltext']">Volltextsuche</a> und
-                eine <a [routerLink]="['/data/search', 'extended']">Erweiterte Suche</a> in der Datenbank angeboten,
-                über die die dort hinterlegten Kontextmaterialien (Werklisten [nach Opuszahl bzw. Moldenhauer-Nummer],
-                Personeninformationen, Briefe &amp; Supplements, Chronologie) abgefragt werden können.
+                Über die (externe) <em>Datenbank-Suche</em> können Kontextmaterialien (Werklisten [nach Opuszahl bzw.
+                Moldenhauer-Nummer], Personeninformationen, Briefe &amp; Supplements, Chronologie) abgefragt werden.
+                <br />
+                Über <em>Anton Webern Gesamtausgabe</em> gelangen Sie zur Projekt-Website.
             </p>
+
+            <p>
+                Die online zugänglichen Bestandteile und Datenbestände der AWG-Online-Edition werden als Open Data über
+                diese Webapplikation präsentiert und über das Software-Framework
+                <a id="dsp-link" href="{{ pageMetaData?.daschUrl + 'dsp-app' }}">DaSCH Service Platform (DSP)</a> des
+                <a id="dasch-link" href="{{ pageMetaData?.daschUrl }}"
+                    >Swiss National Data & Service Center for the Humanities (DaSCH)</a
+                >
+                aufbereitet, zugänglich gehalten und langfristig aufbewahrt. Das DaSCH garantiert eine Zugänglichkeit
+                der Daten gemäss FAIR-Prinzipien, die Zuweisung von digitalen Identifikatoren, maschinenlesbaren
+                Metadaten und den langfristigen Betrieb der technischen Infrastruktur (vgl.
+                <a id="dasch-mission-link" href="{{ pageMetaData?.daschUrl + 'mission' }}">Mission Statement DaSCH</a>).
+            </p>
+
             <p>
                 Der Programmcode der Applikation ist als Open Access-Projekt frei zugänglich auf
-                <a id="github-link" href="{{ pageMetaData?.githubUrl }}">GitHub</a> sowie abgelegt und vollumfänglich
-                <a id="compodoc-link" href="{{ pageMetaData?.compodocUrl }}">dokumentiert</a>
-                (vgl. <a [routerLink]="['/contact']" fragment="awg-documentation">Dokumentation</a>).
+                <a id="github-link" href="{{ pageMetaData?.githubUrl }}">GitHub</a> sowie
+                <a id="zenodo-link" href="{{ pageMetaData?.zenodoUrl }}">Zenodo</a> abgelegt und vollumfänglich
+                <a [routerLink]="['/contact']" fragment="awg-documentation">dokumentiert</a>.
             </p>
-            <awg-alert-info [infoMessage]="disclaimerInfoMessage"></awg-alert-info>
-        </div>
-
-        <div class="awg-home-view-grid row row-cols-1 row-cols-lg-2 row-cols-xl-4 g-4">
-            @for (cardData of homeViewCardData; track $index) {
-                <div class="col">
-                    <awg-home-view-card [cardData]="cardData"></awg-home-view-card>
-                </div>
-            }
         </div>
     </div>
 </div>
