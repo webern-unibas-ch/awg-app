@@ -39,10 +39,10 @@ export class AppComponent {
      */
     constructor(
         private readonly activatedRoute: ActivatedRoute,
+        private readonly router: Router,
         private analyticsService: AnalyticsService,
         private editionInitService: EditionInitService,
         ngbConfig: NgbConfig,
-        private readonly router: Router,
         private titleService: Title
     ) {
         // Disable Bootstrap animation
@@ -67,14 +67,14 @@ export class AppComponent {
                     this.analyticsService.trackPageView(event.urlAfterRedirects);
 
                     // Get page title and sideOutlet info from route data
-                    let route = this.activatedRoute.firstChild;
-                    while (route?.firstChild) {
-                        route = route.firstChild;
+                    let child = this.activatedRoute.firstChild;
+                    while (child?.firstChild) {
+                        child = child.firstChild;
                     }
-                    if (route.snapshot.data['title']) {
+                    if (child.snapshot.data['title']) {
                         return {
-                            pageTitle: route.snapshot.data['title'],
-                            showSideOutlet: route.snapshot.data['showSideOutlet'] ?? true,
+                            pageTitle: child.snapshot.data['title'],
+                            showSideOutlet: child.snapshot.data['showSideOutlet'] ?? true,
                         };
                     }
                     return { pageTitle: appTitle, showSideOutlet: true };
