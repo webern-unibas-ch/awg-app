@@ -146,32 +146,19 @@ describe('ContactViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain 3 heading components (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 3, 3);
+            it('... should contain one `div.awg-contact-view`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
             });
 
-            it('... should contain 1 `div.awg-citation-description` with 5 `p` elements', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-citation-description', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div.awg-citation-description > p', 5, 5);
-            });
-
-            it('... should contain 1 `div.awg-documentation-description` with 2 `p` elements', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-documentation-description', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div.awg-documentation-description > p', 2, 2);
-            });
-
-            it('... should contain 1 `div.awg-imprint-description` with 5 `p` elements', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-imprint-description', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div.awg-imprint-description > p', 5, 5);
-            });
-
-            it('... should contain 1 `div#awg-disclaimer` with 17 `p` elements', () => {
-                getAndExpectDebugElementByCss(compDe, 'div#awg-disclaimer', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div#awg-disclaimer > p', 17, 17);
+            it('... should contain 3 heading components (stubbed) in `div.awg-contact-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 3, 3);
             });
 
             it('... should not pass down `title` and `id` to heading components', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 3, 3);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
+
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 3, 3);
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
                 expect(headingCmps[0].title).toBeUndefined();
@@ -182,6 +169,30 @@ describe('ContactViewComponent (DONE)', () => {
 
                 expect(headingCmps[2].title).toBeUndefined();
                 expect(headingCmps[2].id).toBeUndefined();
+            });
+
+            it('... should contain 1 `div.awg-citation-description` with 5 `p` elements in `div.awg-contact-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-citation-description', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-citation-description > p', 5, 5);
+            });
+
+            it('... should contain 1 `div.awg-documentation-description` with 2 `p` elements in `div.awg-contact-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-documentation-description', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-documentation-description > p', 2, 2);
+            });
+
+            it('... should contain 1 `div.awg-imprint-description` with 5 `p` elements in `div.awg-contact-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-imprint-description', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-imprint-description > p', 5, 5);
+            });
+
+            it('... should contain 1 `div#awg-disclaimer` with 17 `p` elements in `div.awg-contact-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div#awg-disclaimer', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div#awg-disclaimer > p', 17, 17);
             });
 
             it('... should not render `version`, `versionReleaseDate` and `today` yet', () => {
@@ -280,7 +291,9 @@ describe('ContactViewComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should pass down `title` and `id` to heading components', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 3, 3);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-contact-view', 1, 1);
+
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 3, 3);
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
                 expectToBe(headingCmps[0].title, expectedCitationTitle);
