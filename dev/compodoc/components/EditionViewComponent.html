@@ -150,6 +150,10 @@ another router outlet for the edition routes.</p>
     <table class="table table-sm table-hover metadata">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.Default</code></td>
+            </tr>
 
 
 
@@ -240,9 +244,6 @@ another router outlet for the edition routes.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#navigateToSideOutlet" >navigateToSideOutlet</a>
-                            </li>
-                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
@@ -280,7 +281,7 @@ another router outlet for the edition routes.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(editionStateService: <a href="../injectables/EditionStateService.html" target="_self">EditionStateService</a>, router: Router)</code>
+<code>constructor(editionStateService: <a href="../injectables/EditionStateService.html" target="_self">EditionStateService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -292,8 +293,7 @@ another router outlet for the edition routes.</p>
                 <tr>
                     <td class="col-md-4">
                             <div class="io-description"><p>Constructor of the EditionViewComponent.</p>
-<p>It declares private instances of
-EditionStateService, ActivatedRoute and Router.</p>
+<p>It declares a private instance of the EditionStateService.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -323,22 +323,6 @@ EditionStateService, ActivatedRoute and Router.</p>
 
                                                         </td>
                                                 </tr>
-                                                <tr>
-                                                        <td>router</td>
-                                                  
-                                                        <td>
-                                                                    <code>Router</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the Angular router.</p>
-
-                                                        </td>
-                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -361,50 +345,6 @@ EditionStateService, ActivatedRoute and Router.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="navigateToSideOutlet"></a>
-                    <span class="name">
-                        <span ><b>navigateToSideOutlet</b></span>
-                        <a href="#navigateToSideOutlet"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>navigateToSideOutlet()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="142"
-                                    class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:142</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: navigateToSideOutlet.</p>
-<p>It activates the side outlet with the edition-info.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Activates the edition-info side outlet.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <span ><b>ngOnInit</b></span>
@@ -421,8 +361,8 @@ EditionStateService, ActivatedRoute and Router.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="112"
-                                    class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:112</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:107</a></div>
                         </td>
                     </tr>
 
@@ -462,8 +402,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="126"
-                                    class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:126</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="120"
+                                    class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:120</a></div>
                         </td>
                     </tr>
 
@@ -794,7 +734,7 @@ about the current edition complex.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:102</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:97</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -813,8 +753,7 @@ about the current edition complex.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnInit } from &#x27;@angular/core&#x27;;
 
 import { delay, Observable } from &#x27;rxjs&#x27;;
 
@@ -833,6 +772,7 @@ import { EditionStateService } from &#x27;@awg-views/edition-view/services&#x27;
     selector: &#x27;awg-edition-view&#x27;,
     templateUrl: &#x27;./edition-view.component.html&#x27;,
     styleUrls: [&#x27;./edition-view.component.scss&#x27;],
+    changeDetection: ChangeDetectionStrategy.Default,
 })
 export class EditionViewComponent implements OnInit {
     /**
@@ -898,16 +838,11 @@ export class EditionViewComponent implements OnInit {
     /**
      * Constructor of the EditionViewComponent.
      *
-     * It declares private instances of
-     * EditionStateService, ActivatedRoute and Router.
+     * It declares a private instance of the EditionStateService.
      *
      * @param {EditionStateService} editionStateService Instance of the EditionStateService.
-     * @param {Router} router Instance of the Angular router.
      */
-    constructor(
-        private editionStateService: EditionStateService,
-        private router: Router
-    ) {}
+    constructor(private editionStateService: EditionStateService) {}
 
     /**
      * Getter variable: editionRouteConstants.
@@ -926,7 +861,6 @@ export class EditionViewComponent implements OnInit {
      */
     ngOnInit() {
         this.setupEditionView();
-        this.navigateToSideOutlet();
     }
 
     /**
@@ -945,20 +879,6 @@ export class EditionViewComponent implements OnInit {
         this.isIntroView$ &#x3D; this.editionStateService.getIsIntroView().pipe(delay(0));
         this.isPrefaceView$ &#x3D; this.editionStateService.getIsPrefaceView().pipe(delay(0));
         this.isRowTableView$ &#x3D; this.editionStateService.getIsRowTableView().pipe(delay(0));
-    }
-
-    /**
-     * Public method: navigateToSideOutlet.
-     *
-     * It activates the side outlet with the edition-info.
-     *
-     * @returns {void} Activates the edition-info side outlet.
-     */
-    navigateToSideOutlet(): void {
-        // Opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: &#x27;editionInfo&#x27; } }], {
-            preserveFragment: true,
-        });
     }
 }
 </code></pre>

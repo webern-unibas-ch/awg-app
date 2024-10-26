@@ -623,7 +623,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;0.14.0-337-gecd5c67a3&#x27;</code>
+                        <i>Default value : </i><code>&#x27;0.14.0-344-g1f19ebd82&#x27;</code>
                     </td>
                 </tr>
 
@@ -655,7 +655,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;25. October 2024&#x27;</code>
+                        <i>Default value : </i><code>&#x27;26. October 2024&#x27;</code>
                     </td>
                 </tr>
 
@@ -1970,6 +1970,15 @@ to store firm signs data.</p>
     SUBITO_FORTE: {
         alt: &#x27;[sf]&#x27;,
         hex: &#x27;\uD834\uDD8D\uD834\uDD91&#x27;,
+    },
+
+    /**
+     * The glyph of a musical sforzando symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%8D
+     */
+    SFORZANDO: {
+        alt: &#x27;[sfz]&#x27;,
+        hex: &#x27;\uD834\uDD8D\uD834\uDD91\uD834\uDD8E&#x27;,
     },
 
     /**
@@ -5722,7 +5731,7 @@ from the Salsah API.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[ContactViewComponent]</code>
+                        <i>Default value : </i><code>[ContactViewComponent, ContactInfoComponent]</code>
                     </td>
                 </tr>
 
@@ -6061,6 +6070,7 @@ and <a href="../components/TimelineComponent.html">TimelineComponent</a>.</p>
     EditionViewComponent,
     EditionComplexComponent,
     EditionDetailNavComponent,
+    EditionInfoComponent,
     EditionSectionsComponent,
     EditionSeriesComponent,
     EditionSeriesDetailComponent,
@@ -6071,8 +6081,10 @@ and <a href="../components/TimelineComponent.html">TimelineComponent</a>.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Routed components of the <a href="../modules/EditionViewModule.html">EditionViewModule</a>:
-<a href="../components/EditionViewComponent.html">EditionViewComponent</a>, <a href="../components/EditionDetailNavComponent.html">EditionDetailNavComponent</a>,
-<a href="../components/EditionSectionsComponent.html">EditionSectionsComponent</a> and <a href="../components/EditionSeriesComponent.html">EditionSeriesComponent</a>.</p>
+<a href="../components/EditionViewComponent.html">EditionViewComponent</a>, <a href="../components/EditionComplexComponent.html">EditionComplexComponent</a>,
+<a href="../components/EditionDetailNavComponent.html">EditionDetailNavComponent</a>, <a href="../components/EditionInfoComponent.html">EditionInfoComponent</a>,
+<a href="../components/EditionSectionsComponent.html">EditionSectionsComponent</a>, <a href="../components/EditionSeriesComponent.html">EditionSeriesComponent</a>,
+and <a href="../components/EditionSeriesDetailComponent.html">EditionSeriesDetailComponent</a>.</p>
 </div>
                 </td>
             </tr>
@@ -6137,22 +6149,14 @@ and <a href="../components/TimelineComponent.html">TimelineComponent</a>.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[
-    ContactInfoComponent,
-    EditionInfoComponent,
-    ResourceInfoComponent,
-    SearchInfoComponent,
-    StructureInfoComponent,
-]</code>
+                        <i>Default value : </i><code>[ResourceInfoComponent, SearchInfoComponent]</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Routed components of the <a href="../modules/SideInfoModule.html">SideInfoModule</a>:
-<a href="../components/ContactInfoComponent.html">ContactInfoComponent</a>, <a href="../components/EditionInfoComponent.html">EditionInfoComponent</a>,
-<a href="../components/ResourceInfoComponent.html">ResourceInfoComponent</a>, <a href="../components/SearchInfoComponent.html">SearchInfoComponent</a>,
-<a href="../components/StructureInfoComponent.html">StructureInfoComponent</a>.</p>
+<a href="../components/ResourceInfoComponent.html">ResourceInfoComponent</a>, <a href="../components/SearchInfoComponent.html">SearchInfoComponent</a>.</p>
 </div>
                 </td>
             </tr>
@@ -6181,7 +6185,7 @@ and <a href="../components/TimelineComponent.html">TimelineComponent</a>.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[StructureViewComponent]</code>
+                        <i>Default value : </i><code>[StructureViewComponent, StructureInfoComponent]</code>
                     </td>
                 </tr>
 

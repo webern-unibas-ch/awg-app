@@ -133,6 +133,8 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
+import { EditionInfoComponent } from &#x27;@awg-side-info/edition-info/edition-info.component&#x27;;
+
 import { EditionComplexComponent } from &#x27;./edition-outlets/edition-complex&#x27;;
 import { EditionDetailNavComponent } from &#x27;./edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component&#x27;;
 import { EditionSeriesComponent } from &#x27;./edition-outlets/edition-series&#x27;;
@@ -142,6 +144,11 @@ import { EditionViewComponent } from &#x27;./edition-view.component&#x27;;
 
 /* Routes of the EditionViewModule */
 const EDITION_VIEW_ROUTES: Routes &#x3D; [
+    {
+        path: &#x27;&#x27;,
+        outlet: &#x27;side&#x27;,
+        component: EditionInfoComponent,
+    },
     {
         path: &#x27;&#x27;,
         component: EditionViewComponent,
@@ -252,13 +259,16 @@ const EDITION_VIEW_ROUTES: Routes &#x3D; [
 
 /**
  * Routed components of the {@link EditionViewModule}:
- * {@link EditionViewComponent}, {@link EditionDetailNavComponent},
- * {@link EditionSectionsComponent} and {@link EditionSeriesComponent}.
+ * {@link EditionViewComponent}, {@link EditionComplexComponent},
+ * {@link EditionDetailNavComponent}, {@link EditionInfoComponent},
+ * {@link EditionSectionsComponent}, {@link EditionSeriesComponent},
+ * and {@link EditionSeriesDetailComponent}.
  */
 export const routedEditionViewComponents &#x3D; [
     EditionViewComponent,
     EditionComplexComponent,
     EditionDetailNavComponent,
+    EditionInfoComponent,
     EditionSectionsComponent,
     EditionSeriesComponent,
     EditionSeriesDetailComponent,

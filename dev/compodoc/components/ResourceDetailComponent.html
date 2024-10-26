@@ -1548,6 +1548,9 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      * It calls the containing methods when destroying the component.
      */
     ngOnDestroy() {
+        // Navigate to an empty outlet to clear the side outlet
+        this.router.navigate([{ outlets: { side: null } }]);
+
         // Emit truthy value to end all subscriptions
         this._destroyed$.next(true);
 

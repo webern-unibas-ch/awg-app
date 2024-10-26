@@ -133,34 +133,20 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
-import { ContactInfoComponent } from &#x27;./contact-info/contact-info.component&#x27;;
-import { EditionInfoComponent } from &#x27;./edition-info/edition-info.component&#x27;;
 import { ResourceInfoComponent } from &#x27;./resource-info/resource-info.component&#x27;;
 import { SearchInfoComponent } from &#x27;./search-info/search-info.component&#x27;;
-import { StructureInfoComponent } from &#x27;./structure-info/structure-info.component&#x27;;
 
 /* Routes of the SideInfoModule */
 const SIDE_INFO_ROUTES: Routes &#x3D; [
-    { path: &#x27;contactInfo&#x27;, component: ContactInfoComponent, outlet: &#x27;side&#x27; },
-    { path: &#x27;editionInfo&#x27;, component: EditionInfoComponent, outlet: &#x27;side&#x27; },
     { path: &#x27;resourceInfo&#x27;, component: ResourceInfoComponent, outlet: &#x27;side&#x27; },
     { path: &#x27;searchInfo&#x27;, component: SearchInfoComponent, outlet: &#x27;side&#x27; },
-    { path: &#x27;structureInfo&#x27;, component: StructureInfoComponent, outlet: &#x27;side&#x27; },
 ];
 
 /**
  * Routed components of the {@link SideInfoModule}:
- * {@link ContactInfoComponent}, {@link EditionInfoComponent},
- * {@link ResourceInfoComponent}, {@link SearchInfoComponent},
- * {@link StructureInfoComponent}.
+ * {@link ResourceInfoComponent}, {@link SearchInfoComponent}.
  */
-export const routedSideInfoComponents &#x3D; [
-    ContactInfoComponent,
-    EditionInfoComponent,
-    ResourceInfoComponent,
-    SearchInfoComponent,
-    StructureInfoComponent,
-];
+export const routedSideInfoComponents &#x3D; [ResourceInfoComponent, SearchInfoComponent];
 
 /**
  * Side info module routing.
