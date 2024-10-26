@@ -2,6 +2,12 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
+/**
+ * The AlertInfoComponent.
+ *
+ * It contains an info alert message that is
+ * provided via the {@link SharedModule}.
+ */
 @Component({
     selector: 'awg-alert-info',
     templateUrl: './alert-info.component.html',

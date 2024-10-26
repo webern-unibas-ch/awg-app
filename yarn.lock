@@ -6764,7 +6764,7 @@ __metadata:
     n3: "npm:^1.22.3"
     ngx-json-viewer: "npm:^3.2.1"
     prettier: "npm:^3.3.3"
-    rdfstore: "musicenfanthen/rdfstore-js#v0.9.18-alpha.16"
+    rdfstore: "musicenfanthen/rdfstore-js#v0.9.18-alpha.17"
     rxjs: "npm:~7.8.1"
     source-map-explorer: "npm:^2.5.3"
     stream: "npm:^0.0.3"
@@ -12088,7 +12088,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonld@npm:^8.3.1":
+"jsonld@npm:^8.3.2":
   version: 8.3.2
   resolution: "jsonld@npm:8.3.2"
   dependencies:
@@ -14870,20 +14870,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rdfstore@musicenfanthen/rdfstore-js#v0.9.18-alpha.16":
-  version: 0.9.18-alpha.16
-  resolution: "rdfstore@https://github.com/musicenfanthen/rdfstore-js.git#commit=a66d1add7048224ac56ce28415527e210cc3a9fb"
+"rdfstore@musicenfanthen/rdfstore-js#v0.9.18-alpha.17":
+  version: 0.9.18-alpha.17
+  resolution: "rdfstore@https://github.com/musicenfanthen/rdfstore-js.git#commit=f77455fdb77b8406d26657c3dd87adbdfc77f84a"
   dependencies:
     indexeddb-js: "npm:0.0.14"
-    jsonld: "npm:^8.3.1"
+    jsonld: "npm:^8.3.2"
     n3: "npm:^0.11.3"
-    sqlite3: "npm:^5.1.6"
+    sqlite3: "npm:^5.1.7"
   dependenciesMeta:
     indexeddb-js:
       optional: true
     sqlite3:
       optional: true
-  checksum: 10c0/d21dd38c77d408d7a3dd8cb11f8e9377311db779ba9f913c68a4022c09f3728f918a49ceceef39fafd561f43830a2a4bbb933df3b91610a86ea1b5bed8a51ad5
+  checksum: 10c0/867d9208d796508a4b820e16759a83f997185d64d9e932e23c5abc4a8a030ba1c5d7972eb682c879aae87fee3ffb7c84889f37ee27e063052f8ed2ffc103b28a
   languageName: node
   linkType: hard
 
@@ -16124,7 +16124,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sqlite3@npm:>=2.1.1, sqlite3@npm:^5.1.6":
+"sqlite3@npm:>=2.1.1, sqlite3@npm:^5.1.7":
   version: 5.1.7
   resolution: "sqlite3@npm:5.1.7"
   dependencies:
