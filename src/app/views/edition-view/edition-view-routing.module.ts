@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { EditionInfoComponent } from '@awg-side-info/edition-info/edition-info.component';
+
 import { EditionComplexComponent } from './edition-outlets/edition-complex';
 import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component';
 import { EditionSeriesComponent } from './edition-outlets/edition-series';
@@ -10,6 +12,11 @@ import { EditionViewComponent } from './edition-view.component';
 
 /* Routes of the EditionViewModule */
 const EDITION_VIEW_ROUTES: Routes = [
+    {
+        path: '',
+        outlet: 'side',
+        component: EditionInfoComponent,
+    },
     {
         path: '',
         component: EditionViewComponent,
@@ -120,13 +127,16 @@ const EDITION_VIEW_ROUTES: Routes = [
 
 /**
  * Routed components of the {@link EditionViewModule}:
- * {@link EditionViewComponent}, {@link EditionDetailNavComponent},
- * {@link EditionSectionsComponent} and {@link EditionSeriesComponent}.
+ * {@link EditionViewComponent}, {@link EditionComplexComponent},
+ * {@link EditionDetailNavComponent}, {@link EditionInfoComponent},
+ * {@link EditionSectionsComponent}, {@link EditionSeriesComponent},
+ * and {@link EditionSeriesDetailComponent}.
  */
 export const routedEditionViewComponents = [
     EditionViewComponent,
     EditionComplexComponent,
     EditionDetailNavComponent,
+    EditionInfoComponent,
     EditionSectionsComponent,
     EditionSeriesComponent,
     EditionSeriesDetailComponent,

@@ -192,6 +192,15 @@ export const EDITION_GLYPHS_DATA = {
     },
 
     /**
+     * The glyph of a musical sforzando symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%8D
+     */
+    SFORZANDO: {
+        alt: '[sfz]',
+        hex: '\uD834\uDD8D\uD834\uDD91\uD834\uDD8E',
+    },
+
+    /**
      * The glyph of a musical subito piano symbol.
      * Cf. https://graphemica.com/%F0%9D%86%8D
      */

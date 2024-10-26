@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 
 import { filter, map } from 'rxjs/operators';
 
@@ -20,6 +20,13 @@ import { AnalyticsService, EditionInitService } from '@awg-core/services';
 })
 export class AppComponent {
     /**
+     * Public variable: activateSideOutlet.
+     *
+     * It keeps track of the side outlet.
+     */
+    activateSideOutlet = false;
+
+    /**
      * Constructor of the AppComponent.
      *
      * It declares private instances of the Angular router and the AnalyticsService.
@@ -32,10 +39,10 @@ export class AppComponent {
      */
     constructor(
         private readonly activatedRoute: ActivatedRoute,
+        private readonly router: Router,
         private analyticsService: AnalyticsService,
         private editionInitService: EditionInitService,
         ngbConfig: NgbConfig,
-        private readonly router: Router,
         private titleService: Title
     ) {
         // Disable Bootstrap animation
@@ -74,7 +81,32 @@ export class AppComponent {
                 next: (pageTitle: string) => {
                     // Set page title
                     this.titleService.setTitle(pageTitle);
+
+                    // Activate side outlet
+                    const currentRoute = this.router.routerState.snapshot.root;
+                    this.activateSideOutlet = this.hasSideOutlet(currentRoute);
                 },
             });
+    }
+
+    /**
+     * Public method: hasSideOutlet.
+     *
+     * It checks if a route has a side outlet.
+     *
+     * @param {ActivatedRouteSnapshot} route The route to check.
+     *
+     * @returns {boolean} The result of the check.
+     */
+    hasSideOutlet(route: ActivatedRouteSnapshot): boolean {
+        if (route.outlet === 'side') {
+            return true;
+        }
+        for (const child of route.children) {
+            if (this.hasSideOutlet(child)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

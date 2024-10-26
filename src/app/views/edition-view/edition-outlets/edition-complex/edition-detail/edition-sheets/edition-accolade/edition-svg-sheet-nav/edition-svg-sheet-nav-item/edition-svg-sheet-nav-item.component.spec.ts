@@ -4,7 +4,7 @@ import Spy = jasmine.Spy;
 
 import { IconDefinition } from '@fortawesome/angular-fontawesome';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { faCalendarXmark } from '@fortawesome/free-regular-svg-icons';
+import { faCalendarXmark } from '@fortawesome/free-solid-svg-icons';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';

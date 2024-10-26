@@ -1,17 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Router } from '@angular/router';
-
-import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import {
-    expectSpyCall,
-    expectToBe,
-    getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective,
-} from '@testing/expect-helper';
+import { expectToBe, getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { StructureViewComponent } from './structure-view.component';
 
@@ -29,20 +21,12 @@ describe('StructureViewComponent (DONE)', () => {
     let fixture: ComponentFixture<StructureViewComponent>;
     let compDe: DebugElement;
 
-    let mockRouter: Partial<Router>;
-
-    let navigateToSideOutletSpy: Spy;
-
     const expectedTitle = 'Datenstrukturmodell';
     const expectedId = 'awg-structure-view';
 
     beforeEach(waitForAsync(() => {
-        // Router spy object
-        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
-
         TestBed.configureTestingModule({
             declarations: [StructureViewComponent, HeadingStubComponent],
-            providers: [{ provide: Router, useValue: mockRouter }],
         }).compileComponents();
     }));
 
@@ -50,11 +34,6 @@ describe('StructureViewComponent (DONE)', () => {
         fixture = TestBed.createComponent(StructureViewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        navigateToSideOutletSpy = spyOn(component, 'navigateToSideOutlet').and.callThrough();
     });
 
     afterAll(() => {
@@ -69,16 +48,6 @@ describe('StructureViewComponent (DONE)', () => {
         it('... should have title and id', () => {
             expectToBe(component.structureViewTitle, expectedTitle);
             expectToBe(component.structureViewId, expectedId);
-        });
-
-        describe('#navigateToSideOutlet()', () => {
-            it('... should have a method `navigateToSideOutlet`', () => {
-                expect(component.navigateToSideOutlet).toBeDefined();
-            });
-
-            it('... should not have been called', () => {
-                expectSpyCall(navigateToSideOutletSpy, 0);
-            });
         });
 
         describe('VIEW', () => {
@@ -116,48 +85,6 @@ describe('StructureViewComponent (DONE)', () => {
         beforeEach(() => {
             // Trigger initial data binding
             fixture.detectChanges();
-        });
-
-        describe('#navigateToSideOutlet()', () => {
-            let routerNavigateSpy: Spy;
-
-            beforeEach(() => {
-                // Create spy of mockrouter SpyObj
-                routerNavigateSpy = mockRouter.navigate as jasmine.Spy;
-            });
-
-            it('... should have been called', () => {
-                expectSpyCall(navigateToSideOutletSpy, 1);
-            });
-
-            it('... should have triggered `router.navigate`', () => {
-                expectSpyCall(routerNavigateSpy, 1);
-            });
-
-            it('... should tell ROUTER to navigate to `structureInfo` outlet', () => {
-                const expectedRoute = 'structureInfo';
-
-                // Catch args passed to navigation spy
-                const navArgs = routerNavigateSpy.calls.first().args;
-                const outletRoute = navArgs[0][0].outlets.side;
-
-                expect(navArgs).toBeDefined();
-                expect(navArgs[0]).toBeDefined();
-                expectToBe(outletRoute, expectedRoute);
-
-                expect(routerNavigateSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
-            });
-
-            it('... should tell ROUTER to navigate with `preserveFragment:true`', () => {
-                // Catch args passed to navigation spy
-                const navArgs = routerNavigateSpy.calls.first().args;
-                const navExtras = navArgs[1];
-
-                expect(navExtras).toBeDefined();
-                expectToBe(navExtras.preserveFragment, true);
-
-                expect(routerNavigateSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
-            });
         });
 
         describe('VIEW', () => {
