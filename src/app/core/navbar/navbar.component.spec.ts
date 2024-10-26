@@ -28,7 +28,7 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { LOGOSDATA } from '@awg-core/core-data';
+import { LOGOS_DATA } from '@awg-core/core-data';
 import { Logos } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
@@ -39,21 +39,24 @@ import { EditionComplexesService } from '@awg-views/edition-view/services';
 import { NavbarComponent } from './navbar.component';
 
 /** Helper function */
-function generateExpectedOrderOfRouterlinks(editionComplexes: EditionComplex[]): string[][] {
+function getRouterlinks(editionComplexes: EditionComplex[]): string[][] {
+    const { EDITION, SERIES, ROWTABLES, PREFACE, EDITION_INTRO, EDITION_SHEETS, EDITION_REPORT } =
+        EDITION_ROUTE_CONSTANTS;
+
     const baseLinks = [
         ['/home'],
-        [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.SERIES.route],
-        [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.ROWTABLES.route],
-        [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.PREFACE.route],
+        [EDITION.route, SERIES.route],
+        [EDITION.route, ROWTABLES.route],
+        [EDITION.route, PREFACE.route],
     ];
 
     const editionLinks = editionComplexes.flatMap(complex => [
-        [complex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route],
-        [complex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route],
-        [complex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route],
+        [complex.baseRoute, EDITION_INTRO.route],
+        [complex.baseRoute, EDITION_SHEETS.route],
+        [complex.baseRoute, EDITION_REPORT.route],
     ]);
 
-    const otherLinks = [['/structure'], ['/data'], ['/contact']];
+    const otherLinks = [['/structure'], ['/contact']];
 
     return [...baseLinks, ...editionLinks, ...otherLinks];
 }
@@ -76,15 +79,14 @@ describe('NavbarComponent (DONE)', () => {
     let mockRouter: Partial<Router>;
 
     let expectedLogos: Logos;
-
-    let expectedContactIcon: IconDefinition;
-    let expectedEditionIcon: IconDefinition;
-    let expectedHomeIcon: IconDefinition;
-    let expectedSearchIcon: IconDefinition;
-    let expectedStructureIcon: IconDefinition;
-
+    let expectedNavbarIcons: {
+        [key: string]: IconDefinition;
+    };
+    let expectedNavbarLabels: {
+        [key: string]: string;
+    };
     let expectedEditionComplexes: EditionComplex[];
-    let expectedOrderOfRouterlinks: string[][];
+    let expectedRouterlinks: string[][];
 
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
@@ -126,7 +128,7 @@ describe('NavbarComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedLogos = LOGOSDATA;
+        expectedLogos = LOGOS_DATA;
 
         expectedEditionComplexes = [
             EditionComplexesService.getEditionComplexById('OP3'),
@@ -141,13 +143,24 @@ describe('NavbarComponent (DONE)', () => {
             EditionComplexesService.getEditionComplexById('M35_42'),
             EditionComplexesService.getEditionComplexById('M37'),
         ];
-        expectedOrderOfRouterlinks = generateExpectedOrderOfRouterlinks(expectedEditionComplexes);
+        expectedRouterlinks = getRouterlinks(expectedEditionComplexes);
 
-        expectedContactIcon = faEnvelope;
-        expectedEditionIcon = faFileAlt;
-        expectedHomeIcon = faHome;
-        expectedSearchIcon = faSearch;
-        expectedStructureIcon = faNetworkWired;
+        expectedNavbarIcons = {
+            contact: faEnvelope,
+            edition: faFileAlt,
+            home: faHome,
+            search: faSearch,
+            structure: faNetworkWired,
+        };
+        expectedNavbarLabels = {
+            home: 'Home',
+            complexes: 'Auswahl Skizzenkomplexe',
+            contact: 'Kontakt',
+            edition: 'Edition',
+            general: 'Allgemein',
+            search: 'Datenbank-Suche',
+            structure: 'Strukturmodell',
+        };
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -173,16 +186,12 @@ describe('NavbarComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have fontawesome icons', () => {
-            expectToEqual(component.faEnvelope, expectedContactIcon);
+        it('... should have navbar icons', () => {
+            expectToEqual(component.navbarIcons, expectedNavbarIcons);
+        });
 
-            expectToEqual(component.faFileAlt, expectedEditionIcon);
-
-            expectToEqual(component.faHome, expectedHomeIcon);
-
-            expectToEqual(component.faNetworkWired, expectedStructureIcon);
-
-            expectToEqual(component.faSearch, expectedSearchIcon);
+        it('... should have navbar labels', () => {
+            expectToEqual(component.navbarLabels, expectedNavbarLabels);
         });
 
         it('... should have `isCollapsed = true`', () => {
@@ -211,13 +220,13 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... should contain 2 navbar-brand-container with links in navbar', () => {
-                const navbarDe = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
-                getAndExpectDebugElementByCss(navbarDe[0], '.navbar-brand-container > a.navbar-brand', 2, 2);
+                const navbarDes = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
+                getAndExpectDebugElementByCss(navbarDes[0], '.navbar-brand-container > a.navbar-brand', 2, 2);
             });
 
             it('... should display first navbar-brand link not on sm devices, and second navbar-brand link only on sm devices', () => {
-                const navbarDe = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
-                const navbarBrandDes = getAndExpectDebugElementByCss(navbarDe[0], '.navbar-brand-container', 2, 2);
+                const navbarDes = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
+                const navbarBrandDes = getAndExpectDebugElementByCss(navbarDes[0], '.navbar-brand-container', 2, 2);
 
                 const navbarBrandEl1 = navbarBrandDes[0].nativeElement;
                 const navbarBrandEl2 = navbarBrandDes[1].nativeElement;
@@ -239,80 +248,55 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... should contain 1 toggle button in navbar', () => {
-                const navbarDe = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
-                getAndExpectDebugElementByCss(navbarDe[0], 'button.navbar-toggler', 1, 1);
+                const navbarDes = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
+                getAndExpectDebugElementByCss(navbarDes[0], 'button.navbar-toggler', 1, 1);
             });
 
             it('... should contain 1 navbar collapse in navbar', () => {
-                const navbarDe = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
-                getAndExpectDebugElementByCss(navbarDe[0], 'div.navbar-collapse', 1, 1);
+                const navbarDes = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
+                getAndExpectDebugElementByCss(navbarDes[0], 'div.navbar-collapse', 1, 1);
             });
 
             it('... should contain 2 ul.navbar-nav in navbar collapse', () => {
-                const navbarCollapseDe = getAndExpectDebugElementByCss(compDe, 'div.navbar-collapse', 1, 1);
-                getAndExpectDebugElementByCss(navbarCollapseDe[0], 'ul.navbar-nav', 2, 2);
+                const navbarCollapseDes = getAndExpectDebugElementByCss(compDe, 'div.navbar-collapse', 1, 1);
+                getAndExpectDebugElementByCss(navbarCollapseDes[0], 'ul.navbar-nav', 2, 2);
             });
 
-            it('... should contain 3 nav-items in first ul.navbar-nav, and 2 nav-items in second ul.navbar-nav', () => {
-                const navbarCollapseDe = getAndExpectDebugElementByCss(compDe, 'div.navbar-collapse', 1, 1);
-                const ulDe = getAndExpectDebugElementByCss(navbarCollapseDe[0], 'ul.navbar-nav', 2, 2);
+            it('... should contain 3 nav-items in first ul.navbar-nav, and 1 nav-items in second ul.navbar-nav', () => {
+                const navbarCollapseDes = getAndExpectDebugElementByCss(compDe, 'div.navbar-collapse', 1, 1);
+                const ulDes = getAndExpectDebugElementByCss(navbarCollapseDes[0], 'ul.navbar-nav', 2, 2);
 
-                getAndExpectDebugElementByCss(ulDe[0], 'li.nav-item', 3, 3);
-                getAndExpectDebugElementByCss(ulDe[1], 'li.nav-item', 2, 2);
+                getAndExpectDebugElementByCss(ulDes[0], 'li.nav-item', 3, 3);
+                getAndExpectDebugElementByCss(ulDes[1], 'li.nav-item', 1, 1);
             });
 
-            it('... should have `awg-app` label and fa-icon on first nav-item link', () => {
-                const navItemDe = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
-                const navItemLinkSpanDe = getAndExpectDebugElementByCss(navItemDe[0], 'a.nav-link > span', 2, 2);
-                const navItemLinkSpanEl1 = navItemLinkSpanDe[0].nativeElement;
-                const navItemLinkSpanEl2 = navItemLinkSpanDe[1].nativeElement;
-
-                expectToBe(navItemLinkSpanEl1.textContent, 'awg-app');
+            it('... should have fa-icon on first nav-item link', () => {
+                const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
+                const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > span', 2, 2);
+                const navItemLinkSpanEl2 = navItemLinkSpanDes[1].nativeElement;
 
                 expectToBe(navItemLinkSpanEl2.textContent, '(current)');
                 expectToContain(navItemLinkSpanEl2.classList, 'sr-only');
 
-                getAndExpectDebugElementByCss(navItemDe[0], 'a.nav-link > fa-icon', 1, 1);
+                getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > fa-icon', 1, 1);
             });
 
-            it('... should have `Edition` label and fa-icon on second nav-item link', () => {
-                const navItemDe = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
-                const navItemLinkSpanDe = getAndExpectDebugElementByCss(navItemDe[1], 'a.nav-link > span', 1, 1);
-                const navItemLinkSpanEl = navItemLinkSpanDe[0].nativeElement;
+            it('... should have fa-icon on second nav-item link', () => {
+                const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
 
-                expectToBe(navItemLinkSpanEl.textContent, 'Edition');
-
-                getAndExpectDebugElementByCss(navItemDe[1], 'a.nav-link > fa-icon', 1, 1);
+                getAndExpectDebugElementByCss(navItemDes[1], 'a.nav-link > fa-icon', 1, 1);
             });
 
-            it('... should have `Strukturmodell` label and fa-icon on third nav-item link', () => {
-                const navItemDe = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
-                const navItemLinkSpanDe = getAndExpectDebugElementByCss(navItemDe[2], 'a.nav-link > span', 1, 1);
-                const navItemLinkSpanEl = navItemLinkSpanDe[0].nativeElement;
+            it('... should have fa-icon on third nav-item link', () => {
+                const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
 
-                expectToBe(navItemLinkSpanEl.textContent, 'Strukturmodell');
-
-                getAndExpectDebugElementByCss(navItemDe[2], 'a.nav-link > fa-icon', 1, 1);
+                getAndExpectDebugElementByCss(navItemDes[2], 'a.nav-link > fa-icon', 1, 1);
             });
 
-            it('... should have `Suche` label and fa-icon on fourth nav-item link', () => {
-                const navItemDe = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
-                const navItemLinkSpanDe = getAndExpectDebugElementByCss(navItemDe[3], 'a.nav-link > span', 1, 1);
-                const navItemLinkSpanEl = navItemLinkSpanDe[0].nativeElement;
+            it('... should have fa-icon on fourth nav-item link', () => {
+                const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
 
-                expectToBe(navItemLinkSpanEl.textContent, 'Suche');
-
-                getAndExpectDebugElementByCss(navItemDe[3], 'a.nav-link > fa-icon', 1, 1);
-            });
-
-            it('... should have `Kontakt` label and fa-icon on fifth nav-item link', () => {
-                const navItemDe = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
-                const navItemLinkSpanDe = getAndExpectDebugElementByCss(navItemDe[4], 'a.nav-link > span', 1, 1);
-                const navItemLinkSpanEl = navItemLinkSpanDe[0].nativeElement;
-
-                expectToBe(navItemLinkSpanEl.textContent, 'Kontakt');
-
-                getAndExpectDebugElementByCss(navItemDe[4], 'a.nav-link > fa-icon', 1, 1);
+                getAndExpectDebugElementByCss(navItemDes[3], 'a.nav-link > fa-icon', 1, 1);
             });
         });
 
@@ -387,6 +371,12 @@ describe('NavbarComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            let navItemDes: DebugElement[];
+
+            beforeEach(() => {
+                navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
+            });
+
             it('... should render awg project url in navbar-brand link', () => {
                 const urlDes = getAndExpectDebugElementByCss(compDe, 'a.navbar-brand', 2, 2);
                 const urlEl1 = urlDes[0].nativeElement;
@@ -396,97 +386,93 @@ describe('NavbarComponent (DONE)', () => {
                 expectToBe(urlEl2.href, expectedLogos['awg'].href);
             });
 
-            it('... should display home icon in first nav-item link ', () => {
-                const navItemDe = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
-                const faIconDe = getAndExpectDebugElementByCss(navItemDe[0], 'a.nav-link > fa-icon', 1, 1);
-                const faIconIns = faIconDe[0].componentInstance.icon;
+            describe('... first nav-item link (home)', () => {
+                it('... should have home label and fa-icon', () => {
+                    const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > span', 2, 2);
+                    const navItemLinkSpanEl1 = navItemLinkSpanDes[0].nativeElement;
+                    const navItemLinkSpanEl2 = navItemLinkSpanDes[1].nativeElement;
 
-                expectToEqual(faIconIns, expectedHomeIcon);
-            });
+                    expectToBe(navItemLinkSpanEl1.textContent, expectedNavbarLabels['home']);
 
-            it('... should display edition icon in second nav-item link ', () => {
-                const navItemDe = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
-                const faIconDe = getAndExpectDebugElementByCss(navItemDe[1], 'a.nav-link > fa-icon', 1, 1);
-                const faIconIns = faIconDe[0].componentInstance.icon;
+                    expectToBe(navItemLinkSpanEl2.textContent, '(current)');
+                    expectToContain(navItemLinkSpanEl2.classList, 'sr-only');
 
-                expectToEqual(faIconIns, expectedEditionIcon);
-            });
+                    getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > fa-icon', 1, 1);
+                });
 
-            it('... should display structure icon in third nav-item link ', () => {
-                const navItemDe = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
-                const faIconDe = getAndExpectDebugElementByCss(navItemDe[2], 'a.nav-link > fa-icon', 1, 1);
-                const faIconIns = faIconDe[0].componentInstance.icon;
+                it('... should display home icon', () => {
+                    const faIconDes = getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > fa-icon', 1, 1);
+                    const faIconIns = faIconDes[0].componentInstance.icon;
 
-                expectToEqual(faIconIns, expectedStructureIcon);
-            });
-
-            it('... should display search icon in fourth nav-item link ', () => {
-                const navItemDe = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
-                const faIconDe = getAndExpectDebugElementByCss(navItemDe[3], 'a.nav-link > fa-icon', 1, 1);
-                const faIconIns = faIconDe[0].componentInstance.icon;
-
-                expectToEqual(faIconIns, expectedSearchIcon);
-            });
-
-            it('... should display contact icon in fifth nav-item link ', () => {
-                const navItemDe = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
-                const faIconDe = getAndExpectDebugElementByCss(navItemDe[4], 'a.nav-link > fa-icon', 1, 1);
-                const faIconIns = faIconDe[0].componentInstance.icon;
-
-                expectToEqual(faIconIns, expectedContactIcon);
+                    expectToEqual(faIconIns, expectedNavbarIcons['home']);
+                });
             });
 
             describe('... second nav-item link (edition)', () => {
-                let navItemDe: DebugElement[];
-                let navItemLinkDe: DebugElement[];
+                let navItemLinkDes: DebugElement[];
 
                 beforeEach(fakeAsync(() => {
-                    navItemDe = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 5, 5);
-                    navItemLinkDe = getAndExpectDebugElementByCss(navItemDe[1], 'a.nav-link', 1, 1);
+                    navItemLinkDes = getAndExpectDebugElementByCss(navItemDes[1], 'a.nav-link', 1, 1);
 
                     // Click on second nav-item link
-                    clickAndAwaitChanges(navItemLinkDe[0], fixture);
+                    clickAndAwaitChanges(navItemLinkDes[0], fixture);
                 }));
 
+                it('... should have edition label and fa-icon', () => {
+                    const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[1], 'a.nav-link > span', 1, 1);
+                    const navItemLinkSpanEl = navItemLinkSpanDes[0].nativeElement;
+
+                    expectToBe(navItemLinkSpanEl.textContent, expectedNavbarLabels['edition']);
+
+                    getAndExpectDebugElementByCss(navItemDes[1], 'a.nav-link > fa-icon', 1, 1);
+                });
+
+                it('... should display edition icon', () => {
+                    const faIconDes = getAndExpectDebugElementByCss(navItemDes[1], 'a.nav-link > fa-icon', 1, 1);
+                    const faIconIns = faIconDes[0].componentInstance.icon;
+
+                    expectToEqual(faIconIns, expectedNavbarIcons['edition']);
+                });
+
                 it('... should have a dropdown menu', () => {
-                    getAndExpectDebugElementByCss(navItemDe[1], 'div.dropdown-menu', 1, 1);
+                    getAndExpectDebugElementByCss(navItemDes[1], 'div.dropdown-menu', 1, 1);
                 });
 
                 it('... should have a dropdown header `Allgemein` as first child', () => {
-                    const headerDe = getAndExpectDebugElementByCss(
-                        navItemDe[1],
+                    const headerDes = getAndExpectDebugElementByCss(
+                        navItemDes[1],
                         'div.dropdown-menu > h6.dropdown-header:nth-child(1)',
                         1,
                         1
                     );
-                    const headerEl = headerDe[0].nativeElement;
+                    const headerEl = headerDes[0].nativeElement;
 
-                    expectToBe(headerEl.textContent, 'Allgemein');
+                    expectToBe(headerEl.textContent, expectedNavbarLabels['general']);
                 });
 
                 it('... should be followed by 3 dropdown items for edition overview, rowtables and preface', () => {
-                    const overviewDe = getAndExpectDebugElementByCss(
-                        navItemDe[1],
+                    const overviewDes = getAndExpectDebugElementByCss(
+                        navItemDes[1],
                         'div.dropdown-menu > a.dropdown-item:nth-child(2)',
                         1,
                         1
                     );
-                    const rowtablesDe = getAndExpectDebugElementByCss(
-                        navItemDe[1],
+                    const rowtablesDes = getAndExpectDebugElementByCss(
+                        navItemDes[1],
                         'div.dropdown-menu > a.dropdown-item:nth-child(3)',
                         1,
                         1
                     );
-                    const prefaceDe = getAndExpectDebugElementByCss(
-                        navItemDe[1],
+                    const prefaceDes = getAndExpectDebugElementByCss(
+                        navItemDes[1],
                         'div.dropdown-menu > a.dropdown-item:nth-child(4)',
                         1,
                         1
                     );
 
-                    const overviewEl = overviewDe[0].nativeElement;
-                    const rowtablesEl = rowtablesDe[0].nativeElement;
-                    const prefaceEl = prefaceDe[0].nativeElement;
+                    const overviewEl = overviewDes[0].nativeElement;
+                    const rowtablesEl = rowtablesDes[0].nativeElement;
+                    const prefaceEl = prefaceDes[0].nativeElement;
 
                     expectToBe(overviewEl.textContent, EDITION_ROUTE_CONSTANTS.SERIES.full);
                     expectToBe(rowtablesEl.textContent, EDITION_ROUTE_CONSTANTS.ROWTABLES.full);
@@ -495,32 +481,32 @@ describe('NavbarComponent (DONE)', () => {
 
                 it('... should have another dropdown header `Auswahl Skizzenkomplexe` surrounded by dividers', () => {
                     getAndExpectDebugElementByCss(
-                        navItemDe[1],
+                        navItemDes[1],
                         'div.dropdown-menu > div.dropdown-divider:nth-child(5)',
                         1,
                         1
                     );
-                    const headerDe = getAndExpectDebugElementByCss(
-                        navItemDe[1],
+                    const headerDes = getAndExpectDebugElementByCss(
+                        navItemDes[1],
                         'div.dropdown-menu > h6.dropdown-header:nth-child(6)',
                         1,
                         1
                     );
-                    const headerEl = headerDe[0].nativeElement;
+                    const headerEl = headerDes[0].nativeElement;
 
                     getAndExpectDebugElementByCss(
-                        navItemDe[1],
+                        navItemDes[1],
                         'div.dropdown-menu > div.dropdown-divider:nth-child(7)',
                         1,
                         1
                     );
 
-                    expectToBe(headerEl.textContent, 'Auswahl Skizzenkomplexe');
+                    expectToBe(headerEl.textContent, expectedNavbarLabels['complexes']);
                 });
 
                 it('... should be followed by as many `div.awg-dropdown-complexes` as edition complexes are available', () => {
-                    const divDe = getAndExpectDebugElementByCss(
-                        navItemDe[1],
+                    const divDes = getAndExpectDebugElementByCss(
+                        navItemDes[1],
                         'div.dropdown-menu > div.awg-dropdown-complexes',
                         expectedEditionComplexes.length,
                         expectedEditionComplexes.length
@@ -528,34 +514,34 @@ describe('NavbarComponent (DONE)', () => {
                 });
 
                 it('... should display a header and a list of 3 dropdown items for each dropdown complex', () => {
-                    const divDe = getAndExpectDebugElementByCss(
-                        navItemDe[1],
+                    const complexDes = getAndExpectDebugElementByCss(
+                        navItemDes[1],
                         'div.dropdown-menu > div.awg-dropdown-complexes',
                         expectedEditionComplexes.length,
                         expectedEditionComplexes.length
                     );
 
                     // Expect header and 3 dropdown items for each dropdown complex
-                    divDe.forEach(complexDe => {
+                    complexDes.forEach(complexDe => {
                         getAndExpectDebugElementByCss(complexDe, 'h6.dropdown-header', 1, 1);
                         getAndExpectDebugElementByCss(complexDe, 'a.dropdown-item', 3, 3);
                     });
                 });
 
                 it('... should display correct header for each dropdown complex', () => {
-                    const divDe = getAndExpectDebugElementByCss(
-                        navItemDe[1],
+                    const complexDes = getAndExpectDebugElementByCss(
+                        navItemDes[1],
                         'div.dropdown-menu > div.awg-dropdown-complexes',
                         expectedEditionComplexes.length,
                         expectedEditionComplexes.length
                     );
 
-                    divDe.forEach((complexDe, index) => {
-                        const headerDe = getAndExpectDebugElementByCss(complexDe, 'h6.dropdown-header', 1, 1);
-                        const headerEl = headerDe[0].nativeElement;
+                    complexDes.forEach((complexDe, index) => {
+                        const headerDes = getAndExpectDebugElementByCss(complexDe, 'h6.dropdown-header', 1, 1);
+                        const headerEl = headerDes[0].nativeElement;
 
-                        const headerSpanDe = getAndExpectDebugElementByCss(headerDe[0], 'span', 1, 1);
-                        const headerSpanEl = headerSpanDe[0].nativeElement;
+                        const headerSpanDes = getAndExpectDebugElementByCss(headerDes[0], 'span', 1, 1);
+                        const headerSpanEl = headerSpanDes[0].nativeElement;
 
                         const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                         const series = expectedEditionComplexes[index].pubStatement.series.short;
@@ -570,24 +556,60 @@ describe('NavbarComponent (DONE)', () => {
                 });
 
                 it('... should display correct dropdown item labels for each dropdown complex', () => {
-                    const divDe = getAndExpectDebugElementByCss(
-                        navItemDe[1],
+                    const complexDes = getAndExpectDebugElementByCss(
+                        navItemDes[1],
                         'div.dropdown-menu > div.awg-dropdown-complexes',
                         expectedEditionComplexes.length,
                         expectedEditionComplexes.length
                     );
 
                     // Expect header and 3 dropdown items for each dropdown complex
-                    divDe.forEach((complexDe, index) => {
-                        const itemsDe = getAndExpectDebugElementByCss(complexDe, 'a.dropdown-item', 3, 3);
-                        const itemsEl1 = itemsDe[0].nativeElement;
-                        const itemsEl2 = itemsDe[1].nativeElement;
-                        const itemsEl3 = itemsDe[2].nativeElement;
+                    complexDes.forEach((complexDe, index) => {
+                        const itemsDes = getAndExpectDebugElementByCss(complexDe, 'a.dropdown-item', 3, 3);
+                        const itemsEl1 = itemsDes[0].nativeElement;
+                        const itemsEl2 = itemsDes[1].nativeElement;
+                        const itemsEl3 = itemsDes[2].nativeElement;
 
-                        expectToBe(itemsEl1.textContent, 'Einleitung');
-                        expectToBe(itemsEl2.textContent, 'Edierte Notentexte');
-                        expectToBe(itemsEl3.textContent, 'Kritischer Bericht');
+                        expectToBe(itemsEl1.textContent, EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full);
+                        expectToBe(itemsEl2.textContent, EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.full);
+                        expectToBe(itemsEl3.textContent, EDITION_ROUTE_CONSTANTS.EDITION_REPORT.full);
                     });
+                });
+            });
+
+            describe('... third nav-item link (structure)', () => {
+                it('... should have structure label and fa-icon', () => {
+                    const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[2], 'a.nav-link > span', 1, 1);
+                    const navItemLinkSpanEl = navItemLinkSpanDes[0].nativeElement;
+
+                    expectToBe(navItemLinkSpanEl.textContent, expectedNavbarLabels['structure']);
+
+                    getAndExpectDebugElementByCss(navItemDes[2], 'a.nav-link > fa-icon', 1, 1);
+                });
+
+                it('... should display structure icon', () => {
+                    const faIconDes = getAndExpectDebugElementByCss(navItemDes[2], 'a.nav-link > fa-icon', 1, 1);
+                    const faIconIns = faIconDes[0].componentInstance.icon;
+
+                    expectToEqual(faIconIns, expectedNavbarIcons['structure']);
+                });
+            });
+
+            describe('... fourth nav-item link (contact)', () => {
+                it('... should have contact label and fa-icon', () => {
+                    const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[3], 'a.nav-link > span', 1, 1);
+                    const navItemLinkSpanEl = navItemLinkSpanDes[0].nativeElement;
+
+                    expectToBe(navItemLinkSpanEl.textContent, expectedNavbarLabels['contact']);
+
+                    getAndExpectDebugElementByCss(navItemDes[3], 'a.nav-link > fa-icon', 1, 1);
+                });
+
+                it('... should display contact icon', () => {
+                    const faIconDes = getAndExpectDebugElementByCss(navItemDes[3], 'a.nav-link > fa-icon', 1, 1);
+                    const faIconIns = faIconDes[0].componentInstance.icon;
+
+                    expectToEqual(faIconIns, expectedNavbarIcons['contact']);
                 });
             });
         });
@@ -632,8 +654,8 @@ describe('NavbarComponent (DONE)', () => {
                 linkDes = getAndExpectDebugElementByDirective(
                     compDe,
                     RouterLinkStubDirective,
-                    expectedOrderOfRouterlinks.length,
-                    expectedOrderOfRouterlinks.length
+                    expectedRouterlinks.length,
+                    expectedRouterlinks.length
                 );
 
                 // Get attached link directive instances using each DebugElement's injector
@@ -641,19 +663,19 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can get correct numer of routerLinks from template', () => {
-                expectToBe(routerLinks.length, expectedOrderOfRouterlinks.length);
+                expectToBe(routerLinks.length, expectedRouterlinks.length);
             });
 
             it('... can get correct linkParams from template', () => {
                 routerLinks.forEach((routerLink, index) => {
-                    expectToEqual(routerLink.linkParams, expectedOrderOfRouterlinks[index]);
+                    expectToEqual(routerLink.linkParams, expectedRouterlinks[index]);
                 });
             });
 
             it('... can click all links in template', () => {
                 routerLinks.forEach((routerLink, index) => {
                     const linkDe = linkDes[index];
-                    const expectedRouterLink = expectedOrderOfRouterlinks[index];
+                    const expectedRouterLink = expectedRouterlinks[index];
 
                     expectToBe(routerLink.navigatedTo, null);
 

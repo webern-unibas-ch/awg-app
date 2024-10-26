@@ -131,7 +131,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit() {
-        this.routeToSidenav();
+        this.navigateToSideOutlet();
         this.getResourceData();
     }
 
@@ -259,13 +259,13 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Public method: routeToSidenav.
+     * Public method: navigateToSideOutlet.
      *
-     * It activates the secondary outlet with the resource-info.
+     * It activates the side outlet with the resource-info.
      *
      * @returns {void} Activates the resource-info side outlet.
      */
-    routeToSidenav(): void {
+    navigateToSideOutlet(): void {
         this.router.navigate([{ outlets: { side: 'resourceInfo' } }], {
             preserveFragment: true,
             queryParamsHandling: 'preserve',
@@ -278,6 +278,9 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      * It calls the containing methods when destroying the component.
      */
     ngOnDestroy() {
+        // Navigate to an empty outlet to clear the side outlet
+        this.router.navigate([{ outlets: { side: null } }]);
+
         // Emit truthy value to end all subscriptions
         this._destroyed$.next(true);
 

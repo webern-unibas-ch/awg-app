@@ -22,41 +22,6 @@ import { EditionComplexesService } from '@awg-views/edition-view/services';
 })
 export class NavbarComponent implements OnInit {
     /**
-     * Public variable: faEnvelope.
-     *
-     * It instantiates fontawesome's faEnvelope icon.
-     */
-    faEnvelope = faEnvelope;
-
-    /**
-     * Public variable: faFileAlt.
-     *
-     * It instantiates fontawesome's faFileAlt icon.
-     */
-    faFileAlt = faFileAlt;
-
-    /**
-     * Public variable: faHome.
-     *
-     * It instantiates fontawesome's faHome icon.
-     */
-    faHome = faHome;
-
-    /**
-     * Public variable: faNetworkWired.
-     *
-     * It instantiates fontawesome's faNetworkWired icon.
-     */
-    faNetworkWired = faNetworkWired;
-
-    /**
-     * Public variable: faSearch.
-     *
-     * It instantiates fontawesome's faSearch icon.
-     */
-    faSearch = faSearch;
-
-    /**
      * Public variable: isCollapsed.
      *
      * It keeps the boolean value if the header menu is collapsed or not.
@@ -69,6 +34,34 @@ export class NavbarComponent implements OnInit {
      * It keeps the logos for the footer.
      */
     logos: Logos;
+
+    /**
+     * Public variable: navbarIcons.
+     *
+     * It keeps the fontawesome icons for the navbar.
+     */
+    navbarIcons = {
+        contact: faEnvelope,
+        edition: faFileAlt,
+        home: faHome,
+        structure: faNetworkWired,
+        search: faSearch,
+    };
+
+    /**
+     * Public variable: navbarLabels.
+     *
+     * It keeps the labels for the navbar.
+     */
+    navbarLabels = {
+        home: 'Home',
+        complexes: 'Auswahl Skizzenkomplexe',
+        contact: 'Kontakt',
+        edition: 'Edition',
+        general: 'Allgemein',
+        search: 'Datenbank-Suche',
+        structure: 'Strukturmodell',
+    };
 
     /**
      * Readonly variable: DISPLAYED_EDITION_COMPLEXES.

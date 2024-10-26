@@ -13,11 +13,11 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 import { EditionOutlineComplexItem } from '@awg-views/edition-view/models';
 import { EditionComplexesService } from '@awg-views/edition-view/services';
 
-import { EditionComplexCardComponent } from './edition-complex-card.component';
+import { EditionSectionDetailComplexCardComponent } from './edition-section-detail-complex-card.component';
 
-describe('EditionComplexCardComponent (DONE)', () => {
-    let component: EditionComplexCardComponent;
-    let fixture: ComponentFixture<EditionComplexCardComponent>;
+describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
+    let component: EditionSectionDetailComplexCardComponent;
+    let fixture: ComponentFixture<EditionSectionDetailComplexCardComponent>;
     let compDe: DebugElement;
 
     let linkDes: DebugElement[];
@@ -31,12 +31,12 @@ describe('EditionComplexCardComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [EditionComplexCardComponent, RouterLinkStubDirective],
+            declarations: [EditionSectionDetailComplexCardComponent, RouterLinkStubDirective],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionComplexCardComponent);
+        fixture = TestBed.createComponent(EditionSectionDetailComplexCardComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 

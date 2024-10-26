@@ -15,9 +15,11 @@ import { CompileHtmlModule } from './compile-html';
 //
 // Shared components
 import { AddressComponent } from './address/address.component';
-import { ErrorAlertComponent } from './error-alert/error-alert.component';
+import { AlertErrorComponent } from './alert-error/alert-error.component';
+import { AlertInfoComponent } from './alert-info/alert-info.component';
 import { HeadingComponent } from './heading/heading.component';
 import { JsonViewerComponent } from './json-viewer/json-viewer.component';
+import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
 import { LicenseComponent } from './license/license.component';
 import { ModalComponent } from './modal/modal.component';
 import { OpenStreetMapComponent } from './open-street-map/open-street-map.component';
@@ -31,6 +33,7 @@ import { ViewHandleButtonGroupComponent } from './view-handle-button-group/view-
 
 //
 // Shared directives
+import { AbbrDirective } from './abbr/abbr.directive';
 import { ExternalLinkDirective } from './external-link/external-link.directive';
 
 //
@@ -57,9 +60,11 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
     ],
     declarations: [
         AddressComponent,
-        ErrorAlertComponent,
+        AlertErrorComponent,
+        AlertInfoComponent,
         HeadingComponent,
         JsonViewerComponent,
+        LanguageSwitcherComponent,
         LicenseComponent,
         ModalComponent,
         OpenStreetMapComponent,
@@ -70,6 +75,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         ToastComponent,
         TwelveToneSpinnerComponent,
         ViewHandleButtonGroupComponent,
+        AbbrDirective,
         ExternalLinkDirective,
         OrderByPipe,
     ],
@@ -86,9 +92,11 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         SharedNgbootstrapModule,
 
         AddressComponent,
-        ErrorAlertComponent,
+        AlertErrorComponent,
+        AlertInfoComponent,
         HeadingComponent,
         JsonViewerComponent,
+        LanguageSwitcherComponent,
         LicenseComponent,
         ModalComponent,
         OpenStreetMapComponent,
@@ -98,6 +106,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         ToastComponent,
         TwelveToneSpinnerComponent,
         ViewHandleButtonGroupComponent,
+        AbbrDirective,
         ExternalLinkDirective,
         OrderByPipe,
     ],

@@ -13,11 +13,11 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4717678.svg)](https://doi.org/10.5281/zenodo.4717678)
 
-A prototype web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch) (AWG), located at the Department of Musicology of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).
+A web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch) (AWG), located at the Department of Musicology of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).
 
 **Project Status**: This project is actively maintained.
 
-<img width="943" alt="app" src="https://github.com/musicEnfanthen/awg-app/assets/21059419/0673d981-558a-4519-8232-e570efa2985e">
+<img width="947" alt="Screenshot 2024-10-26 124804" src="https://github.com/user-attachments/assets/e5403d43-c555-4097-a250-79b5184a4e47">
 
 ## Table of Contents
 

@@ -4,11 +4,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { ErrorAlertComponent } from './error-alert.component';
+import { AlertErrorComponent } from './alert-error.component';
 
-describe('ErrorAlertComponent', () => {
-    let component: ErrorAlertComponent;
-    let fixture: ComponentFixture<ErrorAlertComponent>;
+describe('AlertErrorComponent', () => {
+    let component: AlertErrorComponent;
+    let fixture: ComponentFixture<AlertErrorComponent>;
     let compDe: DebugElement;
 
     let expectedErrorObject: any;
@@ -17,10 +17,10 @@ describe('ErrorAlertComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ErrorAlertComponent],
+            declarations: [AlertErrorComponent],
         }).compileComponents();
 
-        fixture = TestBed.createComponent(ErrorAlertComponent);
+        fixture = TestBed.createComponent(AlertErrorComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -38,17 +38,17 @@ describe('ErrorAlertComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have an outer div.awg-error-message', () => {
+            it('... should have an outer `div.awg-error-message`', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-error-message', 1, 1);
             });
 
-            it('... should have a centered danger alert in div.awg-error-message', () => {
+            it('... should have a centered danger alert in `div.awg-error-message`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-error-message ', 1, 1);
 
                 getAndExpectDebugElementByCss(divDes[0], 'div.text-center > div.alert-danger', 1, 1);
             });
 
-            it('... should not display an error message in div.alert yet', () => {
+            it('... should not display an error message in `div.alert-danger` yet', () => {
                 const alertDes = getAndExpectDebugElementByCss(compDe, 'div.alert-danger', 1, 1);
                 const alertEl = alertDes[0].nativeElement;
 
@@ -66,7 +66,7 @@ describe('ErrorAlertComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should display an error message in div.alert', () => {
+            it('... should display an error message in `div.alert-danger`', () => {
                 const alertDes = getAndExpectDebugElementByCss(compDe, 'div.alert-danger', 1, 1);
                 const alertEl = alertDes[0].nativeElement;
 

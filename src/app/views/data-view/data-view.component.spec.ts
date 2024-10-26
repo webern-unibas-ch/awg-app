@@ -32,6 +32,8 @@ describe('DataViewComponent (DONE)', () => {
 
     let mockRouter: Partial<Router>;
 
+    let navigateToSideOutletSpy: Spy;
+
     const expectedTitle = 'Suche';
     const expectedId = 'search';
 
@@ -53,7 +55,7 @@ describe('DataViewComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        spyOn(component, 'routeToSidenav').and.callThrough();
+        navigateToSideOutletSpy = spyOn(component, 'navigateToSideOutlet').and.callThrough();
     });
 
     afterAll(() => {
@@ -70,35 +72,43 @@ describe('DataViewComponent (DONE)', () => {
             expectToBe(component.searchId, expectedId);
         });
 
-        describe('#routeToSidenav()', () => {
-            it('... should have a method `routeToSidenav`', () => {
-                expect(component.routeToSidenav).toBeDefined();
+        describe('#navigateToSideOutlet()', () => {
+            it('... should have a method `navigateToSideOutlet`', () => {
+                expect(component.navigateToSideOutlet).toBeDefined();
             });
 
             it('... should not have been called', () => {
-                expect(component.routeToSidenav).not.toHaveBeenCalled();
+                expectSpyCall(navigateToSideOutletSpy, 0);
             });
         });
 
         describe('VIEW', () => {
-            it('... should contain one heading component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+            it('... should contain one `div.awg-data-view`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-data-view', 1, 1);
             });
 
-            it('... should contain one help block div', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.help-block', 1, 1);
-            });
-
-            it('... should contain one router outlet (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 1, 1);
+            it('... should contain one heading component (stubbed) in `div.awg-data-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-data-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
             });
 
             it('... should not pass down `title` and `id` to heading component', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-data-view', 1, 1);
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
                 expect(headingCmp.title).toBeUndefined();
                 expect(headingCmp.id).toBeUndefined();
+            });
+
+            it('... should contain one help block div in `div.awg-data-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-data-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.help-block', 1, 1);
+            });
+
+            it('... should contain one router outlet (stubbed) in `div.awg-data-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-data-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], RouterOutletStubComponent, 1, 1);
             });
         });
     });
@@ -109,55 +119,70 @@ describe('DataViewComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#routeToSideNav()', () => {
-            let navigationSpy: Spy;
+        describe('VIEW', () => {
+            it('... should pass down `title` and `id` to heading component', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-data-view', 1, 1);
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
+                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+
+                expectToBe(headingCmp.title, expectedTitle);
+                expectToBe(headingCmp.id, expectedId);
+            });
+        });
+
+        describe('#navigateToSideOutlet()', () => {
+            let routerNavigateSpy: Spy;
 
             beforeEach(() => {
                 // Create spy of mockrouter SpyObj
-                navigationSpy = mockRouter.navigate as jasmine.Spy;
+                routerNavigateSpy = mockRouter.navigate as jasmine.Spy;
             });
 
             it('... should have been called', () => {
-                // Router navigation triggerd by onInit
-                expect(component.routeToSidenav).toHaveBeenCalled();
+                expectSpyCall(navigateToSideOutletSpy, 1);
             });
 
             it('... should have triggered `router.navigate`', () => {
-                expectSpyCall(navigationSpy, 1);
+                expectSpyCall(routerNavigateSpy, 1);
             });
 
             it('... should tell ROUTER to navigate to `searchInfo` outlet', () => {
                 const expectedRoute = 'searchInfo';
 
                 // Catch args passed to navigation spy
-                const navArgs = navigationSpy.calls.first().args;
-                const outletRoute = navArgs[0][0].outlets.side;
-
+                const navArgs = routerNavigateSpy.calls.first().args;
                 expect(navArgs).toBeDefined();
                 expect(navArgs[0]).toBeDefined();
+                expect(routerNavigateSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
+
+                const outletRoute = navArgs[0][0].outlets.side;
                 expectToBe(outletRoute, expectedRoute);
-                expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
 
             it('... should tell ROUTER to navigate with `preserveFragment:true`', () => {
                 // Catch args passed to navigation spy
-                const navArgs = navigationSpy.calls.first().args;
+                const navArgs = routerNavigateSpy.calls.first().args;
                 const navExtras = navArgs[1];
 
                 expect(navExtras).toBeDefined();
                 expectToBe(navExtras.preserveFragment, true);
-
-                expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
+                expect(routerNavigateSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
         });
 
-        describe('VIEW', () => {
-            it('... should pass down `title` and `id` to heading component', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
-                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+        describe('#ngOnDestroy()', () => {
+            it('... should tell ROUTER to clear side outlet', () => {
+                const routerNavigateSpy = mockRouter.navigate as jasmine.Spy;
 
-                expectToBe(headingCmp.title, expectedTitle);
-                expectToBe(headingCmp.id, expectedId);
+                component.ngOnDestroy();
+
+                const navArgs = routerNavigateSpy.calls.mostRecent().args;
+                expect(navArgs).toBeDefined();
+                expect(navArgs[0]).toBeDefined();
+                expect(routerNavigateSpy).toHaveBeenCalledWith(navArgs[0]);
+
+                const outletRoute = navArgs[0][0].outlets.side;
+                expectToBe(outletRoute, null);
             });
         });
     });

@@ -38,13 +38,13 @@ import {
     SourceList,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionReportComponent } from './edition-report.component';
 
 // Mock components
-@Component({ selector: 'awg-error-alert', template: '' })
-class ErrorAlertStubComponent {
+@Component({ selector: 'awg-alert-error', template: '' })
+class AlertErrorStubComponent {
     @Input()
     errorObject: any;
 }
@@ -111,9 +111,9 @@ describe('EditionReportComponent', () => {
     let mockRouter;
 
     let mockEditionDataService: Partial<EditionDataService>;
-    let mockEditionService: Partial<EditionService>;
+    let mockEditionStateService: Partial<EditionStateService>;
     let editionDataService: Partial<EditionDataService>;
-    let editionService: Partial<EditionService>;
+    let editionStateService: Partial<EditionStateService>;
 
     let expectedEditionComplex: EditionComplex;
     let expectedEditionReportData: (SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[];
@@ -133,7 +133,7 @@ describe('EditionReportComponent', () => {
 
     let editionDataServiceGetEditionReportDataSpy: Spy;
     let getEditionReportDataSpy: Spy;
-    let editionServiceGetSelectedEditionComplexSpy: Spy;
+    let editionStateServiceGetSelectedEditionComplexSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
     let navigateWithComplexIdSpy: Spy;
     let navigationSpy: Spy;
@@ -167,7 +167,7 @@ describe('EditionReportComponent', () => {
             ): Observable<(SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[]> =>
                 observableOf(expectedEditionReportData),
         };
-        mockEditionService = {
+        mockEditionStateService = {
             getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
         };
 
@@ -176,7 +176,7 @@ describe('EditionReportComponent', () => {
             declarations: [
                 CompileHtmlComponent,
                 EditionReportComponent,
-                ErrorAlertStubComponent,
+                AlertErrorStubComponent,
                 ModalStubComponent,
                 SourceListStubComponent,
                 SourceDescriptionStubComponent,
@@ -187,7 +187,7 @@ describe('EditionReportComponent', () => {
             ],
             providers: [
                 { provide: EditionDataService, useValue: mockEditionDataService },
-                { provide: EditionService, useValue: mockEditionService },
+                { provide: EditionStateService, useValue: mockEditionStateService },
                 { provide: Router, useValue: mockRouter },
             ],
         }).compileComponents();
@@ -200,7 +200,7 @@ describe('EditionReportComponent', () => {
 
         // Inject services from root
         editionDataService = TestBed.inject(EditionDataService);
-        editionService = TestBed.inject(EditionService);
+        editionStateService = TestBed.inject(EditionStateService);
 
         // Test data
         expectedPanelId = 'awg-sources-panel';
@@ -229,9 +229,10 @@ describe('EditionReportComponent', () => {
         editionDataServiceGetEditionReportDataSpy = spyOn(editionDataService, 'getEditionReportData').and.returnValue(
             observableOf(expectedEditionReportData)
         );
-        editionServiceGetSelectedEditionComplexSpy = spyOn(editionService, 'getSelectedEditionComplex').and.returnValue(
-            observableOf(expectedEditionComplex)
-        );
+        editionStateServiceGetSelectedEditionComplexSpy = spyOn(
+            editionStateService,
+            'getSelectedEditionComplex'
+        ).and.returnValue(observableOf(expectedEditionComplex));
         getEditionReportDataSpy = spyOn(component, 'getEditionReportData').and.callThrough();
         navigateToReportFragmentSpy = spyOn(component, 'onReportFragmentNavigate').and.callThrough();
         navigateWithComplexIdSpy = spyOn(component as any, '_navigateWithComplexId').and.callThrough();
@@ -294,10 +295,10 @@ describe('EditionReportComponent', () => {
                 getAndExpectDebugElementByDirective(compDe, TextcriticsListStubComponent, 0, 0);
             });
 
-            it('... should not contain an error alert component (stubbed)', () => {
+            it('... should not contain an AlertErrorComponent (stubbed)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
-                getAndExpectDebugElementByDirective(divDes[0], ErrorAlertStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 0, 0);
             });
 
             it('... should not contain a loading spinner component (stubbed)', () => {
@@ -322,8 +323,8 @@ describe('EditionReportComponent', () => {
             expectSpyCall(getEditionReportDataSpy, 1);
         });
 
-        it('... should have triggered `getSelectedEditionComplex()` method from EditionService', () => {
-            expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
+        it('... should have triggered `getSelectedEditionComplex()` method from EditionStateService', () => {
+            expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 1);
         });
 
         it('... should have editionComplex', () => {
@@ -408,20 +409,20 @@ describe('EditionReportComponent', () => {
                     detectChangesOnPush(fixture);
                 }));
 
-                it('... should not contain report view, but one ErrorAlertComponent (stubbed)', waitForAsync(() => {
+                it('... should not contain report view, but one AlertErrorComponent (stubbed)', waitForAsync(() => {
                     getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
-                    getAndExpectDebugElementByDirective(divDes[0], ErrorAlertStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 1, 1);
                 }));
 
-                it('... should pass down error object to ErrorAlertComponent', waitForAsync(() => {
-                    const errorAlertDes = getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 1, 1);
-                    const errorAlertCmp = errorAlertDes[0].injector.get(
-                        ErrorAlertStubComponent
-                    ) as ErrorAlertStubComponent;
+                it('... should pass down error object to AlertErrorComponent', waitForAsync(() => {
+                    const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 1, 1);
+                    const alertErrorCmp = alertErrorDes[0].injector.get(
+                        AlertErrorStubComponent
+                    ) as AlertErrorStubComponent;
 
-                    expectToEqual(errorAlertCmp.errorObject, expectedError);
+                    expectToEqual(alertErrorCmp.errorObject, expectedError);
                 }));
             });
 
@@ -433,7 +434,7 @@ describe('EditionReportComponent', () => {
                         detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-report-view', 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
                         getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
@@ -443,7 +444,7 @@ describe('EditionReportComponent', () => {
                         detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-report-view', 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
                         getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
@@ -453,7 +454,7 @@ describe('EditionReportComponent', () => {
                         detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-report-view', 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
                         getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                     });
                 });
@@ -469,8 +470,8 @@ describe('EditionReportComponent', () => {
                 expectSpyCall(getEditionReportDataSpy, 1);
             });
 
-            it('... should have got `editionComplex` from editionService', () => {
-                expectSpyCall(editionServiceGetSelectedEditionComplexSpy, 1);
+            it('... should have got `editionComplex` from editionStateService', () => {
+                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 1);
 
                 expectToEqual(component.editionComplex, expectedEditionComplex);
             });

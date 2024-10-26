@@ -10,7 +10,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { LOGOSDATA, METADATA } from '@awg-core/core-data';
+import { LOGOS_DATA, META_DATA } from '@awg-core/core-data';
 import { Logo, Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 
 import { CoreService } from '@awg-core/services';
@@ -56,7 +56,7 @@ describe('FooterComponent (DONE)', () => {
     beforeEach(waitForAsync(() => {
         // Stub service for test purposes
         mockCoreService = {
-            getMetaDataSection: sectionType => METADATA[sectionType],
+            getMetaDataSection: sectionType => META_DATA[sectionType],
             getLogos: () => expectedLogos,
         };
 
@@ -78,8 +78,8 @@ describe('FooterComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedLogos = LOGOSDATA;
-        expectedPageMetaData = METADATA[MetaSectionTypes.page];
+        expectedLogos = LOGOS_DATA;
+        expectedPageMetaData = META_DATA[MetaSectionTypes.page];
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see

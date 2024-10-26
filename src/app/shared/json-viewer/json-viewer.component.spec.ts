@@ -210,7 +210,7 @@ describe('JsonViewerComponent (DONE)', () => {
             });
 
             it('... should pass down `jsonViewerData` to ngx-json-viewer component in Formatted view', () => {
-                const viewerDes = getAndExpectDebugElementByDirective(compDe, NgxJsonViewerStubComponent, 1, 0);
+                const viewerDes = getAndExpectDebugElementByDirective(compDe, NgxJsonViewerStubComponent, 1, 1);
                 const viewerCmp = viewerDes[0].injector.get(NgxJsonViewerStubComponent) as NgxJsonViewerStubComponent;
 
                 expectToEqual(viewerCmp.json, expectedData);

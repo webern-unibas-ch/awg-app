@@ -33,8 +33,8 @@ import {
 import {
     EditionComplexesService,
     EditionDataService,
-    EditionService,
     EditionSheetsService,
+    EditionStateService,
 } from '@awg-views/edition-view/services';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -78,8 +78,8 @@ class EditionConvoluteStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-error-alert', template: '' })
-class ErrorAlertStubComponent {
+@Component({ selector: 'awg-alert-error', template: '' })
+class AlertErrorStubComponent {
     @Input()
     errorObject: any;
 }
@@ -105,13 +105,13 @@ describe('EditionSheetsComponent', () => {
     const expectedPath = 'sheets';
 
     let mockEditionDataService: Partial<EditionDataService>;
-    let mockEditionService: Partial<EditionService>;
     let mockEditionSheetsService: Partial<EditionSheetsService>;
+    let mockEditionStateService: Partial<EditionStateService>;
 
     let editionDataServiceGetEditionSheetsDataSpy: Spy;
-    let editionServiceGetSelectedEditionComplexSpy: Spy;
     let editionSheetsServiceSelectSvgSheetByIdSpy: Spy;
     let editionSheetsServiceSelectConvoluteSpy: Spy;
+    let editionStateServiceGetSelectedEditionComplexSpy: Spy;
     let getEditionSheetsDataSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
     let navigateWithComplexIdSpy: Spy;
@@ -162,7 +162,7 @@ describe('EditionSheetsComponent', () => {
                 editionComplex: EditionComplex
             ): Observable<(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]> => observableOf([]),
         };
-        mockEditionService = {
+        mockEditionStateService = {
             getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(),
         };
         mockEditionSheetsService = {
@@ -181,13 +181,13 @@ describe('EditionSheetsComponent', () => {
                 EditionSheetsComponent,
                 EditionConvoluteStubComponent,
                 EditionAccoladeStubComponent,
-                ErrorAlertStubComponent,
+                AlertErrorStubComponent,
                 ModalStubComponent,
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
                 { provide: EditionDataService, useValue: mockEditionDataService },
-                { provide: EditionService, useValue: mockEditionService },
+                { provide: EditionStateService, useValue: mockEditionStateService },
                 { provide: Router, useValue: mockRouter },
                 {
                     provide: ActivatedRoute,
@@ -225,8 +225,8 @@ describe('EditionSheetsComponent', () => {
             mockEditionDataService,
             'getEditionSheetsData'
         ).and.returnValue(observableOf([expectedFolioConvoluteData, expectedSvgSheetsData, expectedTextcriticsData]));
-        editionServiceGetSelectedEditionComplexSpy = spyOn(
-            mockEditionService,
+        editionStateServiceGetSelectedEditionComplexSpy = spyOn(
+            mockEditionStateService,
             'getSelectedEditionComplex'
         ).and.returnValue(observableOf(expectedEditionComplex));
         editionSheetsServiceSelectSvgSheetByIdSpy = spyOn(
@@ -319,10 +319,10 @@ describe('EditionSheetsComponent', () => {
                 getAndExpectDebugElementByDirective(divDes[0], ModalStubComponent, 1, 1);
             });
 
-            it('... should not contain an error alert component (stubbed)', () => {
+            it('... should not contain an AlertErrorComponent (stubbed)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
-                getAndExpectDebugElementByDirective(divDes[0], ErrorAlertStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 0, 0);
             });
 
             it('... should not contain a loading spinner component (stubbed)', () => {
@@ -389,20 +389,20 @@ describe('EditionSheetsComponent', () => {
                     detectChangesOnPush(fixture);
                 }));
 
-                it('... should not contain sheets view, but one ErrorAlertComponent (stubbed)', waitForAsync(() => {
+                it('... should not contain sheets view, but one AlertErrorComponent (stubbed)', waitForAsync(() => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-sheets-view', 0, 0);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
-                    getAndExpectDebugElementByDirective(divDes[0], ErrorAlertStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 1, 1);
                 }));
 
-                it('... should pass down error object to ErrorAlertComponent', waitForAsync(() => {
-                    const errorAlertDes = getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 1, 1);
-                    const errorAlertCmp = errorAlertDes[0].injector.get(
-                        ErrorAlertStubComponent
-                    ) as ErrorAlertStubComponent;
+                it('... should pass down error object to AlertErrorComponent', waitForAsync(() => {
+                    const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 1, 1);
+                    const alertErrorCmp = alertErrorDes[0].injector.get(
+                        AlertErrorStubComponent
+                    ) as AlertErrorStubComponent;
 
-                    expectToEqual(errorAlertCmp.errorObject, expectedError);
+                    expectToEqual(alertErrorCmp.errorObject, expectedError);
                 }));
             });
 
@@ -413,7 +413,7 @@ describe('EditionSheetsComponent', () => {
                         detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-sheets-view', 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, ErrorAlertStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
 
                         getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                     });

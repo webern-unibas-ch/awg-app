@@ -15,6 +15,7 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
+import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
 import { EditionSvgSheet, TextcriticalCommentBlock, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
@@ -51,7 +52,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [EditionTkaTableComponent, CompileHtmlComponent],
+            declarations: [EditionTkaTableComponent, AbbrDirective, CompileHtmlComponent],
         }).compileComponents();
     }));
 
