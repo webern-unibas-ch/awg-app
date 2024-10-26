@@ -133,6 +133,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
+import { StructureInfoComponent } from &#x27;@awg-side-info/structure-info/structure-info.component&#x27;;
 import { StructureViewComponent } from &#x27;@awg-views/structure-view/structure-view.component&#x27;;
 
 /* Routes of the StructureViewModule */
@@ -142,13 +143,18 @@ const STRUCTURE_VIEW_ROUTES: Routes &#x3D; [
         component: StructureViewComponent,
         data: { title: &#x27;AWG Online Edition – Structure&#x27; },
     },
+    {
+        path: &#x27;&#x27;,
+        outlet: &#x27;side&#x27;,
+        component: StructureInfoComponent,
+    },
 ];
 
 /**
  * Routed components of the {@link StructureViewModule}:
  * {@link StructureViewComponent}.
  */
-export const routedStructureViewComponents &#x3D; [StructureViewComponent];
+export const routedStructureViewComponents &#x3D; [StructureViewComponent, StructureInfoComponent];
 
 /**
  * StructureView module routing.
@@ -234,7 +240,6 @@ export class StructureViewRoutingModule {}
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

@@ -164,6 +164,10 @@ and edition report view.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                <a href="#_generateAssetPath" >_generateAssetPath</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#_getFolioConvoluteData" >_getFolioConvoluteData</a>
                             </li>
                             <li>
@@ -219,10 +223,14 @@ and edition report view.</p>
                                 <a href="#_setAssetPathForEditionComplex" >_setAssetPathForEditionComplex</a>
                             </li>
                             <li>
-                                <a href="#getEditionGraphData" >getEditionGraphData</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#_setAssetPathForSectionIntro" >_setAssetPathForSectionIntro</a>
                             </li>
                             <li>
-                                <a href="#getEditionIntroData" >getEditionIntroData</a>
+                                <a href="#getEditionComplexIntroData" >getEditionComplexIntroData</a>
+                            </li>
+                            <li>
+                                <a href="#getEditionGraphData" >getEditionGraphData</a>
                             </li>
                             <li>
                                 <a href="#getEditionPrefaceData" >getEditionPrefaceData</a>
@@ -232,6 +240,9 @@ and edition report view.</p>
                             </li>
                             <li>
                                 <a href="#getEditionRowTablesData" >getEditionRowTablesData</a>
+                            </li>
+                            <li>
+                                <a href="#getEditionSectionIntroData" >getEditionSectionIntroData</a>
                             </li>
                             <li>
                                 <a href="#getEditionSheetsData" >getEditionSheetsData</a>
@@ -315,6 +326,117 @@ to handle http requests.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_generateAssetPath"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_generateAssetPath</b></span>
+                        <a href="#_generateAssetPath"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_generateAssetPath(seriesRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, sectionRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, complexIdRoute?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="243"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:243</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _generateAssetPath.</p>
+<p>It generates the path to the correct assets folder
+of a given edition complex or section.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>seriesRoute</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The current series route.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>sectionRoute</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The current section route.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>complexIdRoute</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The current complex id route.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The path to the correct assets folder of a given edition complex or section.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="_getFolioConvoluteData"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -333,8 +455,8 @@ to handle http requests.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="239"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:239</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="300"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:300</a></div>
                         </td>
                     </tr>
 
@@ -381,8 +503,8 @@ the method to get the JSON data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="254"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:254</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="315"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:315</a></div>
                         </td>
                     </tr>
 
@@ -429,8 +551,8 @@ the method to get the JSON data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="269"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:269</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="330"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:330</a></div>
                         </td>
                     </tr>
 
@@ -477,8 +599,8 @@ the method to get the JSON data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="388"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:388</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="449"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:449</a></div>
                         </td>
                     </tr>
 
@@ -555,8 +677,8 @@ the method to get the JSON data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="284"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:284</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="345"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:345</a></div>
                         </td>
                     </tr>
 
@@ -603,8 +725,8 @@ the method to get the JSON data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="299"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:299</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="360"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:360</a></div>
                         </td>
                     </tr>
 
@@ -651,8 +773,8 @@ the method to get the JSON data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="329"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:329</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="390"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:390</a></div>
                         </td>
                     </tr>
 
@@ -699,8 +821,8 @@ the method to get the JSON data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="344"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:344</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="405"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:405</a></div>
                         </td>
                     </tr>
 
@@ -747,8 +869,8 @@ the method to get the JSON data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="314"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:314</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="375"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:375</a></div>
                         </td>
                     </tr>
 
@@ -795,8 +917,8 @@ the method to get the JSON data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="359"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:359</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="420"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:420</a></div>
                         </td>
                     </tr>
 
@@ -843,8 +965,8 @@ the method to get the JSON data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="374"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:374</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="435"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:435</a></div>
                         </td>
                     </tr>
 
@@ -891,8 +1013,8 @@ the method to get the JSON data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="404"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:404</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="465"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:465</a></div>
                         </td>
                     </tr>
 
@@ -993,8 +1115,8 @@ the method to get the JSON data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="422"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:422</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="483"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:483</a></div>
                         </td>
                     </tr>
 
@@ -1071,8 +1193,8 @@ the method to get the JSON data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="217"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:217</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="269"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:269</a></div>
                         </td>
                     </tr>
 
@@ -1121,6 +1243,177 @@ the method to get the JSON data.</p>
                         </div>
                             <div class="io-description">
                                 <p>The path to the correct assets folder of a given edition complex.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_setAssetPathForSectionIntro"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_setAssetPathForSectionIntro</b></span>
+                        <a href="#_setAssetPathForSectionIntro"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_setAssetPathForSectionIntro(seriesRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, sectionRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="287"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:287</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _setAssetPathForSectionIntro.</p>
+<p>It sets the path to correct assets folder of an intro of a given edition section.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>seriesRoute</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The current series route.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>sectionRoute</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The current section route.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The path to the correct assets folder of an intro of a given edition section.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEditionComplexIntroData"></a>
+                    <span class="name">
+                        <span ><b>getEditionComplexIntroData</b></span>
+                        <a href="#getEditionComplexIntroData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getEditionComplexIntroData(editionComplex: <a href="../classes/EditionComplex.html" target="_self">EditionComplex</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="85"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: getEditionComplexIntroData.</p>
+<p>It provides the data from a JSON file
+for the intro of an edition complex of the edition view.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>editionComplex</td>
+                                            <td>
+                                                            <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The current edition complex.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;IntroList&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The observable with the IntroList data.</p>
 
                             </div>
                 </td>
@@ -1208,83 +1501,6 @@ for the graph of the edition view.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getEditionIntroData"></a>
-                    <span class="name">
-                        <span ><b>getEditionIntroData</b></span>
-                        <a href="#getEditionIntroData"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getEditionIntroData(editionComplex: <a href="../classes/EditionComplex.html" target="_self">EditionComplex</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="85"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:85</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: getEditionIntroData.</p>
-<p>It provides the data from a JSON file
-for the intro of the edition view.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>editionComplex</td>
-                                            <td>
-                                                            <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The current edition complex.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>Observable&lt;IntroList&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The observable with the IntroList data.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="getEditionPrefaceData"></a>
                     <span class="name">
                         <span ><b>getEditionPrefaceData</b></span>
@@ -1301,8 +1517,8 @@ for the intro of the edition view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="105"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:105</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:128</a></div>
                         </td>
                     </tr>
 
@@ -1346,8 +1562,8 @@ for the preface of the edition view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="130"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:130</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="153"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:153</a></div>
                         </td>
                     </tr>
 
@@ -1427,8 +1643,8 @@ and TextcriticsList data. Only the first emit is needed.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="165"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:165</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="188"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:188</a></div>
                         </td>
                     </tr>
 
@@ -1456,6 +1672,99 @@ for the row tables of the edition view.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getEditionSectionIntroData"></a>
+                    <span class="name">
+                        <span ><b>getEditionSectionIntroData</b></span>
+                        <a href="#getEditionSectionIntroData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getEditionSectionIntroData(seriesRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, sectionRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="108"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:108</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: getEditionSectionIntroData.</p>
+<p>It provides the data from a JSON file
+for the intro of an edition section of the edition view.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>seriesRoute</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The current series route.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>sectionRoute</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The current section route.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;IntroList&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The observable with the IntroList data.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getEditionSheetsData"></a>
                     <span class="name">
                         <span ><b>getEditionSheetsData</b></span>
@@ -1472,8 +1781,8 @@ for the row tables of the edition view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="192"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:192</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="215"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:215</a></div>
                         </td>
                     </tr>
 
@@ -1662,17 +1971,40 @@ export class EditionDataService {
     }
 
     /**
-     * Public method: getEditionIntroData.
+     * Public method: getEditionComplexIntroData.
      *
      * It provides the data from a JSON file
-     * for the intro of the edition view.
+     * for the intro of an edition complex of the edition view.
      *
      * @param {EditionComplex} editionComplex The current edition complex.
      *
      * @returns {Observable&lt;IntroList&gt;} The observable with the IntroList data.
      */
-    getEditionIntroData(editionComplex: EditionComplex): Observable&lt;IntroList&gt; {
+    getEditionComplexIntroData(editionComplex: EditionComplex): Observable&lt;IntroList&gt; {
         this._assetPath &#x3D; this._setAssetPathForEditionComplex(editionComplex);
+        const introData$: Observable&lt;IntroList&gt; &#x3D; this._getIntroData();
+
+        return introData$.pipe(
+            // Default empty value
+            defaultIfEmpty(new IntroList()),
+            // Take only first request (JSON fetch)
+            take(1)
+        );
+    }
+
+    /**
+     * Public method: getEditionSectionIntroData.
+     *
+     * It provides the data from a JSON file
+     * for the intro of an edition section of the edition view.
+     *
+     * @param {string} seriesRoute The current series route.
+     * @param {string} sectionRoute The current section route.
+     *
+     * @returns {Observable&lt;IntroList&gt;} The observable with the IntroList data.
+     */
+    getEditionSectionIntroData(seriesRoute: string, sectionRoute: string): Observable&lt;IntroList&gt; {
+        this._assetPath &#x3D; this._setAssetPathForSectionIntro(seriesRoute, sectionRoute);
         const introData$: Observable&lt;IntroList&gt; &#x3D; this._getIntroData();
 
         return introData$.pipe(
@@ -1795,6 +2127,35 @@ export class EditionDataService {
     }
 
     /**
+     * Private method: _generateAssetPath.
+     *
+     * It generates the path to the correct assets folder
+     * of a given edition complex or section.
+     *
+     * @param {string} seriesRoute The current series route.
+     * @param {string} sectionRoute The current section route.
+     * @param {string} [complexIdRoute] The current complex id route.
+     *
+     * @returns {string} The path to the correct assets folder of a given edition complex or section.
+     */
+    private _generateAssetPath(seriesRoute: string, sectionRoute: string, complexIdRoute?: string): string {
+        const delimiter &#x3D; &#x27;/&#x27;;
+        let route &#x3D;
+            delimiter +
+            EDITION_ROUTE_CONSTANTS.SERIES.route +
+            delimiter +
+            seriesRoute +
+            delimiter +
+            EDITION_ROUTE_CONSTANTS.SECTION.route +
+            delimiter +
+            sectionRoute;
+        if (complexIdRoute) {
+            route +&#x3D; complexIdRoute;
+        }
+        return EDITION_ASSETS_DATA.BASE_ROUTE + route;
+    }
+
+    /**
      * Private method: _setAssetPathForEditionComplex.
      *
      * It sets the path to correct assets folder of a given edition complex.
@@ -1804,16 +2165,25 @@ export class EditionDataService {
      * @returns {string} The path to the correct assets folder of a given edition complex.
      */
     private _setAssetPathForEditionComplex(editionComplex: EditionComplex): string {
-        const delimiter &#x3D; &#x27;/&#x27;;
-        const complexRoute &#x3D;
-            delimiter +
-            EDITION_ROUTE_CONSTANTS.SERIES.route +
-            delimiter +
-            editionComplex.pubStatement.series.route +
-            EDITION_ROUTE_CONSTANTS.SECTION.route +
-            editionComplex.pubStatement.section.route +
-            editionComplex.complexId.route;
-        return EDITION_ASSETS_DATA.BASE_ROUTE + complexRoute;
+        return this._generateAssetPath(
+            editionComplex.pubStatement.series.route,
+            editionComplex.pubStatement.section.route,
+            editionComplex.complexId.route
+        );
+    }
+
+    /**
+     * Private method: _setAssetPathForSectionIntro.
+     *
+     * It sets the path to correct assets folder of an intro of a given edition section.
+     *
+     * @param {string} seriesRoute The current series route.
+     * @param {string} sectionRoute The current section route.
+     *
+     * @returns {string} The path to the correct assets folder of an intro of a given edition section.
+     */
+    private _setAssetPathForSectionIntro(seriesRoute: string, sectionRoute: string): string {
+        return this._generateAssetPath(seriesRoute, sectionRoute);
     }
 
     /**
@@ -2083,7 +2453,6 @@ export class EditionDataService {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

@@ -191,7 +191,7 @@ from a intro json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/edition-view/models/intro.model.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/views/edition-view/models/intro.model.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -216,7 +216,36 @@ from a intro json file.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class Intro {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class IntroBlock {
+    /**
+     * The id of an intro block.
+     */
+    blockId: string;
+
+    /**
+     * The header of an intro block.
+     */
+    blockHeader: string;
+
+    /**
+     * The content array of an intro block.
+     */
+    blockContent: string[];
+
+    /**
+     * The notes array of an intro block.
+     */
+    blockNotes?: string[];
+}
+
+/**
+ * The Intro class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a single intro
+ * from a intro json file.
+ */
+export class Intro {
     /**
      * The id of an intro.
      */
@@ -225,12 +254,7 @@ from a intro json file.</p>
     /**
      * The content array of an intro.
      */
-    content: string[];
-
-    /**
-     * The footnotes array of an intro.
-     */
-    footnotes: string[];
+    content?: IntroBlock[];
 }
 
 /**
@@ -312,7 +336,6 @@ export class IntroList {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

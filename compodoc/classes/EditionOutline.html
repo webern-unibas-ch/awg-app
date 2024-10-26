@@ -159,6 +159,10 @@ to structure outline information of the edition.</p>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                <a href="#_mapSectionContent" >_mapSectionContent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#_mapSeries" >_mapSeries</a>
                             </li>
                             <li>
@@ -188,7 +192,7 @@ to structure outline information of the edition.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:156</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:218</a></div>
                             </td>
                         </tr>
 
@@ -258,7 +262,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="232" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:232</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="309" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:309</a></div>
                         </td>
                     </tr>
 
@@ -315,7 +319,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:204</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="266" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:266</a></div>
                         </td>
                     </tr>
 
@@ -378,6 +382,63 @@ to structure outline information of the edition.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_mapSectionContent"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_mapSectionContent</b></span>
+                        <a href="#_mapSectionContent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="292" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:292</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _mapContent.</p>
+<p>It maps the content data.</p>
+</div>
+                </td>
+            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>content</td>
+                                                    <td>
+                                                            <code><p>The content data to map.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="_mapSeries"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -393,7 +454,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:184</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="246" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:246</a></div>
                         </td>
                     </tr>
 
@@ -464,7 +525,7 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:156</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:218</a></div>
                         </td>
                     </tr>
 
@@ -496,21 +557,27 @@ import { EditionComplexesService } from &#x27;@awg-views/edition-view/services&#
 import { EditionComplex } from &#x27;./edition-complex.model&#x27;;
 
 /**
- * The EditionOutlineSeriesJsonData interface.
+ * The EditionOutlineSectionsContentJsonData interface.
  *
  * It is used in the context of the edition view
- * to describe the structure of a JSON data for an edition outline series.
+ * to describe the structure of a JSON data for an edition outline sections content.
  */
-export interface EditionOutlineSeriesJsonData {
+export interface EditionOutlineSectionsContentJsonData {
     /**
-     * The series data.
+     * The intro data.
      */
-    series: string;
+    intro: {
+        disabled: boolean;
+        preview?: string;
+    };
 
     /**
-     * The sections data.
+     * The complex types data.
      */
-    sections: EditionOutlineSectionsJsonData[];
+    complexTypes: {
+        opus: [{ complex: string; disabled: boolean }];
+        mnr: [{ complex: string; disabled: boolean }];
+    };
 }
 
 /**
@@ -526,17 +593,32 @@ export interface EditionOutlineSectionsJsonData {
     section: string;
 
     /**
-     * The complexTypes data
+     * The section content data.
      */
-    complexTypes: {
-        opus: [{ complex: string; disabled: boolean }];
-        mnr: [{ complex: string; disabled: boolean }];
-    };
+    content: EditionOutlineSectionsContentJsonData;
 
     /**
      * Boolean flag if a section is disabled.
      */
     disabled: boolean;
+}
+
+/**
+ * The EditionOutlineSeriesJsonData interface.
+ *
+ * It is used in the context of the edition view
+ * to describe the structure of a JSON data for an edition outline series.
+ */
+export interface EditionOutlineSeriesJsonData {
+    /**
+     * The series data.
+     */
+    series: string;
+
+    /**
+     * The sections data.
+     */
+    sections: EditionOutlineSectionsJsonData[];
 }
 
 /**
@@ -594,6 +676,42 @@ export interface EditionOutlineComplexTypes {
 }
 
 /**
+ * The EditionOutlineIntroItem interface.
+ *
+ * It is used in the context of the edition view
+ * to structure outline information of the edition intro.
+ */
+export interface EditionOutlineIntroItem {
+    /**
+     * Boolean flag if an intro is disabled.
+     */
+    disabled: boolean;
+
+    /**
+     * The preview of an intro.
+     */
+    preview?: string;
+}
+
+/**
+ * The EditionOutlineSectionContent interface.
+ *
+ * It is used in the context of the edition view
+ * to structure outline information of the edition section content.
+ */
+export interface EditionOutlineSectionContent {
+    /**
+     * The intro of an edition section.
+     */
+    intro: EditionOutlineIntroItem;
+
+    /**
+     * The edition complex types of an edition section.
+     */
+    complexTypes: EditionOutlineComplexTypes;
+}
+
+/**
  * The EditionOutlineSection interface.
  *
  * It is used in the context of the edition view
@@ -601,14 +719,19 @@ export interface EditionOutlineComplexTypes {
  */
 export interface EditionOutlineSection {
     /**
+     * The series parent route of an edition section.
+     */
+    seriesParent: EditionRouteConstant;
+
+    /**
      * The section route of an edition section.
      */
     section: EditionRouteConstant;
 
     /**
-     * The edition complex types of an edition section.
+     * The section content of an edition section.
      */
-    complexTypes: EditionOutlineComplexTypes;
+    content: EditionOutlineSectionContent;
 
     /**
      * Boolean flag if an edition section is disabled.
@@ -676,7 +799,7 @@ export class EditionOutline {
         const seriesConstant: EditionRouteConstant &#x3D; EDITION_ROUTE_CONSTANTS[&#x27;SERIES_&#x27; + series];
         return {
             series: seriesConstant,
-            sections: sections.map(section &#x3D;&gt; this._mapSection(section, series)),
+            sections: sections.map(section &#x3D;&gt; this._mapSection(section, seriesConstant)),
         };
     };
 
@@ -693,23 +816,38 @@ export class EditionOutline {
      * @returns {EditionOutlineSection} The mapped section.
      */
     private _mapSection &#x3D; (
-        { section, complexTypes, disabled }: EditionOutlineSectionsJsonData,
-        series: string
+        { section, disabled, content }: EditionOutlineSectionsJsonData,
+        seriesConstant: EditionRouteConstant
     ): EditionOutlineSection &#x3D;&gt; {
         const sectionConstant: EditionRouteConstant &#x3D;
-            series &#x3D;&#x3D;&#x3D; &#x27;3&#x27; &amp;&amp; section &#x3D;&#x3D;&#x3D; &#x27;5&#x27;
+            seriesConstant.route &#x3D;&#x3D;&#x3D; &#x27;3&#x27; &amp;&amp; section &#x3D;&#x3D;&#x3D; &#x27;5&#x27;
                 ? EDITION_ROUTE_CONSTANTS.SERIES_3_SECTION_5
                 : EDITION_ROUTE_CONSTANTS[&#x27;SECTION_&#x27; + section];
 
         return {
+            seriesParent: seriesConstant,
             section: sectionConstant,
-            complexTypes: {
-                opus: this._mapComplexItems(complexTypes.opus),
-                mnr: this._mapComplexItems(complexTypes.mnr),
-            },
+            content: this._mapSectionContent(content),
             disabled,
         };
     };
+
+    /**
+     * Private method: _mapContent.
+     *
+     * It maps the content data.
+     *
+     * @param {EditionOutlineSectionsContentJsonData} content The content data to map.
+     *
+     * @returns {EditionOutlineSectionContent} The mapped content.
+     */
+    private _mapSectionContent &#x3D; (content: EditionOutlineSectionsContentJsonData): EditionOutlineSectionContent &#x3D;&gt; ({
+        intro: { disabled: content.intro.disabled, preview: content.intro.preview || &#x27;&#x27; },
+        complexTypes: {
+            opus: this._mapComplexItems(content.complexTypes.opus),
+            mnr: this._mapComplexItems(content.complexTypes.mnr),
+        },
+    });
 
     /**
      * Private method: _mapComplexItems.
@@ -792,7 +930,6 @@ export class EditionOutline {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

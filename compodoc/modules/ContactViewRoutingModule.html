@@ -133,6 +133,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
+import { ContactInfoComponent } from &#x27;@awg-side-info/contact-info/contact-info.component&#x27;;
 import { ContactViewComponent } from &#x27;@awg-views/contact-view/contact-view.component&#x27;;
 
 /* Routes of the ContactViewModule */
@@ -142,13 +143,18 @@ const CONTACT_VIEW_ROUTES: Routes &#x3D; [
         component: ContactViewComponent,
         data: { title: &#x27;AWG Online Edition – Contact&#x27; },
     },
+    {
+        path: &#x27;&#x27;,
+        outlet: &#x27;side&#x27;,
+        component: ContactInfoComponent,
+    },
 ];
 
 /**
  * Routed components of the {@link ContactViewModule}:
  * {@link ContactViewComponent}.
  */
-export const routedContactViewComponents &#x3D; [ContactViewComponent];
+export const routedContactViewComponents &#x3D; [ContactViewComponent, ContactInfoComponent];
 
 /**
  * ContactView module routing.
@@ -234,7 +240,6 @@ export class ContactViewRoutingModule {}
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

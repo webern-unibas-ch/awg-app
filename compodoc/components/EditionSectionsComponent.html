@@ -244,7 +244,7 @@ of the edition view of the app.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(editionService: <a href="../injectables/EditionService.html" target="_self">EditionService</a>)</code>
+<code>constructor(editionStateService: <a href="../injectables/EditionStateService.html" target="_self">EditionStateService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -256,6 +256,7 @@ of the edition view of the app.</p>
                 <tr>
                     <td class="col-md-4">
                             <div class="io-description"><p>Constructor of the EditionSectionsComponent.</p>
+<p>It declares a private instance of the EditionStateService.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -269,10 +270,10 @@ of the edition view of the app.</p>
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>editionService</td>
+                                                        <td>editionStateService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/EditionService.html" target="_self" >EditionService</a></code>
+                                                                        <code><a href="../injectables/EditionStateService.html" target="_self" >EditionStateService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -318,8 +319,8 @@ of the edition view of the app.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="52"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-sections/edition-sections.component.ts:52</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-sections/edition-sections.component.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -327,7 +328,7 @@ of the edition view of the app.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: clearSelectedSection.</p>
-<p>It clears the selected section from the EditionService.</p>
+<p>It clears the selected section from the EditionStateService.</p>
 </div>
 
                         <div class="io-description">
@@ -362,8 +363,8 @@ of the edition view of the app.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-sections/edition-sections.component.ts:63</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-sections/edition-sections.component.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -371,7 +372,7 @@ of the edition view of the app.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: getSeries.</p>
-<p>It gets the selected series from the EditionService.</p>
+<p>It gets the selected series from the EditionStateService.</p>
 </div>
 
                         <div class="io-description">
@@ -406,8 +407,8 @@ of the edition view of the app.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-sections/edition-sections.component.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="42"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-sections/edition-sections.component.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -477,7 +478,7 @@ when initializing the component.</p>
 import { Observable } from &#x27;rxjs&#x27;;
 
 import { EditionOutlineSeries } from &#x27;@awg-views/edition-view/models&#x27;;
-import { EditionService } from &#x27;@awg-views/edition-view/services&#x27;;
+import { EditionStateService } from &#x27;@awg-views/edition-view/services&#x27;;
 
 /**
  * The EditionSection component.
@@ -500,8 +501,10 @@ export class EditionSectionsComponent implements OnInit {
 
     /**
      * Constructor of the EditionSectionsComponent.
+     *
+     * It declares a private instance of the EditionStateService.
      */
-    constructor(private editionService: EditionService) {
+    constructor(private editionStateService: EditionStateService) {
         // Intentionally left empty until implemented
     }
 
@@ -519,23 +522,23 @@ export class EditionSectionsComponent implements OnInit {
     /**
      * Public method: clearSelectedSection.
      *
-     * It clears the selected section from the EditionService.
+     * It clears the selected section from the EditionStateService.
      *
      * @returns {void} Clears the edition section.
      */
     clearSelectedSection(): void {
-        this.editionService.clearSelectedEditionSection();
+        this.editionStateService.clearSelectedEditionSection();
     }
 
     /**
      * Public method: getSeries.
      *
-     * It gets the selected series from the EditionService.
+     * It gets the selected series from the EditionStateService.
      *
      * @returns {void} Gets the edition series.
      */
     getSeries(): void {
-        this.selectedSeries$ &#x3D; this.editionService.getSelectedEditionSeries();
+        this.selectedSeries$ &#x3D; this.editionStateService.getSelectedEditionSeries();
     }
 }
 </code></pre>
@@ -543,22 +546,43 @@ export class EditionSectionsComponent implements OnInit {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">@if (selectedSeries$ | async; as selectedSeries) {
-    &lt;div class&#x3D;&quot;row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4&quot;&gt;
+    &lt;div class&#x3D;&quot;awg-edition-sections-grid row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4&quot;&gt;
         @for (section of selectedSeries.sections; track $index) {
             &lt;div class&#x3D;&quot;col&quot;&gt;
-                &lt;div class&#x3D;&quot;card h-100 shadow&quot;&gt;
-                    &lt;div class&#x3D;&quot;card-body&quot;&gt;
-                        &lt;h5 class&#x3D;&quot;card-title&quot; [ngClass]&#x3D;&quot;{ &#x27;text-muted&#x27;: section.disabled }&quot;&gt;
-                            {{ section.section.full }}
-                        &lt;/h5&gt;
-                    &lt;/div&gt;
-                    &lt;div class&#x3D;&quot;card-footer text-end&quot;&gt;
-                        &lt;a
-                            [routerLink]&#x3D;&quot;[section.section.route]&quot;
-                            class&#x3D;&quot;btn btn-outline-info&quot;
-                            [ngClass]&#x3D;&quot;{ disabled: section.disabled }&quot;
-                            &gt;Mehr ...
-                        &lt;/a&gt;
+                &lt;div class&#x3D;&quot;card awg-edition-section-card h-100 shadow&quot;&gt;
+                    &lt;div class&#x3D;&quot;row g-0 h-100&quot;&gt;
+                        @if (!section.disabled) {
+                            &lt;div class&#x3D;&quot;col-4 col-sm-2 col-md-12 awg-img-container&quot;&gt;
+                                &lt;img
+                                    [src]&#x3D;&quot;
+                                        &#x27;assets/img/edition/series/&#x27; +
+                                        selectedSeries.series.route +
+                                        &#x27;/section/&#x27; +
+                                        section.section.route +
+                                        &#x27;/cover.jpg&#x27;
+                                    &quot;
+                                    title&#x3D;&quot;AWG {{ selectedSeries.series.short }}/{{ section.section.short }}&quot;
+                                    class&#x3D;&quot;card-img-top img-fluid&quot;
+                                    alt&#x3D;&quot;In Vorbereitung&quot; /&gt;
+                            &lt;/div&gt;
+                        }
+                        &lt;div
+                            [ngClass]&#x3D;&quot;{ &#x27;col-8 col-sm-10&#x27;: !section.disabled }&quot;
+                            class&#x3D;&quot;col-md-12 d-flex flex-column awg-edition-section-card-content&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-body flex-grow-1&quot; [ngClass]&#x3D;&quot;{ &#x27;awg-card-border-top&#x27;: !section.disabled }&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;card-title&quot; [ngClass]&#x3D;&quot;{ &#x27;text-muted&#x27;: section.disabled }&quot;&gt;
+                                    {{ section.section.full }}
+                                &lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-footer text-end&quot;&gt;
+                                &lt;a
+                                    [routerLink]&#x3D;&quot;[section.section.route]&quot;
+                                    class&#x3D;&quot;btn btn-outline-info&quot;
+                                    [ngClass]&#x3D;&quot;{ disabled: section.disabled }&quot;
+                                    &gt;Mehr ...
+                                &lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
                     &lt;/div&gt;
                 &lt;/div&gt;
             &lt;/div&gt;
@@ -572,7 +596,22 @@ export class EditionSectionsComponent implements OnInit {
                 <p class="comment">
                     <code>./edition-sections.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">@media (max-width: 768px) {
+    .awg-img-container {
+        max-height: 150px;
+        overflow: hidden;
+        border-right: 1px solid var(--bs-card-border-color);
+    }
+    img {
+        object-fit: contain;
+        height: 100%;
+    }
+}
+
+.awg-card-border-top {
+    border-top: 1px solid var(--bs-card-border-color);
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="tree">
@@ -600,9 +639,9 @@ export class EditionSectionsComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@if (selectedSeries$ | async; as selectedSeries) {    <div class="row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">        @for (section of selectedSeries.sections; track $index) {            <div class="col">                <div class="card h-100 shadow">                    <div class="card-body">                        <h5 class="card-title" [ngClass]="{ \'text-muted\': section.disabled }">                            {{ section.section.full }}                        </h5>                    </div>                    <div class="card-footer text-end">                        <a                            [routerLink]="[section.section.route]"                            class="btn btn-outline-info"                            [ngClass]="{ disabled: section.disabled }"                            >Mehr ...                        </a>                    </div>                </div>            </div>        }    </div>}</div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaDescriptionComponent', 'selector': 'awg-edition-tka-description'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ErrorAlertComponent', 'selector': 'awg-error-alert'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopComponent', 'selector': 'awg-scroll-to-top'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
-    var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
+        var COMPONENT_TEMPLATE = '<div>@if (selectedSeries$ | async; as selectedSeries) {    <div class="awg-edition-sections-grid row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">        @for (section of selectedSeries.sections; track $index) {            <div class="col">                <div class="card awg-edition-section-card h-100 shadow">                    <div class="row g-0 h-100">                        @if (!section.disabled) {                            <div class="col-4 col-sm-2 col-md-12 awg-img-container">                                <img                                    [src]="                                        \'assets/img/edition/series/\' +                                        selectedSeries.series.route +                                        \'/section/\' +                                        section.section.route +                                        \'/cover.jpg\'                                    "                                    title="AWG {{ selectedSeries.series.short }}/{{ section.section.short }}"                                    class="card-img-top img-fluid"                                    alt="In Vorbereitung" />                            </div>                        }                        <div                            [ngClass]="{ \'col-8 col-sm-10\': !section.disabled }"                            class="col-md-12 d-flex flex-column awg-edition-section-card-content">                            <div class="card-body flex-grow-1" [ngClass]="{ \'awg-card-border-top\': !section.disabled }">                                <h5 class="card-title" [ngClass]="{ \'text-muted\': section.disabled }">                                    {{ section.section.full }}                                </h5>                            </div>                            <div class="card-footer text-end">                                <a                                    [routerLink]="[section.section.route]"                                    class="btn btn-outline-info"                                    [ngClass]="{ disabled: section.disabled }"                                    >Mehr ...                                </a>                            </div>                        </div>                    </div>                </div>            </div>        }    </div>}</div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaDescriptionComponent', 'selector': 'awg-edition-tka-description'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopComponent', 'selector': 'awg-scroll-to-top'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+    var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionSectionsComponent'};
 </script>
 <script src="../js/tree.js"></script>
@@ -677,7 +716,6 @@ export class EditionSectionsComponent implements OnInit {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

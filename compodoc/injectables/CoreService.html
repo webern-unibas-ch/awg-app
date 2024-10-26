@@ -339,7 +339,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
-import { LOGOSDATA, METADATA } from &#x27;@awg-core/core-data&#x27;;
+import { LOGOS_DATA, META_DATA } from &#x27;@awg-core/core-data&#x27;;
 import { Logos, Meta, MetaSectionTypes } from &#x27;@awg-core/core-models&#x27;;
 
 /**
@@ -363,7 +363,7 @@ export class CoreService {
      * @returns {Meta[S]} The sectionType S of the metadata object.
      */
     getMetaDataSection&lt;S extends MetaSectionTypes&gt;(sectionType: S): Meta[S] {
-        return METADATA[sectionType];
+        return META_DATA[sectionType];
     }
 
     /**
@@ -374,7 +374,7 @@ export class CoreService {
      * @returns {Meta} The complete metadata object.
      */
     getMetaData(): Meta {
-        return METADATA;
+        return META_DATA;
     }
 
     /**
@@ -385,7 +385,7 @@ export class CoreService {
      * @returns {Logos} The app-wide logos object.
      */
     getLogos(): Logos {
-        return LOGOSDATA;
+        return LOGOS_DATA;
     }
 }
 </code></pre>
@@ -459,7 +459,6 @@ export class CoreService {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

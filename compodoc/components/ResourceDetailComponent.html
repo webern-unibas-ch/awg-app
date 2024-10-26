@@ -257,6 +257,9 @@ and the <a href="../components/ResourceDetailJsonRawComponent.html">ResourceDeta
                                 <a href="#navigateToResource" >navigateToResource</a>
                             </li>
                             <li>
+                                <a href="#navigateToSideOutlet" >navigateToSideOutlet</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnDestroy" >ngOnDestroy</a>
                             </li>
                             <li>
@@ -264,9 +267,6 @@ and the <a href="../components/ResourceDetailJsonRawComponent.html">ResourceDeta
                             </li>
                             <li>
                                 <a href="#onResourceDetailTabChange" >onResourceDetailTabChange</a>
-                            </li>
-                            <li>
-                                <a href="#routeToSidenav" >routeToSidenav</a>
                             </li>
                             <li>
                                 <a href="#updateResourceId" >updateResourceId</a>
@@ -655,6 +655,50 @@ not exists (first call), use resourceId.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="navigateToSideOutlet"></a>
+                    <span class="name">
+                        <span ><b>navigateToSideOutlet</b></span>
+                        <a href="#navigateToSideOutlet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToSideOutlet()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="268"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:268</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: navigateToSideOutlet.</p>
+<p>It activates the side outlet with the resource-info.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Activates the resource-info side outlet.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngOnDestroy"></a>
                     <span class="name">
                         <span ><b>ngOnDestroy</b></span>
@@ -803,50 +847,6 @@ tab change request to update the URL.</p>
                         </div>
                             <div class="io-description">
                                 <p>Routes to itself with the given id as route.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="routeToSidenav"></a>
-                    <span class="name">
-                        <span ><b>routeToSidenav</b></span>
-                        <a href="#routeToSidenav"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>routeToSidenav()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="268"
-                                    class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:268</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: routeToSidenav.</p>
-<p>It activates the secondary outlet with the resource-info.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Activates the resource-info side outlet.</p>
 
                             </div>
                 </td>
@@ -1401,7 +1401,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit() {
-        this.routeToSidenav();
+        this.navigateToSideOutlet();
         this.getResourceData();
     }
 
@@ -1529,13 +1529,13 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Public method: routeToSidenav.
+     * Public method: navigateToSideOutlet.
      *
-     * It activates the secondary outlet with the resource-info.
+     * It activates the side outlet with the resource-info.
      *
      * @returns {void} Activates the resource-info side outlet.
      */
-    routeToSidenav(): void {
+    navigateToSideOutlet(): void {
         this.router.navigate([{ outlets: { side: &#x27;resourceInfo&#x27; } }], {
             preserveFragment: true,
             queryParamsHandling: &#x27;preserve&#x27;,
@@ -1548,6 +1548,9 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      * It calls the containing methods when destroying the component.
      */
     ngOnDestroy() {
+        // Navigate to an empty outlet to clear the side outlet
+        this.router.navigate([{ outlets: { side: null } }]);
+
         // Emit truthy value to end all subscriptions
         this._destroyed$.next(true);
 
@@ -1560,70 +1563,71 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;!-- resource detail box --&gt;
-
-&lt;!-- loading spinner --&gt;
-@if (isLoading$ | async) {
-    &lt;div&gt;
-        &lt;awg-twelve-tone-spinner&gt;&lt;/awg-twelve-tone-spinner&gt;
-    &lt;/div&gt;
-} @else {
-    &lt;!-- error message --&gt;
-    @if (errorMessage) {
-        &lt;div class&#x3D;&quot;awg-error-message&quot;&gt;
-            &lt;p&gt;Die Anfrage &quot;{{ errorMessage?.route }}&quot; ist fehlgeschlagen.&lt;/p&gt;
-            &lt;p&gt;Fehlermeldung: &quot;{{ errorMessage?.statusText || errorMessage }}&quot;.&lt;/p&gt;
-            &lt;p&gt;Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.&lt;/p&gt;
+&lt;div class&#x3D;&quot;awg-resource-view p-5 border rounded-3&quot;&gt;
+    &lt;!-- loading spinner --&gt;
+    @if (isLoading$ | async) {
+        &lt;div&gt;
+            &lt;awg-twelve-tone-spinner&gt;&lt;/awg-twelve-tone-spinner&gt;
         &lt;/div&gt;
-    }
-    &lt;!-- async data --&gt;
-    @if (resourceData) {
-        &lt;div class&#x3D;&quot;awg-resource-detail-tabs&quot;&gt;
-            &lt;!-- resourceDetailData header --&gt;
-            @if (resourceData.detail.header) {
-                &lt;awg-resource-detail-header
-                    [header]&#x3D;&quot;resourceData.detail.header&quot;
-                    [resourceUrl]&#x3D;&quot;httpGetUrl&quot;
-                    (resourceRequest)&#x3D;&quot;navigateToResource($event)&quot;&gt;&lt;/awg-resource-detail-header&gt;
-            }
-            &lt;!-- resourceDetailData body --&gt;
-            &lt;nav
-                ngbNav
-                #resourceDetailNav&#x3D;&quot;ngbNav&quot;
-                class&#x3D;&quot;nav-tabs&quot;
-                [activeId]&#x3D;&quot;selectedResourceDetailTabId&quot;
-                (navChange)&#x3D;&quot;onResourceDetailTabChange($event)&quot;&gt;
-                &lt;ng-container ngbNavItem&#x3D;&quot;html&quot;&gt;
-                    &lt;a ngbNavLink class&#x3D;&quot;awg-resource-detail-long-tab&quot;&gt;{{ resourceDetailTabTitles?.html }}&lt;/a&gt;
-                    &lt;ng-template ngbNavContent&gt;
-                        &lt;!-- html visualisation --&gt;
-                        &lt;awg-resource-detail-html
-                            [resourceDetailData]&#x3D;&quot;resourceData.detail&quot;
-                            (gndRequest)&#x3D;&quot;exposeGnd($event)&quot;
-                            (resourceRequest)&#x3D;&quot;navigateToResource($event)&quot;&gt;
-                        &lt;/awg-resource-detail-html&gt;
-                    &lt;/ng-template&gt;
-                &lt;/ng-container&gt;
-                &lt;ng-container ngbNavItem&#x3D;&quot;converted-json&quot;&gt;
-                    &lt;a ngbNavLink class&#x3D;&quot;ms-auto&quot;&gt;{{ resourceDetailTabTitles?.converted }}&lt;/a&gt;
-                    &lt;ng-template ngbNavContent&gt;
-                        &lt;!-- converted json visualisation --&gt;
-                        &lt;awg-resource-detail-json-converted [resourceJsonConvertedData]&#x3D;&quot;resourceData.jsonConverted&quot;&gt;
-                        &lt;/awg-resource-detail-json-converted&gt;
-                    &lt;/ng-template&gt;
-                &lt;/ng-container&gt;
-                &lt;ng-container ngbNavItem&#x3D;&quot;raw-json&quot;&gt;
-                    &lt;a ngbNavLink&gt;{{ resourceDetailTabTitles?.raw }}&lt;/a&gt;
-                    &lt;ng-template ngbNavContent&gt;
-                        &lt;!-- raw json visualisation --&gt;
-                        &lt;awg-resource-detail-json-raw [resourceJsonRawData]&#x3D;&quot;resourceData.jsonRaw&quot;&gt;
-                        &lt;/awg-resource-detail-json-raw&gt;
-                    &lt;/ng-template&gt;
-                &lt;/ng-container&gt;
-            &lt;/nav&gt;
-            &lt;div [ngbNavOutlet]&#x3D;&quot;resourceDetailNav&quot;&gt;&lt;/div&gt;
-        &lt;/div&gt;
-    }
-    &lt;!--
+    } @else {
+        &lt;!-- error message --&gt;
+        @if (errorMessage) {
+            &lt;div class&#x3D;&quot;awg-error-message&quot;&gt;
+                &lt;p&gt;Die Anfrage &quot;{{ errorMessage?.route }}&quot; ist fehlgeschlagen.&lt;/p&gt;
+                &lt;p&gt;Fehlermeldung: &quot;{{ errorMessage?.statusText || errorMessage }}&quot;.&lt;/p&gt;
+                &lt;p&gt;Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.&lt;/p&gt;
+            &lt;/div&gt;
+        }
+        &lt;!-- async data --&gt;
+        @if (resourceData) {
+            &lt;div class&#x3D;&quot;awg-resource-detail-tabs&quot;&gt;
+                &lt;!-- resourceDetailData header --&gt;
+                @if (resourceData.detail.header) {
+                    &lt;awg-resource-detail-header
+                        [header]&#x3D;&quot;resourceData.detail.header&quot;
+                        [resourceUrl]&#x3D;&quot;httpGetUrl&quot;
+                        (resourceRequest)&#x3D;&quot;navigateToResource($event)&quot;&gt;&lt;/awg-resource-detail-header&gt;
+                }
+                &lt;!-- resourceDetailData body --&gt;
+                &lt;nav
+                    ngbNav
+                    #resourceDetailNav&#x3D;&quot;ngbNav&quot;
+                    class&#x3D;&quot;nav-tabs&quot;
+                    [activeId]&#x3D;&quot;selectedResourceDetailTabId&quot;
+                    (navChange)&#x3D;&quot;onResourceDetailTabChange($event)&quot;&gt;
+                    &lt;ng-container ngbNavItem&#x3D;&quot;html&quot;&gt;
+                        &lt;a ngbNavLink class&#x3D;&quot;awg-resource-detail-long-tab&quot;&gt;{{ resourceDetailTabTitles?.html }}&lt;/a&gt;
+                        &lt;ng-template ngbNavContent&gt;
+                            &lt;!-- html visualisation --&gt;
+                            &lt;awg-resource-detail-html
+                                [resourceDetailData]&#x3D;&quot;resourceData.detail&quot;
+                                (gndRequest)&#x3D;&quot;exposeGnd($event)&quot;
+                                (resourceRequest)&#x3D;&quot;navigateToResource($event)&quot;&gt;
+                            &lt;/awg-resource-detail-html&gt;
+                        &lt;/ng-template&gt;
+                    &lt;/ng-container&gt;
+                    &lt;ng-container ngbNavItem&#x3D;&quot;converted-json&quot;&gt;
+                        &lt;a ngbNavLink class&#x3D;&quot;ms-auto&quot;&gt;{{ resourceDetailTabTitles?.converted }}&lt;/a&gt;
+                        &lt;ng-template ngbNavContent&gt;
+                            &lt;!-- converted json visualisation --&gt;
+                            &lt;awg-resource-detail-json-converted
+                                [resourceJsonConvertedData]&#x3D;&quot;resourceData.jsonConverted&quot;&gt;
+                            &lt;/awg-resource-detail-json-converted&gt;
+                        &lt;/ng-template&gt;
+                    &lt;/ng-container&gt;
+                    &lt;ng-container ngbNavItem&#x3D;&quot;raw-json&quot;&gt;
+                        &lt;a ngbNavLink&gt;{{ resourceDetailTabTitles?.raw }}&lt;/a&gt;
+                        &lt;ng-template ngbNavContent&gt;
+                            &lt;!-- raw json visualisation --&gt;
+                            &lt;awg-resource-detail-json-raw [resourceJsonRawData]&#x3D;&quot;resourceData.jsonRaw&quot;&gt;
+                            &lt;/awg-resource-detail-json-raw&gt;
+                        &lt;/ng-template&gt;
+                    &lt;/ng-container&gt;
+                &lt;/nav&gt;
+                &lt;div [ngbNavOutlet]&#x3D;&quot;resourceDetailNav&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+        }
+        &lt;!--
   TODO: remove
   &lt;ul class&#x3D;&quot;nav nav-tabs nav-justified&quot; role&#x3D;&quot;tablist&quot;&gt;
     &lt;li class&#x3D;&quot;active awg-resource-detail-long-tab&quot;&gt;&lt;a data-toggle&#x3D;&quot;tab&quot; href&#x3D;&quot;#html&quot;&gt;{{ tabTitles?.html }}&lt;/a&gt;&lt;/li&gt;
@@ -1638,7 +1642,8 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     &lt;/li&gt;
   &lt;/ul&gt;
   --&gt;
-}
+    }
+&lt;/div&gt;
 </code></pre>
     </div>
 
@@ -1707,9 +1712,9 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- resource detail box --><!-- loading spinner -->@if (isLoading$ | async) {    <div>        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>    </div>} @else {    <!-- error message -->    @if (errorMessage) {        <div class="awg-error-message">            <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>            <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>            <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>        </div>    }    <!-- async data -->    @if (resourceData) {        <div class="awg-resource-detail-tabs">            <!-- resourceDetailData header -->            @if (resourceData.detail.header) {                <awg-resource-detail-header                    [header]="resourceData.detail.header"                    [resourceUrl]="httpGetUrl"                    (resourceRequest)="navigateToResource($event)"></awg-resource-detail-header>            }            <!-- resourceDetailData body -->            <nav                ngbNav                #resourceDetailNav="ngbNav"                class="nav-tabs"                [activeId]="selectedResourceDetailTabId"                (navChange)="onResourceDetailTabChange($event)">                <ng-container ngbNavItem="html">                    <a ngbNavLink class="awg-resource-detail-long-tab">{{ resourceDetailTabTitles?.html }}</a>                    <ng-template ngbNavContent>                        <!-- html visualisation -->                        <awg-resource-detail-html                            [resourceDetailData]="resourceData.detail"                            (gndRequest)="exposeGnd($event)"                            (resourceRequest)="navigateToResource($event)">                        </awg-resource-detail-html>                    </ng-template>                </ng-container>                <ng-container ngbNavItem="converted-json">                    <a ngbNavLink class="ms-auto">{{ resourceDetailTabTitles?.converted }}</a>                    <ng-template ngbNavContent>                        <!-- converted json visualisation -->                        <awg-resource-detail-json-converted [resourceJsonConvertedData]="resourceData.jsonConverted">                        </awg-resource-detail-json-converted>                    </ng-template>                </ng-container>                <ng-container ngbNavItem="raw-json">                    <a ngbNavLink>{{ resourceDetailTabTitles?.raw }}</a>                    <ng-template ngbNavContent>                        <!-- raw json visualisation -->                        <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData.jsonRaw">                        </awg-resource-detail-json-raw>                    </ng-template>                </ng-container>            </nav>            <div [ngbNavOutlet]="resourceDetailNav"></div>        </div>    }    <!--  TODO: remove  <ul class="nav nav-tabs nav-justified" role="tablist">    <li class="active awg-resource-detail-long-tab"><a data-toggle="tab" href="#html">{{ tabTitles?.html }}</a></li>    <li class="dropdown awg-resource-detail-short-tab">      <a href="#" data-toggle="dropdown" class="dropdown-toggle">        {{ \'{\' }} JSON {{ \'}\' }} <b class="caret"></b>      </a>      <ul class="dropdown-menu dropdown-menu-right">        <li><a data-toggle="tab" href="#converted">{{ tabTitles?.converted }}</a></li>        <li><a data-toggle="tab" href="#raw">{{ tabTitles?.raw }}</a></li>      </ul>    </li>  </ul>  -->}</div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaDescriptionComponent', 'selector': 'awg-edition-tka-description'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ErrorAlertComponent', 'selector': 'awg-error-alert'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopComponent', 'selector': 'awg-scroll-to-top'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
-    var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
+        var COMPONENT_TEMPLATE = '<div><!-- resource detail box --><div class="awg-resource-view p-5 border rounded-3">    <!-- loading spinner -->    @if (isLoading$ | async) {        <div>            <awg-twelve-tone-spinner></awg-twelve-tone-spinner>        </div>    } @else {        <!-- error message -->        @if (errorMessage) {            <div class="awg-error-message">                <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>                <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>                <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>            </div>        }        <!-- async data -->        @if (resourceData) {            <div class="awg-resource-detail-tabs">                <!-- resourceDetailData header -->                @if (resourceData.detail.header) {                    <awg-resource-detail-header                        [header]="resourceData.detail.header"                        [resourceUrl]="httpGetUrl"                        (resourceRequest)="navigateToResource($event)"></awg-resource-detail-header>                }                <!-- resourceDetailData body -->                <nav                    ngbNav                    #resourceDetailNav="ngbNav"                    class="nav-tabs"                    [activeId]="selectedResourceDetailTabId"                    (navChange)="onResourceDetailTabChange($event)">                    <ng-container ngbNavItem="html">                        <a ngbNavLink class="awg-resource-detail-long-tab">{{ resourceDetailTabTitles?.html }}</a>                        <ng-template ngbNavContent>                            <!-- html visualisation -->                            <awg-resource-detail-html                                [resourceDetailData]="resourceData.detail"                                (gndRequest)="exposeGnd($event)"                                (resourceRequest)="navigateToResource($event)">                            </awg-resource-detail-html>                        </ng-template>                    </ng-container>                    <ng-container ngbNavItem="converted-json">                        <a ngbNavLink class="ms-auto">{{ resourceDetailTabTitles?.converted }}</a>                        <ng-template ngbNavContent>                            <!-- converted json visualisation -->                            <awg-resource-detail-json-converted                                [resourceJsonConvertedData]="resourceData.jsonConverted">                            </awg-resource-detail-json-converted>                        </ng-template>                    </ng-container>                    <ng-container ngbNavItem="raw-json">                        <a ngbNavLink>{{ resourceDetailTabTitles?.raw }}</a>                        <ng-template ngbNavContent>                            <!-- raw json visualisation -->                            <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData.jsonRaw">                            </awg-resource-detail-json-raw>                        </ng-template>                    </ng-container>                </nav>                <div [ngbNavOutlet]="resourceDetailNav"></div>            </div>        }        <!--  TODO: remove  <ul class="nav nav-tabs nav-justified" role="tablist">    <li class="active awg-resource-detail-long-tab"><a data-toggle="tab" href="#html">{{ tabTitles?.html }}</a></li>    <li class="dropdown awg-resource-detail-short-tab">      <a href="#" data-toggle="dropdown" class="dropdown-toggle">        {{ \'{\' }} JSON {{ \'}\' }} <b class="caret"></b>      </a>      <ul class="dropdown-menu dropdown-menu-right">        <li><a data-toggle="tab" href="#converted">{{ tabTitles?.converted }}</a></li>        <li><a data-toggle="tab" href="#raw">{{ tabTitles?.raw }}</a></li>      </ul>    </li>  </ul>  -->    }</div></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaDescriptionComponent', 'selector': 'awg-edition-tka-description'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopComponent', 'selector': 'awg-scroll-to-top'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+    var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'ResourceDetailComponent'};
 </script>
 <script src="../js/tree.js"></script>
@@ -1784,7 +1789,6 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

@@ -244,7 +244,7 @@ of the edition view of the app.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(editionService: <a href="../injectables/EditionService.html" target="_self">EditionService</a>)</code>
+<code>constructor(editionStateService: <a href="../injectables/EditionStateService.html" target="_self">EditionStateService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -256,7 +256,7 @@ of the edition view of the app.</p>
                 <tr>
                     <td class="col-md-4">
                             <div class="io-description"><p>Constructor of the EditionSeriesComponent.</p>
-<p>It declares a private instance of the EditionService.</p>
+<p>It declares a private instance of the EditionStateService.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -271,10 +271,10 @@ of the edition view of the app.</p>
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>editionService</td>
+                                                        <td>editionStateService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/EditionService.html" target="_self" >EditionService</a></code>
+                                                                        <code><a href="../injectables/EditionStateService.html" target="_self" >EditionStateService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -282,7 +282,7 @@ of the edition view of the app.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Instance of the EditionService.</p>
+                                                                <p>Instance of the EditionStateService.</p>
 
                                                         </td>
                                                 </tr>
@@ -333,7 +333,7 @@ of the edition view of the app.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: clearSelectedSeries.</p>
-<p>It clears the selected series from the EditionService.</p>
+<p>It clears the selected series from the EditionStateService.</p>
 </div>
 
                         <div class="io-description">
@@ -377,7 +377,7 @@ of the edition view of the app.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: getEditionOutline.</p>
-<p>It gets the outline with array of series from the EditionService.</p>
+<p>It gets the outline with array of series from the EditionStateService.</p>
 </div>
 
                         <div class="io-description">
@@ -481,7 +481,7 @@ when initializing the component.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 
 import { EditionOutlineSeries } from &#x27;@awg-views/edition-view/models&#x27;;
-import { EditionOutlineService, EditionService } from &#x27;@awg-views/edition-view/services&#x27;;
+import { EditionOutlineService, EditionStateService } from &#x27;@awg-views/edition-view/services&#x27;;
 
 /**
  * The EditionSeries component.
@@ -505,11 +505,11 @@ export class EditionSeriesComponent implements OnInit {
     /**
      * Constructor of the EditionSeriesComponent.
      *
-     * It declares a private instance of the EditionService.
+     * It declares a private instance of the EditionStateService.
      *
-     * @param {EditionService} editionService Instance of the EditionService.
+     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
      */
-    constructor(private editionService: EditionService) {
+    constructor(private editionStateService: EditionStateService) {
         // Intentionally left empty until implemented
     }
 
@@ -527,19 +527,19 @@ export class EditionSeriesComponent implements OnInit {
     /**
      * Public method: clearSelectedSeries.
      *
-     * It clears the selected series from the EditionService.
+     * It clears the selected series from the EditionStateService.
      *
      * @returns {void} Clears the edition series.
      */
     clearSelections(): void {
-        this.editionService.clearSelectedEditionSeries();
-        this.editionService.clearSelectedEditionSection();
+        this.editionStateService.clearSelectedEditionSeries();
+        this.editionStateService.clearSelectedEditionSection();
     }
 
     /**
      * Public method: getEditionOutline.
      *
-     * It gets the outline with array of series from the EditionService.
+     * It gets the outline with array of series from the EditionStateService.
      *
      * @returns {void} Gets the edition outline.
      */
@@ -552,34 +552,53 @@ export class EditionSeriesComponent implements OnInit {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">@if (editionOutline) {
-    &lt;div class&#x3D;&quot;row row-cols-1 row-cols-md-3 g-4&quot;&gt;
-        @for (series of editionOutline; track $index) {
-            &lt;div class&#x3D;&quot;col&quot;&gt;
-                &lt;div class&#x3D;&quot;card h-100 shadow&quot;&gt;
-                    &lt;h5 class&#x3D;&quot;card-header&quot;&gt;
-                        {{ series.series.full }}
-                    &lt;/h5&gt;
-                    &lt;div class&#x3D;&quot;card-body&quot;&gt;
-                        &lt;ul class&#x3D;&quot;list-group list-group-flush&quot;&gt;
-                            @for (section of series.sections; track $index) {
-                                &lt;li class&#x3D;&quot;list-group-item&quot;&gt;
-                                    @if (!section.disabled) {
-                                        &lt;a [routerLink]&#x3D;&quot;[series.series.route, &#x27;section&#x27;, section.section.route]&quot;&gt;{{
-                                            section.section.full
-                                        }}&lt;/a&gt;
-                                    } @else {
-                                        &lt;span class&#x3D;&quot;text-muted&quot;&gt;{{ section.section.full }}&lt;/span&gt;
-                                    }
-                                &lt;/li&gt;
-                            }
-                        &lt;/ul&gt;
-                    &lt;/div&gt;
-                    &lt;div class&#x3D;&quot;card-footer text-end&quot;&gt;
-                        &lt;a [routerLink]&#x3D;&quot;[series.series.route]&quot; class&#x3D;&quot;btn btn-outline-info&quot;&gt;Mehr ...&lt;/a&gt;
+    &lt;div class&#x3D;&quot;awg-edition-series&quot;&gt;
+        &lt;div class&#x3D;&quot;awg-edition-series-text p-4 border rounded-3 para&quot;&gt;
+            &lt;p&gt;
+                Die Anton Webern Gesamtausgabe (AWG) versteht sich als historisch-kritische Gesamtausgabe der
+                Kompositionen Anton Weberns. Sie ist &lt;i&gt;historisch&lt;/i&gt;, indem sie die Kompositionen durch Dokumentation
+                verschiedener Textfassungen und ihrer Skizzen als in sich chronologisch differenzierte Editionskomplexe
+                präsentiert sowie deren Entstehung in den Zusammenhang der Biographie des Komponisten und der
+                allgemeinen Musikgeschichte einordnet. Sie ist &lt;i&gt;kritisch&lt;/i&gt;, indem sie sämtliche erreichbaren Quellen
+                vergleicht und textkritisch prüft. Sie ist eine &lt;i&gt;Gesamt&lt;/i&gt;ausgabe, indem sie die auf Grundlage dieser
+                Quellenkritik erkennbaren Textfassungen und Skizzen sämtlicher, auch fragmentarischer Kompositionen
+                ediert. Sie ist eine Gesamt&lt;i&gt;ausgabe&lt;/i&gt;, indem sie Notentexte mit dem methodischen Bewusstsein
+                vorlegt, dass eine Edition grundsätzlich eine Interpretation des durch die Quellen bezeugten Texts
+                darstellt.
+            &lt;/p&gt;
+
+            &lt;p&gt;Die AWG gliedert sich in drei Serien:&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;awg-edition-series-grid row row-cols-1 row-cols-md-3 g-4&quot;&gt;
+            @for (series of editionOutline; track $index) {
+                &lt;div class&#x3D;&quot;col&quot;&gt;
+                    &lt;div class&#x3D;&quot;card awg-edition-series-card h-100 shadow&quot;&gt;
+                        &lt;h5 class&#x3D;&quot;card-header&quot;&gt;
+                            {{ series.series.full }}
+                        &lt;/h5&gt;
+                        &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                            &lt;ul class&#x3D;&quot;list-group list-group-flush&quot;&gt;
+                                @for (section of series.sections; track $index) {
+                                    &lt;li class&#x3D;&quot;list-group-item&quot;&gt;
+                                        @if (!section.disabled) {
+                                            &lt;a [routerLink]&#x3D;&quot;[series.series.route, &#x27;section&#x27;, section.section.route]&quot;&gt;{{
+                                                section.section.full
+                                            }}&lt;/a&gt;
+                                        } @else {
+                                            &lt;span class&#x3D;&quot;text-muted&quot;&gt;{{ section.section.full }}&lt;/span&gt;
+                                        }
+                                    &lt;/li&gt;
+                                }
+                            &lt;/ul&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;card-footer text-end&quot;&gt;
+                            &lt;a [routerLink]&#x3D;&quot;[series.series.route]&quot; class&#x3D;&quot;btn btn-outline-info&quot;&gt;Mehr ...&lt;/a&gt;
+                        &lt;/div&gt;
                     &lt;/div&gt;
                 &lt;/div&gt;
-            &lt;/div&gt;
-        }
+            }
+        &lt;/div&gt;
     &lt;/div&gt;
 }
 </code></pre>
@@ -617,9 +636,9 @@ export class EditionSeriesComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@if (editionOutline) {    <div class="row row-cols-1 row-cols-md-3 g-4">        @for (series of editionOutline; track $index) {            <div class="col">                <div class="card h-100 shadow">                    <h5 class="card-header">                        {{ series.series.full }}                    </h5>                    <div class="card-body">                        <ul class="list-group list-group-flush">                            @for (section of series.sections; track $index) {                                <li class="list-group-item">                                    @if (!section.disabled) {                                        <a [routerLink]="[series.series.route, \'section\', section.section.route]">{{                                            section.section.full                                        }}</a>                                    } @else {                                        <span class="text-muted">{{ section.section.full }}</span>                                    }                                </li>                            }                        </ul>                    </div>                    <div class="card-footer text-end">                        <a [routerLink]="[series.series.route]" class="btn btn-outline-info">Mehr ...</a>                    </div>                </div>            </div>        }    </div>}</div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaDescriptionComponent', 'selector': 'awg-edition-tka-description'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ErrorAlertComponent', 'selector': 'awg-error-alert'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopComponent', 'selector': 'awg-scroll-to-top'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
-    var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
+        var COMPONENT_TEMPLATE = '<div>@if (editionOutline) {    <div class="awg-edition-series">        <div class="awg-edition-series-text p-4 border rounded-3 para">            <p>                Die Anton Webern Gesamtausgabe (AWG) versteht sich als historisch-kritische Gesamtausgabe der                Kompositionen Anton Weberns. Sie ist <i>historisch</i>, indem sie die Kompositionen durch Dokumentation                verschiedener Textfassungen und ihrer Skizzen als in sich chronologisch differenzierte Editionskomplexe                präsentiert sowie deren Entstehung in den Zusammenhang der Biographie des Komponisten und der                allgemeinen Musikgeschichte einordnet. Sie ist <i>kritisch</i>, indem sie sämtliche erreichbaren Quellen                vergleicht und textkritisch prüft. Sie ist eine <i>Gesamt</i>ausgabe, indem sie die auf Grundlage dieser                Quellenkritik erkennbaren Textfassungen und Skizzen sämtlicher, auch fragmentarischer Kompositionen                ediert. Sie ist eine Gesamt<i>ausgabe</i>, indem sie Notentexte mit dem methodischen Bewusstsein                vorlegt, dass eine Edition grundsätzlich eine Interpretation des durch die Quellen bezeugten Texts                darstellt.            </p>            <p>Die AWG gliedert sich in drei Serien:</p>        </div>        <div class="awg-edition-series-grid row row-cols-1 row-cols-md-3 g-4">            @for (series of editionOutline; track $index) {                <div class="col">                    <div class="card awg-edition-series-card h-100 shadow">                        <h5 class="card-header">                            {{ series.series.full }}                        </h5>                        <div class="card-body">                            <ul class="list-group list-group-flush">                                @for (section of series.sections; track $index) {                                    <li class="list-group-item">                                        @if (!section.disabled) {                                            <a [routerLink]="[series.series.route, \'section\', section.section.route]">{{                                                section.section.full                                            }}</a>                                        } @else {                                            <span class="text-muted">{{ section.section.full }}</span>                                        }                                    </li>                                }                            </ul>                        </div>                        <div class="card-footer text-end">                            <a [routerLink]="[series.series.route]" class="btn btn-outline-info">Mehr ...</a>                        </div>                    </div>                </div>            }        </div>    </div>}</div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaDescriptionComponent', 'selector': 'awg-edition-tka-description'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopComponent', 'selector': 'awg-scroll-to-top'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+    var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionSeriesComponent'};
 </script>
 <script src="../js/tree.js"></script>
@@ -694,7 +713,6 @@ export class EditionSeriesComponent implements OnInit {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 
