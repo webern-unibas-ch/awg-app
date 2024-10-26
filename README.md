@@ -17,7 +17,7 @@ A web application for the online edition of the [Anton Webern Gesamtausgabe](htt
 
 **Project Status**: This project is actively maintained.
 
-<img width="943" alt="app" src="https://github.com/musicEnfanthen/awg-app/assets/21059419/0673d981-558a-4519-8232-e570efa2985e">
+<img width="947" alt="Screenshot 2024-10-26 124804" src="https://github.com/user-attachments/assets/e5403d43-c555-4097-a250-79b5184a4e47">
 
 ## Table of Contents
 
