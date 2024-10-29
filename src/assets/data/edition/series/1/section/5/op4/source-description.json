@@ -3103,6 +3103,744 @@
                             }
                         ]
                     }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_H_corr",
+                        "label": "Korrekturen in <strong>H</strong>",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf die Textfassungen der Werkedition von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4."
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "I <em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 3",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "Ges.",
+                                        "position": "vorletzte Note",
+                                        "comment": "<em>Le</em>[-be-wohl] überschreibt <em>le</em>[-be-wohl] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "<em>...!</em> nach [Le-be-]<em>wohl</em> hinzugefügt mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "vorletzte Note",
+                                        "comment": "<em>Wald</em> überschreibt <em>wald</em> (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "vorletzte Note",
+                                        "comment": "<em>Stäm</em>[-me] überschreibt <em>stäm</em>[-me] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "1.–2. Note",
+                                        "comment": "sic: gestrichelter Bogen."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "9/8",
+                                        "comment": "<em>Blau</em> überschreibt <em>blau</em> (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav. o.",
+                                        "position": "6/4",
+                                        "comment": "Oberstimmenschicht: {{ref.getGlyph('[b]')}}ges<sup>2</sup> auf Rasur. Ante correcturam: vermutlich {{ref.getGlyph('[#]')}}fis<sup>2</sup> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "<em>Käm</em>[-me] überschreibt <em>käm</em>[-me] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. u.",
+                                        "position": "1/8",
+                                        "comment": "Unterstimmenschicht: Achtelnote D<sub>1</sub> (siehe Textfassung 2) gestrichen mit Bleistift, Achtelpause hinzugefügt mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav. u.",
+                                        "position": "2. Note bis 9/8",
+                                        "comment": "Unterstimmenschicht: Punktierte Viertelnote D<sub>1</sub>, Halbe Note mit Ligatur zu Achtelnote D<sub>1</sub> (siehe Textfassung 2) geändert zu Punktierte Viertelnote mit Ligatur zu Achtelnote D<sub>1</sub>, Achtelpause, Viertelnote D<sub>1</sub>, Achtelpause (sic: Variante zu Textfassung 3) mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "7/8",
+                                        "comment": "<em>Früch</em>[-te] überschreibt <em>früch</em>[-te] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "vorletzte Note",
+                                        "comment": "<em>Kar</em>[-ne-ol] überschreibt <em>kar</em>[-ne-ol] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "<em>Ma</em>[-le] überschreibt <em>ma</em>[-le] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "<em>lang</em>[-sa-me] überschreibt <em>Lang</em>[-sa-me] (siehe Textfassung 1) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "6. Note",
+                                        "comment": "<em>Quel</em>[-le] überschreibt <em>quel</em>[-le] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "",
+                                        "position": "(4/4) bis Taktende",
+                                        "comment": "Geltungstrich von <em>poco rit</em>[.] bei 11/8 auf Rasur. Ante correcturam: vermutlich <em>rit.</em> zu 11/8 (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "9/8",
+                                        "comment": "<em>Spie</em>[-le] überschreibt <em>spie</em>[-le] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "10/8",
+                                        "comment": "Komma nach [Spie-]<em>le</em> hinzugefügt mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "12/8",
+                                        "comment": "<em>rin̅t</em> überschreibt <em>Rin̅t</em> (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>a tempo</em> auf Rasur. Ante correcturam: vermutlich <em>noch langsamer</em> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "<em>Wöl</em>[-bung] überschreibt <em>wöl</em>[-bung] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "6.–7. Note",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich zwei Achtelnoten (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "11/8",
+                                        "comment": "<em>Korn</em> überschreibt <em>korn</em> (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "<em>Scha</em>[-le] überschreibt <em>scha</em>[-le] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "",
+                                        "position": "(5/4)",
+                                        "comment": "<em>a tempo</em> auf Rasur. Ante correcturam: vermutlich <em>wie zu Anfang</em> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "vorletzte Note",
+                                        "comment": "<em>Küh</em>[-le] überschreibt <em>küh</em>[-le] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "10 <br /> bis 11",
+                                        "system": "Klav. u.",
+                                        "position": "4. Note",
+                                        "comment": "Unterstimmenschicht: Punktierte Viertelnote D<sub>1</sub>, punktierte Viertelnote mit Ligatur zu Viertelnote D<sub>1</sub>, punktierte Halbe Note mit Ligatur zu Viertelnote D<sub>1</sub>, punktierte Viertelnote D<sub>1</sub>, punktierte Viertelnote mit Ligatur zu halbe Note Cis<sub>1</sub> (siehe Textfassung 1 und 2) geändert zu Achtelnote D<sub>1</sub>, zwei Achtelpausen, Achtelnote D<sub>1</sub>, Viertelpause, Viertelnote D<sub>1</sub>, Achtelnote D<sub>1</sub>, Achtelpause, Halbe Pause, Viertelpause, Achtelnote D<sub>1</sub>, zwei Achtelpausen, Achtelnote Cis<sub>1</sub>, Viertelpause, Halbe Pause (sic: Variante zu Textfassung 3) mit Bleistift. Siehe auch Korrekturen in T. 11 Klav. u. 1. Note und Klav. o. 2. Note."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "2/4",
+                                        "comment": "<em>Ring</em> überschreibt <em>ring</em> (siehe Textfassung 2) mit roter Tinte."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav.",
+                                        "position": "(5/4)",
+                                        "comment": "Klav. o. und Klav. u. Oberstimmenschicht auf Rasur. Ante correcturam: vermutlich wie Textfassung 1."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "9/8",
+                                        "comment": "<em>Frü</em>[-he] überschreibt <em>frü</em>[-he] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "<em>Kro</em>[-nen] überschreibt <em>kro</em>[-nen] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "Oberstimmenschicht: Halbe Note geändert zu punktierte Viertelnote mit Ligatur zu Sechzehntelnote, Sechzehntelpause (sic: Variante zu Textfassung 3) mit Bleistift. Siehe auch Korrektur zu Klav. o. 2. Note sowie zu T. 10–11 Klav. u."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. o.",
+                                        "position": "2. Note",
+                                        "comment": "Viertelnote geändert zu punktierte Achtelnote, Sechszehntelpause (sic: Variante zu Textfassung 3) mit Bleistift. Siehe auch Korrektur zu Klav. u. 1. Note sowie zu T. 10–11 Klav. u."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "5/8",
+                                        "comment": "<em>ah</em>[-nen-des] überschreibt <em>Ah</em>[-nen-des] (siehe Textfassung 1) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "9/8",
+                                        "comment": "<em>Schwei</em>[-gen] überschreibt <em>Schwei</em>[-gen] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. o.",
+                                        "position": "vorletzte Note",
+                                        "comment": "Unterstimmenschicht: Viertelnote h/d<sup>1</sup>/b<sup>1</sup> geändert zu punktierte Achtelnote, Sechzehntelpause (sic: Variante zu Textfassung 3) mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav.",
+                                        "position": "4–5/8",
+                                        "comment": "Achtelnoten Fis/c/f und b/e<sup>1</sup>/as<sup>1</sup>, Achtelpausen geändert zu punktierte Achtelnoten, Sechzehntelpausen (sic: Variante zu Textfassung 3) mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "",
+                                        "position": "(4/4)",
+                                        "comment": "<em>a tempo, äußerst ruhig</em> teilweise auf Rasur. Ante correcturam: vermutlich <em>äußerst langsam</em> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav. o.",
+                                        "position": "2–3/8",
+                                        "comment": "Achtelnoten a/es1/as1 und cis2/g<sup>2</sup>/h<sup>2</sup>, Achtelpause geändert zu punktierte Achtelnoten, Sechzehntelpause (sic: Variante zu Textfassung 3) mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav. o.",
+                                        "position": "3.–5. Note",
+                                        "comment": "Oberstimmenschicht: zusätzliches &lt; &gt; über dem System hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav. u.",
+                                        "position": "2. Note",
+                                        "comment": "Unterstimmenschicht: {{ref.getGlyph('[ppp]')}} (siehe Textfassung 2) gestrichen mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "13 <br /> bis 14",
+                                        "system": "Klav. u.",
+                                        "position": "7/4 <br /> 1/4",
+                                        "comment": "Unterstimmenschicht: Ligatur mit zwei Viertelnoten F<sub>1</sub> (siehe Textfassung 2) geändert zu Viertelnote, Viertelpause mit Bleistift."
+                                    }
+                                ]
+                            },
+                            {
+                                "blockHeader": "II „Noch zwingt mich Treue“ M 139: Textfassung 3",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "<em>Treu</em>[-e] überschreibt <em>treu</em>[-e] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "<em>Dul</em>[-dens] überschreibt <em>Dul</em>[-dens] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "3/4",
+                                        "comment": "<em>Schön</em>[-heit] überschreibt <em>schön</em>[-heit] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "6/8",
+                                        "comment": "<em>Mein </em>überschreibt <em>mein</em> (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "Rasur über der Akkolade. Ante correcturam: vermutlich Tempobezeichnung (<em>poco rit.</em> zu 5/8 bereits hier?)."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "5/16",
+                                        "comment": "<em>Stre</em>[-ben] überschreibt <em>stre</em>[-ben] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "3/4",
+                                        "comment": "<em>Trau</em>[-er] überschreibt <em>trau</em>[-er] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. o.",
+                                        "position": "letzte Note",
+                                        "comment": "{{ref.getGlyph('[b]')}}ges<sup>2</sup> auf Rasur. Ante correcturam : vermutlich {{ref.getGlyph('[#]')}}fis<sup>2</sup> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "(3/4)",
+                                        "comment": "Viertelpause (sic: Variante zu Textfassung 3) innerhalb der Achteltriole von Viertelpause und Achtelnote a<sup>1</sup> auf Rasur. Ante correcturam: vermutlich Achtelpause, Achtelnote a<sup>1</sup> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "<em>An</em>[-ruf] überschreibt <em>an</em>[-ruf] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav. u.",
+                                        "position": "letzte Pause",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich Ligatur von des/f (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "<em>bis</em> überschreibt <em>Bis</em> (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "<em>Stun</em>[-den] überschreibt <em>stun</em>[-den] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "<em>Bun</em>[-des] überschreibt <em>bun</em>[-des] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Ges.",
+                                        "position": "1/4",
+                                        "comment": "<em>Ban</em>[-gen] überschreibt <em>ban</em>[-gen] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "Ges.",
+                                        "position": "7/8",
+                                        "comment": "<em>Schick</em>[-sal] überschreibt <em>schick</em>[-sal] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "18",
+                                        "system": "Ges.",
+                                        "position": "letzte Note",
+                                        "comment": "<em>Fun</em>[-des] überschreibt <em>fun</em>[-des] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    }
+                                ]
+                            },
+                            {
+                                "blockHeader": "III „Ja Heil und Dank dir“ M 140: Textfassung 2",
+                                "blockComments": [
+                                    {
+                                        "measure": "1–15",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Auf zahlreichen Rasuren. Ante correcturam: vermutlich wie Textfassung 1."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "<em>Heil</em> überschreibt <em>heil</em> (siehe Textfassung 1) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "1",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "<em>Dank</em> überschreibt <em>dank</em> (siehe Textfassung 1) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "<em>Se</em>[-gen] überschreibt <em>se</em>[-gen] (siehe Textfassung 1) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "1.–3. Note",
+                                        "comment": "Notation mit Balken überschreibt Fähnchen (siehe Textfassung 1) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "<em>Po</em>[-chen] überschreibt <em>po</em>[-chen] (siehe Textfassung 1) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "8/16",
+                                        "comment": "<em>Er</em>[-war-tung] überschreibt <em>er</em>[-war-tung] (siehe Textfassung 1) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Korrekturskizze zu T. 6 auf Bl. 5<sup>r</sup> System 24–26 links mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "<em>Teu</em>[-re] überschreibt <em>teu</em>[-re] (siehe Textfassung 1) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav. o.",
+                                        "position": "5/8",
+                                        "comment": "{{ref.getGlyph('[b]')}}ges<sup>1</sup> überschreibt {{ref.getGlyph('[#]')}}fis<sup>1</sup> (siehe Textfassung 1) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "14/16",
+                                        "comment": "<em>ich</em> überschreibt <em>Ich</em> (siehe Textfassung 1) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "3/8",
+                                        "comment": "<em>Wor</em>[-te] überschreibt <em>wor</em>[-te] (siehe Textfassung 1) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav.",
+                                        "position": "2. Note",
+                                        "comment": "sic: [pppp]."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Klav.",
+                                        "position": "2/16",
+                                        "comment": "Pedalaufhebung versetzt von 5/16 mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Ges.",
+                                        "position": "7/8",
+                                        "comment": "{{ref.getGlyph('[b]')}}es<sup>1</sup> überschreibt {{ref.getGlyph('[#]')}}dis<sup>1</sup> (siehe Textfassung 1) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "<em>Son</em>[-nen-wan-de-run-gen] überschreibt <em>son</em>[-nen-wan-de-run-gen] (siehe Textfassung 1) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Klav. u.",
+                                        "position": "1. Note",
+                                        "comment": "[<s>xx</s>] unter der Note gestrichen mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Klav. u.",
+                                        "position": "2–3/4",
+                                        "comment": "Decrescendogabel unter dem System gestrichen mit schwarzer Tinte."
+                                    }
+                                ]
+                            },
+                            {
+                                "blockHeader": "IV „So ich traurig bin“ M 141: Textfassung 2",
+                                "blockComments": [
+                                    {
+                                        "measure": "1–17",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "sic (Variante zu Textfassung 2): Achtelnoten mit Fähnchen notiert (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav. u.",
+                                        "position": "2/8",
+                                        "comment": "Achtelpause hinzugefügt mit blauem Buntstift."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Taktvorzeichnung <em>3/8</em> überschreibt <em>4/8</em>.  <br /> sic (Variante zu Textfassung 2): Notation als Achtelquartole. <br /> Siehe auch Korrektur in Klav."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Gestrichen und am rechten Seitanrand neu notiert mit schwarzer Tinte: <br /> ##Abbildung##"
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "",
+                                        "position": "2/8",
+                                        "comment": "<em>a tempo</em> auf Rasur. Ante correcturam: vermutlich Geltungsstrichelung von <em>poco rit,</em> bis und <em>a tempo</em> zu T. 10 2/8 (Rasurspuren)."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>ruhig (</em>{{ref.getGlyph('[Achtelnote]')}} <em>= ca 72)</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "12 <br /> und 14",
+                                        "system": "Ges.",
+                                        "position": "letzte Note <br /> 1. Note",
+                                        "comment": "Text sic (Variante zu Textfassung 2): <em>Klang. Fer</em>[-ne] (siehe Textfassung 1 T. 11, 13)."
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "sic (Variante zu Textfassung 2): Notation als Achtelquartole (siehe Textfassung 1 T. 15)."
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "Klav.",
+                                        "position": "1. Note",
+                                        "comment": "sic (Variante zu Textfassung 2): {{ref.getGlyph('[ppp]')}} (zusätzlich zu T. 15). <br /> sic (Variante zu Textfassung 2): <em>Ped.</em> erst zu 3/8."
+                                    }
+                                ]
+                            },
+                            {
+                                "blockHeader": "V „Ihr tratet zu dem Herde“ M 142: Textfassung 3",
+                                "blockComments": [
+                                    {
+                                        "measure": "vor 1",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "<em>Langsam (</em>{{ref.getGlyph('[Viertelnote]')}} <em>= ca 48)</em> teilweise auf Rasur und geändert. Ante correcturam: vermutlich <em>Sehr langsam (</em>{{ref.getGlyph('[Viertelnote]')}}<em>)</em> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "<em>Her</em>[-de] überschreibt <em>her</em>[-de] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "<em>wo</em> überschreibt <em>Wo</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "",
+                                        "position": "5/8",
+                                        "comment": "<em>poco rit.</em> auf Rasur. Ante correcturam: vermutlich <em>zögernd</em> (siehe Textfassung 1 und 2)."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "5/8",
+                                        "comment": "<em>Glut</em> überschreibt <em>glut</em> (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "<em>Er</em>[-de] überschreibt <em>er</em>[-de] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "<em>vom</em> überschreibt <em>Vom</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "<em>Mon</em>[-de] überschreibt <em>mon</em>[-de] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Klav.",
+                                        "position": "(4/4)",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 1 oder 2."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>poco accell.</em> [sic; lies: accelerando] auf Rasur. Ante correcturam: vermutlich <em>bewegter</em> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "<em>A</em>[-schen] überschreibt <em>a</em>[-schen] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "{{ref.getGlyph('[mf]')}} hinzugefügt mit blauer Tinte. <br /> <em>die</em> überschreibt <em>Die</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "<em>Fin</em>[-ger] überschreibt <em>fin</em>[-ger] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "8/16",
+                                        "comment": "<em>mit</em> überschreibt <em>Mit</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "<em>Su</em>[-chen] überschreibt <em>su</em>[-chen] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "3. Note",
+                                        "comment": "<em>Ta</em>[-sten] überschreibt <em>ta</em>[-sten] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "5. Note",
+                                        "comment": "{{ref.getGlyph('[f]')}} über dem System hinzugefügt mit blauer Tinte <br /> <em>Ha</em>[-schen] überschreibt <em>ha</em>[-schen] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>poco rit.</em> | {{ref.getGlyph('[Viertelnote]')}}<em> = ca 66</em> auf Rasur. Ante correcturam: vermutlich <em>rit.</em> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav.",
+                                        "position": "1–3/4",
+                                        "comment": "{{ref.getGlyph('[f]')}}, Decrescendogabel (zusätzlich zu Gabel unter dem System bis T. 11 1. Note hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[mf]')}} hinzugefügt mit blauer Tinte; ersetzt vermutlich rasiertes {{ref.getGlyph('[p]')}} (siehe Textfassung 2) unter dem System. <br /> <em>wird</em> überschreibt <em>Wird</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Punktierte Viertelnote Ges/B/g überschreibt punktierte Halbe Note (siehe Textfassung 2), punktierte Viertelnote As/d/ges hinzugefügt mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "<em>Schein!</em> überschreibt <em>schein!</em> (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "Geltungsstrichelung von <em>poco rit.</em> in T. 10 auf Rasur. Ante correcturam: vermutlich <em>Tempo I.</em> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Ges., Klav.",
+                                        "position": "(1/4)",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich wie Textfassung 2. Siehe auch Korrektur in T. 11."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Ges.",
+                                        "position": "4. Note",
+                                        "comment": "<em>Trost</em>[-ge-ber-de] überschreibt <em>trost</em>[-ge-ber-de] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Ges.",
+                                        "position": "letzte Note",
+                                        "comment": "<em>der</em> überschreibt <em>Der</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>tempo I. (</em>{{ref.getGlyph('[Viertelnote]')}}<em> = ca 48)</em> auf Rasur. Ante correcturam: vermutlich <em>sehr ruhig</em> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Ges.",
+                                        "position": "1/8",
+                                        "comment": "<em>Mond</em> überschreibt <em>mond</em> (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "14",
+                                        "system": "Ges.",
+                                        "position": "3/8",
+                                        "comment": "<em>Her</em>[-de] überschreibt <em>her</em>[-de] (siehe Textfassung 2) mit schwarzer Tinte."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "<em>es</em> überschreibt <em>Es</em> (siehe <strong>George_DsR</strong>) mit schwarzer Tinte."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 ]
             }
         },
