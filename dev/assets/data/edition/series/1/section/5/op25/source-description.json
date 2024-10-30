@@ -1,0 +1,3097 @@
+{
+    "sources": [
+        {
+            "id": "source_A",
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Skizzen und Reihentabelle zu „Wie bin ich froh!“ M 317 (in: Skizzenbuch 3).",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": ["2 Seiten in <strong>Skizzenbuch 3</strong>: Bl. 38<sup>v</sup>–39<sup>r</sup>."],
+                "writingMaterialStrings": [
+                    "Notenpapier, 16 Systeme, Format: quer 270 × 335 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP25.A[0].route\" [title]=\"ref.FIRM_SIGNS.OP25.A[0].full\" [alt]=\"ref.FIRM_SIGNS.OP25.A[0].short\" /> <br /> auf Bl. 39<sup>r</sup> unten links (Bl. 38–39)"
+                ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 16,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "270"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "335"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_15_LIN_16",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["39r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "38–39"
+                    }
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": ["grüner Buntstift", "roter Buntstift", "schwarzer Buntstift"]
+                },
+                "titles": ["<em>„Wie bin ich froh!“</em> auf Bl. 38<sup>v</sup> oben links mit schwarzem Buntstift"],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [
+                    "Taktzahlen <em>1–2</em>, <em>3–6</em> und <em>9–15</em> in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4'})\"><strong>M 317 Sk4</strong></a> sowie <em>2–3</em> in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4_1'})\"><strong>M 317 Sk4.1</strong></a> mit schwarzem Buntstift",
+                    "Taktzahlen <em>7–8</em> in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4c'})\"><strong>M 317 Sk4</strong></a> mit Bleistift und nachgezogen mit schwarzem Buntstift",
+                    "Taktzahl <em>52</em> (zu <strong>op. 24/1</strong>) auf Bl. 39<sup>r</sup> oben links mit schwarzem Buntstift"
+                ],
+                "instrumentations": [
+                    "Akkoladenstrich und teilweise Schlüsselvorsatz auf Bl. 38<sup>v</sup> System 1–4 (zu <strong>op. 24/1</strong>)",
+                    "Akkoladenstrich und Schlüsselvorsatz auf Bl. 39<sup>r</sup> System 1–4 (zu <strong>op. 24/1</strong>), eingekreist und gestrichen mit rotem Buntstift"
+                ],
+                "annotations": [
+                    "<em><u>Reihe</u></em> auf Bl. 38<sup>v</sup> System 5 links (zu <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a>) mit schwarzem Buntstift"
+                ],
+                "contents": [
+                    {
+                        "item": "M 317 Sk2",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2"
+                        },
+                        "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "38v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1a",
+                                            "systemDescription": "Reihenfragment (A) und Zwölftonreihenform G<sub>cis</sub> (B)",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {}
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 317 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "38v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1b",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 317 Sk2.1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2_1"
+                        },
+                        "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "38v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1c–3c",
+                                            "measure": "1–4",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 317 Sk2.1.1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2_1_1"
+                        },
+                        "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "38v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1d",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 317 Sk2.1.2",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2_1_2"
+                        },
+                        "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "38v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2a",
+                                            "measure": "3",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 317 Sk2.1.2.1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2_1_2_1"
+                        },
+                        "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "38v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4c",
+                                            "measure": "3",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 317 Sk2.1.3",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2_1_3"
+                        },
+                        "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "38v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3d–4d",
+                                            "systemDescription": "Tonbuchstaben",
+                                            "measure": "",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 317 Sk3",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3"
+                        },
+                        "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "38v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3a",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 317 Sk3.1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3_1"
+                        },
+                        "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "38v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3b–5b",
+                                            "measure": "2–4, {5–6}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 317 Sk3.1.1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3_1_1"
+                        },
+                        "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "38v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5c–6b",
+                                            "measure": "4–5",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 317 Sk3.1.2",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3_1_2"
+                        },
+                        "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "38v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4a",
+                                            "measure": "3–5",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 317 Sk3.1.3",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3_1_3"
+                        },
+                        "itemDescription": "(Reihentabelle zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "38v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "g",
+                                                "rowNumber": "1"
+                                            }
+                                        },
+                                        {
+                                            "system": "6b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "gis",
+                                                "rowNumber": "2"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "g",
+                                                "rowNumber": "3"
+                                            }
+                                        },
+                                        {
+                                            "system": "7b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "fis",
+                                                "rowNumber": "4"
+                                            }
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 317 Sk3.1.3.1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3_1_3_1"
+                        },
+                        "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "38v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6c",
+                                            "systemDescription": "Zwölftonreihenform G<sub>g</sub>",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {}
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 317 Sk4",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk4a"
+                        },
+                        "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "38v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "{1A}, {1B}, 1–2, 3A",
+                                            "linkTo": "M_317_Sk4a"
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "39r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–8b",
+                                            "measure": "3B, 4–6",
+                                            "linkTo": "M_317_Sk4b"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–12, 13c, 14b",
+                                            "measure": "7–12",
+                                            "linkTo": "M_317_Sk4c"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13a–16a",
+                                            "measure": "13–15",
+                                            "linkTo": "M_317_Sk4d"
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 317 Sk4.1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk4_1"
+                        },
+                        "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "38v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13–15",
+                                            "measure": "2, {3}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 317 Sk4.2",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk4_2"
+                        },
+                        "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "39r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13b",
+                                            "measure": "13",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 317 Sk4.3",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk4_3"
+                        },
+                        "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
+                        "folios": [
+                            {
+                                "folio": "39r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "15c–16c",
+                                            "measure": "13",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_B",
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Autograph von „Wie bin ich froh!“ M 317: Textfassung 1.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "4 Blätter (Bl. 1–4): 2 ineinander gelegte Bögen (Bl. 1/4, 2/3), archivalische Paginierung von <em>[1]</em> bis <em>[8]</em> auf Bl. 1<sup>r</sup>–4<sup>v</sup> innere Seitenecken unten mit Bleistift, mit Ausnahme der archivalischen Paginierung unbeschriftet: Bl. 3<sup>v</sup>–4<sup>v</sup>. Archivalischer Eintrag <em>[op. 25 no. 1]</em> auf Bl. 1<sup>r</sup> unten halbrechts mit Bleistift."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 12 Systeme, Format: hoch 340 × 270 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP25.B[0].route\" [title]=\"ref.FIRM_SIGNS.OP25.B[0].full\" [alt]=\"ref.FIRM_SIGNS.OP25.B[0].short\" /> <br /> auf Bl. 1<sup>r</sup> und 2<sup>r</sup> unten links (Bl. 1–2)"
+                ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 12,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "340"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "270"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_2_LIN_12",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r", "2r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1–2"
+                    }
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": ["Bleistift"]
+                },
+                "titles": [
+                    "<em>„Wie bin ich froh!“</em> | <em>von Hildegard Jone</em> [Mitte] | <em>Anton Webern</em> [halbrechts] auf Bl. 2<sup>r</sup> System 1–2"
+                ],
+                "dates": [
+                    "<em>David Josef Bach</em> | <em>zum 60. Geburtstag</em> | <em>13. VIII. 1934</em> [System 6–7 Mitte] | <em>von seinem Anton Webern</em> [System 11 rechts] auf Bl. 1<sup>r</sup>",
+                    "<em>1934</em> vertikal aufsteigend auf Bl. 3<sup>r</sup> System 3–4 nach T. 12"
+                ],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [
+                    "<em>Wie bin ich froh!</em> | <em>noch einmal wird mir alles grün</em> | <em>und leuchtet so!</em> | <em>noch überblühn</em> || <em>die Blumen mir die Welt!</em> | <em>noch einmal bin ich ganz ins Werden</em> | <em>hingestellt</em> | <em>und bin auf Erden.</em> [System 4–7 Mitte] || <sup>k</sup><em>aus</em><sup>k</sup> <em>„Die Freude“ von Hildegard Jone</em> [System 9 rechts] auf Bl. 1<sup>v</sup>"
+                ],
+                "contents": [
+                    {
+                        "item": " ",
+                        "itemLinkTo": {},
+                        "itemDescription": "Autograph von „Wie bin ich froh!“ <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">M 317: Textfassung 1</a>",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "Widmung (siehe Datierung).",
+                                "systemGroups": []
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "Gedichttext (siehe Eintragungen).",
+                                "systemGroups": []
+                            },
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–10",
+                                            "measure": "3–4",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "5–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "7–8",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "9–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "3r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "11–12",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_C",
+            "siglum": "C",
+            "siglumAddendum": "",
+            "type": "Reihentabelle.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt und beschnitten. Löcher von Reißzwecken oben Mitte und rechts sowie System 7 Mitte. Archivalische Paginierung <em>[1]</em> bis <em>[2]</em> mit Bleistift unten rechts oder links. Verso-Seite bis auf die archivalische Paginierung unbeschriftet."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 7 Systeme (oben beschnitten), Format: quer 169 × 267 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP25.C[0].route\" [title]=\"ref.FIRM_SIGNS.OP25.C[0].full\" [alt]=\"ref.FIRM_SIGNS.OP25.C[0].short\" /> <br /> auf Bl. 1<sup>r</sup> unten links (Bl. 1)"
+                ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 7,
+                            "info": "oben beschnitten",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "169"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "267"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_3_LIN_14",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1"
+                    }
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": ["blauer Buntstift", "grüner Buntstift", "roter Buntstift"]
+                },
+                "titles": [
+                    "<em>Reihen op. 25</em> [teilweise eingerahmt] auf Bl. 1<sup>r</sup> oben rechts mit Bleistift, Einrahmung mit blauem Buntstift",
+                    "<em>3 Lieder</em> auf Bl. 1<sup>r</sup> System 1–2 rechts mit rotem Buntstift"
+                ],
+                "dates": ["<em>1934</em> auf Bl. 1<sup>r</sup> System 3–4 rechts mit rotem Buntstift"],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 317 Sk5 / M321 Sk1 / M 322 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "SkRT"
+                        },
+                        "itemDescription": "(Reihentabelle op. 25)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "g",
+                                                "rowNumber": "1"
+                                            }
+                                        },
+                                        {
+                                            "system": "1b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "gis",
+                                                "rowNumber": "2"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "2a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "g",
+                                                "rowNumber": "3"
+                                            }
+                                        },
+                                        {
+                                            "system": "2b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "fis",
+                                                "rowNumber": "4"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "c",
+                                                "rowNumber": "5"
+                                            }
+                                        },
+                                        {
+                                            "system": "3b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "cis",
+                                                "rowNumber": "6"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "c",
+                                                "rowNumber": "7"
+                                            }
+                                        },
+                                        {
+                                            "system": "4b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "h",
+                                                "rowNumber": "8"
+                                            }
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_D",
+            "siglum": "D",
+            "siglumAddendum": "",
+            "type": "Skizzen zu „Sterne, Ihr silbernen Bienen“ M 321 und „Des Herzens Purpurvogel“ M 322 (in: Skizzenbuch 4).",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "12 Seiten in Skizzenbuch 4: Bl. 2<sup>r</sup> (S. 2), Bl. 5<sup>v</sup>–10<sup>r</sup> (S. 9–18) und Bl. 11<sup>r</sup> (S. 20)."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, quer 270 × 337 mm, 16 Systeme, Firmenzeichen <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] <em>Protokoll. Schutzmarke</em> | <em>No. 15</em> auf auf Bl. 2, 5 und 11 recto unten links"
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": ["blauer Buntstift", "grüner Buntstift", "roter Buntstift", "blaue Tinte"]
+                },
+                "titles": [
+                    "<em>III. Satz op. 24</em> auf Bl. 2<sup>r</sup> System 9–10 links mit rotem Buntstift",
+                    "<em>„Sterne, Ihr silbernen Bienen - - -“</em> auf Bl. 5<sup>v</sup> oben links mit grünem Buntstift",
+                    "<em>„Des Herzens Purpurvogel“</em> auf Bl. 8<sup>v</sup> oben links mit rotem Buntstift"
+                ],
+                "dates": [
+                    "<em>22. VIII. 34</em> auf Bl. 2<sup>r</sup> oben links",
+                    "<em>19. IX. 34</em> auf Bl. 6<sup>r</sup> oben links",
+                    "<em>8. X. 34</em> auf Bl. 7<sup>v</sup> System 12–13 (zu <strong>M 321 Sk8</strong> T. 21B–26B)",
+                    "<em>M. am 30. IX. nach Zürich abgereist.</em> auf Bl. 7<sup>v</sup> System 16 rechts",
+                    "<em>24. X</em>[.] <em>34</em> auf Bl. 8<sup>v</sup> System 4–5 halbrechts (zu <strong>M 322 Sk3</strong> T. {{ '{' }}1A{{ '}' }}, {{ '{' }}1B{{ '}' }}, {{ '{' }}1C‒2A{{ '}' }}, 1D‒2B)",
+                    "<em>15. XI</em>[.] <em>34</em> auf Bl. 11<sup>r</sup> System 9–10 (nach <strong>M 322 Sk4</strong> T. 21C)",
+                    "<em>34 M. am 9</em>[.] <em>XII. aus Z. zurückgekom̅en. | M. am 10. I. 35 operiert worden | Ma</em> [Unterführungszeichen für „am“] <em>21. I.</em> [Unterführungszeichen für „35“] <em>erkrankt</em> auf Bl. 11<sup>r</sup> System 10–11 rechts"
+                ],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 320 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Konzert für neun Instrumente op. 24/3)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–5",
+                                            "measure": "##–##",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 320 Sk1.2",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Konzert für neun Instrumente op. 24/3)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3b",
+                                            "measure": "##–##",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 320 Sk1.1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Konzert für neun Instrumente op. 24/3)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6a",
+                                            "measure": "##–##",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6b–8",
+                                            "measure": "{1A}, 1B, {2A}, 2B–4",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 320 Sk2",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Konzert für neun Instrumente op. 24/3)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10–13",
+                                            "measure": "##–##",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk4",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "5v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk5",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "5v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5–8",
+                                            "measure": "{1A–1D}, 1E–2",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk6",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "5v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10–13",
+                                            "measure": "{1A}, {1B‒2A}, 1C‒2B, {3A}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "12b–16a",
+                                            "measure": "{3B–4A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12d–16b",
+                                            "measure": "{5A}–6A",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–8a",
+                                            "measure": "{5B‒6B}, {5C‒6C}, 5D‒6D",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk6.3",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "5v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14–16b",
+                                            "measure": "5",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk6.4",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "5v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "15a–16a",
+                                            "measure": "5",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk2",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1",
+                                            "measure": "1x–5x",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2",
+                                            "measure": "1y–4y",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk3",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4–8",
+                                            "measure": "1–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–14a",
+                                            "measure": "8–14",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk6.1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "12c–15b",
+                                            "measure": "3‒6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk6.2",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14e–16c",
+                                            "measure": "5",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk8",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "6v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–7b",
+                                            "measure": "1–3, {4A–6A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7a–13b",
+                                            "measure": "4B–7, 8A–9A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14b–15b",
+                                            "measure": "8C, {8B}, {9B}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14–16",
+                                            "measure": "{10A}, {9C, 10B, 11A}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "8r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–5",
+                                            "measure": "9D, 10C, 11B–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–13b",
+                                            "measure": "14–15, {16A–17A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12a–16",
+                                            "measure": "16B–18A, {19A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7b–10b",
+                                            "measure": "18B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11b–15b",
+                                            "measure": "19B–20",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–7a",
+                                            "measure": "21A–26A",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk9",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "6v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "12a–14a",
+                                            "measure": "1–6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk7.1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "7r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6b–8b",
+                                            "measure": "3–4",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk7",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "7r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10–13",
+                                            "measure": "1–4B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk8.2",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "7v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6b–8a",
+                                            "measure": "24",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk8.1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "7v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5b–8b",
+                                            "measure": "{24A}–25",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "8v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1a–2a",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk2",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "8v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1b–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk3",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "8v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5–10",
+                                            "measure": "{1A}, {1B}, {1C‒2A}, 1D‒2B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–16",
+                                            "measure": "{3A‒4A}, {5A}, 3B‒5B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "9r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–5a",
+                                            "measure": "6‒11",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk4.3",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "9r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2b–3b",
+                                            "measure": "8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk4.2",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "9r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4b–5b",
+                                            "measure": "7",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk4.1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "9r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5c–6b",
+                                            "measure": "6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk4",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "9r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6a–10",
+                                            "measure": "1‒4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–16",
+                                            "measure": "5‒8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "10r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–6a",
+                                            "measure": "9–11A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6b–11",
+                                            "measure": "11B, 10B‒12",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–16",
+                                            "measure": "13B‒16",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "9v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2b–5b",
+                                            "measure": "13C, 14B, {15B}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–12a",
+                                            "measure": "17A–20A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12b–16",
+                                            "measure": "{21A}, 21B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "11r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–6",
+                                            "measure": "17B‒20B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–10",
+                                            "measure": "21C",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk4.5",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "9v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2a–5a",
+                                            "measure": "11",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk4.6",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "9v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2c–5c",
+                                            "measure": "18",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk4.4",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "10r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2b–5b",
+                                            "measure": "{8A}, 8B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk4.7",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "11r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11–15",
+                                            "measure": "19‒20",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_E",
+            "siglum": "E",
+            "siglumAddendum": "",
+            "type": "Autograph von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25.",
+            "location": "A-Wue, UEQ 493.",
+            "description": {
+                "desc": [
+                    "12 Blätter (Bl. 1–12): 1 Bogen (Bl. 1/12) umschließt 2 aufeinander gelegte Bögen (Bl. 2/3, 4/5) und 3 ineinander gelegte Bögen (Bl. 6/11 umschließt Bl. 7/8, 9/10). Bl. 1<sup>v</sup>, 3<sup>v</sup> (mit Ausnahme der Paginierung) und 10<sup>r</sup>–12<sup>v</sup> unbeschriftet."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, hoch 340 × 270 mm, 20 Systeme, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke</em> | <em>No. 6 | 20 linig.</em> auf Bl. 12<sup>v</sup> (Bl. 1/12)",
+                    "Notenpapier, hoch 336 × 267 mm, 12 Systeme, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke</em> | <em>No. 2 | 12 linig.</em> auf Bl. 2<sup>r</sup> unten links (Bl. 2/3)",
+                    "Notenpapier, hoch 340 × 270 mm, 12 Systeme, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke</em> | <em>No. 2 | 12 linig.</em> auf Bl. 4<sup>r</sup>, 7<sup>r</sup>, 10<sup>r</sup> unten links (Bl. 4/5, 7–10)",
+                    "Notenpapier, hoch 336 × 267 mm, 14 Systeme, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke</em> | <em>No. 3 | 14 linig.</em> auf Bl. 6<sup>r</sup> unten links (Bl. 6/11)"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": ["Bleistift (Taktstriche", "außer Schlussstriche)"]
+                },
+                "titles": [
+                    "<em>Anton Webern || Drei Lieder | nach | Gedichten | von | Hildegard Jone |</em> [<s>xxx</s>] [rasiert] <em>| op. 25</em> auf Bl. 1<sup>r</sup> System 2–13",
+                    "<em>I.</em> [oben Mitte] | <em>Anton Webern, op. 25</em> [System 1 rechts] auf Bl. 2<sup>r</sup>",
+                    "<em>II.</em> auf Bl. 4<sup>r</sup> oben Mitte",
+                    "<em>III.</em> auf Bl. 7<sup>r</sup> oben Mitte"
+                ],
+                "dates": [],
+                "paginations": [
+                    "<em>1</em> bis <em>16</em> auf Bl. 2<sup>r</sup>–9<sup>v</sup> äußere Seitenecken oben mit Bleistift"
+                ],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "Autograph von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "Titelseite.",
+                                "systemGroups": []
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "I „Wie bin ich froh!“ M 317: Textfassung 1→2",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–5",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "3–4",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "6–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "8–9",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "3r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "10–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "12",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "II „Des Herzens Purpurvogel“ M 322: einzige Textfassung",
+                        "folios": [
+                            {
+                                "folio": "4r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "1–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "5–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "4v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "9–12",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "13–16",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "5r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "17–20",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "21–24",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "5v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "25–28",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "29–32",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "33–36",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "37–40",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "6v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "41–42",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "III „Sterne, Ihr silbernen Bienen“ M 321: einzige Textfassung",
+                        "folios": [
+                            {
+                                "folio": "7r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "1–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "8–14",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "15–21",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "22–28",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "8r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "29–35",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "36–42",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "8v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "43–49",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "50–56",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "9r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "57–63",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "64–70",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "9v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "71–77",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "78",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_E_corr1",
+                        "label": "Korrekturen 1 in <strong>E</strong>",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Wie bin ich froh“ M 317: Textfassung 1."
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "",
+                                        "position": "(5/8)",
+                                        "comment": "Geltungsstrichelung von <em>rit.</em> auf Rasur. Ante correcturam: <em>rit.</em> vermutlich versetzt von T. 1 5/8. Siehe TkA zu 4/8."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "",
+                                        "position": "(3/4)",
+                                        "comment": "Geltungsstrichelung von <em>rit.</em> auf Rasur. Ante correcturam: <em>rit.</em> vermutlich versetzt von T. 10 3/4 zu Taktanfang."
+                                    },
+                                    {
+                                        "measure": "11 <br /> bis 12",
+                                        "system": "",
+                                        "position": "(4/4)",
+                                        "comment": "T. 11 4/4 wurde zum Teil auf handgezogenen Systemen am Akkoladenende ergänzt; am vom Systemanfang nach rechts verschobenen Akkoladenanfang vor T. 12 steht eine großflächige Rasur; weitere Rasuren in T. 12 Ges.; radierter Taktstrich nach T. 12 2/8. Ante correcturam: vermutlich eine dreitaktige Variante (T. [11–13]) mit Taktstrichen nach T. 11 6/8 (vor T. [12]) und nach T. 12 2/8 (vor T. [13]). Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\"><strong>M 317 Sk4</strong> T. 13–15</a>."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav. u.",
+                                        "position": "2.–5. Note",
+                                        "comment": "Auf Rasur. Ante correcturam: Tonhöhen vermutlich im Violinschlüssel notiert. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\"><strong>M 317 Sk4</strong> T. 13–15</a>."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "source_E_corr2",
+                        "label": "Korrekturen 2 in <strong>E</strong>",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf die Textfassungen der Werkedition von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25."
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "I „Wie bin ich froh“ M 317",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "Klav.",
+                                        "position": "5–6/8",
+                                        "comment": "Auf Rasur. Ante correcturam: Aufteilung der Noten auf die Systeme vermutlich wie in Textfassung 1."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "2.–3. Note",
+                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "1.–3. Note",
+                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "5–6/8",
+                                        "comment": "Tenutostriche rasiert (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "vor 4",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Violinschlüssel versetzt von T. 4 vor 1. Note (dort Rasur; siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "1.–3. Note",
+                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "8/8",
+                                        "comment": "Tenutostrich rasiert (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "1.–3. Note",
+                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "5 <br /> bis 6",
+                                        "system": "Klav.",
+                                        "position": "5/8 <br /> 1/8",
+                                        "comment": "Auf Rasur. Ante correcturam: Aufteilung der Noten auf die Systeme vermutlich wie in Textfassung 1."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav.",
+                                        "position": "2. Note",
+                                        "comment": "Bleistiftskizzen über und unter der Akkolade (System 5 und 9) rasiert."
+                                    },
+                                    {
+                                        "measure": "6 <br /> bis 7",
+                                        "system": "Ges.",
+                                        "position": "2. Note <br /> 2/8",
+                                        "comment": "Bogen rasiert (siehe Textfassung 1). Möglicherweise steht der Silbenbogen in T. 7 1–2/8 im Zusammenhang mit dieser Korrektur."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "4–6/8",
+                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Klav. u.",
+                                        "position": "nach 3/8",
+                                        "comment": "Violinschlüssel versetzt von vor 2. Note (dort Rasur; siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "1.–4. Note",
+                                        "comment": "Bogen rasiert (siehe Textfassung 1). Möglicherweise steht der Silbenbogen in T. 8 3.–4. Note im Zusammenhang mit dieser Korrektur."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "Ges.",
+                                        "position": "5.–6. Note",
+                                        "comment": "Tenutostriche rasiert (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "Ges.",
+                                        "position": "3.–5. Note",
+                                        "comment": "Tenutostriche rasiert (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "9 <br /> bis 10",
+                                        "system": "Ges.",
+                                        "position": "8/8 <br /> 2/8",
+                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Ges.",
+                                        "position": "3.–5. Note",
+                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Ges.",
+                                        "position": "6/8",
+                                        "comment": "Tenutostrich rasiert (siehe Textfassung 1)."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>tempo I.</em> ersetzt <em>wieder tempo I.</em> auf Rasur (siehe Textfassung 1)."
+                                    }
+                                ]
+                            },
+                            {
+                                "blockHeader": "II „Des Herzens Purpurvogel“ M 322",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "Metronomangabe auf Rasur."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Klav. u.",
+                                        "position": "1/16",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>rit.</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "3 <br /> bis 6",
+                                        "system": "Ges.",
+                                        "position": "6/16 <br /> 3/8",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Klav. u.",
+                                        "position": "1–2/8",
+                                        "comment": "Auf Rasur. Ante correcturam: Hals- und Bogenausrichtung umgekehrt?"
+                                    },
+                                    {
+                                        "measure": "7 <br /> bis 8",
+                                        "system": "Ges.",
+                                        "position": "2/8 <br /> 2/8",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "9",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>rit.</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "Klav. u.",
+                                        "position": "1/16",
+                                        "comment": "{{ref.getGlyph('[f]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "10",
+                                        "system": "",
+                                        "position": "4/16",
+                                        "comment": "<em>rit.</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "10 <br /> bis 11",
+                                        "system": "Ges.",
+                                        "position": "6/16 <br /> 3/8",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav.",
+                                        "position": "2–6/16",
+                                        "comment": "Auf Rasur. Bleistiftskizzen über und unter dem Klav.-System (System 4 und 7) radiert."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Ges.",
+                                        "position": "2–3/8",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Crescendo- und Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "13 <br /> bis 14",
+                                        "system": "Ges.",
+                                        "position": "2/8 <br /> 6/16",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Ges.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "15",
+                                        "system": "Klav.",
+                                        "position": "1–5/16",
+                                        "comment": "Rasur zwischen den Systemen. Ante correcturam: Gabel?"
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "Ges.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "16 <br /> bis 17",
+                                        "system": "Ges.",
+                                        "position": "3/8 <br /> 6/16",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "16",
+                                        "system": "Klav. u.",
+                                        "position": "3/8",
+                                        "comment": "{{ref.getGlyph('[f]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "16 <br /> bis 17",
+                                        "system": "Klav. u.",
+                                        "position": "3/8 <br /> 1/16",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "18 <br /> bis 19",
+                                        "system": "Ges.",
+                                        "position": "2/16 <br /> 2. Note",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "19",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>rit.</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "20",
+                                        "system": "Ges.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "21",
+                                        "system": "Klav. o.",
+                                        "position": "1/16",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "21",
+                                        "system": "Klav. u.",
+                                        "position": "2/16",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "23–24",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "<em>rit. - - - tempo</em> auf Rasur (bis Ende T. 24)."
+                                    },
+                                    {
+                                        "measure": "23",
+                                        "system": "Ges.",
+                                        "position": "2/16–2/8",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "23 <br /> bis 24",
+                                        "system": "Ges.",
+                                        "position": "3/8 <br /> 1. Note",
+                                        "comment": "Anfang der Decrescendogabel auf Rasur. Ante correcturam: Ausdehnung der Gabel von T. 23 2/8 bis Taktende?"
+                                    },
+                                    {
+                                        "measure": "23 <br /> bis 24",
+                                        "system": "Klav. o.",
+                                        "position": "6/16 <br /> 1/16",
+                                        "comment": "Auf Rasur. Ante correcturam: ges<sup>1</sup>? (Siehe <strong>M 322 Sk4</strong> T. 12.)"
+                                    },
+                                    {
+                                        "measure": "24",
+                                        "system": "Klav. u.",
+                                        "position": "2/8",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "25 <br /> bis 26",
+                                        "system": "Ges.",
+                                        "position": "1. Note <br /> 3/8",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "26",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>rit.</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "27",
+                                        "system": "Klav.",
+                                        "position": "2.–3. Note",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "27 <br /> bis 28",
+                                        "system": "Ges.",
+                                        "position": "4/16 <br /> 2/16",
+                                        "comment": "Bogen rasiert. Crescendo- (T. 27 3/8) und Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "27 <br /> bis 28",
+                                        "system": "Klav.",
+                                        "position": "6/16 <br /> 2/16",
+                                        "comment": "Bogen auf Rasur."
+                                    },
+                                    {
+                                        "measure": "29",
+                                        "system": "Ges.",
+                                        "position": "2–3/16",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "29 <br /> bis 30",
+                                        "system": "Ges.",
+                                        "position": "4/16 <br /> 4/16",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "30",
+                                        "system": "",
+                                        "position": "6/16",
+                                        "comment": "<em>tempo</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "30 <br /> bis 31",
+                                        "system": "Ges.",
+                                        "position": "6/16 <br /> 3/16",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "31",
+                                        "system": "",
+                                        "position": "2/16",
+                                        "comment": "<em>rit.</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "32",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "Geltungsstrichelung von<em> rit</em>. (T. 31) auf Rasur."
+                                    },
+                                    {
+                                        "measure": "33",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>langsamer</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "33",
+                                        "system": "Ges.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "33",
+                                        "system": "Ges.",
+                                        "position": "5–6/16",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "34",
+                                        "system": "Klav.",
+                                        "position": "2–4/16",
+                                        "comment": "Bogen rasiert. Staccatopunkt zu 4/16 auf Rasur."
+                                    },
+                                    {
+                                        "measure": "34",
+                                        "system": "Ges.",
+                                        "position": "4/16–3/8",
+                                        "comment": "Bogen rasiert. Tenutostrich zu 3/8 auf Rasur."
+                                    },
+                                    {
+                                        "measure": "35",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>rit.</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "35",
+                                        "system": "Ges.",
+                                        "position": "2–4/16",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "36",
+                                        "system": "Klav.",
+                                        "position": "2–4/16",
+                                        "comment": "{{ref.getGlyph('[pp]')}} und Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "37",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>rit.</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "37",
+                                        "system": "Ges.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "37",
+                                        "system": "Klav.",
+                                        "position": "2/16",
+                                        "comment": "{{ref.getGlyph('[pp]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "38",
+                                        "system": "",
+                                        "position": "3/16",
+                                        "comment": "<em>immer langsamer</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "38",
+                                        "system": "Klav. o.",
+                                        "position": "3/8",
+                                        "comment": "{{ref.getGlyph('[p]')}} auf Rasur."
+                                    },
+                                    {
+                                        "measure": "39",
+                                        "system": "Ges.",
+                                        "position": "1.–3. Note",
+                                        "comment": "Bogen rasiert. Tenutostrich zu 3/8 auf Rasur."
+                                    },
+                                    {
+                                        "measure": "39",
+                                        "system": "Klav. u.",
+                                        "position": "2/8–6/16",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "40",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "Rasur über Akkolade. Ante correcturam: Tempoangabe?"
+                                    },
+                                    {
+                                        "measure": "40",
+                                        "system": "Ges.",
+                                        "position": "2–5/16",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "40",
+                                        "system": "Klav.",
+                                        "position": "4–6/16",
+                                        "comment": "{{ref.getGlyph('[pp]')}} und Decrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "41",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>verlöschend</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "41",
+                                        "system": "Ges.",
+                                        "position": "1.–3. Note",
+                                        "comment": "Bogen rasiert. Silbenbogen 2.–3. Note auf Rasur. <br /> {{ref.getGlyph('[pp]')}}, Decrescendogabel (?) rasiert."
+                                    },
+                                    {
+                                        "measure": "nach 42",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Bleistiftnotiz nach Schlusstaktstrich radiert."
+                                    }
+                                ]
+                            },
+                            {
+                                "blockHeader": "III „Sterne, ihr silbernen Bienen“ M 321",
+                                "blockComments": [
+                                    {
+                                        "measure": "4–6",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "8",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>rit.</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "9 <br /> bis 14",
+                                        "system": "Ges.",
+                                        "position": "2/4 <br /> 2/4",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>rit.</em> auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 5: <em>calando</em>."
+                                    },
+                                    {
+                                        "measure": "13 <br /> bis 14",
+                                        "system": "Klav.",
+                                        "position": "2/4 <br /> 2/4",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "15 <br /> bis 16",
+                                        "system": "Ges.",
+                                        "position": "2/4",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "15–21",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Teilweise auf Rasur. Ante correcturam: alternative Aufteilung der Noten auf die Systeme?"
+                                    },
+                                    {
+                                        "measure": "17",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Geltungstrichelung von <em>rit.</em> (T. 13) und <em>viel mäßiger</em> (2/4) auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 6 2. TH: <em>tempo</em>."
+                                    },
+                                    {
+                                        "measure": "17 <br /> bis 20",
+                                        "system": "Ges.",
+                                        "position": "2/4 <br /> 2/4",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "19",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Bleistifteintragung (Text) radiert."
+                                    },
+                                    {
+                                        "measure": "20",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Rasur über der Akkolade. Ante correcturam: Tempoangabe?"
+                                    },
+                                    {
+                                        "measure": "21",
+                                        "system": "Ges.",
+                                        "position": "1/4",
+                                        "comment": "Viertelpause ersetzt Viertelnote e<sup>2</sup> mit Ligaturbogen von T. 20 2/4 auf Rasur."
+                                    },
+                                    {
+                                        "measure": "22",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>rit. - - -</em> auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 8A: <em>calando</em>."
+                                    },
+                                    {
+                                        "measure": "22–24",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "26–28",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Bleistifteintragung (Text) radiert."
+                                    },
+                                    {
+                                        "measure": "28",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Rasur über der Akkolade. Ante correcturam: Tempoangabe?"
+                                    },
+                                    {
+                                        "measure": "29 <br /> bis 31",
+                                        "system": "",
+                                        "position": "Taktanfang <br /> 1/4",
+                                        "comment": "<em>rit.- - -</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "29 <br /> bis 30",
+                                        "system": "Ges.",
+                                        "position": "2/4 <br /> 2/4",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "31",
+                                        "system": "",
+                                        "position": "2/4",
+                                        "comment": "<em>wieder viel mäßiger</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "31 <br /> bis 33",
+                                        "system": "Ges.",
+                                        "position": "2/4 <br /> 1/4",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "33 <br /> bis 34",
+                                        "system": "Ges.",
+                                        "position": "2/4 <br /> 2. Note",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "34",
+                                        "system": "Klav. o.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Auf Rasur. Bleistiftskizze im System darüber radiert."
+                                    },
+                                    {
+                                        "measure": "35",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>rit. - - -</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "35",
+                                        "system": "Klav. u.",
+                                        "position": "1/4",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "35 <br /> bis 36",
+                                        "system": "Ges.",
+                                        "position": "2/4 <br /> 2/4",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "37",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>tempo I.</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "37 <br /> bis 38",
+                                        "system": "Ges.",
+                                        "position": "2/4 <br /> 2/4",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "39",
+                                        "system": "",
+                                        "position": "2/4",
+                                        "comment": "<em>rit. - - -</em> auf Rasur (ab Taktanfang)."
+                                    },
+                                    {
+                                        "measure": "39 <br /> bis 41",
+                                        "system": "Ges.",
+                                        "position": "2/4",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "42 <br /> bis 45",
+                                        "system": "Ges.",
+                                        "position": "1. Note <br /> 2/4",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "43",
+                                        "system": "Klav. u.",
+                                        "position": "1.–2. Note",
+                                        "comment": "Auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 15: h–b<sup>1</sup>."
+                                    },
+                                    {
+                                        "measure": "46 <br /> bis 49",
+                                        "system": "Ges.",
+                                        "position": "1. Note <br /> 2. Note",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "48 <br /> bis 49",
+                                        "system": "Ges.",
+                                        "position": "2. Note <br /> 2. Note",
+                                        "comment": "Drecrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "48 <br /> bis 49",
+                                        "system": "Klav.",
+                                        "position": "2/4 <br /> 2/4",
+                                        "comment": "Drecrescendogabel auf Rasur."
+                                    },
+                                    {
+                                        "measure": "50 <br /> bis 51",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "51",
+                                        "system": "",
+                                        "position": "2/4",
+                                        "comment": "<em>tempo</em> auf Rasur (ab Taktanfang)."
+                                    },
+                                    {
+                                        "measure": "51",
+                                        "system": "Klav. u.",
+                                        "position": "2/4",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "55",
+                                        "system": "Klav. o.",
+                                        "position": "vor 2/4",
+                                        "comment": "Rasur. Siehe <strong>M 321 Sk8</strong> T. 19B vor 2/8: Vorschlagsnote e<sup>1</sup>."
+                                    },
+                                    {
+                                        "measure": "56",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "Rasur über der Akkolade. Ante correcturam: Tempoangabe?"
+                                    },
+                                    {
+                                        "measure": "56",
+                                        "system": "Ges.",
+                                        "position": "2/4",
+                                        "comment": "{{ref.getGlyph('[ff]')}} auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 19B 1. Note: {{ref.getGlyph('[f]')}}."
+                                    },
+                                    {
+                                        "measure": "57",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Rasur über der Akkolade. Ante correcturam: Tempoangabe?"
+                                    },
+                                    {
+                                        "measure": "57",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 19B 2. TH."
+                                    },
+                                    {
+                                        "measure": "58 <br /> bis 60",
+                                        "system": "Ges.",
+                                        "position": "2/4 <br /> 2/4",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "61",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>wieder viel mäßiger</em> auf Rasur (bis Ende T.63)."
+                                    },
+                                    {
+                                        "measure": "61 <br /> bis 63",
+                                        "system": "Ges.",
+                                        "position": "2/4 <br /> 2/4",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "62 <br /> bis 63",
+                                        "system": "Klav. u.",
+                                        "position": "2/4 <br /> 2/4",
+                                        "comment": "Bogen rasiert. Staccatopunkte möglicherweise nach Rasur hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "63 <br /> bis 64",
+                                        "system": "Klav. o.",
+                                        "position": "1/4 <br /> 1/4",
+                                        "comment": "Bogen rasiert. Staccatopunkte möglicherweise nach Rasur hinzugefügt."
+                                    },
+                                    {
+                                        "measure": "65 <br /> bis 68",
+                                        "system": "Ges.",
+                                        "position": "2/4 <br /> 1/4",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "67",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>rit. - - -</em> auf Rasur."
+                                    },
+                                    {
+                                        "measure": "67–68",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 23B."
+                                    },
+                                    {
+                                        "measure": "69",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "Geltungsstrichelung auf Rasur (bis <em>tempo</em>)."
+                                    },
+                                    {
+                                        "measure": "69 <br /> bis 74",
+                                        "system": "Ges.",
+                                        "position": "2/4 <br /> 2/4",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "71 <br /> bis 73",
+                                        "system": "Klav.",
+                                        "position": "1/4",
+                                        "comment": "Auf Rasur."
+                                    },
+                                    {
+                                        "measure": "73",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>rit. - - -</em> auf Rasur (bis Taktende)."
+                                    },
+                                    {
+                                        "measure": "74 <br /> bis 75",
+                                        "system": "Klav.",
+                                        "position": "1/4 <br /> 1/4",
+                                        "comment": "Bogen rasiert. Bogen T. 74 1–2/4 auf Rasur."
+                                    },
+                                    {
+                                        "measure": "75 <br /> bis 76",
+                                        "system": "Ges.",
+                                        "position": "2/4",
+                                        "comment": "Bogen rasiert."
+                                    },
+                                    {
+                                        "measure": "76",
+                                        "system": "Ges.",
+                                        "position": "",
+                                        "comment": "&lt; &gt; auf Rasur."
+                                    },
+                                    {
+                                        "measure": "76",
+                                        "system": "",
+                                        "position": "2/4",
+                                        "comment": "<em>tempo I.</em> [...] auf Rasur (ab Taktanfang)."
+                                    },
+                                    {
+                                        "measure": "nach 78",
+                                        "system": "",
+                                        "position": "",
+                                        "comment": "Bleistifteintragung <em>2’</em> nach dem Schlusstaktstrich radiert."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
