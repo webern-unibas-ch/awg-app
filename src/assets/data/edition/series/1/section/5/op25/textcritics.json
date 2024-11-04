@@ -1842,6 +1842,216 @@
             ]
         },
         {
+            "id": "M_322_Sk3",
+            "label": "M 322 Sk3",
+            "description": ["Die Ziffern 5 (Gc), 7 (Uc) und 8 (KUh) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen Sk3.1.3 und M 317 Sk5 / M 321 Sk1 / M 322 Sk1. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g1",
+                            "measure": "{1A}",
+                            "system": "7–8",
+                            "position": "",
+                            "comment": "Durch Einklammerung rechts getilgt."
+                        },
+                        {
+                            "svgGroupId": "g2",
+                            "measure": "{1B}",
+                            "system": "7–8",
+                            "position": "",
+                            "comment": "Durch Einklammerung rechts getilgt."
+                        },
+                        {
+                            "svgGroupId": "g3",
+                            "measure": "{1C–2A}",
+                            "system": "7–8",
+                            "position": "",
+                            "comment": "Durch Einklammerung rechts getilgt."
+                        },
+                        {
+                            "svgGroupId": "g4",
+                            "measure": "1D",
+                            "system": "7–8",
+                            "position": "1/8",
+                            "comment": "<em>5</em> mit grünem Buntstift nachgezogen."
+                        },
+                        {
+                            "svgGroupId": "g5",
+                            "measure": "2B",
+                            "system": "7",
+                            "position": "1. Note",
+                            "comment": "Winkel mit grünem Buntstift nachgezogen."
+                        },
+                        {
+                            "svgGroupId": "g6",
+                            "measure": "2B",
+                            "system": "5",
+                            "position": "3/8",
+                            "comment": "<em>7</em> mit grünem Buntstift."
+                        },
+                        {
+                            "svgGroupId": "g8",
+                            "measure": "2B",
+                            "system": "7–8",
+                            "position": "",
+                            "comment": "Durch Einkreisung getilgt. Siehe Korrektur in System 9–10."
+                        },
+                        {
+                            "svgGroupId": "g7",
+                            "measure": "2B",
+                            "system": "9–10",
+                            "position": "4/8",
+                            "comment": "<em>5</em> mit grünem Buntstift nachgezogen."
+                        },
+                        {
+                            "svgGroupId": "g1",
+                            "measure": "{3A}",
+                            "system": "13–14",
+                            "position": "1–2/8",
+                            "comment": "Durch Einkreisung getilgt. Siehe Korrektur in System 15–16."
+                        },
+                        {
+                            "svgGroupId": "g2",
+                            "measure": "{3A}",
+                            "system": "12–16",
+                            "position": "1–3/8",
+                            "comment": "Achtelbalken von T. 2B in System 16 gestrichen und ersetzt durch Achtelpause. Achtelpausen in System 13 und 16 gestrichen sowie Verweislinie zu System 11 3/8 hinzugefügt."
+                        },
+                        {
+                            "svgGroupId": "g3",
+                            "measure": "{3A–4A}",
+                            "system": "11–14",
+                            "position": "",
+                            "comment": "Durch Einklammerung rechts getilgt."
+                        },
+                        {
+                            "svgGroupId": "g4",
+                            "measure": "{3B}",
+                            "system": "11",
+                            "position": "",
+                            "comment": "Taktzahl <em>3</em> überschreibt <em>5</em>."
+                        },
+                        {
+                            "svgGroupId": "g5",
+                            "measure": "{3B}",
+                            "system": "11–14",
+                            "position": "",
+                            "comment": "Durch Einklammerung rechts getilgt."
+                        },
+                        {
+                            "svgGroupId": "g8",
+                            "measure": "3C",
+                            "system": "13",
+                            "position": "6/8",
+                            "comment": "Winkel mit grünem Buntstift."
+                        },
+                        {
+                            "svgGroupId": "g12",
+                            "measure": "4B",
+                            "system": "13–14",
+                            "position": "",
+                            "comment": "Durch Einklammerung getilgt. Siehe Korrektur in System 15–16."
+                        },
+                        {
+                            "svgGroupId": "text337",
+                            "measure": "4B",
+                            "system": "16",
+                            "position": "1/8",
+                            "comment": "<em>8</em> mit grünem Buntstift."
+                        },
+                        {
+                            "svgGroupId": "g24",
+                            "measure": "4B",
+                            "system": "16",
+                            "position": "3/4",
+                            "comment": "{{ref.getGlyph('[pp]')}} gestrichen."
+                        },
+                        {
+                            "svgGroupId": "g25",
+                            "measure": "4B",
+                            "system": "15",
+                            "position": "6/8",
+                            "comment": "e gestrichen. Dann <em>bleibt</em> hinzugefügt, dann <em>bleibt</em> getilgt durch Einkreisung. <br /> <em>8va</em> gestrichen."
+                        },
+                        {
+                            "svgGroupId": "g13",
+                            "measure": "5",
+                            "system": "13–14",
+                            "position": "",
+                            "comment": "Durch Einklammerung getilgt. Siehe Korrektur in System 15–16."
+                        },
+                        {
+                            "svgGroupId": "g28",
+                            "measure": "5",
+                            "system": "16",
+                            "position": "6/8",
+                            "comment": "B/a gestrichen und durch Einkreisung getilgt, ersetzt durch A/b."
+                        },
+                        {
+                            "svgGroupId": "g1281",
+                            "measure": "7",
+                            "system": "1",
+                            "position": "2. Pause",
+                            "comment": "Gestrichen."
+                        },
+                        {
+                            "svgGroupId": "g1301",
+                            "measure": "8",
+                            "system": "1",
+                            "position": "1.–2. Note",
+                            "comment": "Durch Einkreisung getilgt."
+                        },
+                        {
+                            "svgGroupId": "g1305",
+                            "measure": "10",
+                            "system": "4",
+                            "position": "5–6/8",
+                            "comment": "<em>schaukeln</em> zusammengeschrieben."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g802",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_322_Sk3b"
+                    }
+                },
+                {
+                    "svgGroupId": "g802",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_322_Sk3s"
+                    }
+                },
+                {
+                    "svgGroupId": "g1287",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_322_Sk4_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g1292",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_322_Sk4_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1297",
+                    "linkTo": {
+                        "complexId": "op25",
+                        "sheetId": "M_322_Sk4_3"
+                    }
+                }
+            ]
+        },
+        {
             "id": "SkRT",
             "label": "M 317 Sk5 / M 321 Sk1 / M 322 Sk1 (Reihentabelle op. 25)",
             "description": [
