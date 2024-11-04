@@ -120,12 +120,12 @@ export const EDITION_GLYPHS_DATA = {
     },
 
     /**
-     * The glyph of a musical whole note symbol.
-     * Cf. https://graphemica.com/%F0%9D%85%9D
+     * The glyph of a musical quadruple forte symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%91
      */
-    NOTE_WHOLE: {
-        alt: '[Ganze Note]',
-        hex: '\uD834\uDD5D',
+    FORTISSIMO4: {
+        alt: '[ffff]',
+        hex: '\uD834\uDD91\uD834\uDD91\uD834\uDD91\uD834\uDD91',
     },
 
     /**
@@ -171,6 +171,15 @@ export const EDITION_GLYPHS_DATA = {
     PIANISSIMO3: {
         alt: '[ppp]',
         hex: '\uD834\uDD8F\uD834\uDD8F\uD834\uDD8F',
+    },
+
+    /**
+     * The glyph of a musical quadruple piano symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%8F
+     */
+    PIANISSIMO4: {
+        alt: '[pppp]',
+        hex: '\uD834\uDD8F\uD834\uDD8F\uD834\uDD8F\uD834\uDD8F',
     },
 
     /**
