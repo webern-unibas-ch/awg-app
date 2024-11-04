@@ -6,7 +6,7 @@
  */
 export const EDITION_GLYPHS_DATA = {
     /** ***********************************/
-    /** ********** ACCIDENTALS ************/
+    /**            ACCIDENTALS             /
     /** ***********************************/
     /**
      * The glyph of a music double flat sign.
@@ -54,7 +54,7 @@ export const EDITION_GLYPHS_DATA = {
     },
 
     /** ********************************/
-    /** ********** DYNAMICS ************/
+    /**            DYNAMICS             /
     /** ********************************/
     /**
      * The glyph of a musical forte symbol.
@@ -75,48 +75,12 @@ export const EDITION_GLYPHS_DATA = {
     },
 
     /**
-     * The glyph of a musical triple fortissimo (three times forte) symbol.
+     * The glyph of a musical triple forte symbol.
      * Cf. https://graphemica.com/%F0%9D%86%91
      */
     FORTISSIMO3: {
         alt: '[fff]',
         hex: '\uD834\uDD91\uD834\uDD91\uD834\uDD91',
-    },
-
-    /**
-     * The glyph of a musical eighth note symbol.
-     * Cf. https://graphemica.com/%F0%9D%85%A0
-     */
-    NOTE_EIGHTH: {
-        alt: '[Achtelnote]',
-        hex: '\uD834\uDD60',
-    },
-
-    /**
-     * The glyph of a musical half note symbol.
-     * Cf. https://graphemica.com/%F0%9D%85%9E
-     */
-    NOTE_HALF: {
-        alt: '[Halbe Note]',
-        hex: '\uD834\uDD5E',
-    },
-
-    /**
-     * The glyph of a musical quarter note symbol.
-     * Cf. https://graphemica.com/%F0%9D%85%9F
-     */
-    NOTE_QUARTER: {
-        alt: '[Viertelnote]',
-        hex: '\uD834\uDD5F',
-    },
-
-    /**
-     * The glyph of a musical sixteenth note symbol.
-     * Cf. https://graphemica.com/%F0%9D%85%A1
-     */
-    NOTE_SIXTEENTH: {
-        alt: '[Sechzehntelnote]',
-        hex: '\uD834\uDD61',
     },
 
     /**
@@ -147,15 +111,6 @@ export const EDITION_GLYPHS_DATA = {
     },
 
     /**
-     * The glyph of a musical pedal symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%AE
-     */
-    PEDAL: {
-        alt: '[ped]',
-        hex: '\uD834\uDDAE',
-    },
-
-    /**
      * The glyph of a musical pianissimo (double piano) symbol.
      * Cf. https://graphemica.com/%F0%9D%86%8F
      */
@@ -165,7 +120,7 @@ export const EDITION_GLYPHS_DATA = {
     },
 
     /**
-     * The glyph of a musical triple pianissimo (three times piano) symbol.
+     * The glyph of a musical triple piano symbol.
      * Cf. https://graphemica.com/%F0%9D%86%8F
      */
     PIANISSIMO3: {
@@ -216,5 +171,65 @@ export const EDITION_GLYPHS_DATA = {
     SUBITO_PIANO: {
         alt: '[sp]',
         hex: '\uD834\uDD8D\uD834\uDD8F',
+    },
+
+    /** ***********************************/
+    /**            NOTE VALUES             /
+    /** ***********************************/
+    /**
+     * The glyph of a musical eighth note symbol.
+     * Cf. https://graphemica.com/%F0%9D%85%A0
+     */
+    NOTE_EIGHTH: {
+        alt: '[Achtelnote]',
+        hex: '\uD834\uDD60',
+    },
+
+    /**
+     * The glyph of a musical half note symbol.
+     * Cf. https://graphemica.com/%F0%9D%85%9E
+     */
+    NOTE_HALF: {
+        alt: '[Halbe Note]',
+        hex: '\uD834\uDD5E',
+    },
+
+    /**
+     * The glyph of a musical quarter note symbol.
+     * Cf. https://graphemica.com/%F0%9D%85%9F
+     */
+    NOTE_QUARTER: {
+        alt: '[Viertelnote]',
+        hex: '\uD834\uDD5F',
+    },
+
+    /**
+     * The glyph of a musical sixteenth note symbol.
+     * Cf. https://graphemica.com/%F0%9D%85%A1
+     */
+    NOTE_SIXTEENTH: {
+        alt: '[Sechzehntelnote]',
+        hex: '\uD834\uDD61',
+    },
+
+    /**
+     * The glyph of a musical whole note symbol.
+     * Cf. https://graphemica.com/%F0%9D%85%9D
+     */
+    NOTE_WHOLE: {
+        alt: '[Ganze Note]',
+        hex: '\uD834\uDD5D',
+    },
+
+    /** ***********************************/
+    /**         PLAYING TECHNIQUES         /
+    /** ***********************************/
+    /**
+     * The glyph of a musical pedal symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%AE
+     */
+    PEDAL: {
+        alt: '[ped]',
+        hex: '\uD834\uDDAE',
     },
 } as const;
