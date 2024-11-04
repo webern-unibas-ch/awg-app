@@ -3555,7 +3555,7 @@
                                         "measure": "13",
                                         "system": "Klav.",
                                         "position": "2. Note",
-                                        "comment": "sic: [pppp]."
+                                        "comment": "sic: {{ref.getGlyph('[pppp]')}}."
                                     },
                                     {
                                         "measure": "14",
