@@ -245,6 +245,18 @@
                 ]
             },
             {
+                "id": "SkRT",
+                "label": "M 317 Sk5 / M 321 Sk1 / M322 Sk1 (Reihentabelle op. 25)",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op25/op25_C_Reihentabelle-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "C"
+                    }
+                ]
+            },
+            {
                 "id": "M_322_Sk3",
                 "label": "M 322 Sk3",
                 "content": [
@@ -265,18 +277,6 @@
                         "image": "",
                         "partial": "c",
                         "convolute": "D"
-                    }
-                ]
-            },
-            {
-                "id": "SkRT",
-                "label": "M 317 Sk5 / M 321 Sk1 / M322 Sk1 (Reihentabelle op. 25)",
-                "content": [
-                    {
-                        "svg": "assets/img/edition/series/1/section/5/op25/op25_C_Reihentabelle-1von1-final.svg",
-                        "image": "",
-                        "partial": "",
-                        "convolute": "C"
                     }
                 ]
             }
