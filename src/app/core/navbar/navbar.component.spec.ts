@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { DebugElement, NgModule } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { IsActiveMatchOptions, Router, UrlTree } from '@angular/router';
 
 import Spy = jasmine.Spy;
 
@@ -105,8 +105,12 @@ describe('NavbarComponent (DONE)', () => {
             getLogos: () => expectedLogos,
         };
 
-        // Router spy object
-        mockRouter = jasmine.createSpyObj('Router', ['isActive']);
+        // Spy for router.isActive
+        mockRouter = {
+            isActive: (url: string | UrlTree, matchOptions: boolean | IsActiveMatchOptions) =>
+                // Mock implementation of isActive
+                true,
+        };
 
         TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, NgbConfigModule],
@@ -166,8 +170,8 @@ describe('NavbarComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         coreServiceSpy = spyOn(mockCoreService, 'getLogos').and.callThrough();
+        routerSpy = spyOn(mockRouter, 'isActive').and.callThrough();
         isActiveRouteSpy = spyOn(component, 'isActiveRoute').and.callThrough();
-        routerSpy = mockRouter.isActive as jasmine.Spy;
         provideMetaDataSpy = spyOn(component, 'provideMetaData').and.callThrough();
         toggleNavSpy = spyOn(component, 'toggleNav').and.callThrough();
     });
@@ -619,8 +623,25 @@ describe('NavbarComponent (DONE)', () => {
                 expectSpyCall(isActiveRouteSpy, 2);
             });
 
+            it('... should call isActive with correct matchOptions', () => {
+                expectSpyCall(routerSpy, 2);
+
+                const expectedActiveRoute = '/active-route';
+                const expectedMatchOptions: IsActiveMatchOptions = {
+                    paths: 'subset',
+                    queryParams: 'subset',
+                    fragment: 'ignored',
+                    matrixParams: 'ignored',
+                };
+
+                component.isActiveRoute(expectedActiveRoute);
+
+                expectSpyCall(routerSpy, 3, [expectedActiveRoute, expectedMatchOptions]);
+            });
+
             it('... should return true if a given route is active', () => {
                 const expectedActiveRoute = '/active-route';
+
                 routerSpy.and.returnValue(true);
 
                 expectToBe(component.isActiveRoute(expectedActiveRoute), true);
@@ -628,6 +649,7 @@ describe('NavbarComponent (DONE)', () => {
 
             it('... should return false if a given route is not active', () => {
                 const expectedActiveRoute = '/non-active-route';
+
                 routerSpy.and.returnValue(false);
 
                 expectToBe(component.isActiveRoute(expectedActiveRoute), false);
