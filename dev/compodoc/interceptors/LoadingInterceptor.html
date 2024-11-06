@@ -149,6 +149,11 @@ to delegate a loading status to the <a href="../injectables/LoadingService.html"
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                <a href="#_loadingService" >_loadingService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_pendingRequests" >_pendingRequests</a>
                             </li>
                         </ul>
@@ -182,63 +187,6 @@ to delegate a loading status to the <a href="../injectables/LoadingService.html"
     </table>
 </section>
 
-            <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(loadingService: <a href="../injectables/LoadingService.html" target="_self">LoadingService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/core/interceptors/loading/loading.interceptor.ts:25</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the LoadingInterceptor.</p>
-<p>It declares a private <a href="../injectables/LoadingService.html">LoadingService</a> instance
-to handle the loading status.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>loadingService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/LoadingService.html" target="_self" >LoadingService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the LoadingService.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
             <section data-compodoc="block-methods">
     
@@ -267,8 +215,8 @@ to handle the loading status.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="97"
-                                    class="link-to-prism">src/app/core/interceptors/loading/loading.interceptor.ts:97</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="94"
+                                    class="link-to-prism">src/app/core/interceptors/loading/loading.interceptor.ts:94</a></div>
                         </td>
                     </tr>
 
@@ -345,8 +293,8 @@ depending on the pending requests.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/app/core/interceptors/loading/loading.interceptor.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app/core/interceptors/loading/loading.interceptor.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -428,9 +376,43 @@ delegates them to the <a href="../injectables/LoadingService.html">LoadingServic
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_loadingService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_loadingService</b></span>
+                        <a href="#_loadingService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(LoadingService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/core/interceptors/loading/loading.interceptor.ts:32</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private injection variable: _loadingService.</p>
+<p>It injects the LoadingService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="_pendingRequests"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_pendingRequests</b></span>
                         <a href="#_pendingRequests"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -470,7 +452,7 @@ delegates them to the <a href="../injectables/LoadingService.html">LoadingServic
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from &#x27;@angular/common/http&#x27;;
-import { Injectable } from &#x27;@angular/core&#x27;;
+import { inject, Injectable } from &#x27;@angular/core&#x27;;
 
 import { Observable } from &#x27;rxjs&#x27;;
 
@@ -493,17 +475,14 @@ export class LoadingInterceptor implements HttpInterceptor {
      *
      * It stores the array of pending requests.
      */
-    private _pendingRequests: HttpRequest&lt;any&gt;[] &#x3D; [];
+    private readonly _pendingRequests: HttpRequest&lt;any&gt;[] &#x3D; [];
 
     /**
-     * Constructor of the LoadingInterceptor.
+     * Private injection variable: _loadingService.
      *
-     * It declares a private {@link LoadingService} instance
-     * to handle the loading status.
-     *
-     * @param {LoadingService} loadingService Instance of the LoadingService.
+     * It injects the LoadingService.
      */
-    constructor(private loadingService: LoadingService) {}
+    private _loadingService &#x3D; inject(LoadingService);
 
     /**
      * Public method: intercept.
@@ -521,7 +500,7 @@ export class LoadingInterceptor implements HttpInterceptor {
         this._pendingRequests.push(req);
 
         // Start loading and update status
-        this.loadingService.updateLoadingStatus(true);
+        this._loadingService.updateLoadingStatus(true);
 
         // Create a new observable to return instead of the original
         return new Observable(observer &#x3D;&gt; {
@@ -576,7 +555,7 @@ export class LoadingInterceptor implements HttpInterceptor {
         }
 
         // Update loading status depending on the pending requests
-        this.loadingService.updateLoadingStatus(this._pendingRequests.length &gt; 0);
+        this._loadingService.updateLoadingStatus(this._pendingRequests.length &gt; 0);
     }
 }
 </code></pre>

@@ -206,6 +206,10 @@ and <a href="../components/FooterLogoComponent.html">FooterLogoComponent</a>.</p
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_coreService" >_coreService</a>
+                            </li>
+                            <li>
                                 <a href="#logos" >logos</a>
                             </li>
                             <li>
@@ -241,63 +245,6 @@ and <a href="../components/FooterLogoComponent.html">FooterLogoComponent</a>.</p
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(coreService: <a href="../injectables/CoreService.html" target="_self">CoreService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/core/footer/footer.component.ts:33</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the FooterComponent.</p>
-<p>It declares a private CoreService instance
-to get the metadata and logos.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>coreService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/CoreService.html" target="_self" >CoreService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the CoreService.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
 
@@ -328,8 +275,8 @@ to get the metadata and logos.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="51"
-                                    class="link-to-prism">src/app/core/footer/footer.component.ts:51</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/core/footer/footer.component.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -369,8 +316,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/app/core/footer/footer.component.ts:63</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/core/footer/footer.component.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -400,6 +347,39 @@ the metadata and logos for the footer.</p>
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_coreService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_coreService</b></span>
+                        <a href="#_coreService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(CoreService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/core/footer/footer.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private injection variable: _coreService.</p>
+<p>It injects the CoreService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -472,7 +452,7 @@ the metadata and logos for the footer.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, OnInit } from &#x27;@angular/core&#x27;;
 
 import { Logos, MetaPage, MetaSectionTypes } from &#x27;@awg-core/core-models&#x27;;
 import { CoreService } from &#x27;@awg-core/services&#x27;;
@@ -507,14 +487,11 @@ export class FooterComponent implements OnInit {
     pageMetaData: MetaPage;
 
     /**
-     * Constructor of the FooterComponent.
+     * Private injection variable: _coreService.
      *
-     * It declares a private CoreService instance
-     * to get the metadata and logos.
-     *
-     * @param {CoreService} coreService Instance of the CoreService.
+     * It injects the CoreService.
      */
-    constructor(private coreService: CoreService) {}
+    private _coreService &#x3D; inject(CoreService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -535,8 +512,8 @@ export class FooterComponent implements OnInit {
      * @returns {void} Sets the pageMetaData and logos variables.
      */
     provideMetaData(): void {
-        this.pageMetaData &#x3D; this.coreService.getMetaDataSection(MetaSectionTypes.page);
-        this.logos &#x3D; this.coreService.getLogos();
+        this.pageMetaData &#x3D; this._coreService.getMetaDataSection(MetaSectionTypes.page);
+        this.logos &#x3D; this._coreService.getLogos();
     }
 }
 </code></pre>
