@@ -149,6 +149,7 @@ to delegate a loading status to the <a href="../injectables/LoadingService.html"
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_loadingService" >_loadingService</a>
                             </li>
                             <li>
@@ -379,6 +380,7 @@ delegates them to the <a href="../injectables/LoadingService.html">LoadingServic
                     <a name="_loadingService"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_loadingService</b></span>
                         <a href="#_loadingService"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -397,7 +399,7 @@ delegates them to the <a href="../injectables/LoadingService.html">LoadingServic
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private injection variable: _loadingService.</p>
+                    <div class="io-description"><p>Private readonly injection variable: _loadingService.</p>
 <p>It injects the LoadingService.</p>
 </div>
                 </td>
@@ -437,7 +439,7 @@ delegates them to the <a href="../injectables/LoadingService.html">LoadingServic
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _pendingRequests.</p>
+                    <div class="io-description"><p>Private readonly variable: _pendingRequests.</p>
 <p>It stores the array of pending requests.</p>
 </div>
                 </td>
@@ -471,18 +473,18 @@ import { LoadingService } from &#x27;@awg-core/services&#x27;;
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
     /**
-     * Private variable: _pendingRequests.
+     * Private readonly variable: _pendingRequests.
      *
      * It stores the array of pending requests.
      */
     private readonly _pendingRequests: HttpRequest&lt;any&gt;[] &#x3D; [];
 
     /**
-     * Private injection variable: _loadingService.
+     * Private readonly injection variable: _loadingService.
      *
      * It injects the LoadingService.
      */
-    private _loadingService &#x3D; inject(LoadingService);
+    private readonly _loadingService &#x3D; inject(LoadingService);
 
     /**
      * Public method: intercept.

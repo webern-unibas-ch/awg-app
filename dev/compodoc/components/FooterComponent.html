@@ -207,6 +207,7 @@ and <a href="../components/FooterLogoComponent.html">FooterLogoComponent</a>.</p
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_coreService" >_coreService</a>
                             </li>
                             <li>
@@ -354,6 +355,7 @@ the metadata and logos for the footer.</p>
                     <a name="_coreService"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_coreService</b></span>
                         <a href="#_coreService"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -372,7 +374,7 @@ the metadata and logos for the footer.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private injection variable: _coreService.</p>
+                    <div class="io-description"><p>Private readonly injection variable: _coreService.</p>
 <p>It injects the CoreService.</p>
 </div>
                 </td>
@@ -487,11 +489,11 @@ export class FooterComponent implements OnInit {
     pageMetaData: MetaPage;
 
     /**
-     * Private injection variable: _coreService.
+     * Private readonly injection variable: _coreService.
      *
      * It injects the CoreService.
      */
-    private _coreService &#x3D; inject(CoreService);
+    private readonly _coreService &#x3D; inject(CoreService);
 
     /**
      * Angular life cycle hook: ngOnInit.

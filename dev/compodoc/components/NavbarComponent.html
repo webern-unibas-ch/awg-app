@@ -204,10 +204,12 @@ with the navigation bar, menu and brand.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_coreService" >_coreService</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_router" >_router</a>
                             </li>
                             <li>
@@ -505,6 +507,7 @@ the metadata for the header.</p>
                     <a name="_coreService"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_coreService</b></span>
                         <a href="#_coreService"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -523,7 +526,7 @@ the metadata for the header.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private injection variable: _coreService.</p>
+                    <div class="io-description"><p>Private readonly injection variable: _coreService.</p>
 <p>It injects the CoreService.</p>
 </div>
                 </td>
@@ -538,6 +541,7 @@ the metadata for the header.</p>
                     <a name="_router"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_router</b></span>
                         <a href="#_router"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -556,7 +560,7 @@ the metadata for the header.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private injection variable: _router.</p>
+                    <div class="io-description"><p>Private readonly injection variable: _router.</p>
 <p>It injects the Angular Router.</p>
 </div>
                 </td>
@@ -896,18 +900,18 @@ export class NavbarComponent implements OnInit {
     ];
 
     /**
-     * Private injection variable: _coreService.
+     * Private readonly injection variable: _coreService.
      *
      * It injects the CoreService.
      */
-    private _coreService &#x3D; inject(CoreService);
+    private readonly _coreService &#x3D; inject(CoreService);
 
     /**
-     * Private injection variable: _router.
+     * Private readonly injection variable: _router.
      *
      * It injects the Angular Router.
      */
-    private _router &#x3D; inject(Router);
+    private readonly _router &#x3D; inject(Router);
 
     /**
      * Getter variable: editionRouteConstants.

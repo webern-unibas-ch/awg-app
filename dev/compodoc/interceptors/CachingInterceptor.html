@@ -147,6 +147,7 @@ to delegate them to the <a href="../injectables/HttpCacheService.html">HttpCache
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_cache" >_cache</a>
                             </li>
                         </ul>
@@ -288,6 +289,7 @@ delegates them to the <a href="../injectables/HttpCacheService.html">HttpCacheSe
                     <a name="_cache"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_cache</b></span>
                         <a href="#_cache"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -306,7 +308,7 @@ delegates them to the <a href="../injectables/HttpCacheService.html">HttpCacheSe
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private injection variable: _cache.</p>
+                    <div class="io-description"><p>Private readonly injection variable: _cache.</p>
 <p>It injects the HttpCacheService.</p>
 </div>
                 </td>
@@ -345,11 +347,11 @@ import { HttpCacheService } from &#x27;@awg-core/services&#x27;;
 @Injectable()
 export class CachingInterceptor implements HttpInterceptor {
     /**
-     * Private injection variable: _cache.
+     * Private readonly injection variable: _cache.
      *
      * It injects the HttpCacheService.
      */
-    private _cache &#x3D; inject(HttpCacheService);
+    private readonly _cache &#x3D; inject(HttpCacheService);
 
     /**
      * Public method: intercept.

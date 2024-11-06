@@ -197,26 +197,32 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_activatedRoute" >_activatedRoute</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_analyticsService" >_analyticsService</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_editionInitService" >_editionInitService</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_ngbConfig" >_ngbConfig</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_router" >_router</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_titleService" >_titleService</a>
                             </li>
                             <li>
@@ -375,6 +381,7 @@
                     <a name="_activatedRoute"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_activatedRoute</b></span>
                         <a href="#_activatedRoute"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -393,7 +400,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private injection variable: _activatedRoute.</p>
+                    <div class="io-description"><p>Private readonly injection variable: _activatedRoute.</p>
 <p>It injects the ActivatedRoute.</p>
 </div>
                 </td>
@@ -408,6 +415,7 @@
                     <a name="_analyticsService"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_analyticsService</b></span>
                         <a href="#_analyticsService"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -426,7 +434,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private injection variable: _analyticsService.</p>
+                    <div class="io-description"><p>Private readonly injection variable: _analyticsService.</p>
 <p>It injects the AnalyticsService.</p>
 </div>
                 </td>
@@ -441,6 +449,7 @@
                     <a name="_editionInitService"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_editionInitService</b></span>
                         <a href="#_editionInitService"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -459,7 +468,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private injection variable: _editionInitService.</p>
+                    <div class="io-description"><p>Private readonly injection variable: _editionInitService.</p>
 <p>It injects the EditionInitService.</p>
 </div>
                 </td>
@@ -474,6 +483,7 @@
                     <a name="_ngbConfig"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_ngbConfig</b></span>
                         <a href="#_ngbConfig"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -492,7 +502,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private injection variable: _ngbConfig.</p>
+                    <div class="io-description"><p>Private readonly injection variable: _ngbConfig.</p>
 <p>It injects the NgbConfig.</p>
 </div>
                 </td>
@@ -507,6 +517,7 @@
                     <a name="_router"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_router</b></span>
                         <a href="#_router"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -525,7 +536,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private injection variable: _router.</p>
+                    <div class="io-description"><p>Private readonly injection variable: _router.</p>
 <p>It injects the Router.</p>
 </div>
                 </td>
@@ -540,6 +551,7 @@
                     <a name="_titleService"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_titleService</b></span>
                         <a href="#_titleService"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -558,7 +570,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private injection variable: _titleService.</p>
+                    <div class="io-description"><p>Private readonly injection variable: _titleService.</p>
 <p>It injects the Angular Title.</p>
 </div>
                 </td>
@@ -633,46 +645,46 @@ export class AppComponent {
     activateSideOutlet &#x3D; false;
 
     /**
-     * Private injection variable: _activatedRoute.
+     * Private readonly injection variable: _activatedRoute.
      *
      * It injects the ActivatedRoute.
      */
-    private _activatedRoute &#x3D; inject(ActivatedRoute);
+    private readonly _activatedRoute &#x3D; inject(ActivatedRoute);
 
     /**
-     * Private injection variable: _analyticsService.
+     * Private readonly injection variable: _analyticsService.
      *
      * It injects the AnalyticsService.
      */
-    private _analyticsService &#x3D; inject(AnalyticsService);
+    private readonly _analyticsService &#x3D; inject(AnalyticsService);
 
     /**
-     * Private injection variable: _editionInitService.
+     * Private readonly injection variable: _editionInitService.
      *
      * It injects the EditionInitService.
      */
-    private _editionInitService &#x3D; inject(EditionInitService);
+    private readonly _editionInitService &#x3D; inject(EditionInitService);
 
     /**
-     * Private injection variable: _ngbConfig.
+     * Private readonly injection variable: _ngbConfig.
      *
      * It injects the NgbConfig.
      */
-    private _ngbConfig &#x3D; inject(NgbConfig);
+    private readonly _ngbConfig &#x3D; inject(NgbConfig);
 
     /**
-     * Private injection variable: _router.
+     * Private readonly injection variable: _router.
      *
      * It injects the Router.
      */
-    private _router &#x3D; inject(Router);
+    private readonly _router &#x3D; inject(Router);
 
     /**
-     * Private injection variable: _titleService.
+     * Private readonly injection variable: _titleService.
      *
      * It injects the Angular Title.
      */
-    private _titleService &#x3D; inject(Title);
+    private readonly _titleService &#x3D; inject(Title);
 
     /**
      * Constructor of the AppComponent.
