@@ -373,9 +373,9 @@ describe('AppComponent (DONE)', () => {
             });
         });
 
-        describe('#hasSideOutlet()', () => {
-            it('... should have a method `hasSideOutlet`', () => {
-                expect(component.hasSideOutlet).toBeDefined();
+        describe('#_hasSideOutlet()', () => {
+            it('... should have a method `_hasSideOutlet`', () => {
+                expect((component as any)._hasSideOutlet).toBeDefined();
             });
 
             it('... should return true if route has side outlet', () => {
@@ -384,7 +384,7 @@ describe('AppComponent (DONE)', () => {
                     children: [],
                 } as any;
 
-                expectToBe(component.hasSideOutlet(mockRoute), true);
+                expectToBe((component as any)._hasSideOutlet(mockRoute), true);
             });
 
             it('... should return true if any child route has side outlet', () => {
@@ -398,7 +398,7 @@ describe('AppComponent (DONE)', () => {
                     ],
                 } as any;
 
-                expectToBe(component.hasSideOutlet(mockRoute), true);
+                expectToBe((component as any)._hasSideOutlet(mockRoute), true);
             });
 
             it('... should return false if route has no side outlet', () => {
@@ -412,7 +412,7 @@ describe('AppComponent (DONE)', () => {
                     ],
                 } as any;
 
-                expectToBe(component.hasSideOutlet(mockRoute), false);
+                expectToBe((component as any)._hasSideOutlet(mockRoute), false);
             });
         });
     });
