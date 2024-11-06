@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -83,17 +83,18 @@ export class NavbarComponent implements OnInit {
     ];
 
     /**
-     * Constructor of the HeaderComponent.
+     * Private injection variable: _coreService.
      *
-     * It declares private instances of the CoreService and the Angular Router.
-     *
-     * @param {CoreService} coreService Instance of the CoreService.
-     * @param {Router} router Instance of the Angular Router.
+     * It injects the CoreService.
      */
-    constructor(
-        private coreService: CoreService,
-        private router: Router
-    ) {}
+    private _coreService = inject(CoreService);
+
+    /**
+     * Private injection variable: _router.
+     *
+     * It injects the Angular Router.
+     */
+    private _router = inject(Router);
 
     /**
      * Getter variable: editionRouteConstants.
@@ -124,7 +125,7 @@ export class NavbarComponent implements OnInit {
      * @returns {boolean} The boolean value of the check.
      */
     isActiveRoute(route: string): boolean {
-        return this.router.isActive(route, {
+        return this._router.isActive(route, {
             paths: 'subset',
             queryParams: 'subset',
             fragment: 'ignored',
@@ -141,7 +142,7 @@ export class NavbarComponent implements OnInit {
      * @returns {void} Sets the logos variable.
      */
     provideMetaData(): void {
-        this.logos = this.coreService.getLogos();
+        this.logos = this._coreService.getLogos();
     }
 
     /**

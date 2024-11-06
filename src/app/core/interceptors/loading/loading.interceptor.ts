@@ -1,5 +1,5 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -22,17 +22,14 @@ export class LoadingInterceptor implements HttpInterceptor {
      *
      * It stores the array of pending requests.
      */
-    private _pendingRequests: HttpRequest<any>[] = [];
+    private readonly _pendingRequests: HttpRequest<any>[] = [];
 
     /**
-     * Constructor of the LoadingInterceptor.
+     * Private injection variable: _loadingService.
      *
-     * It declares a private {@link LoadingService} instance
-     * to handle the loading status.
-     *
-     * @param {LoadingService} loadingService Instance of the LoadingService.
+     * It injects the LoadingService.
      */
-    constructor(private loadingService: LoadingService) {}
+    private _loadingService = inject(LoadingService);
 
     /**
      * Public method: intercept.
@@ -50,7 +47,7 @@ export class LoadingInterceptor implements HttpInterceptor {
         this._pendingRequests.push(req);
 
         // Start loading and update status
-        this.loadingService.updateLoadingStatus(true);
+        this._loadingService.updateLoadingStatus(true);
 
         // Create a new observable to return instead of the original
         return new Observable(observer => {
@@ -105,6 +102,6 @@ export class LoadingInterceptor implements HttpInterceptor {
         }
 
         // Update loading status depending on the pending requests
-        this.loadingService.updateLoadingStatus(this._pendingRequests.length > 0);
+        this._loadingService.updateLoadingStatus(this._pendingRequests.length > 0);
     }
 }

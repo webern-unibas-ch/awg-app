@@ -6,7 +6,7 @@ import {
     HttpRequest,
     HttpResponse,
 } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -23,14 +23,11 @@ import { HttpCacheService } from '@awg-core/services';
 @Injectable()
 export class CachingInterceptor implements HttpInterceptor {
     /**
-     * Constructor of the CachingInterceptor.
+     * Private injection variable: _cache.
      *
-     * It declares a private {@link HttpCacheService} instance
-     * to handle the caching of http responses.
-     *
-     * @param {HttpCacheService} cache Instance of the HttpCacheService.
+     * It injects the HttpCacheService.
      */
-    constructor(private cache: HttpCacheService) {}
+    private _cache = inject(HttpCacheService);
 
     /**
      * Public method: intercept.
@@ -49,7 +46,7 @@ export class CachingInterceptor implements HttpInterceptor {
         }
 
         // Check the cache for existing responses
-        const cachedResponse = this.cache.get(req);
+        const cachedResponse = this._cache.get(req);
         if (cachedResponse) {
             // Serve existing cached response
             return observableOf(cachedResponse.clone());
@@ -61,7 +58,7 @@ export class CachingInterceptor implements HttpInterceptor {
                 // Remember, there may be other events besides just the response
                 if (event instanceof HttpResponse) {
                     // Update the cache
-                    this.cache.put(req, event.clone());
+                    this._cache.put(req, event.clone());
                 }
             }),
             catchError(response => {

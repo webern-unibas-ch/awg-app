@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
 import { Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
@@ -33,14 +33,11 @@ export class FooterComponent implements OnInit {
     pageMetaData: MetaPage;
 
     /**
-     * Constructor of the FooterComponent.
+     * Private injection variable: _coreService.
      *
-     * It declares a private CoreService instance
-     * to get the metadata and logos.
-     *
-     * @param {CoreService} coreService Instance of the CoreService.
+     * It injects the CoreService.
      */
-    constructor(private coreService: CoreService) {}
+    private _coreService = inject(CoreService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -61,7 +58,7 @@ export class FooterComponent implements OnInit {
      * @returns {void} Sets the pageMetaData and logos variables.
      */
     provideMetaData(): void {
-        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.page);
-        this.logos = this.coreService.getLogos();
+        this.pageMetaData = this._coreService.getMetaDataSection(MetaSectionTypes.page);
+        this.logos = this._coreService.getLogos();
     }
 }
