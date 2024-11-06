@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 
@@ -27,47 +27,74 @@ export class AppComponent {
     activateSideOutlet = false;
 
     /**
-     * Constructor of the AppComponent.
+     * Private readonly injection variable: _activatedRoute.
      *
-     * It declares private instances of the Angular router and the AnalyticsService.
-     *
-     * @param {ActivatedRoute} activatedRoute Instance of the Angular ActivatedRoute.
-     * @param {AnalyticsService} analyticsService Instance of the AnalyticsService.
-     * @param {NgbConfig} ngbConfig Instance of the NGBootstrap NgbConfig.
-     * @param {Router} router Instance of the Angular router.
-     * @param {Title} titleService Instance of the Angular Title.
+     * It injects the ActivatedRoute.
      */
-    constructor(
-        private readonly activatedRoute: ActivatedRoute,
-        private readonly router: Router,
-        private analyticsService: AnalyticsService,
-        private editionInitService: EditionInitService,
-        ngbConfig: NgbConfig,
-        private titleService: Title
-    ) {
+    private readonly _activatedRoute = inject(ActivatedRoute);
+
+    /**
+     * Private readonly injection variable: _analyticsService.
+     *
+     * It injects the AnalyticsService.
+     */
+    private readonly _analyticsService = inject(AnalyticsService);
+
+    /**
+     * Private readonly injection variable: _editionInitService.
+     *
+     * It injects the EditionInitService.
+     */
+    private readonly _editionInitService = inject(EditionInitService);
+
+    /**
+     * Private readonly injection variable: _ngbConfig.
+     *
+     * It injects the NgbConfig.
+     */
+    private readonly _ngbConfig = inject(NgbConfig);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It injects the Router.
+     */
+    private readonly _router = inject(Router);
+
+    /**
+     * Private readonly injection variable: _titleService.
+     *
+     * It injects the Angular Title.
+     */
+    private readonly _titleService = inject(Title);
+
+    /**
+     * Constructor of the AppComponent.
+     */
+    constructor() {
         // Disable Bootstrap animation
-        ngbConfig.animation = false;
+        this._ngbConfig.animation = false;
 
         // Get app title from index.html
         // Cf. https://blog.bitsrc.io/dynamic-page-titles-in-angular-98ce20b5c334
-        const appTitle = this.titleService.getTitle();
+        const appTitle = this._titleService.getTitle();
 
         // Init analytics
-        this.analyticsService.initializeAnalytics();
+        this._analyticsService.initializeAnalytics();
 
         // Init edition complexes and outline
-        this.editionInitService.initializeEdition();
+        this._editionInitService.initializeEdition();
 
         // Track router events
-        this.router.events
+        this._router.events
             .pipe(
                 filter(event => event instanceof NavigationEnd),
                 map((event: NavigationEnd) => {
                     // Track page view on every NavigationEnd
-                    this.analyticsService.trackPageView(event.urlAfterRedirects);
+                    this._analyticsService.trackPageView(event.urlAfterRedirects);
 
                     // Get page title from route data
-                    let child = this.activatedRoute.firstChild;
+                    let child = this._activatedRoute.firstChild;
                     while (child.firstChild) {
                         child = child.firstChild;
                     }
@@ -80,17 +107,17 @@ export class AppComponent {
             .subscribe({
                 next: (pageTitle: string) => {
                     // Set page title
-                    this.titleService.setTitle(pageTitle);
+                    this._titleService.setTitle(pageTitle);
 
                     // Activate side outlet
-                    const currentRoute = this.router.routerState.snapshot.root;
-                    this.activateSideOutlet = this.hasSideOutlet(currentRoute);
+                    const currentRoute = this._router.routerState.snapshot.root;
+                    this.activateSideOutlet = this._hasSideOutlet(currentRoute);
                 },
             });
     }
 
     /**
-     * Public method: hasSideOutlet.
+     * Private method: hasSideOutlet.
      *
      * It checks if a route has a side outlet.
      *
@@ -98,12 +125,12 @@ export class AppComponent {
      *
      * @returns {boolean} The result of the check.
      */
-    hasSideOutlet(route: ActivatedRouteSnapshot): boolean {
+    private _hasSideOutlet(route: ActivatedRouteSnapshot): boolean {
         if (route.outlet === 'side') {
             return true;
         }
         for (const child of route.children) {
-            if (this.hasSideOutlet(child)) {
+            if (this._hasSideOutlet(child)) {
                 return true;
             }
         }
