@@ -255,6 +255,18 @@
                         "convolute": "C"
                     }
                 ]
+            },
+            {
+                "id": "M_321_Sk1",
+                "label": "M 321 Sk1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op25/M321_Sk1-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "D"
+                    }
+                ]
             }
         ]
     }
