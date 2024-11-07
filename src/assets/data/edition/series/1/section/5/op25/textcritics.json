@@ -2131,7 +2131,6 @@
             ]
         },
         {
-<<<<<<< HEAD
             "id": "M_321_Sk1",
             "label": "M 321 Sk1",
             "description": [
@@ -2188,12 +2187,6 @@
             "label": "M 322 Sk1",
             "description": [
                 "<strong>M 322 Sk1</strong> skizziert einen Anfang der Singstimme von „Des Herzens Purpurvogel“ M 322.",
-=======
-            "id": "M_322_Sk1",
-            "label": "M 322 Sk1",
-            "description": [
-                "<stong>M 322 Sk1</strong> skizziert einen Anfang der Singstimme von „Des Herzens Purpurvogel“ M 322.",
->>>>>>> develop
                 "Die Ziffer <em>5</em> in T. 1 bezeichnet den Anfang der verwendeten Reihenform (G<sub>c</sub>) gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong></a>."
             ],
             "comments": [
@@ -2222,7 +2215,6 @@
                     "svgGroupId": "g157",
                     "linkTo": {
                         "complexId": "op25",
-<<<<<<< HEAD
                         "sheetId": "M_322_Sk2"
                     }
                 }
@@ -2261,8 +2253,6 @@
                     "svgGroupId": "g228",
                     "linkTo": {
                         "complexId": "op25",
-=======
->>>>>>> develop
                         "sheetId": "M_322_Sk1"
                     }
                 }
