@@ -573,6 +573,72 @@
             }
         },
         {
+            "M317": {
+                "titleStatement": {
+                    "title": "„Wie bin ich froh!“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "317"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                        }
+                    ],
+                    "lastModified": "7. November 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "M321": {
+                "titleStatement": {
+                    "title": "„Sterne, Ihr silbernen Bienen“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "321"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "M322": {
+                "titleStatement": {
+                    "title": "„Des Herzens Purpurvogel“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "322"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                        }
+                    ],
+                    "lastModified": "7. November 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
             "OP3": {
                 "titleStatement": {
                     "title": "<em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em>",
