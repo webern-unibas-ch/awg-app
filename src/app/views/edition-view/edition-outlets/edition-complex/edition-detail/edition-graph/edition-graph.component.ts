@@ -1,4 +1,3 @@
-import { DOCUMENT } from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -14,7 +13,7 @@ import { catchError, switchMap } from 'rxjs/operators';
 
 import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 
-import { UtilityService } from '@awg-core/services';
+import { FullscreenService, UtilityService } from '@awg-core/services';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, GraphList } from '@awg-views/edition-view/models';
@@ -36,11 +35,11 @@ import { GraphVisualizerComponent } from './graph-visualizer';
 })
 export class EditionGraphComponent implements OnInit {
     /**
-     * ViewChild variable: child.
+     * ViewChild variable: graphVisualizer.
      *
-     * It keeps the reference to the GraphVisualizerComponent child.
+     * It keeps the reference to the GraphVisualizerComponent.
      */
-    @ViewChild(GraphVisualizerComponent) child: GraphVisualizerComponent;
+    @ViewChild(GraphVisualizerComponent) graphVisualizer: GraphVisualizerComponent;
 
     /**
      * HostBinding: isFullscreen.
@@ -107,13 +106,6 @@ export class EditionGraphComponent implements OnInit {
     readonly UTILS = inject(UtilityService);
 
     /**
-     * Private readonly injection variable: _document.
-     *
-     * It keeps the instance of the injected DOCUMENT.
-     */
-    private readonly _document: any = inject(DOCUMENT);
-
-    /**
      * Private readonly injection variable: _editionDataService.
      *
      * It keeps the instance of the injected EditionDataService.
@@ -126,6 +118,13 @@ export class EditionGraphComponent implements OnInit {
      * It keeps the instance of the injected EditionStateService.
      */
     private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _fullscreenService.
+     *
+     * It keeps the instance of the injected FullscreenService.
+     */
+    private readonly _fullscreenService = inject(FullscreenService);
 
     /**
      * Constructor of the EditionGraphComponent.
@@ -149,16 +148,10 @@ export class EditionGraphComponent implements OnInit {
     /**
      * HostListener: document:fullscreenchange.
      *
-     * It listens for fullscreen exit with ESC key.
+     * It listens for fullscreen exit.
      */
-    @HostListener('document:fullscreenchange', ['$event']) onKeydownHandler(_event: KeyboardEvent) {
-        if (
-            !this._document.fullscreenElement && // Alternative standard method
-            !this._document.mozFullScreenElement &&
-            !this._document.webkitFullscreenElement
-        ) {
-            this.isFullscreen = false;
-        }
+    @HostListener('document:fullscreenchange', ['$event']) onFullscreenChange(_event: Event) {
+        this.isFullscreen = this._fullscreenService.isFullscreen();
     }
 
     /**
@@ -201,28 +194,9 @@ export class EditionGraphComponent implements OnInit {
      * @returns {void} Sets isFullscreen flag to true.
      */
     openFullscreen(): void {
-        const el = this.child.fs.nativeElement;
-
+        const el = this.graphVisualizer.fs.nativeElement;
+        this._fullscreenService.openFullscreen(el);
         this.isFullscreen = true;
-        if (
-            !this._document.fullscreenElement && // Alternative standard method
-            !this._document.mozFullScreenElement &&
-            !this._document.webkitFullscreenElement
-        ) {
-            // Current working methods
-            if (el.requestFullscreen) {
-                el.requestFullscreen();
-            } else if (el.mozRequestFullScreen) {
-                /* Firefox */
-                el.mozRequestFullScreen();
-            } else if (el.webkitRequestFullscreen) {
-                /* Chrome, Safari and Opera */
-                el.webkitRequestFullscreen();
-            } else if (el.msRequestFullscreen) {
-                /* IE/Edge */
-                el.msRequestFullscreen();
-            }
-        }
     }
 
     /**
@@ -233,18 +207,7 @@ export class EditionGraphComponent implements OnInit {
      * @returns {void} Sets isFullscreen flag to false.
      */
     closeFullscreen(): void {
-        if (this._document.exitFullscreen) {
-            this._document.exitFullscreen();
-        } else if (this._document.mozCancelFullScreen) {
-            /* Firefox */
-            this._document.mozCancelFullScreen();
-        } else if (this._document.webkitExitFullscreen) {
-            /* Chrome, Safari and Opera */
-            this._document.webkitExitFullscreen();
-        } else if (this._document.msExitFullscreen) {
-            /* IE/Edge */
-            this._document.msExitFullscreen();
-        }
+        this._fullscreenService.closeFullscreen();
         this.isFullscreen = false;
     }
 }
