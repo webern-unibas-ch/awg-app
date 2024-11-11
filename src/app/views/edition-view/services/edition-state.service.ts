@@ -18,14 +18,14 @@ import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@aw
 })
 export class EditionStateService {
     /**
-     * Private variable for the replay subject´s buffer size.
+     * Private readonly variable for the replay subject´s buffer size.
      */
-    private _bufferSize = 1;
+    private readonly _bufferSize = 1;
 
     /**
-     * Private replay subject to flag intro view.
+     * Private readonly replay subject to flag intro view.
      */
-    private _isIntroViewSubject = new ReplaySubject<boolean>(this._bufferSize);
+    private readonly _isIntroViewSubject = new ReplaySubject<boolean>(this._bufferSize);
 
     /**
      * Private readonly isIntroView stream as observable (`ReplaySubject`).
@@ -33,9 +33,9 @@ export class EditionStateService {
     private readonly _isIntroViewStream$ = this._isIntroViewSubject.asObservable();
 
     /**
-     * Private replay subject to flag preface view.
+     * Private readonly replay subject to flag preface view.
      */
-    private _isPrefaceViewSubject = new ReplaySubject<boolean>(this._bufferSize);
+    private readonly _isPrefaceViewSubject = new ReplaySubject<boolean>(this._bufferSize);
 
     /**
      * Private readonly isPrefaceView stream as observable (`ReplaySubject`).
@@ -43,9 +43,9 @@ export class EditionStateService {
     private readonly _isPrefaceViewStream$ = this._isPrefaceViewSubject.asObservable();
 
     /**
-     * Private replay subject to flag row table view.
+     * Private readonly replay subject to flag row table view.
      */
-    private _isRowTableViewSubject = new ReplaySubject<boolean>(this._bufferSize);
+    private readonly _isRowTableViewSubject = new ReplaySubject<boolean>(this._bufferSize);
 
     /**
      * Private readonly isRowTableView stream as observable (`ReplaySubject`).
@@ -53,9 +53,9 @@ export class EditionStateService {
     private readonly _isRowTableViewStream$ = this._isRowTableViewSubject.asObservable();
 
     /**
-     * Private replay subject to handle the selected edition complex.
+     * Private readonly replay subject to handle the selected edition complex.
      */
-    private _selectedEditionComplexSubject = new ReplaySubject<EditionComplex>(this._bufferSize);
+    private readonly _selectedEditionComplexSubject = new ReplaySubject<EditionComplex>(this._bufferSize);
 
     /**
      * Private readonly edition complex stream as observable (`ReplaySubject`).
@@ -63,9 +63,9 @@ export class EditionStateService {
     private readonly _selectedEditionComplexStream$ = this._selectedEditionComplexSubject.asObservable();
 
     /**
-     * Private replay subject to handle the selected edition series.
+     * Private readonly replay subject to handle the selected edition series.
      */
-    private _selectedEditionSeriesSubject = new ReplaySubject<EditionOutlineSeries>(this._bufferSize);
+    private readonly _selectedEditionSeriesSubject = new ReplaySubject<EditionOutlineSeries>(this._bufferSize);
 
     /**
      * Private readonly selected edition series stream as observable (`ReplaySubject`).
@@ -73,9 +73,9 @@ export class EditionStateService {
     private readonly _selectedEditionSeriesStream$ = this._selectedEditionSeriesSubject.asObservable();
 
     /**
-     * Private replay subject to handle the selected edition section.
+     * Private readonly replay subject to handle the selected edition section.
      */
-    private _selectedEditionSectionSubject = new ReplaySubject<EditionOutlineSection>(this._bufferSize);
+    private readonly _selectedEditionSectionSubject = new ReplaySubject<EditionOutlineSection>(this._bufferSize);
 
     /**
      * Private readonly selected edition series stream as observable (`ReplaySubject`).

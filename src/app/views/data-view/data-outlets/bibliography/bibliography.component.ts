@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -50,14 +50,11 @@ export class BibliographyComponent implements OnInit {
     isBibListLoaded = false;
 
     /**
-     * Constructor of the BibliographyComponent.
+     * Private readonly injection variable: _bibliographyService.
      *
-     * It declares a private BibliographyService instance
-     * to get the list of bibliography items.
-     *
-     * @param {BibliographyService} bibliographyService Instance of the BibliographyService.
+     * It keeps the instance of the injected BibliographyService.
      */
-    constructor(private bibliographyService: BibliographyService) {}
+    private readonly _bibliographyService = inject(BibliographyService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -79,7 +76,7 @@ export class BibliographyComponent implements OnInit {
      */
     getBibList(): void {
         // TODO: handle request with more than 1000 entries
-        this.bibList$ = this.bibliographyService.getBibliographyList().pipe(
+        this.bibList$ = this._bibliographyService.getBibliographyList().pipe(
             tap((data: SearchResponseJson) => {
                 this.nhits = data.nhits;
                 this.isBibListLoaded = true;

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { AppConfig } from '@awg-app/app.config';
@@ -54,18 +54,18 @@ export class ContactInfoComponent implements OnInit {
     osmLinkUrl: string;
 
     /**
-     * Constructor of the ContactInfoComponent.
+     * Private readonly injection variable: _coreService.
      *
-     * It declares a private CoreService instance
-     * to get the metadata and a private DomSanitizer instance.
-     *
-     * @param {CoreService} coreService Instance of the CoreService.
-     * @param {DomSanitizer} sanitizer Instance of the Angular DomSanitizer.
+     * It keeps the instance of the injected CoreService.
      */
-    constructor(
-        private coreService: CoreService,
-        private sanitizer: DomSanitizer
-    ) {}
+    private readonly _coreService = inject(CoreService);
+
+    /**
+     * Private readonly injection variable: _sanitizer.
+     *
+     * It keeps the instance of the injected Angular DomSanitizer.
+     */
+    private readonly _sanitizer = inject(DomSanitizer);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -87,8 +87,8 @@ export class ContactInfoComponent implements OnInit {
      * @returns {void} Sets the pageMetaData variable.
      */
     provideMetaData(): void {
-        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.page);
-        this.contactMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.contact);
+        this.pageMetaData = this._coreService.getMetaDataSection(MetaSectionTypes.page);
+        this.contactMetaData = this._coreService.getMetaDataSection(MetaSectionTypes.contact);
     }
 
     /**
@@ -100,7 +100,7 @@ export class ContactInfoComponent implements OnInit {
      * @returns {void} Provides the URLs.
      */
     provideOSMUrls(): void {
-        this.osmEmbedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(AppConfig.UNSAFE_OSM_EMBED_URL);
+        this.osmEmbedUrl = this._sanitizer.bypassSecurityTrustResourceUrl(AppConfig.UNSAFE_OSM_EMBED_URL);
         this.osmLinkUrl = AppConfig.OSM_LINK_URL;
     }
 }

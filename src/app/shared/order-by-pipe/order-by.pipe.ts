@@ -116,7 +116,7 @@ export class OrderByPipe implements PipeTransform {
      * @param expression
      */
     static setValue(object: any, value: any, expression: string[]): void {
-        let i;
+        let i: number;
         for (i = 0; i < expression.length - 1; i++) {
             object = object[expression[i]];
         }
@@ -209,12 +209,7 @@ export class OrderByPipe implements PipeTransform {
      *
      * @returns {any[]}
      */
-    private _transformObject(
-        value: any | any[],
-        expression?: any,
-        reverse?: boolean,
-        isCaseInsensitive?: boolean
-    ): any {
+    private _transformObject<T>(value: T | T[], expression?: any, reverse?: boolean, isCaseInsensitive?: boolean): any {
         const parsedExpression = OrderByPipe.parseExpression(expression);
         let lastPredicate = parsedExpression.pop();
         let oldValue = OrderByPipe.getValue(value, parsedExpression);

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 /**
@@ -31,13 +31,11 @@ export class DataViewComponent implements OnInit, OnDestroy {
     searchId = 'search';
 
     /**
-     * Constructor of the DataViewComponent.
+     * Private readonly injection variable: _router.
      *
-     * It declares a private Router instance.
-     *
-     * @param {Router} router Instance of the Angular router.
+     * It keeps the instance of the injected Angular Router.
      */
-    constructor(private router: Router) {}
+    private readonly _router = inject(Router);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -58,7 +56,7 @@ export class DataViewComponent implements OnInit, OnDestroy {
      */
     navigateToSideOutlet(): void {
         // Opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: 'searchInfo' } }], {
+        this._router.navigate([{ outlets: { side: 'searchInfo' } }], {
             preserveFragment: true,
             queryParamsHandling: 'preserve',
         });
@@ -71,6 +69,6 @@ export class DataViewComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy() {
         // Navigate to an empty outlet to clear the side outlet
-        this.router.navigate([{ outlets: { side: null } }]);
+        this._router.navigate([{ outlets: { side: null } }]);
     }
 }

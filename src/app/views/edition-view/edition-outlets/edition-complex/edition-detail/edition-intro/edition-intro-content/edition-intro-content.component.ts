@@ -73,8 +73,6 @@ export class EditionIntroContentComponent {
      * Constructor of the EditionIntroContentComponent.
      *
      * It initializes the self-referring variable needed for CompileHtml library.
-     *
-     * @param {UtilityService} utils Instance of the UtilityService.
      */
     constructor() {
         this.ref = this;

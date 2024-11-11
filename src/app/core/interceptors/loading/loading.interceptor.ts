@@ -27,7 +27,7 @@ export class LoadingInterceptor implements HttpInterceptor {
     /**
      * Private readonly injection variable: _loadingService.
      *
-     * It injects the LoadingService.
+     * It keeps the instance of the injected LoadingService.
      */
     private readonly _loadingService = inject(LoadingService);
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { SideInfoService } from '@awg-core/services';
@@ -26,19 +26,18 @@ export class SearchOverviewComponent implements OnInit {
     searchRouterLinkButtons: RouterLinkButton[];
 
     /**
-     * Constructor of the SearchOverviewComponent.
+     * Private readonly injection variable: _sideInfoService.
      *
-     * It declares a private SideInfoService instance
-     * to update the search info title and a private
-     * ActivatedRoute instance.
-     *
-     * @param {SideInfoService} sideInfoService Instance of the SideInfoService.
-     * @param {ActivatedRoute} route Instance of the ActivatedRoute.
+     * It keeps the instance of the injected SideInfoService.
      */
-    constructor(
-        private sideInfoService: SideInfoService,
-        private route: ActivatedRoute
-    ) {}
+    private readonly _sideInfoService = inject(SideInfoService);
+
+    /**
+     * Private readonly injection variable: _route.
+     *
+     * It keeps the instance of the injected Angular ActivatedRoute.
+     */
+    private readonly _route = inject(ActivatedRoute);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -77,14 +76,14 @@ export class SearchOverviewComponent implements OnInit {
      */
     updateSearchInfoTitleFromPath(): void {
         // Get snapshot from current url path
-        const path = this.route.snapshot.url[0].path;
+        const path = this._route.snapshot.url[0].path;
 
         // Filter searchButtonArray
         const selectedButton = this.searchRouterLinkButtons.filter(button => button.link === path);
 
         // Update side info title if path is in array
         if (selectedButton.length === 1) {
-            this.sideInfoService.updateSearchInfoTitle(selectedButton[0].label);
+            this._sideInfoService.updateSearchInfoTitle(selectedButton[0].label);
         }
     }
 
@@ -105,7 +104,7 @@ export class SearchOverviewComponent implements OnInit {
         if (!routerLinkButton || !isButton || !routerLinkButton.label) {
             return;
         }
-        this.sideInfoService.clearSearchInfoData();
-        this.sideInfoService.updateSearchInfoTitle(routerLinkButton.label);
+        this._sideInfoService.clearSearchInfoData();
+        this._sideInfoService.updateSearchInfoTitle(routerLinkButton.label);
     }
 }

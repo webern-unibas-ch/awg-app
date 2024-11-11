@@ -21,7 +21,7 @@
                                 kontinuierlich ergänzt.</span
                             >
                         </p>
-                        @if (utils.isNotEmptyArray(graph.description) || graph.rdfData?.triples) {
+                        @if (UTILS.isNotEmptyArray(graph.description) || graph.rdfData?.triples) {
                             @for (description of graph.description; track $index) {
                                 <p [compile-html]="description" [compile-html-ref]="ref"></p>
                             }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
@@ -32,6 +32,11 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
     currentLanguage = 0;
 
     /**
+     * Self-referring variable needed for CompileHtml library.
+     */
+    ref: EditionPrefaceComponent;
+
+    /**
      * Readonly variable: GLYPHS.
      *
      * It keeps the data for musical glyphs.
@@ -39,23 +44,26 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
     readonly GLYPHS = EDITION_GLYPHS_DATA;
 
     /**
-     * Self-referring variable needed for CompileHtml library.
+     * Private readonly injection variable: _editionDataService.
+     *
+     * It keeps the instance of the injected EditionDataService.
      */
-    ref: EditionPrefaceComponent;
+    private readonly _editionDataService = inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
 
     /**
      * Constructor of the EditionPrefaceComponent.
      *
-     * It declares private instances of the EditionStateService and EditionDataService
-     * and the self-referring ref variable needed for CompileHtml library.
+     * It declares the self-referring ref variable needed for CompileHtml library.
      *
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
-     * @param {EditionDataService} editionDataService Instance of the EditionDataService.
      */
-    constructor(
-        private editionStateService: EditionStateService,
-        private editionDataService: EditionDataService
-    ) {
+    constructor() {
         this.ref = this;
     }
 
@@ -66,8 +74,8 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit(): void {
-        this.editionStateService.updateIsPrefaceView(true);
-        this.prefaceData$ = this.editionDataService.getEditionPrefaceData();
+        this._editionStateService.updateIsPrefaceView(true);
+        this.prefaceData$ = this._editionDataService.getEditionPrefaceData();
     }
 
     /**
@@ -104,6 +112,6 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        this.editionStateService.clearIsPrefaceView();
+        this._editionStateService.clearIsPrefaceView();
     }
 }

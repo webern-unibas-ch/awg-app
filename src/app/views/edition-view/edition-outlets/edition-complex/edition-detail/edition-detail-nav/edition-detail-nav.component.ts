@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -36,20 +36,18 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
     editionComplex: EditionComplex;
 
     /**
-     * Private variable: _destroyed$.
+     * Private readonly variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroyed$: Subject<boolean> = new Subject<boolean>();
+    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Constructor of the EditionDetailNavComponent.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It declares a private instance of EditionStateService.
-     *
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
+     * It keeps the instance of the injected EditionStateService.
      */
-    constructor(private editionStateService: EditionStateService) {}
+    private readonly _editionStateService = inject(EditionStateService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -70,7 +68,7 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
      * @returns {void} Gets the current edition complex.
      */
     getEditionComplex(): void {
-        this.editionStateService
+        this._editionStateService
             .getSelectedEditionComplex()
             .pipe(takeUntil(this._destroyed$))
             .subscribe({

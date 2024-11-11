@@ -25,7 +25,7 @@ export class CachingInterceptor implements HttpInterceptor {
     /**
      * Private readonly injection variable: _cache.
      *
-     * It injects the HttpCacheService.
+     * It keeps the instance of the injected HttpCacheService.
      */
     private readonly _cache = inject(HttpCacheService);
 
