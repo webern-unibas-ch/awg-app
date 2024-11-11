@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 
 import { UtilityService } from '@awg-core/services';
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
@@ -33,20 +33,18 @@ export class EditionSectionDetailOverviewComponent implements OnInit {
     selectedSection$: Observable<EditionOutlineSection>;
 
     /**
-     * Constructor of the EditionSectionDetailComponent.
+     * Public readonly injection variable: UTILS.
      *
-     * It declares private instances of the EditionStateService,
-     * and a public instance of the UtilityService.
-     *
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
-     * @param {UtilityService} utils Instance of the UtilityService.
+     * It keeps the instance of the injected UtilityService.
      */
-    constructor(
-        private editionStateService: EditionStateService,
-        public utils: UtilityService
-    ) {
-        // Intentionally left empty until implemented
-    }
+    readonly UTILS = inject(UtilityService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -66,7 +64,7 @@ export class EditionSectionDetailOverviewComponent implements OnInit {
      * @returns {void} Sets up the section detail overview.
      */
     setupSectionDetailOverview(): void {
-        this.selectedSeries$ = this.editionStateService.getSelectedEditionSeries();
-        this.selectedSection$ = this.editionStateService.getSelectedEditionSection();
+        this.selectedSeries$ = this._editionStateService.getSelectedEditionSeries();
+        this.selectedSection$ = this._editionStateService.getSelectedEditionSection();
     }
 }

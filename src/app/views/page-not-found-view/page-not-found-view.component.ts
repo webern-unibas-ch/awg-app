@@ -30,18 +30,18 @@ export class PageNotFoundViewComponent {
     pageNotFoundSubTitle = '… aber möglicherweise können wir Ihnen anders weiterhelfen?';
 
     /**
-     * Private variable: _pageNotFoundImgPath.
+     * Private readonly variable: _pageNotFoundImgPath.
      *
      * It keeps the path to the image of the page not found section.
      */
-    private _pageNotFoundImgPath = 'assets/img/page-not-found/Webern_Books.jpg';
+    private readonly _pageNotFoundImgPath = 'assets/img/page-not-found/Webern_Books.jpg';
 
     /**
-     * Private variable: _awgContactUrl.
+     * Private readonly variable: _awgContactUrl.
      *
      * It keeps the url to the contact page of the Webern project homepage.
      */
-    private _awgContactUrl = AppConfig.AWG_PROJECT_URL + 'index.php?id=41';
+    private readonly _awgContactUrl = AppConfig.AWG_PROJECT_URL + 'index.php?id=41';
 
     /**
      * Getter for the path to the image of the page not found section.

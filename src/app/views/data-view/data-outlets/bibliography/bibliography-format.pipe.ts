@@ -29,11 +29,11 @@ export class BibliographyFormatPipe implements PipeTransform {
     private _formattedBibEntry: BibEntry;
 
     /**
-     * Private array: _formatKeyArr.
+     * Private readonly variable: _formatKeyArr.
      *
      * It keeps an array of the BibEntry keys to be formatted.
      */
-    private _formatKeyArr: Array<string> = [
+    private readonly _formatKeyArr: Array<string> = [
         'Author',
         'Titel_unselbst',
         'Titel_selbst',
@@ -46,13 +46,13 @@ export class BibliographyFormatPipe implements PipeTransform {
     ];
 
     /**
-     * Private map: _formatFunctions.
+     * Private readonly variable: _formatFunctions.
      *
      * It stores a map of format functions for each field key of a BibEntry.
      * The keys of the map correspond to the field keys, and the values are functions
      * that transform the field value in a particular way.
      */
-    private _formatFunctions: Map<string, (value: any) => string> = new Map([
+    private readonly _formatFunctions: Map<string, (value: any) => string> = new Map([
         ['Kurztitel', this._formatBibTitleShort],
         ['Author', this._formatBibAuthor],
         ['Titel_selbst', this._formatBibTitleIndep],

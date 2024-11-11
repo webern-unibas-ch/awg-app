@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
 import { EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
@@ -23,15 +23,11 @@ export class EditionSeriesComponent implements OnInit {
     editionOutline: EditionOutlineSeries[];
 
     /**
-     * Constructor of the EditionSeriesComponent.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It declares a private instance of the EditionStateService.
-     *
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
+     * It keeps the instance of the injected EditionStateService.
      */
-    constructor(private editionStateService: EditionStateService) {
-        // Intentionally left empty until implemented
-    }
+    private readonly _editionStateService = inject(EditionStateService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -52,8 +48,8 @@ export class EditionSeriesComponent implements OnInit {
      * @returns {void} Clears the edition series.
      */
     clearSelections(): void {
-        this.editionStateService.clearSelectedEditionSeries();
-        this.editionStateService.clearSelectedEditionSection();
+        this._editionStateService.clearSelectedEditionSeries();
+        this._editionStateService.clearSelectedEditionSection();
     }
 
     /**

@@ -21,7 +21,10 @@ export class ApiServiceResult {
     /**
      * Configuration and instantiation of JsonConvert.
      */
-    private static _jsonConvert: JsonConvert = new JsonConvert(OperationMode.ENABLE, ValueCheckingMode.ALLOW_NULL);
+    private static readonly _jsonConvert: JsonConvert = new JsonConvert(
+        OperationMode.ENABLE,
+        ValueCheckingMode.ALLOW_NULL
+    );
 
     /**
      * Status number

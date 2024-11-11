@@ -17,9 +17,11 @@ import { SearchInfo } from '@awg-side-info/side-info-models';
 })
 export class SideInfoService {
     /**
-     * Private subject to handle search info data.
+     * Private readonly behavior subject to handle search info data.
      */
-    private _searchInfoDataSubject: Subject<SearchInfo> = new BehaviorSubject<SearchInfo>(new SearchInfo('---', '---'));
+    private readonly _searchInfoDataSubject: Subject<SearchInfo> = new BehaviorSubject<SearchInfo>(
+        new SearchInfo('---', '---')
+    );
 
     /**
      * Readonly search info data stream as observable (`Subject`).
@@ -27,9 +29,9 @@ export class SideInfoService {
     private readonly _searchInfoDataStream$ = this._searchInfoDataSubject.asObservable();
 
     /**
-     * Private behavior subject to handle search info title.
+     * Private readonly behavior subject to handle search info title.
      */
-    private _searchInfoTitleSubject: Subject<string> = new BehaviorSubject<string>('');
+    private readonly _searchInfoTitleSubject: Subject<string> = new BehaviorSubject<string>('');
 
     /**
      * Readonly search info title stream as observable (`BehaviorSubject`).

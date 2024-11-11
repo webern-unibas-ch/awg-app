@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 
 import { MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
@@ -31,14 +31,11 @@ export class StructureInfoComponent implements OnInit {
     structureMetaData: MetaStructure;
 
     /**
-     * Constructor of the StructureInfoComponent.
+     * Private readonly injection variable: _coreService.
      *
-     * It declares a private CoreService instance
-     * to get the metadata.
-     *
-     * @param {CoreService} coreService Instance of the CoreService.
+     * It keeps the instance of the injected CoreService.
      */
-    constructor(private coreService: CoreService) {}
+    private readonly _coreService = inject(CoreService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -59,6 +56,6 @@ export class StructureInfoComponent implements OnInit {
      * @returns {void} Sets the structureMetaData variable.
      */
     provideMetaData(): void {
-        this.structureMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.structure);
+        this.structureMetaData = this._coreService.getMetaDataSection(MetaSectionTypes.structure);
     }
 }

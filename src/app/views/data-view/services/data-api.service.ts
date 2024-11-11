@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 import { Observable, forkJoin as observableForkJoin, of as observableOf } from 'rxjs';
 import { defaultIfEmpty, map } from 'rxjs/operators';
@@ -70,19 +70,21 @@ export class DataApiService extends ApiService {
     };
 
     /**
+     * Private readonly injection variable: _conversionService.
+     *
+     * It keeps the instance of the injected ConversionService.
+     */
+    private readonly _conversionService = inject(ConversionService);
+
+    /**
      * Constructor of the DataApiService.
      *
      * It declares a public {@link HttpClient} instance
-     * to handle http requests and a private {@link ConversionService}
-     * instance for the conversion of the response data.
+     * to handle http requests.
      *
      * @param {HttpClient} http Instance of the HttpClient.
-     * @param {ConversionService} conversionService Instance of the ConversionService.
      */
-    constructor(
-        http: HttpClient,
-        private conversionService: ConversionService
-    ) {
+    constructor(http: HttpClient) {
         super(http);
         this.serviceName = 'DataApiService';
     }
@@ -215,7 +217,7 @@ export class DataApiService extends ApiService {
 
             // Map the response to a converted search response object for HTML display
             map((searchResponse: SearchResponseJson) =>
-                this.conversionService.convertFullTextSearchResults(searchResponse)
+                this._conversionService.convertFullTextSearchResults(searchResponse)
             )
         );
     }
@@ -280,7 +282,7 @@ export class DataApiService extends ApiService {
      */
     private _prepareResourceData(resourceDataResponse: IResourceDataResponse, resourceId: string): ResourceData {
         // Convert data for displaying resource detail
-        const resourceDetail: ResourceDetail = this.conversionService.convertResourceData(
+        const resourceDetail: ResourceDetail = this._conversionService.convertResourceData(
             resourceDataResponse,
             resourceId
         );

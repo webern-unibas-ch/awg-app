@@ -29,42 +29,42 @@ export class AppComponent {
     /**
      * Private readonly injection variable: _activatedRoute.
      *
-     * It injects the ActivatedRoute.
+     * It keeps the instance of the injected Angular ActivatedRoute.
      */
     private readonly _activatedRoute = inject(ActivatedRoute);
 
     /**
      * Private readonly injection variable: _analyticsService.
      *
-     * It injects the AnalyticsService.
+     * It keeps the instance of the injected AnalyticsService.
      */
     private readonly _analyticsService = inject(AnalyticsService);
 
     /**
      * Private readonly injection variable: _editionInitService.
      *
-     * It injects the EditionInitService.
+     * It keeps the instance of the injected EditionInitService.
      */
     private readonly _editionInitService = inject(EditionInitService);
 
     /**
      * Private readonly injection variable: _ngbConfig.
      *
-     * It injects the NgbConfig.
+     * It keeps the instance of the injected NgbConfig.
      */
     private readonly _ngbConfig = inject(NgbConfig);
 
     /**
      * Private readonly injection variable: _router.
      *
-     * It injects the Router.
+     * It keeps the instance of the injected Angular Router.
      */
     private readonly _router = inject(Router);
 
     /**
      * Private readonly injection variable: _titleService.
      *
-     * It injects the Angular Title.
+     * It keeps the instance of the injected Angular Title.
      */
     private readonly _titleService = inject(Title);
 
