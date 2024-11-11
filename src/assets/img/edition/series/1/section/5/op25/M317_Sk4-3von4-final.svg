@@ -7,7 +7,7 @@
    version="1.1"
    viewBox="0 0 1152.861 620.844"
    sodipodi:docname="M317_Sk4-3von4-final.svg"
-   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -22,18 +22,20 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="2.1246429"
-     inkscape:cx="725.53368"
+     inkscape:cx="156.96755"
      inkscape:cy="310.4051"
-     inkscape:window-width="2880"
-     inkscape:window-height="1514"
-     inkscape:window-x="2869"
-     inkscape:window-y="-11"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     inkscape:window-x="2552"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="Ebene_1" />
   <defs
      id="defs4">
     <style
-       id="style2">&#10;      .cls-1,.cls-12,.cls-15,.cls-24,.cls-3,.cls-30,.cls-4{fill:none}.cls-1,.cls-12,.cls-15,.cls-24,.cls-29,.cls-3,.cls-30,.cls-4{stroke:#000}.cls-1,.cls-29,.cls-3,.cls-30{stroke-width:.4px}.cls-13,.cls-2,.cls-25,.cls-5,.cls-6,.cls-7,.cls-9{isolation:isolate}.cls-2{font-size:13.5px}.cls-2,.cls-6,.cls-7{font-family:Maestro,Maestro}.cls-3{stroke-dasharray:2.5 2.5}.cls-4{stroke-width:.56px}.cls-10,.cls-5,.cls-9{font-size:6.75px}.cls-5{font-family:TimesNewRomanPSMT,Times New Roman}.cls-6{font-size:10.13px}.cls-7{font-size:10px}.cls-10,.cls-9{font-family:Arial-ItalicMT,Arial}.cls-10,.cls-13,.cls-9{font-style:italic}.cls-12{stroke-width:.56px}.cls-13{font-size:5.63px;font-family:TimesNewRomanPS-BoldItalicMT,Times New Roman}.cls-13,.cls-25{font-weight:700}.cls-14,.cls-29{fill:#fff}.cls-15{stroke-width:.49px}.cls-17{letter-spacing:0}.cls-24{stroke-width:.25px}.cls-25{font-size:12px;font-family:Arial-BoldMT,Arial}.cls-29,.cls-30{stroke-miterlimit:10}&#10;    </style>
+       id="style2">
+      .cls-1,.cls-12,.cls-15,.cls-24,.cls-3,.cls-30,.cls-4{fill:none}.cls-1,.cls-12,.cls-15,.cls-24,.cls-29,.cls-3,.cls-30,.cls-4{stroke:#000}.cls-1,.cls-29,.cls-3,.cls-30{stroke-width:.4px}.cls-13,.cls-2,.cls-25,.cls-5,.cls-6,.cls-7,.cls-9{isolation:isolate}.cls-2{font-size:13.5px}.cls-2,.cls-6,.cls-7{font-family:Maestro,Maestro}.cls-3{stroke-dasharray:2.5 2.5}.cls-4{stroke-width:.56px}.cls-10,.cls-5,.cls-9{font-size:6.75px}.cls-5{font-family:TimesNewRomanPSMT,Times New Roman}.cls-6{font-size:10.13px}.cls-7{font-size:10px}.cls-10,.cls-9{font-family:Arial-ItalicMT,Arial}.cls-10,.cls-13,.cls-9{font-style:italic}.cls-12{stroke-width:.56px}.cls-13{font-size:5.63px;font-family:TimesNewRomanPS-BoldItalicMT,Times New Roman}.cls-13,.cls-25{font-weight:700}.cls-14,.cls-29{fill:#fff}.cls-15{stroke-width:.49px}.cls-17{letter-spacing:0}.cls-24{stroke-width:.25px}.cls-25{font-size:12px;font-family:Arial-BoldMT,Arial}.cls-29,.cls-30{stroke-miterlimit:10}
+    </style>
   </defs>
   <path
      id="line8"
@@ -1022,7 +1024,7 @@
   <g
      id="text322"
      aria-label="8"
-     class="cls-9"
+     class="cls-9 supplied staffN"
      style="font-style:italic;font-size:6.75px;font-family:Arial-ItalicMT,Arial;isolation:isolate;fill:#7d7d7d">
     <path
        id="path36298"
@@ -1077,7 +1079,7 @@
   <g
      id="text336"
      aria-label="7"
-     class="cls-9"
+     class="cls-9 supplied measureN"
      style="font-style:italic;font-size:6.75px;font-family:Arial-ItalicMT,Arial;isolation:isolate;fill:#7d7d7d">
     <path
        id="path36277"
@@ -3850,7 +3852,7 @@
   <g
      id="text1046"
      aria-label="12"
-     class="cls-9"
+     class="cls-9 supplied measureN"
      style="font-style:italic;font-size:6.75px;font-family:Arial-ItalicMT,Arial;isolation:isolate;fill:#7d7d7d">
     <path
        id="path35414"
