@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
@@ -87,14 +87,11 @@ export class ContactViewComponent implements OnInit {
     dateFormat = 'd. MMMM yyyy';
 
     /**
-     * Constructor of the ContactViewComponent.
+     * Private readonly injection variable: _coreService.
      *
-     * It declares a private CoreService instance
-     * to get the metadata.
-     *
-     * @param {CoreService} coreService Instance of the CoreService.
+     * It keeps the instance of the injected CoreService.
      */
-    constructor(private coreService: CoreService) {}
+    private readonly _coreService = inject(CoreService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -116,7 +113,7 @@ export class ContactViewComponent implements OnInit {
      * @returns {void} Sets the pageMetaData variable.
      */
     provideMetaData(): void {
-        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.page);
-        this.contactMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.contact);
+        this.pageMetaData = this._coreService.getMetaDataSection(MetaSectionTypes.page);
+        this.contactMetaData = this._coreService.getMetaDataSection(MetaSectionTypes.contact);
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Subject } from 'rxjs';
@@ -19,26 +19,25 @@ import { EditionOutlineService, EditionStateService } from '@awg-views/edition-v
 })
 export class EditionSectionDetailComponent implements OnInit, OnDestroy {
     /**
-     * Private variable: _destroyed$.
+     * Private readonly variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroyed$: Subject<boolean> = new Subject<boolean>();
+    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Constructor of the EditionSectionDetailComponent.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It declares private instances of the Angular ActivatedRoute and the EditionStateService.
-     *
-     * @param {ActivatedRoute} route Instance of the ActivatedRoute.
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
+     * It keeps the instance of the injected EditionStateService.
      */
-    constructor(
-        private route: ActivatedRoute,
-        private editionStateService: EditionStateService
-    ) {
-        // Intentionally left empty until implemented
-    }
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _route.
+     *
+     * It keeps the instance of the injected Angular ActivatedRoute.
+     */
+    private readonly _route = inject(ActivatedRoute);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -59,9 +58,9 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
      * @returns {void} Updates the edition section.
      */
     updateSectionFromRoute(): void {
-        const sectionId = this.route.snapshot.paramMap.get('id');
+        const sectionId = this._route.snapshot.paramMap.get('id');
 
-        this.editionStateService
+        this._editionStateService
             .getSelectedEditionSeries()
             .pipe(
                 takeUntil(this._destroyed$),
@@ -70,7 +69,7 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
             .subscribe(series => {
                 const seriesId = series?.series?.route;
                 const selectedSection = EditionOutlineService.getEditionSectionById(seriesId, sectionId);
-                this.editionStateService.updateSelectedEditionSection(selectedSection);
+                this._editionStateService.updateSelectedEditionSection(selectedSection);
             });
     }
 

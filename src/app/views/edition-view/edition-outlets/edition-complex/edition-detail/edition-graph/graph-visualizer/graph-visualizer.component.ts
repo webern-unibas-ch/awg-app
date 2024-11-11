@@ -2,7 +2,7 @@
  * This component is adapted from Mads Holten's Sparql Visualizer
  * cf. https://github.com/MadsHolten/sparql-visualizer
  */
-import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, Input, OnInit, ViewChild } from '@angular/core';
 
 import { EMPTY, from, Observable } from 'rxjs';
 
@@ -91,17 +91,18 @@ export class GraphVisualizerComponent implements OnInit {
     triples: string;
 
     /**
-     * Constructor of the GraphVisualizerComponent.
+     * Private readonly injection variable: _graphVisualizerService.
      *
-     * It declares a private GraphVisualizerService instance.
-     *
-     * @param {GraphVisualizerService} graphVisualizerService Instance of the GraphVisualizerService.
-     * @param {ToastService} toastService Instance of the ToastService.
+     * It keeps the instance of the injected GraphVisualizerService.
      */
-    constructor(
-        private graphVisualizerService: GraphVisualizerService,
-        private toastService: ToastService
-    ) {}
+    private readonly _graphVisualizerService = inject(GraphVisualizerService);
+
+    /**
+     * Private readonly injection variable: _toastService.
+     *
+     * It keeps the instance of the injected ToastService.
+     */
+    private readonly _toastService = inject(ToastService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -163,13 +164,13 @@ export class GraphVisualizerComponent implements OnInit {
      */
     performQuery(): void {
         // If no namespace is defined in the query, get it from the turtle file
-        this.query.queryString = this.graphVisualizerService.checkNamespacesInQuery(
+        this.query.queryString = this._graphVisualizerService.checkNamespacesInQuery(
             this.query.queryString,
             this.triples
         );
 
         // Get the query type
-        this.query.queryType = this.graphVisualizerService.getQuerytype(this.query.queryString);
+        this.query.queryType = this._graphVisualizerService.getQuerytype(this.query.queryString);
 
         // Perform only construct queries for now
         if (this.query.queryType === 'construct' || this.query.queryType === 'select') {
@@ -236,7 +237,7 @@ export class GraphVisualizerComponent implements OnInit {
             classname: 'bg-danger text-light',
             delay: toastMessage.duration,
         });
-        this.toastService.add(toast);
+        this._toastService.add(toast);
 
         console.error(toastMessage.name, ':', toastMessage.message);
     }
@@ -260,7 +261,7 @@ export class GraphVisualizerComponent implements OnInit {
 
         // Perform query with client based rdfstore
         try {
-            result = await this.graphVisualizerService.doQuery(queryType, queryString, triples);
+            result = await this._graphVisualizerService.doQuery(queryType, queryString, triples);
 
             // Capture query time
             this.queryTime = Date.now() - t1;

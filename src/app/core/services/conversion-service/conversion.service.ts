@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -71,19 +71,21 @@ export class ConversionService extends ApiService {
     filteredOut: number;
 
     /**
+     * Private readonly injection variable: _utils.
+     *
+     * It keeps the instance of the injected UtilityService.
+     */
+    private readonly _utils = inject(UtilityService);
+
+    /**
      * Constructor of the ConversionService.
      *
      * It declares a public {@link HttpClient} instance
-     * with a super reference to base class (ApiService)
-     * and a private {@link UtilityService} instance.
+     * with a super reference to base class (ApiService).
      *
      * @param {HttpClient} http Instance of the HttpClient.
-     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor(
-        public override http: HttpClient,
-        private utils: UtilityService
-    ) {
+    constructor(public override http: HttpClient) {
         super(http);
     }
 
@@ -166,7 +168,7 @@ export class ConversionService extends ApiService {
                     case '7':
                         // SELECTION PULLDOWN: selection nodes have to be read seperately
                         // TODO
-                        if (this.utils.isNotEmptyArray(prop.values)) {
+                        if (this._utils.isNotEmptyArray(prop.values)) {
                             propValue = this._convertSelectionValues(prop.values, prop.attributes);
                         }
                         break; // END selection

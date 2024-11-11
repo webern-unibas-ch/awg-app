@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { delay, EMPTY, Observable } from 'rxjs';
@@ -29,20 +29,25 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
     selectedEditionComplex$: Observable<EditionComplex>;
 
     /**
-     * Constructor of the EditionComplexComponent.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It declares private instances of ActivatedRoute and EditionStateService,
-     * and a public instance of the UtilityService.
-     *
-     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
-     * @param {UtilityService} utils Instance of the UtilityService.
+     * It keeps the instance of the injected EditionStateService.
      */
-    constructor(
-        private route: ActivatedRoute,
-        private editionStateService: EditionStateService,
-        public utils: UtilityService
-    ) {}
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _route.
+     *
+     * It keeps the instance of the injected Angular ActivatedRoute.
+     */
+    private readonly _route = inject(ActivatedRoute);
+
+    /**
+     * Private readonly injection variable: _utils.
+     *
+     * It keeps the instance of the injected UtilityService.
+     */
+    private readonly _utils = inject(UtilityService);
 
     /**
      * Getter variable: editionRouteConstants.
@@ -72,22 +77,22 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
      * @returns {void} Updates the current edition complex from the route.
      */
     updateEditionComplexFromRoute(): void {
-        this.route.paramMap.subscribe(params => {
+        this._route.paramMap.subscribe(params => {
             const id: string = params.get('complexId') || '';
             const complex = EditionComplexesService.getEditionComplexById(id.toUpperCase());
 
-            if (this.utils.isNotEmptyObject(complex)) {
+            if (this._utils.isNotEmptyObject(complex)) {
                 const series = EditionOutlineService.getEditionSeriesById(complex.pubStatement.series.route);
                 const section = EditionOutlineService.getEditionSectionById(
                     complex.pubStatement.series.route,
                     complex.pubStatement.section.route
                 );
 
-                this.editionStateService.updateSelectedEditionSeries(series);
-                this.editionStateService.updateSelectedEditionSection(section);
-                this.editionStateService.updateSelectedEditionComplex(complex);
+                this._editionStateService.updateSelectedEditionSeries(series);
+                this._editionStateService.updateSelectedEditionSection(section);
+                this._editionStateService.updateSelectedEditionComplex(complex);
 
-                this.selectedEditionComplex$ = this.editionStateService.getSelectedEditionComplex().pipe(delay(0));
+                this.selectedEditionComplex$ = this._editionStateService.getSelectedEditionComplex().pipe(delay(0));
             } else {
                 this.selectedEditionComplex$ = EMPTY;
             }
@@ -103,8 +108,8 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        this.editionStateService.clearSelectedEditionComplex();
-        this.editionStateService.clearSelectedEditionSeries();
-        this.editionStateService.clearSelectedEditionSection();
+        this._editionStateService.clearSelectedEditionComplex();
+        this._editionStateService.clearSelectedEditionSeries();
+        this._editionStateService.clearSelectedEditionSection();
     }
 }

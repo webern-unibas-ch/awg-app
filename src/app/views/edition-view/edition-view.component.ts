@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 
 import { delay, Observable } from 'rxjs';
 
@@ -81,13 +81,11 @@ export class EditionViewComponent implements OnInit {
     selectedEditionSeries$: Observable<EditionOutlineSeries>;
 
     /**
-     * Constructor of the EditionViewComponent.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It declares a private instance of the EditionStateService.
-     *
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
+     * It keeps the instance of the injected EditionStateService.
      */
-    constructor(private editionStateService: EditionStateService) {}
+    private readonly _editionStateService = inject(EditionStateService);
 
     /**
      * Getter variable: editionRouteConstants.
@@ -118,11 +116,11 @@ export class EditionViewComponent implements OnInit {
      * @returns {void} Sets up the edition view.
      */
     setupEditionView(): void {
-        this.selectedEditionSeries$ = this.editionStateService.getSelectedEditionSeries().pipe(delay(0));
-        this.selectedEditionSection$ = this.editionStateService.getSelectedEditionSection().pipe(delay(0));
-        this.selectedEditionComplex$ = this.editionStateService.getSelectedEditionComplex().pipe(delay(0));
-        this.isIntroView$ = this.editionStateService.getIsIntroView().pipe(delay(0));
-        this.isPrefaceView$ = this.editionStateService.getIsPrefaceView().pipe(delay(0));
-        this.isRowTableView$ = this.editionStateService.getIsRowTableView().pipe(delay(0));
+        this.selectedEditionSeries$ = this._editionStateService.getSelectedEditionSeries().pipe(delay(0));
+        this.selectedEditionSection$ = this._editionStateService.getSelectedEditionSection().pipe(delay(0));
+        this.selectedEditionComplex$ = this._editionStateService.getSelectedEditionComplex().pipe(delay(0));
+        this.isIntroView$ = this._editionStateService.getIsIntroView().pipe(delay(0));
+        this.isPrefaceView$ = this._editionStateService.getIsPrefaceView().pipe(delay(0));
+        this.isRowTableView$ = this._editionStateService.getIsRowTableView().pipe(delay(0));
     }
 }

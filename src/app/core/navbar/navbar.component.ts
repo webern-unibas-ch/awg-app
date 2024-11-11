@@ -85,14 +85,14 @@ export class NavbarComponent implements OnInit {
     /**
      * Private readonly injection variable: _coreService.
      *
-     * It injects the CoreService.
+     * It keeps the instance of the injected CoreService.
      */
     private readonly _coreService = inject(CoreService);
 
     /**
      * Private readonly injection variable: _router.
      *
-     * It injects the Angular Router.
+     * It keeps the instance of the injected Angular Router.
      */
     private readonly _router = inject(Router);
 

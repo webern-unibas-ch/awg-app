@@ -3,6 +3,7 @@ import {
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
+    inject,
     Input,
     OnChanges,
     Output,
@@ -98,11 +99,11 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
     ref: EditionFolioViewerComponent;
 
     /**
-     * Private variable: _folioSettings.
+     * Private readonly variable: _folioSettings.
      *
      * It keeps the format settings for the folio.
      */
-    private _folioSettings: FolioSettings = {
+    private readonly _folioSettings: FolioSettings = {
         factor: 1.5,
         formatX: 175,
         formatY: 270,
@@ -112,15 +113,18 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
     };
 
     /**
+     * Private readonly injection variable: _folioService.
+     *
+     * It keeps the instance of the injected FolioService.
+     */
+    private readonly _folioService = inject(FolioService);
+
+    /**
      * Constructor of the FolioComponent.
      *
-     * It declares a private {@link FolioService} instance
-     * and initializes the self-referring ref variable
-     * needed for CompileHtml library.
-     *
-     * @param {FolioService} folioService Instance of the FolioService.
+     * It initializes the self-referring ref variable needed for CompileHtml library.
      */
-    constructor(private folioService: FolioService) {
+    constructor() {
         this.ref = this;
     }
 
@@ -178,10 +182,10 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
             svgCanvas.selectAll('*').remove();
 
             // SVG viewBox
-            this.folioService.addViewBoxToSvgCanvas(svgCanvas, this.viewBoxArray[folioIndex]);
+            this._folioService.addViewBoxToSvgCanvas(svgCanvas, this.viewBoxArray[folioIndex]);
 
             // SVG content
-            this.folioService.addFolioToSvgCanvas(svgCanvas, folioSvgData, this.ref);
+            this._folioService.addFolioToSvgCanvas(svgCanvas, folioSvgData, this.ref);
 
             this.canvasArray.push(svgCanvas);
         });
@@ -255,7 +259,7 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
             this.viewBoxArray.push(new ViewBox(viewBoxWidth, viewBoxHeight));
 
             // Populate folioSvgData with calculated SVG data
-            return this.folioService.getFolioSvgData(folioSettings, folio);
+            return this._folioService.getFolioSvgData(folioSettings, folio);
         });
     }
 

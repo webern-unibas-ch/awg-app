@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { EditionOutlineSeries } from '@awg-views/edition-view/models';
@@ -24,19 +24,18 @@ export class EditionSeriesDetailComponent implements OnInit {
     selectedSeries: EditionOutlineSeries;
 
     /**
-     * Constructor of the EditionSeriesDetailComponent.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It declares private instances of the Angular ActivatedRoute and the EditionStateService.
-     *
-     * @param {ActivatedRoute} route Instance of the ActivatedRoute.
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
+     * It keeps the instance of the injected EditionStateService.
      */
-    constructor(
-        private route: ActivatedRoute,
-        private editionStateService: EditionStateService
-    ) {
-        // Intentionally left empty until implemented
-    }
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _route.
+     *
+     * It keeps the instance of the injected Angular ActivatedRoute.
+     */
+    private readonly _route = inject(ActivatedRoute);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -57,9 +56,9 @@ export class EditionSeriesDetailComponent implements OnInit {
      * @returns {void} Updates the edition series.
      */
     updateSeriesFromRoute(): void {
-        const id = this.route.snapshot.paramMap.get('id');
+        const id = this._route.snapshot.paramMap.get('id');
 
         this.selectedSeries = EditionOutlineService.getEditionSeriesById(id);
-        this.editionStateService.updateSelectedEditionSeries(this.selectedSeries);
+        this._editionStateService.updateSelectedEditionSeries(this.selectedSeries);
     }
 }

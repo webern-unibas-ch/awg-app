@@ -4,7 +4,7 @@ import {
     Component,
     HostBinding,
     HostListener,
-    Inject,
+    inject,
     OnInit,
     ViewChild,
 } from '@angular/core';
@@ -78,16 +78,6 @@ export class EditionGraphComponent implements OnInit {
     editionGraphData$: Observable<GraphList | never>;
 
     /**
-     * Readonly variable: GRAPH_IMAGES.
-     *
-     * It keeps the paths to static graph images.
-     */
-    readonly GRAPH_IMAGES = {
-        OP12: '',
-        OP25: EDITION_GRAPH_IMAGES_DATA.GRAPH_IMAGE_OP25.route,
-    };
-
-    /**
      * Public variable: errorObject.
      *
      * It keeps an errorObject for the service calls.
@@ -100,22 +90,50 @@ export class EditionGraphComponent implements OnInit {
     ref: EditionGraphComponent;
 
     /**
+     * Readonly variable: GRAPH_IMAGES.
+     *
+     * It keeps the paths to static graph images.
+     */
+    readonly GRAPH_IMAGES = {
+        OP12: '',
+        OP25: EDITION_GRAPH_IMAGES_DATA.GRAPH_IMAGE_OP25.route,
+    };
+
+    /**
+     * Public readonly injection variable: UTILS.
+     *
+     * It keeps the instance of the injected UtilityService.
+     */
+    readonly UTILS = inject(UtilityService);
+
+    /**
+     * Private readonly injection variable: _document.
+     *
+     * It keeps the instance of the injected DOCUMENT.
+     */
+    private readonly _document: any = inject(DOCUMENT);
+
+    /**
+     * Private readonly injection variable: _editionDataService.
+     *
+     * It keeps the instance of the injected EditionDataService.
+     */
+    private readonly _editionDataService = inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
      * Constructor of the EditionGraphComponent.
      *
-     * It declares a private instances of the EditionDataService and EditionStateService;
-     * injects the DOCUMENT; and declares a public instance of the UtilityService.
+     * It initializes the self-referring variable needed for CompileHtml library.
      *
-     * @param {EditionDataService} editionDataService Instance of the EditionDataService.
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
-     * @param {DOCUMENT} document Instance of DOCUMENT
-     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor(
-        private editionDataService: EditionDataService,
-        private editionStateService: EditionStateService,
-        @Inject(DOCUMENT) private document: any,
-        public utils: UtilityService
-    ) {
+    constructor() {
         this.ref = this;
     }
 
@@ -135,9 +153,9 @@ export class EditionGraphComponent implements OnInit {
      */
     @HostListener('document:fullscreenchange', ['$event']) onKeydownHandler(_event: KeyboardEvent) {
         if (
-            !this.document.fullscreenElement && // Alternative standard method
-            !this.document.mozFullScreenElement &&
-            !this.document.webkitFullscreenElement
+            !this._document.fullscreenElement && // Alternative standard method
+            !this._document.mozFullScreenElement &&
+            !this._document.webkitFullscreenElement
         ) {
             this.isFullscreen = false;
         }
@@ -163,10 +181,10 @@ export class EditionGraphComponent implements OnInit {
      * @returns {void} Gets the current edition complex and the corresponding graph data.
      */
     getEditionGraphData(): void {
-        this.editionGraphData$ = this.editionStateService.getSelectedEditionComplex().pipe(
+        this.editionGraphData$ = this._editionStateService.getSelectedEditionComplex().pipe(
             switchMap((complex: EditionComplex) => {
                 this.editionComplex = complex;
-                return this.editionDataService.getEditionGraphData(this.editionComplex);
+                return this._editionDataService.getEditionGraphData(this.editionComplex);
             }),
             catchError(err => {
                 this.errorObject = err;
@@ -187,9 +205,9 @@ export class EditionGraphComponent implements OnInit {
 
         this.isFullscreen = true;
         if (
-            !this.document.fullscreenElement && // Alternative standard method
-            !this.document.mozFullScreenElement &&
-            !this.document.webkitFullscreenElement
+            !this._document.fullscreenElement && // Alternative standard method
+            !this._document.mozFullScreenElement &&
+            !this._document.webkitFullscreenElement
         ) {
             // Current working methods
             if (el.requestFullscreen) {
@@ -215,17 +233,17 @@ export class EditionGraphComponent implements OnInit {
      * @returns {void} Sets isFullscreen flag to false.
      */
     closeFullscreen(): void {
-        if (this.document.exitFullscreen) {
-            this.document.exitFullscreen();
-        } else if (this.document.mozCancelFullScreen) {
+        if (this._document.exitFullscreen) {
+            this._document.exitFullscreen();
+        } else if (this._document.mozCancelFullScreen) {
             /* Firefox */
-            this.document.mozCancelFullScreen();
-        } else if (this.document.webkitExitFullscreen) {
+            this._document.mozCancelFullScreen();
+        } else if (this._document.webkitExitFullscreen) {
             /* Chrome, Safari and Opera */
-            this.document.webkitExitFullscreen();
-        } else if (this.document.msExitFullscreen) {
+            this._document.webkitExitFullscreen();
+        } else if (this._document.msExitFullscreen) {
             /* IE/Edge */
-            this.document.msExitFullscreen();
+            this._document.msExitFullscreen();
         }
         this.isFullscreen = false;
     }
