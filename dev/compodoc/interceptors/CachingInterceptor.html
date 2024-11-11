@@ -309,7 +309,7 @@ delegates them to the <a href="../injectables/HttpCacheService.html">HttpCacheSe
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Private readonly injection variable: _cache.</p>
-<p>It injects the HttpCacheService.</p>
+<p>It keeps the instance of the injected HttpCacheService.</p>
 </div>
                 </td>
             </tr>
@@ -349,7 +349,7 @@ export class CachingInterceptor implements HttpInterceptor {
     /**
      * Private readonly injection variable: _cache.
      *
-     * It injects the HttpCacheService.
+     * It keeps the instance of the injected HttpCacheService.
      */
     private readonly _cache &#x3D; inject(HttpCacheService);
 

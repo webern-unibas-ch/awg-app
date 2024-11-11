@@ -207,6 +207,11 @@ showing information about search results.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_sideInfoService" >_sideInfoService</a>
+                            </li>
+                            <li>
                                 <a href="#searchInfoData$" >searchInfoData$</a>
                             </li>
                             <li>
@@ -242,64 +247,6 @@ showing information about search results.</p>
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(sideInfoService: <a href="../injectables/SideInfoService.html" target="_self">SideInfoService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/side-info/search-info/search-info.component.ts:34</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the SearchInfoComponent.</p>
-<p>It declares a private SideInfoService instance
-to get the search results and
-a private ChangeDetectorRef instance.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>sideInfoService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/SideInfoService.html" target="_self" >SideInfoService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the SideInfoService.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
 
@@ -330,8 +277,8 @@ a private ChangeDetectorRef instance.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="66"
-                                    class="link-to-prism">src/app/side-info/search-info/search-info.component.ts:66</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/side-info/search-info/search-info.component.ts:62</a></div>
                         </td>
                     </tr>
 
@@ -377,8 +324,8 @@ and searchInfoData observables.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="53"
-                                    class="link-to-prism">src/app/side-info/search-info/search-info.component.ts:53</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/side-info/search-info/search-info.component.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -404,6 +351,40 @@ when initializing the component.</p>
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_sideInfoService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_sideInfoService</b></span>
+                        <a href="#_sideInfoService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(SideInfoService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/side-info/search-info/search-info.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _sideInfoService.</p>
+<p>It keeps the instance of the injected SideInfoService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -477,7 +458,7 @@ to be displayed, i.e. the query and number of hits.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, inject, OnInit } from &#x27;@angular/core&#x27;;
 
 import { Observable } from &#x27;rxjs&#x27;;
 
@@ -513,15 +494,11 @@ export class SearchInfoComponent implements OnInit {
     searchInfoHeader$: Observable&lt;string&gt;;
 
     /**
-     * Constructor of the SearchInfoComponent.
+     * Private readonly injection variable: _sideInfoService.
      *
-     * It declares a private SideInfoService instance
-     * to get the search results and
-     * a private ChangeDetectorRef instance.
-     *
-     * @param {SideInfoService} sideInfoService Instance of the SideInfoService.
+     * It keeps the instance of the injected SideInfoService.
      */
-    constructor(private sideInfoService: SideInfoService) {}
+    private readonly _sideInfoService &#x3D; inject(SideInfoService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -543,8 +520,8 @@ export class SearchInfoComponent implements OnInit {
      * and searchInfoData observables.
      */
     getSearchInfoData(): void {
-        this.searchInfoHeader$ &#x3D; this.sideInfoService.getSearchInfoTitle();
-        this.searchInfoData$ &#x3D; this.sideInfoService.getSearchInfoData();
+        this.searchInfoHeader$ &#x3D; this._sideInfoService.getSearchInfoTitle();
+        this.searchInfoData$ &#x3D; this._sideInfoService.getSearchInfoData();
     }
 }
 </code></pre>

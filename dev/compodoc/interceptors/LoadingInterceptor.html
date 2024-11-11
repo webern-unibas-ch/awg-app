@@ -400,7 +400,7 @@ delegates them to the <a href="../injectables/LoadingService.html">LoadingServic
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Private readonly injection variable: _loadingService.</p>
-<p>It injects the LoadingService.</p>
+<p>It keeps the instance of the injected LoadingService.</p>
 </div>
                 </td>
             </tr>
@@ -482,7 +482,7 @@ export class LoadingInterceptor implements HttpInterceptor {
     /**
      * Private readonly injection variable: _loadingService.
      *
-     * It injects the LoadingService.
+     * It keeps the instance of the injected LoadingService.
      */
     private readonly _loadingService &#x3D; inject(LoadingService);
 

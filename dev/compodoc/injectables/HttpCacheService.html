@@ -146,6 +146,7 @@ and handles cached http responses.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_cachedResponses" >_cachedResponses</a>
                             </li>
                         </ul>
@@ -365,6 +366,7 @@ and handles cached http responses.</p>
                     <a name="_cachedResponses"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_cachedResponses</b></span>
                         <a href="#_cachedResponses"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -389,7 +391,7 @@ and handles cached http responses.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _cachedResponses.</p>
+                    <div class="io-description"><p>Private readonly variable: _cachedResponses.</p>
 <p>It keeps the _cachedResponses as <code>Map</code>s of a <code>string</code>
 (i.e. an <code>HttpRequest.urlWithParams</code>) and an <code>HttpResponse</code>.</p>
 </div>
@@ -444,12 +446,12 @@ abstract class HttpCache {
 })
 export class HttpCacheService implements HttpCache {
     /**
-     * Private variable: _cachedResponses.
+     * Private readonly variable: _cachedResponses.
      *
      * It keeps the _cachedResponses as &#x60;Map&#x60;s of a &#x60;string&#x60;
      * (i.e. an &#x60;HttpRequest.urlWithParams&#x60;) and an &#x60;HttpResponse&#x60;.
      */
-    private _cachedResponses: Map&lt;string, HttpResponse&lt;any&gt;&gt; &#x3D; new Map&lt;string, HttpResponse&lt;any&gt;&gt;();
+    private readonly _cachedResponses: Map&lt;string, HttpResponse&lt;any&gt;&gt; &#x3D; new Map&lt;string, HttpResponse&lt;any&gt;&gt;();
 
     /**
      * Getter for a cached response.

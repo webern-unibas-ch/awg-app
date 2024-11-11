@@ -204,6 +204,16 @@ of the edition view of the app.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_editionDataService" >_editionDataService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_editionStateService" >_editionStateService</a>
+                            </li>
+                            <li>
                                 <a href="#rowTablesData$" >rowTablesData$</a>
                             </li>
                         </ul>
@@ -236,78 +246,6 @@ of the edition view of the app.</p>
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(editionStateService: <a href="../injectables/EditionStateService.html" target="_self">EditionStateService</a>, editionDataService: <a href="../injectables/EditionDataService.html" target="_self">EditionDataService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-row-tables/edition-row-tables.component.ts:24</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the EditionRowTablesComponent.</p>
-<p>It declares private instances of the EditionStateService and EditionDataService.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>editionStateService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/EditionStateService.html" target="_self" >EditionStateService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the EditionStateService.</p>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>editionDataService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/EditionDataService.html" target="_self" >EditionDataService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the EditionDataService.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
 
@@ -338,8 +276,8 @@ of the edition view of the app.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-row-tables/edition-row-tables.component.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-row-tables/edition-row-tables.component.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -380,8 +318,8 @@ when destroying the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="45"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-row-tables/edition-row-tables.component.ts:45</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-row-tables/edition-row-tables.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -407,6 +345,74 @@ when initializing the component.</p>
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_editionDataService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_editionDataService</b></span>
+                        <a href="#_editionDataService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionDataService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-row-tables/edition-row-tables.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _editionDataService.</p>
+<p>It keeps the instance of the injected EditionDataService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_editionStateService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_editionStateService</b></span>
+                        <a href="#_editionStateService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionStateService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-row-tables/edition-row-tables.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _editionStateService.</p>
+<p>It keeps the instance of the injected EditionStateService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -446,7 +452,7 @@ when initializing the component.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 
 import { EditionRowTablesList } from &#x27;@awg-views/edition-view/models&#x27;;
@@ -472,17 +478,18 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
     rowTablesData$: Observable&lt;EditionRowTablesList&gt;;
 
     /**
-     * Constructor of the EditionRowTablesComponent.
+     * Private readonly injection variable: _editionDataService.
      *
-     * It declares private instances of the EditionStateService and EditionDataService.
-     *
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
-     * @param {EditionDataService} editionDataService Instance of the EditionDataService.
+     * It keeps the instance of the injected EditionDataService.
      */
-    constructor(
-        private editionStateService: EditionStateService,
-        private editionDataService: EditionDataService
-    ) {}
+    private readonly _editionDataService &#x3D; inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService &#x3D; inject(EditionStateService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -491,8 +498,8 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
      * when initializing the component.
      */
     ngOnInit(): void {
-        this.editionStateService.updateIsRowTableView(true);
-        this.rowTablesData$ &#x3D; this.editionDataService.getEditionRowTablesData();
+        this._editionStateService.updateIsRowTableView(true);
+        this.rowTablesData$ &#x3D; this._editionDataService.getEditionRowTablesData();
     }
 
     /**
@@ -504,7 +511,7 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        this.editionStateService.clearIsRowTableView();
+        this._editionStateService.clearIsRowTableView();
     }
 }
 </code></pre>

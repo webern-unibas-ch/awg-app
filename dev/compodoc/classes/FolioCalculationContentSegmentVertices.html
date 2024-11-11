@@ -221,7 +221,7 @@ to calculate the values of a content segment&#39;s vertices on the folio canvas.
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(section: <a href="../classes/FolioSection.html" target="_self">FolioSection</a>, systems: <a href="../classes/FolioCalculationSystems.html" target="_self">FolioCalculationSystems</a>, sectionPartition: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, segmentOffsetCorrection: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>constructor(section: <a href="../classes/FolioSection.html" target="_self">FolioSection</a>, _systems: <a href="../classes/FolioCalculationSystems.html" target="_self">FolioCalculationSystems</a>, _sectionPartition: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, _segmentOffsetCorrection: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -265,7 +265,7 @@ for upper and lower left and upper and lower right vertices.</p>
                                                         </td>
                                                 </tr>
                                                 <tr>
-                                                        <td>systems</td>
+                                                        <td>_systems</td>
                                                   
                                                         <td>
                                                                         <code><a href="../classes/FolioCalculationSystems.html" target="_self" >FolioCalculationSystems</a></code>
@@ -281,7 +281,7 @@ for upper and lower left and upper and lower right vertices.</p>
                                                         </td>
                                                 </tr>
                                                 <tr>
-                                                        <td>sectionPartition</td>
+                                                        <td>_sectionPartition</td>
                                                   
                                                         <td>
                                                                         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
@@ -297,7 +297,7 @@ for upper and lower left and upper and lower right vertices.</p>
                                                         </td>
                                                 </tr>
                                                 <tr>
-                                                        <td>segmentOffsetCorrection</td>
+                                                        <td>_segmentOffsetCorrection</td>
                                                   
                                                         <td>
                                                                         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
@@ -1033,15 +1033,15 @@ export class FolioCalculationContentSegmentVertices {
      * for upper and lower left and upper and lower right vertices.
      *
      * @param {FolioSection} section The given section of the folio content.
-     * @param {FolioCalculationSystems} systems The given calculated systems.
-     * @param {number} sectionPartition The given section partition.
-     * @param {number} segmentOffsetCorrection The given segment offset correction.
+     * @param {FolioCalculationSystems} _systems The given calculated systems.
+     * @param {number} _sectionPartition The given section partition.
+     * @param {number} _segmentOffsetCorrection The given segment offset correction.
      */
     constructor(
         section: FolioSection,
-        private systems: FolioCalculationSystems,
-        private sectionPartition: number,
-        private segmentOffsetCorrection: number
+        private readonly _systems: FolioCalculationSystems,
+        private readonly _sectionPartition: number,
+        private readonly _segmentOffsetCorrection: number
     ) {
         const { startX, startY, endX, endY } &#x3D; this._calculateVertices(section);
 
@@ -1079,14 +1079,14 @@ export class FolioCalculationContentSegmentVertices {
      * @returns {number} The calculated the content segment vertices.
      */
     private _calculateX(section: FolioSection, isStart: boolean): number {
-        const width &#x3D; round(this.systems.SYSTEMS_DIMENSIONS.SYSTEMS_WIDTH / this.sectionPartition, 2);
+        const width &#x3D; round(this._systems.SYSTEMS_DIMENSIONS.SYSTEMS_WIDTH / this._sectionPartition, 2);
 
-        const systemIndex &#x3D; section.position &amp;&amp; section.position &lt;&#x3D; this.sectionPartition ? section.position - 1 : 0;
-        const baseX &#x3D; this.systems.SYSTEMS_DIMENSIONS.START_X;
-        const offset &#x3D; this.segmentOffsetCorrection / 2;
+        const systemIndex &#x3D; section.position &amp;&amp; section.position &lt;&#x3D; this._sectionPartition ? section.position - 1 : 0;
+        const baseX &#x3D; this._systems.SYSTEMS_DIMENSIONS.START_X;
+        const offset &#x3D; this._segmentOffsetCorrection / 2;
 
         const xValue &#x3D; baseX + systemIndex * width + offset;
-        const correction &#x3D; isStart ? 0 : width - this.segmentOffsetCorrection;
+        const correction &#x3D; isStart ? 0 : width - this._segmentOffsetCorrection;
 
         return round(xValue + correction, 2);
     }
@@ -1102,9 +1102,9 @@ export class FolioCalculationContentSegmentVertices {
      */
     private _calculateY(section: FolioSection, isStart: boolean): number {
         const systemIndex &#x3D; isStart ? section.startSystem - 1 : section.endSystem - 1;
-        const systemLines &#x3D; this.systems.SYSTEMS_LINES.SYSTEMS_ARRAYS[systemIndex];
+        const systemLines &#x3D; this._systems.SYSTEMS_LINES.SYSTEMS_ARRAYS[systemIndex];
 
-        let offset &#x3D; 0;
+        let offset: number;
         switch (section.relativeToSystem) {
             case &#x27;below&#x27;:
                 offset &#x3D; 20;
@@ -1117,7 +1117,7 @@ export class FolioCalculationContentSegmentVertices {
         }
 
         const yValue &#x3D; isStart ? systemLines.at(0).START_POINT.y : systemLines.at(-1).END_POINT.y;
-        const correction &#x3D; this.segmentOffsetCorrection * (isStart ? -1 : 1) + offset;
+        const correction &#x3D; this._segmentOffsetCorrection * (isStart ? -1 : 1) + offset;
 
         return round(yValue + correction, 2);
     }
@@ -1228,13 +1228,13 @@ export class FolioCalculationContentSegment {
      * the calculated systems and the segment offset correction.
      *
      * @param {FolioContent} content The given content segment.
-     * @param {FolioCalculationSystems} systems The given calculated systems.
-     * @param {number} segmentOffsetCorrection The given segment offset correction.
+     * @param {FolioCalculationSystems} _systems The given calculated systems.
+     * @param {number} _segmentOffsetCorrection The given segment offset correction.
      */
     constructor(
         content: FolioContent,
-        private systems: FolioCalculationSystems,
-        private segmentOffsetCorrection: number
+        private readonly _systems: FolioCalculationSystems,
+        private readonly _segmentOffsetCorrection: number
     ) {
         this.sectionPartition &#x3D; content.sectionPartition ?? 1;
 
@@ -1258,7 +1258,7 @@ export class FolioCalculationContentSegment {
             console.error(&#x27;Sections array is bigger than sectionPartition&#x27;);
             return;
         }
-        if (this.systems.NUMBER_OF_SYSTEMS &#x3D;&#x3D;&#x3D; 0) {
+        if (this._systems.NUMBER_OF_SYSTEMS &#x3D;&#x3D;&#x3D; 0) {
             console.error(&#x27;No systems in folio&#x27;);
             return;
         }
@@ -1285,9 +1285,9 @@ export class FolioCalculationContentSegment {
 
         this.vertices &#x3D; new FolioCalculationContentSegmentVertices(
             section,
-            this.systems,
+            this._systems,
             this.sectionPartition,
-            this.segmentOffsetCorrection
+            this._segmentOffsetCorrection
         );
 
         const centeredPositions &#x3D; new FolioCalculationContentSegmentCenteredPositions(
@@ -1422,21 +1422,21 @@ class FolioCalculationSystemsMargins {
      * It initializes the class with values
      * from the sheet and the number of systems.
      *
-     * @param {FolioCalculationSheet} sheet The given calculated folio sheet.
+     * @param {FolioCalculationSheet} _sheet The given calculated folio sheet.
      */
-    constructor(private sheet: FolioCalculationSheet) {
+    constructor(private readonly _sheet: FolioCalculationSheet) {
         this.UPPER_MARGIN &#x3D; this._calculateSheetMargin(
-            this.sheet.SHEET_HEIGHT,
+            this._sheet.SHEET_HEIGHT,
             FolioCalculationSystemsMargins.VERTICAL_MARGIN_FACTOR
         );
         this.LOWER_MARGIN &#x3D; this.UPPER_MARGIN;
 
         this.LEFT_MARGIN &#x3D; this._calculateSheetMargin(
-            this.sheet.SHEET_WIDTH,
+            this._sheet.SHEET_WIDTH,
             FolioCalculationSystemsMargins.HORIZONTAL_MARGIN_FACTOR
         );
         this.RIGHT_MARGIN &#x3D; this._calculateSheetMargin(
-            this.sheet.SHEET_WIDTH,
+            this._sheet.SHEET_WIDTH,
             FolioCalculationSystemsMargins.HORIZONTAL_MARGIN_FACTOR / 2
         );
 
@@ -1501,15 +1501,15 @@ class FolioCalculationSystemsDimensions {
      * It initializes the class with values
      * from the sheet and the calculated margins.
      *
-     * @param {FolioCalculationSheet} sheet The given calculated folio sheet.
-     * @param {FolioCalculationSystemsMargins} systemsMargins The given calculated systems margins.
+     * @param {FolioCalculationSheet} _sheet The given calculated folio sheet.
+     * @param {FolioCalculationSystemsMargins} _systemsMargins The given calculated systems margins.
      */
     constructor(
-        private sheet: FolioCalculationSheet,
-        private systemsMargins: FolioCalculationSystemsMargins
+        private readonly _sheet: FolioCalculationSheet,
+        private readonly _systemsMargins: FolioCalculationSystemsMargins
     ) {
-        const { SHEET_WIDTH, SHEET_HEIGHT, UPPER_LEFT_CORNER } &#x3D; this.sheet;
-        const { HORIZONTAL_MARGINS, VERTICAL_MARGINS, LEFT_MARGIN, UPPER_MARGIN } &#x3D; this.systemsMargins;
+        const { SHEET_WIDTH, SHEET_HEIGHT, UPPER_LEFT_CORNER } &#x3D; this._sheet;
+        const { HORIZONTAL_MARGINS, VERTICAL_MARGINS, LEFT_MARGIN, UPPER_MARGIN } &#x3D; this._systemsMargins;
 
         this.SYSTEMS_WIDTH &#x3D; SHEET_WIDTH - HORIZONTAL_MARGINS;
         this.SYSTEMS_HEIGHT &#x3D; SHEET_HEIGHT - VERTICAL_MARGINS;
@@ -1540,12 +1540,12 @@ class FolioCalculationSystemsLines {
      * It initializes the class with values
      * from the yArray and the calculated dimensions.
      *
-     * @param {number[][]} yArray The given y-value array for the systems.
-     * @param {FolioCalculationSystemsDimensions} systemsDimensions The given calculated systems dimensions.
+     * @param {number[][]} _yArray The given y-value array for the systems.
+     * @param {FolioCalculationSystemsDimensions} _systemsDimensions The given calculated systems dimensions.
      */
     constructor(
-        private yArray: number[][],
-        private systemsDimensions: FolioCalculationSystemsDimensions
+        private readonly _yArray: number[][],
+        private readonly _systemsDimensions: FolioCalculationSystemsDimensions
     ) {
         this.SYSTEMS_ARRAYS &#x3D; this._calculateSystemsArrays();
     }
@@ -1558,19 +1558,19 @@ class FolioCalculationSystemsLines {
      * @returns {FolioCalculationLine[][]} The calculated systems arrays.
      */
     private _calculateSystemsArrays(): FolioCalculationLine[][] {
-        return this.yArray.map(lineArray &#x3D;&gt; lineArray.map(this._calculateSystemLine));
+        return this._yArray.map(lineArray &#x3D;&gt; lineArray.map(this._calculateSystemLine));
     }
 
     /**
-     * Private arrow function: _calculateSystemLine.
+     * Private readonly arrow function: _calculateSystemLine.
      *
      * It calculates a single line of a system of a folio.
      *
      * @param {number} line The given line number.
      * @returns {FolioCalculationLine} The calculated line of a system.
      */
-    private _calculateSystemLine &#x3D; (line: number): FolioCalculationLine &#x3D;&gt; {
-        const { START_X, END_X } &#x3D; this.systemsDimensions;
+    private readonly _calculateSystemLine &#x3D; (line: number): FolioCalculationLine &#x3D;&gt; {
+        const { START_X, END_X } &#x3D; this._systemsDimensions;
         return new FolioCalculationLine(
             new FolioCalculationPoint(START_X, line),
             new FolioCalculationPoint(END_X, line)
@@ -1606,16 +1606,16 @@ class FolioCalculationSystemsLabels {
      * It initializes the class with values
      * from the yArray, the calculated margins and dimensions and the zoom factor.
      *
-     * @param {number[][]} yArray The given y-value array for the systems.
-     * @param {FolioCalculationSystemsMargins} systemsMargins The given calculated systems margins.
-     * @param {FolioCalculationSystemsDimensions} systemsDimensions The given calculated systems dimensions.
-     * @param {number} zoomFactor The given zoom factor.
+     * @param {number[][]} _yArray The given y-value array for the systems.
+     * @param {FolioCalculationSystemsMargins} _systemsMargins The given calculated systems margins.
+     * @param {FolioCalculationSystemsDimensions} _systemsDimensions The given calculated systems dimensions.
+     * @param {number} _zoomFactor The given zoom factor.
      */
     constructor(
-        private yArray: number[][],
-        private systemsMargins: FolioCalculationSystemsMargins,
-        private systemsDimensions: FolioCalculationSystemsDimensions,
-        private zoomFactor: number
+        private readonly _yArray: number[][],
+        private readonly _systemsMargins: FolioCalculationSystemsMargins,
+        private readonly _systemsDimensions: FolioCalculationSystemsDimensions,
+        private readonly _zoomFactor: number
     ) {
         this.SYSTEMS_LABELS_ARRAY &#x3D; this._calculateSystemsLabelArray();
     }
@@ -1629,13 +1629,16 @@ class FolioCalculationSystemsLabels {
      */
     private _calculateSystemsLabelArray(): FolioCalculationPoint[] {
         const labelStartX &#x3D; round(
-            this.systemsDimensions.START_X -
-                this.systemsMargins.LEFT_MARGIN * FolioCalculationSystemsLabels.LABEL_START_X_OFFSET_FACTOR,
+            this._systemsDimensions.START_X -
+                this._systemsMargins.LEFT_MARGIN * FolioCalculationSystemsLabels.LABEL_START_X_OFFSET_FACTOR,
             2
         );
-        const labelStartYOffset &#x3D; round(FolioCalculationSystemsLabels.LABEL_START_Y_OFFSET_FACTOR / this.zoomFactor, 2);
+        const labelStartYOffset &#x3D; round(
+            FolioCalculationSystemsLabels.LABEL_START_Y_OFFSET_FACTOR / this._zoomFactor,
+            2
+        );
 
-        return this.yArray.map(lineArray &#x3D;&gt; {
+        return this._yArray.map(lineArray &#x3D;&gt; {
             const labelStartY &#x3D; lineArray[0] - labelStartYOffset;
             return new FolioCalculationPoint(labelStartX, labelStartY);
         });

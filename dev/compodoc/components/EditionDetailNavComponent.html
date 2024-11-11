@@ -207,7 +207,13 @@ another router outlet for the edition routes.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_destroyed$" >_destroyed$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_editionStateService" >_editionStateService</a>
                             </li>
                             <li>
                                 <a href="#editionComplex" >editionComplex</a>
@@ -251,62 +257,6 @@ another router outlet for the edition routes.</p>
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(editionStateService: <a href="../injectables/EditionStateService.html" target="_self">EditionStateService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts:43</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the EditionDetailNavComponent.</p>
-<p>It declares a private instance of EditionStateService.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>editionStateService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/EditionStateService.html" target="_self" >EditionStateService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the EditionStateService.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
 
@@ -337,8 +287,8 @@ another router outlet for the edition routes.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="72"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts:72</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -382,8 +332,8 @@ of the EditionStateService.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="128"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts:128</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="126"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts:126</a></div>
                         </td>
                     </tr>
 
@@ -424,8 +374,8 @@ when destroying the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="60"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts:60</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -465,8 +415,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="91"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts:91</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts:89</a></div>
                         </td>
                     </tr>
 
@@ -502,6 +452,7 @@ when initializing the component.</p>
                     <a name="_destroyed$"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_destroyed$</b></span>
                         <a href="#_destroyed$"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -526,8 +477,42 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _destroyed$.</p>
+                    <div class="io-description"><p>Private readonly variable: _destroyed$.</p>
 <p>Subject to emit a truthy value in the ngOnDestroy lifecycle hook.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_editionStateService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_editionStateService</b></span>
+                        <a href="#_editionStateService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionStateService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _editionStateService.</p>
+<p>It keeps the instance of the injected EditionStateService.</p>
 </div>
                 </td>
             </tr>
@@ -606,7 +591,7 @@ when initializing the component.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
 import { Subject } from &#x27;rxjs&#x27;;
 import { takeUntil } from &#x27;rxjs/operators&#x27;;
 
@@ -644,20 +629,18 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
     editionComplex: EditionComplex;
 
     /**
-     * Private variable: _destroyed$.
+     * Private readonly variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroyed$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
+    private readonly _destroyed$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
 
     /**
-     * Constructor of the EditionDetailNavComponent.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It declares a private instance of EditionStateService.
-     *
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
+     * It keeps the instance of the injected EditionStateService.
      */
-    constructor(private editionStateService: EditionStateService) {}
+    private readonly _editionStateService &#x3D; inject(EditionStateService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -678,7 +661,7 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
      * @returns {void} Gets the current edition complex.
      */
     getEditionComplex(): void {
-        this.editionStateService
+        this._editionStateService
             .getSelectedEditionComplex()
             .pipe(takeUntil(this._destroyed$))
             .subscribe({

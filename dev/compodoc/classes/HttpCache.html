@@ -396,12 +396,12 @@ abstract class HttpCache {
 })
 export class HttpCacheService implements HttpCache {
     /**
-     * Private variable: _cachedResponses.
+     * Private readonly variable: _cachedResponses.
      *
      * It keeps the _cachedResponses as &#x60;Map&#x60;s of a &#x60;string&#x60;
      * (i.e. an &#x60;HttpRequest.urlWithParams&#x60;) and an &#x60;HttpResponse&#x60;.
      */
-    private _cachedResponses: Map&lt;string, HttpResponse&lt;any&gt;&gt; &#x3D; new Map&lt;string, HttpResponse&lt;any&gt;&gt;();
+    private readonly _cachedResponses: Map&lt;string, HttpResponse&lt;any&gt;&gt; &#x3D; new Map&lt;string, HttpResponse&lt;any&gt;&gt;();
 
     /**
      * Getter for a cached response.

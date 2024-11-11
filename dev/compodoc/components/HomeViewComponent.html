@@ -207,6 +207,11 @@ with the landing page.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_coreService" >_coreService</a>
+                            </li>
+                            <li>
                                 <a href="#disclaimerInfoMessage" >disclaimerInfoMessage</a>
                             </li>
                             <li>
@@ -269,63 +274,6 @@ with the landing page.</p>
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(coreService: <a href="../injectables/CoreService.html" target="_self">CoreService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/views/home-view/home-view.component.ts:69</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the HomeViewComponent.</p>
-<p>It declares a private CoreService instance
-to get the metadata.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>coreService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/CoreService.html" target="_self" >CoreService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the CoreService.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
 
@@ -356,8 +304,8 @@ to get the metadata.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="96"
-                                    class="link-to-prism">src/app/views/home-view/home-view.component.ts:96</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/views/home-view/home-view.component.ts:93</a></div>
                         </td>
                     </tr>
 
@@ -397,8 +345,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="108"
-                                    class="link-to-prism">src/app/views/home-view/home-view.component.ts:108</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/views/home-view/home-view.component.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -428,6 +376,40 @@ the metadata for the contact view.</p>
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_coreService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_coreService</b></span>
+                        <a href="#_coreService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(CoreService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/views/home-view/home-view.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _coreService.</p>
+<p>It keeps the instance of the injected CoreService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -679,7 +661,7 @@ of the home view section.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/views/home-view/home-view.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/views/home-view/home-view.component.ts:83</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -698,7 +680,7 @@ of the home view section.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, inject, OnInit } from &#x27;@angular/core&#x27;;
 
 import { MetaPage, MetaSectionTypes } from &#x27;@awg-core/core-models&#x27;;
 import { CoreService } from &#x27;@awg-core/services&#x27;;
@@ -769,14 +751,11 @@ export class HomeViewComponent implements OnInit {
     ];
 
     /**
-     * Constructor of the HomeViewComponent.
+     * Private readonly injection variable: _coreService.
      *
-     * It declares a private CoreService instance
-     * to get the metadata.
-     *
-     * @param {CoreService} coreService Instance of the CoreService.
+     * It keeps the instance of the injected CoreService.
      */
-    constructor(private coreService: CoreService) {}
+    private readonly _coreService &#x3D; inject(CoreService);
 
     /**
      * Getter variable: editionRouteConstants.
@@ -806,7 +785,7 @@ export class HomeViewComponent implements OnInit {
      * @returns {void} Sets the pageMetaData variable.
      */
     provideMetaData(): void {
-        this.pageMetaData &#x3D; this.coreService.getMetaDataSection(MetaSectionTypes.page);
+        this.pageMetaData &#x3D; this._coreService.getMetaDataSection(MetaSectionTypes.page);
     }
 }
 </code></pre>

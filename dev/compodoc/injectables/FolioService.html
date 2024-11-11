@@ -147,54 +147,62 @@ and prepares the SVG canvas.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_appendSvgElementWithAttrs" >_appendSvgElementWithAttrs</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_bgColor" >_bgColor</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_contentSegmentFillColor" >_contentSegmentFillColor</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_contentSegmentFontFamily" >_contentSegmentFontFamily</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_contentSegmentFontSize" >_contentSegmentFontSize</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_contentSegmentOffsetCorrection" >_contentSegmentOffsetCorrection</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_contentSegmentReversedRotationAngle" >_contentSegmentReversedRotationAngle</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_contentSegmentStrokeWidth" >_contentSegmentStrokeWidth</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_disabledColor" >_disabledColor</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_fgColor" >_fgColor</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_sheetFillColor" >_sheetFillColor</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_sheetStrokeWidth" >_sheetStrokeWidth</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_systemsLineStrokeWidth" >_systemsLineStrokeWidth</a>
                             </li>
                             <li>
@@ -267,6 +275,10 @@ and prepares the SVG canvas.</p>
                             <li>
                                     <span class="modifier">Private</span>
                                 <a href="#_appendSheetGroupTitle" >_appendSheetGroupTitle</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_appendSvgElementWithAttrs" >_appendSvgElementWithAttrs</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -1642,6 +1654,116 @@ folio SVG data to the SVG sheet group.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_appendSvgElementWithAttrs"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_appendSvgElementWithAttrs</b></span>
+                        <a href="#_appendSvgElementWithAttrs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_appendSvgElementWithAttrs(parent: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, attributes: Record<string | any>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="572"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:572</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _appendSvgElementWithAttrs.</p>
+<p>It appends an SVG element with attributes to a parent element.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>parent</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given parent selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>type</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given type of SVG element.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>attributes</td>
+                                            <td>
+                                                        <code>Record&lt;string | any&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given attributes.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The appended SVG element with attributes.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="_appendSystemsGroupLabel"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -2146,80 +2268,10 @@ to render the folio SVG.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_appendSvgElementWithAttrs"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_appendSvgElementWithAttrs</b></span>
-                        <a href="#_appendSvgElementWithAttrs"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="572" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:572</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _appendSvgElementWithAttrs.</p>
-<p>It appends an SVG element with attributes to a parent element.</p>
-</div>
-                </td>
-            </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description">
-                                <b>Parameters :</b>
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                            <tr>
-                                                    <td>parent</td>
-                                                    <td>
-                                                            <code><p>The given parent selection.</p>
-</code>
-                                                    </td>
-                                            </tr>
-                                            <tr>
-                                                    <td>type</td>
-                                                    <td>
-                                                            <code><p>The given type of SVG element.</p>
-</code>
-                                                    </td>
-                                            </tr>
-                                            <tr>
-                                                    <td>attributes</td>
-                                                    <td>
-                                                            <code><p>The given attributes.</p>
-</code>
-                                                    </td>
-                                            </tr>
-                                    </tbody>
-                                </table>
-                        </div>
-                    </td>
-                </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="_bgColor"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_bgColor</b></span>
                         <a href="#_bgColor"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -2244,7 +2296,7 @@ to render the folio SVG.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _bgColor.</p>
+                    <div class="io-description"><p>Private readonly variable: _bgColor.</p>
 <p>It keeps the background color for the folio.</p>
 </div>
                 </td>
@@ -2259,6 +2311,7 @@ to render the folio SVG.</p>
                     <a name="_contentSegmentFillColor"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_contentSegmentFillColor</b></span>
                         <a href="#_contentSegmentFillColor"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -2283,7 +2336,7 @@ to render the folio SVG.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _contentSegmentFillColor.</p>
+                    <div class="io-description"><p>Private readonly variable: _contentSegmentFillColor.</p>
 <p>It keeps the fill color for the content segments.</p>
 </div>
                 </td>
@@ -2298,6 +2351,7 @@ to render the folio SVG.</p>
                     <a name="_contentSegmentFontFamily"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_contentSegmentFontFamily</b></span>
                         <a href="#_contentSegmentFontFamily"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -2322,7 +2376,7 @@ to render the folio SVG.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _contentSegmentFontFamily.</p>
+                    <div class="io-description"><p>Private readonly variable: _contentSegmentFontFamily.</p>
 <p>It keeps the font family for the content segments.</p>
 </div>
                 </td>
@@ -2337,6 +2391,7 @@ to render the folio SVG.</p>
                     <a name="_contentSegmentFontSize"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_contentSegmentFontSize</b></span>
                         <a href="#_contentSegmentFontSize"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -2361,7 +2416,7 @@ to render the folio SVG.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _contentSegmentFontSize.</p>
+                    <div class="io-description"><p>Private readonly variable: _contentSegmentFontSize.</p>
 <p>It keeps the font size for the content segments.</p>
 </div>
                 </td>
@@ -2376,6 +2431,7 @@ to render the folio SVG.</p>
                     <a name="_contentSegmentOffsetCorrection"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_contentSegmentOffsetCorrection</b></span>
                         <a href="#_contentSegmentOffsetCorrection"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -2400,7 +2456,7 @@ to render the folio SVG.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _contentSegmentOffsetCorrection.</p>
+                    <div class="io-description"><p>Private readonly variable: _contentSegmentOffsetCorrection.</p>
 <p>It corrects the offset (in px) to avoid
 border collision between rendered SVG content segments.</p>
 </div>
@@ -2416,6 +2472,7 @@ border collision between rendered SVG content segments.</p>
                     <a name="_contentSegmentReversedRotationAngle"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_contentSegmentReversedRotationAngle</b></span>
                         <a href="#_contentSegmentReversedRotationAngle"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -2440,7 +2497,7 @@ border collision between rendered SVG content segments.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _contentSegmentRotationAngle.</p>
+                    <div class="io-description"><p>Private readonly variable: _contentSegmentRotationAngle.</p>
 <p>It keeps the rotation angle for the reversed content segments.</p>
 </div>
                 </td>
@@ -2455,6 +2512,7 @@ border collision between rendered SVG content segments.</p>
                     <a name="_contentSegmentStrokeWidth"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_contentSegmentStrokeWidth</b></span>
                         <a href="#_contentSegmentStrokeWidth"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -2479,7 +2537,7 @@ border collision between rendered SVG content segments.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _contentSegmentStrokeWidth.</p>
+                    <div class="io-description"><p>Private readonly variable: _contentSegmentStrokeWidth.</p>
 <p>It keeps the stroke width for the content segments.</p>
 </div>
                 </td>
@@ -2494,6 +2552,7 @@ border collision between rendered SVG content segments.</p>
                     <a name="_disabledColor"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_disabledColor</b></span>
                         <a href="#_disabledColor"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -2518,7 +2577,7 @@ border collision between rendered SVG content segments.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _disabledColor.</p>
+                    <div class="io-description"><p>Private readonly variable: _disabledColor.</p>
 <p>It keeps the disabled color for the folios.</p>
 </div>
                 </td>
@@ -2533,6 +2592,7 @@ border collision between rendered SVG content segments.</p>
                     <a name="_fgColor"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_fgColor</b></span>
                         <a href="#_fgColor"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -2557,7 +2617,7 @@ border collision between rendered SVG content segments.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _fgColor.</p>
+                    <div class="io-description"><p>Private readonly variable: _fgColor.</p>
 <p>It keeps the foreground color for the folios.</p>
 </div>
                 </td>
@@ -2572,6 +2632,7 @@ border collision between rendered SVG content segments.</p>
                     <a name="_sheetFillColor"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_sheetFillColor</b></span>
                         <a href="#_sheetFillColor"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -2596,7 +2657,7 @@ border collision between rendered SVG content segments.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _sheetFillColor.</p>
+                    <div class="io-description"><p>Private readonly variable: _sheetFillColor.</p>
 <p>It keeps the fill color for the sheets.</p>
 </div>
                 </td>
@@ -2611,6 +2672,7 @@ border collision between rendered SVG content segments.</p>
                     <a name="_sheetStrokeWidth"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_sheetStrokeWidth</b></span>
                         <a href="#_sheetStrokeWidth"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -2635,7 +2697,7 @@ border collision between rendered SVG content segments.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _sheetStrokeWidth.</p>
+                    <div class="io-description"><p>Private readonly variable: _sheetStrokeWidth.</p>
 <p>It keeps the stroke width for the sheets.</p>
 </div>
                 </td>
@@ -2650,6 +2712,7 @@ border collision between rendered SVG content segments.</p>
                     <a name="_systemsLineStrokeWidth"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_systemsLineStrokeWidth</b></span>
                         <a href="#_systemsLineStrokeWidth"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -2674,7 +2737,7 @@ border collision between rendered SVG content segments.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _systemsLineStrokeWidth.</p>
+                    <div class="io-description"><p>Private readonly variable: _systemsLineStrokeWidth.</p>
 <p>It keeps the stroke width for the systems.</p>
 </div>
                 </td>
@@ -2755,89 +2818,89 @@ export class FolioService {
     ref: any;
 
     /**
-     * Private variable: _bgColor.
+     * Private readonly variable: _bgColor.
      *
      * It keeps the background color for the folio.
      */
-    private _bgColor &#x3D; &#x27;#a3a3a3&#x27;;
+    private readonly _bgColor &#x3D; &#x27;#a3a3a3&#x27;;
 
     /**
-     * Private variable: _disabledColor.
+     * Private readonly variable: _disabledColor.
      *
      * It keeps the disabled color for the folios.
      */
-    private _disabledColor &#x3D; &#x27;grey&#x27;;
+    private readonly _disabledColor &#x3D; &#x27;grey&#x27;;
 
     /**
-     * Private variable: _fgColor.
+     * Private readonly variable: _fgColor.
      *
      * It keeps the foreground color for the folios.
      */
-    private _fgColor &#x3D; &#x27;orange&#x27;;
+    private readonly _fgColor &#x3D; &#x27;orange&#x27;;
 
     /**
-     * Private variable: _contentSegmentFillColor.
+     * Private readonly variable: _contentSegmentFillColor.
      *
      * It keeps the fill color for the content segments.
      */
-    private _contentSegmentFillColor &#x3D; &#x27;#eeeeee&#x27;;
+    private readonly _contentSegmentFillColor &#x3D; &#x27;#eeeeee&#x27;;
 
     /**
-     * Private variable: _contentSegmentFontFamily.
+     * Private readonly variable: _contentSegmentFontFamily.
      *
      * It keeps the font family for the content segments.
      */
-    private _contentSegmentFontFamily &#x3D; &#x27;Source Sans Pro, source-sans-pro, sans-serif&#x27;;
+    private readonly _contentSegmentFontFamily &#x3D; &#x27;Source Sans Pro, source-sans-pro, sans-serif&#x27;;
 
     /**
-     * Private variable: _contentSegmentFontSize.
+     * Private readonly variable: _contentSegmentFontSize.
      *
      * It keeps the font size for the content segments.
      */
-    private _contentSegmentFontSize &#x3D; &#x27;11px&#x27;;
+    private readonly _contentSegmentFontSize &#x3D; &#x27;11px&#x27;;
 
     /**
-     * Private variable: _contentSegmentOffsetCorrection.
+     * Private readonly variable: _contentSegmentOffsetCorrection.
      *
      * It corrects the offset (in px) to avoid
      * border collision between rendered SVG content segments.
      */
-    private _contentSegmentOffsetCorrection &#x3D; 4;
+    private readonly _contentSegmentOffsetCorrection &#x3D; 4;
 
     /**
-     * Private variable: _contentSegmentRotationAngle.
+     * Private readonly variable: _contentSegmentRotationAngle.
      *
      * It keeps the rotation angle for the reversed content segments.
      */
-    private _contentSegmentReversedRotationAngle &#x3D; 180;
+    private readonly _contentSegmentReversedRotationAngle &#x3D; 180;
 
     /**
-     * Private variable: _contentSegmentStrokeWidth.
+     * Private readonly variable: _contentSegmentStrokeWidth.
      *
      * It keeps the stroke width for the content segments.
      */
-    private _contentSegmentStrokeWidth &#x3D; 2;
+    private readonly _contentSegmentStrokeWidth &#x3D; 2;
 
     /**
-     * Private variable: _sheetFillColor.
+     * Private readonly variable: _sheetFillColor.
      *
      * It keeps the fill color for the sheets.
      */
-    private _sheetFillColor &#x3D; &#x27;white&#x27;;
+    private readonly _sheetFillColor &#x3D; &#x27;white&#x27;;
 
     /**
-     * Private variable: _sheetStrokeWidth.
+     * Private readonly variable: _sheetStrokeWidth.
      *
      * It keeps the stroke width for the sheets.
      */
-    private _sheetStrokeWidth &#x3D; 1;
+    private readonly _sheetStrokeWidth &#x3D; 1;
 
     /**
-     * Private variable: _systemsLineStrokeWidth.
+     * Private readonly variable: _systemsLineStrokeWidth.
      *
      * It keeps the stroke width for the systems.
      */
-    private _systemsLineStrokeWidth &#x3D; 0.7;
+    private readonly _systemsLineStrokeWidth &#x3D; 0.7;
 
     /**
      * Public method: getFolioSvgData.
@@ -3292,17 +3355,17 @@ export class FolioService {
      * @param {Record&lt;string, any&gt;} attributes The given attributes.
      * @returns {D3Selection} The appended SVG element with attributes.
      */
-    private _appendSvgElementWithAttrs &#x3D; (
+    private _appendSvgElementWithAttrs(
         parent: D3Selection,
         type: string,
         attributes: Record&lt;string, any&gt;
-    ): D3Selection &#x3D;&gt; {
+    ): D3Selection {
         const selection &#x3D; parent.append(type);
         Object.keys(attributes).forEach(key &#x3D;&gt; {
             selection.attr(key, attributes[key]);
         });
         return selection;
-    };
+    }
 }
 </code></pre>
     </div>

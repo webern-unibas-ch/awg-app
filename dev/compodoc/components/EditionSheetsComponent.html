@@ -208,11 +208,42 @@ and the <a href="../components/EditionAccoladeComponent.html">EditionAccoladeCom
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_destroyed$" >_destroyed$</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_editionDataService" >_editionDataService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_editionSheetsService" >_editionSheetsService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_editionStateService" >_editionStateService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#_isFirstPageLoad" >_isFirstPageLoad</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_route" >_route</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_router" >_router</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_utils" >_utils</a>
                             </li>
                             <li>
                                 <a href="#editionComplex" >editionComplex</a>
@@ -340,144 +371,6 @@ and the <a href="../components/EditionAccoladeComponent.html">EditionAccoladeCom
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(editionDataService: <a href="../injectables/EditionDataService.html" target="_self">EditionDataService</a>, editionSheetsService: <a href="../injectables/EditionSheetsService.html" target="_self">EditionSheetsService</a>, editionStateService: <a href="../injectables/EditionStateService.html" target="_self">EditionStateService</a>, utils: <a href="../injectables/UtilityService.html" target="_self">UtilityService</a>, route: ActivatedRoute, router: Router)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:141</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the EditionSheetsComponent.</p>
-<p>It declares private instances of
-EditionDataService, EditionSheetsService, EditionStateService, UtilityService,
-ActivatedRoute and Router.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>editionDataService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/EditionDataService.html" target="_self" >EditionDataService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the EditionDataService.</p>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>editionSheetsService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/EditionSheetsService.html" target="_self" >EditionSheetsService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the EditionSheetsService.</p>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>editionStateService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/EditionStateService.html" target="_self" >EditionStateService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the EditionStateService.</p>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>utils</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/UtilityService.html" target="_self" >UtilityService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the UtilityService.</p>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>route</td>
-                                                  
-                                                        <td>
-                                                                    <code>ActivatedRoute</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the Angular ActivatedRoute.</p>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>router</td>
-                                                  
-                                                        <td>
-                                                                    <code>Router</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the Angular Router.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
 
@@ -510,8 +403,8 @@ ActivatedRoute and Router.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="345"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:345</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="364"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:364</a></div>
                         </td>
                     </tr>
 
@@ -588,8 +481,8 @@ ActivatedRoute and Router.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="360"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:360</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="379"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:379</a></div>
                         </td>
                     </tr>
 
@@ -667,8 +560,8 @@ from the EditionDataService, assigns the data and handles the query params.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="383"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:383</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="402"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:402</a></div>
                         </td>
                     </tr>
 
@@ -713,8 +606,8 @@ from the EditionDataService, assigns the data and handles the query params.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="398"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:398</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="417"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:417</a></div>
                         </td>
                     </tr>
 
@@ -791,8 +684,8 @@ from the EditionDataService, assigns the data and handles the query params.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="435"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:435</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="454"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:454</a></div>
                         </td>
                     </tr>
 
@@ -901,8 +794,8 @@ from the EditionDataService, assigns the data and handles the query params.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="450"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:450</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="469"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:469</a></div>
                         </td>
                     </tr>
 
@@ -972,8 +865,8 @@ from the EditionDataService, assigns the data and handles the query params.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="192"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:192</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="211"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:211</a></div>
                         </td>
                     </tr>
 
@@ -1016,8 +909,8 @@ from the EditionDataService, assigns the data and handles the query params.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="329"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:329</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="348"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:348</a></div>
                         </td>
                     </tr>
 
@@ -1057,8 +950,8 @@ when destroying the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="181"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:181</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="200"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:200</a></div>
                         </td>
                     </tr>
 
@@ -1098,8 +991,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="285"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:285</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="304"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:304</a></div>
                         </td>
                     </tr>
 
@@ -1177,8 +1070,8 @@ based on the given direction and calls it with onSvgSheetSelect.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="227"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:227</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="246"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:246</a></div>
                         </td>
                     </tr>
 
@@ -1253,8 +1146,8 @@ based on the given direction and calls it with onSvgSheetSelect.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="266"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:266</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="285"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:285</a></div>
                         </td>
                     </tr>
 
@@ -1329,8 +1222,8 @@ based on the given direction and calls it with onSvgSheetSelect.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="249"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:249</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="268"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:268</a></div>
                         </td>
                     </tr>
 
@@ -1406,8 +1299,8 @@ within the context of an edition complex identified by the provided complexId.</
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="313"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:313</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="332"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:332</a></div>
                         </td>
                     </tr>
 
@@ -1476,6 +1369,7 @@ within the context of an edition complex identified by the provided complexId.</
                     <a name="_destroyed$"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_destroyed$</b></span>
                         <a href="#_destroyed$"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1494,14 +1388,116 @@ within the context of an edition complex identified by the provided complexId.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:134</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:141</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _destroyed$.</p>
+                    <div class="io-description"><p>Private readonly variable: _destroyed$.</p>
 <p>Subject to emit a truthy value in the ngOnDestroy lifecycle hook.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_editionDataService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_editionDataService</b></span>
+                        <a href="#_editionDataService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionDataService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:148</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _editionDataService.</p>
+<p>It keeps the instance of the injected EditionDataService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_editionSheetsService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_editionSheetsService</b></span>
+                        <a href="#_editionSheetsService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionSheetsService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:155</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _editionSheetsService.</p>
+<p>It keeps the instance of the injected EditionSheetsService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_editionStateService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_editionStateService</b></span>
+                        <a href="#_editionStateService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionStateService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:162</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _editionStateService.</p>
+<p>It keeps the instance of the injected EditionStateService.</p>
 </div>
                 </td>
             </tr>
@@ -1527,7 +1523,7 @@ within the context of an edition complex identified by the provided complexId.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:141</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:134</a></div>
                         </td>
                     </tr>
 
@@ -1535,6 +1531,114 @@ within the context of an edition complex identified by the provided complexId.</
                 <td class="col-md-4">
                     <div class="io-description"><p>Private variable: _isFirstPageLoad.</p>
 <p>It keeps the information if the page is loaded for the first time.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_route"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_route</b></span>
+                        <a href="#_route"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ActivatedRoute)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:169</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _route.</p>
+<p>It keeps the instance of the injected Angular ActivatedRoute.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_router</b></span>
+                        <a href="#_router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:176</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _router.</p>
+<p>It keeps the instance of the injected Angular Router.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_utils"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_utils</b></span>
+                        <a href="#_utils"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(UtilityService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:183</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: utils.</p>
+<p>It keeps the instance of the injected UtilityService.</p>
 </div>
                 </td>
             </tr>
@@ -2005,7 +2109,7 @@ within the context of an edition complex identified by the provided complexId.</
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:171</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:190</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2024,10 +2128,10 @@ within the context of an edition complex identified by the provided complexId.</
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, OnDestroy, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from &#x27;@angular/router&#x27;;
 
-import { EMPTY, Observable, Subject, combineLatest } from &#x27;rxjs&#x27;;
+import { combineLatest, EMPTY, Observable, Subject } from &#x27;rxjs&#x27;;
 import { catchError, switchMap, takeUntil, tap } from &#x27;rxjs/operators&#x27;;
 
 import { UtilityService } from &#x27;@awg-core/services&#x27;;
@@ -2153,13 +2257,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     textcriticsData: TextcriticsList;
 
     /**
-     * Private variable: _destroyed$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    private _destroyed$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
-
-    /**
      * Private variable: _isFirstPageLoad.
      *
      * It keeps the information if the page is loaded for the first time.
@@ -2167,27 +2264,53 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     private _isFirstPageLoad &#x3D; true;
 
     /**
-     * Constructor of the EditionSheetsComponent.
+     * Private readonly variable: _destroyed$.
      *
-     * It declares private instances of
-     * EditionDataService, EditionSheetsService, EditionStateService, UtilityService,
-     * ActivatedRoute and Router.
-     *
-     * @param {EditionDataService} editionDataService Instance of the EditionDataService.
-     * @param {EditionSheetsService} editionSheetsService Instance of the EditionSheetsService.
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
-     * @param {UtilityService} utils Instance of the UtilityService.
-     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
-     * @param {Router} router Instance of the Angular Router.
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    constructor(
-        private editionDataService: EditionDataService,
-        private editionSheetsService: EditionSheetsService,
-        private editionStateService: EditionStateService,
-        private utils: UtilityService,
-        private route: ActivatedRoute,
-        private router: Router
-    ) {}
+    private readonly _destroyed$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
+
+    /**
+     * Private readonly injection variable: _editionDataService.
+     *
+     * It keeps the instance of the injected EditionDataService.
+     */
+    private readonly _editionDataService &#x3D; inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionSheetsService.
+     *
+     * It keeps the instance of the injected EditionSheetsService.
+     */
+    private readonly _editionSheetsService &#x3D; inject(EditionSheetsService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService &#x3D; inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _route.
+     *
+     * It keeps the instance of the injected Angular ActivatedRoute.
+     */
+    private readonly _route &#x3D; inject(ActivatedRoute);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It keeps the instance of the injected Angular Router.
+     */
+    private readonly _router: any &#x3D; inject(Router);
+
+    /**
+     * Private readonly injection variable: utils.
+     *
+     * It keeps the instance of the injected UtilityService.
+     */
+    private readonly _utils &#x3D; inject(UtilityService);
 
     /**
      * Getter variable: editionRouteConstants.
@@ -2218,9 +2341,9 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     getEditionSheetsData(): void {
         this.errorObject &#x3D; null;
 
-        this.snapshotQueryParamsId &#x3D; this.route.snapshot.queryParamMap.get(&#x27;id&#x27;);
+        this.snapshotQueryParamsId &#x3D; this._route.snapshot.queryParamMap.get(&#x27;id&#x27;);
 
-        combineLatest([this.route.paramMap, this.route.queryParamMap])
+        combineLatest([this._route.paramMap, this._route.queryParamMap])
             .pipe(
                 switchMap(([_params, queryParams]) &#x3D;&gt; this._fetchEditionComplexData(queryParams)),
                 // Error handling
@@ -2290,12 +2413,12 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the selectedTextcriticalComments and showTka variable.
      */
     onOverlaySelect(overlays: EditionSvgOverlay[]): void {
-        this.selectedTextcriticalCommentBlocks &#x3D; this.editionSheetsService.getTextcriticalCommentsForOverlays(
+        this.selectedTextcriticalCommentBlocks &#x3D; this._editionSheetsService.getTextcriticalCommentsForOverlays(
             this.selectedTextcritics.comments,
             overlays
         );
 
-        this.showTkA &#x3D; this.utils.isNotEmptyArray(this.selectedTextcriticalCommentBlocks);
+        this.showTkA &#x3D; this._utils.isNotEmptyArray(this.selectedTextcriticalCommentBlocks);
     }
 
     /**
@@ -2309,7 +2432,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Evaluates the sheet id to be called with onSvgSheetSelect.
      */
     onBrowseSvgSheet(direction: number): void {
-        const editionType &#x3D; this.editionSheetsService.getCurrentEditionType(
+        const editionType &#x3D; this._editionSheetsService.getCurrentEditionType(
             this.selectedSvgSheet,
             this.svgSheetsData.sheets
         );
@@ -2318,7 +2441,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         }
 
         const editionTypeSheets &#x3D; this.svgSheetsData.sheets[editionType];
-        const nextSheetId &#x3D; this.editionSheetsService.getNextSheetId(
+        const nextSheetId &#x3D; this._editionSheetsService.getNextSheetId(
             direction,
             this.selectedSvgSheet,
             editionTypeSheets
@@ -2387,11 +2510,11 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         queryParams: ParamMap
     ): Observable&lt;EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]&gt; {
         this.isLoading &#x3D; true;
-        return this.editionStateService.getSelectedEditionComplex().pipe(
+        return this._editionStateService.getSelectedEditionComplex().pipe(
             // Set editionComplex
             tap((complex: EditionComplex) &#x3D;&gt; (this.editionComplex &#x3D; complex)),
             // Get editionSheetsData
-            switchMap((complex: EditionComplex) &#x3D;&gt; this.editionDataService.getEditionSheetsData(complex)),
+            switchMap((complex: EditionComplex) &#x3D;&gt; this._editionDataService.getEditionSheetsData(complex)),
             // Assign data
             tap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) &#x3D;&gt; this._assignData(data)),
             // Handle queryParams
@@ -2461,7 +2584,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
         const complexRoute &#x3D; complexId ? &#x60;/edition/complex/${complexId}/&#x60; : this.editionComplex.baseRoute;
 
-        this.router.navigate([complexRoute, targetRoute], navigationExtras);
+        this._router.navigate([complexRoute, targetRoute], navigationExtras);
     }
 
     /**
@@ -2477,13 +2600,13 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         if (!sheetId) {
             return;
         }
-        this.selectedSvgSheet &#x3D; this.editionSheetsService.selectSvgSheetById(this.svgSheetsData.sheets, sheetId);
-        this.selectedConvolute &#x3D; this.editionSheetsService.selectConvolute(
+        this.selectedSvgSheet &#x3D; this._editionSheetsService.selectSvgSheetById(this.svgSheetsData.sheets, sheetId);
+        this.selectedConvolute &#x3D; this._editionSheetsService.selectConvolute(
             this.folioConvoluteData.convolutes,
             this.svgSheetsData.sheets,
             this.selectedSvgSheet
         );
-        this.selectedTextcritics &#x3D; this.editionSheetsService.findTextcritics(
+        this.selectedTextcritics &#x3D; this._editionSheetsService.findTextcritics(
             this.textcriticsData.textcritics,
             this.selectedSvgSheet
         );
@@ -2492,8 +2615,8 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         this.onOverlaySelect([]);
 
         if (
-            this.utils.isNotEmptyObject(this.selectedTextcritics) &amp;&amp;
-            this.utils.isNotEmptyArray(this.selectedTextcritics.comments)
+            this._utils.isNotEmptyObject(this.selectedTextcritics) &amp;&amp;
+            this._utils.isNotEmptyArray(this.selectedTextcritics.comments)
         ) {
             this.selectedTextcriticalCommentBlocks &#x3D; this.selectedTextcritics.comments;
         }

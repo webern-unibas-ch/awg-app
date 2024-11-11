@@ -151,18 +151,22 @@ to structure outline information of the edition.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_mapComplexItems" >_mapComplexItems</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_mapSection" >_mapSection</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_mapSectionContent" >_mapSectionContent</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_mapSeries" >_mapSeries</a>
                             </li>
                             <li>
@@ -250,6 +254,7 @@ to structure outline information of the edition.</p>
                     <a name="_mapComplexItems"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_mapComplexItems</b></span>
                         <a href="#_mapComplexItems"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -262,13 +267,13 @@ to structure outline information of the edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="309" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:309</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="311" class="link-to-prism">src/app/views/edition-view/models/edition-outline.model.ts:311</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _mapComplexItems.</p>
+                    <div class="io-description"><p>Private readonly method: _mapComplexItems.</p>
 <p>It maps the complex items.</p>
 </div>
                 </td>
@@ -307,6 +312,7 @@ to structure outline information of the edition.</p>
                     <a name="_mapSection"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_mapSection</b></span>
                         <a href="#_mapSection"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -325,7 +331,7 @@ to structure outline information of the edition.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _mapSection.</p>
+                    <div class="io-description"><p>Private readonly method: _mapSection.</p>
 <p>It maps the section data.</p>
 </div>
                 </td>
@@ -385,6 +391,7 @@ to structure outline information of the edition.</p>
                     <a name="_mapSectionContent"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_mapSectionContent</b></span>
                         <a href="#_mapSectionContent"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -403,7 +410,7 @@ to structure outline information of the edition.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _mapContent.</p>
+                    <div class="io-description"><p>Private readonly method: _mapContent.</p>
 <p>It maps the content data.</p>
 </div>
                 </td>
@@ -442,6 +449,7 @@ to structure outline information of the edition.</p>
                     <a name="_mapSeries"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_mapSeries</b></span>
                         <a href="#_mapSeries"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -460,7 +468,7 @@ to structure outline information of the edition.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _mapSeries.</p>
+                    <div class="io-description"><p>Private readonly method: _mapSeries.</p>
 <p>It maps the series data.</p>
 </div>
                 </td>
@@ -785,7 +793,7 @@ export class EditionOutline {
     }
 
     /**
-     * Private method: _mapSeries.
+     * Private readonly method: _mapSeries.
      *
      * It maps the series data.
      *
@@ -795,7 +803,7 @@ export class EditionOutline {
      *
      * @returns {EditionOutlineSeries} The mapped series.
      */
-    private _mapSeries &#x3D; ({ series, sections }: EditionOutlineSeriesJsonData): EditionOutlineSeries &#x3D;&gt; {
+    private readonly _mapSeries &#x3D; ({ series, sections }: EditionOutlineSeriesJsonData): EditionOutlineSeries &#x3D;&gt; {
         const seriesConstant: EditionRouteConstant &#x3D; EDITION_ROUTE_CONSTANTS[&#x27;SERIES_&#x27; + series];
         return {
             series: seriesConstant,
@@ -804,7 +812,7 @@ export class EditionOutline {
     };
 
     /**
-     * Private method: _mapSection.
+     * Private readonly method: _mapSection.
      *
      * It maps the section data.
      *
@@ -815,7 +823,7 @@ export class EditionOutline {
      *
      * @returns {EditionOutlineSection} The mapped section.
      */
-    private _mapSection &#x3D; (
+    private readonly _mapSection &#x3D; (
         { section, disabled, content }: EditionOutlineSectionsJsonData,
         seriesConstant: EditionRouteConstant
     ): EditionOutlineSection &#x3D;&gt; {
@@ -833,7 +841,7 @@ export class EditionOutline {
     };
 
     /**
-     * Private method: _mapContent.
+     * Private readonly method: _mapContent.
      *
      * It maps the content data.
      *
@@ -841,7 +849,9 @@ export class EditionOutline {
      *
      * @returns {EditionOutlineSectionContent} The mapped content.
      */
-    private _mapSectionContent &#x3D; (content: EditionOutlineSectionsContentJsonData): EditionOutlineSectionContent &#x3D;&gt; ({
+    private readonly _mapSectionContent &#x3D; (
+        content: EditionOutlineSectionsContentJsonData
+    ): EditionOutlineSectionContent &#x3D;&gt; ({
         intro: { disabled: content.intro.disabled, preview: content.intro.preview || &#x27;&#x27; },
         complexTypes: {
             opus: this._mapComplexItems(content.complexTypes.opus),
@@ -850,7 +860,7 @@ export class EditionOutline {
     });
 
     /**
-     * Private method: _mapComplexItems.
+     * Private readonly method: _mapComplexItems.
      *
      * It maps the complex items.
      *
@@ -858,7 +868,9 @@ export class EditionOutline {
      *
      * @returns {EditionOutlineComplexItem[]} The mapped complex items.
      */
-    private _mapComplexItems &#x3D; (complexItems: { complex: string; disabled: boolean }[]): EditionOutlineComplexItem[] &#x3D;&gt;
+    private readonly _mapComplexItems &#x3D; (
+        complexItems: { complex: string; disabled: boolean }[]
+    ): EditionOutlineComplexItem[] &#x3D;&gt;
         complexItems.map(({ complex, disabled }) &#x3D;&gt; ({
             complex: EditionComplexesService.getEditionComplexById(complex),
             disabled,

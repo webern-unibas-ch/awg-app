@@ -203,6 +203,16 @@ of the search view of the app.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_bibliographyService" >_bibliographyService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_conversionService" >_conversionService</a>
+                            </li>
+                            <li>
                                 <a href="#bibEntry$" >bibEntry$</a>
                             </li>
                         </ul>
@@ -249,80 +259,6 @@ of the search view of the app.</p>
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(bibliographyService: <a href="../injectables/BibliographyService.html" target="_self">BibliographyService</a>, conversionService: <a href="../injectables/ConversionService.html" target="_self">ConversionService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-detail/bibliography-detail.component.ts:36</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the BibliographyDetailComponent.</p>
-<p>It declares a private BibliographyService instance
-to get the bibliography item detail
-and a private ConversionService instance.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>bibliographyService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/BibliographyService.html" target="_self" >BibliographyService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the BibliographyService.</p>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>conversionService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/ConversionService.html" target="_self" >ConversionService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the ConversionService.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
     <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
@@ -383,8 +319,8 @@ and a private ConversionService instance.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="71"
-                                    class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-detail/bibliography-detail.component.ts:71</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-detail/bibliography-detail.component.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -455,8 +391,8 @@ the data for the bibliography entry.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="59"
-                                    class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-detail/bibliography-detail.component.ts:59</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-detail/bibliography-detail.component.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -482,6 +418,74 @@ when initializing the component.</p>
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_bibliographyService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_bibliographyService</b></span>
+                        <a href="#_bibliographyService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(BibliographyService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-detail/bibliography-detail.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _bibliographyService.</p>
+<p>It keeps the instance of the injected BibliographyService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_conversionService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_conversionService</b></span>
+                        <a href="#_conversionService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ConversionService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-detail/bibliography-detail.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _conversionService.</p>
+<p>It keeps the instance of the injected ConversionService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -521,7 +525,7 @@ when initializing the component.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, Input, OnInit } from &#x27;@angular/core&#x27;;
 
 import { Observable } from &#x27;rxjs&#x27;;
 import { map } from &#x27;rxjs/operators&#x27;;
@@ -559,19 +563,18 @@ export class BibliographyDetailComponent implements OnInit {
     bibEntry$: Observable&lt;BibEntry&gt;;
 
     /**
-     * Constructor of the BibliographyDetailComponent.
+     * Private readonly injection variable: _bibliographyService.
      *
-     * It declares a private BibliographyService instance
-     * to get the bibliography item detail
-     * and a private ConversionService instance.
-     *
-     * @param {BibliographyService} bibliographyService Instance of the BibliographyService.
-     * @param {ConversionService} conversionService Instance of the ConversionService.
+     * It keeps the instance of the injected BibliographyService.
      */
-    constructor(
-        private bibliographyService: BibliographyService,
-        private conversionService: ConversionService
-    ) {}
+    private readonly _bibliographyService &#x3D; inject(BibliographyService);
+
+    /**
+     * Private readonly injection variable: _conversionService.
+     *
+     * It keeps the instance of the injected ConversionService.
+     */
+    private readonly _conversionService &#x3D; inject(ConversionService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -592,9 +595,9 @@ export class BibliographyDetailComponent implements OnInit {
      * @returns {void} Sets the bibEntry observable.
      */
     getBibEntry(id: string): void {
-        this.bibEntry$ &#x3D; this.bibliographyService
+        this.bibEntry$ &#x3D; this._bibliographyService
             .getBibliographyItemDetail(id)
-            .pipe(map((data: ResourceFullResponseJson) &#x3D;&gt; this.conversionService.convertObjectProperties(data)));
+            .pipe(map((data: ResourceFullResponseJson) &#x3D;&gt; this._conversionService.convertObjectProperties(data)));
     }
 }
 </code></pre>

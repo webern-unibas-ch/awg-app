@@ -208,6 +208,11 @@ did not return any result.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_coreService" >_coreService</a>
+                            </li>
+                            <li>
                                 <a href="#logos" >logos</a>
                             </li>
                         </ul>
@@ -240,63 +245,6 @@ did not return any result.</p>
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(coreService: <a href="../injectables/CoreService.html" target="_self">CoreService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/sparql-no-results/sparql-no-results.component.ts:25</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the ForceGraphNoResultComponent.</p>
-<p>It declares a private CoreService instance
-to get the logos.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>coreService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/CoreService.html" target="_self" >CoreService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the CoreService.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
 
@@ -327,8 +275,8 @@ to get the logos.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/sparql-no-results/sparql-no-results.component.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/sparql-no-results/sparql-no-results.component.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -368,8 +316,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="55"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/sparql-no-results/sparql-no-results.component.ts:55</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/sparql-no-results/sparql-no-results.component.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -399,6 +347,40 @@ the logos for the noResult message.</p>
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_coreService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_coreService</b></span>
+                        <a href="#_coreService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(CoreService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/sparql-no-results/sparql-no-results.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _coreService.</p>
+<p>It keeps the instance of the injected CoreService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -438,7 +420,7 @@ the logos for the noResult message.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, inject, OnInit } from &#x27;@angular/core&#x27;;
 
 import { Logos } from &#x27;@awg-core/core-models&#x27;;
 import { CoreService } from &#x27;@awg-core/services&#x27;;
@@ -465,14 +447,11 @@ export class SparqlNoResultsComponent implements OnInit {
     logos: Logos;
 
     /**
-     * Constructor of the ForceGraphNoResultComponent.
+     * Private readonly injection variable: _coreService.
      *
-     * It declares a private CoreService instance
-     * to get the logos.
-     *
-     * @param {CoreService} coreService Instance of the CoreService.
+     * It keeps the instance of the injected CoreService.
      */
-    constructor(private coreService: CoreService) {}
+    private readonly _coreService &#x3D; inject(CoreService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -493,7 +472,7 @@ export class SparqlNoResultsComponent implements OnInit {
      * @returns {void} Sets the logos variables.
      */
     provideMetaData(): void {
-        this.logos &#x3D; this.coreService.getLogos();
+        this.logos &#x3D; this._coreService.getLogos();
     }
 }
 </code></pre>

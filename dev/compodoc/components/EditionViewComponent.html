@@ -208,6 +208,11 @@ another router outlet for the edition routes.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_editionStateService" >_editionStateService</a>
+                            </li>
+                            <li>
                                 <a href="#editionViewId" >editionViewId</a>
                             </li>
                             <li>
@@ -275,62 +280,6 @@ another router outlet for the edition routes.</p>
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(editionStateService: <a href="../injectables/EditionStateService.html" target="_self">EditionStateService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:81</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the EditionViewComponent.</p>
-<p>It declares a private instance of the EditionStateService.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>editionStateService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/EditionStateService.html" target="_self" >EditionStateService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the EditionStateService.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
 
@@ -361,8 +310,8 @@ another router outlet for the edition routes.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:107</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -402,8 +351,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="120"
-                                    class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:120</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="118"
+                                    class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:118</a></div>
                         </td>
                     </tr>
 
@@ -434,6 +383,40 @@ from the EditionStateService.</p>
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_editionStateService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_editionStateService</b></span>
+                        <a href="#_editionStateService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionStateService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _editionStateService.</p>
+<p>It keeps the instance of the injected EditionStateService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -734,7 +717,7 @@ about the current edition complex.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:95</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -753,7 +736,7 @@ about the current edition complex.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, inject, OnInit } from &#x27;@angular/core&#x27;;
 
 import { delay, Observable } from &#x27;rxjs&#x27;;
 
@@ -836,13 +819,11 @@ export class EditionViewComponent implements OnInit {
     selectedEditionSeries$: Observable&lt;EditionOutlineSeries&gt;;
 
     /**
-     * Constructor of the EditionViewComponent.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It declares a private instance of the EditionStateService.
-     *
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
+     * It keeps the instance of the injected EditionStateService.
      */
-    constructor(private editionStateService: EditionStateService) {}
+    private readonly _editionStateService &#x3D; inject(EditionStateService);
 
     /**
      * Getter variable: editionRouteConstants.
@@ -873,12 +854,12 @@ export class EditionViewComponent implements OnInit {
      * @returns {void} Sets up the edition view.
      */
     setupEditionView(): void {
-        this.selectedEditionSeries$ &#x3D; this.editionStateService.getSelectedEditionSeries().pipe(delay(0));
-        this.selectedEditionSection$ &#x3D; this.editionStateService.getSelectedEditionSection().pipe(delay(0));
-        this.selectedEditionComplex$ &#x3D; this.editionStateService.getSelectedEditionComplex().pipe(delay(0));
-        this.isIntroView$ &#x3D; this.editionStateService.getIsIntroView().pipe(delay(0));
-        this.isPrefaceView$ &#x3D; this.editionStateService.getIsPrefaceView().pipe(delay(0));
-        this.isRowTableView$ &#x3D; this.editionStateService.getIsRowTableView().pipe(delay(0));
+        this.selectedEditionSeries$ &#x3D; this._editionStateService.getSelectedEditionSeries().pipe(delay(0));
+        this.selectedEditionSection$ &#x3D; this._editionStateService.getSelectedEditionSection().pipe(delay(0));
+        this.selectedEditionComplex$ &#x3D; this._editionStateService.getSelectedEditionComplex().pipe(delay(0));
+        this.isIntroView$ &#x3D; this._editionStateService.getIsIntroView().pipe(delay(0));
+        this.isPrefaceView$ &#x3D; this._editionStateService.getIsPrefaceView().pipe(delay(0));
+        this.isRowTableView$ &#x3D; this._editionStateService.getIsRowTableView().pipe(delay(0));
     }
 }
 </code></pre>

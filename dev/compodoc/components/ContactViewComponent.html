@@ -208,6 +208,11 @@ sections for citation, documentation and imprint.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_coreService" >_coreService</a>
+                            </li>
+                            <li>
                                 <a href="#citationId" >citationId</a>
                             </li>
                             <li>
@@ -267,63 +272,6 @@ sections for citation, documentation and imprint.</p>
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(coreService: <a href="../injectables/CoreService.html" target="_self">CoreService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:87</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the ContactViewComponent.</p>
-<p>It declares a private CoreService instance
-to get the metadata.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>coreService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/CoreService.html" target="_self" >CoreService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the CoreService.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
 
@@ -354,8 +302,8 @@ to get the metadata.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="105"
-                                    class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:105</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="102"
+                                    class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:102</a></div>
                         </td>
                     </tr>
 
@@ -395,8 +343,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="118"
-                                    class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:118</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:115</a></div>
                         </td>
                     </tr>
 
@@ -426,6 +374,40 @@ the metadata for the contact view.</p>
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_coreService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_coreService</b></span>
+                        <a href="#_coreService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(CoreService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _coreService.</p>
+<p>It keeps the instance of the injected CoreService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -797,7 +779,7 @@ the metadata for the contact view.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, inject, OnInit } from &#x27;@angular/core&#x27;;
 
 import { MetaContact, MetaPage, MetaSectionTypes } from &#x27;@awg-core/core-models&#x27;;
 import { CoreService } from &#x27;@awg-core/services&#x27;;
@@ -886,14 +868,11 @@ export class ContactViewComponent implements OnInit {
     dateFormat &#x3D; &#x27;d. MMMM yyyy&#x27;;
 
     /**
-     * Constructor of the ContactViewComponent.
+     * Private readonly injection variable: _coreService.
      *
-     * It declares a private CoreService instance
-     * to get the metadata.
-     *
-     * @param {CoreService} coreService Instance of the CoreService.
+     * It keeps the instance of the injected CoreService.
      */
-    constructor(private coreService: CoreService) {}
+    private readonly _coreService &#x3D; inject(CoreService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -915,8 +894,8 @@ export class ContactViewComponent implements OnInit {
      * @returns {void} Sets the pageMetaData variable.
      */
     provideMetaData(): void {
-        this.pageMetaData &#x3D; this.coreService.getMetaDataSection(MetaSectionTypes.page);
-        this.contactMetaData &#x3D; this.coreService.getMetaDataSection(MetaSectionTypes.contact);
+        this.pageMetaData &#x3D; this._coreService.getMetaDataSection(MetaSectionTypes.page);
+        this.contactMetaData &#x3D; this._coreService.getMetaDataSection(MetaSectionTypes.contact);
     }
 }
 </code></pre>

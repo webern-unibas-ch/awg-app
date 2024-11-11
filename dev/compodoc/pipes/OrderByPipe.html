@@ -174,8 +174,8 @@ to order a given collection by a given field.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="249"
-                                    class="link-to-prism">src/app/shared/order-by-pipe/order-by.pipe.ts:249</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="244"
+                                    class="link-to-prism">src/app/shared/order-by-pipe/order-by.pipe.ts:244</a></div>
                         </td>
                     </tr>
 
@@ -435,7 +435,7 @@ to order a given collection by a given field.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_transformObject(value: any | any[], expression?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, reverse?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, isCaseInsensitive?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                    <code>_transformObject(value: T | T[], expression?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, reverse?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, isCaseInsensitive?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                 </td>
             </tr>
 
@@ -447,6 +447,14 @@ to order a given collection by a given field.</p>
                         </td>
                     </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>T</li>
+                            </ul>
+                        </td>
+                    </tr>
 
             <tr>
                 <td class="col-md-4">
@@ -468,7 +476,7 @@ to order a given collection by a given field.</p>
                                         <tr>
                                                 <td>value</td>
                                             <td>
-                                                        <code>any | any[]</code>
+                                                        <code>T | T[]</code>
                                             </td>
 
                                             <td>
@@ -1252,7 +1260,7 @@ export class OrderByPipe implements PipeTransform {
      * @param expression
      */
     static setValue(object: any, value: any, expression: string[]): void {
-        let i;
+        let i: number;
         for (i &#x3D; 0; i &lt; expression.length - 1; i++) {
             object &#x3D; object[expression[i]];
         }
@@ -1345,12 +1353,7 @@ export class OrderByPipe implements PipeTransform {
      *
      * @returns {any[]}
      */
-    private _transformObject(
-        value: any | any[],
-        expression?: any,
-        reverse?: boolean,
-        isCaseInsensitive?: boolean
-    ): any {
+    private _transformObject&lt;T&gt;(value: T | T[], expression?: any, reverse?: boolean, isCaseInsensitive?: boolean): any {
         const parsedExpression &#x3D; OrderByPipe.parseExpression(expression);
         let lastPredicate &#x3D; parsedExpression.pop();
         let oldValue &#x3D; OrderByPipe.getValue(value, parsedExpression);

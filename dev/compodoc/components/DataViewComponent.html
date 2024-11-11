@@ -205,6 +205,11 @@ another router outlet for the data (search) routes.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_router" >_router</a>
+                            </li>
+                            <li>
                                 <a href="#searchId" >searchId</a>
                             </li>
                             <li>
@@ -243,62 +248,6 @@ another router outlet for the data (search) routes.</p>
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(router: Router)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/data-view/data-view.component.ts:31</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the DataViewComponent.</p>
-<p>It declares a private Router instance.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>router</td>
-                                                  
-                                                        <td>
-                                                                    <code>Router</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the Angular router.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
 
@@ -329,8 +278,8 @@ another router outlet for the data (search) routes.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="59"
-                                    class="link-to-prism">src/app/views/data-view/data-view.component.ts:59</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/app/views/data-view/data-view.component.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -373,8 +322,8 @@ another router outlet for the data (search) routes.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="72"
-                                    class="link-to-prism">src/app/views/data-view/data-view.component.ts:72</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/app/views/data-view/data-view.component.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -413,8 +362,8 @@ another router outlet for the data (search) routes.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/app/views/data-view/data-view.component.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/views/data-view/data-view.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -440,6 +389,40 @@ when initializing the component.</p>
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_router</b></span>
+                        <a href="#_router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/views/data-view/data-view.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _router.</p>
+<p>It keeps the instance of the injected Angular Router.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -524,7 +507,7 @@ of the data view section.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 
 /**
@@ -557,13 +540,11 @@ export class DataViewComponent implements OnInit, OnDestroy {
     searchId &#x3D; &#x27;search&#x27;;
 
     /**
-     * Constructor of the DataViewComponent.
+     * Private readonly injection variable: _router.
      *
-     * It declares a private Router instance.
-     *
-     * @param {Router} router Instance of the Angular router.
+     * It keeps the instance of the injected Angular Router.
      */
-    constructor(private router: Router) {}
+    private readonly _router &#x3D; inject(Router);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -584,7 +565,7 @@ export class DataViewComponent implements OnInit, OnDestroy {
      */
     navigateToSideOutlet(): void {
         // Opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: &#x27;searchInfo&#x27; } }], {
+        this._router.navigate([{ outlets: { side: &#x27;searchInfo&#x27; } }], {
             preserveFragment: true,
             queryParamsHandling: &#x27;preserve&#x27;,
         });
@@ -597,7 +578,7 @@ export class DataViewComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy() {
         // Navigate to an empty outlet to clear the side outlet
-        this.router.navigate([{ outlets: { side: null } }]);
+        this._router.navigate([{ outlets: { side: null } }]);
     }
 }
 </code></pre>

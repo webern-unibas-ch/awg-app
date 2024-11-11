@@ -527,7 +527,7 @@ the metadata for the header.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Private readonly injection variable: _coreService.</p>
-<p>It injects the CoreService.</p>
+<p>It keeps the instance of the injected CoreService.</p>
 </div>
                 </td>
             </tr>
@@ -561,7 +561,7 @@ the metadata for the header.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Private readonly injection variable: _router.</p>
-<p>It injects the Angular Router.</p>
+<p>It keeps the instance of the injected Angular Router.</p>
 </div>
                 </td>
             </tr>
@@ -902,14 +902,14 @@ export class NavbarComponent implements OnInit {
     /**
      * Private readonly injection variable: _coreService.
      *
-     * It injects the CoreService.
+     * It keeps the instance of the injected CoreService.
      */
     private readonly _coreService &#x3D; inject(CoreService);
 
     /**
      * Private readonly injection variable: _router.
      *
-     * It injects the Angular Router.
+     * It keeps the instance of the injected Angular Router.
      */
     private readonly _router &#x3D; inject(Router);
 

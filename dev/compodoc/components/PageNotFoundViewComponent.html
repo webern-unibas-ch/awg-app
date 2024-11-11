@@ -202,10 +202,12 @@ with redirects to awg contact pages.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_awgContactUrl" >_awgContactUrl</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_pageNotFoundImgPath" >_pageNotFoundImgPath</a>
                             </li>
                             <li>
@@ -262,6 +264,7 @@ with redirects to awg contact pages.</p>
                     <a name="_awgContactUrl"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_awgContactUrl</b></span>
                         <a href="#_awgContactUrl"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -280,7 +283,7 @@ with redirects to awg contact pages.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _awgContactUrl.</p>
+                    <div class="io-description"><p>Private readonly variable: _awgContactUrl.</p>
 <p>It keeps the url to the contact page of the Webern project homepage.</p>
 </div>
                 </td>
@@ -295,6 +298,7 @@ with redirects to awg contact pages.</p>
                     <a name="_pageNotFoundImgPath"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_pageNotFoundImgPath</b></span>
                         <a href="#_pageNotFoundImgPath"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -319,7 +323,7 @@ with redirects to awg contact pages.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _pageNotFoundImgPath.</p>
+                    <div class="io-description"><p>Private readonly variable: _pageNotFoundImgPath.</p>
 <p>It keeps the path to the image of the page not found section.</p>
 </div>
                 </td>
@@ -517,18 +521,18 @@ export class PageNotFoundViewComponent {
     pageNotFoundSubTitle &#x3D; &#x27;… aber möglicherweise können wir Ihnen anders weiterhelfen?&#x27;;
 
     /**
-     * Private variable: _pageNotFoundImgPath.
+     * Private readonly variable: _pageNotFoundImgPath.
      *
      * It keeps the path to the image of the page not found section.
      */
-    private _pageNotFoundImgPath &#x3D; &#x27;assets/img/page-not-found/Webern_Books.jpg&#x27;;
+    private readonly _pageNotFoundImgPath &#x3D; &#x27;assets/img/page-not-found/Webern_Books.jpg&#x27;;
 
     /**
-     * Private variable: _awgContactUrl.
+     * Private readonly variable: _awgContactUrl.
      *
      * It keeps the url to the contact page of the Webern project homepage.
      */
-    private _awgContactUrl &#x3D; AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;41&#x27;;
+    private readonly _awgContactUrl &#x3D; AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;41&#x27;;
 
     /**
      * Getter for the path to the image of the page not found section.

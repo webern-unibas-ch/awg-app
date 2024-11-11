@@ -150,6 +150,7 @@
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_jsonConvert" >_jsonConvert</a>
                             </li>
                             <li>
@@ -205,6 +206,7 @@
                     <span class="name">
                             <span class="modifier">Private</span>
                             <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_jsonConvert</b></span>
                         <a href="#_jsonConvert"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -218,7 +220,10 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new JsonConvert(OperationMode.ENABLE, ValueCheckingMode.ALLOW_NULL)</code>
+                        <i>Default value : </i><code>new JsonConvert(
+        OperationMode.ENABLE,
+        ValueCheckingMode.ALLOW_NULL
+    )</code>
                     </td>
                 </tr>
                     <tr>
@@ -255,7 +260,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/core/services/api-service/api-service-result.model.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/core/services/api-service/api-service-result.model.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -292,7 +297,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/core/services/api-service/api-service-result.model.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/core/services/api-service/api-service-result.model.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -329,7 +334,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/core/services/api-service/api-service-result.model.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/core/services/api-service/api-service-result.model.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -366,7 +371,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/core/services/api-service/api-service-result.model.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/core/services/api-service/api-service-result.model.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -406,8 +411,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="54"
-                                    class="link-to-prism">src/app/core/services/api-service/api-service-result.model.ts:54</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/app/core/services/api-service/api-service-result.model.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -470,7 +475,10 @@ export class ApiServiceResult {
     /**
      * Configuration and instantiation of JsonConvert.
      */
-    private static _jsonConvert: JsonConvert &#x3D; new JsonConvert(OperationMode.ENABLE, ValueCheckingMode.ALLOW_NULL);
+    private static readonly _jsonConvert: JsonConvert &#x3D; new JsonConvert(
+        OperationMode.ENABLE,
+        ValueCheckingMode.ALLOW_NULL
+    );
 
     /**
      * Status number

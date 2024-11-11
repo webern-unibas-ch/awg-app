@@ -542,7 +542,7 @@ export class EditionOutline {
     }
 
     /**
-     * Private method: _mapSeries.
+     * Private readonly method: _mapSeries.
      *
      * It maps the series data.
      *
@@ -552,7 +552,7 @@ export class EditionOutline {
      *
      * @returns {EditionOutlineSeries} The mapped series.
      */
-    private _mapSeries &#x3D; ({ series, sections }: EditionOutlineSeriesJsonData): EditionOutlineSeries &#x3D;&gt; {
+    private readonly _mapSeries &#x3D; ({ series, sections }: EditionOutlineSeriesJsonData): EditionOutlineSeries &#x3D;&gt; {
         const seriesConstant: EditionRouteConstant &#x3D; EDITION_ROUTE_CONSTANTS[&#x27;SERIES_&#x27; + series];
         return {
             series: seriesConstant,
@@ -561,7 +561,7 @@ export class EditionOutline {
     };
 
     /**
-     * Private method: _mapSection.
+     * Private readonly method: _mapSection.
      *
      * It maps the section data.
      *
@@ -572,7 +572,7 @@ export class EditionOutline {
      *
      * @returns {EditionOutlineSection} The mapped section.
      */
-    private _mapSection &#x3D; (
+    private readonly _mapSection &#x3D; (
         { section, disabled, content }: EditionOutlineSectionsJsonData,
         seriesConstant: EditionRouteConstant
     ): EditionOutlineSection &#x3D;&gt; {
@@ -590,7 +590,7 @@ export class EditionOutline {
     };
 
     /**
-     * Private method: _mapContent.
+     * Private readonly method: _mapContent.
      *
      * It maps the content data.
      *
@@ -598,7 +598,9 @@ export class EditionOutline {
      *
      * @returns {EditionOutlineSectionContent} The mapped content.
      */
-    private _mapSectionContent &#x3D; (content: EditionOutlineSectionsContentJsonData): EditionOutlineSectionContent &#x3D;&gt; ({
+    private readonly _mapSectionContent &#x3D; (
+        content: EditionOutlineSectionsContentJsonData
+    ): EditionOutlineSectionContent &#x3D;&gt; ({
         intro: { disabled: content.intro.disabled, preview: content.intro.preview || &#x27;&#x27; },
         complexTypes: {
             opus: this._mapComplexItems(content.complexTypes.opus),
@@ -607,7 +609,7 @@ export class EditionOutline {
     });
 
     /**
-     * Private method: _mapComplexItems.
+     * Private readonly method: _mapComplexItems.
      *
      * It maps the complex items.
      *
@@ -615,7 +617,9 @@ export class EditionOutline {
      *
      * @returns {EditionOutlineComplexItem[]} The mapped complex items.
      */
-    private _mapComplexItems &#x3D; (complexItems: { complex: string; disabled: boolean }[]): EditionOutlineComplexItem[] &#x3D;&gt;
+    private readonly _mapComplexItems &#x3D; (
+        complexItems: { complex: string; disabled: boolean }[]
+    ): EditionOutlineComplexItem[] &#x3D;&gt;
         complexItems.map(({ complex, disabled }) &#x3D;&gt; ({
             complex: EditionComplexesService.getEditionComplexById(complex),
             disabled,

@@ -197,6 +197,11 @@ provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_ngbModal" >_ngbModal</a>
+                            </li>
+                            <li>
                                 <a href="#closeResult" >closeResult</a>
                             </li>
                             <li>
@@ -244,63 +249,6 @@ provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(ngbModal: NgbModal)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/shared/modal/modal.component.ts:57</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the ModalComponent.</p>
-<p>It declares a private NgbModal instance
-to handle the modal.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>ngbModal</td>
-                                                  
-                                                        <td>
-                                                                    <code>NgbModal</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the NgbModal.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
 
@@ -334,8 +282,8 @@ to handle the modal.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="78"
-                                    class="link-to-prism">src/app/shared/modal/modal.component.ts:78</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/app/shared/modal/modal.component.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -411,8 +359,8 @@ of the closing event of the modal.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="100"
-                                    class="link-to-prism">src/app/shared/modal/modal.component.ts:100</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="97"
+                                    class="link-to-prism">src/app/shared/modal/modal.component.ts:97</a></div>
                         </td>
                     </tr>
 
@@ -475,6 +423,40 @@ represented by the given snippet key.</p>
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_ngbModal"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_ngbModal</b></span>
+                        <a href="#_ngbModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(NgbModal)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/shared/modal/modal.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _ngbModal.</p>
+<p>It keeps the instance of the injected NgbModal.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -671,7 +653,7 @@ to be displayed in the header.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, TemplateRef, ViewChild } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, TemplateRef, ViewChild } from &#x27;@angular/core&#x27;;
 import { ModalDismissReasons, NgbModal } from &#x27;@ng-bootstrap/ng-bootstrap&#x27;;
 
 import { MODAL_CONTENT_SNIPPETS } from &#x27;./data/modal-content-snippets.data&#x27;;
@@ -730,14 +712,11 @@ export class ModalComponent {
     closeResult: string;
 
     /**
-     * Constructor of the ModalComponent.
+     * Private readonly injection variable: _ngbModal.
      *
-     * It declares a private NgbModal instance
-     * to handle the modal.
-     *
-     * @param {NgbModal} ngbModal Instance of the NgbModal.
+     * It keeps the instance of the injected NgbModal.
      */
-    constructor(private ngbModal: NgbModal) {}
+    private readonly _ngbModal &#x3D; inject(NgbModal);
 
     /**
      * Private static method: _getDismissReason.
@@ -777,7 +756,7 @@ export class ModalComponent {
             : &#x27;&#x27;;
 
         // Open modalTemplate via modalService
-        this.ngbModal.open(this.modalTemplate, { ariaLabelledBy: &#x27;awg-modal&#x27; }).result.then(
+        this._ngbModal.open(this.modalTemplate, { ariaLabelledBy: &#x27;awg-modal&#x27; }).result.then(
             result &#x3D;&gt; {
                 this.closeResult &#x3D; &#x60;Closed with: ${result}&#x60;;
             },
