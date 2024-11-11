@@ -269,6 +269,18 @@
                 ]
             },
             {
+                "id": "M_321_Sk2",
+                "label": "M 321 Sk2",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op25/M321_Sk2-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "D"
+                    }
+                ]
+            },
+            {
                 "id": "M_322_Sk1",
                 "label": "M 322 Sk1",
                 "content": [

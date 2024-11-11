@@ -2183,6 +2183,43 @@
             ]
         },
         {
+            "id": "M_321_Sk2",
+            "label": "M 321 Sk2",
+            "description": [
+                "<strong>Sk2</strong> skizziert einen Anfang der Singstimme von „Des Herzens Purpurvogel“ M 322 in zwei metrischen Varianten. Die Transkription zählt die Taktzahlen der Variante in System 1 (Alla-breve-Takt) mit dem Suffix x, die der Variante in System 2 (3/2-Takt) mit dem Suffix y.",
+                "Die Ziffer <em>1</em> (G<sub>g</sub>) in T. 1x und T. 3y bezeichnet den Anfang der betreffenden Reihenform gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong></a>. Winkel markieren deren Ende (┐, ┘) oder Anfang (┌, └)."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g2060",
+                            "measure": "vor 1y <br /> bis 1y",
+                            "system": "2",
+                            "position": "1. Note <br /> nach 4/4",
+                            "comment": "Taktstrich nach T. 1y 2/4 gestrichen, Viertelnote überschreibt Halbe Note vor T. 1y 1. Note und in T. 1y 2/4. Taktstriche am Taktanfang von T. 1y und in T. 1y nach 4/4 hinzugefügt.  <br /> Ante correcturam: vermutlich zunächst voller 3/2-Takt mit Viertelpause, Halbe Note g<sup>2</sup> mit Ligatur zu Viertelnote, Halbe Note e<sup>2</sup>.  <br /> Dann voller 3/2-Takt mit Viertelpause, Ligatur aus zwei Viertelnoten g<sup>2</sup>, Viertelnote e<sup>2</sup>, Viertelpause, Viertelnote dis<sup>2</sup>. <br /> Dann Auftakt zu T. 1y mit Viertelpause, Viertelnote g<sup>2</sup> mit Ligatur zu vollem 3/2-Takt T. 1y. Dabei Taktstrich nach T. 1y 4/4 redundant, aber nicht getilgt."
+                        },
+                        {
+                            "svgGroupId": "g2",
+                            "measure": "4x <br /> 3y",
+                            "system": "1 <br /> 2",
+                            "position": "5/8 <br /> 1/8",
+                            "comment": "Achtelpause hinzugefügt."
+                        },
+                        {
+                            "svgGroupId": "g1",
+                            "measure": "4x <br /> bis 5x",
+                            "system": "1",
+                            "position": "4/8 <br /> 1/8",
+                            "comment": "Balken überschreibt Achtelfähnchen in T. 4x 4/8."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
+        },
+        {
             "id": "M_322_Sk1",
             "label": "M 322 Sk1",
             "description": [
