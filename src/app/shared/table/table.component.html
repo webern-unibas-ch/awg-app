@@ -1,14 +1,16 @@
 @if (tableData.filteredRows && tableData.totalRows$ | async; as totalRows) {
     <form>
-        <div class="form-group form-inline">
-            <label class="col-sm-4 col-form-label"
-                >{{ tableTitle }}<br />
-                ({{ tableData.filteredRows?.length }} von {{ totalRows?.length }} Ergebnissen)</label
-            >
+        <div class="form-group form-inline ms-2">
+            <div class="col-sm-4">
+                <p>
+                    {{ tableTitle }}<br />
+                    ({{ tableData.filteredRows?.length }} von {{ totalRows?.length }} Ergebnissen)
+                </p>
+            </div>
             <div class="col-sm-6">
                 <input
                     id="search"
-                    class="form-control ms-2"
+                    class="form-control"
                     type="text"
                     name="searchFilter"
                     [(ngModel)]="searchFilter"
@@ -108,8 +110,8 @@
     <div class="awg-pagination d-flex justify-content-between p-2">
         <!-- bottom pagination -->
         <awg-table-pagination
-            [(page)]="paginatorOptions.page"
             [collectionSize]="tableData.filteredRows?.length"
+            [(page)]="paginatorOptions.page"
             (pageChangeRequest)="onPageSizeChange(searchFilter)">
         </awg-table-pagination>
         <div ngbDropdown class="d-inline-block">

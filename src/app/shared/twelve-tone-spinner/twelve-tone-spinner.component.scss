@@ -23,26 +23,23 @@
         width: 15%;
         height: 15%;
         border-radius: 100%;
-        -webkit-animation: spinner-circleBounceDelay 1.2s infinite ease-in-out both;
         animation: spinner-circleBounceDelay 1.2s infinite ease-in-out both;
     }
 
     > .spinner-note6:before,
     > .spinner-note12:before {
-        /* UNICODE FLAT SIGN, see https://www.unicode.org/Public/UCD/latest/charts/CodeCharts.pdf, p. 280*/
+        /* UNICODE FLAT SIGN */
         content: '\266D';
     }
 
     > .spinner-note3:before,
     > .spinner-note9:before {
-        /* UNICODE SHARP SIGN, see https://www.unicode.org/Public/UCD/latest/charts/CodeCharts.pdf, p. 280*/
+        /* UNICODE SHARP SIGN */
         content: '\266F';
     }
 
     > .spinner-load-text > p {
-        /* border: 1px solid blue; */
-        margin-top: 30%;
-        margin-bottom: 30%;
+        margin: 30% auto;
         text-align: center;
     }
 }
@@ -51,8 +48,6 @@
 @for $i from 2 through 12 {
     .spinner-note#{$i} {
         $rotation: 30deg * ($i - 1);
-        -webkit-transform: rotate($rotation);
-        -ms-transform: rotate($rotation);
         transform: rotate($rotation);
     }
 }
@@ -61,32 +56,17 @@
 @for $i from 2 through 12 {
     .spinner .spinner-note#{$i}:before {
         $delay: -1.2 + ($i - 1) * 0.1;
-        -webkit-animation-delay: #{$delay}s;
         animation-delay: #{$delay}s;
     }
 }
 
-@-webkit-keyframes spinner-circleBounceDelay {
-    0%,
-    80%,
-    100% {
-        -webkit-transform: scale(0);
-        transform: scale(0);
-    }
-    40% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-    }
-}
 @keyframes spinner-circleBounceDelay {
     0%,
     80%,
     100% {
-        -webkit-transform: scale(0);
         transform: scale(0);
     }
     40% {
-        -webkit-transform: scale(1);
         transform: scale(1);
     }
 }

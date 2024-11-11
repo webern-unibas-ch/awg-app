@@ -227,6 +227,36 @@ describe('TableComponent', () => {
             expectToEqual(component.rowInputData, expectedRowInputData);
         });
 
+        describe('VIEW', () => {
+            it('... should pass down paginatorOptions to pagination component', () => {
+                const tablePaginationDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    TablePaginationStubComponent,
+                    2,
+                    2
+                );
+                const tablePaginationCmps = tablePaginationDes.map(
+                    de => de.injector.get(TablePaginationStubComponent) as TablePaginationStubComponent
+                );
+
+                expectToBe(tablePaginationCmps.length, 2);
+
+                expectToEqual(tablePaginationCmps[0].collectionSize, expectedRowInputData.length);
+                expectToEqual(tablePaginationCmps[1].collectionSize, expectedRowInputData.length);
+
+                expectToBe(tablePaginationCmps[0].page, 1);
+                expectToBe(tablePaginationCmps[1].page, 1);
+            });
+
+            it('... should display TwelveToneSpinnerComponent (stubbed) while loading (paginatedRows are not available)', () => {
+                // Mock empty observable
+                component.tableData.paginatedRows$ = EMPTY;
+                detectChangesOnPush(fixture);
+
+                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+            });
+        });
+
         describe('#initTable()', () => {
             it('... should have a method `initTable`', () => {
                 expect(component.initTable).toBeDefined();
@@ -845,36 +875,6 @@ describe('TableComponent', () => {
                 component.onTableRowClick(expectedEvent);
 
                 expectSpyCall(clickedTableRowRequestSpy, 1, expectedEvent);
-            });
-        });
-
-        describe('VIEW', () => {
-            it('... should pass down paginatorOptions to pagination component', () => {
-                const tablePaginationDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    TablePaginationStubComponent,
-                    2,
-                    2
-                );
-                const tablePaginationCmps = tablePaginationDes.map(
-                    de => de.injector.get(TablePaginationStubComponent) as TablePaginationStubComponent
-                );
-
-                expectToBe(tablePaginationCmps.length, 2);
-
-                expectToEqual(tablePaginationCmps[0].collectionSize, expectedRowInputData.length);
-                expectToEqual(tablePaginationCmps[1].collectionSize, expectedRowInputData.length);
-
-                expectToBe(tablePaginationCmps[0].page, 1);
-                expectToBe(tablePaginationCmps[1].page, 1);
-            });
-
-            it('... should display TwelveToneSpinnerComponent (stubbed) while loading (paginatedRows are not available)', () => {
-                // Mock empty observable
-                component.tableData.paginatedRows$ = EMPTY;
-                detectChangesOnPush(fixture);
-
-                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
             });
         });
     });

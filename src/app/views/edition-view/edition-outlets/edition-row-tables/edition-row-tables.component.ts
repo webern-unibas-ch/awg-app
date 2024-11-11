@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { EditionRowTablesList } from '@awg-views/edition-view/models';
@@ -24,17 +24,18 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
     rowTablesData$: Observable<EditionRowTablesList>;
 
     /**
-     * Constructor of the EditionRowTablesComponent.
+     * Private readonly injection variable: _editionDataService.
      *
-     * It declares private instances of the EditionStateService and EditionDataService.
-     *
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
-     * @param {EditionDataService} editionDataService Instance of the EditionDataService.
+     * It keeps the instance of the injected EditionDataService.
      */
-    constructor(
-        private editionStateService: EditionStateService,
-        private editionDataService: EditionDataService
-    ) {}
+    private readonly _editionDataService = inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -43,8 +44,8 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
      * when initializing the component.
      */
     ngOnInit(): void {
-        this.editionStateService.updateIsRowTableView(true);
-        this.rowTablesData$ = this.editionDataService.getEditionRowTablesData();
+        this._editionStateService.updateIsRowTableView(true);
+        this.rowTablesData$ = this._editionDataService.getEditionRowTablesData();
     }
 
     /**
@@ -56,6 +57,6 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        this.editionStateService.clearIsRowTableView();
+        this._editionStateService.clearIsRowTableView();
     }
 }

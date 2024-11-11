@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionOutlineComplexItem, EditionOutlineSection } from '@awg-views/edition-view/models';
@@ -40,13 +40,11 @@ export class EditionInfoComponent implements OnInit {
     ];
 
     /**
-     * Constructor of the EditionInfoComponent.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It declares a private instance of the EditionStateService.
-     *
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
+     * It keeps the instance of the injected EditionStateService.
      */
-    constructor(private editionStateService: EditionStateService) {}
+    private readonly _editionStateService = inject(EditionStateService);
 
     /**
      * Getter variable: editionRouteConstants.
@@ -77,7 +75,7 @@ export class EditionInfoComponent implements OnInit {
      * @returns {void} Sets up the edition view.
      */
     setupEditionView(): void {
-        this.editionStateService.getSelectedEditionSection().subscribe(section => {
+        this._editionStateService.getSelectedEditionSection().subscribe(section => {
             this.selectedEditionSection = section;
         });
     }

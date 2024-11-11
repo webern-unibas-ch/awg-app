@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 
-import { EMPTY, Observable, Subject, combineLatest } from 'rxjs';
+import { combineLatest, EMPTY, Observable, Subject } from 'rxjs';
 import { catchError, switchMap, takeUntil, tap } from 'rxjs/operators';
 
 import { UtilityService } from '@awg-core/services';
@@ -127,13 +127,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     textcriticsData: TextcriticsList;
 
     /**
-     * Private variable: _destroyed$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    private _destroyed$: Subject<boolean> = new Subject<boolean>();
-
-    /**
      * Private variable: _isFirstPageLoad.
      *
      * It keeps the information if the page is loaded for the first time.
@@ -141,27 +134,53 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     private _isFirstPageLoad = true;
 
     /**
-     * Constructor of the EditionSheetsComponent.
+     * Private readonly variable: _destroyed$.
      *
-     * It declares private instances of
-     * EditionDataService, EditionSheetsService, EditionStateService, UtilityService,
-     * ActivatedRoute and Router.
-     *
-     * @param {EditionDataService} editionDataService Instance of the EditionDataService.
-     * @param {EditionSheetsService} editionSheetsService Instance of the EditionSheetsService.
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
-     * @param {UtilityService} utils Instance of the UtilityService.
-     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
-     * @param {Router} router Instance of the Angular Router.
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    constructor(
-        private editionDataService: EditionDataService,
-        private editionSheetsService: EditionSheetsService,
-        private editionStateService: EditionStateService,
-        private utils: UtilityService,
-        private route: ActivatedRoute,
-        private router: Router
-    ) {}
+    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
+
+    /**
+     * Private readonly injection variable: _editionDataService.
+     *
+     * It keeps the instance of the injected EditionDataService.
+     */
+    private readonly _editionDataService = inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionSheetsService.
+     *
+     * It keeps the instance of the injected EditionSheetsService.
+     */
+    private readonly _editionSheetsService = inject(EditionSheetsService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _route.
+     *
+     * It keeps the instance of the injected Angular ActivatedRoute.
+     */
+    private readonly _route = inject(ActivatedRoute);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It keeps the instance of the injected Angular Router.
+     */
+    private readonly _router: any = inject(Router);
+
+    /**
+     * Private readonly injection variable: utils.
+     *
+     * It keeps the instance of the injected UtilityService.
+     */
+    private readonly _utils = inject(UtilityService);
 
     /**
      * Getter variable: editionRouteConstants.
@@ -192,9 +211,9 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     getEditionSheetsData(): void {
         this.errorObject = null;
 
-        this.snapshotQueryParamsId = this.route.snapshot.queryParamMap.get('id');
+        this.snapshotQueryParamsId = this._route.snapshot.queryParamMap.get('id');
 
-        combineLatest([this.route.paramMap, this.route.queryParamMap])
+        combineLatest([this._route.paramMap, this._route.queryParamMap])
             .pipe(
                 switchMap(([_params, queryParams]) => this._fetchEditionComplexData(queryParams)),
                 // Error handling
@@ -264,12 +283,12 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the selectedTextcriticalComments and showTka variable.
      */
     onOverlaySelect(overlays: EditionSvgOverlay[]): void {
-        this.selectedTextcriticalCommentBlocks = this.editionSheetsService.getTextcriticalCommentsForOverlays(
+        this.selectedTextcriticalCommentBlocks = this._editionSheetsService.getTextcriticalCommentsForOverlays(
             this.selectedTextcritics.comments,
             overlays
         );
 
-        this.showTkA = this.utils.isNotEmptyArray(this.selectedTextcriticalCommentBlocks);
+        this.showTkA = this._utils.isNotEmptyArray(this.selectedTextcriticalCommentBlocks);
     }
 
     /**
@@ -283,7 +302,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Evaluates the sheet id to be called with onSvgSheetSelect.
      */
     onBrowseSvgSheet(direction: number): void {
-        const editionType = this.editionSheetsService.getCurrentEditionType(
+        const editionType = this._editionSheetsService.getCurrentEditionType(
             this.selectedSvgSheet,
             this.svgSheetsData.sheets
         );
@@ -292,7 +311,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         }
 
         const editionTypeSheets = this.svgSheetsData.sheets[editionType];
-        const nextSheetId = this.editionSheetsService.getNextSheetId(
+        const nextSheetId = this._editionSheetsService.getNextSheetId(
             direction,
             this.selectedSvgSheet,
             editionTypeSheets
@@ -361,11 +380,11 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         queryParams: ParamMap
     ): Observable<EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
         this.isLoading = true;
-        return this.editionStateService.getSelectedEditionComplex().pipe(
+        return this._editionStateService.getSelectedEditionComplex().pipe(
             // Set editionComplex
             tap((complex: EditionComplex) => (this.editionComplex = complex)),
             // Get editionSheetsData
-            switchMap((complex: EditionComplex) => this.editionDataService.getEditionSheetsData(complex)),
+            switchMap((complex: EditionComplex) => this._editionDataService.getEditionSheetsData(complex)),
             // Assign data
             tap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => this._assignData(data)),
             // Handle queryParams
@@ -435,7 +454,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
         const complexRoute = complexId ? `/edition/complex/${complexId}/` : this.editionComplex.baseRoute;
 
-        this.router.navigate([complexRoute, targetRoute], navigationExtras);
+        this._router.navigate([complexRoute, targetRoute], navigationExtras);
     }
 
     /**
@@ -451,13 +470,13 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         if (!sheetId) {
             return;
         }
-        this.selectedSvgSheet = this.editionSheetsService.selectSvgSheetById(this.svgSheetsData.sheets, sheetId);
-        this.selectedConvolute = this.editionSheetsService.selectConvolute(
+        this.selectedSvgSheet = this._editionSheetsService.selectSvgSheetById(this.svgSheetsData.sheets, sheetId);
+        this.selectedConvolute = this._editionSheetsService.selectConvolute(
             this.folioConvoluteData.convolutes,
             this.svgSheetsData.sheets,
             this.selectedSvgSheet
         );
-        this.selectedTextcritics = this.editionSheetsService.findTextcritics(
+        this.selectedTextcritics = this._editionSheetsService.findTextcritics(
             this.textcriticsData.textcritics,
             this.selectedSvgSheet
         );
@@ -466,8 +485,8 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         this.onOverlaySelect([]);
 
         if (
-            this.utils.isNotEmptyObject(this.selectedTextcritics) &&
-            this.utils.isNotEmptyArray(this.selectedTextcritics.comments)
+            this._utils.isNotEmptyObject(this.selectedTextcritics) &&
+            this._utils.isNotEmptyArray(this.selectedTextcritics.comments)
         ) {
             this.selectedTextcriticalCommentBlocks = this.selectedTextcritics.comments;
         }

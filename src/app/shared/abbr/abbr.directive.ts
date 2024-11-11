@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, inject, Input, OnInit } from '@angular/core';
 
 /**
  * The abbr directive.
@@ -17,11 +17,11 @@ export class AbbrDirective implements OnInit {
     @Input('awgAbbr') text: string;
 
     /**
-     * Private variable: _abbreviations.
+     * Private readonly variable: _abbreviations.
      *
      * It keeps a list of abbreviations and their full forms.
      */
-    private _abbreviations = new Map<string, string>([
+    private readonly _abbreviations = new Map<string, string>([
         // General
         ['Bl.', 'Blatt (r - recto, v - verso)'],
         ['S.', 'Seite'],
@@ -45,13 +45,11 @@ export class AbbrDirective implements OnInit {
     ]);
 
     /**
-     * Constructor of the AbbrDirective.
+     * Private readonly injection variable: _el.
      *
-     * It declares a private instance of ElementRef.
-     *
-     * @param {ElementRef} el Instance of ElementRef.
+     * It keeps the instance of the injected Angular ElementRef.
      */
-    constructor(private el: ElementRef) {}
+    private readonly _el = inject(ElementRef);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -88,6 +86,6 @@ export class AbbrDirective implements OnInit {
             return `<abbr title="${full}">${match}</abbr>`;
         });
 
-        this.el.nativeElement.innerHTML = innerHTML;
+        this._el.nativeElement.innerHTML = innerHTML;
     }
 }

@@ -57,27 +57,6 @@ export class EditionSvgDrawingService {
     linkBoxHoverFillColor = '#eeeeee';
 
     /**
-     * Private variable: _overlayBoxesOpacity.
-     *
-     * It keeps the default opacity for an overlay box.
-     */
-    private _overlayBoxesOpacity = 0.3;
-
-    /**
-     * Private variable: _overlayBoxesOpacity.
-     *
-     * It keeps a magic number for (optional) additional space of an overlay box.
-     */
-    private _overlayBoxAdditionalSpace = 5.5;
-
-    /**
-     * Private variable: _overlayBoxesOpacity.
-     *
-     * It keeps a magic number for (optional) corner radius of an overlay box.
-     */
-    private _overlayBoxCornerRadius = 2;
-
-    /**
      * Private variable: _suppliedClasses
      *
      * It keeps a map of all supplied classes from the SVG sheet root group.
@@ -85,11 +64,32 @@ export class EditionSvgDrawingService {
     private _suppliedClasses: Map<string, boolean> = new Map();
 
     /**
-     * Private variable: _suppliedClassesLabelLookup
+     * Private readonly variable: _overlayBoxesOpacity.
+     *
+     * It keeps the default opacity for an overlay box.
+     */
+    private readonly _overlayBoxesOpacity = 0.3;
+
+    /**
+     * Private readonly variable: _overlayBoxesOpacity.
+     *
+     * It keeps a magic number for (optional) additional space of an overlay box.
+     */
+    private readonly _overlayBoxAdditionalSpace = 5.5;
+
+    /**
+     * Private readonly variable: _overlayBoxesOpacity.
+     *
+     * It keeps a magic number for (optional) corner radius of an overlay box.
+     */
+    private readonly _overlayBoxCornerRadius = 2;
+
+    /**
+     * Private readonly variable: _suppliedClassesLabelLookup
      *
      * It keeps a lookup table for the supplied classes.
      */
-    private _suppliedClassesLabelLookup: Map<string, string> = new Map([
+    private readonly _suppliedClassesLabelLookup: Map<string, string> = new Map([
         ['foliation', 'Blattangabe'],
         ['staffN', 'Systemangabe'],
         ['measureN', 'Taktzahlen'],

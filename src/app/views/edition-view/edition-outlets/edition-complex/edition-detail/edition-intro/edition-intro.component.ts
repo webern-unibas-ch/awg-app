@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
 import { combineLatest, EMPTY, fromEvent, Observable, of as observableOf, Subject } from 'rxjs';
@@ -68,29 +68,44 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     errorObject = null;
 
     /**
-     * Private variable: _destroyed$.
+     * Public readonly injection variable: UTILS.
+     *
+     * It keeps the instance of the injected UtilityService.
+     */
+    readonly UTILS = inject(UtilityService);
+
+    /**
+     * Private readonly variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroyed$: Subject<boolean> = new Subject<boolean>();
+    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
+
+    /**
+     * Private readonly injection variable: _editionDataService.
+     *
+     * It keeps the instance of the injected EditionDataService.
+     */
+    private readonly _editionDataService = inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It keeps the instance of the injected Angular Router.
+     */
+    private readonly _router: any = inject(Router);
 
     /**
      * Constructor of the EditionIntroComponent.
-     *
-     * It declares private instances of the EditionDataService, EditionStateService,
-     * and the Angular Router; as well as a public instance of the UtilityService.
-     *
-     * @param {EditionDataService} editionDataService Instance of the EditionDataService.
-     * @param {EditionStateService} editionStateService Instance of the EditionStateService.
-     * @param {Router} router Instance of the Router.
-     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor(
-        private editionDataService: EditionDataService,
-        private editionStateService: EditionStateService,
-        private router: Router,
-        public utils: UtilityService
-    ) {
+    constructor() {
         this._initScrollListener();
     }
 
@@ -122,7 +137,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        this.editionStateService.clearIsIntroView();
+        this._editionStateService.clearIsIntroView();
         this.editionIntroData$ = null;
 
         this._destroyed$.next(true);
@@ -139,12 +154,12 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * @returns {void} Gets the current edition complex and the corresponding intro data.
      */
     getEditionIntroData(): void {
-        this.editionStateService.updateIsIntroView(true);
+        this._editionStateService.updateIsIntroView(true);
 
         this.editionIntroData$ = combineLatest([
-            this.editionStateService.getSelectedEditionSeries(),
-            this.editionStateService.getSelectedEditionSection(),
-            this.editionStateService.getSelectedEditionComplex().pipe(startWith(null)),
+            this._editionStateService.getSelectedEditionSeries(),
+            this._editionStateService.getSelectedEditionSection(),
+            this._editionStateService.getSelectedEditionComplex().pipe(startWith(null)),
         ]).pipe(
             switchMap(([series, section, complex]) => {
                 if (series && section) {
@@ -172,7 +187,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
         const navigationExtras: NavigationExtras = {
             fragment: introIds?.fragmentId ?? '',
         };
-        this.router.navigate([], navigationExtras);
+        this._router.navigate([], navigationExtras);
     }
 
     /**
@@ -253,11 +268,11 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
         sectionRoute: string,
         complex: EditionComplex | null
     ): Observable<IntroList> {
-        return this.editionDataService.getEditionSectionIntroData(seriesRoute, sectionRoute).pipe(
+        return this._editionDataService.getEditionSectionIntroData(seriesRoute, sectionRoute).pipe(
             switchMap(sectionIntroData => {
                 if (complex) {
                     this.editionComplex = complex;
-                    return this.editionDataService.getEditionComplexIntroData(this.editionComplex).pipe(
+                    return this._editionDataService.getEditionComplexIntroData(this.editionComplex).pipe(
                         map(complexIntroData => {
                             const blockId = complexIntroData.intro[0].id;
                             return this._filterSectionIntroDataById(sectionIntroData, blockId);
@@ -316,7 +331,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
         const complexRoute = complexId ? `/edition/complex/${complexId}/` : this.editionComplex.baseRoute;
 
-        this.router.navigate([complexRoute, targetRoute], navigationExtras);
+        this._router.navigate([complexRoute, targetRoute], navigationExtras);
     }
 
     /**

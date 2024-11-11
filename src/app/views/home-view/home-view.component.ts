@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
@@ -69,14 +69,11 @@ export class HomeViewComponent implements OnInit {
     ];
 
     /**
-     * Constructor of the HomeViewComponent.
+     * Private readonly injection variable: _coreService.
      *
-     * It declares a private CoreService instance
-     * to get the metadata.
-     *
-     * @param {CoreService} coreService Instance of the CoreService.
+     * It keeps the instance of the injected CoreService.
      */
-    constructor(private coreService: CoreService) {}
+    private readonly _coreService = inject(CoreService);
 
     /**
      * Getter variable: editionRouteConstants.
@@ -106,6 +103,6 @@ export class HomeViewComponent implements OnInit {
      * @returns {void} Sets the pageMetaData variable.
      */
     provideMetaData(): void {
-        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.page);
+        this.pageMetaData = this._coreService.getMetaDataSection(MetaSectionTypes.page);
     }
 }

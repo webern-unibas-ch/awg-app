@@ -38,12 +38,12 @@ abstract class HttpCache {
 })
 export class HttpCacheService implements HttpCache {
     /**
-     * Private variable: _cachedResponses.
+     * Private readonly variable: _cachedResponses.
      *
      * It keeps the _cachedResponses as `Map`s of a `string`
      * (i.e. an `HttpRequest.urlWithParams`) and an `HttpResponse`.
      */
-    private _cachedResponses: Map<string, HttpResponse<any>> = new Map<string, HttpResponse<any>>();
+    private readonly _cachedResponses: Map<string, HttpResponse<any>> = new Map<string, HttpResponse<any>>();
 
     /**
      * Getter for a cached response.
