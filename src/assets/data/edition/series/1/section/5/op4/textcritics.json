@@ -50,7 +50,7 @@
                             "measure": "9",
                             "system": "Ges.",
                             "position": "5–6/8",
-                            "comment": "Text sic: Silbentrennung <em>hie-lten</em>. <strong>George_DJdS</strong>: <em>halten</em>."
+                            "comment": "Text sic: Silbentrennung <em>hie-lten</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>halten</em>."
                         },
                         {
                             "svgGroupId": "g3b",
