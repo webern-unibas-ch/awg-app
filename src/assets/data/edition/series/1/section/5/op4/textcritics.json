@@ -57,7 +57,7 @@
                             "measure": "10",
                             "system": "Ges.",
                             "position": "4/8",
-                            "comment": "Text: Komma nach (um-schlun-)<em>gen</em> ergänzt mit Blick auf <strong>George_DJdS</strong>."
+                            "comment": "Text: Komma nach (um-schlun-)<em>gen</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
                         },
                         {
                             "svgGroupId": "g852b",
