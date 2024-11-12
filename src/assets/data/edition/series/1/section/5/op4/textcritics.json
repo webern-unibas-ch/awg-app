@@ -99,7 +99,7 @@
                             "measure": "13",
                             "system": "Ges.",
                             "position": "2/4–5/8",
-                            "comment": "Text sic: Großschreibung <em>Ei</em>(-nen) (wie <strong>George_DJdS</strong>)."
+                            "comment": "Text sic: Großschreibung <em>Ei</em>(-nen) (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>)."
                         },
                         {
                             "svgGroupId": "g2c",
