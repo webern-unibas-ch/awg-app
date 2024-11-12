@@ -60,7 +60,7 @@
                 "annotations": [],
                 "contents": [
                     {
-                        "item": "M 286 Sk# / M 287 Sk#",
+                        "item": "M 286 / M 287 RT",
                         "itemLinkTo": {
                             "complexId": "op19",
                             "sheetId": "SkRT"

@@ -1449,7 +1449,7 @@
                 "annotations": [],
                 "contents": [
                     {
-                        "item": "M 312 Sk5 / M 313 Sk1 / M 314 Sk1",
+                        "item": "M 312 / M 313 / M 314 RT",
                         "itemLinkTo": {
                             "complexId": "op23",
                             "sheetId": "SkRT"
