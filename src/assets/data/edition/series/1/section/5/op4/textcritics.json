@@ -22,7 +22,7 @@
                             "measure": "6",
                             "system": "Ges.",
                             "position": "3.–4. Note",
-                            "comment": "Text: Paranthesestriche vor und nach <em>Teu-re</em> ergänzt mit Blick auf <strong>George_DJdS</strong>."
+                            "comment": "Text: Paranthesestriche vor und nach <em>Teu-re</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
                         },
                         {
                             "svgGroupId": "g274b",
