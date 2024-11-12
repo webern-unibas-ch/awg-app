@@ -1,3 +1,152 @@
 {
-    "textcritics": []
+    "textcritics": [
+        {
+            "id": "M_140_TF1",
+            "label": "M 140 Textfassung 1",
+            "description": [
+                "Für die Edition von „Ja Heil und Dank dir“ M 140 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> einzige relevante Quelle. Die Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> betreffen Textfassung 2. Hauptquelle für die Textedition von „Ja Heil und Dank dir“ M 140 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> ante correcturam."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g263a",
+                            "measure": "1",
+                            "system": "Ges.",
+                            "position": "1. Note",
+                            "comment": "Text: Kleinschreibung <em>dank</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                        },
+                        {
+                            "svgGroupId": "g1a",
+                            "measure": "6",
+                            "system": "Ges.",
+                            "position": "3.–4. Note",
+                            "comment": "Text: Paranthesestriche vor und nach <em>Teu-re</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g274b",
+                            "measure": "7",
+                            "system": "Klav. u.",
+                            "position": "4/16",
+                            "comment": "<em>so zart als möglich</em> versetzt von 3/8."
+                        },
+                        {
+                            "svgGroupId": "g1b",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "6/8",
+                            "comment": "Text: Punkt nach (ster-be-wo-)<em>chen</em> ergänzt mit Blick auf ­<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g574b",
+                            "measure": "9",
+                            "system": "Ges.",
+                            "position": "1. Note",
+                            "comment": "Text: Großschreibung <em>Du</em> mit Blick auf Satzanfang und ­<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>. Siehe auch TkA zu T. 8 6/8. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                        },
+                        {
+                            "svgGroupId": "g2b",
+                            "measure": "9",
+                            "system": "Ges.",
+                            "position": "5–6/8",
+                            "comment": "Text sic: Silbentrennung <em>hie-lten</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>halten</em>."
+                        },
+                        {
+                            "svgGroupId": "g3b",
+                            "measure": "10",
+                            "system": "Ges.",
+                            "position": "4/8",
+                            "comment": "Text: Komma nach (um-schlun-)<em>gen</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g852b",
+                            "measure": "12",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "Ende des Bogens versetzt von Ende T. 11. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>: Akkoladenwechsel nach T. 11."
+                        },
+                        {
+                            "svgGroupId": "g4b",
+                            "measure": "12",
+                            "system": "Ges.",
+                            "position": "4/8",
+                            "comment": "Text sic: Kleinschreibung <em>und</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: Großschreibung <em>Und</em> (am Zeilenanfang)."
+                        },
+                        {
+                            "svgGroupId": "g5b",
+                            "measure": "12",
+                            "system": "Ges.",
+                            "position": "4. Note",
+                            "comment": "sic: Längenstrich nach <em>ganz</em>."
+                        },
+                        {
+                            "svgGroupId": "g219c",
+                            "measure": "13",
+                            "system": "Klav. o.",
+                            "position": "1/4",
+                            "comment": "Ende des Bogens versetzt von Ende T. 12. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>: Akkoladenwechsel nach T. 12."
+                        },
+                        {
+                            "svgGroupId": "g220c",
+                            "measure": "13",
+                            "system": "Klav.",
+                            "position": "1/4",
+                            "comment": "Ende der Geltungsstrichelung von <em>Pedal</em> versetzt von Ende T. 12. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>: Akkoladenwechsel nach T. 12."
+                        },
+                        {
+                            "svgGroupId": "g1c",
+                            "measure": "13",
+                            "system": "Ges.",
+                            "position": "2/4–5/8",
+                            "comment": "Text sic: Großschreibung <em>Ei</em>(-nen) (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>)."
+                        },
+                        {
+                            "svgGroupId": "g2c",
+                            "measure": "13 <br /> bis 14",
+                            "system": "Ges.",
+                            "position": "4/4 <br /> 1/8",
+                            "comment": "Text sic: Großschreibung <em>Fer</em>(-nen) (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>)."
+                        },
+                        {
+                            "svgGroupId": "g371c",
+                            "measure": "14",
+                            "system": "Ges.",
+                            "position": "1/8",
+                            "comment": "Text: Wiederholte Silbe <em>Fer</em>(-nen) weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>: Akkoladenwechsel nach T. 13."
+                        },
+                        {
+                            "svgGroupId": "g372c",
+                            "measure": "14",
+                            "system": "Ges.",
+                            "position": "1. Note",
+                            "comment": "Text: Großschreibung von <em>Dich</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                        },
+                        {
+                            "svgGroupId": "g373c",
+                            "measure": "14",
+                            "system": "Klav. o.",
+                            "position": "(8/8)",
+                            "comment": "Achtelpause (Fortsetzung der Achtelpause in Klav. u. 7/8) als redundant weggelassen."
+                        },
+                        {
+                            "svgGroupId": "g3c",
+                            "measure": "15",
+                            "system": "Ges.",
+                            "position": "1.–3. Note",
+                            "comment": "Text sic: Silbentrennung <em>so-nnen</em>(-wan-de-run-gen)."
+                        },
+                        {
+                            "svgGroupId": "g4c",
+                            "measure": "15",
+                            "system": "Ges.",
+                            "position": "8/8",
+                            "comment": "Text: Punkt nach (so-nnen-wan-de-run-)<em>gen</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
+        }
+    ]
 }
