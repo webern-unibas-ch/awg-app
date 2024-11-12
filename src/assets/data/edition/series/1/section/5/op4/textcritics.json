@@ -106,7 +106,7 @@
                             "measure": "13 <br /> bis 14",
                             "system": "Ges.",
                             "position": "4/4 <br /> 1/8",
-                            "comment": "Text sic: Großschreibung <em>Fer</em>(-nen) (wie <strong>George_DJdS</strong>)."
+                            "comment": "Text sic: Großschreibung <em>Fer</em>(-nen) (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>)."
                         },
                         {
                             "svgGroupId": "g371c",
