@@ -1399,7 +1399,7 @@
                             "measure": "6",
                             "system": "4",
                             "position": "2. Note",
-                            "comment": "[f] mit rotem Buntstift."
+                            "comment": "{{ref.getGlyph('[f]')}} mit rotem Buntstift."
                         },
                         {
                             "svgGroupId": "g11488",
@@ -2072,7 +2072,7 @@
                             "comment": "sic: {{ref.getGlyph('[#]')}} zu gis<sup>2</sup> fehlt."
                         }
                     ]
-                }    
+                }
             ],
             "linkBoxes": [
                 {
@@ -2082,9 +2082,9 @@
                         "sheetId": "M_322_Sk1"
                     }
                 }
-            ]    
+            ]
         },
-        {    
+        {
             "id": "M_322_Sk3",
             "label": "M 322 Sk3",
             "description": [
