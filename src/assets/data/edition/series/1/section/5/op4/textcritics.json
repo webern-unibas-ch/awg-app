@@ -15,7 +15,7 @@
                             "measure": "1",
                             "system": "Ges.",
                             "position": "1. Note",
-                            "comment": "Text: Kleinschreibung <em>dank</em> mit Blick auf <strong>George_DJdS</strong>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                            "comment": "Text: Kleinschreibung <em>dank</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
                         },
                         {
                             "svgGroupId": "g1a",
