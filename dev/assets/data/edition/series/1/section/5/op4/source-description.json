@@ -323,7 +323,7 @@
                                         "measure": "6 <br /> bis 7",
                                         "system": "Klav. u.",
                                         "position": "27/16 <br /> 4/16",
-                                        "comment": "Bogen (siehe Textfassung1) gestrichen und geändert zu zwei Bögen T. 6 27–28/16, T. 7 1–2/16 sowie Staccatopunkte zu T. 7 34/16 mit roter Tinte."
+                                        "comment": "Bogen (siehe Textfassung 1) gestrichen und geändert zu zwei Bögen T. 6 27–28/16, T. 7 1–2/16 sowie Staccatopunkte zu T. 7 34/16 mit roter Tinte."
                                     },
                                     {
                                         "measure": "7",
@@ -702,7 +702,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „Ja Heil und Dank dir“ M 140: Textfassung 1→2 (<strong>B<sup>b</sup></strong>)",
+                        "itemDescription": "Autograph von <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_140_TF1'})\">„Ja Heil und Dank dir“ M 140: Textfassung 1</a>→2 (<strong>B<sup>b</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "5r",
@@ -885,7 +885,9 @@
                     {
                         "id": "source_Ba_corr1",
                         "label": "Korrekturen 1 in <strong>B<sup>a</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
-                        "description": ["Die Beschreibung der Korrekturen bezieht sich auf „Noch zwingt mich Treue“ M 139: Textfassung 2."],
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Noch zwingt mich Treue“ M 139: Textfassung 2."
+                        ],
                         "comments": [
                             {
                                 "blockHeader": "",
@@ -1035,7 +1037,9 @@
                     {
                         "id": "source_Ba_corr2",
                         "label": "Korrekturen 2 in <strong>B<sup>a</sup></strong> (mit Bleistift)",
-                        "description": ["Die Beschreibung der Korrekturen bezieht sich auf „Noch zwingt mich Treue“ M 139: Textfassung 2."],
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Noch zwingt mich Treue“ M 139: Textfassung 2."
+                        ],
                         "comments": [
                             {
                                 "blockHeader": "",
@@ -1131,7 +1135,9 @@
                     {
                         "id": "source_Bb_corr",
                         "label": "Korrekturen in <strong>B<sup>b</sup></strong> (mit Bleistift)",
-                        "description": ["Die Beschreibung der Korrekturen bezieht sich auf „Ja Heil und Dank dir“ M 140: Textfassung 1."],
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_140_TF1'})\">„Ja Heil und Dank dir“ M 140: Textfassung 1</a>."
+                        ],
                         "comments": [
                             {
                                 "blockHeader": "",
@@ -1299,7 +1305,9 @@
                     {
                         "id": "source_Bc_corr1",
                         "label": "Korrekturen 1 in <strong>B<sup>c</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
-                        "description": ["Die Beschreibung der Korrekturen bezieht sich auf „So ich traurig bin“ M 141: Textfassung 1."],
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „So ich traurig bin“ M 141: Textfassung 1."
+                        ],
                         "comments": [
                             {
                                 "blockHeader": "",
@@ -1365,7 +1373,9 @@
                     {
                         "id": "source_Bc_corr2",
                         "label": "Korrekturen 2 in <strong>B<sup>c</sup></strong> (mit Bleistift)",
-                        "description": ["Die Beschreibung der Korrekturen bezieht sich auf „So ich traurig bin“ M 141: Textfassung 1."],
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „So ich traurig bin“ M 141: Textfassung 1."
+                        ],
                         "comments": [
                             {
                                 "blockHeader": "",
@@ -4224,7 +4234,7 @@
                             }
                         ]
                     }
-                ], 
+                ],
                 "corrections": [
                     {
                         "id": "source_I_corr",
