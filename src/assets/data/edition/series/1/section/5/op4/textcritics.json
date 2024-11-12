@@ -43,7 +43,7 @@
                             "measure": "9",
                             "system": "Ges.",
                             "position": "1. Note",
-                            "comment": "Text: Großschreibung <em>Du</em> mit Blick auf Satzanfang und ­<strong>George_DJdS</strong>. Siehe auch TkA zu T. 8 6/8. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                            "comment": "Text: Großschreibung <em>Du</em> mit Blick auf Satzanfang und ­<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>. Siehe auch TkA zu T. 8 6/8. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
                         },
                         {
                             "svgGroupId": "g2b",
