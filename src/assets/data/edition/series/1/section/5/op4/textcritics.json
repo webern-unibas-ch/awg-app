@@ -71,7 +71,7 @@
                             "measure": "12",
                             "system": "Ges.",
                             "position": "4/8",
-                            "comment": "Text sic: Kleinschreibung <em>und</em>. <strong>George_DJdS</strong>: Großschreibung <em>Und</em> (am Zeilenanfang)."
+                            "comment": "Text sic: Kleinschreibung <em>und</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: Großschreibung <em>Und</em> (am Zeilenanfang)."
                         },
                         {
                             "svgGroupId": "g5b",
