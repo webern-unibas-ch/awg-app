@@ -18,7 +18,10 @@
                         </td>
                     </tr>
                 }
-                @for (textcriticalComment of textcriticalCommentBlock.blockComments; track $index) {
+                @for (
+                    textcriticalComment of textcriticalCommentBlock.blockComments;
+                    track textcriticalComment.svgGroupId
+                ) {
                     <tr>
                         <td [awgAbbr]="textcriticalComment.measure"></td>
                         <td [awgAbbr]="textcriticalComment.system"></td>
