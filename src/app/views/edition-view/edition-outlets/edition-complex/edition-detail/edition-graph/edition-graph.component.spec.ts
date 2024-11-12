@@ -1,4 +1,4 @@
-import { DOCUMENT, JsonPipe } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 
@@ -27,6 +27,7 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
+import { FullscreenService } from '@awg-app/core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
@@ -34,6 +35,7 @@ import { EditionComplex, Graph, GraphList, GraphRDFData, GraphSparqlQuery } from
 import { EditionComplexesService, EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionGraphComponent } from './edition-graph.component';
+import { GraphVisualizerComponent } from './graph-visualizer';
 
 // Mock components
 @Component({ selector: 'awg-alert-error', template: '' })
@@ -70,9 +72,7 @@ describe('EditionGraphComponent (DONE)', () => {
     let mockDocument: Document;
     let mockEditionStateService: Partial<EditionStateService>;
     let mockEditionDataService: Partial<EditionDataService>;
-
-    let editionStateService: Partial<EditionStateService>;
-    let editionDataService: Partial<EditionDataService>;
+    let mockFullscreenService: Partial<FullscreenService>;
 
     let modalOpenSpy: Spy;
     let compGetEditonGraphDataSpy: Spy;
@@ -85,8 +85,6 @@ describe('EditionGraphComponent (DONE)', () => {
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
     let expectedIsFullscreen: boolean;
-
-    const jsonPipe = new JsonPipe();
 
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
@@ -102,6 +100,12 @@ describe('EditionGraphComponent (DONE)', () => {
         mockEditionStateService = {
             getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
         };
+        // Mocked fullscreenService
+        mockFullscreenService = {
+            isFullscreen: (): boolean => false,
+            openFullscreen: (el: HTMLElement): void => {},
+            closeFullscreen: (): void => {},
+        };
 
         TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule],
@@ -116,6 +120,7 @@ describe('EditionGraphComponent (DONE)', () => {
             providers: [
                 { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: EditionStateService, useValue: mockEditionStateService },
+                { provide: FullscreenService, useValue: mockFullscreenService },
             ],
         }).compileComponents();
     }));
@@ -126,10 +131,6 @@ describe('EditionGraphComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         mockDocument = TestBed.inject(DOCUMENT);
-
-        // Inject services from root
-        editionDataService = TestBed.inject(EditionDataService);
-        editionStateService = TestBed.inject(EditionStateService);
 
         // TestData (default)
         expectedIsFullscreen = false;
@@ -148,10 +149,10 @@ describe('EditionGraphComponent (DONE)', () => {
         compGetEditonGraphDataSpy = spyOn(component, 'getEditionGraphData').and.callThrough();
 
         editionStateServiceGetSelectedEditionComplexSpy = spyOn(
-            editionStateService,
+            mockEditionStateService,
             'getSelectedEditionComplex'
         ).and.callThrough();
-        editionDataServiceGetEditionGraphDataSpy = spyOn(editionDataService, 'getEditionGraphData').and.callFake(
+        editionDataServiceGetEditionGraphDataSpy = spyOn(mockEditionDataService, 'getEditionGraphData').and.callFake(
             (editionComplex: EditionComplex) => {
                 switch (editionComplex) {
                     case EditionComplexesService.getEditionComplexById('OP12'): {
@@ -174,14 +175,6 @@ describe('EditionGraphComponent (DONE)', () => {
 
     it('... should create', () => {
         expect(component).toBeTruthy();
-    });
-
-    it('... injected editionDataService should use provided mockValue', () => {
-        expectToBe(mockEditionDataService === editionDataService, true);
-    });
-
-    it('... injected editionStateService should use provided mockValue', () => {
-        expectToBe(mockEditionStateService === editionStateService, true);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -637,6 +630,32 @@ describe('EditionGraphComponent (DONE)', () => {
             });
         });
 
+        describe('#Hostlistener onFullscreenChange()', () => {
+            it('... should have a hostlistener `onFullscreenChange`', () => {
+                expect(component.onFullscreenChange).toBeDefined();
+            });
+
+            it('... should trigger `fullscreenService.isFullscreen`', () => {
+                const isFullscreenSpy = spyOn(mockFullscreenService, 'isFullscreen').and.callThrough();
+
+                // Simulate fullscreenchange event
+                const event = new Event('fullscreenchange');
+                mockDocument.dispatchEvent(event);
+
+                expectSpyCall(isFullscreenSpy, 1);
+            });
+
+            it('... should update `isFullscreen`', () => {
+                const isFullscreenSpy = spyOn(mockFullscreenService, 'isFullscreen').and.returnValue(true);
+
+                // Simulate fullscreenchange event
+                const event = new Event('fullscreenchange');
+                mockDocument.dispatchEvent(event);
+
+                expectToBe(component.isFullscreen, true);
+            });
+        });
+
         describe('#getEditionGraphData()', () => {
             it('... should have a method `getEditionGraphData`', () => {
                 expect(component.getEditionGraphData).toBeDefined();
@@ -739,6 +758,61 @@ describe('EditionGraphComponent (DONE)', () => {
 
                 expectToEqual(component.errorObject, expectedError);
             }));
+        });
+
+        describe('#openFullscreen()', () => {
+            beforeEach(() => {
+                // Mock the graphVisualizer child component
+                component.graphVisualizer = {
+                    fs: {
+                        nativeElement: mockDocument.createElement('div'),
+                    },
+                } as GraphVisualizerComponent;
+            });
+
+            it('... should have a method `openFullscreen`', () => {
+                expect(component.openFullscreen).toBeDefined();
+            });
+
+            it('... should trigger `fullscreenService.openFullscreen`', () => {
+                const openFullscreenSpy = spyOn(mockFullscreenService, 'openFullscreen').and.callThrough();
+                expectSpyCall(openFullscreenSpy, 0);
+
+                component.openFullscreen();
+
+                expectSpyCall(openFullscreenSpy, 1);
+            });
+
+            it('... should set isFullscreen to true', () => {
+                component.isFullscreen = false;
+
+                component.openFullscreen();
+
+                expectToBe(component.isFullscreen, true);
+            });
+        });
+
+        describe('#closeFullscreen()', () => {
+            it('... should have a method `closeFullscreen`', () => {
+                expect(component.closeFullscreen).toBeDefined();
+            });
+
+            it('... should trigger `fullscreenService.closeFullscreen`', () => {
+                const closeFullscreenSpy = spyOn(mockFullscreenService, 'closeFullscreen').and.callThrough();
+                expectSpyCall(closeFullscreenSpy, 0);
+
+                component.closeFullscreen();
+
+                expectSpyCall(closeFullscreenSpy, 1);
+            });
+
+            it('... should set isFullscreen to false', () => {
+                component.isFullscreen = true;
+
+                component.closeFullscreen();
+
+                expectToBe(component.isFullscreen, false);
+            });
         });
     });
 });
