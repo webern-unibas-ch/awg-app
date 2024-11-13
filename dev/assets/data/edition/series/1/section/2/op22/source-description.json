@@ -131,7 +131,7 @@
                 ],
                 "contents": [
                     {
-                        "item": "M 305 Sk# / M 308 Sk# / M 309 Sk#",
+                        "item": "M 305 / M 308 / M 309 RT",
                         "itemLinkTo": {
                             "complexId": "op22",
                             "sheetId": "SkRT"

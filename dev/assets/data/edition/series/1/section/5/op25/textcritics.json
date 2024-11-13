@@ -812,7 +812,7 @@
                             "measure": "{5}",
                             "system": "4",
                             "position": "6/8",
-                            "comment": "<em>I</em> markiert hier als Reihenziffer vermutlich den wiederholten Beginn der in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3'})\"><strong>Sk3</strong></a> T. 1–2 1. Note und in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1'})\"><strong>Sk3.1</strong></a> fortgeführten Zwölftonreihe. Diese Reihe ist nicht identisch mit G<sub>g</sub> in den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_C'})\"><strong>C</strong></a> (dort jeweils mit arabischer Ziffer <em>1</em> bezeichnet)."
+                            "comment": "<em>I</em> markiert hier als Reihenziffer vermutlich den wiederholten Beginn der in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3'})\"><strong>Sk3</strong></a> T. 1–2 1. Note und in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1'})\"><strong>Sk3.1</strong></a> fortgeführten Zwölftonreihe. Diese Reihe ist nicht identisch mit G<sub>g</sub> in den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 / M 321 / M 322 RT</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_C'})\"><strong>C</strong></a> (dort jeweils mit arabischer Ziffer <em>1</em> bezeichnet)."
                         },
                         {
                             "svgGroupId": "g1241",
@@ -1213,7 +1213,7 @@
             "label": "M 317 Sk4",
             "description": [
                 "<strong>Sk4</strong> ist eine vollständige Verlaufsskizze des Liedes „Wie bin ich froh!“ M 317. Die Verlaufsskizze erstreckt sich über vier Akkoladen (T. {{ '{' }}1A{{ '}' }}–3A, T. 3B–6, T. 7–12 und T. 13–15) und umfasst im Unterschied zu den Reinschriften von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\"><strong>Textfassung 1</strong></a> und <strong>Textfassung 2</strong> nicht zwölf, sondern 15 gültige Takte. <br /> Bereits vor der Niederschrift von <strong>Sk4</strong> war Bl. 39<sup>r</sup> mit Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von System 1–4 versehen (<a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4b'})\"><strong>Sk4</strong> T. 3B–6</a>): Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufsskizze zu M 316 (op. 24/I) auf Bl. 22<sup>v</sup>–26<sup>r</sup>, 31<sup>v</sup>–33<sup>r</sup>, und 36<sup>v</sup>–38<sup>r</sup> im selben <strong>Skizzenbuch</strong>. <br /> (Siehe auch Akkoladenstrich von System 1–4 sowie die Schlüsselung in System 2–3 am linken Rand von Bl. 38<sup>v</sup>, die ebenfalls als Präparierung der Verlaufsskizze zu M 316 fungieren [<a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk1'})\"><strong>Sk1</strong></a> bis <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_2'})\"><strong>Sk3.1.2</strong></a>].) <br /> <strong>Sk4</strong> ist laut der nach <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\">T. 15</a> folgenden Datierung am 16. Juli 1934 beendet worden.",
-                "Die Ziffern <em>1</em> (G<sub>g</sub>), <em>2</em> (K<sub>gis</sub>), <em>3</em> (U<sub>g</sub>) und <em>4</em> (KU<sub>fis</sub>) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong></a>. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."
+                "Die Ziffern <em>1</em> (G<sub>g</sub>), <em>2</em> (K<sub>gis</sub>), <em>3</em> (U<sub>g</sub>) und <em>4</em> (KU<sub>fis</sub>) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 / M 321 / M 322 RT</strong></a>. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."
             ],
             "comments": [
                 {
@@ -1843,7 +1843,7 @@
         },
         {
             "id": "SkRT",
-            "label": "M 317 Sk5 / M 321 Sk1 / M 322 Sk1 (Reihentabelle op. 25)",
+            "label": "M 317 / M 321 / M 322 RT (Reihentabelle op. 25)",
             "description": [
                 "Die <strong>Reihentabelle op. 25</strong> weist neben den vier bereits in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>Sk3.1.3</strong></a> tabellarisch notierten Reihenformen 1–4 die entsprechenden Transpositionen der <em>Unterquint</em> (Reihenformen 5–8) auf, die lediglich im <em>2. Lied</em> (M 322) kompositorisch verwendet werden."
             ],
@@ -1924,7 +1924,7 @@
             "label": "M 321 Sk1",
             "description": [
                 "<strong>Sk1</strong> skizziert alternative Anfänge der Singstimme von „Sterne, Ihr silbernen Bienen“ M 321. Auf derselben Seite des Skizzenbuchs finden sich daneben Skizzen zum dritten Satz des Konzerts op. 24, dessen erste (M 320 Sk1) oben links mit <em>22. VIII. 34</em> datiert ist.",
-                "Die Ziffern <em>1</em> (G<sub>g</sub>), <em>2</em> (K<sub>gis</sub>), <em>3</em> (U<sub>g</sub>) und <em>4</em> (KU<sub>fis</sub>) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong></a>. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."
+                "Die Ziffern <em>1</em> (G<sub>g</sub>), <em>2</em> (K<sub>gis</sub>), <em>3</em> (U<sub>g</sub>) und <em>4</em> (KU<sub>fis</sub>) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 / M 321 / M 322 RT</strong></a>. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."
             ],
             "comments": [
                 {
@@ -1976,7 +1976,7 @@
             "label": "M 321 Sk2",
             "description": [
                 "<strong>Sk2</strong> skizziert einen Anfang der Singstimme von „Des Herzens Purpurvogel“ M 322 in zwei metrischen Varianten. Die Transkription zählt die Taktzahlen der Variante in System 1 (Alla-breve-Takt) mit dem Suffix x, die der Variante in System 2 (3/2-Takt) mit dem Suffix y.",
-                "Die Ziffer <em>1</em> (G<sub>g</sub>) in T. 1x und T. 3y bezeichnet den Anfang der betreffenden Reihenform gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong></a>. Winkel markieren deren Ende (┐, ┘) oder Anfang (┌, └)."
+                "Die Ziffer <em>1</em> (G<sub>g</sub>) in T. 1x und T. 3y bezeichnet den Anfang der betreffenden Reihenform gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 / M 321 / M 322 RT</strong></a>. Winkel markieren deren Ende (┐, ┘) oder Anfang (┌, └)."
             ],
             "comments": [
                 {
@@ -2013,7 +2013,7 @@
             "label": "M 322 Sk1",
             "description": [
                 "<strong>Sk1</strong> skizziert einen Anfang der Singstimme von „Des Herzens Purpurvogel“ M 322.",
-                "Die Ziffer <em>5</em> in T. 1 bezeichnet den Anfang der verwendeten Reihenform (G<sub>c</sub>) gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong></a>."
+                "Die Ziffer <em>5</em> in T. 1 bezeichnet den Anfang der verwendeten Reihenform (G<sub>c</sub>) gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 / M 321 / M 322 RT</strong></a>."
             ],
             "comments": [
                 {
@@ -2051,7 +2051,7 @@
             "label": "M 322 Sk2",
             "description": [
                 "<strong>Sk2</strong> skizziert alternative Anfänge der Singstimme von „Des Herzens Purpurvogel“ M 322.",
-                "Die Ziffer <em>7</em> in T. 1 bezeichnet den Anfang der verwendeten Reihenform (U<sub>c</sub>) gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong></a>."
+                "Die Ziffer <em>7</em> in T. 1 bezeichnet den Anfang der verwendeten Reihenform (U<sub>c</sub>) gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 / M 321 / M 322 RT</strong></a>."
             ],
             "comments": [
                 {
@@ -2089,7 +2089,7 @@
             "label": "M 322 Sk3",
             "description": [
                 "<strong>Sk3</strong> ist der lediglich elf gültige Takte umfassende Ansatz einer Verlaufsskizze des Liedes „Des Herzens Purpurvogel“ M 322.",
-                "Die Ziffern <em>5</em> (G<sub>c</sub>), <em>7</em> (U<sub>c</sub>) und <em>8</em> (KU<sub>h</sub>) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong></a>. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."
+                "Die Ziffern <em>5</em> (G<sub>c</sub>), <em>7</em> (U<sub>c</sub>) und <em>8</em> (KU<sub>h</sub>) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>M 317 Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 / M 321 / M 322 RT</strong></a>. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."
             ],
             "comments": [
                 {
