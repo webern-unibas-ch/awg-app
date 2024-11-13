@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 
 import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -88,21 +88,26 @@ export class EditionSvgSheetFooterComponent {
     ref: EditionSvgSheetFooterComponent;
 
     /**
-     * Public variable: showTextcritics.
+     * Public variable: showEvaluation.
      *
-     * It keeps a boolean flag if the textcritics shall be displayed.
+     * It keeps a boolean flag if the evaluation shall be displayed.
      */
-    showTextcritics = false;
+    showEvaluation = false;
+
+    /**
+     * Public injection variable: UTILS.
+     *
+     * It keeps an instance of the injected UtilityService.
+     */
+    readonly UTILS = inject(UtilityService);
 
     /**
      * Constructor of the EditionSvgSheetFooterComponent.
      *
-     * It declares a public instance of the UtilityService and
-     * initializes the self-referring ref variable needed for CompileHtml library.
+     * It initializes the self-referring ref variable needed for CompileHtml library.
      *
-     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor(public utils: UtilityService) {
+    constructor() {
         this.ref = this;
     }
 
@@ -155,13 +160,13 @@ export class EditionSvgSheetFooterComponent {
     }
 
     /**
-     * Public method: toggleTextcritics.
+     * Public method: toggleEvaluation.
      *
-     * It toogles the boolean switch for displaying the textcritics.
+     * It toogles the boolean switch for displaying the evaluation.
      *
      * @returns {void} Toggles the boolean flag.
      */
-    toggleTextcritics(): void {
-        this.showTextcritics = !this.showTextcritics;
+    toggleEvaluation(): void {
+        this.showEvaluation = !this.showEvaluation;
     }
 }
