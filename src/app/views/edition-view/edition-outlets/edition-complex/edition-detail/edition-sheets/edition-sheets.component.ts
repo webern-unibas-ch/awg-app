@@ -4,7 +4,7 @@ import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/rou
 import { combineLatest, EMPTY, Observable, Subject } from 'rxjs';
 import { catchError, switchMap, takeUntil, tap } from 'rxjs/operators';
 
-import { UtilityService } from '@awg-core/services';
+import { LoadingService, UtilityService } from '@awg-core/services';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
@@ -55,13 +55,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * It keeps an errorObject for the service calls.
      */
     errorObject = null;
-
-    /**
-     * Public variable: isLoading.
-     *
-     * It keeps the loading status of the edition sheets.
-     */
-    isLoading = true;
 
     /**
      * Public variable: folioConvoluteData.
@@ -162,6 +155,13 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
+     * Private readonly injection variable: _loadingService.
+     *
+     * It keeps the instance of the injected LoadingService.
+     */
+    private readonly _loadingService = inject(LoadingService);
+
+    /**
      * Private readonly injection variable: _route.
      *
      * It keeps the instance of the injected Angular ActivatedRoute.
@@ -192,6 +192,15 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
+     * Gets the loading status observable from the {@link LoadingService}.
+     *
+     * @returns {Observable<boolean>}
+     */
+    get isLoading$(): Observable<boolean> {
+        return this._loadingService.getLoadingStatus();
+    }
+
+    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
@@ -199,6 +208,20 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
         this.getEditionSheetsData();
+    }
+
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     */
+    ngOnDestroy() {
+        // Emit truthy value to end all subscriptions
+        this._destroyed$.next(true);
+
+        // Now let's also complete the subject itself
+        this._destroyed$.complete();
     }
 
     /**
@@ -219,76 +242,11 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
                 // Error handling
                 catchError(err => {
                     this.errorObject = err;
-                    this.isLoading = false;
                     return EMPTY;
                 }),
                 takeUntil(this._destroyed$)
             )
-            .subscribe({
-                next: () => {
-                    this.isLoading = false;
-                },
-                error: err => {
-                    this.errorObject = err;
-                    this.isLoading = false;
-                },
-            });
-    }
-
-    /**
-     * Public method: onLinkBoxSelect.
-     *
-     * It finds the target SVG sheet of a link box and selects it.
-     *
-     * @param {string} linkBoxId The given link box id.
-     * @returns {void} Finds and selects the target SVG sheet of a link box.
-     */
-    onLinkBoxSelect(linkBoxId: string): void {
-        if (!this.selectedSvgSheet || !this.selectedTextcritics?.linkBoxes) {
-            return;
-        }
-
-        const selectedLinkBox = this.selectedTextcritics.linkBoxes.find(linkBox => linkBox.svgGroupId === linkBoxId);
-
-        if (selectedLinkBox) {
-            const linkedSheetIds = selectedLinkBox.linkTo;
-            this.onSvgSheetSelect(linkedSheetIds);
-        }
-    }
-
-    /**
-     * Public method: onReportFragmentNavigate.
-     *
-     * It navigates to the '/report/' route using the provided fragmentId
-     * within the context of an edition complex identified by the provided complexId.
-     *
-     * @param {object}  reportIds The given report ids as { complexId: string, fragmentId: string }.
-     * @returns {void} Navigates to the edition report.
-     */
-    onReportFragmentNavigate(reportIds: { complexId: string; fragmentId: string }): void {
-        const reportRoute = this.editionRouteConstants.EDITION_REPORT.route;
-        const navigationExtras: NavigationExtras = {
-            fragment: reportIds?.fragmentId ?? '',
-        };
-
-        this._navigateWithComplexId(reportIds?.complexId, reportRoute, navigationExtras);
-    }
-
-    /**
-     * Public method: onOverlaySelect.
-     *
-     * It finds the corresponding textcritical comments to a list of selected overlays.
-     *
-     * @param {EditionSvgOverlay[]} overlays The given SVG overlays.
-     * @returns {void} Sets the selectedTextcriticalComments and showTka variable.
-     */
-    onOverlaySelect(overlays: EditionSvgOverlay[]): void {
-        this.selectedTextcriticalCommentBlocks = this._editionSheetsService.getTextcriticalCommentsForOverlays(
-            this.selectedTextcritics.comments,
-            overlays
-        );
-
-        this.showTkA = this._utils.isNotEmptyArray(this.selectedTextcriticalCommentBlocks);
+            .subscribe();
     }
 
     /**
@@ -321,6 +279,62 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
+     * Public method: onLinkBoxSelect.
+     *
+     * It finds the target SVG sheet of a link box and selects it.
+     *
+     * @param {string} linkBoxId The given link box id.
+     * @returns {void} Finds and selects the target SVG sheet of a link box.
+     */
+    onLinkBoxSelect(linkBoxId: string): void {
+        if (!this.selectedSvgSheet || !this.selectedTextcritics?.linkBoxes) {
+            return;
+        }
+
+        const selectedLinkBox = this.selectedTextcritics.linkBoxes.find(linkBox => linkBox.svgGroupId === linkBoxId);
+
+        if (selectedLinkBox) {
+            const linkedSheetIds = selectedLinkBox.linkTo;
+            this.onSvgSheetSelect(linkedSheetIds);
+        }
+    }
+
+    /**
+     * Public method: onOverlaySelect.
+     *
+     * It finds the corresponding textcritical comments to a list of selected overlays.
+     *
+     * @param {EditionSvgOverlay[]} overlays The given SVG overlays.
+     * @returns {void} Sets the selectedTextcriticalComments and showTka variable.
+     */
+    onOverlaySelect(overlays: EditionSvgOverlay[]): void {
+        this.selectedTextcriticalCommentBlocks = this._editionSheetsService.getTextcriticalCommentsForOverlays(
+            this.selectedTextcritics.comments,
+            overlays
+        );
+
+        this.showTkA = this._utils.isNotEmptyArray(this.selectedTextcriticalCommentBlocks);
+    }
+
+    /**
+     * Public method: onReportFragmentNavigate.
+     *
+     * It navigates to the '/report/' route using the provided fragmentId
+     * within the context of an edition complex identified by the provided complexId.
+     *
+     * @param {object}  reportIds The given report ids as { complexId: string, fragmentId: string }.
+     * @returns {void} Navigates to the edition report.
+     */
+    onReportFragmentNavigate(reportIds: { complexId: string; fragmentId: string }): void {
+        const reportRoute = this.editionRouteConstants.EDITION_REPORT.route;
+        const navigationExtras: NavigationExtras = {
+            fragment: reportIds?.fragmentId ?? '',
+        };
+
+        this._navigateWithComplexId(reportIds?.complexId, reportRoute, navigationExtras);
+    }
+
+    /**
      * Public method: onSvgSheetSelect.
      *
      * It navigates to the '/sheet/' route using the provided sheetId
@@ -337,20 +351,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         };
 
         this._navigateWithComplexId(sheetIds?.complexId, sheetRoute, navigationExtras);
-    }
-
-    /**
-     * Angular life cycle hook: ngOnDestroy.
-     *
-     * It calls the containing methods
-     * when destroying the component.
-     */
-    ngOnDestroy() {
-        // Emit truthy value to end all subscriptions
-        this._destroyed$.next(true);
-
-        // Now let's also complete the subject itself
-        this._destroyed$.complete();
     }
 
     /**
@@ -379,7 +379,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     private _fetchEditionComplexData(
         queryParams: ParamMap
     ): Observable<EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
-        this.isLoading = true;
         return this._editionStateService.getSelectedEditionComplex().pipe(
             // Set editionComplex
             tap((complex: EditionComplex) => (this.editionComplex = complex)),
@@ -438,7 +437,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         }
 
         this._isFirstPageLoad = false;
-        this.isLoading = false;
     }
 
     /**

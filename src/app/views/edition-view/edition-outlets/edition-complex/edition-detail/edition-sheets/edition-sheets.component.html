@@ -4,7 +4,7 @@
     <awg-modal #modal></awg-modal>
 
     <!-- loading spinner -->
-    @if (isLoading) {
+    @if (isLoading$ | async) {
         <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
     } @else {
         <!-- error message -->
