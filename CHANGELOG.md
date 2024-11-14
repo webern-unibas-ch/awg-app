@@ -2,6 +2,77 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.1.0](https://github.com/webern-unibas-ch/awg-app/compare/v1.0.1...v1.1.0) (2024-11-14)
+
+
+### Features
+
+* **assets:** activate edition complex M 322 ([cb2f960](https://github.com/webern-unibas-ch/awg-app/commit/cb2f96072026d6cbf9e09403b3e008290a5c53d3))
+* **assets:** add corrections for Op4: H ([7490357](https://github.com/webern-unibas-ch/awg-app/commit/7490357de9ca590a46ca019f67a318000ebacc5a))
+* **assets:** add files for M 140 TF1 ([fce218a](https://github.com/webern-unibas-ch/awg-app/commit/fce218a1f3bf51989803a216570ffac9252605f2))
+* **assets:** add files for m321 Sk1 & Sk2 ([39a5a54](https://github.com/webern-unibas-ch/awg-app/commit/39a5a549947972439f1bb81491bab5bed03846d3)), closes [/github.com/webern-unibas-ch/awg-app/issues/551#issuecomment-2462399776](https://github.com/webern-unibas-ch//github.com/webern-unibas-ch/awg-app/issues/551/issues/issuecomment-2462399776) [/github.com/webern-unibas-ch/awg-app/issues/551#issuecomment-2462399776](https://github.com/webern-unibas-ch//github.com/webern-unibas-ch/awg-app/issues/551/issues/issuecomment-2462399776)
+* **assets:** add files for m322 Sk1 & Sk2 ([2d9eb0f](https://github.com/webern-unibas-ch/awg-app/commit/2d9eb0f7f7dd19d8b59b470ab0aa7299263621a8))
+* **assets:** add files for m322 Sk3 ([7fa50d7](https://github.com/webern-unibas-ch/awg-app/commit/7fa50d7a97ec445f0b5d4238023922a206f37570)), closes [#1](https://github.com/webern-unibas-ch/awg-app/issues/1) [#2](https://github.com/webern-unibas-ch/awg-app/issues/2)
+* **core:** add fullscreen service ([610d45f](https://github.com/webern-unibas-ch/awg-app/commit/610d45f3a9cf6562362cefb4b9da0527aef6018b))
+* **edition:** add fullscreen option to svg sheet viewer ([ea42db2](https://github.com/webern-unibas-ch/awg-app/commit/ea42db24f1d675c46163dfd916d624ca92f8a7a0))
+
+
+### Bug Fixes
+
+* **app:** make fields only assigned in the constructor readonly ([a6611cc](https://github.com/webern-unibas-ch/awg-app/commit/a6611cca748122ff06f4f3cf9d6faeac1c5df329))
+* **app:** make fields only assigned in the constructor readonly (final) ([8cd868b](https://github.com/webern-unibas-ch/awg-app/commit/8cd868b5209e352dddd4f56215914488f111fed4))
+* **assets:** add item links for m321 & m322 ([fa8f690](https://github.com/webern-unibas-ch/awg-app/commit/fa8f6902db061ccd7fe78fc63237aa89d1b2cad0))
+* **assets:** add item links to m140 ([f720528](https://github.com/webern-unibas-ch/awg-app/commit/f72052855652ad47c37daba87deb74ed9f47dd7f))
+* **assets:** add missing supplied classes in M 321 Sk1 & Sk2 ([77d8a19](https://github.com/webern-unibas-ch/awg-app/commit/77d8a1933b3d9f069da4ff0bfd834fd730c54d44))
+* **assets:** add missing supplied classes to svg files of m317 ([29bc4b9](https://github.com/webern-unibas-ch/awg-app/commit/29bc4b9f51c9b09338bef12c95dbca1686a19c68))
+* **assets:** adjust files for row tables ([fd29b81](https://github.com/webern-unibas-ch/awg-app/commit/fd29b81e0c278bcbeba2f35c47174a3340a75ee4))
+* **assets:** fix missing glyphs ([662ef69](https://github.com/webern-unibas-ch/awg-app/commit/662ef690367cbfbd27b4cbf200f75108f4576472))
+* **assets:** fix wrong references in files for m322 ([a4b9ccf](https://github.com/webern-unibas-ch/awg-app/commit/a4b9ccf2d5470c6ab162b4481ebd553f7313cf56))
+* **assets:** optimize svgs for AWG I/5 with SVGO ([0d3e880](https://github.com/webern-unibas-ch/awg-app/commit/0d3e8806b97dc4cea2558c9f64ae3fcd9e9a9280))
+* **assets:** optimize svgs for op25 with SVGO ([191eb49](https://github.com/webern-unibas-ch/awg-app/commit/191eb49f5b0cf1d9d5b98de087f55f66eb129ed6))
+* **assets:** optimize svgs for op25 with SVGO ([953e37d](https://github.com/webern-unibas-ch/awg-app/commit/953e37dd6985df53a4b92835d3b8f30b30ff8a24))
+* **assets:** update source description of op25 ([ca05932](https://github.com/webern-unibas-ch/awg-app/commit/ca059327bc493a684833a3a8ab081adc8bb4d2be))
+* **edition:** add missing glyphs for quadruple dynamics ([a40720f](https://github.com/webern-unibas-ch/awg-app/commit/a40720f3e8251df63713ca9dd1e23a0de36f627d))
+
+
+### Code Refactoring
+
+* **edition:** reorganize glyphs data file ([fffae9d](https://github.com/webern-unibas-ch/awg-app/commit/fffae9d66d69d910f2ee529942add36e49c674ce))
+* **edition:** use loading service for edition sheets ([42a2c31](https://github.com/webern-unibas-ch/awg-app/commit/42a2c315a200c0723014d686da316225a79264f7))
+* **shared:** move fullscreen toggle into separate component ([8b075f3](https://github.com/webern-unibas-ch/awg-app/commit/8b075f395d52ce949f734383e803ab58d77d00eb))
+
+
+### Tests
+
+* **core:** fix deprecated method in tests for navbar ([5954682](https://github.com/webern-unibas-ch/awg-app/commit/5954682823c039a6e2a72d7ec6c05be99fc82bb8))
+
+
+### Styles
+
+* **edition:** use card style for sheet footer ([a19f00c](https://github.com/webern-unibas-ch/awg-app/commit/a19f00cd75879296323dbca37481e32c294ca27f))
+* **edition:** use rounded corners for sheet viewer ([c2bba3c](https://github.com/webern-unibas-ch/awg-app/commit/c2bba3c388dece236749e5898b27d3fca24f2cb5))
+
+
+### Build System
+
+* **deps-dev:** bump @types/node from 20.14.14 to 22.9.0 ([5055c14](https://github.com/webern-unibas-ch/awg-app/commit/5055c14cc67a2f68cbccf5ad25c8b57e9684c5e7))
+* **deps-dev:** bump eslint-plugin-jsdoc from 50.4.3 to 50.5.0 ([0c63c8f](https://github.com/webern-unibas-ch/awg-app/commit/0c63c8f69614f3ebe056ba0701b41999b8e2fa63))
+* **deps-dev:** bump the angular-cli-devkit group with 2 updates ([bc02c02](https://github.com/webern-unibas-ch/awg-app/commit/bc02c02f0137ed2e418979c40bb56b69bfa0da50))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([9286a39](https://github.com/webern-unibas-ch/awg-app/commit/9286a3910ef6ff4836614087d25f3ca0dadef152))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([bbdd6bb](https://github.com/webern-unibas-ch/awg-app/commit/bbdd6bba60baa2676b666705a404c4c9d051371a))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([13a2e4c](https://github.com/webern-unibas-ch/awg-app/commit/13a2e4c0af4db876ce2ed22503ada5776cf37f8d))
+* **deps:** bump @codemirror/legacy-modes from 6.4.1 to 6.4.2 ([817ba8d](https://github.com/webern-unibas-ch/awg-app/commit/817ba8dc66647c96b5ed20e8c61fabc68ed6862e))
+* **deps:** bump actions/dependency-review-action from 4.3.5 to 4.4.0 ([4f7a578](https://github.com/webern-unibas-ch/awg-app/commit/4f7a578af2238e7506c4319cf4662343e0648562))
+* **deps:** bump github/codeql-action from 3.27.0 to 3.27.1 ([d0feb24](https://github.com/webern-unibas-ch/awg-app/commit/d0feb24e461e714527f1bf46d35901ab514c7280))
+* **deps:** bump github/codeql-action from 3.27.1 to 3.27.2 ([e1c3b28](https://github.com/webern-unibas-ch/awg-app/commit/e1c3b2855490d052595e6f49034431566d79ec60))
+* **deps:** bump github/codeql-action from 3.27.2 to 3.27.3 ([0b92434](https://github.com/webern-unibas-ch/awg-app/commit/0b9243409d76b755a3f8cf3dfccbf6ba2065d879))
+* **deps:** bump github/codeql-action from 3.27.3 to 3.27.4 ([7e246a8](https://github.com/webern-unibas-ch/awg-app/commit/7e246a8d98354c8019792d7dabf61fd2dcccb69a))
+* **deps:** bump n3 from 1.22.3 to 1.23.0 ([da7531b](https://github.com/webern-unibas-ch/awg-app/commit/da7531bd73ab35f4ca47757b62d7feacd48528c5))
+* **deps:** bump softprops/action-gh-release from 2.0.8 to 2.0.9 ([1facc9d](https://github.com/webern-unibas-ch/awg-app/commit/1facc9df4f4936fc9042e7d63b7b67df3f54f57b))
+* **deps:** bump softprops/action-gh-release from 2.0.9 to 2.1.0 ([2638e77](https://github.com/webern-unibas-ch/awg-app/commit/2638e774a705e5aeec874e4bb8604cb870d6bab6))
+* **deps:** bump the angular group with 11 updates ([5245667](https://github.com/webern-unibas-ch/awg-app/commit/5245667e053e653f5d3d9fd4d434263c2025694b))
+* **deps:** bump the angular group with 11 updates ([8e8384d](https://github.com/webern-unibas-ch/awg-app/commit/8e8384d3b85c2ffe0182369a1eed2c51c121df49))
+
 ## [1.0.1](https://github.com/webern-unibas-ch/awg-app/compare/v1.0.0...v1.0.1) (2024-11-12)
 
 
