@@ -164,7 +164,7 @@
                             "measure": "4",
                             "system": "15",
                             "position": "1. Note",
-                            "comment": "[a] überschreibt [b]."
+                            "comment": "{{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[b]')}}."
                         },
                         {
                             "svgGroupId": "g1164",

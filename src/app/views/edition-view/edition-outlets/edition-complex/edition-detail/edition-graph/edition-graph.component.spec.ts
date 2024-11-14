@@ -1,5 +1,5 @@
-import { DOCUMENT, JsonPipe } from '@angular/common';
-import { Component, DebugElement, Input } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {
@@ -13,6 +13,7 @@ import {
 import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
+import { faCompress, faExpand, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
@@ -27,6 +28,7 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
+import { FullscreenService } from '@awg-app/core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
@@ -42,13 +44,27 @@ class AlertErrorStubComponent {
     errorObject: any;
 }
 
-@Component({ selector: 'awg-graph-visualizer', template: '' })
+@Component({ selector: 'awg-fullscreen-toggle', template: '' })
+class FullscreenToggleStubComponent {
+    @Input()
+    fsElement: HTMLElement;
+    @Output()
+    toggleFullscreenRequest = new EventEmitter<boolean>();
+}
+
+@Component({
+    selector: 'awg-graph-visualizer',
+    template: '',
+})
 class GraphVisualizerStubComponent {
     @Input()
     graphRDFInputData: GraphRDFData;
-
     @Input()
     isFullscreen: boolean;
+    // Mock the viewChild fs
+    get fs() {
+        return { nativeElement: '<div></div>' };
+    }
 }
 
 @Component({ selector: 'awg-modal', template: '' })
@@ -70,12 +86,11 @@ describe('EditionGraphComponent (DONE)', () => {
     let mockDocument: Document;
     let mockEditionStateService: Partial<EditionStateService>;
     let mockEditionDataService: Partial<EditionDataService>;
-
-    let editionStateService: Partial<EditionStateService>;
-    let editionDataService: Partial<EditionDataService>;
+    let mockFullscreenService: Partial<FullscreenService>;
 
     let modalOpenSpy: Spy;
-    let compGetEditonGraphDataSpy: Spy;
+    let getEditonGraphDataSpy: Spy;
+    let onFullscreenToggleSpy: Spy;
     let editionDataServiceGetEditionGraphDataSpy: Spy;
     let editionStateServiceGetSelectedEditionComplexSpy: Spy;
 
@@ -84,9 +99,9 @@ describe('EditionGraphComponent (DONE)', () => {
     let expectedEditionGraphDataOp25: GraphList;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
+    let expectedFaCompress: IconDefinition;
+    let expectedFaExpand: IconDefinition;
     let expectedIsFullscreen: boolean;
-
-    const jsonPipe = new JsonPipe();
 
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
@@ -102,20 +117,28 @@ describe('EditionGraphComponent (DONE)', () => {
         mockEditionStateService = {
             getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
         };
+        // Mocked fullscreenService
+        mockFullscreenService = {
+            isFullscreen: (): boolean => false,
+            openFullscreen: (el: HTMLElement): void => {},
+            closeFullscreen: (): void => {},
+        };
 
         TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule],
             declarations: [
                 EditionGraphComponent,
                 AlertErrorStubComponent,
+                CompileHtmlComponent,
+                FullscreenToggleStubComponent,
                 GraphVisualizerStubComponent,
                 ModalStubComponent,
-                CompileHtmlComponent,
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
                 { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: EditionStateService, useValue: mockEditionStateService },
+                { provide: FullscreenService, useValue: mockFullscreenService },
             ],
         }).compileComponents();
     }));
@@ -127,11 +150,9 @@ describe('EditionGraphComponent (DONE)', () => {
 
         mockDocument = TestBed.inject(DOCUMENT);
 
-        // Inject services from root
-        editionDataService = TestBed.inject(EditionDataService);
-        editionStateService = TestBed.inject(EditionStateService);
-
         // TestData (default)
+        expectedFaCompress = faCompress;
+        expectedFaExpand = faExpand;
         expectedIsFullscreen = false;
 
         expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
@@ -145,13 +166,14 @@ describe('EditionGraphComponent (DONE)', () => {
         expectedEditionGraphDataOp25.graph[0].description = ['Description for test-graph-id-op25'];
 
         // Spies on component methods
-        compGetEditonGraphDataSpy = spyOn(component, 'getEditionGraphData').and.callThrough();
+        getEditonGraphDataSpy = spyOn(component, 'getEditionGraphData').and.callThrough();
+        onFullscreenToggleSpy = spyOn(component, 'onFullscreenToggle').and.callThrough();
 
         editionStateServiceGetSelectedEditionComplexSpy = spyOn(
-            editionStateService,
+            mockEditionStateService,
             'getSelectedEditionComplex'
         ).and.callThrough();
-        editionDataServiceGetEditionGraphDataSpy = spyOn(editionDataService, 'getEditionGraphData').and.callFake(
+        editionDataServiceGetEditionGraphDataSpy = spyOn(mockEditionDataService, 'getEditionGraphData').and.callFake(
             (editionComplex: EditionComplex) => {
                 switch (editionComplex) {
                     case EditionComplexesService.getEditionComplexById('OP12'): {
@@ -176,14 +198,6 @@ describe('EditionGraphComponent (DONE)', () => {
         expect(component).toBeTruthy();
     });
 
-    it('... injected editionDataService should use provided mockValue', () => {
-        expectToBe(mockEditionDataService === editionDataService, true);
-    });
-
-    it('... injected editionStateService should use provided mockValue', () => {
-        expectToBe(mockEditionStateService === editionStateService, true);
-    });
-
     describe('BEFORE initial data binding', () => {
         it('... should have correct static `GRAPH_IMAGES`', () => {
             expect(component.GRAPH_IMAGES).toBeTruthy();
@@ -200,6 +214,14 @@ describe('EditionGraphComponent (DONE)', () => {
             expectToBe(component.errorObject, null);
         });
 
+        it('... should have `faCompress`', () => {
+            expectToBe(component.faCompress, expectedFaCompress);
+        });
+
+        it('... should have `faExpand`', () => {
+            expectToBe(component.faExpand, expectedFaExpand);
+        });
+
         it('... should have `isFullscreen`', () => {
             expectToBe(component.isFullscreen, expectedIsFullscreen);
         });
@@ -213,7 +235,7 @@ describe('EditionGraphComponent (DONE)', () => {
         });
 
         it('... should not have called `getEditionGraphData()`', () => {
-            expectSpyCall(compGetEditonGraphDataSpy, 0);
+            expectSpyCall(getEditonGraphDataSpy, 0);
         });
 
         describe('VIEW', () => {
@@ -237,6 +259,12 @@ describe('EditionGraphComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 0, 0);
             });
 
+            it('... should not contain an FullscreenToggleComponent (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], FullscreenToggleStubComponent, 0, 0);
+            });
+
             it('... should not contain a loading spinner component (stubbed)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
@@ -256,7 +284,7 @@ describe('EditionGraphComponent (DONE)', () => {
         });
 
         it('... should have called `getEditionGraphData()`', () => {
-            expectSpyCall(compGetEditonGraphDataSpy, 1);
+            expectSpyCall(getEditonGraphDataSpy, 1);
         });
 
         describe('VIEW', () => {
@@ -436,18 +464,20 @@ describe('EditionGraphComponent (DONE)', () => {
                         getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div > div.awg-graph-dynamic', 1, 1);
                     });
 
-                    it('... should contain a header with two buttons (help and fullscreen)', () => {
-                        const hDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-dynamic > h4', 1, 1);
-                        const hEl = hDes[0].nativeElement;
+                    it('... should contain a header with help button and FullscreenToggleComponent (stubbed)', () => {
+                        const headerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-dynamic > h4', 1, 1);
+                        const headerEl = headerDes[0].nativeElement;
 
-                        const btnDes = getAndExpectDebugElementByCss(hDes[0], 'button.btn', 2, 2);
-                        const btnEl0 = btnDes[0].nativeElement;
-                        const btnEl1 = btnDes[1].nativeElement;
+                        expectToContain(headerEl.textContent, 'Dynamischer Graph');
 
-                        expectToContain(hEl.textContent, 'Dynamischer Graph');
+                        // Help button
+                        const btnDes = getAndExpectDebugElementByCss(headerDes[0], 'button.btn', 1, 1);
+                        const btnEl = btnDes[0].nativeElement;
 
-                        expectToContain(btnEl0.textContent, 'Hinweise zur Nutzung');
-                        expectToContain(btnEl1.title, 'Open fullscreen');
+                        expectToContain(btnEl.textContent, 'Hinweise zur Nutzung');
+
+                        // FullscreenToggle
+                        getAndExpectDebugElementByDirective(headerDes[0], FullscreenToggleStubComponent, 1, 1);
                     });
 
                     it('... should trigger modal from click on help button', fakeAsync(() => {
@@ -460,13 +490,13 @@ describe('EditionGraphComponent (DONE)', () => {
                         const btnDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-graph-dynamic > h4 button.btn',
-                            2,
-                            2
+                            1,
+                            1
                         );
-                        const btnEl0 = btnDes[0].nativeElement;
+                        const btnEl = btnDes[0].nativeElement;
 
                         // Click button
-                        click(btnEl0 as HTMLElement);
+                        click(btnEl as HTMLElement);
                         detectChangesOnPush(fixture);
 
                         expectSpyCall(modalOpenSpy, 1, 'HINT_EDITION_GRAPH');
@@ -500,6 +530,34 @@ describe('EditionGraphComponent (DONE)', () => {
 
                         expectToEqual(graphVisCmp.graphRDFInputData, expectedData);
                     });
+
+                    it('... should pass down graphvisualizer reference to the FullscreenToggleComponent', fakeAsync(() => {
+                        // Get FullscreenToggleComponent
+                        const fsToggleDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            FullscreenToggleStubComponent,
+                            1,
+                            1
+                        );
+                        const fsToggleCmp = fsToggleDes[0].injector.get(
+                            FullscreenToggleStubComponent
+                        ) as FullscreenToggleStubComponent;
+
+                        // Get GraphVisualizerComponent
+                        const graphVisDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            GraphVisualizerStubComponent,
+                            1,
+                            1
+                        );
+                        const graphVisCmp = graphVisDes[0].injector.get(
+                            GraphVisualizerStubComponent
+                        ) as GraphVisualizerStubComponent;
+                        const graphVisEl = graphVisCmp.fs?.nativeElement;
+
+                        expect(graphVisEl).toBeTruthy();
+                        expectToEqual(fsToggleCmp.fsElement, graphVisEl);
+                    }));
                 });
             });
 
@@ -562,13 +620,13 @@ describe('EditionGraphComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const hDes = getAndExpectDebugElementByCss(imgDes[0], 'h4', 1, 1);
-                    const hEl = hDes[0].nativeElement;
+                    const headerDes = getAndExpectDebugElementByCss(imgDes[0], 'h4', 1, 1);
+                    const headerEl = headerDes[0].nativeElement;
 
                     const divDes = getAndExpectDebugElementByCss(imgDes[0], 'div', 1, 1);
                     const divEl = divDes[0].nativeElement;
 
-                    expectToContain(hEl.textContent, 'Statischer Graph');
+                    expectToContain(headerEl.textContent, 'Statischer Graph');
 
                     expectToContain(divEl.textContent, component.GRAPH_IMAGES.OP25);
                 }));
@@ -739,6 +797,47 @@ describe('EditionGraphComponent (DONE)', () => {
 
                 expectToEqual(component.errorObject, expectedError);
             }));
+        });
+
+        describe('#onFullscreenToggle()', () => {
+            it('... should have a method `onFullscreenToggle`', () => {
+                expect(component.onFullscreenToggle).toBeDefined();
+            });
+
+            it('... should trigger on event from FullscreenToggleComponent (stubbed)', () => {
+                // Load graph data
+                const graphData = expectedEditionGraphDataEmpty;
+                graphData.graph[0].rdfData = new GraphRDFData();
+                graphData.graph[0].rdfData.triples = 'example:test example:has example:Success';
+                graphData.graph[0].rdfData.queryList = [new GraphSparqlQuery()];
+
+                editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableOf(graphData));
+
+                component.getEditionGraphData();
+                detectChangesOnPush(fixture);
+
+                const fsToggleDes = getAndExpectDebugElementByDirective(compDe, FullscreenToggleStubComponent, 1, 1);
+                const fsToggleCmp = fsToggleDes[0].injector.get(
+                    FullscreenToggleStubComponent
+                ) as FullscreenToggleStubComponent;
+
+                expectedIsFullscreen = true;
+                fsToggleCmp.toggleFullscreenRequest.emit(expectedIsFullscreen);
+
+                expectSpyCall(onFullscreenToggleSpy, 1, [expectedIsFullscreen]);
+            });
+
+            it('... should toggle `isFullscreen` variable', () => {
+                expectToBe(component.isFullscreen, false);
+
+                component.onFullscreenToggle(true);
+
+                expectToBe(component.isFullscreen, true);
+
+                component.onFullscreenToggle(false);
+
+                expectToBe(component.isFullscreen, false);
+            });
         });
     });
 });

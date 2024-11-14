@@ -755,7 +755,7 @@
                 "annotations": [],
                 "contents": [
                     {
-                        "item": "M 317 Sk5 / M321 Sk1 / M 322 Sk1",
+                        "item": "M 317 / M321 / M 322 RT",
                         "itemLinkTo": {
                             "complexId": "op25",
                             "sheetId": "SkRT"
@@ -963,7 +963,10 @@
                     },
                     {
                         "item": "M 321 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_321_Sk1"
+                        },
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -1145,7 +1148,10 @@
                     },
                     {
                         "item": "M 321 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_321_Sk2"
+                        },
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -1157,7 +1163,7 @@
                                         {
                                             "system": "1",
                                             "measure": "1x–5x",
-                                            "linkTo": ""
+                                            "linkTo": "M_321_Sk2"
                                         }
                                     ]
                                 ]
@@ -1171,7 +1177,7 @@
                                         {
                                             "system": "2",
                                             "measure": "1y–4y",
-                                            "linkTo": ""
+                                            "linkTo": "M_321_Sk2"
                                         }
                                     ]
                                 ]
@@ -1460,7 +1466,10 @@
                     },
                     {
                         "item": "M 322 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_322_Sk1"
+                        },
                         "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
                         "folios": [
                             {
@@ -1481,7 +1490,10 @@
                     },
                     {
                         "item": "M 322 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_322_Sk2"
+                        },
                         "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
                         "folios": [
                             {
@@ -1502,7 +1514,10 @@
                     },
                     {
                         "item": "M 322 Sk3",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_322_Sk3a"
+                        },
                         "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
                         "folios": [
                             {
@@ -1512,16 +1527,16 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "5–8",
+                                            "system": "5–10",
                                             "measure": "{1A}, {1B}, {1C‒2A}, 1D‒2B",
-                                            "linkTo": ""
+                                            "linkTo": "M_322_Sk3a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "11–16",
                                             "measure": "{3A‒4A}, {5A}, 3B‒5B",
-                                            "linkTo": ""
+                                            "linkTo": "M_322_Sk3b"
                                         }
                                     ]
                                 ]
@@ -1535,7 +1550,7 @@
                                         {
                                             "system": "1–5a",
                                             "measure": "6‒11",
-                                            "linkTo": ""
+                                            "linkTo": "M_322_Sk3c"
                                         }
                                     ]
                                 ]

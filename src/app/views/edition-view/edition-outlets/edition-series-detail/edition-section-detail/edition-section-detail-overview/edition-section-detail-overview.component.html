@@ -1,7 +1,7 @@
 @if (selectedSection$ | async; as selectedSection) {
     @if (
-        utils.isNotEmptyArray(selectedSection?.content?.complexTypes?.opus) ||
-        utils.isNotEmptyArray(selectedSection?.content?.complexTypes?.mnr)
+        UTILS.isNotEmptyArray(selectedSection?.content?.complexTypes?.opus) ||
+        UTILS.isNotEmptyArray(selectedSection?.content?.complexTypes?.mnr)
     ) {
         <div class="awg-edition-section-detail">
             <awg-edition-section-detail-disclaimer></awg-edition-section-detail-disclaimer>
@@ -17,7 +17,7 @@
                     </div>
                 </div>
             }
-            @if (utils.isNotEmptyArray(selectedSection?.content?.complexTypes?.opus)) {
+            @if (UTILS.isNotEmptyArray(selectedSection?.content?.complexTypes?.opus)) {
                 <div class="awg-edition-section-detail-opus para p-3 shadow border rounded-3">
                     <h5>nach Opusnummer:</h5>
                     <awg-edition-section-detail-complex-card
@@ -26,7 +26,7 @@
                         "></awg-edition-section-detail-complex-card>
                 </div>
             }
-            @if (utils.isNotEmptyArray(selectedSection?.content?.complexTypes?.mnr)) {
+            @if (UTILS.isNotEmptyArray(selectedSection?.content?.complexTypes?.mnr)) {
                 <div class="awg-edition-section-detail-mnr p-3 shadow border rounded-3">
                     <h5>nach Moldenhauer-Nummer:</h5>
                     <awg-edition-section-detail-complex-card

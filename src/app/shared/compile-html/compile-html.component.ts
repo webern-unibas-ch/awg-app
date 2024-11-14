@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import {
     Compiler,
     Component,
+    inject,
     Injectable,
     Input,
     ModuleWithProviders,
@@ -155,14 +156,11 @@ export class CompileHtmlComponent implements OnChanges {
     dynamicModule: NgModuleFactory<any> | any;
 
     /**
-     * Constructor of the CompileHtmlComponent.
+     * Private readonly injection variable: _compiler.
      *
-     * It declares a private {@link Compiler}
-     * instance for the dynamic compilation of a given component.
-     *
-     * @param {Compiler} compiler Instance of the Compiler.
+     * It keeps the instance of the injected Angular Compiler.
      */
-    constructor(private compiler: Compiler) {}
+    private readonly _compiler = inject(Compiler);
 
     /**
      * Angular life cycle hook: ngOnChanges.
@@ -191,7 +189,7 @@ export class CompileHtmlComponent implements OnChanges {
             }
 
             this.dynamicComponent = this._createNewComponent(this.html, this.ref);
-            this.dynamicModule = this.compiler.compileModuleSync(this._createComponentModule(this.dynamicComponent));
+            this.dynamicModule = this._compiler.compileModuleSync(this._createComponentModule(this.dynamicComponent));
         } catch (e) {
             if (this.errorHandler === undefined) {
                 throw e;

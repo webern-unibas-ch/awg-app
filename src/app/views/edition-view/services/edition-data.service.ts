@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 import { Observable, forkJoin as observableForkJoin, of as observableOf } from 'rxjs';
 import { catchError, defaultIfEmpty, take } from 'rxjs/operators';
@@ -41,14 +41,11 @@ export class EditionDataService {
     private _assetPath = '';
 
     /**
-     * Constructor of the EditionDataService.
+     * Private readonly injection variable: _http.
      *
-     * It declares a private {@link HttpClient} instance
-     * to handle http requests.
-     *
-     * @param {HttpClient} http Instance of the HttpClient.
+     * It keeps the instance of the Angular HttpClient.
      */
-    constructor(private http: HttpClient) {}
+    private readonly _http = inject(HttpClient);
 
     /**
      * Public method: getEditionGraphData.
@@ -447,7 +444,7 @@ export class EditionDataService {
      * @returns {Observable<any>} The observable with the requested data.
      */
     private _getJsonData(path: string): Observable<any> {
-        return this.http.get(path).pipe(
+        return this._http.get(path).pipe(
             // Tap(_res => console.log(`fetched jsonData with path=${path}`)),
             catchError(this._handleError('_getJsonData', []))
         );

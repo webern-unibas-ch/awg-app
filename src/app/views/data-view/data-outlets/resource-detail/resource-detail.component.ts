@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
@@ -77,34 +77,53 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     selectedResourceDetailTabId: string;
 
     /**
-     * Private variable: _destroyed$.
+     * Private readonly variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroyed$: Subject<boolean> = new Subject<boolean>();
+    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Constructor of the ResourceDetailComponent.
+     * Private readonly injection variable: _dataApiService.
      *
-     * It declares private instances of the Angular ActivatedRoute,
-     * the Angular Router, the DataApiService, the DataStreamerService,
-     * the GndService, and the LoadingService.
-     *
-     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
-     * @param {Router} router Instance of the Angular Router.
-     * @param {DataApiService} dataApiService Instance of the DataApiService.
-     * @param {DataStreamerService} dataStreamerService Instance of the DataStreamerService.
-     * @param {GndService} gndService Instance of the GndService.
-     * @param {LoadingService} loadingService Instance of the LoadingService.
+     * It keeps the instance of the injected DataApiService.
      */
-    constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private dataApiService: DataApiService,
-        private dataStreamerService: DataStreamerService,
-        private gndService: GndService,
-        private loadingService: LoadingService
-    ) {}
+    private readonly _dataApiService = inject(DataApiService);
+
+    /**
+     * Private readonly injection variable: _dataStreamerService.
+     *
+     * It keeps the instance of the injected DataStreamerService.
+     */
+    private readonly _dataStreamerService = inject(DataStreamerService);
+
+    /**
+     * Private readonly injection variable: _gndService.
+     *
+     * It keeps the instance of the injected GndService.
+     */
+    private readonly _gndService = inject(GndService);
+
+    /**
+     * Private readonly injection variable: _loadingService.
+     *
+     * It keeps the instance of the injected LoadingService.
+     */
+    private readonly _loadingService = inject(LoadingService);
+
+    /**
+     * Private readonly injection variable: _route.
+     *
+     * It keeps the instance of the injected Angular ActivatedRoute.
+     */
+    private readonly _route = inject(ActivatedRoute);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It keeps the instance of the injected Angular Router.
+     */
+    private readonly _router = inject(Router);
 
     /**
      * Gets the httpGetUrl from the {@link DataApiService}.
@@ -112,7 +131,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      * @returns {string}
      */
     get httpGetUrl(): string {
-        return this.dataApiService.httpGetUrl;
+        return this._dataApiService.httpGetUrl;
     }
 
     /**
@@ -121,7 +140,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      * @returns {Observable<boolean>}
      */
     get isLoading$(): Observable<boolean> {
-        return this.loadingService.getLoadingStatus();
+        return this._loadingService.getLoadingStatus();
     }
 
     /**
@@ -145,13 +164,13 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      */
     getResourceData(): void {
         // Observe route params
-        this.router.events
+        this._router.events
             .pipe(
                 filter(event => event instanceof NavigationEnd),
-                map(() => this.route),
+                map(() => this._route),
                 switchMap((route: ActivatedRoute) => {
                     // Snapshot of current route query params
-                    const params = this.route.snapshot.paramMap;
+                    const params = this._route.snapshot.paramMap;
 
                     // Shortcut for resource id param
                     const resourceId = params.get('id');
@@ -167,7 +186,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
                     this.updateResourceId(resourceId);
 
                     // Fetch resource data depending on param id
-                    return this.dataApiService.getResourceData(resourceId);
+                    return this._dataApiService.getResourceData(resourceId);
                 }),
                 takeUntil(this._destroyed$)
             )
@@ -193,8 +212,8 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     onResourceDetailTabChange(tabEvent: NgbNavChangeEvent): void {
         const route = tabEvent.nextId;
         // Route to new tab
-        this.router.navigate([route], {
-            relativeTo: this.route,
+        this._router.navigate([route], {
+            relativeTo: this._route,
         });
     }
 
@@ -213,7 +232,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
         this.resourceId = id;
 
         // Share current id via streamer service
-        this.dataStreamerService.updateResourceId(id);
+        this._dataStreamerService.updateResourceId(id);
     }
 
     /**
@@ -237,7 +256,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
         this.oldId = this.resourceId;
 
         // Navigate to resource with the nextId
-        this.router.navigate(['/data/resource', +nextId]);
+        this._router.navigate(['/data/resource', +nextId]);
     }
 
     /**
@@ -255,7 +274,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
         if (!gndEvent) {
             return;
         }
-        this.gndService.exposeGnd(gndEvent);
+        this._gndService.exposeGnd(gndEvent);
     }
 
     /**
@@ -266,7 +285,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      * @returns {void} Activates the resource-info side outlet.
      */
     navigateToSideOutlet(): void {
-        this.router.navigate([{ outlets: { side: 'resourceInfo' } }], {
+        this._router.navigate([{ outlets: { side: 'resourceInfo' } }], {
             preserveFragment: true,
             queryParamsHandling: 'preserve',
         });
@@ -279,7 +298,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy() {
         // Navigate to an empty outlet to clear the side outlet
-        this.router.navigate([{ outlets: { side: null } }]);
+        this._router.navigate([{ outlets: { side: null } }]);
 
         // Emit truthy value to end all subscriptions
         this._destroyed$.next(true);

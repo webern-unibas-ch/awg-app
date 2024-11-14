@@ -7,7 +7,7 @@
     @if (editionIntroData$ | async; as editionIntroData) {
         <div class="awg-edition-intro-view p-5 border rounded-3">
             <div class="row justify-content-center">
-                @if (utils.isNotEmptyArray(editionIntroData.intro[currentLanguage].content)) {
+                @if (UTILS.isNotEmptyArray(editionIntroData.intro[currentLanguage].content)) {
                     @if (editionComplex) {
                         <awg-edition-intro-partial-disclaimer
                             class="col-12 col-xl-6"

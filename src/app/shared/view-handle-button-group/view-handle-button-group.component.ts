@@ -1,4 +1,14 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    inject,
+    Input,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Output,
+    SimpleChanges,
+} from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 import { Subject } from 'rxjs';
@@ -50,20 +60,18 @@ export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDest
     viewHandleControlForm: UntypedFormGroup;
 
     /**
-     * Private variable: _destroyed$.
+     * Private readonly variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroyed$: Subject<boolean> = new Subject<boolean>();
+    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Constructor of the ViewHandleButtonGroupComponent.
+     * Private readonly injection variable: _formBuilder.
      *
-     * It declares private instances of the Angular FormBuilder.
-     *
-     * @param {FormBuilder} formBuilder Instance of the FormBuilder.
+     * It keeps the instance of the injected Angular FormBuilder.
      */
-    constructor(private formBuilder: UntypedFormBuilder) {}
+    private readonly _formBuilder = inject(UntypedFormBuilder);
 
     /**
      * Getter for the view handle control value.
@@ -107,7 +115,7 @@ export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDest
      * @returns {void} Creates the view handle control form.
      */
     createFormGroup(view: ViewHandleTypes): void {
-        this.viewHandleControlForm = this.formBuilder.group({
+        this.viewHandleControlForm = this._formBuilder.group({
             viewHandleControl: view,
         });
 

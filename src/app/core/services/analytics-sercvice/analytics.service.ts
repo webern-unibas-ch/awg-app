@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 import { AppConfig } from '@awg-app/app.config';
 
@@ -23,21 +23,6 @@ declare let gtag: Function;
 })
 export class AnalyticsService {
     /**
-     * Private variable: _analyticsId.
-     *
-     * It stores the analytics id.
-     *
-     */
-    private _analyticsId: string = AppConfig.ANALYTICS_ID;
-
-    /**
-     * Private variable: _analyticsEndpoint.
-     *
-     * It stores the analytics endpoint.
-     */
-    private _analyticsEndpoint: string = AppConfig.ANALYTICS_ENDPOINT;
-
-    /**
      * Private variable: _isInitialized.
      *
      * It stores a boolean flag for successful initialization.
@@ -45,23 +30,36 @@ export class AnalyticsService {
     private _isInitialized = false;
 
     /**
-     * Private variable: _sendPageView.
+     * Private readonly variable: _analyticsId.
+     *
+     * It stores the analytics id.
+     *
+     */
+    private readonly _analyticsId: string = AppConfig.ANALYTICS_ID;
+
+    /**
+     * Private readonly variable: _analyticsEndpoint.
+     *
+     * It stores the analytics endpoint.
+     */
+    private readonly _analyticsEndpoint: string = AppConfig.ANALYTICS_ENDPOINT;
+
+    /**
+     * Private readonly variable: _sendPageView.
      *
      * It stores a boolean flag to send page views dependent from environment.
      *
      * DEVELOP: FALSE
      * PRODUCTION: TRUE
      */
-    private _sendPageView = environment.GA_SEND_PAGE_VIEW;
+    private readonly _sendPageView = environment.GA_SEND_PAGE_VIEW;
 
     /**
-     * Constructor of the AnalyticsService.
+     * Private readonly injection variable: _doc.
      *
-     * It injects a private DOCUMENT instance.
-     *
-     * @param {DOCUMENT} doc Instance of the Angular DOCUMENT.
+     * It stores the Angular DOCUMENT.
      */
-    constructor(@Inject(DOCUMENT) private doc: any) {}
+    private readonly _doc = inject(DOCUMENT);
 
     /**
      * Public method: initializeAnalytics.
@@ -112,9 +110,9 @@ export class AnalyticsService {
      * @returns {void} Prepends Analytics script.
      */
     private _prependAnalyticsScript(): void {
-        const gtagScript: HTMLScriptElement = this.doc.createElement('script');
+        const gtagScript: HTMLScriptElement = this._doc.createElement('script');
         gtagScript.async = true;
         gtagScript.src = this._analyticsEndpoint + '?id=' + this._analyticsId;
-        this.doc.head.prepend(gtagScript);
+        this._doc.head.prepend(gtagScript);
     }
 }
