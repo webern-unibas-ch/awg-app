@@ -1,4 +1,4 @@
-<div ngbAccordion [class.fullscreen]="isFullscreen">
+<div ngbAccordion #accoladeAcc [class.fullscreen]="isFullscreen">
     <div ngbAccordionItem="awg-accolade-view" [collapsed]="false">
         <div ngbAccordionHeader class="accordion-button awg-accordion-button-custom-header justify-content-between">
             <button ngbAccordionToggle class="btn btn-link text-start p-0">Edierte Notentexte</button>
@@ -10,23 +10,10 @@
                         (click)="openModal('HINT_EDITION_SHEETS')">
                         Hinweise zur Nutzung
                     </button>
-                    <button
-                        type="button"
-                        title="Open fullscreen"
-                        class="btn btn-sm btn-outline-info ms-2"
-                        (click)="openFullscreen()">
-                        <fa-icon [icon]="faExpand"></fa-icon>
-                    </button>
                 }
-                @if (isFullscreen) {
-                    <button
-                        type="button"
-                        title="Close fullscreen"
-                        class="btn btn-sm btn-info ms-2"
-                        (click)="closeFullscreen()">
-                        <fa-icon [icon]="faCompress"></fa-icon>
-                    </button>
-                }
+                <awg-fullscreen-toggle
+                    [fsElement]="accoladeAcc"
+                    (toggleFullscreenRequest)="fullscreenToggle($event)"></awg-fullscreen-toggle>
             </div>
         </div>
         <div ngbAccordionCollapse>

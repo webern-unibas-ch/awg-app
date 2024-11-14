@@ -4,13 +4,9 @@
 }
 
 .fullscreen {
-    display: flex;
-    flex-direction: column;
     height: 100vh;
-    overflow: hidden;
-
-    .ngb-accordion-body {
-        flex: 1;
-        overflow: auto;
-    }
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: #fff;
 }

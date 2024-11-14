@@ -64,6 +64,13 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     folioConvoluteData: FolioConvoluteList;
 
     /**
+     * Public variable: isFullscreen.
+     *
+     * It keeps the fullscreen mode status.
+     */
+    isFullscreen = false;
+
+    /**
      * Public variable: selectedConvolute.
      *
      * It keeps the selected convolute.
@@ -276,6 +283,18 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         );
 
         this.onSvgSheetSelect({ complexId: '', sheetId: nextSheetId });
+    }
+
+    /**
+     * Public method: onFullscreenToggle.
+     *
+     * It toggles the fullscreen mode and sets the isFullscreen flag.
+     *
+     * @param {boolean} isFullscreen A boolean indicating the fullscreen mode.
+     * @returns {void} Toggles the fullscreen mode and sets the isFullscreen flag.
+     */
+    onFullscreenToggle(isFullscreen: boolean): void {
+        this.isFullscreen = isFullscreen;
     }
 
     /**

@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, DebugElement, Input } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {
@@ -36,7 +36,6 @@ import { EditionComplex, Graph, GraphList, GraphRDFData, GraphSparqlQuery } from
 import { EditionComplexesService, EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionGraphComponent } from './edition-graph.component';
-import { GraphVisualizerComponent } from './graph-visualizer';
 
 // Mock components
 @Component({ selector: 'awg-alert-error', template: '' })
@@ -45,13 +44,27 @@ class AlertErrorStubComponent {
     errorObject: any;
 }
 
-@Component({ selector: 'awg-graph-visualizer', template: '' })
+@Component({ selector: 'awg-fullscreen-toggle', template: '' })
+class FullscreenToggleStubComponent {
+    @Input()
+    fsElement: HTMLElement;
+    @Output()
+    toggleFullscreenRequest = new EventEmitter<boolean>();
+}
+
+@Component({
+    selector: 'awg-graph-visualizer',
+    template: '',
+})
 class GraphVisualizerStubComponent {
     @Input()
     graphRDFInputData: GraphRDFData;
-
     @Input()
     isFullscreen: boolean;
+    // Mock the viewChild fs
+    get fs() {
+        return { nativeElement: '<div></div>' };
+    }
 }
 
 @Component({ selector: 'awg-modal', template: '' })
@@ -76,7 +89,8 @@ describe('EditionGraphComponent (DONE)', () => {
     let mockFullscreenService: Partial<FullscreenService>;
 
     let modalOpenSpy: Spy;
-    let compGetEditonGraphDataSpy: Spy;
+    let getEditonGraphDataSpy: Spy;
+    let onFullscreenToggleSpy: Spy;
     let editionDataServiceGetEditionGraphDataSpy: Spy;
     let editionStateServiceGetSelectedEditionComplexSpy: Spy;
 
@@ -115,9 +129,10 @@ describe('EditionGraphComponent (DONE)', () => {
             declarations: [
                 EditionGraphComponent,
                 AlertErrorStubComponent,
+                CompileHtmlComponent,
+                FullscreenToggleStubComponent,
                 GraphVisualizerStubComponent,
                 ModalStubComponent,
-                CompileHtmlComponent,
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
@@ -151,7 +166,8 @@ describe('EditionGraphComponent (DONE)', () => {
         expectedEditionGraphDataOp25.graph[0].description = ['Description for test-graph-id-op25'];
 
         // Spies on component methods
-        compGetEditonGraphDataSpy = spyOn(component, 'getEditionGraphData').and.callThrough();
+        getEditonGraphDataSpy = spyOn(component, 'getEditionGraphData').and.callThrough();
+        onFullscreenToggleSpy = spyOn(component, 'onFullscreenToggle').and.callThrough();
 
         editionStateServiceGetSelectedEditionComplexSpy = spyOn(
             mockEditionStateService,
@@ -219,7 +235,7 @@ describe('EditionGraphComponent (DONE)', () => {
         });
 
         it('... should not have called `getEditionGraphData()`', () => {
-            expectSpyCall(compGetEditonGraphDataSpy, 0);
+            expectSpyCall(getEditonGraphDataSpy, 0);
         });
 
         describe('VIEW', () => {
@@ -243,6 +259,12 @@ describe('EditionGraphComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 0, 0);
             });
 
+            it('... should not contain an FullscreenToggleComponent (stubbed)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+
+                getAndExpectDebugElementByDirective(divDes[0], FullscreenToggleStubComponent, 0, 0);
+            });
+
             it('... should not contain a loading spinner component (stubbed)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
@@ -262,7 +284,7 @@ describe('EditionGraphComponent (DONE)', () => {
         });
 
         it('... should have called `getEditionGraphData()`', () => {
-            expectSpyCall(compGetEditonGraphDataSpy, 1);
+            expectSpyCall(getEditonGraphDataSpy, 1);
         });
 
         describe('VIEW', () => {
@@ -442,18 +464,20 @@ describe('EditionGraphComponent (DONE)', () => {
                         getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div > div.awg-graph-dynamic', 1, 1);
                     });
 
-                    it('... should contain a header with two buttons (help and fullscreen)', () => {
-                        const hDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-dynamic > h4', 1, 1);
-                        const hEl = hDes[0].nativeElement;
+                    it('... should contain a header with help button and FullscreenToggleComponent (stubbed)', () => {
+                        const headerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-dynamic > h4', 1, 1);
+                        const headerEl = headerDes[0].nativeElement;
 
-                        const btnDes = getAndExpectDebugElementByCss(hDes[0], 'button.btn', 2, 2);
-                        const btnEl0 = btnDes[0].nativeElement;
-                        const btnEl1 = btnDes[1].nativeElement;
+                        expectToContain(headerEl.textContent, 'Dynamischer Graph');
 
-                        expectToContain(hEl.textContent, 'Dynamischer Graph');
+                        // Help button
+                        const btnDes = getAndExpectDebugElementByCss(headerDes[0], 'button.btn', 1, 1);
+                        const btnEl = btnDes[0].nativeElement;
 
-                        expectToContain(btnEl0.textContent, 'Hinweise zur Nutzung');
-                        expectToContain(btnEl1.title, 'Open fullscreen');
+                        expectToContain(btnEl.textContent, 'Hinweise zur Nutzung');
+
+                        // FullscreenToggle
+                        getAndExpectDebugElementByDirective(headerDes[0], FullscreenToggleStubComponent, 1, 1);
                     });
 
                     it('... should trigger modal from click on help button', fakeAsync(() => {
@@ -466,13 +490,13 @@ describe('EditionGraphComponent (DONE)', () => {
                         const btnDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-graph-dynamic > h4 button.btn',
-                            2,
-                            2
+                            1,
+                            1
                         );
-                        const btnEl0 = btnDes[0].nativeElement;
+                        const btnEl = btnDes[0].nativeElement;
 
                         // Click button
-                        click(btnEl0 as HTMLElement);
+                        click(btnEl as HTMLElement);
                         detectChangesOnPush(fixture);
 
                         expectSpyCall(modalOpenSpy, 1, 'HINT_EDITION_GRAPH');
@@ -506,6 +530,34 @@ describe('EditionGraphComponent (DONE)', () => {
 
                         expectToEqual(graphVisCmp.graphRDFInputData, expectedData);
                     });
+
+                    it('... should pass down graphvisualizer reference to the FullscreenToggleComponent', fakeAsync(() => {
+                        // Get FullscreenToggleComponent
+                        const fsToggleDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            FullscreenToggleStubComponent,
+                            1,
+                            1
+                        );
+                        const fsToggleCmp = fsToggleDes[0].injector.get(
+                            FullscreenToggleStubComponent
+                        ) as FullscreenToggleStubComponent;
+
+                        // Get GraphVisualizerComponent
+                        const graphVisDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            GraphVisualizerStubComponent,
+                            1,
+                            1
+                        );
+                        const graphVisCmp = graphVisDes[0].injector.get(
+                            GraphVisualizerStubComponent
+                        ) as GraphVisualizerStubComponent;
+                        const graphVisEl = graphVisCmp.fs?.nativeElement;
+
+                        expect(graphVisEl).toBeTruthy();
+                        expectToEqual(fsToggleCmp.fsElement, graphVisEl);
+                    }));
                 });
             });
 
@@ -568,13 +620,13 @@ describe('EditionGraphComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const hDes = getAndExpectDebugElementByCss(imgDes[0], 'h4', 1, 1);
-                    const hEl = hDes[0].nativeElement;
+                    const headerDes = getAndExpectDebugElementByCss(imgDes[0], 'h4', 1, 1);
+                    const headerEl = headerDes[0].nativeElement;
 
                     const divDes = getAndExpectDebugElementByCss(imgDes[0], 'div', 1, 1);
                     const divEl = divDes[0].nativeElement;
 
-                    expectToContain(hEl.textContent, 'Statischer Graph');
+                    expectToContain(headerEl.textContent, 'Statischer Graph');
 
                     expectToContain(divEl.textContent, component.GRAPH_IMAGES.OP25);
                 }));
@@ -640,32 +692,6 @@ describe('EditionGraphComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                     });
                 });
-            });
-        });
-
-        describe('#Hostlistener onFullscreenChange()', () => {
-            it('... should have a hostlistener `onFullscreenChange`', () => {
-                expect(component.onFullscreenChange).toBeDefined();
-            });
-
-            it('... should trigger `fullscreenService.isFullscreen`', () => {
-                const isFullscreenSpy = spyOn(mockFullscreenService, 'isFullscreen').and.callThrough();
-
-                // Simulate fullscreenchange event
-                const event = new Event('fullscreenchange');
-                mockDocument.dispatchEvent(event);
-
-                expectSpyCall(isFullscreenSpy, 1);
-            });
-
-            it('... should update `isFullscreen`', () => {
-                spyOn(mockFullscreenService, 'isFullscreen').and.returnValue(true);
-
-                // Simulate fullscreenchange event
-                const event = new Event('fullscreenchange');
-                mockDocument.dispatchEvent(event);
-
-                expectToBe(component.isFullscreen, true);
             });
         });
 
@@ -773,58 +799,44 @@ describe('EditionGraphComponent (DONE)', () => {
             }));
         });
 
-        describe('#closeFullscreen()', () => {
-            it('... should have a method `closeFullscreen`', () => {
-                expect(component.closeFullscreen).toBeDefined();
+        describe('#onFullscreenToggle()', () => {
+            it('... should have a method `onFullscreenToggle`', () => {
+                expect(component.onFullscreenToggle).toBeDefined();
             });
 
-            it('... should trigger `fullscreenService.closeFullscreen`', () => {
-                const closeFullscreenSpy = spyOn(mockFullscreenService, 'closeFullscreen').and.callThrough();
-                expectSpyCall(closeFullscreenSpy, 0);
+            it('... should trigger on event from FullscreenToggleComponent (stubbed)', () => {
+                // Load graph data
+                const graphData = expectedEditionGraphDataEmpty;
+                graphData.graph[0].rdfData = new GraphRDFData();
+                graphData.graph[0].rdfData.triples = 'example:test example:has example:Success';
+                graphData.graph[0].rdfData.queryList = [new GraphSparqlQuery()];
 
-                component.closeFullscreen();
+                editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableOf(graphData));
 
-                expectSpyCall(closeFullscreenSpy, 1);
+                component.getEditionGraphData();
+                detectChangesOnPush(fixture);
+
+                const fsToggleDes = getAndExpectDebugElementByDirective(compDe, FullscreenToggleStubComponent, 1, 1);
+                const fsToggleCmp = fsToggleDes[0].injector.get(
+                    FullscreenToggleStubComponent
+                ) as FullscreenToggleStubComponent;
+
+                expectedIsFullscreen = true;
+                fsToggleCmp.toggleFullscreenRequest.emit(expectedIsFullscreen);
+
+                expectSpyCall(onFullscreenToggleSpy, 1, [expectedIsFullscreen]);
             });
 
-            it('... should set isFullscreen to false', () => {
-                component.isFullscreen = true;
-
-                component.closeFullscreen();
-
+            it('... should toggle `isFullscreen` variable', () => {
                 expectToBe(component.isFullscreen, false);
-            });
-        });
 
-        describe('#openFullscreen()', () => {
-            beforeEach(() => {
-                // Mock the graphVisualizer child component
-                component.graphVisualizer = {
-                    fs: {
-                        nativeElement: mockDocument.createElement('div'),
-                    },
-                } as GraphVisualizerComponent;
-            });
-
-            it('... should have a method `openFullscreen`', () => {
-                expect(component.openFullscreen).toBeDefined();
-            });
-
-            it('... should trigger `fullscreenService.openFullscreen`', () => {
-                const openFullscreenSpy = spyOn(mockFullscreenService, 'openFullscreen').and.callThrough();
-                expectSpyCall(openFullscreenSpy, 0);
-
-                component.openFullscreen();
-
-                expectSpyCall(openFullscreenSpy, 1);
-            });
-
-            it('... should set isFullscreen to true', () => {
-                component.isFullscreen = false;
-
-                component.openFullscreen();
+                component.onFullscreenToggle(true);
 
                 expectToBe(component.isFullscreen, true);
+
+                component.onFullscreenToggle(false);
+
+                expectToBe(component.isFullscreen, false);
             });
         });
     });

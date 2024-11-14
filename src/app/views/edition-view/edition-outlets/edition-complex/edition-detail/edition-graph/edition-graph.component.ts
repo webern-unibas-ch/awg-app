@@ -1,12 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    HostBinding,
-    HostListener,
-    inject,
-    OnInit,
-    ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
@@ -18,8 +10,6 @@ import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, GraphList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
-
-import { GraphVisualizerComponent } from './graph-visualizer';
 
 /**
  * The EditionGraph component.
@@ -34,34 +24,6 @@ import { GraphVisualizerComponent } from './graph-visualizer';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionGraphComponent implements OnInit {
-    /**
-     * ViewChild variable: graphVisualizer.
-     *
-     * It keeps the reference to the GraphVisualizerComponent.
-     */
-    @ViewChild(GraphVisualizerComponent) graphVisualizer: GraphVisualizerComponent;
-
-    /**
-     * HostBinding: isFullscreen.
-     *
-     * It binds to the is-fullscreen CSS class.
-     */
-    @HostBinding('class.is-fullscreen') isFullscreen = false;
-
-    /**
-     * Public variable: faExpand.
-     *
-     * It instantiates fontawesome's faExpand icon.
-     */
-    faExpand = faExpand;
-
-    /**
-     * Public variable: faCompress.
-     *
-     * It instantiates fontawesome's faCompress icon.
-     */
-    faCompress = faCompress;
-
     /**
      * Public variable: editionComplex.
      *
@@ -82,6 +44,27 @@ export class EditionGraphComponent implements OnInit {
      * It keeps an errorObject for the service calls.
      */
     errorObject = null;
+
+    /**
+     * Public variable: faExpand.
+     *
+     * It instantiates fontawesome's faExpand icon.
+     */
+    faExpand = faExpand;
+
+    /**
+     * Public variable: faCompress.
+     *
+     * It instantiates fontawesome's faCompress icon.
+     */
+    faCompress = faCompress;
+
+    /**
+     * Public variable: isFullscreen.
+     *
+     * It keeps the fullscreen mode status.
+     */
+    isFullscreen = false;
 
     /**
      * Self-referring variable needed for CompileHtml library.
@@ -146,15 +129,6 @@ export class EditionGraphComponent implements OnInit {
     }
 
     /**
-     * HostListener: document:fullscreenchange.
-     *
-     * It listens for fullscreen exit.
-     */
-    @HostListener('document:fullscreenchange', ['$event']) onFullscreenChange(_event: Event) {
-        this.isFullscreen = this._fullscreenService.isFullscreen();
-    }
-
-    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
@@ -187,27 +161,14 @@ export class EditionGraphComponent implements OnInit {
     }
 
     /**
-     * Public method: closeFullscreen.
+     * Public method: onFullscreenToggle.
      *
-     * It closes fullscreen mode and sets isFullscreen flag to false.
+     * It toggles the fullscreen mode and sets the isFullscreen flag.
      *
-     * @returns {void} Sets isFullscreen flag to false.
+     * @param {boolean} isFullscreen A boolean indicating the fullscreen mode.
+     * @returns {void} Toggles the fullscreen mode and sets the isFullscreen flag.
      */
-    closeFullscreen(): void {
-        this._fullscreenService.closeFullscreen();
-        this.isFullscreen = false;
-    }
-
-    /**
-     * Public method: openFullscreen.
-     *
-     * It activates fullscreen mode and sets isFullscreen flag to true.
-     *
-     * @returns {void} Sets isFullscreen flag to true.
-     */
-    openFullscreen(): void {
-        const el = this.graphVisualizer.fs.nativeElement;
-        this._fullscreenService.openFullscreen(el);
-        this.isFullscreen = true;
+    onFullscreenToggle(isFullscreen: boolean): void {
+        this.isFullscreen = isFullscreen;
     }
 }

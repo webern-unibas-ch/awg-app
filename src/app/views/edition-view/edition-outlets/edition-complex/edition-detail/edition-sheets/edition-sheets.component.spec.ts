@@ -45,6 +45,8 @@ import { EditionSheetsComponent } from './edition-sheets.component';
 @Component({ selector: 'awg-edition-accolade', template: '' })
 class EditionAccoladeStubComponent {
     @Input()
+    isFullscreen: boolean;
+    @Input()
     svgSheetsData: EditionSvgSheetList;
     @Input()
     selectedSvgSheet: EditionSvgSheet;
@@ -56,6 +58,8 @@ class EditionAccoladeStubComponent {
     showTkA: boolean;
     @Output()
     browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
+    @Output()
+    fullscreenToggleRequest: EventEmitter<boolean> = new EventEmitter();
     @Output()
     navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
     @Output()
@@ -96,7 +100,7 @@ class ModalStubComponent {
 @Component({ selector: 'awg-twelve-tone-spinner', template: '' })
 class TwelveToneSpinnerStubComponent {}
 
-describe('EditionSheetsComponent', () => {
+describe('EditionSheetsComponent (DONE)', () => {
     let component: EditionSheetsComponent;
     let fixture: ComponentFixture<EditionSheetsComponent>;
     let compDe: DebugElement;
@@ -123,6 +127,7 @@ describe('EditionSheetsComponent', () => {
     let navigateWithComplexIdSpy: Spy;
     let navigationSpy: Spy;
     let onBrowseSvgSheetSpy: Spy;
+    let onFullscreenToggleSpy: Spy;
     let onLinkBoxSelectSpy: Spy;
     let onReportFragmentNavigateSpy: Spy;
     let onOverlaySelectSpy: Spy;
@@ -130,6 +135,7 @@ describe('EditionSheetsComponent', () => {
     let selectSvgSheetSpy: Spy;
 
     let expectedConvolute: FolioConvolute;
+    let expectedIsFullscreen: boolean;
     let expectedEditionComplex: EditionComplex;
     let expectedFolioConvoluteData: FolioConvoluteList;
     let expectedSvgSheetsData: EditionSvgSheetList;
@@ -238,6 +244,8 @@ describe('EditionSheetsComponent', () => {
         mockActivatedRoute.testQueryParamMap = { id: '' };
 
         // Test data
+        expectedIsFullscreen = false;
+
         expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
 
         expectedComplexId = 'op12';
@@ -289,6 +297,7 @@ describe('EditionSheetsComponent', () => {
 
         getEditionSheetsDataSpy = spyOn(component, 'getEditionSheetsData').and.callThrough();
         onBrowseSvgSheetSpy = spyOn(component, 'onBrowseSvgSheet').and.callThrough();
+        onFullscreenToggleSpy = spyOn(component, 'onFullscreenToggle').and.callThrough();
         onLinkBoxSelectSpy = spyOn(component, 'onLinkBoxSelect').and.callThrough();
         onOverlaySelectSpy = spyOn(component, 'onOverlaySelect').and.callThrough();
         onReportFragmentNavigateSpy = spyOn(component, 'onReportFragmentNavigate').and.callThrough();
@@ -309,6 +318,10 @@ describe('EditionSheetsComponent', () => {
 
         it('... should have `errorObject` = null', () => {
             expectToBe(component.errorObject, null);
+        });
+
+        it('... should have `isFullscreen` = false', () => {
+            expectToBe(component.isFullscreen, false);
         });
 
         it('... should not have `folioConvoluteData`', () => {
@@ -623,6 +636,36 @@ describe('EditionSheetsComponent', () => {
 
                     expectSpyCall(onSvgSheetSelectSpy, 2, { complexId: '', sheetId: expectedSvgSheet.id });
                 });
+            });
+        });
+
+        describe('#onFullscreenToggle()', () => {
+            it('... should have a method `onFullscreenToggle`', () => {
+                expect(component.onFullscreenToggle).toBeDefined();
+            });
+
+            it('... should trigger on event from EditionAccoladeComponent', () => {
+                const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                const accoladeCmp = accoladeDes[0].injector.get(
+                    EditionAccoladeStubComponent
+                ) as EditionAccoladeStubComponent;
+
+                expectedIsFullscreen = true;
+                accoladeCmp.fullscreenToggleRequest.emit(expectedIsFullscreen);
+
+                expectSpyCall(onFullscreenToggleSpy, 1, [expectedIsFullscreen]);
+            });
+
+            it('... should toggle `isFullscreen` variable', () => {
+                expectToBe(component.isFullscreen, false);
+
+                component.onFullscreenToggle(true);
+
+                expectToBe(component.isFullscreen, true);
+
+                component.onFullscreenToggle(false);
+
+                expectToBe(component.isFullscreen, false);
             });
         });
 
