@@ -1,4 +1,15 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    EventEmitter,
+    HostBinding,
+    HostListener,
+    inject,
+    Input,
+    Output,
+} from '@angular/core';
+import { FullscreenService } from '@awg-app/core/services';
 
 import {
     EditionSvgOverlay,
@@ -7,6 +18,7 @@ import {
     TextcriticalCommentBlock,
     Textcritics,
 } from '@awg-views/edition-view/models';
+import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * The EditionAccolade component.
@@ -114,6 +126,50 @@ export class EditionAccoladeComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
+     * HostBinding: isFullscreen.
+     *
+     * It binds to the is-fullscreen CSS class.
+     */
+    @HostBinding('class.is-fullscreen') isFullscreen = false;
+
+    /**
+     * Public variable: faExpand.
+     *
+     * It instantiates fontawesome's faExpand icon.
+     */
+    faExpand = faExpand;
+
+    /**
+     * Public variable: faCompress.
+     *
+     * It instantiates fontawesome's faCompress icon.
+     */
+    faCompress = faCompress;
+
+    /**
+     * Private readonly injection variable: _accoladeElRef.
+     *
+     * It keeps the instance of the injected ElementRef.
+     */
+    private readonly _elRef = inject(ElementRef);
+
+    /**
+     * Private readonly injection variable: _fullscreenService.
+     *
+     * It keeps the instance of the injected FullscreenService.
+     */
+    private readonly _fullscreenService = inject(FullscreenService);
+
+    /**
+     * HostListener: document:fullscreenchange.
+     *
+     * It listens for fullscreen exit.
+     */
+    @HostListener('document:fullscreenchange', ['$event']) onFullscreenChange(_event: Event) {
+        this.isFullscreen = this._fullscreenService.isFullscreen();
+    }
+
+    /**
      * Public method: browseSvgSheet.
      *
      * It emits a given direction to the {@link browseSvgSheetRequest}
@@ -203,5 +259,30 @@ export class EditionAccoladeComponent {
             return;
         }
         this.selectSvgSheetRequest.emit(sheetIds);
+    }
+
+    /**
+     * Public method: closeFullscreen.
+     *
+     * It closes fullscreen mode and sets isFullscreen flag to false.
+     *
+     * @returns {void} Sets isFullscreen flag to false.
+     */
+    closeFullscreen(): void {
+        this._fullscreenService.closeFullscreen();
+        this.isFullscreen = false;
+    }
+
+    /**
+     * Public method: openFullscreen.
+     *
+     * It activates fullscreen mode and sets isFullscreen flag to true.
+     *
+     * @returns {void} Sets isFullscreen flag to true.
+     */
+    openFullscreen(): void {
+        const el = this._elRef.nativeElement;
+        this._fullscreenService.openFullscreen(el);
+        this.isFullscreen = true;
     }
 }

@@ -187,6 +187,18 @@ export class EditionGraphComponent implements OnInit {
     }
 
     /**
+     * Public method: closeFullscreen.
+     *
+     * It closes fullscreen mode and sets isFullscreen flag to false.
+     *
+     * @returns {void} Sets isFullscreen flag to false.
+     */
+    closeFullscreen(): void {
+        this._fullscreenService.closeFullscreen();
+        this.isFullscreen = false;
+    }
+
+    /**
      * Public method: openFullscreen.
      *
      * It activates fullscreen mode and sets isFullscreen flag to true.
@@ -197,17 +209,5 @@ export class EditionGraphComponent implements OnInit {
         const el = this.graphVisualizer.fs.nativeElement;
         this._fullscreenService.openFullscreen(el);
         this.isFullscreen = true;
-    }
-
-    /**
-     * Public method: closeFullscreen.
-     *
-     * It closes fullscreen mode and sets isFullscreen flag to false.
-     *
-     * @returns {void} Sets isFullscreen flag to false.
-     */
-    closeFullscreen(): void {
-        this._fullscreenService.closeFullscreen();
-        this.isFullscreen = false;
     }
 }

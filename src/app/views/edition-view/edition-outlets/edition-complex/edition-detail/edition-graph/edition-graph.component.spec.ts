@@ -13,6 +13,7 @@ import {
 import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
+import { faCompress, faExpand, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
@@ -84,6 +85,8 @@ describe('EditionGraphComponent (DONE)', () => {
     let expectedEditionGraphDataOp25: GraphList;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
+    let expectedFaCompress: IconDefinition;
+    let expectedFaExpand: IconDefinition;
     let expectedIsFullscreen: boolean;
 
     beforeAll(() => {
@@ -133,6 +136,8 @@ describe('EditionGraphComponent (DONE)', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // TestData (default)
+        expectedFaCompress = faCompress;
+        expectedFaExpand = faExpand;
         expectedIsFullscreen = false;
 
         expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
@@ -191,6 +196,14 @@ describe('EditionGraphComponent (DONE)', () => {
 
         it('... should have `errorObject` = null', () => {
             expectToBe(component.errorObject, null);
+        });
+
+        it('... should have `faCompress`', () => {
+            expectToBe(component.faCompress, expectedFaCompress);
+        });
+
+        it('... should have `faExpand`', () => {
+            expectToBe(component.faExpand, expectedFaExpand);
         });
 
         it('... should have `isFullscreen`', () => {
@@ -646,7 +659,7 @@ describe('EditionGraphComponent (DONE)', () => {
             });
 
             it('... should update `isFullscreen`', () => {
-                const isFullscreenSpy = spyOn(mockFullscreenService, 'isFullscreen').and.returnValue(true);
+                spyOn(mockFullscreenService, 'isFullscreen').and.returnValue(true);
 
                 // Simulate fullscreenchange event
                 const event = new Event('fullscreenchange');
@@ -760,6 +773,29 @@ describe('EditionGraphComponent (DONE)', () => {
             }));
         });
 
+        describe('#closeFullscreen()', () => {
+            it('... should have a method `closeFullscreen`', () => {
+                expect(component.closeFullscreen).toBeDefined();
+            });
+
+            it('... should trigger `fullscreenService.closeFullscreen`', () => {
+                const closeFullscreenSpy = spyOn(mockFullscreenService, 'closeFullscreen').and.callThrough();
+                expectSpyCall(closeFullscreenSpy, 0);
+
+                component.closeFullscreen();
+
+                expectSpyCall(closeFullscreenSpy, 1);
+            });
+
+            it('... should set isFullscreen to false', () => {
+                component.isFullscreen = true;
+
+                component.closeFullscreen();
+
+                expectToBe(component.isFullscreen, false);
+            });
+        });
+
         describe('#openFullscreen()', () => {
             beforeEach(() => {
                 // Mock the graphVisualizer child component
@@ -789,29 +825,6 @@ describe('EditionGraphComponent (DONE)', () => {
                 component.openFullscreen();
 
                 expectToBe(component.isFullscreen, true);
-            });
-        });
-
-        describe('#closeFullscreen()', () => {
-            it('... should have a method `closeFullscreen`', () => {
-                expect(component.closeFullscreen).toBeDefined();
-            });
-
-            it('... should trigger `fullscreenService.closeFullscreen`', () => {
-                const closeFullscreenSpy = spyOn(mockFullscreenService, 'closeFullscreen').and.callThrough();
-                expectSpyCall(closeFullscreenSpy, 0);
-
-                component.closeFullscreen();
-
-                expectSpyCall(closeFullscreenSpy, 1);
-            });
-
-            it('... should set isFullscreen to false', () => {
-                component.isFullscreen = true;
-
-                component.closeFullscreen();
-
-                expectToBe(component.isFullscreen, false);
             });
         });
     });
