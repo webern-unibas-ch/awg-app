@@ -1,0 +1,20 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 33 Textfassung 1.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 32 Textfassung 1–2, Studienkomposition für Streichquartett M 68 und zu „Du bist mein, ich bin dein“ M 9 sowie nicht identifizierte Skizze.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_A"
+        },
+        {
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 33 Textfassung 1→2,<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 33 Textfassung 2 T. 7–8, T. 13–16, T. 31–32.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 32 Textfassung 1–2 T. 76–77.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_B"
+        }
+    ]
+}
