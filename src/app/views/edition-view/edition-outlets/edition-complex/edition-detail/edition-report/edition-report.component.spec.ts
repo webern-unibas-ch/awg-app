@@ -476,7 +476,7 @@ describe('EditionReportComponent', () => {
                 expectToEqual(component.editionComplex, expectedEditionComplex);
             });
 
-            it('... should have got editionReportData from editionDataService', () => {
+            it('... should have got `editionReportData` from editionDataService', () => {
                 expectSpyCall(editionDataServiceGetEditionReportDataSpy, 1);
             });
 

@@ -25,6 +25,14 @@ import {
 })
 export class EditionAccoladeComponent {
     /**
+     * Input variable: isFullscreen.
+     *
+     * It keeps the fullscreen mode status.
+     */
+    @Input()
+    isFullscreen: boolean;
+
+    /**
      * Input variable: svgSheetsData.
      *
      * It keeps the svg sheets data.
@@ -71,6 +79,14 @@ export class EditionAccoladeComponent {
      */
     @Output()
     browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
+
+    /**
+     * Output variable: fullscreenToggleRequest.
+     *
+     * It keeps an event emitter for the fullscreen toggle.
+     */
+    @Output()
+    fullscreenToggleRequest: EventEmitter<boolean> = new EventEmitter();
 
     /**
      * Output variable: navigateToReportFragment.
@@ -128,6 +144,23 @@ export class EditionAccoladeComponent {
             return;
         }
         this.browseSvgSheetRequest.emit(direction);
+    }
+
+    /**
+     * Public method: fullscreenToggle.
+     *
+     * It emits a given boolean to the {@link fullscreenToggleRequest}
+     * to toggle the fullscreen mode.
+     *
+     * @param {boolean} isFullscreen A boolean indicating the fullscreen mode.
+     *
+     * @returns {void} Emits the boolean.
+     */
+    fullscreenToggle(isFullscreen: boolean): void {
+        if (isFullscreen === undefined) {
+            return;
+        }
+        this.fullscreenToggleRequest.emit(isFullscreen);
     }
 
     /**

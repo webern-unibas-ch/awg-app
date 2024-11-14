@@ -4,7 +4,7 @@
     <awg-modal #modal></awg-modal>
 
     <!-- loading spinner -->
-    @if (isLoading) {
+    @if (isLoading$ | async) {
         <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
     } @else {
         <!-- error message -->
@@ -14,12 +14,14 @@
             <div class="awg-sheets-view">
                 <!-- accolade view -->
                 <awg-edition-accolade
+                    [isFullscreen]="isFullscreen"
                     [svgSheetsData]="svgSheetsData"
                     [selectedSvgSheet]="selectedSvgSheet"
                     [selectedTextcritics]="selectedTextcritics"
                     [selectedTextcriticalCommentBlocks]="selectedTextcriticalCommentBlocks"
                     [showTkA]="showTkA"
                     (browseSvgSheetRequest)="onBrowseSvgSheet($event)"
+                    (fullscreenToggleRequest)="onFullscreenToggle($event)"
                     (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
                     (openModalRequest)="modal.open($event)"
                     (selectLinkBoxRequest)="onLinkBoxSelect($event)"

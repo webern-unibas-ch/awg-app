@@ -17,6 +17,7 @@ import { CompileHtmlModule } from './compile-html';
 import { AddressComponent } from './address/address.component';
 import { AlertErrorComponent } from './alert-error/alert-error.component';
 import { AlertInfoComponent } from './alert-info/alert-info.component';
+import { FullscreenToggleComponent } from './fullscreen-toggle/fullscreen-toggle.component';
 import { HeadingComponent } from './heading/heading.component';
 import { JsonViewerComponent } from './json-viewer/json-viewer.component';
 import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
@@ -62,6 +63,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         AddressComponent,
         AlertErrorComponent,
         AlertInfoComponent,
+        FullscreenToggleComponent,
         HeadingComponent,
         JsonViewerComponent,
         LanguageSwitcherComponent,
@@ -94,6 +96,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         AddressComponent,
         AlertErrorComponent,
         AlertInfoComponent,
+        FullscreenToggleComponent,
         HeadingComponent,
         JsonViewerComponent,
         LanguageSwitcherComponent,

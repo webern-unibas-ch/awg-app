@@ -77,7 +77,7 @@ export class Textcritics {
     description: string[];
 
     /**
-     * The array of textcritical comments from a textcritics list.
+     * The array of textcritical comment blocks from a textcritics list.
      */
     comments: TextcriticalCommentBlock[];
 

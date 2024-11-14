@@ -1,5 +1,5 @@
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -25,6 +25,7 @@ import {
     Textcritics,
 } from '@awg-views/edition-view/models';
 
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { EditionAccoladeComponent } from './edition-accolade.component';
 
 // Mock components
@@ -70,6 +71,14 @@ class EditionSvgSheetFooterStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
+@Component({ selector: 'awg-fullscreen-toggle', template: '' })
+class FullscreenToggleStubComponent {
+    @Input()
+    fsElement: HTMLElement;
+    @Output()
+    toggleFullscreenRequest = new EventEmitter<boolean>();
+}
+
 describe('EditionAccoladeComponent (DONE)', () => {
     let component: EditionAccoladeComponent;
     let fixture: ComponentFixture<EditionAccoladeComponent>;
@@ -77,6 +86,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
     let browseSvgSheetSpy: Spy;
     let browseSvgSheetRequestEmitSpy: Spy;
+    let fullscreenToggleSpy: Spy;
+    let fullscreenToggleRequestEmitSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
     let openModalSpy: Spy;
@@ -89,6 +100,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
     let selectSvgSheetRequestEmitSpy: Spy;
 
     let expectedComplexId: string;
+    let expectedIsFullscreen: boolean;
     let expectedNextComplexId: string;
     let expectedReportFragment: string;
     let expectedSvgSheetsData: EditionSvgSheetList;
@@ -118,6 +130,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 EditionSvgSheetViewerStubComponent,
                 EditionSvgSheetNavStubComponent,
                 EditionSvgSheetFooterStubComponent,
+                FullscreenToggleStubComponent,
             ],
         }).compileComponents();
     }));
@@ -128,6 +141,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
+        expectedIsFullscreen = false;
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
@@ -152,6 +166,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         browseSvgSheetSpy = spyOn(component, 'browseSvgSheet').and.callThrough();
         browseSvgSheetRequestEmitSpy = spyOn(component.browseSvgSheetRequest, 'emit').and.callThrough();
+        fullscreenToggleSpy = spyOn(component, 'fullscreenToggle').and.callThrough();
+        fullscreenToggleRequestEmitSpy = spyOn(component.fullscreenToggleRequest, 'emit').and.callThrough();
         navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
         navigateToReportFragmentRequestEmitSpy = spyOn(
             component.navigateToReportFragmentRequest,
@@ -176,6 +192,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
+        it('... should not have `isFullscreen`', () => {
+            expect(component.isFullscreen).toBeUndefined();
+        });
+
         it('... should not have `svgSheetsData`', () => {
             expect(component.svgSheetsData).toBeUndefined();
         });
@@ -223,6 +243,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
+            component.isFullscreen = expectedIsFullscreen;
             component.svgSheetsData = expectedSvgSheetsData;
             component.selectedSvgSheet = expectedSvgSheet;
             component.selectedTextcriticalCommentBlocks = expectedSelectedTextcriticalCommentBlocks;
@@ -231,6 +252,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
             // Trigger initial data binding
             fixture.detectChanges();
+        });
+
+        it('... should have `isFullscreen` input', () => {
+            expectToEqual(component.isFullscreen, expectedIsFullscreen);
         });
 
         it('... should have `svgSheetsData` input', () => {
@@ -254,54 +279,135 @@ describe('EditionAccoladeComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
-                // NgbAccordion debug element
+            it('... should have class `fullscreen` on div.accordion only in fullscreen mode', () => {
+                // Div.accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+                const accordionEl = accordionDes[0].nativeElement;
 
-                // Item (div.accordion-item)
-                const itemDes = getAndExpectDebugElementByCss(
-                    accordionDes[0],
-                    'div#awg-accolade-view.accordion-item',
-                    1,
-                    1
-                );
-                // Header (div.accordion-header)
-                getAndExpectDebugElementByCss(itemDes[0], 'div#awg-accolade-view > div.accordion-header', 1, 1);
+                expect(accordionEl.classList).not.toContain('fullscreen');
 
-                // Body open (div.accordion-collapse)
-                const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div#awg-accolade-view-collapse', 1, 1);
-                const itemBodyEl = itemBodyDes[0].nativeElement;
+                // Set fullscreen
+                component.isFullscreen = true;
+                detectChangesOnPush(fixture);
 
-                expectToContain(itemBodyEl.classList, 'show');
+                expectToContain(accordionEl.classList, 'fullscreen');
             });
 
-            it('... should contain header section with div and two buttons (div.accordion-header)', () => {
-                // Div.accordion-item
-                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+            describe('... accordion header', () => {
+                it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
+                    // NgbAccordion debug element
+                    const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                // Header
-                const headerDes = getAndExpectDebugElementByCss(
-                    itemDes[0],
-                    'div#awg-accolade-view > div.accordion-header',
-                    1,
-                    1
-                );
+                    // Item (div.accordion-item)
+                    const itemDes = getAndExpectDebugElementByCss(
+                        accordionDes[0],
+                        'div#awg-accolade-view.accordion-item',
+                        1,
+                        1
+                    );
+                    // Header (div.accordion-header)
+                    getAndExpectDebugElementByCss(itemDes[0], 'div#awg-accolade-view > div.accordion-header', 1, 1);
 
-                // Header Buttons
-                const buttonDes = getAndExpectDebugElementByCss(
-                    headerDes[0],
-                    'div.accordion-button > button.btn',
-                    2,
-                    2
-                );
-                const buttonEl0 = buttonDes[0].nativeElement;
-                const buttonEl1 = buttonDes[1].nativeElement;
+                    // Body open (div.accordion-collapse)
+                    const itemBodyDes = getAndExpectDebugElementByCss(
+                        itemDes[0],
+                        'div#awg-accolade-view-collapse',
+                        1,
+                        1
+                    );
+                    const itemBodyEl = itemBodyDes[0].nativeElement;
 
-                const expectedTitle0 = 'Edierte Notentexte';
-                const expectedTitle1 = 'Hinweise zur Nutzung';
+                    expectToContain(itemBodyEl.classList, 'show');
+                });
 
-                expectToBe(buttonEl0.textContent.trim(), expectedTitle0);
-                expectToBe(buttonEl1.textContent.trim(), expectedTitle1);
+                it('... should contain header section with div.accordion-header and header button', () => {
+                    // Div.accordion-item
+                    const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+
+                    // Header
+                    const headerDes = getAndExpectDebugElementByCss(
+                        itemDes[0],
+                        'div#awg-accolade-view > div.accordion-header',
+                        1,
+                        1
+                    );
+
+                    // Header Buttons
+                    const buttonDes = getAndExpectDebugElementByCss(
+                        headerDes[0],
+                        'div.accordion-button > button.btn',
+                        1,
+                        1
+                    );
+                    const buttonEl0 = buttonDes[0].nativeElement;
+
+                    const expectedTitle0 = 'Edierte Notentexte';
+
+                    expectToBe(buttonEl0.textContent.trim(), expectedTitle0);
+                });
+
+                it('... should contain another div with help and FullscreenToggleComponent (stubbed) in header section', () => {
+                    // Div.accordion-item
+                    const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+
+                    // Header
+                    const headerDes = getAndExpectDebugElementByCss(
+                        itemDes[0],
+                        'div#awg-accolade-view > div.accordion-header',
+                        1,
+                        1
+                    );
+
+                    // Help Button
+                    const buttonDes = getAndExpectDebugElementByCss(headerDes[0], 'div.ms-auto > button.btn', 1, 1);
+                    const buttonEl = buttonDes[0].nativeElement;
+                    const expectedTitle = 'Hinweise zur Nutzung';
+
+                    expectToBe(buttonEl.textContent.trim(), expectedTitle);
+
+                    // FullscreenToggle
+                    getAndExpectDebugElementByDirective(headerDes[0], FullscreenToggleStubComponent, 1, 1);
+                });
+
+                it('... should contain only FullscreenToggleComponent (stubbed) in other div of header section when in fullscreen mode', () => {
+                    // Set fullscreen
+                    component.isFullscreen = true;
+                    detectChangesOnPush(fixture);
+
+                    // Div.accordion-item
+                    const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+
+                    // Header
+                    const headerDes = getAndExpectDebugElementByCss(
+                        itemDes[0],
+                        'div#awg-accolade-view > div.accordion-header',
+                        1,
+                        1
+                    );
+
+                    // Help Button
+                    getAndExpectDebugElementByCss(headerDes[0], 'div.ms-auto > button.btn', 0, 0);
+
+                    // FullscreenToggle
+                    getAndExpectDebugElementByDirective(headerDes[0], FullscreenToggleStubComponent, 1, 1);
+                });
+
+                it('... should pass down accordion reference to the FullscreenToggleComponent', () => {
+                    const fsToggleDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        FullscreenToggleStubComponent,
+                        1,
+                        1
+                    );
+                    const fsToggleCmp = fsToggleDes[0].injector.get(
+                        FullscreenToggleStubComponent
+                    ) as FullscreenToggleStubComponent;
+
+                    const accDes = getAndExpectDebugElementByCss(compDe, '[ngbAccordion]', 1, 1);
+                    const accRef = accDes[0].references['accoladeAcc'];
+
+                    expectToEqual(fsToggleCmp.fsElement, accRef);
+                });
             });
 
             describe('EditionSvgSheetNavComponent', () => {
@@ -524,6 +630,46 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
         });
 
+        describe('#fullscreenToggle()', () => {
+            it('... should have a method `fullscreenToggle`', () => {
+                expect(component.fullscreenToggle).toBeDefined();
+            });
+
+            it('... should trigger on fullscreenToggleRequest event from FullscreenToggleComponent', () => {
+                const fsToggleDes = getAndExpectDebugElementByDirective(compDe, FullscreenToggleStubComponent, 1, 1);
+                const fsToggleCmp = fsToggleDes[0].injector.get(
+                    FullscreenToggleStubComponent
+                ) as FullscreenToggleStubComponent;
+                expectedIsFullscreen = true;
+
+                fsToggleCmp.toggleFullscreenRequest.emit(expectedIsFullscreen);
+
+                expectSpyCall(fullscreenToggleSpy, 1, expectedIsFullscreen);
+            });
+
+            it('... should not emit anything if input is undefined', () => {
+                expectedIsFullscreen = undefined;
+
+                component.fullscreenToggle(expectedIsFullscreen);
+
+                expectSpyCall(fullscreenToggleRequestEmitSpy, 0);
+            });
+
+            it('... should emit the correct fullscreen mode', () => {
+                expectedIsFullscreen = true;
+
+                component.fullscreenToggle(expectedIsFullscreen);
+
+                expectSpyCall(fullscreenToggleRequestEmitSpy, 1, expectedIsFullscreen);
+
+                expectedIsFullscreen = false;
+
+                component.fullscreenToggle(expectedIsFullscreen);
+
+                expectSpyCall(fullscreenToggleRequestEmitSpy, 2, expectedIsFullscreen);
+            });
+        });
+
         describe('#navigateToReportFragment()', () => {
             it('... should have a method `navigateToReportFragment`', () => {
                 expect(component.navigateToReportFragment).toBeDefined();
@@ -616,18 +762,12 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     1
                 );
 
-                // Header Buttons
-                const buttonDes = getAndExpectDebugElementByCss(
-                    headerDes[0],
-                    'div.accordion-button > button.btn',
-                    2,
-                    2
-                );
+                // Header Help Button
+                const buttonDes = getAndExpectDebugElementByCss(headerDes[0], 'div.ms-auto > button.btn', 1, 1);
                 const expectedSnippet = 'HINT_EDITION_SHEETS';
 
-                // Only second button has modal call
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(buttonDes[1], fixture);
+                clickAndAwaitChanges(buttonDes[0], fixture);
 
                 expectSpyCall(openModalSpy, 1, expectedSnippet);
             }));
