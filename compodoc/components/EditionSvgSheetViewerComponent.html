@@ -211,6 +211,12 @@ and displays that svg sheet.</p>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_cdr" >_cdr</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_destroyed$" >_destroyed$</a>
                             </li>
                             <li>
@@ -227,11 +233,17 @@ and displays that svg sheet.</p>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_resize$" >_resize$</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
                                 <a href="#_selectedTkaOverlays" >_selectedTkaOverlays</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_svgDrawingService" >_svgDrawingService</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -459,69 +471,20 @@ and displays that svg sheet.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(cdr: ChangeDetectorRef, svgDrawingService: <a href="../injectables/EditionSvgDrawingService.html" target="_self">EditionSvgDrawingService</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:220</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:235</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
                             <div class="io-description"><p>Constructor of the EditionSvgSheetViewerComponent.</p>
-<p>It declares private instances of the <a href="../injectables/EditionSvgDrawingService.html">EditionSvgDrawingService</a>,
-Angular&#39;s ChangeDetectorRef and the self-referring variable
-needed for CompileHtml library.</p>
+<p>It declares the self-referring variable needed for CompileHtml library.</p>
 </div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>cdr</td>
-                                                  
-                                                        <td>
-                                                                    <code>ChangeDetectorRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the ChangeDetectorRef.</p>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>svgDrawingService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/EditionSvgDrawingService.html" target="_self" >EditionSvgDrawingService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the EditionSvgDrawingService.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
                     </td>
                 </tr>
             </tbody>
@@ -546,7 +509,7 @@ needed for CompileHtml library.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:87</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -577,7 +540,7 @@ needed for CompileHtml library.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:95</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -605,7 +568,7 @@ needed for CompileHtml library.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:102</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:103</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -633,7 +596,7 @@ needed for CompileHtml library.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:111</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -668,8 +631,8 @@ needed for CompileHtml library.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="244"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:244</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="251"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:251</a></div>
                         </td>
                     </tr>
 
@@ -712,8 +675,8 @@ needed for CompileHtml library.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="425"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:425</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="432"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:432</a></div>
                         </td>
                     </tr>
 
@@ -758,8 +721,8 @@ needed for CompileHtml library.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="513"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:513</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="520"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:520</a></div>
                         </td>
                     </tr>
 
@@ -852,8 +815,8 @@ needed for CompileHtml library.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="488"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:488</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="495"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:495</a></div>
                         </td>
                     </tr>
 
@@ -947,8 +910,8 @@ needed for CompileHtml library.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="438"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:438</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="445"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:445</a></div>
                         </td>
                     </tr>
 
@@ -993,8 +956,8 @@ needed for CompileHtml library.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="467"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:467</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="474"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:474</a></div>
                         </td>
                     </tr>
 
@@ -1039,8 +1002,8 @@ needed for CompileHtml library.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="549"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:549</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="556"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:556</a></div>
                         </td>
                     </tr>
 
@@ -1133,8 +1096,8 @@ needed for CompileHtml library.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="605"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:605</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="612"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:612</a></div>
                         </td>
                     </tr>
 
@@ -1212,8 +1175,8 @@ or the dimensions (width and height) of the given container.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="636"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:636</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="643"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:643</a></div>
                         </td>
                     </tr>
 
@@ -1298,8 +1261,8 @@ or the dimensions (width and height) of the given container.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="622"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:622</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="629"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:629</a></div>
                         </td>
                     </tr>
 
@@ -1392,8 +1355,8 @@ or the dimensions (width and height) of the given container.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="656"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:656</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="663"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:663</a></div>
                         </td>
                     </tr>
 
@@ -1470,8 +1433,8 @@ or the dimensions (width and height) of the given container.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="667"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:667</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="674"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:674</a></div>
                         </td>
                     </tr>
 
@@ -1516,8 +1479,8 @@ or the dimensions (width and height) of the given container.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="680"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:680</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="687"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:687</a></div>
                         </td>
                     </tr>
 
@@ -1595,8 +1558,8 @@ to the <a href="selectLinkBoxRequest">selectLinkBoxRequest</a>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="697"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:697</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="704"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:704</a></div>
                         </td>
                     </tr>
 
@@ -1674,8 +1637,8 @@ to the <a href="selectOverlaysRequest">selectOverlaysRequest</a>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="711"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:711</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="718"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:718</a></div>
                         </td>
                     </tr>
 
@@ -1720,8 +1683,8 @@ to the <a href="selectOverlaysRequest">selectOverlaysRequest</a>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="725"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:725</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="732"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:732</a></div>
                         </td>
                     </tr>
 
@@ -1766,8 +1729,8 @@ to the <a href="selectOverlaysRequest">selectOverlaysRequest</a>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="741"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:741</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="748"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:748</a></div>
                         </td>
                     </tr>
 
@@ -1845,8 +1808,8 @@ Cf. <a href="https://stackoverflow.com/a/13635455">https://stackoverflow.com/a/1
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="773"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:773</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="780"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:780</a></div>
                         </td>
                     </tr>
 
@@ -1937,8 +1900,8 @@ Cf. <a href="https://stackoverflow.com/a/13635455">https://stackoverflow.com/a/1
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="310"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:310</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="317"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:317</a></div>
                         </td>
                     </tr>
 
@@ -2014,8 +1977,8 @@ to browse to the previous or next sheet of the selected svg sheet.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="276"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:276</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="283"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:283</a></div>
                         </td>
                     </tr>
 
@@ -2055,8 +2018,8 @@ after initializing the view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="264"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:264</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="271"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:271</a></div>
                         </td>
                     </tr>
 
@@ -2130,8 +2093,8 @@ after initializing the view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="292"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:292</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="299"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:299</a></div>
                         </td>
                     </tr>
 
@@ -2180,8 +2143,8 @@ when destroying the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="244"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:244</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="251"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:251</a></div>
                         </td>
                     </tr>
 
@@ -2220,8 +2183,8 @@ when destroying the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="326"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:326</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="333"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:333</a></div>
                         </td>
                     </tr>
 
@@ -2296,8 +2259,8 @@ when destroying the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="344"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:344</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="351"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:351</a></div>
                         </td>
                     </tr>
 
@@ -2372,8 +2335,8 @@ when destroying the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="369"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:369</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="376"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:376</a></div>
                         </td>
                     </tr>
 
@@ -2448,8 +2411,8 @@ when destroying the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="381"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:381</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="388"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:388</a></div>
                         </td>
                     </tr>
 
@@ -2492,8 +2455,8 @@ when destroying the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="409"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:409</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="416"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:416</a></div>
                         </td>
                     </tr>
 
@@ -2548,7 +2511,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:171</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:172</a></div>
                         </td>
                     </tr>
 
@@ -2566,9 +2529,44 @@ removing scale factor and transitions.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_cdr"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_cdr</b></span>
+                        <a href="#_cdr"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:228</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _cdr.</p>
+<p>It keeps the instance of the injected Angular ChangeDetectorRef.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="_destroyed$"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_destroyed$</b></span>
                         <a href="#_destroyed$"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -2587,13 +2585,13 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:220</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:214</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _destroyed$.</p>
+                    <div class="io-description"><p>Private readonly variable: _destroyed$.</p>
 <p>Subject to emit a truthy value in the ngOnDestroy lifecycle hook.</p>
 </div>
                 </td>
@@ -2621,7 +2619,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:192</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:193</a></div>
                         </td>
                     </tr>
 
@@ -2655,7 +2653,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:185</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:186</a></div>
                         </td>
                     </tr>
 
@@ -2688,7 +2686,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:199</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:200</a></div>
                         </td>
                     </tr>
 
@@ -2709,6 +2707,7 @@ removing scale factor and transitions.</p>
                     <a name="_resize$"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_resize$</b></span>
                         <a href="#_resize$"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -2727,13 +2726,13 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:213</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:221</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _resize$.</p>
+                    <div class="io-description"><p>Private readonly variable: _resize$.</p>
 <p>It keeps a subject for a resize event.</p>
 </div>
                 </td>
@@ -2766,7 +2765,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:178</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:179</a></div>
                         </td>
                     </tr>
 
@@ -2774,6 +2773,40 @@ removing scale factor and transitions.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Private variable: selectedElementsWithComments.</p>
 <p>It keeps a list of the ids of the selected elements with textcritical comments.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_svgDrawingService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_svgDrawingService</b></span>
+                        <a href="#_svgDrawingService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionSvgDrawingService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:235</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _svgDrawingService.</p>
+<p>It keeps the instance of the injected EditionSvgDrawingService.</p>
 </div>
                 </td>
             </tr>
@@ -2800,7 +2833,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:206</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:207</a></div>
                         </td>
                     </tr>
 
@@ -2832,7 +2865,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:117</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:118</a></div>
                         </td>
                     </tr>
 
@@ -2864,7 +2897,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:124</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:125</a></div>
                         </td>
                     </tr>
 
@@ -2897,7 +2930,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:164</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:165</a></div>
                         </td>
                     </tr>
 
@@ -2928,7 +2961,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:131</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:132</a></div>
                         </td>
                     </tr>
 
@@ -2971,7 +3004,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:72</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -3014,7 +3047,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:79</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:80</a></div>
                         </td>
                     </tr>
 
@@ -3052,7 +3085,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:138</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:139</a></div>
                         </td>
                     </tr>
 
@@ -3095,7 +3128,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -3138,7 +3171,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -3176,7 +3209,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:145</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:146</a></div>
                         </td>
                     </tr>
 
@@ -3219,7 +3252,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -3252,7 +3285,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:159</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:160</a></div>
                         </td>
                     </tr>
 
@@ -3285,7 +3318,7 @@ removing scale factor and transitions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:152</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:153</a></div>
                         </td>
                     </tr>
 
@@ -3312,6 +3345,7 @@ removing scale factor and transitions.</p>
     ElementRef,
     EventEmitter,
     HostListener,
+    inject,
     Input,
     OnChanges,
     OnDestroy,
@@ -3513,33 +3547,39 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     private _zoomBehaviour: D3ZoomBehaviour;
 
     /**
-     * Private variable: _resize$.
-     *
-     * It keeps a subject for a resize event.
-     */
-    private _resize$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
-
-    /**
-     * Private variable: _destroyed$.
+     * Private readonly variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroyed$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
+    private readonly _destroyed$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
+
+    /**
+     * Private readonly variable: _resize$.
+     *
+     * It keeps a subject for a resize event.
+     */
+    private readonly _resize$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
+
+    /**
+     * Private readonly injection variable: _cdr.
+     *
+     * It keeps the instance of the injected Angular ChangeDetectorRef.
+     */
+    private readonly _cdr &#x3D; inject(ChangeDetectorRef);
+
+    /**
+     * Private readonly injection variable: _svgDrawingService.
+     *
+     * It keeps the instance of the injected EditionSvgDrawingService.
+     */
+    private readonly _svgDrawingService &#x3D; inject(EditionSvgDrawingService);
 
     /**
      * Constructor of the EditionSvgSheetViewerComponent.
      *
-     * It declares private instances of the {@link EditionSvgDrawingService},
-     * Angular&#x27;s ChangeDetectorRef and the self-referring variable
-     * needed for CompileHtml library.
-     *
-     * @param {ChangeDetectorRef} cdr Instance of the ChangeDetectorRef.
-     * @param {EditionSvgDrawingService} svgDrawingService Instance of the EditionSvgDrawingService.
+     * It declares the self-referring variable needed for CompileHtml library.
      */
-    constructor(
-        private cdr: ChangeDetectorRef,
-        private svgDrawingService: EditionSvgDrawingService
-    ) {
+    constructor() {
         this.ref &#x3D; this;
     }
 
@@ -3632,7 +3672,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      */
     onSuppliedClassesOpacityToggle(input: { className: string; isCurrentlyVisible: boolean }): void {
         const { className, isCurrentlyVisible } &#x3D; input;
-        this.svgDrawingService.toggleSuppliedClassOpacity(
+        this._svgDrawingService.toggleSuppliedClassOpacity(
             this.svgSheetRootGroupSelection,
             className,
             isCurrentlyVisible
@@ -3651,7 +3691,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     onTkkClassesHighlightToggle(isCurrentlyHighlighted: boolean): void {
         const overlayType &#x3D; &#x27;tkk&#x27;;
 
-        const overlayGroups: D3Selection &#x3D; this.svgDrawingService.getGroupsBySelector(
+        const overlayGroups: D3Selection &#x3D; this._svgDrawingService.getGroupsBySelector(
             this.svgSheetRootGroupSelection,
             overlayType
         );
@@ -3660,7 +3700,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             const color &#x3D; isCurrentlyHighlighted
                 ? EditionSvgOverlayActionTypes.fill
                 : EditionSvgOverlayActionTypes.transparent;
-            this.svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, color);
+            this._svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, color);
         });
     }
 
@@ -3701,7 +3741,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         this._createSvg().then(() &#x3D;&gt; {
             this.resetZoom();
             this._createSvgOverlays();
-            this.cdr.detectChanges();
+            this._cdr.detectChanges();
         });
     }
 
@@ -3749,7 +3789,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         }
 
         // Create a D3 selection object of the svg template element via svgDrawingService
-        this.svgSheetSelection &#x3D; await this.svgDrawingService.createSvg(
+        this.svgSheetSelection &#x3D; await this._svgDrawingService.createSvg(
             this.svgSheetFilePath,
             this.svgSheetElementRef?.nativeElement,
             this.svgSheetRootGroupRef?.nativeElement
@@ -3793,7 +3833,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Creates the D3 SVG link box overlays.
      */
     private _createOverlays(overlayType: string, createOverlayFn: (group: SVGGElement, type: string) &#x3D;&gt; void): void {
-        const overlayGroups: D3Selection &#x3D; this.svgDrawingService.getGroupsBySelector(
+        const overlayGroups: D3Selection &#x3D; this._svgDrawingService.getGroupsBySelector(
             this.svgSheetRootGroupSelection,
             overlayType
         );
@@ -3819,24 +3859,24 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      */
     private _createLinkBoxOverlay(group: SVGGElement, _overlayType: string): void {
         const linkBoxGroupId: string &#x3D; group[&#x27;id&#x27;];
-        const linkBoxGroupSelection: D3Selection &#x3D; this.svgDrawingService.getD3SelectionById(
+        const linkBoxGroupSelection: D3Selection &#x3D; this._svgDrawingService.getD3SelectionById(
             this.svgSheetRootGroupSelection,
             linkBoxGroupId
         );
 
         // Color link box
         const linkBoxGroupPathSelection: D3Selection &#x3D; linkBoxGroupSelection.select(&#x27;path&#x27;);
-        linkBoxGroupPathSelection.style(&#x27;fill&#x27;, this.svgDrawingService.linkBoxFillColor);
+        linkBoxGroupPathSelection.style(&#x27;fill&#x27;, this._svgDrawingService.linkBoxFillColor);
 
         linkBoxGroupSelection
             .on(&#x27;mouseover&#x27;, () &#x3D;&gt; {
-                const hoverColor &#x3D; this.svgDrawingService.linkBoxHoverFillColor;
-                this.svgDrawingService.fillD3SelectionWithColor(linkBoxGroupPathSelection, hoverColor);
+                const hoverColor &#x3D; this._svgDrawingService.linkBoxHoverFillColor;
+                this._svgDrawingService.fillD3SelectionWithColor(linkBoxGroupPathSelection, hoverColor);
                 linkBoxGroupSelection.style(&#x27;cursor&#x27;, &#x27;pointer&#x27;);
             })
             .on(&#x27;mouseout&#x27;, () &#x3D;&gt; {
-                const fillColor &#x3D; this.svgDrawingService.linkBoxFillColor;
-                this.svgDrawingService.fillD3SelectionWithColor(linkBoxGroupPathSelection, fillColor);
+                const fillColor &#x3D; this._svgDrawingService.linkBoxFillColor;
+                this._svgDrawingService.fillD3SelectionWithColor(linkBoxGroupPathSelection, fillColor);
             })
             .on(&#x27;click&#x27;, () &#x3D;&gt; {
                 this._onLinkBoxSelect(linkBoxGroupId);
@@ -3860,7 +3900,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         this._availableTkaOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.tka, id, false));
 
         // Get D3 selection of overlay group
-        const overlayGroupSelection &#x3D; this.svgDrawingService.createOverlayGroup(
+        const overlayGroupSelection &#x3D; this._svgDrawingService.createOverlayGroup(
             this.svgSheetRootGroupSelection,
             id,
             dim,
@@ -3871,7 +3911,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
 
         overlayGroupSelection
             .on(&#x27;mouseover&#x27;, () &#x3D;&gt; {
-                this.svgDrawingService.updateTkkOverlayColor(
+                this._svgDrawingService.updateTkkOverlayColor(
                     overlay,
                     overlayGroupRectSelection,
                     EditionSvgOverlayActionTypes.hover
@@ -3879,7 +3919,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
                 overlayGroupRectSelection.style(&#x27;cursor&#x27;, &#x27;pointer&#x27;);
             })
             .on(&#x27;mouseout&#x27;, () &#x3D;&gt; {
-                this.svgDrawingService.updateTkkOverlayColor(
+                this._svgDrawingService.updateTkkOverlayColor(
                     overlay,
                     overlayGroupRectSelection,
                     EditionSvgOverlayActionTypes.fill
@@ -3889,7 +3929,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
                 if (overlay) {
                     overlay.isSelected &#x3D; !overlay.isSelected;
                 }
-                this.svgDrawingService.updateTkkOverlayColor(
+                this._svgDrawingService.updateTkkOverlayColor(
                     overlay,
                     overlayGroupRectSelection,
                     EditionSvgOverlayActionTypes.hover
@@ -3910,7 +3950,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Sets width and height of the container div.
      */
     private _getContainerDimensions(containerEl: ElementRef): void {
-        const dimensions &#x3D; this.svgDrawingService.getContainerDimensions(containerEl);
+        const dimensions &#x3D; this._svgDrawingService.getContainerDimensions(containerEl);
 
         this._divWidth &#x3D; this._divWidth ? this._divWidth : dimensions.width;
         this._divHeight &#x3D; this._divHeight ? this._divHeight : dimensions.height;
@@ -3942,7 +3982,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      */
     private _getOverlayAndSelection(id: string, overlayType: string): [EditionSvgOverlay, D3Selection] {
         const overlay &#x3D; this._getOverlayById(this._availableTkaOverlays, id);
-        const overlayGroupRectSelection &#x3D; this.svgDrawingService.getOverlayGroupRectSelection(
+        const overlayGroupRectSelection &#x3D; this._svgDrawingService.getOverlayGroupRectSelection(
             this.svgSheetRootGroupSelection,
             id,
             overlayType
@@ -3972,7 +4012,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Gets the supplied classes.
      */
     private _getSuppliedClasses(): void {
-        this.suppliedClasses &#x3D; this.svgDrawingService.getSuppliedClasses(this.svgSheetRootGroupSelection);
+        this.suppliedClasses &#x3D; this._svgDrawingService.getSuppliedClasses(this.svgSheetRootGroupSelection);
     }
 
     /**
@@ -4183,6 +4223,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         height: 100%;
         box-shadow: 5px 5px 6px rgba(204, 204, 204, 1); /* rgba converted HEX #cccccc */
         border: 1px solid $border-grey;
+        border-radius: 5px;
     }
 }
 
@@ -4316,7 +4357,7 @@ input[type&#x3D;&#x27;range&#x27;].awg-edition-svg-zoom-slider {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div>@if (selectedSvgSheet) {    <div id="awg-edition-svg-container">        <div class="awg-edition-svg-sheet-viewer">            <div class="awg-edition-svg-icon-bar">                <!-- Slider -->                <div class="input-group input-group-sm awg-edition-svg-zoom-slider-container float-start mx-2r my-2">                    <span #sliderInputLabel class="input-group-text" id="slider-label">{{ sliderConfig.value }}x</span>                    <input                        type="range"                        #sliderInput                        class="awg-edition-svg-zoom-slider"                        id="awg-edition-svg-zoom-slider"                        name="zoomSlider"                        aria-label="Zoom slider"                        aria-describedby="slider-label"                        [min]="sliderConfig.min"                        [max]="sliderConfig.max"                        [step]="sliderConfig.stepSize"                        [(ngModel)]="sliderConfig.value"                        (ngModelChange)="onZoomChange($event)" />                    <button class="btn btn-sm btn-outline-info" type="submit" title="Reset zoom" (click)="resetZoom()">                        <fa-icon [icon]="faCompressArrowsAlt"></fa-icon>                    </button>                </div>            </div>            <div #svgSheetContainer class="awg-edition-svg-sheet-container px-2r">                <svg #svgSheetElement id="awg-edition-svg-sheet">                    <g #svgSheetRootGroup id="awg-edition-svg-sheet-root-group"></g>                </svg>                <awg-license></awg-license>                @if (hasAvailableTkaOverlays || suppliedClasses.size > 0) {                    <awg-edition-svg-sheet-viewer-switch                        [id]="selectedSvgSheet.id"                        [suppliedClasses]="suppliedClasses"                        [hasAvailableTkaOverlays]="hasAvailableTkaOverlays"                        (toggleSuppliedClassesOpacityRequest)="onSuppliedClassesOpacityToggle($event)"                        (toggleTkkClassesHighlightRequest)="                            onTkkClassesHighlightToggle($event)                        "></awg-edition-svg-sheet-viewer-switch>                }            </div>            <!-- Next and previous buttons -->            <awg-edition-svg-sheet-viewer-nav                (browseSvgSheetRequest)="browseSvgSheet($event)"></awg-edition-svg-sheet-viewer-nav>        </div>    </div>}</div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaDescriptionComponent', 'selector': 'awg-edition-tka-description'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopComponent', 'selector': 'awg-scroll-to-top'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaDescriptionComponent', 'selector': 'awg-edition-tka-description'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopComponent', 'selector': 'awg-scroll-to-top'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionSvgSheetViewerComponent'};
 </script>

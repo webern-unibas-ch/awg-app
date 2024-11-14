@@ -154,6 +154,7 @@ that can be subscribed by components.</p>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_isLoadingSubject" >_isLoadingSubject</a>
                             </li>
                         </ul>
@@ -353,6 +354,7 @@ that can be subscribed by components.</p>
                     <a name="_isLoadingSubject"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_isLoadingSubject</b></span>
                         <a href="#_isLoadingSubject"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -371,7 +373,7 @@ that can be subscribed by components.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private behavior subject to handle loading status.</p>
+                    <div class="io-description"><p>Private readonly behavior subject to handle loading status.</p>
 </div>
                 </td>
             </tr>
@@ -402,9 +404,9 @@ import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
 })
 export class LoadingService {
     /**
-     * Private behavior subject to handle loading status.
+     * Private readonly behavior subject to handle loading status.
      */
-    private _isLoadingSubject &#x3D; new BehaviorSubject&lt;boolean&gt;(false);
+    private readonly _isLoadingSubject &#x3D; new BehaviorSubject&lt;boolean&gt;(false);
 
     /**
      * Private readonly isLoading stream as observable (&#x60;BehaviorSubject&#x60;).

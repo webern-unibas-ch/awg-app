@@ -56,7 +56,7 @@
                     "position": "1–3/4",
                     "comment": "as<sup>2</sup>–g<sup>2</sup>–f<sup>2</sup> überschreibt f<sup>2</sup>–e<sup>2</sup>–d<sup>2</sup>."
                 }
-            ] 
+            ]
         },
         {
             "id": "M_29_Sk2",
@@ -144,7 +144,7 @@
                     "measure": "2",
                     "system": "8",
                     "position": "2/8",
-                    "comment": "[b] zu möglichem d gestrichen."
+                    "comment": "{{ref.getGlyph('[b]')}} zu möglichem d gestrichen."
                 },
                 {
                     "svgGroupId": "g1525",
@@ -200,7 +200,7 @@
                     "measure": "7",
                     "system": "7",
                     "position": "8/16",
-                    "comment": "a<sup>2</sup> überschreibt gis<sup>2</sup>; [#] zu überschriebenem gis<sup>2</sup> gestrichen."
+                    "comment": "a<sup>2</sup> überschreibt gis<sup>2</sup>; {{ref.getGlyph('[#]')}} zu überschriebenem gis<sup>2</sup> gestrichen."
                 },
                 {
                     "svgGroupId": "g1586",
@@ -397,14 +397,15 @@
             "id": "M_29_Sk5",
             "label": "M 29 Sk5",
             "description": [
-                "<strong>M 29 Sk5</strong> entwirft im Nachgang zu der Tintenniederschrift von Studienkomposition für Klavier M 29 eine alternative Fassung für die ersten acht Takte, bei denen hauptsächlich die linke Hand in der Hinsicht überarbeitet wird, dass die durchgehende Achtelbewegung durch Viertelnoten und -pausen aufgebrochen wird."          ],
+                "<strong>M 29 Sk5</strong> entwirft im Nachgang zu der Tintenniederschrift von Studienkomposition für Klavier M 29 eine alternative Fassung für die ersten acht Takte, bei denen hauptsächlich die linke Hand in der Hinsicht überarbeitet wird, dass die durchgehende Achtelbewegung durch Viertelnoten und -pausen aufgebrochen wird."
+            ],
             "comments": [
                 {
                     "svgGroupId": "g1104",
                     "measure": "2",
                     "system": "10",
                     "position": "6/8",
-                    "comment": "[a] überschreibt [b]."
+                    "comment": "{{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[b]')}}."
                 },
                 {
                     "svgGroupId": "g1122",

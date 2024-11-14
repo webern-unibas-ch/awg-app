@@ -137,6 +137,22 @@ to delegate them to the <a href="../injectables/HttpCacheService.html">HttpCache
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_cache" >_cache</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -161,63 +177,6 @@ to delegate them to the <a href="../injectables/HttpCacheService.html">HttpCache
     </table>
 </section>
 
-            <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(cache: <a href="../injectables/HttpCacheService.html" target="_self">HttpCacheService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/core/interceptors/caching/caching.interceptor.ts:24</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the CachingInterceptor.</p>
-<p>It declares a private <a href="../injectables/HttpCacheService.html">HttpCacheService</a> instance
-to handle the caching of http responses.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>cache</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/HttpCacheService.html" target="_self" >HttpCacheService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the HttpCacheService.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
             <section data-compodoc="block-methods">
     
@@ -244,8 +203,8 @@ to handle the caching of http responses.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="46"
-                                    class="link-to-prism">src/app/core/interceptors/caching/caching.interceptor.ts:46</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/app/core/interceptors/caching/caching.interceptor.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -318,6 +277,46 @@ delegates them to the <a href="../injectables/HttpCacheService.html">HttpCacheSe
         </tbody>
     </table>
 </section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_cache"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_cache</b></span>
+                        <a href="#_cache"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(HttpCacheService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/core/interceptors/caching/caching.interceptor.ts:30</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _cache.</p>
+<p>It keeps the instance of the injected HttpCacheService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
 
     </div>
 
@@ -331,7 +330,7 @@ delegates them to the <a href="../injectables/HttpCacheService.html">HttpCacheSe
     HttpRequest,
     HttpResponse,
 } from &#x27;@angular/common/http&#x27;;
-import { Injectable } from &#x27;@angular/core&#x27;;
+import { inject, Injectable } from &#x27;@angular/core&#x27;;
 
 import { Observable, of as observableOf, throwError as observableThrowError } from &#x27;rxjs&#x27;;
 import { catchError, tap } from &#x27;rxjs/operators&#x27;;
@@ -348,14 +347,11 @@ import { HttpCacheService } from &#x27;@awg-core/services&#x27;;
 @Injectable()
 export class CachingInterceptor implements HttpInterceptor {
     /**
-     * Constructor of the CachingInterceptor.
+     * Private readonly injection variable: _cache.
      *
-     * It declares a private {@link HttpCacheService} instance
-     * to handle the caching of http responses.
-     *
-     * @param {HttpCacheService} cache Instance of the HttpCacheService.
+     * It keeps the instance of the injected HttpCacheService.
      */
-    constructor(private cache: HttpCacheService) {}
+    private readonly _cache &#x3D; inject(HttpCacheService);
 
     /**
      * Public method: intercept.
@@ -374,7 +370,7 @@ export class CachingInterceptor implements HttpInterceptor {
         }
 
         // Check the cache for existing responses
-        const cachedResponse &#x3D; this.cache.get(req);
+        const cachedResponse &#x3D; this._cache.get(req);
         if (cachedResponse) {
             // Serve existing cached response
             return observableOf(cachedResponse.clone());
@@ -386,7 +382,7 @@ export class CachingInterceptor implements HttpInterceptor {
                 // Remember, there may be other events besides just the response
                 if (event instanceof HttpResponse) {
                     // Update the cache
-                    this.cache.put(req, event.clone());
+                    this._cache.put(req, event.clone());
                 }
             }),
             catchError(response &#x3D;&gt; {

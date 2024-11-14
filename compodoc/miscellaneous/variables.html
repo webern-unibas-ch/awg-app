@@ -623,7 +623,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;1.0.1&#x27;</code>
+                        <i>Default value : </i><code>&#x27;1.1.0&#x27;</code>
                     </td>
                 </tr>
 
@@ -655,7 +655,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;12. November 2024&#x27;</code>
+                        <i>Default value : </i><code>&#x27;14. November 2024&#x27;</code>
                     </td>
                 </tr>
 
@@ -1787,7 +1787,7 @@ to store firm signs data.</p>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
     /** ***********************************/
-    /** ********** ACCIDENTALS ************/
+    /**            ACCIDENTALS             /
     /** ***********************************/
     /**
      * The glyph of a music double flat sign.
@@ -1835,7 +1835,7 @@ to store firm signs data.</p>
     },
 
     /** ********************************/
-    /** ********** DYNAMICS ************/
+    /**            DYNAMICS             /
     /** ********************************/
     /**
      * The glyph of a musical forte symbol.
@@ -1856,7 +1856,7 @@ to store firm signs data.</p>
     },
 
     /**
-     * The glyph of a musical triple fortissimo (three times forte) symbol.
+     * The glyph of a musical triple forte symbol.
      * Cf. https://graphemica.com/%F0%9D%86%91
      */
     FORTISSIMO3: {
@@ -1864,6 +1864,99 @@ to store firm signs data.</p>
         hex: &#x27;\uD834\uDD91\uD834\uDD91\uD834\uDD91&#x27;,
     },
 
+    /**
+     * The glyph of a musical quadruple forte symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%91
+     */
+    FORTISSIMO4: {
+        alt: &#x27;[ffff]&#x27;,
+        hex: &#x27;\uD834\uDD91\uD834\uDD91\uD834\uDD91\uD834\uDD91&#x27;,
+    },
+
+    /**
+     * The glyph of a musical mezzo forte symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%90
+     */
+    MEZZOFORTE: {
+        alt: &#x27;[mf]&#x27;,
+        hex: &#x27;\uD834\uDD90\uD834\uDD91&#x27;,
+    },
+
+    /**
+     * The glyph of a musical mezzo piano symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%90
+     */
+    MEZZOPIANO: {
+        alt: &#x27;[mp]&#x27;,
+        hex: &#x27;\uD834\uDD90\uD834\uDD8F&#x27;,
+    },
+
+    /**
+     * The glyph of a musical pianissimo (double piano) symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%8F
+     */
+    PIANISSIMO: {
+        alt: &#x27;[pp]&#x27;,
+        hex: &#x27;\uD834\uDD8F\uD834\uDD8F&#x27;,
+    },
+
+    /**
+     * The glyph of a musical triple piano symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%8F
+     */
+    PIANISSIMO3: {
+        alt: &#x27;[ppp]&#x27;,
+        hex: &#x27;\uD834\uDD8F\uD834\uDD8F\uD834\uDD8F&#x27;,
+    },
+
+    /**
+     * The glyph of a musical quadruple piano symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%8F
+     */
+    PIANISSIMO4: {
+        alt: &#x27;[pppp]&#x27;,
+        hex: &#x27;\uD834\uDD8F\uD834\uDD8F\uD834\uDD8F\uD834\uDD8F&#x27;,
+    },
+
+    /**
+     * The glyph of a musical piano symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%8F
+     */
+    PIANO: {
+        alt: &#x27;[p]&#x27;,
+        hex: &#x27;\uD834\uDD8F&#x27;,
+    },
+
+    /**
+     * The glyph of a musical subito forte symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%8D
+     */
+    SUBITO_FORTE: {
+        alt: &#x27;[sf]&#x27;,
+        hex: &#x27;\uD834\uDD8D\uD834\uDD91&#x27;,
+    },
+
+    /**
+     * The glyph of a musical sforzando symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%8D
+     */
+    SFORZANDO: {
+        alt: &#x27;[sfz]&#x27;,
+        hex: &#x27;\uD834\uDD8D\uD834\uDD91\uD834\uDD8E&#x27;,
+    },
+
+    /**
+     * The glyph of a musical subito piano symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%8D
+     */
+    SUBITO_PIANO: {
+        alt: &#x27;[sp]&#x27;,
+        hex: &#x27;\uD834\uDD8D\uD834\uDD8F&#x27;,
+    },
+
+    /** ***********************************/
+    /**            NOTE VALUES             /
+    /** ***********************************/
     /**
      * The glyph of a musical eighth note symbol.
      * Cf. https://graphemica.com/%F0%9D%85%A0
@@ -1909,24 +2002,9 @@ to store firm signs data.</p>
         hex: &#x27;\uD834\uDD5D&#x27;,
     },
 
-    /**
-     * The glyph of a musical mezzo forte symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%90
-     */
-    MEZZOFORTE: {
-        alt: &#x27;[mf]&#x27;,
-        hex: &#x27;\uD834\uDD90\uD834\uDD91&#x27;,
-    },
-
-    /**
-     * The glyph of a musical mezzo piano symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%90
-     */
-    MEZZOPIANO: {
-        alt: &#x27;[mp]&#x27;,
-        hex: &#x27;\uD834\uDD90\uD834\uDD8F&#x27;,
-    },
-
+    /** ***********************************/
+    /**         PLAYING TECHNIQUES         /
+    /** ***********************************/
     /**
      * The glyph of a musical pedal symbol.
      * Cf. https://graphemica.com/%F0%9D%86%AE
@@ -1934,60 +2012,6 @@ to store firm signs data.</p>
     PEDAL: {
         alt: &#x27;[ped]&#x27;,
         hex: &#x27;\uD834\uDDAE&#x27;,
-    },
-
-    /**
-     * The glyph of a musical pianissimo (double piano) symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%8F
-     */
-    PIANISSIMO: {
-        alt: &#x27;[pp]&#x27;,
-        hex: &#x27;\uD834\uDD8F\uD834\uDD8F&#x27;,
-    },
-
-    /**
-     * The glyph of a musical triple pianissimo (three times piano) symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%8F
-     */
-    PIANISSIMO3: {
-        alt: &#x27;[ppp]&#x27;,
-        hex: &#x27;\uD834\uDD8F\uD834\uDD8F\uD834\uDD8F&#x27;,
-    },
-
-    /**
-     * The glyph of a musical piano symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%8F
-     */
-    PIANO: {
-        alt: &#x27;[p]&#x27;,
-        hex: &#x27;\uD834\uDD8F&#x27;,
-    },
-
-    /**
-     * The glyph of a musical subito forte symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%8D
-     */
-    SUBITO_FORTE: {
-        alt: &#x27;[sf]&#x27;,
-        hex: &#x27;\uD834\uDD8D\uD834\uDD91&#x27;,
-    },
-
-    /**
-     * The glyph of a musical sforzando symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%8D
-     */
-    SFORZANDO: {
-        alt: &#x27;[sfz]&#x27;,
-        hex: &#x27;\uD834\uDD8D\uD834\uDD91\uD834\uDD8E&#x27;,
-    },
-
-    /**
-     * The glyph of a musical subito piano symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%8D
-     */
-    SUBITO_PIANO: {
-        alt: &#x27;[sp]&#x27;,
-        hex: &#x27;\uD834\uDD8D\uD834\uDD8F&#x27;,
     },
 } as const</code>
                     </td>

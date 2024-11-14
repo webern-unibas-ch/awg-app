@@ -168,7 +168,13 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_abbreviations" >_abbreviations</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_el" >_el</a>
                             </li>
                         </ul>
                     </td>
@@ -215,62 +221,6 @@
     </table>
 </section>
 
-            <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(el: ElementRef)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:45</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the AbbrDirective.</p>
-<p>It declares a private instance of ElementRef.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>el</td>
-                                                  
-                                                        <td>
-                                                                    <code>ElementRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of ElementRef.</p>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
             <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
@@ -333,8 +283,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="74"
-                                    class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:74</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -378,8 +328,8 @@ containing the full form as title.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="62"
-                                    class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:62</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -412,6 +362,7 @@ when initializing the directive.</p>
                     <a name="_abbreviations"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_abbreviations</b></span>
                         <a href="#_abbreviations"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -451,8 +402,42 @@ when initializing the directive.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _abbreviations.</p>
+                    <div class="io-description"><p>Private readonly variable: _abbreviations.</p>
 <p>It keeps a list of abbreviations and their full forms.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_el"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_el</b></span>
+                        <a href="#_el"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:52</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _el.</p>
+<p>It keeps the instance of the injected Angular ElementRef.</p>
 </div>
                 </td>
             </tr>
@@ -466,7 +451,7 @@ when initializing the directive.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, ElementRef, Input, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, ElementRef, inject, Input, OnInit } from &#x27;@angular/core&#x27;;
 
 /**
  * The abbr directive.
@@ -485,11 +470,11 @@ export class AbbrDirective implements OnInit {
     @Input(&#x27;awgAbbr&#x27;) text: string;
 
     /**
-     * Private variable: _abbreviations.
+     * Private readonly variable: _abbreviations.
      *
      * It keeps a list of abbreviations and their full forms.
      */
-    private _abbreviations &#x3D; new Map&lt;string, string&gt;([
+    private readonly _abbreviations &#x3D; new Map&lt;string, string&gt;([
         // General
         [&#x27;Bl.&#x27;, &#x27;Blatt (r - recto, v - verso)&#x27;],
         [&#x27;S.&#x27;, &#x27;Seite&#x27;],
@@ -513,13 +498,11 @@ export class AbbrDirective implements OnInit {
     ]);
 
     /**
-     * Constructor of the AbbrDirective.
+     * Private readonly injection variable: _el.
      *
-     * It declares a private instance of ElementRef.
-     *
-     * @param {ElementRef} el Instance of ElementRef.
+     * It keeps the instance of the injected Angular ElementRef.
      */
-    constructor(private el: ElementRef) {}
+    private readonly _el &#x3D; inject(ElementRef);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -556,7 +539,7 @@ export class AbbrDirective implements OnInit {
             return &#x60;&lt;abbr title&#x3D;&quot;${full}&quot;&gt;${match}&lt;/abbr&gt;&#x60;;
         });
 
-        this.el.nativeElement.innerHTML &#x3D; innerHTML;
+        this._el.nativeElement.innerHTML &#x3D; innerHTML;
     }
 }
 </code></pre>

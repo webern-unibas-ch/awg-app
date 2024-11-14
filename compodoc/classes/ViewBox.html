@@ -199,6 +199,7 @@ It takes folio settings as input to return the main svg view box values.</p>
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -213,6 +214,10 @@ It takes folio settings as input to return the main svg view box values.</p>
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>The width of the viewBox.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>height</td>
@@ -225,6 +230,10 @@ It takes folio settings as input to return the main svg view box values.</p>
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>The height of the viewBox.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -257,11 +266,6 @@ It takes folio settings as input to return the main svg view box values.</p>
 
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;100%&#x27;</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/views/edition-view/models/view-box.model.ts:20</a></div>
@@ -271,7 +275,7 @@ It takes folio settings as input to return the main svg view box values.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The height of the svg (string).</p>
-<p>Set to <code>100%</code>.</p>
+<p>Set to <code>100%</code> by default.</p>
 </div>
                 </td>
             </tr>
@@ -295,11 +299,6 @@ It takes folio settings as input to return the main svg view box values.</p>
 
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;100%&#x27;</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/views/edition-view/models/view-box.model.ts:13</a></div>
@@ -309,7 +308,7 @@ It takes folio settings as input to return the main svg view box values.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The width of the svg (string).</p>
-<p>Set to <code>100%</code>.</p>
+<p>Set to <code>100%</code> by default.</p>
 </div>
                 </td>
             </tr>
@@ -365,16 +364,16 @@ It takes folio settings as input to return the main svg view box values.</p>
     /**
      * The width of the svg (string).
      *
-     * Set to &#x60;100%&#x60;.
+     * Set to &#x60;100%&#x60; by default.
      */
-    svgWidth &#x3D; &#x27;100%&#x27;;
+    svgWidth: string;
 
     /**
      * The height of the svg (string).
      *
-     * Set to &#x60;100%&#x60;.
+     * Set to &#x60;100%&#x60; by default.
      */
-    svgHeight &#x3D; &#x27;100%&#x27;;
+    svgHeight: string;
 
     /**
      * The svg viewBox attribute (string).
@@ -391,11 +390,14 @@ It takes folio settings as input to return the main svg view box values.</p>
      *
      * It sets the view box string from the given width and height.
      *
-
+     * @param {number} width The width of the viewBox.
+     * @param {number} height The height of the viewBox.
      */
     constructor(width: number, height: number) {
         // Set the viewBox string
-        this.viewBox &#x3D; &#x27;0 0 &#x27; + width + &#x27; &#x27; + height;
+        this.svgWidth &#x3D; &#x27;100%&#x27;;
+        this.svgHeight &#x3D; &#x27;100%&#x27;;
+        this.viewBox &#x3D; &#x60;0 0 ${width} ${height}&#x60;;
     }
 }
 </code></pre>

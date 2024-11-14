@@ -153,6 +153,11 @@ and the resource detail data.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_conversionService" >_conversionService</a>
+                            </li>
+                            <li>
                                 <a href="#defaultLanguage" >defaultLanguage</a>
                             </li>
                             <li>
@@ -242,12 +247,12 @@ and the resource detail data.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(http: HttpClient, conversionService: <a href="../injectables/ConversionService.html" target="_self">ConversionService</a>)</code>
+<code>constructor(http: HttpClient)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:70</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:77</a></div>
                             </td>
                         </tr>
 
@@ -255,8 +260,7 @@ and the resource detail data.</p>
                     <td class="col-md-4">
                             <div class="io-description"><p>Constructor of the DataApiService.</p>
 <p>It declares a public <a href="HttpClient">HttpClient</a> instance
-to handle http requests and a private <a href="../injectables/ConversionService.html">ConversionService</a>
-instance for the conversion of the response data.</p>
+to handle http requests.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -283,22 +287,6 @@ instance for the conversion of the response data.</p>
                                                     
                                                         <td>
                                                                 <p>Instance of the HttpClient.</p>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>conversionService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/ConversionService.html" target="_self" >ConversionService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>Instance of the ConversionService.</p>
 
                                                         </td>
                                                 </tr>
@@ -338,8 +326,8 @@ instance for the conversion of the response data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="232"
-                                    class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:232</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="234"
+                                    class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:234</a></div>
                         </td>
                     </tr>
 
@@ -411,8 +399,8 @@ instance for the conversion of the response data.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="304"
-                                    class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:304</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="306"
+                                    class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:306</a></div>
                         </td>
                     </tr>
 
@@ -523,8 +511,8 @@ and the given resource id.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="281"
-                                    class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:281</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="283"
+                                    class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:283</a></div>
                         </td>
                     </tr>
 
@@ -607,8 +595,8 @@ to a ResourceData object.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="100"
-                                    class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:100</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="102"
+                                    class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:102</a></div>
                         </td>
                     </tr>
 
@@ -679,8 +667,8 @@ the list of properties of a given resource type id from the given (SALSAH) API.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="128"
-                                    class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:128</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="130"
+                                    class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:130</a></div>
                         </td>
                     </tr>
 
@@ -751,8 +739,8 @@ as an ResourceData observable.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="163"
-                                    class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:163</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="165"
+                                    class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:165</a></div>
                         </td>
                     </tr>
 
@@ -796,8 +784,8 @@ all resource types of the Webern vocabulary (4) from the given (SALSAH) API.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="188"
-                                    class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:188</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="190"
+                                    class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:190</a></div>
                         </td>
                     </tr>
 
@@ -1157,6 +1145,40 @@ to retrieve all results from the given (SALSAH) API.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_conversionService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_conversionService</b></span>
+                        <a href="#_conversionService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ConversionService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:77</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _conversionService.</p>
+<p>It keeps the instance of the injected ConversionService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="defaultLanguage"></a>
                     <span class="name">
                         <span ><b>defaultLanguage</b></span>
@@ -1485,7 +1507,7 @@ to retrieve all results from the given (SALSAH) API.</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient, HttpParams } from &#x27;@angular/common/http&#x27;;
-import { Injectable } from &#x27;@angular/core&#x27;;
+import { inject, Injectable } from &#x27;@angular/core&#x27;;
 
 import { Observable, forkJoin as observableForkJoin, of as observableOf } from &#x27;rxjs&#x27;;
 import { defaultIfEmpty, map } from &#x27;rxjs/operators&#x27;;
@@ -1556,19 +1578,21 @@ export class DataApiService extends ApiService {
     };
 
     /**
+     * Private readonly injection variable: _conversionService.
+     *
+     * It keeps the instance of the injected ConversionService.
+     */
+    private readonly _conversionService &#x3D; inject(ConversionService);
+
+    /**
      * Constructor of the DataApiService.
      *
      * It declares a public {@link HttpClient} instance
-     * to handle http requests and a private {@link ConversionService}
-     * instance for the conversion of the response data.
+     * to handle http requests.
      *
      * @param {HttpClient} http Instance of the HttpClient.
-     * @param {ConversionService} conversionService Instance of the ConversionService.
      */
-    constructor(
-        http: HttpClient,
-        private conversionService: ConversionService
-    ) {
+    constructor(http: HttpClient) {
         super(http);
         this.serviceName &#x3D; &#x27;DataApiService&#x27;;
     }
@@ -1701,7 +1725,7 @@ export class DataApiService extends ApiService {
 
             // Map the response to a converted search response object for HTML display
             map((searchResponse: SearchResponseJson) &#x3D;&gt;
-                this.conversionService.convertFullTextSearchResults(searchResponse)
+                this._conversionService.convertFullTextSearchResults(searchResponse)
             )
         );
     }
@@ -1766,7 +1790,7 @@ export class DataApiService extends ApiService {
      */
     private _prepareResourceData(resourceDataResponse: IResourceDataResponse, resourceId: string): ResourceData {
         // Convert data for displaying resource detail
-        const resourceDetail: ResourceDetail &#x3D; this.conversionService.convertResourceData(
+        const resourceDetail: ResourceDetail &#x3D; this._conversionService.convertResourceData(
             resourceDataResponse,
             resourceId
         );

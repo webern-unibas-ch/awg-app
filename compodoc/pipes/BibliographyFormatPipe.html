@@ -1495,6 +1495,7 @@ of items (according to bibliography style).</p>
                     <a name="_formatFunctions"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_formatFunctions</b></span>
                         <a href="#_formatFunctions"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1530,7 +1531,7 @@ of items (according to bibliography style).</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private map: _formatFunctions.</p>
+                    <div class="io-description"><p>Private readonly variable: _formatFunctions.</p>
 <p>It stores a map of format functions for each field key of a BibEntry.
 The keys of the map correspond to the field keys, and the values are functions
 that transform the field value in a particular way.</p>
@@ -1547,6 +1548,7 @@ that transform the field value in a particular way.</p>
                     <a name="_formatKeyArr"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_formatKeyArr</b></span>
                         <a href="#_formatKeyArr"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1581,7 +1583,7 @@ that transform the field value in a particular way.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private array: _formatKeyArr.</p>
+                    <div class="io-description"><p>Private readonly variable: _formatKeyArr.</p>
 <p>It keeps an array of the BibEntry keys to be formatted.</p>
 </div>
                 </td>
@@ -1660,11 +1662,11 @@ export class BibliographyFormatPipe implements PipeTransform {
     private _formattedBibEntry: BibEntry;
 
     /**
-     * Private array: _formatKeyArr.
+     * Private readonly variable: _formatKeyArr.
      *
      * It keeps an array of the BibEntry keys to be formatted.
      */
-    private _formatKeyArr: Array&lt;string&gt; &#x3D; [
+    private readonly _formatKeyArr: Array&lt;string&gt; &#x3D; [
         &#x27;Author&#x27;,
         &#x27;Titel_unselbst&#x27;,
         &#x27;Titel_selbst&#x27;,
@@ -1677,13 +1679,13 @@ export class BibliographyFormatPipe implements PipeTransform {
     ];
 
     /**
-     * Private map: _formatFunctions.
+     * Private readonly variable: _formatFunctions.
      *
      * It stores a map of format functions for each field key of a BibEntry.
      * The keys of the map correspond to the field keys, and the values are functions
      * that transform the field value in a particular way.
      */
-    private _formatFunctions: Map&lt;string, (value: any) &#x3D;&gt; string&gt; &#x3D; new Map([
+    private readonly _formatFunctions: Map&lt;string, (value: any) &#x3D;&gt; string&gt; &#x3D; new Map([
         [&#x27;Kurztitel&#x27;, this._formatBibTitleShort],
         [&#x27;Author&#x27;, this._formatBibAuthor],
         [&#x27;Titel_selbst&#x27;, this._formatBibTitleIndep],
