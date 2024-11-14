@@ -1,6 +1,78 @@
 {
     "textcritics": [
         {
+            "id": "M_312_Sk1",
+            "label": "M 312 Sk1",
+            "description": [
+                "<strong>Sk1</strong> entwirft den Anfang der Singstimme zu „Herr Jesus mein“ M 312 sowie gleichzeitig im Abgleich mit <strong>Sk1.1</strong> die Reihenform G<sub>g</sub> der zugrundliegenden Zwölftonreihe. Ab dem Ende von T. 3 ist lediglich ein möglicher Rhythmus in verschiedenen metrischen Varianten skizziert (siehe die getilgten Taktstriche)."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g3",
+                            "measure": "2",
+                            "system": "1",
+                            "position": "3. Note",
+                            "comment": "Achtelbalken überschreibt Ansatz zu Achtelbalken."
+                        },
+                        {
+                            "svgGroupId": "g2",
+                            "measure": "3",
+                            "system": "1",
+                            "position": "1. Note",
+                            "comment": "Radiert."
+                        },
+                        {
+                            "svgGroupId": "g12",
+                            "measure": "3",
+                            "system": "3",
+                            "position": "nach 4/8",
+                            "comment": "Gestrichenes Zeichen: Möglicherweise Ansatz zu Notenkopf g<sup>2</sup>?"
+                        },
+                        {
+                            "svgGroupId": "g8",
+                            "measure": "4",
+                            "system": "3",
+                            "position": "nach 8/16",
+                            "comment": "Taktstrich und Taktziffer <em>5</em> gestrichen."
+                        },
+                        {
+                            "svgGroupId": "g9",
+                            "measure": "5",
+                            "system": "3",
+                            "position": "nach 4/16",
+                            "comment": "Taktstrich gestrichen."
+                        },
+                        {
+                            "svgGroupId": "g10",
+                            "measure": "6",
+                            "system": "3",
+                            "position": "nach 2/8",
+                            "comment": "Taktstrich gestrichen."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "op23",
+                        "sheetId": "M_312_Sk4d"
+                    }
+                },
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "op23",
+                        "sheetId": "M_312_Sk1_1"
+                    }
+                }
+            ]
+        },
+        {
             "id": "SkRT",
             "label": "M 312 / M 313 / M 314 RT (Reihentabelle op. 23)",
             "description": [
