@@ -73,6 +73,43 @@
             ]
         },
         {
+            "id": "M_312_Sk1_1",
+            "label": "M 312 Sk1.1",
+            "description": [
+                "<strong>Sk1.1</strong> entwirft im Abgleich mit <strong>Sk1</strong> die Reihenform G<sub>g</sub> der zugrundliegenden Zwölftonreihe. "
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g8",
+                            "measure": "Bl. 27<sup>r</sup>",
+                            "system": "1",
+                            "position": "3. Reihenton",
+                            "comment": "g<sup>1</sup> gestrichen und zunächst ersetzt durch a<sup>1</sup>. Dann ersetzt durch Tonbuchstabe g über dem System. Siehe auch Kommentar zu 11.–12. Reihenton."
+                        },
+                        {
+                            "svgGroupId": "g7",
+                            "measure": "Bl. 27<sup>r</sup>",
+                            "system": "1",
+                            "position": "11.–12. Reihenton",
+                            "comment": "h–g<sup>1</sup> durch Einklammerung getilgt und ersetzt durch a<sup>1</sup>–h<sup>1</sup>. Siehe auch Kommentar zu 3. Reihenton."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "op23",
+                        "sheetId": "M_312_Sk1"
+                    }
+                }
+            ]
+        },
+        {
             "id": "SkRT",
             "label": "M 312 / M 313 / M 314 RT (Reihentabelle op. 23)",
             "description": [

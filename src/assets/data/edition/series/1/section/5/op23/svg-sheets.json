@@ -4,18 +4,29 @@
         "textEditions": [],
         "sketchEditions": [
             {
-                "id": "SkRT",
-                "label": "M 312 / M 313 / M 314 RT (Reihentabelle op. 23)",
+                "id": "M_312_Sk1",
+                "label": "M 312 Sk1",
                 "content": [
                     {
                         "svg": "assets/img/edition/series/1/section/5/op23/M312_Sk1-1von1-final.svg",
                         "image": "",
                         "partial": "",
-                        "convolute": "B"
+                        "convolute": "A"
                     }
                 ]
             },
             {
+                "id": "M_312_Sk1_1",
+                "label": "M 312 Sk1.1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op23/M312_Sk1_1-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "A"
+                    }
+                ]
+            },{
                 "id": "SkRT",
                 "label": "M 312 / M 313 / M 314 RT (Reihentabelle op. 23)",
                 "content": [
