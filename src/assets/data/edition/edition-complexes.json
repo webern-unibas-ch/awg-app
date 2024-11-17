@@ -573,6 +573,28 @@
             }
         },
         {
+            "M312": {
+                "titleStatement": {
+                    "title": "„Herr Jesus mein“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "312"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
             "M317": {
                 "titleStatement": {
                     "title": "„Wie bin ich froh!“",
