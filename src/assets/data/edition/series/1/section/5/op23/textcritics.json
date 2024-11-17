@@ -4,7 +4,7 @@
             "id": "M_312_Sk1",
             "label": "M 312 Sk1",
             "description": [
-                "<strong>Sk1</strong> entwirft den Anfang der Singstimme zu „Herr Jesus mein“ M 312 sowie gleichzeitig im Abgleich mit <strong>Sk1.1</strong> die Reihenform G<sub>g</sub> der zugrundliegenden Zwölftonreihe. Ab dem Ende von T. 3 ist lediglich ein möglicher Rhythmus in verschiedenen metrischen Varianten skizziert (siehe die getilgten Taktstriche)."
+                "<strong>Sk1</strong> entwirft den Anfang der Singstimme zu „Herr Jesus mein“ M 312 sowie gleichzeitig im Abgleich mit <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M_312_Sk1_1'})\"><strong>Sk1.1</strong></a> die Reihenform G<sub>g</sub> der zugrundeliegenden Zwölftonreihe. Ab dem Ende von T. 3 ist lediglich ein möglicher Rhythmus in verschiedenen metrischen Varianten skizziert (siehe die getilgten Taktstriche)."
             ],
             "comments": [
                 {
@@ -76,7 +76,7 @@
             "id": "M_312_Sk1_1",
             "label": "M 312 Sk1.1",
             "description": [
-                "<strong>Sk1.1</strong> entwirft im Abgleich mit <strong>Sk1</strong> die Reihenform G<sub>g</sub> der zugrundliegenden Zwölftonreihe. "
+                "<strong>Sk1.1</strong> entwirft im Abgleich mit <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M_312_Sk1'})\"><strong>Sk1</strong></a> die Reihenform G<sub>g</sub> der zugrundeliegenden Zwölftonreihe. "
             ],
             "comments": [
                 {
