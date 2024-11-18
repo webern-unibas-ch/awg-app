@@ -70,6 +70,7 @@
                                 { "complex": "M212", "disabled": true },
                                 { "complex": "M216", "disabled": true },
                                 { "complex": "M217", "disabled": true },
+                                { "complex": "M312", "disabled": true },
                                 { "complex": "M317", "disabled": true },
                                 { "complex": "M321", "disabled": true },
                                 { "complex": "M322", "disabled": true }
