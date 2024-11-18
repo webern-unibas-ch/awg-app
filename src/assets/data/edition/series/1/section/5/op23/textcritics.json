@@ -202,10 +202,62 @@
             ],
             "linkBoxes": [
                 {
-                    "svgGroupId": "g1481",
+                    "svgGroupId": "g1418",
                     "linkTo": {
                         "complexId": "op23",
                         "sheetId": "M_314_Sk2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_314_Sk2",
+            "label": "M 314 Sk2",
+            "description": [
+                "<strong>Sk2</strong> führt den Anfang der Singstimme von „Das dunkle Herz“ M 314 in vergrößerten rhythmischen Werten und entsprechend verändertem Metrum weiter als <strong>Sk1</strong>. Die durch entsprechend vorgesehene Systeme (System 4–5) zunächst anvisierte Skizzierung der Klavierbegleitung wurde nicht ausgeführt.",
+                "Die Ziffern <em>VII</em> (U<sub>d</sub>) und <em>II</em> (K<sub>h</sub>) bezeichnen den Anfang der verwendeten Reihenformen gemäß den Reihentabellen <strong>M 312 Sk2</strong> und <strong>M 312 / M 313 / M 314 RT</strong>."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g348",
+                            "measure": "vor 1",
+                            "system": "4–5",
+                            "position": "",
+                            "comment": "Klammer für Klaviersysteme gestrichen."
+                        },
+                        {
+                            "svgGroupId": "g349",
+                            "measure": "1",
+                            "system": "3",
+                            "position": "1/4",
+                            "comment": "f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch f<sup>1</sup>."
+                        },
+                        {
+                            "svgGroupId": "g351",
+                            "measure": "2",
+                            "system": "3",
+                            "position": "1. Note",
+                            "comment": "Punktierte Viertelnote überschreibt Halbe Note."
+                        },
+                        {
+                            "svgGroupId": "g354",
+                            "measure": "7",
+                            "system": "3",
+                            "position": "4.–5. Note",
+                            "comment": "<em>Leuchten</em> zusammengeschrieben."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1418",
+                    "linkTo": {
+                        "complexId": "op23",
+                        "sheetId": "M_314_Sk1"
                     }
                 }
             ]
