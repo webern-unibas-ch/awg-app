@@ -40,6 +40,18 @@
                 ]
             },
             {
+                "id": "M_314_Sk1",
+                "label": "M 314 Sk1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op23/M314_Sk1-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "A"
+                    }
+                ]
+            },
+            {
                 "id": "SkRT",
                 "label": "M 312 / M 313 / M 314 RT (Reihentabelle op. 23)",
                 "content": [

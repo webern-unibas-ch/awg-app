@@ -595,6 +595,28 @@
             }
         },
         {
+            "M314": {
+                "titleStatement": {
+                    "title": "„Das dunkle Herz“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "314"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
             "M317": {
                 "titleStatement": {
                     "title": "„Wie bin ich froh!“",
