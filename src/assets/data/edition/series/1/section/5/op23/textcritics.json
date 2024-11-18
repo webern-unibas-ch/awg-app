@@ -1,6 +1,178 @@
 {
     "textcritics": [
         {
+            "id": "M_312_Sk1",
+            "label": "M 312 Sk1",
+            "description": [
+                "<strong>Sk1</strong> entwirft den Anfang der Singstimme zu „Herr Jesus mein“ M 312 sowie gleichzeitig im Abgleich mit <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M_312_Sk1_1'})\"><strong>Sk1.1</strong></a> die Reihenform G<sub>g</sub> der zugrundeliegenden Zwölftonreihe. Ab dem Ende von T. 3 ist lediglich ein möglicher Rhythmus in verschiedenen metrischen Varianten skizziert (siehe die getilgten Taktstriche)."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g3",
+                            "measure": "2",
+                            "system": "1",
+                            "position": "3. Note",
+                            "comment": "Achtelbalken überschreibt Ansatz zu Achtelbalken."
+                        },
+                        {
+                            "svgGroupId": "g2",
+                            "measure": "3",
+                            "system": "1",
+                            "position": "1. Note",
+                            "comment": "Radiert."
+                        },
+                        {
+                            "svgGroupId": "g12",
+                            "measure": "3",
+                            "system": "3",
+                            "position": "nach 4/8",
+                            "comment": "Gestrichenes Zeichen: Möglicherweise Ansatz zu Notenkopf g<sup>2</sup>?"
+                        },
+                        {
+                            "svgGroupId": "g8",
+                            "measure": "4",
+                            "system": "3",
+                            "position": "nach 8/16",
+                            "comment": "Taktstrich und Taktziffer <em>5</em> gestrichen."
+                        },
+                        {
+                            "svgGroupId": "g9",
+                            "measure": "5",
+                            "system": "3",
+                            "position": "nach 4/16",
+                            "comment": "Taktstrich gestrichen."
+                        },
+                        {
+                            "svgGroupId": "g10",
+                            "measure": "6",
+                            "system": "3",
+                            "position": "nach 2/8",
+                            "comment": "Taktstrich gestrichen."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "op23",
+                        "sheetId": "M_312_Sk4d"
+                    }
+                },
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "op23",
+                        "sheetId": "M_312_Sk1_1"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_312_Sk1_1",
+            "label": "M 312 Sk1.1",
+            "description": [
+                "<strong>Sk1.1</strong> entwirft im Abgleich mit <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M_312_Sk1'})\"><strong>Sk1</strong></a> die Reihenform G<sub>g</sub> der zugrundeliegenden Zwölftonreihe. "
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g8",
+                            "measure": "Bl. 27<sup>r</sup>",
+                            "system": "1",
+                            "position": "3. Reihenton",
+                            "comment": "g<sup>1</sup> gestrichen und zunächst ersetzt durch a<sup>1</sup>. Dann ersetzt durch Tonbuchstabe g über dem System. Siehe auch Kommentar zu 11.–12. Reihenton."
+                        },
+                        {
+                            "svgGroupId": "g7",
+                            "measure": "Bl. 27<sup>r</sup>",
+                            "system": "1",
+                            "position": "11.–12. Reihenton",
+                            "comment": "h–g<sup>1</sup> durch Einklammerung getilgt und ersetzt durch a<sup>1</sup>–h<sup>1</sup>. Siehe auch Kommentar zu 3. Reihenton."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "op23",
+                        "sheetId": "M_312_Sk1"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_312_Sk3",
+            "label": "M 312 Sk3",
+            "description": ["<strong>Sk3</strong> skizziert verschiedene Ansätze zur Klaviereinleitung von „Herr Jesus mein“ M 312 auf der Grundlage der Reihenform KU<sub>h</sub>."],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g427",
+                            "measure": "{1A}",
+                            "system": "15",
+                            "position": "8/16",
+                            "comment": "Balken überschreibt Sechzehntelfähnchen."
+                        },
+                        {
+                            "svgGroupId": "g428",
+                            "measure": "{2A}",
+                            "system": "12",
+                            "position": "1–3/16",
+                            "comment": "Sechzehntelpause zu 3/16 radiert, Sechzehntelbalken zu 1/16 und Sechzehntelpause zu 2/16 hinzugefügt."
+                        },
+                        {
+                            "svgGroupId": "g1374",
+                            "measure": "{1B}",
+                            "system": "11",
+                            "position": "1/16",
+                            "comment": "Punktierte Achtelpause gestrichen und ersetzt durch Sechzehntelpause."
+                        },
+                        {
+                            "svgGroupId": "g1377",
+                            "measure": "{1A–2A}, {1B}",
+                            "system": "10–11 / [12–16]",
+                            "position": "",
+                            "comment": "Durch Einklammerung rechts getilgt."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1406",
+                    "linkTo": {
+                        "complexId": "op23",
+                        "sheetId": "M_312_Sk3_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g1412",
+                    "linkTo": {
+                        "complexId": "op23",
+                        "sheetId": "M_312_Sk3_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g1418",
+                    "linkTo": {
+                        "complexId": "op23",
+                        "sheetId": "M_312_Sk3_3"
+                    }
+                }
+            ]
+        },
+        {
             "id": "SkRT",
             "label": "M 312 / M 313 / M 314 RT (Reihentabelle op. 23)",
             "description": [
