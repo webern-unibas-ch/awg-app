@@ -15,7 +15,7 @@
                             "measure": "1",
                             "system": "Klav.",
                             "position": "2–5/16",
-                            "comment": "Vertikale Position von <em>Pedal - - -</em> geändert. ({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a>: zwischen Klav. o. und {{ref.getGlyph('[pp]')}}."
+                            "comment": "Vertikale Position von <em>Pedal - - -</em> geändert. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a>: zwischen Klav. o. und {{ref.getGlyph('[pp]')}}."
                         },
                         {
                             "svgGroupId": "g520",
@@ -36,7 +36,7 @@
                             "measure": "8",
                             "system": "Ges.",
                             "position": "3–4/8",
-                            "comment": "Text: Punkt nach <em>bleicht</em> ergänzt mit Blick auf ­({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. <br /> Text: Längenstrich ergänzt.  <br /> Siehe Korrekturen 1: Rasur nach <em>bleicht</em>."
+                            "comment": "Text: Punkt nach <em>bleicht</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment­({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. <br /> Text: Längenstrich ergänzt.  <br /> Siehe Korrekturen 1: Rasur nach <em>bleicht</em>."
                         },
                         {
                             "svgGroupId": "g500",
@@ -57,7 +57,7 @@
                             "measure": "11",
                             "system": "Ges.",
                             "position": "letzte Note",
-                            "comment": "Text sic: zwei Punkte (wie in ({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>)."
+                            "comment": "Text sic: zwei Punkte (wie in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>)."
                         },
                         {
                             "svgGroupId": "g515",
@@ -71,7 +71,7 @@
                             "measure": "13",
                             "system": "Klav. u.",
                             "position": "1. Note",
-                            "comment": "Redundantes {{ref.getGlyph('[a]')}} zu A weggelassen. ({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a>: kein Akkoladenwechsel vor T. 13."
+                            "comment": "Redundantes {{ref.getGlyph('[a]')}} zu A weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a>: kein Akkoladenwechsel vor T. 13."
                         },
                         {
                             "svgGroupId": "g527",
@@ -85,7 +85,92 @@
                             "measure": "14",
                             "system": "Ges.",
                             "position": "letzte Note",
-                            "comment": "Text: Punkt nach <em>nach</em> ergänzt mit Blick auf ({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                            "comment": "Text: Punkt nach <em>nach</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
+        },
+        {
+            "id": "M_135_TF2",
+            "label": "M 135 Textfassung 2",
+            "description": [
+                "Für die Edition von „An Bachesranft“ M 135 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_H'})\"><strong>H</strong></a> relevante Quellen. <br />Korrekturen 2 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a> skizzieren Textfassung 2. Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_H'})\"><strong>H</strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte auf Rasur (Korrekturen 1) und mit Bleistift oder Buntstift (Korrekturen 2) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht eindeutig zu entziffern. Korrekturen 1 etablieren Textfassung 2. Korrekturen 2 sind vermutlich aufführungsspezifisch motiviert. <br />Hauptquelle für die Textedition von „An Bachesranft“ M 135 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_H'})\"><strong>H</strong></a> nach Korrekturen 1 und vor Korrekturen 2."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g497",
+                            "measure": "vor 1",
+                            "system": "",
+                            "position": "Anfang",
+                            "comment": "sic: Metronomzahlangabe fehlt bei <em>(</em>{{ref.getGlyph('[Viertelnote]')}} <em>=  )</em>."
+                        },
+                        {
+                            "svgGroupId": "g485a",
+                            "measure": "1",
+                            "system": "Ges.",
+                            "position": "1.–3. Note",
+                            "comment": "sic: <em>Ba-ches-ranft</em> als ein Wort. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>baches ranft</em>."
+                        },
+                        {
+                            "svgGroupId": "g515",
+                            "measure": "2 <br /> bis 4",
+                            "system": "",
+                            "position": "letzte Note  <br /> 1. Note",
+                            "comment": "Redundantes <em>Rit.--- Tempo</em> über Klav. weggelassen."
+                        },
+                        {
+                            "svgGroupId": "g516",
+                            "measure": "5",
+                            "system": "Ges.",
+                            "position": "1/8",
+                            "comment": "Text: Punkt nach <em>Au</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g485",
+                            "measure": "8 <br /> bis 13",
+                            "system": "",
+                            "position": "3/8  <br /> 1. Note",
+                            "comment": "Redundantes <em>Rit.--- Langsam</em> über Klav. weggelassen."
+                        },
+                        {
+                            "svgGroupId": "g486",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "3–4/8",
+                            "comment": "Text: Punkt nach <em>bleicht</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g487",
+                            "measure": "10",
+                            "system": "Ges.",
+                            "position": "1/4",
+                            "comment": "Text: Punkt nach <em>brach</em> ergänzt mit Blick auf folgende Großschreibung von <em>Der</em> bei letzter Note. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: Komma."
+                        },
+                        {
+                            "svgGroupId": "g488",
+                            "measure": "11",
+                            "system": "Ges",
+                            "position": "letzte Note",
+                            "comment": "Text: Zwei Punkte nach <em>grau</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g489",
+                            "measure": "13",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "sic: Metronomzahlangabe fehlt bei <em>(</em>{{ref.getGlyph('[Achtelnote]')}} <em>=  )</em>."
+                        },
+                        {
+                            "svgGroupId": "g490",
+                            "measure": "14",
+                            "system": "Ges.",
+                            "position": "3–4/8",
+                            "comment": "Text: Punkt nach <em>nach</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
                         }
                     ]
                 }
