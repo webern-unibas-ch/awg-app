@@ -249,6 +249,96 @@
                     ]
                 }
             ]
+        },
+        {
+            "id": "M_314_Sk1",
+            "label": "M 314 Sk1",
+            "description": [
+                "<strong>Sk1</strong> skizziert den Anfang der Singstimme von „Das dunkle Herz“ M 314 auf der Grundlage der Reihenform KU<sub>f</sub>.",
+                "Die Ziffer <em>IV</em> in T. 1 bezeichnet den Anfang der verwendeten Reihenform gemäß den Reihentabellen <strong>M 312 Sk2</strong> und <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'SkRT'})\"><strong>M 312 / M 313 / M 314 RT</strong></a>."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "text244",
+                            "measure": "1",
+                            "system": "1",
+                            "position": "1. Note",
+                            "comment": "<em>IV</em> mit rotem Buntstift."
+                        },
+                        {
+                            "svgGroupId": "g1",
+                            "measure": "1",
+                            "system": "1",
+                            "position": "2.–3. Note",
+                            "comment": "<em>dunkle</em> zusammengeschrieben."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1418",
+                    "linkTo": {
+                        "complexId": "op23",
+                        "sheetId": "M_314_Sk2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_314_Sk2",
+            "label": "M 314 Sk2",
+            "description": [
+                "<strong>Sk2</strong> führt den Anfang der Singstimme von „Das dunkle Herz“ M 314 in vergrößerten rhythmischen Werten und entsprechend verändertem Metrum weiter als <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M_314_Sk1'})\"><strong>Sk1</strong></a>. Die durch entsprechend vorgesehene Systeme (System 4–5) zunächst anvisierte Skizzierung der Klavierbegleitung wurde nicht ausgeführt.",
+                "Die Ziffern <em>VII</em> (U<sub>d</sub>) und <em>II</em> (K<sub>h</sub>) bezeichnen den Anfang der verwendeten Reihenformen gemäß den Reihentabellen <strong>M 312 Sk2</strong> und <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'SkRT'})\"><strong>M 312 / M 313 / M 314 RT</strong></a>."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g348",
+                            "measure": "vor 1",
+                            "system": "4–5",
+                            "position": "",
+                            "comment": "Klammer für Klaviersysteme gestrichen."
+                        },
+                        {
+                            "svgGroupId": "g349",
+                            "measure": "1",
+                            "system": "3",
+                            "position": "1/4",
+                            "comment": "f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch f<sup>1</sup>."
+                        },
+                        {
+                            "svgGroupId": "g351",
+                            "measure": "2",
+                            "system": "3",
+                            "position": "1. Note",
+                            "comment": "Punktierte Viertelnote überschreibt Halbe Note."
+                        },
+                        {
+                            "svgGroupId": "g354",
+                            "measure": "7",
+                            "system": "3",
+                            "position": "4.–5. Note",
+                            "comment": "<em>Leuchten</em> zusammengeschrieben."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1418",
+                    "linkTo": {
+                        "complexId": "op23",
+                        "sheetId": "M_314_Sk1"
+                    }
+                }
+            ]
         }
     ]
 }
