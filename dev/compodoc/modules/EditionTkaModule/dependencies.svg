@@ -24,13 +24,13 @@
 <title>cluster_EditionTkaModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 760,-268 760,-70 8,-70"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_EditionTkaModule_imports</title>
-<polygon fill="none" stroke="black" points="638,-78 638,-130 752,-130 752,-78 638,-78"/>
-</g>
 <g id="clust7" class="cluster">
 <title>cluster_EditionTkaModule_exports</title>
 <polygon fill="none" stroke="black" points="71,-208 71,-260 696,-260 696,-208 71,-208"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_EditionTkaModule_imports</title>
+<polygon fill="none" stroke="black" points="638,-78 638,-130 752,-130 752,-78 638,-78"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_EditionTkaModule_declarations</title>
