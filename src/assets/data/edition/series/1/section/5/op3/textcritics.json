@@ -11,21 +11,21 @@
                     "blockHeader": "",
                     "blockComments": [
                         {
-                            "svgGroupId": "g2",
+                            "svgGroupId": "g519",
                             "measure": "1",
                             "system": "Klav.",
                             "position": "2–5/16",
                             "comment": "Vertikale Position von <em>Pedal - - -</em> geändert. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a>: zwischen Klav. o. und {{ref.getGlyph('[pp]')}}."
                         },
                         {
-                            "svgGroupId": "g3",
+                            "svgGroupId": "g520",
                             "measure": "3",
                             "system": "Klav. u.",
                             "position": "2/16–2/8",
                             "comment": "sic: Halsrichtung nach unten. Staccatopunkt zur oberen Note von 2/16 (ohne Ligaturbogen)."
                         },
                         {
-                            "svgGroupId": "g4",
+                            "svgGroupId": "g521",
                             "measure": "5",
                             "system": "Ges.",
                             "position": "1/8",
