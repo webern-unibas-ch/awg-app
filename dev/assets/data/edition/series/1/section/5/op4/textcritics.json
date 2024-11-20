@@ -147,6 +147,70 @@
                 }
             ],
             "linkBoxes": []
+        },
+        {
+            "id": "M_141_TF1",
+            "label": "M 141 Textfassung 1",
+            "description": [
+                "Für die Edition von „So ich traurig bin“ M 141 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a> einzige relevante Quelle. <br />Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (Korrekturen 1) und mit Bleistift (Korrekturen 2) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht immer eindeutig zu entziffern. Der Zustand nach Korrekturen 1 etabliert Textfassung 1. Korrekturen 2 skizzieren Textfassung 2. <br />Hauptquelle für die Textedition von Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a> nach Korrekturen 1."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g407",
+                            "measure": "vor 1",
+                            "system": "",
+                            "position": "",
+                            "comment": "sic: keine Taktvorzeichnung. Taktzählung T. 1–17 mit Auftakt."
+                        },
+                        {
+                            "svgGroupId": "g408",
+                            "measure": "4",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "Text: Kleinschreibung <em>ding</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DBdH'})\"><strong>George_DBdH</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung. <br /> Text: Doppelpunkt nach <em>ding</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DBdH'})\"><strong>George_DBdH</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g409",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "1/8",
+                            "comment": "Text: Punkt nach <em>lied</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DBdH'})\"><strong>George_DBdH</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g375",
+                            "measure": "10",
+                            "system": "Klav. o.",
+                            "position": "4/8",
+                            "comment": "Ende des Bogens versetzt von Ende T. 11. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a>: Akkoladenwechsel nach T. 11."
+                        },
+                        {
+                            "svgGroupId": "g381",
+                            "measure": "14",
+                            "system": "Ges.",
+                            "position": "3/8",
+                            "comment": "Text sic: Großschreibung <em>Und</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DBdH'})\"><strong>George_DBdH</strong></a> am Zeilenanfang)."
+                        },
+                        {
+                            "svgGroupId": "g382",
+                            "measure": "15",
+                            "system": "Ges.",
+                            "position": "1.–4. Note",
+                            "comment": "Rhythmische Notation nicht eindeutig. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a>:  <br /> ##Abbildung## <br /> Siehe Korrekturen 1 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a>: 3. Note als punktierte Achtelnote auf Rasur, 4. Note uneindeutig mit Achtel- oder Sechzehntelfähnchen. Siehe Korrekturen 2 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a>: Punktierung der 1. Note sowie Balkierung mit 2. und 4. Note als Sechzehntelnote hinzugefügt. <br /> Achtelnoten-Quartole gesetzt mit Blick auf klangliche Realisierung von Textfassung 2."
+                        },
+                        {
+                            "svgGroupId": "g383",
+                            "measure": "16",
+                            "system": "Ges.",
+                            "position": "1/8",
+                            "comment": "Text: Punkt nach <em>gram</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DBdH'})\"><strong>George_DBdH</strong></a>."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
         }
     ]
 }
