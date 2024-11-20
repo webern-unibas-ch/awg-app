@@ -113,6 +113,63 @@
             ]
         },
         {
+            "id": "M_212_TF2",
+            "label": "M 212 Textfassung 2",
+            "description": [
+                "Für die Edition von „Der Tag ist vergangen“ M 212 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a> relevante Quellen. < br/>Die Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> skizzieren Textfassung 2. Die Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> etablieren Textfassung 2. Der Zustand ante correcturam in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> ist nicht immer eindeutig zu entziffern. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> post correcturam war Vorlage für den Druck <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>E</strong></a>. < br/>Hauptquelle für die Textedition von „Der Tag ist vergangen“ Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> post correcturam. Referenzquelle ist E."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g445",
+                            "measure": "3",
+                            "system": "Ges.",
+                            "position": "6/8",
+                            "comment": "{{ref.getGlyph('[p]')}} versetzt von 5/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g446",
+                            "measure": "6",
+                            "system": "Klav.",
+                            "position": "1. Note",
+                            "comment": "Ende der Crescendogabel versetzt von Ende T. 5. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 5."
+                        },
+                        {
+                            "svgGroupId": "g447",
+                            "measure": "7",
+                            "system": "Ges.",
+                            "position": "2. Note",
+                            "comment": "{{ref.getGlyph('[p]')}} versetzt von 1. Pause gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g445b",
+                            "measure": "13",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "{{ref.getGlyph('[p]')}} versetzt von 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>.  <br /> <em>äußerst ruhig</em> versetzt von 1/8 mit Blick auf Textfassung 3."
+                        },
+                        {
+                            "svgGroupId": "g457b",
+                            "measure": "18",
+                            "system": "Ges.",
+                            "position": "1. Note",
+                            "comment": "Text sic: (Ver-)<em>storb</em>(-nen) ohne Binnen-Apostroph. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Rosegger_PM'})\"><strong>Rosegger_PM</strong></a>: <em>Verstorb’nen</em>."
+                        },
+                        {
+                            "svgGroupId": "g458b",
+                            "measure": "19",
+                            "system": "Klav. u.",
+                            "position": "1. Note",
+                            "comment": "{{ref.getGlyph('[ppp]')}} versetzt von 1. Pause."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
+        },
+        {
             "id": "M_212_Sk1",
             "label": "M 212 Sk1",
             "description": [
