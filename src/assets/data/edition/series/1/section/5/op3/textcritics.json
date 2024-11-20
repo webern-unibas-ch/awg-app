@@ -36,7 +36,7 @@
                             "measure": "8",
                             "system": "Ges.",
                             "position": "3–4/8",
-                            "comment": "Text: Punkt nach <em>bleicht</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment­({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. <br /> Text: Längenstrich ergänzt.  <br /> Siehe Korrekturen 1: Rasur nach <em>bleicht</em>."
+                            "comment": "Text: Punkt nach <em>bleicht</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. <br /> Text: Längenstrich ergänzt.  <br /> Siehe Korrekturen 1: Rasur nach <em>bleicht</em>."
                         },
                         {
                             "svgGroupId": "g500",
@@ -50,7 +50,7 @@
                             "measure": "11",
                             "system": "Ges.",
                             "position": "2/8",
-                            "comment": "NB-Formulierung versetzt von Seitenrand links oben. Siehe Korrekturen 2: NB-Formu­lierung gestrichen."
+                            "comment": "NB-Formulierung versetzt von Seitenrand links oben. Siehe Korrekturen 2: NB-Formulierung gestrichen."
                         },
                         {
                             "svgGroupId": "g514",
@@ -67,7 +67,7 @@
                             "comment": "Triolische Viertelpause in Klav. u. (unter 1.–2. Note von Klav. o.) und triolische Achtelpause in Klav. o. (über 1. Note von Klav. u.) weggelassen."
                         },
                         {
-                            "svgGroupId": "g520",
+                            "svgGroupId": "g526",
                             "measure": "13",
                             "system": "Klav. u.",
                             "position": "1. Note",
