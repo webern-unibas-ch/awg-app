@@ -1147,7 +1147,7 @@ describe('EditionSheetsComponent (DONE)', () => {
             });
 
             describe('... should return an empty string if', () => {
-                it('... should return an empty string if svgSheetsData is undefined', () => {
+                it('... svgSheetsData is undefined', () => {
                     component.svgSheetsData = undefined;
                     detectChangesOnPush(fixture);
 
@@ -1156,8 +1156,28 @@ describe('EditionSheetsComponent (DONE)', () => {
                     expectToBe(result, '');
                 });
 
-                it('... should return an empty string if svgSheetsData.sheets.sketchEditions is an empty array', () => {
+                it('... textEditions are empty', () => {
+                    component.svgSheetsData = { sheets: { textEditions: [] } } as EditionSvgSheetList;
+                    detectChangesOnPush(fixture);
+
+                    const result = (component as any)._getDefaultSheetId();
+
+                    expectToBe(result, '');
+                });
+
+                it('... sketchEditions are empty', () => {
                     component.svgSheetsData = { sheets: { sketchEditions: [] } } as EditionSvgSheetList;
+                    detectChangesOnPush(fixture);
+
+                    const result = (component as any)._getDefaultSheetId();
+
+                    expectToBe(result, '');
+                });
+
+                it('... textEditions and sketchEditions are empty', () => {
+                    component.svgSheetsData = {
+                        sheets: { textEditions: [], sketchEditions: [] },
+                    } as EditionSvgSheetList;
                     detectChangesOnPush(fixture);
 
                     const result = (component as any)._getDefaultSheetId();
@@ -1166,88 +1186,211 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
             });
 
-            it('... should return the id of the first sketch sheet by default (no partials)', () => {
-                const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
+            describe('... with text editions', () => {
+                it('... should default to text editions when text and sketch editions are present', () => {
+                    const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
+                    const mockSheet2 = { id: 'sheet2', content: [] } as EditionSvgSheet;
 
-                component.svgSheetsData = {
-                    sheets: { sketchEditions: [mockSheet1] },
-                } as EditionSvgSheetList;
-                detectChangesOnPush(fixture);
+                    component.svgSheetsData = {
+                        sheets: {
+                            textEditions: [mockSheet1],
+                            sketchEditions: [mockSheet2],
+                        },
+                    } as EditionSvgSheetList;
+                    detectChangesOnPush(fixture);
 
-                const result = (component as any)._getDefaultSheetId();
+                    const result = (component as any)._getDefaultSheetId();
 
-                expectToBe(result, mockSheet1.id);
+                    expectToBe(result, mockSheet1.id);
+                });
+
+                it('... should return the id of the first text edition sheet by default (no partials)', () => {
+                    const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
+
+                    component.svgSheetsData = {
+                        sheets: {
+                            textEditions: [mockSheet1],
+                            sketchEditions: [],
+                        },
+                    } as EditionSvgSheetList;
+                    detectChangesOnPush(fixture);
+
+                    const result = (component as any)._getDefaultSheetId();
+
+                    expectToBe(result, mockSheet1.id);
+                });
+
+                it('... should return the id and first partial of the first text edition sheet by default if partials are present', () => {
+                    const mockSheet1 = {
+                        id: 'sheet1',
+                        content: [
+                            { svg: '', image: '', partial: 'a' },
+                            { svg: '', image: '', partial: 'b' },
+                        ],
+                    } as EditionSvgSheet;
+                    component.svgSheetsData = {
+                        sheets: {
+                            textEditions: [mockSheet1],
+                            sketchEditions: [],
+                        },
+                    } as EditionSvgSheetList;
+                    detectChangesOnPush(fixture);
+
+                    const result = (component as any)._getDefaultSheetId();
+
+                    expectToBe(result, 'sheet1a');
+                });
+
+                it('... should return the first id and partial of the first text edition sheet from a list of multiple sheets', () => {
+                    const mockSheet1 = {
+                        id: 'sheet1',
+                        content: [
+                            { svg: '', image: '', partial: 'a' },
+                            { svg: '', image: '', partial: 'b' },
+                        ],
+                    } as EditionSvgSheet;
+                    const mockSheet2 = {
+                        id: 'sheet2',
+                        content: [
+                            { svg: '', image: '', partial: 'c' },
+                            { svg: '', image: '', partial: 'd' },
+                        ],
+                    } as EditionSvgSheet;
+                    component.svgSheetsData = {
+                        sheets: {
+                            textEditions: [mockSheet1, mockSheet2],
+                            sketchEditions: [],
+                        },
+                    } as EditionSvgSheetList;
+
+                    const result = (component as any)._getDefaultSheetId();
+
+                    expectToBe(result, 'sheet1a');
+                });
+
+                it('... should return the first id and partial of the first sketch edition sheet from a list of multiple edition types', () => {
+                    const mockSheet1 = {
+                        id: 'sheet1',
+                        content: [
+                            { svg: '', image: '', partial: 'a' },
+                            { svg: '', image: '', partial: 'b' },
+                        ],
+                    } as EditionSvgSheet;
+                    const mockSheet2 = {
+                        id: 'sheet2',
+                        content: [
+                            { svg: '', image: '', partial: 'c' },
+                            { svg: '', image: '', partial: 'd' },
+                        ],
+                    } as EditionSvgSheet;
+                    const mockSheet3 = { id: 'sheet3', content: [] } as EditionSvgSheet;
+                    component.svgSheetsData = {
+                        sheets: {
+                            workEditions: [mockSheet1],
+                            textEditions: [mockSheet2],
+                            sketchEditions: [mockSheet3],
+                        },
+                    } as EditionSvgSheetList;
+
+                    const result = (component as any)._getDefaultSheetId();
+
+                    expectToBe(result, 'sheet2c');
+                });
             });
 
-            it('... should return the id and first partial of the first sketch sheet by default if partials are present', () => {
-                const mockSheet1 = {
-                    id: 'sheet1',
-                    content: [
-                        { svg: '', image: '', partial: 'a' },
-                        { svg: '', image: '', partial: 'b' },
-                    ],
-                } as EditionSvgSheet;
-                component.svgSheetsData = {
-                    sheets: { sketchEditions: [mockSheet1] },
-                } as EditionSvgSheetList;
-                detectChangesOnPush(fixture);
+            describe('... without text editions', () => {
+                it('... should return the id of the first sketch sheet by default (no partials)', () => {
+                    const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
 
-                const result = (component as any)._getDefaultSheetId();
+                    component.svgSheetsData = {
+                        sheets: {
+                            textEditions: [],
+                            sketchEditions: [mockSheet1],
+                        },
+                    } as EditionSvgSheetList;
+                    detectChangesOnPush(fixture);
 
-                expectToBe(result, 'sheet1a');
-            });
+                    const result = (component as any)._getDefaultSheetId();
 
-            it('... should return the first id and partial of the first sketch sheet from a list of multiple sheets', () => {
-                const mockSheet1 = {
-                    id: 'sheet1',
-                    content: [
-                        { svg: '', image: '', partial: 'a' },
-                        { svg: '', image: '', partial: 'b' },
-                    ],
-                } as EditionSvgSheet;
-                const mockSheet2 = {
-                    id: 'sheet2',
-                    content: [
-                        { svg: '', image: '', partial: 'c' },
-                        { svg: '', image: '', partial: 'd' },
-                    ],
-                } as EditionSvgSheet;
-                component.svgSheetsData = {
-                    sheets: { sketchEditions: [mockSheet1, mockSheet2] },
-                } as EditionSvgSheetList;
+                    expectToBe(result, mockSheet1.id);
+                });
 
-                const result = (component as any)._getDefaultSheetId();
+                it('... should return the id and first partial of the first sketch sheet by default if partials are present', () => {
+                    const mockSheet1 = {
+                        id: 'sheet1',
+                        content: [
+                            { svg: '', image: '', partial: 'a' },
+                            { svg: '', image: '', partial: 'b' },
+                        ],
+                    } as EditionSvgSheet;
+                    component.svgSheetsData = {
+                        sheets: {
+                            textEditions: [],
+                            sketchEditions: [mockSheet1],
+                        },
+                    } as EditionSvgSheetList;
+                    detectChangesOnPush(fixture);
 
-                expectToBe(result, 'sheet1a');
-            });
+                    const result = (component as any)._getDefaultSheetId();
 
-            it('... should return the first id and partial of the first sketch sheet from a list of multiple edition types', () => {
-                const mockSheet1 = {
-                    id: 'sheet1',
-                    content: [
-                        { svg: '', image: '', partial: 'a' },
-                        { svg: '', image: '', partial: 'b' },
-                    ],
-                } as EditionSvgSheet;
-                const mockSheet2 = { id: 'sheet2', content: [] } as EditionSvgSheet;
-                const mockSheet3 = {
-                    id: 'sheet3',
-                    content: [
-                        { svg: '', image: '', partial: 'c' },
-                        { svg: '', image: '', partial: 'd' },
-                    ],
-                } as EditionSvgSheet;
-                component.svgSheetsData = {
-                    sheets: {
-                        workEditions: [mockSheet1],
-                        textEditions: [mockSheet2],
-                        sketchEditions: [mockSheet3],
-                    },
-                } as EditionSvgSheetList;
+                    expectToBe(result, 'sheet1a');
+                });
 
-                const result = (component as any)._getDefaultSheetId();
+                it('... should return the first id and partial of the first sketch sheet from a list of multiple sheets', () => {
+                    const mockSheet1 = {
+                        id: 'sheet1',
+                        content: [
+                            { svg: '', image: '', partial: 'a' },
+                            { svg: '', image: '', partial: 'b' },
+                        ],
+                    } as EditionSvgSheet;
+                    const mockSheet2 = {
+                        id: 'sheet2',
+                        content: [
+                            { svg: '', image: '', partial: 'c' },
+                            { svg: '', image: '', partial: 'd' },
+                        ],
+                    } as EditionSvgSheet;
+                    component.svgSheetsData = {
+                        sheets: {
+                            textEditions: [],
+                            sketchEditions: [mockSheet1, mockSheet2],
+                        },
+                    } as EditionSvgSheetList;
 
-                expectToBe(result, 'sheet3c');
+                    const result = (component as any)._getDefaultSheetId();
+
+                    expectToBe(result, 'sheet1a');
+                });
+
+                it('... should return the first id and partial of the first sketch sheet from a list of multiple edition types', () => {
+                    const mockSheet1 = {
+                        id: 'sheet1',
+                        content: [
+                            { svg: '', image: '', partial: 'a' },
+                            { svg: '', image: '', partial: 'b' },
+                        ],
+                    } as EditionSvgSheet;
+                    const mockSheet2 = { id: 'sheet2', content: [] } as EditionSvgSheet;
+                    const mockSheet3 = {
+                        id: 'sheet3',
+                        content: [
+                            { svg: '', image: '', partial: 'c' },
+                            { svg: '', image: '', partial: 'd' },
+                        ],
+                    } as EditionSvgSheet;
+                    component.svgSheetsData = {
+                        sheets: {
+                            workEditions: [mockSheet1, mockSheet2],
+                            textEditions: [],
+                            sketchEditions: [mockSheet3],
+                        },
+                    } as EditionSvgSheetList;
+
+                    const result = (component as any)._getDefaultSheetId();
+
+                    expectToBe(result, 'sheet3c');
+                });
             });
         });
 
@@ -1273,7 +1416,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     mockActivatedRoute.testQueryParamMap = { id: '' };
                     (component as any)._isFirstPageLoad = true;
 
-                    const snapShotSheetId = 'test-TF1';
+                    const snapShotSheetId = 'test-TF1a';
                     component.snapshotQueryParamsId = snapShotSheetId;
                     detectChangesOnPush(fixture);
 
@@ -1289,8 +1432,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                     mockActivatedRoute.testQueryParamMap = { id: '' };
                     (component as any)._isFirstPageLoad = false;
 
-                    const defaultSheetId = 'test-1';
-                    const snapShotSheetId = 'test-TF1';
+                    const defaultSheetId = 'test-TF1a';
+                    const snapShotSheetId = 'another-test-id';
                     component.snapshotQueryParamsId = snapShotSheetId;
                     detectChangesOnPush(fixture);
 
