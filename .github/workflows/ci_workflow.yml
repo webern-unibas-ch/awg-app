@@ -84,7 +84,7 @@ jobs:
                   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
               with:
                   flags: unittests
-                  env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
+                  env_vars: ${{ matrix.os }},${{ matrix.node-version }}
 
             - name: Perform SonarCloud Analysis
               if: matrix.node-version == 20.13 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarCloud analysis only for current node version and not with pull requests or forks(token issue)
