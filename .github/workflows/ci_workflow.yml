@@ -32,7 +32,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [18.19, 20.13, 22.x]
+                node-version: [20.13, 22.11, 23.x]
 
         outputs:
             sha: ${{ steps.get-sha.outputs.SHA }}
@@ -71,14 +71,14 @@ jobs:
 
             - name: yarn install dependencies
               run: |
-                  yarn install  --immutable
+                  yarn install --immutable
 
             - name: Run CI tests with coverage
               run: |
                   yarn run test:ci
 
             - name: Upload code coverage
-              if: matrix.node-version == 20.13 # upload coverage report for current node version only
+              if: matrix.node-version == 22.11 # upload coverage report for current node version only
               uses: codecov/codecov-action@985343d70564a82044c1b7fcb84c2fa05405c1a2 # v5.0.4
               env:
                   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
@@ -87,7 +87,7 @@ jobs:
                   env_vars: ${{ matrix.os }},${{ matrix.node-version }}
 
             - name: Perform SonarCloud Analysis
-              if: matrix.node-version == 20.13 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarCloud analysis only for current node version and not with pull requests or forks(token issue)
+              if: matrix.node-version == 22.11 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarCloud analysis only for current node version and not with pull requests or forks(token issue)
               uses: SonarSource/sonarcloud-github-action@383f7e52eae3ab0510c3cb0e7d9d150bbaeab838 # v3.1.0
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
@@ -108,7 +108,7 @@ jobs:
 
             - name: Upload build artifacts (main && develop)
               # upload build artifacts for current node version and main or develop branch only
-              if: matrix.node-version == 20.13 && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
+              if: matrix.node-version == 22.11 && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
               uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
               with:
                   name: dist
@@ -132,7 +132,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [20.13]
+                node-version: [22.11]
 
         steps:
             - name: Harden Runner
@@ -204,7 +204,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [20.13]
+                node-version: [22.11]
 
         steps:
             - name: Harden Runner
@@ -245,7 +245,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [20.13]
+                node-version: [22.11]
         steps:
             - name: Harden Runner
               uses: step-security/harden-runner@0080882f6c36860b6ba35c610c98ce87d4e2f26f # v2.10.2
