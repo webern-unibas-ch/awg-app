@@ -239,7 +239,7 @@
                             "measure": "10",
                             "system": "Ges.",
                             "position": "1. Note",
-                            "comment": "Text: Kleinschreibung <em>das</em> mit Blick auf Kleinschreibung von <em>für</em> (T. 2 2. Note), <em>von</em> (T. 4 2/8), <em>ei</em>n (T. 7 4/16) und <em>möcht</em> (T. 9 1/4). <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: Großschreibungen an Zeilenanfängen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a>: Kurrentschrift beim Buchstaben D/d unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                            "comment": "Text: Kleinschreibung <em>das</em> mit Blick auf Kleinschreibung von <em>für</em> (T. 2 2. Note), <em>von</em> (T. 4 2/8), <em>ein</em> (T. 7 4/16) und <em>möcht</em> (T. 9 1/4). <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: Großschreibungen an Zeilenanfängen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a>: Kurrentschrift beim Buchstaben D/d unspezifisch hinsichtlich Groß-/Kleinschreibung."
                         }
                     ]
                 }
