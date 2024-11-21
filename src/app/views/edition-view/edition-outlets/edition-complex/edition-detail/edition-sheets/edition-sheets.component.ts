@@ -418,8 +418,9 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {string} The default sheet id.
      */
     private _getDefaultSheetId(): string {
-        const defaultSheet = this.svgSheetsData?.sheets?.sketchEditions?.[0];
-        const defaultSheetContentPartial = defaultSheet?.content?.length > 1 ? defaultSheet.content[0]?.partial : '';
+        const sheets = this.svgSheetsData?.sheets;
+        const defaultSheet = sheets?.textEditions?.[0] || sheets?.sketchEditions?.[0];
+        const defaultSheetContentPartial = defaultSheet?.content?.[0]?.partial ?? '';
 
         return (defaultSheet?.id || '') + defaultSheetContentPartial;
     }
