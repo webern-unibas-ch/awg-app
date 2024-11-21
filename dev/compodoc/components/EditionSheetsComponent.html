@@ -617,8 +617,8 @@ from the EditionDataService, assigns the data and handles the query params.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="435"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:435</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="436"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:436</a></div>
                         </td>
                     </tr>
 
@@ -695,8 +695,8 @@ from the EditionDataService, assigns the data and handles the query params.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="471"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:471</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="472"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:472</a></div>
                         </td>
                     </tr>
 
@@ -805,8 +805,8 @@ from the EditionDataService, assigns the data and handles the query params.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="486"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:486</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="487"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:487</a></div>
                         </td>
                     </tr>
 
@@ -2704,8 +2704,9 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {string} The default sheet id.
      */
     private _getDefaultSheetId(): string {
-        const defaultSheet &#x3D; this.svgSheetsData?.sheets?.sketchEditions?.[0];
-        const defaultSheetContentPartial &#x3D; defaultSheet?.content?.length &gt; 1 ? defaultSheet.content[0]?.partial : &#x27;&#x27;;
+        const sheets &#x3D; this.svgSheetsData?.sheets;
+        const defaultSheet &#x3D; sheets?.textEditions?.[0] || sheets?.sketchEditions?.[0];
+        const defaultSheetContentPartial &#x3D; defaultSheet?.content?.[0]?.partial ?? &#x27;&#x27;;
 
         return (defaultSheet?.id || &#x27;&#x27;) + defaultSheetContentPartial;
     }
