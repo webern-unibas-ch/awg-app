@@ -107,6 +107,98 @@
             "linkBoxes": []
         },
         {
+            "id": "M_133_TF2",
+            "label": "M 133 Textfassung 2",
+            "description": [
+                "Für die Edition von „Dies ist ein Lied“ M 133 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>a</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_B'})\"><strong>B</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a> relevante Quellen. < br/>Korrekturen 2 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>a</sup></strong></a> skizzieren Textfassung 2. Der Zustand ante correcturam in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>B</strong></a> lässt sich nicht eindeutig entziffern. Die Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>B</strong></a> etablieren Textfassung 2. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>C</strong></a> ante correcturam ist Vorlage für die Kopistenabschrift <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a>. Der Zustand ante correcturam in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> sowie der Zustand vor Korrekturen 1 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a> lässt sich nicht eindeutig entziffern; soweit entzifferbar entspricht er in der Regel Textfassung 2. < br/>Hauptquelle für die Textedition von „Dies ist ein Lied“ M 133 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_B'})\"><strong>B</strong></a> post correcturam."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g414",
+                            "measure": "1",
+                            "system": "Klav. u.",
+                            "position": "1/8, 4/8, 6/8",
+                            "comment": "sic: keine Achtelpausen."
+                        },
+                        {
+                            "svgGroupId": "g441",
+                            "measure": "2",
+                            "system": "Ges.",
+                            "position": "5/8",
+                            "comment": "Text: Doppelpunkt nach (al-)<em>lein</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g442",
+                            "measure": "4",
+                            "system": "Klav. o.",
+                            "position": "4/8",
+                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>2</sup> ergänzt mit Blick auf Textfassung 3 und Textfassung 4."
+                        },
+                        {
+                            "svgGroupId": "g443",
+                            "measure": "4",
+                            "system": "Ges.",
+                            "position": "6/8",
+                            "comment": "Text: Zwei Punkte nach (trä-)<em>nen</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g444",
+                            "measure": "6",
+                            "system": "Klav. o.",
+                            "position": "4/8",
+                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>3</sup> ergänzt mit Blick auf Textfassung 3 und Textfassung 4."
+                        },
+                        {
+                            "svgGroupId": "g441b",
+                            "measure": "7",
+                            "system": "Ges.",
+                            "position": "5–6/8",
+                            "comment": "Text sic: Silbentrennung (leicht-be-)<em>schwin-gtes</em>."
+                        },
+                        {
+                            "svgGroupId": "g442b",
+                            "measure": "7",
+                            "system": "Ges.",
+                            "position": "6/8",
+                            "comment": "Text: Punkt nach (leicht-be-schwin-)<em>gtes</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g443b",
+                            "measure": "10",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "Text: Großschreibung <em>Das</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_B'})\"><strong>B</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                        },
+                        {
+                            "svgGroupId": "g459",
+                            "measure": "10",
+                            "system": "Ges.",
+                            "position": "3–4/8",
+                            "comment": "Text sic: <em>rühr-te</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>rühre</em>."
+                        },
+                        {
+                            "svgGroupId": "g460",
+                            "measure": "11",
+                            "system": "Klav. o.",
+                            "position": "1/4",
+                            "comment": "Unterstimmenschicht: Viertelnote b ergänzt gemäß Ligaturbogen von T. 10 2. Note sowie mit Blick auf alle anderen Textfassungen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 10."
+                        },
+                        {
+                            "svgGroupId": "g461",
+                            "measure": "11",
+                            "system": "Klav. o.",
+                            "position": "2/4",
+                            "comment": "Unterstimmenschicht: Viertelpause ergänzt analog Klav. u. sowie mit Blick auf spätere Textfassungen."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
+        }, 
+        {
             "id": "M_135_TF1",
             "label": "M 135 Textfassung 1",
             "description": [

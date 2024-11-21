@@ -21,6 +21,24 @@
                 ]
             },
             {
+                "id": "M_133_TF2",
+                "label": "M 133 Textfassung 2",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M133_Textfassung2-1von2-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": "A"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M133_Textfassung2-2von2-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": ""
+                    }
+                ]
+            },
+            {
                 "id": "M_135_TF1",
                 "label": "M 135 Textfassung 1",
                 "content": [
