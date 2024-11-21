@@ -199,6 +199,56 @@
             "linkBoxes": []
         }, 
         {
+            "id": "M_133_TF3",
+            "label": "M 133 Textfassung 3",
+            "description": [
+                "Für die Edition von „Dies ist ein Lied“ M 133 Textfassung 3 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a> relevante Quellen. <br /><a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> ante correcturam war Vorlage für die Kopistenabschrift <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a>. Der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> ante correcturam sowie der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a> vor Korrekturen 1 lässt sich nicht eindeutig entziffern; soweit entzifferbar entspricht er in der Regel Textfassung 2. Der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> post correcturam sowie der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a> nach Korrekturen 1 etabliert Textfassung 3. Korrekturen 2 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a> betreffen Textfassung 4. <br />Hauptquelle für die Textedition von „Dies ist ein Lied“ M 133 Textfassung 3 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> post correcturam. Referenzquelle ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a> nach Korrekturen 1."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g440",
+                            "measure": "4",
+                            "system": "Klav. o.",
+                            "position": "1–2/8",
+                            "comment": "Zusätzlicher Legatobogen weggelassen. Vermutlich versehentlich aus Textfassung 2 stehengeblieben."
+                        },
+                        {
+                            "svgGroupId": "g441",
+                            "measure": "6",
+                            "system": "Klav. u.",
+                            "position": "9–10/16",
+                            "comment": "Akzidenzien ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g434",
+                            "measure": "7",
+                            "system": "Ges.",
+                            "position": "4/16",
+                            "comment": "<em>äußerst zart</em> versetzt von zwischen 1/8 und 3/16 mit Blick auf Ges.-Einsatz."
+                        },
+                        {
+                            "svgGroupId": "g435",
+                            "measure": "7",
+                            "system": "Ges.",
+                            "position": "6/8",
+                            "comment": "Text: Punkt nach (leicht-be-schwing-)<em>tes</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g436",
+                            "measure": "10",
+                            "system": "Ges.",
+                            "position": "1. Note",
+                            "comment": "Text: Kleinschreibung <em>das</em> mit Blick auf Kleinschreibung von <em>für</em> (T. 2 2. Note), <em>von</em> (T. 4 2/8), <em>ei</em>n (T. 7 4/16) und <em>möcht</em> (T. 9 1/4). <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: Großschreibungen an Zeilenanfängen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a>: Kurrentschrift beim Buchstaben D/d unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
+        },
+        {
             "id": "M_135_TF1",
             "label": "M 135 Textfassung 1",
             "description": [

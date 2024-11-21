@@ -28,10 +28,28 @@
                         "svg": "assets/img/edition/series/1/section/5/op3/M133_Textfassung2-1von2-final.svg",
                         "image": "",
                         "partial": "a",
-                        "convolute": "A"
+                        "convolute": ""
                     },
                     {
                         "svg": "assets/img/edition/series/1/section/5/op3/M133_Textfassung2-2von2-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": ""
+                    }
+                ]
+            },
+            {
+                "id": "M_133_TF3",
+                "label": "M 133 Textfassung 3",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M133_Textfassung3-1von2-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": ""
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M133_Textfassung3-2von2-final.svg",
                         "image": "",
                         "partial": "b",
                         "convolute": ""
