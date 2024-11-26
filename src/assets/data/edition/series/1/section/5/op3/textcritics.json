@@ -419,6 +419,91 @@
                     ]
                 }
             ]
+        },
+        {
+            "id": "M_136_TF1",
+            "label": "M 136 Textfassung 1",
+            "description": [
+                "Für die Edition von „Im Morgentaun“ M 136 Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_D'})\"><strong>D</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>d</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>b</sup></strong></a> relevante Quellen. <br /> Das <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_Sk1'})\">Fragment <strong>D</strong></a> bietet nur wenige Takte von Textfassung 1. Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>d</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr1'})\">Korrekturen 1</a>) und mit Buntstift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 etabliert Textfassung 1, die Textschicht ist allerdings nicht immer eindeutig entzifferbar. Der Zustand nach Korrekturen 1 skizziert Textfassung 2. Korrekturen 2 sind vermutlich aufführungsspezifisch motiviert und nicht immer eindeutig interpretierbar. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gb_corr'})\">Korrekturen in <strong>G<sup>b></sup></strong></a> betreffen Textfassung 2. Der Zustand ante correcturam etabliert vermutlich ebenfalls Textfassung 1, ist jedoch noch schwieriger zu entziffern als der Zustand vor Korrekturen 1 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>d</sup></strong></a>. <br /> Hauptquelle für die Textedition von „Im Morgentaun“ M 136 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>d</sup></strong></a> vor Korrekturen 1 soweit entzifferbar."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g593",
+                            "measure": "2",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "Text: Großschreibung <em>Den</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>d</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                        },
+                        {
+                            "svgGroupId": "g604",
+                            "measure": "3",
+                            "system": "Ges.",
+                            "position": "1/8",
+                            "comment": "Text sic: Punkt nach <em>schaun</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: Komma."
+                        },
+                        {
+                            "svgGroupId": "g605",
+                            "measure": "3",
+                            "system": "Ges.",
+                            "position": "6/8",
+                            "comment": "Text: Großschreibung <em>Des</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>d</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                        },
+                        {
+                            "svgGroupId": "g606",
+                            "measure": "4",
+                            "system": "Klav. o.",
+                            "position": "2/8",
+                            "comment": "sic: h<sup>1</sup>(/g<sup>2</sup>/b<sup>2</sup>). <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>b</sup></strong></a>: d<sup>2</sup>(/g<sup>2</sup>/b<sup>2</sup>). Siehe auch Textfassung 2 und Textfassung 3: d<sup>2</sup>(/g<sup>2</sup>/b<sup>2</sup>)."
+                        },
+                        {
+                            "svgGroupId": "g607",
+                            "measure": "4",
+                            "system": "Ges.",
+                            "position": "4/8",
+                            "comment": "Text: Punkt nach (ra-sen-bee-)<em>tes</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g608",
+                            "measure": "5 <br /> bis 6",
+                            "system": "Ges.",
+                            "position": "3/8",
+                            "comment": "Entzifferung unsicher. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr1'})\">Korrekturen 1 in <strong>E<sup>d</sup></strong></a>: auf Rasur. Rasierte Notenköpfe in T. 5–6/8 (as<sup>1</sup>–g<sup>1</sup>) sowie rasierte Ganze Pause in T. 6 zu erkennen. Für den Zustand post correcturam siehe Textfassung 2."
+                        },
+                        {
+                            "svgGroupId": "g409",
+                            "measure": "7",
+                            "system": "Ges.",
+                            "position": "1–4/8",
+                            "comment": "Entzifferung unsicher. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr1'})\">Korrekturen 1 in <strong>E<sup>d</sup></strong></a>: auf Rasur. Rasierte Achtelnoten as<sup>1</sup>–fis<sup>1</sup> zu 2–3/8 zu erkennen. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G_corr'})\">Korrekturen in <strong>G<sup>b</sup></strong></a>: auf Rasur. Für den Zustand post correcturam siehe Textfassung 2."
+                        },
+                        {
+                            "svgGroupId": "g410",
+                            "measure": "7",
+                            "system": "Klav. o.",
+                            "position": "1–2/4",
+                            "comment": "Entzifferung unsicher. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr1'})\">Korrekturen 1 in <strong>E<sup>d</sup></strong></a>: auf Rasur. Rasierte Viertelnote c<sup>2</sup>/f<sup>2</sup>/as<sup>2</sup> zu 2/4 zu erkennen. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G_corr'})\">Korrekturen in <strong>G<sup>b</sup></strong></a>: auf Rasur. Für den Zustand post correcturam siehe Textfassung 2."
+                        },
+                        {
+                            "svgGroupId": "g411",
+                            "measure": "10",
+                            "system": "Ges.",
+                            "position": "4/8",
+                            "comment": "Text: Punkt nach <em>es</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g418",
+                            "measure": "10",
+                            "system": "",
+                            "position": "letzte Pause",
+                            "comment": "sic: Viertelpause. (4/4-Takt enthält nur sieben Achtelwerte.)"
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
         }
     ]
 }
