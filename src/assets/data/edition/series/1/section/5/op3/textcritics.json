@@ -323,7 +323,7 @@
                             "measure": "14",
                             "system": "Klav. o.",
                             "position": "1. Note",
-                            "comment": "sic: d<sup>2</sup>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ec_corr1'})\">Korrekturen 2</a>: {{ref.getGlyph('[#]')}} zu dis<sup>2</sup> hinzugefügt."
+                            "comment": "sic: d<sup>2</sup>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ec_corr2'})\">Korrekturen 2</a>: {{ref.getGlyph('[#]')}} zu dis<sup>2</sup> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g528",
