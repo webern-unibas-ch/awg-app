@@ -2452,7 +2452,7 @@
                                         "measure": "5",
                                         "system": "Ges.",
                                         "position": "3.–4. Note",
-                                        "comment": "Zwei Achtelnoten geändert zu triolischer Viertelnote und Achtelnote. {{ref.getGlyph('[a]')}} zu g<sup>1</sup> hinzugefügt. S<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gc_corr'})\">Korrekturen in <strong>G<sup>c</sup></strong></a>."
+                                        "comment": "Zwei Achtelnoten geändert zu triolischer Viertelnote und Achtelnote. {{ref.getGlyph('[a]')}} zu g<sup>1</sup> hinzugefügt. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gc_corr'})\">Korrekturen in <strong>G<sup>c</sup></strong></a>."
                                     },
                                     {
                                         "measure": "6",
