@@ -504,6 +504,63 @@
                 }
             ],
             "linkBoxes": []
+        },
+        {
+            "id": "M_136_TF2",
+            "label": "M 136 Textfassung 2",
+            "description": [
+                "Für die Edition von „Im Morgentaun“ M 136 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>b</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_I'})\"><strong>I</strong></a> relevante Quellen. <br /> Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gb_corr'})\">Korrekturen in <strong>G<sup>b></sup></strong></a> etablieren Textfassung 2. Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_I'})\"><strong>I</strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_I_corr1'})\">Korrekturen 1</a>) und mit Buntstift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_I_corr2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht eindeutig entzifferbar. Der Zustand nach Korrekturen 1 etabliert Textfassung 2. Korrekturen 2 sind vermutlich aufführungsspezifisch motiviert und nicht immer eindeutig interpretierbar. <br /> Hauptquelle für die Textedition von „Im Morgentaun“ M 136 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_I'})\"><strong>I</strong></a> nach Korrekturen 1 und vor Korrekturen 2."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "Titelnummerierung <em>VI.</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_I'})\">Quellenbeschreibung</a>) weggelassen.",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g597",
+                            "measure": "3 <br /> bis 4",
+                            "system": "",
+                            "position": "1. Note <br /> Taktende",
+                            "comment": "<em>Rit. - - -</em> über Ges. und Klav. o. zusammengefasst zu einer Angabe über der Akkolade."
+                        },
+                        {
+                            "svgGroupId": "g598",
+                            "measure": "3",
+                            "system": "Klav. o.",
+                            "position": "letzte Note",
+                            "comment": "sic: {{ref.getGlyph('[a]')}}a<sup>1</sup>. Siehe Textfassung 1 und Textfassung 3 (as<sup>1</sup>) sowie <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_I_corr2'})\">Korrekturen 2 in <strong>I</strong></a>: {{ref.getGlyph('[b]')}} zu as<sup>1</sup> überschreibt {{ref.getGlyph('[a]')}} zu a<sup>1</sup>."
+                        },
+                        {
+                            "svgGroupId": "g599",
+                            "measure": "4",
+                            "system": "Ges.",
+                            "position": "4/8",
+                            "comment": "Text: Punkt nach (ra-sen-bee-)<em>tes</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g425",
+                            "measure": "6 <br /> bis 7",
+                            "system": "",
+                            "position": "(1. Note) <br /> Taktanfang",
+                            "comment": "<em>Rit. - - - Fließend (etwas langsamer als zu Beginn)</em> über Ges. und Klav. o. zusammengefasst zu einer Angabe über der Akkolade."
+                        },
+                        {
+                            "svgGroupId": "g426",
+                            "measure": "7",
+                            "system": "Ges.",
+                            "position": "3. Note",
+                            "comment": "Text sic: Großschreibung <em>Na</em>(-tur). <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: Kleinschreibung <em>natur</em>."
+                        },
+                        {
+                            "svgGroupId": "g426-1",
+                            "measure": "9 <br /> bis 10",
+                            "system": "",
+                            "position": "1. Note <br /> (3/4)",
+                            "comment": "<em>rit. - - -</em> über Ges. und Klav. o. zusammengefasst zu einer Angabe über der Akkolade."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
         }
     ]
 }
