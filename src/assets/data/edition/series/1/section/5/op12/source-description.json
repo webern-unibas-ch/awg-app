@@ -1490,7 +1490,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Korrekturskizzen zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213: einzige Textfassung (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_Cc_corr'})\">Korrekturen</a>.)",
+                        "itemDescription": "Korrekturskizzen zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213: einzige Textfassung (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_Cc_corr'})\">Korrekturen in <strong>C<sup>c</sup></strong></a>.)",
                         "folios": [
                             {
                                 "folio": "7r",
