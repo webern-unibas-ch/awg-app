@@ -147,7 +147,7 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_Aa_corr1",
+                        "id": "source_Aa_corr_1",
                         "label": "Korrekturen 1 in <strong>A<sup>a</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: Textfassung 1."
@@ -215,7 +215,7 @@
                         ]
                     },
                     {
-                        "id": "source_Aa_corr2",
+                        "id": "source_Aa_corr_2",
                         "label": "Korrekturen 2 in <strong>A<sup>a</sup></strong> (mit Bleistift)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: Textfassung 1."
@@ -247,7 +247,7 @@
                         ]
                     },
                     {
-                        "id": "source_Ab_corr1",
+                        "id": "source_Ab_corr_1",
                         "label": "Korrekturen 1 in <strong>A<sup>b</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: Textfassung 1."
@@ -375,7 +375,7 @@
                         ]
                     },
                     {
-                        "id": "source_Ab_corr2",
+                        "id": "source_Ab_corr_2",
                         "label": "Korrekturen 2 in <strong>A<sup>b</sup></strong> (mit Bleistift)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: Textfassung 1."
@@ -1535,7 +1535,7 @@
                         ]
                     },
                     {
-                        "id": "source_Eb_corr1",
+                        "id": "source_Eb_corr_1",
                         "label": "Korrekturen 1 in <strong>E<sup>b</sup></strong> (mit Tinte ggf. auf Rasur)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: Textfassung 2."
@@ -1657,7 +1657,7 @@
                         ]
                     },
                     {
-                        "id": "source_Eb_corr2",
+                        "id": "source_Eb_corr_2",
                         "label": "Korrekturen 2 in <strong>E<sup>b</sup></strong> (mit Bleistift und grünem Buntstift)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: Textfassung 2."
@@ -1700,7 +1700,7 @@
                                         "measure": "4",
                                         "system": "Ges.",
                                         "position": "8/16",
-                                        "comment": "Sechzehntelfähnchen hinzugefügt mit Bleistift. Siehe Korrekturen 1 1.–3. Note."
+                                        "comment": "Sechzehntelfähnchen hinzugefügt mit Bleistift. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Eb_corr_1'})\">Korrekturen 1</a> 1.–3. Note."
                                     },
                                     {
                                         "measure": "5",
@@ -1755,7 +1755,7 @@
                         ]
                     },
                     {
-                        "id": "source_Ec_corr1",
+                        "id": "source_Ec_corr_1",
                         "label": "Korrekturen 1 in <strong>E<sup>c</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: Textfassung 1."
@@ -1847,7 +1847,7 @@
                         ]
                     },
                     {
-                        "id": "source_Ec_corr2",
+                        "id": "source_Ec_corr_2",
                         "label": "Korrekturen 2 in <strong>E<sup>c</sup></strong> (mit Bleistift)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: Textfassung 1."
@@ -1933,7 +1933,7 @@
                         ]
                     },
                     {
-                        "id": "source_Ed_corr1",
+                        "id": "source_Ed_corr_1",
                         "label": "Korrekturen 1 in <strong>E<sup>d</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 1."
@@ -1952,7 +1952,7 @@
                                         "measure": "2",
                                         "system": "Ges.",
                                         "position": "8/8",
-                                        "comment": "Achtelnote geändert zu Sechzehntelnote und zu (16/16) versetzt. Siehe auch Korrekturen 2 7/8."
+                                        "comment": "Achtelnote geändert zu Sechzehntelnote und zu (16/16) versetzt. Siehe auch <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr_2'})\">Korrekturen 2</a> 7/8."
                                     },
                                     {
                                         "measure": "5 <br /> bis 6",
@@ -2001,7 +2001,7 @@
                         ]
                     },
                     {
-                        "id": "source_Ed_corr2",
+                        "id": "source_Ed_corr_2",
                         "label": "Korrekturen 2 in <strong>E<sup>d</sup></strong> (mit türkisem Buntstift)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 2."
@@ -2159,7 +2159,7 @@
                         ]
                     },
                     {
-                        "id": "source_Ee_corr1",
+                        "id": "source_Ee_corr_1",
                         "label": "Korrekturen 1 in <strong>E<sup>e</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: Textfassung 2."
@@ -2268,7 +2268,7 @@
                                         "measure": "13–15",
                                         "system": "Klav.",
                                         "position": "",
-                                        "comment": "Teilweise auf Rasur. Ante correcturam: vermutlich wie Textfassung 1. Siehe auch Korrekturen 3 T. 14 Klav. u."
+                                        "comment": "Teilweise auf Rasur. Ante correcturam: vermutlich wie Textfassung 1. Siehe auch <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_3'})\">Korrekturen 3</a> T. 14 Klav. u."
                                     },
                                     {
                                         "measure": "16 <br /> bis [17]",
@@ -2281,7 +2281,7 @@
                         ]
                     },
                     {
-                        "id": "source_Ee_corr2",
+                        "id": "source_Ee_corr_2",
                         "label": "Korrekturen 2 in <strong>E<sup>e</sup></strong> (mit türkisem Buntstift)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: Textfassung 2."
@@ -2415,7 +2415,7 @@
                         ]
                     },
                     {
-                        "id": "source_Ee_corr3",
+                        "id": "source_Ee_corr_3",
                         "label": "Korrekturen 3 in <strong>E<sup>e</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: Textfassung 2."
@@ -2434,13 +2434,13 @@
                                         "measure": "3",
                                         "system": "Ges.",
                                         "position": "1–2/8",
-                                        "comment": "Zwei Achtelnoten geändert zu punktierter Achtelnote, Sechzehntelnote. Siehe Korrekturen in <strong>G</strong>."
+                                        "comment": "Zwei Achtelnoten geändert zu punktierter Achtelnote, Sechzehntelnote. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gc_corr'})\">Korrekturen in <strong>G<sup>c</sup></strong></a>."
                                     },
                                     {
                                         "measure": "3",
                                         "system": "Ges.",
                                         "position": "5–6/8",
-                                        "comment": "Zwei Achtelnoten geändert zu punktierter Achtelnote, Sechzehntelnote. Siehe Korrekturen in <strong>G</strong>."
+                                        "comment": "Zwei Achtelnoten geändert zu punktierter Achtelnote, Sechzehntelnote. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gc_corr'})\">Korrekturen in <strong>G<sup>c</sup></strong></a>."
                                     },
                                     {
                                         "measure": "4",
@@ -2452,7 +2452,7 @@
                                         "measure": "5",
                                         "system": "Ges.",
                                         "position": "3.–4. Note",
-                                        "comment": "Zwei Achtelnoten geändert zu triolischer Viertelnote und Achtelnote. {{ref.getGlyph('[a]')}} zu g<sup>1</sup> hinzugefügt. Siehe Korrekturen in <strong>G</strong>."
+                                        "comment": "Zwei Achtelnoten geändert zu triolischer Viertelnote und Achtelnote. {{ref.getGlyph('[a]')}} zu g<sup>1</sup> hinzugefügt. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gc_corr'})\">Korrekturen in <strong>G<sup>c</sup></strong></a>."
                                     },
                                     {
                                         "measure": "6",
@@ -2720,7 +2720,7 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_Fa_corr1",
+                        "id": "source_Fa_corr_1",
                         "label": "Korrekturen 1 in <strong>F<sup>a</sup></strong> (mit schwarzer Tinte, Hs. Webern)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: Textfassung 3."
@@ -2986,7 +2986,7 @@
                         ]
                     },
                     {
-                        "id": "source_Fa_corr2",
+                        "id": "source_Fa_corr_2",
                         "label": "Korrekturen 2 in <strong>F<sup>a</sup></strong> (Hs. Webern)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Dies ist ein Lied“ M 133: Textfassung 3."
@@ -3060,7 +3060,7 @@
                         ]
                     },
                     {
-                        "id": "source_Fb_corr1",
+                        "id": "source_Fb_corr_1",
                         "label": "Korrekturen 1 in <strong>F<sup>b</sup></strong> (mit schwarzer Tinte ggf. auf Rasur, Hs. Webern)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: Textfassung 2. Abweichungen der Grundschicht von <strong>F<sup>b</sup></strong> zu dieser Textfassung sind mit dem Vermerk „sic“ gekennzeichnet."
@@ -3151,7 +3151,7 @@
                                         "measure": "9",
                                         "system": "Klav. o.",
                                         "position": "1.–5. Note",
-                                        "comment": "sic: Bogen. Siehe Korrekturen 2 in <strong>F<sup>b</sup></strong>."
+                                        "comment": "sic: Bogen. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fb_corr_2'})\">Korrekturen 2</a>."
                                     },
                                     {
                                         "measure": "9",
@@ -3170,7 +3170,7 @@
                         ]
                     },
                     {
-                        "id": "source_Fb_corr2",
+                        "id": "source_Fb_corr_2",
                         "label": "Korrekturen 2 in <strong>F<sup>b</sup></strong> (Hs. Webern)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Im Windesweben“ M 134: Textfassung 2."
@@ -4159,119 +4159,9 @@
                 "corrections": [
                     {
                         "id": "source_Gb_corr",
-                        "label": "Korrekturen in <strong>G<sup>b</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
+                        "label": "Korrekturen in <strong>G<sup>b</sup></strong>",
                         "description": [
-                            "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: Textfassung 3."
-                        ],
-                        "comments": [
-                            {
-                                "blockHeader": "",
-                                "blockComments": [
-                                    {
-                                        "measure": "1",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>Langsam <s>und</s></em>, <em><s>und</s></em> gestrichen."
-                                    },
-                                    {
-                                        "measure": "1–3",
-                                        "system": "Klav.",
-                                        "position": "",
-                                        "comment": "Auf Rasuren. Ante correcturam: vermutlich wie Textfassung 2."
-                                    },
-                                    {
-                                        "measure": "2",
-                                        "system": "Ges.",
-                                        "position": "1–2/8",
-                                        "comment": "Viertelnote (siehe Textfassung 2) geändert zu Achtelnote, Achtelpause."
-                                    },
-                                    {
-                                        "measure": "3",
-                                        "system": "Ges.",
-                                        "position": "1.–2., 5.–6. Note",
-                                        "comment": "Zwei Achtelnoten (siehe Textfassung 2) geändert zu punktierte Achtelnote, Sechzehntelnote."
-                                    },
-                                    {
-                                        "measure": "4",
-                                        "system": "Klav. u.",
-                                        "position": "",
-                                        "comment": "Auf Rasuren. Ante correcturam: vermutlich wie Textfassung 2."
-                                    },
-                                    {
-                                        "measure": "4",
-                                        "system": "Ges.",
-                                        "position": "4–6/8",
-                                        "comment": "Auf Rasur. Ante correcturam: vermutlich dis<sup>1</sup>–e<sup>1</sup>–gis<sup>1</sup> (siehe Textfassung 2)."
-                                    },
-                                    {
-                                        "measure": "5",
-                                        "system": "Ges.",
-                                        "position": "3.–4. Note",
-                                        "comment": "Auf Rasur. Ante correcturam: zwei Achtelnoten (siehe Textfassung 2)."
-                                    },
-                                    {
-                                        "measure": "6",
-                                        "system": "Ges.",
-                                        "position": "4/8",
-                                        "comment": "Auf Rasur. Ante correcturam: vermutlich cis<sup>2</sup> (siehe Textfassung 2)."
-                                    },
-                                    {
-                                        "measure": "6",
-                                        "system": "Ges.",
-                                        "position": "4.–5. Note",
-                                        "comment": "Auf Rasur. Ante correcturam: zwei Achtelnoten (siehe Textfassung 2)."
-                                    },
-                                    {
-                                        "measure": "7",
-                                        "system": "Klav.",
-                                        "position": "",
-                                        "comment": "Auf Rasuren. Ante correcturam: vermutlich wie Textfassung 2."
-                                    },
-                                    {
-                                        "measure": "7",
-                                        "system": "Ges.",
-                                        "position": "2.–3. Note",
-                                        "comment": "Auf Rasur. Ante correcturam: zwei Achtelnoten (siehe Textfassung 2)."
-                                    },
-                                    {
-                                        "measure": "11",
-                                        "system": "Klav. o.",
-                                        "position": "4/8",
-                                        "comment": "Rasur. Ante correcturam: vermutlich f<sup>1</sup>/a<sup>1</sup> (siehe Textfassung 2)."
-                                    },
-                                    {
-                                        "measure": "12",
-                                        "system": "Klav. o.",
-                                        "position": "2/8",
-                                        "comment": "Rasur. Ante correcturam: vermutlich e<sup>1</sup>/a<sup>1</sup> (siehe Textfassung 2)."
-                                    },
-                                    {
-                                        "measure": "13",
-                                        "system": "Ges.",
-                                        "position": "1. Note",
-                                        "comment": "{{ref.getGlyph('[a]')}} hinzugefügt mit Bleistift."
-                                    },
-                                    {
-                                        "measure": "13",
-                                        "system": "Klav. u.",
-                                        "position": "4. Note",
-                                        "comment": "Unterstimmenschicht auf Rasur. Ante correcturam: vermutlich Viertelnote, Achtelnote d (siehe Textfassung 2)."
-                                    },
-                                    {
-                                        "measure": "13 <br /> bis 14",
-                                        "system": "Klav. u.",
-                                        "position": "4. Note <br /> 1/4",
-                                        "comment": "Bogen rasiert (siehe Textfassung 2)."
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "id": "source_Gc_corr",
-                        "label": "Korrekturen in <strong>G<sup>c</sup></strong>",
-                        "description": [
-                            "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 2. Abweichungen der Grundschicht von <strong>G<sup>c</sup></strong> zu dieser Textfassung sind mit dem Vermerk „sic“ gekennzeichnet."
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 2. Abweichungen der Grundschicht von <strong>G<sup>b</sup></strong> zu dieser Textfassung sind mit dem Vermerk „sic“ gekennzeichnet."
                         ],
                         "comments": [
                             {
@@ -4562,6 +4452,116 @@
                                 ]
                             }
                         ]
+                    },
+                    {
+                        "id": "source_Gc_corr",
+                        "label": "Korrekturen in <strong>G<sup>c</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
+                        "description": [
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Kahl reckt der Baum“ M 137: Textfassung 3."
+                        ],
+                        "comments": [
+                            {
+                                "blockHeader": "",
+                                "blockComments": [
+                                    {
+                                        "measure": "1",
+                                        "system": "",
+                                        "position": "Taktanfang",
+                                        "comment": "<em>Langsam <s>und</s></em>, <em><s>und</s></em> gestrichen."
+                                    },
+                                    {
+                                        "measure": "1–3",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Auf Rasuren. Ante correcturam: vermutlich wie Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "2",
+                                        "system": "Ges.",
+                                        "position": "1–2/8",
+                                        "comment": "Viertelnote (siehe Textfassung 2) geändert zu Achtelnote, Achtelpause."
+                                    },
+                                    {
+                                        "measure": "3",
+                                        "system": "Ges.",
+                                        "position": "1.–2., 5.–6. Note",
+                                        "comment": "Zwei Achtelnoten (siehe Textfassung 2) geändert zu punktierte Achtelnote, Sechzehntelnote."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Klav. u.",
+                                        "position": "",
+                                        "comment": "Auf Rasuren. Ante correcturam: vermutlich wie Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "4",
+                                        "system": "Ges.",
+                                        "position": "4–6/8",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich dis<sup>1</sup>–e<sup>1</sup>–gis<sup>1</sup> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "5",
+                                        "system": "Ges.",
+                                        "position": "3.–4. Note",
+                                        "comment": "Auf Rasur. Ante correcturam: zwei Achtelnoten (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "4/8",
+                                        "comment": "Auf Rasur. Ante correcturam: vermutlich cis<sup>2</sup> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "6",
+                                        "system": "Ges.",
+                                        "position": "4.–5. Note",
+                                        "comment": "Auf Rasur. Ante correcturam: zwei Achtelnoten (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Klav.",
+                                        "position": "",
+                                        "comment": "Auf Rasuren. Ante correcturam: vermutlich wie Textfassung 2."
+                                    },
+                                    {
+                                        "measure": "7",
+                                        "system": "Ges.",
+                                        "position": "2.–3. Note",
+                                        "comment": "Auf Rasur. Ante correcturam: zwei Achtelnoten (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "11",
+                                        "system": "Klav. o.",
+                                        "position": "4/8",
+                                        "comment": "Rasur. Ante correcturam: vermutlich f<sup>1</sup>/a<sup>1</sup> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "12",
+                                        "system": "Klav. o.",
+                                        "position": "2/8",
+                                        "comment": "Rasur. Ante correcturam: vermutlich e<sup>1</sup>/a<sup>1</sup> (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Ges.",
+                                        "position": "1. Note",
+                                        "comment": "{{ref.getGlyph('[a]')}} hinzugefügt mit Bleistift."
+                                    },
+                                    {
+                                        "measure": "13",
+                                        "system": "Klav. u.",
+                                        "position": "4. Note",
+                                        "comment": "Unterstimmenschicht auf Rasur. Ante correcturam: vermutlich Viertelnote, Achtelnote d (siehe Textfassung 2)."
+                                    },
+                                    {
+                                        "measure": "13 <br /> bis 14",
+                                        "system": "Klav. u.",
+                                        "position": "4. Note <br /> 1/4",
+                                        "comment": "Bogen rasiert (siehe Textfassung 2)."
+                                    }
+                                ]
+                            }
+                        ]
                     }
                 ]
             }
@@ -4649,7 +4649,7 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_H_corr1",
+                        "id": "source_H_corr_1",
                         "label": "Korrekturen 1 in <strong>H</strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: Textfassung 2."
@@ -4716,7 +4716,7 @@
                                         "measure": "11",
                                         "system": "Ges.",
                                         "position": "letzte Note",
-                                        "comment": "dis<sup>1</sup> mit Tenutostrich auf Rasur. Siehe Korrekturen 2."
+                                        "comment": "dis<sup>1</sup> mit Tenutostrich auf Rasur. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_H_corr_2'})\">Korrekturen 2</a>."
                                     },
                                     {
                                         "measure": "12",
@@ -4729,7 +4729,7 @@
                         ]
                     },
                     {
-                        "id": "source_H_corr2",
+                        "id": "source_H_corr_2",
                         "label": "Korrekturen 2 in <strong>H</strong> (mit Bleistift und Buntstift)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „An Bachesranft“ M 135: Textfassung 2."
@@ -4938,7 +4938,7 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_I_corr1",
+                        "id": "source_I_corr_1",
                         "label": "Korrekturen 1 in <strong>I</strong> (mit schwarzer Tinte [Text: rote Tinte] ggf. auf Rasur)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 2."
@@ -5012,7 +5012,7 @@
                         ]
                     },
                     {
-                        "id": "source_I_corr2",
+                        "id": "source_I_corr_2",
                         "label": "Korrekturen 2 in <strong>I</strong> (mit Bleistift und Buntstift)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Im Morgentaun“ M 136: Textfassung 2."
