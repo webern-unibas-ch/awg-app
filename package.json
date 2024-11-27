@@ -137,7 +137,7 @@
         "angular-cli-ghpages": "^2.0.3",
         "commit-and-tag-version": "^12.5.0",
         "conventional-recommended-bump": "^10.0.0",
-        "eslint": "^8.57.0",
+        "eslint": "^9.15.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-angular": "^4.1.0",
         "eslint-plugin-deprecation": "^3.0.0",
