@@ -176,7 +176,7 @@ function htmlConverter(assigned_props, txt) {
                 if (proparr[i][j].proptype == 'start') {
                     if (proparr[i][j].propname == 'linebreak') {
                         // only due to backwards compatibility
-                        html += '<br/>';
+                        html += '<br />';
                     } else if (proparr[i][j].propname == '_link') {
                         stack.push(proparr[i][j].propname);
                         // create an anchor tag with href
@@ -208,7 +208,7 @@ function htmlConverter(assigned_props, txt) {
     } //END for i
 
     // replace '\n' with <br>
-    html = html.replace(/\n/g, '<br/>');
+    html = html.replace(/\n/g, '<br />');
     // remove \r since they are represented by block elements
     html = html.replace(/\r/g, '');
 
