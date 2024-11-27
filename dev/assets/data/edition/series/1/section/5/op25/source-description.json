@@ -2201,7 +2201,7 @@
                         "id": "source_E_corr1",
                         "label": "Korrekturen 1 in <strong>E</strong>",
                         "description": [
-                            "Die Beschreibung der Korrekturen bezieht sich auf „Wie bin ich froh“ M 317: Textfassung 1."
+                            "Die Beschreibung der Korrekturen bezieht sich auf <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">„Wie bin ich froh“ M 317: Textfassung 1</a>."
                         ],
                         "comments": [
                             {
@@ -2249,55 +2249,55 @@
                                         "measure": "1",
                                         "system": "Klav.",
                                         "position": "5–6/8",
-                                        "comment": "Auf Rasur. Ante correcturam: Aufteilung der Noten auf die Systeme vermutlich wie in Textfassung 1."
+                                        "comment": "Auf Rasur. Ante correcturam: Aufteilung der Noten auf die Systeme vermutlich wie in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>."
                                     },
                                     {
                                         "measure": "2",
                                         "system": "Ges.",
                                         "position": "2.–3. Note",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
+                                        "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
                                     },
                                     {
                                         "measure": "3",
                                         "system": "Ges.",
                                         "position": "1.–3. Note",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
+                                        "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
                                     },
                                     {
                                         "measure": "3",
                                         "system": "Ges.",
                                         "position": "5–6/8",
-                                        "comment": "Tenutostriche rasiert (siehe Textfassung 1)."
+                                        "comment": "Tenutostriche rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
                                     },
                                     {
                                         "measure": "vor 4",
                                         "system": "Klav. u.",
                                         "position": "",
-                                        "comment": "Violinschlüssel versetzt von T. 4 vor 1. Note (dort Rasur; siehe Textfassung 1)."
+                                        "comment": "Violinschlüssel versetzt von T. 4 vor 1. Note (dort Rasur; siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
                                     },
                                     {
                                         "measure": "4",
                                         "system": "Ges.",
                                         "position": "1.–3. Note",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
+                                        "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
                                     },
                                     {
                                         "measure": "4",
                                         "system": "Ges.",
                                         "position": "8/8",
-                                        "comment": "Tenutostrich rasiert (siehe Textfassung 1)."
+                                        "comment": "Tenutostrich rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
                                     },
                                     {
                                         "measure": "5",
                                         "system": "Ges.",
                                         "position": "1.–3. Note",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
+                                        "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
                                     },
                                     {
                                         "measure": "5 <br /> bis 6",
                                         "system": "Klav.",
                                         "position": "5/8 <br /> 1/8",
-                                        "comment": "Auf Rasur. Ante correcturam: Aufteilung der Noten auf die Systeme vermutlich wie in Textfassung 1."
+                                        "comment": "Auf Rasur. Ante correcturam: Aufteilung der Noten auf die Systeme vermutlich wie in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>."
                                     },
                                     {
                                         "measure": "6",
@@ -2309,61 +2309,61 @@
                                         "measure": "6 <br /> bis 7",
                                         "system": "Ges.",
                                         "position": "2. Note <br /> 2/8",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1). Möglicherweise steht der Silbenbogen in T. 7 1–2/8 im Zusammenhang mit dieser Korrektur."
+                                        "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>). Möglicherweise steht der Silbenbogen in T. 7 1–2/8 im Zusammenhang mit dieser Korrektur."
                                     },
                                     {
                                         "measure": "7",
                                         "system": "Ges.",
                                         "position": "4–6/8",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
+                                        "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
                                     },
                                     {
                                         "measure": "8",
                                         "system": "Klav. u.",
                                         "position": "nach 3/8",
-                                        "comment": "Violinschlüssel versetzt von vor 2. Note (dort Rasur; siehe Textfassung 1)."
+                                        "comment": "Violinschlüssel versetzt von vor 2. Note (dort Rasur; siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
                                     },
                                     {
                                         "measure": "8",
                                         "system": "Ges.",
                                         "position": "1.–4. Note",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1). Möglicherweise steht der Silbenbogen in T. 8 3.–4. Note im Zusammenhang mit dieser Korrektur."
+                                        "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>). Möglicherweise steht der Silbenbogen in T. 8 3.–4. Note im Zusammenhang mit dieser Korrektur."
                                     },
                                     {
                                         "measure": "8",
                                         "system": "Ges.",
                                         "position": "5.–6. Note",
-                                        "comment": "Tenutostriche rasiert (siehe Textfassung 1)."
+                                        "comment": "Tenutostriche rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
                                     },
                                     {
                                         "measure": "9",
                                         "system": "Ges.",
                                         "position": "3.–5. Note",
-                                        "comment": "Tenutostriche rasiert (siehe Textfassung 1)."
+                                        "comment": "Tenutostriche rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
                                     },
                                     {
                                         "measure": "9 <br /> bis 10",
                                         "system": "Ges.",
                                         "position": "8/8 <br /> 2/8",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
+                                        "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
                                     },
                                     {
                                         "measure": "10",
                                         "system": "Ges.",
                                         "position": "3.–5. Note",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
+                                        "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
                                     },
                                     {
                                         "measure": "11",
                                         "system": "Ges.",
                                         "position": "6/8",
-                                        "comment": "Tenutostrich rasiert (siehe Textfassung 1)."
+                                        "comment": "Tenutostrich rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
                                     },
                                     {
                                         "measure": "12",
                                         "system": "",
                                         "position": "Taktanfang",
-                                        "comment": "<em>tempo I.</em> ersetzt <em>wieder tempo I.</em> auf Rasur (siehe Textfassung 1)."
+                                        "comment": "<em>tempo I.</em> ersetzt <em>wieder tempo I.</em> auf Rasur (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
                                     }
                                 ]
                             },

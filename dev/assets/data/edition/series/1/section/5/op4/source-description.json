@@ -509,7 +509,7 @@
                                         "measure": "14–15",
                                         "system": "Ges.",
                                         "position": "",
-                                        "comment": "Punktierte Ganze Pause, Viertelpause (T. 14), Halbe Pause, punktierte Halbe Pause, Halbe Pause (T. 15) (siehe Textfassung 1) nach Hinzufügung der gestrichelten Teiltaktstriche (siehe Korrekturen T. 14 nach 3/4, T. 15 nach 4/4) zu Ganze Pause nach Teiltaktstrich in T. 14 und Streichung der letzten Pause in T. 15 (sic: siehe TkA) mit rotem Buntstift."
+                                        "comment": "Punktierte Ganze Pause, Viertelpause (T. 14), Halbe Pause, punktierte Halbe Pause, Halbe Pause (T. 15) (siehe Textfassung 1) nach Hinzufügung der gestrichelten Teiltaktstriche (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen</a> T. 14 nach 4/4, T. 15 nach 3/4) zu Ganze Pause nach Teiltaktstrich in T. 14 und Streichung der letzten Pause in T. 15 (sic: siehe TkA) mit rotem Buntstift."
                                     },
                                     {
                                         "measure": "14",
@@ -1364,7 +1364,7 @@
                                         "measure": "15",
                                         "system": "Ges.",
                                         "position": "1.–4. Note",
-                                        "comment": "3. Note als punktierte Achtelnote auf Rasur, 4. Note uneindeutig mit Achtel- oder Sechzehntelfähnchen. Siehe Korrekturen 2 und TkA."
+                                        "comment": "3. Note als punktierte Achtelnote auf Rasur, 4. Note uneindeutig mit Achtel- oder Sechzehntelfähnchen. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr2'})\">Korrekturen 2</a> und TkA."
                                     }
                                 ]
                             }
@@ -1396,7 +1396,7 @@
                                         "measure": "15",
                                         "system": "Ges.",
                                         "position": "1.–4. Note",
-                                        "comment": "Punktierung der 1. Note sowie Balkierung der 1. Note und 3. Note mit der 2. Note und der 4. Note jeweils als Sechzehntelnote hinzugefügt. Siehe Korrekturen 1 und TkA."
+                                        "comment": "Punktierung der 1. Note sowie Balkierung der 1. Note und 3. Note mit der 2. Note und der 4. Note jeweils als Sechzehntelnote hinzugefügt. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr1'})\">Korrekturen 1</a> und TkA."
                                     }
                                 ]
                             }
