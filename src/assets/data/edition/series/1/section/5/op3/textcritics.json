@@ -249,7 +249,7 @@
             "id": "M_134_TF1",
             "label": "M 134 Textfassung 1",
             "description": [
-                "Für die Edition von „Im Windesweben“ M 134 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a> einzige relevante Quelle. <br /> Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A_corr'})\"> Korrekturen in <strong>A<sup>b</sup></strong></a> betreffen Textfassung 2. <br /> Hauptquelle für die Textedition von „Im Windesweben“ M 134 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a> ante correcturam."
+                "Für die Edition von „Im Windesweben“ M 134 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a> einzige relevante Quelle. <br /> Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A_corr2'})\"> Korrekturen in <strong>A<sup>b</sup></strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a>. <br /> Hauptquelle für die Textedition von „Im Windesweben“ M 134 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a> ante correcturam."
             ],
             "comments": [
                 {
@@ -260,7 +260,7 @@
                             "measure": "2",
                             "system": "Ges.",
                             "position": "7. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt mit Blick auf Textfassung 2 und Textfassung 3."
+                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> und Textfassung 3."
                         },
                         {
                             "svgGroupId": "g656",
@@ -309,7 +309,7 @@
                             "measure": "7",
                             "system": "Ges.",
                             "position": "4/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu d<sup>1</sup> ergänzt mit Blick auf Textfassung 2 und Textfassung 3."
+                            "comment": "{{ref.getGlyph('[a]')}} zu d<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> und Textfassung 3."
                         },
                         {
                             "svgGroupId": "g527",
@@ -323,7 +323,7 @@
                             "measure": "8",
                             "system": "Ges.",
                             "position": "7. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt mit Blick auf Textfassung 2 und Textfassung 3."
+                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> und Textfassung 3."
                         },
                         {
                             "svgGroupId": "g529",
@@ -344,7 +344,7 @@
                             "measure": "10",
                             "system": "Klav.",
                             "position": "Taktanfang",
-                            "comment": "3/4-Taktvorzeichnung weggelassen. Siehe Korrekturen 1 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a>: Schlusstaktstrich nach 6/8 rasiert und ersetzt durch Viertelpause und Schlusstaktstrich nach 4/4."
+                            "comment": "3/4-Taktvorzeichnung weggelassen. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ab_corr1'})\">Korrekturen 1 in <strong>A<sup>b</sup></strong></a>: Schlusstaktstrich nach 6/8 rasiert und ersetzt durch Viertelpause und Schlusstaktstrich nach 4/4."
                         },
                         {
                             "svgGroupId": "g532",
@@ -369,7 +369,7 @@
             "id": "M 134_TF2",
             "label": "M 134 Textfassung 2",
             "description": [
-                "Für die Edition von „Im Windesweben“ M 134 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>b</sup></strong></a> relevante Quellen. <br /> Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A_corr'})\"> Korrekturen in <strong>A<sup>b</sup></strong></a> skizzieren Textfassung 2. Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Eb_corr1'})\">Korrekturen 1</a>) und mit Bleistift oder Buntstift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Eb_corr2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht eindeutig entzifferbar. Der Zustand nach Korrekturen 1 etabliert Textfassung 2. Korrekturen 2 sind vermutlich aufführungsspezifisch motiviert und nicht immer eindeutig interpretierbar. <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> war nach Korrekturen 1 möglicherweise Vorlage für die Abschrift <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>b</sup></strong></a>. Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>b</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fb_corr1'})\">Korrekturen 1</a>) und mit Bleistift oder Buntstift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fb_corr2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand nach Korrekturen 1 entspricht Textfassung 2. Korrekturen 2 sind aufführungsspezifisch motiviert. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> nach Korrekturen 1 bietet insgesamt einen besseren Text als <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>b</sup></strong></a> nach Korrekturen 1. <br /> Hauptquelle für die Textedition von „Im Windesweben“ M 134 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> nach Korrekturen 1."
+                "Für die Edition von „Im Windesweben“ M 134 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>b</sup></strong></a> relevante Quellen. <br /> Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A_corr2'})\"> Korrekturen in <strong>A<sup>b</sup></strong></a> skizzieren Textfassung 2. Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Eb_corr1'})\">Korrekturen 1</a>) und mit Bleistift oder Buntstift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Eb_corr2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht eindeutig entzifferbar. Der Zustand nach Korrekturen 1 etabliert Textfassung 2. Korrekturen 2 sind vermutlich aufführungsspezifisch motiviert und nicht immer eindeutig interpretierbar. <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> war nach Korrekturen 1 möglicherweise Vorlage für die Abschrift <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>b</sup></strong></a>. Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>b</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fb_corr1'})\">Korrekturen 1</a>) und mit Bleistift oder Buntstift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fb_corr2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand nach Korrekturen 1 entspricht Textfassung 2. Korrekturen 2 sind aufführungsspezifisch motiviert. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> nach Korrekturen 1 bietet insgesamt einen besseren Text als <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>b</sup></strong></a> nach Korrekturen 1. <br /> Hauptquelle für die Textedition von „Im Windesweben“ M 134 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> nach Korrekturen 1."
             ],
             "comments": [
                 {
