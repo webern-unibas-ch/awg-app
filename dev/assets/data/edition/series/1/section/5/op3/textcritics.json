@@ -246,6 +246,225 @@
             ]
         },
         {
+            "id": "M_134_TF1",
+            "label": "M 134 Textfassung 1",
+            "description": [
+                "Für die Edition von „Im Windesweben“ M 134 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a> einzige relevante Quelle. <br /> Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A_corr_2'})\"> Korrekturen in <strong>A<sup>b</sup></strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a>. <br /> Hauptquelle für die Textedition von „Im Windesweben“ M 134 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a> ante correcturam."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g655",
+                            "measure": "2",
+                            "system": "Ges.",
+                            "position": "7. Note",
+                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> und Textfassung 3."
+                        },
+                        {
+                            "svgGroupId": "g656",
+                            "measure": "3",
+                            "system": "Ges.",
+                            "position": "5/8",
+                            "comment": "Text: Punkt nach (träu-me-)<em>rei</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g657",
+                            "measure": "3 <br /> bis 4",
+                            "system": "Klav. u.",
+                            "position": "3. Pause <br /> 1/4",
+                            "comment": "Bogen von T. 3 3. Pause bis T. 4 1/4 und Quintolenziffer korrigiert zu Quintolenklammer von T. 3 3. Pause bis letzte Note und Legatobogen von T. 3 7. Note bis T. 4 1/4. Siehe auch TkA zu T. 4.  <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a> T. 3–4 Klav. u.:  <br /> ##Abbildung##"
+                        },
+                        {
+                            "svgGroupId": "g658",
+                            "measure": "4",
+                            "system": "Klav. u.",
+                            "position": "1. Pause,  <br /> 2.–3. Note, 2.–3. Pause",
+                            "comment": "Bogen von 1.–3. Pause und Quintolenziffer korrigiert zu Quintolenklammer von 1.–3. Pause und Legatobogen von 2.–3. Note. Siehe auch TkA zu T. 3–4."
+                        },
+                        {
+                            "svgGroupId": "g682",
+                            "measure": "6",
+                            "system": "Ges.",
+                            "position": "1–2/8",
+                            "comment": "Text sic: Silbentrennung <em>na-sser</em>."
+                        },
+                        {
+                            "svgGroupId": "g683",
+                            "measure": "6",
+                            "system": "Klav. u.",
+                            "position": "19–22/32",
+                            "comment": "Entzifferung unsicher."
+                        },
+                        {
+                            "svgGroupId": "g525",
+                            "measure": "7",
+                            "system": "Klav. u.",
+                            "position": "4/16",
+                            "comment": "Anfang des Legatobogens versetzt von Anfang T. 8 (vor 1. Note) mit Blick auf den Zusammenhang. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a>: Akkoladenwechsel vor T. 8."
+                        },
+                        {
+                            "svgGroupId": "g526",
+                            "measure": "7",
+                            "system": "Ges.",
+                            "position": "4/8",
+                            "comment": "{{ref.getGlyph('[a]')}} zu d<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> und Textfassung 3."
+                        },
+                        {
+                            "svgGroupId": "g527",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "1/4",
+                            "comment": "Text: Komma nach <em>mai</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g528",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "7. Note",
+                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> und Textfassung 3."
+                        },
+                        {
+                            "svgGroupId": "g529",
+                            "measure": "9",
+                            "system": "Klav. u.",
+                            "position": "1.–2. Pause,  <br /> 1.–4. Note",
+                            "comment": "Bogen von 1. Pause bis 4. Note und Sextolenziffer korrigiert zu Sextolenklammer von 1. Pause bis 4. Note und Legatobogen von 1.–4. Note. Siehe auch TkA zu 3.–4. Pause, 5.–8. Note."
+                        },
+                        {
+                            "svgGroupId": "g530",
+                            "measure": "9",
+                            "system": "Klav. u.",
+                            "position": "3.–4. Pause,  <br /> 5.–8. Note",
+                            "comment": "Bogen von 3. Pause bis 8. Note und Sextolenziffer korrigiert zu Sextolenklammer von 3. Pause bis 8. Note und Legatobogen von 5.–8. Note. Siehe auch TkA zu 1.–2. Pause, 1.–4. Note."
+                        },
+                        {
+                            "svgGroupId": "g531",
+                            "measure": "10",
+                            "system": "Klav.",
+                            "position": "Taktanfang",
+                            "comment": "3/4-Taktvorzeichnung weggelassen. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ab_corr_1'})\">Korrekturen 1 in <strong>A<sup>b</sup></strong></a>: Schlusstaktstrich nach 6/8 rasiert und ersetzt durch Viertelpause und Schlusstaktstrich nach 4/4."
+                        },
+                        {
+                            "svgGroupId": "g532",
+                            "measure": "10",
+                            "system": "Klav. o.",
+                            "position": "10/16",
+                            "comment": "Sechzehntelpause auf Unterstimmenschicht bezogen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a>: Unterstimmenschicht nach oben gehalst, Sechzehntelpause am oberen Systemrand orientiert."
+                        },
+                        {
+                            "svgGroupId": "g533",
+                            "measure": "10",
+                            "system": "Ges.",
+                            "position": "6/8",
+                            "comment": "Text: Punkt nach (le-)<em>ben</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
+        },
+        {
+            "id": "M 134_TF2",
+            "label": "M 134 Textfassung 2",
+            "description": [
+                "Für die Edition von „Im Windesweben“ M 134 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>b</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>b</sup></strong></a> relevante Quellen. <br /> Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A_corr_2'})\"> Korrekturen in <strong>A<sup>b</sup></strong></a> skizzieren Textfassung 2. Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Eb_corr_1'})\">Korrekturen 1</a>) und mit Bleistift oder Buntstift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht eindeutig entzifferbar. Der Zustand nach Korrekturen 1 etabliert Textfassung 2. Korrekturen 2 sind vermutlich aufführungsspezifisch motiviert und nicht immer eindeutig interpretierbar. <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> war nach Korrekturen 1 möglicherweise Vorlage für die Abschrift <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>b</sup></strong></a>. Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>b</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fb_corr_1'})\">Korrekturen 1</a>) und mit Bleistift oder Buntstift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fb_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand nach Korrekturen 1 entspricht Textfassung 2. Korrekturen 2 sind aufführungsspezifisch motiviert. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> nach Korrekturen 1 bietet insgesamt einen besseren Text als <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>b</sup></strong></a> nach Korrekturen 1. <br /> Hauptquelle für die Textedition von „Im Windesweben“ M 134 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a> nach Korrekturen 1."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g579",
+                            "measure": "3",
+                            "system": "Ges.",
+                            "position": "5/8",
+                            "comment": "Text: Punkt nach (träu-me-)<em>rei</em> gesetzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a>:  <br /> ##Abbildung##"
+                        },
+                        {
+                            "svgGroupId": "g583",
+                            "measure": "4",
+                            "system": "Klav. u.",
+                            "position": "1. Pause,  <br /> 2.–3. Note, 2.–3. Pause",
+                            "comment": "Bogen von 1.–3. Pause korrigiert zu Quintolenklammer von 1.–3. Pause und Legatobogen von 2.–3. Note. Siehe auch TkA zu T. 4 4. Pause, 4.–7. Note. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a>:  <br /> ##Abbildung##"
+                        },
+                        {
+                            "svgGroupId": "g584",
+                            "measure": "4",
+                            "system": "Klav.",
+                            "position": "(7.–10. Note)",
+                            "comment": "Crescendogabel versetzt von unter Klav. u."
+                        },
+                        {
+                            "svgGroupId": "g585",
+                            "measure": "4",
+                            "system": "Ges.",
+                            "position": "8/16",
+                            "comment": "Achtelnote korrigiert zu Sechzehntelnote mit Blick auf den metrischen Kontext. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2 in <strong>E<sup>b</sup></strong></a>: Sechzehntelfähnchen hinzugefügt mit Bleistift."
+                        },
+                        {
+                            "svgGroupId": "g586",
+                            "measure": "4",
+                            "system": "Klav. u.",
+                            "position": "4. Pause,  <br /> 4.–7. Note",
+                            "comment": "Bogen von 4. Pause bis 7. Note und Quintolenziffer korrigiert zu Quintolenklammer von 4. Pause bis 7. Note und Legatobogen von 4.–7. Note. Siehe auch TkA zu T. 4 1. Pause, 2.–3. Note, 2.–3. Pause. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>b</sup></strong></a>: <br /> ##Abbildung##"
+                        },
+                        {
+                            "svgGroupId": "g610",
+                            "measure": "6",
+                            "system": "Ges.",
+                            "position": "1–2/8",
+                            "comment": "Text sic: Silbentrennung <em>na-sser</em>."
+                        },
+                        {
+                            "svgGroupId": "g473",
+                            "measure": "8",
+                            "system": "Klav. u.",
+                            "position": "6/16",
+                            "comment": "Anfang des Bogens versetzt von 5/16."
+                        },
+                        {
+                            "svgGroupId": "g475",
+                            "measure": "9",
+                            "system": "Klav. u.",
+                            "position": "1.–2. Pause,  <br /> 1.–4. Note",
+                            "comment": "Anfang des Bogens versetzt von 1. Pause zu 1. Note sowie Sextolenziffer und -klammer ergänzt. Siehe auch TkA zu 3.–4. Pause, 5.–8. Note."
+                        },
+                        {
+                            "svgGroupId": "g476",
+                            "measure": "9",
+                            "system": "Klav. u.",
+                            "position": "3.–4. Pause,  <br /> 5.–8. Note",
+                            "comment": "Anfang des Bogens versetzt von 3. Pause zu 5. Note sowie Sextolenziffer und -klammer ergänzt. Siehe auch TkA zu 1.–2. Pause, 1.–4. Note."
+                        },
+                        {
+                            "svgGroupId": "g498",
+                            "measure": "9",
+                            "system": "Ges.",
+                            "position": "4–6/8",
+                            "comment": "Text sic: Silbentrennung <em>a-lle</em>."
+                        },
+                        {
+                            "svgGroupId": "g499",
+                            "measure": "9",
+                            "system": "Klav.",
+                            "position": "9–12/16",
+                            "comment": "Crescendogabel versetzt von unter Klav. u."
+                        },
+                        {
+                            "svgGroupId": "g512",
+                            "measure": "10",
+                            "system": "Ges.",
+                            "position": "1.–2. Note",
+                            "comment": "Text sic: Silbentrennung <em>se-hnen</em>."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
+        },
+        {
             "id": "M_135_TF1",
             "label": "M 135 Textfassung 1",
             "description": [
