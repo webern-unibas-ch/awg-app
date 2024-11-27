@@ -883,7 +883,7 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_Ba_corr1",
+                        "id": "source_Ba_corr_1",
                         "label": "Korrekturen 1 in <strong>B<sup>a</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Noch zwingt mich Treue“ M 139: Textfassung 2."
@@ -1035,7 +1035,7 @@
                         ]
                     },
                     {
-                        "id": "source_Ba_corr2",
+                        "id": "source_Ba_corr_2",
                         "label": "Korrekturen 2 in <strong>B<sup>a</sup></strong> (mit Bleistift)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Noch zwingt mich Treue“ M 139: Textfassung 2."
@@ -1303,7 +1303,7 @@
                         ]
                     },
                     {
-                        "id": "source_Bc_corr1",
+                        "id": "source_Bc_corr_1",
                         "label": "Korrekturen 1 in <strong>B<sup>c</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „So ich traurig bin“ M 141: Textfassung 1."
@@ -1364,14 +1364,14 @@
                                         "measure": "15",
                                         "system": "Ges.",
                                         "position": "1.–4. Note",
-                                        "comment": "3. Note als punktierte Achtelnote auf Rasur, 4. Note uneindeutig mit Achtel- oder Sechzehntelfähnchen. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr2'})\">Korrekturen 2</a> und TkA."
+                                        "comment": "3. Note als punktierte Achtelnote auf Rasur, 4. Note uneindeutig mit Achtel- oder Sechzehntelfähnchen. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr_2'})\">Korrekturen 2</a> und TkA."
                                     }
                                 ]
                             }
                         ]
                     },
                     {
-                        "id": "source_Bc_corr2",
+                        "id": "source_Bc_corr_2",
                         "label": "Korrekturen 2 in <strong>B<sup>c</sup></strong> (mit Bleistift)",
                         "description": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „So ich traurig bin“ M 141: Textfassung 1."
@@ -1396,7 +1396,7 @@
                                         "measure": "15",
                                         "system": "Ges.",
                                         "position": "1.–4. Note",
-                                        "comment": "Punktierung der 1. Note sowie Balkierung der 1. Note und 3. Note mit der 2. Note und der 4. Note jeweils als Sechzehntelnote hinzugefügt. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr1'})\">Korrekturen 1</a> und TkA."
+                                        "comment": "Punktierung der 1. Note sowie Balkierung der 1. Note und 3. Note mit der 2. Note und der 4. Note jeweils als Sechzehntelnote hinzugefügt. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr_1'})\">Korrekturen 1</a> und TkA."
                                     }
                                 ]
                             }
