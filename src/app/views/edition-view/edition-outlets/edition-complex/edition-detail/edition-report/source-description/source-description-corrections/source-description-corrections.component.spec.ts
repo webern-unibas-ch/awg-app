@@ -378,7 +378,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
             });
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
+                it('... parameter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
