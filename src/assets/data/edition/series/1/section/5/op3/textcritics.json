@@ -689,7 +689,7 @@
                             "measure": "5 <br /> bis 6",
                             "system": "Ges.",
                             "position": "3/8",
-                            "comment": "Entzifferung unsicher. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr1'})\">Korrekturen 1 in <strong>E<sup>d</sup></strong></a>: auf Rasur. Rasierte Notenköpfe in T. 5–6/8 (as<sup>1</sup>–g<sup>1</sup>) sowie rasierte Ganze Pause in T. 6 zu erkennen. Für den Zustand post correcturam siehe Textfassung 2."
+                            "comment": "Entzifferung unsicher. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr_1'})\">Korrekturen 1 in <strong>E<sup>d</sup></strong></a>: auf Rasur. Rasierte Notenköpfe in T. 5–6/8 (as<sup>1</sup>–g<sup>1</sup>) sowie rasierte Ganze Pause in T. 6 zu erkennen. Für den Zustand post correcturam siehe Textfassung 2."
                         },
                         {
                             "svgGroupId": "g409",
