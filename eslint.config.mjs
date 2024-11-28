@@ -1,6 +1,5 @@
 import { FlatCompat } from '@eslint/eslintrc';
 import eslintJs from '@eslint/js';
-import tsParser from '@typescript-eslint/parser';
 import angularEslint from 'angular-eslint';
 import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
@@ -11,15 +10,10 @@ import typescriptEslint from 'typescript-eslint';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 const compat = new FlatCompat({ baseDirectory: __dirname });
 
+const ecmaVersion = 2022;
+
 export default typescriptEslint.config(
-    {
-        plugins: {
-            import: importPlugin,
-            jsdoc: jsdocPlugin,
-            '@typescript-eslint': typescriptEslint.plugin,
-            '@angular-eslint': angularEslint.tsPlugin,
-        },
-    },
+    // Global ignore
     {
         ignores: [
             'projects/**/*',
@@ -36,6 +30,8 @@ export default typescriptEslint.config(
             '**/tmp/',
         ],
     },
+
+    // Global language options
     {
         languageOptions: {
             globals: {
@@ -45,35 +41,42 @@ export default typescriptEslint.config(
             },
         },
     },
-    {
-        files: ['**/*.js'],
 
-        languageOptions: {
-            ecmaVersion: 2015,
-            sourceType: 'module',
-        },
-    },
-    // extends ...
+    // Extends ...
     eslintJs.configs.recommended,
-    // ...tseslint.configs.recommended,
-    // ...angularEslint.configs.tsRecommended,
+    // ...typescriptEslint.configs.recommended.map(config => ({
+    //    ...config,
+    //    files: ['**/*.ts'],
+    // })),
+    ...angularEslint.configs.tsRecommended.map(config => ({
+        ...config,
+        files: ['**/*.ts'],
+    })),
 
-    // ts config
+    // TS config
     {
         files: ['**/*.ts'],
 
         languageOptions: {
-            parser: tsParser,
-            ecmaVersion: 2015,
+            ecmaVersion,
             sourceType: 'module',
 
             parserOptions: {
                 project: ['tsconfig.eslint.json'],
                 createDefaultProgram: true,
+                projectService: true,
+                tsconfigRootDir: import.meta.dirname,
             },
         },
         linterOptions: { reportUnusedDisableDirectives: 'off' },
         processor: angularEslint.processInlineTemplates,
+
+        plugins: {
+            import: importPlugin,
+            jsdoc: jsdocPlugin,
+            '@typescript-eslint': typescriptEslint.plugin,
+            '@angular-eslint': angularEslint.tsPlugin,
+        },
 
         rules: {
             '@angular-eslint/component-class-suffix': 'error',
@@ -250,7 +253,17 @@ export default typescriptEslint.config(
         },
     },
 
-    // html config
+    // JS config
+    {
+        files: ['**/*.js'],
+
+        languageOptions: {
+            ecmaVersion,
+            sourceType: 'module',
+        },
+    },
+
+    // HTML config
     {
         extends: [angularEslint.configs.templateRecommended, angularEslint.configs.templateAccessibility],
         files: ['**/*.html'],
