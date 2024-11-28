@@ -703,7 +703,7 @@
                             "measure": "7",
                             "system": "Klav. o.",
                             "position": "1–2/4",
-                            "comment": "Entzifferung unsicher. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr1'})\">Korrekturen 1 in <strong>E<sup>d</sup></strong></a>: auf Rasur. Rasierte Viertelnote c<sup>2</sup>/f<sup>2</sup>/as<sup>2</sup> zu 2/4 zu erkennen. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G_corr'})\">Korrekturen in <strong>G<sup>b</sup></strong></a>: auf Rasur. Für den Zustand post correcturam siehe Textfassung 2."
+                            "comment": "Entzifferung unsicher. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr_1'})\">Korrekturen 1 in <strong>E<sup>d</sup></strong></a>: auf Rasur. Rasierte Viertelnote c<sup>2</sup>/f<sup>2</sup>/as<sup>2</sup> zu 2/4 zu erkennen. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gb_corr'})\">Korrekturen in <strong>G<sup>b</sup></strong></a>: auf Rasur. Für den Zustand post correcturam siehe Textfassung 2."
                         },
                         {
                             "svgGroupId": "g411",
