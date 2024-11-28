@@ -746,7 +746,7 @@
                             "measure": "3",
                             "system": "Klav. o.",
                             "position": "letzte Note",
-                            "comment": "sic: {{ref.getGlyph('[a]')}}a<sup>1</sup>. Siehe Textfassung 1 und Textfassung 3 (as<sup>1</sup>) sowie <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_I_corr2'})\">Korrekturen 2 in <strong>I</strong></a>: {{ref.getGlyph('[b]')}} zu as<sup>1</sup> überschreibt {{ref.getGlyph('[a]')}} zu a<sup>1</sup>."
+                            "comment": "sic: {{ref.getGlyph('[a]')}}a<sup>1</sup>. Siehe Textfassung 1 und Textfassung 3 (as<sup>1</sup>) sowie <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_I_corr_2'})\">Korrekturen 2 in <strong>I</strong></a>: {{ref.getGlyph('[b]')}} zu as<sup>1</sup> überschreibt {{ref.getGlyph('[a]')}} zu a<sup>1</sup>."
                         },
                         {
                             "svgGroupId": "g599",
