@@ -427,8 +427,142 @@
                 }
             ],
             "linkBoxes": []
-        }
-        ,{
+        },
+        {
+            "id": "M_139_TF2",
+            "label": "M 139 Textfassung 2",
+            "description": [
+                "Für die Edition von „Noch zwingt mich Treue“ M 139 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> einzige relvante Quelle. <br /> Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur oder Tektur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Ba_corr_1'})\">Korrekturen 1</a>) und mit Bleistift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Ba_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht immer eindeutig zu entziffern. Der Zustand nach Korrekturen 1 etabliert Textfassung 2. Korrekturen 2 betreffen Textfassung 3. <br /> Hauptquelle für die Textedition von „Noch zwingt mich Treue“ M 139 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> nach Korrekturen 1."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g531",
+                            "measure": "2",
+                            "system": "Klav. o.",
+                            "position": "1.–(3.) Note",
+                            "comment": "sic: Unterstimmenschicht 1.–2. Note ohne Ligaturbogen. Siehe Textfassung 3: Ligaturbogen."
+                        },
+                        {
+                            "svgGroupId": "g549",
+                            "measure": "2",
+                            "system": "Ges.",
+                            "position": "3. Note",
+                            "comment": "Text sic: Großschreibung <em>Und</em> (wie in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a> am Zeilenanfang)."
+                        },
+                        {
+                            "svgGroupId": "g550",
+                            "measure": "3",
+                            "system": "Ges.",
+                            "position": "1. Note",
+                            "comment": "Text: Kleinschreibung <em>dul</em>(-dens) mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                        },
+                        {
+                            "svgGroupId": "g551",
+                            "measure": "5",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "Text: Komma nach (wei-)<em>le</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g552",
+                            "measure": "5",
+                            "system": "Ges.",
+                            "position": "6/8",
+                            "comment": "Text sic: Kleinschreibung <em>mein</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>Mein</em> (am Zeilenanfang)."
+                        },
+                        {
+                            "svgGroupId": "g553",
+                            "measure": "7",
+                            "system": "Ges.",
+                            "position": "1. Note",
+                            "comment": "<em>tonlos</em> versetzt von Taktanfang."
+                        },
+                        {
+                            "svgGroupId": "g554",
+                            "measure": "7",
+                            "system": "Ges.",
+                            "position": "3. Note",
+                            "comment": "Text: Großschreibung <em>Da</em>(-mit) mit Blick auf Großschreibung von <em>Und</em> in T. 2 3. Note sowie auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                        },
+                        {
+                            "svgGroupId": "g621",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "1–2/8",
+                            "comment": "Text sic: Silbentrennung <em>wa-hrer</em>."
+                        },
+                        {
+                            "svgGroupId": "g622",
+                            "measure": "9",
+                            "system": "Ges.",
+                            "position": "4/8",
+                            "comment": "Text: Punkt nach (tei-)<em>le</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g624",
+                            "measure": "11 <br /> bis 12",
+                            "system": "Klav. o.",
+                            "position": "5/8 <br /> 2/8",
+                            "comment": "Durchgehender Bogen gesetzt mit Blick auf Textfassung 3. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 11. T. 11 5–6/8: Bogen. T. 12 1–2/8: Bogen von T. 11."
+                        },
+                        {
+                            "svgGroupId": "g647",
+                            "measure": "12",
+                            "system": "Ges.",
+                            "position": "3. Note",
+                            "comment": "Text sic: Punkt nach (em-pfan-)<em>gen</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: Komma."
+                        },
+                        {
+                            "svgGroupId": "g648",
+                            "measure": "13",
+                            "system": "Klav. u.",
+                            "position": "letzte Note",
+                            "comment": "Anfang der Ligaturbögen zu T. 14 ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 13."
+                        },
+                        {
+                            "svgGroupId": "g513",
+                            "measure": "15",
+                            "system": "Ges.",
+                            "position": "3. Note",
+                            "comment": "Text sic: Kleinschreibung <em>muß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>Muss</em> (am Zeilenanfang)."
+                        },
+                        {
+                            "svgGroupId": "g514",
+                            "measure": "16",
+                            "system": "Klav. u.",
+                            "position": "4. Note",
+                            "comment": "{{ref.getGlyph('[pp]')}} versetzt von vor 1. Pause mit Blick auf den Zusammenhang. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>:  <br /> ##Abbildung## <br /> Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Ba_corr_2'})\">Korrekturen 2 in <strong>B<sup>a</sup></strong></a>: {{ref.getGlyph('[pp]')}} gestrichen und ersetzt durch {{ref.getGlyph('[p]')}} unter 4. Note."
+                        },
+                        {
+                            "svgGroupId": "g541",
+                            "measure": "17",
+                            "system": "Ges.",
+                            "position": "3. Note",
+                            "comment": "Text sic: Kleinschreibung <em>das</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>Das</em> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                        },
+                        {
+                            "svgGroupId": "g542",
+                            "measure": "19",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "Text: Punkt nach (fun-)<em>des</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g543",
+                            "measure": "20",
+                            "system": "Klav. o.",
+                            "position": "6/8",
+                            "comment": "{{ref.getGlyph('[#]')}} zu gis ergänzt analog T. 19 1/4. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Ba_corr_2'})\">Korrekturen 2 in <strong>B<sup>a</sup></strong></a>: {{ref.getGlyph('[#]')}} hinzugefügt."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
+        },
+        {
             "id": "M_140_TF1",
             "label": "M 140 Textfassung 1",
             "description": [
