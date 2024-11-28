@@ -61,6 +61,24 @@
                         "convolute": ""
                     }
                 ]
+            },
+            {
+                "id": "M_142_TF2",
+                "label": "M 142 Textfassung 2",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op4/M142_Textfassung2-1von2-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": ""
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op4/M142_Textfassung2-2von2-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": ""
+                    }
+                ]
             }
         ],
         "sketchEditions": []
