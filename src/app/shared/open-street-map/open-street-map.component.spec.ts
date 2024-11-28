@@ -108,10 +108,10 @@ describe('OpenStreetMapComponent (DONE)', () => {
             });
 
             it('... should not have the link to OSM homepage yet', () => {
-                const linkDes = getAndExpectDebugElementByCss(compDe, 'div#awg-osm-link a', 1, 1);
-                const linkEl: HTMLIFrameElement = linkDes[0].nativeElement;
+                const aDes = getAndExpectDebugElementByCss(compDe, 'div#awg-osm-link a', 1, 1);
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                expectToBe(linkEl.href, '');
+                expectToBe(aEl.href, '');
             });
         });
     });
