@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { DebugElement, NgModule } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
-import { IsActiveMatchOptions, Router, UrlTree } from '@angular/router';
+import { IsActiveMatchOptions, Router } from '@angular/router';
 
 import Spy = jasmine.Spy;
 
@@ -107,7 +106,7 @@ describe('NavbarComponent (DONE)', () => {
 
         // Spy for router.isActive
         mockRouter = {
-            isActive: (url: string | UrlTree, matchOptions: boolean | IsActiveMatchOptions) =>
+            isActive: () =>
                 // Mock implementation of isActive
                 true,
         };
@@ -232,8 +231,8 @@ describe('NavbarComponent (DONE)', () => {
                 const navbarDes = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
                 const navbarBrandDes = getAndExpectDebugElementByCss(navbarDes[0], '.navbar-brand-container', 2, 2);
 
-                const navbarBrandEl1 = navbarBrandDes[0].nativeElement;
-                const navbarBrandEl2 = navbarBrandDes[1].nativeElement;
+                const navbarBrandEl1: HTMLElement = navbarBrandDes[0].nativeElement;
+                const navbarBrandEl2: HTMLElement = navbarBrandDes[1].nativeElement;
 
                 expectToContain(navbarBrandEl1.classList, 'd-sm-none');
                 expectToContain(navbarBrandEl1.classList, 'd-md-inline');
@@ -244,8 +243,8 @@ describe('NavbarComponent (DONE)', () => {
 
             it('... should not render awg project url in navbar-brand link yet', () => {
                 const urlDes = getAndExpectDebugElementByCss(compDe, 'a.navbar-brand', 2, 2);
-                const urlEl1 = urlDes[0].nativeElement;
-                const urlEl2 = urlDes[1].nativeElement;
+                const urlEl1: HTMLAnchorElement = urlDes[0].nativeElement;
+                const urlEl2: HTMLAnchorElement = urlDes[1].nativeElement;
 
                 expectToBe(urlEl1.href, '');
                 expectToBe(urlEl2.href, '');
@@ -277,7 +276,7 @@ describe('NavbarComponent (DONE)', () => {
             it('... should have fa-icon on first nav-item link', () => {
                 const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
                 const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > span', 2, 2);
-                const navItemLinkSpanEl2 = navItemLinkSpanDes[1].nativeElement;
+                const navItemLinkSpanEl2: HTMLSpanElement = navItemLinkSpanDes[1].nativeElement;
 
                 expectToBe(navItemLinkSpanEl2.textContent, '(current)');
                 expectToContain(navItemLinkSpanEl2.classList, 'sr-only');
@@ -340,7 +339,7 @@ describe('NavbarComponent (DONE)', () => {
             it('... should be called when navbar toggle button clicked (click helper)', () => {
                 // Find button elements
                 const buttonDes = getAndExpectDebugElementByCss(compDe, 'button.navbar-toggler', 1, 1);
-                const buttonEl = buttonDes[0].nativeElement;
+                const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
 
                 // Should have not been called yet
                 expectSpyCall(toggleNavSpy, 0);
@@ -383,8 +382,8 @@ describe('NavbarComponent (DONE)', () => {
 
             it('... should render awg project url in navbar-brand link', () => {
                 const urlDes = getAndExpectDebugElementByCss(compDe, 'a.navbar-brand', 2, 2);
-                const urlEl1 = urlDes[0].nativeElement;
-                const urlEl2 = urlDes[1].nativeElement;
+                const urlEl1: HTMLAnchorElement = urlDes[0].nativeElement;
+                const urlEl2: HTMLAnchorElement = urlDes[1].nativeElement;
 
                 expectToBe(urlEl1.href, expectedLogos['awg'].href);
                 expectToBe(urlEl2.href, expectedLogos['awg'].href);
@@ -393,8 +392,8 @@ describe('NavbarComponent (DONE)', () => {
             describe('... first nav-item link (home)', () => {
                 it('... should have home label and fa-icon', () => {
                     const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[0], 'a.nav-link > span', 2, 2);
-                    const navItemLinkSpanEl1 = navItemLinkSpanDes[0].nativeElement;
-                    const navItemLinkSpanEl2 = navItemLinkSpanDes[1].nativeElement;
+                    const navItemLinkSpanEl1: HTMLSpanElement = navItemLinkSpanDes[0].nativeElement;
+                    const navItemLinkSpanEl2: HTMLSpanElement = navItemLinkSpanDes[1].nativeElement;
 
                     expectToBe(navItemLinkSpanEl1.textContent, expectedNavbarLabels['home']);
 
@@ -424,7 +423,7 @@ describe('NavbarComponent (DONE)', () => {
 
                 it('... should have edition label and fa-icon', () => {
                     const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[1], 'a.nav-link > span', 1, 1);
-                    const navItemLinkSpanEl = navItemLinkSpanDes[0].nativeElement;
+                    const navItemLinkSpanEl: HTMLAnchorElement = navItemLinkSpanDes[0].nativeElement;
 
                     expectToBe(navItemLinkSpanEl.textContent, expectedNavbarLabels['edition']);
 
@@ -449,7 +448,7 @@ describe('NavbarComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const headerEl = headerDes[0].nativeElement;
+                    const headerEl: HTMLHeadingElement = headerDes[0].nativeElement;
 
                     expectToBe(headerEl.textContent, expectedNavbarLabels['general']);
                 });
@@ -474,9 +473,9 @@ describe('NavbarComponent (DONE)', () => {
                         1
                     );
 
-                    const overviewEl = overviewDes[0].nativeElement;
-                    const rowtablesEl = rowtablesDes[0].nativeElement;
-                    const prefaceEl = prefaceDes[0].nativeElement;
+                    const overviewEl: HTMLAnchorElement = overviewDes[0].nativeElement;
+                    const rowtablesEl: HTMLAnchorElement = rowtablesDes[0].nativeElement;
+                    const prefaceEl: HTMLAnchorElement = prefaceDes[0].nativeElement;
 
                     expectToBe(overviewEl.textContent, EDITION_ROUTE_CONSTANTS.SERIES.full);
                     expectToBe(rowtablesEl.textContent, EDITION_ROUTE_CONSTANTS.ROWTABLES.full);
@@ -496,7 +495,7 @@ describe('NavbarComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const headerEl = headerDes[0].nativeElement;
+                    const headerEl: HTMLHeadingElement = headerDes[0].nativeElement;
 
                     getAndExpectDebugElementByCss(
                         navItemDes[1],
@@ -509,7 +508,7 @@ describe('NavbarComponent (DONE)', () => {
                 });
 
                 it('... should be followed by as many `div.awg-dropdown-complexes` as edition complexes are available', () => {
-                    const divDes = getAndExpectDebugElementByCss(
+                    getAndExpectDebugElementByCss(
                         navItemDes[1],
                         'div.dropdown-menu > div.awg-dropdown-complexes',
                         expectedEditionComplexes.length,
@@ -542,10 +541,10 @@ describe('NavbarComponent (DONE)', () => {
 
                     complexDes.forEach((complexDe, index) => {
                         const headerDes = getAndExpectDebugElementByCss(complexDe, 'h6.dropdown-header', 1, 1);
-                        const headerEl = headerDes[0].nativeElement;
+                        const headerEl: HTMLHeadingElement = headerDes[0].nativeElement;
 
                         const headerSpanDes = getAndExpectDebugElementByCss(headerDes[0], 'span', 1, 1);
-                        const headerSpanEl = headerSpanDes[0].nativeElement;
+                        const headerSpanEl: HTMLSpanElement = headerSpanDes[0].nativeElement;
 
                         const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                         const series = expectedEditionComplexes[index].pubStatement.series.short;
@@ -568,11 +567,11 @@ describe('NavbarComponent (DONE)', () => {
                     );
 
                     // Expect header and 3 dropdown items for each dropdown complex
-                    complexDes.forEach((complexDe, index) => {
+                    complexDes.forEach(complexDe => {
                         const itemsDes = getAndExpectDebugElementByCss(complexDe, 'a.dropdown-item', 3, 3);
-                        const itemsEl1 = itemsDes[0].nativeElement;
-                        const itemsEl2 = itemsDes[1].nativeElement;
-                        const itemsEl3 = itemsDes[2].nativeElement;
+                        const itemsEl1: HTMLAnchorElement = itemsDes[0].nativeElement;
+                        const itemsEl2: HTMLAnchorElement = itemsDes[1].nativeElement;
+                        const itemsEl3: HTMLAnchorElement = itemsDes[2].nativeElement;
 
                         expectToBe(itemsEl1.textContent, EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full);
                         expectToBe(itemsEl2.textContent, EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.full);
@@ -584,7 +583,7 @@ describe('NavbarComponent (DONE)', () => {
             describe('... third nav-item link (structure)', () => {
                 it('... should have structure label and fa-icon', () => {
                     const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[2], 'a.nav-link > span', 1, 1);
-                    const navItemLinkSpanEl = navItemLinkSpanDes[0].nativeElement;
+                    const navItemLinkSpanEl: HTMLSpanElement = navItemLinkSpanDes[0].nativeElement;
 
                     expectToBe(navItemLinkSpanEl.textContent, expectedNavbarLabels['structure']);
 
@@ -602,7 +601,7 @@ describe('NavbarComponent (DONE)', () => {
             describe('... fourth nav-item link (contact)', () => {
                 it('... should have contact label and fa-icon', () => {
                     const navItemLinkSpanDes = getAndExpectDebugElementByCss(navItemDes[3], 'a.nav-link > span', 1, 1);
-                    const navItemLinkSpanEl = navItemLinkSpanDes[0].nativeElement;
+                    const navItemLinkSpanEl: HTMLSpanElement = navItemLinkSpanDes[0].nativeElement;
 
                     expectToBe(navItemLinkSpanEl.textContent, expectedNavbarLabels['contact']);
 

@@ -174,7 +174,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
                     expectedIntroBlockContent.length + 1
                 );
 
-                liDes.forEach((liDe, _index) => {
+                liDes.forEach(liDe => {
                     getAndExpectDebugElementByCss(liDe, 'a.awg-edition-intro-nav-link', 1, 1);
                 });
             });
@@ -269,7 +269,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                routerLinks.forEach((link: RouterLinkStubDirective, _index: any) => {
+                routerLinks.forEach((link: RouterLinkStubDirective) => {
                     expectToBe(link.linkParams, expectedLinkParam);
                 });
             });

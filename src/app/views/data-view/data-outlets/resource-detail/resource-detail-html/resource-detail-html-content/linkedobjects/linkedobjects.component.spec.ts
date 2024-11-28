@@ -377,13 +377,7 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                         1,
                         'in first item'
                     );
-                    const button1Des = getAndExpectDebugElementByCss(
-                        itemHeaderDes[1],
-                        'button.accordion-button',
-                        1,
-                        1,
-                        'in second item'
-                    );
+                    getAndExpectDebugElementByCss(itemHeaderDes[1], 'button.accordion-button', 1, 1, 'in second item');
 
                     // First button's native element to click on
                     const button0El = button0Des[0].nativeElement;
@@ -457,13 +451,7 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                 );
 
                 // Button debug elements
-                const button0Des = getAndExpectDebugElementByCss(
-                    itemHeaderDes[0],
-                    'button.accordion-button',
-                    1,
-                    1,
-                    'in first item'
-                );
+                getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1, 'in first item');
                 const button1Des = getAndExpectDebugElementByCss(
                     itemHeaderDes[1],
                     'button.accordion-button',

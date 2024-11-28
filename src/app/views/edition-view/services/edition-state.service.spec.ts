@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService } from '@awg-views/edition-view/services';
 
@@ -16,7 +14,6 @@ describe('EditionStateService (DONE)', () => {
     let expectedEditionComplex: EditionComplex;
     let expectedEditionOutline: EditionOutlineSeries[];
     let expectedEditionSeries: EditionOutlineSeries;
-    let expectedEditionSeriesRoute: string;
     let expectedEditionSection: EditionOutlineSection;
     let expectedIsIntroView: boolean;
     let expectedIsPrefaceView: boolean;
@@ -37,7 +34,6 @@ describe('EditionStateService (DONE)', () => {
         // Test data (default)
         expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
         expectedEditionOutline = EditionOutlineService.getEditionOutline();
-        expectedEditionSeriesRoute = EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.SERIES.route;
         expectedEditionSeries = expectedEditionOutline[0];
         expectedEditionSection = expectedEditionOutline[0].sections[0];
         expectedIsIntroView = true;

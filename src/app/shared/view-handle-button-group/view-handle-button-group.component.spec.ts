@@ -25,7 +25,6 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
     let listenToUserInputChangeSpy: Spy;
     let onViewChangeSpy: Spy;
     let viewChangeRequestSpy: Spy;
-    let viewHandleTrackerSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
@@ -48,14 +47,11 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
         ];
         expectedSelectedViewType = ViewHandleTypes.GRAPH;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        createFormGroupSpy = spyOn(component, 'createFormGroup').and.callThrough();
-        listenToUserInputChangeSpy = spyOn(component, 'listenToUserInputChange').and.callThrough();
-        onViewChangeSpy = spyOn(component, 'onViewChange').and.callThrough();
+        // Spies
+        createFormGroupSpy = spyOn(component as any, '_createFormGroup').and.callThrough();
+        listenToUserInputChangeSpy = spyOn(component as any, '_listenToUserInputChange').and.callThrough();
+        onViewChangeSpy = spyOn(component as any, '_onViewChange').and.callThrough();
         viewChangeRequestSpy = spyOn(component.viewChangeRequest, 'emit').and.callThrough();
-        viewHandleTrackerSpy = spyOn(component, 'viewHandleTracker').and.callThrough();
     });
 
     it('... should create', () => {
@@ -128,236 +124,6 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
 
         it('... should trigger the `createFormGroup()` method with selected view type', () => {
             expectSpyCall(createFormGroupSpy, 1, expectedSelectedViewType);
-        });
-
-        describe('#createFormGroup()', () => {
-            it('... should have a method `createFormGroup()`', () => {
-                expect(component.createFormGroup).toBeDefined();
-            });
-
-            it('... should trigger on init', () => {
-                expectSpyCall(createFormGroupSpy, 1, expectedSelectedViewType);
-            });
-
-            it('... should trigger on changes of selectedViewType', () => {
-                expectSpyCall(createFormGroupSpy, 1, ViewHandleTypes.GRAPH);
-
-                // Directly trigger ngOnChanges
-                component.selectedViewType = ViewHandleTypes.GRID;
-                component.ngOnChanges({
-                    selectedViewType: new SimpleChange(component.selectedViewType, [component.selectedViewType], false),
-                });
-
-                expectSpyCall(createFormGroupSpy, 2, ViewHandleTypes.GRID);
-            });
-
-            it('... should not trigger on changes of selectedViewType if first change', () => {
-                expectSpyCall(createFormGroupSpy, 1, ViewHandleTypes.GRAPH);
-
-                // Directly trigger ngOnChanges
-                component.selectedViewType = ViewHandleTypes.GRID;
-                component.ngOnChanges({
-                    selectedViewType: new SimpleChange(component.selectedViewType, [ViewHandleTypes.GRID], true),
-                });
-
-                expectSpyCall(createFormGroupSpy, 1, (component.selectedViewType = ViewHandleTypes.GRAPH));
-            });
-
-            it('... should create the viewHandleControlForm', () => {
-                expect(component.viewHandleControlForm).toBeDefined();
-                expect(component.viewHandleControlForm).toBeInstanceOf(UntypedFormGroup);
-                expect(component.viewHandleControlForm.controls).toBeDefined();
-            });
-
-            it('... should create the viewHandleControlForm with correct viewHandleControl', () => {
-                expect(component.viewHandleControlForm.controls).toBeDefined();
-
-                expect(component.viewHandleControlForm.controls['viewHandleControl']).toBeDefined();
-                expect(component.viewHandleControlForm.controls['viewHandleControl']).toBeInstanceOf(
-                    UntypedFormControl
-                );
-            });
-
-            it('... should create the viewHandleControlForm with correct viewHandleControl value', () => {
-                expectToBe(
-                    component.viewHandleControlForm.controls['viewHandleControl'].value,
-                    expectedSelectedViewType
-                );
-            });
-
-            it('... should get the viewHandleControl from its getter', () => {
-                expect(component.viewHandleControl).toBeDefined();
-                expect(component.viewHandleControl).toBeInstanceOf(UntypedFormControl);
-
-                expectToBe(component.viewHandleControl.value, expectedSelectedViewType);
-            });
-
-            it('... should trigger the `listenToUserInputChange()` method', () => {
-                expectSpyCall(listenToUserInputChangeSpy, 1);
-
-                // Trigger the `listenToUserInputChange()` method
-                component.createFormGroup(ViewHandleTypes.TABLE);
-                fixture.detectChanges();
-
-                expectSpyCall(listenToUserInputChangeSpy, 2);
-            });
-        });
-
-        describe('#listenToUserInputChange()', () => {
-            it('... should have a method `listenToUserInputChange()`', () => {
-                expect(component.listenToUserInputChange).toBeDefined();
-            });
-
-            it('... should trigger the `onViewChange()` method when viewHandle controls changes value', () => {
-                // Trigger the value change
-                component.viewHandleControl.setValue(ViewHandleTypes.TABLE);
-                fixture.detectChanges();
-
-                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.TABLE);
-
-                // Trigger the value change
-                component.viewHandleControl.setValue(ViewHandleTypes.GRAPH);
-                fixture.detectChanges();
-
-                expectSpyCall(onViewChangeSpy, 2, ViewHandleTypes.GRAPH);
-
-                // Trigger the value change
-                component.viewHandleControl.setValue(ViewHandleTypes.GRID);
-                fixture.detectChanges();
-
-                expectSpyCall(onViewChangeSpy, 3, ViewHandleTypes.GRID);
-            });
-
-            it('... should trigger the `onViewChange()` method by by change event from GRAPH radio button', () => {
-                const inputDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group > input',
-                    3,
-                    3
-                );
-                const inputEl = inputDes[0].nativeElement;
-
-                inputEl.dispatchEvent(new Event('change'));
-                fixture.detectChanges();
-
-                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.GRAPH);
-            });
-
-            it('... should trigger the `onViewChange()` method by by change event from TABLE radio button', () => {
-                const inputDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group > input',
-                    3,
-                    3
-                );
-                const inputEl = inputDes[1].nativeElement;
-
-                inputEl.dispatchEvent(new Event('change'));
-                fixture.detectChanges();
-
-                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.TABLE);
-            });
-
-            it('... should trigger the `onViewChange()` method by change event from GRID radio button', () => {
-                const inputDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group > input',
-                    3,
-                    3
-                );
-                const inputEl = inputDes[2].nativeElement;
-
-                inputEl.dispatchEvent(new Event('change'));
-                fixture.detectChanges();
-
-                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.GRID);
-            });
-
-            it('... should not trigger the `onViewChange()` method when component is destroyed', () => {
-                // Trigger the value change
-                component.viewHandleControl.setValue(ViewHandleTypes.TABLE);
-                fixture.detectChanges();
-
-                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.TABLE);
-
-                // Destroy the component
-                fixture.destroy();
-
-                // Trigger the value change
-                component.viewHandleControl.setValue(ViewHandleTypes.GRAPH);
-                fixture.detectChanges();
-
-                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.TABLE);
-            });
-        });
-
-        describe('#onViewChange()', () => {
-            it('... should have a method `onViewChange()`', () => {
-                expect(component.onViewChange).toBeDefined();
-            });
-
-            describe('... should not do anything if ', () => {
-                it('... view is undefined', () => {
-                    component.onViewChange(undefined);
-                    fixture.detectChanges();
-
-                    expectSpyCall(viewChangeRequestSpy, 0);
-                });
-
-                it('... view is null', () => {
-                    component.onViewChange(null);
-                    fixture.detectChanges();
-
-                    expectSpyCall(viewChangeRequestSpy, 0);
-                });
-
-                it('... view has type `never`', () => {
-                    let expectedView: never;
-
-                    component.onViewChange(expectedView);
-                    fixture.detectChanges();
-
-                    expectSpyCall(viewChangeRequestSpy, 0);
-                });
-            });
-
-            it('... should emit a given GRAPH view', () => {
-                const expectedView = ViewHandleTypes.GRAPH;
-
-                component.onViewChange(expectedView);
-                fixture.detectChanges();
-
-                expectSpyCall(viewChangeRequestSpy, 1, 'graph');
-            });
-
-            it('... should emit a given TABLE view', () => {
-                const expectedView = ViewHandleTypes.TABLE;
-
-                component.onViewChange(expectedView);
-                fixture.detectChanges();
-
-                expectSpyCall(viewChangeRequestSpy, 1, 'table');
-            });
-
-            it('... should emit a given GRID view', () => {
-                const expectedView = ViewHandleTypes.GRID;
-
-                component.onViewChange(expectedView);
-                fixture.detectChanges();
-
-                expectSpyCall(viewChangeRequestSpy, 1, 'grid');
-            });
-        });
-
-        describe('#viewHandleTracker()', () => {
-            it('... should have a method `viewHandleTracker()`', () => {
-                expect(component.viewHandleTracker).toBeDefined();
-            });
-
-            it('... should return the type of a given view handle', () => {
-                expectToBe(component.viewHandleTracker(0, expectedViewHandles[0]), ViewHandleTypes.GRAPH);
-                expectToBe(component.viewHandleTracker(1, expectedViewHandles[1]), ViewHandleTypes.TABLE);
-            });
         });
 
         describe('VIEW', () => {
@@ -498,6 +264,225 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 for (let i = 0; i < expectedViewHandles.length; i++) {
                     expectToBe(labelDes[i].attributes['ng-reflect-ngb-tooltip'], expectedViewHandles[i].type + ' view');
                 }
+            });
+        });
+
+        describe('#_createFormGroup()', () => {
+            it('... should have a method `_createFormGroup()`', () => {
+                expect((component as any)._createFormGroup).toBeDefined();
+            });
+
+            it('... should trigger on init', () => {
+                expectSpyCall(createFormGroupSpy, 1, expectedSelectedViewType);
+            });
+
+            it('... should trigger on changes of selectedViewType', () => {
+                expectSpyCall(createFormGroupSpy, 1, ViewHandleTypes.GRAPH);
+
+                // Directly trigger ngOnChanges
+                component.selectedViewType = ViewHandleTypes.GRID;
+                component.ngOnChanges({
+                    selectedViewType: new SimpleChange(component.selectedViewType, [component.selectedViewType], false),
+                });
+
+                expectSpyCall(createFormGroupSpy, 2, ViewHandleTypes.GRID);
+            });
+
+            it('... should not trigger on changes of selectedViewType if first change', () => {
+                expectSpyCall(createFormGroupSpy, 1, ViewHandleTypes.GRAPH);
+
+                // Directly trigger ngOnChanges
+                component.selectedViewType = ViewHandleTypes.GRID;
+                component.ngOnChanges({
+                    selectedViewType: new SimpleChange(component.selectedViewType, [ViewHandleTypes.GRID], true),
+                });
+
+                expectSpyCall(createFormGroupSpy, 1, (component.selectedViewType = ViewHandleTypes.GRAPH));
+            });
+
+            it('... should create the viewHandleControlForm', () => {
+                expect(component.viewHandleControlForm).toBeDefined();
+                expect(component.viewHandleControlForm).toBeInstanceOf(UntypedFormGroup);
+                expect(component.viewHandleControlForm.controls).toBeDefined();
+            });
+
+            it('... should create the viewHandleControlForm with correct viewHandleControl', () => {
+                expect(component.viewHandleControlForm.controls).toBeDefined();
+
+                expect(component.viewHandleControlForm.controls['viewHandleControl']).toBeDefined();
+                expect(component.viewHandleControlForm.controls['viewHandleControl']).toBeInstanceOf(
+                    UntypedFormControl
+                );
+            });
+
+            it('... should create the viewHandleControlForm with correct viewHandleControl value', () => {
+                expectToBe(
+                    component.viewHandleControlForm.controls['viewHandleControl'].value,
+                    expectedSelectedViewType
+                );
+            });
+
+            it('... should get the viewHandleControl from its getter', () => {
+                expect(component.viewHandleControl).toBeDefined();
+                expect(component.viewHandleControl).toBeInstanceOf(UntypedFormControl);
+
+                expectToBe(component.viewHandleControl.value, expectedSelectedViewType);
+            });
+
+            it('... should trigger the `listenToUserInputChange()` method', () => {
+                expectSpyCall(listenToUserInputChangeSpy, 1);
+
+                // Trigger the `listenToUserInputChange()` method
+                (component as any)._createFormGroup(ViewHandleTypes.TABLE);
+                fixture.detectChanges();
+
+                expectSpyCall(listenToUserInputChangeSpy, 2);
+            });
+        });
+
+        describe('#listenToUserInputChange()', () => {
+            it('... should have a method `listenToUserInputChange()`', () => {
+                expect((component as any)._listenToUserInputChange).toBeDefined();
+            });
+
+            it('... should trigger the `onViewChange()` method when viewHandle controls changes value', () => {
+                // Trigger the value change
+                component.viewHandleControl.setValue(ViewHandleTypes.TABLE);
+                fixture.detectChanges();
+
+                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.TABLE);
+
+                // Trigger the value change
+                component.viewHandleControl.setValue(ViewHandleTypes.GRAPH);
+                fixture.detectChanges();
+
+                expectSpyCall(onViewChangeSpy, 2, ViewHandleTypes.GRAPH);
+
+                // Trigger the value change
+                component.viewHandleControl.setValue(ViewHandleTypes.GRID);
+                fixture.detectChanges();
+
+                expectSpyCall(onViewChangeSpy, 3, ViewHandleTypes.GRID);
+            });
+
+            it('... should trigger the `onViewChange()` method by by change event from GRAPH radio button', () => {
+                const inputDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-view-handle-btn-group > form > div.btn-group > input',
+                    3,
+                    3
+                );
+                const inputEl = inputDes[0].nativeElement;
+
+                inputEl.dispatchEvent(new Event('change'));
+                fixture.detectChanges();
+
+                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.GRAPH);
+            });
+
+            it('... should trigger the `onViewChange()` method by by change event from TABLE radio button', () => {
+                const inputDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-view-handle-btn-group > form > div.btn-group > input',
+                    3,
+                    3
+                );
+                const inputEl = inputDes[1].nativeElement;
+
+                inputEl.dispatchEvent(new Event('change'));
+                fixture.detectChanges();
+
+                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.TABLE);
+            });
+
+            it('... should trigger the `onViewChange()` method by change event from GRID radio button', () => {
+                const inputDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-view-handle-btn-group > form > div.btn-group > input',
+                    3,
+                    3
+                );
+                const inputEl = inputDes[2].nativeElement;
+
+                inputEl.dispatchEvent(new Event('change'));
+                fixture.detectChanges();
+
+                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.GRID);
+            });
+
+            it('... should not trigger the `onViewChange()` method when component is destroyed', () => {
+                // Trigger the value change
+                component.viewHandleControl.setValue(ViewHandleTypes.TABLE);
+                fixture.detectChanges();
+
+                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.TABLE);
+
+                // Destroy the component
+                fixture.destroy();
+
+                // Trigger the value change
+                component.viewHandleControl.setValue(ViewHandleTypes.GRAPH);
+                fixture.detectChanges();
+
+                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.TABLE);
+            });
+        });
+
+        describe('#onViewChange()', () => {
+            it('... should have a method `onViewChange()`', () => {
+                expect((component as any)._onViewChange).toBeDefined();
+            });
+
+            describe('... should not do anything if ', () => {
+                it('... view is undefined', () => {
+                    (component as any)._onViewChange(undefined);
+                    fixture.detectChanges();
+
+                    expectSpyCall(viewChangeRequestSpy, 0);
+                });
+
+                it('... view is null', () => {
+                    (component as any)._onViewChange(null);
+                    fixture.detectChanges();
+
+                    expectSpyCall(viewChangeRequestSpy, 0);
+                });
+
+                it('... view has type `never`', () => {
+                    let expectedView: never;
+
+                    (component as any)._onViewChange(expectedView);
+                    fixture.detectChanges();
+
+                    expectSpyCall(viewChangeRequestSpy, 0);
+                });
+            });
+
+            it('... should emit a given GRAPH view', () => {
+                const expectedView = ViewHandleTypes.GRAPH;
+
+                (component as any)._onViewChange(expectedView);
+                fixture.detectChanges();
+
+                expectSpyCall(viewChangeRequestSpy, 1, 'graph');
+            });
+
+            it('... should emit a given TABLE view', () => {
+                const expectedView = ViewHandleTypes.TABLE;
+
+                (component as any)._onViewChange(expectedView);
+                fixture.detectChanges();
+
+                expectSpyCall(viewChangeRequestSpy, 1, 'table');
+            });
+
+            it('... should emit a given GRID view', () => {
+                const expectedView = ViewHandleTypes.GRID;
+
+                (component as any)._onViewChange(expectedView);
+                fixture.detectChanges();
+
+                expectSpyCall(viewChangeRequestSpy, 1, 'grid');
             });
         });
     });

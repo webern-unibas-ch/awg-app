@@ -205,7 +205,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
             it('... should have a div.card-body with as many form-switches as supplied classes (plus one for all classes and one for tkk)', () => {
                 const cardBodyDe = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
 
-                const formSwitchDe = getAndExpectDebugElementByCss(
+                getAndExpectDebugElementByCss(
                     cardBodyDe[0],
                     'div.form-check.form-switch',
                     expectedSuppliedClasses.size + 2,

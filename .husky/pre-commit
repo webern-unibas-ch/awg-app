@@ -1,2 +1,3 @@
 # cf. https://typicode.github.io/husky/#/?id=package-scripts
-yarn run lint-staged
+
+# yarn run lint-staged

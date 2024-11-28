@@ -236,7 +236,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     expectedRowTablesData.rowTables.length
                 );
 
-                divDes.forEach((divDe, index) => {
+                divDes.forEach(divDe => {
                     const anchorDe = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
                     const anchorEl = anchorDe[0].nativeElement;
 

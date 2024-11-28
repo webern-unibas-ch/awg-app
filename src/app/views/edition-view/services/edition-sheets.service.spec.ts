@@ -203,7 +203,7 @@ describe('EditionSheetsService (DONE)', () => {
                         const nextSheet = expectedOrderOfSheets.at(index + 1);
                         const expectedNextSheetId = nextSheet.id + (nextSheet.content?.[0]?.partial || '');
 
-                        expectToEqual(nextSheetId, nextSheetId);
+                        expectToEqual(nextSheetId, expectedNextSheetId);
                     } else {
                         expectToEqual(nextSheetId, expectedOrderOfSheets.at(index).id);
                     }
@@ -346,8 +346,6 @@ describe('EditionSheetsService (DONE)', () => {
 
         describe('... should return `undefined` if', () => {
             it('... no convolute data is given', () => {
-                const expectedResult = undefined;
-
                 const convolute = editionSheetsService.selectConvolute(
                     undefined,
                     expectedSheets,

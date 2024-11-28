@@ -88,13 +88,11 @@ describe('EditionSectionDetailOverviewComponent', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        // TestData
+        // Test data
         expectedSelectedSeries = JSON.parse(JSON.stringify(EditionOutlineService.getEditionOutline()[0]));
         expectedSelectedSection = JSON.parse(JSON.stringify(expectedSelectedSeries.sections[4]));
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        // Spies
         editionStateServiceGetSelectedEditionSeriesSpy = spyOn(
             mockEditionStateService,
             'getSelectedEditionSeries'

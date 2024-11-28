@@ -74,7 +74,6 @@ describe('ExtendedSearchFormComponent', () => {
     let compDe: DebugElement;
 
     let dataApiService: DataApiService;
-    let formBuilder: FormBuilder;
     let mockDocument: Document;
 
     let addPropertiesControlSpy: Spy;
@@ -148,7 +147,6 @@ describe('ExtendedSearchFormComponent', () => {
         compDe = fixture.debugElement;
 
         dataApiService = TestBed.inject(DataApiService);
-        formBuilder = TestBed.inject(FormBuilder);
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data

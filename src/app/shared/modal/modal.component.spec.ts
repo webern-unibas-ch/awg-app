@@ -37,7 +37,7 @@ export class MockNgbModalRef {
         title: undefined,
         content: undefined,
     };
-    result: Promise<any> = new Promise((resolve, reject) => resolve(''));
+    result: Promise<any> = new Promise(resolve => resolve(''));
 }
 
 describe('ModalComponent', () => {
@@ -139,7 +139,7 @@ describe('ModalComponent', () => {
         it('... should render the modal title label', () => {
             const headerDes = getAndExpectDebugElementByCss(wrapperDe, '.modal-header', 1, 1);
             const titleDes = getAndExpectDebugElementByCss(headerDes[0], 'h4.modal-title', 1, 1);
-            const titleEl = titleDes[0].nativeElement;
+            const titleEl: HTMLHeadingElement = titleDes[0].nativeElement;
 
             expectToBe(titleEl.textContent, expectedModalTitle);
         });
@@ -147,7 +147,7 @@ describe('ModalComponent', () => {
         it('... should have close button without label in div.modal-header', () => {
             const headerDes = getAndExpectDebugElementByCss(wrapperDe, '.modal-header', 1, 1);
             const buttonDes = getAndExpectDebugElementByCss(headerDes[0], 'button.btn-close', 1, 1);
-            const buttonEl = buttonDes[0].nativeElement;
+            const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
 
             expectToBe(buttonEl.textContent, '');
         });
@@ -161,7 +161,7 @@ describe('ModalComponent', () => {
             fixture.detectChanges();
 
             const bodyDes = getAndExpectDebugElementByCss(wrapperDe, '.modal-body', 1, 1);
-            const bodyEl = bodyDes[0].nativeElement;
+            const bodyEl: HTMLElement = bodyDes[0].nativeElement;
 
             // Process HTML expression of content snippet
             const htmlSnippet = mockDocument.createElement('p');
@@ -182,7 +182,7 @@ describe('ModalComponent', () => {
         it('... should render the modal close label', () => {
             const footerDes = getAndExpectDebugElementByCss(wrapperDe, '.modal-footer', 1, 1);
             const buttonDes = getAndExpectDebugElementByCss(footerDes[0], 'button.awg-modal-button', 1, 1);
-            const buttonEl = buttonDes[0].nativeElement;
+            const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
 
             expectToBe(buttonEl.textContent.trim(), expectedModalCloseLabel);
         });
@@ -222,7 +222,7 @@ describe('ModalComponent', () => {
         it('... should return the close result of the modal', async () => {
             const closeMessage = `Click on ${expectedModalCloseLabel}`;
             const expectedCloseResult = `Closed with: ${closeMessage}`;
-            mockModalRef.result = new Promise((resolve, reject) => resolve(closeMessage));
+            mockModalRef.result = new Promise(resolve => resolve(closeMessage));
 
             component.open(expectedSnippetKey1);
             fixture.detectChanges();
@@ -238,7 +238,7 @@ describe('ModalComponent', () => {
             it('... when clicking on close button', async () => {
                 const dismissEvent = 'Click on dismiss button';
                 const expectedDismissReason = `Dismissed with: ${dismissEvent}`;
-                mockModalRef.result = new Promise((resolve, reject) => reject(dismissEvent));
+                mockModalRef.result = new Promise((_resolve, reject) => reject(dismissEvent));
 
                 component.open(expectedSnippetKey1);
                 fixture.detectChanges();
@@ -253,7 +253,7 @@ describe('ModalComponent', () => {
             it('... when pressing ESC key', async () => {
                 const dismissEvent = ModalDismissReasons.ESC;
                 const expectedDismissReason = `Dismissed by pressing ESC`;
-                mockModalRef.result = new Promise((resolve, reject) => reject(dismissEvent));
+                mockModalRef.result = new Promise((_resolve, reject) => reject(dismissEvent));
 
                 component.open(expectedSnippetKey1);
                 fixture.detectChanges();
@@ -268,7 +268,7 @@ describe('ModalComponent', () => {
             it('... when clicking on backdrop', async () => {
                 const dismissEvent = ModalDismissReasons.BACKDROP_CLICK;
                 const expectedDismissReason = `Dismissed by clicking on a backdrop`;
-                mockModalRef.result = new Promise((resolve, reject) => reject(dismissEvent));
+                mockModalRef.result = new Promise((_resolve, reject) => reject(dismissEvent));
 
                 component.open(expectedSnippetKey1);
                 fixture.detectChanges();

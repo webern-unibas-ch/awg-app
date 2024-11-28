@@ -15,7 +15,7 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
+import { EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionSectionsComponent } from './edition-sections.component';
@@ -33,7 +33,6 @@ describe('EditionSectionsComponent (DONE)', () => {
     let editionStateServiceGetSelectedEditionSeriesSpy: Spy;
 
     let expectedSelectedSeries: EditionOutlineSeries;
-    let expectedSelectedSection: EditionOutlineSection;
 
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
@@ -58,14 +57,10 @@ describe('EditionSectionsComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        // TestData
+        // Test data
         expectedSelectedSeries = EditionOutlineService.getEditionOutline()[0];
-        expectedSelectedSection = expectedSelectedSeries.sections[4];
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-
+        // Spies
         clearSelectedSectionSpy = spyOn(component, 'clearSelectedSection').and.callThrough();
         getSeriesSpy = spyOn(component, 'getSeries').and.callThrough();
         editionStateServiceClearSelectedEditionSectionSpy = spyOn(
@@ -619,7 +614,7 @@ describe('EditionSectionsComponent (DONE)', () => {
 
             it('... can get correct linkParams from template', () => {
                 let linkIndex = 0;
-                expectedSelectedSeries.sections.forEach((section, _sectionIndex) => {
+                expectedSelectedSeries.sections.forEach(section => {
                     if (!section.disabled) {
                         // Check the router link for the section
                         const expectedSectionLinkParams = [section.section.route];

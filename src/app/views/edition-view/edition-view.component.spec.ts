@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { DOCUMENT } from '@angular/common';
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
@@ -78,7 +77,7 @@ describe('EditionViewComponent (DONE)', () => {
             getSelectedEditionComplex: (): Observable<EditionComplex> =>
                 // Return op. 12 by default
                 observableOf(EditionComplexesService.getEditionComplexById(expectedSelectedEditionComplexId)),
-            updateSelectedEditionComplex: (editionComplex: EditionComplex): void => {
+            updateSelectedEditionComplex: (): void => {
                 // Intentional empty test override
             },
             getSelectedEditionSeries: (): Observable<EditionOutlineSeries> =>

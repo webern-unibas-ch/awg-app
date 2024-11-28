@@ -65,8 +65,6 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSvgSheetFooterComponent>;
     let compDe: DebugElement;
 
-    let utils: UtilityService;
-
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
     let openModalSpy: Spy;
@@ -104,8 +102,6 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        utils = TestBed.inject(UtilityService);
-
         // Test data
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
@@ -120,9 +116,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         expectedChevronDownIcon = faChevronDown;
         expectedChevronRightIcon = faChevronRight;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        // Spies
         navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
         navigateToReportFragmentRequestEmitSpy = spyOn(
             component.navigateToReportFragmentRequest,

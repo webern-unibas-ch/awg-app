@@ -103,7 +103,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
         };
         expectedFolioSettingsArray = [];
         expectedFolioSvgDataArray = [];
-        expectedConvolute.folios.forEach((folio, _index) => {
+        expectedConvolute.folios.forEach(folio => {
             const folioSettings = {
                 ...expectedFolioSettings,
                 formatX: +folio.format.width,
@@ -237,7 +237,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                     expectedFolioSvgDataArray.length
                 );
 
-                colDe.forEach((col, _index) => {
+                colDe.forEach(col => {
                     const colEl = col.nativeElement;
 
                     const expectedLgColClass = 'col-lg-' + Math.floor(12 / expectedFolioSvgDataArray.length);
@@ -256,7 +256,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                     expectedFolioSvgDataArray.length
                 );
 
-                colDe.forEach((col, _index) => {
+                colDe.forEach(col => {
                     getAndExpectDebugElementByCss(col, 'span.text-muted', 1, 1);
                 });
             });
@@ -290,7 +290,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                     expectedFolioSvgDataArray.length
                 );
 
-                colDe.forEach((col, _index) => {
+                colDe.forEach(col => {
                     getAndExpectDebugElementByCss(col, 'svg', 1, 1);
                 });
             });

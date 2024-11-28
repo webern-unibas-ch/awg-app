@@ -715,7 +715,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                 });
 
                 expectSpyCall(setSearchvalFromInputSpy, 0);
-                expectSpyCall(setSearchvalFromInputSpy, 0);
+                expectSpyCall(setSearchValControlValueSpy, 0);
             });
         });
 

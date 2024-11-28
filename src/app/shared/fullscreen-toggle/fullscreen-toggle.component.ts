@@ -65,7 +65,7 @@ export class FullscreenToggleComponent {
      *
      * It listens for fullscreen exit.
      */
-    @HostListener('document:fullscreenchange', ['$event']) onFullscreenChange(_event: Event) {
+    @HostListener('document:fullscreenchange', ['$event']) onFullscreenChange(): void {
         const fullscreenMode = this._fullscreenService.isFullscreen();
         this.toggleFullscreen(fullscreenMode);
     }

@@ -461,22 +461,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Public method: isSearchResultListShown.
-     *
-     * It checks if the search result list shall be shown (not used yet).
-     *
-     * @returns {boolean} The boolean result of the check.
-     */
-    isSearchResultListShown(): boolean {
-        this._dataStreamerService
-            .getSearchResponseWithQuery()
-            .pipe(takeUntil(this._destroyed$))
-            .subscribe({ next: result => console.log(result) });
-
-        return true;
-    }
-
-    /**
      * Angular life cycle hook: ngOnDestroy.
      *
      * It calls the containing methods

@@ -112,7 +112,7 @@ describe('EditionSvgSheetViewerNavComponent', () => {
                 // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(divPrevDe[0], fixture);
 
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
+                expectSpyCall(browseSvgSheetSpy, 1, expectedDirection);
             }));
 
             it('... should trigger on click on div.next', fakeAsync(() => {
@@ -122,7 +122,7 @@ describe('EditionSvgSheetViewerNavComponent', () => {
                 // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(divNextDe[0], fixture);
 
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
+                expectSpyCall(browseSvgSheetSpy, 1, expectedDirection);
             }));
 
             it('... should not emit anything if no direction is provided', () => {

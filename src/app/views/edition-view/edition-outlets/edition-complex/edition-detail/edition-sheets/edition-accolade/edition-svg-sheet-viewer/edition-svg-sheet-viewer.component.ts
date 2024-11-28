@@ -282,7 +282,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      */
     ngAfterViewInit(): void {
         // Subscribe to resize subject to _redraw on resize with delay until component gets destroyed
-        this._resize$.pipe(debounceTime(150), takeUntil(this._destroyed$)).subscribe((_event: any) => {
+        this._resize$.pipe(debounceTime(150), takeUntil(this._destroyed$)).subscribe(() => {
             this.renderSheet();
         });
 
@@ -513,11 +513,10 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * It creates the D3 SVG overlay for the given link box group.
      *
      * @param {SVGGElement} group The given link box group.
-     * @param {string} _overlayType The type of the overlay to create.
      *
      * @returns {void} Creates the D3 SVG link box overlay.
      */
-    private _createLinkBoxOverlay(group: SVGGElement, _overlayType: string): void {
+    private _createLinkBoxOverlay(group: SVGGElement): void {
         const linkBoxGroupId: string = group['id'];
         const linkBoxGroupSelection: D3Selection = this._svgDrawingService.getD3SelectionById(
             this.svgSheetRootGroupSelection,

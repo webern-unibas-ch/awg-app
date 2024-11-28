@@ -22,7 +22,7 @@ import { JsonViewerComponent } from './json-viewer.component';
 
 // Helper functions for nav items
 function getNavContents(fixture: ComponentFixture<any>): HTMLElement[] {
-    const outletEl = fixture.debugElement.query(By.directive(NgbNavOutlet)).nativeElement;
+    const outletEl: HTMLElement = fixture.debugElement.query(By.directive(NgbNavOutlet)).nativeElement;
     return Array.from(outletEl.children) as HTMLElement[];
 }
 

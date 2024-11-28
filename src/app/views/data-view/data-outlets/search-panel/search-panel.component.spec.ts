@@ -5,7 +5,11 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { of as observableOf } from 'rxjs';
 
-import { expectToEqual } from '@testing/expect-helper';
+import {
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
 
 import { ConversionService, DataStreamerService, LoadingService } from '@awg-core/services';
@@ -107,8 +111,6 @@ describe('SearchPanelComponent', () => {
         fixture = TestBed.createComponent(SearchPanelComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        fixture.detectChanges();
     });
 
     it('... should create', () => {
@@ -124,5 +126,29 @@ describe('SearchPanelComponent', () => {
         mockActivatedRoute.testUrl = changedRouteUrl;
 
         expectToEqual(mockActivatedRoute.snapshot.url[0].path, changedPath);
+    });
+
+    describe('BEFORE initial data binding', () => {
+        it('... should not have `errorMessage`', () => {
+            expect(component.errorMessage).toBeUndefined();
+        });
+
+        describe('VIEW', () => {
+            it('... should contain one `div.awg-search-tabs`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-search-tabs', 1, 1);
+            });
+
+            it('... should not display TwelveToneSpinnerComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
+            });
+
+            it('... should contain no `div.awg-error-message`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-error-message', 0, 0);
+            });
+
+            it('... should not display SearchResultListComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, SearchResultListStubComponent, 0, 0);
+            });
+        });
     });
 });

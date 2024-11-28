@@ -448,9 +448,10 @@ describe('SparqlEditorComponent (DONE)', () => {
                             const btnDes = getAndExpectDebugElementByCss(
                                 itemHeaderDes[0],
                                 'div.accordion-header > div.awg-example-query-btn-group > button.btn',
-                                1,
-                                1
+                                2,
+                                2
                             );
+                            // Get first button element
                             const btnEl = btnDes[0].nativeElement;
 
                             expect(btnEl.disabled).toBeTruthy();
@@ -458,7 +459,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                             expectToBe(btnEl.textContent.trim(), 'Beispielabfragen');
                         });
 
-                        it('... should contain another btn-group dropdown in example query btn-group', () => {
+                        it('... should contain one dropdown toggle button in example query btn-group', () => {
                             // Header debug elements
                             const itemHeaderDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -467,41 +468,20 @@ describe('SparqlEditorComponent (DONE)', () => {
                                 1
                             );
 
-                            const outerButtonGroupDes = getAndExpectDebugElementByCss(
+                            const btnDes = getAndExpectDebugElementByCss(
                                 itemHeaderDes[0],
-                                'div.accordion-header > div.awg-example-query-btn-group',
-                                1,
-                                1
+                                'div.accordion-header > div.awg-example-query-btn-group > button.btn',
+                                2,
+                                2
                             );
+                            // Get second button element
+                            const btnEl = btnDes[1].nativeElement;
 
-                            getAndExpectDebugElementByCss(outerButtonGroupDes[0], 'div.btn-group.dropdown', 1, 1);
+                            expectToContain(btnEl.classList, 'dropdown-toggle-split');
+                            expectToBe(btnEl.getAttribute('aria-label'), 'Toggle dropdown');
                         });
 
-                        it('... should contain toggle button in example query btn-group dropdown', () => {
-                            // Header debug elements
-                            const itemHeaderDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                                1,
-                                1
-                            );
-
-                            const dropdownButtonGroupDes = getAndExpectDebugElementByCss(
-                                itemHeaderDes[0],
-                                'div.accordion-header > div.awg-example-query-btn-group > div.btn-group.dropdown',
-                                1,
-                                1
-                            );
-
-                            getAndExpectDebugElementByCss(
-                                dropdownButtonGroupDes[0],
-                                'button.btn.dropdown-toggle',
-                                1,
-                                1
-                            );
-                        });
-
-                        it('... should contain dropdown menu div with dropdown item links in example query btn-group dropdown', fakeAsync(() => {
+                        it('... should contain one dropdown menu div with dropdown item links in example query btn-group dropdown', fakeAsync(() => {
                             tick();
                             // Header debug elements
                             const itemHeaderDes = getAndExpectDebugElementByCss(
@@ -511,16 +491,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                                 1
                             );
 
-                            const dropdownButtonGroupDes = getAndExpectDebugElementByCss(
-                                itemHeaderDes[0],
-                                'div.accordion-header > div.awg-example-query-btn-group > div.btn-group.dropdown',
-                                1,
-                                1
-                            );
-
                             const menuDes = getAndExpectDebugElementByCss(
-                                dropdownButtonGroupDes[0],
-                                'div.dropdown-menu',
+                                itemHeaderDes[0],
+                                'div.accordion-header > div.awg-example-query-btn-group > div.dropdown-menu',
                                 1,
                                 1
                             );
@@ -534,15 +507,15 @@ describe('SparqlEditorComponent (DONE)', () => {
                         }));
 
                         it('... should display label on dropdown items in example query btn-group', () => {
-                            const dropdownButtonGroupDes = getAndExpectDebugElementByCss(
+                            const menuDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'div.accordion-header > div.awg-example-query-btn-group > div.btn-group.dropdown',
+                                'div.accordion-header > div.awg-example-query-btn-group > div.dropdown-menu',
                                 1,
                                 1
                             );
 
                             const itemDes = getAndExpectDebugElementByCss(
-                                dropdownButtonGroupDes[0],
+                                menuDes[0],
                                 'div.dropdown-menu > a.dropdown-item',
                                 expectedQueryList.length,
                                 expectedQueryList.length
@@ -989,9 +962,10 @@ describe('SparqlEditorComponent (DONE)', () => {
                         const btnDes = getAndExpectDebugElementByCss(
                             itemHeaderDes[0],
                             'div.accordion-button > div.awg-example-query-btn-group > button.btn',
-                            1,
-                            1
+                            2,
+                            2
                         );
+                        // Get first button element
                         const btnEl = btnDes[0].nativeElement;
 
                         expect(btnEl.disabled).toBeTruthy();
@@ -999,7 +973,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         expectToBe(btnEl.textContent.trim(), 'Beispielabfragen');
                     });
 
-                    it('... should contain another btn-group dropdown in example query btn-group', () => {
+                    it('... should contain one dropdown toggle button in example query btn-group', () => {
                         // Header debug elements
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -1008,54 +982,31 @@ describe('SparqlEditorComponent (DONE)', () => {
                             1
                         );
 
-                        const outerButtonGroupDes = getAndExpectDebugElementByCss(
+                        const btnDes = getAndExpectDebugElementByCss(
                             itemHeaderDes[0],
-                            'div.accordion-button > div.awg-example-query-btn-group',
-                            1,
-                            1
+                            'div.accordion-button > div.awg-example-query-btn-group > button.btn',
+                            2,
+                            2
                         );
+                        // Get second button element
+                        const btnEl = btnDes[1].nativeElement;
 
-                        getAndExpectDebugElementByCss(outerButtonGroupDes[0], 'div.btn-group.dropdown', 1, 1);
+                        expectToContain(btnEl.classList, 'dropdown-toggle-split');
+                        expectToBe(btnEl.getAttribute('aria-label'), 'Toggle dropdown');
                     });
 
-                    it('... should contain toggle button in example query btn-group dropdown', () => {
+                    it('... should contain example dropdown menu div with dropdown items in example query btn-group', () => {
                         // Header debug elements
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                            1,
-                            1
-                        );
-
-                        const dropdownButtonGroupDes = getAndExpectDebugElementByCss(
-                            itemHeaderDes[0],
-                            'div.accordion-button > div.awg-example-query-btn-group > div.btn-group.dropdown',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByCss(dropdownButtonGroupDes[0], 'button.btn.dropdown-toggle', 1, 1);
-                    });
-
-                    it('... should contain exmapleydropdown menu div with dropdown items in example query btn-group', () => {
-                        // Header debug elements
-                        const itemHeaderDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                            1,
-                            1
-                        );
-
-                        const dropdownButtonGroupDes = getAndExpectDebugElementByCss(
-                            itemHeaderDes[0],
-                            'div.accordion-button > div.awg-example-query-btn-group > div.btn-group.dropdown',
                             1,
                             1
                         );
 
                         const menuDes = getAndExpectDebugElementByCss(
-                            dropdownButtonGroupDes[0],
-                            'div.dropdown-menu',
+                            itemHeaderDes[0],
+                            'div.accordion-button > div.awg-example-query-btn-group > div.dropdown-menu',
                             1,
                             1
                         );
@@ -1069,15 +1020,15 @@ describe('SparqlEditorComponent (DONE)', () => {
                     });
 
                     it('... should display label on dropdown items in example query btn-group', () => {
-                        const dropdownButtonGroupDes = getAndExpectDebugElementByCss(
+                        const menuDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div.accordion-button > div.awg-example-query-btn-group > div.btn-group.dropdown',
+                            'div.accordion-button > div.awg-example-query-btn-group > div.dropdown-menu',
                             1,
                             1
                         );
 
                         const itemDes = getAndExpectDebugElementByCss(
-                            dropdownButtonGroupDes[0],
+                            menuDes[0],
                             'div.dropdown-menu > a.dropdown-item',
                             expectedQueryList.length,
                             expectedQueryList.length

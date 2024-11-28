@@ -210,7 +210,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, index) => {
+                detailsDes.forEach(detailsDe => {
                     const divDes = getAndExpectDebugElementByCss(detailsDe, 'div', 1, 1);
                     const divEl = divDes[0].nativeElement;
 
@@ -253,7 +253,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, _index) => {
+                detailsDes.forEach(detailsDe => {
                     getAndExpectDebugElementByDirective(detailsDe, EditionTkaTableStubComponent, 0, 0);
                 });
             });
@@ -266,7 +266,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, _index) => {
+                detailsDes.forEach(detailsDe => {
                     getAndExpectDebugElementByDirective(detailsDe, EditionTkaTableStubComponent, 1, 1);
                 });
             });
@@ -329,7 +329,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, index) => {
+                detailsDes.forEach(detailsDe => {
                     const editionTkaTableDes = getAndExpectDebugElementByDirective(
                         detailsDe,
                         EditionTkaTableStubComponent,
@@ -358,7 +358,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, index) => {
+                detailsDes.forEach(detailsDe => {
                     const editionTkaTableDes = getAndExpectDebugElementByDirective(
                         detailsDe,
                         EditionTkaTableStubComponent,
@@ -445,7 +445,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, index) => {
+                detailsDes.forEach(detailsDe => {
                     const editionTkaTableDes = getAndExpectDebugElementByDirective(
                         detailsDe,
                         EditionTkaTableStubComponent,
@@ -501,7 +501,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, index) => {
+                detailsDes.forEach(detailsDe => {
                     const editionTkaTableDes = getAndExpectDebugElementByDirective(
                         detailsDe,
                         EditionTkaTableStubComponent,

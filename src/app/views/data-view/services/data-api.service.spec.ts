@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { HttpClient, HttpParams, HttpRequest, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HttpTestingController, TestRequest, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed, waitForAsync } from '@angular/core/testing';
@@ -981,9 +980,11 @@ describe('DataApiService (DONE)', () => {
                     const expectedQueryPath = expectedRoutes.resources + expectedResourceId + expectedResourceSuffix;
                     const expectedUrl = apiUrl + expectedQueryPath;
 
-                    dataApiService.getResourceData(expectedResourceId).subscribe((response: ResourceData) => {
-                        // Two calls
-                        expectToBe(getApiResponseSpy.calls.all().length, 2);
+                    dataApiService.getResourceData(expectedResourceId).subscribe({
+                        next: () => {
+                            // Two calls
+                            expectToBe(getApiResponseSpy.calls.all().length, 2);
+                        },
                     });
 
                     // Expect two requests to url with given settings

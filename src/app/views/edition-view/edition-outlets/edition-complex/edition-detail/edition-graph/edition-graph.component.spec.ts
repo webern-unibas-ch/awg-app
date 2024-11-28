@@ -110,8 +110,7 @@ describe('EditionGraphComponent (DONE)', () => {
     beforeEach(waitForAsync(() => {
         // Mocked editionDataService
         mockEditionDataService = {
-            getEditionGraphData: (editionComplex: EditionComplex): Observable<GraphList> =>
-                observableOf(new GraphList()),
+            getEditionGraphData: (): Observable<GraphList> => observableOf(new GraphList()),
         };
         // Mocked editionStateService
         mockEditionStateService = {
@@ -120,7 +119,7 @@ describe('EditionGraphComponent (DONE)', () => {
         // Mocked fullscreenService
         mockFullscreenService = {
             isFullscreen: (): boolean => false,
-            openFullscreen: (el: HTMLElement): void => {},
+            openFullscreen: (): void => {},
             closeFullscreen: (): void => {},
         };
 
@@ -150,7 +149,7 @@ describe('EditionGraphComponent (DONE)', () => {
 
         mockDocument = TestBed.inject(DOCUMENT);
 
-        // TestData (default)
+        // Test data (default)
         expectedFaCompress = faCompress;
         expectedFaExpand = faExpand;
         expectedIsFullscreen = false;
@@ -165,7 +164,7 @@ describe('EditionGraphComponent (DONE)', () => {
         expectedEditionGraphDataOp25.graph[0].id = 'test-graph-id-op25';
         expectedEditionGraphDataOp25.graph[0].description = ['Description for test-graph-id-op25'];
 
-        // Spies on component methods
+        // Spies
         getEditonGraphDataSpy = spyOn(component, 'getEditionGraphData').and.callThrough();
         onFullscreenToggleSpy = spyOn(component, 'onFullscreenToggle').and.callThrough();
 

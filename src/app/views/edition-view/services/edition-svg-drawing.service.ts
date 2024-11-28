@@ -335,10 +335,7 @@ export class EditionSvgDrawingService {
         }
 
         // Get the class name from the label lookup table
-        const className =
-            Array.from(this._suppliedClassesLabelLookup.entries()).find(
-                ([_key, value]) => value === labelOrClassName
-            )?.[0] || labelOrClassName;
+        const className = this._suppliedClassesLabelLookup.get(labelOrClassName) || labelOrClassName;
 
         // Get D3 selection of supplied elements
         const selector = className ? `supplied.${className}` : 'supplied';

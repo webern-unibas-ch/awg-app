@@ -65,8 +65,6 @@ describe('TextcriticsListComponent (DONE)', () => {
     let fixture: ComponentFixture<TextcriticsListComponent>;
     let compDe: DebugElement;
 
-    let utils: UtilityService;
-
     let expectedComplexId: string;
     let expectedNextComplexId: string;
     let expectedReportFragment: string;
@@ -110,8 +108,6 @@ describe('TextcriticsListComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        utils = TestBed.inject(UtilityService);
-
         // Test data
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
@@ -121,9 +117,7 @@ describe('TextcriticsListComponent (DONE)', () => {
         expectedSheetId = 'test_item_id_1';
         expectedTextcriticsData = JSON.parse(JSON.stringify(mockEditionData.mockTextcriticsData));
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        // Spies
         navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
         navigateToReportFragmentRequestEmitSpy = spyOn(
             component.navigateToReportFragmentRequest,

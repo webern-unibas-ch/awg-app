@@ -60,7 +60,7 @@ describe('LicenseComponent', () => {
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 2, 2);
 
                 aDes.forEach(aDe => {
-                    const aEl = aDe.nativeElement as HTMLAnchorElement;
+                    const aEl: HTMLAnchorElement = aDe.nativeElement as HTMLAnchorElement;
 
                     expectToBe(aEl.href, expectedLicenseLink);
                 });
@@ -71,7 +71,7 @@ describe('LicenseComponent', () => {
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 2, 2);
 
                 const imgDes = getAndExpectDebugElementByCss(aDes[0], 'img', 1, 1);
-                const imgEl = imgDes[0].nativeElement as HTMLImageElement;
+                const imgEl: HTMLImageElement = imgDes[0].nativeElement as HTMLImageElement;
 
                 expectToBe(imgEl.src, expectedLicenseImageLink);
                 expectToBe(imgEl.alt, expectedLicenseImageText);
@@ -80,7 +80,7 @@ describe('LicenseComponent', () => {
             it('... should contain license text in second link', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-license p', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 2, 2);
-                const aEl = aDes[1].nativeElement as HTMLAnchorElement;
+                const aEl: HTMLAnchorElement = aDes[1].nativeElement as HTMLAnchorElement;
 
                 expectToBe(aEl.textContent, expectedLicenseText);
             });

@@ -83,14 +83,12 @@ describe('EditionSvgSheetViewerComponent', () => {
     let resetZoomSpy: Spy;
     let resetZoomTranslationSpy: Spy;
 
-    let serviceCreateSvgSpy: Spy;
     let serviceGetGroupsBySelectorSpy: Spy;
     let serviceGetSuppliedClassesSpy: Spy;
     let serviceToggleSuppliedClassOpacitySpy: Spy;
     let serviceUpdateTkkOverlayColorSpy: Spy;
 
     let expectedComplexId: string;
-    let expectedNextComplexId: string;
     let expectedCompressIcon: IconDefinition;
     let expectedSliderConfig: SliderConfig;
     let expectedSvgSheet: EditionSvgSheet;
@@ -106,7 +104,7 @@ describe('EditionSvgSheetViewerComponent', () => {
     beforeEach(waitForAsync(() => {
         // Mock EditionSvgDrawingService
         mockEditionSvgDrawingService = {
-            createSvg: (svgFilePath: string, svgEl: SVGSVGElement, svgRootGroupEl: SVGGElement): Promise<D3Selection> =>
+            createSvg: (_svgFilePath: string, svgEl: SVGSVGElement): Promise<D3Selection> =>
                 new Promise(resolve => {
                     resolve(D3_SELECTION.select(svgEl));
                 }),
@@ -115,17 +113,9 @@ describe('EditionSvgSheetViewerComponent', () => {
                 svgRootGroup.selectAll(selector),
             getOverlayGroupRectSelection: (svgRootGroup: D3Selection, overlayId: string, type: string): D3Selection =>
                 svgRootGroup.select(`#${overlayId} rect.${type}`),
-            getSuppliedClasses: (svgRootGroup: D3Selection): Map<string, boolean> => new Map(),
-            toggleSuppliedClassOpacity: (
-                svgRootGroup: D3Selection,
-                className: string,
-                isCurrentlyVisible: boolean
-            ): void => {},
-            updateTkkOverlayColor: (
-                overly: EditionSvgOverlay,
-                overlayGroupRectSelection: D3Selection,
-                overlayActionType: EditionSvgOverlayActionTypes
-            ): void => {},
+            getSuppliedClasses: (): Map<string, boolean> => new Map(),
+            toggleSuppliedClassOpacity: (): void => {},
+            updateTkkOverlayColor: (): void => {},
         };
 
         TestBed.configureTestingModule({
@@ -152,7 +142,6 @@ describe('EditionSvgSheetViewerComponent', () => {
         expectedSliderConfig = new SliderConfig(1, 0.1, 10, 0.01, 1);
 
         expectedComplexId = 'testComplex1';
-        expectedNextComplexId = 'testComplex2';
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
 
@@ -192,7 +181,6 @@ describe('EditionSvgSheetViewerComponent', () => {
         resetZoomTranslationSpy = spyOn<any>(component, '_resetZoomTranslation').and.callThrough();
 
         // Spies for service methods
-        serviceCreateSvgSpy = spyOn(mockEditionSvgDrawingService, 'createSvg').and.callThrough();
         serviceGetGroupsBySelectorSpy = spyOn(mockEditionSvgDrawingService, 'getGroupsBySelector').and.callThrough();
         serviceGetSuppliedClassesSpy = spyOn(mockEditionSvgDrawingService, 'getSuppliedClasses').and.returnValue(
             expectedSuppliedClassMap

@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component, DebugElement } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 import { AbstractControl, ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -29,10 +29,6 @@ function getErrors(resourceInfoIndex: AbstractControl): {} {
     return resourceInfoIndex.errors || {};
 }
 
-// Mock components
-@Component({ selector: 'awg-test', template: '' })
-class SearchPanelStubComponent {}
-
 describe('ResourceInfoComponent (DONE)', () => {
     let component: ResourceInfoComponent;
     let fixture: ComponentFixture<ResourceInfoComponent>;
@@ -41,7 +37,6 @@ describe('ResourceInfoComponent (DONE)', () => {
     let mockRouter: Partial<Router>;
     let mockDataStreamerService: Partial<DataStreamerService>;
     let dataStreamerService: Partial<DataStreamerService>;
-    let formBuilder: UntypedFormBuilder;
 
     let buildFormSpy: Spy;
     let findIndexPositionInSearchResultsByIdSpy: Spy;
@@ -91,7 +86,6 @@ describe('ResourceInfoComponent (DONE)', () => {
 
         // Inject service from root
         dataStreamerService = TestBed.inject(DataStreamerService);
-        formBuilder = TestBed.inject(UntypedFormBuilder);
 
         const expectedSearchResponse = JSON.parse(JSON.stringify(mockSearchResponseJson));
         expectedSearchResponseWithQuery = new SearchResponseWithQuery(expectedSearchResponse, expectedQuery);
@@ -714,13 +708,13 @@ describe('ResourceInfoComponent (DONE)', () => {
                     });
 
                     it('no big floating numbers (1234567890.0123456789)', () => {
-                        const bigFloatingNumber = 1234567890.0123456789;
-                        resourceInfoIndex.setValue(bigFloatingNumber);
+                        const bigFloatingNumber = '1234567890.0123456789';
+                        resourceInfoIndex.setValue(Number(bigFloatingNumber));
                         errors = getErrors(resourceInfoIndex);
 
                         const expectedPatternError = {
                             requiredPattern: expectedPattern,
-                            actualValue: bigFloatingNumber,
+                            actualValue: Number(bigFloatingNumber),
                         };
 
                         expectToEqual(errors['pattern'], expectedPatternError);

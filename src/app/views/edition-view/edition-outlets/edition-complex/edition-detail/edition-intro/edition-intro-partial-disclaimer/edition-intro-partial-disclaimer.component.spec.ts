@@ -1,4 +1,3 @@
-import { DOCUMENT } from '@angular/common';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -26,8 +25,6 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let mockDocument: Document;
-
     let expectedEditionComplex: EditionComplex;
     let expectedEditionLabel: string;
     let expectedEditionRoute: string;
@@ -47,8 +44,6 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionIntroPartialDisclaimerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
         expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
@@ -178,7 +173,7 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                routerLinks.forEach((routerLink: RouterLinkStubDirective, _index: number) => {
+                routerLinks.forEach((routerLink: RouterLinkStubDirective) => {
                     const expectedRouterLink = [
                         expectedEditionRoute,
                         expectedSeriesRoute,

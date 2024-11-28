@@ -91,7 +91,7 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain no paragraphs with edition-tka-description class yet', () => {
-                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-edition-tka-description', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'p.awg-edition-tka-description', 0, 0);
             });
         });
     });

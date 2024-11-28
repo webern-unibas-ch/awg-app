@@ -89,7 +89,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
 
             it('... should not render link to devPreview yet', () => {
                 const devDes = getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link', 1, 1);
-                const devEl = devDes[0].nativeElement;
+                const devEl: HTMLAnchorElement = devDes[0].nativeElement;
 
                 expect(devEl).toBeDefined();
                 expectToBe(devEl.href, '');
@@ -137,7 +137,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
 
             it('... should render link to devPreview', () => {
                 const devDes = getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link', 1, 1);
-                const devEl = devDes[0].nativeElement;
+                const devEl: HTMLAnchorElement = devDes[0].nativeElement;
 
                 expect(devEl).toBeDefined();
                 expectToBe(devEl.href, expectedPageMetaData.awgAppDevUrl);

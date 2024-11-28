@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { DebugElement, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
@@ -45,18 +44,7 @@ function getComplexesFromSections(
 }
 
 function getExpectedRouterlinks(sections: EditionOutlineSection[]): string[][] {
-    const {
-        EDITION,
-        SERIES,
-        ROWTABLES,
-        PREFACE,
-        SERIES_1,
-        SECTION,
-        SECTION_5,
-        EDITION_INTRO,
-        EDITION_SHEETS,
-        EDITION_GRAPH,
-    } = EDITION_ROUTE_CONSTANTS;
+    const { EDITION, SERIES, ROWTABLES, PREFACE, SECTION, EDITION_INTRO, EDITION_SHEETS } = EDITION_ROUTE_CONSTANTS;
 
     const editionOverviewLink = [[EDITION.route, SERIES.route]];
     const rowTablesLink = [[EDITION.route, ROWTABLES.route]];
@@ -120,7 +108,6 @@ describe('EditionInfoComponent (DONE)', () => {
     let expectedRouterLinks: string[][];
     let expectedItemTitles: string[];
     let expectedItemTitlesWithLinks: string[];
-    let expectedEditionComplexes: EditionComplex[];
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -162,7 +149,6 @@ describe('EditionInfoComponent (DONE)', () => {
             EditionOutlineService.getEditionSectionById('1', '5'),
             EditionOutlineService.getEditionSectionById('2', '2a'),
         ];
-        expectedEditionComplexes = getComplexesFromSections(expectedSections);
         expectedRouterLinks = getExpectedRouterlinks(expectedSections);
         expectedItemTitles = getExpectedItemTitles(expectedSections, true);
         expectedItemTitlesWithLinks = getExpectedItemTitles(expectedSections, false);

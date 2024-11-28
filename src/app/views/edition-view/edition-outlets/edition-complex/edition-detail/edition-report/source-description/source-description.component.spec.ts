@@ -64,7 +64,6 @@ describe('SourceDescriptionComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let mockDocument: Document;
-    let utils: UtilityService;
 
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
@@ -102,7 +101,6 @@ describe('SourceDescriptionComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         mockDocument = TestBed.inject(DOCUMENT);
-        utils = TestBed.inject(UtilityService);
 
         // Test data
         expectedSourceDescriptionListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceDescriptionListData));
@@ -114,9 +112,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedFirmSigns = EDITION_FIRM_SIGNS_DATA;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        // Spies
         navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
         navigateToReportFragmentRequestEmitSpy = spyOn(
             component.navigateToReportFragmentRequest,

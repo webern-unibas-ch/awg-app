@@ -158,13 +158,6 @@ export type ProtocolOptions = 'file' | 'url';
 type color = string;
 
 /**
- * String must have the following format: (GREGORIAN|JULIAN):YYYY[-MM[-DD]][:YYYY[-MM[-DD]]]
- * E.g. an exact date like GREGORIAN:2015-12-03 or a period like GREGORIAN:2015-12-03:2015-12-04.
- * Dates may also have month or year precision, e.g. GREGORIAN:2015-12 (the whole month of december) or GREGORIAN:2015 (the whole year 2015).
- */
-type dateString = string;
-
-/**
  * A floating point number (may have fractions).
  */
 type decimal = integer;

@@ -172,7 +172,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                routerLinks.forEach((routerLink: RouterLinkStubDirective, _index: number) => {
+                routerLinks.forEach((routerLink: RouterLinkStubDirective) => {
                     const expectedRouterLink = [
                         '/edition',
                         'series',

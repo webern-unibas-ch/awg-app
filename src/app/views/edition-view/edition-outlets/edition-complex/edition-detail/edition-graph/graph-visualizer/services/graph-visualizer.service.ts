@@ -114,7 +114,7 @@ export class GraphVisualizerService {
 
                 return this._loadTriplesInStore(store, ttlString, mimeType);
             })
-            .then((_storeSize: number) => this._executeQuery(this._store, query))
+            .then(() => this._executeQuery(this._store, query))
             .then((res: RDFStoreConstructResponse | RDFStoreSelectResponse) => {
                 // Reformat data if select query
                 if (queryType === 'select') {
@@ -289,6 +289,7 @@ export class GraphVisualizerService {
      */
     private _extractNamespacesFromString(type: NamespaceType, str: string): Namespace {
         let regex: RegExp;
+        let exhaustiveCheck: never;
         switch (type) {
             case NamespaceType.TURTLE:
                 regex = /@prefix\s+(\w+):\s+<([^>]+)>/g;
@@ -297,13 +298,13 @@ export class GraphVisualizerService {
                 regex = /PREFIX\s+(\w+):\s+<([^>]+)>/g;
                 break;
             default:
-                const exhaustiveCheck: never = type;
+                exhaustiveCheck = type;
                 throw new Error(`The type must be TURTLE or SPARQL, but was: ${exhaustiveCheck}.`);
         }
 
         const namespaces: Namespace = {};
         for (const match of str.matchAll(regex)) {
-            const [_, prefix, namespaceName] = match;
+            const [, prefix, namespaceName] = match;
             namespaces[prefix] = namespaceName;
         }
 

@@ -150,7 +150,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                 );
 
                 btnDes.forEach((btnDe, index) => {
-                    const btnEl = btnDe.nativeElement;
+                    const btnEl: HTMLButtonElement = btnDe.nativeElement;
 
                     if (expectedRouterLinkButtons[index].disabled) {
                         expect(btnEl).toHaveClass('disabled');
@@ -168,7 +168,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                     expectedRouterLinkButtons.length
                 );
                 btnDes.forEach((btnDe, index) => {
-                    const btnEl = btnDe.nativeElement;
+                    const btnEl: HTMLButtonElement = btnDe.nativeElement;
 
                     expectToBe(btnEl.textContent.trim(), expectedRouterLinkButtons[index].label.toUpperCase());
                 });

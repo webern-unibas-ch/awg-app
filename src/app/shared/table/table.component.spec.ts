@@ -270,14 +270,18 @@ describe('TableComponent', () => {
                 it('... with headerInputData and rowInputData', waitForAsync(() => {
                     expect(component.tableData).toBeDefined();
 
-                    expectToEqual(component.tableData.header, expectedHeaderInputData);
-                    expectToEqual(component.tableData.filteredRows, expectedRowInputData);
+                    expectToEqual(component.tableData.header, expectedTableData.header);
+                    expectToEqual(component.tableData.filteredRows, expectedTableData.filteredRows);
 
                     expect(component.tableData.paginatedRows$).toBeDefined();
-                    expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolvedTo(expectedRowInputData);
+                    expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolvedTo(
+                        expectedTableData.filteredRows
+                    );
 
                     expect(component.tableData.totalRows$).toBeDefined();
-                    expectAsync(lastValueFrom(component.tableData.totalRows$)).toBeResolvedTo(expectedRowInputData);
+                    expectAsync(lastValueFrom(component.tableData.totalRows$)).toBeResolvedTo(
+                        expectedTableData.filteredRows
+                    );
                 }));
 
                 describe('... to empty object', () => {

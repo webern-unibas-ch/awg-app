@@ -24,6 +24,7 @@ describe('SourceListComponent (DONE)', () => {
     let expectedSourceListData: SourceList;
     let expectedFragment: string;
 
+    let onSourceClickSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
     let openModalRequestEmitSpy: Spy;
@@ -48,12 +49,13 @@ describe('SourceListComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
+        onSourceClickSpy = spyOn(component, 'onSourceClick').and.callThrough();
+        navigateToReportFragmentSpy = spyOn(component as any, '_navigateToReportFragment').and.callThrough();
         navigateToReportFragmentRequestEmitSpy = spyOn(
             component.navigateToReportFragmentRequest,
             'emit'
         ).and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
+        openModalSpy = spyOn(component as any, '_openModal').and.callThrough();
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
     });
 
@@ -698,9 +700,9 @@ describe('SourceListComponent (DONE)', () => {
             });
         });
 
-        describe('#navigateToReportFragment()', () => {
-            it('... should have a method `navigateToReportFragment`', () => {
-                expect(component.navigateToReportFragment).toBeDefined();
+        describe('#onSourceClick()', () => {
+            it('... should have a method `onSourceClick`', () => {
+                expect(component.onSourceClick).toBeDefined();
             });
 
             it('... should trigger on click', fakeAsync(() => {
@@ -714,36 +716,77 @@ describe('SourceListComponent (DONE)', () => {
                     expectedSourcesLength
                 );
 
-                // Everything but first anchor uses modal
-                // Click on first anchor
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                anchorDes.forEach((anchorDe, index) => {
+                    clickAndAwaitChanges(anchorDe, fixture);
+
+                    expectSpyCall(onSourceClickSpy, index + 1, expectedSourceListData.sources[index]);
+                });
+            }));
+
+            it('... should call `_navigateToReportFragment` if `source.hasDescription` is given', () => {
+                const source = expectedSourceListData.sources[0];
+
+                // Call with a source that has description
+                component.onSourceClick(source);
+
+                expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: source.linkTo });
+                expect(openModalSpy).not.toHaveBeenCalled();
+            });
+
+            it('... should call `_openModal` if `source.hasDescription` is not given', () => {
+                let source = expectedSourceListData.sources[1];
+
+                // Call with a source that has no description
+                component.onSourceClick(source);
+
+                expectSpyCall(openModalSpy, 1, source.linkTo);
+                expect(navigateToReportFragmentSpy).not.toHaveBeenCalled();
+
+                source = expectedSourceListData.sources[2];
+
+                component.onSourceClick(source);
+
+                expectSpyCall(openModalSpy, 2, source.linkTo);
+                expect(navigateToReportFragmentSpy).not.toHaveBeenCalled();
+            });
+        });
+
+        describe('#_navigateToReportFragment()', () => {
+            it('... should have a method `_navigateToReportFragment`', () => {
+                expect((component as any)._navigateToReportFragment).toBeDefined();
+            });
+
+            it('... should trigger from `onSourceClick` method', fakeAsync(() => {
+                const source = expectedSourceListData.sources[0];
+
+                component.onSourceClick(source);
 
                 expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: expectedFragment });
             }));
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
-                    component.navigateToReportFragment(undefined);
+                it('... parameter is undefined', () => {
+                    (component as any)._navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
                 it('... parameter is null', () => {
-                    component.navigateToReportFragment(null);
+                    (component as any)._navigateToReportFragment(null);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
                 it('... fragment id is undefined', () => {
-                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
+                    (component as any)._navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
                 it('... fragment id is null', () => {
-                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
+                    (component as any)._navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
                 it('... fragment id is empty string', () => {
-                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
+                    (component as any)._navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
@@ -751,80 +794,73 @@ describe('SourceListComponent (DONE)', () => {
 
             it('... should emit id of selected report fragment within same complex', () => {
                 const expectedReportIds = { complexId: 'testComplex', fragmentId: expectedFragment };
-                component.navigateToReportFragment(expectedReportIds);
+                (component as any)._navigateToReportFragment(expectedReportIds);
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
 
                 const otherFragment = 'source_B';
                 const expectedNextReportIds = { complexId: 'testComplex', fragmentId: otherFragment };
-                component.navigateToReportFragment(expectedNextReportIds);
+                (component as any)._navigateToReportFragment(expectedNextReportIds);
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
             });
 
             it('... should emit id of selected report fragment for another complex', () => {
                 const expectedReportIds = { complexId: 'testComplex', fragmentId: expectedFragment };
-                component.navigateToReportFragment(expectedReportIds);
+                (component as any)._navigateToReportFragment(expectedReportIds);
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
 
                 const otherFragment = 'source_B';
                 const expectedNextReportIds = { complexId: 'anotherTestComplex', fragmentId: otherFragment };
-                component.navigateToReportFragment(expectedNextReportIds);
+                (component as any)._navigateToReportFragment(expectedNextReportIds);
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
             });
         });
 
-        describe('#openModal()', () => {
-            it('... should have a method `openModal`', () => {
-                expect(component.openModal).toBeDefined();
+        describe('#_openModal()', () => {
+            it('... should have a method `_openModal`', () => {
+                expect((component as any)._openModal).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
-                const expectedSourcesLength = expectedSourceListData.sources.length;
-                const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
+            it('... should trigger from `onSourceClick` method', fakeAsync(() => {
+                let source = expectedSourceListData.sources[1];
 
-                const anchorDes = getAndExpectDebugElementByCss(
-                    tableBodyDes[0],
-                    'tr > th > span.awg-source-list-siglum-container > a',
-                    expectedSourcesLength,
-                    expectedSourcesLength
-                );
+                component.onSourceClick(source);
 
-                // Everything but first anchor uses modal
-                // Click on second anchor
-                clickAndAwaitChanges(anchorDes[1], fixture);
+                expectSpyCall(openModalSpy, 1, source.linkTo);
+                expect(navigateToReportFragmentSpy).not.toHaveBeenCalled();
 
-                expectSpyCall(openModalSpy, 1, expectedSourceListData.sources[1].linkTo);
+                source = expectedSourceListData.sources[2];
 
-                // Click on third anchor
-                clickAndAwaitChanges(anchorDes[2], fixture);
+                component.onSourceClick(source);
 
-                expectSpyCall(openModalSpy, 2, expectedSourceListData.sources[2].linkTo);
+                expectSpyCall(openModalSpy, 2, source.linkTo);
+                expect(navigateToReportFragmentSpy).not.toHaveBeenCalled();
             }));
 
             describe('... should not emit anything if ', () => {
                 it('... id is undefined', () => {
-                    component.openModal(undefined);
+                    (component as any)._openModal(undefined);
 
                     expectSpyCall(openModalRequestEmitSpy, 0);
                 });
 
                 it('... id is null', () => {
-                    component.openModal(undefined);
+                    (component as any)._openModal(undefined);
 
                     expectSpyCall(openModalRequestEmitSpy, 0, null);
                 });
                 it('... id is empty string', () => {
-                    component.openModal('');
+                    (component as any)._openModal('');
 
                     expectSpyCall(openModalRequestEmitSpy, 0);
                 });
             });
 
             it('... should emit id of given modal snippet', () => {
-                component.openModal(expectedSourceListData.sources[2].linkTo);
+                (component as any)._openModal(expectedSourceListData.sources[2].linkTo);
 
                 expectSpyCall(openModalRequestEmitSpy, 1, expectedSourceListData.sources[2].linkTo);
             });

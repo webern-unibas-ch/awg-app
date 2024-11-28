@@ -218,7 +218,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                     expectedSeriesLength
                 );
 
-                cardDes.forEach((cardDe, _index) => {
+                cardDes.forEach(cardDe => {
                     getAndExpectDebugElementByCss(cardDe, 'div.card-footer', 1, 1);
                 });
             });
@@ -364,7 +364,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                         expectedSeriesLength
                     );
 
-                    cardDes.forEach((cardDe, _index) => {
+                    cardDes.forEach(cardDe => {
                         const footerDes = getAndExpectDebugElementByCss(cardDe, 'div.card-footer', 1, 1);
                         getAndExpectDebugElementByDirective(footerDes[0], RouterLinkStubDirective, 1, 1);
                     });
@@ -409,7 +409,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                         expectedSeriesLength
                     );
 
-                    cardDes.forEach((cardDe, _index) => {
+                    cardDes.forEach(cardDe => {
                         const footerDes = getAndExpectDebugElementByCss(cardDe, 'div.card-footer', 1, 1);
 
                         const footerLinkDes = getAndExpectDebugElementByDirective(
@@ -444,8 +444,8 @@ describe('EditionSeriesComponent (DONE)', () => {
 
             it('... can get correct linkParams from template', () => {
                 let linkIndex = 0;
-                expectedEditionOutline.forEach((series, _seriesIndex) => {
-                    series.sections.forEach((section, _sectionIndex) => {
+                expectedEditionOutline.forEach(series => {
+                    series.sections.forEach(section => {
                         if (!section.disabled) {
                             // Check the router link for the section
                             const expectedSectionLinkParams = [series.series.route, 'section', section.section.route];
