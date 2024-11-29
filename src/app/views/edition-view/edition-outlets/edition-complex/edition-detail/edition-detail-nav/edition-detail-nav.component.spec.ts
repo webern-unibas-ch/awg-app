@@ -175,12 +175,12 @@ describe('EditionDetailNavComponent (DONE)', () => {
             });
 
             it('... should pass down editionRouterLinkButtons to RouterLinkButtonGroupComponent', () => {
-                const buttonDes = getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 1, 1);
-                const buttonCmp = buttonDes[0].injector.get(
+                const btnDes = getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 1, 1);
+                const btnCmp = btnDes[0].injector.get(
                     RouterLinkButtonGroupStubComponent
                 ) as RouterLinkButtonGroupStubComponent;
 
-                expectToEqual(buttonCmp.routerLinkButtons, expectedEditionRouterLinkButtons);
+                expectToEqual(btnCmp.routerLinkButtons, expectedEditionRouterLinkButtons);
             });
         });
     });

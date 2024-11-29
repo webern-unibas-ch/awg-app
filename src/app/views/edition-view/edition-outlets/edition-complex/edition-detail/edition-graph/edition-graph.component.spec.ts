@@ -354,7 +354,7 @@ describe('EditionGraphComponent (DONE)', () => {
                         1
                     );
                     const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-graph-description-empty', 1, 1);
-                    const pEl = pDes[0].nativeElement;
+                    const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                     // Create graph placeholder
                     const fullComplexSpan = mockDocument.createElement('span');
@@ -402,7 +402,7 @@ describe('EditionGraphComponent (DONE)', () => {
                         if (index === 0) {
                             return;
                         }
-                        const pEl = pDe.nativeElement;
+                        const pEl: HTMLParagraphElement = pDe.nativeElement;
                         expectToBe(pEl.textContent, `Description ${index}`);
                     });
                 }));
@@ -464,19 +464,19 @@ describe('EditionGraphComponent (DONE)', () => {
                     });
 
                     it('... should contain a header with help button and FullscreenToggleComponent (stubbed)', () => {
-                        const headerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-dynamic > h4', 1, 1);
-                        const headerEl = headerDes[0].nativeElement;
+                        const hDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-dynamic > h4', 1, 1);
+                        const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                        expectToContain(headerEl.textContent, 'Dynamischer Graph');
+                        expectToContain(hEl.textContent, 'Dynamischer Graph');
 
                         // Help button
-                        const btnDes = getAndExpectDebugElementByCss(headerDes[0], 'button.btn', 1, 1);
-                        const btnEl = btnDes[0].nativeElement;
+                        const btnDes = getAndExpectDebugElementByCss(hDes[0], 'button.btn', 1, 1);
+                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                         expectToContain(btnEl.textContent, 'Hinweise zur Nutzung');
 
                         // FullscreenToggle
-                        getAndExpectDebugElementByDirective(headerDes[0], FullscreenToggleStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(hDes[0], FullscreenToggleStubComponent, 1, 1);
                     });
 
                     it('... should trigger modal from click on help button', fakeAsync(() => {
@@ -492,7 +492,7 @@ describe('EditionGraphComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const btnEl = btnDes[0].nativeElement;
+                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                         // Click button
                         click(btnEl as HTMLElement);
@@ -504,7 +504,7 @@ describe('EditionGraphComponent (DONE)', () => {
 
                     it('... should contain a paragraph', () => {
                         const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-dynamic > p', 1, 1);
-                        const pEl = pDes[0].nativeElement;
+                        const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                         expect(pEl.textContent).toBeTruthy();
                     });
@@ -619,13 +619,13 @@ describe('EditionGraphComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const headerDes = getAndExpectDebugElementByCss(imgDes[0], 'h4', 1, 1);
-                    const headerEl = headerDes[0].nativeElement;
+                    const hDes = getAndExpectDebugElementByCss(imgDes[0], 'h4', 1, 1);
+                    const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                     const divDes = getAndExpectDebugElementByCss(imgDes[0], 'div', 1, 1);
-                    const divEl = divDes[0].nativeElement;
+                    const divEl: HTMLDivElement = divDes[0].nativeElement;
 
-                    expectToContain(headerEl.textContent, 'Statischer Graph');
+                    expectToContain(hEl.textContent, 'Statischer Graph');
 
                     expectToContain(divEl.textContent, component.GRAPH_IMAGES.OP25);
                 }));

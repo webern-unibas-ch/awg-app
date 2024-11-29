@@ -604,11 +604,11 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * It sets the width and height of the given container div with its provided value
      * or the dimensions (width and height) of the given container.
      *
-     * @param {ElementRef} containerEl The given container element.
+     * @param {ElementRef<HTMLElement>} containerEl The given container element.
      *
      * @returns {void} Sets width and height of the container div.
      */
-    private _getContainerDimensions(containerEl: ElementRef): void {
+    private _getContainerDimensions(containerEl: ElementRef<HTMLElement>): void {
         const dimensions = this._svgDrawingService.getContainerDimensions(containerEl);
 
         this._divWidth = this._divWidth ? this._divWidth : dimensions.width;

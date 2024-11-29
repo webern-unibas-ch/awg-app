@@ -132,9 +132,9 @@ describe('JsonViewerComponent (DONE)', () => {
             });
 
             it('... should contain one ngbNav with two ngbNavItems inside card-body', () => {
-                const bodyDe = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
+                const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
 
-                getAndExpectDebugElementByCss(bodyDe[0], 'nav[ngbNav]', 1, 1);
+                getAndExpectDebugElementByCss(bodyDes[0], 'nav[ngbNav]', 1, 1);
                 const navLinkDes = getNavLinks(fixture);
 
                 expectToBe(navLinkDes.length, 2);

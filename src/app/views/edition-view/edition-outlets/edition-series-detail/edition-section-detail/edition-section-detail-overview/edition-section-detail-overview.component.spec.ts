@@ -241,8 +241,8 @@ describe('EditionSectionDetailOverviewComponent', () => {
 
                 describe('... opus complexes', () => {
                     it('... should contain one inner div.awg-edition-section-detail-opus if opus complexes are given', () => {
-                        const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
-                        getAndExpectDebugElementByCss(divDe[0], 'div.awg-edition-section-detail-opus', 1, 1);
+                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
+                        getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-section-detail-opus', 1, 1);
                     });
 
                     it('... should contain no inner div.awg-edition-section-detail-opus if no opus complexes are given', waitForAsync(() => {
@@ -250,27 +250,27 @@ describe('EditionSectionDetailOverviewComponent', () => {
                         component.selectedSection$ = observableOf(expectedSelectedSection);
                         detectChangesOnPush(fixture);
 
-                        const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
-                        getAndExpectDebugElementByCss(divDe[0], 'div.awg-edition-section-detail-opus', 0, 0);
+                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
+                        getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-section-detail-opus', 0, 0);
                     }));
 
-                    it('... should display header (h5) in div.awg-edition-section-detail-opus', () => {
-                        const divDe = getAndExpectDebugElementByCss(
+                    it('... should display heading (h5) in div.awg-edition-section-detail-opus', () => {
+                        const divDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-edition-section-detail-opus',
                             1,
                             1
                         );
-                        const headerDe = getAndExpectDebugElementByCss(divDe[0], 'h5', 1, 1);
-                        const headerEl = headerDe[0].nativeElement;
+                        const hDes = getAndExpectDebugElementByCss(divDes[0], 'h5', 1, 1);
+                        const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                         const expectedHeaderText = 'nach Opusnummer:';
 
-                        expectToBe(headerEl.textContent, expectedHeaderText);
+                        expectToBe(hEl.textContent, expectedHeaderText);
                     });
 
                     it('... should contain one EditionSectionDetailComplexCardComponent (stubbed)', () => {
-                        const divDe = getAndExpectDebugElementByCss(
+                        const divDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-edition-section-detail-opus',
                             1,
@@ -278,7 +278,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                         );
 
                         getAndExpectDebugElementByDirective(
-                            divDe[0],
+                            divDes[0],
                             EditionSectionDetailComplexCardStubComponent,
                             1,
                             1
@@ -286,14 +286,14 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     });
 
                     it('... should pass down opus complexes to EditionSectionDetailComplexCardComponent', () => {
-                        const divDe = getAndExpectDebugElementByCss(
+                        const divDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-edition-section-detail-opus',
                             1,
                             1
                         );
                         const complexCardDes = getAndExpectDebugElementByDirective(
-                            divDe[0],
+                            divDes[0],
                             EditionSectionDetailComplexCardStubComponent,
                             1,
                             1
@@ -308,8 +308,8 @@ describe('EditionSectionDetailOverviewComponent', () => {
 
                 describe('... mnr complexes', () => {
                     it('... should contain one inner div.awg-edition-section-detail-mnr if mnr complexes are given', () => {
-                        const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
-                        getAndExpectDebugElementByCss(divDe[0], 'div.awg-edition-section-detail-mnr', 1, 1);
+                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
+                        getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-section-detail-mnr', 1, 1);
                     });
 
                     it('... should contain no inner div.awg-edition-section-detail-mnr if no mnr complexes are given', waitForAsync(() => {
@@ -317,25 +317,35 @@ describe('EditionSectionDetailOverviewComponent', () => {
                         component.selectedSection$ = observableOf(expectedSelectedSection);
                         detectChangesOnPush(fixture);
 
-                        const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
-                        getAndExpectDebugElementByCss(divDe[0], 'div.awg-edition-section-detail-mnr', 0, 0);
+                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 1, 1);
+                        getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-section-detail-mnr', 0, 0);
                     }));
 
                     it('... should display header (h5) in div.awg-edition-section-detail-mnr', () => {
-                        const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail-mnr', 1, 1);
-                        const headerDe = getAndExpectDebugElementByCss(divDe[0], 'h5', 1, 1);
-                        const headerEl = headerDe[0].nativeElement;
+                        const divDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-edition-section-detail-mnr',
+                            1,
+                            1
+                        );
+                        const hDes = getAndExpectDebugElementByCss(divDes[0], 'h5', 1, 1);
+                        const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                         const expectedHeaderText = 'nach Moldenhauer-Nummer:';
 
-                        expectToBe(headerEl.textContent, expectedHeaderText);
+                        expectToBe(hEl.textContent, expectedHeaderText);
                     });
 
                     it('... should contain one EditionSectionDetailComplexCardComponent (stubbed)', () => {
-                        const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail-mnr', 1, 1);
+                        const divDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-edition-section-detail-mnr',
+                            1,
+                            1
+                        );
 
                         getAndExpectDebugElementByDirective(
-                            divDe[0],
+                            divDes[0],
                             EditionSectionDetailComplexCardStubComponent,
                             1,
                             1
@@ -343,9 +353,14 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     });
 
                     it('... should pass down mnr complexes to EditionSectionDetailComplexCardComponent', () => {
-                        const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail-mnr', 1, 1);
+                        const divDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-edition-section-detail-mnr',
+                            1,
+                            1
+                        );
                         const complexCardDes = getAndExpectDebugElementByDirective(
-                            divDe[0],
+                            divDes[0],
                             EditionSectionDetailComplexCardStubComponent,
                             1,
                             1

@@ -200,7 +200,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                         if (!expectedSection.disabled) {
                             const containerDes = getAndExpectDebugElementByCss(cardDe, 'div.awg-img-container', 1, 1);
                             const imgDes = getAndExpectDebugElementByCss(containerDes[0], 'img.card-img-top', 1, 1);
-                            const imgEl = imgDes[0].nativeElement;
+                            const imgEl: HTMLImageElement = imgDes[0].nativeElement;
 
                             const expectedSrc =
                                 'assets/img/edition/series/' +
@@ -233,7 +233,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                         if (!expectedSection.disabled) {
                             const containerDes = getAndExpectDebugElementByCss(cardDe, 'div.awg-img-container', 1, 1);
                             const imgDes = getAndExpectDebugElementByCss(containerDes[0], 'img.card-img-top', 1, 1);
-                            const imgEl = imgDes[0].nativeElement;
+                            const imgEl: HTMLImageElement = imgDes[0].nativeElement;
 
                             const expectedAlt = 'In Vorbereitung';
 
@@ -261,7 +261,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                         if (!expectedSection.disabled) {
                             const containerDes = getAndExpectDebugElementByCss(cardDe, 'div.awg-img-container', 1, 1);
                             const imgDes = getAndExpectDebugElementByCss(containerDes[0], 'img.card-img-top', 1, 1);
-                            const imgEl = imgDes[0].nativeElement;
+                            const imgEl: HTMLImageElement = imgDes[0].nativeElement;
 
                             const expectedTitle = `AWG ${expectedSelectedSeries.series.short}/${expectedSection.section.short}`;
 
@@ -309,7 +309,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const contentEl = contentDes[0].nativeElement;
+                        const contentEl: HTMLDivElement = contentDes[0].nativeElement;
 
                         if (!expectedSection.disabled) {
                             expectToContain(contentEl.classList, 'col-8');
@@ -378,7 +378,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                             const expectedSection = expectedSelectedSeries.sections[index];
 
                             const bodyDes = getAndExpectDebugElementByCss(cardDe, 'div.card-body', 1, 1);
-                            const bodyEl = bodyDes[0].nativeElement;
+                            const bodyEl: HTMLDivElement = bodyDes[0].nativeElement;
 
                             if (!expectedSection.disabled) {
                                 expectToContain(bodyEl.classList, 'awg-card-border-top');
@@ -400,10 +400,10 @@ describe('EditionSectionsComponent (DONE)', () => {
 
                         cardDes.forEach(cardDe => {
                             const bodyDes = getAndExpectDebugElementByCss(cardDe, 'div.card-body', 1, 1);
-                            const headerDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5.card-title', 1, 1);
-                            const headerEl = headerDes[0].nativeElement;
+                            const hDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5.card-title', 1, 1);
+                            const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                            expect(headerEl.textContent).toBeDefined();
+                            expect(hEl.textContent).toBeDefined();
                         });
                     });
 
@@ -419,13 +419,10 @@ describe('EditionSectionsComponent (DONE)', () => {
 
                         cardDes.forEach((cardDe, index) => {
                             const bodyDes = getAndExpectDebugElementByCss(cardDe, 'div.card-body', 1, 1);
-                            const headerDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5.card-title', 1, 1);
-                            const headerEl = headerDes[0].nativeElement;
+                            const hDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5.card-title', 1, 1);
+                            const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                            expectToBe(
-                                headerEl.textContent.trim(),
-                                expectedSelectedSeries.sections[index].section.full
-                            );
+                            expectToBe(hEl.textContent.trim(), expectedSelectedSeries.sections[index].section.full);
                         });
                     });
 
@@ -441,13 +438,13 @@ describe('EditionSectionsComponent (DONE)', () => {
 
                         cardDes.forEach((cardDe, index) => {
                             const bodyDes = getAndExpectDebugElementByCss(cardDe, 'div.card-body', 1, 1);
-                            const headerDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5.card-title', 1, 1);
-                            const headerEl = headerDes[0].nativeElement;
+                            const hDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5.card-title', 1, 1);
+                            const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                             if (expectedSelectedSeries.sections[index].disabled) {
-                                expectToContain(headerEl.classList, 'text-muted');
+                                expectToContain(hEl.classList, 'text-muted');
                             } else {
-                                expect(headerEl.classList).not.toContain('text-muted');
+                                expect(hEl.classList).not.toContain('text-muted');
                             }
                         });
                     });
@@ -516,7 +513,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const footerLinkEl = footerLinkDes[0].nativeElement;
+                            const footerLinkEl: HTMLAnchorElement = footerLinkDes[0].nativeElement;
 
                             const expectedLinkText = 'Mehr ...';
 
@@ -544,7 +541,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const footerLinkEl = footerLinkDes[0].nativeElement;
+                            const footerLinkEl: HTMLAnchorElement = footerLinkDes[0].nativeElement;
 
                             if (expectedSection.disabled) {
                                 expectToContain(footerLinkEl.classList, 'disabled');

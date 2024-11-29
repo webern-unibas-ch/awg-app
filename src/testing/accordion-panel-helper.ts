@@ -12,7 +12,7 @@ import { DebugElement } from '@angular/core';
  * @returns {void} Evaluates the expectation.
  */
 function expectAccordionItem(headerDe: DebugElement, msg: string, collapsed?: boolean): void {
-    const headerEl = headerDe.nativeElement;
+    const headerEl: HTMLDivElement = headerDe.nativeElement;
     const isCollapsed = headerEl.classList.contains('collapsed');
 
     expect(isCollapsed)

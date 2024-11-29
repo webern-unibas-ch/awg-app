@@ -55,22 +55,22 @@ describe('EditionSvgSheetViewerNavComponent', () => {
             it('... should contain 1 div.prev and 1 div.next in div.awg-edition-svg-sheet-viewer-nav', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-viewer-nav > div', 2, 2);
 
-                const sheetViewerNavDe = getAndExpectDebugElementByCss(
+                const sheetViewerNavDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-edition-svg-sheet-viewer-nav',
                     1,
                     1
                 );
 
-                getAndExpectDebugElementByCss(sheetViewerNavDe[0], 'div.prev', 1, 1);
-                getAndExpectDebugElementByCss(sheetViewerNavDe[0], 'div.next', 1, 1);
+                getAndExpectDebugElementByCss(sheetViewerNavDes[0], 'div.prev', 1, 1);
+                getAndExpectDebugElementByCss(sheetViewerNavDes[0], 'div.next', 1, 1);
             });
 
             it('... should display left arrow in div.prev', () => {
-                const divPrevDe = getAndExpectDebugElementByCss(compDe, 'div.prev', 1, 1);
+                const divPrevDes = getAndExpectDebugElementByCss(compDe, 'div.prev', 1, 1);
 
-                const spanDe = getAndExpectDebugElementByCss(divPrevDe[0], 'span', 1, 1);
-                const spanEl = spanDe[0].nativeElement;
+                const spanDes = getAndExpectDebugElementByCss(divPrevDes[0], 'span', 1, 1);
+                const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                 // Process HTML expression of expected text content
                 const expectedHtmlTextContent = mockDocument.createElement('span');
@@ -80,10 +80,10 @@ describe('EditionSvgSheetViewerNavComponent', () => {
             });
 
             it('... should display right arrow in div.next', () => {
-                const divNextDe = getAndExpectDebugElementByCss(compDe, 'div.next', 1, 1);
+                const divNextDes = getAndExpectDebugElementByCss(compDe, 'div.next', 1, 1);
 
-                const spanDe = getAndExpectDebugElementByCss(divNextDe[0], 'span', 1, 1);
-                const spanEl = spanDe[0].nativeElement;
+                const spanDes = getAndExpectDebugElementByCss(divNextDes[0], 'span', 1, 1);
+                const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                 // Process HTML expression of expected text content
                 const expectedHtmlTextContent = mockDocument.createElement('span');
@@ -106,21 +106,21 @@ describe('EditionSvgSheetViewerNavComponent', () => {
             });
 
             it('... should trigger on click on div.prev', fakeAsync(() => {
-                const divPrevDe = getAndExpectDebugElementByCss(compDe, 'div.prev', 1, 1);
+                const divPrevDes = getAndExpectDebugElementByCss(compDe, 'div.prev', 1, 1);
                 const expectedDirection = -1;
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(divPrevDe[0], fixture);
+                clickAndAwaitChanges(divPrevDes[0], fixture);
 
                 expectSpyCall(browseSvgSheetSpy, 1, expectedDirection);
             }));
 
             it('... should trigger on click on div.next', fakeAsync(() => {
-                const divNextDe = getAndExpectDebugElementByCss(compDe, 'div.next', 1, 1);
+                const divNextDes = getAndExpectDebugElementByCss(compDe, 'div.next', 1, 1);
                 const expectedDirection = 1;
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(divNextDe[0], fixture);
+                clickAndAwaitChanges(divNextDes[0], fixture);
 
                 expectSpyCall(browseSvgSheetSpy, 1, expectedDirection);
             }));

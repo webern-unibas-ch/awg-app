@@ -186,10 +186,10 @@ describe('EditionSeriesComponent (DONE)', () => {
 
                 cardDes.forEach((cardDe, index) => {
                     const expectedSeries = expectedEditionOutline[index].series;
-                    const h5De = getAndExpectDebugElementByCss(cardDe, 'h5.card-header', 1, 1);
-                    const h5El = h5De[0].nativeElement;
+                    const hDes = getAndExpectDebugElementByCss(cardDe, 'h5.card-header', 1, 1);
+                    const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                    expectToBe(h5El.textContent.trim(), expectedSeries.full);
+                    expectToBe(hEl.textContent.trim(), expectedSeries.full);
                 });
             });
 
@@ -283,7 +283,7 @@ describe('EditionSeriesComponent (DONE)', () => {
 
                         liDes.forEach((liDe, liIndex) => {
                             const expectedSection = expectedSections[liIndex].section;
-                            const liEl = liDe.nativeElement;
+                            const liEl: HTMLLIElement = liDe.nativeElement;
 
                             expectToBe(liEl.textContent.trim(), expectedSection.full);
                         });
@@ -418,7 +418,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const footerLinkEl = footerLinkDes[0].nativeElement;
+                        const footerLinkEl: HTMLAnchorElement = footerLinkDes[0].nativeElement;
 
                         const expectedLinkText = 'Mehr ...';
 

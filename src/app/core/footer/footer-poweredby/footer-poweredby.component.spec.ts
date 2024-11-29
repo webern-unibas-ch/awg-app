@@ -129,8 +129,8 @@ describe('FooterPoweredbyComponent (DONE)', () => {
             });
 
             it('... should display screwdriverWrench icon in devPreview link ', () => {
-                const faIconDe = getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link > fa-icon', 1, 1);
-                const faIconIns = faIconDe[0].componentInstance.icon;
+                const faIconDes = getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link > fa-icon', 1, 1);
+                const faIconIns = faIconDes[0].componentInstance.icon;
 
                 expectToEqual(faIconIns, expectedScrewdriverWrenchIcon);
             });

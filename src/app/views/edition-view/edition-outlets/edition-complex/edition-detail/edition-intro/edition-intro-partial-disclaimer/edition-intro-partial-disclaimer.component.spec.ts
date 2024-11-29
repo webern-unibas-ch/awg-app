@@ -95,7 +95,7 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
             it('... should contain a text-muted paragraph (no-para) in div', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-partial-disclaimer', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
-                const pEl = pDes[0].nativeElement;
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expect(pEl).toHaveClass('text-muted');
                 expect(pEl).toHaveClass('no-para');
@@ -145,7 +145,7 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
             it('... should display text-muted disclaimer in paragraph', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-partial-disclaimer', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
-                const pEl = pDes[0].nativeElement;
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expect(pEl).toHaveClass('text-muted');
                 expect(pEl).toHaveClass('no-para');

@@ -77,37 +77,37 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             });
 
             it('... should have a form in div.awg-view-handle-btn-group', () => {
-                const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-view-handle-btn-group', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-view-handle-btn-group', 1, 1);
 
-                getAndExpectDebugElementByCss(divDe[0], 'form', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'form', 1, 1);
             });
 
             it('... should have another div.btn-group in form', () => {
-                const formDe = getAndExpectDebugElementByCss(compDe, 'div.awg-view-handle-btn-group > form', 1, 1);
+                const formDes = getAndExpectDebugElementByCss(compDe, 'div.awg-view-handle-btn-group > form', 1, 1);
 
-                getAndExpectDebugElementByCss(formDe[0], 'div.btn-group', 1, 1);
+                getAndExpectDebugElementByCss(formDes[0], 'div.btn-group', 1, 1);
             });
 
             it('... should not have any input elements in div.btn-group', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-view-handle-btn-group > form > div.btn-group',
                     1,
                     1
                 );
 
-                getAndExpectDebugElementByCss(divDe[0], 'input', 0, 0);
+                getAndExpectDebugElementByCss(divDes[0], 'input', 0, 0);
             });
 
             it('... should not have any label elements in div.btn-group', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-view-handle-btn-group > form > div.btn-group',
                     1,
                     1
                 );
 
-                getAndExpectDebugElementByCss(divDe[0], 'label', 0, 0);
+                getAndExpectDebugElementByCss(divDes[0], 'label', 0, 0);
             });
         });
     });
@@ -128,7 +128,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should have as many radio elements (input.btn-check) in div.btn-group as viewHandles given', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-view-handle-btn-group > form > div.btn-group',
                     1,
@@ -136,26 +136,27 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 );
 
                 const inputDes = getAndExpectDebugElementByCss(
-                    divDe[0],
+                    divDes[0],
                     'input.btn-check',
                     expectedViewHandles.length,
                     expectedViewHandles.length
                 );
 
                 for (let i = 0; i < expectedViewHandles.length; i++) {
-                    expectToBe(inputDes[i].nativeElement.type, 'radio');
+                    const inputEl: HTMLInputElement = inputDes[i].nativeElement;
+                    expectToBe(inputEl.type, 'radio');
                 }
             });
 
             it('... should set the value of the input element to the viewHandle type', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-view-handle-btn-group > form > div.btn-group',
                     1,
                     1
                 );
                 const inputDes = getAndExpectDebugElementByCss(
-                    divDe[0],
+                    divDes[0],
                     'input',
                     expectedViewHandles.length,
                     expectedViewHandles.length
@@ -167,22 +168,22 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             });
 
             it('... should set the id of the input element to `{viewHandle.type}-view-button`', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-view-handle-btn-group > form > div.btn-group',
                     1,
                     1
                 );
                 const inputDes = getAndExpectDebugElementByCss(
-                    divDe[0],
+                    divDes[0],
                     'input',
                     expectedViewHandles.length,
                     expectedViewHandles.length
                 );
 
-                const inputEl1 = inputDes[0].nativeElement;
-                const inputEl2 = inputDes[1].nativeElement;
-                const inputEl3 = inputDes[2].nativeElement;
+                const inputEl1: HTMLInputElement = inputDes[0].nativeElement;
+                const inputEl2: HTMLInputElement = inputDes[1].nativeElement;
+                const inputEl3: HTMLInputElement = inputDes[2].nativeElement;
 
                 expectToBe(inputEl1.id, `${expectedViewHandles[0].type}-view-button`);
                 expectToBe(inputEl2.id, `${expectedViewHandles[1].type}-view-button`);
@@ -190,7 +191,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             });
 
             it('... should have as many label elements in div.btn-group as viewHandles given', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-view-handle-btn-group > form > div.btn-group',
                     1,
@@ -198,7 +199,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 );
 
                 getAndExpectDebugElementByCss(
-                    divDe[0],
+                    divDes[0],
                     'label',
                     expectedViewHandles.length,
                     expectedViewHandles.length
@@ -206,14 +207,14 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             });
 
             it('... should have as many icon elements in div.btn-group > label as viewHandles given', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-view-handle-btn-group > form > div.btn-group',
                     1,
                     1
                 );
                 const iconDes = getAndExpectDebugElementByCss(
-                    divDe[0],
+                    divDes[0],
                     'label > fa-icon',
                     expectedViewHandles.length,
                     expectedViewHandles.length
@@ -229,14 +230,14 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             });
 
             it('... should set the label for the correct input', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-view-handle-btn-group > form > div.btn-group',
                     1,
                     1
                 );
                 const labelDes = getAndExpectDebugElementByCss(
-                    divDe[0],
+                    divDes[0],
                     'label',
                     expectedViewHandles.length,
                     expectedViewHandles.length
@@ -248,14 +249,14 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             });
 
             it('... should display tooltip with `{type} view` for each view handle', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-view-handle-btn-group > form > div.btn-group',
                     1,
                     1
                 );
                 const labelDes = getAndExpectDebugElementByCss(
-                    divDe[0],
+                    divDes[0],
                     'label',
                     expectedViewHandles.length,
                     expectedViewHandles.length
@@ -372,7 +373,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                     3,
                     3
                 );
-                const inputEl = inputDes[0].nativeElement;
+                const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                 inputEl.dispatchEvent(new Event('change'));
                 fixture.detectChanges();
@@ -387,7 +388,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                     3,
                     3
                 );
-                const inputEl = inputDes[1].nativeElement;
+                const inputEl: HTMLInputElement = inputDes[1].nativeElement;
 
                 inputEl.dispatchEvent(new Event('change'));
                 fixture.detectChanges();
@@ -402,7 +403,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                     3,
                     3
                 );
-                const inputEl = inputDes[2].nativeElement;
+                const inputEl: HTMLInputElement = inputDes[2].nativeElement;
 
                 inputEl.dispatchEvent(new Event('change'));
                 fixture.detectChanges();

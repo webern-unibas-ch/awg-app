@@ -122,12 +122,12 @@ describe('FullscreenToggleComponent (DONE)', () => {
         describe('VIEW', () => {
             describe('... not in fullscreen mode', () => {
                 it('... should contain one "open fullscreen" button', () => {
-                    const buttonDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
-                    const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     const expectedTitle = 'Open fullscreen';
 
-                    expectToBe(buttonEl.title.trim(), expectedTitle);
+                    expectToBe(btnEl.title.trim(), expectedTitle);
                 });
 
                 it('... should display expand icon on "open fullscreen" button', () => {
@@ -146,12 +146,12 @@ describe('FullscreenToggleComponent (DONE)', () => {
                 });
 
                 it('... should contain one "close fullscreen" button', () => {
-                    const buttonDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
-                    const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 1, 1);
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     const expectedTitle = 'Close fullscreen';
 
-                    expectToBe(buttonEl.title.trim(), expectedTitle);
+                    expectToBe(btnEl.title.trim(), expectedTitle);
                 });
 
                 it('... should display compress icon on "close fullscreen" button when in fullscreen mode', () => {

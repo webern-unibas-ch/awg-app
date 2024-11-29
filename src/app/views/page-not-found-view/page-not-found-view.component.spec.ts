@@ -93,7 +93,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                     1,
                     1
                 );
-                const bodyEl = bodyDes[0].nativeElement;
+                const bodyEl: HTMLDivElement = bodyDes[0].nativeElement;
 
                 expectToContain(bodyEl.classList, 'text-center');
             });
@@ -116,7 +116,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                     1
                 );
                 const subtitleDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5#awg-page-not-found-subtitle', 1, 1);
-                const subtitleEl = subtitleDes[0].nativeElement;
+                const subtitleEl: HTMLHeadingElement = subtitleDes[0].nativeElement;
 
                 expectToBe(subtitleEl.textContent, '');
             });
@@ -129,7 +129,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                     1
                 );
                 const imgDes = getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-page-not-found-image > img', 1, 1);
-                const imgEl = imgDes[0].nativeElement;
+                const imgEl: HTMLImageElement = imgDes[0].nativeElement;
 
                 expectToBe(imgEl.src, '');
             });
@@ -144,7 +144,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
 
             it('... should not render contact url yet', () => {
                 const contactDes = getAndExpectDebugElementByCss(compDe, 'p#awg-page-not-found-contact > a', 1, 1);
-                const contactEl = contactDes[0].nativeElement;
+                const contactEl: HTMLAnchorElement = contactDes[0].nativeElement;
 
                 expectToBe(contactEl.href, '');
             });
@@ -190,7 +190,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                     1
                 );
                 const subtitleDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5#awg-page-not-found-subtitle', 1, 1);
-                const subtitleEl = subtitleDes[0].nativeElement;
+                const subtitleEl: HTMLHeadingElement = subtitleDes[0].nativeElement;
 
                 expectToContain(subtitleEl.textContent, expectedPageNotFoundSubTitle);
             });
@@ -203,7 +203,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                     1
                 );
                 const imgDes = getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-page-not-found-image > img', 1, 1);
-                const imgEl = imgDes[0].nativeElement;
+                const imgEl: HTMLImageElement = imgDes[0].nativeElement;
 
                 expectToContain(imgEl.src, expectedPageNotFoundImgPath);
                 expectToBe(imgEl.alt, 'Page not found');
@@ -219,7 +219,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
 
             it('... should render contact url', () => {
                 const contactDes = getAndExpectDebugElementByCss(compDe, 'p#awg-page-not-found-contact > a', 1, 1);
-                const contactEl = contactDes[0].nativeElement;
+                const contactEl: HTMLAnchorElement = contactDes[0].nativeElement;
 
                 expectToContain(contactEl.href, expectedAwgContactUrl);
             });

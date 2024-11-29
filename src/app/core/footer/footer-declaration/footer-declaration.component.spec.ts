@@ -135,12 +135,12 @@ describe('FooterDeclarationComponent (DONE)', () => {
             });
 
             it('... can click imprint link in template', () => {
-                const imprintLinkDe = linkDes[0]; // Contact link DebugElement
+                const imprintLinkDes = linkDes[0]; // Contact link DebugElement
                 const imprintLink = routerLinks[0]; // Contact link directive
 
                 expectToBe(imprintLink.navigatedTo, null);
 
-                click(imprintLinkDe);
+                click(imprintLinkDes);
                 fixture.detectChanges();
 
                 expectToEqual(imprintLink.navigatedTo, ['/contact']);
@@ -148,12 +148,12 @@ describe('FooterDeclarationComponent (DONE)', () => {
             });
 
             it('... can click documentation link in template', () => {
-                const documentationLinkDe = linkDes[1]; // Contact link DebugElement
+                const documentationLinkDes = linkDes[1]; // Contact link DebugElement
                 const documentationLink = routerLinks[1]; // Contact link directive
 
                 expectToBe(documentationLink.navigatedTo, null);
 
-                click(documentationLinkDe);
+                click(documentationLinkDes);
                 fixture.detectChanges();
 
                 expectToEqual(documentationLink.navigatedTo, ['/contact']);

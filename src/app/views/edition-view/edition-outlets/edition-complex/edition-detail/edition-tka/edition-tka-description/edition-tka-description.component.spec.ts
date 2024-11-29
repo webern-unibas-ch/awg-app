@@ -139,7 +139,7 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
                     expectedTextcriticalDescriptions.length
                 );
                 pDes.forEach((pDe, index) => {
-                    const pEl = pDe.nativeElement;
+                    const pEl: HTMLParagraphElement = pDe.nativeElement;
 
                     const htmlDescriptionEntry = mockDocument.createElement('p');
                     htmlDescriptionEntry.innerHTML = expectedTextcriticalDescriptions[index];

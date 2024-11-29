@@ -210,17 +210,17 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one div.svgGrid with one div.svgRow', () => {
-                const gridDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid', 1, 1);
+                const gridDes = getAndExpectDebugElementByCss(compDe, 'div.svgGrid', 1, 1);
 
-                getAndExpectDebugElementByCss(gridDe[0], 'div.svgRow', 1, 1);
+                getAndExpectDebugElementByCss(gridDes[0], 'div.svgRow', 1, 1);
             });
 
             it('... should contain as many div.svgCol in div.svgRow as content segments in folioSvgDataArray', async () => {
-                const rowDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
+                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
 
                 expect(component.folioSvgDataArray.length).toBeGreaterThan(0);
                 getAndExpectDebugElementByCss(
-                    rowDe[0],
+                    rowDes[0],
                     'div.svgCol',
                     expectedFolioSvgDataArray.length,
                     expectedFolioSvgDataArray.length
@@ -228,17 +228,17 @@ describe('EditionFolioViewerComponent (DONE)', () => {
             });
 
             it('... should have correct bootstrap grid classes for div.svgCol', () => {
-                const rowDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
+                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
 
-                const colDe = getAndExpectDebugElementByCss(
-                    rowDe[0],
+                const colDes = getAndExpectDebugElementByCss(
+                    rowDes[0],
                     'div.svgCol',
                     expectedFolioSvgDataArray.length,
                     expectedFolioSvgDataArray.length
                 );
 
-                colDe.forEach(col => {
-                    const colEl = col.nativeElement;
+                colDes.forEach(colDe => {
+                    const colEl: HTMLDivElement = colDe.nativeElement;
 
                     const expectedLgColClass = 'col-lg-' + Math.floor(12 / expectedFolioSvgDataArray.length);
 
@@ -248,31 +248,31 @@ describe('EditionFolioViewerComponent (DONE)', () => {
             });
 
             it('... should contain as many muted span elements in div.svgCol as content segments in folioSvgDataArray', () => {
-                const rowDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
-                const colDe = getAndExpectDebugElementByCss(
-                    rowDe[0],
+                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
+                const colDes = getAndExpectDebugElementByCss(
+                    rowDes[0],
                     'div.svgCol',
                     expectedFolioSvgDataArray.length,
                     expectedFolioSvgDataArray.length
                 );
 
-                colDe.forEach(col => {
-                    getAndExpectDebugElementByCss(col, 'span.text-muted', 1, 1);
+                colDes.forEach(colDe => {
+                    getAndExpectDebugElementByCss(colDe, 'span.text-muted', 1, 1);
                 });
             });
 
             it('... should display correct folioId in muted span elements', () => {
-                const rowDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
-                const colDe = getAndExpectDebugElementByCss(
-                    rowDe[0],
+                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
+                const colDes = getAndExpectDebugElementByCss(
+                    rowDes[0],
                     'div.svgCol',
                     expectedFolioSvgDataArray.length,
                     expectedFolioSvgDataArray.length
                 );
 
-                colDe.forEach((col, index) => {
-                    const spanDe = getAndExpectDebugElementByCss(col, 'span.text-muted', 1, 1);
-                    const spanEl = spanDe[0].nativeElement;
+                colDes.forEach((colDe, index) => {
+                    const spanDes = getAndExpectDebugElementByCss(colDe, 'span.text-muted', 1, 1);
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
                     const expectedFolioId = expectedFolioSvgDataArray[index].sheet.folioId;
                     const expectedContent = `[${expectedFolioId}]`;
 
@@ -281,32 +281,32 @@ describe('EditionFolioViewerComponent (DONE)', () => {
             });
 
             it('... should contain as many svg elements in div.svgCol as content segments in folioSvgDataArray', () => {
-                const rowDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
+                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
 
-                const colDe = getAndExpectDebugElementByCss(
-                    rowDe[0],
+                const colDes = getAndExpectDebugElementByCss(
+                    rowDes[0],
                     'div.svgCol',
                     expectedFolioSvgDataArray.length,
                     expectedFolioSvgDataArray.length
                 );
 
-                colDe.forEach(col => {
-                    getAndExpectDebugElementByCss(col, 'svg', 1, 1);
+                colDes.forEach(colDe => {
+                    getAndExpectDebugElementByCss(colDe, 'svg', 1, 1);
                 });
             });
 
             it('... should have correct id for each svg element', () => {
-                const rowDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
-                const colDe = getAndExpectDebugElementByCss(
-                    rowDe[0],
+                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
+                const colDes = getAndExpectDebugElementByCss(
+                    rowDes[0],
                     'div.svgCol',
                     expectedFolioSvgDataArray.length,
                     expectedFolioSvgDataArray.length
                 );
 
-                colDe.forEach((col, index) => {
-                    const svgDe = getAndExpectDebugElementByCss(col, 'svg', 1, 1);
-                    const svgEl = svgDe[0].nativeElement;
+                colDes.forEach((colDe, index) => {
+                    const svgDes = getAndExpectDebugElementByCss(colDe, 'svg', 1, 1);
+                    const svgEl: SVGSVGElement = svgDes[0].nativeElement;
                     const expectedSvgId = `folio-${expectedSvgSheet.id}-${expectedFolioSvgDataArray[index].sheet.folioId}`;
 
                     expectToBe(svgEl.id, expectedSvgId);

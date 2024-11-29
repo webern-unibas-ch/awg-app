@@ -929,12 +929,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
 
             it('... should trigger on click', fakeAsync(() => {
-                const buttonDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'button#awg-resource-info-input-group-text',
-                    1,
-                    1
-                );
+                const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-resource-info-input-group-text', 1, 1);
 
                 // Set input to another index then current.displayIndex (=3)
                 let chosenIndex = 1;
@@ -945,7 +940,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 // Trigger click on resourceIndex=1 with click helper & wait for changes
-                clickAndAwaitChanges(buttonDes[0], fixture);
+                clickAndAwaitChanges(btnDes[0], fixture);
 
                 // Called resourceIndex=1 (id: 1230)
                 expectSpyCall(navigateToResourceByIndexSpy, 1, 1);
@@ -961,7 +956,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 // Trigger click on resourceIndex=5 with click helper & wait for changes
-                clickAndAwaitChanges(buttonDes[0], fixture);
+                clickAndAwaitChanges(btnDes[0], fixture);
 
                 // Called resourceIndex=5 (id: 1234)
                 expectSpyCall(navigateToResourceByIndexSpy, 2, 5);
@@ -1101,18 +1096,18 @@ describe('ResourceInfoComponent (DONE)', () => {
 
             describe('... should trigger on click', () => {
                 it('... without query', fakeAsync(() => {
-                    const buttonDe = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
 
                     component.resourceInfoData.searchResults = new SearchResponseWithQuery(mockSearchResponseJson, '');
 
                     // Trigger click with click helper & wait for changes
-                    clickAndAwaitChanges(buttonDe[0], fixture);
+                    clickAndAwaitChanges(btnDes[0], fixture);
 
                     expectSpyCall(navigateToSearchPanelSpy, 1);
                 }));
 
                 it('with string query', fakeAsync(() => {
-                    const buttonDe = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
 
                     component.resourceInfoData.searchResults = new SearchResponseWithQuery(
                         mockSearchResponseJson,
@@ -1120,13 +1115,13 @@ describe('ResourceInfoComponent (DONE)', () => {
                     );
 
                     // Trigger click with click helper & wait for changes
-                    clickAndAwaitChanges(buttonDe[0], fixture);
+                    clickAndAwaitChanges(btnDes[0], fixture);
 
                     expectSpyCall(navigateToSearchPanelSpy, 1);
                 }));
 
                 it('with object query', fakeAsync(() => {
-                    const buttonDe = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
 
                     component.resourceInfoData.searchResults = new SearchResponseWithQuery(mockSearchResponseJson, {
                         filterByRestype: '43',
@@ -1136,7 +1131,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                     });
 
                     // Trigger click with click helper & wait for changes
-                    clickAndAwaitChanges(buttonDe[0], fixture);
+                    clickAndAwaitChanges(btnDes[0], fixture);
 
                     expectSpyCall(navigateToSearchPanelSpy, 1);
                 }));
@@ -1165,8 +1160,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                 });
 
                 it('... should have faArrowLeft icon in first div button', () => {
-                    const buttonDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
-                    const iconDes = getAndExpectDebugElementByCss(buttonDes[0], 'fa-icon', 1, 1);
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
+                    const iconDes = getAndExpectDebugElementByCss(btnDes[0], 'fa-icon', 1, 1);
 
                     expect(iconDes[0].children[0]).toBeTruthy();
                     expect(iconDes[0].children[0].classes).toBeTruthy();
@@ -1174,9 +1169,9 @@ describe('ResourceInfoComponent (DONE)', () => {
                 });
 
                 it('... should display innerHTML text on first div button', () => {
-                    const buttonDe = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
-                    const spanDe = getAndExpectDebugElementByCss(buttonDe[0], 'span.awg-resource-info-btn-text', 1, 1);
-                    const spanEl = spanDe[0].nativeElement;
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
+                    const spanDes = getAndExpectDebugElementByCss(btnDes[0], 'span.awg-resource-info-btn-text', 1, 1);
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                     const expectedText = 'Zur Suche';
 
@@ -1186,7 +1181,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 it('... should display bold, small, muted text in second div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div', 2, 2);
                     const strongDes = getAndExpectDebugElementByCss(divDes[1], 'strong', 1, 1);
-                    const strongEl = strongDes[0].nativeElement;
+                    const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                     const expectedText = 'Aktuelle Suchanfrage';
 
@@ -1203,7 +1198,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div', 2, 2);
                     const spanDes = getAndExpectDebugElementByCss(divDes[1], 'span', 1, 1);
-                    const spanEl = spanDes[0].nativeElement;
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                     expectToBe(spanEl.innerText, jsonPipe.transform(expectedQuery));
                 });
@@ -1215,7 +1210,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div', 2, 2);
                     const spanDes = getAndExpectDebugElementByCss(divDes[1], 'span', 1, 1);
-                    const spanEl = spanDes[0].nativeElement;
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                     const expectedText = '---';
 
@@ -1239,7 +1234,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                     it('... should display text left (text-start)', () => {
                         const ulDes = getAndExpectDebugElementByCss(compDe, 'ul.awg-resource-info-list-group', 1, 1);
                         const aDes = getAndExpectDebugElementByCss(ulDes[0], 'a.awg-list-group-item', 2, 2);
-                        const aEl0 = aDes[0].nativeElement;
+                        const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
 
                         expect(aEl0).toHaveClass('text-start');
                     });
@@ -1252,7 +1247,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const aEl0 = aDes[0].nativeElement;
+                            const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
 
                             expect(aEl0).toHaveClass('list-group-item-action');
                         });
@@ -1292,7 +1287,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
                             // Get first div
                             const strongDes = getAndExpectDebugElementByCss(divDes[0], 'strong', 1, 1);
-                            const strongEl = strongDes[0].nativeElement;
+                            const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                             expect(strongEl).toHaveClass('text-muted');
                             expect(strongEl).toHaveClass('small');
@@ -1325,7 +1320,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1
                             );
 
-                            const spanEl = spanDes[0].nativeElement;
+                            const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
                             const expectedIndex = component.resourceInfoData.resources.previous.displayIndex; // = 2
                             const expectedInnerText = `Vorheriges Ergebnis (${expectedIndex}/${expectedResultSize})`;
 
@@ -1341,7 +1336,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
                             const divDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line', 2, 2);
                             // Get second div
-                            const divEl1 = divDes[1].nativeElement;
+                            const divEl1: HTMLDivElement = divDes[1].nativeElement;
 
                             expect(divEl1).toHaveClass('text-muted');
                             expect(divEl1).toHaveClass('small');
@@ -1361,7 +1356,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2,
                                 2
                             );
-                            const spanEl0 = spanDes[0].nativeElement;
+                            const spanEl0: HTMLSpanElement = spanDes[0].nativeElement;
                             const title = component.resourceInfoData.resources.previous.title; // = Nelson 1974
 
                             expectToBe(spanEl0.innerText, title);
@@ -1380,7 +1375,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2,
                                 2
                             );
-                            const spanEl1 = spanDes[1].nativeElement;
+                            const spanEl1: HTMLSpanElement = spanDes[1].nativeElement;
                             const subTitle = component.resourceInfoData.resources.previous.subtitle; // = Bibliografie
 
                             expectToBe(spanEl1.innerText, subTitle);
@@ -1410,7 +1405,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const aEl0 = aDes[0].nativeElement;
+                            const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
 
                             expect(aEl0).toHaveClass('list-group-item-danger');
                         });
@@ -1433,7 +1428,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
                             // Get first div
                             const strongDes = getAndExpectDebugElementByCss(divDes[0], 'strong', 1, 1);
-                            const strongEl = strongDes[0].nativeElement;
+                            const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                             expect(strongEl).toHaveClass('text-muted');
                             expect(strongEl).toHaveClass('small');
@@ -1463,15 +1458,15 @@ describe('ResourceInfoComponent (DONE)', () => {
                             // Get second outer div
                             const divDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line', 2, 2);
                             // Get second inner div
-                            const divEl1 = divDes[1].nativeElement;
+                            const divEl1: HTMLDivElement = divDes[1].nativeElement;
 
                             expect(divEl1).toHaveClass('text-muted');
                             expect(divEl1).toHaveClass('small');
 
                             // Get spans
                             const spanDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line span', 2, 2);
-                            const spanEl0 = spanDes[0].nativeElement;
-                            const spanEl1 = spanDes[1].nativeElement;
+                            const spanEl0: HTMLSpanElement = spanDes[0].nativeElement;
+                            const spanEl1: HTMLSpanElement = spanDes[1].nativeElement;
 
                             const whiteSpace = '\xA0'; // Hex code for a non-breaking space '&nbsp;'
 
@@ -1489,7 +1484,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                         it('... should have list-group-item-info class', () => {
                             const liDes = getAndExpectDebugElementByCss(compDe, 'li.awg-list-group-item', 1, 1);
-                            const liEl = liDes[0].nativeElement;
+                            const liEl: HTMLLIElement = liDes[0].nativeElement;
 
                             expect(liEl).toHaveClass('list-group-item-info');
                         });
@@ -1513,7 +1508,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const strongEl = strongDes[0].nativeElement;
+                            const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                             expect(strongEl).toHaveClass('text-muted');
                             expect(strongEl).toHaveClass('small');
@@ -1533,7 +1528,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1
                             );
 
-                            const spanEl = spanDes[0].nativeElement;
+                            const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
                             const expectedIndex = component.resourceInfoData.resources.current.displayIndex; // = 3
                             const expectedInnerText = `Angezeigtes Ergebnis (${expectedIndex}/${expectedResultSize})`;
 
@@ -1579,49 +1574,49 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                         describe('button', () => {
                             it('... should have correct options set', () => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                                expectToBe(buttonDes[0].attributes['type'], 'submit');
-                                expect(buttonEl).toHaveClass('btn');
-                                expectToBe(buttonEl.disabled, true);
+                                expectToBe(btnDes[0].attributes['type'], 'submit');
+                                expect(btnEl).toHaveClass('btn');
+                                expectToBe(btnEl.disabled, true);
                             });
 
                             it('... should display innerHTML text', () => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                                 const expectedText = 'Gehe zu';
 
-                                expectToBe(buttonEl.innerText, expectedText);
+                                expectToBe(btnEl.innerText, expectedText);
                             });
 
                             it('... should have btn-outline-success class when form is valid', () => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                                 // Form is valid
                                 expect(component.resourceInfoFormGroup.valid).toBeTruthy();
                                 expect(component.resourceInfoFormGroup.invalid).toBeFalsy();
 
                                 // Class is btn-outline-success
-                                expect(buttonEl).toHaveClass('btn-outline-success');
-                                expect(buttonEl).not.toHaveClass('btn-outline-danger');
+                                expect(btnEl).toHaveClass('btn-outline-success');
+                                expect(btnEl).not.toHaveClass('btn-outline-danger');
                             });
 
                             it('... should have btn-outline-danger class when form is not valid', () => {
@@ -1632,31 +1627,31 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 // Apply changes
                                 fixture.detectChanges();
 
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                                 // Form is invalid
                                 expect(component.resourceInfoFormGroup.valid).toBeFalsy();
                                 expect(component.resourceInfoFormGroup.invalid).toBeTruthy();
 
                                 // Class is btn-outline-danger
-                                expect(buttonEl).not.toHaveClass('btn-outline-success');
-                                expect(buttonEl).toHaveClass('btn-outline-danger');
+                                expect(btnEl).not.toHaveClass('btn-outline-success');
+                                expect(btnEl).toHaveClass('btn-outline-danger');
                             });
 
                             it('... should be disabled when input index is current.displayIndex', () => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
                                 const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
 
                                 // Input index is current.displayIndex
@@ -1664,7 +1659,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                     resourceInfoIndex.value,
                                     component.resourceInfoData.resources.current.displayIndex
                                 );
-                                expectToBe(buttonEl.disabled, true);
+                                expectToBe(btnEl.disabled, true);
                             });
 
                             it('... should be disabled when form is not valid', () => {
@@ -1675,20 +1670,20 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 // Apply changes
                                 fixture.detectChanges();
 
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                                 // Form is invalid
                                 expect(component.resourceInfoFormGroup.valid).toBeFalsy();
                                 expect(component.resourceInfoFormGroup.invalid).toBeTruthy();
 
                                 // Disabled = true
-                                expectToBe(buttonEl.disabled, true);
+                                expectToBe(btnEl.disabled, true);
                             });
 
                             it('... should be enabled when input index is not current.displayIndex and form is valid', () => {
@@ -1699,13 +1694,13 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 // Apply changes
                                 fixture.detectChanges();
 
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                                 // Form is valid
                                 expect(component.resourceInfoFormGroup.valid).toBeTruthy();
@@ -1715,17 +1710,17 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 expect(resourceInfoIndex.value).not.toBe(
                                     component.resourceInfoData.resources.current.displayIndex
                                 );
-                                expectToBe(buttonEl.disabled, false);
+                                expectToBe(btnEl.disabled, false);
                             });
 
                             it('... should not be able to navigate to resource by index when button is disabled', fakeAsync(() => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
                                 const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
 
                                 // ---------------------------
@@ -1741,10 +1736,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 expect(component.resourceInfoFormGroup.invalid).toBeFalsy();
 
                                 // Disabled = true
-                                expectToBe(buttonEl.disabled, true);
+                                expectToBe(btnEl.disabled, true);
 
                                 // Trigger click on button with click helper & wait for changes
-                                clickAndAwaitChanges(buttonDes[0], fixture);
+                                clickAndAwaitChanges(btnDes[0], fixture);
 
                                 expectSpyCall(navigateToResourceByIndexSpy, 0);
 
@@ -1761,22 +1756,22 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 expect(component.resourceInfoFormGroup.invalid).toBeTruthy();
 
                                 // Disabled = true
-                                expectToBe(buttonEl.disabled, true);
+                                expectToBe(btnEl.disabled, true);
 
                                 // Trigger click on button with click helper & wait for changes
-                                clickAndAwaitChanges(buttonDes[0], fixture);
+                                clickAndAwaitChanges(btnDes[0], fixture);
 
                                 expectSpyCall(navigateToResourceByIndexSpy, 0);
                             }));
 
                             it('... should be able to navigate to resource by index on click when button is enabled', fakeAsync(() => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                                 // Set input to another index then current.displayIndex (=3)
                                 const chosenIndex = 1;
@@ -1796,10 +1791,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 expect(component.resourceInfoFormGroup.invalid).toBeFalsy();
 
                                 // Button.disabled = false
-                                expectToBe(buttonEl.disabled, false);
+                                expectToBe(btnEl.disabled, false);
 
                                 // Trigger click on button with click helper & wait for changes
-                                clickAndAwaitChanges(buttonDes[0], fixture);
+                                clickAndAwaitChanges(btnDes[0], fixture);
 
                                 expectSpyCall(navigateToResourceByIndexSpy, 1, chosenIndex);
                             }));
@@ -1834,7 +1829,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                     it('... should display text right (text-end)', () => {
                         const ulDes = getAndExpectDebugElementByCss(compDe, 'ul.awg-resource-info-list-group', 1, 1);
                         const aDes = getAndExpectDebugElementByCss(ulDes[0], 'a.awg-list-group-item', 2, 2);
-                        const aEl1 = aDes[1].nativeElement;
+                        const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
                         expect(aEl1).toHaveClass('list-group-item-action');
                         expect(aEl1).toHaveClass('text-end');
                     });
@@ -1842,7 +1837,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                     describe('if next resource is given', () => {
                         it('... should have list-group-item-action class', () => {
                             const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-list-group-item.text-end', 1, 1);
-                            const aEl0 = aDes[0].nativeElement;
+                            const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
 
                             expect(aEl0).toHaveClass('list-group-item-action');
                         });
@@ -1876,7 +1871,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2
                             );
                             const strongDes = getAndExpectDebugElementByCss(divDes[0], 'strong', 1, 1);
-                            const strongEl = strongDes[0].nativeElement;
+                            const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                             expect(strongEl).toHaveClass('text-muted');
                             expect(strongEl).toHaveClass('small');
@@ -1909,7 +1904,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1
                             );
 
-                            const spanEl = spanDes[0].nativeElement;
+                            const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
                             const expectedIndex = component.resourceInfoData.resources.next.displayIndex; // = 4
                             const expectedInnerText = `Nächstes Ergebnis (${expectedIndex}/${expectedResultSize})`;
 
@@ -1925,7 +1920,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
                             const divDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line', 2, 2);
                             // // get second div
-                            const divEl1 = divDes[1].nativeElement;
+                            const divEl1: HTMLDivElement = divDes[1].nativeElement;
 
                             expect(divEl1).toHaveClass('text-muted');
                             expect(divEl1).toHaveClass('small');
@@ -1945,7 +1940,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2,
                                 2
                             );
-                            const spanEl0 = spanDes[0].nativeElement;
+                            const spanEl0: HTMLSpanElement = spanDes[0].nativeElement;
                             const title = component.resourceInfoData.resources.next.title; // = BrownJ 2014
 
                             expectToBe(spanEl0.innerText, title);
@@ -1965,7 +1960,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2,
                                 2
                             );
-                            const spanEl1 = spanDes[1].nativeElement;
+                            const spanEl1: HTMLSpanElement = spanDes[1].nativeElement;
                             const subTitle = component.resourceInfoData.resources.next.subtitle; // = Bibliografie
 
                             expectToBe(spanEl1.innerText, subTitle);
@@ -1990,7 +1985,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                         it('... should have list-group-item-danger class', () => {
                             const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-list-group-item.text-end', 1, 1);
-                            const aEl0 = aDes[0].nativeElement;
+                            const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
 
                             expect(aEl0).toHaveClass('list-group-item-danger');
                         });
@@ -2013,7 +2008,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
                             // Get first div
                             const strongDes = getAndExpectDebugElementByCss(divDes[0], 'strong', 1, 1);
-                            const strongEl = strongDes[0].nativeElement;
+                            const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                             expect(strongEl).toHaveClass('text-muted');
                             expect(strongEl).toHaveClass('small');
@@ -2042,15 +2037,15 @@ describe('ResourceInfoComponent (DONE)', () => {
                             // Get second outer div
                             const divDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line', 2, 2);
                             // Get second inner div
-                            const divEl1 = divDes[1].nativeElement;
+                            const divEl1: HTMLDivElement = divDes[1].nativeElement;
 
                             expect(divEl1).toHaveClass('text-muted');
                             expect(divEl1).toHaveClass('small');
 
                             // Get spans
                             const spanDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line span', 2, 2);
-                            const spanEl0 = spanDes[0].nativeElement;
-                            const spanEl1 = spanDes[1].nativeElement;
+                            const spanEl0: HTMLSpanElement = spanDes[0].nativeElement;
+                            const spanEl1: HTMLSpanElement = spanDes[1].nativeElement;
 
                             const whiteSpace = '\xA0'; // Hex code for a non-breaking space '&nbsp;'
 
@@ -2066,8 +2061,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                     const expectedHref = 'https://arachne.dainst.org/';
                     const expectedInnerText = 'iDAI.object arachne';
 
-                    const aDe = getAndExpectDebugElementByCss(compDe, 'div.card-footer a', 1, 1);
-                    const aEl = aDe[0].nativeElement;
+                    const aDes = getAndExpectDebugElementByCss(compDe, 'div.card-footer a', 1, 1);
+                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                     expectToBe(aEl.href, expectedHref);
                     expectToBe(aEl.innerText, expectedInnerText);

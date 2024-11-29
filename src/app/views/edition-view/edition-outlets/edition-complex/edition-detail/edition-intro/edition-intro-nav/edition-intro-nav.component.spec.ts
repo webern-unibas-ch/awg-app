@@ -190,7 +190,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
 
                 liDes.forEach((liDe, index) => {
                     const aDes = getAndExpectDebugElementByCss(liDe, 'a.awg-edition-intro-nav-link', 1, 1);
-                    const aEl = aDes[0].nativeElement;
+                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                     const expectedText =
                         index === expectedIntroBlockContent.length

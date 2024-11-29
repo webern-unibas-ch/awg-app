@@ -128,40 +128,40 @@ describe('ModalComponent', () => {
 
     describe('VIEW', () => {
         it('... should have one div.modal-header', () => {
-            getAndExpectDebugElementByCss(wrapperDe, '.modal-header', 1, 1);
+            getAndExpectDebugElementByCss(wrapperDe, 'div.modal-header', 1, 1);
         });
 
         it('... should have h4.modal-title in div.modal-header', () => {
-            const headerDes = getAndExpectDebugElementByCss(wrapperDe, '.modal-header', 1, 1);
-            getAndExpectDebugElementByCss(headerDes[0], 'h4.modal-title', 1, 1);
+            const divDes = getAndExpectDebugElementByCss(wrapperDe, 'div.modal-header', 1, 1);
+            getAndExpectDebugElementByCss(divDes[0], 'h4.modal-title', 1, 1);
         });
 
         it('... should render the modal title label', () => {
-            const headerDes = getAndExpectDebugElementByCss(wrapperDe, '.modal-header', 1, 1);
-            const titleDes = getAndExpectDebugElementByCss(headerDes[0], 'h4.modal-title', 1, 1);
-            const titleEl: HTMLHeadingElement = titleDes[0].nativeElement;
+            const divDes = getAndExpectDebugElementByCss(wrapperDe, 'div.modal-header', 1, 1);
+            const hDes = getAndExpectDebugElementByCss(divDes[0], 'h4.modal-title', 1, 1);
+            const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-            expectToBe(titleEl.textContent, expectedModalTitle);
+            expectToBe(hEl.textContent, expectedModalTitle);
         });
 
         it('... should have close button without label in div.modal-header', () => {
-            const headerDes = getAndExpectDebugElementByCss(wrapperDe, '.modal-header', 1, 1);
-            const buttonDes = getAndExpectDebugElementByCss(headerDes[0], 'button.btn-close', 1, 1);
-            const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
+            const divDes = getAndExpectDebugElementByCss(wrapperDe, 'div.modal-header', 1, 1);
+            const btnDes = getAndExpectDebugElementByCss(divDes[0], 'button.btn-close', 1, 1);
+            const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-            expectToBe(buttonEl.textContent, '');
+            expectToBe(btnEl.textContent, '');
         });
 
         it('... should have one div.modal-body', () => {
-            getAndExpectDebugElementByCss(wrapperDe, '.modal-body', 1, 1);
+            getAndExpectDebugElementByCss(wrapperDe, 'div.modal-body', 1, 1);
         });
 
         it('... should render the modal content in div.modal-body', () => {
             component.open(expectedSnippetKey1);
             fixture.detectChanges();
 
-            const bodyDes = getAndExpectDebugElementByCss(wrapperDe, '.modal-body', 1, 1);
-            const bodyEl: HTMLElement = bodyDes[0].nativeElement;
+            const bodyDes = getAndExpectDebugElementByCss(wrapperDe, 'div.modal-body', 1, 1);
+            const bodyEl: HTMLDivElement = bodyDes[0].nativeElement;
 
             // Process HTML expression of content snippet
             const htmlSnippet = mockDocument.createElement('p');
@@ -171,20 +171,20 @@ describe('ModalComponent', () => {
         });
 
         it('... should have one div.modal-footer', () => {
-            getAndExpectDebugElementByCss(wrapperDe, '.modal-footer', 1, 1);
+            getAndExpectDebugElementByCss(wrapperDe, 'div.modal-footer', 1, 1);
         });
 
         it('... should have one close button.awg-modal-button in div.modal-footer', () => {
-            const footerDes = getAndExpectDebugElementByCss(wrapperDe, '.modal-footer', 1, 1);
+            const footerDes = getAndExpectDebugElementByCss(wrapperDe, 'div.modal-footer', 1, 1);
             getAndExpectDebugElementByCss(footerDes[0], 'button.awg-modal-button', 1, 1);
         });
 
         it('... should render the modal close label', () => {
-            const footerDes = getAndExpectDebugElementByCss(wrapperDe, '.modal-footer', 1, 1);
-            const buttonDes = getAndExpectDebugElementByCss(footerDes[0], 'button.awg-modal-button', 1, 1);
-            const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
+            const footerDes = getAndExpectDebugElementByCss(wrapperDe, 'div.modal-footer', 1, 1);
+            const btnDes = getAndExpectDebugElementByCss(footerDes[0], 'button.awg-modal-button', 1, 1);
+            const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-            expectToBe(buttonEl.textContent.trim(), expectedModalCloseLabel);
+            expectToBe(btnEl.textContent.trim(), expectedModalCloseLabel);
         });
     });
 

@@ -39,15 +39,15 @@ import { ExtendedSearchFormComponent } from './extended-search-form.component';
 
 // Helper functions for ExtendedSearchFormComponent
 function selectOptionById(selectId: string, optionIndex: number, de: DebugElement) {
-    const optionDes = getAndExpectDebugElementByCss(de, `select#${selectId}`, 1, 1);
-    const optionEl = optionDes[0].nativeElement as HTMLSelectElement;
-    optionEl.value = optionEl.options[optionIndex].value;
-    optionEl.dispatchEvent(new Event('change'));
+    const sectionDes = getAndExpectDebugElementByCss(de, `select#${selectId}`, 1, 1);
+    const sectionEl: HTMLSelectElement = sectionDes[0].nativeElement;
+    sectionEl.value = sectionEl.options[optionIndex].value;
+    sectionEl.dispatchEvent(new Event('change'));
 }
 
 function setInputValueById(inputId: string, inputValue: string, de: DebugElement) {
     const inputDes = getAndExpectDebugElementByCss(de, `input#${inputId}`, 1, 1);
-    const inputEl = inputDes[0].nativeElement as HTMLInputElement;
+    const inputEl: HTMLInputElement = inputDes[0].nativeElement;
     inputEl.value = inputValue;
     inputEl.dispatchEvent(new Event('input'));
 }
@@ -336,7 +336,7 @@ describe('ExtendedSearchFormComponent', () => {
                         expectedOptionLength,
                         expectedOptionLength
                     );
-                    const optionEl = optionDes[0].nativeElement;
+                    const optionEl: HTMLOptionElement = optionDes[0].nativeElement;
 
                     expectToEqual(optionEl.value, '');
                     expectToEqual(optionEl.textContent, expectedDefaultFormString);
@@ -363,7 +363,7 @@ describe('ExtendedSearchFormComponent', () => {
                         if (index === 0) {
                             return;
                         }
-                        const optionEl = optionDe.nativeElement;
+                        const optionEl: HTMLOptionElement = optionDe.nativeElement;
 
                         const restype = expectedResourceTypesResponse.resourcetypes[index - 1];
                         const expectedRestypeLabel = `${restype.id} | ${restype.label}`;
@@ -382,7 +382,7 @@ describe('ExtendedSearchFormComponent', () => {
                         1,
                         1
                     );
-                    const labelEl = labelDes[0].nativeElement;
+                    const labelEl: HTMLLabelElement = labelDes[0].nativeElement;
 
                     expectToContain(labelEl.classList, 'text-muted');
                     expectToBe(labelEl.textContent, 'Resource type');
@@ -465,7 +465,7 @@ describe('ExtendedSearchFormComponent', () => {
                             expectedOptionLength,
                             expectedOptionLength
                         );
-                        const optionEl = optionDes[0].nativeElement;
+                        const optionEl: HTMLOptionElement = optionDes[0].nativeElement;
 
                         expectToEqual(optionEl.value, '');
                         expectToEqual(optionEl.textContent, expectedDefaultFormString);
@@ -492,7 +492,7 @@ describe('ExtendedSearchFormComponent', () => {
                             if (index === 0) {
                                 return;
                             }
-                            const optionEl = optionDe.nativeElement;
+                            const optionEl: HTMLOptionElement = optionDe.nativeElement;
 
                             const property = component.selectedResourcetype.properties[index - 1];
                             const expectedPropertyLabel = `${property.id} | ${property.label}`;
@@ -511,7 +511,7 @@ describe('ExtendedSearchFormComponent', () => {
                             1,
                             1
                         );
-                        const labelEl = labelDes[0].nativeElement;
+                        const labelEl: HTMLLabelElement = labelDes[0].nativeElement;
 
                         expectToContain(labelEl.classList, 'text-muted');
                         expectToBe(labelEl.textContent, 'Property');
@@ -582,7 +582,7 @@ describe('ExtendedSearchFormComponent', () => {
                             expectedOptionLength,
                             expectedOptionLength
                         );
-                        const optionEl = optionDes[0].nativeElement;
+                        const optionEl: HTMLOptionElement = optionDes[0].nativeElement;
 
                         expectToEqual(optionEl.value, '');
                         expectToEqual(optionEl.textContent, expectedDefaultFormString);
@@ -610,7 +610,7 @@ describe('ExtendedSearchFormComponent', () => {
                             if (i === 0) {
                                 return;
                             }
-                            const optionEl = optionDe.nativeElement as HTMLOptionElement;
+                            const optionEl: HTMLOptionElement = optionDe.nativeElement as HTMLOptionElement;
                             const compop = component.selectedCompopSets[0][i - 1];
 
                             const expectedOption = mockDocument.createElement('option');
@@ -630,7 +630,7 @@ describe('ExtendedSearchFormComponent', () => {
                             1,
                             1
                         );
-                        const labelEl = labelDes[0].nativeElement;
+                        const labelEl: HTMLLabelElement = labelDes[0].nativeElement;
 
                         expectToContain(labelEl.classList, 'text-muted');
                         expectToBe(labelEl.textContent, 'Operator');
@@ -678,7 +678,7 @@ describe('ExtendedSearchFormComponent', () => {
                             1,
                             1
                         );
-                        const inputEl = inputDes[0].nativeElement;
+                        const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                         expectToEqual(inputEl.placeholder, expectedDefaultFormString);
                     });
@@ -690,7 +690,7 @@ describe('ExtendedSearchFormComponent', () => {
                             1,
                             1
                         );
-                        const labelEl = labelDes[0].nativeElement;
+                        const labelEl: HTMLLabelElement = labelDes[0].nativeElement;
 
                         expectToContain(labelEl.classList, 'text-muted');
                         expectToBe(labelEl.textContent, 'Search value');
@@ -742,15 +742,15 @@ describe('ExtendedSearchFormComponent', () => {
                             );
 
                             rowDes.forEach((rowDe, index) => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     rowDe,
                                     `div.btn-toolbar > div.btn-group > button#awg-extended-search-add-property-${index}`,
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                                expectToContain(buttonEl.classList, 'btn-outline-info');
+                                expectToContain(btnEl.classList, 'btn-outline-info');
                             });
                         });
 
@@ -766,15 +766,15 @@ describe('ExtendedSearchFormComponent', () => {
                             );
 
                             rowDes.forEach((rowDe, index) => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     rowDe,
                                     `div.btn-toolbar > div.btn-group > button#awg-extended-search-add-property-${index}`,
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                                expectToBe(buttonEl.disabled, true);
+                                expectToBe(btnEl.disabled, true);
                             });
                         });
 
@@ -798,15 +798,15 @@ describe('ExtendedSearchFormComponent', () => {
                             );
 
                             rowDes.forEach((rowDe, index) => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     rowDe,
                                     `div.btn-toolbar > div.btn-group > button#awg-extended-search-add-property-${index}`,
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                                expectToBe(buttonEl.disabled, false);
+                                expectToBe(btnEl.disabled, false);
                             });
                         });
 
@@ -820,13 +820,13 @@ describe('ExtendedSearchFormComponent', () => {
                             );
 
                             rowDes.forEach((rowDe, index) => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     rowDe,
                                     `div.btn-toolbar > div.btn-group > button#awg-extended-search-add-property-${index}`,
                                     1,
                                     1
                                 );
-                                const faIconDes = getAndExpectDebugElementByCss(buttonDes[0], 'fa-icon', 1, 1);
+                                const faIconDes = getAndExpectDebugElementByCss(btnDes[0], 'fa-icon', 1, 1);
                                 const faIconIns = faIconDes[0].componentInstance.icon;
 
                                 expectToEqual(faIconIns, expectedPlusIcon);
@@ -855,13 +855,13 @@ describe('ExtendedSearchFormComponent', () => {
                             );
 
                             rowDes.forEach((rowDe, index) => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     rowDe,
                                     `div.btn-toolbar > div.btn-group > button#awg-extended-search-add-property-${index}`,
                                     1,
                                     1
                                 );
-                                clickAndAwaitChanges(buttonDes[0], fixture);
+                                clickAndAwaitChanges(btnDes[0], fixture);
 
                                 expectSpyCall(addPropertiesControlSpy, 3);
                             });
@@ -882,13 +882,13 @@ describe('ExtendedSearchFormComponent', () => {
                             selectCompopAtIndex(1, 0, compDe);
                             fixture.detectChanges();
 
-                            const addButtonDes = getAndExpectDebugElementByCss(
+                            const addBtnDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 `button#awg-extended-search-add-property-0`,
                                 1,
                                 1
                             );
-                            clickAndAwaitChanges(addButtonDes[0], fixture);
+                            clickAndAwaitChanges(addBtnDes[0], fixture);
 
                             const expectedRowLength = component.propertiesControls.controls.length;
                             rowDes = getAndExpectDebugElementByCss(
@@ -912,27 +912,27 @@ describe('ExtendedSearchFormComponent', () => {
 
                         it('... should have a btn-outline-danger class on the remove property button', () => {
                             rowDes.forEach((rowDe, index) => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     rowDe,
                                     `div.btn-toolbar > div.btn-group > button#awg-extended-search-remove-property-${index}`,
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                                expectToContain(buttonEl.classList, 'btn-outline-danger');
+                                expectToContain(btnEl.classList, 'btn-outline-danger');
                             });
                         });
 
                         it('... should display faTrash icon on the remove property button', () => {
                             rowDes.forEach((rowDe, index) => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     rowDe,
                                     `div.btn-toolbar > div.btn-group >  button#awg-extended-search-remove-property-${index}`,
                                     1,
                                     1
                                 );
-                                const faIconDes = getAndExpectDebugElementByCss(buttonDes[0], 'fa-icon', 1, 1);
+                                const faIconDes = getAndExpectDebugElementByCss(btnDes[0], 'fa-icon', 1, 1);
                                 const faIconIns = faIconDes[0].componentInstance.icon;
 
                                 expectToEqual(faIconIns, expectedTrashIcon);
@@ -943,13 +943,13 @@ describe('ExtendedSearchFormComponent', () => {
                             const buttons = [];
 
                             rowDes.forEach((rowDe, index) => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     rowDe,
                                     `div.btn-toolbar > div.btn-group > button#awg-extended-search-remove-property-${index}`,
                                     1,
                                     1
                                 );
-                                buttons.push(buttonDes[0]);
+                                buttons.push(btnDes[0]);
                             });
 
                             clickAndAwaitChanges(buttons[1], fixture);
@@ -981,27 +981,17 @@ describe('ExtendedSearchFormComponent', () => {
                     });
 
                     it('... should have btn-outline-info class on the search button', () => {
-                        const buttonDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'button#awg-extended-search-submit',
-                            1,
-                            1
-                        );
-                        const buttonEl = buttonDes[0].nativeElement;
+                        const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-extended-search-submit', 1, 1);
+                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                        expectToContain(buttonEl.classList, 'btn-outline-info');
+                        expectToContain(btnEl.classList, 'btn-outline-info');
                     });
 
                     it('... should have the search button disabled as long as the form is not valid', () => {
-                        const buttonDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'button#awg-extended-search-submit',
-                            1,
-                            1
-                        );
-                        const buttonEl = buttonDes[0].nativeElement;
+                        const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-extended-search-submit', 1, 1);
+                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                        expectToBe(buttonEl.disabled, true);
+                        expectToBe(btnEl.disabled, true);
                     });
 
                     it('... should have the search button enabled when the form is valid', () => {
@@ -1015,40 +1005,25 @@ describe('ExtendedSearchFormComponent', () => {
                         selectCompopAtIndex(1, 0, compDe);
                         fixture.detectChanges();
 
-                        const buttonDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'button#awg-extended-search-submit',
-                            1,
-                            1
-                        );
-                        const buttonEl = buttonDes[0].nativeElement;
+                        const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-extended-search-submit', 1, 1);
+                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                        expectToBe(buttonEl.disabled, false);
+                        expectToBe(btnEl.disabled, false);
                     });
 
                     it('... should display faSearch icon on the search button', () => {
-                        const buttonDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'button#awg-extended-search-submit',
-                            1,
-                            1
-                        );
-                        const faIconDes = getAndExpectDebugElementByCss(buttonDes[0], 'fa-icon', 1, 1);
+                        const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-extended-search-submit', 1, 1);
+                        const faIconDes = getAndExpectDebugElementByCss(btnDes[0], 'fa-icon', 1, 1);
                         const faIconIns = faIconDes[0].componentInstance.icon;
 
                         expectToEqual(faIconIns, expectedSearchIcon);
                     });
 
                     it('... should have a label for the search button', () => {
-                        const buttonDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'button#awg-extended-search-submit',
-                            1,
-                            1
-                        );
-                        const buttonEl = buttonDes[0].nativeElement;
+                        const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-extended-search-submit', 1, 1);
+                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                        expectToBe(buttonEl.textContent.trim(), 'Submit');
+                        expectToBe(btnEl.textContent.trim(), 'Submit');
                     });
                 });
 
@@ -1063,81 +1038,51 @@ describe('ExtendedSearchFormComponent', () => {
                     });
 
                     it('... should have btn-outline-danger class on reset button', () => {
-                        const buttonDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'button#awg-extended-search-reset',
-                            1,
-                            1
-                        );
-                        const buttonEl = buttonDes[0].nativeElement;
+                        const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-extended-search-reset', 1, 1);
+                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                        expectToContain(buttonEl.classList, 'btn-outline-danger');
+                        expectToContain(btnEl.classList, 'btn-outline-danger');
                     });
 
                     it('... should have the reset button disabled as long as the restypeControl is not valid', () => {
-                        const buttonDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'button#awg-extended-search-reset',
-                            1,
-                            1
-                        );
-                        const buttonEl = buttonDes[0].nativeElement;
+                        const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-extended-search-reset', 1, 1);
+                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                        expectToBe(buttonEl.disabled, true);
+                        expectToBe(btnEl.disabled, true);
                     });
 
                     it('... should have the reset button enabled when the restypeControl is valid', () => {
                         selectRestype(1, compDe);
                         fixture.detectChanges();
 
-                        const buttonDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'button#awg-extended-search-reset',
-                            1,
-                            1
-                        );
-                        const buttonEl = buttonDes[0].nativeElement;
+                        const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-extended-search-reset', 1, 1);
+                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                        expectToBe(buttonEl.disabled, false);
+                        expectToBe(btnEl.disabled, false);
                     });
 
                     it('... should display faRefresh icon on the reset button', () => {
-                        const buttonDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'button#awg-extended-search-reset',
-                            1,
-                            1
-                        );
-                        const faIconDes = getAndExpectDebugElementByCss(buttonDes[0], 'fa-icon', 1, 1);
+                        const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-extended-search-reset', 1, 1);
+                        const faIconDes = getAndExpectDebugElementByCss(btnDes[0], 'fa-icon', 1, 1);
                         const faIconIns = faIconDes[0].componentInstance.icon;
 
                         expectToEqual(faIconIns, expectedRefreshIcon);
                     });
 
                     it('... should have a label for the reset button', () => {
-                        const buttonDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'button#awg-extended-search-reset',
-                            1,
-                            1
-                        );
-                        const buttonEl = buttonDes[0].nativeElement;
+                        const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-extended-search-reset', 1, 1);
+                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                        expectToBe(buttonEl.textContent.trim(), 'Reset');
+                        expectToBe(btnEl.textContent.trim(), 'Reset');
                     });
 
                     it('... should trigger the `onReset` method on click', fakeAsync(() => {
                         selectRestype(1, compDe);
                         fixture.detectChanges();
 
-                        const buttonDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'button#awg-extended-search-reset',
-                            1,
-                            1
-                        );
+                        const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-extended-search-reset', 1, 1);
 
-                        clickAndAwaitChanges(buttonDes[0], fixture);
+                        clickAndAwaitChanges(btnDes[0], fixture);
 
                         expectSpyCall(onResetSpy, 1, undefined);
                     }));
@@ -2145,9 +2090,10 @@ describe('ExtendedSearchFormComponent', () => {
                 fixture.detectChanges();
 
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-extended-search-submit', 1, 1);
+                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Trigger click with click helper (needs nativeElement to trigger form submission)
-                click(btnDes[0].nativeElement);
+                click(btnEl);
 
                 expectSpyCall(onSearchSpy, 1);
             });

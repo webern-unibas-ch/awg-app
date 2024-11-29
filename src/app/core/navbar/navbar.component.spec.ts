@@ -337,16 +337,14 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... should be called when navbar toggle button clicked (click helper)', () => {
-                // Find button elements
-                const buttonDes = getAndExpectDebugElementByCss(compDe, 'button.navbar-toggler', 1, 1);
-                const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
+                const btnDes = getAndExpectDebugElementByCss(compDe, 'button.navbar-toggler', 1, 1);
+                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                // Should have not been called yet
                 expectSpyCall(toggleNavSpy, 0);
 
                 // Click button
-                click(buttonDes[0]);
-                click(buttonEl);
+                click(btnDes[0]);
+                click(btnEl);
 
                 expectSpyCall(toggleNavSpy, 2);
             });
@@ -441,16 +439,16 @@ describe('NavbarComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(navItemDes[1], 'div.dropdown-menu', 1, 1);
                 });
 
-                it('... should have a dropdown header `Allgemein` as first child', () => {
-                    const headerDes = getAndExpectDebugElementByCss(
+                it('... should have a dropdown heading `Allgemein` as first child', () => {
+                    const hDes = getAndExpectDebugElementByCss(
                         navItemDes[1],
                         'div.dropdown-menu > h6.dropdown-header:nth-child(1)',
                         1,
                         1
                     );
-                    const headerEl: HTMLHeadingElement = headerDes[0].nativeElement;
+                    const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                    expectToBe(headerEl.textContent, expectedNavbarLabels['general']);
+                    expectToBe(hEl.textContent, expectedNavbarLabels['general']);
                 });
 
                 it('... should be followed by 3 dropdown items for edition overview, rowtables and preface', () => {
@@ -482,20 +480,20 @@ describe('NavbarComponent (DONE)', () => {
                     expectToBe(prefaceEl.textContent, EDITION_ROUTE_CONSTANTS.PREFACE.full);
                 });
 
-                it('... should have another dropdown header `Auswahl Skizzenkomplexe` surrounded by dividers', () => {
+                it('... should have another dropdown heading `Auswahl Skizzenkomplexe` surrounded by dividers', () => {
                     getAndExpectDebugElementByCss(
                         navItemDes[1],
                         'div.dropdown-menu > div.dropdown-divider:nth-child(5)',
                         1,
                         1
                     );
-                    const headerDes = getAndExpectDebugElementByCss(
+                    const hDes = getAndExpectDebugElementByCss(
                         navItemDes[1],
                         'div.dropdown-menu > h6.dropdown-header:nth-child(6)',
                         1,
                         1
                     );
-                    const headerEl: HTMLHeadingElement = headerDes[0].nativeElement;
+                    const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                     getAndExpectDebugElementByCss(
                         navItemDes[1],
@@ -504,7 +502,7 @@ describe('NavbarComponent (DONE)', () => {
                         1
                     );
 
-                    expectToBe(headerEl.textContent, expectedNavbarLabels['complexes']);
+                    expectToBe(hEl.textContent, expectedNavbarLabels['complexes']);
                 });
 
                 it('... should be followed by as many `div.awg-dropdown-complexes` as edition complexes are available', () => {
@@ -516,7 +514,7 @@ describe('NavbarComponent (DONE)', () => {
                     );
                 });
 
-                it('... should display a header and a list of 3 dropdown items for each dropdown complex', () => {
+                it('... should display a heading and a list of 3 dropdown items for each dropdown complex', () => {
                     const complexDes = getAndExpectDebugElementByCss(
                         navItemDes[1],
                         'div.dropdown-menu > div.awg-dropdown-complexes',
@@ -531,7 +529,7 @@ describe('NavbarComponent (DONE)', () => {
                     });
                 });
 
-                it('... should display correct header for each dropdown complex', () => {
+                it('... should display correct heading for each dropdown complex', () => {
                     const complexDes = getAndExpectDebugElementByCss(
                         navItemDes[1],
                         'div.dropdown-menu > div.awg-dropdown-complexes',
@@ -540,21 +538,21 @@ describe('NavbarComponent (DONE)', () => {
                     );
 
                     complexDes.forEach((complexDe, index) => {
-                        const headerDes = getAndExpectDebugElementByCss(complexDe, 'h6.dropdown-header', 1, 1);
-                        const headerEl: HTMLHeadingElement = headerDes[0].nativeElement;
+                        const hDes = getAndExpectDebugElementByCss(complexDe, 'h6.dropdown-header', 1, 1);
+                        const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                        const headerSpanDes = getAndExpectDebugElementByCss(headerDes[0], 'span', 1, 1);
-                        const headerSpanEl: HTMLSpanElement = headerSpanDes[0].nativeElement;
+                        const headingSpanDes = getAndExpectDebugElementByCss(hDes[0], 'span', 1, 1);
+                        const headingSpanEl: HTMLSpanElement = headingSpanDes[0].nativeElement;
 
                         const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                         const series = expectedEditionComplexes[index].pubStatement.series.short;
                         const section = expectedEditionComplexes[index].pubStatement.section.short;
 
-                        const headerSiglum = `[${awg} ${series}/${section}] `;
-                        const headerId = expectedEditionComplexes[index].complexId.full;
+                        const headingSiglum = `[${awg} ${series}/${section}] `;
+                        const headingId = expectedEditionComplexes[index].complexId.full;
 
-                        expectToContain(headerEl.textContent, headerSiglum);
-                        expectToBe(headerSpanEl.innerHTML.trim(), headerId.trim());
+                        expectToContain(hEl.textContent, headingSiglum);
+                        expectToBe(headingSpanEl.innerHTML.trim(), headingId.trim());
                     });
                 });
 

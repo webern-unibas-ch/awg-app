@@ -183,10 +183,10 @@ describe('ContactViewComponent (DONE)', () => {
                 const dateDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-date', 2, 2);
 
                 // Native elements
-                const versionEl = versionDes[0].nativeElement;
-                const releaseEl = releaseDes[0].nativeElement;
-                const dateEl0 = dateDes[0].nativeElement;
-                const dateEl1 = dateDes[1].nativeElement;
+                const versionEl: HTMLElement = versionDes[0].nativeElement;
+                const releaseEl: HTMLElement = releaseDes[0].nativeElement;
+                const dateEl0: HTMLElement = dateDes[0].nativeElement;
+                const dateEl1: HTMLElement = dateDes[1].nativeElement;
 
                 // Check output
                 expectToBe(versionEl.textContent, '');
@@ -251,10 +251,10 @@ describe('ContactViewComponent (DONE)', () => {
                 const dateDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-date', 2, 2);
 
                 // Native elements
-                const versionEl = versionDes[0].nativeElement;
-                const releaseEl = releaseDes[0].nativeElement;
-                const dateEl0 = dateDes[0].nativeElement;
-                const dateEl1 = dateDes[1].nativeElement;
+                const versionEl: HTMLElement = versionDes[0].nativeElement;
+                const releaseEl: HTMLElement = releaseDes[0].nativeElement;
+                const dateEl0: HTMLElement = dateDes[0].nativeElement;
+                const dateEl1: HTMLElement = dateDes[1].nativeElement;
 
                 // Pipe
                 const pipedToday = datePipe.transform(expectedToday, expectedDateFormat);

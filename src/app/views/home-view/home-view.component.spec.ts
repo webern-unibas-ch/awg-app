@@ -217,7 +217,7 @@ describe('HomeViewComponent (DONE)', () => {
                 it('... DSP', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
                     const dspDes = getAndExpectDebugElementByCss(divDes[0], 'a#dsp-link', 1, 1);
-                    const dspEl = dspDes[0].nativeElement;
+                    const dspEl: HTMLAnchorElement = dspDes[0].nativeElement;
 
                     expect(dspEl).toBeDefined();
                     expectToBe(dspEl.href, '');
@@ -226,7 +226,7 @@ describe('HomeViewComponent (DONE)', () => {
                 it('... DaSCH', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
                     const daschDes = getAndExpectDebugElementByCss(divDes[0], 'a#dasch-link', 1, 1);
-                    const daschEl = daschDes[0].nativeElement;
+                    const daschEl: HTMLAnchorElement = daschDes[0].nativeElement;
 
                     expect(daschEl).toBeDefined();
                     expectToBe(daschEl.href, '');
@@ -235,7 +235,7 @@ describe('HomeViewComponent (DONE)', () => {
                 it('... DaSCH mission', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
                     const daschMissionDes = getAndExpectDebugElementByCss(divDes[0], 'a#dasch-mission-link', 1, 1);
-                    const daschMissionEl = daschMissionDes[0].nativeElement;
+                    const daschMissionEl: HTMLAnchorElement = daschMissionDes[0].nativeElement;
 
                     expect(daschMissionEl).toBeDefined();
                     expectToBe(daschMissionEl.href, '');
@@ -244,7 +244,7 @@ describe('HomeViewComponent (DONE)', () => {
                 it('... GitHub', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
                     const githubDes = getAndExpectDebugElementByCss(divDes[0], 'a#github-link', 1, 1);
-                    const githubEl = githubDes[0].nativeElement;
+                    const githubEl: HTMLAnchorElement = githubDes[0].nativeElement;
 
                     expect(githubEl).toBeDefined();
                     expectToBe(githubEl.href, '');
@@ -253,7 +253,7 @@ describe('HomeViewComponent (DONE)', () => {
                 it('... Zenodo', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
                     const zenodoDes = getAndExpectDebugElementByCss(divDes[0], 'a#zenodo-link', 1, 1);
-                    const zenodoEl = zenodoDes[0].nativeElement;
+                    const zenodoEl: HTMLAnchorElement = zenodoDes[0].nativeElement;
 
                     expect(zenodoEl).toBeDefined();
                     expectToBe(zenodoEl.href, '');
@@ -365,7 +365,7 @@ describe('HomeViewComponent (DONE)', () => {
                 it('... DSP', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
                     const dspDes = getAndExpectDebugElementByCss(divDes[0], 'a#dsp-link', 1, 1);
-                    const dspEl = dspDes[0].nativeElement;
+                    const dspEl: HTMLAnchorElement = dspDes[0].nativeElement;
 
                     const dspRoute = 'dsp-app';
 
@@ -377,7 +377,7 @@ describe('HomeViewComponent (DONE)', () => {
                 it('... DaSCH', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
                     const daschDes = getAndExpectDebugElementByCss(divDes[0], 'a#dasch-link', 1, 1);
-                    const daschEl = daschDes[0].nativeElement;
+                    const daschEl: HTMLAnchorElement = daschDes[0].nativeElement;
 
                     expect(daschEl).toBeDefined();
                     expectToBe(daschEl.href, expectedPageMetaData.daschUrl);
@@ -387,7 +387,7 @@ describe('HomeViewComponent (DONE)', () => {
                 it('... DaSCH mission', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
                     const daschMissionDes = getAndExpectDebugElementByCss(divDes[0], 'a#dasch-mission-link', 1, 1);
-                    const daschMissionEl = daschMissionDes[0].nativeElement;
+                    const daschMissionEl: HTMLAnchorElement = daschMissionDes[0].nativeElement;
 
                     const missionRoute = 'mission';
 
@@ -399,7 +399,7 @@ describe('HomeViewComponent (DONE)', () => {
                 it('... GitHub', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
                     const githubDes = getAndExpectDebugElementByCss(divDes[0], 'a#github-link', 1, 1);
-                    const githubEl = githubDes[0].nativeElement;
+                    const githubEl: HTMLAnchorElement = githubDes[0].nativeElement;
 
                     expect(githubEl).toBeDefined();
                     expectToBe(githubEl.href, expectedPageMetaData.githubUrl);
@@ -409,7 +409,7 @@ describe('HomeViewComponent (DONE)', () => {
                 it('... Zenodo', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
                     const zenodoDes = getAndExpectDebugElementByCss(divDes[0], 'a#zenodo-link', 1, 1);
-                    const zenodoEl = zenodoDes[0].nativeElement;
+                    const zenodoEl: HTMLAnchorElement = zenodoDes[0].nativeElement;
 
                     expect(zenodoEl).toBeDefined();
                     expectToBe(zenodoEl.href, expectedPageMetaData.zenodoUrl);

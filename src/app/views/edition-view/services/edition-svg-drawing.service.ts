@@ -212,7 +212,7 @@ export class EditionSvgDrawingService {
      *
      * @returns {{ width: number; height: number }} The dimensions (width and height) of the container element.
      */
-    getContainerDimensions(containerEl: ElementRef): { width: number; height: number } {
+    getContainerDimensions(containerEl: ElementRef<HTMLElement>): { width: number; height: number } {
         if (!containerEl) {
             return { width: undefined, height: undefined };
         }

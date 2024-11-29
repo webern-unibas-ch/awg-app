@@ -89,7 +89,7 @@ export class CodeMirrorComponent implements AfterViewInit, OnChanges {
      *
      * It keeps the reference to the HTML template of the codemirror editor.
      */
-    @ViewChild('codemirrorhost') codemirrorhost: ElementRef = null;
+    @ViewChild('codemirrorhost') codemirrorhost: ElementRef<HTMLDivElement> = null;
 
     /**
      * Angular life cycle hook: ngOnChanges.

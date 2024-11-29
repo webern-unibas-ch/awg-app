@@ -129,7 +129,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                 // Body (div.accordion-collapse)
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
-                const itemBodyEl = itemBodyDes[0].nativeElement;
+                const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                 expectToContain(itemBodyEl.classList, 'accordion-collapse');
             });
@@ -187,7 +187,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const itemBodyEl = itemBodyDes[0].nativeElement;
+                    const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
                 });
@@ -203,7 +203,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                     // Item header button
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Check button content
                     expectToBe(btnEl.textContent, 'Resultat');
@@ -221,7 +221,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     // Button debug elements
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
                     // Button native elements to click on
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Item body is open
                     let itemBodyDes = getAndExpectDebugElementByCss(
@@ -231,7 +231,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         1,
                         'open'
                     );
-                    let itemBodyEl = itemBodyDes[0].nativeElement;
+                    let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
 
@@ -551,7 +551,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const itemBodyEl = itemBodyDes[0].nativeElement;
+                    const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
                 });
@@ -567,7 +567,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                     // Item header button
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Check button content
                     expectToBe(btnEl.textContent, 'Resultat');
@@ -582,10 +582,8 @@ describe('ConstructResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Button debug elements
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
-                    // Button native elements to click on
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     expect(btnEl.disabled).toBeTruthy();
 
@@ -597,7 +595,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         1,
                         'open'
                     );
-                    let itemBodyEl = itemBodyDes[0].nativeElement;
+                    let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
 

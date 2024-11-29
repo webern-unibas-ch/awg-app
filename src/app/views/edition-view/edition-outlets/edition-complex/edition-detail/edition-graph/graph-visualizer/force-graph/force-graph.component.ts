@@ -95,21 +95,21 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It keeps the reference to the element containing the graph.
      */
-    @ViewChild('graphContainer', { static: true }) graphContainer: ElementRef;
+    @ViewChild('graphContainer', { static: true }) graphContainer: ElementRef<HTMLDivElement>;
 
     /**
      * ViewChild variable: sliderInput.
      *
      * It keeps the reference to the input range slider.
      */
-    @ViewChild('sliderInput', { static: true }) sliderInput: ElementRef;
+    @ViewChild('sliderInput', { static: true }) sliderInput: ElementRef<HTMLInputElement>;
 
     /**
      * ViewChild variable: sliderInputLabel.
      *
      * It keeps the reference to the input sliderInputLabel.
      */
-    @ViewChild('sliderInputLabel', { static: true }) sliderInputLabel: ElementRef;
+    @ViewChild('sliderInputLabel', { static: true }) sliderInputLabel: ElementRef<HTMLSpanElement>;
 
     /**
      * Public variable: faCompressArrowsAlt.
@@ -717,7 +717,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             zoomContext.attr('transform', currentTransform);
 
             // Update view
-            this.sliderInput.nativeElement.value = roundedTransformValue;
+            this.sliderInput.nativeElement.value = roundedTransformValue.toString();
             // Needed because d3 listener does not update ngModel
             this.sliderInputLabel.nativeElement.innerText = roundedTransformValue + 'x';
             this.sliderConfig.value = roundedTransformValue;
@@ -765,11 +765,11 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It returns the dimensions (clientWidth & clientHeight) of a given container.
      *
-     * @param {ElementRef} container The given container element.
+     * @param {ElementRef<HTMLDivElement>} container The given container element.
      *
      * @returns { width: number; height: number } The container dimensions.
      */
-    private _getContainerDimensions(container: ElementRef): { width: number; height: number } {
+    private _getContainerDimensions(container: ElementRef<HTMLDivElement>): { width: number; height: number } {
         if (!container?.nativeElement) {
             return null;
         }
