@@ -91,7 +91,7 @@ describe('AlertInfoComponent (DONE)', () => {
             it('... should have a centered, muted, small paragraph in ngbAlert component', () => {
                 const alertDes = getAndExpectDebugElementByDirective(compDe, NgbAlert, 1, 1);
                 const pDes = getAndExpectDebugElementByCss(alertDes[0], 'p', 1, 1);
-                const pEl = pDes[0].nativeElement;
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expectToBe(pEl.classList.contains('small'), true);
                 expectToBe(pEl.classList.contains('text-muted'), true);
@@ -110,7 +110,7 @@ describe('AlertInfoComponent (DONE)', () => {
             it('... should display an error message in alert paragraph', () => {
                 const alertDes = getAndExpectDebugElementByDirective(compDe, NgbAlert, 1, 1);
                 const pDes = getAndExpectDebugElementByCss(alertDes[0], 'p', 1, 1);
-                const pEl = pDes[0].nativeElement;
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expectToContain(pEl.textContent.trim(), expectedInfoMessage);
             });

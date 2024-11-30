@@ -175,7 +175,7 @@ describe('FooterComponent (DONE)', () => {
                 it('... should contain 1 google tranlate div in third inner div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-bottom div', 3, 3);
                     const gtransDiv = divDes[2];
-                    const gtransEl = gtransDiv.nativeElement;
+                    const gtransEl: HTMLDivElement = gtransDiv.nativeElement;
 
                     expectToBe(gtransEl.id, 'google_translate_element');
                     expectToContain(gtransEl.classList, 'gtrans');

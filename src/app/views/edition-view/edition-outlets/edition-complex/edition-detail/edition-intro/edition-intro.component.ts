@@ -315,7 +315,9 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     private _initScrollListener(): void {
         fromEvent(window, 'scroll')
             .pipe(throttleTime(200), takeUntil(this._destroyed$))
-            .subscribe(event => this._onIntroScroll(event));
+            .subscribe({
+                next: event => this._onIntroScroll(event),
+            });
     }
 
     /**
@@ -340,28 +342,31 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * It handles the scroll event on the intro window
      * and highlights the corresponding section in the intro navigation.
      *
-     * @param {Event} _event The given scroll event (not used).
+     * @param {Event} event The given scroll event.
      * @returns {void} Highlights the corresponding section in the intro navigation
      * on window scroll.
      */
-    private _onIntroScroll(_event: Event): void {
-        const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-        const introSections: NodeListOf<HTMLElement> = document.querySelectorAll('.awg-edition-intro-section');
-        const introNavLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('a.awg-edition-intro-nav-link');
+    private _onIntroScroll(event: Event): void {
+        if (event?.type === 'scroll') {
+            const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+            const introSections: NodeListOf<HTMLElement> = document.querySelectorAll('.awg-edition-intro-section');
+            const introNavLinks: NodeListOf<HTMLAnchorElement> =
+                document.querySelectorAll('a.awg-edition-intro-nav-link');
 
-        let activeIntroSectionId: string | null = null;
+            let activeIntroSectionId: string | null = null;
 
-        introSections.forEach((introSection: HTMLElement) => {
-            const introSectionTop = introSection.offsetTop - 10;
-            const introSectionBottom = introSection.offsetTop + introSection.offsetHeight;
+            introSections.forEach((introSection: HTMLElement) => {
+                const introSectionTop = introSection.offsetTop - 10;
+                const introSectionBottom = introSection.offsetTop + introSection.offsetHeight;
 
-            if (introSectionTop <= scrollPosition && introSectionBottom > scrollPosition) {
-                activeIntroSectionId = introSection.id;
-            }
-        });
+                if (introSectionTop <= scrollPosition && introSectionBottom > scrollPosition) {
+                    activeIntroSectionId = introSection.id;
+                }
+            });
 
-        introNavLinks.forEach((navLink: HTMLAnchorElement) => {
-            navLink.classList.toggle('active', navLink.hash.includes(activeIntroSectionId));
-        });
+            introNavLinks.forEach((navLink: HTMLAnchorElement) => {
+                navLink.classList.toggle('active', navLink.hash.includes(activeIntroSectionId));
+            });
+        }
     }
 }

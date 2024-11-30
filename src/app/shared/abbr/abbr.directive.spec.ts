@@ -63,7 +63,7 @@ describe('AbbrDirective (DONE)', () => {
         fixture.detectChanges(); // Trigger initial data binding
 
         const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
-        const pEl = pDes[0].nativeElement;
+        const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
         expectToContain(pEl.innerHTML, '<abbr title="Klavier">Klav.</abbr>');
         expectToContain(pEl.innerHTML, '<abbr title="Klavier oben">Klav. o.</abbr>');
@@ -76,7 +76,7 @@ describe('AbbrDirective (DONE)', () => {
         fixture.detectChanges(); // Trigger initial data binding
 
         const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
-        const pEl = pDes[0].nativeElement;
+        const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
         getAndExpectDebugElementByCss(pDes[0], `abbr`, expectedAbbreviations.size, expectedAbbreviations.size);
 
@@ -93,7 +93,7 @@ describe('AbbrDirective (DONE)', () => {
         fixture.detectChanges(); // Trigger data binding
 
         const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
-        const pEl = pDes[0].nativeElement;
+        const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
         expect(pEl.innerHTML).not.toContain('<abbr title="Klavier">Klaviert</abbr>');
         expect(pEl.innerHTML).toContain('<abbr title="Klavier oben">Klav. o.</abbr>');
@@ -105,7 +105,7 @@ describe('AbbrDirective (DONE)', () => {
         fixture.detectChanges(); // Trigger data binding
 
         const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
-        const pEl = pDes[0].nativeElement;
+        const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
         expect(pEl.innerHTML).toBe('');
     });

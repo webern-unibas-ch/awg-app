@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { BibliographyFormatPipe } from './bibliography-format.pipe';
 
 describe('BibliographyFormatPipe', () => {

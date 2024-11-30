@@ -28,9 +28,9 @@ export class GraphVisualizerComponent implements OnInit {
     /**
      * ViewChild variable: fs.
      *
-     * It keeps the reference to the full screen element.
+     * It keeps the reference to the full screen HTMLElement.
      */
-    @ViewChild('fs') fs: ElementRef;
+    @ViewChild('fs') fs: ElementRef<HTMLElement>;
 
     /**
      * Input variable: graphRDFInputData.

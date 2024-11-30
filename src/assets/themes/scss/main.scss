@@ -20,7 +20,11 @@ a:link:not(.nav-link),
 a:visited:not(.nav-link),
 a:hover:not(.nav-link),
 a:not([href]):not([tabindex]):not(.nav-link),
-a:not([href]):not([tabindex]):not(.nav-link):hover {
+a:not([href]):not([tabindex]):not(.nav-link):hover,
+a[role='button'][tabindex='0'],
+a[role='button'][tabindex='0']:hover,
+a[role='link'][tabindex='0'],
+a[role='link'][tabindex='0']:hover {
     color: $link-color;
     text-decoration: none;
 }

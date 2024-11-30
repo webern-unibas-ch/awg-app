@@ -137,7 +137,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
 
             it('... the outer paragraph should have the detailsClass appended to its class name', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
-                const pEl = pDes[0].nativeElement;
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expectToBe(pEl.className, `awg-source-description-${expectedDetailsClass}`);
             });
@@ -151,7 +151,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
 
             it('... should contain a span with the detailsLabel in smallcaps if given', () => {
                 const spanDes = getAndExpectDebugElementByCss(compDe, 'span.smallcaps', 1, 1);
-                const spanEl = spanDes[0].nativeElement;
+                const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                 // Process HTML expression of expected text content
                 const expectedHtmlTextContent = mockDocument.createElement('span');
@@ -171,7 +171,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 const spanDes = getAndExpectDebugElementByCss(compDe, 'span:not(:first-child)', 6, 6);
 
                 spanDes.forEach((spanDe, index) => {
-                    const spanEl = spanDe.nativeElement;
+                    const spanEl: HTMLSpanElement = spanDe.nativeElement;
 
                     if (index % 2 === 0) {
                         expectToBe(spanEl.textContent, expectedDetails[index * (1 / 2)]);
@@ -183,7 +183,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 const spanDes = getAndExpectDebugElementByCss(compDe, 'span:not(:first-child)', 6, 6);
 
                 spanDes.forEach((spanDe, index) => {
-                    const spanEl = spanDe.nativeElement;
+                    const spanEl: HTMLSpanElement = spanDe.nativeElement;
 
                     if (index === spanDes.length - 1) {
                         expectToBe(spanEl.textContent, '.');
@@ -200,7 +200,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 const spanDes = getAndExpectDebugElementByCss(compDe, 'span:not(:first-child)', 3, 3);
 
                 spanDes.forEach((spanDe, index) => {
-                    const spanEl = spanDe.nativeElement;
+                    const spanEl: HTMLSpanElement = spanDe.nativeElement;
 
                     expectToBe(spanEl.textContent, expectedDetails[index]);
                 });
@@ -242,7 +242,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
             }));
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
+                it('... parameter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);

@@ -232,6 +232,14 @@
                                                                     sheetId: content.itemLinkTo.sheetId,
                                                                 })
                                                             "
+                                                            (keyup.enter)="
+                                                                selectSvgSheet({
+                                                                    complexId: content.itemLinkTo.complexId,
+                                                                    sheetId: content.itemLinkTo.sheetId,
+                                                                })
+                                                            "
+                                                            role="link"
+                                                            tabindex="0"
                                                             ><strong>{{ content.item }}</strong></a
                                                         >
                                                     }
@@ -268,6 +276,14 @@
                                                                             sheetId: folio.folioLinkTo,
                                                                         })
                                                                     "
+                                                                    (keyup.enter)="
+                                                                        selectSvgSheet({
+                                                                            complexId: content.itemLinkTo.complexId,
+                                                                            sheetId: folio.folioLinkTo,
+                                                                        })
+                                                                    "
+                                                                    role="link"
+                                                                    tabindex="0"
                                                                     ><ng-template
                                                                         *ngTemplateOutlet="
                                                                             folioTemplate;
@@ -402,6 +418,16 @@
                                                                                         sheetId: system.linkTo,
                                                                                     })
                                                                                 "
+                                                                                (keyup.enter)="
+                                                                                    selectSvgSheet({
+                                                                                        complexId:
+                                                                                            content.itemLinkTo
+                                                                                                .complexId,
+                                                                                        sheetId: system.linkTo,
+                                                                                    })
+                                                                                "
+                                                                                role="link"
+                                                                                tabindex="0"
                                                                                 ><ng-template
                                                                                     *ngTemplateOutlet="
                                                                                         measureTemplate;
@@ -442,6 +468,16 @@
                                                                                         sheetId: system.linkTo,
                                                                                     })
                                                                                 "
+                                                                                (keyup.enter)="
+                                                                                    selectSvgSheet({
+                                                                                        complexId:
+                                                                                            content.itemLinkTo
+                                                                                                .complexId,
+                                                                                        sheetId: system.linkTo,
+                                                                                    })
+                                                                                "
+                                                                                role="link"
+                                                                                tabindex="0"
                                                                                 ><ng-template
                                                                                     *ngTemplateOutlet="
                                                                                         rowTemplate;

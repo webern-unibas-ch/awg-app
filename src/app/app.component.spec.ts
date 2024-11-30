@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Location } from '@angular/common';
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
@@ -58,10 +57,10 @@ describe('AppComponent (DONE)', () => {
 
     let location: Location;
     let router: Router;
-    let titleService: Title;
 
     let mockAnalyticsService: Partial<AnalyticsService>;
     let mockEditionInitService: Partial<EditionInitService>;
+    let mockTitleService: Partial<Title>;
 
     let getTitleSpy: Spy;
     let setTitleSpy: Spy;
@@ -77,7 +76,7 @@ describe('AppComponent (DONE)', () => {
             initializeAnalytics: (): void => {
                 // Intentional empty test override
             },
-            trackPageView: (page: string): void => {
+            trackPageView: (): void => {
                 // Intentional empty test override
             },
         };
@@ -85,6 +84,14 @@ describe('AppComponent (DONE)', () => {
         // Create a mocked EditionInitService with an `initializeEdition` spy
         mockEditionInitService = {
             initializeEdition: (): void => {
+                // Intentional empty test override
+            },
+        };
+
+        // Create a mocked Title with a `getTitle` and `setTitle` spy
+        mockTitleService = {
+            getTitle: (): string => 'Default Page Title',
+            setTitle: (): void => {
                 // Intentional empty test override
             },
         };
@@ -103,13 +110,13 @@ describe('AppComponent (DONE)', () => {
             providers: [
                 { provide: AnalyticsService, useValue: mockAnalyticsService },
                 { provide: EditionInitService, useValue: mockEditionInitService },
-                Title,
+                { provide: Title, useValue: mockTitleService },
             ],
         }).compileComponents();
 
         // Spies for service methods
-        getTitleSpy = spyOn(Title.prototype, 'getTitle').and.returnValue('Default Page Title');
-        setTitleSpy = spyOn(Title.prototype, 'setTitle').and.callThrough();
+        getTitleSpy = spyOn(mockTitleService, 'getTitle').and.returnValue('Default Page Title');
+        setTitleSpy = spyOn(mockTitleService, 'setTitle').and.callThrough();
         initialzeAnalyticsSpy = spyOn(mockAnalyticsService, 'initializeAnalytics').and.callThrough();
         initializeEditionSpy = spyOn(mockEditionInitService, 'initializeEdition').and.callThrough();
         trackpageViewSpy = spyOn(mockAnalyticsService, 'trackPageView').and.callThrough();
@@ -125,7 +132,6 @@ describe('AppComponent (DONE)', () => {
 
         location = TestBed.inject(Location);
         router = TestBed.inject(Router);
-        titleService = TestBed.inject(Title);
 
         // Test data
         expectedActivateSideOutlet = true;
@@ -158,6 +164,9 @@ describe('AppComponent (DONE)', () => {
 
         const editionInitService = TestBed.inject(EditionInitService);
         expectToBe(editionInitService === mockEditionInitService, true);
+
+        const titleService = TestBed.inject(Title);
+        expectToBe(titleService === mockTitleService, true);
     });
 
     describe('router setup (self-test)', () => {

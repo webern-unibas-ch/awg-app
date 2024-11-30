@@ -53,13 +53,13 @@ describe('LanguageSwitcherComponent (DONE)', () => {
 
             it('... should contain 2 language-switcher anchor elements (DE | EN)', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
-                const pEl = pDes[0].nativeElement;
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expectToBe(pEl.textContent, 'DE | EN');
 
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 2, 2);
-                const aEl1 = aDes[0].nativeElement;
-                const aEl2 = aDes[1].nativeElement;
+                const aEl1: HTMLAnchorElement = aDes[0].nativeElement;
+                const aEl2: HTMLAnchorElement = aDes[1].nativeElement;
 
                 expectToBe(aEl1.textContent, 'DE');
                 expectToBe(aEl2.textContent, 'EN');
@@ -123,8 +123,8 @@ describe('LanguageSwitcherComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 2, 2);
 
-                const aEl0 = aDes[0].nativeElement;
-                const aEl1 = aDes[1].nativeElement;
+                const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
+                const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
                 expectToContain(aEl0.classList, 'active');
                 expect(aEl1.classList).not.toContain('active');
@@ -137,8 +137,8 @@ describe('LanguageSwitcherComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 2, 2);
 
-                const aEl0 = aDes[0].nativeElement;
-                const aEl1 = aDes[1].nativeElement;
+                const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
+                const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
 
                 expect(aEl0.classList).not.toContain('active');
                 expectToContain(aEl1.classList, 'active');

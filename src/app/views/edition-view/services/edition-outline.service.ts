@@ -101,7 +101,7 @@ export class EditionOutlineService {
      */
     private static _fetchEditionOutlineData(): EditionOutline {
         // Load the JSON data directly from the file
-        const outlineData: EditionOutlineJsonData = (jsonEditionOutline as any).default;
+        const outlineData: EditionOutlineJsonData = jsonEditionOutline as EditionOutlineJsonData;
 
         return new EditionOutline(outlineData['editionOutline']);
     }
