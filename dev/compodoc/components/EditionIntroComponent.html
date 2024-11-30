@@ -635,8 +635,8 @@ filters it by a given block id for the edition complex.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="331"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:331</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="333"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:333</a></div>
                         </td>
                     </tr>
 
@@ -738,15 +738,15 @@ filters it by a given block id for the edition complex.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_onIntroScroll(_event: Event)</code>
+                    <code>_onIntroScroll(event: Event)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="347"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:347</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="349"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:349</a></div>
                         </td>
                     </tr>
 
@@ -773,7 +773,7 @@ and highlights the corresponding section in the intro navigation.</p>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>_event</td>
+                                                <td>event</td>
                                             <td>
                                                         <code>Event</code>
                                             </td>
@@ -784,7 +784,7 @@ and highlights the corresponding section in the intro navigation.</p>
 
 
                                             <td>
-                                                    <p>The given scroll event (not used).</p>
+                                                    <p>The given scroll event.</p>
 
                                             </td>
                                         </tr>
@@ -2085,7 +2085,9 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     private _initScrollListener(): void {
         fromEvent(window, &#x27;scroll&#x27;)
             .pipe(throttleTime(200), takeUntil(this._destroyed$))
-            .subscribe(event &#x3D;&gt; this._onIntroScroll(event));
+            .subscribe({
+                next: event &#x3D;&gt; this._onIntroScroll(event),
+            });
     }
 
     /**
@@ -2110,29 +2112,32 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * It handles the scroll event on the intro window
      * and highlights the corresponding section in the intro navigation.
      *
-     * @param {Event} _event The given scroll event (not used).
+     * @param {Event} event The given scroll event.
      * @returns {void} Highlights the corresponding section in the intro navigation
      * on window scroll.
      */
-    private _onIntroScroll(_event: Event): void {
-        const scrollPosition &#x3D; window.scrollY || document.documentElement.scrollTop;
-        const introSections: NodeListOf&lt;HTMLElement&gt; &#x3D; document.querySelectorAll(&#x27;.awg-edition-intro-section&#x27;);
-        const introNavLinks: NodeListOf&lt;HTMLAnchorElement&gt; &#x3D; document.querySelectorAll(&#x27;a.awg-edition-intro-nav-link&#x27;);
+    private _onIntroScroll(event: Event): void {
+        if (event?.type &#x3D;&#x3D;&#x3D; &#x27;scroll&#x27;) {
+            const scrollPosition &#x3D; window.scrollY || document.documentElement.scrollTop;
+            const introSections: NodeListOf&lt;HTMLElement&gt; &#x3D; document.querySelectorAll(&#x27;.awg-edition-intro-section&#x27;);
+            const introNavLinks: NodeListOf&lt;HTMLAnchorElement&gt; &#x3D;
+                document.querySelectorAll(&#x27;a.awg-edition-intro-nav-link&#x27;);
 
-        let activeIntroSectionId: string | null &#x3D; null;
+            let activeIntroSectionId: string | null &#x3D; null;
 
-        introSections.forEach((introSection: HTMLElement) &#x3D;&gt; {
-            const introSectionTop &#x3D; introSection.offsetTop - 10;
-            const introSectionBottom &#x3D; introSection.offsetTop + introSection.offsetHeight;
+            introSections.forEach((introSection: HTMLElement) &#x3D;&gt; {
+                const introSectionTop &#x3D; introSection.offsetTop - 10;
+                const introSectionBottom &#x3D; introSection.offsetTop + introSection.offsetHeight;
 
-            if (introSectionTop &lt;&#x3D; scrollPosition &amp;&amp; introSectionBottom &gt; scrollPosition) {
-                activeIntroSectionId &#x3D; introSection.id;
-            }
-        });
+                if (introSectionTop &lt;&#x3D; scrollPosition &amp;&amp; introSectionBottom &gt; scrollPosition) {
+                    activeIntroSectionId &#x3D; introSection.id;
+                }
+            });
 
-        introNavLinks.forEach((navLink: HTMLAnchorElement) &#x3D;&gt; {
-            navLink.classList.toggle(&#x27;active&#x27;, navLink.hash.includes(activeIntroSectionId));
-        });
+            introNavLinks.forEach((navLink: HTMLAnchorElement) &#x3D;&gt; {
+                navLink.classList.toggle(&#x27;active&#x27;, navLink.hash.includes(activeIntroSectionId));
+            });
+        }
     }
 }
 </code></pre>

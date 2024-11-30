@@ -212,9 +212,6 @@ of the edition view of the app.</p>
                                     <span class="modifier">Readonly</span>
                                 <a href="#_route" >_route</a>
                             </li>
-                            <li>
-                                <a href="#selectedSeries" >selectedSeries</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -275,8 +272,8 @@ of the edition view of the app.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="46"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-series-detail.component.ts:46</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-series-detail.component.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -316,8 +313,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-series-detail.component.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-series-detail.component.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -367,7 +364,7 @@ and updates the EditionStateService.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-series-detail.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-series-detail.component.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -401,7 +398,7 @@ and updates the EditionStateService.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-series-detail.component.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-series-detail.component.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -409,39 +406,6 @@ and updates the EditionStateService.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Private readonly injection variable: _route.</p>
 <p>It keeps the instance of the injected Angular ActivatedRoute.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="selectedSeries"></a>
-                    <span class="name">
-                        <span ><b>selectedSeries</b></span>
-                        <a href="#selectedSeries"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >EditionOutlineSeries</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-series-detail.component.ts:24</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: selectedSeries.</p>
-<p>It keeps the selected series of the edition.</p>
 </div>
                 </td>
             </tr>
@@ -457,7 +421,6 @@ and updates the EditionStateService.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, OnInit } from &#x27;@angular/core&#x27;;
 import { ActivatedRoute } from &#x27;@angular/router&#x27;;
 
-import { EditionOutlineSeries } from &#x27;@awg-views/edition-view/models&#x27;;
 import { EditionOutlineService, EditionStateService } from &#x27;@awg-views/edition-view/services&#x27;;
 
 /**
@@ -472,13 +435,6 @@ import { EditionOutlineService, EditionStateService } from &#x27;@awg-views/edit
     styleUrls: [&#x27;./edition-series-detail.component.scss&#x27;],
 })
 export class EditionSeriesDetailComponent implements OnInit {
-    /**
-     * Public variable: selectedSeries.
-     *
-     * It keeps the selected series of the edition.
-     */
-    selectedSeries: EditionOutlineSeries;
-
     /**
      * Private readonly injection variable: _editionStateService.
      *
@@ -514,8 +470,8 @@ export class EditionSeriesDetailComponent implements OnInit {
     updateSeriesFromRoute(): void {
         const id &#x3D; this._route.snapshot.paramMap.get(&#x27;id&#x27;);
 
-        this.selectedSeries &#x3D; EditionOutlineService.getEditionSeriesById(id);
-        this._editionStateService.updateSelectedEditionSeries(this.selectedSeries);
+        const selectedSeries &#x3D; EditionOutlineService.getEditionSeriesById(id);
+        this._editionStateService.updateSelectedEditionSeries(selectedSeries);
     }
 }
 </code></pre>

@@ -281,8 +281,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="380"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:380</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="377"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:377</a></div>
                         </td>
                     </tr>
 
@@ -359,8 +359,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="394"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:394</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="391"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:391</a></div>
                         </td>
                     </tr>
 
@@ -453,8 +453,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="421"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:421</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="418"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:418</a></div>
                         </td>
                     </tr>
 
@@ -851,7 +851,7 @@ and returns a promise of the selection.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getContainerDimensions(containerEl: ElementRef)</code>
+<code>getContainerDimensions(containerEl: ElementRef<HTMLElement>)</code>
                 </td>
             </tr>
 
@@ -886,7 +886,7 @@ and returns a promise of the selection.</p>
                                         <tr>
                                                 <td>containerEl</td>
                                             <td>
-                                                        <code>ElementRef</code>
+                                                        <code>ElementRef&lt;HTMLElement&gt;</code>
                                             </td>
 
                                             <td>
@@ -1410,8 +1410,8 @@ and returns a promise of the selection.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="362"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:362</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="359"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:359</a></div>
                         </td>
                     </tr>
 
@@ -2160,7 +2160,7 @@ export class EditionSvgDrawingService {
      *
      * @returns {{ width: number; height: number }} The dimensions (width and height) of the container element.
      */
-    getContainerDimensions(containerEl: ElementRef): { width: number; height: number } {
+    getContainerDimensions(containerEl: ElementRef&lt;HTMLElement&gt;): { width: number; height: number } {
         if (!containerEl) {
             return { width: undefined, height: undefined };
         }
@@ -2283,10 +2283,7 @@ export class EditionSvgDrawingService {
         }
 
         // Get the class name from the label lookup table
-        const className &#x3D;
-            Array.from(this._suppliedClassesLabelLookup.entries()).find(
-                ([_key, value]) &#x3D;&gt; value &#x3D;&#x3D;&#x3D; labelOrClassName
-            )?.[0] || labelOrClassName;
+        const className &#x3D; this._suppliedClassesLabelLookup.get(labelOrClassName) || labelOrClassName;
 
         // Get D3 selection of supplied elements
         const selector &#x3D; className ? &#x60;supplied.${className}&#x60; : &#x27;supplied&#x27;;

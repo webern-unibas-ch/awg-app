@@ -375,7 +375,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>document:fullscreenchange(_event: Event)</code>
+<code>document:fullscreenchange()</code>
                 </td>
             </tr>
 
@@ -463,7 +463,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>onFullscreenChange(_event: Event)</code>
+                    <code>onFullscreenChange()</code>
                 </td>
             </tr>
 
@@ -489,40 +489,10 @@
 <p>It listens for fullscreen exit.</p>
 </div>
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>_event</td>
-                                            <td>
-                                                        <code>Event</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -888,7 +858,7 @@ export class FullscreenToggleComponent {
      *
      * It listens for fullscreen exit.
      */
-    @HostListener(&#x27;document:fullscreenchange&#x27;, [&#x27;$event&#x27;]) onFullscreenChange(_event: Event) {
+    @HostListener(&#x27;document:fullscreenchange&#x27;, [&#x27;$event&#x27;]) onFullscreenChange(): void {
         const fullscreenMode &#x3D; this._fullscreenService.isFullscreen();
         this.toggleFullscreen(fullscreenMode);
     }

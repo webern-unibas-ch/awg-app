@@ -285,10 +285,10 @@ and the <a href="../components/SearchResultListComponent.html">SearchResultListC
                                 <a href="#getSearchData" >getSearchData</a>
                             </li>
                             <li>
-                                <a href="#getSearchQueryType" >getSearchQueryType</a>
+                                <a href="#getSearchQueryAsString" >getSearchQueryAsString</a>
                             </li>
                             <li>
-                                <a href="#isSearchResultListShown" >isSearchResultListShown</a>
+                                <a href="#getSearchQueryType" >getSearchQueryType</a>
                             </li>
                             <li>
                                 <a href="#ngOnDestroy" >ngOnDestroy</a>
@@ -381,8 +381,8 @@ and the <a href="../components/SearchResultListComponent.html">SearchResultListC
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="521"
-                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:521</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="519"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:519</a></div>
                         </td>
                     </tr>
 
@@ -454,8 +454,8 @@ and the <a href="../components/SearchResultListComponent.html">SearchResultListC
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="551"
-                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:551</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="549"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:549</a></div>
                         </td>
                     </tr>
 
@@ -532,8 +532,8 @@ and the <a href="../components/SearchResultListComponent.html">SearchResultListC
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="503"
-                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:503</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="501"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:501</a></div>
                         </td>
                     </tr>
 
@@ -655,6 +655,82 @@ from the <a href="../injectables/DataApiService.html">DataApiService</a>.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getSearchQueryAsString"></a>
+                    <span class="name">
+                        <span ><b>getSearchQueryAsString</b></span>
+                        <a href="#getSearchQueryAsString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getSearchQueryAsString(value: <a href="../undefineds/SearchQuery.html" target="_self">SearchQuery</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="473"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:473</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: getSearchQueryAsString.</p>
+<p>It returns the search query as string.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#SearchQuery" target="_self" >SearchQuery</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given search query.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The search query as string.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getSearchQueryType"></a>
                     <span class="name">
                         <span ><b>getSearchQueryType</b></span>
@@ -717,55 +793,11 @@ and returns the value typed as string or ExtendedSearchParams.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                            <b>Returns : </b>    <code>string | ExtendedSearchParams</code>
 
                         </div>
                             <div class="io-description">
                                 <p>The value as string or ExtendedSearchParams type.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="isSearchResultListShown"></a>
-                    <span class="name">
-                        <span ><b>isSearchResultListShown</b></span>
-                        <a href="#isSearchResultListShown"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>isSearchResultListShown()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="470"
-                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:470</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: isSearchResultListShown.</p>
-<p>It checks if the search result list shall be shown (not used yet).</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The boolean result of the check.</p>
 
                             </div>
                 </td>
@@ -792,8 +824,8 @@ and returns the value typed as string or ExtendedSearchParams.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="485"
-                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:485</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="483"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:483</a></div>
                         </td>
                     </tr>
 
@@ -2453,30 +2485,28 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      *
      * @param {SearchQuery} value The given value.
      *
-     * @returns {any} The value as string or ExtendedSearchParams type.
+     * @returns {string | ExtendedSearchParams} The value as string or ExtendedSearchParams type.
      */
-    getSearchQueryType(value: SearchQuery): any {
+    getSearchQueryType(value: SearchQuery): string | ExtendedSearchParams {
         if (typeof value &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
             return value as string;
         } else if (typeof value &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
             return value as ExtendedSearchParams;
         }
+        return null;
     }
 
     /**
-     * Public method: isSearchResultListShown.
+     * Public method: getSearchQueryAsString.
      *
-     * It checks if the search result list shall be shown (not used yet).
+     * It returns the search query as string.
      *
-     * @returns {boolean} The boolean result of the check.
+     * @param {SearchQuery} value The given search query.
+     *
+     * @returns {string} The search query as string.
      */
-    isSearchResultListShown(): boolean {
-        this._dataStreamerService
-            .getSearchResponseWithQuery()
-            .pipe(takeUntil(this._destroyed$))
-            .subscribe({ next: result &#x3D;&gt; console.log(result) });
-
-        return true;
+    getSearchQueryAsString(value: SearchQuery): string {
+        return typeof this.getSearchQueryType(value) &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? (value as string) : &#x27;&#x27;;
     }
 
     /**
@@ -2576,7 +2606,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             &lt;ng-template ngbNavContent&gt;
                 &lt;!-- full text search --&gt;
                 &lt;awg-fulltext-search-form
-                    [searchValue]&#x3D;&quot;getSearchQueryType(searchParams?.query)&quot;
+                    [searchValue]&#x3D;&quot;getSearchQueryAsString(searchParams?.query)&quot;
                     (searchRequest)&#x3D;&quot;onSearch($event)&quot;&gt;
                 &lt;/awg-fulltext-search-form&gt;
             &lt;/ng-template&gt;
@@ -2652,7 +2682,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- content: search panel --><div class="awg-search-tabs">    <nav        ngbNav        #searchNav="ngbNav"        class="nav-tabs nav-fill"        [activeId]="selectedSearchTabId"        (navChange)="onSearchTabChange($event)">        <ng-container [ngbNavItem]="searchTabs?.fulltext.id">            <a ngbNavLink id="fulltext" class="awg-fulltext-search-tab">{{ searchTabs?.fulltext.title }}</a>            <ng-template ngbNavContent>                <!-- full text search -->                <awg-fulltext-search-form                    [searchValue]="getSearchQueryType(searchParams?.query)"                    (searchRequest)="onSearch($event)">                </awg-fulltext-search-form>            </ng-template>        </ng-container>        <ng-container [ngbNavItem]="searchTabs.extended.id">            <a ngbNavLink class="awg-extended-search-tab">{{ searchTabs?.extended.title }}</a>            <ng-template ngbNavContent>                <!-- extended search -->                <awg-extended-search-form (searchRequest)="onSearch($event)"></awg-extended-search-form>            </ng-template>        </ng-container>    </nav>    <div [ngbNavOutlet]="searchNav"></div></div><!-- loading spinner -->@if (isLoading$ | async) {    <div>        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>    </div>} @else {    @if (errorMessage) {        <div class="awg-error-message">            <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>            <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>            <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder der Suchanfrage.</p>        </div>    }    @if (searchResponseWithQuery?.query) {        <awg-search-result-list            [searchParams]="searchParams"            [searchUrl]="httpGetUrl"            (pageChangeRequest)="onPageChange($event)"            (rowNumberChangeRequest)="onRowNumberChange($event)"            (viewChangeRequest)="onViewChange($event)">        </awg-search-result-list>    }}<!-- search results --></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- content: search panel --><div class="awg-search-tabs">    <nav        ngbNav        #searchNav="ngbNav"        class="nav-tabs nav-fill"        [activeId]="selectedSearchTabId"        (navChange)="onSearchTabChange($event)">        <ng-container [ngbNavItem]="searchTabs?.fulltext.id">            <a ngbNavLink id="fulltext" class="awg-fulltext-search-tab">{{ searchTabs?.fulltext.title }}</a>            <ng-template ngbNavContent>                <!-- full text search -->                <awg-fulltext-search-form                    [searchValue]="getSearchQueryAsString(searchParams?.query)"                    (searchRequest)="onSearch($event)">                </awg-fulltext-search-form>            </ng-template>        </ng-container>        <ng-container [ngbNavItem]="searchTabs.extended.id">            <a ngbNavLink class="awg-extended-search-tab">{{ searchTabs?.extended.title }}</a>            <ng-template ngbNavContent>                <!-- extended search -->                <awg-extended-search-form (searchRequest)="onSearch($event)"></awg-extended-search-form>            </ng-template>        </ng-container>    </nav>    <div [ngbNavOutlet]="searchNav"></div></div><!-- loading spinner -->@if (isLoading$ | async) {    <div>        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>    </div>} @else {    @if (errorMessage) {        <div class="awg-error-message">            <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>            <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>            <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder der Suchanfrage.</p>        </div>    }    @if (searchResponseWithQuery?.query) {        <awg-search-result-list            [searchParams]="searchParams"            [searchUrl]="httpGetUrl"            (pageChangeRequest)="onPageChange($event)"            (rowNumberChangeRequest)="onRowNumberChange($event)"            (viewChangeRequest)="onViewChange($event)">        </awg-search-result-list>    }}<!-- search results --></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaDescriptionComponent', 'selector': 'awg-edition-tka-description'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopComponent', 'selector': 'awg-scroll-to-top'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'SearchPanelComponent'};

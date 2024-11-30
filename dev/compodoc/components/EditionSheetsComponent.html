@@ -2531,7 +2531,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
 
         combineLatest([this._route.paramMap, this._route.queryParamMap])
             .pipe(
-                switchMap(([_params, queryParams]) &#x3D;&gt; this._fetchEditionComplexData(queryParams)),
+                switchMap(([, queryParams]) &#x3D;&gt; this._fetchEditionComplexData(queryParams)),
                 // Error handling
                 catchError(err &#x3D;&gt; {
                     this.errorObject &#x3D; err;
