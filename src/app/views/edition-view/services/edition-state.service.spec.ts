@@ -50,51 +50,51 @@ describe('EditionStateService (DONE)', () => {
     });
 
     it('... should have bufferSize = 1', () => {
-        expectToBe((editionStateService as any)._bufferSize, 1);
+        expectToBe(editionStateService['_bufferSize'], 1);
     });
 
     it('... should have _isIntroViewSubject', () => {
-        expect((editionStateService as any)._isIntroViewSubject).toBeTruthy();
+        expect(editionStateService['_isIntroViewSubject']).toBeTruthy();
     });
 
     it('... should have _isIntroViewStream$', () => {
-        expect((editionStateService as any)._isIntroViewStream$).toBeTruthy();
+        expect(editionStateService['_isIntroViewStream$']).toBeTruthy();
     });
 
     it('... should have _isPrefaceViewSubject', () => {
-        expect((editionStateService as any)._isPrefaceViewSubject).toBeTruthy();
+        expect(editionStateService['_isPrefaceViewSubject']).toBeTruthy();
     });
 
     it('... should have _isPrefaceViewStream$', () => {
-        expect((editionStateService as any)._isPrefaceViewStream$).toBeTruthy();
+        expect(editionStateService['_isPrefaceViewStream$']).toBeTruthy();
     });
 
     it('... should have _isRowTableViewSubject', () => {
-        expect((editionStateService as any)._isRowTableViewSubject).toBeTruthy();
+        expect(editionStateService['_isRowTableViewSubject']).toBeTruthy();
     });
 
     it('... should have _isRowTableViewStream$', () => {
-        expect((editionStateService as any)._isRowTableViewStream$).toBeTruthy();
+        expect(editionStateService['_isRowTableViewStream$']).toBeTruthy();
     });
 
     it('... should have _selectedEditionComplexSubject', () => {
-        expect((editionStateService as any)._selectedEditionComplexSubject).toBeTruthy();
+        expect(editionStateService['_selectedEditionComplexSubject']).toBeTruthy();
     });
 
     it('... should have _selectedEditionComplexStream$', () => {
-        expect((editionStateService as any)._selectedEditionComplexStream$).toBeTruthy();
+        expect(editionStateService['_selectedEditionComplexStream$']).toBeTruthy();
     });
 
     it('... should have _selectedEditionSeriesSubject', () => {
-        expect((editionStateService as any)._selectedEditionSeriesSubject).toBeTruthy();
+        expect(editionStateService['_selectedEditionSeriesSubject']).toBeTruthy();
     });
 
     it('... should have _selectedEditionSeriesStream$', () => {
-        expect((editionStateService as any)._selectedEditionSeriesStream$).toBeTruthy();
+        expect(editionStateService['_selectedEditionSeriesStream$']).toBeTruthy();
     });
 
     it('... should have _selectedEditionSectionSubject', () => {
-        expect((editionStateService as any)._selectedEditionSectionSubject).toBeTruthy();
+        expect(editionStateService['_selectedEditionSectionSubject']).toBeTruthy();
     });
 
     describe('EditionComplex', () => {
