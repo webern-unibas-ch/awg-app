@@ -9,7 +9,13 @@ import { JsonConvert } from 'json2typescript';
 import { of as observableOf } from 'rxjs';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 import { mockResourceDetail, mockResourceFullResponseJson } from '@testing/mock-data';
 import { ActivatedRouteStub } from '@testing/router-stubs';
 
@@ -143,9 +149,7 @@ describe('ResourceDetailComponent', () => {
             converted: 'JSON (converted)',
         };
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        // Spies
         navigateToSideOutletSpy = spyOn(component, 'navigateToSideOutlet').and.callThrough();
     });
 
@@ -180,6 +184,24 @@ describe('ResourceDetailComponent', () => {
 
         it('... should not have `selectedResourceDetailTabId`', () => {
             expect(component.selectedResourceDetailTabId).toBeUndefined();
+        });
+
+        describe('VIEW', () => {
+            it('... should contain one `div.awg-resource-view`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-resource-view', 1, 1);
+            });
+
+            it('... should not display TwelveToneSpinnerComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
+            });
+
+            it('... should contain no `div.awg-error-message`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-error-message', 0, 0);
+            });
+
+            it('... should contain no `div.awg-resource-detail-tabs`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-resource-detail-tabs', 0, 0);
+            });
         });
 
         describe('#navigateToSideOutlet()', () => {

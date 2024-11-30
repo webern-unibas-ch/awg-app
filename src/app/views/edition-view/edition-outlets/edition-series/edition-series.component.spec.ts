@@ -186,10 +186,10 @@ describe('EditionSeriesComponent (DONE)', () => {
 
                 cardDes.forEach((cardDe, index) => {
                     const expectedSeries = expectedEditionOutline[index].series;
-                    const h5De = getAndExpectDebugElementByCss(cardDe, 'h5.card-header', 1, 1);
-                    const h5El = h5De[0].nativeElement;
+                    const hDes = getAndExpectDebugElementByCss(cardDe, 'h5.card-header', 1, 1);
+                    const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                    expectToBe(h5El.textContent.trim(), expectedSeries.full);
+                    expectToBe(hEl.textContent.trim(), expectedSeries.full);
                 });
             });
 
@@ -218,7 +218,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                     expectedSeriesLength
                 );
 
-                cardDes.forEach((cardDe, _index) => {
+                cardDes.forEach(cardDe => {
                     getAndExpectDebugElementByCss(cardDe, 'div.card-footer', 1, 1);
                 });
             });
@@ -283,7 +283,7 @@ describe('EditionSeriesComponent (DONE)', () => {
 
                         liDes.forEach((liDe, liIndex) => {
                             const expectedSection = expectedSections[liIndex].section;
-                            const liEl = liDe.nativeElement;
+                            const liEl: HTMLLIElement = liDe.nativeElement;
 
                             expectToBe(liEl.textContent.trim(), expectedSection.full);
                         });
@@ -364,7 +364,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                         expectedSeriesLength
                     );
 
-                    cardDes.forEach((cardDe, _index) => {
+                    cardDes.forEach(cardDe => {
                         const footerDes = getAndExpectDebugElementByCss(cardDe, 'div.card-footer', 1, 1);
                         getAndExpectDebugElementByDirective(footerDes[0], RouterLinkStubDirective, 1, 1);
                     });
@@ -409,7 +409,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                         expectedSeriesLength
                     );
 
-                    cardDes.forEach((cardDe, _index) => {
+                    cardDes.forEach(cardDe => {
                         const footerDes = getAndExpectDebugElementByCss(cardDe, 'div.card-footer', 1, 1);
 
                         const footerLinkDes = getAndExpectDebugElementByDirective(
@@ -418,7 +418,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const footerLinkEl = footerLinkDes[0].nativeElement;
+                        const footerLinkEl: HTMLAnchorElement = footerLinkDes[0].nativeElement;
 
                         const expectedLinkText = 'Mehr ...';
 
@@ -444,8 +444,8 @@ describe('EditionSeriesComponent (DONE)', () => {
 
             it('... can get correct linkParams from template', () => {
                 let linkIndex = 0;
-                expectedEditionOutline.forEach((series, _seriesIndex) => {
-                    series.sections.forEach((section, _sectionIndex) => {
+                expectedEditionOutline.forEach(series => {
+                    series.sections.forEach(section => {
                         if (!section.disabled) {
                             // Check the router link for the section
                             const expectedSectionLinkParams = [series.series.route, 'section', section.section.route];

@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
@@ -16,13 +15,6 @@ import { EditionOutlineService, EditionStateService } from '@awg-views/edition-v
     styleUrls: ['./edition-series-detail.component.scss'],
 })
 export class EditionSeriesDetailComponent implements OnInit {
-    /**
-     * Public variable: selectedSeries.
-     *
-     * It keeps the selected series of the edition.
-     */
-    selectedSeries: EditionOutlineSeries;
-
     /**
      * Private readonly injection variable: _editionStateService.
      *
@@ -58,7 +50,7 @@ export class EditionSeriesDetailComponent implements OnInit {
     updateSeriesFromRoute(): void {
         const id = this._route.snapshot.paramMap.get('id');
 
-        this.selectedSeries = EditionOutlineService.getEditionSeriesById(id);
-        this._editionStateService.updateSelectedEditionSeries(this.selectedSeries);
+        const selectedSeries = EditionOutlineService.getEditionSeriesById(id);
+        this._editionStateService.updateSelectedEditionSeries(selectedSeries);
     }
 }

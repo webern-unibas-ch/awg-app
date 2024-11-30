@@ -59,12 +59,12 @@ describe('AddressComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'address p.awg-address-content', 2, 2);
             });
 
-            it('... should not render the address header information yet', () => {
-                const headerDes = getAndExpectDebugElementByCss(compDe, 'address p#awg-address-header a', 1, 1);
-                const headerEl = headerDes[0].nativeElement;
+            it('... should not render the address header link yet', () => {
+                const aDes = getAndExpectDebugElementByCss(compDe, 'address p#awg-address-header a', 1, 1);
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                expectToBe(headerEl.href, '');
-                expectToBe(headerEl.textContent, '');
+                expectToBe(aEl.href, '');
+                expectToBe(aEl.textContent, '');
             });
 
             it('... should not render the address content information yet', () => {
@@ -73,22 +73,22 @@ describe('AddressComponent (DONE)', () => {
                 const content1Des = contentDes[1];
 
                 // Content1
-                const insitutionDes = getAndExpectDebugElementByCss(content0Des, '#awg-address-institution', 1, 1);
-                const streetDes = getAndExpectDebugElementByCss(content0Des, '#awg-address-street', 1, 1);
-                const postalCityDes = getAndExpectDebugElementByCss(content0Des, '#awg-address-postal-city', 1, 1);
-                const countryDes = getAndExpectDebugElementByCss(content0Des, '#awg-address-country', 1, 1);
+                const insitutionDes = getAndExpectDebugElementByCss(content0Des, 'span#awg-address-institution', 1, 1);
+                const streetDes = getAndExpectDebugElementByCss(content0Des, 'span#awg-address-street', 1, 1);
+                const postalCityDes = getAndExpectDebugElementByCss(content0Des, 'span#awg-address-postal-city', 1, 1);
+                const countryDes = getAndExpectDebugElementByCss(content0Des, 'span#awg-address-country', 1, 1);
 
-                const institutionEl = insitutionDes[0].nativeElement;
-                const streetEl = streetDes[0].nativeElement;
-                const postalCityEl = postalCityDes[0].nativeElement;
-                const countryEl = countryDes[0].nativeElement;
+                const institutionEl: HTMLSpanElement = insitutionDes[0].nativeElement;
+                const streetEl: HTMLSpanElement = streetDes[0].nativeElement;
+                const postalCityEl: HTMLSpanElement = postalCityDes[0].nativeElement;
+                const countryEl: HTMLSpanElement = countryDes[0].nativeElement;
 
                 // Content 2
-                const phoneDes = getAndExpectDebugElementByCss(content1Des, '#awg-address-phone', 1, 1);
-                const emailDes = getAndExpectDebugElementByCss(content1Des, '#awg-address-email a', 1, 1);
+                const phoneDes = getAndExpectDebugElementByCss(content1Des, 'span#awg-address-phone', 1, 1);
+                const emailDes = getAndExpectDebugElementByCss(content1Des, 'span#awg-address-email a', 1, 1);
 
-                const phoneEl = phoneDes[0].nativeElement;
-                const emailEl = emailDes[0].nativeElement;
+                const phoneEl: HTMLSpanElement = phoneDes[0].nativeElement;
+                const emailEl: HTMLAnchorElement = emailDes[0].nativeElement;
 
                 expectToBe(institutionEl.textContent, '');
                 expectToBe(streetEl.textContent, '');
@@ -113,12 +113,12 @@ describe('AddressComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should render the address header information', () => {
-                const headerDes = getAndExpectDebugElementByCss(compDe, 'address p#awg-address-header a', 1, 1);
-                const headerEl = headerDes[0].nativeElement;
+            it('... should render the address header link', () => {
+                const aDes = getAndExpectDebugElementByCss(compDe, 'address p#awg-address-header a', 1, 1);
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                expectToBe(headerEl.href, expectedPageMetaData.awgProjectUrl);
-                expectToBe(headerEl.textContent, expectedPageMetaData.awgProjectName);
+                expectToBe(aEl.href, expectedPageMetaData.awgProjectUrl);
+                expectToBe(aEl.textContent, expectedPageMetaData.awgProjectName);
             });
 
             it('... should render the address content institution information', () => {
@@ -128,7 +128,7 @@ describe('AddressComponent (DONE)', () => {
                     1,
                     1
                 );
-                const institutionEl = institutionDes[0].nativeElement;
+                const institutionEl: HTMLSpanElement = institutionDes[0].nativeElement;
 
                 expectToBe(institutionEl.textContent, expectedContactMetaData.address.institution);
             });
@@ -140,7 +140,7 @@ describe('AddressComponent (DONE)', () => {
                     1,
                     1
                 );
-                const streetEl = streetDes[0].nativeElement;
+                const streetEl: HTMLSpanElement = streetDes[0].nativeElement;
 
                 expectToBe(streetEl.textContent, expectedContactMetaData.address.street);
             });
@@ -152,7 +152,7 @@ describe('AddressComponent (DONE)', () => {
                     1,
                     1
                 );
-                const postalCityEl = postalCityDes[0].nativeElement;
+                const postalCityEl: HTMLSpanElement = postalCityDes[0].nativeElement;
 
                 const expectedPostalCity =
                     expectedContactMetaData.address.postalCode + '\xA0' + expectedContactMetaData.address.city;
@@ -167,7 +167,7 @@ describe('AddressComponent (DONE)', () => {
                     1,
                     1
                 );
-                const countryEl = countryDes[0].nativeElement;
+                const countryEl: HTMLSpanElement = countryDes[0].nativeElement;
 
                 expectToBe(countryEl.textContent, expectedContactMetaData.address.country);
             });
@@ -179,7 +179,7 @@ describe('AddressComponent (DONE)', () => {
                     1,
                     1
                 );
-                const phoneEl = phoneDes[0].nativeElement;
+                const phoneEl: HTMLSpanElement = phoneDes[0].nativeElement;
 
                 const expectedPhone =
                     expectedContactMetaData.phone.label + '\xA0' + expectedContactMetaData.phone.number;
@@ -194,7 +194,7 @@ describe('AddressComponent (DONE)', () => {
                     1,
                     1
                 );
-                const emailEl = emailDes[0].nativeElement;
+                const emailEl: HTMLAnchorElement = emailDes[0].nativeElement;
 
                 expectToBe(emailEl.href, expectedContactMetaData.email.mailto);
                 expectToBe(emailEl.textContent, expectedContactMetaData.email.safeString);

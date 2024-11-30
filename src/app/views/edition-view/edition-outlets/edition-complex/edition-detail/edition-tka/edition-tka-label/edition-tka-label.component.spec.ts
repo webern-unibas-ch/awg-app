@@ -93,7 +93,7 @@ describe('EditionTkaLabelComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
 
                     const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
-                    const spanEl = spanDes[0].nativeElement;
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                     expectToBe(spanEl.textContent.trim(), 'Quellenbewertung');
                 });
@@ -104,7 +104,7 @@ describe('EditionTkaLabelComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
 
                     const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
-                    const spanEl = spanDes[0].nativeElement;
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                     expectToBe(spanEl.textContent.trim(), 'Skizzenkommentar');
                 });
@@ -123,7 +123,7 @@ describe('EditionTkaLabelComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
 
                     const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
-                    const spanEl = spanDes[0].nativeElement;
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                     expectToBe(spanEl.textContent.trim(), 'Textkritische Anmerkungen');
                 });
@@ -134,7 +134,7 @@ describe('EditionTkaLabelComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
 
                     const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
-                    const spanEl = spanDes[0].nativeElement;
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                     expectToBe(spanEl.textContent.trim(), 'Textkritische Kommentare');
                 });

@@ -65,8 +65,8 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
             });
 
             it('... should not have any inner div.col yet', () => {
-                const rowDe = getAndExpectDebugElementByCss(compDe, 'div.row', 1, 1);
-                getAndExpectDebugElementByCss(rowDe[0], 'div.col', 0, 0);
+                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.row', 1, 1);
+                getAndExpectDebugElementByCss(rowDes[0], 'div.col', 0, 0);
             });
         });
     });
@@ -142,7 +142,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 );
                 colDes.forEach((colDe, index) => {
                     const cardTitleDes = getAndExpectDebugElementByCss(colDe, 'h5.card-title', 1, 1);
-                    const cardTitleEl = cardTitleDes[0].nativeElement;
+                    const cardTitleEl: HTMLHeadingElement = cardTitleDes[0].nativeElement;
 
                     expectToBe(cardTitleEl.classList.contains('text-muted'), expectedComplexes[index].disabled);
                 });
@@ -158,15 +158,15 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 );
                 colDes.forEach((colDe, index) => {
                     const cardTitleDes = getAndExpectDebugElementByCss(colDe, 'h5.card-title', 1, 1);
-                    const headerDes = getAndExpectDebugElementByCss(
+                    const titleSpanDes = getAndExpectDebugElementByCss(
                         cardTitleDes[0],
                         'span.awg-edition-info-header-title',
                         1,
                         1
                     );
-                    const headerEl = headerDes[0].nativeElement;
+                    const titleSpanEl: HTMLSpanElement = titleSpanDes[0].nativeElement;
 
-                    expectToBe(headerEl.innerHTML, expectedComplexes[index].complex.complexId.full);
+                    expectToBe(titleSpanEl.innerHTML, expectedComplexes[index].complex.complexId.full);
                 });
             });
 
@@ -211,17 +211,17 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                     if (!expectedComplexes[index].disabled) {
                         const pDes = getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 1, 1);
                         const editors = expectedComplexes[index].complex.respStatement.editors;
-                        const editorDes = getAndExpectDebugElementByCss(
+                        const editorSpanDes = getAndExpectDebugElementByCss(
                             pDes[0],
                             'span.editor',
                             editors.length,
                             editors.length
                         );
 
-                        editorDes.forEach((editor, editorIndex) => {
-                            const editorEl = editor.nativeElement;
+                        editorSpanDes.forEach((editorSpanDe, editorIndex) => {
+                            const editorSpanEl: HTMLSpanElement = editorSpanDe.nativeElement;
 
-                            expectToBe(editorEl.textContent.trim(), editors[editorIndex].name);
+                            expectToBe(editorSpanEl.textContent.trim(), editors[editorIndex].name);
                         });
                     }
                 });
@@ -238,18 +238,18 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                     if (!expectedComplexes[index].disabled) {
                         const pDes = getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 1, 1);
                         const editors = expectedComplexes[index].complex.respStatement.editors;
-                        const editorDes = getAndExpectDebugElementByCss(
+                        const editorSpanDes = getAndExpectDebugElementByCss(
                             pDes[0],
                             'span.editor',
                             editors.length,
                             editors.length
                         );
 
-                        editorDes.forEach((editor, editorIndex) => {
-                            const anchorDe = getAndExpectDebugElementByCss(editor, 'a', 1, 1);
-                            const anchorEl = anchorDe[0].nativeElement;
+                        editorSpanDes.forEach((editorSpanDe, editorIndex) => {
+                            const aDes = getAndExpectDebugElementByCss(editorSpanDe, 'a', 1, 1);
+                            const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                            expectToBe(anchorEl.href, editors[editorIndex].homepage);
+                            expectToBe(aEl.href, editors[editorIndex].homepage);
                         });
                     }
                 });
@@ -265,11 +265,11 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 cardFooterDes.forEach((cardFooterDe, index) => {
                     if (!expectedComplexes[index].disabled) {
                         const pDes = getAndExpectDebugElementByCss(cardFooterDe, 'p.awg-edition-responsibility', 1, 1);
-                        const versionDes = getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
-                        const versionEl = versionDes[0].nativeElement;
+                        const versionSpanDes = getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
+                        const versionSpanEl: HTMLSpanElement = versionSpanDes[0].nativeElement;
 
                         expectToBe(
-                            versionEl.textContent.trim(),
+                            versionSpanEl.textContent.trim(),
                             expectedComplexes[index].complex.respStatement.lastModified
                         );
                     } else {
@@ -300,7 +300,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 );
                 pDes.forEach(pDe => {
                     const aDes = getAndExpectDebugElementByCss(pDe, 'a', 1, 1);
-                    const aEl = aDes[0].nativeElement;
+                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                     const expectedLinkText = 'Mehr ...';
 
@@ -317,7 +317,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 );
                 pDes.forEach((pDe, index) => {
                     const aDes = getAndExpectDebugElementByCss(pDe, 'a', 1, 1);
-                    const aEl = aDes[0].nativeElement;
+                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                     expectToBe(aEl.classList.contains('disabled'), expectedComplexes[index].disabled);
                 });

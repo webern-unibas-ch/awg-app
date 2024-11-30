@@ -22,6 +22,6 @@ export function asyncData<T>(data: T): Observable<T> {
  * @param {any} errorObject The object to err.
  * @returns {Observable<any>} A rejected error promise.
  */
-export function asyncError<T>(errorObject: any): Observable<any> {
+export function asyncError<T>(errorObject: T): Observable<T> {
     return defer(() => Promise.reject(errorObject));
 }

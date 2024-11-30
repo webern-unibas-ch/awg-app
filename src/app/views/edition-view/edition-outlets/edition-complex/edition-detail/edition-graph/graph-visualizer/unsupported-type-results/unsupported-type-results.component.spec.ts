@@ -66,22 +66,17 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one div.accordion', () => {
-                // Div.accordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
             it('... should contain one div.accordion-item with header and non-collapsible body yet in div.accordion', () => {
-                // Div.accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
-                // Header (div.accordion-header)
                 getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-header', 1, 1);
 
-                // Body (div.accordion-collapse)
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
-                const itemBodyEl = itemBodyDes[0].nativeElement;
+                const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                 expectToContain(itemBodyEl.classList, 'accordion-collapse');
             });
@@ -109,41 +104,36 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
         describe('VIEW', () => {
             describe('not in fullscreen mode', () => {
                 it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
-                    // Div.accordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                    // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
                         'div#awg-graph-visualizer-unsupported-query-type-result.accordion-item',
                         1,
                         1
                     );
-                    // Header (div.accordion-header)
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         itemDes[0],
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
                         1,
                         1
                     );
-                    const itemHeaderEl = itemHeaderDes[0].nativeElement;
+                    const itemHeaderEl: HTMLDivElement = itemHeaderDes[0].nativeElement;
 
                     expect(itemHeaderEl.classList).not.toContain('collapsed');
 
-                    // Body (div.accordion-collapse)
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
                         1,
                         1
                     );
-                    const itemBodyEl = itemBodyDes[0].nativeElement;
+                    const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
                 });
 
                 it('... should display item header button', () => {
-                    // Header debug elements
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
@@ -151,17 +141,13 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Item header button
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                    const btnEl = btnDes[0].nativeElement;
-
-                    // Check button content
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
                 it('... should toggle item body on click', () => {
-                    // Header debug elements
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
@@ -169,24 +155,21 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Button debug elements
                     const btnDes = getAndExpectDebugElementByCss(
                         itemHeaderDes[0],
                         'button#awg-graph-visualizer-unsupported-query-type-result-toggle',
                         1,
                         1
                     );
-                    // Button native elements to click on
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                    // Item body is closed
                     let itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
                         1,
                         1
                     );
-                    let itemBodyEl = itemBodyDes[0].nativeElement;
+                    let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
 
@@ -221,7 +204,6 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 });
 
                 it('... should contain item body with two centered paragraphs', () => {
-                    // Body debug elements
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
@@ -229,18 +211,16 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Item body paragraphs
                     const pDes = getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 2, 2);
 
                     pDes.forEach((pDe: DebugElement) => {
-                        const pEl = pDe.nativeElement;
+                        const pEl: HTMLParagraphElement = pDe.nativeElement;
                         expect(pEl).toBeTruthy();
                         expect(pEl).toHaveClass('text-center');
                     });
                 });
 
                 it('... should display messages in item body paragraphs', () => {
-                    // Body debug elements
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
@@ -248,11 +228,9 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Item body paragraphs
                     const pDes = getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 2, 2);
-
-                    const pEl0 = pDes[0].nativeElement;
-                    const pEl1 = pDes[1].nativeElement;
+                    const pEl0: HTMLParagraphElement = pDes[0].nativeElement;
+                    const pEl1: HTMLParagraphElement = pDes[1].nativeElement;
 
                     expectToContain(
                         pEl0.textContent.trim(),
@@ -262,7 +240,6 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 });
 
                 it('... should display correct queryType in first paragraph if input changes', () => {
-                    // Body debug elements
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
@@ -270,10 +247,8 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Item body paragraphs
                     const pDes = getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 2, 2);
-
-                    const pEl0 = pDes[0].nativeElement;
+                    const pEl0: HTMLParagraphElement = pDes[0].nativeElement;
 
                     expectToContain(pEl0.textContent, expectedQueryType.toUpperCase());
 
@@ -301,41 +276,36 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 });
 
                 it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
-                    // Div.accordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                    // Item (div.accordion-item)
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
                         'div#awg-graph-visualizer-unsupported-query-type-result.accordion-item',
                         1,
                         1
                     );
-                    // Header (div.accordion-header)
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         itemDes[0],
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
                         1,
                         1
                     );
-                    const itemHeaderEl = itemHeaderDes[0].nativeElement;
+                    const itemHeaderEl: HTMLDivElement = itemHeaderDes[0].nativeElement;
 
                     expect(itemHeaderEl.classList).not.toContain('collapsed');
 
-                    // Body (div.accordion-collapse)
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
                         1,
                         1
                     );
-                    const itemBodyEl = itemBodyDes[0].nativeElement;
+                    const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
                 });
 
                 it('... should display item header button', () => {
-                    // Header debug elements
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
@@ -343,17 +313,13 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Item header button
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                    const btnEl = btnDes[0].nativeElement;
-
-                    // Check button content
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
                 it('... should not toggle item body on click', () => {
-                    // Header debug elements
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
@@ -361,15 +327,13 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Button debug elements
                     const btnDes = getAndExpectDebugElementByCss(
                         itemHeaderDes[0],
                         'button#awg-graph-visualizer-unsupported-query-type-result-toggle',
                         1,
                         1
                     );
-                    // Button native elements to click on
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Item body does not closed
                     let itemBodyDes = getAndExpectDebugElementByCss(
@@ -379,7 +343,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                         1,
                         'open'
                     );
-                    let itemBodyEl = itemBodyDes[0].nativeElement;
+                    let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
 
@@ -400,7 +364,6 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 });
 
                 it('... should contain item body with two centered paragraphs', () => {
-                    // Body debug elements
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
@@ -408,18 +371,16 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Item body paragraphs
                     const pDes = getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 2, 2);
 
                     pDes.forEach((pDe: DebugElement) => {
-                        const pEl = pDe.nativeElement;
+                        const pEl: HTMLParagraphElement = pDe.nativeElement;
                         expect(pEl).toBeTruthy();
                         expect(pEl).toHaveClass('text-center');
                     });
                 });
 
                 it('... should display messages in item body paragraphs', () => {
-                    // Body debug elements
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
@@ -427,11 +388,9 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Item body paragraphs
                     const pDes = getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 2, 2);
-
-                    const pEl0 = pDes[0].nativeElement;
-                    const pEl1 = pDes[1].nativeElement;
+                    const pEl0: HTMLParagraphElement = pDes[0].nativeElement;
+                    const pEl1: HTMLParagraphElement = pDes[1].nativeElement;
 
                     expectToContain(
                         pEl0.textContent.trim(),
@@ -441,7 +400,6 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 });
 
                 it('... should display correct queryType in first paragraph if input changes', () => {
-                    // Body debug elements
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
@@ -449,10 +407,8 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Item body paragraphs
                     const pDes = getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 2, 2);
-
-                    const pEl0 = pDes[0].nativeElement;
+                    const pEl0: HTMLParagraphElement = pDes[0].nativeElement;
 
                     expectToContain(pEl0.textContent, expectedQueryType.toUpperCase());
 
@@ -487,7 +443,6 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
             });
 
             it('... should return true if isFullscreen is true', () => {
-                // Set fullscreen flag to true
                 component.isFullscreen = true;
 
                 expectToBe(component.isAccordionItemDisabled(), true);

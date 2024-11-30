@@ -186,12 +186,12 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 );
 
                 divDes.forEach((divDe, index) => {
-                    const headingDe = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
-                    const headingEl = headingDe[0].nativeElement;
+                    const hDes = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
+                    const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                     const expectedHeading = 'Reihentabelle ' + expectedRowTablesData.rowTables[index].short;
 
-                    expectToBe(headingEl.textContent.trim(), expectedHeading);
+                    expectToBe(hEl.textContent.trim(), expectedHeading);
                 });
             });
 
@@ -204,13 +204,13 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 );
 
                 divDes.forEach((divDe, index) => {
-                    const headingDe = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
-                    const headingEl = headingDe[0].nativeElement;
+                    const hDes = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
+                    const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                     if (expectedRowTablesData.rowTables[index].disabled) {
-                        expectToContain(headingEl.classList, 'text-muted');
+                        expectToContain(hEl.classList, 'text-muted');
                     } else {
-                        expect(headingEl.classList).not.toContain('text-muted');
+                        expect(hEl.classList).not.toContain('text-muted');
                     }
                 });
             });
@@ -236,13 +236,13 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     expectedRowTablesData.rowTables.length
                 );
 
-                divDes.forEach((divDe, index) => {
-                    const anchorDe = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
-                    const anchorEl = anchorDe[0].nativeElement;
+                divDes.forEach(divDe => {
+                    const aDes = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
+                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                     const expectedText = 'Mehr ...';
 
-                    expectToBe(anchorEl.textContent.trim(), expectedText);
+                    expectToBe(aEl.textContent.trim(), expectedText);
                 });
             });
 
@@ -255,13 +255,13 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 );
 
                 divDes.forEach((divDe, index) => {
-                    const anchorDe = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
-                    const anchorEl = anchorDe[0].nativeElement;
+                    const aDes = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
+                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                     if (expectedRowTablesData.rowTables[index].disabled) {
-                        expectToContain(anchorEl.classList, 'disabled');
+                        expectToContain(aEl.classList, 'disabled');
                     } else {
-                        expect(anchorEl.classList).not.toContain('disabled');
+                        expect(aEl.classList).not.toContain('disabled');
                     }
                 });
             });

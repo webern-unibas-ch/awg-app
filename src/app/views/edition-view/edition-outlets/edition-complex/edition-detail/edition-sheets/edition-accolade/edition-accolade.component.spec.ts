@@ -218,22 +218,17 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one div.accordion', () => {
-                // Div.accordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
             it('... should contain one div.accordion-item with header and non-collapsible body yet in div.accordion', () => {
-                // Div.accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
-                // Header (div.accordion-header)
                 getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-header', 1, 1);
 
-                // Body (div.accordion-collapse)
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
-                const itemBodyEl = itemBodyDes[0].nativeElement;
+                const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                 expectToContain(itemBodyEl.classList, 'accordion-collapse');
             });
@@ -280,9 +275,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should have class `fullscreen` on div.accordion only in fullscreen mode', () => {
-                // Div.accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
-                const accordionEl = accordionDes[0].nativeElement;
+                const accordionEl: HTMLDivElement = accordionDes[0].nativeElement;
 
                 expect(accordionEl.classList).not.toContain('fullscreen');
 
@@ -295,78 +289,67 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
             describe('... accordion header', () => {
                 it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
-                    // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                    // Item (div.accordion-item)
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
                         'div#awg-accolade-view.accordion-item',
                         1,
                         1
                     );
-                    // Header (div.accordion-header)
                     getAndExpectDebugElementByCss(itemDes[0], 'div#awg-accolade-view > div.accordion-header', 1, 1);
 
-                    // Body open (div.accordion-collapse)
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
                         'div#awg-accolade-view-collapse',
                         1,
                         1
                     );
-                    const itemBodyEl = itemBodyDes[0].nativeElement;
+                    const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
                 });
 
                 it('... should contain header section with div.accordion-header and header button', () => {
-                    // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
 
-                    // Header
-                    const headerDes = getAndExpectDebugElementByCss(
+                    const itemHeaderDes = getAndExpectDebugElementByCss(
                         itemDes[0],
                         'div#awg-accolade-view > div.accordion-header',
                         1,
                         1
                     );
 
-                    // Header Buttons
-                    const buttonDes = getAndExpectDebugElementByCss(
-                        headerDes[0],
+                    const btnDes = getAndExpectDebugElementByCss(
+                        itemHeaderDes[0],
                         'div.accordion-button > button.btn',
                         1,
                         1
                     );
-                    const buttonEl0 = buttonDes[0].nativeElement;
+                    const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
 
                     const expectedTitle0 = 'Edierte Notentexte';
 
-                    expectToBe(buttonEl0.textContent.trim(), expectedTitle0);
+                    expectToBe(btnEl0.textContent.trim(), expectedTitle0);
                 });
 
                 it('... should contain another div with help and FullscreenToggleComponent (stubbed) in header section', () => {
-                    // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
 
-                    // Header
-                    const headerDes = getAndExpectDebugElementByCss(
+                    const itemHeaderDes = getAndExpectDebugElementByCss(
                         itemDes[0],
                         'div#awg-accolade-view > div.accordion-header',
                         1,
                         1
                     );
 
-                    // Help Button
-                    const buttonDes = getAndExpectDebugElementByCss(headerDes[0], 'div.ms-auto > button.btn', 1, 1);
-                    const buttonEl = buttonDes[0].nativeElement;
+                    const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'div.ms-auto > button.btn', 1, 1);
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
                     const expectedTitle = 'Hinweise zur Nutzung';
 
-                    expectToBe(buttonEl.textContent.trim(), expectedTitle);
+                    expectToBe(btnEl.textContent.trim(), expectedTitle);
 
-                    // FullscreenToggle
-                    getAndExpectDebugElementByDirective(headerDes[0], FullscreenToggleStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(itemHeaderDes[0], FullscreenToggleStubComponent, 1, 1);
                 });
 
                 it('... should contain only FullscreenToggleComponent (stubbed) in other div of header section when in fullscreen mode', () => {
@@ -374,22 +357,18 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     component.isFullscreen = true;
                     detectChangesOnPush(fixture);
 
-                    // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
 
-                    // Header
-                    const headerDes = getAndExpectDebugElementByCss(
+                    const itemHeaderDes = getAndExpectDebugElementByCss(
                         itemDes[0],
                         'div#awg-accolade-view > div.accordion-header',
                         1,
                         1
                     );
 
-                    // Help Button
-                    getAndExpectDebugElementByCss(headerDes[0], 'div.ms-auto > button.btn', 0, 0);
+                    getAndExpectDebugElementByCss(itemHeaderDes[0], 'div.ms-auto > button.btn', 0, 0);
 
-                    // FullscreenToggle
-                    getAndExpectDebugElementByDirective(headerDes[0], FullscreenToggleStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(itemHeaderDes[0], FullscreenToggleStubComponent, 1, 1);
                 });
 
                 it('... should pass down accordion reference to the FullscreenToggleComponent', () => {
@@ -412,7 +391,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
             describe('EditionSvgSheetNavComponent', () => {
                 it('... should contain one EditionSvgSheetNavComponent (stubbed) in the item body (div.accordion-body)', () => {
-                    // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
                     const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
@@ -450,7 +428,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
             describe('EditionSvgSheetViewerComponent', () => {
                 it('... should contain one EditionSvgSheetViewerComponent (stubbed) in the item body (div.accordion-body)', () => {
-                    // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
                     const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
@@ -464,7 +441,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     // Trigger data binding
                     fixture.detectChanges();
 
-                    // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
                     const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
@@ -488,7 +464,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
             describe('EditionSvgSheetFooterComponent', () => {
                 it('... should contain one EditionSvgSheetFooterComponent (stubbed) in the item body (div.accordion-body)', () => {
-                    // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
                     const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
@@ -503,7 +478,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
                         // Trigger data binding
                         fixture.detectChanges();
 
-                        // Div.accordion-item
                         const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
                         const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
@@ -516,7 +490,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
                         // Trigger data binding
                         fixture.detectChanges();
 
-                        // Div.accordion-item
                         const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
                         const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
@@ -531,7 +504,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
                         // Trigger data binding
                         fixture.detectChanges();
 
-                        // Div.accordion-item
                         const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
                         const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
@@ -694,7 +666,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
+                it('... parameter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
@@ -754,8 +726,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
 
             it('... should trigger on click on header button', fakeAsync(() => {
-                // Header
-                const headerDes = getAndExpectDebugElementByCss(
+                const itemHeaderDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-accolade-view > div.accordion-header',
                     1,
@@ -763,11 +734,11 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 );
 
                 // Header Help Button
-                const buttonDes = getAndExpectDebugElementByCss(headerDes[0], 'div.ms-auto > button.btn', 1, 1);
+                const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'div.ms-auto > button.btn', 1, 1);
                 const expectedSnippet = 'HINT_EDITION_SHEETS';
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(buttonDes[0], fixture);
+                clickAndAwaitChanges(btnDes[0], fixture);
 
                 expectSpyCall(openModalSpy, 1, expectedSnippet);
             }));
