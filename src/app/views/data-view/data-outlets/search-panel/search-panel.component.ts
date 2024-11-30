@@ -450,14 +450,28 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      *
      * @param {SearchQuery} value The given value.
      *
-     * @returns {any} The value as string or ExtendedSearchParams type.
+     * @returns {string | ExtendedSearchParams} The value as string or ExtendedSearchParams type.
      */
-    getSearchQueryType(value: SearchQuery): any {
+    getSearchQueryType(value: SearchQuery): string | ExtendedSearchParams {
         if (typeof value === 'string') {
             return value as string;
         } else if (typeof value === 'object') {
             return value as ExtendedSearchParams;
         }
+        return null;
+    }
+
+    /**
+     * Public method: getSearchQueryAsString.
+     *
+     * It returns the search query as string.
+     *
+     * @param {SearchQuery} value The given search query.
+     *
+     * @returns {string} The search query as string.
+     */
+    getSearchQueryAsString(value: SearchQuery): string {
+        return typeof this.getSearchQueryType(value) === 'string' ? (value as string) : '';
     }
 
     /**
