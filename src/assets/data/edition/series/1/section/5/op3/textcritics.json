@@ -675,14 +675,14 @@
                             "measure": "2",
                             "system": "Ges.",
                             "position": "5/8",
-                            "comment": "Text: Großschreibung <em>Baum</em> korrigiert zu Kleinschreibung <em>baum</em> gemäß<strong> E<sup>e</sup></strong>."
+                            "comment": "Text: Großschreibung <em>Baum</em> korrigiert zu Kleinschreibung <em>baum</em> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a>."
                         },
                         {
                             "svgGroupId": "g600",
                             "measure": "2",
                             "system": "Ges.",
                             "position": "6/8",
-                            "comment": "Text: Kleinschreibung <em>im</em> korrigiert zu Großschreibung <em>Im</em> gemäß<strong> E<sup>e</sup></strong> (ante correcturam?). Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E_corr_1'})\"><strong>E<sup>e</sup></strong></a>: <em>im</em> auf Rasur."
+                            "comment": "Text: Kleinschreibung <em>im</em> korrigiert zu Großschreibung <em>Im</em> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> (ante correcturam?). Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E_corr_1'})\"><strong>E<sup>e</sup></strong></a>: <em>im</em> auf Rasur."
                         },
                         {
                             "svgGroupId": "g601",
@@ -696,14 +696,14 @@
                             "measure": "3",
                             "system": "Ges.",
                             "position": "1/8",
-                            "comment": "Text: Großschreibung <em>Win</em>(-ter-dunst) korrigiert zu Kleinschreibung <em>win</em>(-ter-dunst) gemäß<strong> E<sup>e</sup></strong>."
+                            "comment": "Text: Großschreibung <em>Win</em>(-ter-dunst) korrigiert zu Kleinschreibung <em>win</em>(-ter-dunst) gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a>."
                         },
                         {
                             "svgGroupId": "g604",
                             "measure": "3",
                             "system": "Klav. o.",
                             "position": "1–2/8",
-                            "comment": "Ligaturbögen zu cis<sup>2</sup>/e<sup>2</sup> gesetzt gemäß<strong> E<sup>e</sup></strong> (ante correcturam?). <strong>F<sup>c</sup></strong>: Bögen nach g<sup>1</sup> bei 1/8 und zu cis<sup>2</sup> bei 1–2/8; kein Bogen zu e<sup>2</sup>."
+                            "comment": "Ligaturbögen zu cis<sup>2</sup>/e<sup>2</sup> gesetzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> (ante correcturam?). <strong>F<sup>c</sup></strong>: Bögen nach g<sup>1</sup> bei 1/8 und zu cis<sup>2</sup> bei 1–2/8; kein Bogen zu e<sup>2</sup>."
                         },
                         {
                             "svgGroupId": "g605",
@@ -920,7 +920,7 @@
                             "measure": "11",
                             "system": "Ges.",
                             "position": "2/8",
-                            "comment": "Text: Kleinschreibung <em>dass</em> korrigiert zu Großschreibung <em>Dass</em> mit Blick <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang).<strong> E<sup>e</sup></strong>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                            "comment": "Text: Kleinschreibung <em>dass</em> korrigiert zu Großschreibung <em>Dass</em> mit Blick <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
                         },
                         {
                             "svgGroupId": "g754",
@@ -948,7 +948,7 @@
                             "measure": "12",
                             "system": "Ges.",
                             "position": "2/8",
-                            "comment": "Text: Kleinschreibung <em>dass</em> korrigiert zu Großschreibung <em>Dass</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang).<strong> E<sup>e</sup></strong>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                            "comment": "Text: Kleinschreibung <em>dass</em> korrigiert zu Großschreibung <em>Dass</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
                         },
                         {
                             "svgGroupId": "g758",
@@ -969,7 +969,7 @@
                             "measure": "13",
                             "system": "Ges.",
                             "position": "1. Note",
-                            "comment": "Text: Großschreibung <em>Früh</em>(-ling) korrigiert zu Kleinschreibung <em>früh</em>(-ling) gemäß<strong> E<sup>e</sup></strong> und mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                            "comment": "Text: Großschreibung <em>Früh</em>(-ling) korrigiert zu Kleinschreibung <em>früh</em>(-ling) gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> und mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
                         },
                         {
                             "svgGroupId": "g761",
