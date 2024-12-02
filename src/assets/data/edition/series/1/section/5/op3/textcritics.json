@@ -1010,6 +1010,91 @@
                 }
             ],
             "linkBoxes": []
+        },
+        {
+            "id": "M_137_TF2",
+            "label": "M 137 Textfassung 2",
+            "description": [
+                "Für die Edition von „Kahl reckt der Baum“ M 137 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>c</sup></strong></a> relevante Quellen. <br /> Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_1'})\">Korrekturen 1</a>), mit Bleistift oder Buntstift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_2'})\">Korrekturen 2</a>) und mit Tinte (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_3'})\">Korrekturen 3</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht immer eindeutig zu entziffern. Der Zustand nach Korrekturen 1 etabliert Textfassung 2. Korrekturen 2 sind vermutlich aufführunsspezifisch motiviert. Korrekturen 3 betreffen Textfassung 3. Der Zustand von <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>c</sup></strong></a> ante correcturam ist nicht immer eindeutig zu entziffern, entspricht aber vermutlich Textfassung 2. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gc_corr'})\">Korrekturen in <strong>G<sup>c</sup></strong></a> betreffen Textfassung 3.<br /> Hauptquelle für die Textedition von „Kahl reckt der Baum“ M 137 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> nach Korrekturen 1. Referenzquelle ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>c</sup></strong></a> ante correcturam, soweit entzifferbar."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g2",
+                            "measure": "2",
+                            "system": "Klav. u.",
+                            "position": "2. Note",
+                            "comment": "Unterstimmenschicht Achtelnote c<sup>1</sup>, Oberstimmenschicht punktierte Viertelnote c<sup>1</sup>/es<sup>1</sup> mit einem Notenkopf für c<sup>1</sup> geändert zu zwei Notenköpfen."
+                        },
+                        {
+                            "svgGroupId": "g3",
+                            "measure": "4",
+                            "system": "Klav. u.",
+                            "position": "1/8",
+                            "comment": "{{ref.getGlyph('[a]')}} zu h/d<sup>1</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a>: Akkoladenwechsel nach T. 3."
+                        },
+                        {
+                            "svgGroupId": "g4",
+                            "measure": "5",
+                            "system": "Klav.",
+                            "position": "1. Note",
+                            "comment": "Ende der Crescendogabel gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>c</sup></strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a>: nicht zu entziffern nach Rasur. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_3'})\">Korrekturen 3 in <strong>E<sup>e</sup></strong></a>: Ende der Crescendogabel geändert zu T. 4 6/8 (Rasur), Decrescendogabel T. 5 1–2/4 hinzugefügt."
+                        },
+                        {
+                            "svgGroupId": "g492",
+                            "measure": "5",
+                            "system": "Ges.",
+                            "position": "3–4/8",
+                            "comment": "Text sic: Silbentrennung <em>sti-ller</em>."
+                        },
+                        {
+                            "svgGroupId": "g493",
+                            "measure": "6",
+                            "system": "Ges.",
+                            "position": "6/8",
+                            "comment": "Text: Ausrufezeichen ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_3'})\">Korrekturen 3 in <strong>E<sup>e</sup></strong></a>: Ausrufezeichen hinzugefügt."
+                        },
+                        {
+                            "svgGroupId": "g633",
+                            "measure": "7",
+                            "system": "Ges.",
+                            "position": "4/8",
+                            "comment": "<em>gesteigert</em> versetzt von zwischen 1/4 und 3/8 mit Blick auf Ges.-Einsatz."
+                        },
+                        {
+                            "svgGroupId": "g634",
+                            "measure": "11",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "Text: Kleinschreibung <em>daß</em> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>c</sup></strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>Dass</em> (am Zeilenanfang)."
+                        },
+                        {
+                            "svgGroupId": "g635",
+                            "measure": "12",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "Text: Kleinschreibung <em>daß</em> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>c</sup></strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>Dass</em> (am Zeilenanfang)."
+                        },
+                        {
+                            "svgGroupId": "g652",
+                            "measure": "13",
+                            "system": "Ges.",
+                            "position": "3/4",
+                            "comment": "Text sic: Punkt nach <em>hofft</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: Ausrufezeichen."
+                        },
+                        {
+                            "svgGroupId": "g653",
+                            "measure": "14",
+                            "system": "Klav. u.",
+                            "position": "5/8",
+                            "comment": "Notenkopf und Akzidens zu B ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>c</sup></strong></a>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_3'})\">Korrekturen 3 in <strong>E<sup>e</sup></strong></a>: Notenkopf und Akzidens rasiert (Zustand nach Korrekturen 1 nicht sicher zu entziffern)."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
         }
     ]
 }
