@@ -310,7 +310,7 @@
                             "measure": "vor 1",
                             "system": "",
                             "position": "Anfang",
-                            "comment": "<em>Sehr</em> <em>Langsam</em> aufgelöst zu <em>Sehr langsam</em>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a>: <em>Sehr</em> hinzugefügt."
+                            "comment": "<em>Sehr Langsam</em> aufgelöst zu <em>Sehr langsam</em>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a>: <em>Sehr</em> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g639",
