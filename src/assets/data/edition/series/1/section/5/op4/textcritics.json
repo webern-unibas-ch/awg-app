@@ -277,14 +277,14 @@
                             "comment": "<em>rit. - - - tempo</em> über Klav. o. bei T. 10 1. Note bis T. 12 1. Note sowie <em>rit. - - -</em> über Ges. bei T. 10 1. Note bis Ende T. 11 zusammengefasst zu einer Angabe über der gesamten Akkolade."
                         },
                         {
-                            "svgGroupId": "g593",
+                            "svgGroupId": "g593b",
                             "measure": "10",
                             "system": "Ges.",
                             "position": "1. Note",
                             "comment": "Text sic: Großschreibung <em>Wird</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a> am Zeilenanfang)."
                         },
                         {
-                            "svgGroupId": "g594",
+                            "svgGroupId": "g594b",
                             "measure": "13",
                             "system": "",
                             "position": "Taktanfang",
@@ -352,7 +352,7 @@
                             "measure": "5 <br /> bis 6",
                             "system": "Klav.",
                             "position": "vorletzte Note",
-                            "comment": "Oberstimmenschicht: Bogen von T. 5 vorletzte Note bis T. 6 1/4 gesetzt mit Blick auf Streichung des Bogens bis T. 8 1/4 erst nach T. 6 1/4. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a>: Bogen von T. 5 vorletzte Note bis T. 8 1/4 (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF1'})\">Textfassung 1</a>) nach T. 6 1/4 gestrichen: <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\">Korrekturen in <strong>G</strong></a>: Akkoladenwechsel nach T. 5."
+                            "comment": "Oberstimmenschicht: Bogen von T. 5 vorletzte Note bis T. 6 1/4 gesetzt mit Blick auf Streichung des Bogens bis T. 8 1/4 erst nach T. 6 1/4. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a>: Bogen von T. 5 vorletzte Note bis T. 8 1/4 (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF1'})\">Textfassung 1</a>) nach T. 6 1/4 gestrichen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 5."
                         },
                         {
                             "svgGroupId": "g557",
