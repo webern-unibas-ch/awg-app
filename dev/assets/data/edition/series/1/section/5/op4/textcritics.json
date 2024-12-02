@@ -209,6 +209,204 @@
                     ]
                 }
             ]
+        },
+        {
+            "id": "M_142_TF1",
+            "label": "M 142 Textfassung 1",
+            "description": [
+                "Für die Edition von „Ihr tratet zu dem Herde“ M 142 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a> einzige relevante Quelle. <br /> Autographe Quellen sowie eine Korrekturfahne des Drucks <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>, die diese oder evt. noch frühere Textfassungen dokumentieren könnten, sind verschollen ([<strong>C</strong>], [<strong>E</strong>], [<strong>F</strong>]). Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Eintragungen in Weberns Handexemplar <strong>G<sup>H</sup></strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>. <br /> Hauptquelle für die Textedition von „Ihr tratet zu dem Herde“ M 142 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g593",
+                            "measure": "vor 1",
+                            "system": "",
+                            "position": "Anfang",
+                            "comment": "sic: keine Taktartvorzeichnung. Taktzählung T. 1–15 (mit Auftakt) mit Blick auf Textfassung 2 und Textfassung 3."
+                        },
+                        {
+                            "svgGroupId": "g594",
+                            "measure": "1",
+                            "system": "Klav. o.",
+                            "position": "letzte Note",
+                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>1</sup> ergänzt mit Blick auf Textfassung 3."
+                        },
+                        {
+                            "svgGroupId": "g595",
+                            "measure": "2",
+                            "system": "",
+                            "position": "5/8",
+                            "comment": "<em>zögernd </em>über Ges. und über Klav. u. zusammengefasst zu einer Angabe über der gesamten Akkolade."
+                        },
+                        {
+                            "svgGroupId": "g618",
+                            "measure": "3",
+                            "system": "Ges.",
+                            "position": "2/4",
+                            "comment": "Text sic: Großschreibung <em>Licht</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a> am Zeilenanfang)."
+                        },
+                        {
+                            "svgGroupId": "g619",
+                            "measure": "5",
+                            "system": "",
+                            "position": "1/8",
+                            "comment": "<em>zögernd </em>über Ges. und über Klav. u. zusammengefasst zu einer Angabe über der gesamten Akkolade."
+                        },
+                        {
+                            "svgGroupId": "g574",
+                            "measure": "9",
+                            "system": "Ges.",
+                            "position": "2.–3. Note",
+                            "comment": "Text sic: Silbentrennung <em>ta-sten</em>."
+                        },
+                        {
+                            "svgGroupId": "g552",
+                            "measure": "9",
+                            "system": "Ges.",
+                            "position": "letzte Note",
+                            "comment": "Text: Längenstrich nach (ha-)<em>schen</em> korrigiert zu Gedankenstrich mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g575",
+                            "measure": "10 <br /> bis 12",
+                            "system": "",
+                            "position": "Taktanfang <br /> Taktanfang",
+                            "comment": "<em>rit. - - - tempo</em> über Klav. o. bei T. 10 1. Note bis T. 12 1. Note sowie <em>rit. - - -</em> über Ges. bei T. 10 1. Note bis Ende T. 11 zusammengefasst zu einer Angabe über der gesamten Akkolade."
+                        },
+                        {
+                            "svgGroupId": "g593b",
+                            "measure": "10",
+                            "system": "Ges.",
+                            "position": "1. Note",
+                            "comment": "Text sic: Großschreibung <em>Wird</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a> am Zeilenanfang)."
+                        },
+                        {
+                            "svgGroupId": "g594b",
+                            "measure": "13",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "<em>sehr langsam </em>über Ges. und über Klav. o. zusammengefasst zu einer Angabe über der gesamten Akkolade."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
+        },
+        {
+            "id": "M_142_TF2",
+            "label": "M 142 Textfassung 2",
+            "description": [
+                "Für die Edition von „Ihr tratet zu dem Herde“ M 142 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH'})\"><strong>G<sup>H</sup></strong></a> einzige relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH'})\"><strong>G<sup>H</sup></strong></a> ist Weberns Handexemplar des Drucks <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>. <br /> Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a> etablieren Textfassung 2. <br /> Hauptquelle für die Textedition von „Ihr tratet zu dem Herde“ M 142 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH'})\"><strong>G<sup>H</sup></strong></a> post correcturam."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g638",
+                            "measure": "vor 1",
+                            "system": "",
+                            "position": "Anfang",
+                            "comment": "<em>Sehr Langsam</em> aufgelöst zu <em>Sehr langsam</em>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a>: <em>Sehr</em> hinzugefügt."
+                        },
+                        {
+                            "svgGroupId": "g639",
+                            "measure": "1",
+                            "system": "Klav. o.",
+                            "position": "letzte Note",
+                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>1</sup> ergänzt mit Blick auf Textfassung 3."
+                        },
+                        {
+                            "svgGroupId": "g640",
+                            "measure": "2",
+                            "system": "",
+                            "position": "5/8",
+                            "comment": "<em>zögernd </em>über Ges. und über Klav. u. zusammengefasst zu einer Angabe über der gesamten Akkolade."
+                        },
+                        {
+                            "svgGroupId": "g663",
+                            "measure": "3",
+                            "system": "Ges.",
+                            "position": "2/4",
+                            "comment": "Text sic: Großschreibung <em>Licht</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a> am Zeilenanfang)."
+                        },
+                        {
+                            "svgGroupId": "g665",
+                            "measure": "5",
+                            "system": "",
+                            "position": "1/8",
+                            "comment": "<em>zögernd </em>über Ges. und über Klav. u. zusammengefasst zu einer Angabe über der gesamten Akkolade."
+                        },
+                        {
+                            "svgGroupId": "g666",
+                            "measure": "5",
+                            "system": "Klav.",
+                            "position": "vorletzte Note",
+                            "comment": "Oberstimmenschicht: Anfang der Crescendogabel versetzt von (7/8). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a>: Achtelpause ersetzt Achtelnote a/c<sup>1</sup> (siehe Textfassung 1)."
+                        },
+                        {
+                            "svgGroupId": "g666",
+                            "measure": "5 <br /> bis 6",
+                            "system": "Klav.",
+                            "position": "vorletzte Note",
+                            "comment": "Oberstimmenschicht: Bogen von T. 5 vorletzte Note bis T. 6 1/4 gesetzt mit Blick auf Streichung des Bogens bis T. 8 1/4 erst nach T. 6 1/4. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a>: Bogen von T. 5 vorletzte Note bis T. 8 1/4 (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF1'})\">Textfassung 1</a>) nach T. 6 1/4 gestrichen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 5."
+                        },
+                        {
+                            "svgGroupId": "g557",
+                            "measure": "9",
+                            "system": "Ges.",
+                            "position": "2.–3. Note",
+                            "comment": "Text sic: Silbentrennung <em>ta-sten</em>."
+                        },
+                        {
+                            "svgGroupId": "g558-2",
+                            "measure": "9",
+                            "system": "Ges.",
+                            "position": "letzte Note",
+                            "comment": "Text: Längenstrich nach (ha-)<em>schen</em> korrigiert zu Gedankenstrich mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g558",
+                            "measure": "10 <br /> bis 12",
+                            "system": "",
+                            "position": "Taktanfang <br /> Taktanfang",
+                            "comment": "<em>rit. - - - tempo </em>&lt;<em>I.</em>&gt; über Klav. o. bei T. 10 1. Note bis T. 12 1. Note sowie <em>rit. - - -</em> &lt;<em>Tempo I.</em>&gt; über Ges. bei T. 10 1. Note bis T. 12 1. Note zusammengefasst zu einer Angabe über der gesamten Akkolade."
+                        },
+                        {
+                            "svgGroupId": "g576",
+                            "measure": "10",
+                            "system": "Ges.",
+                            "position": "1. Note",
+                            "comment": "Text sic: Großschreibung <em>Wird</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a> am Zeilenanfang). Siehe auch TkA zu T. 3 2/4."
+                        },
+                        {
+                            "svgGroupId": "g577",
+                            "measure": "10",
+                            "system": "Klav. u.",
+                            "position": "2/4",
+                            "comment": "sic: <em>express.</em>"
+                        },
+                        {
+                            "svgGroupId": "g578",
+                            "measure": "11",
+                            "system": "Klav. o.",
+                            "position": "1/4",
+                            "comment": "sic: <em>express.</em>"
+                        },
+                        {
+                            "svgGroupId": "g579",
+                            "measure": "13",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "<em>sehr ruhig </em>über Ges. und über Klav. o. zusammengefasst zu einer Angabe über der gesamten Akkolade. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a>: <em>ruhig</em> ersetzt <em>langsam</em>."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
         }
     ]
 }
