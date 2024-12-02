@@ -345,7 +345,7 @@
                             "measure": "5",
                             "system": "Klav.",
                             "position": "vorletzte Note",
-                            "comment": "Oberstimmenschicht vorletzte Note: Anfang der Crescendogabel versetzt von (7/8). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a>: Achtelpause ersetzt Achtelnote a/c<sup>1</sup> (siehe Textfassung 1)."
+                            "comment": "Oberstimmenschicht: Anfang der Crescendogabel versetzt von (7/8). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a>: Achtelpause ersetzt Achtelnote a/c<sup>1</sup> (siehe Textfassung 1)."
                         },
                         {
                             "svgGroupId": "g666",
