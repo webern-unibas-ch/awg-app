@@ -25,7 +25,6 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
     let listenToUserInputChangeSpy: Spy;
     let onViewChangeSpy: Spy;
     let viewChangeRequestSpy: Spy;
-    let viewHandleTrackerSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
@@ -48,14 +47,11 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
         ];
         expectedSelectedViewType = ViewHandleTypes.GRAPH;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        createFormGroupSpy = spyOn(component, 'createFormGroup').and.callThrough();
-        listenToUserInputChangeSpy = spyOn(component, 'listenToUserInputChange').and.callThrough();
-        onViewChangeSpy = spyOn(component, 'onViewChange').and.callThrough();
+        // Spies
+        createFormGroupSpy = spyOn(component as any, '_createFormGroup').and.callThrough();
+        listenToUserInputChangeSpy = spyOn(component as any, '_listenToUserInputChange').and.callThrough();
+        onViewChangeSpy = spyOn(component as any, '_onViewChange').and.callThrough();
         viewChangeRequestSpy = spyOn(component.viewChangeRequest, 'emit').and.callThrough();
-        viewHandleTrackerSpy = spyOn(component, 'viewHandleTracker').and.callThrough();
     });
 
     it('... should create', () => {
@@ -81,37 +77,37 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             });
 
             it('... should have a form in div.awg-view-handle-btn-group', () => {
-                const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-view-handle-btn-group', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-view-handle-btn-group', 1, 1);
 
-                getAndExpectDebugElementByCss(divDe[0], 'form', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'form', 1, 1);
             });
 
             it('... should have another div.btn-group in form', () => {
-                const formDe = getAndExpectDebugElementByCss(compDe, 'div.awg-view-handle-btn-group > form', 1, 1);
+                const formDes = getAndExpectDebugElementByCss(compDe, 'div.awg-view-handle-btn-group > form', 1, 1);
 
-                getAndExpectDebugElementByCss(formDe[0], 'div.btn-group', 1, 1);
+                getAndExpectDebugElementByCss(formDes[0], 'div.btn-group', 1, 1);
             });
 
             it('... should not have any input elements in div.btn-group', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-view-handle-btn-group > form > div.btn-group',
                     1,
                     1
                 );
 
-                getAndExpectDebugElementByCss(divDe[0], 'input', 0, 0);
+                getAndExpectDebugElementByCss(divDes[0], 'input', 0, 0);
             });
 
             it('... should not have any label elements in div.btn-group', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-view-handle-btn-group > form > div.btn-group',
                     1,
                     1
                 );
 
-                getAndExpectDebugElementByCss(divDe[0], 'label', 0, 0);
+                getAndExpectDebugElementByCss(divDes[0], 'label', 0, 0);
             });
         });
     });
@@ -130,9 +126,151 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             expectSpyCall(createFormGroupSpy, 1, expectedSelectedViewType);
         });
 
-        describe('#createFormGroup()', () => {
-            it('... should have a method `createFormGroup()`', () => {
-                expect(component.createFormGroup).toBeDefined();
+        describe('VIEW', () => {
+            it('... should have as many radio elements (input.btn-check) in div.btn-group as viewHandles given', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-view-handle-btn-group > form > div.btn-group',
+                    1,
+                    1
+                );
+
+                const inputDes = getAndExpectDebugElementByCss(
+                    divDes[0],
+                    'input.btn-check',
+                    expectedViewHandles.length,
+                    expectedViewHandles.length
+                );
+
+                for (let i = 0; i < expectedViewHandles.length; i++) {
+                    const inputEl: HTMLInputElement = inputDes[i].nativeElement;
+                    expectToBe(inputEl.type, 'radio');
+                }
+            });
+
+            it('... should set the value of the input element to the viewHandle type', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-view-handle-btn-group > form > div.btn-group',
+                    1,
+                    1
+                );
+                const inputDes = getAndExpectDebugElementByCss(
+                    divDes[0],
+                    'input',
+                    expectedViewHandles.length,
+                    expectedViewHandles.length
+                );
+
+                for (let i = 0; i < expectedViewHandles.length; i++) {
+                    expectToBe(inputDes[i].attributes['ng-reflect-value'], expectedViewHandles[i].type);
+                }
+            });
+
+            it('... should set the id of the input element to `{viewHandle.type}-view-button`', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-view-handle-btn-group > form > div.btn-group',
+                    1,
+                    1
+                );
+                const inputDes = getAndExpectDebugElementByCss(
+                    divDes[0],
+                    'input',
+                    expectedViewHandles.length,
+                    expectedViewHandles.length
+                );
+
+                const inputEl1: HTMLInputElement = inputDes[0].nativeElement;
+                const inputEl2: HTMLInputElement = inputDes[1].nativeElement;
+                const inputEl3: HTMLInputElement = inputDes[2].nativeElement;
+
+                expectToBe(inputEl1.id, `${expectedViewHandles[0].type}-view-button`);
+                expectToBe(inputEl2.id, `${expectedViewHandles[1].type}-view-button`);
+                expectToBe(inputEl3.id, `${expectedViewHandles[2].type}-view-button`);
+            });
+
+            it('... should have as many label elements in div.btn-group as viewHandles given', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-view-handle-btn-group > form > div.btn-group',
+                    1,
+                    1
+                );
+
+                getAndExpectDebugElementByCss(
+                    divDes[0],
+                    'label',
+                    expectedViewHandles.length,
+                    expectedViewHandles.length
+                );
+            });
+
+            it('... should have as many icon elements in div.btn-group > label as viewHandles given', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-view-handle-btn-group > form > div.btn-group',
+                    1,
+                    1
+                );
+                const iconDes = getAndExpectDebugElementByCss(
+                    divDes[0],
+                    'label > fa-icon',
+                    expectedViewHandles.length,
+                    expectedViewHandles.length
+                );
+
+                const iconDeChild1 = iconDes[0].children[0];
+                const iconDeChild2 = iconDes[1].children[0];
+                const iconDeChild3 = iconDes[2].children[0];
+
+                expect(iconDeChild1.classes['fa-diagram-project']).toBeTruthy();
+                expect(iconDeChild2.classes['fa-table']).toBeTruthy();
+                expect(iconDeChild3.classes['fa-grip']).toBeTruthy();
+            });
+
+            it('... should set the label for the correct input', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-view-handle-btn-group > form > div.btn-group',
+                    1,
+                    1
+                );
+                const labelDes = getAndExpectDebugElementByCss(
+                    divDes[0],
+                    'label',
+                    expectedViewHandles.length,
+                    expectedViewHandles.length
+                );
+
+                for (let i = 0; i < expectedViewHandles.length; i++) {
+                    expectToBe(labelDes[i].attributes['for'], `${expectedViewHandles[i].type}-view-button`);
+                }
+            });
+
+            it('... should display tooltip with `{type} view` for each view handle', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-view-handle-btn-group > form > div.btn-group',
+                    1,
+                    1
+                );
+                const labelDes = getAndExpectDebugElementByCss(
+                    divDes[0],
+                    'label',
+                    expectedViewHandles.length,
+                    expectedViewHandles.length
+                );
+
+                for (let i = 0; i < expectedViewHandles.length; i++) {
+                    expectToBe(labelDes[i].attributes['ng-reflect-ngb-tooltip'], expectedViewHandles[i].type + ' view');
+                }
+            });
+        });
+
+        describe('#_createFormGroup()', () => {
+            it('... should have a method `_createFormGroup()`', () => {
+                expect((component as any)._createFormGroup).toBeDefined();
             });
 
             it('... should trigger on init', () => {
@@ -196,7 +334,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 expectSpyCall(listenToUserInputChangeSpy, 1);
 
                 // Trigger the `listenToUserInputChange()` method
-                component.createFormGroup(ViewHandleTypes.TABLE);
+                (component as any)._createFormGroup(ViewHandleTypes.TABLE);
                 fixture.detectChanges();
 
                 expectSpyCall(listenToUserInputChangeSpy, 2);
@@ -205,7 +343,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
 
         describe('#listenToUserInputChange()', () => {
             it('... should have a method `listenToUserInputChange()`', () => {
-                expect(component.listenToUserInputChange).toBeDefined();
+                expect((component as any)._listenToUserInputChange).toBeDefined();
             });
 
             it('... should trigger the `onViewChange()` method when viewHandle controls changes value', () => {
@@ -235,7 +373,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                     3,
                     3
                 );
-                const inputEl = inputDes[0].nativeElement;
+                const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                 inputEl.dispatchEvent(new Event('change'));
                 fixture.detectChanges();
@@ -250,7 +388,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                     3,
                     3
                 );
-                const inputEl = inputDes[1].nativeElement;
+                const inputEl: HTMLInputElement = inputDes[1].nativeElement;
 
                 inputEl.dispatchEvent(new Event('change'));
                 fixture.detectChanges();
@@ -265,7 +403,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                     3,
                     3
                 );
-                const inputEl = inputDes[2].nativeElement;
+                const inputEl: HTMLInputElement = inputDes[2].nativeElement;
 
                 inputEl.dispatchEvent(new Event('change'));
                 fixture.detectChanges();
@@ -293,19 +431,19 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
 
         describe('#onViewChange()', () => {
             it('... should have a method `onViewChange()`', () => {
-                expect(component.onViewChange).toBeDefined();
+                expect((component as any)._onViewChange).toBeDefined();
             });
 
             describe('... should not do anything if ', () => {
                 it('... view is undefined', () => {
-                    component.onViewChange(undefined);
+                    (component as any)._onViewChange(undefined);
                     fixture.detectChanges();
 
                     expectSpyCall(viewChangeRequestSpy, 0);
                 });
 
                 it('... view is null', () => {
-                    component.onViewChange(null);
+                    (component as any)._onViewChange(null);
                     fixture.detectChanges();
 
                     expectSpyCall(viewChangeRequestSpy, 0);
@@ -314,7 +452,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 it('... view has type `never`', () => {
                     let expectedView: never;
 
-                    component.onViewChange(expectedView);
+                    (component as any)._onViewChange(expectedView);
                     fixture.detectChanges();
 
                     expectSpyCall(viewChangeRequestSpy, 0);
@@ -324,7 +462,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             it('... should emit a given GRAPH view', () => {
                 const expectedView = ViewHandleTypes.GRAPH;
 
-                component.onViewChange(expectedView);
+                (component as any)._onViewChange(expectedView);
                 fixture.detectChanges();
 
                 expectSpyCall(viewChangeRequestSpy, 1, 'graph');
@@ -333,7 +471,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             it('... should emit a given TABLE view', () => {
                 const expectedView = ViewHandleTypes.TABLE;
 
-                component.onViewChange(expectedView);
+                (component as any)._onViewChange(expectedView);
                 fixture.detectChanges();
 
                 expectSpyCall(viewChangeRequestSpy, 1, 'table');
@@ -342,162 +480,10 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             it('... should emit a given GRID view', () => {
                 const expectedView = ViewHandleTypes.GRID;
 
-                component.onViewChange(expectedView);
+                (component as any)._onViewChange(expectedView);
                 fixture.detectChanges();
 
                 expectSpyCall(viewChangeRequestSpy, 1, 'grid');
-            });
-        });
-
-        describe('#viewHandleTracker()', () => {
-            it('... should have a method `viewHandleTracker()`', () => {
-                expect(component.viewHandleTracker).toBeDefined();
-            });
-
-            it('... should return the type of a given view handle', () => {
-                expectToBe(component.viewHandleTracker(0, expectedViewHandles[0]), ViewHandleTypes.GRAPH);
-                expectToBe(component.viewHandleTracker(1, expectedViewHandles[1]), ViewHandleTypes.TABLE);
-            });
-        });
-
-        describe('VIEW', () => {
-            it('... should have as many radio elements (input.btn-check) in div.btn-group as viewHandles given', () => {
-                const divDe = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group',
-                    1,
-                    1
-                );
-
-                const inputDes = getAndExpectDebugElementByCss(
-                    divDe[0],
-                    'input.btn-check',
-                    expectedViewHandles.length,
-                    expectedViewHandles.length
-                );
-
-                for (let i = 0; i < expectedViewHandles.length; i++) {
-                    expectToBe(inputDes[i].nativeElement.type, 'radio');
-                }
-            });
-
-            it('... should set the value of the input element to the viewHandle type', () => {
-                const divDe = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group',
-                    1,
-                    1
-                );
-                const inputDes = getAndExpectDebugElementByCss(
-                    divDe[0],
-                    'input',
-                    expectedViewHandles.length,
-                    expectedViewHandles.length
-                );
-
-                for (let i = 0; i < expectedViewHandles.length; i++) {
-                    expectToBe(inputDes[i].attributes['ng-reflect-value'], expectedViewHandles[i].type);
-                }
-            });
-
-            it('... should set the id of the input element to `{viewHandle.type}-view-button`', () => {
-                const divDe = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group',
-                    1,
-                    1
-                );
-                const inputDes = getAndExpectDebugElementByCss(
-                    divDe[0],
-                    'input',
-                    expectedViewHandles.length,
-                    expectedViewHandles.length
-                );
-
-                const inputEl1 = inputDes[0].nativeElement;
-                const inputEl2 = inputDes[1].nativeElement;
-                const inputEl3 = inputDes[2].nativeElement;
-
-                expectToBe(inputEl1.id, `${expectedViewHandles[0].type}-view-button`);
-                expectToBe(inputEl2.id, `${expectedViewHandles[1].type}-view-button`);
-                expectToBe(inputEl3.id, `${expectedViewHandles[2].type}-view-button`);
-            });
-
-            it('... should have as many label elements in div.btn-group as viewHandles given', () => {
-                const divDe = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group',
-                    1,
-                    1
-                );
-
-                getAndExpectDebugElementByCss(
-                    divDe[0],
-                    'label',
-                    expectedViewHandles.length,
-                    expectedViewHandles.length
-                );
-            });
-
-            it('... should have as many icon elements in div.btn-group > label as viewHandles given', () => {
-                const divDe = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group',
-                    1,
-                    1
-                );
-                const iconDes = getAndExpectDebugElementByCss(
-                    divDe[0],
-                    'label > fa-icon',
-                    expectedViewHandles.length,
-                    expectedViewHandles.length
-                );
-
-                const iconDeChild1 = iconDes[0].children[0];
-                const iconDeChild2 = iconDes[1].children[0];
-                const iconDeChild3 = iconDes[2].children[0];
-
-                expect(iconDeChild1.classes['fa-diagram-project']).toBeTruthy();
-                expect(iconDeChild2.classes['fa-table']).toBeTruthy();
-                expect(iconDeChild3.classes['fa-grip']).toBeTruthy();
-            });
-
-            it('... should set the label for the correct input', () => {
-                const divDe = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group',
-                    1,
-                    1
-                );
-                const labelDes = getAndExpectDebugElementByCss(
-                    divDe[0],
-                    'label',
-                    expectedViewHandles.length,
-                    expectedViewHandles.length
-                );
-
-                for (let i = 0; i < expectedViewHandles.length; i++) {
-                    expectToBe(labelDes[i].attributes['for'], `${expectedViewHandles[i].type}-view-button`);
-                }
-            });
-
-            it('... should display tooltip with `{type} view` for each view handle', () => {
-                const divDe = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group',
-                    1,
-                    1
-                );
-                const labelDes = getAndExpectDebugElementByCss(
-                    divDe[0],
-                    'label',
-                    expectedViewHandles.length,
-                    expectedViewHandles.length
-                );
-
-                for (let i = 0; i < expectedViewHandles.length; i++) {
-                    expectToBe(labelDes[i].attributes['ng-reflect-ngb-tooltip'], expectedViewHandles[i].type + ' view');
-                }
             });
         });
     });

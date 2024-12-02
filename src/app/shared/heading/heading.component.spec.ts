@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
@@ -66,13 +65,13 @@ describe('HeadingComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should pass down `title` and `id` to component', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 1, 1);
-                const headerDes = getAndExpectDebugElementByCss(compDe, 'div.para > h3', 1, 1);
+                const hDes = getAndExpectDebugElementByCss(compDe, 'div.para > h3', 1, 1);
 
-                const divEl = divDes[0].nativeElement;
-                const headerEl = headerDes[0].nativeElement;
+                const divEl: HTMLDivElement = divDes[0].nativeElement;
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                 expectToContain(divEl.id, expectedId);
-                expectToContain(headerEl.textContent, expectedTitle);
+                expectToContain(hEl.textContent, expectedTitle);
             });
         });
     });

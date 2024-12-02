@@ -39,7 +39,12 @@
                             <ul class="awg-linked-obj-list nobullets mb-0">
                                 @for (link of restypeGroup.links; track link; let isLast = $last) {
                                     <li>
-                                        <a class="awg-linked-obj-link" (click)="navigateToResource(link?.id)">
+                                        <a
+                                            class="awg-linked-obj-link"
+                                            (click)="navigateToResource(link?.id)"
+                                            (keyup.enter)="navigateToResource(link?.id)"
+                                            role="link"
+                                            tabindex="0">
                                             <img [src]="link?.restype?.icon" alt="icon" />
                                             &nbsp;[<span class="awg-linked-obj-link-id">{{ link?.id }}</span
                                             >]&nbsp;

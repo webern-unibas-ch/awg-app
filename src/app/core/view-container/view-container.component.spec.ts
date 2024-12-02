@@ -58,14 +58,14 @@ describe('ViewContainerComponent (DONE)', () => {
 
             it('... should not have class `justify-content-center` on `div.row`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row', 1, 1);
-                const divEl = divDes[0].nativeElement;
+                const divEl: HTMLDivElement = divDes[0].nativeElement;
 
                 expect(divEl.classList).not.toContain('justify-content-center');
             });
 
             it('... should contain one child div (maincontent) in `div.row`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row > div', 1, 1);
-                const divEl0 = divDes[0].nativeElement;
+                const divEl0: HTMLDivElement = divDes[0].nativeElement;
 
                 expect(divEl0).toHaveClass('awg-maincontent');
             });
@@ -97,15 +97,15 @@ describe('ViewContainerComponent (DONE)', () => {
             describe('... with `showSideOutlet=true`', () => {
                 it('... should not have class `justify-content-center` on `div.row`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row', 1, 1);
-                    const divEl = divDes[0].nativeElement;
+                    const divEl: HTMLDivElement = divDes[0].nativeElement;
 
                     expect(divEl.classList).not.toContain('justify-content-center');
                 });
 
                 it('... should contain two child divs in `div.row`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row > div', 2, 2);
-                    const divEl0 = divDes[0].nativeElement;
-                    const divEl1 = divDes[1].nativeElement;
+                    const divEl0: HTMLDivElement = divDes[0].nativeElement;
+                    const divEl1: HTMLDivElement = divDes[1].nativeElement;
 
                     expect(divEl0).toHaveClass('awg-maincontent');
                     expect(divEl1).toHaveClass('awg-side-outlet');
@@ -113,7 +113,7 @@ describe('ViewContainerComponent (DONE)', () => {
 
                 it('... should have correct grid classes on `div.awg-maincontent`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-maincontent', 1, 1);
-                    const divEl = divDes[0].nativeElement;
+                    const divEl: HTMLDivElement = divDes[0].nativeElement;
 
                     expectToContain(divEl.classList, 'col-md-8');
                     expectToContain(divEl.classList, 'col-xl-9');
@@ -122,7 +122,7 @@ describe('ViewContainerComponent (DONE)', () => {
 
                 it('... should have correct grid classes on `div.awg-side-outlet`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-side-outlet', 1, 1);
-                    const divEl = divDes[0].nativeElement;
+                    const divEl: HTMLDivElement = divDes[0].nativeElement;
 
                     expectToContain(divEl.classList, 'col-md-4');
                     expectToContain(divEl.classList, 'col-xl-3');
@@ -157,21 +157,21 @@ describe('ViewContainerComponent (DONE)', () => {
 
                 it('... should have class `justify-content-center` on `div.row`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row', 1, 1);
-                    const divEl = divDes[0].nativeElement;
+                    const divEl: HTMLDivElement = divDes[0].nativeElement;
 
                     expectToContain(divEl.classList, 'justify-content-center');
                 });
 
                 it('... should contain one child div in `div.row`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row > div', 1, 1);
-                    const divEl0 = divDes[0].nativeElement;
+                    const divEl0: HTMLDivElement = divDes[0].nativeElement;
 
                     expect(divEl0).toHaveClass('awg-maincontent');
                 });
 
                 it('... should have correct grid classes on `div.awg-maincontent`', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-maincontent', 1, 1);
-                    const divEl = divDes[0].nativeElement;
+                    const divEl: HTMLDivElement = divDes[0].nativeElement;
 
                     expectToContain(divEl.classList, 'col-md-10');
                     expect(divEl.classList).not.toContain('col-md-8');

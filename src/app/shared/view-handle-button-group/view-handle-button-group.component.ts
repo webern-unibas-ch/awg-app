@@ -87,7 +87,7 @@ export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDest
      * when initializing the component.
      */
     ngOnInit(): void {
-        this.createFormGroup(this.selectedViewType);
+        this._createFormGroup(this.selectedViewType);
     }
 
     /**
@@ -99,73 +99,8 @@ export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDest
      */
     ngOnChanges(changes: SimpleChanges) {
         if (changes['selectedViewType'] && !changes['selectedViewType'].isFirstChange()) {
-            this.createFormGroup(this.selectedViewType);
+            this._createFormGroup(this.selectedViewType);
         }
-    }
-
-    /**
-     * Public method: createFormGroup.
-     *
-     * It creates the view handle control form group
-     * using the reactive FormBuilder with a formGroup
-     * and a view handle control.
-     *
-     * @param {ViewHandleTypes} view The given view type.
-     *
-     * @returns {void} Creates the view handle control form.
-     */
-    createFormGroup(view: ViewHandleTypes): void {
-        this.viewHandleControlForm = this._formBuilder.group({
-            viewHandleControl: view,
-        });
-
-        this.listenToUserInputChange();
-    }
-
-    /**
-     * Public method: listenToUserInputChange.
-     *
-     * It listens to the user's input changes
-     * in the view control and triggers the
-     * onViewChange method with the new view type.
-     *
-     * @returns {void} Listens to changing view type.
-     */
-    listenToUserInputChange(): void {
-        this.viewHandleControl.valueChanges.pipe(takeUntil(this._destroyed$)).subscribe({
-            next: (view: ViewHandleTypes) => {
-                this.onViewChange(view);
-            },
-        });
-    }
-
-    /**
-     * Public method: onViewChange.
-     *
-     * It switches the view handle type according to the given view type and
-     * emits a request to the outer components.
-     *
-     * @param {ViewHandleTypes} view The given view type.
-     *
-     * @returns {void} Emits the view to the view change request.
-     */
-    onViewChange(view: ViewHandleTypes): void {
-        if (!view) {
-            return;
-        }
-        this.viewChangeRequest.emit(view);
-    }
-
-    /**
-     * Public method: viewHandleTracker.
-     *
-     * It returns the tracker for the view handle button group.
-     *
-     * @param {number} _index The index of the view handle.
-     * @param {ViewHandle} viewHandle The given view handle.
-     */
-    viewHandleTracker(_index, viewHandle) {
-        return viewHandle.type;
     }
 
     /**
@@ -180,5 +115,58 @@ export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDest
 
         // Now let's also complete the subject itself
         this._destroyed$.complete();
+    }
+
+    /**
+     * Private method: createFormGroup.
+     *
+     * It creates the view handle control form group
+     * using the reactive FormBuilder with a formGroup
+     * and a view handle control.
+     *
+     * @param {ViewHandleTypes} view The given view type.
+     *
+     * @returns {void} Creates the view handle control form.
+     */
+    private _createFormGroup(view: ViewHandleTypes): void {
+        this.viewHandleControlForm = this._formBuilder.group({
+            viewHandleControl: view,
+        });
+
+        this._listenToUserInputChange();
+    }
+
+    /**
+     * Private method: listenToUserInputChange.
+     *
+     * It listens to the user's input changes
+     * in the view control and triggers the
+     * onViewChange method with the new view type.
+     *
+     * @returns {void} Listens to changing view type.
+     */
+    private _listenToUserInputChange(): void {
+        this.viewHandleControl.valueChanges.pipe(takeUntil(this._destroyed$)).subscribe({
+            next: (view: ViewHandleTypes) => {
+                this._onViewChange(view);
+            },
+        });
+    }
+
+    /**
+     * Private method: onViewChange.
+     *
+     * It switches the view handle type according to the given view type and
+     * emits a request to the outer components.
+     *
+     * @param {ViewHandleTypes} view The given view type.
+     *
+     * @returns {void} Emits the view to the view change request.
+     */
+    private _onViewChange(view: ViewHandleTypes): void {
+        if (!view) {
+            return;
+        }
+        this.viewChangeRequest.emit(view);
     }
 }

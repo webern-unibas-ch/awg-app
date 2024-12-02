@@ -122,7 +122,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     1,
                     1
                 );
-                const pEl = pDes[0].nativeElement;
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expect(pEl).toHaveClass('no-para');
                 expectToBe(pEl.textContent.trim(), 'Korrekturen:');
@@ -170,7 +170,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 );
 
                 detailsDes.forEach((detailsDe, index) => {
-                    const detailsEl = detailsDe.nativeElement;
+                    const detailsEl: HTMLDetailsElement = detailsDe.nativeElement;
 
                     expect(detailsEl).toBeTruthy();
                     expectToBe(detailsEl.id, expectedCorrections[index].id);
@@ -192,7 +192,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const summaryEl = summaryDes[0].nativeElement;
+                    const summaryEl: HTMLElement = summaryDes[0].nativeElement;
 
                     const expectedHtmlTextContent = mockDocument.createElement('summary');
                     expectedHtmlTextContent.innerHTML = expectedCorrections[index].label + ':';
@@ -210,9 +210,9 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, index) => {
+                detailsDes.forEach(detailsDe => {
                     const divDes = getAndExpectDebugElementByCss(detailsDe, 'div', 1, 1);
-                    const divEl = divDes[0].nativeElement;
+                    const divEl: HTMLDivElement = divDes[0].nativeElement;
 
                     expect(divEl).toBeTruthy();
                     expectToContain(divEl.classList, 'border');
@@ -235,7 +235,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const pEl = pDes[0].nativeElement;
+                    const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                     expect(pEl).toBeTruthy();
                     expectToEqual(pEl.textContent.trim(), expectedCorrections[index].description[index].trim());
@@ -253,7 +253,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, _index) => {
+                detailsDes.forEach(detailsDe => {
                     getAndExpectDebugElementByDirective(detailsDe, EditionTkaTableStubComponent, 0, 0);
                 });
             });
@@ -266,7 +266,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, _index) => {
+                detailsDes.forEach(detailsDe => {
                     getAndExpectDebugElementByDirective(detailsDe, EditionTkaTableStubComponent, 1, 1);
                 });
             });
@@ -329,7 +329,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, index) => {
+                detailsDes.forEach(detailsDe => {
                     const editionTkaTableDes = getAndExpectDebugElementByDirective(
                         detailsDe,
                         EditionTkaTableStubComponent,
@@ -358,7 +358,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, index) => {
+                detailsDes.forEach(detailsDe => {
                     const editionTkaTableDes = getAndExpectDebugElementByDirective(
                         detailsDe,
                         EditionTkaTableStubComponent,
@@ -378,7 +378,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
             });
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
+                it('... parameter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
@@ -445,7 +445,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, index) => {
+                detailsDes.forEach(detailsDe => {
                     const editionTkaTableDes = getAndExpectDebugElementByDirective(
                         detailsDe,
                         EditionTkaTableStubComponent,
@@ -501,7 +501,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, index) => {
+                detailsDes.forEach(detailsDe => {
                     const editionTkaTableDes = getAndExpectDebugElementByDirective(
                         detailsDe,
                         EditionTkaTableStubComponent,

@@ -73,7 +73,7 @@ describe('HomeViewCardComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should contain one shadowed, centered `div.awg-home-view-card`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
-                const divEl = divDes[0].nativeElement;
+                const divEl: HTMLDivElement = divDes[0].nativeElement;
 
                 expectToContain(divEl.classList, 'shadow');
                 expectToContain(divEl.classList, 'text-center');
@@ -83,7 +83,7 @@ describe('HomeViewCardComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
 
                 const imgDes = getAndExpectDebugElementByCss(divDes[0], 'img', 1, 1);
-                const imgEl = imgDes[0].nativeElement;
+                const imgEl: HTMLImageElement = imgDes[0].nativeElement;
 
                 expectToBe(imgEl.src, '');
                 expectToBe(imgEl.alt, '');
@@ -99,27 +99,27 @@ describe('HomeViewCardComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
                 const bodyDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-body', 1, 1);
 
-                const titleDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5.card-title', 1, 1);
-                const titleEl = titleDes[0].nativeElement;
+                const hDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5.card-title', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                expectToBe(titleEl.textContent, '');
+                expectToBe(hEl.textContent, '');
             });
 
             it('... should contain one empty paragraph text in `div.card-body`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
                 const bodyDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-body', 1, 1);
 
-                const textDes = getAndExpectDebugElementByCss(bodyDes[0], 'p.card-text', 1, 1);
-                const textEl = textDes[0].nativeElement;
+                const pDes = getAndExpectDebugElementByCss(bodyDes[0], 'p.card-text', 1, 1);
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expectToBe(textEl.textContent, '');
+                expectToBe(pEl.textContent, '');
             });
 
             it('... should contain one empty `div.card-footer` in `div.awg-home-view-card`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
 
                 const footerDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-footer', 1, 1);
-                const footerEl = footerDes[0].nativeElement;
+                const footerEl: HTMLDivElement = footerDes[0].nativeElement;
 
                 expectToBe(footerEl.textContent, '');
             });
@@ -144,7 +144,7 @@ describe('HomeViewCardComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
 
                 const imgDes = getAndExpectDebugElementByCss(divDes[0], 'img', 1, 1);
-                const imgEl = imgDes[0].nativeElement;
+                const imgEl: HTMLImageElement = imgDes[0].nativeElement;
 
                 expectToContain(imgEl.src, expectedCardData.imgSrc);
                 expectToBe(imgEl.alt, expectedCardData.imgAlt);
@@ -154,20 +154,20 @@ describe('HomeViewCardComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
                 const bodyDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-body', 1, 1);
 
-                const titleDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5.card-title', 1, 1);
-                const titleEl = titleDes[0].nativeElement;
+                const hDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5.card-title', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                expectToBe(titleEl.textContent, expectedCardData.title);
+                expectToBe(hEl.textContent, expectedCardData.title);
             });
 
             it('... should display paragraph text in `div.card-body`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
                 const bodyDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-body', 1, 1);
 
-                const textDes = getAndExpectDebugElementByCss(bodyDes[0], 'p.card-text', 1, 1);
-                const textEl = textDes[0].nativeElement;
+                const pDes = getAndExpectDebugElementByCss(bodyDes[0], 'p.card-text', 1, 1);
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expectToBe(textEl.textContent, expectedCardData.text);
+                expectToBe(pEl.textContent, expectedCardData.text);
             });
 
             describe('... with routerLink', () => {
@@ -176,7 +176,7 @@ describe('HomeViewCardComponent (DONE)', () => {
                     const footerDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-footer', 1, 1);
 
                     const aDes = getAndExpectDebugElementByCss(footerDes[0], 'a.btn', 1, 1);
-                    const aEl = aDes[0].nativeElement;
+                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                     expectToBe(aEl.href, '');
 
@@ -200,7 +200,7 @@ describe('HomeViewCardComponent (DONE)', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
                     const footerDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-footer', 1, 1);
                     const aDes = getAndExpectDebugElementByCss(footerDes[0], 'a.btn', 1, 1);
-                    const aEl = aDes[0].nativeElement;
+                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                     expectToBe(aEl.textContent.trim(), expectedCardData.linkText);
                 });
@@ -219,7 +219,7 @@ describe('HomeViewCardComponent (DONE)', () => {
                     const footerDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-footer', 1, 1);
 
                     const aDes = getAndExpectDebugElementByCss(footerDes[0], 'a.btn', 1, 1);
-                    const aEl = aDes[0].nativeElement;
+                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                     expectToBe(aEl.href, expectedCardData.linkHref);
 
@@ -243,7 +243,7 @@ describe('HomeViewCardComponent (DONE)', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-card', 1, 1);
                     const footerDes = getAndExpectDebugElementByCss(divDes[0], 'div.card-footer', 1, 1);
                     const aDes = getAndExpectDebugElementByCss(footerDes[0], 'a.btn', 1, 1);
-                    const aEl = aDes[0].nativeElement;
+                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                     expectToBe(aEl.textContent.trim(), expectedCardData.linkText);
                 });

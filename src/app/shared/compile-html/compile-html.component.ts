@@ -167,6 +167,7 @@ export class CompileHtmlComponent implements OnChanges {
      *
      * It checks for changes of the given input.
      */
+    // eslint-disable-next-line @angular-eslint/contextual-lifecycle
     ngOnChanges() {
         this.update();
     }

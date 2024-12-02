@@ -49,7 +49,7 @@ export class AbbrDirective implements OnInit {
      *
      * It keeps the instance of the injected Angular ElementRef.
      */
-    private readonly _el = inject(ElementRef);
+    private readonly _el = inject(ElementRef<HTMLElement>);
 
     /**
      * Angular life cycle hook: ngOnInit.

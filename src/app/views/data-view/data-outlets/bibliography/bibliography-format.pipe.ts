@@ -348,21 +348,6 @@ export class BibliographyFormatPipe implements PipeTransform {
     }
 
     /**
-     * Private function: _formatBibPublisher.
-     *
-     * It formats the publisher of the BibEntry.
-     *
-     * @param {string} pub The publisher of the BibEntry.
-     *
-     * @returns {string} The formatted publisher.
-     *
-     * DONE IN {@link _formatBibPubPlace}.
-     */
-    private _formatBibPublisher(pub: string): string {
-        return '';
-    }
-
-    /**
      * Private function: _formatBibPubDate.
      *
      * It formats the publication date of the BibEntry.

@@ -212,7 +212,7 @@ export class EditionSvgDrawingService {
      *
      * @returns {{ width: number; height: number }} The dimensions (width and height) of the container element.
      */
-    getContainerDimensions(containerEl: ElementRef): { width: number; height: number } {
+    getContainerDimensions(containerEl: ElementRef<HTMLElement>): { width: number; height: number } {
         if (!containerEl) {
             return { width: undefined, height: undefined };
         }
@@ -335,10 +335,7 @@ export class EditionSvgDrawingService {
         }
 
         // Get the class name from the label lookup table
-        const className =
-            Array.from(this._suppliedClassesLabelLookup.entries()).find(
-                ([_key, value]) => value === labelOrClassName
-            )?.[0] || labelOrClassName;
+        const className = this._suppliedClassesLabelLookup.get(labelOrClassName) || labelOrClassName;
 
         // Get D3 selection of supplied elements
         const selector = className ? `supplied.${className}` : 'supplied';

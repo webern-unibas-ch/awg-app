@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { DebugElement, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
@@ -45,18 +44,7 @@ function getComplexesFromSections(
 }
 
 function getExpectedRouterlinks(sections: EditionOutlineSection[]): string[][] {
-    const {
-        EDITION,
-        SERIES,
-        ROWTABLES,
-        PREFACE,
-        SERIES_1,
-        SECTION,
-        SECTION_5,
-        EDITION_INTRO,
-        EDITION_SHEETS,
-        EDITION_GRAPH,
-    } = EDITION_ROUTE_CONSTANTS;
+    const { EDITION, SERIES, ROWTABLES, PREFACE, SECTION, EDITION_INTRO, EDITION_SHEETS } = EDITION_ROUTE_CONSTANTS;
 
     const editionOverviewLink = [[EDITION.route, SERIES.route]];
     const rowTablesLink = [[EDITION.route, ROWTABLES.route]];
@@ -120,7 +108,6 @@ describe('EditionInfoComponent (DONE)', () => {
     let expectedRouterLinks: string[][];
     let expectedItemTitles: string[];
     let expectedItemTitlesWithLinks: string[];
-    let expectedEditionComplexes: EditionComplex[];
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -162,7 +149,6 @@ describe('EditionInfoComponent (DONE)', () => {
             EditionOutlineService.getEditionSectionById('1', '5'),
             EditionOutlineService.getEditionSectionById('2', '2a'),
         ];
-        expectedEditionComplexes = getComplexesFromSections(expectedSections);
         expectedRouterLinks = getExpectedRouterlinks(expectedSections);
         expectedItemTitles = getExpectedItemTitles(expectedSections, true);
         expectedItemTitlesWithLinks = getExpectedItemTitles(expectedSections, false);
@@ -219,7 +205,7 @@ describe('EditionInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-header', 1, 1);
 
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
-                const itemBodyEl = itemBodyDes[0].nativeElement;
+                const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                 expectToContain(itemBodyEl.classList, 'accordion-collapse');
             });
@@ -238,10 +224,10 @@ describe('EditionInfoComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should render `editionInfoHeader`', () => {
-                const headerDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-edition-info-header', 1, 1);
-                const headerEl = headerDes[0].nativeElement;
+                const hDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-edition-info-header', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                expectToBe(headerEl.textContent, expectedEditionInfoHeader);
+                expectToBe(hEl.textContent, expectedEditionInfoHeader);
             });
 
             it('... should contain 3 div.accordion-items with header', () => {
@@ -269,7 +255,7 @@ describe('EditionInfoComponent (DONE)', () => {
 
                 itemDes.forEach((itemDe, index) => {
                     const itemBodyDes = getAndExpectDebugElementByCss(itemDe, 'div.accordion-collapse', 1, 1);
-                    const itemBodyEl = itemBodyDes[0].nativeElement;
+                    const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     if (index === 0) {
                         expectToContain(itemBodyEl.classList, 'show');
@@ -294,7 +280,7 @@ describe('EditionInfoComponent (DONE)', () => {
 
                     itemDes.forEach((itemDe, index) => {
                         const itemBodyDes = getAndExpectDebugElementByCss(itemDe, 'div.accordion-collapse', 1, 1);
-                        const itemBodyEl = itemBodyDes[0].nativeElement;
+                        const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                         if (index === 0 || index === sectionIndex + 1) {
                             expectToContain(itemBodyEl.classList, 'show');
@@ -315,18 +301,18 @@ describe('EditionInfoComponent (DONE)', () => {
                         expectedSections.length + 1
                     );
 
-                    const itemHeader1Des = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-header', 1, 1);
-                    const itemHeader2Des = getAndExpectDebugElementByCss(itemDes[2], 'div.accordion-header', 1, 1);
+                    const itemHeaderDes1 = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-header', 1, 1);
+                    const itemHeaderDes2 = getAndExpectDebugElementByCss(itemDes[2], 'div.accordion-header', 1, 1);
 
-                    const btn1Des = getAndExpectDebugElementByCss(itemHeader1Des[0], 'button.accordion-button', 1, 1);
-                    const btn2Des = getAndExpectDebugElementByCss(itemHeader2Des[0], 'button.accordion-button', 1, 1);
+                    const btnDes1 = getAndExpectDebugElementByCss(itemHeaderDes1[0], 'button.accordion-button', 1, 1);
+                    const btnDes2 = getAndExpectDebugElementByCss(itemHeaderDes2[0], 'button.accordion-button', 1, 1);
 
-                    const btn1El = btn1Des[0].nativeElement;
-                    const btn2El = btn2Des[0].nativeElement;
+                    const btnEl1: HTMLButtonElement = btnDes1[0].nativeElement;
+                    const btnEl2: HTMLButtonElement = btnDes2[0].nativeElement;
 
                     // Click header buttons to open
-                    click(btn1El as HTMLElement);
-                    click(btn2El as HTMLElement);
+                    click(btnEl1 as HTMLElement);
+                    click(btnEl2 as HTMLElement);
                     fixture.detectChanges();
                 });
 
@@ -343,7 +329,7 @@ describe('EditionInfoComponent (DONE)', () => {
 
                     itemHeaderDes.forEach((itemHeaderDe, index) => {
                         const btnDes = getAndExpectDebugElementByCss(itemHeaderDe, 'button.accordion-button', 1, 1);
-                        const btnEl = btnDes[0].nativeElement;
+                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                         expectToBe(btnEl.textContent.trim(), expectedHeaders[index]);
                     });
@@ -361,11 +347,11 @@ describe('EditionInfoComponent (DONE)', () => {
                         const itemHeaderDes = getAndExpectDebugElementByCss(itemDe, 'div.accordion-header', 1, 1);
 
                         const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
-                        const btnEl = btnDes[0].nativeElement;
+                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                         // Item body is open
                         let itemBodyDes = getAndExpectDebugElementByCss(itemDe, 'div.accordion-collapse', 1, 1, 'open');
-                        let itemBodyEl = itemBodyDes[0].nativeElement;
+                        let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                         expectToContain(itemBodyEl.classList, 'show');
 
@@ -445,7 +431,7 @@ describe('EditionInfoComponent (DONE)', () => {
                     );
 
                     spanDes.forEach((spanDe, index) => {
-                        const spanEl = spanDe.nativeElement;
+                        const spanEl: HTMLSpanElement = spanDe.nativeElement;
 
                         const mockSpan = mockDocument.createElement('span');
                         mockSpan.innerHTML = itemTitles[index];
@@ -466,7 +452,7 @@ describe('EditionInfoComponent (DONE)', () => {
 
                     aDes.forEach((aDe, index) => {
                         const spanDes = getAndExpectDebugElementByCss(aDe, 'span.awg-edition-info-item-title', 1, 1);
-                        const spanEl = spanDes[0].nativeElement;
+                        const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                         const mockSpan = mockDocument.createElement('span');
                         mockSpan.innerHTML = itemTitles[index];
@@ -611,18 +597,18 @@ describe('EditionInfoComponent (DONE)', () => {
                 // Open second and third item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 3, 3);
 
-                const itemHeader1Des = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-header', 1, 1);
-                const itemHeader2Des = getAndExpectDebugElementByCss(itemDes[2], 'div.accordion-header', 1, 1);
+                const itemHeaderDes1 = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-header', 1, 1);
+                const itemHeaderDes2 = getAndExpectDebugElementByCss(itemDes[2], 'div.accordion-header', 1, 1);
 
-                const btn1Des = getAndExpectDebugElementByCss(itemHeader1Des[0], 'button.accordion-button', 1, 1);
-                const btn2Des = getAndExpectDebugElementByCss(itemHeader2Des[0], 'button.accordion-button', 1, 1);
+                const btnDes1 = getAndExpectDebugElementByCss(itemHeaderDes1[0], 'button.accordion-button', 1, 1);
+                const btnDes2 = getAndExpectDebugElementByCss(itemHeaderDes2[0], 'button.accordion-button', 1, 1);
 
-                const btn1El = btn1Des[0].nativeElement;
-                const btn2El = btn2Des[0].nativeElement;
+                const btnEl1: HTMLButtonElement = btnDes1[0].nativeElement;
+                const btnEl2: HTMLButtonElement = btnDes2[0].nativeElement;
 
                 // Click header buttons to open
-                click(btn1El as HTMLElement);
-                click(btn2El as HTMLElement);
+                click(btnEl1 as HTMLElement);
+                click(btnEl2 as HTMLElement);
                 detectChangesOnPush(fixture);
 
                 // Find DebugElements with an attached RouterLinkStubDirective

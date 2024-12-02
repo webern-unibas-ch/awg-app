@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { HttpClient, HttpParams, HttpRequest, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed, waitForAsync } from '@angular/core/testing';
@@ -272,7 +271,7 @@ describe('BibliographyService (DONE)', () => {
                 getApiResponseSpy.and.returnValue(observableOf(expectedResourceFullResponseJson));
 
                 bibliographyService.getBibliographyItemDetail(expectedResourceId).subscribe({
-                    next: (response: ResourceFullResponseJson) => {
+                    next: () => {
                         expectSpyCall(getApiResponseSpy, 1, [
                             ResourceFullResponseJson,
                             expectedQueryPath,
