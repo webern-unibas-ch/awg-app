@@ -113,7 +113,7 @@
                             "measure": "7",
                             "system": "Klav. u.",
                             "position": "",
-                            "comment": "{{ref.getGlyph('[#]')}} zu Cis, {{ref.getGlyph('[a]')}} zu A/c ergänzt analog T. 5 1. und 4. Note, {{ref.getGlyph('[#]')}} zu Cis, {{ref.getGlyph('[a]')}} zu c auch gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>. Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[#]')}} zu Cis, {{ref.getGlyph('[a]')}} zu A/c hinzugefügt."
+                            "comment": "{{ref.getGlyph('[#]')}} zu Cis, {{ref.getGlyph('[a]')}} zu A/c ergänzt analog T. 5 1. und 4. Note, {{ref.getGlyph('[#]')}} zu Cis, {{ref.getGlyph('[a]')}} zu c auch gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[#]')}} zu Cis, {{ref.getGlyph('[a]')}} zu A/c hinzugefügt."
                         },
                         {
                             "svgGroupId": "g815",
@@ -162,14 +162,14 @@
                             "measure": "9",
                             "system": "Klav. u.",
                             "position": "letzte Note",
-                            "comment": "{{ref.getGlyph('[b]')}} zu As, {{ref.getGlyph('[a]')}} zu d/g ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[b]')}} zu As, {{ref.getGlyph('[a]')}} zu d/g hinzugefügt."
+                            "comment": "{{ref.getGlyph('[b]')}} zu As, {{ref.getGlyph('[a]')}} zu d/g ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[b]')}} zu As, {{ref.getGlyph('[a]')}} zu d/g hinzugefügt."
                         },
                         {
                             "svgGroupId": "g824",
                             "measure": "10",
                             "system": "Klav. u.",
                             "position": "2/8",
-                            "comment": "{{ref.getGlyph('[b]')}} zu b, {{ref.getGlyph('[a]')}} zu d<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[b]')}} zu b, {{ref.getGlyph('[a]')}} zu d<sup>1</sup> hinzugefügt-"
+                            "comment": "{{ref.getGlyph('[b]')}} zu b, {{ref.getGlyph('[a]')}} zu d<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[b]')}} zu b, {{ref.getGlyph('[a]')}} zu d<sup>1</sup> hinzugefügt-"
                         },
                         {
                             "svgGroupId": "g825",
@@ -183,21 +183,21 @@
                             "measure": "10",
                             "system": "Klav. o.",
                             "position": "5. Note",
-                            "comment": "{{ref.getGlyph('[b]')}} zu des<sup>2</sup>, {{ref.getGlyph('[a]')}} zu f<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[b]')}} zu des<sup>2</sup>, {{ref.getGlyph('[a]')}} zu f<sup>2</sup> hinzugefügt."
+                            "comment": "{{ref.getGlyph('[b]')}} zu des<sup>2</sup>, {{ref.getGlyph('[a]')}} zu f<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[b]')}} zu des<sup>2</sup>, {{ref.getGlyph('[a]')}} zu f<sup>2</sup> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g827",
                             "measure": "10",
                             "system": "Klav. u.",
                             "position": "4. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} zu e<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
+                            "comment": "{{ref.getGlyph('[a]')}} zu e<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
                         },
                         {
                             "svgGroupId": "g828",
                             "measure": "10",
                             "system": "Klav. o.",
                             "position": "6. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>2</sup>/e<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
+                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>2</sup>/e<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
                         },
                         {
                             "svgGroupId": "g829",
@@ -211,7 +211,7 @@
                             "measure": "10",
                             "system": "Ges.",
                             "position": "6/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu a<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
+                            "comment": "{{ref.getGlyph('[a]')}} zu a<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
                         },
                         {
                             "svgGroupId": "g831",
@@ -267,7 +267,7 @@
                             "measure": "12",
                             "system": "Klav. o.",
                             "position": "letzte Note",
-                            "comment": "{{ref.getGlyph('[b]')}} zu as<sup>2</sup>, {{ref.getGlyph('[a]')}} zu c<sup>3</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[b]')}} zu as<sup>2</sup> hinzugefügt."
+                            "comment": "{{ref.getGlyph('[b]')}} zu as<sup>2</sup>, {{ref.getGlyph('[a]')}} zu c<sup>3</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[b]')}} zu as<sup>2</sup> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g858",
@@ -281,28 +281,28 @@
                             "measure": "13",
                             "system": "Klav. o.",
                             "position": "2. Note",
-                            "comment": "{{ref.getGlyph('[b]')}} zu as<sup>2</sup>, {{ref.getGlyph('[a]')}} zu c<sup>2</sup>/c<sup>3</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[b]')}} zu as<sup>2</sup> hinzugefügt."
+                            "comment": "{{ref.getGlyph('[b]')}} zu as<sup>2</sup>, {{ref.getGlyph('[a]')}} zu c<sup>2</sup>/c<sup>3</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[b]')}} zu as<sup>2</sup> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g860",
                             "measure": "13",
                             "system": "Klav. u.",
                             "position": "6/16",
-                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>1</sup>/e<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
+                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>1</sup>/e<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
                         },
                         {
                             "svgGroupId": "g861",
                             "measure": "13",
                             "system": "Klav. u.",
                             "position": "8/16",
-                            "comment": "{{ref.getGlyph('[#]')}} zu Fis<sub>1</sub>/Fis ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[#]')}} hinzugefügt."
+                            "comment": "{{ref.getGlyph('[#]')}} zu Fis<sub>1</sub>/Fis ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[#]')}} hinzugefügt."
                         },
                         {
                             "svgGroupId": "g862",
                             "measure": "13",
                             "system": "Klav. u.",
                             "position": "vorletzte, letzte Note",
-                            "comment": "Ligaturbogen zu c ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). <br /> {{ref.getGlyph('[a]')}} zu c und a ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe Korrekturen in <strong>D<sup>b</sup></strong> letzte Note: {{ref.getGlyph('[a]')}} zu a hinzugefügt."
+                            "comment": "Ligaturbogen zu c ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). <br /> {{ref.getGlyph('[a]')}} zu c und a ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a> letzte Note: {{ref.getGlyph('[a]')}} zu a hinzugefügt."
                         },
                         {
                             "svgGroupId": "g863",
@@ -379,21 +379,21 @@
                             "measure": "17",
                             "system": "Klav. u.",
                             "position": "letzte Note",
-                            "comment": "{{ref.getGlyph('[a]')}} zu e und {{ref.getGlyph('[#]')}} zu gis ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[#]')}} zu gis hinzugefügt."
+                            "comment": "{{ref.getGlyph('[a]')}} zu e und {{ref.getGlyph('[#]')}} zu gis ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[#]')}} zu gis hinzugefügt."
                         },
                         {
                             "svgGroupId": "g660c2",
                             "measure": "18",
                             "system": "Klav. o.",
                             "position": "2/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
+                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
                         },
                         {
                             "svgGroupId": "g660c3",
                             "measure": "18",
                             "system": "Klav. u.",
                             "position": "3/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu f ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugfügt."
+                            "comment": "{{ref.getGlyph('[a]')}} zu f ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugfügt."
                         },
                         {
                             "svgGroupId": "g660c4",
@@ -421,7 +421,7 @@
                             "measure": "20",
                             "system": "Klav. o.",
                             "position": "6/8",
-                            "comment": "{{ref.getGlyph('[#]')}} zu gis/cis<sup>1</sup>, {{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt analog T. 19 1/4, {{ref.getGlyph('[#]')}} zu cis<sup>1</sup>, {{ref.getGlyph('[a]')}} zu g<sup>1</sup> auch gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[#]')}} zu gis/cis<sup>1</sup> hinzugefügt. Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>: {{ref.getGlyph('[#]')}} zu gis hinzugefügt."
+                            "comment": "{{ref.getGlyph('[#]')}} zu gis/cis<sup>1</sup>, {{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt analog T. 19 1/4, {{ref.getGlyph('[#]')}} zu cis<sup>1</sup>, {{ref.getGlyph('[a]')}} zu g<sup>1</sup> auch gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[#]')}} zu gis/cis<sup>1</sup> hinzugefügt. Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>: {{ref.getGlyph('[#]')}} zu gis hinzugefügt."
                         }
                     ]
                 }
