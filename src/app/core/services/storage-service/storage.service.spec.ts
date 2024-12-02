@@ -1,8 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
+import Spy = jasmine.Spy;
+
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectToBe } from '@testing/expect-helper';
-import { mockLocalStorage, mockSessionStorage } from '@testing/mock-helper';
+import { expectSpyCall, expectToBe } from '@testing/expect-helper';
+import { mockConsole, mockLocalStorage, mockSessionStorage } from '@testing/mock-helper';
 
 import { StorageService, StorageType } from './storage.service';
 
@@ -16,6 +18,8 @@ describe('StorageService (DONE)', () => {
     let expectedStorage: Storage;
     const expectedLocalStorage: Storage = window[localType];
     const expectedSessionStorage: Storage = window[sessionType];
+
+    let consoleSpy: Spy;
 
     const expectedKey = 'key';
     const expectedItem = 'expectedItem';
@@ -43,11 +47,14 @@ describe('StorageService (DONE)', () => {
         spyOn(expectedLocalStorage, 'setItem').and.callFake(mockLocalStorage.setItem);
         spyOn(expectedLocalStorage, 'removeItem').and.callFake(mockLocalStorage.removeItem);
         spyOn(expectedLocalStorage, 'clear').and.callFake(mockLocalStorage.clear);
+
+        consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
     });
 
     afterEach(() => {
         // Clear storages after each test
         expectedStorage.clear();
+        mockConsole.clear();
         mockStorage.clear();
     });
 
@@ -414,10 +421,12 @@ describe('StorageService (DONE)', () => {
 
         it('... should return true if the storage is available', () => {
             expectToBe((storageService as any)._storageIsAvailable(expectedStorage), true);
+            expectSpyCall(consoleSpy, 0);
         });
 
-        it('... should return false if the storage is not available', () => {
+        it('... should return false and log an error if the storage is not available', () => {
             expectToBe((storageService as any)._storageIsAvailable(null), false);
+            expectSpyCall(consoleSpy, 1, ['Storage is not available:']);
         });
     });
 });

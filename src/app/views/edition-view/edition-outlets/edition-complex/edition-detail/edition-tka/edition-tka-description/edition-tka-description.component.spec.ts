@@ -91,7 +91,7 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain no paragraphs with edition-tka-description class yet', () => {
-                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-edition-tka-description', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'p.awg-edition-tka-description', 0, 0);
             });
         });
     });
@@ -139,7 +139,7 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
                     expectedTextcriticalDescriptions.length
                 );
                 pDes.forEach((pDe, index) => {
-                    const pEl = pDe.nativeElement;
+                    const pEl: HTMLParagraphElement = pDe.nativeElement;
 
                     const htmlDescriptionEntry = mockDocument.createElement('p');
                     htmlDescriptionEntry.innerHTML = expectedTextcriticalDescriptions[index];
@@ -173,7 +173,7 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
             }));
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
+                it('... parameter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);

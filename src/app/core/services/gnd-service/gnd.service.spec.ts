@@ -27,7 +27,7 @@ describe('GndService (DONE)', () => {
     const expectedSessionStorage: Storage = window[sessionType];
 
     const expectedGndKey = 'gnd';
-    const expectedDnbReg = /href="(https?:\/\/d-nb.info\/gnd\/([\w\-]{8,11}))"/i;
+    const expectedDnbReg = /href="(https?:\/\/d-nb.info\/gnd\/([\w-]{8,11}))"/i;
 
     const expectedGndEventValue = '<a href="http://d-nb.info/gnd/12345678-X">http://d-nb.info/gnd/12345678-X</a>';
     const expectedItem = '12345678-X';

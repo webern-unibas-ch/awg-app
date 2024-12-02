@@ -151,10 +151,10 @@ describe('ContactInfoComponent (DONE)', () => {
             });
 
             it('... should not render `contactInfoHeader` yet', () => {
-                const headerDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-contact-info-header', 1, 1);
-                const headerEl = headerDes[0].nativeElement;
+                const hDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-contact-info-header', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                expectToBe(headerEl.textContent, '');
+                expectToBe(hEl.textContent, '');
             });
 
             it('... should contain one address component (stubbed)', () => {
@@ -228,10 +228,10 @@ describe('ContactInfoComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should render `contactInfoHeader`', () => {
-                const headerDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-contact-info-header', 1, 1);
-                const headerEl = headerDes[0].nativeElement;
+                const hDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-contact-info-header', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                expectToBe(headerEl.textContent, expectedContactInfoHeader);
+                expectToBe(hEl.textContent, expectedContactInfoHeader);
             });
 
             it('... should pass down `pageMetaData` and `contactMetaData` to address component', () => {

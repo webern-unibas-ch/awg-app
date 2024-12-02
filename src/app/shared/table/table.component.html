@@ -71,7 +71,11 @@
                     @for (headerLabel of tableData.header; track headerLabel) {
                         <td>
                             @if (row[headerLabel].type && row[headerLabel].type === 'uri') {
-                                <a (click)="onTableValueClick(row[headerLabel].value)">
+                                <a
+                                    (click)="onTableValueClick(row[headerLabel].value)"
+                                    (keyup.enter)="onTableValueClick(row[headerLabel].value)"
+                                    role="link"
+                                    tabindex="0">
                                     <ngb-highlight
                                         [result]="row[headerLabel].label"
                                         [term]="searchFilter"></ngb-highlight>

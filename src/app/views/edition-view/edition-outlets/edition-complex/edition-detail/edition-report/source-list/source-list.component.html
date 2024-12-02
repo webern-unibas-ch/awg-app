@@ -27,14 +27,10 @@
 
                                     @if (source.hasDescription || source.linkTo) {
                                         <a
-                                            (click)="
-                                                source.hasDescription
-                                                    ? navigateToReportFragment({
-                                                          complexId: '',
-                                                          fragmentId: source.linkTo,
-                                                      })
-                                                    : openModal(source.linkTo)
-                                            ">
+                                            (click)="onSourceClick(source)"
+                                            (keyup.enter)="onSourceClick(source)"
+                                            role="link"
+                                            tabindex="0">
                                             <ng-container *ngTemplateOutlet="siglumMissingOrNot"></ng-container>
                                         </a>
                                     } @else {

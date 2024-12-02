@@ -14,7 +14,7 @@ import Spy = jasmine.Spy;
  * Not exposed, only called internally from {@link getAndExpectDebugElementByCss}
  * and {@link getAndExpectDebugElementByDirective}.
  *
- * @param {DebugElement[]} de The input DebugElement array to be checked.
+ * @param {DebugElement[]} des The input DebugElement array to be checked.
  * @param {string | Type<*>} selector The selector (CSS or directive) to look for.
  * @param {number } expected The expected number of elements in the input array.
  * @param {number | undefined} expectedFailMsg The expected number of elements in the input array in the fail message.
@@ -23,7 +23,7 @@ import Spy = jasmine.Spy;
  * @returns {void} Throws the expectation statements.
  */
 function expectDebugElement(
-    de: DebugElement[],
+    des: DebugElement[],
     selector: string | Type<any>,
     expected: number,
     expectedFailMsg: number | undefined,
@@ -37,8 +37,8 @@ function expectDebugElement(
         ? `should have ${expectedFailMsg} ${selector} ${suffixMsg}`
         : `should have ${expectedFailMsg} ${selector}`;
 
-    expect(de).toBeDefined();
-    expect(de.length).withContext(failMsg).toBe(expected);
+    expect(des).toBeDefined();
+    expect(des.length).withContext(failMsg).toBe(expected);
 }
 
 /**
@@ -64,16 +64,16 @@ export function getAndExpectDebugElementByCss(
     expectedFailMsg: number,
     suffixMsg?: string
 ): DebugElement[] {
-    const outDe = inDe.queryAll(By.css(selector));
+    const outDes = inDe.queryAll(By.css(selector));
 
     // Empty string if no suffix message provided
     if (!suffixMsg) {
         suffixMsg = '';
     }
 
-    expectDebugElement(outDe, selector, expected, expectedFailMsg, suffixMsg);
+    expectDebugElement(outDes, selector, expected, expectedFailMsg, suffixMsg);
 
-    return outDe;
+    return outDes;
 }
 
 /**
@@ -99,16 +99,16 @@ export function getAndExpectDebugElementByDirective(
     expectedFailMsg: number | undefined,
     suffixMsg?: string
 ): DebugElement[] {
-    const outDe = inDe.queryAll(By.directive(selectorType));
+    const outDes = inDe.queryAll(By.directive(selectorType));
 
     // Empty string if no suffix message provided
     if (!suffixMsg) {
         suffixMsg = '';
     }
 
-    expectDebugElement(outDe, selectorType, expected, expectedFailMsg, suffixMsg);
+    expectDebugElement(outDes, selectorType, expected, expectedFailMsg, suffixMsg);
 
-    return outDe;
+    return outDes;
 }
 
 /**

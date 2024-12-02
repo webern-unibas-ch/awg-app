@@ -48,7 +48,10 @@
                         @if (resourceInfoData?.resources?.previous; as previous) {
                             <a
                                 class="list-group-item list-group-item-action flex-column awg-list-group-item text-start"
-                                (click)="navigateToResource(previous?.id)">
+                                (click)="navigateToResource(previous?.id)"
+                                (keyup.enter)="navigateToResource(previous?.id)"
+                                role="link"
+                                tabindex="0">
                                 <div>
                                     <strong class="text-muted small">
                                         <fa-icon [icon]="faChevronLeft"></fa-icon>
@@ -131,7 +134,10 @@
                         @if (resourceInfoData?.resources?.next; as next) {
                             <a
                                 class="list-group-item list-group-item-action flex-column awg-list-group-item text-end"
-                                (click)="navigateToResource(next?.id)">
+                                (click)="navigateToResource(next?.id)"
+                                (keyup.enter)="navigateToResource(next?.id)"
+                                role="link"
+                                tabindex="0">
                                 <div class="mb-1">
                                     <strong class="text-muted small">
                                         <span class="awg-resource-info-btn-text me-2"

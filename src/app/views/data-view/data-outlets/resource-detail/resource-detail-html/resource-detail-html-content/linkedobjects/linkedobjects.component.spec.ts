@@ -100,23 +100,19 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-linked-obj', 1, 1);
             });
 
-            it('... should contain one header showing no number of items yet', () => {
-                // Header debug element
-                const headerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-linked-obj > h5', 1, 1);
-                // Size debug element
-                getAndExpectDebugElementByCss(headerDes[0], 'span#awg-incoming-size', 0, 0);
+            it('... should contain one heading showing no number of items yet', () => {
+                const hDes = getAndExpectDebugElementByCss(compDe, 'div.awg-linked-obj > h5', 1, 1);
+
+                getAndExpectDebugElementByCss(hDes[0], 'span#awg-incoming-size', 0, 0);
             });
 
             it('... should contain one div.accordion', () => {
-                // Div.accordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
             it('... should contain no div.accordion-items yet', () => {
-                // Div.accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                // Div.accordion-item
                 getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 0, 0);
             });
         });
@@ -178,20 +174,16 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                     1,
                     1
                 );
-                const sizeEl = sizeDes[0].nativeElement;
+                const sizeEl: HTMLSpanElement = sizeDes[0].nativeElement;
 
-                // Check size output
                 expectToBe(sizeEl.textContent, component.totalNumber.toString());
             });
 
             it('... should contain two div.accordion-item with header and closed body in div.accordion', () => {
-                // Div.accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                // Item debug elements
                 const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 2, 2);
 
-                // Header debug elements
                 const itemHeaderDes1 = getAndExpectDebugElementByCss(
                     itemDes[0],
                     'div.accordion-header',
@@ -213,7 +205,6 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
             });
 
             it('... should render incoming group length as badges in item header (div.accordion-header)', () => {
-                // Header debug element
                 const itemHeaderDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.accordion-item > div.accordion-header',
@@ -229,14 +220,13 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                         1,
                         `in item ${index}`
                     );
-                    const badgeEl = badgeDes[0].nativeElement;
+                    const badgeEl: HTMLSpanElement = badgeDes[0].nativeElement;
 
                     expectToBe(badgeEl.textContent, expectedIncoming[index].links.length.toString());
                 });
             });
 
             it('... should render restype label in item header (div.accordion-header)', () => {
-                // Header debug element
                 const itemHeaderDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.accordion-item > div.accordion-header',
@@ -252,14 +242,13 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                         1,
                         `in item ${index}`
                     );
-                    const labelEl = labelDes[0].nativeElement;
+                    const labelEl: HTMLSpanElement = labelDes[0].nativeElement;
 
                     expectToBe(labelEl.textContent, expectedIncoming[index].restypeLabel);
                 });
             });
 
             it('... should open and close items on click', fakeAsync(() => {
-                // Header debug elements
                 const itemHeaderDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.accordion-item > div.accordion-header',
@@ -267,15 +256,14 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                     2
                 );
 
-                // Button debug elements
-                const button0Des = getAndExpectDebugElementByCss(
+                const btnDes0 = getAndExpectDebugElementByCss(
                     itemHeaderDes[0],
                     'button.accordion-button',
                     1,
                     1,
                     'in first item'
                 );
-                const button1Des = getAndExpectDebugElementByCss(
+                const btnDes1 = getAndExpectDebugElementByCss(
                     itemHeaderDes[1],
                     'button.accordion-button',
                     1,
@@ -288,32 +276,31 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                 expectCollapsedAccordionItem(itemHeaderDes[1], 'second item closed');
 
                 // Click first item
-                clickAndAwaitChanges(button0Des[0], fixture);
+                clickAndAwaitChanges(btnDes0[0], fixture);
 
                 expectOpenAccordionItem(itemHeaderDes[0], 'first item open');
                 expectCollapsedAccordionItem(itemHeaderDes[1], 'second item closed');
 
                 // Click first item again
-                clickAndAwaitChanges(button0Des[0], fixture);
+                clickAndAwaitChanges(btnDes0[0], fixture);
 
                 expectCollapsedAccordionItem(itemHeaderDes[0], 'first item closed');
                 expectCollapsedAccordionItem(itemHeaderDes[1], 'second item closed');
 
                 // Click second item
-                clickAndAwaitChanges(button1Des[0], fixture);
+                clickAndAwaitChanges(btnDes1[0], fixture);
 
                 expectCollapsedAccordionItem(itemHeaderDes[0], 'first item closed');
                 expectOpenAccordionItem(itemHeaderDes[1], 'second item open');
 
                 // Click second item again
-                clickAndAwaitChanges(button1Des[0], fixture);
+                clickAndAwaitChanges(btnDes1[0], fixture);
 
                 expectCollapsedAccordionItem(itemHeaderDes[0], 'first item closed');
                 expectCollapsedAccordionItem(itemHeaderDes[1], 'second item closed');
             }));
 
             it('... should toggle items alternately on click', fakeAsync(() => {
-                // Header debug elements
                 const itemHeaderDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.accordion-item > div.accordion-header',
@@ -321,15 +308,14 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                     2
                 );
 
-                // Button debug elements
-                const button0Des = getAndExpectDebugElementByCss(
+                const btnDes0 = getAndExpectDebugElementByCss(
                     itemHeaderDes[0],
                     'button.accordion-button',
                     1,
                     1,
                     'in first item'
                 );
-                const button1Des = getAndExpectDebugElementByCss(
+                const btnDes1 = getAndExpectDebugElementByCss(
                     itemHeaderDes[1],
                     'button.accordion-button',
                     1,
@@ -342,13 +328,13 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                 expectCollapsedAccordionItem(itemHeaderDes[1], 'closed (second item)');
 
                 // Click first item
-                clickAndAwaitChanges(button0Des[0], fixture);
+                clickAndAwaitChanges(btnDes0[0], fixture);
 
                 expectOpenAccordionItem(itemHeaderDes[0], 'opened (first item)');
                 expectCollapsedAccordionItem(itemHeaderDes[1], 'closed (second item)');
 
                 // Click second item
-                clickAndAwaitChanges(button1Des[0], fixture);
+                clickAndAwaitChanges(btnDes1[0], fixture);
 
                 expectCollapsedAccordionItem(itemHeaderDes[0], 'closed (first item)');
                 expectOpenAccordionItem(itemHeaderDes[1], 'opened (second item)');
@@ -370,26 +356,20 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                     );
 
                     // Button debug elements
-                    const button0Des = getAndExpectDebugElementByCss(
+                    const btnDes0 = getAndExpectDebugElementByCss(
                         itemHeaderDes[0],
                         'button.accordion-button',
                         1,
                         1,
                         'in first item'
                     );
-                    const button1Des = getAndExpectDebugElementByCss(
-                        itemHeaderDes[1],
-                        'button.accordion-button',
-                        1,
-                        1,
-                        'in second item'
-                    );
+                    getAndExpectDebugElementByCss(itemHeaderDes[1], 'button.accordion-button', 1, 1, 'in second item');
 
                     // First button's native element to click on
-                    const button0El = button0Des[0].nativeElement;
+                    const btnEl0: HTMLButtonElement = btnDes0[0].nativeElement;
 
                     // Open first item
-                    click(button0El as HTMLElement);
+                    click(btnEl0 as HTMLElement);
                     await detectChangesOnPush(fixture); // Replacement for fixture.detectChanges with OnPush
 
                     expectOpenAccordionItem(itemHeaderDes[0], 'should have first item opened');
@@ -402,7 +382,7 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                     const imgDes = getAndExpectDebugElementByCss(listDes[0], 'a.awg-linked-obj-link > img', 2, 2);
 
                     imgDes.forEach((imgDe, index) => {
-                        const imgEl = imgDe.nativeElement;
+                        const imgEl: HTMLImageElement = imgDe.nativeElement;
 
                         expectToContain(imgEl.src, expectedIncoming[0].links[index].restype.icon);
                     });
@@ -417,7 +397,7 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                     );
 
                     idDes.forEach((idDe, index) => {
-                        const idEl = idDe.nativeElement;
+                        const idEl: HTMLSpanElement = idDe.nativeElement;
 
                         expectToBe(idEl.textContent, expectedIncoming[0].links[index].id);
                     });
@@ -432,7 +412,7 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                     );
 
                     linkValueDes.forEach((linkValueDe, index) => {
-                        const linkValueEl = linkValueDe.nativeElement;
+                        const linkValueEl: HTMLSpanElement = linkValueDe.nativeElement;
 
                         expectToBe(linkValueEl.textContent, expectedIncoming[0].links[index].value);
                     });
@@ -457,14 +437,8 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                 );
 
                 // Button debug elements
-                const button0Des = getAndExpectDebugElementByCss(
-                    itemHeaderDes[0],
-                    'button.accordion-button',
-                    1,
-                    1,
-                    'in first item'
-                );
-                const button1Des = getAndExpectDebugElementByCss(
+                getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1, 'in first item');
+                const btnDes1 = getAndExpectDebugElementByCss(
                     itemHeaderDes[1],
                     'button.accordion-button',
                     1,
@@ -473,7 +447,7 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                 );
 
                 // Open second item
-                clickAndAwaitChanges(button1Des[0], fixture);
+                clickAndAwaitChanges(btnDes1[0], fixture);
 
                 expectCollapsedAccordionItem(itemHeaderDes[0], 'should have first item closed');
                 expectOpenAccordionItem(itemHeaderDes[1], 'should have second item opened');

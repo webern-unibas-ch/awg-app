@@ -1,0 +1,243 @@
+{
+    "sheets": {
+        "workEditions": [],
+        "textEditions": [
+            {
+                "id": "M_133_TF1",
+                "label": "M 133 Textfassung 1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M133_Textfassung1-1von2-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": "A"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M133_Textfassung1-2von2-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": "A"
+                    }
+                ]
+            },
+            {
+                "id": "M_133_TF2",
+                "label": "M 133 Textfassung 2",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M133_Textfassung2-1von2-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": ""
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M133_Textfassung2-2von2-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": ""
+                    }
+                ]
+            },
+            {
+                "id": "M_133_TF3",
+                "label": "M 133 Textfassung 3",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M133_Textfassung3-1von2-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": ""
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M133_Textfassung3-2von2-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": ""
+                    }
+                ]
+            },
+            {
+                "id": "M_134_TF1",
+                "label": "M 134 Textfassung 1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M134_Textfassung1-1von2-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": ""
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M134_Textfassung1-2von2-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": ""
+                    }
+                ]
+            },
+            {
+                "id": "M_134_TF2",
+                "label": "M 134 Textfassung 2",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M134_Textfassung2-1von2-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": ""
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M134_Textfassung2-2von2-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": ""
+                    }
+                ]
+            },
+            {
+                "id": "M_135_TF1",
+                "label": "M 135 Textfassung 1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M135_Textfassung1-1von2-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": "E"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M135_Textfassung1-2von2-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": "E"
+                    }
+                ]
+            },
+            {
+                "id": "M_135_TF2",
+                "label": "M 135 Textfassung 2",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M135_Textfassung2-1von2-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": "H"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M135_Textfassung2-2von2-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": "H"
+                    }
+                ]
+            },
+            {
+<<<<<<< HEAD
+                "id": "M_137_TF1",
+                "label": "M 137 Textfassung 1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M137_Textfassung1-1von2-final.svg",
+=======
+                "id": "M_136_TF1",
+                "label": "M 136 Textfassung 1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M136_Textfassung1-1von2-final.svg",
+>>>>>>> develop
+                        "image": "",
+                        "partial": "a",
+                        "convolute": ""
+                    },
+                    {
+<<<<<<< HEAD
+                        "svg": "assets/img/edition/series/1/section/5/op3/M137_Textfassung1-2von2-final.svg",
+=======
+                        "svg": "assets/img/edition/series/1/section/5/op3/M136_Textfassung1-2von2-final.svg",
+>>>>>>> develop
+                        "image": "",
+                        "partial": "b",
+                        "convolute": ""
+                    }
+                ]
+            },
+            {
+<<<<<<< HEAD
+                "id": "M_137_TF2",
+                "label": "M 137 Textfassung 2",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M137_Textfassung2-1von2-final.svg",
+=======
+                "id": "M_136_TF2",
+                "label": "M 136 Textfassung 2",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M136_Textfassung2-1von2-final.svg",
+>>>>>>> develop
+                        "image": "",
+                        "partial": "a",
+                        "convolute": ""
+                    },
+                    {
+<<<<<<< HEAD
+                        "svg": "assets/img/edition/series/1/section/5/op3/M137_Textfassung2-2von2-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": ""
+                    }
+                ]
+            },
+            {
+                "id": "M_137_TF3",
+                "label": "M 137 Textfassung 3",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M137_Textfassung3-1von2-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": ""
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M137_Textfassung3-2von2-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": ""
+                    }
+                ]
+            },
+            {
+                "id": "M_137_TF4",
+                "label": "M 137 Textfassung 4",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M137_Textfassung4-1von2-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": ""
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M137_Textfassung4-2von2-final.svg",
+=======
+                        "svg": "assets/img/edition/series/1/section/5/op3/M136_Textfassung2-2von2-final.svg",
+>>>>>>> develop
+                        "image": "",
+                        "partial": "b",
+                        "convolute": ""
+                    }
+                ]
+            }
+        ],
+        "sketchEditions": [
+            {
+                "id": "M_136_Sk1",
+                "label": "M 136 Sk1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op3/M136_Sk1-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "D"
+                    }
+                ]
+            }
+        ]
+    }
+}

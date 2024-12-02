@@ -187,7 +187,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
 
                     columnDes.forEach((columnDe, index) => {
-                        const columnEl = columnDe.nativeElement;
+                        const columnEl: HTMLTableCellElement = columnDe.nativeElement;
                         expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings['rowTable'][index].label);
                     });
                 });
@@ -200,7 +200,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
 
                     columnDes.forEach((columnDe, index) => {
-                        const columnEl = columnDe.nativeElement;
+                        const columnEl: HTMLTableCellElement = columnDe.nativeElement;
                         expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings['corrections'][index].label);
                     });
                 });
@@ -210,7 +210,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
 
                     columnDes.forEach((columnDe, index) => {
-                        const columnEl = columnDe.nativeElement;
+                        const columnEl: HTMLTableCellElement = columnDe.nativeElement;
                         expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings['default'][index].label);
                     });
                 });
@@ -226,7 +226,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
 
                     columnDes.forEach((columnDe, index) => {
-                        const columnEl = columnDe.nativeElement;
+                        const columnEl: HTMLTableCellElement = columnDe.nativeElement;
                         expectToBe(columnEl.textContent.trim(), expected[index].label);
                     });
                 });
@@ -255,7 +255,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 });
 
                 it('... should contain one cell (td colspan=4) for block headers and four cells (td) for block comments in each row (tr) in table body', () => {
-                    const rows = getAndExpectDebugElementByCss(
+                    const rowDes = getAndExpectDebugElementByCss(
                         compDe,
                         'table > tbody > tr',
                         expectedTotalRows,
@@ -265,15 +265,15 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     let rowIndex = 0;
                     expectedTextcriticalCommentBlocks.forEach(block => {
                         if (block.blockHeader) {
-                            const tdDes = getAndExpectDebugElementByCss(rows[rowIndex], 'td', 1, 1);
-                            const tdEl = tdDes[0].nativeElement;
+                            const tdDes = getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 1, 1);
+                            const tdEl: HTMLTableCellElement = tdDes[0].nativeElement;
                             expectToBe(tdEl.getAttribute('colspan'), '4');
                             expectToContain(tdEl.classList, 'awg-edition-tka-table-block-header');
 
                             rowIndex++;
                         }
                         block.blockComments.forEach(() => {
-                            getAndExpectDebugElementByCss(rows[rowIndex], 'td', 4, 4);
+                            getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 4, 4);
 
                             rowIndex++;
                         });
@@ -281,7 +281,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 });
 
                 it('... should contain correct data in all row cells (tr/td)', () => {
-                    const rows = getAndExpectDebugElementByCss(
+                    const rowDes = getAndExpectDebugElementByCss(
                         compDe,
                         'table > tbody > tr',
                         expectedTotalRows,
@@ -292,24 +292,24 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     expectedTextcriticalCommentBlocks.forEach(block => {
                         if (block.blockHeader) {
                             const tdDes = getAndExpectDebugElementByCss(
-                                rows[rowIndex],
+                                rowDes[rowIndex],
                                 'td.awg-edition-tka-table-block-header',
                                 1,
                                 1
                             );
-                            const tdEl = tdDes[0].nativeElement;
+                            const tdEl: HTMLTableCellElement = tdDes[0].nativeElement;
 
                             expectToBe(tdEl.textContent, block.blockHeader);
 
                             rowIndex++;
                         }
                         block.blockComments.forEach((comment, index) => {
-                            const rowCells = getAndExpectDebugElementByCss(rows[rowIndex], 'td', 4, 4);
+                            const rowCellDes = getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 4, 4);
 
-                            const measureCell = rowCells[0].nativeElement;
-                            const systemCell = rowCells[1].nativeElement;
-                            const positionCell = rowCells[2].nativeElement;
-                            const commentCell = rowCells[3].nativeElement;
+                            const measureCell: HTMLTableCellElement = rowCellDes[0].nativeElement;
+                            const systemCell: HTMLTableCellElement = rowCellDes[1].nativeElement;
+                            const positionCell: HTMLTableCellElement = rowCellDes[2].nativeElement;
+                            const commentCell: HTMLTableCellElement = rowCellDes[3].nativeElement;
 
                             const measureCellHtmlSnippet = mockDocument.createElement('span');
                             measureCellHtmlSnippet.innerHTML = index === 2 ? '{13}' : comment.measure;
@@ -328,7 +328,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 });
 
                 it('... should contain CompileHtmlComponent in each header cell or fourth cell (td) of a block comment', () => {
-                    const rows = getAndExpectDebugElementByCss(
+                    const rowDes = getAndExpectDebugElementByCss(
                         compDe,
                         'table > tbody > tr',
                         expectedTotalRows,
@@ -338,14 +338,14 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     let rowIndex = 0;
                     expectedTextcriticalCommentBlocks.forEach(block => {
                         if (block.blockHeader) {
-                            const tdDes = getAndExpectDebugElementByCss(rows[rowIndex], 'td', 1, 1);
+                            const tdDes = getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 1, 1);
 
                             getAndExpectDebugElementByDirective(tdDes[0], CompileHtmlComponent, 1, 1);
 
                             rowIndex++;
                         }
                         block.blockComments.forEach(() => {
-                            const tdDes = getAndExpectDebugElementByCss(rows[rowIndex], 'td', 4, 4);
+                            const tdDes = getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 4, 4);
 
                             getAndExpectDebugElementByDirective(tdDes[0], CompileHtmlComponent, 0, 0);
                             getAndExpectDebugElementByDirective(tdDes[1], CompileHtmlComponent, 0, 0);
@@ -484,7 +484,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
 
             it('... should trigger on click', fakeAsync(() => {
-                const rows = getAndExpectDebugElementByCss(
+                const rowDes = getAndExpectDebugElementByCss(
                     compDe,
                     'table > tbody > tr',
                     expectedTotalRows,
@@ -492,20 +492,20 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 );
 
                 // Find spans of third row
-                const spanDes = getAndExpectDebugElementByCss(rows[2], 'td > span', 1, 1);
+                const spanDes = getAndExpectDebugElementByCss(rowDes[2], 'td > span', 1, 1);
 
                 // Find anchors in span
-                const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
+                const aDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
 
                 // Trigger click with click helper & wait for changes
                 // CLick on second anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                clickAndAwaitChanges(aDes[0], fixture);
 
                 expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: expectedReportFragment });
             }));
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
+                it('... parameter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
@@ -565,7 +565,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
 
             it('... should trigger on click', fakeAsync(() => {
-                const rows = getAndExpectDebugElementByCss(
+                const rowDes = getAndExpectDebugElementByCss(
                     compDe,
                     'table > tbody > tr',
                     expectedTotalRows,
@@ -573,13 +573,13 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 );
 
                 // Find spans of third row
-                const spanDes = getAndExpectDebugElementByCss(rows[2], 'td > span', 1, 1);
+                const spanDes = getAndExpectDebugElementByCss(rowDes[2], 'td > span', 1, 1);
 
                 // Find anchors in span
-                const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
+                const aDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
 
                 // Click on first anchor with modal call
-                clickAndAwaitChanges(anchorDes[1], fixture);
+                clickAndAwaitChanges(aDes[1], fixture);
 
                 expectSpyCall(openModalSpy, 1, expectedModalSnippet);
             }));
@@ -603,7 +603,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
 
             it('... should trigger on click', fakeAsync(() => {
-                const rows = getAndExpectDebugElementByCss(
+                const rowDes = getAndExpectDebugElementByCss(
                     compDe,
                     'table > tbody > tr',
                     expectedTotalRows,
@@ -611,14 +611,14 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 );
 
                 // Find spans of third row
-                const spanDes = getAndExpectDebugElementByCss(rows[2], 'td > span', 1, 1);
+                const spanDes = getAndExpectDebugElementByCss(rowDes[2], 'td > span', 1, 1);
 
                 // Find anchors in span
-                const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
+                const aDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
 
                 // Trigger click with click helper & wait for changes
                 // CLick on second anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[2], fixture);
+                clickAndAwaitChanges(aDes[2], fixture);
 
                 expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSvgSheet.id });
             }));

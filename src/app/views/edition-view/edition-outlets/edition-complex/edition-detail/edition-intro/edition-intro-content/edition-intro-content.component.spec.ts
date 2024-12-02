@@ -214,9 +214,8 @@ describe('EditionIntroContentComponent (DONE)', () => {
                         );
 
                         if (index < expectedIntroBlockContent.length) {
-                            expect(pDes[0].nativeElement.textContent).toBe(
-                                expectedIntroBlockContent[index].blockHeader
-                            );
+                            const pEl: HTMLParagraphElement = pDes[0].nativeElement;
+                            expect(pEl.textContent).toBe(expectedIntroBlockContent[index].blockHeader);
                         }
                     });
                 });
@@ -343,10 +342,10 @@ describe('EditionIntroContentComponent (DONE)', () => {
                     );
                     const notesSectionDe = sectionDes.at(-1);
 
-                    const h5Des = getAndExpectDebugElementByCss(notesSectionDe, 'h5', 1, 1);
-                    const h5El = h5Des[0].nativeElement;
+                    const hDes = getAndExpectDebugElementByCss(notesSectionDe, 'h5', 1, 1);
+                    const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                    expectToBe(h5El.textContent, expectedNotesLabel);
+                    expectToBe(hEl.textContent, expectedNotesLabel);
                 });
 
                 it('... should contain one div.awg-edition-intro-notes', () => {
@@ -419,7 +418,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
             }));
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
+                it('... parameter is undefined', () => {
                     component.navigateToIntroFragment(undefined);
 
                     expectSpyCall(navigateToIntroFragmentRequestEmitSpy, 0);
@@ -506,7 +505,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
             }));
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
+                it('... parameter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
