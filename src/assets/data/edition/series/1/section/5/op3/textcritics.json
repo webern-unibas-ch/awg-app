@@ -1138,6 +1138,49 @@
                 }
             ],
             "linkBoxes": []
+        },
+        {
+            "id": "M_137_TF4",
+            "label": "M 137 Textfassung 4",
+            "description": [
+                "Für die Edition von „Kahl reckt der Baum“ M 137 Textfassung 4 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_J'})\"><strong>J</strong></a> einzige relevante Quelle. <br /> Der Zustand ante correcturam etabliert Textfassung 4. Die wenigen <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_J_corr'})\">Korrekturen in <strong>J</strong></a> sind vermutlich aufführunsspezifisch motiviert. <br /> Hauptquelle für die Textedition von „Kahl reckt der Baum“ M 137 Textfassung 4 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_J'})\"><strong>J</strong></a> ante correcturam."
+        ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g414",
+                            "measure": "2",
+                            "system": "Ges.",
+                            "position": "1–2/8",
+                            "comment": "sic: Artikulationsbogen. Siehe auch „Dies ist ein Lied“ M 133: Textfassung 4."
+                        },
+                        {
+                            "svgGroupId": "g660",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "Text: Gedankenstrich nach (Ar-)<em>me</em> ergänzt mit Blick auf G<strong>eorge_DsR</strong>."
+                        },
+                        {
+                            "svgGroupId": "g661",
+                            "measure": "9",
+                            "system": "Klav. o.",
+                            "position": "Taktanfang",
+                            "comment": "Redundantes <em>Tempo</em> über Klav.-System weggelassen."
+                        },
+                        {
+                            "svgGroupId": "g678",
+                            "measure": "13",
+                            "system": "Ges.",
+                            "position": "3/4",
+                            "comment": "Text sic: Punkt nach <em>hofft</em>. <strong>George_DsR</strong>: Ausrufezeichen."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
         }
     ]
 }
