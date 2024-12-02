@@ -65,7 +65,7 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
             it('... should contain a small, text-muted paragraph in div', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-placeholder', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
-                const pEl = pDes[0].nativeElement;
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expect(pEl).toHaveClass('text-muted');
                 expect(pEl).toHaveClass('small');
@@ -95,7 +95,7 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
             it('... should display small, text-muted placeholder in paragraph', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-placeholder', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
-                const pEl = pDes[0].nativeElement;
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expect(pEl).toHaveClass('text-muted');
                 expect(pEl).toHaveClass('small');

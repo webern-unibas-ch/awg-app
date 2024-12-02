@@ -68,7 +68,7 @@ export class GndService extends StorageService {
      *
      * It holds the regular expression for a d-nb link in a href.
      */
-    readonly DNB_REG = /href="(https?:\/\/d-nb.info\/gnd\/([\w\-]{8,11}))"/i; // Regexp for d-nb links
+    readonly DNB_REG = /href="(https?:\/\/d-nb.info\/gnd\/([\w-]{8,11}))"/i; // Regexp for d-nb links
 
     /**
      * Readonly variable: CURRENT_LOCATION.

@@ -51,8 +51,8 @@ describe('TwelveToneSpinnerComponent', () => {
             });
 
             it(`... should not display load text yet`, () => {
-                const pDe = getAndExpectDebugElementByCss(compDe, 'div.spinner > div.spinner-load-text > p', 1, 1);
-                const pEl = pDe[0].nativeElement;
+                const pDes = getAndExpectDebugElementByCss(compDe, 'div.spinner > div.spinner-load-text > p', 1, 1);
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expectToBe(pEl.textContent, '');
             });
@@ -65,8 +65,8 @@ describe('TwelveToneSpinnerComponent', () => {
 
             for (let i = 1; i <= 12; i++) {
                 it(`... should contain one div.spinner-note${i} with correct :before content in div.spinner`, () => {
-                    const noteDe = getAndExpectDebugElementByCss(compDe, `div.spinner > div.spinner-note${i}`, 1, 1);
-                    const noteEl = noteDe[0].nativeElement;
+                    const noteDes = getAndExpectDebugElementByCss(compDe, `div.spinner > div.spinner-note${i}`, 1, 1);
+                    const noteEl: HTMLDivElement = noteDes[0].nativeElement;
 
                     const beforeContent = window.getComputedStyle(noteEl, ':before').getPropertyValue('content');
 
@@ -96,8 +96,8 @@ describe('TwelveToneSpinnerComponent', () => {
 
         describe('VIEW', () => {
             it(`... should display load text`, () => {
-                const pDe = getAndExpectDebugElementByCss(compDe, 'div.spinner > div.spinner-load-text > p', 1, 1);
-                const pEl = pDe[0].nativeElement;
+                const pDes = getAndExpectDebugElementByCss(compDe, 'div.spinner > div.spinner-load-text > p', 1, 1);
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expectToBe(pEl.textContent, expectedSpinnerLoadText);
             });

@@ -435,7 +435,7 @@ export class FolioCalculationContentSegment {
             console.error('No systems in folio');
             return;
         }
-        content.sections.forEach((section: FolioSection, _sectionIndex: number) => {
+        content.sections.forEach((section: FolioSection) => {
             this._setProperties(content, section);
         });
     }

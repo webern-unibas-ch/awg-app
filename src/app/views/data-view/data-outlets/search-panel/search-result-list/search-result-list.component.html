@@ -18,26 +18,21 @@
                         [viewHandles]="viewHandles"
                         [selectedViewType]="selectedViewType"
                         (viewChangeRequest)="onViewChange($event)"></awg-view-handle-button-group>
-                    <div class="btn-group" role="group">
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown for row number">
                         <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
                             <span class="d-none d-lg-inline">Hits per page: </span>{{ searchParams?.nRows }}
                         </button>
-                        <div
-                            ngbDropdown
-                            class="btn-group"
-                            role="group"
-                            aria-label="Button group with nested dropdown for row number">
-                            <button
-                                class="btn btn-sm btn-info dropdown-toggle-split"
-                                ngbDropdownToggle
-                                [disabled]="isNoResults()"></button>
-                            <div class="dropdown-menu" ngbDropdownMenu>
-                                @for (rowNumber of rowNumbers; track rowNumber) {
-                                    <button class="dropdown-item" (click)="onRowNumberChange(rowNumber)">
-                                        {{ rowNumber }}
-                                    </button>
-                                }
-                            </div>
+                        <button
+                            class="btn btn-sm btn-info dropdown-toggle-split"
+                            ngbDropdownToggle
+                            [disabled]="isNoResults()"
+                            aria-label="Toggle dropdown"></button>
+                        <div class="dropdown-menu" ngbDropdownMenu>
+                            @for (rowNumber of rowNumbers; track rowNumber) {
+                                <button class="dropdown-item" (click)="onRowNumberChange(rowNumber)">
+                                    {{ rowNumber }}
+                                </button>
+                            }
                         </div>
                     </div>
                 </div>
@@ -109,7 +104,12 @@
                                     </h5>
                                 </div>
                                 <div class="card-footer text-end">
-                                    <a (click)="navigateToResource(subject?.obj_id)" class="btn btn-outline-info"
+                                    <a
+                                        class="btn btn-outline-info"
+                                        (click)="navigateToResource(subject?.obj_id)"
+                                        (keyup.enter)="navigateToResource(subject?.obj_id)"
+                                        role="button"
+                                        tabindex="0"
                                         >Mehr ...
                                     </a>
                                 </div>

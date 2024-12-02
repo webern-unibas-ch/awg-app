@@ -748,7 +748,7 @@ describe('FolioService (DONE)', () => {
             it('... should append one link element to each content segment group', () => {
                 const contentSegmentGroups = svgSheetGroup.selectAll('g.content-segment-group').nodes();
 
-                contentSegmentGroups.forEach((contentSegmentGroup, i) => {
+                contentSegmentGroups.forEach(contentSegmentGroup => {
                     const group = D3_SELECTION.select(contentSegmentGroup);
                     const contentSegmentLink = group.select('a');
 
@@ -777,7 +777,7 @@ describe('FolioService (DONE)', () => {
             it('... should append one polygon element to each content segment link', () => {
                 const contentSegmentGroups = svgSheetGroup.selectAll('g.content-segment-group').nodes();
 
-                contentSegmentGroups.forEach((contentSegmentGroup, i) => {
+                contentSegmentGroups.forEach(contentSegmentGroup => {
                     const group = D3_SELECTION.select(contentSegmentGroup);
                     const contentSegmentLink = group.select('a');
                     const polygonElement = contentSegmentLink.select('polygon');
@@ -1907,7 +1907,7 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should only have specified attributes', () => {
-                systemArray.forEach((_line, index) => {
+                systemArray.forEach(() => {
                     const lineElement = systemsGroup.select('line');
 
                     const expectedAttributes = ['class', 'x1', 'y1', 'x2', 'y2', 'stroke', 'stroke-width'].map(attr =>

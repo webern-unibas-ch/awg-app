@@ -77,32 +77,32 @@ describe('SparqlNoResultsComponent (DONE)', () => {
             it('... should contain plain text in 1st and 2nd paragraph', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 4);
 
-                const p1El = pDes[0].nativeElement;
-                const p2El = pDes[1].nativeElement;
+                const pEl1: HTMLParagraphElement = pDes[0].nativeElement;
+                const pEl2: HTMLParagraphElement = pDes[1].nativeElement;
 
-                expectToBe(p1El.textContent, 'Entschuldigung, Ihre SPARQL-Anfrage führte leider zu keinem Ergebnis.');
-                expectToBe(p2El.textContent, 'Möglicherweise können Sie Ihre Anfrage anpassen.');
+                expectToBe(pEl1.textContent, 'Entschuldigung, Ihre SPARQL-Anfrage führte leider zu keinem Ergebnis.');
+                expectToBe(pEl2.textContent, 'Möglicherweise können Sie Ihre Anfrage anpassen.');
             });
 
             it('... should contain one empty link in 3rd and 4th paragraph', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 4);
-                const p3aDes = getAndExpectDebugElementByCss(pDes[2], 'p > a', 1, 1);
-                const p4aDes = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
+                const aDes3 = getAndExpectDebugElementByCss(pDes[2], 'p > a', 1, 1);
+                const aDes4 = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
 
-                const p3aEl = p3aDes[0].nativeElement;
-                const p4aEl = p4aDes[0].nativeElement;
+                const aEl3: HTMLAnchorElement = aDes3[0].nativeElement;
+                const aEl4: HTMLAnchorElement = aDes4[0].nativeElement;
 
-                expectToBe(p3aEl.href, '');
-                expectToBe(p4aEl.href, '');
+                expectToBe(aEl3.href, '');
+                expectToBe(aEl4.href, '');
             });
 
             it('... should contain one empty image in 4th paragraph link', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.text-center', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 1);
-                const p4aDes = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
-                const imgDes = getAndExpectDebugElementByCss(p4aDes[0], 'a > img', 1, 1);
+                const aDes4 = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
+                const imgDes = getAndExpectDebugElementByCss(aDes4[0], 'a > img', 1, 1);
 
-                const imgEl = imgDes[0].nativeElement;
+                const imgEl: HTMLImageElement = imgDes[0].nativeElement;
 
                 expectToBe(imgEl.src, '');
             });
@@ -132,24 +132,24 @@ describe('SparqlNoResultsComponent (DONE)', () => {
             it('... should contain correct link in 3rd and 4th paragraph', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.text-center', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 1);
-                const p3aDes = getAndExpectDebugElementByCss(pDes[2], 'p > a', 1, 1);
-                const p4aDes = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
+                const aDes3 = getAndExpectDebugElementByCss(pDes[2], 'p > a', 1, 1);
+                const aDes4 = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
 
-                const p3aEl = p3aDes[0].nativeElement;
-                const p4aEl = p4aDes[0].nativeElement;
+                const aEl3: HTMLAnchorElement = aDes3[0].nativeElement;
+                const aEl4: HTMLAnchorElement = aDes4[0].nativeElement;
 
-                expectToBe(p3aEl.href, expectedLogos['sparql'].href);
-                expectToBe(p3aEl.textContent, expectedLogos['sparql'].href);
-                expectToBe(p4aEl.href, expectedLogos['sparql'].href);
+                expectToBe(aEl3.href, expectedLogos['sparql'].href);
+                expectToBe(aEl3.textContent, expectedLogos['sparql'].href);
+                expectToBe(aEl4.href, expectedLogos['sparql'].href);
             });
 
             it('... should contain correct image in 4th paragraph link', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.text-center', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 1);
-                const p4aDes = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
-                const imgDes = getAndExpectDebugElementByCss(p4aDes[0], 'a > img', 1, 1);
+                const aDes4 = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
+                const imgDes = getAndExpectDebugElementByCss(aDes4[0], 'a > img', 1, 1);
 
-                const imgEl = imgDes[0].nativeElement;
+                const imgEl: HTMLImageElement = imgDes[0].nativeElement;
 
                 expectToContain(imgEl.src, expectedLogos['sparql'].src);
             });

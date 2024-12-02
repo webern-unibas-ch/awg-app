@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { DOCUMENT, JsonPipe } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { Router, RouterModule } from '@angular/router';
@@ -106,7 +105,7 @@ class AlertErrorStubComponent {
 
 @Component({ selector: 'awg-modal', template: '' })
 class ModalStubComponent {
-    open(modalContentSnippetKey: string): void {}
+    open(): void {}
 }
 
 @Component({ selector: 'awg-twelve-tone-spinner', template: '' })
@@ -163,10 +162,7 @@ describe('IntroComponent (DONE)', () => {
     let expectedSelectedEditionSeries: EditionOutlineSeries;
     let expectedSelectedEditionSection: EditionOutlineSection;
     let expectedSvgSheet: EditionSvgSheet;
-    let expectedNextSvgSheet: EditionSvgSheet;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
-
-    const jsonPipe = new JsonPipe();
 
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
@@ -189,9 +185,8 @@ describe('IntroComponent (DONE)', () => {
         };
 
         mockEditionDataService = {
-            getEditionComplexIntroData: (editionComplex: EditionComplex): Observable<IntroList> => observableOf(null),
-            getEditionSectionIntroData: (seriesRoute: string, sectionRoute: string): Observable<IntroList> =>
-                observableOf(null),
+            getEditionComplexIntroData: (): Observable<IntroList> => observableOf(null),
+            getEditionSectionIntroData: (): Observable<IntroList> => observableOf(null),
         };
 
         TestBed.configureTestingModule({
@@ -244,7 +239,6 @@ describe('IntroComponent (DONE)', () => {
         expectedReportFragment = 'source_A';
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
 
         expectedSelectedEditionSeries = EditionOutlineService.getEditionSeriesById(
             expectedEditionComplex.pubStatement.series.route
@@ -316,7 +310,7 @@ describe('IntroComponent (DONE)', () => {
         });
 
         it('... should have `errorObject = null`', () => {
-            expectToBe(component.errorObject, null);
+            expectToBe(component.errorObject, expectedErrorObject);
         });
 
         it('... should have `editionRouteConstants`', () => {
@@ -604,11 +598,10 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('on error', () => {
-                const expectedError = { status: 404, statusText: 'got Error' };
-
                 beforeEach(waitForAsync(() => {
+                    expectedErrorObject = { status: 404, statusText: 'got Error' };
                     // Spy on editionDataService to return an error
-                    fetchAndFilterIntroDataSpy.and.returnValue(observableThrowError(() => expectedError));
+                    fetchAndFilterIntroDataSpy.and.returnValue(observableThrowError(() => expectedErrorObject));
 
                     component.getEditionIntroData();
                     fixture.detectChanges();
@@ -627,7 +620,7 @@ describe('IntroComponent (DONE)', () => {
                         AlertErrorStubComponent
                     ) as AlertErrorStubComponent;
 
-                    expectToEqual(alertErrorCmp.errorObject, expectedError);
+                    expectToEqual(alertErrorCmp.errorObject, expectedErrorObject);
                 }));
             });
 
@@ -1448,7 +1441,7 @@ describe('IntroComponent (DONE)', () => {
                     const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
 
                     result$.subscribe({
-                        next: (_data: Observable<IntroList>) => {
+                        next: () => {
                             expectToEqual(component.editionComplex, complex);
                             done();
                         },
@@ -1469,7 +1462,7 @@ describe('IntroComponent (DONE)', () => {
                     const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
 
                     result$.subscribe({
-                        next: (_data: Observable<IntroList>) => {
+                        next: () => {
                             expectSpyCall(editionDataServiceGetEditionComplexIntroDataSpy, 2, complex);
                             done();
                         },
@@ -1494,7 +1487,7 @@ describe('IntroComponent (DONE)', () => {
                     const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
 
                     result$.subscribe({
-                        next: (_data: Observable<IntroList>) => {
+                        next: () => {
                             expectSpyCall(filterSectionIntroDataByIdSpy, 1, [
                                 expectedEditionIntroData,
                                 expectedBlockId,
@@ -1629,6 +1622,29 @@ describe('IntroComponent (DONE)', () => {
 
             it('... should have a method `_onIntroScroll`', () => {
                 expect((component as any)._onIntroScroll).toBeDefined();
+            });
+
+            describe('... should do nothing if', () => {
+                it('... event is undefined', () => {
+                    (component as any)._onIntroScroll(undefined);
+
+                    expectToBe(navLink1.classList.contains('active'), false);
+                    expectToBe(navLink2.classList.contains('active'), false);
+                });
+
+                it('... event is null', () => {
+                    (component as any)._onIntroScroll(null);
+
+                    expectToBe(navLink1.classList.contains('active'), false);
+                    expectToBe(navLink2.classList.contains('active'), false);
+                });
+
+                it('... event is not of type `scroll`', () => {
+                    (component as any)._onIntroScroll(new Event('click'));
+
+                    expectToBe(navLink1.classList.contains('active'), false);
+                    expectToBe(navLink2.classList.contains('active'), false);
+                });
             });
 
             it('... should update nav link classes based on scroll position (document.documentElement.scrollTop)', () => {
@@ -2224,6 +2240,20 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
                 });
+            });
+        });
+
+        describe('#ngOnDestroy()', () => {
+            it('... should have cleared isIntroView on destroy (via EditionStateService)', () => {
+                component.ngOnDestroy();
+
+                expectSpyCall(editionStateServiceClearIsIntroViewSpy, 1);
+            });
+
+            it('... should have set `editionIntroData$` to null on destroy', () => {
+                component.ngOnDestroy();
+
+                expectToBe(component.editionIntroData$, null);
             });
         });
     });

@@ -64,7 +64,6 @@ describe('SourceDescriptionComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let mockDocument: Document;
-    let utils: UtilityService;
 
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
@@ -102,7 +101,6 @@ describe('SourceDescriptionComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         mockDocument = TestBed.inject(DOCUMENT);
-        utils = TestBed.inject(UtilityService);
 
         // Test data
         expectedSourceDescriptionListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceDescriptionListData));
@@ -114,9 +112,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedFirmSigns = EDITION_FIRM_SIGNS_DATA;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        // Spies
         navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
         navigateToReportFragmentRequestEmitSpy = spyOn(
             component.navigateToReportFragmentRequest,
@@ -188,7 +184,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 );
 
                 sourceDescDes.forEach(divDe => {
-                    const divEl = divDe.nativeElement;
+                    const divEl: HTMLDivElement = divDe.nativeElement;
                     expectToContain(divEl.classList, 'card');
                 });
             });
@@ -241,18 +237,18 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     const pDes = getAndExpectDebugElementByCss(descHeadDes[0], 'p', 3, 3);
-                    const pEl = pDes[0].nativeElement;
+                    const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                     const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span', 1, 1);
-                    const siglumDes = spanDes[0];
-                    const siglumEl = siglumDes.nativeElement;
+                    const siglumSpanDes = spanDes[0];
+                    const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
 
                     expect(pEl).toHaveClass('awg-source-description-siglum-container');
                     expect(pEl).toHaveClass('bold');
                     expectToBe(pEl.textContent.trim(), expectedSiglum.trim());
 
-                    expect(siglumEl).toHaveClass('awg-source-description-siglum');
-                    expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
+                    expect(siglumSpanEl).toHaveClass('awg-source-description-siglum');
+                    expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
                 });
 
                 it('... the second paragraph displaying the source type', () => {
@@ -265,7 +261,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     const pDes = getAndExpectDebugElementByCss(descHeadDes[0], 'p', 3, 3);
 
-                    const pEl = pDes[1].nativeElement;
+                    const pEl: HTMLParagraphElement = pDes[1].nativeElement;
 
                     expect(pEl).toHaveClass('awg-source-description-type');
                     expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[0].type.trim());
@@ -281,7 +277,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     const pDes = getAndExpectDebugElementByCss(descHeadDes[0], 'p', 3, 3);
 
-                    const pEl = pDes[2].nativeElement;
+                    const pEl: HTMLParagraphElement = pDes[2].nativeElement;
 
                     expect(pEl).toHaveClass('awg-source-description-location');
                     expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[0].location.trim());
@@ -324,24 +320,24 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     const pDes = getAndExpectDebugElementByCss(descHeadDes[1], 'p', 2, 2);
-                    const pEl = pDes[0].nativeElement;
+                    const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                     const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span', 2, 2);
-                    const siglumDes = spanDes[0];
-                    const siglumEl = siglumDes.nativeElement;
+                    const siglumSpanDes = spanDes[0];
+                    const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
 
-                    const addendumDes = spanDes[1];
-                    const addendumEl = addendumDes.nativeElement;
+                    const addendumSpanDes = spanDes[1];
+                    const addendumSpanEl: HTMLSpanElement = addendumSpanDes.nativeElement;
 
                     expect(pEl).toHaveClass('awg-source-description-siglum-container');
                     expect(pEl).toHaveClass('bold');
                     expectToBe(pEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
 
-                    expect(siglumEl).toHaveClass('awg-source-description-siglum');
-                    expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
+                    expect(siglumSpanEl).toHaveClass('awg-source-description-siglum');
+                    expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
 
-                    expect(addendumEl).toHaveClass('awg-source-description-siglum-addendum');
-                    expectToBe(addendumEl.textContent.trim(), expectedAddendum.trim());
+                    expect(addendumSpanEl).toHaveClass('awg-source-description-siglum-addendum');
+                    expectToBe(addendumSpanEl.textContent.trim(), expectedAddendum.trim());
                 });
 
                 it('... the second paragraph displaying the source location', () => {
@@ -353,7 +349,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     const pDes = getAndExpectDebugElementByCss(descHeadDes[1], 'p', 2, 2);
-                    const pEl = pDes[1].nativeElement;
+                    const pEl: HTMLParagraphElement = pDes[1].nativeElement;
 
                     expect(pEl).toHaveClass('awg-source-description-location');
                     expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[1].location.trim());
@@ -375,7 +371,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const pEl = pDes[0].nativeElement;
+                    const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                     const instruments = expectedSourceDescriptionListData.sources[1].description.writingInstruments;
 
@@ -577,7 +573,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const pEl = pDes[0].nativeElement;
+                    const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                     expect(pEl).toHaveClass('no-para');
                     expectToBe(pEl.textContent.trim(), 'Inhalt:');
@@ -609,23 +605,22 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const itemEl0 = itemDes0[0].nativeElement;
-
                         const itemDes1 = getAndExpectDebugElementByCss(
                             pDes[1],
                             'span.awg-source-description-content-item',
                             1,
                             1
                         );
-                        const itemEl1 = itemDes1[0].nativeElement;
-
                         const itemDes2 = getAndExpectDebugElementByCss(
                             pDes[2],
                             'span.awg-source-description-content-item',
                             1,
                             1
                         );
-                        const itemEl2 = itemDes2[0].nativeElement;
+
+                        const itemEl0: HTMLSpanElement = itemDes0[0].nativeElement;
+                        const itemEl1: HTMLSpanElement = itemDes1[0].nativeElement;
+                        const itemEl2: HTMLSpanElement = itemDes2[0].nativeElement;
 
                         expectToBe(itemEl0.textContent.trim(), 'Test item (test description):');
                         expectToBe(itemEl1.textContent.trim(), 'Test item 2 without link (test description 2):');
@@ -649,7 +644,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         );
                         const anchorDes = getAndExpectDebugElementByCss(contentItemDes[0], 'a', 1, 1);
                         const strongDes = getAndExpectDebugElementByCss(anchorDes[0], 'strong', 1, 1);
-                        const strongEl = strongDes[0].nativeElement;
+                        const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                         const contentItemDescriptionDes = getAndExpectDebugElementByCss(
                             pDes[0],
@@ -657,7 +652,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const contentItemDescriptionEl = contentItemDescriptionDes[0].nativeElement;
+                        const contentItemDescriptionEl: HTMLSpanElement = contentItemDescriptionDes[0].nativeElement;
 
                         expectToBe(strongEl.textContent.trim(), 'Test item');
                         expectToBe(contentItemDescriptionEl.textContent.trim(), '(test description)');
@@ -680,7 +675,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         );
                         getAndExpectDebugElementByCss(contentItemDes[0], 'a', 0, 0);
                         const strongDes = getAndExpectDebugElementByCss(contentItemDes[0], 'strong', 1, 1);
-                        const strongEl = strongDes[0].nativeElement;
+                        const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                         const contentItemDescriptionDes = getAndExpectDebugElementByCss(
                             pDes[1],
@@ -688,7 +683,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const contentItemDescriptionEl = contentItemDescriptionDes[0].nativeElement;
+                        const contentItemDescriptionEl: HTMLSpanElement = contentItemDescriptionDes[0].nativeElement;
 
                         expectToBe(strongEl.textContent.trim(), 'Test item 2 without link');
                         expectToBe(contentItemDescriptionEl.textContent.trim(), '(test description 2)');
@@ -711,7 +706,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         );
                         const anchorDes = getAndExpectDebugElementByCss(contentItemDes[0], 'a', 1, 1);
                         const strongDes = getAndExpectDebugElementByCss(anchorDes[0], 'strong', 1, 1);
-                        const strongEl = strongDes[0].nativeElement;
+                        const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                         getAndExpectDebugElementByCss(
                             pDes[2],
@@ -764,8 +759,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             expectedFolioLength,
                             expectedFolioLength
                         );
-                        const folioEl0 = folioDes[0].nativeElement;
-                        const folioEl1 = folioDes[1].nativeElement;
+                        const folioEl0: HTMLSpanElement = folioDes[0].nativeElement;
+                        const folioEl1: HTMLSpanElement = folioDes[1].nativeElement;
 
                         expect(folioEl0).toHaveClass('tab');
                         expect(folioEl1).toHaveClass('tab');
@@ -791,7 +786,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             expectedFolioLength,
                             expectedFolioLength
                         );
-                        const folioEl = folioDes[0].nativeElement;
+                        const folioEl: HTMLSpanElement = folioDes[0].nativeElement;
 
                         expect(folioEl).not.toHaveClass('tab');
                     });
@@ -819,7 +814,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                         // Get first folio
                         const anchorDes = getAndExpectDebugElementByCss(folioDes[0], 'a', 1, 1);
-                        const anchorEl0 = anchorDes[0].nativeElement;
+                        const anchorEl0: HTMLAnchorElement = anchorDes[0].nativeElement;
 
                         // Process HTML expression of expected text content
                         const expectedHtmlTextContent = mockDocument.createElement('a');
@@ -852,7 +847,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         getAndExpectDebugElementByCss(folioDes[1], 'a', 0, 0);
 
                         // Get second folio
-                        const folioEl1 = folioDes[1].nativeElement;
+                        const folioEl1: HTMLSpanElement = folioDes[1].nativeElement;
 
                         // Process HTML expression of expected text content
                         const expectedHtmlTextContent = mockDocument.createElement('a');
@@ -885,7 +880,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         getAndExpectDebugElementByCss(folioDes[1], 'a', 0, 0);
 
                         // Get third folio
-                        const folioEl2 = folioDes[2].nativeElement;
+                        const folioEl2: HTMLSpanElement = folioDes[2].nativeElement;
 
                         // Process HTML expression of expected text content
                         const expectedHtmlTextContent = mockDocument.createElement('a');
@@ -915,7 +910,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             expectedFolioLength,
                             expectedFolioLength
                         );
-                        const folioEl = folioDes[0].nativeElement;
+                        const folioEl: HTMLSpanElement = folioDes[0].nativeElement;
 
                         // Process HTML expression of expected text content
                         const expectedHtmlTextContent = mockDocument.createElement('a');
@@ -976,8 +971,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                                 expectedSystems.length,
                                 expectedSystems.length
                             );
-                            systemDes.forEach((system, index) => {
-                                const systemEl = system.nativeElement;
+                            systemDes.forEach((systemDe, index) => {
+                                const systemEl: HTMLSpanElement = systemDe.nativeElement;
 
                                 const expectedHtmlTextContent = mockDocument.createElement('span');
                                 expectedHtmlTextContent.innerHTML = `System&nbsp;${expectedSystems[index].system}`;
@@ -1013,8 +1008,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                                 expectedSystemDescriptions.length,
                                 expectedSystemDescriptions.length
                             );
-                            systemDescDes.forEach((systemDesc, index) => {
-                                const systemDescEl = systemDesc.nativeElement;
+                            systemDescDes.forEach((systemDescDe, index) => {
+                                const systemDescEl: HTMLSpanElement = systemDescDe.nativeElement;
                                 const expectedSystemDescText = expectedSystemDescriptions[index].systemDescription;
 
                                 expectToBe(systemDescEl.textContent.trim(), expectedSystemDescText);
@@ -1046,8 +1041,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                                 expectedSystems.length,
                                 expectedSystems.length
                             );
-                            spanDes.forEach((span, index) => {
-                                const spanEl = span.nativeElement;
+                            spanDes.forEach((spanDe, index) => {
+                                const spanEl: HTMLSpanElement = spanDe.nativeElement;
                                 const expectedHtmlTextContent = mockDocument.createElement('span');
 
                                 if (
@@ -1090,8 +1085,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                                 expectedSystemMeasures.length,
                                 expectedSystemMeasures.length
                             );
-                            systemMeasureDes.forEach((systemMeasure, index) => {
-                                const systemMeasureEl = systemMeasure.nativeElement;
+                            systemMeasureDes.forEach((systemMeasureDe, index) => {
+                                const systemMeasureEl: HTMLSpanElement = systemMeasureDe.nativeElement;
 
                                 const expectedHtmlTextContent = mockDocument.createElement('span');
                                 expectedHtmlTextContent.innerHTML = `T.&nbsp;${expectedSystemMeasures[index].measure}`;
@@ -1127,12 +1122,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             expectedSystemLength,
                             expectedSystemLength
                         );
-                        const systemEl0 = systemDes[0].nativeElement;
-                        const systemEl1 = systemDes[1].nativeElement;
-                        const systemEl2 = systemDes[2].nativeElement;
-                        const systemEl3 = systemDes[3].nativeElement;
-                        const systemEl4 = systemDes[4].nativeElement;
-                        const systemEl5 = systemDes[5].nativeElement;
+                        const systemEl0: HTMLSpanElement = systemDes[0].nativeElement;
+                        const systemEl1: HTMLSpanElement = systemDes[1].nativeElement;
+                        const systemEl2: HTMLSpanElement = systemDes[2].nativeElement;
+                        const systemEl3: HTMLSpanElement = systemDes[3].nativeElement;
+                        const systemEl4: HTMLSpanElement = systemDes[4].nativeElement;
+                        const systemEl5: HTMLSpanElement = systemDes[5].nativeElement;
 
                         // Bl. 1r
                         expect(systemEl0).not.toHaveClass('singletab');
@@ -1170,12 +1165,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             expectedSystemLength,
                             expectedSystemLength
                         );
-                        const systemEl0 = systemDes[0].nativeElement;
-                        const systemEl1 = systemDes[1].nativeElement;
-                        const systemEl2 = systemDes[2].nativeElement;
-                        const systemEl3 = systemDes[3].nativeElement;
-                        const systemEl4 = systemDes[4].nativeElement;
-                        const systemEl5 = systemDes[5].nativeElement;
+                        const systemEl0: HTMLSpanElement = systemDes[0].nativeElement;
+                        const systemEl1: HTMLSpanElement = systemDes[1].nativeElement;
+                        const systemEl2: HTMLSpanElement = systemDes[2].nativeElement;
+                        const systemEl3: HTMLSpanElement = systemDes[3].nativeElement;
+                        const systemEl4: HTMLSpanElement = systemDes[4].nativeElement;
+                        const systemEl5: HTMLSpanElement = systemDes[5].nativeElement;
 
                         // Bl. 1r
                         expect(systemEl0).not.toHaveClass('doubletab');
@@ -1213,12 +1208,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             expectedSystemLength,
                             expectedSystemLength
                         );
-                        const systemEl0 = systemDes[0].nativeElement;
-                        const systemEl1 = systemDes[1].nativeElement;
-                        const systemEl2 = systemDes[2].nativeElement;
-                        const systemEl3 = systemDes[3].nativeElement;
-                        const systemEl4 = systemDes[4].nativeElement;
-                        const systemEl5 = systemDes[5].nativeElement;
+                        const systemEl0: HTMLSpanElement = systemDes[0].nativeElement;
+                        const systemEl1: HTMLSpanElement = systemDes[1].nativeElement;
+                        const systemEl2: HTMLSpanElement = systemDes[2].nativeElement;
+                        const systemEl3: HTMLSpanElement = systemDes[3].nativeElement;
+                        const systemEl4: HTMLSpanElement = systemDes[4].nativeElement;
+                        const systemEl5: HTMLSpanElement = systemDes[5].nativeElement;
 
                         // Bl. 1r
                         expect(systemEl0).not.toHaveClass('doubletab_extended');
@@ -1256,18 +1251,18 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             expectedSystemLength,
                             expectedSystemLength
                         );
-                        const systemEl0 = systemDes[0].nativeElement;
-                        const systemEl1 = systemDes[1].nativeElement;
-                        const systemEl2 = systemDes[2].nativeElement;
-                        const systemEl3 = systemDes[3].nativeElement;
-                        const systemEl4 = systemDes[4].nativeElement;
-                        const systemEl5 = systemDes[5].nativeElement;
-                        const systemEl6 = systemDes[6].nativeElement;
-                        const systemEl7 = systemDes[7].nativeElement;
-                        const systemEl8 = systemDes[8].nativeElement;
-                        const systemEl9 = systemDes[9].nativeElement;
-                        const systemEl10 = systemDes[10].nativeElement;
-                        const systemEl11 = systemDes[11].nativeElement;
+                        const systemEl0: HTMLSpanElement = systemDes[0].nativeElement;
+                        const systemEl1: HTMLSpanElement = systemDes[1].nativeElement;
+                        const systemEl2: HTMLSpanElement = systemDes[2].nativeElement;
+                        const systemEl3: HTMLSpanElement = systemDes[3].nativeElement;
+                        const systemEl4: HTMLSpanElement = systemDes[4].nativeElement;
+                        const systemEl5: HTMLSpanElement = systemDes[5].nativeElement;
+                        const systemEl6: HTMLSpanElement = systemDes[6].nativeElement;
+                        const systemEl7: HTMLSpanElement = systemDes[7].nativeElement;
+                        const systemEl8: HTMLSpanElement = systemDes[8].nativeElement;
+                        const systemEl9: HTMLSpanElement = systemDes[9].nativeElement;
+                        const systemEl10: HTMLSpanElement = systemDes[10].nativeElement;
+                        const systemEl11: HTMLSpanElement = systemDes[11].nativeElement;
 
                         // Bl. 1r
                         expect(systemEl0).not.toHaveClass('tab');
@@ -1306,18 +1301,18 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             expectedSystemLength,
                             expectedSystemLength
                         );
-                        const systemEl0 = systemDes[0].nativeElement;
-                        const systemEl1 = systemDes[1].nativeElement;
-                        const systemEl2 = systemDes[2].nativeElement;
-                        const systemEl3 = systemDes[3].nativeElement;
-                        const systemEl4 = systemDes[4].nativeElement;
-                        const systemEl5 = systemDes[5].nativeElement;
-                        const systemEl6 = systemDes[6].nativeElement;
-                        const systemEl7 = systemDes[7].nativeElement;
-                        const systemEl8 = systemDes[8].nativeElement;
-                        const systemEl9 = systemDes[9].nativeElement;
-                        const systemEl10 = systemDes[10].nativeElement;
-                        const systemEl11 = systemDes[11].nativeElement;
+                        const systemEl0: HTMLSpanElement = systemDes[0].nativeElement;
+                        const systemEl1: HTMLSpanElement = systemDes[1].nativeElement;
+                        const systemEl2: HTMLSpanElement = systemDes[2].nativeElement;
+                        const systemEl3: HTMLSpanElement = systemDes[3].nativeElement;
+                        const systemEl4: HTMLSpanElement = systemDes[4].nativeElement;
+                        const systemEl5: HTMLSpanElement = systemDes[5].nativeElement;
+                        const systemEl6: HTMLSpanElement = systemDes[6].nativeElement;
+                        const systemEl7: HTMLSpanElement = systemDes[7].nativeElement;
+                        const systemEl8: HTMLSpanElement = systemDes[8].nativeElement;
+                        const systemEl9: HTMLSpanElement = systemDes[9].nativeElement;
+                        const systemEl10: HTMLSpanElement = systemDes[10].nativeElement;
+                        const systemEl11: HTMLSpanElement = systemDes[11].nativeElement;
 
                         // Bl. 1r
                         expect(systemEl0).not.toHaveClass('singletab');
@@ -1356,18 +1351,18 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             expectedSystemLength,
                             expectedSystemLength
                         );
-                        const systemEl0 = systemDes[0].nativeElement;
-                        const systemEl1 = systemDes[1].nativeElement;
-                        const systemEl2 = systemDes[2].nativeElement;
-                        const systemEl3 = systemDes[3].nativeElement;
-                        const systemEl4 = systemDes[4].nativeElement;
-                        const systemEl5 = systemDes[5].nativeElement;
-                        const systemEl6 = systemDes[6].nativeElement;
-                        const systemEl7 = systemDes[7].nativeElement;
-                        const systemEl8 = systemDes[8].nativeElement;
-                        const systemEl9 = systemDes[9].nativeElement;
-                        const systemEl10 = systemDes[10].nativeElement;
-                        const systemEl11 = systemDes[11].nativeElement;
+                        const systemEl0: HTMLSpanElement = systemDes[0].nativeElement;
+                        const systemEl1: HTMLSpanElement = systemDes[1].nativeElement;
+                        const systemEl2: HTMLSpanElement = systemDes[2].nativeElement;
+                        const systemEl3: HTMLSpanElement = systemDes[3].nativeElement;
+                        const systemEl4: HTMLSpanElement = systemDes[4].nativeElement;
+                        const systemEl5: HTMLSpanElement = systemDes[5].nativeElement;
+                        const systemEl6: HTMLSpanElement = systemDes[6].nativeElement;
+                        const systemEl7: HTMLSpanElement = systemDes[7].nativeElement;
+                        const systemEl8: HTMLSpanElement = systemDes[8].nativeElement;
+                        const systemEl9: HTMLSpanElement = systemDes[9].nativeElement;
+                        const systemEl10: HTMLSpanElement = systemDes[10].nativeElement;
+                        const systemEl11: HTMLSpanElement = systemDes[11].nativeElement;
 
                         // Bl. 1r
                         expect(systemEl0).not.toHaveClass('doubletab');
@@ -1406,14 +1401,14 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             expectedSystemLength,
                             expectedSystemLength
                         );
-                        const systemEl0 = systemDes[0].nativeElement;
-                        const systemEl1 = systemDes[1].nativeElement;
-                        const systemEl2 = systemDes[2].nativeElement;
-                        const systemEl3 = systemDes[3].nativeElement;
-                        const systemEl4 = systemDes[4].nativeElement;
-                        const systemEl5 = systemDes[5].nativeElement;
-                        const systemEl6 = systemDes[6].nativeElement;
-                        const systemEl7 = systemDes[7].nativeElement;
+                        const systemEl0: HTMLSpanElement = systemDes[0].nativeElement;
+                        const systemEl1: HTMLSpanElement = systemDes[1].nativeElement;
+                        const systemEl2: HTMLSpanElement = systemDes[2].nativeElement;
+                        const systemEl3: HTMLSpanElement = systemDes[3].nativeElement;
+                        const systemEl4: HTMLSpanElement = systemDes[4].nativeElement;
+                        const systemEl5: HTMLSpanElement = systemDes[5].nativeElement;
+                        const systemEl6: HTMLSpanElement = systemDes[6].nativeElement;
+                        const systemEl7: HTMLSpanElement = systemDes[7].nativeElement;
 
                         // Bl. 1r
                         expect(systemEl0).not.toHaveClass('doubletab_extended');
@@ -1511,27 +1506,27 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     const pDes = getAndExpectDebugElementByCss(descHeadDes[2], 'p', 3, 3);
-                    const pEl = pDes[0].nativeElement;
+                    const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                     const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span', 4, 4);
 
                     // First span is opening bracket
                     // Last span is closing bracket
-                    const siglumDes = spanDes[1];
-                    const siglumEl = siglumDes.nativeElement;
+                    const siglumSpanDes = spanDes[1];
+                    const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
 
-                    const addendumDes = spanDes[2];
-                    const addendumEl = addendumDes.nativeElement;
+                    const addendumSpanDes = spanDes[2];
+                    const addendumSpanEl: HTMLSpanElement = addendumSpanDes.nativeElement;
 
                     expect(pEl).toHaveClass('awg-source-description-siglum-container');
                     expect(pEl).toHaveClass('bold');
                     expectToBe(pEl.textContent.trim(), `[${expectedSiglum}${expectedAddendum}]`);
 
-                    expect(siglumEl).toHaveClass('awg-source-description-siglum');
-                    expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
+                    expect(siglumSpanEl).toHaveClass('awg-source-description-siglum');
+                    expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
 
-                    expect(addendumEl).toHaveClass('awg-source-description-siglum-addendum');
-                    expectToBe(addendumEl.textContent.trim(), expectedAddendum.trim());
+                    expect(addendumSpanEl).toHaveClass('awg-source-description-siglum-addendum');
+                    expectToBe(addendumSpanEl.textContent.trim(), expectedAddendum.trim());
                 });
 
                 it('... the second paragraph displaying the source type', () => {
@@ -1543,7 +1538,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     const pDes = getAndExpectDebugElementByCss(descHeadDes[2], 'p', 3, 3);
-                    const pEl = pDes[1].nativeElement;
+                    const pEl: HTMLParagraphElement = pDes[1].nativeElement;
 
                     // Process HTML expression of expected text content
                     const expectedHtmlTextContent = mockDocument.createElement('p');
@@ -1562,8 +1557,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     const pDes = getAndExpectDebugElementByCss(descHeadDes[2], 'p', 3, 3);
-
-                    const pEl = pDes[2].nativeElement;
+                    const pEl: HTMLParagraphElement = pDes[2].nativeElement;
 
                     expect(pEl).toHaveClass('awg-source-description-location');
                     expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[2].location.trim());
@@ -2006,7 +2000,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
             });
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
+                it('... parameter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);

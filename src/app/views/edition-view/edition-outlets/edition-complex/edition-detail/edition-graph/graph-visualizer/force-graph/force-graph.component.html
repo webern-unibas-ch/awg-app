@@ -27,35 +27,34 @@
 
         <!-- Limit -->
         @if (currentQueryResultTriples) {
-            <div class="btn-group awg-force-graph-node-limit-container float-end my-auto">
+            <div
+                class="btn-group awg-force-graph-node-limit-container float-end my-auto"
+                ngbDropdown
+                container="body"
+                role="group"
+                aria-label="Button group with nested dropdown for node limit">
                 <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
                     @if (limit < currentQueryResultTriples.length) {
                         <span>{{ limit }} von </span>
                     }
                     {{ currentQueryResultTriples.length }} Triples
                 </button>
-                <div
-                    class="btn-group"
-                    ngbDropdown
-                    container="body"
-                    role="group"
-                    aria-label="Button group with nested dropdown for node limit">
-                    <button
-                        class="btn btn-sm btn-info dropdown-toggle"
-                        ngbDropdownToggle
-                        [disabled]="currentQueryResultTriples.length === 0"></button>
-                    <div class="dropdown-menu" ngbDropdownMenu>
-                        @for (limitValue of limitValues; track limitValue) {
-                            @if (currentQueryResultTriples.length > limitValue) {
-                                <button class="dropdown-item" (click)="onLimitValueChange(limitValue)">
-                                    <span>{{ limitValue }}</span>
-                                </button>
-                            }
+                <button
+                    class="btn btn-sm btn-info dropdown-toggle-split"
+                    ngbDropdownToggle
+                    [disabled]="currentQueryResultTriples.length === 0"
+                    aria-label="Toggle dropdown"></button>
+                <div class="dropdown-menu" ngbDropdownMenu>
+                    @for (limitValue of limitValues; track limitValue) {
+                        @if (currentQueryResultTriples.length > limitValue) {
+                            <button class="dropdown-item" (click)="onLimitValueChange(limitValue)">
+                                <span>{{ limitValue }}</span>
+                            </button>
                         }
-                        <button class="dropdown-item" (click)="onLimitValueChange(currentQueryResultTriples.length)">
-                            <span>Kein Limit</span>
-                        </button>
-                    </div>
+                    }
+                    <button class="dropdown-item" (click)="onLimitValueChange(currentQueryResultTriples.length)">
+                        <span>Kein Limit</span>
+                    </button>
                 </div>
             </div>
         }

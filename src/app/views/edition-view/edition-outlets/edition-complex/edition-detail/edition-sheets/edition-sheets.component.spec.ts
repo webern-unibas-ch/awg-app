@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { JsonPipe } from '@angular/common';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
@@ -151,8 +149,6 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedReportFragment: string;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
-    const jsonPipe = new JsonPipe();
-
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
     });
@@ -177,38 +173,19 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         // Mock services
         mockEditionDataService = {
-            getEditionSheetsData: (
-                editionComplex: EditionComplex
-            ): Observable<(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]> => observableOf([]),
+            getEditionSheetsData: (): Observable<(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]> =>
+                observableOf([]),
         };
         mockEditionStateService = {
             getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(),
         };
         mockEditionSheetsService = {
-            findTextcritics: (
-                textcriticsArray: Textcritics[] | undefined,
-                selectedSheet: EditionSvgSheet | undefined
-            ): Textcritics => new Textcritics(),
-            getCurrentEditionType: (
-                selectedSvgSheet: EditionSvgSheet,
-                sheets: EditionSvgSheetList['sheets']
-            ): keyof EditionSvgSheetList['sheets'] | undefined => undefined,
-            getNextSheetId: (
-                direction: number,
-                selectedSheet: EditionSvgSheet,
-                sheetArray: EditionSvgSheet[]
-            ): string => '',
-            getTextcriticalCommentsForOverlays: (
-                textcriticalCommentBlocks: TextcriticalCommentBlock[],
-                overlays: EditionSvgOverlay[]
-            ): TextcriticalCommentBlock[] => [],
-            selectSvgSheetById: (sheets: EditionSvgSheetList['sheets'], id: string): EditionSvgSheet =>
-                new EditionSvgSheet(),
-            selectConvolute: (
-                convolutes: FolioConvolute[],
-                sheets: EditionSvgSheetList['sheets'],
-                selectedSheet: EditionSvgSheet
-            ): FolioConvolute | undefined => new FolioConvolute(),
+            findTextcritics: (): Textcritics => new Textcritics(),
+            getCurrentEditionType: (): keyof EditionSvgSheetList['sheets'] | undefined => undefined,
+            getNextSheetId: (): string => '',
+            getTextcriticalCommentsForOverlays: (): TextcriticalCommentBlock[] => [],
+            selectSvgSheetById: (): EditionSvgSheet => new EditionSvgSheet(),
+            selectConvolute: (): FolioConvolute | undefined => new FolioConvolute(),
         };
         mockLoadingService = { getLoadingStatus: () => observableOf(false) };
 
@@ -1109,7 +1086,7 @@ describe('EditionSheetsComponent (DONE)', () => {
             it('... should trigger `getEditionSheetsData` from EditionDataService with correct edition complex', () => {
                 expectSpyCall(editionDataServiceGetEditionSheetsDataSpy, 2, [expectedEditionComplex]);
 
-                (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(_result => {
+                (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(() => {
                     expectSpyCall(editionDataServiceGetEditionSheetsDataSpy, 3, [expectedEditionComplex]);
                 });
             });
@@ -1119,7 +1096,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                 expectSpyCall(assignDataSpy, 0);
 
-                (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(_result => {
+                (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(() => {
                     expectSpyCall(assignDataSpy, 1, [expectedSvgSheetsData]);
                 });
             });
@@ -1129,15 +1106,17 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                 expectSpyCall(handleQueryParamsSpy, 0);
 
-                (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(_result => {
+                (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(() => {
                     expectSpyCall(handleQueryParamsSpy, 1, mockActivatedRoute.testQueryParamMap);
                 });
             });
 
             it('... should return svg sheets data', () => {
-                (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(result => {
-                    expectToEqual(result, expectedSvgSheetsData);
-                });
+                (component as any)
+                    ._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap)
+                    .subscribe((result: EditionSvgSheetList) => {
+                        expectToEqual(result, expectedSvgSheetsData);
+                    });
             });
         });
 

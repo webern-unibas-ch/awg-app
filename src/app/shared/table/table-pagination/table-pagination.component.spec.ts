@@ -101,8 +101,8 @@ describe('TablePaginationComponent (DONE)', () => {
             });
 
             it('... should have one ul in ngbPagination with no content yet', () => {
-                const ulDe = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul', 1, 1);
-                getAndExpectDebugElementByCss(ulDe[0], 'li.page-item', 0, 0);
+                const ulDes = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul', 1, 1);
+                getAndExpectDebugElementByCss(ulDes[0], 'li.page-item', 0, 0);
             });
         });
     });
@@ -131,16 +131,16 @@ describe('TablePaginationComponent (DONE)', () => {
             });
 
             it('... should have one ul.pagination in ngbPagination with 4 li.page-item', () => {
-                const ulDe = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
-                getAndExpectDebugElementByCss(ulDe[0], 'li.page-item', 4, 4);
+                const ulDes = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
+                getAndExpectDebugElementByCss(ulDes[0], 'li.page-item', 4, 4);
             });
 
             it('... should have first two li.page-item with class .disabled', () => {
-                const ulDe = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
+                const ulDes = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
 
-                const liDe = getAndExpectDebugElementByCss(ulDe[0], 'li.page-item', 4, 4);
-                const liEl1 = liDe[0].nativeElement;
-                const liEl2 = liDe[1].nativeElement;
+                const liDes = getAndExpectDebugElementByCss(ulDes[0], 'li.page-item', 4, 4);
+                const liEl1: HTMLLIElement = liDes[0].nativeElement;
+                const liEl2: HTMLLIElement = liDes[1].nativeElement;
 
                 expect(liEl1.classList.contains('disabled')).toBeTruthy();
                 expect(liEl1).toHaveClass('disabled');
@@ -150,11 +150,11 @@ describe('TablePaginationComponent (DONE)', () => {
             });
 
             it('... should have last two li.page-item not with class .disabled', () => {
-                const ulDe = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
+                const ulDes = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
 
-                const liDe = getAndExpectDebugElementByCss(ulDe[0], 'li.page-item', 4, 4);
-                const liEl3 = liDe[2].nativeElement;
-                const liEl4 = liDe[3].nativeElement;
+                const liDes = getAndExpectDebugElementByCss(ulDes[0], 'li.page-item', 4, 4);
+                const liEl3: HTMLLIElement = liDes[2].nativeElement;
+                const liEl4: HTMLLIElement = liDes[3].nativeElement;
 
                 expect(liEl3.classList.contains('disabled')).toBeFalsy();
                 expect(liEl3).not.toHaveClass('disabled');
@@ -164,38 +164,38 @@ describe('TablePaginationComponent (DONE)', () => {
             });
 
             it('... should have a.page-link in all li.page-item', () => {
-                const ulDe = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
+                const ulDes = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
 
-                const liDe = getAndExpectDebugElementByCss(ulDe[0], 'li.page-item', 4, 4);
+                const liDes = getAndExpectDebugElementByCss(ulDes[0], 'li.page-item', 4, 4);
 
-                getAndExpectDebugElementByCss(liDe[0], 'a.page-link', 1, 1);
-                getAndExpectDebugElementByCss(liDe[1], 'a.page-link', 1, 1);
-                getAndExpectDebugElementByCss(liDe[2], 'a.page-link', 1, 1);
-                getAndExpectDebugElementByCss(liDe[3], 'a.page-link', 1, 1);
+                getAndExpectDebugElementByCss(liDes[0], 'a.page-link', 1, 1);
+                getAndExpectDebugElementByCss(liDes[1], 'a.page-link', 1, 1);
+                getAndExpectDebugElementByCss(liDes[2], 'a.page-link', 1, 1);
+                getAndExpectDebugElementByCss(liDes[3], 'a.page-link', 1, 1);
             });
 
             it('... should have one li.ngb-custom-pages-item in ul.pagination', () => {
-                const ulDe = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
+                const ulDes = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
 
-                getAndExpectDebugElementByCss(ulDe[0], 'li.ngb-custom-pages-item', 1, 1);
+                getAndExpectDebugElementByCss(ulDes[0], 'li.ngb-custom-pages-item', 1, 1);
             });
 
             it('... should have one div with label, input and span in li.ngb-custom-page-item', () => {
-                const liDe = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item', 1, 1);
-                const divDe = getAndExpectDebugElementByCss(liDe[0], 'div', 1, 1);
+                const liDes = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(liDes[0], 'div', 1, 1);
 
-                getAndExpectDebugElementByCss(divDe[0], 'label#paginationInputLabel', 1, 1);
-                getAndExpectDebugElementByCss(divDe[0], 'input#paginationInput.custom-pages-input', 1, 1);
-                getAndExpectDebugElementByCss(divDe[0], 'span#paginationDescription', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'label#paginationInputLabel', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'input#paginationInput.custom-pages-input', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'span#paginationDescription', 1, 1);
             });
 
             it('... should display `Seite` in label', () => {
                 const expectedLabel = 'Seite';
 
-                const divDe = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item > div', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item > div', 1, 1);
 
-                const labelDe = getAndExpectDebugElementByCss(divDe[0], 'label#paginationInputLabel', 1, 1);
-                const labelEl = labelDe[0].nativeElement;
+                const labelDes = getAndExpectDebugElementByCss(divDes[0], 'label#paginationInputLabel', 1, 1);
+                const labelEl: HTMLLabelElement = labelDes[0].nativeElement;
 
                 expectToBe(labelEl.textContent, expectedLabel);
             });
@@ -203,14 +203,14 @@ describe('TablePaginationComponent (DONE)', () => {
             it('... should display recent page in input', () => {
                 const expectedInputValue = expectedPage.toString();
 
-                const divDe = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item > div', 1, 1);
-                const inputDe = getAndExpectDebugElementByCss(
-                    divDe[0],
+                const divDes = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item > div', 1, 1);
+                const inputDes = getAndExpectDebugElementByCss(
+                    divDes[0],
                     'input#paginationInput.custom-pages-input',
                     1,
                     1
                 );
-                const inputEl = inputDe[0].nativeElement;
+                const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                 expectToBe(inputEl.value, expectedInputValue);
             });
@@ -219,10 +219,10 @@ describe('TablePaginationComponent (DONE)', () => {
                 const expectedPagesLength = expectedCollectionSize / 10;
                 const expectedSpanText = `von ${expectedPagesLength}`;
 
-                const divDe = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item > div', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item > div', 1, 1);
 
-                const spanDe = getAndExpectDebugElementByCss(divDe[0], 'span#paginationDescription', 1, 1);
-                const spanEl = spanDe[0].nativeElement;
+                const spanDes = getAndExpectDebugElementByCss(divDes[0], 'span#paginationDescription', 1, 1);
+                const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                 expectToBe(spanEl.textContent.trim(), expectedSpanText);
             });
@@ -234,8 +234,13 @@ describe('TablePaginationComponent (DONE)', () => {
             });
 
             it('... should trigger on input event', () => {
-                const inputDe = getAndExpectDebugElementByCss(compDe, 'input#paginationInput.custom-pages-input', 1, 1);
-                const inputEl = inputDe[0].nativeElement;
+                const inputDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'input#paginationInput.custom-pages-input',
+                    1,
+                    1
+                );
+                const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                 expectSpyCall(replaceNonNumberInputSpy, 0);
 
@@ -271,8 +276,8 @@ describe('TablePaginationComponent (DONE)', () => {
             it('... should trigger on pageChange event of NgbPagination', fakeAsync(() => {
                 const expectedNewPage = 3;
 
-                const ngbPaginationDe = getAndExpectDebugElementByDirective(compDe, NgbPagination, 1, 1);
-                const ngbPaginationCmp = ngbPaginationDe[0].injector.get(NgbPagination) as NgbPagination;
+                const ngbPaginationDes = getAndExpectDebugElementByDirective(compDe, NgbPagination, 1, 1);
+                const ngbPaginationCmp = ngbPaginationDes[0].injector.get(NgbPagination) as NgbPagination;
 
                 expectSpyCall(onPageChangeSpy, 0);
 
@@ -305,8 +310,13 @@ describe('TablePaginationComponent (DONE)', () => {
             });
 
             it('... should trigger on blur event', () => {
-                const inputDe = getAndExpectDebugElementByCss(compDe, 'input#paginationInput.custom-pages-input', 1, 1);
-                const inputEl = inputDe[0].nativeElement;
+                const inputDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'input#paginationInput.custom-pages-input',
+                    1,
+                    1
+                );
+                const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                 expectSpyCall(selectPageSpy, 0);
 
@@ -317,8 +327,13 @@ describe('TablePaginationComponent (DONE)', () => {
             });
 
             it('... should trigger on keyup.enter event', () => {
-                const inputDe = getAndExpectDebugElementByCss(compDe, 'input#paginationInput.custom-pages-input', 1, 1);
-                const inputEl = inputDe[0].nativeElement;
+                const inputDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'input#paginationInput.custom-pages-input',
+                    1,
+                    1
+                );
+                const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                 expectSpyCall(selectPageSpy, 0);
 

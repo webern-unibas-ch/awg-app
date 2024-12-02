@@ -11,7 +11,7 @@
             <ng-template ngbNavContent>
                 <!-- full text search -->
                 <awg-fulltext-search-form
-                    [searchValue]="getSearchQueryType(searchParams?.query)"
+                    [searchValue]="getSearchQueryAsString(searchParams?.query)"
                     (searchRequest)="onSearch($event)">
                 </awg-fulltext-search-form>
             </ng-template>

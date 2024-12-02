@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { TestBed } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
@@ -255,7 +254,7 @@ describe('ConversionService', () => {
                 searchResponseWithQuery.data.subjects = [];
                 searchResponseWithQuery.data.nhits = undefined;
                 const subjectsLength = searchResponseWithQuery.data.subjects.length;
-                const expected = `0 / 0 Ergebnisse`;
+                const expected = `${subjectsLength} / 0 Ergebnisse`;
 
                 const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
 
@@ -267,7 +266,8 @@ describe('ConversionService', () => {
                 const searchResponseWithQuery = new SearchResponseWithQuery(expectedSearchResponse, 'Test');
                 searchResponseWithQuery.data.subjects = [expectedSearchResponse.subjects[0]];
                 searchResponseWithQuery.data.nhits = '1';
-                const expected = `1 / 1 Ergebnis`;
+                const subjectsLength = searchResponseWithQuery.data.subjects.length;
+                const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnis`;
 
                 const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
 

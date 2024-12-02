@@ -17,6 +17,7 @@
  *
  * @return {String} A string which can be converted to HTML
  */
+// eslint-disable-next-line no-unused-vars
 function htmlConverter(assigned_props, txt) {
     let html = '';
     let proparr;
@@ -27,7 +28,6 @@ function htmlConverter(assigned_props, txt) {
     let propname;
     let idx;
     let i, j;
-    let lbstack;
 
     const tagPrecedence = {
         p: 0,
@@ -145,7 +145,6 @@ function htmlConverter(assigned_props, txt) {
         if (proparr[i] !== undefined) {
             // there is an entry in proparr for the current pos
             tmpstack = [];
-            lbstack = [];
             for (j = proparr[i].length - 1; j >= 0; j--) {
                 // go through the array from back to front (it is a stack!!)
                 // tags which have been opened later (lower precedence -> order in proparr[position]) have to be closed first

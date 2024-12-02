@@ -22,7 +22,7 @@ import { JsonViewerComponent } from './json-viewer.component';
 
 // Helper functions for nav items
 function getNavContents(fixture: ComponentFixture<any>): HTMLElement[] {
-    const outletEl = fixture.debugElement.query(By.directive(NgbNavOutlet)).nativeElement;
+    const outletEl: HTMLElement = fixture.debugElement.query(By.directive(NgbNavOutlet)).nativeElement;
     return Array.from(outletEl.children) as HTMLElement[];
 }
 
@@ -132,9 +132,9 @@ describe('JsonViewerComponent (DONE)', () => {
             });
 
             it('... should contain one ngbNav with two ngbNavItems inside card-body', () => {
-                const bodyDe = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
+                const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
 
-                getAndExpectDebugElementByCss(bodyDe[0], 'nav[ngbNav]', 1, 1);
+                getAndExpectDebugElementByCss(bodyDes[0], 'nav[ngbNav]', 1, 1);
                 const navLinkDes = getNavLinks(fixture);
 
                 expectToBe(navLinkDes.length, 2);
