@@ -1095,6 +1095,49 @@
                 }
             ],
             "linkBoxes": []
+        },
+        {
+            "id": "M_137_TF3",
+            "label": "M 137 Textfassung 3",
+            "description": [
+                "Für die Edition von „Kahl reckt der Baum“ M 137 Textfassung 3 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>c</sup></strong></a> einzige relevante Quelle. <br /> Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gc_corr'})\">Korrekturen in <strong>G<sup>c</sup></strong></a> etablieren Textfassung 3. <br /> Hauptquelle für die Textedition von „Kahl reckt der Baum“ M 137 Textfassung 3 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>c</sup></strong></a> post correcturam."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g2",
+                            "measure": "6",
+                            "system": "Ges.",
+                            "position": "letzte Note",
+                            "comment": "Text: Ausrufezeichen ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "g623",
+                            "measure": "12",
+                            "system": "Klav. u.",
+                            "position": "3/4",
+                            "comment": "Oberstimmenschicht: Ende des Legatobogens versetzt von Taktende. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>c</sup></strong></a>: Akkoladenwechsel nach T. 12. Keine Fortführung des Legatobogens in T. 13."
+                        },
+                        {
+                            "svgGroupId": "g640",
+                            "measure": "13",
+                            "system": "Ges.",
+                            "position": "3/4",
+                            "comment": "Text sic: Punkt nach <em>hofft</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: Ausrufezeichen."
+                        },
+                        {
+                            "svgGroupId": "g656",
+                            "measure": "13",
+                            "system": "Klav.",
+                            "position": "5/8",
+                            "comment": "sic: <em>express.</em> (lies: espressivo)."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
         }
     ]
 }
