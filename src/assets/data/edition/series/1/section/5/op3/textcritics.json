@@ -1006,7 +1006,7 @@
                             "measure": "7",
                             "system": "Klav. o.",
                             "position": "4/8",
-                            "comment": "{{ref.getGlyph('[#]')}} zu cis<sup>3</sup> und {{ref.getGlyph('[a]')}} zu e<sup>3</sup>ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> (ante correcturam?). Siehe<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F_corr'})\">Korrekturen in <strong>F<sup>c</sup></strong></a>: {{ref.getGlyph('[#]')}} zu cis<sup>3</sup> hinzugefügt."
+                            "comment": "{{ref.getGlyph('[#]')}} zu cis<sup>3</sup> und {{ref.getGlyph('[a]')}} zu e<sup>3</sup>ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fc_corr'})\">Korrekturen in <strong>F<sup>c</sup></strong></a>: {{ref.getGlyph('[#]')}} zu cis<sup>3</sup> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g746",
