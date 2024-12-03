@@ -901,7 +901,7 @@
                             "measure": "4",
                             "system": "Klav. u.",
                             "position": "5/8",
-                            "comment": "{{ref.getGlyph('[b]')}} zu b ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> (ante correcturam?). Siehe<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F_corr'})\">Korrekturen in <strong>F<sup>c</sup></strong></a>: {{ref.getGlyph('[b]')}} hinzugefügt."
+                            "comment": "{{ref.getGlyph('[b]')}} zu b ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fc_corr'})\">Korrekturen in <strong>F<sup>c</sup></strong></a>: {{ref.getGlyph('[b]')}} hinzugefügt."
                         },
                         {
                             "svgGroupId": "g613",
