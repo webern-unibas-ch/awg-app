@@ -950,7 +950,7 @@
                             "measure": "5",
                             "system": "Ges.",
                             "position": "6/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu a<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> (ante correcturam?). Siehe<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F_corr'})\">Korrekturen in <strong>F<sup>c</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
+                            "comment": "{{ref.getGlyph('[a]')}} zu a<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fc_corr'})\">Korrekturen in <strong>F<sup>c</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
                         },
                         {
                             "svgGroupId": "g641",
