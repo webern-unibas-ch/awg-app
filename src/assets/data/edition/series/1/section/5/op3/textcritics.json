@@ -915,7 +915,7 @@
                             "measure": "5",
                             "system": "Ges.",
                             "position": "3–4/8",
-                            "comment": "Text: Silbentrennung <em>sti-ller</em> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a>. <strong>F<sup>c</sup></strong>: Silben zusammengeschrieben."
+                            "comment": "Text: Silbentrennung <em>sti-ller</em> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>c</sup></strong></a>: Silben zusammengeschrieben."
                         },
                         {
                             "svgGroupId": "g636",
