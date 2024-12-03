@@ -803,7 +803,7 @@
                             "measure": "1",
                             "system": "Klav. u.",
                             "position": "4/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>1</sup> und {{ref.getGlyph('[b]')}} zu es<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> (ante correcturam?). Siehe<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F_corr'})\">Korrekturen in <strong>F<sup>c</sup></strong></a>: {{ref.getGlyph('[a]')}} zu c<sup>1</sup> und {{ref.getGlyph('[b]')}} zu es<sup>1</sup> hinzugefügt."
+                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>1</sup> und {{ref.getGlyph('[b]')}} zu es<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fc_corr'})\">Korrekturen in <strong>F<sup>c</sup></strong></a>: {{ref.getGlyph('[a]')}} zu c<sup>1</sup> und {{ref.getGlyph('[b]')}} zu es<sup>1</sup> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g598",
