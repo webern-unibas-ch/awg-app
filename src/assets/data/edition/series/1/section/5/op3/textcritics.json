@@ -845,7 +845,7 @@
                             "measure": "3",
                             "system": "Klav. o.",
                             "position": "1–2/8",
-                            "comment": "Ligaturbögen zu cis<sup>2</sup>/e<sup>2</sup> gesetzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> (ante correcturam?). <strong>F<sup>c</sup></strong>: Bögen nach g<sup>1</sup> bei 1/8 und zu cis<sup>2</sup> bei 1–2/8; kein Bogen zu e<sup>2</sup>."
+                            "comment": "Ligaturbögen zu cis<sup>2</sup>/e<sup>2</sup> gesetzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> (ante correcturam?). <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>c</sup></strong></a>: Bögen nach g<sup>1</sup> bei 1/8 und zu cis<sup>2</sup> bei 1–2/8; kein Bogen zu e<sup>2</sup>."
                         },
                         {
                             "svgGroupId": "g605",
