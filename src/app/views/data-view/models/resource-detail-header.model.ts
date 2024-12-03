@@ -89,13 +89,13 @@ export class ResourceDetailHeader {
 
                 // KORRESPONDENZ (same as SUPPLEMENT)
                 case '29': {
-                    this.title = props['dc:title'].toHtml[0] + '<br/>' + props['dc:date'].toHtml[0];
+                    this.title = props['dc:title'].toHtml[0] + '<br />' + props['dc:date'].toHtml[0];
                     break;
                 }
 
                 // SUPPLEMENT
                 case '125': {
-                    this.title = props['dc:title'].toHtml[0] + '<br/>' + props['dc:date'].toHtml[0];
+                    this.title = props['dc:title'].toHtml[0] + '<br />' + props['dc:date'].toHtml[0];
                     break;
                 }
 

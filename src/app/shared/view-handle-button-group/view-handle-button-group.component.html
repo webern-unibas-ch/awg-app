@@ -2,7 +2,7 @@
 <div class="btn-group awg-view-handle-btn-group" role="group">
     <form [formGroup]="viewHandleControlForm">
         <div class="btn-group" role="group" name="viewHandle" aria-label="View handle button group">
-            @for (viewHandle of viewHandles; track viewHandleTracker($index, viewHandle)) {
+            @for (viewHandle of viewHandles; track viewHandle.type) {
                 <input
                     type="radio"
                     [formControl]="viewHandleControl"

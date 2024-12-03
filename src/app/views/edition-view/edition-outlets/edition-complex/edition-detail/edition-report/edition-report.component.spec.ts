@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { JsonPipe } from '@angular/common';
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
@@ -51,7 +49,7 @@ class AlertErrorStubComponent {
 
 @Component({ selector: 'awg-modal', template: '' })
 class ModalStubComponent {
-    open(_modalContentSnippetKey: string): void {}
+    open(): void {}
 }
 
 @Component({ selector: 'awg-source-list', template: '' })
@@ -124,8 +122,6 @@ describe('EditionReportComponent', () => {
     let expectedReportFragment: string;
     let expectedModalSnippet: string;
     let expectedSvgSheet: EditionSvgSheet;
-    let expectedNextSvgSheet: EditionSvgSheet;
-    let expectedPanelId: string;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
     let expectedEditionComplexBaseRoute: string;
@@ -140,8 +136,6 @@ describe('EditionReportComponent', () => {
     let modalOpenSpy: Spy;
     let onModalOpenSpy: Spy;
     let selectSvgSheetSpy: Spy;
-
-    const jsonPipe = new JsonPipe();
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -162,10 +156,9 @@ describe('EditionReportComponent', () => {
 
         // Mock services
         mockEditionDataService = {
-            getEditionReportData: (
-                editionComplex: EditionComplex
-            ): Observable<(SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[]> =>
-                observableOf(expectedEditionReportData),
+            getEditionReportData: (): Observable<
+                (SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[]
+            > => observableOf(expectedEditionReportData),
         };
         mockEditionStateService = {
             getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
@@ -203,7 +196,6 @@ describe('EditionReportComponent', () => {
         editionStateService = TestBed.inject(EditionStateService);
 
         // Test data
-        expectedPanelId = 'awg-sources-panel';
         expectedReportFragment = 'source_A';
         expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
         expectedEditionComplexBaseRoute = '/edition/complex/op12/';
@@ -211,7 +203,6 @@ describe('EditionReportComponent', () => {
         expectedNextComplexId = 'testComplex2';
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
 
         expectedSourceListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceListData));
         expectedSourceDescriptionListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceDescriptionListData));

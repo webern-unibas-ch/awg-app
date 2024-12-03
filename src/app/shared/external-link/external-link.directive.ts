@@ -8,7 +8,6 @@ import { Directive, HostBinding, inject, Input, OnChanges, PLATFORM_ID } from '@
  * adds specific attributes if href has an external target.
  */
 @Directive({
-    // eslint-disable-next-line @angular-eslint/directive-selector
     selector: 'a[href]',
 })
 export class ExternalLinkDirective implements OnChanges {

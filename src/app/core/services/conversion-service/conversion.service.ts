@@ -155,7 +155,7 @@ export class ConversionService extends ApiService {
             let propValue = []; // Empty text value array
 
             // Check if values property is defined
-            if (prop.hasOwnProperty('values') && prop.values !== undefined) {
+            if (Object.prototype.hasOwnProperty.call(prop, 'values') && prop.values !== undefined) {
                 // Check for gui-elements
                 switch (prop.valuetype_id) {
                     case '4':
@@ -471,11 +471,10 @@ export class ConversionService extends ApiService {
      * of an accessible resource to be displayed via HTML.
      *
      * @param {PropertyJson} prop The given property.
-     * @param {string} [url] A given optional url.
      *
      * @returns {PropertyJson} The converted property.
      */
-    private _addHtmlValues(prop: PropertyJson, url?: string): PropertyJson {
+    private _addHtmlValues(prop: PropertyJson): PropertyJson {
         prop.toHtml = [];
 
         if (prop.values) {
@@ -945,7 +944,7 @@ export class ConversionService extends ApiService {
             const resTextContent = regArr.at(-1);
 
             // Replace href attribute with click-directive
-            const replaceValue = `<a (click)="ref.navigateToResource(\'${resId}\'); $event.stopPropagation()">${resTextContent}</a>`;
+            const replaceValue = `<a (click)="ref.navigateToResource('${resId}'); $event.stopPropagation()">${resTextContent}</a>`;
 
             str = str.replace(regArr[0], replaceValue);
         }

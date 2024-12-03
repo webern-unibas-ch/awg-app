@@ -71,11 +71,11 @@ describe('EditionJumbotronComponent', () => {
             });
 
             it('... should pass down `jumbotronId` and `jumbotronTitle`to jumbotron heading', () => {
-                const headingDes = getAndExpectDebugElementByCss(compDe, 'div.awg-jumbotron > h3', 1, 1);
-                const headingEl = headingDes[0].nativeElement;
+                const hDes = getAndExpectDebugElementByCss(compDe, 'div.awg-jumbotron > h3', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                expectToBe(headingEl.id, expectedId);
-                expectToBe(headingEl.textContent.trim(), expectedTitle);
+                expectToBe(hEl.id, expectedId);
+                expectToBe(hEl.textContent.trim(), expectedTitle);
             });
         });
     });

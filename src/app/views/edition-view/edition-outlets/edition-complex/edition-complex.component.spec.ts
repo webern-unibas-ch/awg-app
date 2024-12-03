@@ -1,20 +1,15 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { EMPTY, Observable, ReplaySubject } from 'rxjs';
 import Spy = jasmine.Spy;
 
-import { expectSpyCall, expectToEqual } from '@testing/expect-helper';
-import { ActivatedRouteStub } from '@testing/router-stubs';
+import { expectSpyCall, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import {
-    EditionComplex,
-    EditionComplexesList,
-    EditionOutlineSection,
-    EditionOutlineSeries,
-} from '@awg-views/edition-view/models';
+import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionComplexComponent } from './edition-complex.component';
@@ -40,7 +35,6 @@ describe('EditionComplexComponent (DONE)', () => {
     let editionStateServiceClearSelectedEditionSeriesSpy: Spy;
     let editionStateServiceClearSelectedEditionSectionSpy: Spy;
 
-    let expectedEditionComplexes: EditionComplexesList;
     let expectedSelectedEditionComplex: EditionComplex;
     let expectedSelectedEditionComplexId: string;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
@@ -77,8 +71,7 @@ describe('EditionComplexComponent (DONE)', () => {
         mockActivatedRoute = new ActivatedRouteStub();
 
         await TestBed.configureTestingModule({
-            imports: [RouterModule],
-            declarations: [EditionComplexComponent],
+            declarations: [EditionComplexComponent, RouterOutletStubComponent],
             providers: [
                 { provide: ActivatedRoute, useValue: mockActivatedRoute },
                 { provide: EditionStateService, useValue: mockEditionStateService },
@@ -91,14 +84,11 @@ describe('EditionComplexComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        // TestData
-
+        // Test data
         expectedSelectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
         expectedSelectedEditionComplexId = 'OP12';
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        // Spies
         updateEditionComplexFromRouteSpy = spyOn(component, 'updateEditionComplexFromRoute').and.callThrough();
         editionStateServiceGetSelectedEditionComplexSpy = spyOn(
             mockEditionStateService,
@@ -143,6 +133,12 @@ describe('EditionComplexComponent (DONE)', () => {
             expectToEqual(component.editionRouteConstants, expectedEditionRouteConstants);
         });
 
+        describe('VIEW', () => {
+            it('... should contain one router outlet (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 1, 1);
+            });
+        });
+
         describe('#updateEditionComplexFromRoute()', () => {
             it('... should have a method `updateEditionComplexFromRoute`', () => {
                 expect(component.updateEditionComplexFromRoute).toBeDefined();
@@ -162,6 +158,12 @@ describe('EditionComplexComponent (DONE)', () => {
 
             // Trigger initial data binding
             fixture.detectChanges();
+        });
+
+        describe('VIEW', () => {
+            it('... should contain one router outlet (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 1, 1);
+            });
         });
 
         describe('#updateEditionComplexFromRoute()', () => {

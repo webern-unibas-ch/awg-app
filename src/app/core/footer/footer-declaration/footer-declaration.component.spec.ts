@@ -68,7 +68,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 const expectedTitle = 'AWG-Online-Edition';
 
                 const titleDes = getAndExpectDebugElementByCss(compDe, 'p.awg-version-title', 1, 1);
-                const titleEl = titleDes[0].nativeElement;
+                const titleEl: HTMLParagraphElement = titleDes[0].nativeElement;
 
                 expectToContain(titleEl.textContent, expectedTitle);
             });
@@ -77,8 +77,8 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 const versionDes = getAndExpectDebugElementByCss(compDe, '#awg-version', 1, 1);
                 const versionDateDes = getAndExpectDebugElementByCss(compDe, '#awg-version-date', 1, 1);
 
-                const versionEl = versionDes[0].nativeElement;
-                const versionDateEl = versionDateDes[0].nativeElement;
+                const versionEl: HTMLElement = versionDes[0].nativeElement;
+                const versionDateEl: HTMLElement = versionDateDes[0].nativeElement;
 
                 expectToBe(versionEl.textContent, '');
                 expectToBe(versionDateEl.textContent, '');
@@ -103,8 +103,8 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 const versionDes = getAndExpectDebugElementByCss(compDe, '#awg-version', 1, 1);
                 const versionDateDes = getAndExpectDebugElementByCss(compDe, '#awg-version-date', 1, 1);
 
-                const versionEl = versionDes[0].nativeElement;
-                const versionDateEl = versionDateDes[0].nativeElement;
+                const versionEl: HTMLElement = versionDes[0].nativeElement;
+                const versionDateEl: HTMLElement = versionDateDes[0].nativeElement;
 
                 expectToContain(versionEl.textContent, expectedVersion);
                 expectToContain(versionDateEl.textContent, expectedVersionDate);
@@ -135,12 +135,12 @@ describe('FooterDeclarationComponent (DONE)', () => {
             });
 
             it('... can click imprint link in template', () => {
-                const imprintLinkDe = linkDes[0]; // Contact link DebugElement
+                const imprintLinkDes = linkDes[0]; // Contact link DebugElement
                 const imprintLink = routerLinks[0]; // Contact link directive
 
                 expectToBe(imprintLink.navigatedTo, null);
 
-                click(imprintLinkDe);
+                click(imprintLinkDes);
                 fixture.detectChanges();
 
                 expectToEqual(imprintLink.navigatedTo, ['/contact']);
@@ -148,12 +148,12 @@ describe('FooterDeclarationComponent (DONE)', () => {
             });
 
             it('... can click documentation link in template', () => {
-                const documentationLinkDe = linkDes[1]; // Contact link DebugElement
+                const documentationLinkDes = linkDes[1]; // Contact link DebugElement
                 const documentationLink = routerLinks[1]; // Contact link directive
 
                 expectToBe(documentationLink.navigatedTo, null);
 
-                click(documentationLinkDe);
+                click(documentationLinkDes);
                 fixture.detectChanges();
 
                 expectToEqual(documentationLink.navigatedTo, ['/contact']);

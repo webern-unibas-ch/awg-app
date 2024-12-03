@@ -89,7 +89,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
 
             it('... should not render link to devPreview yet', () => {
                 const devDes = getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link', 1, 1);
-                const devEl = devDes[0].nativeElement;
+                const devEl: HTMLAnchorElement = devDes[0].nativeElement;
 
                 expect(devEl).toBeDefined();
                 expectToBe(devEl.href, '');
@@ -129,15 +129,15 @@ describe('FooterPoweredbyComponent (DONE)', () => {
             });
 
             it('... should display screwdriverWrench icon in devPreview link ', () => {
-                const faIconDe = getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link > fa-icon', 1, 1);
-                const faIconIns = faIconDe[0].componentInstance.icon;
+                const faIconDes = getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link > fa-icon', 1, 1);
+                const faIconIns = faIconDes[0].componentInstance.icon;
 
                 expectToEqual(faIconIns, expectedScrewdriverWrenchIcon);
             });
 
             it('... should render link to devPreview', () => {
                 const devDes = getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link', 1, 1);
-                const devEl = devDes[0].nativeElement;
+                const devEl: HTMLAnchorElement = devDes[0].nativeElement;
 
                 expect(devEl).toBeDefined();
                 expectToBe(devEl.href, expectedPageMetaData.awgAppDevUrl);

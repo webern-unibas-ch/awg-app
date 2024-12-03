@@ -4,7 +4,8 @@
         <li
             [class.selected]="bibItem === selectedBibItem"
             (click)="onItemSelect(bibItem)"
-            (keydown)="onItemSelect(bibItem)">
+            (keydown)="onItemSelect(bibItem)"
+            tabindex="0">
             <span class="badge">{{ bibItem.value[0] }}</span>
             @if (bibItem.obj_id === selectedBibItem.obj_id) {
                 <awg-bibliography-detail [objId]="bibItem.obj_id"> </awg-bibliography-detail>

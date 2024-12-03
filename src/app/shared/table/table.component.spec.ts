@@ -270,14 +270,18 @@ describe('TableComponent', () => {
                 it('... with headerInputData and rowInputData', waitForAsync(() => {
                     expect(component.tableData).toBeDefined();
 
-                    expectToEqual(component.tableData.header, expectedHeaderInputData);
-                    expectToEqual(component.tableData.filteredRows, expectedRowInputData);
+                    expectToEqual(component.tableData.header, expectedTableData.header);
+                    expectToEqual(component.tableData.filteredRows, expectedTableData.filteredRows);
 
                     expect(component.tableData.paginatedRows$).toBeDefined();
-                    expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolvedTo(expectedRowInputData);
+                    expectAsync(lastValueFrom(component.tableData.paginatedRows$)).toBeResolvedTo(
+                        expectedTableData.filteredRows
+                    );
 
                     expect(component.tableData.totalRows$).toBeDefined();
-                    expectAsync(lastValueFrom(component.tableData.totalRows$)).toBeResolvedTo(expectedRowInputData);
+                    expectAsync(lastValueFrom(component.tableData.totalRows$)).toBeResolvedTo(
+                        expectedTableData.filteredRows
+                    );
                 }));
 
                 describe('... to empty object', () => {
@@ -380,8 +384,8 @@ describe('TableComponent', () => {
                 const expectedSearchFilter = 'test';
                 const otherSearchFilter = 'other';
 
-                const inputDe = getAndExpectDebugElementByCss(compDe, 'input[name="searchFilter"]', 1, 1);
-                const inputEl = inputDe[0].nativeElement;
+                const inputDes = getAndExpectDebugElementByCss(compDe, 'input[name="searchFilter"]', 1, 1);
+                const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                 inputEl.value = expectedSearchFilter;
                 inputEl.dispatchEvent(new Event('input'));
@@ -409,7 +413,7 @@ describe('TableComponent', () => {
                     1,
                     1
                 );
-                const buttonDes1 = getAndExpectDebugElementByCss(
+                const btnDes1 = getAndExpectDebugElementByCss(
                     dropdownDes1[0],
                     'button.dropdown-item',
                     expectedItemNumber,
@@ -417,33 +421,33 @@ describe('TableComponent', () => {
                 );
 
                 // Click on first button
-                clickAndAwaitChanges(buttonDes1[0], fixture);
+                clickAndAwaitChanges(btnDes1[0], fixture);
 
                 // First call happens on ngOnInit()
                 expectSpyCall(onPageSizeChangeSpy, 2, ['', component.paginatorOptions.pageSizeOptions[0]]);
 
                 // Click on second button
-                clickAndAwaitChanges(buttonDes1[1], fixture);
+                clickAndAwaitChanges(btnDes1[1], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 3, ['', component.paginatorOptions.pageSizeOptions[1]]);
 
                 // Click on third button
-                clickAndAwaitChanges(buttonDes1[2], fixture);
+                clickAndAwaitChanges(btnDes1[2], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 4, ['', component.paginatorOptions.pageSizeOptions[2]]);
 
                 // Click on fourth button
-                clickAndAwaitChanges(buttonDes1[3], fixture);
+                clickAndAwaitChanges(btnDes1[3], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 5, ['', component.paginatorOptions.pageSizeOptions[3]]);
 
                 // Click on fifth button
-                clickAndAwaitChanges(buttonDes1[4], fixture);
+                clickAndAwaitChanges(btnDes1[4], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 6, ['', component.paginatorOptions.pageSizeOptions[4]]);
 
                 // Click on sixth button
-                clickAndAwaitChanges(buttonDes1[5], fixture);
+                clickAndAwaitChanges(btnDes1[5], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 7, ['', component.paginatorOptions.pageSizeOptions[5]]);
             }));
@@ -458,7 +462,7 @@ describe('TableComponent', () => {
                     1,
                     1
                 );
-                const buttonDes2 = getAndExpectDebugElementByCss(
+                const btnDes2 = getAndExpectDebugElementByCss(
                     dropdownDes2[0],
                     'button.dropdown-item',
                     expectedItemNumber,
@@ -466,33 +470,33 @@ describe('TableComponent', () => {
                 );
 
                 // Click on first button
-                clickAndAwaitChanges(buttonDes2[0], fixture);
+                clickAndAwaitChanges(btnDes2[0], fixture);
 
                 // First call happens on ngOnInit()
                 expectSpyCall(onPageSizeChangeSpy, 2, ['', component.paginatorOptions.pageSizeOptions[0]]);
 
                 // Click on second button
-                clickAndAwaitChanges(buttonDes2[1], fixture);
+                clickAndAwaitChanges(btnDes2[1], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 3, ['', component.paginatorOptions.pageSizeOptions[1]]);
 
                 // Click on third button
-                clickAndAwaitChanges(buttonDes2[2], fixture);
+                clickAndAwaitChanges(btnDes2[2], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 4, ['', component.paginatorOptions.pageSizeOptions[2]]);
 
                 // Click on fourth button
-                clickAndAwaitChanges(buttonDes2[3], fixture);
+                clickAndAwaitChanges(btnDes2[3], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 5, ['', component.paginatorOptions.pageSizeOptions[3]]);
 
                 // Click on fifth button
-                clickAndAwaitChanges(buttonDes2[4], fixture);
+                clickAndAwaitChanges(btnDes2[4], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 6, ['', component.paginatorOptions.pageSizeOptions[4]]);
 
                 // Click on sixth button
-                clickAndAwaitChanges(buttonDes2[5], fixture);
+                clickAndAwaitChanges(btnDes2[5], fixture);
 
                 expectSpyCall(onPageSizeChangeSpy, 7, ['', component.paginatorOptions.pageSizeOptions[5]]);
             }));
@@ -642,21 +646,21 @@ describe('TableComponent', () => {
             });
 
             it('... should trigger on click on table header', fakeAsync(() => {
-                const headerDe = getAndExpectDebugElementByCss(compDe, 'table > thead > tr > th', 3, 3);
+                const tableHeaderDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr > th', 3, 3);
 
                 // Click on first header
-                clickAndAwaitChanges(headerDe[0], fixture);
+                clickAndAwaitChanges(tableHeaderDes[0], fixture);
 
                 // First call happens on ngOnInit()
                 expectSpyCall(onSortSpy, 2, expectedHeaderInputData[0]);
 
                 // Click on second header
-                clickAndAwaitChanges(headerDe[1], fixture);
+                clickAndAwaitChanges(tableHeaderDes[1], fixture);
 
                 expectSpyCall(onSortSpy, 3, expectedHeaderInputData[1]);
 
                 // Click on third header
-                clickAndAwaitChanges(headerDe[2], fixture);
+                clickAndAwaitChanges(tableHeaderDes[2], fixture);
 
                 expectSpyCall(onSortSpy, 4, expectedHeaderInputData[2]);
             }));

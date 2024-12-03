@@ -98,10 +98,10 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
 
             it('... should render intro title in h5.card-header', () => {
                 const cardDes = getAndExpectDebugElementByCss(compDe, 'div.card.awg-edition-card', 1, 1);
-                const h5Des = getAndExpectDebugElementByCss(cardDes[0], 'h5.card-header', 1, 1);
-                const h5El = h5Des[0].nativeElement;
+                const hDes = getAndExpectDebugElementByCss(cardDes[0], 'h5.card-header', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                expectToBe(h5El.textContent.trim(), 'Einleitung');
+                expectToBe(hEl.textContent.trim(), 'Einleitung');
             });
 
             it('... should contain one div.card-body in div.card', () => {
@@ -120,7 +120,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                 const cardDes = getAndExpectDebugElementByCss(compDe, 'div.card.awg-edition-card', 1, 1);
                 const bodyDes = getAndExpectDebugElementByCss(cardDes[0], 'div.card-body', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(bodyDes[0], 'p.card-text', 1, 1);
-                const pEl = pDes[0].nativeElement;
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expectToBe(pEl.textContent.trim(), expectedSelectedSection.content.intro.preview + ' …');
             });
@@ -141,7 +141,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.text-end', 1, 1);
 
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 1, 1);
-                const aEl = aDes[0].nativeElement;
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                 const expectedLinkText = 'Mehr ...';
 
@@ -152,7 +152,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.text-end', 1, 1);
 
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 1, 1);
-                const aEl = aDes[0].nativeElement;
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                 expectToBe(aEl.classList.contains('disabled'), expectedSelectedSection.content.intro.disabled);
             });
@@ -172,7 +172,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                routerLinks.forEach((routerLink: RouterLinkStubDirective, _index: number) => {
+                routerLinks.forEach((routerLink: RouterLinkStubDirective) => {
                     const expectedRouterLink = [
                         '/edition',
                         'series',
