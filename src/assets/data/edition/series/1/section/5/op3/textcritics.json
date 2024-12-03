@@ -1303,7 +1303,7 @@
                             "measure": "8",
                             "system": "Ges.",
                             "position": "2/8",
-                            "comment": "Text: Gedankenstrich nach (Ar-)<em>me</em> ergänzt mit Blick auf G<strong>eorge_DsR</strong>."
+                            "comment": "Text: Gedankenstrich nach (Ar-)<em>me</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
                         },
                         {
                             "svgGroupId": "g661",
