@@ -106,7 +106,7 @@
                             "measure": "2",
                             "system": "Ges.",
                             "position": "5/4",
-                            "comment": "Text: Großschreibung <em>Dich</em> korrigiert zu <em>dich</em> mit Blick auf G<strong>eorge_DsR</strong>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                            "comment": "Text: Großschreibung <em>Dich</em> korrigiert zu <em>dich</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
                         },
                         {
                             "svgGroupId": "g528",
@@ -323,7 +323,7 @@
                             "measure": "7",
                             "system": "Ges.",
                             "position": "10/8",
-                            "comment": "Text: Komma nach (spie[-])<em>le</em> ergänzt mit Blick auf G<strong>eorge_DsR</strong>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a>: Komma überschreibt Punkt."
+                            "comment": "Text: Komma nach (spie[-])<em>le</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a>: Komma überschreibt Punkt."
                         },
                         {
                             "svgGroupId": "g709",
