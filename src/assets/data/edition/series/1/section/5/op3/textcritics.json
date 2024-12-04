@@ -663,7 +663,7 @@
                             "position": "1/8",
                             "comment": "Text sic: Punkt nach <em>schaun</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: Komma."
                         },
-                        {    
+                        {
                             "svgGroupId": "g605",
                             "measure": "3",
                             "system": "Ges.",
