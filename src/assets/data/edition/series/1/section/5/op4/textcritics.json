@@ -569,6 +569,133 @@
             "linkBoxes": []
         },
         {
+            "id": "M_138_TF2",
+            "label": "M 138 Textfassung 2",
+            "description": [
+                "Für die Edition von Eingang („Welt der Gestalten“) M 138 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle. <br /> Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a> etablieren Textfassung 2. <br /> Hauptquelle für die Textedition von Eingang („Welt der Gestalten“) M 138 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> post correcturam."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "g417",
+                            "measure": "2",
+                            "system": "Ges.",
+                            "position": "2.–3. Note",
+                            "comment": "Text sic: Silbentrennung <em>Öf-fne</em>."
+                        },
+                        {
+                            "svgGroupId": "g418",
+                            "measure": "2",
+                            "system": "Ges.",
+                            "position": "5/4",
+                            "comment": "Text: Kleinschreibung <em>dich</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                        },
+                        {
+                            "svgGroupId": "g420",
+                            "measure": "3",
+                            "system": "Klav. o.",
+                            "position": "2. Note",
+                            "comment": "Unterstimmenschicht: Punkt nach fis weggelassen mit Blick auf rhytmisch-metrischen Kontext."
+                        },
+                        {
+                            "svgGroupId": "g421",
+                            "measure": "3",
+                            "system": "Ges.",
+                            "position": "4–5/4",
+                            "comment": "Text sic: Silbentrennung <em>stä-mme</em>."
+                        },
+                        {
+                            "svgGroupId": "g422",
+                            "measure": "3",
+                            "system": "Klav. u.",
+                            "position": "1. Note",
+                            "comment": "Unterstimmenschicht: Anfang des Legatobogens versetzt von T. 4 Anfang. (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 3.)"
+                        },
+                        {
+                            "svgGroupId": "g577",
+                            "measure": "5",
+                            "system": "Ges.",
+                            "position": "8. Note",
+                            "comment": "Längenstrich nach <em>gold</em> getilgt. Siehe Zustand vor <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a> und Textfassung 1: Notenwert als Ligatur von zwei Achtelnoten notiert."
+                        },
+                        {
+                            "svgGroupId": "g578",
+                            "measure": "6",
+                            "system": "Klav. o.",
+                            "position": "3/8",
+                            "comment": "sic: <em>express</em>."
+                        },
+                        {
+                            "svgGroupId": "g582",
+                            "measure": "7",
+                            "system": "Klav. o.",
+                            "position": "1. Note",
+                            "comment": "Anfang des Legatobogens versetzt von Taktanfang. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a> T. 6 vorletzte Note: Bogenanfang gestrichen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 6."
+                        },
+                        {
+                            "svgGroupId": "g603",
+                            "measure": "7",
+                            "system": "Ges.",
+                            "position": "6.–7. Note",
+                            "comment": "Text sic: Silbentrennung <em>que-lle</em>."
+                        },
+                        {
+                            "svgGroupId": "g634",
+                            "measure": "7",
+                            "system": "Ges.",
+                            "position": "12/8",
+                            "comment": "Text sic: Großschreibung <em>Rinnt</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> am Zeilenanfang)."
+                        },
+                        {
+                            "svgGroupId": "g658",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "9/8",
+                            "comment": "Text sic: Großschreibung <em>Korn</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> am Zeilenanfang)."
+                        },
+                        {
+                            "svgGroupId": "g614",
+                            "measure": "10",
+                            "system": "Ges.",
+                            "position": "5.–7. Note",
+                            "comment": "Text sic: Silbentrennung <em>Dä-mmer</em>."
+                        },
+                        {
+                            "svgGroupId": "g615",
+                            "measure": "11",
+                            "system": "Klav. u.",
+                            "position": "1/4",
+                            "comment": "Unterstimmenschicht: Ligaturbogen von T. 10 getilgt. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a> T. 10 (8. Note): Bogenanfang rasiert. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 10."
+                        },
+                        {
+                            "svgGroupId": "g640",
+                            "measure": "11",
+                            "system": "Ges.",
+                            "position": "6/4",
+                            "comment": "Text sic: Komma nach <em>bannt</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: kein Komma."
+                        },
+                        {
+                            "svgGroupId": "g287",
+                            "measure": "13",
+                            "system": "Klav. u.",
+                            "position": "(1–4/4)",
+                            "comment": "sic: Unterstimmenschicht mit Ganzer Pause (Vier-Viertel-Pause)."
+                        },
+                        {
+                            "svgGroupId": "g288",
+                            "measure": "14–15",
+                            "system": "Ges.",
+                            "position": "",
+                            "comment": "Vier Ganze Pausen analog Korrektur in <strong>A</strong> T. 14 2. Teiltakt. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a>: Zuerst Punktierte Ganze Pause, Viertelpause (T. 14), Halbe Pause, punktierte Halbe Pause, Halbe Pause (T. 15); dann Teiltaktstriche hinzugefügt, Viertelpause T. 14 7/4 gestrichen und Ganze Pause für T. 14 2. Teiltakt hinzugefügt."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
+        },
+        {
             "id": "M_139_TF1",
             "label": "M 139 Textfassung 1",
             "description": [
