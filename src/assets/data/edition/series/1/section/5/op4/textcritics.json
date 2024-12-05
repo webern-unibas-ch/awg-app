@@ -365,7 +365,7 @@
                             "measure": "8",
                             "system": "Ges.",
                             "position": "9/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu d<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: [a| hinzugefügt. <br /> Text sic: Großschreibung <em>Korn</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> am Zeilenanfang). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a>: <em>Korn</em> auf Rasur. Siehe auch TkA zu 11/8."
+                            "comment": "{{ref.getGlyph('[a]')}} zu d<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt. <br /> Text sic: Großschreibung <em>Korn</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> am Zeilenanfang). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a>: <em>Korn</em> auf Rasur. Siehe auch TkA zu 11/8."
                         },
                         {
                             "svgGroupId": "g746",
@@ -435,7 +435,7 @@
                             "measure": "10",
                             "system": "Ges.",
                             "position": "6/8–10/8",
-                            "comment": "Text: ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (5.–7. Note sic: Silbentrennung <em>Dä-mmer</em>). <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> ante correcturam: Text fehlt. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: Text <em>Dä-m¯#er der frü</em>[-]<em>he</em> hinzugefügt (Hs?)."
+                            "comment": "Text: ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (5.–7. Note sic: Silbentrennung <em>Dä-mmer</em>). <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> ante correcturam: Text fehlt. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: Text <em>Dä-m̅er der frü</em>[-]<em>he</em> hinzugefügt (Hs?)."
                         },
                         {
                             "svgGroupId": "g670",
@@ -554,7 +554,7 @@
                             "measure": "14–15",
                             "system": "Ges.",
                             "position": "",
-                            "comment": "T. 14: Halbe Pause, drei Viertelpausen, T. 15: Halbe Pause, drei Viertelpausen (die zweite mit Fermate), Halbe Pause korrigiert gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ante correcturam. ##Notenbeispiel?##"
+                            "comment": "T. 14: Halbe Pause, drei Viertelpausen, T. 15: Halbe Pause, drei Viertelpausen (die zweite mit Fermate), Halbe Pause korrigiert gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ante correcturam."
                         },
                         {
                             "svgGroupId": "g342",
@@ -667,7 +667,7 @@
                             "measure": "11",
                             "system": "Klav. u.",
                             "position": "1/4",
-                            "comment": "Unterstimmenschicht: Ligaturbogen von T. 10 getilgt. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a> T. 10 (8. Note): Bogenanfang rasiert. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 10."
+                            "comment": "Unterstimmenschicht: Ligaturbogen von T. 10 getilgt. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a> T. 1–16: dabei auch Bogenanfang in T. 10 Unterstimmenschicht 4. Note rasiert. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 10."
                         },
                         {
                             "svgGroupId": "g640",
