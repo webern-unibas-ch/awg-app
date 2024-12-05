@@ -1699,8 +1699,3 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 --------------------------------------------------------------------------------
-Package: font-awesome
-License: "(OFL-1.1 AND MIT)"
-
-
---------------------------------------------------------------------------------
