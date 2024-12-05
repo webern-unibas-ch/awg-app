@@ -5713,7 +5713,6 @@ __metadata:
     eslint-plugin-import: "npm:^2.31.0"
     eslint-plugin-jsdoc: "npm:^50.6.0"
     eslint-plugin-prettier: "npm:^5.2.1"
-    font-awesome: "npm:^4.7.0"
     globals: "npm:^15.13.0"
     gzipper: "npm:^8.2.0"
     husky: "npm:^9.1.7"
@@ -8856,13 +8855,6 @@ __metadata:
     debug:
       optional: true
   checksum: 10c0/5829165bd112c3c0e82be6c15b1a58fa9dcfaede3b3c54697a82fe4a62dd5ae5e8222956b448d2f98e331525f05d00404aba7d696de9e761ef6e42fdc780244f
-  languageName: node
-  linkType: hard
-
-"font-awesome@npm:^4.7.0":
-  version: 4.7.0
-  resolution: "font-awesome@npm:4.7.0"
-  checksum: 10c0/1c456e2939c55192eed67db9c0efb8db3e92fd357ca189ca00030eb44acffa1e9f835288d2204c14b9a9c490a7b14b7090dfaff80ded6b2473f50a923dfb41e7
   languageName: node
   linkType: hard
 
