@@ -18,7 +18,11 @@
                         [viewHandles]="viewHandles"
                         [selectedViewType]="selectedViewType"
                         (viewChangeRequest)="onViewChange($event)"></awg-view-handle-button-group>
-                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown for row number">
+                    <div
+                        class="btn-group"
+                        ngbDropdown
+                        role="group"
+                        aria-label="Button group with nested dropdown for row number">
                         <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
                             <span class="d-none d-lg-inline">Hits per page: </span>{{ searchParams?.nRows }}
                         </button>
@@ -104,14 +108,9 @@
                                     </h5>
                                 </div>
                                 <div class="card-footer text-end">
-                                    <a
-                                        class="btn btn-outline-info"
-                                        (click)="navigateToResource(subject?.obj_id)"
-                                        (keyup.enter)="navigateToResource(subject?.obj_id)"
-                                        role="button"
-                                        tabindex="0"
-                                        >Mehr ...
-                                    </a>
+                                    <button class="btn btn-outline-info" (click)="navigateToResource(subject?.obj_id)">
+                                        Mehr ...
+                                    </button>
                                 </div>
                             </div>
                         </div>
