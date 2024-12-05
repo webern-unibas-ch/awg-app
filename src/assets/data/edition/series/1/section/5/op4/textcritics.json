@@ -688,7 +688,7 @@
                             "measure": "14–15",
                             "system": "Ges.",
                             "position": "",
-                            "comment": "Vier Ganze Pausen analog Korrektur in <strong>A</strong> T. 14 2. Teiltakt. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a>: Zuerst Punktierte Ganze Pause, Viertelpause (T. 14), Halbe Pause, punktierte Halbe Pause, Halbe Pause (T. 15); dann Teiltaktstriche hinzugefügt, Viertelpause T. 14 7/4 gestrichen und Ganze Pause für T. 14 2. Teiltakt hinzugefügt."
+                            "comment": "Vier Ganze Pausen analog Korrektur in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> T. 14 2. Teiltakt. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a>: Zuerst Punktierte Ganze Pause, Viertelpause (T. 14), Halbe Pause, punktierte Halbe Pause, Halbe Pause (T. 15); dann Teiltaktstriche hinzugefügt, Viertelpause T. 14 7/4 gestrichen und Ganze Pause für T. 14 2. Teiltakt hinzugefügt."
                         }
                     ]
                 }
