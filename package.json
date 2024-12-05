@@ -107,7 +107,6 @@
         "d3-force": "^3.0.0",
         "d3-selection": "^3.0.0",
         "d3-zoom": "^3.0.0",
-        "font-awesome": "^4.7.0",
         "json2typescript": "^1.5.1",
         "n3": "^1.23.1",
         "ngx-json-viewer": "^3.2.1",
@@ -160,5 +159,5 @@
         "npm": ">= 10.5.2",
         "yarn": "^4.3.0"
     },
-    "packageManager": "yarn@4.3.0"
+    "packageManager": "yarn@4.5.3"
 }
