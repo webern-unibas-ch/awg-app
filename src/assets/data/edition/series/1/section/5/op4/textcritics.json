@@ -134,7 +134,7 @@
                             "measure": "3",
                             "system": "Klav. u.",
                             "position": "1. Note",
-                            "comment": "Unterstimmenschicht: Anfang des Legatobogens versetzt von Anfang T. 4. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> und<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 3."
+                            "comment": "Unterstimmenschicht: Anfang des Legatobogens versetzt von Anfang T. 4. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 3."
                         },
                         {
                             "svgGroupId": "g679",
