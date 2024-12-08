@@ -549,7 +549,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Autograph von „Wie bin ich froh!“ M 317: Textfassung 1.",
+            "type": "Autograph von „Wie bin ich froh!“ M 317: <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
@@ -1862,7 +1862,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "I „Wie bin ich froh!“ M 317: Textfassung 1→2",
+                        "itemDescription": "I „Wie bin ich froh!“ M 317: <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>→<span class='link-todo'>2</span>",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -1939,7 +1939,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "II „Des Herzens Purpurvogel“ M 322: einzige Textfassung",
+                        "itemDescription": "II „Des Herzens Purpurvogel“ M 322: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
                                 "folio": "4r",
@@ -2065,7 +2065,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "III „Sterne, Ihr silbernen Bienen“ M 321: einzige Textfassung",
+                        "itemDescription": "III „Sterne, Ihr silbernen Bienen“ M 321: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
                                 "folio": "7r",
@@ -2201,7 +2201,7 @@
                         "id": "source_E_corr_1",
                         "label": "Korrekturen 1 in <strong>E</strong>",
                         "description": [
-                            "Die Beschreibung der Korrekturen bezieht sich auf <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">„Wie bin ich froh“ M 317: Textfassung 1</a>."
+                            "Die Beschreibung der Korrekturen bezieht sich auf <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">„Wie bin ich froh“ M 317: <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a></a>."
                         ],
                         "comments": [
                             {
@@ -2239,7 +2239,7 @@
                         "id": "source_E_corr_2",
                         "label": "Korrekturen 2 in <strong>E</strong>",
                         "description": [
-                            "Die Beschreibung der Korrekturen bezieht sich auf die Textfassungen der Werkedition von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25."
+                            "Die Beschreibung der Korrekturen bezieht sich auf die Textfassungen der <span class='link-todo'>Werkedition von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25</span>."
                         ],
                         "comments": [
                             {
