@@ -47,7 +47,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 1→2",
+                        "itemDescription": "Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF2'})\">2</a>",
                         "folios": [
                             {
                                 "folio": "6r",
@@ -585,7 +585,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „Noch zwingt mich Treue“ M 139: Textfassung 1→2 (<strong>B<sup>a</sup></strong>)",
+                        "itemDescription": "Autograph von „Noch zwingt mich Treue“ M 139: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF2'})\">2</a> (<strong>B<sup>a</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -702,7 +702,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_140_TF1'})\">„Ja Heil und Dank dir“ M 140: Textfassung 1</a>→2 (<strong>B<sup>b</sup></strong>)",
+                        "itemDescription": "Autograph von „Ja Heil und Dank dir“ M 140: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_140_TF1'})\">Textfassung 1</a>→<span class='link-todo'>2</span> (<strong>B<sup>b</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "5r",
@@ -820,7 +820,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „So ich traurig bin“ M 141: Textfassung 1 (<strong>B<sup>c</sup></strong>)",
+                        "itemDescription": "Autograph von „So ich traurig bin“ M 141: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_141_TF1'})\">Textfassung 1</a> (<strong>B<sup>c</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "9r",
@@ -1436,7 +1436,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Abschrift fremder Hand von <em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 1 (<strong>D<sup>a</sup></strong>)",
+                        "itemDescription": "Abschrift fremder Hand von <em>Eingang</em> („Welt der Gestalten“) M 138: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF1'})\">Textfassung 1</a> (<strong>D<sup>a</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -1575,7 +1575,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Abschrift fremder Hand von „Noch zwingt mich Treue“ M 139: Textfassung 1 (<strong>D<sup>b</sup></strong>)",
+                        "itemDescription": "Abschrift fremder Hand von „Noch zwingt mich Treue“ M 139: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a> (<strong>D<sup>b</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "5r",
@@ -2293,7 +2293,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Druck von „Ihr tratet zu dem Herde“ M 142: Textfassung 1",
+                        "itemDescription": "Druck von „Ihr tratet zu dem Herde“ M 142: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF1'})\">Textfassung 1</a>",
                         "folios": [
                             {
                                 "folio": "1",
@@ -2774,7 +2774,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "I <em>Eingang</em> („Welt der Gestalten“) M 138: <span Textfassung 3",
+                        "itemDescription": "I <em>Eingang</em> („Welt der Gestalten“) M 138: <span class='link-todo'>Textfassung 3</span>",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -2865,7 +2865,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "II „Noch zwingt mich Treue“ M 139: Textfassung 3 (blaue Tinte)",
+                        "itemDescription": "II „Noch zwingt mich Treue“ M 139: <span class='link-todo'>Textfassung 3</span> (blaue Tinte)",
                         "folios": [
                             {
                                 "folio": "4r",
@@ -2935,7 +2935,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "III „Ja Heil und Dank dir“ M 140: Textfassung 2",
+                        "itemDescription": "III „Ja Heil und Dank dir“ M 140: <span class='link-todo'>Textfassung 2</span>",
                         "folios": [
                             {
                                 "folio": "5r",
@@ -2998,7 +2998,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "IV „So ich traurig bin“ M 141: Textfassung 2",
+                        "itemDescription": "IV „So ich traurig bin“ M 141: <span class='link-todo'>Textfassung 2</span>",
                         "folios": [
                             {
                                 "folio": "6r",
@@ -3047,7 +3047,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "V „Ihr tratet zu dem Herde“ M 142: Textfassung 3",
+                        "itemDescription": "V „Ihr tratet zu dem Herde“ M 142: <span class='link-todo'>Textfassung 3</span>",
                         "folios": [
                             {
                                 "folio": "7r",
@@ -3922,7 +3922,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "I <em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 3",
+                        "itemDescription": "I <em>Eingang</em> („Welt der Gestalten“) M 138: <span class='link-todo'>Textfassung 3</span>",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -4013,7 +4013,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "II „Noch zwingt mich Treue“ M 139: Textfassung 3",
+                        "itemDescription": "II „Noch zwingt mich Treue“ M 139: <span class='link-todo'>Textfassung 3</span>",
                         "folios": [
                             {
                                 "folio": "3v",
@@ -4083,7 +4083,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "III „Ja Heil und Dank dir“ M 140: Textfassung 2",
+                        "itemDescription": "III „Ja Heil und Dank dir“ M 140: <span class='link-todo'>Textfassung 2</span>",
                         "folios": [
                             {
                                 "folio": "4v",
@@ -4146,7 +4146,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "IV „So ich traurig bin“ M 141: Textfassung 2",
+                        "itemDescription": "IV „So ich traurig bin“ M 141: <span class='link-todo'>Textfassung 2</span>",
                         "folios": [
                             {
                                 "folio": "5v",
@@ -4181,7 +4181,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "V „Ihr tratet zu dem Herde“ M 142: Textfassung 3",
+                        "itemDescription": "V „Ihr tratet zu dem Herde“ M 142: <span class='link-todo'>Textfassung 3</span>",
                         "folios": [
                             {
                                 "folio": "6r",

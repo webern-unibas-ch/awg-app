@@ -28,7 +28,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „Dies ist ein Lied“ M 133: Textfassung 1→2 (<strong>A<sup>a</sup></strong>)",
+                        "itemDescription": "Autograph von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">2</a> (<strong>A<sup>a</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -84,7 +84,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „Im Windesweben“ M 134: Textfassung 1→2 (<strong>A<sup>b</sup></strong>)",
+                        "itemDescription": "Autograph von „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">2</a> (<strong>A<sup>b</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "3r",
@@ -451,7 +451,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „Dies ist ein Lied“ M 133: Textfassung 2",
+                        "itemDescription": "Autograph von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -580,7 +580,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „Dies ist ein Lied“ M 133: Textfassung 2→3",
+                        "itemDescription": "Autograph von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>→<span class='link-todo'>3</span>",
                         "folios": [
                             {
                                 "folio": "1v",
@@ -972,7 +972,7 @@
                             "complexId": "op3",
                             "sheetId": "M_136_Sk1"
                         },
-                        "itemDescription": "(Fragment von „Im Morgentaun“ M 136: Textfassung 1)",
+                        "itemDescription": "(Fragment von „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -1056,7 +1056,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „Dies ist ein Lied“ M 133: Textfassung 4 (<strong>E<sup>a</sup></strong>)",
+                        "itemDescription": "Autograph von „Dies ist ein Lied“ M 133: <span class=_link-todo'>Textfassung 4</span> (<strong>E<sup>a</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -1112,7 +1112,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „Im Windesweben“ M 134: Textfassung 2 (<strong>E<sup>b</sup></strong>)",
+                        "itemDescription": "Autograph von „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> (<strong>E<sup>b</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "3r",
@@ -1174,7 +1174,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „An Bachesranft“ M 135: Textfassung 1 (<strong>E<sup>c</sup></strong>)",
+                        "itemDescription": "Autograph von „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF1'})\">Textfassung 1</a> (<strong>E<sup>c</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "5r",
@@ -1265,7 +1265,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „Im Morgentaun“ M 136: Textfassung 1 (<strong>E<sup>d</sup></strong>)",
+                        "itemDescription": "Autograph von „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a> (<strong>E<sup>d</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "7r",
@@ -1335,7 +1335,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „Kahl reckt der Baum“ M 137: Textfassung 1→2 (<strong>E<sup>e</sup></strong>)",
+                        "itemDescription": "Autograph von „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">2</a> (<strong>E<sup>e</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "9r",
@@ -2520,7 +2520,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Abschrift fremder Hand von „Dies ist ein Lied“ M 133: Textfassung 2→3→4 (<strong>F<sup>a</sup></strong>)",
+                        "itemDescription": "Abschrift fremder Hand von „Dies ist ein Lied“ M 133: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF1'})\">3</a>→<span class='link-todo'>4</span> (<strong>F<sup>a</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -2589,7 +2589,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Abschrift fremder Hand von „Im Windesweben“ M 134: Textfassung 2 (<strong>F<sup>b</sup></strong>)",
+                        "itemDescription": "Abschrift fremder Hand von „Im Windesweben“ M 134: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> (<strong>F<sup>b</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "3r",
@@ -2651,7 +2651,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Abschrift fremder Hand von „Kahl reckt der Baum“ M 137: Textfassung 1 (<strong>F<sup>c</sup></strong>)",
+                        "itemDescription": "Abschrift fremder Hand von „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF1'})\">Textfassung 1</a> (<strong>F<sup>c</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "5r",
@@ -3949,7 +3949,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „Im Windesweben“ M 134: Textfassung 3 (<strong>G<sup>a</sup></strong>)",
+                        "itemDescription": "Autograph von „Im Windesweben“ M 134: <span class='link-todo'>Textfassung 3</span> (<strong>G<sup>a</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -4005,7 +4005,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „Kahl reckt der Baum“ M 137: Textfassung 2→3(<strong>G<sup>c</sup></strong>)",
+                        "itemDescription": "Autograph von „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">Textfassung 2</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF3'})\">3</a> (<strong>G<sup>c</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -4061,7 +4061,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „Im Morgentaun“ M 136: Textfassung 1→2 (<strong>G<sup>b</sup></strong>)",
+                        "itemDescription": "Autograph von „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">2</a> (<strong>G<sup>b</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "4r",
@@ -4593,7 +4593,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „An Bachesranft“ M 135: Textfassung 2",
+                        "itemDescription": "Autograph von „An Bachesranft“ M 135: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF2'})\">Textfassung 2</a>",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -4868,7 +4868,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von Autograph von „Im Morgentaun“ M 136: Textfassung 2",
+                        "itemDescription": "Autograph von „Im Morgentaun“ M 136: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -5157,7 +5157,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "Autograph von „Kahl reckt der Baum“ M 137: Textfassung 4",
+                        "itemDescription": "Autograph von „Kahl reckt der Baum“ M 137: <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF4'})\">Textfassung 4</a>",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -5298,7 +5298,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "I „Dies ist ein Lied“ M 133: Textfassung 4",
+                        "itemDescription": "I „Dies ist ein Lied“ M 133: <span class='link-todo'>Textfassung 4</span>",
                         "folios": [
                             {
                                 "folio": "2",
@@ -5341,7 +5341,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "II „Im Windesweben“ M 134: Textfassung 3",
+                        "itemDescription": "II „Im Windesweben“ M 134: <span class='link-todo'>Textfassung 3</span>",
                         "folios": [
                             {
                                 "folio": "3",
@@ -5406,7 +5406,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "III „An Bachesranft“ M 135: Textfassung 3",
+                        "itemDescription": "III „An Bachesranft“ M 135: <span class='link-todo'>Textfassung 3</span>",
                         "folios": [
                             {
                                 "folio": "5",
@@ -5449,7 +5449,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "IV „Im Morgentaun“ M 136: Textfassung 3",
+                        "itemDescription": "IV „Im Morgentaun“ M 136: <span class='link-todo'>Textfassung 3</span>",
                         "folios": [
                             {
                                 "folio": "6",
@@ -5492,7 +5492,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "V „Kahl reckt der Baum“ M 137: Textfassung 5",
+                        "itemDescription": "V „Kahl reckt der Baum“ M 137: <span class='link-todo'>Textfassung 5</span>",
                         "folios": [
                             {
                                 "folio": "7",
