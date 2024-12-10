@@ -3660,7 +3660,7 @@
                                         "measure": "16",
                                         "system": "Klav.",
                                         "position": "1. Note",
-                                        "comment": "sic (Variante zu <span class='link-todo>Textfassung 2</span>): {{ref.getGlyph('[ppp]')}} (zusätzlich zu T. 15). <br /> sic (Variante zu <span class='link-todo'>Textfassung 2</span>): <em>Ped.</em> erst zu 3/8."
+                                        "comment": "sic (Variante zu <span class='link-todo'>Textfassung 2</span>): {{ref.getGlyph('[ppp]')}} (zusätzlich zu T. 15). <br /> sic (Variante zu <span class='link-todo'>Textfassung 2</span>): <em>Ped.</em> erst zu 3/8."
                                     }
                                 ]
                             },
