@@ -1,6 +1,386 @@
 {
     "textcritics": [
         {
+            "id": "op12_WE",
+            "label": "<em>Vier Lieder</em> op. 12",
+            "description": [
+                "Für die Edition der in den <em>Vier Liedern</em> op. 12 versammelten Textfassungen (I: „Der Tag ist vergangen“ M 212 Textfassung 3, II: Die geheimnisvolle Flöte [„An einem Abend“] M 217, III: „Schien mir’s, als ich sah die Sonne“ M 213, IV: Gleich und Gleich [„Ein Blumenglöckchen“] M 216 Textfassung 2) sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_EH'})\"><strong>E<sup>H</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> sowie <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_GH'})\"><strong>G<sup>H</sup></strong></a> relevante Quellen. <strong>A</strong> enthält Skizzen (siehe <span class='link-todo'>Skizzeneditionen<span>); <strong>C<sup>a</sup></strong>, <strong>B</strong>, <strong>D</strong> und <strong>E</strong> beziehen sich auf frühere Textfassungen (siehe <span class='link-todo'>Texteditionen</span>). <br /> Die Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> betreffen die Überarbeitung zu den in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> etablierten Textfassungen von <em>Die geheimnisvolle Flöte</em> M 217, „Schien mir’s, als ich sah die Sonne“ M 213 und <em>Gleich und Gleich</em> M 216, wobei der Zustand ante correcturam nicht immer eindeutig zu erkennen ist. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_EH_corr'})\">Korrekturen in <strong>E<sup>K</sup></strong></a> betreffen die Überarbeitung von „Der Tag ist vergangen“ M 212 zur in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> etablierten Textfassung 3. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> ist Stichvorlage für den Druck <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>. Die wenigen Eintragungen in Weberns Handexemplar <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_GH'})\"><strong>G<sup>H</sup></strong></a> beschränken sich auf Aufführungsdauern der Lieder. <br /> Hauptquelle für die Werkedition der <em>Vier Lieder</em> op. 12 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> ist Referenzquelle."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "Die Titelnummerierungen wurden bei allen Liedern ergänzt. Die Schreibweise der Titel in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a> mit Kapitälchen wurde vereinheitlichend geändert. <br /> <strong>I</strong> („Der Tag ist vergangen“ M 212: Textfassung 3)",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "1",
+                            "system": "Klav. o.",
+                            "position": "2/4",
+                            "comment": "{{ref.getGlyph('[#]')}} zu gis<sup>1</sup> ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "2",
+                            "system": "Klav.",
+                            "position": "1. Note",
+                            "comment": "Ende der Decrescendogabel versetzt von Ende T. 1."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "6",
+                            "system": "Klav.",
+                            "position": "1. Note",
+                            "comment": "Ende der Crescendogabel versetzt von Ende T. 5."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "10",
+                            "system": "Klav. o.",
+                            "position": "2. Note",
+                            "comment": "Anfang der Decrescendogabel versetzt von 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "10",
+                            "system": "Ges.",
+                            "position": "Taktende",
+                            "comment": "Ende der Decrescendogabel versetzt von 4/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "13",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "{{ref.getGlyph('[pp]')}} <em>äußerst ruhig</em> in eine Zeile gesetzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: <em>äußerst ruhig</em> | {{ref.getGlyph('[pp]')}}."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "13",
+                            "system": "Klav. u.",
+                            "position": "3/4",
+                            "comment": "{{ref.getGlyph('[pp]')}} unter das System versetzt mit Blick auf den weiteren dynamischen Verlauf."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "18",
+                            "system": "Ges.",
+                            "position": "1. Note",
+                            "comment": "Text sic: (Ver-)<em>storb</em>(-nen) ohne Binnen-Apostroph. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Rosegger_PM'})\"><strong>Rosegger_PM</strong></a>: <em>Verstorb’nen</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "20",
+                            "system": "Ges.",
+                            "position": "3. Note",
+                            "comment": "Ende der Decrescendogabel versetzt von Taktende gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                        }
+                    ]
+                },
+                {
+                    "blockHeader": "<strong>II</strong> (<em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217: einzige Textfassung)",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "4",
+                            "system": "Klav. u.",
+                            "position": "6. Note",
+                            "comment": "{{ref.getGlyph('[ppp]')}} von zwischen den Klav.-Systemen versetzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "7",
+                            "system": "Klav.",
+                            "position": "1/8",
+                            "comment": "{{ref.getGlyph('[#]')}} zu fis und cis<sup>2</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 6."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "2. Note",
+                            "comment": "Ende der Crescendogabel und Anfang der Decrescendogabel versetzt von zwischen 1.–2. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "10",
+                            "system": "Klav. u.",
+                            "position": "1/4",
+                            "comment": "{{ref.getGlyph('[b]')}} zu B als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 9."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "12",
+                            "system": "Klav. u.",
+                            "position": "1. Note",
+                            "comment": "{{ref.getGlyph('[b]')}} zu Es/as ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 11."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "16",
+                            "system": "Ges.",
+                            "position": "1–2/8",
+                            "comment": "Text: Silbentrennstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Silben zusammengeschrieben."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "17",
+                            "system": "Ges.",
+                            "position": "1/4",
+                            "comment": "Ende der Crescendogabel versetzt von Ende T. 16."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "18",
+                            "system": "Klav. u.",
+                            "position": "3/16",
+                            "comment": "Anfang der Decrescendogabel versetzt von 2/16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "21",
+                            "system": "Klav. u.",
+                            "position": "4/8",
+                            "comment": "Ende der Decrescendogabel versetzt von zwischen 2.–3. Note."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "22",
+                            "system": "Ges.",
+                            "position": "5/8",
+                            "comment": "Text sic: <em>wenn</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Bethge_DchF'})\"><strong>Bethge_DchF</strong></a>: <em>wann</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "23",
+                            "system": "Klav. u.",
+                            "position": "1/4",
+                            "comment": "{{ref.getGlyph('[a]')}} zu a als redundant weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "25",
+                            "system": "Klav. o.",
+                            "position": "1/4",
+                            "comment": "{{ref.getGlyph('[b]')}} zu b, {{ref.getGlyph('[a]')}} zu a<sup>1</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 24."
+                        }
+                    ]
+                },
+                {
+                    "blockHeader": "<strong>III</strong> („Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung)",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "3",
+                            "system": "Klav. o.",
+                            "position": "3/8",
+                            "comment": "Ende der Decrescendogabel versetzt von Taktende gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "5",
+                            "system": "Ges.",
+                            "position": "3/8",
+                            "comment": "Ende der Decrescendogabel versetzt von Taktende gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>.  <br /> Text sic: <em>mir’s</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Strindberg_Gs'})\"><strong>Strindberg_Gs</strong></a>: <em>mirs</em> (ohne Apostroph)."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "5",
+                            "system": "Klav. u.",
+                            "position": "3/8",
+                            "comment": "Halsrichtung von G/c mit Blick auf latente Stimmenstruktur geändert. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>/<a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Hals nach oben."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "6",
+                            "system": "Klav.",
+                            "position": "3–6/16",
+                            "comment": "Anfang der Decrescendogabel versetzt von 4/16 und Ende versetzt von Taktende gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "6/16",
+                            "comment": "Text sic: Komma nach (Son-)<em>ne</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Strindberg_Gs'})\"><strong>Strindberg_Gs</strong></a>: Ausrufezeichen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "9",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "Text sic: <em>daß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Strindberg_Gs'})\"><strong>Strindberg_Gs</strong></a>: <em>dass</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "13",
+                            "system": "Klav. o.",
+                            "position": "1. Note",
+                            "comment": "{{ref.getGlyph('[#]')}} zu cis<sup>1</sup> und {{ref.getGlyph('[a]')}} zu c<sup>2</sup> nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 12."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "15",
+                            "system": "Ges.",
+                            "position": "1–2/8",
+                            "comment": "Längenstrich ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "16",
+                            "system": "Ges.",
+                            "position": "1. Note",
+                            "comment": "Text sic: (ge-)<em>nießt</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Strindberg_Gs'})\"><strong>Strindberg_Gs</strong></a>: <em>geniesst</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "17",
+                            "system": "Klav. o.",
+                            "position": "",
+                            "comment": "{{ref.getGlyph('[a]')}} zu g als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>: Akzidenzien zu es/g/cis<sup>1</sup> fehlen nach Akkoladenwechsel. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akzidenzien zu es/g/cis<sup>1</sup> nach Akkoladenwechsel."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "18",
+                            "system": "Ges.",
+                            "position": "Taktende",
+                            "comment": "Ende der Decrescendogabel versetzt von T. 18 3/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "23",
+                            "system": "Ges.",
+                            "position": "4. Note",
+                            "comment": "Anfang der Decrescendogabel versetzt von 3. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "24",
+                            "system": "Ges.",
+                            "position": "2. Note",
+                            "comment": "Text sic: (bü-)<em>ße</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Strindberg_Gs'})\"><strong>Strindberg_Gs</strong></a>: <em>büsse</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "26",
+                            "system": "Ges.",
+                            "position": "1.–3. Note",
+                            "comment": "Text sic: Silbentrennung <em>trö-ste</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "27",
+                            "system": "Klav. o.",
+                            "position": "1/16",
+                            "comment": "{{ref.getGlyph('[#]')}} zu cis<sup>2</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 26."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "32",
+                            "system": "Ges.",
+                            "position": "1.–2. Note",
+                            "comment": "Text sic: <em>Der nur</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Strindberg_Gs'})\"><strong>Strindberg_Gs</strong></a>: <em>Nur der</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "32",
+                            "system": "Ges.",
+                            "position": "5–6/16",
+                            "comment": "Text: Silbentrennstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Silben zusammengeschrieben."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "35",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "Zeilenfall bei <em>sehr ruhig | (</em>{{ref.getGlyph('[Achtelnote]')}} <em>= ca 100)</em>. aufgelöst gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Auf Grund des Akkoladenwechsels nach T. 35 nicht ausreichend Raum bis zum Seitenrand für die Tempobezeichnung in einer Zeile."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "35",
+                            "system": "Ges.",
+                            "position": "",
+                            "comment": "Text sic: Kleinschreibung <em>gut</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Strindberg_Gs'})\"><strong>Strindberg_Gs</strong></a>: Großschreibung <em>Gut</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "36",
+                            "system": "Klav. u.",
+                            "position": "1. Note",
+                            "comment": "{{ref.getGlyph('[b]')}} zu ges als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 35."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "36",
+                            "system": "Ges.",
+                            "position": "(3/8)",
+                            "comment": "Anfang der Crescendogabel versetzt von Höhe ca. 2/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "38",
+                            "system": "Klav. o.",
+                            "position": "1. Note",
+                            "comment": "{{ref.getGlyph('[#]')}} zu dis<sup>1</sup> und {{ref.getGlyph('[a]')}} zu g<sup>1</sup> nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "38",
+                            "system": "Klav. u.",
+                            "position": "",
+                            "comment": "{{ref.getGlyph('[#]')}} zu Gis nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel."
+                        }
+                    ]
+                },
+                {
+                    "blockHeader": "<strong>IV</strong> (<em>Gleich und Gleich</em> [„Ein Blumenglöckchen“] M 216: Textfassung 2)",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "11",
+                            "system": "Ges.",
+                            "position": "vor 1. Pause",
+                            "comment": "Ende der Decrescendogabel versetzt von ca. (2/8) gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "14",
+                            "system": "Ges.",
+                            "position": "3/4",
+                            "comment": "Text: Längenstrich nach <em>fein:</em> korrigiert zu Gedankenstrich gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> und mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Goethe_JA'})\"><strong>Goethe_JA</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "16",
+                            "system": "Klav. o.",
+                            "position": "1. Note",
+                            "comment": "Unterstimmenschicht: {{ref.getGlyph('[b]')}} zu es ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 15."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "18",
+                            "system": "Klav. u.",
+                            "position": "2/8",
+                            "comment": "Anfang der Crescendogabel versetzt von 3/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "18 <br /> bis 19",
+                            "system": "Ges.",
+                            "position": "12/16 <br /> 1. Note",
+                            "comment": "Text sic: Silbentrennung <em>ein-an</em>(-der)."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "19",
+                            "system": "Klav. o.",
+                            "position": "6/8",
+                            "comment": "Oberstimmenschicht: Ende der Decrescendogabel versetzt von (5/8) gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
+        },
+        {
             "id": "M_212_TF1",
             "label": "M 212 Textfassung 1",
             "description": [
