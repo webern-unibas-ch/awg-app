@@ -1532,7 +1532,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_TF1'})\">Textfassung 1</a>→<span class='link-todo>2</span> (<strong>C<sup>d</sup></strong>)",
+                        "itemDescription": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_TF1'})\">Textfassung 1</a>→<span class='link-todo'>2</span> (<strong>C<sup>d</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "9r",
