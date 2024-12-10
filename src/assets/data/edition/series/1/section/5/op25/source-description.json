@@ -2201,7 +2201,7 @@
                         "id": "source_E_corr_1",
                         "label": "Korrekturen 1 in <strong>E</strong>",
                         "description": [
-                            "Die Beschreibung der Korrekturen bezieht sich auf <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">„Wie bin ich froh“ M 317: <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a></a>."
+                            "Die Beschreibung der Korrekturen bezieht sich auf „Wie bin ich froh“ M 317: <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>."
                         ],
                         "comments": [
                             {
