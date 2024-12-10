@@ -225,7 +225,7 @@
                             "measure": "2",
                             "system": "3",
                             "position": "4/8",
-                            "comment": "{{ref.getGlyph('[#]')}} zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</a>."
+                            "comment": "{{ref.getGlyph('[#]')}} zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                         },
                         {
                             "svgGroupId": "g1320",
