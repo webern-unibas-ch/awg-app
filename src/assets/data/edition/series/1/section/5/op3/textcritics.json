@@ -1,6 +1,699 @@
 {
     "textcritics": [
         {
+            "id": "op3_WE",
+            "label": "George-Lieder: <br /> <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3",
+            "description": [
+                "Für die Edition der in den <em>Fünf Liedern aus</em> Der siebente Ring <em>von Stefan George</em> op. 3 versammelten Textfassungen (I: „Dies ist ein Lied“ M 133 Textfassung 4; II: „Im Windesweben“ M 134 Textfassung 3; III: „An Bachesranft“ M 135 Textfassung 3, IV: „Im Morgentaun“ M 136 Textfassung 3, V: „Kahl reckt der Baum“ M 137 Textfassung 5) sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>a</sup></strong></a> sowie die beiden stichbildidentischen Drucke <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_L'})\"><strong>L</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_M'})\"><strong>M</strong></a> relevante Quellen. <strong>A</strong> bis <strong>D</strong>, die weiteren Teile aus <strong>E</strong> bis <strong>G</strong> sowie <strong>H</strong> bis <strong>J</stronng> beziehen sich auf frühere Textfassungen (siehe <span class='link-todo'>Texteditionen</span>). <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F</strong></a> ist in seiner Grundschicht eine Abschrift fremder Hand mehrerer George-Lieder, die von Webern im Falle von „Dies ist ein Lied“ M 133 (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a>) mehrfach bis zu Textfassung 4 überarbeitet wurde. Die Niederschrift von „Dies ist ein Lied“ M 133 Textfassung 4 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> erfolgte mit oder nach der letzten Überarbeitung desselben Liedes in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a>. Die Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> sind unabhängig von <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_L'})\"><strong>L</strong></a> entstanden und zum Teil wahrscheinlich aufführungsspezifisch motiviert. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G</strong></a> enthält Niederschriften mehrerer George-Lieder, von denen „Im Windesweben“ M 134 (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>a</sup></strong></a>) in großen Teilen bereits Textfassung 3 entspricht. Eine Stichvorlage [<strong>K</strong>] für <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_L'})\"><strong>L</strong></a> ist nicht überliefert. (Setzt man erhebliche Korrekturen der Druckfahne voraus, wäre im Falle von „Dies ist ein Lied“ M 133 <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> ante correcturam als Vorlage immerhin denkbar.) <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_M'})\"><strong>M</strong></a> übernimmt das Stichbild von <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_L'})\"><strong>L</strong></a>. <br /> Hauptquellen für die Werkedition der <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3 sind die stichbildidentischen Drucke <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_L'})\"><strong>L</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_M'})\"><strong>M</strong></a>. Da eine direkte autographe Vorlage dieser Hauptquellen nicht nachweisbar ist, werden bei Unklarheiten auch andere Textfassungen herangezogen."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "<strong>I</strong> („Dies ist ein Lied“ M 133: Textfassung 4)",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "1",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "Punkt nach <em>Fließend</em> und nach <em>bewegt</em> weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "1",
+                            "system": "Ges.",
+                            "position": "1. Note bis 2. Pause",
+                            "comment": "sic: Artikulationsbogen. Siehe auch „Kahl reckt der Baum“ M 137: Textfassung 4 T. 2 1/8. Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a>: Bogen gestrichen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "1",
+                            "system": "Klav. o.",
+                            "position": "3. Pause, 2. Note, 4. Pause",
+                            "comment": "Oberstimmenschicht: Triolenziffer und -klammer ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "2",
+                            "system": "Klav. o.",
+                            "position": "2/8",
+                            "comment": "Oberstimmenschicht: Viertelnote korrigiert zu Achtelnote."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "3",
+                            "system": "Klav. u.",
+                            "position": "1. Note",
+                            "comment": "Oberstimmenschicht: Ende des Legatobogens versetzt von T. 2 2. Note."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "3",
+                            "system": "Klav. u.",
+                            "position": "3/8",
+                            "comment": "Achtelpause ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "3",
+                            "system": "Klav. o.",
+                            "position": "4/8",
+                            "comment": "{{ref.getGlyph('[a]')}} zu f<sup>2</sup> ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "3",
+                            "system": "Ges.",
+                            "position": "6/8",
+                            "comment": "Text sic: Komma nach (Wäh-)<em>nen</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: kein Komma."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "4",
+                            "system": "Klav. o.",
+                            "position": "4. Note",
+                            "comment": "{{ref.getGlyph('[a]')}} zu f<sup>2</sup> ergänzt.  <br /> Ende der Crescendogabel und Anfang der Decrescendogabel versetzt von zwischen 4. und 5. Note mit Blick auf Textfassung 3."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "4",
+                            "system": "Ges.",
+                            "position": "6/8",
+                            "comment": "Text sic: Drei Punkte nach (Trä-)<em>nen</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: zwei Punkte."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "4",
+                            "system": "Klav. u.",
+                            "position": "6/8",
+                            "comment": "{{ref.getGlyph('[a]')}} zu d ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "5",
+                            "system": "Klav.",
+                            "position": "Taktanfang",
+                            "comment": "Wiederholtes <em>rit.</em> (siehe Ges.) als redundant weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "5",
+                            "system": "",
+                            "position": "4/8",
+                            "comment": "Großschreibung von <em>tempo</em> korrigiert und Wiederholung über Klav. als redundant weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "5 <br /> bis 6",
+                            "system": "Klav. o.",
+                            "position": "4/8 <br /> 1. Note",
+                            "comment": "Crescendogabel versetzt von T. 6 1–2/8 analog Ges. und mit Blick auf Textfassung 3."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "6",
+                            "system": "Klav. u.",
+                            "position": "11/16",
+                            "comment": "{{ref.getGlyph('[a]')}} zu d ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "7",
+                            "system": "Klav.",
+                            "position": "Taktanfang <br /> bis Taktende",
+                            "comment": "Wiederholtes <em>rit.</em> und Geltungsstrichelung (siehe Ges.) als redundant weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "7",
+                            "system": "Klav. o.",
+                            "position": "11/16",
+                            "comment": "{{ref.getGlyph('[ppp]')}} versetzt von Höhe 10/16."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "7",
+                            "system": "Ges.",
+                            "position": "12/16",
+                            "comment": "Achtelnote korrigiert zu Sechzehntelnote gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a> sowie mit Blick auf den metrischen Kontext."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "7",
+                            "system": "Klav. o.",
+                            "position": "13/16",
+                            "comment": "Sechzehntelpause ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "",
+                            "position": "1/8",
+                            "comment": "Ende der Geltungsstrichelung von Ende T. 7 versetzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Klav. o.",
+                            "position": "2/16",
+                            "comment": "Sechzehntelpause mit Fermate ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Klav.",
+                            "position": "2/8",
+                            "comment": "Wiederholtes <em>etwa langsamer als zu Beginn</em> (siehe Ges.) als redundant weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Klav. u.",
+                            "position": "4/8",
+                            "comment": "Unterstimmenschicht: Viertelpause bei 2/4 korrigiert zu Achtelpause bei 4/8 mit Blick auf die vertikale Position der Achtelpause bei 3/8 und mit Blick auf Textfassung 3."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "9",
+                            "system": "Klav. u.",
+                            "position": "(3/4)",
+                            "comment": "Unterstimmenschicht: Triolenziffer und -klammer ergänzt analog Oberstimmenschicht."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "10 <br /> bis 12",
+                            "system": "",
+                            "position": "Taktanfang <br /> 2/4",
+                            "comment": "Ende der Geltungsstrichelung von T. 10 5/8 versetzt bis T. 12 2/4 analog Geltungsstrichelung vom wiederholten <em>rit.</em> über Klav. o. Wiederholtes <em>rit.</em> und Geltungsstrichelung über Klav. o. als redundant weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "10",
+                            "system": "Klav. o.",
+                            "position": "1/8",
+                            "comment": "Ende des Bogens versetzt von T. 9 6/8."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "10",
+                            "system": "Klav. o.",
+                            "position": "1–2/8",
+                            "comment": "Unterstimmenschicht: Viertelpause als redundant weggelassen."
+                        }
+                    ]
+                },
+                {
+                    "blockHeader": "<strong>II</strong> („Im Windesweben“ M 134: Textfassung 3)",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "1",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "Punkte nach <em>fließend</em> und <em>Ausdruck</em> weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "2",
+                            "system": "Klav. o.",
+                            "position": "1/16",
+                            "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu f<sup>1</sup>/d<sup>2</sup> als redundant weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "vor 5",
+                            "system": "Klav. u.",
+                            "position": "",
+                            "comment": "Bassschlüssel versetzt von T. 5 vor 2/16 mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>a</sup></strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_L'})\"><strong>L</strong></a>/<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_M'})\"><strong>M</strong></a>: Bassschlüssel von Stecher offensichtlich nachträglich eingefügt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "5",
+                            "system": "Klav. u.",
+                            "position": "(5/8)",
+                            "comment": "Achtelpause als redundant weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "6 <br /> bis 7",
+                            "system": "Klav.",
+                            "position": "5/8 <br /> (1/8)",
+                            "comment": "Wiederholtes <em>rit.</em> und Geltungsstrichelung (siehe Ges.) zwischen den Systemen als redundant weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "7",
+                            "system": "Ges.",
+                            "position": "1/8",
+                            "comment": "Text: Längenstrich nach (ent-)<em>facht</em> korrigiert zu Gedankenstrich mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "7",
+                            "system": "Klav.",
+                            "position": "(2/8) bis Taktende",
+                            "comment": "Wiederholtes <em>accel.</em> und Geltungsstrichelung (siehe Ges.) zwischen den Systemen als redundant weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "Punkt nach <em>Tempo I</em> weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "3. Note",
+                            "comment": "Text sic: <em>muß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>muss</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "9",
+                            "system": "Ges.",
+                            "position": "1/8",
+                            "comment": "Text sic: Apostroph nach <em>Aug</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: kein Apostroph."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "10",
+                            "system": "Klav.",
+                            "position": "2/16",
+                            "comment": "<em>Ped.</em> versetzt von 1/16 mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>a</sup></strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "10",
+                            "system": "Klav.",
+                            "position": "4/8",
+                            "comment": "sic: Achtelpause in Klav. o. deutet Handwechsel an. Siehe auch Textfassung 2."
+                        }
+                    ]
+                },
+                {
+                    "blockHeader": "<strong>III</strong> („An Bachesranft“ M 135: Textfassung 3)",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "vor 1",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "Punkte nach <em>rasch</em> und <em>Bewegung</em> weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "1",
+                            "system": "Ges.",
+                            "position": "1.–3. Note",
+                            "comment": "Text sic: ein Wort <em>Ba-ches-ranft</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: zwei Worte <em>baches ranft</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "3",
+                            "system": "Klav. o.",
+                            "position": "4/16",
+                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "4",
+                            "system": "Klav. o.",
+                            "position": "1/16, 8/16",
+                            "comment": "Zwei synchrone Sechzehntelpausen von Ober- und Unterstimmenschicht zusammengefasst zu einer Sechzehntelpause."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "vor 6",
+                            "system": "Klav. u.",
+                            "position": "",
+                            "comment": "Bassschlüssel versetzt von T. 6 vor 1. Note. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_L'})\"><strong>L</strong></a>/<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_M'})\"><strong>M</strong></a>: Bassschlüssel von Stecher offensichtlich nach Stich der Pause und Noten hinzugefügt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "7",
+                            "system": "Klav. u.",
+                            "position": "1. Note",
+                            "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu d ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8–9",
+                            "system": "Klav. o.",
+                            "position": "",
+                            "comment": "Unterstimmenschicht: Triolenziffern und gegebenfalls -klammern ergänzt analog Oberstimmenschicht."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Klav. u.",
+                            "position": "1.–2. Note",
+                            "comment": "Oberstimmenschicht: Triolenziffer und -klammer ergänzt analog Unterstimmenschicht."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Klav. u.",
+                            "position": "2. Note",
+                            "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu d ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "3–4/8",
+                            "comment": "Ende der Crescendogabel versetzt von nach 3/8 zu 3/8, Anfang der Decrescendogabel versetzt von vor 4/8 zu 3/8 sowie Ende der Decrescendogabel versetzt von Taktende zu 4/8 mit Blick auf Textfassung 2."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Klav. o.",
+                            "position": "3. Note",
+                            "comment": "Ober- und Unterstimmenschicht: Ende der Legatobögen versetzt von 2. Note."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8 <br /> bis 12",
+                            "system": "Klav.",
+                            "position": "3. Note <br /> Taktende",
+                            "comment": "Wiederholtes <em>rit.</em> und Geltungsstrichelung (siehe Ges.) als redundant weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Klav. u.",
+                            "position": "3. Note",
+                            "comment": "{{ref.getGlyph('[a]')}} zu e ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8 <br /> bis 9",
+                            "system": "Klav. u.",
+                            "position": "3. Note <br /> 1. Note",
+                            "comment": "Legatobogen e–d als redundant weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "9",
+                            "system": "Klav. o.",
+                            "position": "1. Note",
+                            "comment": "Unterstimmenschicht: Ende des Legatobogen versetzt von T. 8 letzte Note."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "9",
+                            "system": "Klav. u.",
+                            "position": "1. Note",
+                            "comment": "{{ref.getGlyph('[a]')}} zu d ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "9",
+                            "system": "Klav. o.",
+                            "position": "2. Note",
+                            "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu f<sup>1</sup> ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "10",
+                            "system": "Klav. o.",
+                            "position": "1. Note",
+                            "comment": "Unterstimmenschicht: Ende des Legatobogens versetzt von T. 9 letzte Note.  <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_L'})\"><strong>L</strong></a>/<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_M'})\"><strong>M</strong></a>: kein Akkoladenwechsel nach T. 9, trotzdem {{ref.getGlyph('[b]')}} zu es<sup>1</sup>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "11",
+                            "system": "Ges.",
+                            "position": "3. Note",
+                            "comment": "Text sic: drei Punkte nach <em>grau</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: zwei Punkte."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "13",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "Punkt nach <em>Langsam</em> weggelassen."
+                        }
+                    ]
+                },
+                {
+                    "blockHeader": "<strong>IV</strong> („Im Morgentaun“ M 136: Textfassung 3)",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "vor 1",
+                            "system": "",
+                            "position": "",
+                            "comment": "Punkte nach <em>Fließend</em> und <em>zart</em> weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "1",
+                            "system": "Klav. u.",
+                            "position": "4/8",
+                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu e ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "2",
+                            "system": "Ges.",
+                            "position": "1/8",
+                            "comment": "Ende des Legatobogens gesetzt gemäß Text- und Zeilenstruktur in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_L'})\"><strong>L</strong></a>/<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_M'})\"><strong>M</strong></a>: Ende des Legatobogens nach T. 1 vor Akkoladenwechsel."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "2",
+                            "system": "Klav.",
+                            "position": "1. Note",
+                            "comment": "Offener Beginn der Crescendogabel korrigiert zu geschlossenem Anfang."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "2",
+                            "system": "Klav. o.",
+                            "position": "7. Note",
+                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu f<sup>1</sup> ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "4",
+                            "system": "Klav. o.",
+                            "position": "1/16",
+                            "comment": "Unterstimmenschicht: {{ref.getGlyph('[b]')}} zu as<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_L'})\"><strong>L</strong></a>/<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_M'})\"><strong>M</strong></a>: kein Akkoladenwechsel nach T. 3."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "4",
+                            "system": "Klav. u.",
+                            "position": "7/16",
+                            "comment": "{{ref.getGlyph('[a]')}} zu D ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "5",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "Punkt nach <em>Mäßig</em> weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "6",
+                            "system": "Ges.",
+                            "position": "1/4",
+                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt. <br /> Text sic: drei Punkte nach <em>Staub</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: zwei Punkte."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "7",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "Punkt nach <em>Etwas langsamer als zu Beginn</em> weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "7",
+                            "system": "Klav. u.",
+                            "position": "1/8",
+                            "comment": "Ende des Legatobogens versetzt von T. 6 letzte Note."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "7",
+                            "system": "Klav.",
+                            "position": "2/8",
+                            "comment": "Pedal-Aufhebung ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "7/8",
+                            "comment": "Text: Längenstrich nach <em>Laub</em> korrigiert zu Gedankenstrich mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "9",
+                            "system": "Ges.",
+                            "position": "5/8",
+                            "comment": "Text: <em>nur _ _ _</em> korrigiert zu <em>nur…</em> mit Blick auf Textfassung 2 und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "9",
+                            "system": "Klav. u.",
+                            "position": "8/8",
+                            "comment": "Achtelpause ergänzt."
+                        }
+                    ]
+                },
+                {
+                    "blockHeader": "<strong>V</strong> („Kahl reckt der Baum“ M 137: Textfassung 5)",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "1",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "Punkte nach <em>Langsam</em> und <em>ruhig</em> weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "1",
+                            "system": "Klav. u.",
+                            "position": "2/4",
+                            "comment": "Unterstimmenschicht: fehlende Pause zu 3/8, Achtelpause zu 4/8 korrigiert zu Viertelpause mit Blick auf Textfassung 4."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "4",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "Text sic: Punkt nach (Le-)<em>ben</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: Komma."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "4",
+                            "system": "Ges.",
+                            "position": "4/8",
+                            "comment": "Text sic: <em>Laß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>Lass</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "5",
+                            "system": "Klav. u.",
+                            "position": "6/8",
+                            "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu a ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "6",
+                            "system": "Klav. o.",
+                            "position": "1/4",
+                            "comment": "Ende der Crescendogabel versetzt von Ende T. 5."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "7",
+                            "system": "Klav. u.",
+                            "position": "4/8",
+                            "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu f ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "7",
+                            "system": "Klav. u.",
+                            "position": "5/8",
+                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu c<sup>1</sup>, {{ref.getGlyph('[b]')}} zu es<sup>1</sup> ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "",
+                            "position": "2/8 <br /> bis Taktende",
+                            "comment": "<em>rit. - - -</em> von Klav. u. über die Akkolade versetzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "Text: Unterstrich nach (Ar-)<em>me</em> korrigiert zu Gedankenstrich mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "9",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "<em>a tempo</em> von Klav. o. über die Akkolade versetzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "10",
+                            "system": "Klav. o.",
+                            "position": "1/8",
+                            "comment": "Ende des Legatobogens versetzt von T. 9 6/8. <br /> {{ref.getGlyph('[#]')}} zu gis<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_L'})\"><strong>L</strong></a>/<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_M'})\"><strong>M</strong></a>: kein Akkoladenwechsel nach T. 9."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "10",
+                            "system": "Klav. o.",
+                            "position": "1. Note",
+                            "comment": "Viertelnote {{ref.getGlyph('[a]')}}a korrigiert zu punktierter Viertelnote mit Blick auf den metrischen Kontext sowie auf Textfassung 3 und Textfassung 4."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "10",
+                            "system": "Ges.",
+                            "position": "5–6/8",
+                            "comment": "Längenstrich ergänzt. <br /> Text sic: Komma nach <em>Gunst</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: kein Komma."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "11",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "Text sic: <em>daß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>Dass</em> (am Zeilenanfang)."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "12",
+                            "system": "",
+                            "position": "Taktanfang <br /> bis Taktende",
+                            "comment": "Anfang von <em>rit. - - -</em> versetzt von (2/8) analog Klav. zwischen den Systemen und mit Blick auf Textfassung 4 (<strong>J$</strong>).  <br /> <em>rit. - - -</em> in Klav. zwischen den Systemen als redundant weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "12",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "Text sic: <em>daß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>Dass</em> (am Zeilenanfang)."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "13",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "Wiederholtes <em>a tempo</em> in Klav. zwischen den Systemen als redundant weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "14",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "<em>rit.</em> von Klav. o. über die Akkolade versetzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "16",
+                            "system": "Klav. o.",
+                            "position": "",
+                            "comment": "Ende des Legatobogens versetzt von T. 15 3/4."
+                        }
+                    ]
+                }
+            ],
+            "linkBoxes": []
+        },
+        {
             "id": "M_133_TF1",
             "label": "M 133 Textfassung 1",
             "description": [
