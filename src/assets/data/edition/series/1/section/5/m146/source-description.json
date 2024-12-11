@@ -270,7 +270,7 @@
                                         "measure": "8",
                                         "system": "Klav. o.",
                                         "position": "3/16",
-                                        "comment": "{{ref.getGlyph('[#]')}} zu gis<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}} zu g<sup>2</sup>. Siehe &lt;span class='link-todo'&gt;TkA&lt;/span&gt;."
+                                        "comment": "{{ref.getGlyph('[#]')}} zu gis<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}} zu g<sup>2</sup>. Siehe <span class='link-todo'>TkA</span>."
                                     },
                                     {
                                         "measure": "8",
