@@ -207,7 +207,7 @@
             "id": "M_212_Sk1",
             "label": "M 212 Sk1",
             "description": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\" >„Der Tag ist vergangen“ M 212: Textfassung 1</a>."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\" >Textfassung 1</a>."
             ],
             "comments": [
                 {
