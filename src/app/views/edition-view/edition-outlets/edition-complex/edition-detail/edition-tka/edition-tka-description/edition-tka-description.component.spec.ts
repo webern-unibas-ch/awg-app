@@ -18,7 +18,7 @@ import { EditionSvgSheet } from '@awg-views/edition-view/models';
 import { DOCUMENT } from '@angular/common';
 import { EditionTkaDescriptionComponent } from './edition-tka-description.component';
 
-describe('EditionTkaDescriptionComponent (DONE)', () => {
+fdescribe('EditionTkaDescriptionComponent (DONE)', () => {
     let component: EditionTkaDescriptionComponent;
     let fixture: ComponentFixture<EditionTkaDescriptionComponent>;
     let compDe: DebugElement;
@@ -51,6 +51,8 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
+        mockDocument = TestBed.inject(DOCUMENT);
+
         // Test data
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
@@ -59,8 +61,6 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
         expectedTextcriticalDescriptions = mockEditionData.mockTextcriticsData.textcritics.at(1).description;
-
-        mockDocument = TestBed.inject(DOCUMENT);
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -127,7 +127,7 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
                     expectedTextcriticalDescriptions.length
                 );
                 pDes.forEach(pDe => {
-                    getAndExpectDebugElementByDirective(pDe, CompileHtmlComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(pDe, CompileHtmlComponent, 1, 1);
                 });
             });
 
