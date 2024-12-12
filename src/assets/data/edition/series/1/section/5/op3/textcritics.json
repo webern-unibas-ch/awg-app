@@ -4,7 +4,7 @@
             "id": "M_133_TF1",
             "label": "M 133 Textfassung 1",
             "description": [
-                "Für die Edition von „Dies ist ein Lied“ M 133 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>a</sup></strong></a> einzige relevante Quelle. <br />Der Zustand vor <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Aa_corr_1'})\">Korrekturen 1</a> lässt sich nicht immer eindeutig entziffern. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Aa_corr_2'})\">Korrekturen 2</a> skizzieren Textfassung 2. <br />Hauptquelle für die Textedition von „Dies ist ein Lied“ M 133 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>a</sup></strong></a> nach Korrekturen 1 und vor Korrekturen 2."
+                "Für die Edition von „Dies ist ein Lied“ M 133 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>a</sup></strong></a> einzige relevante Quelle. <br />Der Zustand vor <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Aa_corr_1'})\">Korrekturen 1</a> lässt sich nicht immer eindeutig entziffern. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Aa_corr_2'})\">Korrekturen 2</a> skizzieren <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>. <br />Hauptquelle für die Textedition von „Dies ist ein Lied“ M 133 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_A'})\"><strong>A<sup>a</sup></strong></a> nach Korrekturen 1 und vor Korrekturen 2."
             ],
             "comments": [
                 {
@@ -22,7 +22,7 @@
                             "measure": "4",
                             "system": "Klav. o.",
                             "position": "4/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>2</sup> ergänzt mit Blick auf Textfassung 3 und Textfassung 4."
+                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>2</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF3'})\">Textfassung 3</a> und <span class='link-todo'>Textfassung 4</span>."
                         },
                         {
                             "svgGroupId": "g456",
@@ -36,14 +36,14 @@
                             "measure": "4",
                             "system": "Klav. u.",
                             "position": "6/8",
-                            "comment": "Gültigkeit und Ende des Legatobogens nicht eindeutig zu entziffern. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Aa_corr_1'})\">Korrekturen 1</a>: Legatobogen mit Ende zu T. 5 3/8 nach Taktende von T. 4 rasiert. Legatobogen und Ende zu 6/8 gesetzt mit Blick auf Textfassung 3 und Textfassung 4."
+                            "comment": "Gültigkeit und Ende des Legatobogens nicht eindeutig zu entziffern. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Aa_corr_1'})\">Korrekturen 1</a>: Legatobogen mit Ende zu T. 5 3/8 nach Taktende von T. 4 rasiert. Legatobogen und Ende zu 6/8 gesetzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF3'})\">Textfassung 3</a> und <span class='link-todo'>Textfassung 4</span>."
                         },
                         {
                             "svgGroupId": "g457-2",
                             "measure": "6",
                             "system": "Klav. o.",
                             "position": "6/8",
-                            "comment": "Entzifferung nicht eindeutig. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Aa_corr_1'})\">Korrekturen 1</a>: auf Rasur und mehrmals nachgezogen. Entzifferung als c<sup>3</sup>/e<sup>3</sup> mit Blick auf resultierende chromatische Stimmführung von T. 6 4/8 bis T. 7 1/8 und spätere Korrektur in T. 6 4–5/8 (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Aa_corr_2'})\">Korrekturen 2</a> und spätere Textfassungen)."
+                            "comment": "Entzifferung nicht eindeutig. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Aa_corr_1'})\">Korrekturen 1</a>: auf Rasur und mehrmals nachgezogen. Entzifferung als c<sup>3</sup>/e<sup>3</sup> mit Blick auf resultierende chromatische Stimmführung von T. 6 4/8 bis T. 7 1/8 und spätere Korrektur in T. 6 4–5/8 (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Aa_corr_2'})\">Korrekturen 2</a> und <span class='link-todo'>spätere Textfassungen</span>)."
                         },
                         {
                             "svgGroupId": "g457-2-7",
@@ -134,7 +134,7 @@
                             "measure": "4",
                             "system": "Klav. o.",
                             "position": "4/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>2</sup> ergänzt mit Blick auf Textfassung 3 und Textfassung 4."
+                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>2</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF3'})\">Textfassung 3</a> und <span class='link-todo'>Textfassung 4</span>."
                         },
                         {
                             "svgGroupId": "g443",
@@ -148,7 +148,7 @@
                             "measure": "6",
                             "system": "Klav. o.",
                             "position": "4/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>3</sup> ergänzt mit Blick auf Textfassung 3 und Textfassung 4."
+                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>3</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF3'})\">Textfassung 3</a> und <span class='link-todo'>Textfassung 4</span>."
                         },
                         {
                             "svgGroupId": "g441b",
@@ -183,14 +183,14 @@
                             "measure": "11",
                             "system": "Klav. o.",
                             "position": "1/4",
-                            "comment": "Unterstimmenschicht: Viertelnote b ergänzt gemäß Ligaturbogen von T. 10 2. Note sowie mit Blick auf alle anderen Textfassungen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 10."
+                            "comment": "Unterstimmenschicht: Viertelnote b ergänzt gemäß Ligaturbogen von T. 10 2. Note sowie mit Blick auf <span class='link-todo'>alle anderen Textfassungen</span>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 10."
                         },
                         {
                             "svgGroupId": "g461",
                             "measure": "11",
                             "system": "Klav. o.",
                             "position": "2/4",
-                            "comment": "Unterstimmenschicht: Viertelpause ergänzt analog Klav. u. sowie mit Blick auf spätere Textfassungen."
+                            "comment": "Unterstimmenschicht: Viertelpause ergänzt analog Klav. u. sowie mit Blick auf <span class='link-todo'>spätere Textfassungen</span>."
                         }
                     ]
                 }
@@ -200,7 +200,7 @@
             "id": "M_133_TF3",
             "label": "M 133 Textfassung 3",
             "description": [
-                "Für die Edition von „Dies ist ein Lied“ M 133 Textfassung 3 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a> relevante Quellen. <br /><a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> ante correcturam war Vorlage für die Kopistenabschrift <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a>. Der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> ante correcturam sowie der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a> vor <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fa_corr_1'})\">Korrekturen 1</a> lässt sich nicht eindeutig entziffern; soweit entzifferbar entspricht er in der Regel Textfassung 2. Der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> post correcturam sowie der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a> nach Korrekturen 1 etabliert Textfassung 3. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fa_corr_2'})\">Korrekturen 2 in <strong>F<sup>a</sup></strong></a> betreffen Textfassung 4. <br />Hauptquelle für die Textedition von „Dies ist ein Lied“ M 133 Textfassung 3 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> post correcturam. Referenzquelle ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a> nach Korrekturen 1."
+                "Für die Edition von „Dies ist ein Lied“ M 133 Textfassung 3 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a> relevante Quellen. <br /><a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> ante correcturam war Vorlage für die Kopistenabschrift <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a>. Der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> ante correcturam sowie der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a> vor <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fa_corr_1'})\">Korrekturen 1</a> lässt sich nicht eindeutig entziffern; soweit entzifferbar entspricht er in der Regel <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a>. Der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> post correcturam sowie der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a> nach Korrekturen 1 etabliert Textfassung 3. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fa_corr_2'})\">Korrekturen 2 in <strong>F<sup>a</sup></strong></a> betreffen <span class='link-todo'>Textfassung 4</span>. <br />Hauptquelle für die Textedition von „Dies ist ein Lied“ M 133 Textfassung 3 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_C'})\"><strong>C</strong></a> post correcturam. Referenzquelle ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>a</sup></strong></a> nach Korrekturen 1."
             ],
             "comments": [
                 {
@@ -211,7 +211,7 @@
                             "measure": "4",
                             "system": "Klav. o.",
                             "position": "1–2/8",
-                            "comment": "Zusätzlicher Legatobogen weggelassen. Vermutlich versehentlich aus Textfassung 2 stehengeblieben."
+                            "comment": "Zusätzlicher Legatobogen weggelassen. Vermutlich versehentlich aus <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_133_TF2'})\">Textfassung 2</a> stehengeblieben."
                         },
                         {
                             "svgGroupId": "g441",
@@ -260,7 +260,7 @@
                             "measure": "2",
                             "system": "Ges.",
                             "position": "7. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> und Textfassung 3."
+                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                         },
                         {
                             "svgGroupId": "g656",
@@ -309,7 +309,7 @@
                             "measure": "7",
                             "system": "Ges.",
                             "position": "4/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu d<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> und Textfassung 3."
+                            "comment": "{{ref.getGlyph('[a]')}} zu d<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                         },
                         {
                             "svgGroupId": "g527",
@@ -323,7 +323,7 @@
                             "measure": "8",
                             "system": "Ges.",
                             "position": "7. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> und Textfassung 3."
+                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_134_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                         },
                         {
                             "svgGroupId": "g529",
@@ -468,7 +468,7 @@
             "id": "M_135_TF1",
             "label": "M 135 Textfassung 1",
             "description": [
-                "Für die Edition von „An Bachesranft“ M 135 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a> einzige relevante Quelle. <br />Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ec_corr_1'})\">Korrekturen 1</a>) und mit Bleistift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ec_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht eindeutig zu entziffern. Korrekturen 1 etablieren Textfassung 1. Korrekturen 2 betreffen Textfassung 2. <br />Hauptquelle für die Textedition von „An Bachesranft“ M 135 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a> nach Korrekturen 1 und vor Korrekturen 2."
+                "Für die Edition von „An Bachesranft“ M 135 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a> einzige relevante Quelle. <br />Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ec_corr_1'})\">Korrekturen 1</a>) und mit Bleistift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ec_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht eindeutig zu entziffern. Korrekturen 1 etablieren Textfassung 1. Korrekturen 2 betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_135_TF2'})\">Textfassung 2</a>. <br />Hauptquelle für die Textedition von „An Bachesranft“ M 135 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>c</sup></strong></a> nach Korrekturen 1 und vor Korrekturen 2."
             ],
             "comments": [
                 {
@@ -643,7 +643,7 @@
             "id": "M_136_TF1",
             "label": "M 136 Textfassung 1",
             "description": [
-                "Für die Edition von „Im Morgentaun“ M 136 Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_D'})\"><strong>D</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>d</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>b</sup></strong></a> relevante Quellen. <br /> Das <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_Sk1'})\">Fragment <strong>D</strong></a> bietet nur wenige Takte von Textfassung 1. Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>d</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr_1'})\">Korrekturen 1</a>) und mit Buntstift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 etabliert Textfassung 1, die Textschicht ist allerdings nicht immer eindeutig entzifferbar. Der Zustand nach Korrekturen 1 skizziert Textfassung 2. Korrekturen 2 sind vermutlich aufführungsspezifisch motiviert und nicht immer eindeutig interpretierbar. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gb_corr'})\">Korrekturen in <strong>G<sup>b</sup></strong></a> betreffen Textfassung 2. Der Zustand ante correcturam etabliert vermutlich ebenfalls Textfassung 1, ist jedoch noch schwieriger zu entziffern als der Zustand vor Korrekturen 1 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>d</sup></strong></a>. <br /> Hauptquelle für die Textedition von „Im Morgentaun“ M 136 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>d</sup></strong></a> vor Korrekturen 1 soweit entzifferbar."
+                "Für die Edition von „Im Morgentaun“ M 136 Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_D'})\"><strong>D</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>d</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>b</sup></strong></a> relevante Quellen. <br /> Das <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_Sk1'})\">Fragment <strong>D</strong></a> bietet nur wenige Takte von Textfassung 1. Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>d</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr_1'})\">Korrekturen 1</a>) und mit Buntstift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 etabliert Textfassung 1, die Textschicht ist allerdings nicht immer eindeutig entzifferbar. Der Zustand nach Korrekturen 1 skizziert <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>. Korrekturen 2 sind vermutlich aufführungsspezifisch motiviert und nicht immer eindeutig interpretierbar. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gb_corr'})\">Korrekturen in <strong>G<sup>b</sup></strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>. Der Zustand ante correcturam etabliert vermutlich ebenfalls Textfassung 1, ist jedoch noch schwieriger zu entziffern als der Zustand vor Korrekturen 1 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>d</sup></strong></a>. <br /> Hauptquelle für die Textedition von „Im Morgentaun“ M 136 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>d</sup></strong></a> vor Korrekturen 1 soweit entzifferbar."
             ],
             "comments": [
                 {
@@ -675,7 +675,7 @@
                             "measure": "4",
                             "system": "Klav. o.",
                             "position": "2/8",
-                            "comment": "sic: h<sup>1</sup>(/g<sup>2</sup>/b<sup>2</sup>). <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>b</sup></strong></a>: d<sup>2</sup>(/g<sup>2</sup>/b<sup>2</sup>). Siehe auch Textfassung 2 und Textfassung 3: d<sup>2</sup>(/g<sup>2</sup>/b<sup>2</sup>)."
+                            "comment": "sic: h<sup>1</sup>(/g<sup>2</sup>/b<sup>2</sup>). <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>b</sup></strong></a>: d<sup>2</sup>(/g<sup>2</sup>/b<sup>2</sup>). Siehe auch <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>: d<sup>2</sup>(/g<sup>2</sup>/b<sup>2</sup>)."
                         },
                         {
                             "svgGroupId": "g607",
@@ -689,21 +689,21 @@
                             "measure": "5 <br /> bis 6",
                             "system": "Ges.",
                             "position": "3/8",
-                            "comment": "Entzifferung unsicher. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr_1'})\">Korrekturen 1 in <strong>E<sup>d</sup></strong></a>: auf Rasur. Rasierte Notenköpfe in T. 5–6/8 (as<sup>1</sup>–g<sup>1</sup>) sowie rasierte Ganze Pause in T. 6 zu erkennen. Für den Zustand post correcturam siehe Textfassung 2."
+                            "comment": "Entzifferung unsicher. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr_1'})\">Korrekturen 1 in <strong>E<sup>d</sup></strong></a>: auf Rasur. Rasierte Notenköpfe in T. 5–6/8 (as<sup>1</sup>–g<sup>1</sup>) sowie rasierte Ganze Pause in T. 6 zu erkennen. Für den Zustand post correcturam siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>."
                         },
                         {
                             "svgGroupId": "g409",
                             "measure": "7",
                             "system": "Ges.",
                             "position": "1–4/8",
-                            "comment": "Entzifferung unsicher. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr_1'})\">Korrekturen 1 in <strong>E<sup>d</sup></strong></a>: auf Rasur. Rasierte Achtelnoten as<sup>1</sup>–fis<sup>1</sup> zu 2–3/8 zu erkennen. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gb_corr'})\">Korrekturen in <strong>G<sup>b</sup></strong></a>: auf Rasur. Für den Zustand post correcturam siehe Textfassung 2."
+                            "comment": "Entzifferung unsicher. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr_1'})\">Korrekturen 1 in <strong>E<sup>d</sup></strong></a>: auf Rasur. Rasierte Achtelnoten as<sup>1</sup>–fis<sup>1</sup> zu 2–3/8 zu erkennen. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gb_corr'})\">Korrekturen in <strong>G<sup>b</sup></strong></a>: auf Rasur. Für den Zustand post correcturam siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>."
                         },
                         {
                             "svgGroupId": "g410",
                             "measure": "7",
                             "system": "Klav. o.",
                             "position": "1–2/4",
-                            "comment": "Entzifferung unsicher. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr_1'})\">Korrekturen 1 in <strong>E<sup>d</sup></strong></a>: auf Rasur. Rasierte Viertelnote c<sup>2</sup>/f<sup>2</sup>/as<sup>2</sup> zu 2/4 zu erkennen. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gb_corr'})\">Korrekturen in <strong>G<sup>b</sup></strong></a>: auf Rasur. Für den Zustand post correcturam siehe Textfassung 2."
+                            "comment": "Entzifferung unsicher. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ed_corr_1'})\">Korrekturen 1 in <strong>E<sup>d</sup></strong></a>: auf Rasur. Rasierte Viertelnote c<sup>2</sup>/f<sup>2</sup>/as<sup>2</sup> zu 2/4 zu erkennen. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gb_corr'})\">Korrekturen in <strong>G<sup>b</sup></strong></a>: auf Rasur. Für den Zustand post correcturam siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF2'})\">Textfassung 2</a>."
                         },
                         {
                             "svgGroupId": "g411",
@@ -746,7 +746,7 @@
                             "measure": "3",
                             "system": "Klav. o.",
                             "position": "letzte Note",
-                            "comment": "sic: {{ref.getGlyph('[a]')}}a<sup>1</sup>. Siehe Textfassung 1 und Textfassung 3 (as<sup>1</sup>) sowie <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_I_corr_2'})\">Korrekturen 2 in <strong>I</strong></a>: {{ref.getGlyph('[b]')}} zu as<sup>1</sup> überschreibt {{ref.getGlyph('[a]')}} zu a<sup>1</sup>."
+                            "comment": "sic: {{ref.getGlyph('[a]')}}a<sup>1</sup>. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_136_TF1'})\">Textfassung 1</a> und <span class='link-todo'>Textfassung 3</span> (as<sup>1</sup>) sowie <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_I_corr_2'})\">Korrekturen 2 in <strong>I</strong></a>: {{ref.getGlyph('[b]')}} zu as<sup>1</sup> überschreibt {{ref.getGlyph('[a]')}} zu a<sup>1</sup>."
                         },
                         {
                             "svgGroupId": "g599",
@@ -784,7 +784,7 @@
             "id": "M_137_TF1",
             "label": "M 137 Textfassung 1",
             "description": [
-                "Für die Edition von „Kahl reckt der Baum“ M 137 Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>c</sup></strong></a> relevante Quellen. <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> ist ante correcturam Vorlage für die Abschrift <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>c</sup></strong></a>. Der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> ante correcturam ist nach Rasur nicht immer eindeutig zu entziffern. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_1'})\">Korrekturen in <strong>E<sup>e</sup></strong></a> betreffen Textfassung 2. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>c</sup></strong></a> ante correcturam etabliert Textfassung 1. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fc_corr'})\">Korrekturen in <strong>F<sup>c</sup></strong></a> sind zum Teil aufführungsspezifisch motiviert. <br /> Hauptquelle für die Textedition von „Kahl reckt der Baum“ M 137 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>c</sup></strong></a> ante correcturam. Referenzquelle ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> ante correcturam. Da in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> nicht immer eindeutig zu entscheiden ist, welche Zeichen ante oder post correcturam niedergeschrieben wurden, wird in diesen Fällen „(ante correcturam?)“ vermerkt."
+                "Für die Edition von „Kahl reckt der Baum“ M 137 Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>c</sup></strong></a> relevante Quellen. <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> ist ante correcturam Vorlage für die Abschrift <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>c</sup></strong></a>. Der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> ante correcturam ist nach Rasur nicht immer eindeutig zu entziffern. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_1'})\">Korrekturen in <strong>E<sup>e</sup></strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF2'})\">Textfassung 2</a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>c</sup></strong></a> ante correcturam etabliert Textfassung 1. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Fc_corr'})\">Korrekturen in <strong>F<sup>c</sup></strong></a> sind zum Teil aufführungsspezifisch motiviert. <br /> Hauptquelle für die Textedition von „Kahl reckt der Baum“ M 137 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_F'})\"><strong>F<sup>c</sup></strong></a> ante correcturam. Referenzquelle ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> ante correcturam. Da in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> nicht immer eindeutig zu entscheiden ist, welche Zeichen ante oder post correcturam niedergeschrieben wurden, wird in diesen Fällen „(ante correcturam?)“ vermerkt."
             ],
             "comments": [
                 {
@@ -858,14 +858,14 @@
                             "measure": "3",
                             "system": "Klav. u.",
                             "position": "2–3/8",
-                            "comment": "Ligaturbogen zu e ergänzt mit Blick auf spätere Textfassungen."
+                            "comment": "Ligaturbogen zu e ergänzt mit Blick auf <span class='link-todo'>spätere Textfassungen</span>."
                         },
                         {
                             "svgGroupId": "g606",
                             "measure": "3",
                             "system": "Klav. u.",
                             "position": "2–4/8",
-                            "comment": "Bögen nach c<sup>1</sup>/es<sup>1</sup> bei 2/8 zu h/d<sup>1</sup> bei 3/8 korrigiert zu Ligaturbögen zu h/d<sup>1</sup> bei 3–4/8 mit Blick auf spätere Textfassungen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a>: unter Rasur."
+                            "comment": "Bögen nach c<sup>1</sup>/es<sup>1</sup> bei 2/8 zu h/d<sup>1</sup> bei 3/8 korrigiert zu Ligaturbögen zu h/d<sup>1</sup> bei 3–4/8 mit Blick auf <span class='link-todo'>spätere Textfassungen</span>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a>: unter Rasur."
                         },
                         {
                             "svgGroupId": "g608",
@@ -1155,7 +1155,7 @@
             "id": "M_137_TF2",
             "label": "M 137 Textfassung 2",
             "description": [
-                "Für die Edition von „Kahl reckt der Baum“ M 137 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>c</sup></strong></a> relevante Quellen. <br /> Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_1'})\">Korrekturen 1</a>), mit Bleistift oder Buntstift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_2'})\">Korrekturen 2</a>) und mit Tinte (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_3'})\">Korrekturen 3</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht immer eindeutig zu entziffern. Der Zustand nach Korrekturen 1 etabliert Textfassung 2. Korrekturen 2 sind vermutlich aufführunsspezifisch motiviert. Korrekturen 3 betreffen Textfassung 3. Der Zustand von <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>c</sup></strong></a> ante correcturam ist nicht immer eindeutig zu entziffern, entspricht aber vermutlich Textfassung 2. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gc_corr'})\">Korrekturen in <strong>G<sup>c</sup></strong></a> betreffen Textfassung 3.<br /> Hauptquelle für die Textedition von „Kahl reckt der Baum“ M 137 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> nach Korrekturen 1. Referenzquelle ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>c</sup></strong></a> ante correcturam, soweit entzifferbar."
+                "Für die Edition von „Kahl reckt der Baum“ M 137 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>c</sup></strong></a> relevante Quellen. <br /> Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_1'})\">Korrekturen 1</a>), mit Bleistift oder Buntstift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_2'})\">Korrekturen 2</a>) und mit Tinte (<a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ee_corr_3'})\">Korrekturen 3</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht immer eindeutig zu entziffern. Der Zustand nach Korrekturen 1 etabliert Textfassung 2. Korrekturen 2 sind vermutlich aufführunsspezifisch motiviert. Korrekturen 3 betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF3'})\">Textfassung 3</a>. Der Zustand von <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>c</sup></strong></a> ante correcturam ist nicht immer eindeutig zu entziffern, entspricht aber vermutlich Textfassung 2. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Gc_corr'})\">Korrekturen in <strong>G<sup>c</sup></strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op3', sheetId: 'M_137_TF3'})\">Textfassung 3</a>.<br /> Hauptquelle für die Textedition von „Kahl reckt der Baum“ M 137 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>e</sup></strong></a> nach Korrekturen 1. Referenzquelle ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_G'})\"><strong>G<sup>c</sup></strong></a> ante correcturam, soweit entzifferbar."
             ],
             "comments": [
                 {
