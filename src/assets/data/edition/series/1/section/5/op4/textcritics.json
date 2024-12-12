@@ -15,7 +15,7 @@
                             "measure": "1",
                             "system": "Klav.",
                             "position": "(2/2)",
-                            "comment": "Ende der Crescendogabel versetzt von zwischen 2.–3. Note (Klav. o.) gemäß <strong>I</strong>."
+                            "comment": "Ende der Crescendogabel versetzt von zwischen 2.–3. Note (Klav. o.) gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -29,21 +29,21 @@
                             "measure": "1",
                             "system": "Klav.",
                             "position": "(5–6/4)",
-                            "comment": "<em>Ped.</em> versetzt von (5/4) zu (6/4) und <em>*</em> ergänzt zu (5/4) gemäß <strong>I</strong>."
+                            "comment": "<em>Ped.</em> versetzt von (5/4) zu (6/4) und <em>*</em> ergänzt zu (5/4) gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "2",
                             "system": "",
                             "position": "(1/8)",
-                            "comment": "Ende der Geltungsstrichelung von <em>rit.</em> versetzt von Ende T. 1 gemäß <strong>I</strong>."
+                            "comment": "Ende der Geltungsstrichelung von <em>rit.</em> versetzt von Ende T. 1 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "2",
                             "system": "Ges.",
                             "position": "2. Note",
-                            "comment": "{{ref.getGlyph('[pp]')}} ergänzt gemäß <strong>I</strong>."
+                            "comment": "{{ref.getGlyph('[pp]')}} ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -78,7 +78,7 @@
                             "measure": "4",
                             "system": "Klav. o.",
                             "position": "7/4",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[b]')}} zu es<sup>2</sup> ergänzt gemäß <strong>I</strong> ante correcturam.  <br /> Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu e<sup>1</sup>, {{ref.getGlyph('[b]')}} zu b<sup>1</sup> ergänzt."
+                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[b]')}} zu es<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a> ante correcturam.  <br /> Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu e<sup>1</sup>, {{ref.getGlyph('[b]')}} zu b<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -113,7 +113,7 @@
                             "measure": "5",
                             "system": "Ges.",
                             "position": "8. Note",
-                            "comment": "<em>äußerst zart</em> ergänzt gemäß <strong>I</strong>.  <br /> Text sic: Kleinschreibung <em>gold</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: durchgängige Kleinschreibung <em>gold karneol</em>, möglicherweise als Aufzählung zweier Substantive (ohne Komma)."
+                            "comment": "<em>äußerst zart</em> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>.  <br /> Text sic: Kleinschreibung <em>gold</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: durchgängige Kleinschreibung <em>gold karneol</em>, möglicherweise als Aufzählung zweier Substantive (ohne Komma)."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -127,14 +127,14 @@
                             "measure": "5",
                             "system": "Ges.",
                             "position": "9. Note bis Taktende",
-                            "comment": "Decrescendogabel ergänzt gemäß <strong>I</strong>."
+                            "comment": "Decrescendogabel ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "6",
                             "system": "Ges.",
                             "position": "1/2",
-                            "comment": "Decrescendogabel korrigiert zu <em>verklingend</em> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>. <strong>I</strong>: <em>verklingend</em> in T. 5 14/8."
+                            "comment": "Decrescendogabel korrigiert zu <em>verklingend</em> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>: <em>verklingend</em> in T. 5 14/8."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -155,7 +155,7 @@
                             "measure": "6",
                             "system": "Klav. o.",
                             "position": "(2/8)",
-                            "comment": "<em>espress.</em> versetzt von direkt nach 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <strong>I</strong>."
+                            "comment": "<em>espress.</em> versetzt von direkt nach 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -169,7 +169,7 @@
                             "measure": "7",
                             "system": "Klav. u.",
                             "position": "letzte Note",
-                            "comment": "Ende der Decrescendogabel versetzt von 20/16 gemäß <strong>I</strong>."
+                            "comment": "Ende der Decrescendogabel versetzt von 20/16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -183,7 +183,7 @@
                             "measure": "8",
                             "system": "Klav. o.",
                             "position": "6/8",
-                            "comment": "Beginn der Decrescendogabel versetzt von 5/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <strong>I</strong>."
+                            "comment": "Beginn der Decrescendogabel versetzt von 5/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -232,7 +232,7 @@
                             "measure": "9",
                             "system": "Klav.",
                             "position": "Taktende",
-                            "comment": "Ende der Decresecendogabel versetzt von T. 10 nach 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>. <strong>I</strong>: Ende der Crescendogabel unspezifisch zwischen Ende T. 9 und Anfang T. 10."
+                            "comment": "Ende der Decresecendogabel versetzt von T. 10 nach 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>: Ende der Crescendogabel unspezifisch zwischen Ende T. 9 und Anfang T. 10."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -246,7 +246,7 @@
                             "measure": "10",
                             "system": "Ges.",
                             "position": "1.–4. Note",
-                            "comment": "Crescendogabel ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>. <strong>I</strong>: Ende der Crescendogabel bei 3. Note."
+                            "comment": "Crescendogabel ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>: Ende der Crescendogabel bei 3. Note."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -337,7 +337,7 @@
                             "measure": "12",
                             "system": "",
                             "position": "(7/8)",
-                            "comment": "<em>äußerst ruhig | a tempo</em> (mit <em>a tempo</em> auf Höhe der Geltungsstrichelung von vorausgehendem <em>rit.</em>) geändert zu <em>a tempo | äußerst ruhig</em> mit Blick auf <strong>I</strong> (<em>a tempo äußerst ruhig</em>) und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> (<em>a tempo, äußerst ruhig</em>)."
+                            "comment": "<em>äußerst ruhig | a tempo</em> (mit <em>a tempo</em> auf Höhe der Geltungsstrichelung von vorausgehendem <em>rit.</em>) geändert zu <em>a tempo | äußerst ruhig</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a> (<em>a tempo äußerst ruhig</em>) und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> (<em>a tempo, äußerst ruhig</em>)."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -372,7 +372,7 @@
                             "measure": "14",
                             "system": "Klav.",
                             "position": "(1–2/2)",
-                            "comment": "<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <strong>I</strong>: Crescendogabel fehlt. Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <strong>I</strong>: Crescendogabel rasiert."
+                            "comment": "<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>: Crescendogabel fehlt. Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>: Crescendogabel rasiert."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -386,7 +386,7 @@
                             "measure": "14 <br /> bis 15",
                             "system": "Klav.",
                             "position": "(6/4) <br /> letzte Note",
-                            "comment": "<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <strong>I</strong>: {{ref.getGlyph('[ppp]')}} zu T. 14 (6/4) und anschließende Decrescendogabel bis T. 15 letzte Note."
+                            "comment": "<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>: {{ref.getGlyph('[ppp]')}} zu T. 14 (6/4) und anschließende Decrescendogabel bis T. 15 letzte Note."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -426,7 +426,7 @@
                             "measure": "2",
                             "system": "Ges.",
                             "position": "3. Note",
-                            "comment": "Anfang der Crescendogabel versetzt von T. 3 1. Note gemäß <strong>I</strong>."
+                            "comment": "Anfang der Crescendogabel versetzt von T. 3 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -482,7 +482,7 @@
                             "measure": "7",
                             "system": "Klav. u.",
                             "position": "",
-                            "comment": "Decrescendogabel ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <strong>I</strong>."
+                            "comment": "Decrescendogabel ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -496,28 +496,28 @@
                             "measure": "10",
                             "system": "",
                             "position": "Taktanfang bis (3/4)",
-                            "comment": "Geltungsstrichelung nach <em>accel.</em> ergänzt gemäß <strong>I</strong>."
+                            "comment": "Geltungsstrichelung nach <em>accel.</em> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "13",
                             "system": "Ges.",
                             "position": "6/8",
-                            "comment": "Anfang der Decrescendogabel versetzt von T. 15 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <strong>I</strong>."
+                            "comment": "Anfang der Decrescendogabel versetzt von T. 15 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "15",
                             "system": "Klav. u.",
                             "position": "1/8",
-                            "comment": "Ende der Decrescendogabel versetzt von T. 14 4/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <strong>I</strong>."
+                            "comment": "Ende der Decrescendogabel versetzt von T. 14 4/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "15",
                             "system": "Ges.",
                             "position": "3. Note",
-                            "comment": "{{ref.getGlyph('[mf]')}} versetzt von 4/8 gemäß <strong>I</strong>.  <br /> Text sic: <em>muß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>muss</em>."
+                            "comment": "{{ref.getGlyph('[mf]')}} versetzt von 4/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>.  <br /> Text sic: <em>muß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>muss</em>."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -552,14 +552,14 @@
                             "measure": "20",
                             "system": "Klav. o.",
                             "position": "2/4",
-                            "comment": "{{ref.getGlyph('[ppp]')}} ergänzt gemäß <strong>I</strong>."
+                            "comment": "{{ref.getGlyph('[ppp]')}} ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "20 <br /> bis 21",
                             "system": "Klav.",
                             "position": "6/8 <br /> 1/8",
-                            "comment": "Decrescendogabel ergänzt gemäß <strong>I</strong>."
+                            "comment": "Decrescendogabel ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         }
                     ]
                 },
@@ -585,7 +585,7 @@
                             "measure": "1",
                             "system": "Ges.",
                             "position": "letzte Note",
-                            "comment": "&lt; &gt; korrigiert zu Crescendogabel gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>. Siehe Korrekturen in <strong>I</strong>: Decrescendogabel von &lt; &gt; gestrichen."
+                            "comment": "&lt; &gt; korrigiert zu Crescendogabel gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>. Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>: Decrescendogabel von &lt; &gt; gestrichen."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -606,7 +606,7 @@
                             "measure": "6",
                             "system": "Ges.",
                             "position": "3.–4. Note",
-                            "comment": "Text: Längenstriche nach (dei-)<em>ner_</em> bei 2. Note und (Teu-)<em>re_</em> bei 4. Note korrigiert zu Parenthese aus Gedankenstrichen bei <em>– Teu-re –</em> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>, <strong>I</strong> und mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                            "comment": "Text: Längenstriche nach (dei-)<em>ner_</em> bei 2. Note und (Teu-)<em>re_</em> bei 4. Note korrigiert zu Parenthese aus Gedankenstrichen bei <em>– Teu-re –</em> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a> und mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -620,7 +620,7 @@
                             "measure": "8",
                             "system": "Klav.",
                             "position": "1. Note",
-                            "comment": "Decrescendogabel ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>. (<strong>I</strong>: Ebenfalls Decrescendogabel, Ende bei 3. Pause.)"
+                            "comment": "Decrescendogabel ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>. (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>: Ebenfalls Decrescendogabel, Ende bei 3. Pause.)"
                         },
                         {
                             "svgGroupId": "TODO",
@@ -662,14 +662,14 @@
                             "measure": "15",
                             "system": "Klav. o.",
                             "position": "1. Note",
-                            "comment": "Oberstimmenschicht: Punktierte Viertelnote korrigiert zu Viertelnote mit Blick auf den metrischen Kontext und gemäß <strong>I</strong> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>."
+                            "comment": "Oberstimmenschicht: Punktierte Viertelnote korrigiert zu Viertelnote mit Blick auf den metrischen Kontext und gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "15",
                             "system": "Klav. o.",
                             "position": "letzte Note",
-                            "comment": "Decrescendogabel ergänzt gemäß <strong>I</strong>."
+                            "comment": "Decrescendogabel ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -786,7 +786,7 @@
                             "measure": "13",
                             "system": "Klav.",
                             "position": "2/8",
-                            "comment": "{{ref.getGlyph('[pp]')}} versetzt von nicht eindeutiger Position zwischen 1–2/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <strong>I</strong>."
+                            "comment": "{{ref.getGlyph('[pp]')}} versetzt von nicht eindeutiger Position zwischen 1–2/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -800,7 +800,7 @@
                             "measure": "16",
                             "system": "Ges.",
                             "position": "1.–4. Note",
-                            "comment": "<strong>I</strong>: Decrescendogabel fehlt."
+                            "comment": "<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>: Decrescendogabel fehlt."
                         },
                         {
                             "svgGroupId": "TODO",
