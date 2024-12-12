@@ -22,14 +22,14 @@
                             "measure": "3",
                             "system": "Ges.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[f]')}} versetzt von 1. Pause."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 1. Pause."
                         },
                         {
                             "svgGroupId": "g1204",
                             "measure": "6",
                             "system": "Ges.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[f]')}} versetzt von 3/8."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 3/8."
                         }
                     ]
                 }
@@ -144,14 +144,14 @@
                             "measure": "A",
                             "system": "1",
                             "position": "2. Reihenton",
-                            "comment": "{{ref.getGlyph('[a]')}} nachgezogen (überschreibt {{ref.getGlyph('[b]')}}?)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> nachgezogen (überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>?)."
                         },
                         {
                             "svgGroupId": "g1065",
                             "measure": "B",
                             "system": "1",
                             "position": "4. Reihenton",
-                            "comment": "{{ref.getGlyph('[#]')}}fis<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}}g<sup>2</sup>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>."
                         }
                     ]
                 }
@@ -244,7 +244,7 @@
                             "measure": "1",
                             "system": "1",
                             "position": "6/8",
-                            "comment": "{{ref.getGlyph('[b]')}} nachgezogen (überschreibt Ansatz von {{ref.getGlyph('[#]')}} zu dis<sup>2</sup>?)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> nachgezogen (überschreibt Ansatz von <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu dis<sup>2</sup>?)."
                         },
                         {
                             "svgGroupId": "g1254",
@@ -258,7 +258,7 @@
                             "measure": "2",
                             "system": "1",
                             "position": "3/8",
-                            "comment": "{{ref.getGlyph('[#]')}} nachgezogen (überschreibt {{ref.getGlyph('[a]')}}?)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> nachgezogen (überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>?)."
                         },
                         {
                             "svgGroupId": "text338",
@@ -286,7 +286,7 @@
                             "measure": "3",
                             "system": "2",
                             "position": "4/8",
-                            "comment": "Punktierte Achtelnote {{ref.getGlyph('[a]')}}c<sup>1</sup> überschreibt radierte Achtelpause."
+                            "comment": "Punktierte Achtelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> überschreibt radierte Achtelpause."
                         }
                     ]
                 }
@@ -1099,14 +1099,14 @@
                             "measure": "Bl. 38<sup>v</sup>",
                             "system": "6",
                             "position": "G<sub>g</sub> (1): 7. Reihenton",
-                            "comment": "sic: kein {{ref.getGlyph('[a]')}}."
+                            "comment": "sic: kein <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
                         },
                         {
                             "svgGroupId": "g1554",
                             "measure": "Bl. 38<sup>v</sup>",
                             "system": "6",
                             "position": "G<sub>g</sub> (1): 10.–11. Reihenton",
-                            "comment": "{{ref.getGlyph('[a]')}}a, {{ref.getGlyph('[a]')}}c<sup>1</sup> durch Einkreisung getilgt und ersetzt durch c<sup>2</sup> (sic: kein {{ref.getGlyph('[a]')}}), {{ref.getGlyph('[a]')}}a<sup>1</sup>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>a, <span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> durch Einkreisung getilgt und ersetzt durch c<sup>2</sup> (sic: kein <span class='glyph'>{{ref.getGlyph('[a]')}}</span>), <span class='glyph'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup>."
                         },
                         {
                             "svgGroupId": "g570",
@@ -1120,7 +1120,7 @@
                             "measure": "Bl. 38<sup>v</sup>",
                             "system": "6",
                             "position": "K<sub>gis</sub> (2): 2.–3. Reihenton",
-                            "comment": "{{ref.getGlyph('[a]')}}c<sup>1</sup>, {{ref.getGlyph('[a]')}}a durch Einkreisung getilgt und ersetzt durch a<sup>1</sup>, c<sup>2</sup> (sic: keine {{ref.getGlyph('[a]')}})."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span>a durch Einkreisung getilgt und ersetzt durch a<sup>1</sup>, c<sup>2</sup> (sic: keine <span class='glyph'>{{ref.getGlyph('[a]')}}</span>)."
                         },
                         {
                             "svgGroupId": "g318",
@@ -1134,7 +1134,7 @@
                             "measure": "Bl. 38<sup>v</sup>",
                             "system": "7",
                             "position": "U<sub>g</sub> (3): 10.–11. Reihenton",
-                            "comment": "{{ref.getGlyph('[a]')}}f<sup>2</sup>, {{ref.getGlyph('[a]')}}d<sup>2</sup> durch Einkreisung getilgt und ersetzt durch {{ref.getGlyph('[a]')}}d<sup>1</sup>, {{ref.getGlyph('[a]')}}f<sup>1</sup>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span>d<sup>2</sup> durch Einkreisung getilgt und ersetzt durch <span class='glyph'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>."
                         },
                         {
                             "svgGroupId": "g566",
@@ -1148,7 +1148,7 @@
                             "measure": "Bl. 38<sup>v</sup>",
                             "system": "7",
                             "position": "KU<sub>fis</sub> (4): 2.–3. Note",
-                            "comment": "{{ref.getGlyph('[a]')}}d<sup>2</sup>, {{ref.getGlyph('[a]')}}f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch {{ref.getGlyph('[a]')}}f<sup>1</sup>, d<sup>1</sup> (sic: kein {{ref.getGlyph('[a]')}})."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>d<sup>2</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>, d<sup>1</sup> (sic: kein <span class='glyph'>{{ref.getGlyph('[a]')}}</span>)."
                         },
                         {
                             "svgGroupId": "g1613",
@@ -1399,7 +1399,7 @@
                             "measure": "6",
                             "system": "4",
                             "position": "2. Note",
-                            "comment": "{{ref.getGlyph('[f]')}} mit rotem Buntstift."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> mit rotem Buntstift."
                         },
                         {
                             "svgGroupId": "g11488",
@@ -1476,7 +1476,7 @@
                             "measure": "9",
                             "system": "11",
                             "position": "3. Note",
-                            "comment": "sic: {{ref.getGlyph('[b]')}} (zu es<sup>2</sup>). Vermutlich Verschreibung für {{ref.getGlyph('[a]')}} (zu e<sup>2</sup>: 11. Reihenton von K<sub>gis</sub>)."
+                            "comment": "sic: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> (zu es<sup>2</sup>). Vermutlich Verschreibung für <span class='glyph'>{{ref.getGlyph('[a]')}}</span> (zu e<sup>2</sup>: 11. Reihenton von K<sub>gis</sub>)."
                         },
                         {
                             "svgGroupId": "g1247",
@@ -1819,7 +1819,7 @@
                             "measure": "13",
                             "system": "16",
                             "position": "letzte Note",
-                            "comment": "Entzifferung von {{ref.getGlyph('[#]')}}ais unsicher: möglicherweise auch {{ref.getGlyph('[b]')}}b."
+                            "comment": "Entzifferung von <span class='glyph'>{{ref.getGlyph('[#]')}}</span>ais unsicher: möglicherweise auch <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b."
                         }
                     ]
                 }
@@ -2069,7 +2069,7 @@
                             "measure": "2",
                             "system": "2",
                             "position": "1. Note",
-                            "comment": "sic: {{ref.getGlyph('[#]')}} zu gis<sup>2</sup> fehlt."
+                            "comment": "sic: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> fehlt."
                         }
                     ]
                 }
@@ -2212,7 +2212,7 @@
                             "measure": "4B",
                             "system": "16",
                             "position": "3/4",
-                            "comment": "{{ref.getGlyph('[pp]')}} gestrichen."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> gestrichen."
                         },
                         {
                             "svgGroupId": "g1210b",

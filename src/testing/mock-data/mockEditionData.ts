@@ -314,7 +314,7 @@ export const mockEditionData = {
                 id: 'de',
                 content: [
                     "<span class='no-indent'>Die AWG gliedert sich in drei Serien:</span>",
-                    "<span class='no-indent spacebreak'>Sie werden nicht zu dem für den Druck typischen <span class='unicode'>{{ref.getGlyph('[ped]')}}</span>.-Zeichen vereinheitlicht.</span>",
+                    "<span class='no-indent spacebreak'>Sie werden nicht zu dem für den Druck typischen <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>.-Zeichen vereinheitlicht.</span>",
                     "<span class='small spacebreak'>Zugang zur AWG-Online-Edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></span>",
                 ],
             },
@@ -322,7 +322,7 @@ export const mockEditionData = {
                 id: 'en',
                 content: [
                     "<span class='no-indent'>The AWG is divided into three series:</span>",
-                    "<span class='no-indent spacebreak'>They are not unified to the <span class='unicode'>{{ref.getGlyph('[ped]')}}</span>. character typical for printing.</span>",
+                    "<span class='no-indent spacebreak'>They are not unified to the <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>. character typical for printing.</span>",
                     "<span class='small spacebreak'>Access to the AWG online edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></span>",
                 ],
             },

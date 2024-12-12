@@ -112,7 +112,9 @@
         {
             "id": "M_312_Sk3",
             "label": "M 312 Sk3",
-            "description": ["<strong>Sk3</strong> skizziert verschiedene Ansätze zur Klaviereinleitung von „Herr Jesus mein“ M 312 auf der Grundlage der Reihenform KU<sub>h</sub>."],
+            "description": [
+                "<strong>Sk3</strong> skizziert verschiedene Ansätze zur Klaviereinleitung von „Herr Jesus mein“ M 312 auf der Grundlage der Reihenform KU<sub>h</sub>."
+            ],
             "comments": [
                 {
                     "blockHeader": "",
@@ -216,7 +218,7 @@
                             "measure": "Bl. 1<sup>r</sup>",
                             "system": "2b",
                             "position": "KU<sub>f</sub>: 8. Reihenton",
-                            "comment": "{{ref.getGlyph('[#]')}}fis<sup>1</sup> überschreibt {{ref.getGlyph('[b]')}} als Ansatz zu ges<sup>1</sup>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> als Ansatz zu ges<sup>1</sup>."
                         },
                         {
                             "svgGroupId": "text628",
