@@ -5006,7 +5006,12 @@
             }
         },
         {
-        "id": "source_JH_##TODO##"
+            "id": "source_JH",
+            "siglum": "J",
+            "siglumAddendum": "H",
+            "type": "Handexemplar von <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a> mit Eintragungen Weberns.",
+            "location": "A-Wst, Musikhandschriften, MHc-14926.",
+            "description": {}
         }
     ]
 }
