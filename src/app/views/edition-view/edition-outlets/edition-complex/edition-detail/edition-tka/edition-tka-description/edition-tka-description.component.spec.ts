@@ -51,6 +51,8 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
+        mockDocument = TestBed.inject(DOCUMENT);
+
         // Test data
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
@@ -59,8 +61,6 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
         expectedTextcriticalDescriptions = mockEditionData.mockTextcriticsData.textcritics.at(1).description;
-
-        mockDocument = TestBed.inject(DOCUMENT);
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -111,27 +111,32 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain as many paragraphs with edition-tka-description class as textcriticalDescriptions length', () => {
+                const totalParagraphs = expectedTextcriticalDescriptions.length;
+
                 getAndExpectDebugElementByCss(
                     compDe,
                     'p.awg-edition-tka-description',
-                    expectedTextcriticalDescriptions.length,
-                    expectedTextcriticalDescriptions.length
+                    totalParagraphs,
+                    totalParagraphs
                 );
             });
 
-            it('... should contain CompileHtmlComponent in each paragraph', () => {
+            it('... should contain one CompileHtmlComponents in each paragraph', () => {
+                const totalParagraphs = expectedTextcriticalDescriptions.length;
+
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
                     'p.awg-edition-tka-description',
-                    expectedTextcriticalDescriptions.length,
-                    expectedTextcriticalDescriptions.length
+                    totalParagraphs,
+                    totalParagraphs
                 );
+
                 pDes.forEach(pDe => {
-                    getAndExpectDebugElementByDirective(pDe, CompileHtmlComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(pDe, CompileHtmlComponent, 1, 1);
                 });
             });
 
-            it('... should display the textcriticalDescriptions in each paragraph', () => {
+            it('... should display the textcriticalDescriptions in each paragraph span', () => {
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
                     'p.awg-edition-tka-description',
@@ -139,12 +144,13 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
                     expectedTextcriticalDescriptions.length
                 );
                 pDes.forEach((pDe, index) => {
-                    const pEl: HTMLParagraphElement = pDe.nativeElement;
+                    const spanDes = getAndExpectDebugElementByCss(pDe, 'span', 1, 1);
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
-                    const htmlDescriptionEntry = mockDocument.createElement('p');
+                    const htmlDescriptionEntry = mockDocument.createElement('span');
                     htmlDescriptionEntry.innerHTML = expectedTextcriticalDescriptions[index];
 
-                    expectToBe(pEl.textContent.trim(), htmlDescriptionEntry.textContent.trim());
+                    expectToBe(spanEl.textContent.trim(), htmlDescriptionEntry.textContent.trim());
                 });
             });
         });

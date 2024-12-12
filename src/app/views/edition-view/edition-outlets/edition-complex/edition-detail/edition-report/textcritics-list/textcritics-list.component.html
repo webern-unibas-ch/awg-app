@@ -5,7 +5,9 @@
                 <div
                     ngbAccordionHeader
                     class="accordion-button awg-accordion-button-custom-header justify-content-between">
-                    <button ngbAccordionToggle class="btn btn-link text-start p-0">{{ textcritics.label }}</button>
+                    <button ngbAccordionToggle class="btn btn-link text-start p-0">
+                        <span [compile-html]="textcritics.label" [compile-html-ref]="ref"></span>
+                    </button>
                     <button
                         type="button"
                         class="btn btn-sm btn-outline-info"
