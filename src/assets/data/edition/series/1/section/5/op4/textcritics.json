@@ -8,7 +8,7 @@
             ],
             "comments": [
                 {
-                    "blockHeader": "Bei den Titelnummerierungen wurde der Punkt nach der Ziffer weggelassen. <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a> (<em>Eingang</em> [„Welt der Gestalten“] M 138: Textfassung 3)",
+                    "blockHeader": "Bei den Titelnummerierungen wurde der Punkt nach der Ziffer weggelassen. <br /> <strong>I</strong> (<em>Eingang</em> [„Welt der Gestalten“] M 138: Textfassung 3)",
                     "blockComments": [
                         {
                             "svgGroupId": "TODO",
