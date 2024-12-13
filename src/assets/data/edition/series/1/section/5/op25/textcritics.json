@@ -4,7 +4,7 @@
             "id": "M_317_TF1",
             "label": "M 317 Textfassung 1",
             "description": [
-                "Für die Edition von „Wie bin ich froh!“ <strong>M 317 Textfassung 1</strong> sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> relevante Quellen. <br />Der Zustand nach <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_1'})\">Korrekturen 1 in <strong>E</strong></a> etabliert Textfassung 1, wobei dese Überarbeitung vor oder gleichzeitig mit der Niederschrift von <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a> stattgefunden haben dürfte. Der Zustand nach <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_2'})\">Korrekturen 2 in <strong>E</strong></a> betrifft Textfassung 2. Der Zustand von <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> vor Korrekturen 2 lässt sich nicht immer eindeutig entziffern. <br /> Hauptquelle für die Textedition von „Wie bin ich froh!“ <strong>M 317 Textfassung 1</strong> ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                "Für die Edition von „Wie bin ich froh!“ M 317 Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> relevante Quellen. <br />Der Zustand nach <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_1'})\">Korrekturen 1 in <strong>E</strong></a> etabliert Textfassung 1, wobei dese Überarbeitung vor oder gleichzeitig mit der Niederschrift von <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a> stattgefunden haben dürfte. Der Zustand nach <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_2'})\">Korrekturen 2 in <strong>E</strong></a> betrifft <span class='link-todo'>Textfassung 2</span>. Der Zustand von <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> vor Korrekturen 2 lässt sich nicht immer eindeutig entziffern. <br /> Hauptquelle für die Textedition von „Wie bin ich froh!“ M 317 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a>."
             ],
             "comments": [
                 {
@@ -22,14 +22,14 @@
                             "measure": "3",
                             "system": "Ges.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[f]')}} versetzt von 1. Pause."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 1. Pause."
                         },
                         {
                             "svgGroupId": "g1204",
                             "measure": "6",
                             "system": "Ges.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[f]')}} versetzt von 3/8."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 3/8."
                         }
                     ]
                 }
@@ -144,14 +144,14 @@
                             "measure": "A",
                             "system": "1",
                             "position": "2. Reihenton",
-                            "comment": "{{ref.getGlyph('[a]')}} nachgezogen (überschreibt {{ref.getGlyph('[b]')}}?)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> nachgezogen (überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>?)."
                         },
                         {
                             "svgGroupId": "g1065",
                             "measure": "B",
                             "system": "1",
                             "position": "4. Reihenton",
-                            "comment": "{{ref.getGlyph('[#]')}}fis<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}}g<sup>2</sup>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>."
                         }
                     ]
                 }
@@ -244,7 +244,7 @@
                             "measure": "1",
                             "system": "1",
                             "position": "6/8",
-                            "comment": "{{ref.getGlyph('[b]')}} nachgezogen (überschreibt Ansatz von {{ref.getGlyph('[#]')}} zu dis<sup>2</sup>?)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> nachgezogen (überschreibt Ansatz von <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu dis<sup>2</sup>?)."
                         },
                         {
                             "svgGroupId": "g1254",
@@ -258,7 +258,7 @@
                             "measure": "2",
                             "system": "1",
                             "position": "3/8",
-                            "comment": "{{ref.getGlyph('[#]')}} nachgezogen (überschreibt {{ref.getGlyph('[a]')}}?)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> nachgezogen (überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>?)."
                         },
                         {
                             "svgGroupId": "text338",
@@ -286,7 +286,7 @@
                             "measure": "3",
                             "system": "2",
                             "position": "4/8",
-                            "comment": "Punktierte Achtelnote {{ref.getGlyph('[a]')}}c<sup>1</sup> überschreibt radierte Achtelpause."
+                            "comment": "Punktierte Achtelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> überschreibt radierte Achtelpause."
                         }
                     ]
                 }
@@ -1099,14 +1099,14 @@
                             "measure": "Bl. 38<sup>v</sup>",
                             "system": "6",
                             "position": "G<sub>g</sub> (1): 7. Reihenton",
-                            "comment": "sic: kein {{ref.getGlyph('[a]')}}."
+                            "comment": "sic: kein <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
                         },
                         {
                             "svgGroupId": "g1554",
                             "measure": "Bl. 38<sup>v</sup>",
                             "system": "6",
                             "position": "G<sub>g</sub> (1): 10.–11. Reihenton",
-                            "comment": "{{ref.getGlyph('[a]')}}a, {{ref.getGlyph('[a]')}}c<sup>1</sup> durch Einkreisung getilgt und ersetzt durch c<sup>2</sup> (sic: kein {{ref.getGlyph('[a]')}}), {{ref.getGlyph('[a]')}}a<sup>1</sup>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>a, <span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> durch Einkreisung getilgt und ersetzt durch c<sup>2</sup> (sic: kein <span class='glyph'>{{ref.getGlyph('[a]')}}</span>), <span class='glyph'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup>."
                         },
                         {
                             "svgGroupId": "g570",
@@ -1120,7 +1120,7 @@
                             "measure": "Bl. 38<sup>v</sup>",
                             "system": "6",
                             "position": "K<sub>gis</sub> (2): 2.–3. Reihenton",
-                            "comment": "{{ref.getGlyph('[a]')}}c<sup>1</sup>, {{ref.getGlyph('[a]')}}a durch Einkreisung getilgt und ersetzt durch a<sup>1</sup>, c<sup>2</sup> (sic: keine {{ref.getGlyph('[a]')}})."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span>a durch Einkreisung getilgt und ersetzt durch a<sup>1</sup>, c<sup>2</sup> (sic: keine <span class='glyph'>{{ref.getGlyph('[a]')}}</span>)."
                         },
                         {
                             "svgGroupId": "g318",
@@ -1134,7 +1134,7 @@
                             "measure": "Bl. 38<sup>v</sup>",
                             "system": "7",
                             "position": "U<sub>g</sub> (3): 10.–11. Reihenton",
-                            "comment": "{{ref.getGlyph('[a]')}}f<sup>2</sup>, {{ref.getGlyph('[a]')}}d<sup>2</sup> durch Einkreisung getilgt und ersetzt durch {{ref.getGlyph('[a]')}}d<sup>1</sup>, {{ref.getGlyph('[a]')}}f<sup>1</sup>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span>d<sup>2</sup> durch Einkreisung getilgt und ersetzt durch <span class='glyph'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>."
                         },
                         {
                             "svgGroupId": "g566",
@@ -1148,7 +1148,7 @@
                             "measure": "Bl. 38<sup>v</sup>",
                             "system": "7",
                             "position": "KU<sub>fis</sub> (4): 2.–3. Note",
-                            "comment": "{{ref.getGlyph('[a]')}}d<sup>2</sup>, {{ref.getGlyph('[a]')}}f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch {{ref.getGlyph('[a]')}}f<sup>1</sup>, d<sup>1</sup> (sic: kein {{ref.getGlyph('[a]')}})."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>d<sup>2</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>, d<sup>1</sup> (sic: kein <span class='glyph'>{{ref.getGlyph('[a]')}}</span>)."
                         },
                         {
                             "svgGroupId": "g1613",
@@ -1212,7 +1212,7 @@
             "id": "M_317_Sk4",
             "label": "M 317 Sk4",
             "description": [
-                "<strong>Sk4</strong> ist eine vollständige Verlaufsskizze des Liedes „Wie bin ich froh!“ M 317. Die Verlaufsskizze erstreckt sich über vier Akkoladen (T. {{ '{' }}1A{{ '}' }}–3A, T. 3B–6, T. 7–12 und T. 13–15) und umfasst im Unterschied zu den Reinschriften von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\"><strong>Textfassung 1</strong></a> und <strong>Textfassung 2</strong> nicht zwölf, sondern 15 gültige Takte. <br /> Bereits vor der Niederschrift von <strong>Sk4</strong> war Bl. 39<sup>r</sup> mit Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von System 1–4 versehen (<a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4b'})\"><strong>Sk4</strong> T. 3B–6</a>): Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufsskizze zu M 316 (op. 24/I) auf Bl. 22<sup>v</sup>–26<sup>r</sup>, 31<sup>v</sup>–33<sup>r</sup>, und 36<sup>v</sup>–38<sup>r</sup> im selben <strong>Skizzenbuch</strong>. <br /> (Siehe auch Akkoladenstrich von System 1–4 sowie die Schlüsselung in System 2–3 am linken Rand von Bl. 38<sup>v</sup>, die ebenfalls als Präparierung der Verlaufsskizze zu M 316 fungieren [<a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk1'})\"><strong>Sk1</strong></a> bis <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_2'})\"><strong>Sk3.1.2</strong></a>].) <br /> <strong>Sk4</strong> ist laut der nach <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\">T. 15</a> folgenden Datierung am 16. Juli 1934 beendet worden.",
+                "<strong>Sk4</strong> ist eine vollständige Verlaufsskizze des Liedes „Wie bin ich froh!“ M 317. Die Verlaufsskizze erstreckt sich über vier Akkoladen (T. {{ '{' }}1A{{ '}' }}–3A, T. 3B–6, T. 7–12 und T. 13–15) und umfasst im Unterschied zu den Reinschriften von <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a> und <span class='link-todo'>Textfassung 2</span> nicht zwölf, sondern 15 gültige Takte. <br /> Bereits vor der Niederschrift von <strong>Sk4</strong> war Bl. 39<sup>r</sup> mit Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von System 1–4 versehen (<a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4b'})\"><strong>Sk4</strong> T. 3B–6</a>): Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufsskizze zu M 316 (op. 24/I) auf Bl. 22<sup>v</sup>–26<sup>r</sup>, 31<sup>v</sup>–33<sup>r</sup>, und 36<sup>v</sup>–38<sup>r</sup> im selben <strong>Skizzenbuch</strong>. <br /> (Siehe auch Akkoladenstrich von System 1–4 sowie die Schlüsselung in System 2–3 am linken Rand von Bl. 38<sup>v</sup>, die ebenfalls als Präparierung der Verlaufsskizze zu M 316 fungieren [<a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk1'})\"><strong>Sk1</strong></a> bis <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_2'})\"><strong>Sk3.1.2</strong></a>].) <br /> <strong>Sk4</strong> ist laut der nach <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\">T. 15</a> folgenden Datierung am 16. Juli 1934 beendet worden.",
                 "Die Ziffern <em>1</em> (G<sub>g</sub>), <em>2</em> (K<sub>gis</sub>), <em>3</em> (U<sub>g</sub>) und <em>4</em> (KU<sub>fis</sub>) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk3_1_3'})\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'SkRT'})\"><strong>M 317 / M 321 / M 322 RT</strong></a>. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."
             ],
             "comments": [
@@ -1399,7 +1399,7 @@
                             "measure": "6",
                             "system": "4",
                             "position": "2. Note",
-                            "comment": "{{ref.getGlyph('[f]')}} mit rotem Buntstift."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> mit rotem Buntstift."
                         },
                         {
                             "svgGroupId": "g11488",
@@ -1476,7 +1476,7 @@
                             "measure": "9",
                             "system": "11",
                             "position": "3. Note",
-                            "comment": "sic: {{ref.getGlyph('[b]')}} (zu es<sup>2</sup>). Vermutlich Verschreibung für {{ref.getGlyph('[a]')}} (zu e<sup>2</sup>: 11. Reihenton von K<sub>gis</sub>)."
+                            "comment": "sic: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> (zu es<sup>2</sup>). Vermutlich Verschreibung für <span class='glyph'>{{ref.getGlyph('[a]')}}</span> (zu e<sup>2</sup>: 11. Reihenton von K<sub>gis</sub>)."
                         },
                         {
                             "svgGroupId": "g1247",
@@ -1819,7 +1819,7 @@
                             "measure": "13",
                             "system": "16",
                             "position": "letzte Note",
-                            "comment": "Entzifferung von {{ref.getGlyph('[#]')}}ais unsicher: möglicherweise auch {{ref.getGlyph('[b]')}}b."
+                            "comment": "Entzifferung von <span class='glyph'>{{ref.getGlyph('[#]')}}</span>ais unsicher: möglicherweise auch <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b."
                         }
                     ]
                 }
@@ -2069,7 +2069,7 @@
                             "measure": "2",
                             "system": "2",
                             "position": "1. Note",
-                            "comment": "sic: {{ref.getGlyph('[#]')}} zu gis<sup>2</sup> fehlt."
+                            "comment": "sic: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> fehlt."
                         }
                     ]
                 }
@@ -2212,7 +2212,7 @@
                             "measure": "4B",
                             "system": "16",
                             "position": "3/4",
-                            "comment": "{{ref.getGlyph('[pp]')}} gestrichen."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> gestrichen."
                         },
                         {
                             "svgGroupId": "g1210b",

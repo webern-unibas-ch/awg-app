@@ -206,14 +206,14 @@
                             "measure": "10",
                             "system": "2",
                             "position": "1/4",
-                            "comment": "{{ref.getGlyph('[a]')}}E überschreibt F."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>E überschreibt F."
                         },
                         {
                             "svgGroupId": "g1310",
                             "measure": "10",
                             "system": "1",
                             "position": "2/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>2</sup> überschreibt {{ref.getGlyph('[#]')}}."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
                         },
                         {
                             "svgGroupId": "g1323",
@@ -248,7 +248,7 @@
                             "measure": "12B",
                             "system": "1",
                             "position": "2/4",
-                            "comment": "Notenkopf {{ref.getGlyph('[b]')}}as gestrichen."
+                            "comment": "Notenkopf <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as gestrichen."
                         },
                         {
                             "svgGroupId": "g998",

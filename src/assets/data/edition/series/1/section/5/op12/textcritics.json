@@ -4,7 +4,7 @@
             "id": "M_212_TF1",
             "label": "M 212 Textfassung 1",
             "description": [
-                "Für die Edition von „Der Tag ist vergangen“ <strong>M 212 Textfassung 1</strong> ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> einzige relevante Quelle. <br />Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B_corr_2'})\">Korrekturen in <strong>B</strong></a> betreffen Textfassung 2.<br />Hauptquelle für die Textedition von „Der Tag ist vergangen“ <strong>M 212 Textfassung 1</strong> ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> ante correcturam."
+                "Für die Edition von „Der Tag ist vergangen“ <strong>M 212 Textfassung 1</strong> ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> einzige relevante Quelle. <br />Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B_corr_2'})\">Korrekturen in <strong>B</strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a>.<br />Hauptquelle für die Textedition von „Der Tag ist vergangen“ M 212 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> ante correcturam."
             ],
             "comments": [
                 {
@@ -29,7 +29,7 @@
                             "measure": "2",
                             "system": "Klav. o.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[#]')}} zu gis<sup>1</sup> ergänzt mit Blick auf Textfassung 2 und Textfassung 3 (op. 12/1)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                         },
                         {
                             "svgGroupId": "text748",
@@ -43,7 +43,7 @@
                             "measure": "5",
                             "system": "Klav.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[pp]')}} versetzt von unter Klav. u."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von unter Klav. u."
                         },
                         {
                             "svgGroupId": "g5708",
@@ -71,14 +71,14 @@
                             "measure": "13",
                             "system": "Ges.",
                             "position": "2/8",
-                            "comment": "{{ref.getGlyph('[ppp]')}}: Entzifferung unsicher, Tinte stark verschmiert."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span>: Entzifferung unsicher, Tinte stark verschmiert."
                         },
                         {
                             "svgGroupId": "text484",
                             "measure": "14",
                             "system": "Klav. u.",
                             "position": "1/8",
-                            "comment": "({{ref.getGlyph('[a]')}}) zu e/a als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 12."
+                            "comment": "(<span class='glyph'>{{ref.getGlyph('[a]')}}</span>) zu e/a als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 12."
                         },
                         {
                             "svgGroupId": "g6096",
@@ -106,7 +106,7 @@
                             "measure": "23",
                             "system": "Klav.",
                             "position": "1/8",
-                            "comment": "({{ref.getGlyph('[#]')}}) zu Gis<sub>1</sub>/Cis und ({{ref.getGlyph('[a]')}}) zu H/g als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 22."
+                            "comment": "(<span class='glyph'>{{ref.getGlyph('[#]')}}</span>) zu Gis<sub>1</sub>/Cis und (<span class='glyph'>{{ref.getGlyph('[a]')}}</span>) zu H/g als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 22."
                         }
                     ]
                 }
@@ -127,7 +127,7 @@
                             "measure": "3",
                             "system": "Ges.",
                             "position": "6/8",
-                            "comment": "{{ref.getGlyph('[p]')}} versetzt von 5/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 5/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>."
                         },
                         {
                             "svgGroupId": "g446",
@@ -141,14 +141,14 @@
                             "measure": "7",
                             "system": "Ges.",
                             "position": "2. Note",
-                            "comment": "{{ref.getGlyph('[p]')}} versetzt von 1. Pause gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 1. Pause gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>."
                         },
                         {
                             "svgGroupId": "g445b",
                             "measure": "13",
                             "system": "Ges.",
                             "position": "2/8",
-                            "comment": "{{ref.getGlyph('[p]')}} versetzt von 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>.  <br /> <em>äußerst ruhig</em> versetzt von 1/8 mit Blick auf Textfassung 3."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>.  <br /> <em>äußerst ruhig</em> versetzt von 1/8 mit Blick auf <span class='link-todo'>Textfassung 3</span>."
                         },
                         {
                             "svgGroupId": "g457b",
@@ -162,7 +162,7 @@
                             "measure": "19",
                             "system": "Klav. u.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[ppp]')}} versetzt von 1. Pause."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> versetzt von 1. Pause."
                         }
                     ]
                 }
@@ -172,7 +172,7 @@
             "id": "M_216_TF1",
             "label": "M 216 Textfassung 1",
             "description": [
-                "Für die Edition von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_D'})\"><strong>D</strong></a> relevante Quellen. <br /><a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> ante correcturam und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>D</strong></a> etablieren Textfassung 1. Der Zustand von <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> ante correcturam ist nicht immer eindeutig entzifferbar. Die Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> betreffen Textfassung 2. <br />Hauptquelle für die Textedition von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>D</strong></a>."
+                "Für die Edition von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_D'})\"><strong>D</strong></a> relevante Quellen. <br /><a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> ante correcturam und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>D</strong></a> etablieren Textfassung 1. Der Zustand von <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> ante correcturam ist nicht immer eindeutig entzifferbar. Die Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> betreffen <span class='link-todo'>Textfassung 2</span>. <br />Hauptquelle für die Textedition von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>D</strong></a>."
             ],
             "comments": [
                 {
@@ -183,7 +183,7 @@
                             "measure": "1",
                             "system": "",
                             "position": "Taktanfang",
-                            "comment": "<em>Sehr fließend und leicht (</em>{{ref.getGlyph('[Halbe Note]')}}. <em>= circa 44)</em> umgebrochen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_D'})\"><strong>D</strong></a>: in einer Zeile."
+                            "comment": "<em>Sehr fließend und leicht (</em><span class='glyph'>{{ref.getGlyph('[Halbe Note]')}}</span>. <em>= circa 44)</em> umgebrochen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_D'})\"><strong>D</strong></a>: in einer Zeile."
                         },
                         {
                             "svgGroupId": "g435",
@@ -207,7 +207,7 @@
             "id": "M_212_Sk1",
             "label": "M 212 Sk1",
             "description": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\" ><strong>„Der Tag ist vergangen“ M 212: Textfassung 1</strong></a>."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\" >Textfassung 1</a>."
             ],
             "comments": [
                 {
@@ -218,21 +218,21 @@
                             "measure": "1",
                             "system": "3",
                             "position": "2/8",
-                            "comment": "{{ref.getGlyph('[a]')}}c<sup>2</sup> überschreibt {{ref.getGlyph('[b]')}}b<sup>1</sup> (oder {{ref.getGlyph('[b]')}}ces<sup>2</sup>?)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> (oder <span class='glyph'>{{ref.getGlyph('[b]')}}</span>ces<sup>2</sup>?)."
                         },
                         {
                             "svgGroupId": "g1153",
                             "measure": "2",
                             "system": "3",
                             "position": "4/8",
-                            "comment": "{{ref.getGlyph('[#]')}} zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\" ><strong>Textfassung 2</strong></a> und <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\" ><strong>Textfassung 3</strong></a>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                         },
                         {
                             "svgGroupId": "g1320",
                             "measure": "8",
                             "system": "6",
                             "position": "1/4",
-                            "comment": "{{ref.getGlyph('[a]')}}g<sup>2</sup> gestrichen und geändert zu {{ref.getGlyph('[a]')}}g<sup>1</sup>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup> gestrichen und geändert zu <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>."
                         },
                         {
                             "svgGroupId": "g1389",
@@ -267,7 +267,7 @@
                             "measure": "13",
                             "system": "11",
                             "position": "2.–3. Note",
-                            "comment": "Zwei triolische Achtelnoten {{ref.getGlyph('[a]')}}g<sup>1</sup>–{{ref.getGlyph('[a]')}}c<sup>2</sup> gestrichen und geändert zu Achtelpause."
+                            "comment": "Zwei triolische Achtelnoten <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> gestrichen und geändert zu Achtelpause."
                         },
                         {
                             "svgGroupId": "g5850",
@@ -288,42 +288,42 @@
                             "measure": "15",
                             "system": "11",
                             "position": "",
-                            "comment": "{{ref.getGlyph('[b]')}}as<sup>2</sup>/{{ref.getGlyph('[a]')}}c<sup>3</sup>–{{ref.getGlyph('[a]')}}g<sup>1</sup>/{{ref.getGlyph('[#]')}}cis<sup>2</sup> durch Einkreisung getilgt. Siehe Änderung in System 14."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup>/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>3</sup>–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup> durch Einkreisung getilgt. Siehe Änderung in System 14."
                         },
                         {
                             "svgGroupId": "g911",
                             "measure": "16",
                             "system": "10",
                             "position": "2/8",
-                            "comment": "{{ref.getGlyph('[a]')}}a<sup>1</sup> ersetzt {{ref.getGlyph('[a]')}}g<sup>2</sup>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup> ersetzt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup>."
                         },
                         {
                             "svgGroupId": "g5891",
                             "measure": "16",
                             "system": "11",
                             "position": "3–4/16",
-                            "comment": "sic: {{ref.getGlyph('[a]')}} nach {{ref.getGlyph('[b]')}}es<sup>2</sup>. (Ansatz zu e<sup>2</sup> bei 4/16?)"
+                            "comment": "sic: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> nach <span class='glyph'>{{ref.getGlyph('[b]')}}</span>es<sup>2</sup>. (Ansatz zu e<sup>2</sup> bei 4/16?)"
                         },
                         {
                             "svgGroupId": "g5905",
                             "measure": "16",
                             "system": "10",
                             "position": "3.–4. Note",
-                            "comment": "Zwei Achtelnoten {{ref.getGlyph('[b]')}}as<sup>2</sup>–{{ref.getGlyph('[a]')}}g<sup>2</sup> geändert zu punktierter Achtelnote und Sechzehntelnote."
+                            "comment": "Zwei Achtelnoten <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup>2</sup>–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>2</sup> geändert zu punktierter Achtelnote und Sechzehntelnote."
                         },
                         {
                             "svgGroupId": "g1256",
                             "measure": "20",
                             "system": "8",
                             "position": "",
-                            "comment": "{{ref.getGlyph('[b]')}} überschreibt {{ref.getGlyph('[a]')}}."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
                         },
                         {
                             "svgGroupId": "g1276",
                             "measure": "21",
                             "system": "6",
                             "position": "3. Note",
-                            "comment": "d<sup>1</sup> gestrichen und geändert zu {{ref.getGlyph('[#]')}}fis<sup>1</sup>."
+                            "comment": "d<sup>1</sup> gestrichen und geändert zu <span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup>."
                         },
                         {
                             "svgGroupId": "g1194",
@@ -344,21 +344,21 @@
                             "measure": "23",
                             "system": "14",
                             "position": "1/4",
-                            "comment": "Entzifferung nicht eindeutig. Zuerst: Halbe Note e/a überschreibt Viertelnote {{ref.getGlyph('[a]')}}H/g (?); dann: Halbe Note e/a gestrichen und geändert zu Viertelnote H/e sowie pauschale Ligaturbögen von T. 22 hinzugefügt."
+                            "comment": "Entzifferung nicht eindeutig. Zuerst: Halbe Note e/a überschreibt Viertelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>H/g (?); dann: Halbe Note e/a gestrichen und geändert zu Viertelnote H/e sowie pauschale Ligaturbögen von T. 22 hinzugefügt."
                         },
                         {
                             "svgGroupId": "g1094",
                             "measure": "23",
                             "system": "13",
                             "position": "2/4",
-                            "comment": "{{ref.getGlyph('[#]')}}cis<sup>1</sup>/{{ref.getGlyph('[#]')}}gis<sup>1</sup> gestrichen. Siehe Änderung in System 15."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> gestrichen. Siehe Änderung in System 15."
                         },
                         {
                             "svgGroupId": "g1104",
                             "measure": "24",
                             "system": "14",
                             "position": "",
-                            "comment": "{{ref.getGlyph('[b]')}}B/{{ref.getGlyph('[a]')}}f/{{ref.getGlyph('[a]')}}h durch Einkreisung getilgt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>B/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>f/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>h durch Einkreisung getilgt."
                         }
                     ]
                 }
@@ -368,7 +368,7 @@
             "id": "M_212_Sk2",
             "label": "M 212 Sk2",
             "description": [
-                "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1b'})\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> (<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\" ><strong>„Der Tag ist vergangen“ M 212: Textfassung 1</strong></a>) neu skizziert, in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk3'})\"><strong>Sk3</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk4'})\"><strong>Sk4</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk5'})\"><strong>Sk5</strong></a> weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a> (<a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\"><strong>„Der Tag ist vergangen“ M 212: Textfassung 2</strong></a>) entspricht. Da T. 10–11 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> offensichtlich zunächst aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1b'})\"><strong>Sk1</strong></a> übernommen wurden und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B_corr'})\">Korrekturen in <strong>B</strong></a> mit Bleistift auf die Formulierung von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk2'})\"><strong>Sk2</strong></a> hindeuten, sind <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk2'})\"><strong>Sk2–5</strong></a> offensichtlich erst nach der Niederschrift von <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> und während oder nach den dort vorhandenen Korrekturen, vermutlich als Arbeitsvorlage für <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a> entstanden. <br /><a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk2'})\"><strong>Sk2</strong></a> übernimmt bestimmte Merkmale der Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, die bei einem gleichbleibenden Metrum (das allerdings weder durch einen Taktstrich vor T. 12 kenntlich gemacht noch durch eine neue Taktartvorzeichnung explizit geändert wird) zu einer Erweiterung der vormals zweitaktigen zu einer dreitaktigen Figur führen. Im Klavier (System 13–12) wird die rhythmische Konstellation der Zweiklänge F/e im unteren System und es<sup>1</sup>/as<sup>1</sup> im oberen System geändert sowie der letzte Zweiklang im unteren System aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1b'})\"><strong>Sk1</strong></a> bzw. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> (Gis/cis) getilgt."
+                "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1b'})\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> (<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF1'})\" >„Der Tag ist vergangen“ M 212: Textfassung 1</a>) neu skizziert, in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk3'})\"><strong>Sk3</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk4'})\"><strong>Sk4</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk5'})\"><strong>Sk5</strong></a> weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a> (<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">„Der Tag ist vergangen“ M 212: Textfassung 2</a>) entspricht. Da T. 10–11 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> offensichtlich zunächst aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1b'})\"><strong>Sk1</strong></a> übernommen wurden und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B_corr'})\">Korrekturen in <strong>B</strong></a> mit Bleistift auf die Formulierung von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk2'})\"><strong>Sk2</strong></a> hindeuten, sind <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk2'})\"><strong>Sk2–5</strong></a> offensichtlich erst nach der Niederschrift von <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> und während oder nach den dort vorhandenen Korrekturen, vermutlich als Arbeitsvorlage für <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a> entstanden. <br /><a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk2'})\"><strong>Sk2</strong></a> übernimmt bestimmte Merkmale der Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, die bei einem gleichbleibenden Metrum (das allerdings weder durch einen Taktstrich vor T. 12 kenntlich gemacht noch durch eine neue Taktartvorzeichnung explizit geändert wird) zu einer Erweiterung der vormals zweitaktigen zu einer dreitaktigen Figur führen. Im Klavier (System 13–12) wird die rhythmische Konstellation der Zweiklänge F/e im unteren System und es<sup>1</sup>/as<sup>1</sup> im oberen System geändert sowie der letzte Zweiklang im unteren System aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1b'})\"><strong>Sk1</strong></a> bzw. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> (Gis/cis) getilgt."
             ],
             "comments": [
                 {
@@ -386,14 +386,14 @@
                             "measure": "10",
                             "system": "12",
                             "position": "2. Note",
-                            "comment": "{{ref.getGlyph('[a]')}}e oder {{ref.getGlyph('[b]')}}es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [{{ref.getGlyph('[b]')}}]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1b'})\"><strong>Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk3'})\"><strong>Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk5'})\"><strong>Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>e oder <span class='glyph'>{{ref.getGlyph('[b]')}}</span>es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1b'})\"><strong>Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk3'})\"><strong>Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk5'})\"><strong>Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>."
                         },
                         {
                             "svgGroupId": "g1006",
                             "measure": "11",
                             "system": "14",
                             "position": "(1/4)",
-                            "comment": "Punktierte Achtelpause, Sechzehntelnote {{ref.getGlyph('[b]')}}b radiert."
+                            "comment": "Punktierte Achtelpause, Sechzehntelnote <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b radiert."
                         },
                         {
                             "svgGroupId": "g1405",
@@ -430,7 +430,7 @@
                             "measure": "10",
                             "system": "9",
                             "position": "2/4",
-                            "comment": "c gestrichen; {{ref.getGlyph('[a]')}}e oder {{ref.getGlyph('[b]')}}es (?)."
+                            "comment": "c gestrichen; <span class='glyph'>{{ref.getGlyph('[a]')}}</span>e oder <span class='glyph'>{{ref.getGlyph('[b]')}}</span>es (?)."
                         },
                         {
                             "svgGroupId": "g1543",
@@ -519,7 +519,7 @@
                             "measure": "10",
                             "system": "9",
                             "position": "3/8",
-                            "comment": "{{ref.getGlyph('[b]')}} zu ces<sup>1</sup> überschreibt {{ref.getGlyph('[a]')}} zu c<sup>1</sup>. (Oder: {{ref.getGlyph('[b]')}}ces<sup>1</sup> überschreibt {{ref.getGlyph('[a]')}}h?)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ces<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup>. (Oder: <span class='glyph'>{{ref.getGlyph('[b]')}}</span>ces<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>h?)."
                         },
                         {
                             "svgGroupId": "g1434",

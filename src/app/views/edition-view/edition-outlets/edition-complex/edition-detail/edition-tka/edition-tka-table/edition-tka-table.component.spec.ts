@@ -15,9 +15,9 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
+import { EditionGlyphService } from '@awg-app/views/edition-view/services';
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
 import { EditionSvgSheet, TextcriticalCommentBlock, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
@@ -37,9 +37,11 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let openModalRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
+    let editionGlyphServiceGetGlyphSpy: Spy;
+
+    let mockEditionGlyphService: Partial<EditionGlyphService>;
 
     let expectedReportFragment: string;
-    let expectedGlyphs: typeof EDITION_GLYPHS_DATA;
     let expectedIsRowTable: boolean;
     let expectedModalSnippet: string;
     let expectedComplexId: string;
@@ -51,8 +53,22 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let expectedTotalRows: number;
 
     beforeEach(waitForAsync(() => {
+        mockEditionGlyphService = {
+            getGlyph: (glyphString: string): string => {
+                switch (glyphString) {
+                    case '[a]':
+                        return '\u266E';
+                    case '[b]':
+                        return '\u266D';
+                    default:
+                        return 'glyphString';
+                }
+            },
+        };
+
         TestBed.configureTestingModule({
             declarations: [EditionTkaTableComponent, AbbrDirective, CompileHtmlComponent],
+            providers: [{ provide: EditionGlyphService, useValue: mockEditionGlyphService }],
         }).compileComponents();
     }));
 
@@ -62,12 +78,12 @@ describe('EditionTkaTableComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         mockDocument = TestBed.inject(DOCUMENT);
+        mockEditionGlyphService = TestBed.inject(EditionGlyphService);
 
         // Test data
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
-        expectedGlyphs = EDITION_GLYPHS_DATA;
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
@@ -102,9 +118,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             ],
         };
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        // Spies
         getGlyphSpy = spyOn(component, 'getGlyph').and.callThrough();
         getTableHeaderStringsSpy = spyOn(component, 'getTableHeaderStrings').and.callThrough();
         navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
@@ -116,6 +130,8 @@ describe('EditionTkaTableComponent (DONE)', () => {
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+
+        editionGlyphServiceGetGlyphSpy = spyOn(mockEditionGlyphService, 'getGlyph').and.callThrough();
     });
 
     it('... should create', () => {
@@ -137,10 +153,6 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
         it('... should have tableHeaderStrings', () => {
             expectToEqual(component.tableHeaderStrings, expectedTableHeaderStrings);
-        });
-
-        it('... should have glyphs', () => {
-            expectToEqual(component.GLYPHS, expectedGlyphs);
         });
 
         describe('VIEW', () => {
@@ -365,6 +377,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
 
             it('... should trigger on change detection', () => {
+                // 2 glyphs in detected content
                 expectSpyCall(getGlyphSpy, 2);
 
                 component.isRowTable = true;
@@ -373,20 +386,19 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expectSpyCall(getGlyphSpy, 4);
             });
 
-            it('... should return the correct hex value for a valid glyph alt value', () => {
-                expectToBe(component.getGlyph('[bb]'), '\uD834\uDD2B'); // DOUBLE_FLAT
-                expectToBe(component.getGlyph('[x]'), '\uD834\uDD2A'); // DOUBLE_SHARP
-                expectToBe(component.getGlyph('[b]'), '\u266D'); // FLAT
-                expectToBe(component.getGlyph('[#]'), '\u266F'); // SHARP
-                expectToBe(component.getGlyph('[a]'), '\u266E'); // NATURAL
-                expectToBe(component.getGlyph('[f]'), '\uD834\uDD91'); // FORTE
-                expectToBe(component.getGlyph('[ped]'), '\uD834\uDDAE'); // PEDAL
+            it('... should call `getGlyphs` method from EditionGlyphService with correct glyph string', () => {
+                // 2 glyphs in detected content
+                expectSpyCall(editionGlyphServiceGetGlyphSpy, 2);
+
+                component.getGlyph('[bb]');
+
+                expectSpyCall(editionGlyphServiceGetGlyphSpy, 3, '[bb]');
             });
 
-            it('... should return an empty string for an invalid glyph alt value', () => {
-                expectToBe(component.getGlyph(''), '');
-                expectToBe(component.getGlyph('[invalid]'), '');
-                expectToBe(component.getGlyph('[not found]'), '');
+            it('... should return the glyph string from EditionGlyphService', () => {
+                const result = component.getGlyph('[bb]');
+
+                expectToBe(result, 'glyphString');
             });
         });
 
