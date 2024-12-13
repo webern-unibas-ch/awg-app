@@ -623,7 +623,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;1.1.0-143-g808c80309&#x27;</code>
+                        <i>Default value : </i><code>&#x27;1.1.0-147-g1646fa530&#x27;</code>
                     </td>
                 </tr>
 
@@ -655,7 +655,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;12. December 2024&#x27;</code>
+                        <i>Default value : </i><code>&#x27;13. December 2024&#x27;</code>
                     </td>
                 </tr>
 
@@ -3289,6 +3289,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                         blockContent: [
                             &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;testComplex1&#x27;, fragmentId: &#x27;source_A&#x27;})\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern.&quot;,
                             &quot;In &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; werden T. [11]–[12] aus &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; neu skizziert.&lt;sup id&#x3D;&#x27;note-80-backlink&#x27; class&#x3D;&#x27;note-link&#x27;&gt;&lt;a (click)&#x3D;\&quot;ref.navigateToIntroFragment({complexId: &#x27;testComplex1&#x27;, fragmentId: &#x27;note-80&#x27;})\&quot;&gt;80&lt;/a&gt;&lt;/sup&gt;&quot;,
+                            &#x27;&lt;span class&#x3D;&quot;glyph&quot;&gt;{{ref.getGlyph(&quot;[a]&quot;)}}&lt;/span&gt; überschreibt &lt;span class&#x3D;&quot;glyph&quot;&gt;{{ref.getGlyph(&quot;[b]&quot;)}}&lt;/span&gt;.&#x27;,
                         ],
                         blockNotes: [
                             &quot;&lt;span id&#x3D;&#x27;note-80&#x27; class&#x3D;&#x27;note&#x27;&gt;&lt;a class&#x3D;&#x27;note-backlink&#x27; (click)&#x3D;\&quot;ref.navigateToIntroFragment({complexId: &#x27;testComplex1&#x27;, fragmentId: &#x27;note-80-backlink&#x27;})\&quot;&gt;80&lt;/a&gt; | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).&lt;/span&gt;&quot;,
@@ -3358,7 +3359,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 id: &#x27;de&#x27;,
                 content: [
                     &quot;&lt;span class&#x3D;&#x27;no-indent&#x27;&gt;Die AWG gliedert sich in drei Serien:&lt;/span&gt;&quot;,
-                    &quot;&lt;span class&#x3D;&#x27;no-indent spacebreak&#x27;&gt;Sie werden nicht zu dem für den Druck typischen &lt;span class&#x3D;&#x27;unicode&#x27;&gt;{{ref.getGlyph(&#x27;[ped]&#x27;)}}&lt;/span&gt;.-Zeichen vereinheitlicht.&lt;/span&gt;&quot;,
+                    &quot;&lt;span class&#x3D;&#x27;no-indent spacebreak&#x27;&gt;Sie werden nicht zu dem für den Druck typischen &lt;span class&#x3D;&#x27;glyph unicode&#x27;&gt;{{ref.getGlyph(&#x27;[ped]&#x27;)}}&lt;/span&gt;.-Zeichen vereinheitlicht.&lt;/span&gt;&quot;,
                     &quot;&lt;span class&#x3D;&#x27;small spacebreak&#x27;&gt;Zugang zur AWG-Online-Edition: &lt;a href&#x3D;&#x27;https://edition.anton-webern.ch&#x27; class&#x3D;&#x27;link&#x27;&gt;edition.anton-webern.ch&lt;/a&gt;&lt;/span&gt;&quot;,
                 ],
             },
@@ -3366,7 +3367,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 id: &#x27;en&#x27;,
                 content: [
                     &quot;&lt;span class&#x3D;&#x27;no-indent&#x27;&gt;The AWG is divided into three series:&lt;/span&gt;&quot;,
-                    &quot;&lt;span class&#x3D;&#x27;no-indent spacebreak&#x27;&gt;They are not unified to the &lt;span class&#x3D;&#x27;unicode&#x27;&gt;{{ref.getGlyph(&#x27;[ped]&#x27;)}}&lt;/span&gt;. character typical for printing.&lt;/span&gt;&quot;,
+                    &quot;&lt;span class&#x3D;&#x27;no-indent spacebreak&#x27;&gt;They are not unified to the &lt;span class&#x3D;&#x27;glyph unicode&#x27;&gt;{{ref.getGlyph(&#x27;[ped]&#x27;)}}&lt;/span&gt;. character typical for printing.&lt;/span&gt;&quot;,
                     &quot;&lt;span class&#x3D;&#x27;small spacebreak&#x27;&gt;Access to the AWG online edition: &lt;a href&#x3D;&#x27;https://edition.anton-webern.ch&#x27; class&#x3D;&#x27;link&#x27;&gt;edition.anton-webern.ch&lt;/a&gt;&lt;/span&gt;&quot;,
                 ],
             },
@@ -4290,7 +4291,8 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                                 measure: &#x27;{13}&#x27;,
                                 system: &#x27;12&#x27;,
                                 position: &#x27;3. Note&#x27;,
-                                comment: &#x27;{{ref.getGlyph(&quot;[a]&quot;)}} überschreibt {{ref.getGlyph(&quot;[b]&quot;)}}.&#x27;,
+                                comment:
+                                    &#x27;&lt;span class&#x3D;&quot;glyph&quot;&gt;{{ref.getGlyph(&quot;[a]&quot;)}}&lt;/span&gt; überschreibt &lt;span class&#x3D;&quot;glyph&quot;&gt;{{ref.getGlyph(&quot;[b]&quot;)}}&lt;/span&gt;.&#x27;,
                             },
                             {
                                 svgGroupId: &#x27;svg-group-4&#x27;,

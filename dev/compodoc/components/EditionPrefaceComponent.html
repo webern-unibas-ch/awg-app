@@ -150,6 +150,10 @@ of the edition view of the app.</p>
     <table class="table table-sm table-hover metadata">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -211,14 +215,15 @@ of the edition view of the app.</p>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
+                                <a href="#_editionGlyphService" >_editionGlyphService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_editionStateService" >_editionStateService</a>
                             </li>
                             <li>
                                 <a href="#currentLanguage" >currentLanguage</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#GLYPHS" >GLYPHS</a>
                             </li>
                             <li>
                                 <a href="#prefaceData$" >prefaceData$</a>
@@ -317,8 +322,8 @@ of the edition view of the app.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="89"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-preface/edition-preface.component.ts:89</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-preface/edition-preface.component.ts:90</a></div>
                         </td>
                     </tr>
 
@@ -326,7 +331,8 @@ of the edition view of the app.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: getGlyph.</p>
-<p>It returns the hex value string for a glyph referenced by the given glyph string.</p>
+<p>It returns the hex value string for a glyph referenced by the given glyph string
+via the EditionGlyphService.</p>
 </div>
 
                             <div class="io-description">
@@ -558,7 +564,7 @@ when initializing the component.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-preface/edition-preface.component.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-preface/edition-preface.component.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -566,6 +572,40 @@ when initializing the component.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Private readonly injection variable: _editionDataService.</p>
 <p>It keeps the instance of the injected EditionDataService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_editionGlyphService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_editionGlyphService</b></span>
+                        <a href="#_editionGlyphService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionGlyphService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-preface/edition-preface.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _editionGlyphService.</p>
+<p>It keeps the instance of the injected EditionGlyphService.</p>
 </div>
                 </td>
             </tr>
@@ -648,39 +688,6 @@ when initializing the component.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="GLYPHS"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>GLYPHS</b></span>
-                        <a href="#GLYPHS"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>EDITION_GLYPHS_DATA</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-preface/edition-preface.component.ts:44</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Readonly variable: GLYPHS.</p>
-<p>It keeps the data for musical glyphs.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="prefaceData$"></a>
                     <span class="name">
                         <span ><b>prefaceData$</b></span>
@@ -748,12 +755,11 @@ when initializing the component.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 
-import { EDITION_GLYPHS_DATA } from &#x27;@awg-views/edition-view/data&#x27;;
 import { PrefaceList } from &#x27;@awg-views/edition-view/models&#x27;;
-import { EditionDataService, EditionStateService } from &#x27;@awg-views/edition-view/services&#x27;;
+import { EditionDataService, EditionGlyphService, EditionStateService } from &#x27;@awg-views/edition-view/services&#x27;;
 
 /**
  * The EditionPreface component.
@@ -765,6 +771,7 @@ import { EditionDataService, EditionStateService } from &#x27;@awg-views/edition
     selector: &#x27;awg-edition-preface&#x27;,
     templateUrl: &#x27;./edition-preface.component.html&#x27;,
     styleUrls: [&#x27;./edition-preface.component.scss&#x27;],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionPrefaceComponent implements OnInit, OnDestroy {
     /**
@@ -787,18 +794,18 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
     ref: EditionPrefaceComponent;
 
     /**
-     * Readonly variable: GLYPHS.
-     *
-     * It keeps the data for musical glyphs.
-     */
-    readonly GLYPHS &#x3D; EDITION_GLYPHS_DATA;
-
-    /**
      * Private readonly injection variable: _editionDataService.
      *
      * It keeps the instance of the injected EditionDataService.
      */
     private readonly _editionDataService &#x3D; inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionGlyphService.
+     *
+     * It keeps the instance of the injected EditionGlyphService.
+     */
+    private readonly _editionGlyphService &#x3D; inject(EditionGlyphService);
 
     /**
      * Private readonly injection variable: _editionStateService.
@@ -831,14 +838,14 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
     /**
      * Public method: getGlyph.
      *
-     * It returns the hex value string for a glyph referenced by the given glyph string.
+     * It returns the hex value string for a glyph referenced by the given glyph string
+     * via the EditionGlyphService.
      *
      * @param {string} glyphString The given glyph string.
      * @returns {string} The hex value string of the given glyph string or empty string.
      */
     getGlyph(glyphString: string): string {
-        const glyph &#x3D; Object.values(this.GLYPHS).find(g &#x3D;&gt; g.alt &#x3D;&#x3D;&#x3D; glyphString);
-        return glyph ? glyph.hex : &#x27;&#x27;;
+        return this._editionGlyphService.getGlyph(glyphString);
     }
 
     /**
@@ -914,6 +921,12 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
             &amp;.no-indent {
                 margin-left: 0;
             }
+        }
+
+        img.awg-preface-img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
     }
 }
