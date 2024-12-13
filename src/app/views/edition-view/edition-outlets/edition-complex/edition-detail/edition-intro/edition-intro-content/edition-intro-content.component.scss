@@ -33,8 +33,33 @@
                 margin-bottom: 0 !important;
             }
 
-            table > tbody > tr > td {
-                padding-right: 10px;
+            table {
+                > tbody > tr > td {
+                    padding-right: 20px;
+                }
+
+                &.awg-intro-table {
+                    /* centered table with top and bottom border */
+                    display: table;
+                    width: 80%;
+                    margin-left: auto;
+                    margin-right: auto;
+
+                    > tbody > tr:first-child {
+                        border-top: 1px solid black !important;
+
+                        td {
+                            padding-top: 10px;
+                        }
+                    }
+                    > tbody > tr:last-child {
+                        border-bottom: 1px solid black !important;
+
+                        td {
+                            padding-bottom: 10px;
+                        }
+                    }
+                }
             }
 
             .heading {
