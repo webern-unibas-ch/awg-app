@@ -15,7 +15,7 @@
                             "measure": "1",
                             "system": "Klav. o.",
                             "position": "2/4",
-                            "comment": "{{ref.getGlyph('[#]')}} zu gis<sup>1</sup> ergänzt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -50,14 +50,14 @@
                             "measure": "13",
                             "system": "Ges.",
                             "position": "2/8",
-                            "comment": "{{ref.getGlyph('[pp]')}} <em>äußerst ruhig</em> in eine Zeile gesetzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: <em>äußerst ruhig</em> | {{ref.getGlyph('[pp]')}}."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> <em>äußerst ruhig</em> in eine Zeile gesetzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: <em>äußerst ruhig</em> | <span class='glyph'>{{ref.getGlyph('[pp]')}}</span>."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "13",
                             "system": "Klav. u.",
                             "position": "3/4",
-                            "comment": "{{ref.getGlyph('[pp]')}} unter das System versetzt mit Blick auf den weiteren dynamischen Verlauf."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> unter das System versetzt mit Blick auf den weiteren dynamischen Verlauf."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -83,14 +83,14 @@
                             "measure": "4",
                             "system": "Klav. u.",
                             "position": "6. Note",
-                            "comment": "{{ref.getGlyph('[ppp]')}} von zwischen den Klav.-Systemen versetzt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> von zwischen den Klav.-Systemen versetzt."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "7",
                             "system": "Klav.",
                             "position": "1/8",
-                            "comment": "{{ref.getGlyph('[#]')}} zu fis und cis<sup>2</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 6."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis und cis<sup>2</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 6."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -104,14 +104,14 @@
                             "measure": "10",
                             "system": "Klav. u.",
                             "position": "1/4",
-                            "comment": "{{ref.getGlyph('[b]')}} zu B als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 9."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu B als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 9."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "12",
                             "system": "Klav. u.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[b]')}} zu Es/as ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 11."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu Es/as ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 11."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -153,14 +153,14 @@
                             "measure": "23",
                             "system": "Klav. u.",
                             "position": "1/4",
-                            "comment": "{{ref.getGlyph('[a]')}} zu a als redundant weggelassen."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a als redundant weggelassen."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "25",
                             "system": "Klav. o.",
                             "position": "1/4",
-                            "comment": "{{ref.getGlyph('[b]')}} zu b, {{ref.getGlyph('[a]')}} zu a<sup>1</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 24."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b, <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 24."
                         }
                     ]
                 },
@@ -214,7 +214,7 @@
                             "measure": "13",
                             "system": "Klav. o.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[#]')}} zu cis<sup>1</sup> und {{ref.getGlyph('[a]')}} zu c<sup>2</sup> nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 12."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup> und <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 12."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -235,7 +235,7 @@
                             "measure": "17",
                             "system": "Klav. o.",
                             "position": "",
-                            "comment": "{{ref.getGlyph('[a]')}} zu g als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>: Akzidenzien zu es/g/cis<sup>1</sup> fehlen nach Akkoladenwechsel. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akzidenzien zu es/g/cis<sup>1</sup> nach Akkoladenwechsel."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>: Akzidenzien zu es/g/cis<sup>1</sup> fehlen nach Akkoladenwechsel. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akzidenzien zu es/g/cis<sup>1</sup> nach Akkoladenwechsel."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -270,7 +270,7 @@
                             "measure": "27",
                             "system": "Klav. o.",
                             "position": "1/16",
-                            "comment": "{{ref.getGlyph('[#]')}} zu cis<sup>2</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 26."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>2</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 26."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -291,7 +291,7 @@
                             "measure": "35",
                             "system": "",
                             "position": "Taktanfang",
-                            "comment": "Zeilenfall bei <em>sehr ruhig | (</em>{{ref.getGlyph('[Achtelnote]')}} <em>= ca 100)</em>. aufgelöst gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Auf Grund des Akkoladenwechsels nach T. 35 nicht ausreichend Raum bis zum Seitenrand für die Tempobezeichnung in einer Zeile."
+                            "comment": "Zeilenfall bei <em>sehr ruhig | (</em><span class='glyph'>{{ref.getGlyph('[Achtelnote]')}}</span> <em>= ca 100)</em>. aufgelöst gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Auf Grund des Akkoladenwechsels nach T. 35 nicht ausreichend Raum bis zum Seitenrand für die Tempobezeichnung in einer Zeile."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -305,7 +305,7 @@
                             "measure": "36",
                             "system": "Klav. u.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[b]')}} zu ges als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 35."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ges als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 35."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -319,14 +319,14 @@
                             "measure": "38",
                             "system": "Klav. o.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[#]')}} zu dis<sup>1</sup> und {{ref.getGlyph('[a]')}} zu g<sup>1</sup> nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu dis<sup>1</sup> und <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "38",
                             "system": "Klav. u.",
                             "position": "",
-                            "comment": "{{ref.getGlyph('[#]')}} zu Gis nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Gis nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel."
                         }
                     ]
                 },
@@ -352,7 +352,7 @@
                             "measure": "16",
                             "system": "Klav. o.",
                             "position": "1. Note",
-                            "comment": "Unterstimmenschicht: {{ref.getGlyph('[b]')}} zu es ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 15."
+                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 15."
                         },
                         {
                             "svgGroupId": "TODO",
