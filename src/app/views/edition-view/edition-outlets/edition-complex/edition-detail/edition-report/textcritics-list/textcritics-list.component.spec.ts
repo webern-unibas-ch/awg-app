@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
@@ -65,6 +66,8 @@ describe('TextcriticsListComponent (DONE)', () => {
     let fixture: ComponentFixture<TextcriticsListComponent>;
     let compDe: DebugElement;
 
+    let mockDocument: Document;
+
     let expectedComplexId: string;
     let expectedNextComplexId: string;
     let expectedReportFragment: string;
@@ -107,6 +110,8 @@ describe('TextcriticsListComponent (DONE)', () => {
         fixture = TestBed.createComponent(TextcriticsListComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
+
+        mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
         expectedComplexId = 'testComplex1';
@@ -208,6 +213,27 @@ describe('TextcriticsListComponent (DONE)', () => {
                 expectToContain(itemBodyEl2.classList, 'collapse');
             });
 
+            it('... should contain CompileHtmlComponent in first item header button', () => {
+                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 2, 2);
+
+                itemDes.forEach((itemDe, index) => {
+                    const itemHeaderDes = getAndExpectDebugElementByCss(
+                        itemDe,
+                        `div#${expectedTextcriticsData.textcritics[index].id} > div.accordion-header`,
+                        1,
+                        1
+                    );
+
+                    const btnDes = getAndExpectDebugElementByCss(
+                        itemHeaderDes[0],
+                        'div.accordion-button > button.btn',
+                        2,
+                        2
+                    );
+                    getAndExpectDebugElementByDirective(btnDes[0], CompileHtmlComponent, 1, 1);
+                });
+            });
+
             it('... should display item header buttons', () => {
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 2, 2);
 
@@ -228,11 +254,13 @@ describe('TextcriticsListComponent (DONE)', () => {
                     const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
                     const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
 
-                    const expectedButtonLabel0 = expectedTextcriticsData.textcritics[index].label;
+                    const expectedButtonLabel0 = mockDocument.createElement('span');
+                    expectedButtonLabel0.innerHTML = expectedTextcriticsData.textcritics[index].label;
+
                     const expectedButtonLabel1 = 'Zum edierten Notentext';
 
                     expect(btnEl0).toHaveClass('text-start');
-                    expectToBe(btnEl0.textContent.trim(), expectedButtonLabel0);
+                    expectToBe(btnEl0.textContent.trim(), expectedButtonLabel0.textContent.trim());
 
                     expect(btnEl1).toHaveClass('btn-outline-info');
                     expectToBe(btnEl1.textContent.trim(), expectedButtonLabel1);

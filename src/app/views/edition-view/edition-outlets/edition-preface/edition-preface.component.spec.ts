@@ -15,9 +15,8 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
 import { PrefaceList } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionPrefaceComponent } from './edition-preface.component';
 
@@ -37,10 +36,12 @@ describe('EditionPrefaceComponent (DONE)', () => {
     let getGlyphSpy: Spy;
     let setLanguageSpy: Spy;
     let editionDataServiceGetPrefaceDataSpy: Spy;
+    let editionGlyphServiceGetGlyphSpy: Spy;
     let editionStateServiceUpdateIsPrefaceViewSpy: Spy;
     let editionStateServiceClearIsPrefaceViewSpy: Spy;
 
     let mockEditionStateService: Partial<EditionStateService>;
+    let mockEditionGlyphService: Partial<EditionGlyphService>;
     let mockEditionDataService: Partial<EditionDataService>;
     let mockIsPrefaceViewSubject: ReplaySubject<boolean>;
 
@@ -50,19 +51,24 @@ describe('EditionPrefaceComponent (DONE)', () => {
     beforeEach(async () => {
         mockIsPrefaceViewSubject = new ReplaySubject<boolean>(1);
 
+        mockEditionDataService = {
+            getEditionPrefaceData: (): Observable<PrefaceList> => observableOf(expectedPrefaceData),
+        };
+
+        mockEditionGlyphService = {
+            getGlyph: (): string => 'glyphString',
+        };
+
         mockEditionStateService = {
             updateIsPrefaceView: (isView: boolean): void => mockIsPrefaceViewSubject.next(isView),
             clearIsPrefaceView: (): void => mockIsPrefaceViewSubject.next(null),
-        };
-
-        mockEditionDataService = {
-            getEditionPrefaceData: (): Observable<PrefaceList> => observableOf(expectedPrefaceData),
         };
 
         await TestBed.configureTestingModule({
             declarations: [CompileHtmlComponent, EditionPrefaceComponent, LanguageSwitcherStubComponent],
             providers: [
                 { provide: EditionDataService, useValue: mockEditionDataService },
+                { provide: EditionGlyphService, useValue: mockEditionGlyphService },
                 { provide: EditionStateService, useValue: mockEditionStateService },
             ],
         }).compileComponents();
@@ -73,8 +79,9 @@ describe('EditionPrefaceComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        mockEditionStateService = TestBed.inject(EditionStateService);
         mockEditionDataService = TestBed.inject(EditionDataService);
+        mockEditionGlyphService = TestBed.inject(EditionGlyphService);
+        mockEditionStateService = TestBed.inject(EditionStateService);
 
         // Test data
         expectedPrefaceData = JSON.parse(JSON.stringify(mockEditionData.mockPrefaceData));
@@ -85,7 +92,9 @@ describe('EditionPrefaceComponent (DONE)', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         getGlyphSpy = spyOn(component, 'getGlyph').and.callThrough();
         setLanguageSpy = spyOn(component, 'setLanguage').and.callThrough();
+
         editionDataServiceGetPrefaceDataSpy = spyOn(mockEditionDataService, 'getEditionPrefaceData').and.callThrough();
+        editionGlyphServiceGetGlyphSpy = spyOn(mockEditionGlyphService, 'getGlyph').and.callThrough();
         editionStateServiceUpdateIsPrefaceViewSpy = spyOn(
             mockEditionStateService,
             'updateIsPrefaceView'
@@ -109,20 +118,19 @@ describe('EditionPrefaceComponent (DONE)', () => {
             expectToBe(component.currentLanguage, expectedCurrentLanguage);
         });
 
-        it('... should have `GLYPHS`', () => {
-            expectToEqual(component.GLYPHS, EDITION_GLYPHS_DATA);
-        });
-
         it('... should have `ref`', () => {
             expectToEqual(component.ref, component);
         });
 
-        it('... should not have called EditionStateService', () => {
-            expectSpyCall(editionStateServiceUpdateIsPrefaceViewSpy, 0);
-        });
-
         it('... should not have called EditionDataService', () => {
             expectSpyCall(editionDataServiceGetPrefaceDataSpy, 0);
+        });
+        it('... should not have called EditionGlyphService', () => {
+            expectSpyCall(editionGlyphServiceGetGlyphSpy, 0);
+        });
+
+        it('... should not have called EditionStateService', () => {
+            expectSpyCall(editionStateServiceUpdateIsPrefaceViewSpy, 0);
         });
 
         describe('VIEW', () => {
@@ -206,27 +214,25 @@ describe('EditionPrefaceComponent (DONE)', () => {
             });
 
             it('... should trigger on change detection', () => {
-                expectSpyCall(getGlyphSpy, 2);
+                expectSpyCall(getGlyphSpy, 1);
 
                 detectChangesOnPush(fixture);
 
-                expectSpyCall(getGlyphSpy, 3);
+                expectSpyCall(getGlyphSpy, 2);
             });
 
-            it('... should return the correct hex value for a valid glyph alt value', () => {
-                expectToBe(component.getGlyph('[bb]'), '\uD834\uDD2B'); // DOUBLE_FLAT
-                expectToBe(component.getGlyph('[x]'), '\uD834\uDD2A'); // DOUBLE_SHARP
-                expectToBe(component.getGlyph('[b]'), '\u266D'); // FLAT
-                expectToBe(component.getGlyph('[#]'), '\u266F'); // SHARP
-                expectToBe(component.getGlyph('[a]'), '\u266E'); // NATURAL
-                expectToBe(component.getGlyph('[f]'), '\uD834\uDD91'); // FORTE
-                expectToBe(component.getGlyph('[ped]'), '\uD834\uDDAE'); // PEDAL
+            it('... should call `getGlyphs` method from EditionGlyphService with correct glyph string', () => {
+                expectSpyCall(editionGlyphServiceGetGlyphSpy, 1);
+
+                component.getGlyph('[bb]');
+
+                expectSpyCall(editionGlyphServiceGetGlyphSpy, 2, '[bb]');
             });
 
-            it('... should return an empty string for an invalid glyph alt value', () => {
-                expectToBe(component.getGlyph(''), '');
-                expectToBe(component.getGlyph('[invalid]'), '');
-                expectToBe(component.getGlyph('[not found]'), '');
+            it('... should return the glyph string from EditionGlyphService', () => {
+                const result = component.getGlyph('[bb]');
+
+                expectToBe(result, 'glyphString');
             });
         });
 

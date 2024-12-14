@@ -245,6 +245,7 @@ export const mockEditionData = {
                         blockContent: [
                             "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: 'testComplex1', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.",
                             "In <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test Sk1</strong></a> neu skizziert.<sup id='note-80-backlink' class='note-link'><a (click)=\"ref.navigateToIntroFragment({complexId: 'testComplex1', fragmentId: 'note-80'})\">80</a></sup>",
+                            '<span class="glyph">{{ref.getGlyph("[a]")}}</span> überschreibt <span class="glyph">{{ref.getGlyph("[b]")}}</span>.',
                         ],
                         blockNotes: [
                             "<span id='note-80' class='note'><a class='note-backlink' (click)=\"ref.navigateToIntroFragment({complexId: 'testComplex1', fragmentId: 'note-80-backlink'})\">80</a> | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).</span>",
@@ -314,7 +315,7 @@ export const mockEditionData = {
                 id: 'de',
                 content: [
                     "<span class='no-indent'>Die AWG gliedert sich in drei Serien:</span>",
-                    "<span class='no-indent spacebreak'>Sie werden nicht zu dem für den Druck typischen <span class='unicode'>{{ref.getGlyph('[ped]')}}</span>.-Zeichen vereinheitlicht.</span>",
+                    "<span class='no-indent spacebreak'>Sie werden nicht zu dem für den Druck typischen <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>.-Zeichen vereinheitlicht.</span>",
                     "<span class='small spacebreak'>Zugang zur AWG-Online-Edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></span>",
                 ],
             },
@@ -322,7 +323,7 @@ export const mockEditionData = {
                 id: 'en',
                 content: [
                     "<span class='no-indent'>The AWG is divided into three series:</span>",
-                    "<span class='no-indent spacebreak'>They are not unified to the <span class='unicode'>{{ref.getGlyph('[ped]')}}</span>. character typical for printing.</span>",
+                    "<span class='no-indent spacebreak'>They are not unified to the <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>. character typical for printing.</span>",
                     "<span class='small spacebreak'>Access to the AWG online edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></span>",
                 ],
             },
@@ -1246,7 +1247,8 @@ export const mockEditionData = {
                                 measure: '{13}',
                                 system: '12',
                                 position: '3. Note',
-                                comment: '{{ref.getGlyph("[a]")}} überschreibt {{ref.getGlyph("[b]")}}.',
+                                comment:
+                                    '<span class="glyph">{{ref.getGlyph("[a]")}}</span> überschreibt <span class="glyph">{{ref.getGlyph("[b]")}}</span>.',
                             },
                             {
                                 svgGroupId: 'svg-group-4',

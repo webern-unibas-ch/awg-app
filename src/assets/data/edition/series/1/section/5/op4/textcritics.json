@@ -4,7 +4,7 @@
             "id": "M_138_TF1",
             "label": "M 138 Textfassung 1",
             "description": [
-                "Für die Edition von <em>Eingang</em> („Welt der Gestalten“) Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> relevante Quellen. <br /><a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ist ante correcturam Vorlage für die Abschrift <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a>. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a> betreffen Textfassung 2. Der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ante correcturam ist nicht immer eindeutig zu entziffern. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> ante correcturam bietet im Vergleich dazu einen kohärenteren Text, der Textfassung 1 etabliert. Die autographen <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a> betreffen spätere Textfassungen oder sind aufführungsspezifisch motiviert. <br />Hauptquelle für die Textedition von Eingang („Welt der Gestalten“) Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> ante correcturam. Referenzquelle ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ante correcturam. Da in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> nicht immer eindeutig zu entscheiden ist, welche Zeichen ante oder post correcturam niedergeschrieben wurden, wird in diesen Fällen „(ante correcturam?)“ vermerkt."
+                "Für die Edition von <em>Eingang</em> („Welt der Gestalten“) Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> relevante Quellen. <br /><a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ist ante correcturam Vorlage für die Abschrift <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a>. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF2'})\">Textfassung 2</a>. Der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ante correcturam ist nicht immer eindeutig zu entziffern. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> ante correcturam bietet im Vergleich dazu einen kohärenteren Text, der Textfassung 1 etabliert. Die autographen <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a> betreffen <span class='link-todo'>spätere Textfassungen</span> oder sind aufführungsspezifisch motiviert. <br />Hauptquelle für die Textedition von Eingang („Welt der Gestalten“) Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> ante correcturam. Referenzquelle ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ante correcturam. Da in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> nicht immer eindeutig zu entscheiden ist, welche Zeichen ante oder post correcturam niedergeschrieben wurden, wird in diesen Fällen „(ante correcturam?)“ vermerkt."
             ],
             "comments": [
                 {
@@ -29,7 +29,7 @@
                             "measure": "1",
                             "system": "Klav. o.",
                             "position": "5. Note (9/8)",
-                            "comment": "{{ref.getGlyph('[a]')}} zu g/c<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g/c<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g500-5",
@@ -50,7 +50,7 @@
                             "measure": "1",
                             "system": "Klav. o.",
                             "position": "13/8",
-                            "comment": "{{ref.getGlyph('[#]')}} zu fis<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: {{ref.getGlyph('[#]')}} hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g502-5",
@@ -85,14 +85,14 @@
                             "measure": "2",
                             "system": "Klav. o.",
                             "position": "3–4/8",
-                            "comment": "Ligaturbogen f<sup>1</sup>–f<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ante correcturam. Ligaturbogen c<sup>1</sup>–c<sup>1</sup> ergänzt analog f<sup>1</sup>–f<sup>1</sup> und mit Blick auf spätere Textfassungen."
+                            "comment": "Ligaturbogen f<sup>1</sup>–f<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ante correcturam. Ligaturbogen c<sup>1</sup>–c<sup>1</sup> ergänzt analog f<sup>1</sup>–f<sup>1</sup> und mit Blick auf <span class='link-todo'>spätere Textfassungen</span>."
                         },
                         {
                             "svgGroupId": "g509",
                             "measure": "2",
                             "system": "Klav. u.",
                             "position": "3–4/4",
-                            "comment": "sic: Ligatur es–es. Spätere Textfassungen: es–d. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a>: Ligaturbogen 3–4/4 rasiert; keine erkennbaren Korrekturspuren bei d in 4/4."
+                            "comment": "sic: Ligatur es–es. <span class='link-todo'>Spätere Textfassungen</span>: es–d. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a>: Ligaturbogen 3–4/4 rasiert; keine erkennbaren Korrekturspuren bei d in 4/4."
                         },
                         {
                             "svgGroupId": "g525",
@@ -148,7 +148,7 @@
                             "measure": "4",
                             "system": "Ges.",
                             "position": "4/8",
-                            "comment": "{{ref.getGlyph('[ppp]')}} ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: {{ref.getGlyph('[ppp]')}} hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g681",
@@ -204,7 +204,7 @@
                             "measure": "5 <br /> bis 6",
                             "system": "Klav. u.",
                             "position": "7/4 <br /> 2/4",
-                            "comment": "Unterstimmenschicht: Ligaturbogen T. 5 7/4 bis T. 6 1/8 sowie T. 6 1/8–2/4 zwei Achtelnoten, eine Viertelnote Cis<sub>2</sub> mit Ligatur 2/8–2/4 ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>. Dabei Ende des Legatobogens von T. 5 7/4 versetzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> sowie in T. 6 {{ref.getGlyph('[#]')}} zu Cis<sub>2</sub> versetzt von 2/8 zu 1/8. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: T. 6 1/8–2/4 zwei Achtelnoten, eine Viertelnote Cis<sub>2</sub> mit Ligatur 2/8–2/4 sowie Ligaturbogen zu T. 6 1/8 hinzugefügt."
+                            "comment": "Unterstimmenschicht: Ligaturbogen T. 5 7/4 bis T. 6 1/8 sowie T. 6 1/8–2/4 zwei Achtelnoten, eine Viertelnote Cis<sub>2</sub> mit Ligatur 2/8–2/4 ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>. Dabei Ende des Legatobogens von T. 5 7/4 versetzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> sowie in T. 6 <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Cis<sub>2</sub> versetzt von 2/8 zu 1/8. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: T. 6 1/8–2/4 zwei Achtelnoten, eine Viertelnote Cis<sub>2</sub> mit Ligatur 2/8–2/4 sowie Ligaturbogen zu T. 6 1/8 hinzugefügt."
                         },
                         {
                             "svgGroupId": "g723",
@@ -218,7 +218,7 @@
                             "measure": "6",
                             "system": "Klav.",
                             "position": "2/4",
-                            "comment": "Ende der Decrescendogabel versetzt von Ende T. 5, {{ref.getGlyph('[ppp]')}} versetzt von 1/4 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?)."
+                            "comment": "Ende der Decrescendogabel versetzt von Ende T. 5, <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> versetzt von 1/4 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?)."
                         },
                         {
                             "svgGroupId": "g759",
@@ -288,7 +288,7 @@
                             "measure": "7",
                             "system": "Klav. o.",
                             "position": "7/16",
-                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>3</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>3</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?)."
                         },
                         {
                             "svgGroupId": "g704",
@@ -302,7 +302,7 @@
                             "measure": "7",
                             "system": "Ges.",
                             "position": "6/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu e<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g706",
@@ -358,14 +358,14 @@
                             "measure": "8",
                             "system": "Klav. o.",
                             "position": "2/8",
-                            "comment": "{{ref.getGlyph('[ppp]')}} versetzt von 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> versetzt von 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>."
                         },
                         {
                             "svgGroupId": "g745",
                             "measure": "8",
                             "system": "Ges.",
                             "position": "9/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu d<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt. <br /> Text sic: Großschreibung <em>Korn</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> am Zeilenanfang). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a>: <em>Korn</em> auf Rasur. Siehe auch TkA zu 11/8."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt. <br /> Text sic: Großschreibung <em>Korn</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> am Zeilenanfang). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a>: <em>Korn</em> auf Rasur. Siehe auch TkA zu 11/8."
                         },
                         {
                             "svgGroupId": "g746",
@@ -442,7 +442,7 @@
                             "measure": "10",
                             "system": "Klav. o.",
                             "position": "12/8",
-                            "comment": "{{ref.getGlyph('[#]')}} zu cis<sup>3</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>3</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?)."
                         },
                         {
                             "svgGroupId": "g671",
@@ -470,7 +470,7 @@
                             "measure": "11",
                             "system": "Klav. o.",
                             "position": "5/8",
-                            "comment": "{{ref.getGlyph('[b]')}} zu es<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: {{ref.getGlyph('[b]')}} hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g706d1",
@@ -484,28 +484,28 @@
                             "measure": "11",
                             "system": "Klav. o.",
                             "position": "5. Note",
-                            "comment": "sic: Oberstimmenschicht {{ref.getGlyph('[b]')}}es<sup>2</sup>/g<sup>2</sup>/{{ref.getGlyph('[b]')}}es<sup>3</sup>. Spätere Textfassungen: es<sup>2</sup>/ges<sup>2</sup>/es<sup>3</sup>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a>: {{ref.getGlyph('[b]')}} zu ges<sup>2</sup> hinzugefügt. Siehe auch TkA zu T. 11 (9. Note)."
+                            "comment": "sic: Oberstimmenschicht <span class='glyph'>{{ref.getGlyph('[b]')}}</span>es<sup>2</sup>/g<sup>2</sup>/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>es<sup>3</sup>. <span class='link-todo'>Spätere Textfassungen</span>: es<sup>2</sup>/ges<sup>2</sup>/es<sup>3</sup>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a>: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>2</sup> hinzugefügt. Siehe auch TkA zu T. 11 (9. Note)."
                         },
                         {
                             "svgGroupId": "g716",
                             "measure": "11",
                             "system": "Klav. o.",
                             "position": "5. Note",
-                            "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu c<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?)."
+                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?)."
                         },
                         {
                             "svgGroupId": "g717",
                             "measure": "11",
                             "system": "Klav. o.",
                             "position": "6. Note",
-                            "comment": "sic: Oberstimmenschicht [{{ref.getGlyph('[b]')}}]es<sup>2</sup>/g<sup>2</sup>/[{{ref.getGlyph('[b]')}}]es<sup>3</sup>. Spätere Textfassungen: e<sup>2</sup>/g<sup>2</sup>/e<sup>3</sup>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a>: {{ref.getGlyph('[a]')}} zu e<sup>2</sup>/g<sup>2</sup>/e<sup>3</sup> hinzugefügt. Siehe auch TkA zu T. 11 (7. Note)."
+                            "comment": "sic: Oberstimmenschicht [<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]es<sup>2</sup>/g<sup>2</sup>/[<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]es<sup>3</sup>. <span class='link-todo'>Spätere Textfassungen</span>: e<sup>2</sup>/g<sup>2</sup>/e<sup>3</sup>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup>/g<sup>2</sup>/e<sup>3</sup> hinzugefügt. Siehe auch TkA zu T. 11 (7. Note)."
                         },
                         {
                             "svgGroupId": "g721d2",
                             "measure": "12",
                             "system": "Klav. u.",
                             "position": "6/4",
-                            "comment": "{{ref.getGlyph('[a]')}} zu d ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). (<strong>A</strong>: auch {{ref.getGlyph('[a]')}} zu c<sup>1</sup>.)"
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). (<strong>A</strong>: auch <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup>.)"
                         },
                         {
                             "svgGroupId": "g721d1",
@@ -519,14 +519,14 @@
                             "measure": "13",
                             "system": "Klav. o.",
                             "position": "4/8",
-                            "comment": "Unterstimmenschicht: {{ref.getGlyph('[#]')}} zu gis<sup>1</sup> korrigiert zu {{ref.getGlyph('[a]')}} zu g<sup>1</sup> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: {{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[#]')}}."
+                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> korrigiert zu <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
                         },
                         {
                             "svgGroupId": "g338",
                             "measure": "13",
                             "system": "Ges.",
                             "position": "3. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} korrigiert zu {{ref.getGlyph('[b]')}} gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: {{ref.getGlyph('[b]')}} überschreibt {{ref.getGlyph('[a]')}}."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> korrigiert zu <span class='glyph'>{{ref.getGlyph('[b]')}}</span> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
                         },
                         {
                             "svgGroupId": "g339",
@@ -561,7 +561,7 @@
                             "measure": "14",
                             "system": "Klav. o.",
                             "position": "3. Note",
-                            "comment": "{{ref.getGlyph('[#]')}} zu cis<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: {{ref.getGlyph('[#]')}} hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> hinzugefügt."
                         }
                     ]
                 }
@@ -618,7 +618,7 @@
                             "measure": "5",
                             "system": "Ges.",
                             "position": "8. Note",
-                            "comment": "Längenstrich nach <em>gold</em> getilgt. Siehe Zustand vor <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a> und Textfassung 1: Notenwert als Ligatur von zwei Achtelnoten notiert."
+                            "comment": "Längenstrich nach <em>gold</em> getilgt. Siehe Zustand vor <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF1'})\">Textfassung 1</a>: Notenwert als Ligatur von zwei Achtelnoten notiert."
                         },
                         {
                             "svgGroupId": "g578",
@@ -699,7 +699,7 @@
             "id": "M_139_TF1",
             "label": "M 139 Textfassung 1",
             "description": [
-                "Für die Edition von „Noch zwingt mich Treue“ M 139 Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> relevante Quellen. <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> war ante correcturam Vorlage für <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">autographen Korrekturen in <strong>D<sup>b</sup></strong></a> betreffen eine spätere Textfassung oder sind aufführungsspezifisch motiviert. Der Zustand ante correcturam in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> ist nicht immer eindeutig zu entziffern. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> bietet im Vergleich dazu einen koheränteren Text. <br /> Hauptquelle für die Textedition von „Noch zwingt mich Treue“ M 139 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> ante correcturam. Referenzquelle ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> ante correcturam. Da in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> nicht immer eindeutig zu entscheiden ist, welche Zeichen ante oder post correcturam niedergeschrieben wurden, wird in diesen Fällen „(ante correcturam?)“ vermerkt."
+                "Für die Edition von „Noch zwingt mich Treue“ M 139 Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> relevante Quellen. <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> war ante correcturam Vorlage für <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">autographen Korrekturen in <strong>D<sup>b</sup></strong></a> betreffen eine <span class='link-todo'>spätere Textfassung</span> oder sind aufführungsspezifisch motiviert. Der Zustand ante correcturam in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> ist nicht immer eindeutig zu entziffern. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> bietet im Vergleich dazu einen koheränteren Text. <br /> Hauptquelle für die Textedition von „Noch zwingt mich Treue“ M 139 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> ante correcturam. Referenzquelle ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> ante correcturam. Da in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> nicht immer eindeutig zu entscheiden ist, welche Zeichen ante oder post correcturam niedergeschrieben wurden, wird in diesen Fällen „(ante correcturam?)“ vermerkt."
             ],
             "comments": [
                 {
@@ -710,7 +710,7 @@
                             "measure": "2",
                             "system": "Klav. o.",
                             "position": "2–3/8",
-                            "comment": "Ligaturbogen zu b<sup>1</sup> ergänzt mit Blick auf Textfassung 3. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>: Zustand ante correcturam nicht zu entziffern."
+                            "comment": "Ligaturbogen zu b<sup>1</sup> ergänzt mit Blick auf <span class='link-todo'>Textfassung 3</span>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>: Zustand ante correcturam nicht zu entziffern."
                         },
                         {
                             "svgGroupId": "g583",
@@ -780,7 +780,7 @@
                             "measure": "6",
                             "system": "Klav. o.",
                             "position": "2. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?)."
                         },
                         {
                             "svgGroupId": "g596",
@@ -808,7 +808,7 @@
                             "measure": "7",
                             "system": "Klav. u.",
                             "position": "",
-                            "comment": "{{ref.getGlyph('[#]')}} zu Cis, {{ref.getGlyph('[a]')}} zu A/c ergänzt analog T. 5 1. und 4. Note, {{ref.getGlyph('[#]')}} zu Cis, {{ref.getGlyph('[a]')}} zu c auch gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[#]')}} zu Cis, {{ref.getGlyph('[a]')}} zu A/c hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Cis, <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu A/c ergänzt analog T. 5 1. und 4. Note, <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Cis, <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c auch gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Cis, <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu A/c hinzugefügt."
                         },
                         {
                             "svgGroupId": "g815",
@@ -857,14 +857,14 @@
                             "measure": "9",
                             "system": "Klav. u.",
                             "position": "letzte Note",
-                            "comment": "{{ref.getGlyph('[b]')}} zu As, {{ref.getGlyph('[a]')}} zu d/g ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[b]')}} zu As, {{ref.getGlyph('[a]')}} zu d/g hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu As, <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d/g ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu As, <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d/g hinzugefügt."
                         },
                         {
                             "svgGroupId": "g824",
                             "measure": "10",
                             "system": "Klav. u.",
                             "position": "2/8",
-                            "comment": "{{ref.getGlyph('[b]')}} zu b, {{ref.getGlyph('[a]')}} zu d<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[b]')}} zu b, {{ref.getGlyph('[a]')}} zu d<sup>1</sup> hinzugefügt-"
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b, <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b, <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d<sup>1</sup> hinzugefügt-"
                         },
                         {
                             "svgGroupId": "g825",
@@ -878,21 +878,21 @@
                             "measure": "10",
                             "system": "Klav. o.",
                             "position": "5. Note",
-                            "comment": "{{ref.getGlyph('[b]')}} zu des<sup>2</sup>, {{ref.getGlyph('[a]')}} zu f<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[b]')}} zu des<sup>2</sup>, {{ref.getGlyph('[a]')}} zu f<sup>2</sup> hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>2</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>2</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>2</sup> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g827",
                             "measure": "10",
                             "system": "Klav. u.",
                             "position": "4. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} zu e<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g828",
                             "measure": "10",
                             "system": "Klav. o.",
                             "position": "6. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>2</sup>/e<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup>/e<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g829",
@@ -906,7 +906,7 @@
                             "measure": "10",
                             "system": "Ges.",
                             "position": "6/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu a<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g831",
@@ -920,7 +920,7 @@
                             "measure": "11",
                             "system": "Klav. u.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[p]')}} ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>."
                         },
                         {
                             "svgGroupId": "g833",
@@ -934,21 +934,21 @@
                             "measure": "11 <br /> bis 12",
                             "system": "Klav. o.",
                             "position": "5/8 <br /> 2/8",
-                            "comment": "Durchgehender Bogen gesetzt mit Blick auf Textfassung 3. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: Akkoladenwechsel nach T. 11. T. 11 5–6/8: Bogen. T. 12 1–2/8: Bogen von T. 11."
+                            "comment": "Durchgehender Bogen gesetzt mit Blick auf <span class='link-todo'>Textfassung 3</span>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>: Akkoladenwechsel nach T. 11. T. 11 5–6/8: Bogen. T. 12 1–2/8: Bogen von T. 11."
                         },
                         {
                             "svgGroupId": "g835",
                             "measure": "12",
                             "system": "Klav. o.",
                             "position": "2/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu h<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?)."
                         },
                         {
                             "svgGroupId": "g836",
                             "measure": "12",
                             "system": "Klav. o.",
                             "position": "6/16",
-                            "comment": "{{ref.getGlyph('[b]')}} zu des<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?)."
                         },
                         {
                             "svgGroupId": "g856",
@@ -962,7 +962,7 @@
                             "measure": "12",
                             "system": "Klav. o.",
                             "position": "letzte Note",
-                            "comment": "{{ref.getGlyph('[b]')}} zu as<sup>2</sup>, {{ref.getGlyph('[a]')}} zu c<sup>3</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[b]')}} zu as<sup>2</sup> hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as<sup>2</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>3</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as<sup>2</sup> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g858",
@@ -976,28 +976,28 @@
                             "measure": "13",
                             "system": "Klav. o.",
                             "position": "2. Note",
-                            "comment": "{{ref.getGlyph('[b]')}} zu as<sup>2</sup>, {{ref.getGlyph('[a]')}} zu c<sup>2</sup>/c<sup>3</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[b]')}} zu as<sup>2</sup> hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as<sup>2</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup>/c<sup>3</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as<sup>2</sup> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g860",
                             "measure": "13",
                             "system": "Klav. u.",
                             "position": "6/16",
-                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>1</sup>/e<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup>/e<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g861",
                             "measure": "13",
                             "system": "Klav. u.",
                             "position": "8/16",
-                            "comment": "{{ref.getGlyph('[#]')}} zu Fis<sub>1</sub>/Fis ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[#]')}} hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Fis<sub>1</sub>/Fis ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g862",
                             "measure": "13",
                             "system": "Klav. u.",
                             "position": "vorletzte, letzte Note",
-                            "comment": "Ligaturbogen zu c ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). <br /> {{ref.getGlyph('[a]')}} zu c und a ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a> letzte Note: {{ref.getGlyph('[a]')}} zu a hinzugefügt."
+                            "comment": "Ligaturbogen zu c ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). <br /> <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c und a ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a> letzte Note: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a hinzugefügt."
                         },
                         {
                             "svgGroupId": "g863",
@@ -1032,7 +1032,7 @@
                             "measure": "16",
                             "system": "Klav. o.",
                             "position": "1/4",
-                            "comment": "{{ref.getGlyph('[a]')}} zu h<sup>1</sup>/h<sup>2</sup> und {{ref.getGlyph('[b]')}} zu es<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>/h<sup>2</sup> und <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?)."
                         },
                         {
                             "svgGroupId": "g590c1",
@@ -1046,14 +1046,14 @@
                             "measure": "16",
                             "system": "Klav. u.",
                             "position": "4. Note",
-                            "comment": "{{ref.getGlyph('[pp]')}} versetzt von Klav. o. 2. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>.  <br /> Anfang des Bogens versetzt von letzter Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von Klav. o. 2. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>.  <br /> Anfang des Bogens versetzt von letzter Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>."
                         },
                         {
                             "svgGroupId": "g592c1",
                             "measure": "17",
                             "system": "Klav. o.",
                             "position": "4/16",
-                            "comment": "{{ref.getGlyph('[pp]')}} versetzt von Taktanfang gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von Taktanfang gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>."
                         },
                         {
                             "svgGroupId": "g658c1",
@@ -1074,21 +1074,21 @@
                             "measure": "17",
                             "system": "Klav. u.",
                             "position": "letzte Note",
-                            "comment": "{{ref.getGlyph('[a]')}} zu e und {{ref.getGlyph('[#]')}} zu gis ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[#]')}} zu gis hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e und <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis hinzugefügt."
                         },
                         {
                             "svgGroupId": "g660c2",
                             "measure": "18",
                             "system": "Klav. o.",
                             "position": "2/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                         },
                         {
                             "svgGroupId": "g660c3",
                             "measure": "18",
                             "system": "Klav. u.",
                             "position": "3/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu f ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[a]')}} hinzugfügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugfügt."
                         },
                         {
                             "svgGroupId": "g660c4",
@@ -1116,7 +1116,7 @@
                             "measure": "20",
                             "system": "Klav. o.",
                             "position": "6/8",
-                            "comment": "{{ref.getGlyph('[#]')}} zu gis/cis<sup>1</sup>, {{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt analog T. 19 1/4, {{ref.getGlyph('[#]')}} zu cis<sup>1</sup>, {{ref.getGlyph('[a]')}} zu g<sup>1</sup> auch gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: {{ref.getGlyph('[#]')}} zu gis/cis<sup>1</sup> hinzugefügt. Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>: {{ref.getGlyph('[#]')}} zu gis hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis/cis<sup>1</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> ergänzt analog T. 19 1/4, <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> auch gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> (ante correcturam?). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">Korrekturen in <strong>D<sup>b</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis/cis<sup>1</sup> hinzugefügt. Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis hinzugefügt."
                         }
                     ]
                 }
@@ -1127,7 +1127,7 @@
             "id": "M_139_TF2",
             "label": "M 139 Textfassung 2",
             "description": [
-                "Für die Edition von „Noch zwingt mich Treue“ M 139 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> einzige relvante Quelle. <br /> Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur oder Tektur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Ba_corr_1'})\">Korrekturen 1</a>) und mit Bleistift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Ba_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht immer eindeutig zu entziffern. Der Zustand nach Korrekturen 1 etabliert Textfassung 2. Korrekturen 2 betreffen Textfassung 3. <br /> Hauptquelle für die Textedition von „Noch zwingt mich Treue“ M 139 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> nach Korrekturen 1."
+                "Für die Edition von „Noch zwingt mich Treue“ M 139 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> einzige relvante Quelle. <br /> Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur oder Tektur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Ba_corr_1'})\">Korrekturen 1</a>) und mit Bleistift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Ba_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht immer eindeutig zu entziffern. Der Zustand nach Korrekturen 1 etabliert Textfassung 2. Korrekturen 2 betreffen <span class='link-todo'>Textfassung 3</span>. <br /> Hauptquelle für die Textedition von „Noch zwingt mich Treue“ M 139 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> nach Korrekturen 1."
             ],
             "comments": [
                 {
@@ -1138,7 +1138,7 @@
                             "measure": "2",
                             "system": "Klav. o.",
                             "position": "1.–(3.) Note",
-                            "comment": "sic: Unterstimmenschicht 1.–2. Note ohne Ligaturbogen. Siehe Textfassung 3: Ligaturbogen."
+                            "comment": "sic: Unterstimmenschicht 1.–2. Note ohne Ligaturbogen. Siehe <span class='link-todo'>Textfassung 3</span>: Ligaturbogen."
                         },
                         {
                             "svgGroupId": "g549",
@@ -1201,7 +1201,7 @@
                             "measure": "11 <br /> bis 12",
                             "system": "Klav. o.",
                             "position": "5/8 <br /> 2/8",
-                            "comment": "Durchgehender Bogen gesetzt mit Blick auf Textfassung 3. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 11. T. 11 5–6/8: Bogen. T. 12 1–2/8: Bogen von T. 11."
+                            "comment": "Durchgehender Bogen gesetzt mit Blick auf <span class='link-todo'>Textfassung 3</span>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 11. T. 11 5–6/8: Bogen. T. 12 1–2/8: Bogen von T. 11."
                         },
                         {
                             "svgGroupId": "g647",
@@ -1229,7 +1229,7 @@
                             "measure": "16",
                             "system": "Klav. u.",
                             "position": "4. Note",
-                            "comment": "{{ref.getGlyph('[pp]')}} versetzt von vor 1. Pause mit Blick auf den Zusammenhang. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>:  <br /> ##Abbildung## <br /> Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Ba_corr_2'})\">Korrekturen 2 in <strong>B<sup>a</sup></strong></a>: {{ref.getGlyph('[pp]')}} gestrichen und ersetzt durch {{ref.getGlyph('[p]')}} unter 4. Note."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von vor 1. Pause mit Blick auf den Zusammenhang. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a>:  <br /> ##Abbildung## <br /> Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Ba_corr_2'})\">Korrekturen 2 in <strong>B<sup>a</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[pp]')}}</span> gestrichen und ersetzt durch <span class='glyph'>{{ref.getGlyph('[p]')}}</span> unter 4. Note."
                         },
                         {
                             "svgGroupId": "g541",
@@ -1250,7 +1250,7 @@
                             "measure": "20",
                             "system": "Klav. o.",
                             "position": "6/8",
-                            "comment": "{{ref.getGlyph('[#]')}} zu gis ergänzt analog T. 19 1/4. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Ba_corr_2'})\">Korrekturen 2 in <strong>B<sup>a</sup></strong></a>: {{ref.getGlyph('[#]')}} hinzugefügt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis ergänzt analog T. 19 1/4. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Ba_corr_2'})\">Korrekturen 2 in <strong>B<sup>a</sup></strong></a>: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> hinzugefügt."
                         }
                     ]
                 }
@@ -1261,7 +1261,7 @@
             "id": "M_140_TF1",
             "label": "M 140 Textfassung 1",
             "description": [
-                "Für die Edition von „Ja Heil und Dank dir“ M 140 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> einzige relevante Quelle. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bb_corr'})\">Korrekturen in <strong>B<sup>b</sup></strong></a> betreffen Textfassung 2. Hauptquelle für die Textedition von „Ja Heil und Dank dir“ M 140 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> ante correcturam."
+                "Für die Edition von „Ja Heil und Dank dir“ M 140 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> einzige relevante Quelle. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bb_corr'})\">Korrekturen in <strong>B<sup>b</sup></strong></a> betreffen <span class='link-todo'>Textfassung 2</span>. Hauptquelle für die Textedition von „Ja Heil und Dank dir“ M 140 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> ante correcturam."
             ],
             "comments": [
                 {
@@ -1408,7 +1408,7 @@
             "id": "M_141_TF1",
             "label": "M 141 Textfassung 1",
             "description": [
-                "Für die Edition von „So ich traurig bin“ M 141 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a> einzige relevante Quelle. <br />Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr_1'})\">Korrekturen 1</a>) und mit Bleistift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht immer eindeutig zu entziffern. Der Zustand nach Korrekturen 1 etabliert Textfassung 1. Korrekturen 2 skizzieren Textfassung 2. <br />Hauptquelle für die Textedition von Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a> nach Korrekturen 1."
+                "Für die Edition von „So ich traurig bin“ M 141 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a> einzige relevante Quelle. <br />Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr_1'})\">Korrekturen 1</a>) und mit Bleistift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht immer eindeutig zu entziffern. Der Zustand nach Korrekturen 1 etabliert Textfassung 1. Korrekturen 2 skizzieren <span class='link-todo'>Textfassung 2</span>. <br />Hauptquelle für die Textedition von Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a> nach Korrekturen 1."
             ],
             "comments": [
                 {
@@ -1454,7 +1454,7 @@
                             "measure": "15",
                             "system": "Ges.",
                             "position": "1.–4. Note",
-                            "comment": "Rhythmische Notation nicht eindeutig. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a>:  <br /> ##Abbildung## <br /> Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr_1'})\">Korrekturen 1 in <strong>B<sup>c</sup></strong></a>: 3. Note als punktierte Achtelnote auf Rasur, 4. Note uneindeutig mit Achtel- oder Sechzehntelfähnchen. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr_2'})\">Korrekturen 2 in <strong>B<sup>c</sup></strong></a>: Punktierung der 1. Note sowie Balkierung mit 2. und 4. Note als Sechzehntelnote hinzugefügt. <br /> Achtelnoten-Quartole gesetzt mit Blick auf klangliche Realisierung von Textfassung 2."
+                            "comment": "Rhythmische Notation nicht eindeutig. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a>:  <br /> ##Abbildung## <br /> Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr_1'})\">Korrekturen 1 in <strong>B<sup>c</sup></strong></a>: 3. Note als punktierte Achtelnote auf Rasur, 4. Note uneindeutig mit Achtel- oder Sechzehntelfähnchen. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr_2'})\">Korrekturen 2 in <strong>B<sup>c</sup></strong></a>: Punktierung der 1. Note sowie Balkierung mit 2. und 4. Note als Sechzehntelnote hinzugefügt. <br /> Achtelnoten-Quartole gesetzt mit Blick auf klangliche Realisierung von <span class='link-todo'>Textfassung 2</span>."
                         },
                         {
                             "svgGroupId": "g383",
@@ -1482,14 +1482,14 @@
                             "measure": "vor 1",
                             "system": "",
                             "position": "Anfang",
-                            "comment": "sic: keine Taktartvorzeichnung. Taktzählung T. 1–15 (mit Auftakt) mit Blick auf Textfassung 2 und Textfassung 3."
+                            "comment": "sic: keine Taktartvorzeichnung. Taktzählung T. 1–15 (mit Auftakt) mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                         },
                         {
                             "svgGroupId": "g594",
                             "measure": "1",
                             "system": "Klav. o.",
                             "position": "letzte Note",
-                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>1</sup> ergänzt mit Blick auf Textfassung 3."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> ergänzt mit Blick auf <span class='link-todo'>Textfassung 3</span>."
                         },
                         {
                             "svgGroupId": "g595",
@@ -1574,7 +1574,7 @@
                             "measure": "1",
                             "system": "Klav. o.",
                             "position": "letzte Note",
-                            "comment": "{{ref.getGlyph('[a]')}} zu c<sup>1</sup> ergänzt mit Blick auf Textfassung 3."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> ergänzt mit Blick auf <span class='link-todo'>Textfassung 3</span>."
                         },
                         {
                             "svgGroupId": "g640",
@@ -1602,7 +1602,7 @@
                             "measure": "5",
                             "system": "Klav.",
                             "position": "vorletzte Note",
-                            "comment": "Oberstimmenschicht: Anfang der Crescendogabel versetzt von (7/8). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a>: Achtelpause ersetzt Achtelnote a/c<sup>1</sup> (siehe Textfassung 1)."
+                            "comment": "Oberstimmenschicht: Anfang der Crescendogabel versetzt von (7/8). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a>: Achtelpause ersetzt Achtelnote a/c<sup>1</sup> (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF1'})\">Textfassung 1</a>)."
                         },
                         {
                             "svgGroupId": "g666",
