@@ -1,9 +1,8 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
 import { PrefaceList } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionPreface component.
@@ -15,6 +14,7 @@ import { EditionDataService, EditionStateService } from '@awg-views/edition-view
     selector: 'awg-edition-preface',
     templateUrl: './edition-preface.component.html',
     styleUrls: ['./edition-preface.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionPrefaceComponent implements OnInit, OnDestroy {
     /**
@@ -37,18 +37,18 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
     ref: EditionPrefaceComponent;
 
     /**
-     * Readonly variable: GLYPHS.
-     *
-     * It keeps the data for musical glyphs.
-     */
-    readonly GLYPHS = EDITION_GLYPHS_DATA;
-
-    /**
      * Private readonly injection variable: _editionDataService.
      *
      * It keeps the instance of the injected EditionDataService.
      */
     private readonly _editionDataService = inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionGlyphService.
+     *
+     * It keeps the instance of the injected EditionGlyphService.
+     */
+    private readonly _editionGlyphService = inject(EditionGlyphService);
 
     /**
      * Private readonly injection variable: _editionStateService.
@@ -81,14 +81,14 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
     /**
      * Public method: getGlyph.
      *
-     * It returns the hex value string for a glyph referenced by the given glyph string.
+     * It returns the hex value string for a glyph referenced by the given glyph string
+     * via the EditionGlyphService.
      *
      * @param {string} glyphString The given glyph string.
      * @returns {string} The hex value string of the given glyph string or empty string.
      */
     getGlyph(glyphString: string): string {
-        const glyph = Object.values(this.GLYPHS).find(g => g.alt === glyphString);
-        return glyph ? glyph.hex : '';
+        return this._editionGlyphService.getGlyph(glyphString);
     }
 
     /**

@@ -76,7 +76,7 @@
                             "measure": "8(1–2/4)",
                             "system": "14",
                             "position": "1/4",
-                            "comment": "{{ref.getGlyph('[b]')}}es überschreibt {{ref.getGlyph('[#]')}}dis."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>es überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis."
                         },
                         {
                             "svgGroupId": "g5183",
@@ -90,7 +90,7 @@
                             "measure": "{8(3/4)A}",
                             "system": "14",
                             "position": "3/4",
-                            "comment": "{{ref.getGlyph('[b]')}}es überschreibt d."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>es überschreibt d."
                         },
                         {
                             "svgGroupId": "g5177",
@@ -132,7 +132,7 @@
                             "measure": "15",
                             "system": "12",
                             "position": "1. Note",
-                            "comment": "Halbe Note [{{ref.getGlyph('[#]')}}]dis<sup>1</sup> überschreibt Viertelnoten [{{ref.getGlyph('[#]')}}]dis<sup>1</sup>/{{ref.getGlyph('[a]')}}f<sup>1</sup>–{{ref.getGlyph('[#]')}}ais<sup>1</sup>/c<sup>2</sup>."
+                            "comment": "Halbe Note [<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]dis<sup>1</sup> überschreibt Viertelnoten [<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]dis<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>–<span class='glyph'>{{ref.getGlyph('[#]')}}</span>ais<sup>1</sup>/c<sup>2</sup>."
                         },
                         {
                             "svgGroupId": "g37650",
@@ -146,21 +146,21 @@
                             "measure": "{16A}",
                             "system": "15",
                             "position": "1. Note",
-                            "comment": "Achtelpause überschreibt Viertelnote [{{ref.getGlyph('[#]')}}]dis<sup>1</sup>/{{ref.getGlyph('[#]')}}fis<sup>1</sup>."
+                            "comment": "Achtelpause überschreibt Viertelnote [<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]dis<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup>."
                         },
                         {
                             "svgGroupId": "g1629",
                             "measure": "16B",
                             "system": "15",
                             "position": "1. Pause",
-                            "comment": "Achtelpause überschreibt Achtelnote h<sup>1</sup>/[{{ref.getGlyph('[#]')}}]dis<sup>2</sup>."
+                            "comment": "Achtelpause überschreibt Achtelnote h<sup>1</sup>/[<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]dis<sup>2</sup>."
                         },
                         {
                             "svgGroupId": "g37705",
                             "measure": "16B",
                             "system": "15",
                             "position": "1. Note",
-                            "comment": "h<sup>1</sup>/{{ref.getGlyph('[#]')}}dis<sup>2</sup> überschreibt {{ref.getGlyph('[b]')}}b/d<sup>1</sup>."
+                            "comment": "h<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b/d<sup>1</sup>."
                         },
                         {
                             "svgGroupId": "g37731",
@@ -202,7 +202,7 @@
                             "measure": "21",
                             "system": "17",
                             "position": "3/4",
-                            "comment": "[{{ref.getGlyph('[#]')}}]ais/{{ref.getGlyph('[#]')}}fis<sup>1</sup> überschreibt g<sup>1</sup>/h<sup>1</sup>."
+                            "comment": "[<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]ais/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup> überschreibt g<sup>1</sup>/h<sup>1</sup>."
                         },
                         {
                             "svgGroupId": "g42786",
@@ -223,7 +223,7 @@
                             "measure": "{22}",
                             "system": "17",
                             "position": "3/4",
-                            "comment": "Entzifferung nicht eindeutig. g<sup>1</sup>/h<sup>1</sup> überschreibt c<sup>1</sup>/{{ref.getGlyph('[b]')}}es<sup>1</sup> sowie e<sup>2</sup>?"
+                            "comment": "Entzifferung nicht eindeutig. g<sup>1</sup>/h<sup>1</sup> überschreibt c<sup>1</sup>/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> sowie e<sup>2</sup>?"
                         }
                     ]
                 }

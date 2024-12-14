@@ -15,7 +15,7 @@
                             "measure": "1",
                             "system": "Klav.",
                             "position": "4/16",
-                            "comment": "{{ref.getGlyph('[pp]')}} versetzt von 3/8."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von 3/8."
                         },
                         {
                             "svgGroupId": "g3302",
@@ -29,7 +29,7 @@
                             "measure": "6",
                             "system": "Klav.",
                             "position": "4/16",
-                            "comment": "{{ref.getGlyph('[pp]')}} versetzt von 3/8."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von 3/8."
                         },
                         {
                             "svgGroupId": "g2028",
@@ -50,21 +50,21 @@
                             "measure": "18",
                             "system": "Klav.",
                             "position": "4/16",
-                            "comment": "{{ref.getGlyph('[pp]')}} versetzt von zwischen 3/8 und 4/8."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von zwischen 3/8 und 4/8."
                         },
                         {
                             "svgGroupId": "g3050",
                             "measure": "23",
                             "system": "Klav.",
                             "position": "4/16",
-                            "comment": "{{ref.getGlyph('[p]')}} versetzt von 3/8."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 3/8."
                         },
                         {
                             "svgGroupId": "g3054",
                             "measure": "28",
                             "system": "Klav.",
                             "position": "8/16",
-                            "comment": "{{ref.getGlyph('[pp]')}} versetzt von 5/8."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von 5/8."
                         }
                     ]
                 }
@@ -164,7 +164,7 @@
                             "measure": "4",
                             "system": "15",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[b]')}}."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
                         },
                         {
                             "svgGroupId": "g1164",
