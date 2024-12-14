@@ -57,7 +57,7 @@
                             "measure": "7",
                             "system": "14",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[#]')}}cis<sup>1</sup> überschreibt d<sub>1</sub>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis<sup>1</sup> überschreibt d<sub>1</sub>."
                         },
                         {
                             "svgGroupId": "g13",
