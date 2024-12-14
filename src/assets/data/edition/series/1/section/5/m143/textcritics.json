@@ -49,8 +49,8 @@
                             "svgGroupId": "TODO",
                             "measure": "9 <br /> bis 10",
                             "system": "Klav. o. <br /> Klav. u.",
-                            "position": "8/8 <br /> 1/4",
-                            "comment": "##Bogen in T. 9 Klav. o. 8/8 zu T. 10 und nach Akkoladenwechsel nach T. 9 Bogen von T. 9 zu T. 10 Klav. u. 1/4 zusammengefasst zu einem durchgehenden Bogen."
+                            "position": "7/8 <br /> 1/4",
+                            "comment": "Bogen in T. 9 Klav. o. 7/8 zu T. 10 und nach Akkoladenwechsel nach T. 9 Bogen von T. 9 zu T. 10 Klav. u. 1/4 zusammengefasst zu einem durchgehenden Bogen."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -99,7 +99,7 @@
                             "measure": "14 <br /> bis 15",
                             "system": "Klav. o.",
                             "position": "4/4 <br /> 1/4",
-                            "comment": "Ligaturbögen ergänzt mit Blick auf Korrekturen 2."
+                            "comment": "Ligaturbögen ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'M_143', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>."
                         },
                         {
                             "svgGroupId": "TODO",
