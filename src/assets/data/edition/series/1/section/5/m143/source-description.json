@@ -228,7 +228,7 @@
                                         "measure": "11",
                                         "system": "Klav. o.",
                                         "position": "8/8",
-                                        "comment": "{{ref.getGlyph('[#]')}} zu fis<sup>3</sup> hinzugefügt."
+                                        "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>3</sup> hinzugefügt."
                                     },
                                     {
                                         "measure": "14",
