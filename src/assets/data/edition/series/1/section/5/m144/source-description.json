@@ -149,7 +149,7 @@
                                         "measure": "9",
                                         "system": "Ges.",
                                         "position": "1/8",
-                                        "comment": "{{ref.getGlyph('[a]')}} zu c<sup>1</sup> überschreibt {{ref.getGlyph('[#]')}} zu cis<sup>1</sup>."
+                                        "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup>."
                                     },
                                     {
                                         "measure": "10",
