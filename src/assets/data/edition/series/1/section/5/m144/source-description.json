@@ -203,7 +203,7 @@
                                         "measure": "9",
                                         "system": "Klav. u.",
                                         "position": "2/4",
-                                        "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu c<sup>1</sup> hinzugefügt."
+                                        "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> hinzugefügt."
                                     },
                                     {
                                         "measure": "12",
