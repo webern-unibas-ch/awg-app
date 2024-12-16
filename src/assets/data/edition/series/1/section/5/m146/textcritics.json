@@ -127,7 +127,7 @@
                             "measure": "15",
                             "system": "Klav. u.",
                             "position": "1/16",
-                            "comment": "{{ref.getGlyph('[ppp]')}} versetzt von 2/16."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> versetzt von 2/16."
                         },
                         {
                             "svgGroupId": "TODO",
