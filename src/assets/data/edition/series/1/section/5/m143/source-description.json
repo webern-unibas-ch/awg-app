@@ -288,7 +288,7 @@
                                         "measure": "18",
                                         "system": "Ges.",
                                         "position": "4/8",
-                                        "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
+                                        "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                                     },
                                     {
                                         "measure": "20",
