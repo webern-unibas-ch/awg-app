@@ -180,7 +180,7 @@
                                         "measure": "23",
                                         "system": "Klav. u.",
                                         "position": "3. Note",
-                                        "comment": "{{ref.getGlyph('[pp]')}} geändert zu {{ref.getGlyph('[p]')}}."
+                                        "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[p]')}}</span>."
                                     },
                                     {
                                         "measure": "26",
