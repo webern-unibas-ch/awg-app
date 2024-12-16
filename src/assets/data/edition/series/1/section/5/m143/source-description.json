@@ -258,7 +258,7 @@
                                         "measure": "15",
                                         "system": "Klav. o.",
                                         "position": "4/4",
-                                        "comment": "{{ref.getGlyph('[f]')}} geändert zu {{ref.getGlyph('[mf]')}}."
+                                        "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[mf]')}}</span>."
                                     },
                                     {
                                         "measure": "16",
