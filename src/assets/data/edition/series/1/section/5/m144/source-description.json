@@ -161,7 +161,7 @@
                                         "measure": "10",
                                         "system": "Klav. u.",
                                         "position": "6/8",
-                                        "comment": "Unterstimmenschicht: {{ref.getGlyph('[b]')}} zu B<sub>1</sub> überschreibt {{ref.getGlyph('[a]')}} zu H<sub>1</sub>."
+                                        "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu B<sub>1</sub> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu H<sub>1</sub>."
                                     },
                                     {
                                         "measure": "12",
