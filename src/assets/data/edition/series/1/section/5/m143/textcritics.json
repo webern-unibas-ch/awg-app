@@ -169,7 +169,7 @@
                             "measure": "24",
                             "system": "Ges.",
                             "position": "2/8",
-                            "comment": "Text: Ausrufezeichen nach (Mi-nu-)<em>ten</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'M143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                            "comment": "Text: Ausrufezeichen nach (Mi-nu-)<em>ten</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
                         }
                     ]
                 }
