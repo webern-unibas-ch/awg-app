@@ -15,7 +15,7 @@
                             "measure": "1",
                             "system": "Klav. u.",
                             "position": "4/8",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu f ergänzt mit Blick auf Motivik vor T. 1 Klav. o."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f ergänzt mit Blick auf Motivik vor T. 1 Klav. o."
                         },
                         {
                             "svgGroupId": "TODO",
