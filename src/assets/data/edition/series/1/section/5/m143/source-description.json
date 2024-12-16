@@ -282,7 +282,7 @@
                                         "measure": "17",
                                         "system": "Klav. o.",
                                         "position": "3. Note",
-                                        "comment": "{{ref.getGlyph('[pp]')}} hinzugefügt."
+                                        "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
                                     },
                                     {
                                         "measure": "18",
