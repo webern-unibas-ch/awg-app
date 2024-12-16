@@ -99,7 +99,7 @@
                             "measure": "9",
                             "system": "Klav. u.",
                             "position": "3. Note",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu e ergänzt mit Blick auf T. 10 2/16 und 3/8."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e ergänzt mit Blick auf T. 10 2/16 und 3/8."
                         },
                         {
                             "svgGroupId": "TODO",
