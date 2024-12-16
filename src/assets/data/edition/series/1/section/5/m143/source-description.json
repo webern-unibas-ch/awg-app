@@ -300,7 +300,7 @@
                                         "measure": "21",
                                         "system": "Ges.",
                                         "position": "2/8",
-                                        "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
+                                        "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                                     },
                                     {
                                         "measure": "24",
