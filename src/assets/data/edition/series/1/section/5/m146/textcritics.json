@@ -43,7 +43,7 @@
                             "measure": "6",
                             "system": "Klav. o.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[f]')}} versetzt von 2. Note."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 2. Note."
                         },
                         {
                             "svgGroupId": "TODO",
