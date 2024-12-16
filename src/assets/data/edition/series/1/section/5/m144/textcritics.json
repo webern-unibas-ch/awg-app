@@ -30,7 +30,7 @@
                             "measure": "3",
                             "system": "Ges.",
                             "position": "1. Note",
-                            "comment": "Text sic: Großschreibung <em>Gott</em> (wie in <a (click)=\"ref.navigateToReportFragment({complexId: 'M144', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'M_144', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a>: <em>Gott</em> überschreibt <em>gott</em>."
+                            "comment": "Text sic: Großschreibung <em>Gott</em> (wie in <a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>). Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a>: <em>Gott</em> überschreibt <em>gott</em>."
                         },
                         {
                             "svgGroupId": "TODO",
