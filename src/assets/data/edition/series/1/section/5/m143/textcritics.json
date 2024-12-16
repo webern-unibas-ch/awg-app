@@ -22,7 +22,7 @@
                             "measure": "6",
                             "system": "Ges.",
                             "position": "2/8",
-                            "comment": "Text: (tief-)<em>stem</em> korrigiert zu (tief-)<em>sten</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'M143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                            "comment": "Text: (tief-)<em>stem</em> korrigiert zu (tief-)<em>sten</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
