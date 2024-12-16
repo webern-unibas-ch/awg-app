@@ -257,7 +257,7 @@
                                         "measure": "11",
                                         "system": "Klav. o.",
                                         "position": "6/32",
-                                        "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu c<sup>1</sup> hinzugefügt."
+                                        "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> hinzugefügt."
                                     },
                                     {
                                         "measure": "20 <br /> bis 21",
