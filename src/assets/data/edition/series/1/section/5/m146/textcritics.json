@@ -120,7 +120,7 @@
                             "measure": "14",
                             "system": "Ges.",
                             "position": "6/8",
-                            "comment": "Text: Großschreibung <em>Dein</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'M146', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'M_146', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                            "comment": "Text: Großschreibung <em>Dein</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
                         },
                         {
                             "svgGroupId": "TODO",
