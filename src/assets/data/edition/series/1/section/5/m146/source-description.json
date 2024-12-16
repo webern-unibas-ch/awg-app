@@ -294,7 +294,7 @@
                                         "measure": "13",
                                         "system": "Klav. o.",
                                         "position": "1. Note",
-                                        "comment": "Arpeggioschlange hinzugefügt mit Bleistift.  <br /> {{ref.getGlyph('[ppp]')}} geändert zu {{ref.getGlyph('[ppp]')}} mit Bleistift."
+                                        "comment": "Arpeggioschlange hinzugefügt mit Bleistift.  <br /> <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> mit Bleistift."
                                     },
                                     {
                                         "measure": "13",
