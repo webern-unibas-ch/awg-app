@@ -1,3 +1,179 @@
 {
-    "textcritics": []
+    "textcritics": [
+        {
+            "id": "M_143_TF1",
+            "label": "M 143 einzige Textfassung",
+            "description": [
+                "Für die Edition der einzigen Textfassung von „Erwachen aus dem tiefsten Traumesschoße“ M 143 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle. <br /> Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte (<a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a>) und mit Bleistift (<a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>) vorgenommen. Korrekturen 2 sind nicht immer eindeutig. <br /> Hauptquelle für die Textedition von „Erwachen aus dem tiefsten Traumesschoße“ M 143 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a> nach Korrekturen 1 und vor Korrekturen 2."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "1",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "sic: keine Taktvorzeichnung."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "6",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "Text: (tief-)<em>stem</em> korrigiert zu (tief-)<em>sten</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "6",
+                            "system": "Ges.",
+                            "position": "3.–6. Note",
+                            "comment": "Text sic: <em>Trau-mes-scho-ße</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>traumes-schoosse</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "6",
+                            "system": "Ges.",
+                            "position": "8/8",
+                            "comment": "Text: Doppelpunkt nach <em>Trau-mes-scho-ße</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "9",
+                            "system": "Ges.",
+                            "position": "3/4–7/8",
+                            "comment": "Text sic: Silbentrennung (be-)<em>tro-ffen</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "9 <br /> bis 10",
+                            "system": "Klav. o. <br /> Klav. u.",
+                            "position": "7/8 <br /> 1/4",
+                            "comment": "Bogen in T. 9 Klav. o. 7/8 zu T. 10 und nach Akkoladenwechsel nach T. 9 Bogen von T. 9 zu T. 10 Klav. u. 1/4 zusammengefasst zu einem durchgehenden Bogen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "10",
+                            "system": "Ges.",
+                            "position": "2–8/8",
+                            "comment": "Bezug der Crescendogabel nicht eindeutig, möglicherweise auf Klav. o. bezogen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a>: Gabel zwischen Ges. und Klav. o. (Text über Ges.)."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "10",
+                            "system": "Ges.",
+                            "position": "5–6/8",
+                            "comment": "Text sic: Silbentrennung <em>Li-ppen</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "11",
+                            "system": "Ges.",
+                            "position": "4/8",
+                            "comment": "Text sic: Interpunktionszeichen nach (er[-]bli-)<em>chen</em> fehlt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: Interpunktionszeichen fehlt (am Zeilenende). Siehe auch TkA zu T. 12 4/4 und zu T. 16 8/8."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "12",
+                            "system": "Ges.",
+                            "position": "4/4",
+                            "comment": "Text: Paranthesestrich ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a> (am Zeilenanfang). Siehe auch TkA zu T. 16 8/8."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "13",
+                            "system": "Ges.",
+                            "position": "5–6/8",
+                            "comment": "Text sic: Silbentrennung <em>so-llet</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "14",
+                            "system": "Ges.",
+                            "position": "1.–4. Note",
+                            "comment": "Text sic: <em>mit-leid-gro-ße</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>mitleidgrosse</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "14 <br /> bis 15",
+                            "system": "Klav. o.",
+                            "position": "4/4 <br /> 1/4",
+                            "comment": "Ligaturbögen ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "14",
+                            "system": "Ges.",
+                            "position": "8/8",
+                            "comment": "Text: Ausrufezeichen nach (mit-leid-gro-)<em>ße</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "15",
+                            "system": "Ges.",
+                            "position": "3/4",
+                            "comment": "Text: Kleinschreibung <em>dank</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "16",
+                            "system": "Ges.",
+                            "position": "3–4/8",
+                            "comment": "Text sic: Silbentrennung (ge-)<em>wei-hten</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "16",
+                            "system": "Ges.",
+                            "position": "8/8",
+                            "comment": "Text: Paranthesestrich ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a> (am Zeilenende). Siehe auch TkA zu T. 12 4/4."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "18",
+                            "system": "Ges.",
+                            "position": "letzte Note",
+                            "comment": "Text: Kleinschreibung <em>die</em> mit Blick auf Kleinschreibung von <em>mich</em> in T. 9 8/8. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: Großschreibung <em>Mich</em> und <em>Die</em> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung. Siehe auch TkA zu T. 20 6/8."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "20",
+                            "system": "Ges.",
+                            "position": "3–4/8",
+                            "comment": "Text sic: Silbentrennung <em>Ho-ffen</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "20",
+                            "system": "Ges.",
+                            "position": "6/8",
+                            "comment": "Text: Kleinschreibung <em>dass</em> mit Blick auf Kleinschreibung von <em>mich</em> in T. 9 8/8. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: Großschreibung <em>Mich</em> und <em>Die</em> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung. Siehe auch TkA zu T. 18 letzte Note."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "21",
+                            "system": "Ges.",
+                            "position": "8/8",
+                            "comment": "Text: Zwei Punkte nach (wi-)<em>chen</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "23",
+                            "system": "Ges.",
+                            "position": "1–2/8",
+                            "comment": "Text sic: Silbentrennung <em>ri-nnen</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "24",
+                            "system": "Ges.",
+                            "position": "2/8",
+                            "comment": "Text: Ausrufezeichen nach (Mi-nu-)<em>ten</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }
