@@ -264,13 +264,13 @@
                                         "measure": "6",
                                         "system": "Klav. o.",
                                         "position": "8/16",
-                                        "comment": "<em>linke Hand</em> (siehe <span class='link-todo'>TkA</span>) gestrichen mit Bleistift."
+                                        "comment": "<em>linke Hand</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'M_146', fragmentId: 'M_146_TF1'})\">TkA</a>) gestrichen mit Bleistift."
                                     },
                                     {
                                         "measure": "8",
                                         "system": "Klav. o.",
                                         "position": "3/16",
-                                        "comment": "{{ref.getGlyph('[#]')}} zu gis<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}} zu g<sup>2</sup>. Siehe <span class='link-todo'>TkA</span>."
+                                        "comment": "{{ref.getGlyph('[#]')}} zu gis<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}} zu g<sup>2</sup>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'M_146', fragmentId: 'M_146_TF1'})\">TkA</a>."
                                     },
                                     {
                                         "measure": "8",
