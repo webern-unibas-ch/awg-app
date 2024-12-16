@@ -127,7 +127,7 @@
                             "measure": "11",
                             "system": "Ges.",
                             "position": "1. Note",
-                            "comment": "Text sic: <em>ich</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'M144', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em><span class=\"smallcaps\">ich</span></em> (Kleinschreibung mit Kapitälchen). <br /> Text sic: Längenstrich nach <em>ich</em>."
+                            "comment": "Text sic: <em>ich</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em><span class=\"smallcaps\">ich</span></em> (Kleinschreibung mit Kapitälchen). <br /> Text sic: Längenstrich nach <em>ich</em>."
                         },
                         {
                             "svgGroupId": "TODO",
