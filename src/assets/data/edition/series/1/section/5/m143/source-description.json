@@ -174,7 +174,7 @@
                                         "measure": "21",
                                         "system": "Ges.",
                                         "position": "1/8",
-                                        "comment": "{{ref.getGlyph('[b]')}} zu es<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}} zu e<sup>2</sup>."
+                                        "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup>."
                                     },
                                     {
                                         "measure": "23",
