@@ -58,7 +58,7 @@
                             "measure": "5",
                             "system": "Ges.",
                             "position": "2/8",
-                            "comment": "Text: Großschreibung <em>Du</em> mit Blick auf Satzanfang (siehe TkA zu T. 4 7/8) und auf <a (click)=\"ref.navigateToReportFragment({complexId: 'M144', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'M_144', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                            "comment": "Text: Großschreibung <em>Du</em> mit Blick auf Satzanfang (siehe TkA zu T. 4 7/8) und auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
                         },
                         {
                             "svgGroupId": "TODO",
