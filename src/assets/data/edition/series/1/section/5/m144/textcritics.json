@@ -93,7 +93,7 @@
                             "measure": "8 <br /> bis 9",
                             "system": "Ges.",
                             "position": "4/8 <br /> 3/8",
-                            "comment": "Bezug der Decrescendogabel nicht eindeutig, möglicherweise auf Oberstimmenschicht in Klav. u. bezogen. <a (click)=\"ref.navigateToReportFragment({complexId: 'M_144', fragmentId: 'source_A'})\"><strong>A</strong></a>: Gabel unter Text, über Klav. o."
+                            "comment": "Bezug der Decrescendogabel nicht eindeutig, möglicherweise auf Oberstimmenschicht in Klav. u. bezogen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'source_A'})\"><strong>A</strong></a>: Gabel unter Text, über Klav. o."
                         },
                         {
                             "svgGroupId": "TODO",
