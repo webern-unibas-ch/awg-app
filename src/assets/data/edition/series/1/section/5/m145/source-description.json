@@ -233,7 +233,7 @@
                                         "measure": "1",
                                         "system": "Klav. u.",
                                         "position": "4. Note",
-                                        "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu C<sub>1</sub>/C hinzugefügt."
+                                        "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu C<sub>1</sub>/C hinzugefügt."
                                     },
                                     {
                                         "measure": "7 <br /> bis 8",
