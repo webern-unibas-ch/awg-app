@@ -71,7 +71,7 @@
                             "measure": "11",
                             "system": "Ges.",
                             "position": "4/8",
-                            "comment": "Text sic: Interpunktionszeichen nach (er[-]bli-)<em>chen</em> fehlt. <a (click)=\"ref.navigateToReportFragment({complexId: 'M143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: Interpunktionszeichen fehlt (am Zeilenende). Siehe auch TkA zu T. 12 4/4 und zu T. 16 8/8."
+                            "comment": "Text sic: Interpunktionszeichen nach (er[-]bli-)<em>chen</em> fehlt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: Interpunktionszeichen fehlt (am Zeilenende). Siehe auch TkA zu T. 12 4/4 und zu T. 16 8/8."
                         },
                         {
                             "svgGroupId": "TODO",
