@@ -155,7 +155,7 @@
                             "measure": "12",
                             "system": "Ges.",
                             "position": "4/8",
-                            "comment": "Text: Großschreibung <em>Die</em> mit Blick auf Satzanfang (siehe TkA zu T. 12 2/8) sowie auf <a (click)=\"ref.navigateToReportFragment({complexId: 'M144', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                            "comment": "Text: Großschreibung <em>Die</em> mit Blick auf Satzanfang (siehe TkA zu T. 12 2/8) sowie auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
                         },
                         {
                             "svgGroupId": "TODO",
