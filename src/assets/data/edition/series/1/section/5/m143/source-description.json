@@ -276,7 +276,7 @@
                                         "measure": "16 <br /> bis 17",
                                         "system": "Klav. o.",
                                         "position": "4/4 <br /> 1/4",
-                                        "comment": "Zuerst: Crescendogabel, {{ref.getGlyph('[f]')}} gestrichen.  <br /> Dann: Crescendogabel wieder hinzugefügt."
+                                        "comment": "Zuerst: Crescendogabel, <span class='glyph'>{{ref.getGlyph('[f]')}}</span> gestrichen.  <br /> Dann: Crescendogabel wieder hinzugefügt."
                                     },
                                     {
                                         "measure": "17",
