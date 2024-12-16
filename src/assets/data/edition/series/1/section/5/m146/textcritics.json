@@ -134,7 +134,7 @@
                             "measure": "16",
                             "system": "Ges.",
                             "position": "letzte Note",
-                            "comment": "Text: Punkt nach (feuch-)<em>te</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'M146', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                            "comment": "Text: Punkt nach (feuch-)<em>te</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
                         }
                     ]
                 }
