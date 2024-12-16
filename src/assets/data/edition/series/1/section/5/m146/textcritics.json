@@ -64,7 +64,7 @@
                             "measure": "8",
                             "system": "Klav. o.",
                             "position": "3/16",
-                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>2</sup> korrigiert zu {{ref.getGlyph('[#]')}} zu gis<sup>2</sup> mit Blick auf 8/16 und 6/8. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'M_146', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>: {{ref.getGlyph('[a]')}} geändert zu {{ref.getGlyph('[#]')}}."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>2</sup> korrigiert zu <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> mit Blick auf 8/16 und 6/8. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
                         },
                         {
                             "svgGroupId": "TODO",
