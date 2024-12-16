@@ -36,7 +36,7 @@
                             "measure": "4",
                             "system": "Ges.",
                             "position": "5/16",
-                            "comment": "{{ref.getGlyph('[p]')}} <em>zart</em> in einer Zeile angeordnet. <a (click)=\"ref.navigateToReportFragment({complexId: 'M_146', fragmentId: 'source_A'})\"><strong>A</strong></a>: {{ref.getGlyph('[p]')}} unter, <em>zart</em> über dem System."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> <em>zart</em> in einer Zeile angeordnet. <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A'})\"><strong>A</strong></a>: <span class='glyph'>{{ref.getGlyph('[p]')}}</span> unter, <em>zart</em> über dem System."
                         },
                         {
                             "svgGroupId": "TODO",
