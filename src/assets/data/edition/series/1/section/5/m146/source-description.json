@@ -210,7 +210,7 @@
                                         "measure": "14",
                                         "system": "Klav. o.",
                                         "position": "3. Note",
-                                        "comment": "{{ref.getGlyph('[b]')}} zu b<sup>1</sup> überschreibt {{ref.getGlyph('[a]')}} zu h<sup>1</sup>."
+                                        "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>."
                                     },
                                     {
                                         "measure": "15",
