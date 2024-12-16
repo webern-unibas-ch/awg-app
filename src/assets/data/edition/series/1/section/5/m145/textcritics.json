@@ -106,7 +106,7 @@
                             "measure": "9",
                             "system": "Ges.",
                             "position": "4. Note",
-                            "comment": "Text sic: Großschreibung <em>Fin</em>(-stern) (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'M144', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>)<em>.</em>"
+                            "comment": "Text sic: Großschreibung <em>Fin</em>(-stern) (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>)<em>.</em>"
                         },
                         {
                             "svgGroupId": "TODO",
