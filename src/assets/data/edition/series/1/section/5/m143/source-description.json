@@ -270,7 +270,7 @@
                                         "measure": "16",
                                         "system": "Klav. o.",
                                         "position": "3/4",
-                                        "comment": "{{ref.getGlyph('[p]')}} hinzugefügt."
+                                        "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> hinzugefügt."
                                     },
                                     {
                                         "measure": "16 <br /> bis 17",
