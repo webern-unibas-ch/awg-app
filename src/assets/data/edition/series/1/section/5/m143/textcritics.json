@@ -92,7 +92,7 @@
                             "measure": "14",
                             "system": "Ges.",
                             "position": "1.–4. Note",
-                            "comment": "Text sic: <em>mit-leid-gro-ße</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'M143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>mitleidgrosse</em>."
+                            "comment": "Text sic: <em>mit-leid-gro-ße</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>mitleidgrosse</em>."
                         },
                         {
                             "svgGroupId": "TODO",
