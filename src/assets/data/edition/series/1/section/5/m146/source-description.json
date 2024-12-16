@@ -270,7 +270,7 @@
                                         "measure": "8",
                                         "system": "Klav. o.",
                                         "position": "3/16",
-                                        "comment": "{{ref.getGlyph('[#]')}} zu gis<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}} zu g<sup>2</sup>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'M_146', fragmentId: 'M_146_TF1'})\">TkA</a>."
+                                        "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>2</sup>. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'M_146_TF1'})\">TkA</a>."
                                     },
                                     {
                                         "measure": "8",
