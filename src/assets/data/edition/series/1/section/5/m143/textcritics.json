@@ -57,7 +57,7 @@
                             "measure": "10",
                             "system": "Ges.",
                             "position": "2–8/8",
-                            "comment": "Bezug der Crescendogabel nicht eindeutig, möglicherweise auf Klav. o. bezogen. <a (click)=\"ref.navigateToReportFragment({complexId: 'M_143', fragmentId: 'source_A'})\"><strong>A</strong></a>: Gabel zwischen Ges. und Klav. o. (Text über Ges.)."
+                            "comment": "Bezug der Crescendogabel nicht eindeutig, möglicherweise auf Klav. o. bezogen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a>: Gabel zwischen Ges. und Klav. o. (Text über Ges.)."
                         },
                         {
                             "svgGroupId": "TODO",
