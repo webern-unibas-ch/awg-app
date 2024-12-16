@@ -36,7 +36,7 @@
                             "measure": "6",
                             "system": "Ges.",
                             "position": "8/8",
-                            "comment": "Text: Doppelpunkt nach <em>Trau-mes-scho-ße</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'M143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                            "comment": "Text: Doppelpunkt nach <em>Trau-mes-scho-ße</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
