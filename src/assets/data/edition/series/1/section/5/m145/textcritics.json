@@ -197,7 +197,7 @@
                             "measure": "15",
                             "system": "Ges.",
                             "position": "8/8",
-                            "comment": "Text: Anführungszeichen vor <em>Laß</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'M144', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. Siehe auch TkA zu T. 20 4/8. <br /> Text sic: <em>Laß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'M144', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>Lass</em>."
+                            "comment": "Text: Anführungszeichen vor <em>Laß</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. Siehe auch TkA zu T. 20 4/8. <br /> Text sic: <em>Laß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>Lass</em>."
                         },
                         {
                             "svgGroupId": "TODO",
