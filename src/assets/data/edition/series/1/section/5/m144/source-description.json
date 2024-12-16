@@ -119,7 +119,7 @@
                                         "measure": "5",
                                         "system": "Klav. o.",
                                         "position": "1/8",
-                                        "comment": "{{ref.getGlyph('[a]')}} zu h überschreibt {{ref.getGlyph('[b]')}} zu b."
+                                        "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b."
                                     },
                                     {
                                         "measure": "5 <br /> bis 9",
