@@ -134,7 +134,7 @@
                             "measure": "18",
                             "system": "Ges.",
                             "position": "letzte Note",
-                            "comment": "Text: Kleinschreibung <em>die</em> mit Blick auf Kleinschreibung von <em>mich</em> in T. 9 8/8. <a (click)=\"ref.navigateToReportFragment({complexId: 'M143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: Großschreibung <em>Mich</em> und <em>Die</em> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'M_143', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung. Siehe auch TkA zu T. 20 6/8."
+                            "comment": "Text: Kleinschreibung <em>die</em> mit Blick auf Kleinschreibung von <em>mich</em> in T. 9 8/8. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: Großschreibung <em>Mich</em> und <em>Die</em> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung. Siehe auch TkA zu T. 20 6/8."
                         },
                         {
                             "svgGroupId": "TODO",
