@@ -51,7 +51,7 @@
                             "measure": "4",
                             "system": "Ges.",
                             "position": "7/8",
-                            "comment": "Text: Punkt nach <em>gilt</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'M144', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                            "comment": "Text: Punkt nach <em>gilt</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
