@@ -50,7 +50,7 @@
                             "measure": "6",
                             "system": "Ges.",
                             "position": "4/8",
-                            "comment": "<em>Anmerkung</em> [...]<em>: zwischen f und e</em>[.] versetzt vom oberen Seitenrand. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'M_146', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>: Kreuznotenkopf geändert zu ausgefülltem Notenkopf e<sup>1</sup>, <em>Anm.</em> über der Note sowie Anmerkungstext gestrichen."
+                            "comment": "<em>Anmerkung</em> [...]<em>: zwischen f und e</em>[.] versetzt vom oberen Seitenrand. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>: Kreuznotenkopf geändert zu ausgefülltem Notenkopf e<sup>1</sup>, <em>Anm.</em> über der Note sowie Anmerkungstext gestrichen."
                         },
                         {
                             "svgGroupId": "TODO",
