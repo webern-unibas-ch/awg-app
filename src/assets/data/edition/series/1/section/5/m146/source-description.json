@@ -264,7 +264,7 @@
                                         "measure": "6",
                                         "system": "Klav. o.",
                                         "position": "8/16",
-                                        "comment": "<em>linke Hand</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'M_146', fragmentId: 'M_146_TF1'})\">TkA</a>) gestrichen mit Bleistift."
+                                        "comment": "<em>linke Hand</em> (siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'M_146_TF1'})\">TkA</a>) gestrichen mit Bleistift."
                                     },
                                     {
                                         "measure": "8",
