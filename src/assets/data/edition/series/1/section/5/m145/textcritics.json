@@ -218,7 +218,7 @@
                             "measure": "17",
                             "system": "Ges.",
                             "position": "2. Note",
-                            "comment": "Text sic: Apostroph nach <em>heb</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'M144', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: kein Apostroph."
+                            "comment": "Text sic: Apostroph nach <em>heb</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: kein Apostroph."
                         },
                         {
                             "svgGroupId": "TODO",
