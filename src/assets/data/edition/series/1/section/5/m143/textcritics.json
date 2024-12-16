@@ -127,7 +127,7 @@
                             "measure": "16",
                             "system": "Ges.",
                             "position": "8/8",
-                            "comment": "Text: Paranthesestrich ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'M143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a> (am Zeilenende). Siehe auch TkA zu T. 12 4/4."
+                            "comment": "Text: Paranthesestrich ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a> (am Zeilenende). Siehe auch TkA zu T. 12 4/4."
                         },
                         {
                             "svgGroupId": "TODO",
