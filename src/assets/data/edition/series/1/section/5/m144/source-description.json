@@ -167,7 +167,7 @@
                                         "measure": "12",
                                         "system": "Klav. o.",
                                         "position": "4/8",
-                                        "comment": "Ende des Bogens bis nach T. 12 rasiert und geändert zu T. 12 4/8. <a (click)=\"ref.navigateToReportFragment({complexId: 'M_144', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 12."
+                                        "comment": "Ende des Bogens bis nach T. 12 rasiert und geändert zu T. 12 4/8. <a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 12."
                                     }
                                 ]
                             }
