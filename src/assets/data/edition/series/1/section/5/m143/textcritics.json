@@ -99,7 +99,7 @@
                             "measure": "14 <br /> bis 15",
                             "system": "Klav. o.",
                             "position": "4/4 <br /> 1/4",
-                            "comment": "Ligaturbögen ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'M_143', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>."
+                            "comment": "Ligaturbögen ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>."
                         },
                         {
                             "svgGroupId": "TODO",
