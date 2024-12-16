@@ -306,7 +306,7 @@
                                         "measure": "24",
                                         "system": "Ges.",
                                         "position": "1/8",
-                                        "comment": "{{ref.getGlyph('[a]')}} hinzugefügt."
+                                        "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
                                     }
                                 ]
                             }
