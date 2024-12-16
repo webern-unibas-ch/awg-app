@@ -197,7 +197,7 @@
                                         "measure": "15",
                                         "system": "Klav. u.",
                                         "position": "Taktanfang",
-                                        "comment": "Violinschlüssel auf Rasur. <a (click)=\"ref.navigateToReportFragment({complexId: 'M_145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 14."
+                                        "comment": "Violinschlüssel auf Rasur. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 14."
                                     },
                                     {
                                         "measure": "17",
