@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { faCalendarXmark } from '@fortawesome/free-solid-svg-icons';
 
 import { UtilityService } from '@awg-core/services';
 import { EditionSvgSheet } from '@awg-views/edition-view/models';
@@ -49,22 +48,6 @@ export class EditionSvgSheetNavItemComponent {
      */
     @Output()
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
-
-    /**
-     * Public variable: disclaimerWorkEditions.
-     *
-     *
-     * It keeps the disclaimer for work editions.
-     */
-    disclaimerWorkEditions =
-        'Werkeditionen sind aus rechtlichen Gründen frühestens ab 2049 online verfügbar. Bis dahin konsultieren Sie bitte die entsprechende Printausgabe.';
-
-    /**
-     * Public variable: faCalendarXmark.
-     *
-     * It instantiates fontawesome's faCalendarXmark icon.
-     */
-    faCalendarXmark = faCalendarXmark;
 
     /**
      * Constructor of the EditionSvgSheetNavItemComponent.

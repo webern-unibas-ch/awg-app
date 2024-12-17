@@ -68,6 +68,21 @@ export class TextcriticsListComponent {
     }
 
     /**
+     * Public method: isWorkEditionId.
+     *
+     * It checks if the given id is a work edition id.
+     *
+     * @param {string} id The given id.
+     * @returns {boolean} The result of the check.
+     */
+    isWorkEditionId(id: string): boolean {
+        if (!id) {
+            return false;
+        }
+        return id.includes('_WE');
+    }
+
+    /**
      * Public method: navigateToReportFragment.
      *
      * It emits the given ids of a selected edition complex and report fragment

@@ -96,7 +96,7 @@
         "@angular/router": "^18.2.13",
         "@codemirror/legacy-modes": "^6.4.2",
         "@fortawesome/angular-fontawesome": "^0.15.0",
-        "@fortawesome/free-solid-svg-icons": "^6.7.1",
+        "@fortawesome/free-solid-svg-icons": "^6.7.2",
         "@kolkov/ngx-gallery": "2.0.1",
         "@ng-bootstrap/ng-bootstrap": "^17.0.1",
         "@popperjs/core": "^2.11.8",
@@ -151,7 +151,7 @@
         "prettier": "^3.4.2",
         "source-map-explorer": "^2.5.3",
         "typescript": "~5.5.4",
-        "typescript-eslint": "^8.18.0",
+        "typescript-eslint": "^8.18.1",
         "webpack-bundle-analyzer": "^4.10.2"
     },
     "engines": {
