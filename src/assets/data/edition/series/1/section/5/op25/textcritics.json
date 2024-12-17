@@ -22,14 +22,14 @@
                             "measure": "3",
                             "system": "Ges.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[f]')}} versetzt von 1. Pause. <br /> Text sic: Kleinschreibung <em>noch</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 1. Pause. <br /> Text sic: Kleinschreibung <em>noch</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "4",
                             "system": "Ges.",
                             "position": "8/8",
-                            "comment": "{{ref.getGlyph('[p]')}} versetzt von 7/8."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 7/8."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -64,7 +64,7 @@
                             "measure": "7",
                             "system": "Klav. u.",
                             "position": "4/8",
-                            "comment": "{{ref.getGlyph('[sf]')}} versetzt von innerhalb des Systems."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[sf]')}}</span> versetzt von innerhalb des Systems."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -78,7 +78,7 @@
                             "measure": "8",
                             "system": "Ges.",
                             "position": "5. Note",
-                            "comment": "{{ref.getGlyph('[f]')}} versetzt von 2. Pause. <br /> Text sic: Kleinschreibung <em>noch</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 2. Pause. <br /> Text sic: Kleinschreibung <em>noch</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -118,7 +118,7 @@
                             "measure": "3",
                             "system": "Ges.",
                             "position": "6/16",
-                            "comment": "{{ref.getGlyph('[p]')}} versetzt von 5/16."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 5/16."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -132,21 +132,21 @@
                             "measure": "29",
                             "system": "Ges.",
                             "position": "2/16",
-                            "comment": "{{ref.getGlyph('[f]')}} versetzt von 1/16."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 1/16."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "30",
                             "system": "Ges.",
                             "position": "6/16",
-                            "comment": "{{ref.getGlyph('[p]')}} versetzt von 5/16."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 5/16."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "32",
                             "system": "Ges.",
                             "position": "6/16",
-                            "comment": "{{ref.getGlyph('[p]')}} versetzt von 5/16."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 5/16."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -167,7 +167,7 @@
                             "measure": "33",
                             "system": "Klav. u.",
                             "position": "2/16",
-                            "comment": "{{ref.getGlyph('[p]')}} versetzt von 1/16."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 1/16."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -181,7 +181,7 @@
                             "measure": "36",
                             "system": "Ges.",
                             "position": "1/16",
-                            "comment": "{{ref.getGlyph('[#]')}} zu gis<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>: kein Akkoladenwechsel nach T. 35."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>: kein Akkoladenwechsel nach T. 35."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -249,7 +249,7 @@
                             "measure": "31",
                             "system": "",
                             "position": "2/4",
-                            "comment": "Eckige Klammern um {{ref.getGlyph('[Halbe Note]')}} <em>= ca 96</em> geändert zu runden Klammern."
+                            "comment": "Eckige Klammern um <span class='glyph'>{{ref.getGlyph('[Halbe Note]')}}</span> <em>= ca 96</em> geändert zu runden Klammern."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -291,7 +291,7 @@
                             "measure": "57",
                             "system": "Ges.",
                             "position": "1/4",
-                            "comment": "{{ref.getGlyph('[b]')}} zu b<sup>1</sup> ergänzt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -319,7 +319,7 @@
                             "measure": "76",
                             "system": "",
                             "position": "2/4",
-                            "comment": "Punkt nach <em>tempo I</em> weggelassen, eckige Klammern um {{ref.getGlyph('[Halbe Note]')}} <em>= ca 96</em> geändert zu runden Klammern."
+                            "comment": "Punkt nach <em>tempo I</em> weggelassen, eckige Klammern um <span class='glyph'>{{ref.getGlyph('[Halbe Note]')}}</span> <em>= ca 96</em> geändert zu runden Klammern."
                         },
                         {
                             "svgGroupId": "TODO",

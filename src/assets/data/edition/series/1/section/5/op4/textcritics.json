@@ -43,14 +43,14 @@
                             "measure": "2",
                             "system": "Ges.",
                             "position": "2. Note",
-                            "comment": "{{ref.getGlyph('[pp]')}} ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "3",
                             "system": "Klav. o.",
                             "position": "3. Note",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu e<sup>1</sup> ergänzt."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -64,28 +64,28 @@
                             "measure": "4",
                             "system": "Klav. o.",
                             "position": "3/4",
-                            "comment": "{{ref.getGlyph('[a]')}} zu e<sup>1</sup>, {{ref.getGlyph('[b]')}} zu b<sup>1</sup>/es<sup>2</sup> ergänzt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>, <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup>/es<sup>2</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "4",
                             "system": "Klav. u.",
                             "position": "3/4",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu f, {{ref.getGlyph('[#]')}} zu cis<sup>1</sup> ergänzt."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f, <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "4",
                             "system": "Klav. o.",
                             "position": "7/4",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[b]')}} zu es<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a> ante correcturam.  <br /> Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu e<sup>1</sup>, {{ref.getGlyph('[b]')}} zu b<sup>1</sup> ergänzt."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a> ante correcturam.  <br /> Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>, <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "4",
                             "system": "Klav. u.",
                             "position": "7/4",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu f, {{ref.getGlyph('[#]')}} zu cis<sup>1</sup> ergänzt."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f, <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -141,14 +141,14 @@
                             "measure": "6",
                             "system": "Klav. o.",
                             "position": "1/2",
-                            "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu d<sup>3</sup> als redundant weggelassen."
+                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d<sup>3</sup> als redundant weggelassen."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "6",
                             "system": "Klav. u.",
                             "position": "1/8",
-                            "comment": "Oberstimmenschicht: Ende des Legatobogens versetzt von T. 5 letzte Note.  <br /> {{ref.getGlyph('[a]')}} zu g als redundant weggelassen."
+                            "comment": "Oberstimmenschicht: Ende des Legatobogens versetzt von T. 5 letzte Note.  <br /> <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g als redundant weggelassen."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -162,7 +162,7 @@
                             "measure": "6",
                             "system": "Klav. o.",
                             "position": "22/16",
-                            "comment": "{{ref.getGlyph('[a]')}} zu h<sup>1</sup>, {{ref.getGlyph('[#]')}} zu gis<sup>2</sup> ergänzt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>, <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -190,7 +190,7 @@
                             "measure": "8",
                             "system": "Ges.",
                             "position": "12. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} als redundant weggelassen."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> als redundant weggelassen."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -218,7 +218,7 @@
                             "measure": "9",
                             "system": "Ges.",
                             "position": "6. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -253,21 +253,21 @@
                             "measure": "10",
                             "system": "Klav. u.",
                             "position": "1/8",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu f als redundant weggelassen."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f als redundant weggelassen."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "10",
                             "system": "Klav. o.",
                             "position": "2/8",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[b]')}} zu es<sup>2</sup> ergänzt.  <br /> Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu e<sup>1</sup>, {{ref.getGlyph('[b]')}} zu b<sup>1</sup> ergänzt."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> ergänzt.  <br /> Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>, <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "10",
                             "system": "Klav. u.",
                             "position": "2/8",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu f, {{ref.getGlyph('[#]')}} zu cis<sup>1</sup> ergänzt."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f, <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -323,14 +323,14 @@
                             "measure": "12",
                             "system": "Klav. o.",
                             "position": "1/4",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu h<sup>2</sup>, {{ref.getGlyph('[b]')}} zu b<sup>3</sup> ergänzt.  <br /> Unterstimmenschicht: {{ref.getGlyph('[b]')}} zu es<sup>2</sup> ergänzt.  <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: kein Akkoladenwechsel nach T. 11."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup>, <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>3</sup> ergänzt.  <br /> Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> ergänzt.  <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: kein Akkoladenwechsel nach T. 11."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "12",
                             "system": "Klav. u.",
                             "position": "1/4",
-                            "comment": "{{ref.getGlyph('[#]')}} zu Cis<sub>1</sub> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: kein Akkoladenwechsel nach T. 11."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Cis<sub>1</sub> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: kein Akkoladenwechsel nach T. 11."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -351,21 +351,21 @@
                             "measure": "13",
                             "system": "Klav. o.",
                             "position": "5. Note",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu e<sup>2</sup> ergänzt."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "13",
                             "system": "Klav. o.",
                             "position": "letzte Note",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu e<sup>1</sup> ergänzt."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "13",
                             "system": "Klav. u.",
                             "position": "2. Note",
-                            "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu F<sub>1</sub> ergänzt."
+                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu F<sub>1</sub> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -379,14 +379,14 @@
                             "measure": "14",
                             "system": "Klav. u.",
                             "position": "2. Note",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu E/H/e ergänzt."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu E/H/e ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "14 <br /> bis 15",
                             "system": "Klav.",
                             "position": "(6/4) <br /> letzte Note",
-                            "comment": "<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>: {{ref.getGlyph('[ppp]')}} zu T. 14 (6/4) und anschließende Decrescendogabel bis T. 15 letzte Note."
+                            "comment": "<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>: <span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> zu T. 14 (6/4) und anschließende Decrescendogabel bis T. 15 letzte Note."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -433,7 +433,7 @@
                             "measure": "3",
                             "system": "Klav. o.",
                             "position": "3. Note",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[b]')}} zu es<sup>2</sup> ergänzt."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -461,14 +461,14 @@
                             "measure": "6",
                             "system": "Klav. o.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} zu d<sup>1</sup> ergänzt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "6",
                             "system": "Klav. u.",
                             "position": "1. Note",
-                            "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu A als redundant weggelassen."
+                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu A als redundant weggelassen."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -517,7 +517,7 @@
                             "measure": "15",
                             "system": "Ges.",
                             "position": "3. Note",
-                            "comment": "{{ref.getGlyph('[mf]')}} versetzt von 4/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>.  <br /> Text sic: <em>muß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>muss</em>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[mf]')}}</span> versetzt von 4/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>.  <br /> Text sic: <em>muß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>muss</em>."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -552,7 +552,7 @@
                             "measure": "20",
                             "system": "Klav. o.",
                             "position": "2/4",
-                            "comment": "{{ref.getGlyph('[ppp]')}} ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -578,7 +578,7 @@
                             "measure": "1",
                             "system": "Klav. u.",
                             "position": "8/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu F<sub>1</sub> ergänzt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu F<sub>1</sub> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -641,7 +641,7 @@
                             "measure": "13",
                             "system": "Ges.",
                             "position": "4/16",
-                            "comment": "{{ref.getGlyph('[a]')}} zu a<sup>1</sup> ergänzt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -655,7 +655,7 @@
                             "measure": "15",
                             "system": "Klav. u.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[ppp]')}} versetzt von 2. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> versetzt von 2. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -695,14 +695,14 @@
                             "measure": "vor 1",
                             "system": "Klav. o.",
                             "position": "",
-                            "comment": "{{ref.getGlyph('[a]')}} zu h<sup>1</sup> ergänzt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "1",
                             "system": "Klav. o.",
                             "position": "3/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu a<sup>1</sup> ergänzt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -716,7 +716,7 @@
                             "measure": "2",
                             "system": "Klav. o.",
                             "position": "1. Note",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu h<sup>1</sup> ergänzt."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -730,35 +730,35 @@
                             "measure": "4",
                             "system": "Klav. o.",
                             "position": "1/16",
-                            "comment": "{{ref.getGlyph('[b]')}} zu h<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: kein Akkoladenwechsel nach T. 3."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu h<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: kein Akkoladenwechsel nach T. 3."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "4",
                             "system": "Klav. u.",
                             "position": "1/16",
-                            "comment": "{{ref.getGlyph('[#]')}} zu Gis und {{ref.getGlyph('[a]')}} zu g ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: kein Akkoladenwechsel nach T. 3."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Gis und <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: kein Akkoladenwechsel nach T. 3."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "5",
                             "system": "Klav. o.",
                             "position": "1. Note",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[b]')}} zu e<sup>2</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: Akkoladenwechsel nach T. 4."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu e<sup>2</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: Akkoladenwechsel nach T. 4."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "5",
                             "system": "Klav. o.",
                             "position": "2/8",
-                            "comment": "{{ref.getGlyph('[#]')}} zu fis<sup>1</sup>, {{ref.getGlyph('[a]')}} zu c<sup>2</sup> ergänzt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup>, <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "5",
                             "system": "Klav. u.",
                             "position": "2/8",
-                            "comment": "{{ref.getGlyph('[a]')}} zu f/h/d<sup>1</sup> ergänzt."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f/h/d<sup>1</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -772,7 +772,7 @@
                             "measure": "6",
                             "system": "Klav. o.",
                             "position": "2. Note",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu d<sup>2</sup> ergänzt."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d<sup>2</sup> ergänzt."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -786,14 +786,14 @@
                             "measure": "13",
                             "system": "Klav.",
                             "position": "2/8",
-                            "comment": "{{ref.getGlyph('[pp]')}} versetzt von nicht eindeutiger Position zwischen 1–2/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von nicht eindeutiger Position zwischen 1–2/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "14",
                             "system": "Klav. o.",
                             "position": "1. Note",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu g<sup>1</sup> als redundant weggelassen. Unterstimmenschicht: {{ref.getGlyph('[#]')}} zu g als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: Akkoladenwechsel nach T. 13."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> als redundant weggelassen. Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu g als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: Akkoladenwechsel nach T. 13."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -807,7 +807,7 @@
                             "measure": "16",
                             "system": "Klav. o.",
                             "position": "1. Note",
-                            "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} zu g<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: kein Akkoladenwechsel nach T. 15."
+                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: kein Akkoladenwechsel nach T. 15."
                         }
                     ]
                 },
@@ -819,14 +819,14 @@
                             "measure": "3",
                             "system": "Klav. o.",
                             "position": "1/4",
-                            "comment": "{{ref.getGlyph('[#]')}} zu gis ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: kein Akkoladenwechsel nach T. 2."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: kein Akkoladenwechsel nach T. 2."
                         },
                         {
                             "svgGroupId": "TODO",
                             "measure": "3",
                             "system": "Klav. u.",
                             "position": "1/8",
-                            "comment": "{{ref.getGlyph('[b]')}} zu es ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: kein Akkoladenwechsel nach T. 2."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: kein Akkoladenwechsel nach T. 2."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -924,7 +924,7 @@
                             "measure": "14",
                             "system": "Klav. o.",
                             "position": "1. Note",
-                            "comment": "{{ref.getGlyph('[a]')}} zu h und {{ref.getGlyph('[b]')}} zu b<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: kein Akkoladenwechsel nach T. 13."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h und <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>: kein Akkoladenwechsel nach T. 13."
                         },
                         {
                             "svgGroupId": "TODO",
@@ -938,7 +938,7 @@
                             "measure": "15",
                             "system": "",
                             "position": "Taktanfang",
-                            "comment": "Klammern zu {{ref.getGlyph('[Viertelnote]')}} <em>= 80</em> ergänzt analog T. 1, 10 und 13."
+                            "comment": "Klammern zu <span class='glyph'>{{ref.getGlyph('[Viertelnote]')}}</span> <em>= 80</em> ergänzt analog T. 1, 10 und 13."
                         },
                         {
                             "svgGroupId": "TODO",
