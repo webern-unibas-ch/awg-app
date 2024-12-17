@@ -88,7 +88,7 @@ jobs:
 
             - name: Perform SonarQube scan
               if: matrix.node-version == 22.11 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarQube scan only for current node version and not with pull requests or forks(token issue)
-              uses: SonarSource/sonarqube-scan-action@1b442ee39ac3fa7c2acdd410208dcb2bcfaae6c4 # v4.1.0
+              uses: SonarSource/sonarqube-scan-action@bfd4e558cda28cda6b5defafb9232d191be8c203 # v4.2.1
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
