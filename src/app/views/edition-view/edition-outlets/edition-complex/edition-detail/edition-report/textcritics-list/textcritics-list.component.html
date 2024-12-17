@@ -1,6 +1,6 @@
 @if (textcriticsData) {
     <div ngbAccordion>
-        @for (textcritics of textcriticsData.textcritics; track textcritics) {
+        @for (textcritics of textcriticsData.textcritics; track textcritics.id) {
             <div [ngbAccordionItem]="textcritics.id" [collapsed]="true">
                 <div
                     ngbAccordionHeader
@@ -8,12 +8,20 @@
                     <button ngbAccordionToggle class="btn btn-link text-start p-0">
                         <span [compile-html]="textcritics.label" [compile-html-ref]="ref"></span>
                     </button>
-                    <button
-                        type="button"
-                        class="btn btn-sm btn-outline-info"
-                        (click)="selectSvgSheet({ complexId: '', sheetId: textcritics.id })">
-                        Zum edierten Notentext
-                    </button>
+                    <div class="btn-group" role="group" aria-label="Button to sheets">
+                        @if (isWorkEditionId(textcritics.id)) {
+                            <button type="button" class="btn btn-sm btn-outline-info">
+                                <awg-disclaimer-workeditions></awg-disclaimer-workeditions>
+                            </button>
+                        }
+                        <button
+                            type="button"
+                            class="btn btn-sm btn-outline-info"
+                            [disabled]="isWorkEditionId(textcritics.id)"
+                            (click)="selectSvgSheet({ complexId: '', sheetId: textcritics.id })">
+                            Zum edierten Notentext
+                        </button>
+                    </div>
                 </div>
                 <div ngbAccordionCollapse>
                     <div ngbAccordionBody>
