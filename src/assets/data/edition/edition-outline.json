@@ -100,14 +100,14 @@
                         "complexTypes": {
                             "opus": [],
                             "mnr": [
-                                { "complex": "M22", "disabled": false },
-                                { "complex": "M30", "disabled": false },
-                                { "complex": "M31", "disabled": false },
                                 { "complex": "M34", "disabled": false },
                                 { "complex": "M35_42", "disabled": false },
                                 { "complex": "M36", "disabled": false },
                                 { "complex": "M37", "disabled": false },
-                                { "complex": "M38", "disabled": false }
+                                { "complex": "M38", "disabled": false },
+                                { "complex": "M30", "disabled": false },
+                                { "complex": "M31", "disabled": false },
+                                { "complex": "M22", "disabled": false }
                             ]
                         }
                     }

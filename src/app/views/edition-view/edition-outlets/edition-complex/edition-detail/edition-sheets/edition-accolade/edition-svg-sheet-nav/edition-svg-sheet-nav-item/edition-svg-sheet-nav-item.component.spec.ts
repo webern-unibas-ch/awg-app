@@ -1,10 +1,6 @@
-import { DebugElement, NgModule } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
-
-import { IconDefinition } from '@fortawesome/angular-fontawesome';
-import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { faCalendarXmark } from '@fortawesome/free-solid-svg-icons';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -14,13 +10,17 @@ import {
     expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { EditionSvgSheet } from '@awg-views/edition-view/models';
 
-import { NgbConfig, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditionSvgSheetNavItemComponent } from './edition-svg-sheet-nav-item.component';
+
+// Mock components
+@Component({ selector: 'awg-disclaimer-workeditions', template: '' })
+class DisclaimerWorkeditionsStubComponent {}
 
 describe('EditionSvgSheetNavItemComponent (DONE)', () => {
     let component: EditionSvgSheetNavItemComponent;
@@ -31,8 +31,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
     let selectSvgSheetRequestEmitSpy: Spy;
 
     let expectedComplexId: string;
-    let expectedDisclaimerWorkEditions: string;
-    let expectedFaCalendarXmark: IconDefinition;
+
     let expectedNextComplexId: string;
     let expectedNavItemLabel: string;
     let expectedSvgSheets: EditionSvgSheet[];
@@ -43,19 +42,9 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
     let expectedSvgSheetWithPartialA: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
 
-    // global NgbConfigModule
-    @NgModule({ imports: [NgbPopoverModule], exports: [NgbPopoverModule] })
-    class NgbConfigModule {
-        constructor(config: NgbConfig) {
-            // Set animations to false
-            config.animation = false;
-        }
-    }
-
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, NgbConfigModule],
-            declarations: [EditionSvgSheetNavItemComponent],
+            declarations: [EditionSvgSheetNavItemComponent, DisclaimerWorkeditionsStubComponent],
         }).compileComponents();
     }));
 
@@ -65,9 +54,6 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedDisclaimerWorkEditions =
-            'Werkeditionen sind aus rechtlichen Gründen frühestens ab 2049 online verfügbar. Bis dahin konsultieren Sie bitte die entsprechende Printausgabe.';
-        expectedFaCalendarXmark = faCalendarXmark;
         expectedNavItemLabel = 'Testeditionslabel';
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
@@ -103,14 +89,6 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
 
         it('... should not have selectedSvgSheet', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
-        });
-
-        it('... should have disclaimerWorkEditions', () => {
-            expectToEqual(component.disclaimerWorkEditions, expectedDisclaimerWorkEditions);
-        });
-
-        it('... should have faCalendarXmark', () => {
-            expectToEqual(component.faCalendarXmark, expectedFaCalendarXmark);
         });
 
         describe('VIEW', () => {
@@ -159,20 +137,13 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                 expectToBe(hEl.textContent.trim(), expectedNavItemLabel + ':');
             });
 
-            it('... should contain an text-danger xMark icon if navItemLabel=`Werkeditionen` ', () => {
+            it('... should contain a DisclaimerWorkeditions component if navItemLabel=`Werkeditionen` ', () => {
                 component.navItemLabel = 'Werkeditionen';
                 detectChangesOnPush(fixture);
 
                 const hDes = getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
-                const spanDes = getAndExpectDebugElementByCss(hDes[0], 'span', 1, 1);
-                const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
-                expectToContain(spanEl.classList, 'text-danger');
-
-                const faIconDes = getAndExpectDebugElementByCss(spanDes[0], 'fa-icon', 1, 1);
-                const faIconIns = faIconDes[0].componentInstance.icon;
-
-                expectToEqual(faIconIns, expectedFaCalendarXmark);
+                getAndExpectDebugElementByDirective(hDes[0], DisclaimerWorkeditionsStubComponent, 1, 1);
             });
 
             it('... should contain a span in h6.card-title with "---" if svgSheets is empty', () => {
