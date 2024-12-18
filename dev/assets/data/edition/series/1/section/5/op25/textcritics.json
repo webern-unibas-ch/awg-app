@@ -1,6 +1,338 @@
 {
     "textcritics": [
         {
+            "id": "op25_WE",
+            "label": "<em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 (Werkedition)",
+            "description": [
+                "Für die Edition der in den <em>Drei Liedern nach Gedichten von Hildegard Jone</em> op. 25 versammelten Textfassungen (I: „Wie bin ich froh!“ M 317 Textfassung 2, II: „Des Herzens Purpurvogel“ M 322, III: „Sterne, Ihr silbernen Bienen“ M 321) sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_A'})\"><strong>A</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_C'})\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_D'})\"><strong>D</strong></a> enthalten Skizzen bzw. Reihentabellen (siehe <span class='link-todo'>Skizzeneditionen</span>). <br /> Die Niederschrift von „Wie bin ich froh!“ M 317 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> wurde in zwei Korrekturschichten überarbeitet (siehe „Korrekturen in E“). <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_1'})\">Korrekturen 1</a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\" >Textfassung 1</a>: Diese Überarbeitung dürfte vor oder gleichzeitig mit der Niederschrift von <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a> stattgefunden haben. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_2'})\">Korrekturen 2</a> etablieren Textfassung 2. „Des Herzens Purpurvogel“ M 322 und „Sterne, Ihr silbernen Bienen“ M 321 liegen nur in <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> vor. In welchem Zustand von <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a> die verschollenen Fotokopien [<strong>E<sup>F1–F2</sup></strong>] angefertigt wurden (siehe <span class='link-todo'>Einleitung</span>) ist nicht bekannt. <br /> Hauptquelle für die Werkedition der <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 ist das Autograph <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>. Referenzquelle für „Wie bin ich froh!“ M 317 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a>, ohne dabei durch <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E_corr_2'})\">Korrekturen 2 in <strong>E</strong></a> ausgeschlossene Varianten zu berücksichtigen."
+            ],
+            "comments": [
+                {
+                    "blockHeader": "Bei den Titelnummerierungen wurde der Punkt nach den Ziffern weggelassen. <br /> <strong>I</strong> („Wie bin ich froh!“ M 317: Textfassung 2)",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "1",
+                            "system": "",
+                            "position": "4/8",
+                            "comment": "<em>rit.</em> versetzt von ungenauer Position zwischen 4–5/8 mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_317_Sk4'})\" ><strong>M 317 Sk4</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_A'})\"><strong>A</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "3",
+                            "system": "Ges.",
+                            "position": "1. Note",
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 1. Pause. <br /> Text sic: Kleinschreibung <em>noch</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "4",
+                            "system": "Ges.",
+                            "position": "8/8",
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 7/8."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "5",
+                            "system": "Ges.",
+                            "position": "1. Note",
+                            "comment": "Text sic: Kleinschreibung <em>noch</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "5",
+                            "system": "Klav.",
+                            "position": "8/8",
+                            "comment": "Anfang der Decrescendogabel versetzt von Anfang T. 6 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>: Akkoladenwechsel nach T. 5."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "6",
+                            "system": "Klav. o.",
+                            "position": "vor 1. Note",
+                            "comment": "Bassschlüssel versetzt von Taktanfang analog Klav. u. und gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "6",
+                            "system": "Klav. u.",
+                            "position": "2. Note",
+                            "comment": "Tenuto-Strich ergänzt analog Klav. o. und gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "7",
+                            "system": "Klav. u.",
+                            "position": "4/8",
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[sf]')}}</span> versetzt von innerhalb des Systems."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Klav. u.",
+                            "position": "1/4",
+                            "comment": "Tenuto-Strich ergänzt analog Klav. o."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "5. Note",
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 2. Pause. <br /> Text sic: Kleinschreibung <em>noch</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "9",
+                            "system": "Klav. o., u.",
+                            "position": "1. Note",
+                            "comment": "Tenuto-Strich ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "12",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "Punkt nach <em>tempo I</em> weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "12",
+                            "system": "Klav. u.",
+                            "position": "vor 2. Note",
+                            "comment": "Bassschlüssel versetzt von vor 5/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                        }
+                    ]
+                },
+                {
+                    "blockHeader": "<strong>II</strong> („Des Herzens Purpurvogel“ M 322: einzige Textfassung)",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "1",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "Komma nach <em>Fließend</em> weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "3",
+                            "system": "Ges.",
+                            "position": "6/16",
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 5/16."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "8",
+                            "system": "Ges.",
+                            "position": "1–2/8",
+                            "comment": "Silbenbogen ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "29",
+                            "system": "Ges.",
+                            "position": "2/16",
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 1/16."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "30",
+                            "system": "Ges.",
+                            "position": "6/16",
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 5/16."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "32",
+                            "system": "Ges.",
+                            "position": "6/16",
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 5/16."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "33",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "Komma nach <em>langsamer</em> weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "33",
+                            "system": "Ges.",
+                            "position": "1.–2. Note",
+                            "comment": "Text sic: Silbentrennung <em>ra-stet</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "33",
+                            "system": "Klav. u.",
+                            "position": "2/16",
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 1/16."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "35",
+                            "system": "Klav. u.",
+                            "position": "4/16",
+                            "comment": "Artikulationszeichen nicht eindeutig zu entziffern: &gt; oder Tenutostrich?"
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "36",
+                            "system": "Ges.",
+                            "position": "1/16",
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>: kein Akkoladenwechsel nach T. 35."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "37",
+                            "system": "Klav.",
+                            "position": "1/16",
+                            "comment": "Ende der Decrescendogabel versetzt von Ende T. 36. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>: Akkoladenwechsel nach T. 36."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "38",
+                            "system": "",
+                            "position": "3/16",
+                            "comment": "Komma nach <em>immer langsamer</em> weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "41",
+                            "system": "Klav. u.",
+                            "position": "vor 1. Note",
+                            "comment": "Bassschlüssel versetzt von vor T. 41."
+                        }
+                    ]
+                },
+                {
+                    "blockHeader": "<strong>III</strong> („Sterne, Ihr silbenern Bienen“ M 321: einzige Textfassung)",
+                    "blockComments": [
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "9",
+                            "system": "Ges.",
+                            "position": "2/4",
+                            "comment": "Text sic: Großschreibung <em>Ihr</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'text_Jone_DF'})\"><strong>Jone_DF</strong></a>)."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "20",
+                            "system": "Klav. o.",
+                            "position": "1.–2. Note",
+                            "comment": "Bogen der Vorschlagsnote zu 2. Note ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "25",
+                            "system": "",
+                            "position": "Taktanfang",
+                            "comment": "Punkt nach <em>tempo I</em> weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "25",
+                            "system": "Klav. u.",
+                            "position": "vor 2/4",
+                            "comment": "Violinschlüssel ergänzt mit Blick auf Tonhöhen gemäß Reihenverlauf bis Ende T. 28 (K<sub>gis</sub>: 10.–12., KU<sub>fis</sub>: 1.–5. Reihenton). Siehe auch TkA zu T. 26 Klav. o. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>: Bassschlüssel wieder explizit vor T. 29 (nach Akkoladenwechsel)."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "26",
+                            "system": "Klav. o.",
+                            "position": "vor 2/4",
+                            "comment": "Violinschlüssel ergänzt mit Blick auf Tonhöhen gemäß Reihenverlauf bis Ende T. 28 (K<sub>gis</sub>: 11.–12., KU<sub>fis</sub>: 1.–5. Reihenton). Siehe auch TkA zu T. 25 Klav. u. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>: Violinschlüssel erst explizit vor T. 29 (nach Akkoladenwechsel)."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "31",
+                            "system": "",
+                            "position": "2/4",
+                            "comment": "Eckige Klammern um <span class='glyph'>{{ref.getGlyph('[Halbe Note]')}}</span> <em>= ca 96</em> geändert zu runden Klammern."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "34",
+                            "system": "Ges.",
+                            "position": "1.–2. Note",
+                            "comment": "Text: Silbentrennstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>: Silben zusammengeschrieben."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "37",
+                            "system": "",
+                            "position": "2/4",
+                            "comment": "Punkt nach <em>tempo I</em> weggelassen."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "40",
+                            "system": "Ges",
+                            "position": "1.–2. Note",
+                            "comment": "Text: Silbentrennung <em>tro-pfen</em> korrigiert zu <em>trop-fen</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "47 <br /> bis 48",
+                            "system": "Ges.",
+                            "position": "letzte Note <br /> 1. Note",
+                            "comment": "Längenstrich ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "56",
+                            "system": "Ges.",
+                            "position": "2/4",
+                            "comment": "Anfang des Legatobogens versetzt von T. 57 1/4."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "57",
+                            "system": "Ges.",
+                            "position": "1/4",
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> ergänzt."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "vor 58",
+                            "system": "Klav. o.",
+                            "position": "",
+                            "comment": "Basschlüssel versetzt von rechts vom Taktstrich."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "59",
+                            "system": "Ges.",
+                            "position": "1.–2. Note",
+                            "comment": "Text: Silbentrennung <em>tro-pfet</em> korrigiert zu <em>trop-fet</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "73 <br /> bis 74",
+                            "system": "Ges.",
+                            "position": "2/4",
+                            "comment": "Text sic: Silbentrennung <em>Sü-ße</em>."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "76",
+                            "system": "",
+                            "position": "2/4",
+                            "comment": "Punkt nach <em>tempo I</em> weggelassen, eckige Klammern um <span class='glyph'>{{ref.getGlyph('[Halbe Note]')}}</span> <em>= ca 96</em> geändert zu runden Klammern."
+                        },
+                        {
+                            "svgGroupId": "TODO",
+                            "measure": "78",
+                            "system": "Ges., Klav. o.",
+                            "position": "",
+                            "comment": "Fermaten ergänzt analog Klav. u."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "id": "M_317_TF1",
             "label": "M 317 Textfassung 1",
             "description": [
