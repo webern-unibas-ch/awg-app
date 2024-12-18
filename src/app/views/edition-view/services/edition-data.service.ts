@@ -226,6 +226,23 @@ export class EditionDataService {
     }
 
     /**
+     * Protected method: _setAssetPathForEditionComplex.
+     *
+     * It sets the path to correct assets folder of a given edition complex.
+     *
+     * @param {EditionComplex} editionComplex The current edition complex.
+     *
+     * @returns {string} The path to the correct assets folder of a given edition complex.
+     */
+    protected _setAssetPathForEditionComplex(editionComplex: EditionComplex): string {
+        return this._generateAssetPath(
+            editionComplex.pubStatement.series.route,
+            editionComplex.pubStatement.section.route,
+            editionComplex.complexId.route
+        );
+    }
+
+    /**
      * Private method: _generateAssetPath.
      *
      * It generates the path to the correct assets folder
@@ -252,23 +269,6 @@ export class EditionDataService {
             route += complexIdRoute;
         }
         return EDITION_ASSETS_DATA.BASE_ROUTE + route;
-    }
-
-    /**
-     * Private method: _setAssetPathForEditionComplex.
-     *
-     * It sets the path to correct assets folder of a given edition complex.
-     *
-     * @param {EditionComplex} editionComplex The current edition complex.
-     *
-     * @returns {string} The path to the correct assets folder of a given edition complex.
-     */
-    private _setAssetPathForEditionComplex(editionComplex: EditionComplex): string {
-        return this._generateAssetPath(
-            editionComplex.pubStatement.series.route,
-            editionComplex.pubStatement.section.route,
-            editionComplex.complexId.route
-        );
     }
 
     /**

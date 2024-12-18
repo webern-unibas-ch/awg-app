@@ -5,7 +5,8 @@ import { catchError, switchMap } from 'rxjs/operators';
 
 import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 
-import { FullscreenService, UtilityService } from '@awg-core/services';
+import { EditionRdfGeneratorService } from '@awg-app/views/edition-view/services/edition-rdf-generator.service';
+import { UtilityService } from '@awg-core/services';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, GraphList } from '@awg-views/edition-view/models';
@@ -97,18 +98,17 @@ export class EditionGraphComponent implements OnInit {
     private readonly _editionDataService = inject(EditionDataService);
 
     /**
+     * Private readonly injection variable: _editionRdfGeneratorService.
+     *
+     * It keeps the instance of the injected EditionRdfGeneratorService.
+     */
+    private readonly _editionRdfGeneratorService = inject(EditionRdfGeneratorService);
+    /**
      * Private readonly injection variable: _editionStateService.
      *
      * It keeps the instance of the injected EditionStateService.
      */
     private readonly _editionStateService = inject(EditionStateService);
-
-    /**
-     * Private readonly injection variable: _fullscreenService.
-     *
-     * It keeps the instance of the injected FullscreenService.
-     */
-    private readonly _fullscreenService = inject(FullscreenService);
 
     /**
      * Constructor of the EditionGraphComponent.
@@ -149,16 +149,23 @@ export class EditionGraphComponent implements OnInit {
      * @returns {void} Gets the current edition complex and the corresponding graph data.
      */
     getEditionGraphData(): void {
-        this.editionGraphData$ = this._editionStateService.getSelectedEditionComplex().pipe(
-            switchMap((complex: EditionComplex) => {
-                this.editionComplex = complex;
-                return this._editionDataService.getEditionGraphData(this.editionComplex);
-            }),
-            catchError(err => {
-                this.errorObject = err;
-                return EMPTY;
-            })
-        );
+        this.editionGraphData$ =
+            // .subscribe(updatedGraph => {
+            // console.log('Updated graph:', updatedGraph);
+            // You can now use the updatedGraph object as needed
+            // });
+
+            this.editionGraphData$ = this._editionStateService.getSelectedEditionComplex().pipe(
+                switchMap((complex: EditionComplex) => {
+                    this.editionComplex = complex;
+                    return this._editionRdfGeneratorService.generateRdfTriples(this.editionComplex);
+                    // This._editionDataService.getEditionGraphData(this.editionComplex);
+                }),
+                catchError(err => {
+                    this.errorObject = err;
+                    return EMPTY;
+                })
+            );
     }
 
     /**

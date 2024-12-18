@@ -1,0 +1,130 @@
+@prefix awg: <https://edition.anton-webern.ch/webern-onto#>  .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+awg:MusicalPiece a owl:Class .
+awg:MNumber a owl:Class .
+awg:OpusNumber a owl:Class .
+awg:EditionComplex a owl:Class .
+awg:TextVersion a owl:Class .
+awg:Sketch a owl:Class .
+awg:SketchEdition a owl:Class .
+awg:TextEdition a owl:Class .
+awg:WorkEdition a owl:Class .
+
+awg:hasEditionType a owl:ObjectProperty ;
+    rdfs:domain awg:TextVersion ;
+    rdfs:range awg:SketchEdition, awg:TextEdition, awg:WorkEdition .
+
+awg:hasPart a owl:ObjectProperty ;
+    rdfs:domain awg:MusicalPiece ;
+    rdfs:range awg:MusicalPiece .
+
+awg:hasMNumber a owl:ObjectProperty ;
+    rdfs:domain awg:MusicalPiece ;
+    rdfs:range awg:MNumber .
+
+awg:hasOpusNumber a owl:ObjectProperty ;
+    rdfs:domain awg:MusicalPiece ;
+    rdfs:range awg:OpusNumber .
+
+awg:hasEditionComplex a owl:ObjectProperty ;
+    rdfs:domain awg:MusicalPiece ;
+    rdfs:range awg:EditionComplex .
+
+awg:hasEditedTextVersion a owl:ObjectProperty ;
+    rdfs:domain awg:MusicalPiece ;
+    rdfs:range awg:TextVersion .
+
+awg:isPartOfEditionComplex a owl:ObjectProperty ;
+    rdfs:domain awg:TextVersion ;
+    rdfs:range awg:EditionComplex .
+
+awg:hasWorkEdition a owl:ObjectProperty ;
+    rdfs:domain awg:EditionComplex ;
+    rdfs:range awg:TextVersion .
+
+awg:hasTextEdition a owl:ObjectProperty ;
+    rdfs:domain awg:EditionComplex ;
+    rdfs:range awg:TextVersion .
+
+awg:hasSketchEdition a owl:ObjectProperty ;
+    rdfs:domain awg:EditionComplex ;
+    rdfs:range awg:Sketch .
+
+# Example Instances
+awg:MusicalPieceOp25 a awg:MusicalPiece ;
+    rdfs:label "Drei Lieder nach Gedichten von Hildegard Jone op. 25" ;
+    awg:hasOpusNumber awg:Opus25 ;
+    awg:hasPart awg:MusicalPieceM317, awg:MusicalPieceM322, awg:MusicalPieceM321 .
+
+awg:MusicalPieceM317 a awg:MusicalPiece ;
+    rdfs:label "„Wie bin ich froh!“ M 317" ;
+    awg:hasMNumber awg:M317 ;
+    awg:hasEditedTextVersion awg:M_317_TF1, awg:M_317_TF2 .
+
+awg:MusicalPieceM322 a awg:MusicalPiece ;
+    rdfs:label "„Des Herzens Purpurvogel“ M 322" ;
+    awg:hasMNumber awg:M322 ;
+    awg:hasEditedTextVersion awg:M_322_TF1 .
+
+awg:MusicalPieceM321 a awg:MusicalPiece ;
+    rdfs:label "„Sterne, Ihr silbernen Bienen“ M 321" ;
+    awg:hasMNumber awg:M321 ;
+    awg:hasEditedTextVersion awg:M_321_TF1 .
+
+awg:M317 a awg:MNumber ;
+    rdfs:label "M 317" .
+
+awg:M322 a awg:MNumber ;
+    rdfs:label "M 322" .
+
+awg:M321 a awg:MNumber ;
+    rdfs:label "M 321" .
+
+awg:Opus25 a awg:OpusNumber ;
+    rdfs:label "Op. 25" .
+
+awg:EditionComplexOp25 a awg:EditionComplex ;
+    rdfs:label "Edition Complex Op. 25" ;
+    awg:hasWorkEdition awg:M_317_TF2, awg:M_322_TF1, awg:M_321_TF1 ;
+    awg:hasTextEdition awg:M_317_TF1 ;
+    awg:hasSketchEdition awg:M_317_Sk1 .
+
+awg:EditionComplexM317 a awg:EditionComplex ;
+    rdfs:label "Edition Complex M 317" ; 
+    awg:isPartOfEditionComplex awg:EditionComplexOp25 .
+
+awg:EditionComplexM322 a awg:EditionComplex ;
+    rdfs:label "Edition Complex M 322" ; 
+    awg:isPartOfEditionComplex awg:EditionComplexOp25 .
+
+awg:EditionComplexM321 a awg:EditionComplex ;
+    rdfs:label "Edition Complex M 321" ; 
+    awg:isPartOfEditionComplex awg:EditionComplexOp25 .
+
+awg:M_317_TF1 a awg:TextVersion ;
+    rdfs:label "Textfassung 1" ;
+    awg:hasEditionType awg:TextEdition ;
+    awg:isPartOfEditionComplex awg:EditionComplexM317 .
+
+awg:M_317_TF2 a awg:TextVersion ;
+    rdfs:label "Textfassung 2" ;
+    awg:hasEditionType awg:WorkEdition ;
+    awg:isPartOfEditionComplex awg:EditionComplexM317 .
+
+awg:M_322_TF1 a awg:TextVersion ;
+    rdfs:label "einzige Textfassung" ;
+    awg:hasEditionType awg:WorkEdition ;
+    awg:isPartOfEditionComplex awg:EditionComplexM322 .
+
+awg:M_321_TF1 a awg:TextVersion ;
+    rdfs:label "einzige Textfassung" ;
+    awg:hasEditionType awg:WorkEdition ;
+    awg:isPartOfEditionComplex awg:EditionComplexM321 .
+
+awg:M_317_Sk1 a awg:Sketch ;
+    rdfs:label "Sk 1" ;
+    awg:hasEditionType awg:SketchEdition ;
+    awg:isPartOfEditionComplex awg:EditionComplexM317 .
