@@ -96,7 +96,7 @@
                     "section": "2A",
                     "disabled": false,
                     "content": {
-                        "intro": { "disabled": true },
+                        "intro": { "disabled": false },
                         "complexTypes": {
                             "opus": [],
                             "mnr": [

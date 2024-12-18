@@ -1175,7 +1175,7 @@
             "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "Autographe von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a> / <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: <span class='link-todo'>einzige Textfassung</span> / „Schien mir’s, als ich sah die Sonne“ M 213: <span class='link-todo'>einzige Textfassung</span> / <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_TF1'})\">Textfassung 1</a>→<span class='link-todo'>2</span>.",
+            "type": "Autographe von „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_TF2'})\">Textfassung 2</a> (<strong>C<sup>a</sup></strong>) / <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: <span class='link-todo'>einzige Textfassung</span> (<strong>C<sup>b</sup></strong>) / „Schien mir’s, als ich sah die Sonne“ M 213: <span class='link-todo'>einzige Textfassung</span> (<strong>C<sup>c</sup></strong>) / <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_TF1'})\">Textfassung 1</a>→<span class='link-todo'>2</span> (<strong>C<sup>d</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
