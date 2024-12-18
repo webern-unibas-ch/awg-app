@@ -22,7 +22,7 @@
                             "measure": "1",
                             "system": "Ges.",
                             "position": "1. Note bis 2. Pause",
-                            "comment": "sic: Artikulationsbogen. Siehe auch „Kahl reckt der Baum“ M 137: Textfassung 4 T. 2 1/8. Siehe Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_E'})\"><strong>E<sup>a</sup></strong></a>: Bogen gestrichen."
+                            "comment": "sic: Artikulationsbogen. Siehe auch „Kahl reckt der Baum“ M 137: Textfassung 4 T. 2 1/8. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op3', fragmentId: 'source_Ea_corr'})\">Korrekturen in <strong>E<sup>a</sup></strong></a>: Bogen gestrichen."
                         },
                         {
                             "svgGroupId": "TODO",
