@@ -6,7 +6,7 @@
  */
 export const EDITION_FIRM_SIGNS_DATA = {
     /**
-     * The path to the assets image of a firm sign: JE No. 12, 12 Lines.
+     * The path to the assets image of a firm sign: JE No. 2, 12 Lines.
      */
     FIRM_JE_NO_2_LIN_12: {
         route: 'assets/img/edition/firm-signs/je/no2_lin12/firm_je_no2_lin12.png',
@@ -15,7 +15,7 @@ export const EDITION_FIRM_SIGNS_DATA = {
     },
 
     /**
-     * The path to the assets image of a firm sign: JE No. 12, 12 Lines (variant "b").
+     * The path to the assets image of a firm sign: JE No. 2, 12 Lines (variant "b").
      */
     FIRM_JE_NO_2_LIN_12_B: {
         route: 'assets/img/edition/firm-signs/je/no2_lin12/firm_je_no2_lin12_b.png',
@@ -24,7 +24,7 @@ export const EDITION_FIRM_SIGNS_DATA = {
     },
 
     /**
-     * The path to the assets image of a firm sign: JE No. 12, 12 Lines (variant "c").
+     * The path to the assets image of a firm sign: JE No. 2, 12 Lines (variant "c").
      */
     FIRM_JE_NO_2_LIN_12_C: {
         route: 'assets/img/edition/firm-signs/je/no2_lin12/firm_je_no2_lin12_c.png',
@@ -33,7 +33,7 @@ export const EDITION_FIRM_SIGNS_DATA = {
     },
 
     /**
-     * The path to the assets image of a firm sign: JE No. 12, 12 Lines (variant "M145_A").
+     * The path to the assets image of a firm sign: JE No. 2, 12 Lines (variant "M145_A").
      */
     FIRM_JE_NO_2_LIN_12_M145_A: {
         route: 'assets/img/edition/firm-signs/je/no2_lin12/firm_je_no2_lin12_m145_A.png',
@@ -42,7 +42,7 @@ export const EDITION_FIRM_SIGNS_DATA = {
     },
     
     /**
-     * The path to the assets image of a firm sign: JE No. 12, 12 Lines (variant "M146_A").
+     * The path to the assets image of a firm sign: JE No. 2, 12 Lines (variant "M146_A").
      */
     FIRM_JE_NO_2_LIN_12_M146_A: {
         route: 'assets/img/edition/firm-signs/je/no2_lin12/firm_je_no2_lin12_m146_A.png',
@@ -51,7 +51,16 @@ export const EDITION_FIRM_SIGNS_DATA = {
     },
     
     /**
-     * The path to the assets image of a firm sign: JE No. 12, 12 Lines (variant "OP23_C").
+     * The path to the assets image of a firm sign: JE No. 2, 12 Lines (variant "OP12_C2").
+     */
+    FIRM_JE_NO_2_LIN_12_OP12_C2: {
+        route: 'assets/img/edition/firm-signs/je/no2_lin12/firm_je_no2_lin12_op12_C2.png',
+        short: '[JE] | No. 2 | 12 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 2 | 12 linig.',
+    },
+    
+    /**
+     * The path to the assets image of a firm sign: JE No. 2, 12 Lines (variant "OP23_C").
      */
     FIRM_JE_NO_2_LIN_12_OP23_C: {
         route: 'assets/img/edition/firm-signs/je/no2_lin12/firm_je_no2_lin12_op23_C.png',
@@ -60,7 +69,7 @@ export const EDITION_FIRM_SIGNS_DATA = {
     },
     
     /**
-     * The path to the assets image of a firm sign: JE No. 12, 12 Lines (variant "OP25_E2").
+     * The path to the assets image of a firm sign: JE No. 2, 12 Lines (variant "OP25_E2").
      */
     FIRM_JE_NO_2_LIN_12_OP25_E2: {
         route: 'assets/img/edition/firm-signs/je/no2_lin12/firm_je_no2_lin12_op25_E2.png',
@@ -69,7 +78,7 @@ export const EDITION_FIRM_SIGNS_DATA = {
     },
     
     /**
-     * The path to the assets image of a firm sign: JE No. 12, 12 Lines (variant "OP25_E3").
+     * The path to the assets image of a firm sign: JE No. 2, 12 Lines (variant "OP25_E3").
      */
     FIRM_JE_NO_2_LIN_12_OP25_E3: {
         route: 'assets/img/edition/firm-signs/je/no2_lin12/firm_je_no2_lin12_op25_E3.png',
@@ -141,6 +150,15 @@ export const EDITION_FIRM_SIGNS_DATA = {
     },
 
     /**
+     * The path to the assets image of a firm sign: JE No. 7, 22 Lines (variant "OP12_C1").
+     */
+    FIRM_JE_NO_7_LIN_22_OP12_C1: {
+        route: 'assets/img/edition/firm-signs/je/no7_lin22/firm_je_no7_lin22_op12_C1.png',
+        short: '[JE] | No. 7 | 22 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 7 | 22 linig.',
+    },
+
+    /**
      * The path to the assets image of a firm sign: JE No. 9, 28 Lines.
      */
     FIRM_JE_NO_9_LIN_28: {
@@ -149,6 +167,15 @@ export const EDITION_FIRM_SIGNS_DATA = {
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 9 | 28 linig.',
     },
 
+    /**
+     * The path to the assets image of a firm sign: JE No. 12, 12 Lines (variant "OP12_D").
+     */
+    FIRM_JE_NO_12_LIN_12_OP12_D: {
+        route: 'assets/img/edition/firm-signs/je/no2_lin12/firm_je_no12_lin12_op12_D.png',
+        short: '[JE] | No. 2 | 12 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 2 | 12 linig.',
+    },
+    
     /**
      * The path to the assets image of a firm sign: JE No. 15, 16 Lines.
      */

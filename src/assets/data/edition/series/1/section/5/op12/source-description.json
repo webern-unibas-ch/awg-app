@@ -1186,6 +1186,112 @@
                     "Notenpapier, 12 Systeme, Format: hoch 345 × 265 mm, Firmenzeichen: ##JE_2_12## recto unten links (Bl. 2–6, 8–10)",
                     "Notenpapier, 7 Systeme, Format: quer 170 × 270 mm, kein Firmenzeichen (Bl. 7)"
                 ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 11,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "340"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "263"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_7_LIN_22_OP12_C1",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {
+                            "variant": "T",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "recto lesbar",
+                                    "folios": ["1"],
+                                    "position": "oben"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1–2"
+                    },
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 12,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "345"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "265"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_2_LIN_12_OP12_C2",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["recto"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "2–6, 8–10"
+                    },
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 7,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "170"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "270"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": [""],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "7"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": [
@@ -1864,6 +1970,39 @@
                 "writingMaterialStrings": [
                     "Notenpapier, 12 Systeme mit vier (1 + 2 Systeme ) vorgedruckten Akkoladen, Format: hoch ### × ### mm, Firmenzeichen: ##JE_12## recto unten links"
                 ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 12,
+                            "info": "mit vier (1 + 2 Systeme ) vorgedruckten Akkoladen",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "##"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "##"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_12_LIN_12_OP12_D",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["evt. weitere"]
@@ -2482,6 +2621,39 @@
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 12 Systeme, Format: hoch 340 × 268 mm, Firmenzeichen: ##??## auf Bl. 2<sup>r</sup>, 4<sup>r</sup>, 6<sup>r</sup>, 8<sup>r</sup>, 10<sup>r</sup> unten links (Bl. 1–10)"
+                ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 12,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "340"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "268"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_2_LIN_12_OP12_F",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["2r, 4t, 6r, 8r, 10r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1–10"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
