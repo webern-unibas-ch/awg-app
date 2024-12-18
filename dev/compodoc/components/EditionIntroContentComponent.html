@@ -1208,8 +1208,35 @@ export class EditionIntroContentComponent {
                 margin-bottom: 0 !important;
             }
 
-            table &gt; tbody &gt; tr &gt; td {
-                padding-right: 10px;
+            table {
+                text-wrap: nowrap;
+
+                &gt; tbody &gt; tr &gt; td {
+                    padding-right: 20px;
+                }
+
+                &amp;.awg-intro-table {
+                    /* centered table with top and bottom border */
+                    display: table;
+                    width: 80%;
+                    margin-left: auto;
+                    margin-right: auto;
+
+                    &gt; tbody &gt; tr:first-child {
+                        border-top: 1px solid black !important;
+
+                        td {
+                            padding-top: 10px;
+                        }
+                    }
+                    &gt; tbody &gt; tr:last-child {
+                        border-bottom: 1px solid black !important;
+
+                        td {
+                            padding-bottom: 10px;
+                        }
+                    }
+                }
             }
 
             .heading {
