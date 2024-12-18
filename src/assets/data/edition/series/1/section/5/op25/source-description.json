@@ -1828,6 +1828,176 @@
                     "Notenpapier, hoch 340 × 270 mm, 12 Systeme, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke</em> | <em>No. 2 | 12 linig.</em> auf Bl. 4<sup>r</sup>, 7<sup>r</sup>, 10<sup>r</sup> unten links (Bl. 4/5, 7–10)",
                     "Notenpapier, hoch 336 × 267 mm, 14 Systeme, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke</em> | <em>No. 3 | 14 linig.</em> auf Bl. 6<sup>r</sup> unten links (Bl. 6/11)"
                 ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 20,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "340"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "270"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "",
+                            "alt": "<em>J. E. & Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke</em> | <em>No. 6 | 20 linig.</em>",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["12v"],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "watermark": {
+                            "variant": "",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": [""],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1/12"
+                    },
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 12,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "336"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "267"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_2_LIN_12_Op25_E2",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["2r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {
+                            "variant": "",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": [""],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "2/3"
+                    },
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 12,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "340"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "270"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_2_LIN_12_Op25_E3",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["4r, 7r, 10r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {
+                            "variant": "",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": [""],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "4/5, 7-10"
+                    },
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 14,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "336"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "267"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_3_LIN_14_Op25_E4",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["6r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {
+                            "variant": "",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": [""],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "6/11"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift (Taktstriche", "außer Schlussstriche)"]
