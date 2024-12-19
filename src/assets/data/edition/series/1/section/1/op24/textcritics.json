@@ -3,7 +3,7 @@
         {
             "id": "SkRT",
             "label": "M 316 / M 318 / M 319 / M 320 RT (Reihentabelle op. 24)",
-            "description": [
+            "evaluations": [
                 "<small class=\"text-muted\">[Der Skizzenkommentar erscheint im Zusammenhang der vollständigen Edition von Opus 24 in AWG I/1.]</small>"
             ],
             "rowtable": true,

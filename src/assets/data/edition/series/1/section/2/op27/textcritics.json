@@ -3,7 +3,7 @@
         {
             "id": "SkRT",
             "label": "M 325 / M 326 / M 327 RT (Reihentabelle op. 27)",
-            "description": [
+            "evaluations": [
                 "<small class=\"text-muted\">[Der Skizzenkommentar erscheint im Zusammenhang der vollständigen Edition von Opus 27 in AWG I/2.]</small>"
             ],
             "rowtable": true,

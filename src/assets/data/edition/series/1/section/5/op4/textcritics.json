@@ -3,7 +3,7 @@
         {
             "id": "op4_WE",
             "label": "George-Lieder: <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4 (Werkedition)",
-            "description": [
+            "evaluations": [
                 "Für die Edition der in den <em>Fünf Liedern nach Gedichten von Stefan George</em> op. 4 versammelten Textfassungen (I: Eingang [„Welt der Gestalten“] M 138 Textfassung 3, II: „Noch zwingt mich Treue“ M 139 Textfassung 3, III: „Ja Heil und Dank dir“ M 140 Textfassung 2, IV: „So ich traurig bin“ M 141 Textfassung 2, V: „Ihr tratet zu dem Herde“ M 142: Textfassung 3) sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> bis <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH'})\"><strong>G<sup>H</sup></strong></a> beziehen sich auf frühere Textfassungen (siehe <span class='link-todo'>Texteditionen</span>). <br /> Die Autographe in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> sind Vorlagen für die Abschrift fremder Hand <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a> ist Stichvorlage für <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>. Die Eintragungen in Weberns Handexemplar <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_JH'})\"><strong>J<sup>H</sup></strong></a> sind aufführungsspezifisch motiviert und stellen keine substanziellen textkritischen Eingriffe dar. <br /> Hauptquelle für die Werkedition der <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4 ist der Druck <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_H'})\"><strong>H</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_I'})\"><strong>I</strong></a> sind Referenzquellen."
             ],
             "comments": [
@@ -954,7 +954,7 @@
         {
             "id": "M_138_TF1",
             "label": "M 138 Textfassung 1",
-            "description": [
+            "evaluations": [
                 "Für die Edition von <em>Eingang</em> („Welt der Gestalten“) Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> relevante Quellen. <br /><a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ist ante correcturam Vorlage für die Abschrift <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a>. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF2'})\">Textfassung 2</a>. Der Zustand in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ante correcturam ist nicht immer eindeutig zu entziffern. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> ante correcturam bietet im Vergleich dazu einen kohärenteren Text, der Textfassung 1 etabliert. Die autographen <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Da_corr'})\">Korrekturen in <strong>D<sup>a</sup></strong></a> betreffen <span class='link-todo'>spätere Textfassungen</span> oder sind aufführungsspezifisch motiviert. <br />Hauptquelle für die Textedition von Eingang („Welt der Gestalten“) Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>a</sup></strong></a> ante correcturam. Referenzquelle ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> ante correcturam. Da in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> nicht immer eindeutig zu entscheiden ist, welche Zeichen ante oder post correcturam niedergeschrieben wurden, wird in diesen Fällen „(ante correcturam?)“ vermerkt."
             ],
             "comments": [
@@ -1522,7 +1522,7 @@
         {
             "id": "M_138_TF2",
             "label": "M 138 Textfassung 2",
-            "description": [
+            "evaluations": [
                 "Für die Edition von Eingang („Welt der Gestalten“) M 138 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle. <br /> Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A_corr'})\">Korrekturen in <strong>A</strong></a> etablieren Textfassung 2. <br /> Hauptquelle für die Textedition von Eingang („Welt der Gestalten“) M 138 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_A'})\"><strong>A</strong></a> post correcturam."
             ],
             "comments": [
@@ -1649,7 +1649,7 @@
         {
             "id": "M_139_TF1",
             "label": "M 139 Textfassung 1",
-            "description": [
+            "evaluations": [
                 "Für die Edition von „Noch zwingt mich Treue“ M 139 Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> relevante Quellen. <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> war ante correcturam Vorlage für <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a>. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Db_corr'})\">autographen Korrekturen in <strong>D<sup>b</sup></strong></a> betreffen eine <span class='link-todo'>spätere Textfassung</span> oder sind aufführungsspezifisch motiviert. Der Zustand ante correcturam in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> ist nicht immer eindeutig zu entziffern. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> bietet im Vergleich dazu einen koheränteren Text. <br /> Hauptquelle für die Textedition von „Noch zwingt mich Treue“ M 139 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_D'})\"><strong>D<sup>b</sup></strong></a> ante correcturam. Referenzquelle ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> ante correcturam. Da in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> nicht immer eindeutig zu entscheiden ist, welche Zeichen ante oder post correcturam niedergeschrieben wurden, wird in diesen Fällen „(ante correcturam?)“ vermerkt."
             ],
             "comments": [
@@ -2077,7 +2077,7 @@
         {
             "id": "M_139_TF2",
             "label": "M 139 Textfassung 2",
-            "description": [
+            "evaluations": [
                 "Für die Edition von „Noch zwingt mich Treue“ M 139 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> einzige relvante Quelle. <br /> Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur oder Tektur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Ba_corr_1'})\">Korrekturen 1</a>) und mit Bleistift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Ba_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht immer eindeutig zu entziffern. Der Zustand nach Korrekturen 1 etabliert Textfassung 2. Korrekturen 2 betreffen <span class='link-todo'>Textfassung 3</span>. <br /> Hauptquelle für die Textedition von „Noch zwingt mich Treue“ M 139 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> nach Korrekturen 1."
             ],
             "comments": [
@@ -2211,7 +2211,7 @@
         {
             "id": "M_140_TF1",
             "label": "M 140 Textfassung 1",
-            "description": [
+            "evaluations": [
                 "Für die Edition von „Ja Heil und Dank dir“ M 140 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> einzige relevante Quelle. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bb_corr'})\">Korrekturen in <strong>B<sup>b</sup></strong></a> betreffen <span class='link-todo'>Textfassung 2</span>. Hauptquelle für die Textedition von „Ja Heil und Dank dir“ M 140 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> ante correcturam."
             ],
             "comments": [
@@ -2358,7 +2358,7 @@
         {
             "id": "M_141_TF1",
             "label": "M 141 Textfassung 1",
-            "description": [
+            "evaluations": [
                 "Für die Edition von „So ich traurig bin“ M 141 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a> einzige relevante Quelle. <br />Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr_1'})\">Korrekturen 1</a>) und mit Bleistift (<a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_Bc_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht immer eindeutig zu entziffern. Der Zustand nach Korrekturen 1 etabliert Textfassung 1. Korrekturen 2 skizzieren <span class='link-todo'>Textfassung 2</span>. <br />Hauptquelle für die Textedition von Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_B'})\"><strong>B<sup>c</sup></strong></a> nach Korrekturen 1."
             ],
             "comments": [
@@ -2421,7 +2421,7 @@
         {
             "id": "M_142_TF1",
             "label": "M 142 Textfassung 1",
-            "description": [
+            "evaluations": [
                 "Für die Edition von „Ihr tratet zu dem Herde“ M 142 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a> einzige relevante Quelle. <br /> Autographe Quellen sowie eine Korrekturfahne des Drucks <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>, die diese oder evt. noch frühere Textfassungen dokumentieren könnten, sind verschollen ([<strong>C</strong>], [<strong>E</strong>], [<strong>F</strong>]). Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Eintragungen in Weberns Handexemplar <strong>G<sup>H</sup></strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>. <br /> Hauptquelle für die Textedition von „Ihr tratet zu dem Herde“ M 142 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>."
             ],
             "comments": [
@@ -2506,7 +2506,7 @@
         {
             "id": "M_142_TF2",
             "label": "M 142 Textfassung 2",
-            "description": [
+            "evaluations": [
                 "Für die Edition von „Ihr tratet zu dem Herde“ M 142 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH'})\"><strong>G<sup>H</sup></strong></a> einzige relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH'})\"><strong>G<sup>H</sup></strong></a> ist Weberns Handexemplar des Drucks <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>. <br /> Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH_corr'})\">Korrekturen in <strong>G<sup>H</sup></strong></a> etablieren Textfassung 2. <br /> Hauptquelle für die Textedition von „Ihr tratet zu dem Herde“ M 142 Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_GH'})\"><strong>G<sup>H</sup></strong></a> post correcturam."
             ],
             "comments": [

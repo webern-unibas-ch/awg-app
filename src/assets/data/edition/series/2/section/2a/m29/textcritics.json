@@ -3,7 +3,7 @@
         {
             "id": "M_29_Sk1",
             "label": "M 29 Sk1",
-            "description": [
+            "evaluations": [
                 "<strong>M 29 Sk1</strong> skizziert einen ersten Melodieverlauf, der bereits einige Kernmotive der späteren Studienkomposition für Klavier M 29 enthält (z. B. punktierte Rhythmen und Sequenzierungen), ansonsten aber von der Endfassung noch stark abweicht."
             ],
             "comments": [
@@ -61,7 +61,7 @@
         {
             "id": "M_29_Sk2",
             "label": "M 29 Sk2",
-            "description": [
+            "evaluations": [
                 "<strong>M 29 Sk2</strong> enthält eine fragmentarische Modulierung auf der Basis von <strong>M 29 Sk1</strong>, die in formaler Hinsicht aber nicht eindeutig zuzuordnen ist."
             ],
             "comments": [
@@ -77,7 +77,7 @@
         {
             "id": "M_29_Sk3",
             "label": "M 29 Sk3",
-            "description": [
+            "evaluations": [
                 "<strong>M 29 Sk3</strong> formuliert einen alternativen harmonischen Verlauf auf der Basis von <strong>M 29 Sk1</strong>, der in formaler Hinsicht aber nicht eindeutig zuzuordnen ist."
             ],
             "comments": [
@@ -114,7 +114,7 @@
         {
             "id": "M_29_Sk4",
             "label": "M 29 Sk4",
-            "description": [
+            "evaluations": [
                 "<strong>M 29 Sk4</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 29, die jedoch nach dem B-Teil und vor der Wiederholung des A-Teils abbricht."
             ],
             "comments": [
@@ -396,7 +396,7 @@
         {
             "id": "M_29_Sk5",
             "label": "M 29 Sk5",
-            "description": [
+            "evaluations": [
                 "<strong>M 29 Sk5</strong> entwirft im Nachgang zu der Tintenniederschrift von Studienkomposition für Klavier M 29 eine alternative Fassung für die ersten acht Takte, bei denen hauptsächlich die linke Hand in der Hinsicht überarbeitet wird, dass die durchgehende Achtelbewegung durch Viertelnoten und -pausen aufgebrochen wird."
             ],
             "comments": [

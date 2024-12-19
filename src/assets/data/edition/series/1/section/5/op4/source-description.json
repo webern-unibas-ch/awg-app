@@ -168,7 +168,7 @@
                     {
                         "id": "source_A_corr",
                         "label": "Korrekturen in <strong>A</strong>",
-                        "description": [
+                        "evaluations": [
                             "Die Beschreibung der Korrekturen bezieht sich auf <em>Eingang</em> („Welt der Gestalten“) M 138: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF2'})\">Textfassung 2</a>."
                         ],
                         "comments": [
@@ -885,7 +885,7 @@
                     {
                         "id": "source_Ba_corr_1",
                         "label": "Korrekturen 1 in <strong>B<sup>a</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
-                        "description": [
+                        "evaluations": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Noch zwingt mich Treue“ M 139: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF2'})\">Textfassung 2</a>."
                         ],
                         "comments": [
@@ -1037,7 +1037,7 @@
                     {
                         "id": "source_Ba_corr_2",
                         "label": "Korrekturen 2 in <strong>B<sup>a</sup></strong> (mit Bleistift)",
-                        "description": [
+                        "evaluations": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Noch zwingt mich Treue“ M 139: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF2'})\">Textfassung 2</a>."
                         ],
                         "comments": [
@@ -1135,7 +1135,7 @@
                     {
                         "id": "source_Bb_corr",
                         "label": "Korrekturen in <strong>B<sup>b</sup></strong> (mit Bleistift)",
-                        "description": [
+                        "evaluations": [
                             "Die Beschreibung der Korrekturen bezieht sich auf <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_140_TF1'})\">„Ja Heil und Dank dir“ M 140: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_140_TF1'})\">Textfassung 1</a>."
                         ],
                         "comments": [
@@ -1305,7 +1305,7 @@
                     {
                         "id": "source_Bc_corr_1",
                         "label": "Korrekturen 1 in <strong>B<sup>c</sup></strong> (mit schwarzer Tinte ggf. auf Rasur)",
-                        "description": [
+                        "evaluations": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „So ich traurig bin“ M 141: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_141_TF1'})\">Textfassung 1</a>."
                         ],
                         "comments": [
@@ -1373,7 +1373,7 @@
                     {
                         "id": "source_Bc_corr_2",
                         "label": "Korrekturen 2 in <strong>B<sup>c</sup></strong> (mit Bleistift)",
-                        "description": [
+                        "evaluations": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „So ich traurig bin“ M 141: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_141_TF1'})\">Textfassung 1</a>."
                         ],
                         "comments": [
@@ -1674,7 +1674,7 @@
                     {
                         "id": "source_Da_corr",
                         "label": "Korrekturen in <strong>D<sup>a</sup></strong> (mit Bleistift; Hs. Webern)",
-                        "description": [
+                        "evaluations": [
                             "Die Beschreibung der Korrekturen bezieht sich auf <em>Eingang</em> („Welt der Gestalten“) M 138: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF1'})\">Textfassung 1</a>."
                         ],
                         "comments": [
@@ -1958,7 +1958,7 @@
                     {
                         "id": "source_Db_corr",
                         "label": "Korrekturen in <strong>D<sup>b</sup></strong> (mit Bleistift; Hs. Webern)",
-                        "description": [
+                        "evaluations": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Noch zwingt mich Treue“ M 139: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>."
                         ],
                         "comments": [
@@ -2381,7 +2381,7 @@
                     {
                         "id": "source_GH_corr",
                         "label": "Korrekturen in <strong>G<sup>H</sup></strong>",
-                        "description": [
+                        "evaluations": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Ihr tratet zu dem Herde“ M 142: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">Textfassung 2</a>."
                         ],
                         "comments": [
@@ -3118,7 +3118,7 @@
                     {
                         "id": "source_H_corr",
                         "label": "Korrekturen in <strong>H</strong>",
-                        "description": [
+                        "evaluations": [
                             "Die Beschreibung der Korrekturen bezieht sich auf die Textfassungen der <span class='link-todo'>Werkedition von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4</span>."
                         ],
                         "comments": [
@@ -4239,7 +4239,7 @@
                     {
                         "id": "source_I_corr",
                         "label": "Korrekturen in <strong>I</strong>",
-                        "description": [
+                        "evaluations": [
                             "Die Beschreibung der Korrekturen bezieht sich auf die Textfassungen der <span class='link-todo'>Werkedition von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4</span>"
                         ],
                         "comments": [

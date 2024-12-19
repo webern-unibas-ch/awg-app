@@ -2200,7 +2200,7 @@
                     {
                         "id": "source_E_corr_1",
                         "label": "Korrekturen 1 in <strong>E</strong>",
-                        "description": [
+                        "evaluations": [
                             "Die Beschreibung der Korrekturen bezieht sich auf „Wie bin ich froh“ M 317: <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>."
                         ],
                         "comments": [
@@ -2238,7 +2238,7 @@
                     {
                         "id": "source_E_corr_2",
                         "label": "Korrekturen 2 in <strong>E</strong>",
-                        "description": [
+                        "evaluations": [
                             "Die Beschreibung der Korrekturen bezieht sich auf die Textfassungen der <span class='link-todo'>Werkedition von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25</span>."
                         ],
                         "comments": [

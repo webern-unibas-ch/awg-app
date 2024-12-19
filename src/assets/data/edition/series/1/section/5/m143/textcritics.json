@@ -3,7 +3,7 @@
         {
             "id": "M_143_TF1",
             "label": "M 143 einzige Textfassung",
-            "description": [
+            "evaluations": [
                 "Für die Edition der einzigen Textfassung von „Erwachen aus dem tiefsten Traumesschoße“ M 143 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle. <br /> Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte (<a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a>) und mit Bleistift (<a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>) vorgenommen. Korrekturen 2 sind nicht immer eindeutig. <br /> Hauptquelle für die Textedition von „Erwachen aus dem tiefsten Traumesschoße“ M 143 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a> nach Korrekturen 1 und vor Korrekturen 2."
             ],
             "comments": [

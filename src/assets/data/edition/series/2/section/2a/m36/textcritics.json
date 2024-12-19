@@ -3,7 +3,7 @@
         {
             "id": "M_36_TF1",
             "label": "M 36 einzige Textfassung",
-            "description": [
+            "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 36 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm36', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm36', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen. <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'm36', fragmentId: 'source_B'})\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. <br /> Hauptquelle für die Textedition der Studienkomposition für Klavier M 36 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm36', fragmentId: 'source_B'})\"><strong>B</strong></a> nach Korrekturen 1."
             ],
             "comments": [
@@ -24,7 +24,7 @@
         {
             "id": "M_36_Sk1",
             "label": "M 36 Sk1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm36', sheetId: 'M_36_TF1'})\" ><strong>Studienkomposition für Klavier M 36</strong></a>, bei der die Reprise mit Ausnahme des neuen Schlussakkords (T. 16) nicht ausnotiert ist."
             ],
             "comments": [

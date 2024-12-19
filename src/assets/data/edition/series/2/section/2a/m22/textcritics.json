@@ -3,7 +3,7 @@
         {
             "id": "M_22_TF1",
             "label": "M 22 einzige Textfassung",
-            "description": [],
+            "evaluations": [],
             "comments": [
                 {
                     "blockHeader": "Var. X",
@@ -121,7 +121,7 @@
         {
             "id": "M_22_Sk1",
             "label": "M 22 Sk1",
-            "description": ["<strong>M 22 Sk1</strong> entwirft das Thema der Variationen von M 22."],
+            "evaluations": ["<strong>M 22 Sk1</strong> entwirft das Thema der Variationen von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -161,7 +161,7 @@
         {
             "id": "M_22_Sk2",
             "label": "M 22 Sk2",
-            "description": ["<strong>M 22 Sk2</strong> entwirft Var. I von M 22."],
+            "evaluations": ["<strong>M 22 Sk2</strong> entwirft Var. I von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -201,7 +201,7 @@
         {
             "id": "M_22_Sk3",
             "label": "M 22 Sk3",
-            "description": ["<strong>M 22 Sk3</strong> entwirft Var. II von M 22."],
+            "evaluations": ["<strong>M 22 Sk3</strong> entwirft Var. II von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -339,7 +339,7 @@
         {
             "id": "M_22_Sk4",
             "label": "M 22 Sk4",
-            "description": ["<strong>M 22 Sk4</strong> entwirft Var. III von M 22."],
+            "evaluations": ["<strong>M 22 Sk4</strong> entwirft Var. III von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -442,7 +442,7 @@
         {
             "id": "M_22_Sk5",
             "label": "M 22 Sk5",
-            "description": ["<strong>M 22 Sk5</strong> entwirft die unvollständig gebliebene Var. IV von M 22."],
+            "evaluations": ["<strong>M 22 Sk5</strong> entwirft die unvollständig gebliebene Var. IV von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -470,7 +470,7 @@
         {
             "id": "M_22_Sk6",
             "label": "M 22 Sk6",
-            "description": ["<strong>M 22 Sk6</strong> entwirft Var. V von M 22."],
+            "evaluations": ["<strong>M 22 Sk6</strong> entwirft Var. V von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -540,7 +540,7 @@
         {
             "id": "M_22_Sk7",
             "label": "M 22 Sk7",
-            "description": ["<strong>M 22 Sk7</strong> entwirft die unvollständig gebliebene Var. I von M 22."],
+            "evaluations": ["<strong>M 22 Sk7</strong> entwirft die unvollständig gebliebene Var. I von M 22."],
             "comments": [],
             "linkBoxes": [
                 {
@@ -555,7 +555,7 @@
         {
             "id": "M_22_Sk8",
             "label": "M 22 Sk8",
-            "description": [
+            "evaluations": [
                 "<strong>M 22 Sk8</strong> entwirft den Beginn einer verworfenen Variation zwischen Var. VI und Var. VII von M 22."
             ],
             "comments": [
@@ -585,7 +585,7 @@
         {
             "id": "M_22_Sk9",
             "label": "M 22 Sk9",
-            "description": ["<strong>M 22 Sk9</strong> entwirft Var. VII von M 22."],
+            "evaluations": ["<strong>M 22 Sk9</strong> entwirft Var. VII von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -697,7 +697,7 @@
         {
             "id": "M_22_Sk10",
             "label": "M 22 Sk10",
-            "description": [
+            "evaluations": [
                 "<strong>M 22 Sk10</strong> entwirft den Beginn einer verworfenen Variante von Var. IX von M 22."
             ],
             "comments": [
@@ -727,7 +727,7 @@
         {
             "id": "M_22_Sk11",
             "label": "M 22 Sk11",
-            "description": ["<strong>M 22 Sk11</strong> entwirft Var. IX von M 22."],
+            "evaluations": ["<strong>M 22 Sk11</strong> entwirft Var. IX von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -816,7 +816,7 @@
         {
             "id": "M_22_Sk12",
             "label": "M 22 Sk12",
-            "description": ["<strong>M 22 Sk12</strong> entwirft Var. X von M 22."],
+            "evaluations": ["<strong>M 22 Sk12</strong> entwirft Var. X von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -926,7 +926,7 @@
         {
             "id": "M_22_Sk13",
             "label": "M 22 Sk13",
-            "description": ["<strong>M 22 Sk13</strong> entwirft die unvollständig gebliebene Var. XI von M 22."],
+            "evaluations": ["<strong>M 22 Sk13</strong> entwirft die unvollständig gebliebene Var. XI von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -952,7 +952,7 @@
         {
             "id": "M_22_Sk14",
             "label": "M 22 Sk14",
-            "description": [
+            "evaluations": [
                 "<strong>M 22 Sk14</strong> entwirft den Beginn einer verworfenen Variation zwischen Var. XI und Var. XII von M 22."
             ],
             "comments": [],
@@ -976,7 +976,7 @@
         {
             "id": "M_22_Sk15",
             "label": "M 22 Sk15",
-            "description": ["<strong>M 22 Sk15</strong> entwirft Var. XII von M 22."],
+            "evaluations": ["<strong>M 22 Sk15</strong> entwirft Var. XII von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -1018,7 +1018,7 @@
         {
             "id": "M_22_Sk16",
             "label": "M 22 Sk16",
-            "description": [
+            "evaluations": [
                 "<strong>M 22 Sk16</strong> entwirft einen ersten figurativen Verlauf für Var. VIII von M 22."
             ],
             "comments": [
@@ -1060,7 +1060,7 @@
         {
             "id": "M_22_Sk17",
             "label": "M 22 Sk17",
-            "description": [
+            "evaluations": [
                 "<strong>M 22 Sk17</strong> entwirft eine erste, verworfene Version von Var. XIII von M 22."
             ],
             "comments": [
@@ -1132,7 +1132,7 @@
         {
             "id": "M_22_Sk18",
             "label": "M 22 Sk18",
-            "description": ["<strong>M 22 Sk18</strong> entwirft die gültige Version von Var. XIII von M 22."],
+            "evaluations": ["<strong>M 22 Sk18</strong> entwirft die gültige Version von Var. XIII von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -1174,7 +1174,7 @@
         {
             "id": "M_22_Sk19",
             "label": "M 22 Sk19",
-            "description": [
+            "evaluations": [
                 "<strong>M 22 Sk19</strong> entwirft eine verworfene Variation zwischen Var. XIII und Var. XIV von M 22."
             ],
             "comments": [],
@@ -1191,7 +1191,7 @@
         {
             "id": "M_22_Sk20",
             "label": "M 22 Sk20",
-            "description": ["<strong>M 22 Sk20</strong> entwirft Var. XIV von M 22."],
+            "evaluations": ["<strong>M 22 Sk20</strong> entwirft Var. XIV von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -1247,7 +1247,7 @@
         {
             "id": "M_22_Sk21",
             "label": "M 22 Sk21",
-            "description": ["<strong>M 22 Sk21</strong> entwirft Var. XV von M 22."],
+            "evaluations": ["<strong>M 22 Sk21</strong> entwirft Var. XV von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -1366,7 +1366,7 @@
         {
             "id": "M_22_Sk22",
             "label": "M 22 Sk22",
-            "description": ["<strong>M 22 Sk22</strong> entwirft die vollständige Version von Var. VIII von M 22."],
+            "evaluations": ["<strong>M 22 Sk22</strong> entwirft die vollständige Version von Var. VIII von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -1457,7 +1457,7 @@
         {
             "id": "M_22_Sk23",
             "label": "M 22 Sk23",
-            "description": ["<strong>M 22 Sk23</strong> entwirft eine erste Version von Var. XVI von M 22."],
+            "evaluations": ["<strong>M 22 Sk23</strong> entwirft eine erste Version von Var. XVI von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -1576,7 +1576,7 @@
         {
             "id": "M_22_Sk24",
             "label": "M 22 Sk24",
-            "description": ["<strong>M 22 Sk24</strong> entwirft die gültige Version von Var. XIV von M 22."],
+            "evaluations": ["<strong>M 22 Sk24</strong> entwirft die gültige Version von Var. XIV von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -1639,7 +1639,7 @@
         {
             "id": "M_22_Sk25",
             "label": "M 22 Sk25",
-            "description": [
+            "evaluations": [
                 "<strong>M 22 Sk25</strong> entwirft eine verworfene Variation zwischen Var. XVI und Var. XVII von M 22."
             ],
             "comments": [
@@ -1711,7 +1711,7 @@
         {
             "id": "M_22_Sk26",
             "label": "M 22 Sk26",
-            "description": ["<strong>M 22 Sk26</strong> entwirft Var. XVII von M 22."],
+            "evaluations": ["<strong>M 22 Sk26</strong> entwirft Var. XVII von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -1788,7 +1788,7 @@
         {
             "id": "M_22_Sk27",
             "label": "M 22 Sk27",
-            "description": ["<strong>M 22 Sk27</strong> entwirft die T. 1–6 von Var. XVIII von M 22."],
+            "evaluations": ["<strong>M 22 Sk27</strong> entwirft die T. 1–6 von Var. XVIII von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -1823,7 +1823,7 @@
         {
             "id": "M_22_Sk27_1",
             "label": "M 22 Sk27.1",
-            "description": [
+            "evaluations": [
                 "<strong>M 22 Sk27.1</strong> überarbeitet die T. 5–6 aus <a (click)=\"ref.selectSvgSheet({complexId: 'm22', sheetId: 'M_22_Sk27'})\"><strong>M 22 Sk27</strong></a> und fügt die T. 7–8 zu Var. XVIII von M 22 hinzu."
             ],
             "comments": [
@@ -1895,7 +1895,7 @@
         {
             "id": "M_22_Sk28",
             "label": "M 22 Sk28",
-            "description": ["<strong>M 22 Sk28</strong> entwirft Var. XIX von M 22."],
+            "evaluations": ["<strong>M 22 Sk28</strong> entwirft Var. XIX von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -1998,7 +1998,7 @@
         {
             "id": "M_22_Sk28_1",
             "label": "M 22 Sk28.1",
-            "description": [
+            "evaluations": [
                 "<strong>M 22 Sk28.1</strong> formuliert einen harmonisch und motivisch leicht abgewandelten Schluss zu Var. XIX von M22."
             ],
             "comments": [
@@ -2035,7 +2035,7 @@
         {
             "id": "M_22_Sk29",
             "label": "M 22 Sk29",
-            "description": ["<strong>M 22 Sk29</strong> entwirft Var. XX von M 22."],
+            "evaluations": ["<strong>M 22 Sk29</strong> entwirft Var. XX von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -2145,13 +2145,13 @@
         {
             "id": "M_22_Sk30",
             "label": "M 22 Sk30",
-            "description": ["<strong>M 22 Sk30</strong> skizziert die ersten Noten zu Var. XXI von M 22."],
+            "evaluations": ["<strong>M 22 Sk30</strong> skizziert die ersten Noten zu Var. XXI von M 22."],
             "comments": []
         },
         {
             "id": "M_22_Sk31",
             "label": "M 22 Sk31",
-            "description": ["<strong>M 22 Sk31</strong> entwirft Var. XXI von M 22."],
+            "evaluations": ["<strong>M 22 Sk31</strong> entwirft Var. XXI von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -2221,7 +2221,7 @@
         {
             "id": "M_22_Sk32",
             "label": "M 22 Sk32",
-            "description": ["<strong>M 22 Sk32</strong> entwirft Var. XXII von M 22."],
+            "evaluations": ["<strong>M 22 Sk32</strong> entwirft Var. XXII von M 22."],
             "comments": [
                 {
                     "blockHeader": "",
@@ -2296,7 +2296,7 @@
         {
             "id": "M_22_Sk32_1",
             "label": "M 22 Sk32.1",
-            "description": [
+            "evaluations": [
                 "<strong>M 22 Sk32.1</strong> schließt an T. 5 von <a (click)=\"ref.selectSvgSheet({complexId: 'm22', sheetId: 'M_22_Sk32'})\"><strong>M 22 Sk32</strong></a> an und entwirft einen alternativen Schluss zu Var. XXII von M 22."
             ],
             "comments": [
@@ -2354,7 +2354,7 @@
         {
             "id": "M_22_Sk32_1_1",
             "label": "M 22 Sk32.1.1",
-            "description": [
+            "evaluations": [
                 "<strong>M 22 Sk32.1.1</strong> formuliert im Anschluss an <a (click)=\"ref.selectSvgSheet({complexId: 'm22', sheetId: 'M_22_Sk32_1'})\"><strong>M 22 Sk32.1</strong></a> den melodischen Übergang in T. 7 zum Schlussakkord neu."
             ],
             "comments": [],
@@ -2371,7 +2371,7 @@
         {
             "id": "M_22_Sk33",
             "label": "M 22 Sk33",
-            "description": ["<strong>M 22 Sk33</strong> entwirft Var. XXIII von M 22."],
+            "evaluations": ["<strong>M 22 Sk33</strong> entwirft Var. XXIII von M 22."],
             "comments": [
                 {
                     "blockHeader": "",

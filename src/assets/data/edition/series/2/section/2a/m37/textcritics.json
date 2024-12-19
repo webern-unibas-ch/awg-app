@@ -3,7 +3,7 @@
         {
             "id": "M_37_TF1",
             "label": "M 37 einzige Textfassung",
-            "description": [
+            "evaluations": [
                 "Für die Textedition der Studienkomposition für Klavier M 37 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm37', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm37', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen. <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'm37', fragmentId: 'source_B'})\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. <br /> Hauptquelle für die Textedition der Studienkomposition für Klavier M 37 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm37', fragmentId: 'source_B'})\"><strong>B</strong></a> nach Korrekturen 1."
             ],
             "comments": [
@@ -45,7 +45,7 @@
         {
             "id": "M_37_Sk1",
             "label": "M 37 Sk1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1</strong> skizziert möglicherweise eine erste melodische Linie für M 37. Die Zugehörigkeit zur Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
             ],
             "comments": [],
@@ -69,7 +69,7 @@
         {
             "id": "M_37_Sk2",
             "label": "M 37 Sk2",
-            "description": [
+            "evaluations": [
                 "<strong>Sk2</strong> skizziert möglicherweise eine Variante zu der ersten melodischen Linie aus <a (click)=\"ref.selectSvgSheet({complexId: 'm37', sheetId: 'M_37_Sk1'})\"><strong>Sk1</strong></a>. Die Zugehörigkeit zur Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
             ],
             "comments": [
@@ -113,7 +113,7 @@
         {
             "id": "M_37_Sk3",
             "label": "M 37 Sk3",
-            "description": ["<strong>Sk3</strong> ist die Verlaufsskizze zur Studienkomposition für Klavier M 37."],
+            "evaluations": ["<strong>Sk3</strong> ist die Verlaufsskizze zur Studienkomposition für Klavier M 37."],
             "comments": [
                 {
                     "blockHeader": "",

@@ -164,7 +164,7 @@
                     {
                         "id": "source_A_corr_1",
                         "label": "Korrekturen 1 in <strong>A</strong> (mit schwarzer Tinte ggf. auf Rasur oder Tektur)",
-                        "description": [],
+                        "evaluations": [],
                         "comments": [
                             {
                                 "blockHeader": "",
@@ -224,7 +224,7 @@
                     {
                         "id": "source_A_corr_2",
                         "label": "Korrekturen 2 in <strong>A</strong> (mit Bleistift)",
-                        "description": [],
+                        "evaluations": [],
                         "comments": [
                             {
                                 "blockHeader": "",

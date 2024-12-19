@@ -1,10 +1,9 @@
 {
-    "textcritics": 
-    [
+    "textcritics": [
         {
             "id": "M_144_TF1",
             "label": "M 144 einzige Textfassung",
-            "description": [
+            "evaluations": [
                 "Für die Edition der einzigen Textfassung von <em>Kunfttag I</em> („Dem bist du Kind“) M 144 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle. <br /> Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'source_A'})\"><strong>A</strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur (<a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a>) und mit Bleistift (<a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht immer eindeutig zu entziffern. Der Zustand nach Korrekturen 1 etabliert die einzige Textfassung. Korrekturen 2 skizzieren eine ansonten nicht etablierte Textfassung und sind nicht immer eindeutig zu interpretieren. <br /> Hauptquelle für die Textedition von Kunfttag I („Dem bist du Kind“) M 144 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'source_A'})\"><strong>A</strong></a> nach Korrekturen 1."
             ],
             "comments": [

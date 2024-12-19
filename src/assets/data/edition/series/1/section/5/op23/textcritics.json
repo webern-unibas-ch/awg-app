@@ -3,7 +3,7 @@
         {
             "id": "op23_WE",
             "label": "<em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23 (Werkedition)",
-            "description": [
+            "evaluations": [
                 "Für die Edition der in den <em>Drei Gesängen aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23 versammelten Textfassungen (I: „Das dunkle Herz“ M 314, II: „Es stürzt aus Höhen Frische“ M 313, III: „Herr Jesus mein“ M 312) sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_B'})\"><strong>B</strong></a> enthalten Skizzen bzw. Reihentabellen (siehe <span class='link-todo'>Skizzeneditionen</span>). <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> ist Stichvorlage für den Druck <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>. <br /> Hauptquelle für die Werkedition der <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23 ist der Druck <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> ist Referenzquelle."
             ],
             "comments": [
@@ -405,7 +405,7 @@
         {
             "id": "M_312_Sk1",
             "label": "M 312 Sk1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1</strong> entwirft den Anfang der Singstimme zu „Herr Jesus mein“ M 312 sowie gleichzeitig im Abgleich mit <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M_312_Sk1_1'})\"><strong>Sk1.1</strong></a> die Reihenform G<sub>g</sub> der zugrundeliegenden Zwölftonreihe. Ab dem Ende von T. 3 ist lediglich ein möglicher Rhythmus in verschiedenen metrischen Varianten skizziert (siehe die getilgten Taktstriche)."
             ],
             "comments": [
@@ -477,7 +477,7 @@
         {
             "id": "M_312_Sk1_1",
             "label": "M 312 Sk1.1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1.1</strong> entwirft im Abgleich mit <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M_312_Sk1'})\"><strong>Sk1</strong></a> die Reihenform G<sub>g</sub> der zugrundeliegenden Zwölftonreihe. "
             ],
             "comments": [
@@ -514,7 +514,7 @@
         {
             "id": "M_312_Sk3",
             "label": "M 312 Sk3",
-            "description": [
+            "evaluations": [
                 "<strong>Sk3</strong> skizziert verschiedene Ansätze zur Klaviereinleitung von „Herr Jesus mein“ M 312 auf der Grundlage der Reihenform KU<sub>h</sub>."
             ],
             "comments": [
@@ -579,7 +579,7 @@
         {
             "id": "SkRT",
             "label": "M 312 / M 313 / M 314 RT (Reihentabelle op. 23)",
-            "description": [
+            "evaluations": [
                 "Die <strong>Reihentabelle op. 23</strong> wiederholt die bereits in <strong>M 312 Sk2</strong> tabellarisch notierten Reihenformen 1–8, ohne die dort ebenfalls notierten (eingeklammerten) Reihenformen 9–10 (G<sub>f</sub>, K<sub>gis</sub>). Sie wurde vermutlich während oder nach <strong>M 312 Sk4</strong> angefertigt und dürfte als Werkzeug bei den Skizzen zu M 313 und M 314 gedient haben."
             ],
             "rowtable": true,
@@ -657,7 +657,7 @@
         {
             "id": "M_314_Sk1",
             "label": "M 314 Sk1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1</strong> skizziert den Anfang der Singstimme von „Das dunkle Herz“ M 314 auf der Grundlage der Reihenform KU<sub>f</sub>.",
                 "Die Ziffer <em>IV</em> in T. 1 bezeichnet den Anfang der verwendeten Reihenform gemäß den Reihentabellen <strong>M 312 Sk2</strong> und <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'SkRT'})\"><strong>M 312 / M 313 / M 314 RT</strong></a>."
             ],
@@ -695,7 +695,7 @@
         {
             "id": "M_314_Sk2",
             "label": "M 314 Sk2",
-            "description": [
+            "evaluations": [
                 "<strong>Sk2</strong> führt den Anfang der Singstimme von „Das dunkle Herz“ M 314 in vergrößerten rhythmischen Werten und entsprechend verändertem Metrum weiter als <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M_314_Sk1'})\"><strong>Sk1</strong></a>. Die durch entsprechend vorgesehene Systeme (System 4–5) zunächst anvisierte Skizzierung der Klavierbegleitung wurde nicht ausgeführt.",
                 "Die Ziffern <em>VII</em> (U<sub>d</sub>) und <em>II</em> (K<sub>h</sub>) bezeichnen den Anfang der verwendeten Reihenformen gemäß den Reihentabellen <strong>M 312 Sk2</strong> und <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'SkRT'})\"><strong>M 312 / M 313 / M 314 RT</strong></a>."
             ],
