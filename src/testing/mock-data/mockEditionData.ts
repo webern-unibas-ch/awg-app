@@ -741,21 +741,24 @@ export const mockEditionData = {
                             evaluations: [
                                 'Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: Textfassung 1.',
                             ],
-                            comments: [
-                                {
-                                    measure: '3–4',
-                                    system: '',
-                                    position: '',
-                                    comment: 'Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####',
-                                },
-                                {
-                                    measure: '4',
-                                    system: 'Klav. o.',
-                                    position: '',
-                                    comment:
-                                        'Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.',
-                                },
-                            ],
+                            commentary: {
+                                preamble: 'Korrekturen 1:',
+                                comments: [
+                                    {
+                                        measure: '3–4',
+                                        system: '',
+                                        position: '',
+                                        comment: 'Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####',
+                                    },
+                                    {
+                                        measure: '4',
+                                        system: 'Klav. o.',
+                                        position: '',
+                                        comment:
+                                            'Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.',
+                                    },
+                                ],
+                            },
                         },
                     ],
                 },
@@ -1212,7 +1215,7 @@ export const mockEditionData = {
                 id: 'test-1',
                 label: 'test1',
                 evaluations: [],
-                comments: [],
+                commentary: { preamble: '', comments: [] },
                 linkBoxes: [],
             },
             {
@@ -1223,62 +1226,65 @@ export const mockEditionData = {
                     "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_B'})\"><strong>B</strong></a> neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>C</strong></a> entspricht.",
                 ],
                 rowtable: true,
-                comments: [
-                    {
-                        blockHeader: 'blockheader 1',
-                        blockComments: [
-                            {
-                                svgGroupId: 'svg-group-1',
-                                measure: '10',
-                                system: '12',
-                                position: '1. Note',
-                                comment: 'Viertelnote überschreibt Halbe Note.',
-                            },
-                            {
-                                svgGroupId: 'svg-group-2',
-                                measure: '10',
-                                system: '12',
-                                position: '2. Note',
-                                comment:
-                                    "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test SkXYZ</strong></a> T. [11] und <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Test Sk1</strong></a>.",
-                            },
-                            {
-                                svgGroupId: 'svg-group-3',
-                                measure: '{13}',
-                                system: '12',
-                                position: '3. Note',
-                                comment:
-                                    '<span class="glyph">{{ref.getGlyph("[a]")}}</span> überschreibt <span class="glyph">{{ref.getGlyph("[b]")}}</span>.',
-                            },
-                            {
-                                svgGroupId: 'svg-group-4',
-                                measure: '[12]',
-                                system: '13',
-                                position: '',
-                                comment: 'radierte, nicht entzifferbare Schicht.',
-                            },
-                        ],
-                    },
-                    {
-                        blockHeader: 'blockheader 2',
-                        blockComments: [
-                            {
-                                svgGroupId: 'svg-group-5',
-                                measure: '11',
-                                system: '13',
-                                position: '1. Note',
-                                comment: 'Viertelnote überschreibt Halbe Note.',
-                            },
-                            {
-                                svgGroupId: 'svg-group-6',
-                                measure: '11',
-                                system: '13',
-                                position: '2. Note',
-                                comment: 'Halbe Note überschreibt Viertelnote.',
-                            },
-                        ],
-                    },
-                ],
+                commentary: {
+                    preamble: 'This is a preamble.',
+                    comments: [
+                        {
+                            blockHeader: 'blockheader 1',
+                            blockComments: [
+                                {
+                                    svgGroupId: 'svg-group-1',
+                                    measure: '10',
+                                    system: '12',
+                                    position: '1. Note',
+                                    comment: 'Viertelnote überschreibt Halbe Note.',
+                                },
+                                {
+                                    svgGroupId: 'svg-group-2',
+                                    measure: '10',
+                                    system: '12',
+                                    position: '2. Note',
+                                    comment:
+                                        "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test SkXYZ</strong></a> T. [11] und <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Test Sk1</strong></a>.",
+                                },
+                                {
+                                    svgGroupId: 'svg-group-3',
+                                    measure: '{13}',
+                                    system: '12',
+                                    position: '3. Note',
+                                    comment:
+                                        '<span class="glyph">{{ref.getGlyph("[a]")}}</span> überschreibt <span class="glyph">{{ref.getGlyph("[b]")}}</span>.',
+                                },
+                                {
+                                    svgGroupId: 'svg-group-4',
+                                    measure: '[12]',
+                                    system: '13',
+                                    position: '',
+                                    comment: 'radierte, nicht entzifferbare Schicht.',
+                                },
+                            ],
+                        },
+                        {
+                            blockHeader: 'blockheader 2',
+                            blockComments: [
+                                {
+                                    svgGroupId: 'svg-group-5',
+                                    measure: '11',
+                                    system: '13',
+                                    position: '1. Note',
+                                    comment: 'Viertelnote überschreibt Halbe Note.',
+                                },
+                                {
+                                    svgGroupId: 'svg-group-6',
+                                    measure: '11',
+                                    system: '13',
+                                    position: '2. Note',
+                                    comment: 'Halbe Note überschreibt Viertelnote.',
+                                },
+                            ],
+                        },
+                    ],
+                },
                 linkBoxes: [],
             },
         ],

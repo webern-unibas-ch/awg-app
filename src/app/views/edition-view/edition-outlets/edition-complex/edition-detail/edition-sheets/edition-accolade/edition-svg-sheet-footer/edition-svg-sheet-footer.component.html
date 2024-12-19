@@ -37,11 +37,11 @@
                     <p class="smallcaps">
                         <awg-edition-tka-label
                             [id]="selectedTextcritics?.id"
-                            [labelType]="'comment'"></awg-edition-tka-label
+                            [labelType]="'commentary'"></awg-edition-tka-label
                         >:
                     </p>
                     <awg-edition-tka-table
-                        [textcriticalCommentBlocks]="selectedTextcriticalCommentBlocks"
+                        [commentary]="selectedTextcriticalCommentary"
                         [isRowTable]="selectedTextcritics?.rowtable"
                         [isSketchId]="UTILS.isSketchId(selectedTextcritics?.id)"
                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"

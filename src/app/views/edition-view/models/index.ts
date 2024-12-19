@@ -51,7 +51,13 @@ import {
 import { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
 import { Source, SourceList } from './source-list.model';
 
-import { TextcriticalComment, TextcriticalCommentBlock, Textcritics, TextcriticsList } from './textcritics.model';
+import {
+    TextcriticalComment,
+    TextcriticalCommentary,
+    TextcriticalCommentBlock,
+    Textcritics,
+    TextcriticsList,
+} from './textcritics.model';
 import { TkaTableHeaderColumn } from './tka-table-header.model';
 import { ViewBox } from './view-box.model';
 
@@ -110,6 +116,7 @@ export {
     SourceEvaluationList,
     SourceList,
     TextcriticalComment,
+    TextcriticalCommentary,
     TextcriticalCommentBlock,
     Textcritics,
     TextcriticsList,

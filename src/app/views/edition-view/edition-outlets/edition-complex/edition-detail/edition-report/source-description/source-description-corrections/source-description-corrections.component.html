@@ -13,9 +13,9 @@
                         [compile-html]="evaluation"
                         [compile-html-ref]="ref"></p>
                 }
-                @if (correction.comments.length > 0) {
+                @if (correction.commentary.comments.length > 0) {
                     <awg-edition-tka-table
-                        [textcriticalCommentBlocks]="correction.comments"
+                        [commentary]="correction.commentary"
                         [isCorrections]="true"
                         [isRowTable]="correction.rowtable"
                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"

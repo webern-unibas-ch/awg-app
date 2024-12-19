@@ -4,7 +4,7 @@ import {
     EditionSvgOverlay,
     EditionSvgSheet,
     EditionSvgSheetList,
-    TextcriticalCommentBlock,
+    TextcriticalCommentary,
     Textcritics,
 } from '@awg-views/edition-view/models';
 
@@ -49,12 +49,12 @@ export class EditionAccoladeComponent {
     selectedSvgSheet: EditionSvgSheet;
 
     /**
-     * Input variable: selectedTextcriticalCommentBlocks.
+     * Input variable: selectedTextcriticalCommentary.
      *
-     * It keeps the selected textcritical comment blocks.
+     * It keeps the selected textcritical commentary.
      */
     @Input()
-    selectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
+    selectedTextcriticalCommentary: TextcriticalCommentary;
 
     /**
      * Input variable: selectedTextcritics.

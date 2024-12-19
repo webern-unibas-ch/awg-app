@@ -18,7 +18,7 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { UtilityService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EditionSvgSheet, TextcriticalCommentBlock, Textcritics } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models';
 
 import { EditionSvgSheetFooterComponent } from './edition-svg-sheet-footer.component';
 
@@ -39,13 +39,13 @@ class EditionTkaEvaluationsStubComponent {
 class EditionTkaLabelStubComponent {
     @Input()
     id: string;
-    @Input() labelType: 'evaluation' | 'comment';
+    @Input() labelType: 'evaluation' | 'commentary';
 }
 
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
-    textcriticalCommentBlocks: TextcriticalCommentBlock[];
+    commentary: TextcriticalCommentary;
     @Input()
     isCorrections = false;
     @Input()
@@ -78,7 +78,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedSelectedTextcritics: Textcritics;
-    let expectedSelectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
+    let expectedSelectedTextcriticalCommentary: TextcriticalCommentary;
     let expectedShowTka: boolean;
     let expectedModalSnippet: string;
 
@@ -110,7 +110,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
         expectedSelectedTextcritics = JSON.parse(JSON.stringify(mockEditionData.mockTextcriticsData.textcritics.at(1)));
-        expectedSelectedTextcriticalCommentBlocks = expectedSelectedTextcritics.comments;
+        expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
         expectedShowTka = true;
 
         expectedChevronDownIcon = faChevronDown;
@@ -133,8 +133,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `selectedTextcriticalCommentBlocks`', () => {
-            expect(component.selectedTextcriticalCommentBlocks).toBeUndefined();
+        it('... should not have `selectedTextcriticalCommentary`', () => {
+            expect(component.selectedTextcriticalCommentary).toBeUndefined();
         });
 
         it('... should not have `selectedTextcritics`', () => {
@@ -176,7 +176,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.selectedTextcritics = expectedSelectedTextcritics;
-            component.selectedTextcriticalCommentBlocks = expectedSelectedTextcriticalCommentBlocks;
+            component.selectedTextcriticalCommentary = expectedSelectedTextcriticalCommentary;
             component.showTkA = expectedShowTka;
 
             // Trigger initial data binding
@@ -187,8 +187,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             expectToEqual(component.selectedTextcritics, expectedSelectedTextcritics);
         });
 
-        it('... should have `selectedTextcriticalCommentBlocks` input', () => {
-            expectToEqual(component.selectedTextcriticalCommentBlocks, expectedSelectedTextcriticalCommentBlocks);
+        it('... should have `selectedTextcriticalCommentary` input', () => {
+            expectToEqual(component.selectedTextcriticalCommentary, expectedSelectedTextcriticalCommentary);
         });
 
         it('... should have `showTkA` input', () => {
@@ -475,14 +475,14 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 const labelDes = getAndExpectDebugElementByDirective(divDes[0], EditionTkaLabelStubComponent, 1, 1);
                 const labelCmp = labelDes[0].injector.get(EditionTkaLabelStubComponent) as EditionTkaLabelStubComponent;
 
-                expectToBe(labelCmp.labelType, 'comment');
+                expectToBe(labelCmp.labelType, 'commentary');
             });
 
-            it('... should pass down `selectedTextcriticalCommentBlocks` to the EditionTkaTableComponent', () => {
+            it('... should pass down `selectedTextcriticalCommentary` to the EditionTkaTableComponent', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
 
-                expectToEqual(tableCmp.textcriticalCommentBlocks, expectedSelectedTextcriticalCommentBlocks);
+                expectToEqual(tableCmp.commentary, expectedSelectedTextcriticalCommentary);
             });
 
             it('... should pass down `isRowTable` to the EditionTkaTableComponent', () => {

@@ -1,16 +1,21 @@
 <table aria-label="Table for text-critical comments" class="table table-hover table-condensed awg-edition-tka-table">
-    <thead>
-        <tr>
-            @for (header of getTableHeaderStrings(); track header.reference) {
-                <th scope="col" class="awg-edition-tka-table-header {{ header.reference }}">
-                    {{ header.label }}
-                </th>
-            }
-        </tr>
-    </thead>
-    @if (textcriticalCommentBlocks) {
+    @if (commentary.preamble) {
+        <caption class="awg-edition-tka-table-preamble mb-0">
+            <span [compile-html]="commentary.preamble" [compile-html-ref]="ref"> </span>
+        </caption>
+    }
+    @if (commentary.comments.length > 0) {
+        <thead>
+            <tr>
+                @for (tableHeader of getTableHeaderStrings(); track tableHeader.reference) {
+                    <th scope="col" class="awg-edition-tka-table-header {{ tableHeader.reference }}">
+                        {{ tableHeader.label }}
+                    </th>
+                }
+            </tr>
+        </thead>
         <tbody>
-            @for (textcriticalCommentBlock of textcriticalCommentBlocks; track $index) {
+            @for (textcriticalCommentBlock of commentary.comments; track $index) {
                 @if (textcriticalCommentBlock.blockHeader) {
                     <tr class="table-light table-group-divider">
                         <td colspan="4" class="awg-edition-tka-table-block-header">

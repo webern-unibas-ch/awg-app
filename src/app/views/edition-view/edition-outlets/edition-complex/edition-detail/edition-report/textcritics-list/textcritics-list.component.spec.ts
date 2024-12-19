@@ -19,7 +19,7 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { UtilityService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { TextcriticalCommentBlock, TextcriticsList } from '@awg-views/edition-view/models';
+import { TextcriticalCommentary, TextcriticsList } from '@awg-views/edition-view/models';
 
 import { TextcriticsListComponent } from './textcritics-list.component';
 
@@ -43,13 +43,13 @@ class EditionTkaEvaluationsStubComponent {
 class EditionTkaLabelStubComponent {
     @Input()
     id: string;
-    @Input() labelType: 'evaluation' | 'comment';
+    @Input() labelType: 'evaluation' | 'commentary';
 }
 
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
-    textcriticalCommentBlocks: TextcriticalCommentBlock[];
+    commentary: TextcriticalCommentary;
     @Input()
     isCorrections = false;
     @Input()
@@ -648,7 +648,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     });
                 });
 
-                describe('...  if commments array is empty', () => {
+                describe('...  if commmentary is an empty object', () => {
                     it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaTableComponent', () => {
                         const textcritics = expectedTextcriticsData.textcritics[0];
 
@@ -689,7 +689,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     });
                 });
 
-                describe('...  if comments array is not empty', () => {
+                describe('...  if commentary is not empty', () => {
                     it('... should contain item body with div, small caps paragraph, second EditionTkaLabelComponent and EditionTkaTableComponent', () => {
                         const textcritics = expectedTextcriticsData.textcritics[1];
 
@@ -753,10 +753,10 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaLabelStubComponent
                         ) as EditionTkaLabelStubComponent;
 
-                        expectToBe(labelCmp.labelType, 'comment');
+                        expectToBe(labelCmp.labelType, 'commentary');
                     });
 
-                    it('... should pass down `comments` to EditionTkaTableComponent (stubbed)', () => {
+                    it('... should pass down `commentary` to EditionTkaTableComponent (stubbed)', () => {
                         const tableDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionTkaTableStubComponent,
@@ -767,10 +767,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaTableStubComponent
                         ) as EditionTkaTableStubComponent;
 
-                        expectToEqual(
-                            tableCmp.textcriticalCommentBlocks,
-                            expectedTextcriticsData.textcritics[1].comments
-                        );
+                        expectToEqual(tableCmp.commentary, expectedTextcriticsData.textcritics[1].commentary);
                     });
 
                     it('... should pass down `isRowTable` to EditionTkaTableComponent (stubbed)', () => {
