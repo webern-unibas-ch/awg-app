@@ -34,11 +34,11 @@
                                     >:
                                 </p>
                                 @if (utils.isNotEmptyArray(textcritics.evaluations)) {
-                                    <awg-edition-tka-description
+                                    <awg-edition-tka-evaluations
                                         [evaluations]="textcritics.evaluations"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                         (openModalRequest)="openModal($event)"
-                                        (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-tka-description>
+                                        (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-tka-evaluations>
                                 } @else {
                                     <ng-container *ngTemplateOutlet="noContent"></ng-container>
                                 }

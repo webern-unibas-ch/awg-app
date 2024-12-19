@@ -22,12 +22,12 @@
                     }
                 </p>
                 @if (showEvaluation && UTILS.isNotEmptyArray(selectedTextcritics.evaluations)) {
-                    <awg-edition-tka-description
+                    <awg-edition-tka-evaluations
                         [evaluations]="selectedTextcritics.evaluations"
                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                         (openModalRequest)="openModal($event)"
                         (selectSvgSheetRequest)="selectSvgSheet($event)">
-                    </awg-edition-tka-description>
+                    </awg-edition-tka-evaluations>
                 }
             </div>
         </div>

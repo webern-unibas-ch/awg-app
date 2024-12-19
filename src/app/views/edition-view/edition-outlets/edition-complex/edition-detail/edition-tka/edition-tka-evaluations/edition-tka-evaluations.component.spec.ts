@@ -16,11 +16,11 @@ import { mockEditionData } from '@testing/mock-data';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EditionSvgSheet } from '@awg-views/edition-view/models';
 
-import { EditionTkaDescriptionComponent } from './edition-tka-description.component';
+import { EditionTkaEvaluationsComponent } from './edition-tka-evaluations.component';
 
-describe('EditionTkaDescriptionComponent (DONE)', () => {
-    let component: EditionTkaDescriptionComponent;
-    let fixture: ComponentFixture<EditionTkaDescriptionComponent>;
+describe('EditionTkaEvaluationsComponent (DONE)', () => {
+    let component: EditionTkaEvaluationsComponent;
+    let fixture: ComponentFixture<EditionTkaEvaluationsComponent>;
     let compDe: DebugElement;
 
     let mockDocument: Document;
@@ -42,12 +42,12 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [EditionTkaDescriptionComponent, CompileHtmlComponent],
+            declarations: [EditionTkaEvaluationsComponent, CompileHtmlComponent],
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionTkaDescriptionComponent);
+        fixture = TestBed.createComponent(EditionTkaEvaluationsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -62,9 +62,7 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
         expectedEvaluations = mockEditionData.mockTextcriticsData.textcritics.at(1).evaluations;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        // Spies on functions
         navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
         navigateToReportFragmentRequestEmitSpy = spyOn(
             component.navigateToReportFragmentRequest,
