@@ -123,6 +123,33 @@ export const EDITION_FIRM_SIGNS_DATA = {
     },
     
     /**
+     * The path to the assets image of a firm sign: JE No. 2, 12 Lines (variant "OP4_B").
+     */
+    FIRM_JE_NO_2_LIN_12_OP4_B: {
+        route: 'assets/img/edition/firm-signs/je/no2_lin12/firm_je_no2_lin12_op4_B.png',
+        short: '[JE] | No. 2 | 12 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 2 | 12 linig.',
+    },
+    
+    /**
+     * The path to the assets image of a firm sign: JE No. 2, 12 Lines (variant "OP4_D2").
+     */
+    FIRM_JE_NO_2_LIN_12_OP4_D2: {
+        route: 'assets/img/edition/firm-signs/je/no2_lin12/firm_je_no2_lin12_op4_D2.png',
+        short: '[JE] | No. 2 | 12 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 2 | 12 linig.',
+    },
+    
+    /**
+     * The path to the assets image of a firm sign: JE No. 2, 12 Lines (variant "OP4_D1").
+     */
+    FIRM_JE_NO_2II_LIN_12_OP4_D1: {
+        route: 'assets/img/edition/firm-signs/je/no2II_lin12/firm_je_no2II_lin12_op4_D1.png',
+        short: '[JE] | No. 2 | 12 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 2 | 12 linig.',
+    },
+    
+    /**
      * The path to the assets image of a firm sign: JE No. 2, 12 Lines (variant "OP12_C2").
      */
     FIRM_JE_NO_2_LIN_12_OP12_C2: {
@@ -168,6 +195,15 @@ export const EDITION_FIRM_SIGNS_DATA = {
     },
 
     /**
+     * The path to the assets image of a firm sign: JE No. 3, 14 Lines (variant "OP3_H").
+     */
+    FIRM_JE_NO_4_LIN_16_OP3_H: {
+        route: 'assets/img/edition/firm-signs/je/no4_lin16/firm_je_no4_lin16_op3_H.png',
+        short: '[JE] | No. 4 | 16 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 4 | 16 linig.',
+    },
+
+    /**
      * The path to the assets image of a firm sign: JE No. 3, 14 Lines (variant "OP25_E4").
      */
     FIRM_JE_NO_3_LIN_14_OP25_E4: {
@@ -177,10 +213,19 @@ export const EDITION_FIRM_SIGNS_DATA = {
     },
 
     /**
-     * The path to the assets image of a firm sign: JE No. 3, 14 Lines (variant "OP3_H").
+     * The path to the assets image of a firm sign: JE No. 3a, 26 Lines (variant "OP4_H3").
      */
-    FIRM_JE_NO_4_LIN_16_OP3_H: {
-        route: 'assets/img/edition/firm-signs/je/no4_lin16/firm_je_no4_lin16_op3_H.png',
+    FIRM_JE_NO_3_LIN_14_OP4_H3: {
+        route: 'assets/img/edition/firm-signs/je/no3a_lin26/firm_je_no3a_lin26_op4_H3.png',
+        short: '[JE] | No. 3 | 14 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 3 | 14 linig.',
+    },
+
+    /**
+     * The path to the assets image of a firm sign: JE No. 4, 16 Lines (variant "OP4_H4").
+     */
+    FIRM_JE_NO_4_LIN_16_OP4_H4: {
+        route: 'assets/img/edition/firm-signs/je/no4_lin16/firm_je_no4_lin16_op4_H4.png',
         short: '[JE] | No. 4 | 16 linig.',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 4 | 16 linig.',
     },
@@ -285,10 +330,37 @@ export const EDITION_FIRM_SIGNS_DATA = {
     },
 
     /**
+     * The path to the assets image of a firm sign: JE No. 9, 28 Lines (variant "OP4_H1").
+     */
+    FIRM_JE_NO_9_LIN_28_OP4_H1: {
+        route: 'assets/img/edition/firm-signs/je/no9_lin28/firm_je_no9_lin28_op4_H1.png',
+        short: '[JE] | No. 9 | 28 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 9 | 28 linig.',
+    },
+
+    /**
      * The path to the assets image of a firm sign: JE No. 12, 12 Lines (variant "OP3_G1").
      */
     FIRM_JE_NO_12_LIN_12_OP3_G1: {
         route: 'assets/img/edition/firm-signs/je/no2_lin12/firm_je_no12_lin12_op3_G1.png',
+        short: '[JE] | No. 2 | 12 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 2 | 12 linig.',
+    },
+    
+    /**
+     * The path to the assets image of a firm sign: JE No. 12, 12 Lines (variant "OP4_A1").
+     */
+    FIRM_JE_NO_12_LIN_12_OP4_A1: {
+        route: 'assets/img/edition/firm-signs/je/no2_lin12/firm_je_no12_lin12_op4_A1.png',
+        short: '[JE] | No. 2 | 12 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 2 | 12 linig.',
+    },
+    
+    /**
+     * The path to the assets image of a firm sign: JE No. 12, 12 Lines (variant "OP4_H2").
+     */
+    FIRM_JE_NO_12_LIN_12_OP4_H2: {
+        route: 'assets/img/edition/firm-signs/je/no2_lin12/firm_je_no12_lin12_op4_H2.png',
         short: '[JE] | No. 2 | 12 linig.',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 2 | 12 linig.',
     },
