@@ -30,7 +30,7 @@ class DisclaimerWorkeditionsStubComponent {}
 @Component({ selector: 'awg-edition-tka-description', template: '' })
 class EditionTkaDescriptionStubComponent {
     @Input()
-    textcriticalDescriptions: string[];
+    evaluations: string[];
     @Output()
     navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
     @Output()
@@ -525,7 +525,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
                 });
 
-                describe('...  if description array is empty', () => {
+                describe('...  if evaluations array is empty', () => {
                     it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaDescriptionComponent', () => {
                         const textcritics = expectedTextcriticsData.textcritics[0];
 
@@ -566,7 +566,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     });
                 });
 
-                describe('...  if description array is not empty', () => {
+                describe('...  if evaluations array is not empty', () => {
                     it('... should contain item body with div, small caps paragraph, first EditionTkaLabelComponent and EditionTkaDescriptionComponent', () => {
                         const textcritics = expectedTextcriticsData.textcritics[1];
 
@@ -633,7 +633,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         expectToBe(labelCmp.labelType, 'evaluation');
                     });
 
-                    it('... should pass down `description` data to EditionTkaDescriptionComponent (stubbed)', () => {
+                    it('... should pass down `evaluations` data to EditionTkaDescriptionComponent (stubbed)', () => {
                         const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionTkaDescriptionStubComponent,
@@ -645,8 +645,8 @@ describe('TextcriticsListComponent (DONE)', () => {
                         ) as EditionTkaDescriptionStubComponent;
 
                         expectToEqual(
-                            editionTkaDescriptionCmp.textcriticalDescriptions,
-                            expectedTextcriticsData.textcritics[1].description
+                            editionTkaDescriptionCmp.evaluations,
+                            expectedTextcriticsData.textcritics[1].evaluations
                         );
                     });
                 });

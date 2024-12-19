@@ -3,7 +3,7 @@
         <div class="card awg-edition-svg-sheet-footer-evaluation">
             <div class="card-body">
                 <p (click)="toggleEvaluation()" (keydown)="toggleEvaluation()" tabindex="0" style="cursor: pointer">
-                    @if (UTILS.isNotEmptyArray(selectedTextcritics.description)) {
+                    @if (UTILS.isNotEmptyArray(selectedTextcritics.evaluations)) {
                         <span>
                             <fa-icon [icon]="showEvaluation ? faChevronDown : faChevronRight"></fa-icon>
                             &nbsp;
@@ -17,13 +17,13 @@
                         >:</span
                     >
 
-                    @if (!UTILS.isNotEmptyArray(selectedTextcritics.description)) {
+                    @if (!UTILS.isNotEmptyArray(selectedTextcritics.evaluations)) {
                         <span>&nbsp;---</span>
                     }
                 </p>
-                @if (showEvaluation && UTILS.isNotEmptyArray(selectedTextcritics.description)) {
+                @if (showEvaluation && UTILS.isNotEmptyArray(selectedTextcritics.evaluations)) {
                     <awg-edition-tka-description
-                        [textcriticalDescriptions]="selectedTextcritics.description"
+                        [evaluations]="selectedTextcritics.evaluations"
                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                         (openModalRequest)="openModal($event)"
                         (selectSvgSheetRequest)="selectSvgSheet($event)">

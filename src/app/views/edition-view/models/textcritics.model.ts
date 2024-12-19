@@ -72,9 +72,9 @@ export class Textcritics {
     label: string;
 
     /**
-     * The description of the textcritics.
+     * The evaluations of the textcritics.
      */
-    description: string[];
+    evaluations: string[];
 
     /**
      * The array of textcritical comment blocks from a textcritics list.

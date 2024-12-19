@@ -738,7 +738,7 @@ export const mockEditionData = {
                         {
                             id: 'source_Aa_corr_1',
                             label: 'Korrekturen 1 in <strong>B</strong> (mit Tinte)',
-                            description: [
+                            evaluations: [
                                 'Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: Textfassung 1.',
                             ],
                             comments: [
@@ -1211,14 +1211,14 @@ export const mockEditionData = {
             {
                 id: 'test-1',
                 label: 'test1',
-                description: [],
+                evaluations: [],
                 comments: [],
                 linkBoxes: [],
             },
             {
                 id: 'test-2',
                 label: 'test2',
-                description: [
+                evaluations: [
                     'test description 1',
                     "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_B'})\"><strong>B</strong></a> neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>C</strong></a> entspricht.",
                 ],

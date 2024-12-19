@@ -26,7 +26,7 @@ import { EditionSvgSheetFooterComponent } from './edition-svg-sheet-footer.compo
 @Component({ selector: 'awg-edition-tka-description', template: '' })
 class EditionTkaDescriptionStubComponent {
     @Input()
-    textcriticalDescriptions: string[];
+    evaluations: string[];
     @Output()
     navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
     @Output()
@@ -306,7 +306,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expectToBe(labelCmp.labelType, 'evaluation');
             });
 
-            it('... should contain a second span in p with `---` if selectedTextcritics.description is empty', () => {
+            it('... should contain a second span in p with `---` if selectedTextcritics.evaluations is empty', () => {
                 component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
                 detectChangesOnPush(fixture);
 
@@ -336,7 +336,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 0, 0);
                 });
 
-                it('... descriptions array is empty', () => {
+                it('... evaluations array is empty', () => {
                     component.showEvaluation = true;
                     component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
                     detectChangesOnPush(fixture);
@@ -366,7 +366,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 1, 1);
             });
 
-            it('... should pass down `description` data to the EditionTkaDescriptionComponent if showEvaluation = true', () => {
+            it('... should pass down `evaluations` data to the EditionTkaDescriptionComponent if showEvaluation = true', () => {
                 component.showEvaluation = true;
                 detectChangesOnPush(fixture);
 
@@ -377,17 +377,17 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                     1
                 );
 
-                const descDes = getAndExpectDebugElementByDirective(
+                const evaluationsDes = getAndExpectDebugElementByDirective(
                     divDes[0],
                     EditionTkaDescriptionStubComponent,
                     1,
                     1
                 );
-                const descCmp = descDes[0].injector.get(
+                const evaluationsCmp = evaluationsDes[0].injector.get(
                     EditionTkaDescriptionStubComponent
                 ) as EditionTkaDescriptionStubComponent;
 
-                expectToBe(descCmp.textcriticalDescriptions, expectedSelectedTextcritics.description);
+                expectToBe(evaluationsCmp.evaluations, expectedSelectedTextcritics.evaluations);
             });
 
             it('... should contain no textcritics div.card if showTka is false', () => {

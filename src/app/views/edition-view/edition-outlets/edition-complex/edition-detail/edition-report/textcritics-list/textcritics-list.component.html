@@ -33,9 +33,9 @@
                                         [labelType]="'evaluation'"></awg-edition-tka-label
                                     >:
                                 </p>
-                                @if (utils.isNotEmptyArray(textcritics.description)) {
+                                @if (utils.isNotEmptyArray(textcritics.evaluations)) {
                                     <awg-edition-tka-description
-                                        [textcriticalDescriptions]="textcritics.description"
+                                        [evaluations]="textcritics.evaluations"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                         (openModalRequest)="openModal($event)"
                                         (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-tka-description>

@@ -14,12 +14,12 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 })
 export class EditionTkaDescriptionComponent {
     /**
-     * Input variable: textcriticalComments.
+     * Input variable: evaluations.
      *
-     * It keeps the textcritical comments.
+     * It keeps the evaluations data.
      */
     @Input()
-    textcriticalDescriptions: string[];
+    evaluations: string[];
 
     /**
      * Output variable: navigateToReportFragment.

@@ -220,7 +220,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain a paragraph with as many descriptions as each corrections detail has', () => {
+            it('... should contain a paragraph with as many evaluations as each corrections detail has', () => {
                 const detailsDes = getAndExpectDebugElementByCss(
                     compDe,
                     'details.awg-source-description-correction-details',
@@ -231,14 +231,14 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 detailsDes.forEach((detailsDe, index) => {
                     const pDes = getAndExpectDebugElementByCss(
                         detailsDe,
-                        'p.awg-source-description-correction-desc',
+                        'p.awg-source-description-correction-evaluation',
                         1,
                         1
                     );
                     const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                     expect(pEl).toBeTruthy();
-                    expectToEqual(pEl.textContent.trim(), expectedCorrections[index].description[index].trim());
+                    expectToEqual(pEl.textContent.trim(), expectedCorrections[index].evaluations[index].trim());
                 });
             });
 
