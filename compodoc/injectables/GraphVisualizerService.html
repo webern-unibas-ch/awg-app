@@ -616,8 +616,8 @@ from a given string.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="322"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:322</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="323"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:323</a></div>
                         </td>
                     </tr>
 
@@ -694,8 +694,8 @@ from a given string.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="349"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:349</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="350"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:350</a></div>
                         </td>
                     </tr>
 
@@ -804,8 +804,8 @@ from a given string.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="375"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:375</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="376"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:376</a></div>
                         </td>
                     </tr>
 
@@ -896,8 +896,8 @@ from a given string.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="439"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:439</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="440"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:440</a></div>
                         </td>
                     </tr>
 
@@ -1006,8 +1006,8 @@ from a given string.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="401"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:401</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="402"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:402</a></div>
                         </td>
                     </tr>
 
@@ -1084,8 +1084,8 @@ from a given string.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="475"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:475</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="476"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:476</a></div>
                         </td>
                     </tr>
 
@@ -1792,7 +1792,7 @@ export class GraphVisualizerService {
 
                 return this._loadTriplesInStore(store, ttlString, mimeType);
             })
-            .then((_storeSize: number) &#x3D;&gt; this._executeQuery(this._store, query))
+            .then(() &#x3D;&gt; this._executeQuery(this._store, query))
             .then((res: RDFStoreConstructResponse | RDFStoreSelectResponse) &#x3D;&gt; {
                 // Reformat data if select query
                 if (queryType &#x3D;&#x3D;&#x3D; &#x27;select&#x27;) {
@@ -1967,6 +1967,7 @@ export class GraphVisualizerService {
      */
     private _extractNamespacesFromString(type: NamespaceType, str: string): Namespace {
         let regex: RegExp;
+        let exhaustiveCheck: never;
         switch (type) {
             case NamespaceType.TURTLE:
                 regex &#x3D; /@prefix\s+(\w+):\s+&lt;([^&gt;]+)&gt;/g;
@@ -1975,13 +1976,13 @@ export class GraphVisualizerService {
                 regex &#x3D; /PREFIX\s+(\w+):\s+&lt;([^&gt;]+)&gt;/g;
                 break;
             default:
-                const exhaustiveCheck: never &#x3D; type;
+                exhaustiveCheck &#x3D; type;
                 throw new Error(&#x60;The type must be TURTLE or SPARQL, but was: ${exhaustiveCheck}.&#x60;);
         }
 
         const namespaces: Namespace &#x3D; {};
         for (const match of str.matchAll(regex)) {
-            const [_, prefix, namespaceName] &#x3D; match;
+            const [, prefix, namespaceName] &#x3D; match;
             namespaces[prefix] &#x3D; namespaceName;
         }
 

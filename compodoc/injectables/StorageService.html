@@ -877,6 +877,7 @@ export class StorageService {
 
             return result;
         } catch (e) {
+            console.error(&#x27;Storage is not available:&#x27;, e);
             return false;
         }
     }

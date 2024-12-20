@@ -24,95 +24,95 @@
 <title>cluster_EditionAccoladeModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 955,-268 955,-70 8,-70"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_EditionAccoladeModule_exports</title>
-<polygon fill="none" stroke="black" points="341,-208 341,-260 535,-260 535,-208 341,-208"/>
+<g id="clust2" class="cluster">
+<title>cluster_EditionAccoladeModule_declarations</title>
+<polygon fill="none" stroke="black" points="755,-78 755,-130 947,-130 947,-78 755,-78"/>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_EditionAccoladeModule_imports</title>
-<polygon fill="none" stroke="black" points="216,-78 216,-130 947,-130 947,-78 216,-78"/>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 747,-130 747,-78 16,-78"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_EditionAccoladeModule_declarations</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 208,-130 208,-78 16,-78"/>
+<g id="clust5" class="cluster">
+<title>cluster_EditionAccoladeModule_exports</title>
+<polygon fill="none" stroke="black" points="345,-208 345,-260 539,-260 539,-208 345,-208"/>
 </g>
 <!-- EditionAccoladeComponent -->
 <g id="node1" class="node">
 <title>EditionAccoladeComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="199.91,-122 24.09,-122 24.09,-86 199.91,-86 199.91,-122"/>
-<text text-anchor="middle" x="112" y="-99.8" font-family="Times,serif" font-size="14.00">EditionAccoladeComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="938.91,-122 763.09,-122 763.09,-86 938.91,-86 938.91,-122"/>
+<text text-anchor="middle" x="851" y="-99.8" font-family="Times,serif" font-size="14.00">EditionAccoladeComponent</text>
 </g>
 <!-- EditionAccoladeModule -->
 <g id="node2" class="node">
 <title>EditionAccoladeModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="514.63,-187 511.63,-191 490.63,-191 487.63,-187 361.37,-187 361.37,-151 514.63,-151 514.63,-187"/>
-<text text-anchor="middle" x="438" y="-164.8" font-family="Times,serif" font-size="14.00">EditionAccoladeModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="518.63,-187 515.63,-191 494.63,-191 491.63,-187 365.37,-187 365.37,-151 518.63,-151 518.63,-187"/>
+<text text-anchor="middle" x="442" y="-164.8" font-family="Times,serif" font-size="14.00">EditionAccoladeModule</text>
 </g>
 <!-- EditionAccoladeComponent&#45;&gt;EditionAccoladeModule -->
 <g id="edge1" class="edge">
 <title>EditionAccoladeComponent&#45;&gt;EditionAccoladeModule</title>
-<path fill="none" stroke="black" d="M112,-122.28C112,-143.32 112,-175 112,-175 112,-175 351.16,-175 351.16,-175"/>
-<polygon fill="black" stroke="black" points="351.16,-178.5 361.16,-175 351.16,-171.5 351.16,-178.5"/>
+<path fill="none" stroke="black" d="M851,-122.28C851,-143.32 851,-175 851,-175 851,-175 528.93,-175 528.93,-175"/>
+<polygon fill="black" stroke="black" points="528.93,-171.5 518.93,-175 528.93,-178.5 528.93,-171.5"/>
 </g>
 <!-- EditionAccoladeComponent  -->
 <g id="node7" class="node">
 <title>EditionAccoladeComponent </title>
-<polygon fill="#fb8072" stroke="black" points="527.41,-252 348.59,-252 348.59,-216 527.41,-216 527.41,-252"/>
-<text text-anchor="middle" x="438" y="-229.8" font-family="Times,serif" font-size="14.00">EditionAccoladeComponent </text>
+<polygon fill="#fb8072" stroke="black" points="531.41,-252 352.59,-252 352.59,-216 531.41,-216 531.41,-252"/>
+<text text-anchor="middle" x="442" y="-229.8" font-family="Times,serif" font-size="14.00">EditionAccoladeComponent </text>
 </g>
 <!-- EditionAccoladeModule&#45;&gt;EditionAccoladeComponent  -->
 <g id="edge6" class="edge">
 <title>EditionAccoladeModule&#45;&gt;EditionAccoladeComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M438,-187.11C438,-187.11 438,-205.99 438,-205.99"/>
-<polygon fill="black" stroke="black" points="434.5,-205.99 438,-215.99 441.5,-205.99 434.5,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M442,-187.11C442,-187.11 442,-205.99 442,-205.99"/>
+<polygon fill="black" stroke="black" points="438.5,-205.99 442,-215.99 445.5,-205.99 438.5,-205.99"/>
 </g>
 <!-- EditionSvgSheetFooterModule -->
 <g id="node3" class="node">
 <title>EditionSvgSheetFooterModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="939.21,-122 936.21,-126 915.21,-126 912.21,-122 748.79,-122 748.79,-86 939.21,-86 939.21,-122"/>
-<text text-anchor="middle" x="844" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetFooterModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="739.21,-122 736.21,-126 715.21,-126 712.21,-122 548.79,-122 548.79,-86 739.21,-86 739.21,-122"/>
+<text text-anchor="middle" x="644" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetFooterModule</text>
 </g>
 <!-- EditionSvgSheetFooterModule&#45;&gt;EditionAccoladeModule -->
 <g id="edge2" class="edge">
 <title>EditionSvgSheetFooterModule&#45;&gt;EditionAccoladeModule</title>
-<path fill="none" stroke="black" d="M844,-122.28C844,-143.32 844,-175 844,-175 844,-175 524.84,-175 524.84,-175"/>
-<polygon fill="black" stroke="black" points="524.84,-171.5 514.84,-175 524.84,-178.5 524.84,-171.5"/>
+<path fill="none" stroke="black" d="M644,-122.02C644,-139.37 644,-163 644,-163 644,-163 528.66,-163 528.66,-163"/>
+<polygon fill="black" stroke="black" points="528.66,-159.5 518.66,-163 528.66,-166.5 528.66,-159.5"/>
 </g>
 <!-- EditionSvgSheetNavModule -->
 <g id="node4" class="node">
 <title>EditionSvgSheetNavModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="730.48,-122 727.48,-126 706.48,-126 703.48,-122 553.52,-122 553.52,-86 730.48,-86 730.48,-122"/>
-<text text-anchor="middle" x="642" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetNavModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="530.48,-122 527.48,-126 506.48,-126 503.48,-122 353.52,-122 353.52,-86 530.48,-86 530.48,-122"/>
+<text text-anchor="middle" x="442" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetNavModule</text>
 </g>
 <!-- EditionSvgSheetNavModule&#45;&gt;EditionAccoladeModule -->
 <g id="edge3" class="edge">
 <title>EditionSvgSheetNavModule&#45;&gt;EditionAccoladeModule</title>
-<path fill="none" stroke="black" d="M642,-122.02C642,-139.37 642,-163 642,-163 642,-163 524.83,-163 524.83,-163"/>
-<polygon fill="black" stroke="black" points="524.83,-159.5 514.83,-163 524.83,-166.5 524.83,-159.5"/>
+<path fill="none" stroke="black" d="M442,-122.11C442,-122.11 442,-140.99 442,-140.99"/>
+<polygon fill="black" stroke="black" points="438.5,-140.99 442,-150.99 445.5,-140.99 438.5,-140.99"/>
 </g>
 <!-- EditionSvgSheetViewerModule -->
 <g id="node5" class="node">
 <title>EditionSvgSheetViewerModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="535.35,-122 532.35,-126 511.35,-126 508.35,-122 340.65,-122 340.65,-86 535.35,-86 535.35,-122"/>
-<text text-anchor="middle" x="438" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetViewerModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="335.35,-122 332.35,-126 311.35,-126 308.35,-122 140.65,-122 140.65,-86 335.35,-86 335.35,-122"/>
+<text text-anchor="middle" x="238" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetViewerModule</text>
 </g>
 <!-- EditionSvgSheetViewerModule&#45;&gt;EditionAccoladeModule -->
 <g id="edge4" class="edge">
 <title>EditionSvgSheetViewerModule&#45;&gt;EditionAccoladeModule</title>
-<path fill="none" stroke="black" d="M438,-122.11C438,-122.11 438,-140.99 438,-140.99"/>
-<polygon fill="black" stroke="black" points="434.5,-140.99 438,-150.99 441.5,-140.99 434.5,-140.99"/>
+<path fill="none" stroke="black" d="M238,-122.02C238,-139.37 238,-163 238,-163 238,-163 355.17,-163 355.17,-163"/>
+<polygon fill="black" stroke="black" points="355.17,-166.5 365.17,-163 355.17,-159.5 355.17,-166.5"/>
 </g>
 <!-- SharedModule -->
 <g id="node6" class="node">
 <title>SharedModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="322.42,-122 319.42,-126 298.42,-126 295.42,-122 223.58,-122 223.58,-86 322.42,-86 322.42,-122"/>
-<text text-anchor="middle" x="273" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="122.42,-122 119.42,-126 98.42,-126 95.42,-122 23.58,-122 23.58,-86 122.42,-86 122.42,-122"/>
+<text text-anchor="middle" x="73" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
 </g>
 <!-- SharedModule&#45;&gt;EditionAccoladeModule -->
 <g id="edge5" class="edge">
 <title>SharedModule&#45;&gt;EditionAccoladeModule</title>
-<path fill="none" stroke="black" d="M273,-122.02C273,-139.37 273,-163 273,-163 273,-163 351.3,-163 351.3,-163"/>
-<polygon fill="black" stroke="black" points="351.3,-166.5 361.3,-163 351.3,-159.5 351.3,-166.5"/>
+<path fill="none" stroke="black" d="M73,-122.28C73,-143.32 73,-175 73,-175 73,-175 355.09,-175 355.09,-175"/>
+<polygon fill="black" stroke="black" points="355.09,-178.5 365.09,-175 355.09,-171.5 355.09,-178.5"/>
 </g>
 </g>
 </svg>

@@ -425,7 +425,7 @@ when initializing the directive.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>inject(ElementRef)</code>
+                        <i>Default value : </i><code>inject(ElementRef&lt;HTMLElement&gt;)</code>
                     </td>
                 </tr>
                     <tr>
@@ -502,7 +502,7 @@ export class AbbrDirective implements OnInit {
      *
      * It keeps the instance of the injected Angular ElementRef.
      */
-    private readonly _el &#x3D; inject(ElementRef);
+    private readonly _el &#x3D; inject(ElementRef&lt;HTMLElement&gt;);
 
     /**
      * Angular life cycle hook: ngOnInit.

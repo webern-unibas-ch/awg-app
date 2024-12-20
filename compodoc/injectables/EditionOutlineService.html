@@ -749,7 +749,7 @@ export class EditionOutlineService {
      */
     private static _fetchEditionOutlineData(): EditionOutline {
         // Load the JSON data directly from the file
-        const outlineData: EditionOutlineJsonData &#x3D; (jsonEditionOutline as any).default;
+        const outlineData: EditionOutlineJsonData &#x3D; jsonEditionOutline as EditionOutlineJsonData;
 
         return new EditionOutline(outlineData[&#x27;editionOutline&#x27;]);
     }

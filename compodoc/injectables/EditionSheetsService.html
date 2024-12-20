@@ -171,6 +171,9 @@ of the textcritical comments for a selected overlay item.</p>
                                 <a href="#_getSheetWithPartialContentById" >_getSheetWithPartialContentById</a>
                             </li>
                             <li>
+                                <a href="#filterTextcriticalCommentaryForOverlays" >filterTextcriticalCommentaryForOverlays</a>
+                            </li>
+                            <li>
                                 <a href="#findTextcritics" >findTextcritics</a>
                             </li>
                             <li>
@@ -178,9 +181,6 @@ of the textcritical comments for a selected overlay item.</p>
                             </li>
                             <li>
                                 <a href="#getNextSheetId" >getNextSheetId</a>
-                            </li>
-                            <li>
-                                <a href="#getTextcriticalCommentsForOverlays" >getTextcriticalCommentsForOverlays</a>
                             </li>
                             <li>
                                 <a href="#selectConvolute" >selectConvolute</a>
@@ -228,8 +228,8 @@ of the textcritical comments for a selected overlay item.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="202"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:202</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="204"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:204</a></div>
                         </td>
                     </tr>
 
@@ -322,8 +322,8 @@ of the textcritical comments for a selected overlay item.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="258"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:258</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="260"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:260</a></div>
                         </td>
                     </tr>
 
@@ -450,8 +450,8 @@ otherwise the currentSheetId.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="225"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:225</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="227"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:227</a></div>
                         </td>
                     </tr>
 
@@ -594,8 +594,8 @@ otherwise tries to get the next sheed id for non-partial sheets.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="286"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:286</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="288"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:288</a></div>
                         </td>
                     </tr>
 
@@ -688,8 +688,8 @@ otherwise tries to get the next sheed id for non-partial sheets.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="310"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:310</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="312"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:312</a></div>
                         </td>
                     </tr>
 
@@ -782,8 +782,8 @@ otherwise tries to get the next sheed id for non-partial sheets.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="325"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:325</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="327"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:327</a></div>
                         </td>
                     </tr>
 
@@ -864,6 +864,98 @@ otherwise tries to get the next sheed id for non-partial sheets.</p>
                         </div>
                             <div class="io-description">
                                 <p>The sheet that was found.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterTextcriticalCommentaryForOverlays"></a>
+                    <span class="name">
+                        <span ><b>filterTextcriticalCommentaryForOverlays</b></span>
+                        <a href="#filterTextcriticalCommentaryForOverlays"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filterTextcriticalCommentaryForOverlays(commentary: <a href="../classes/TextcriticalCommentary.html" target="_self">TextcriticalCommentary</a>, overlays: <a href="../classes/EditionSvgOverlay.html" target="_self">EditionSvgOverlay[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:113</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: filterTextcriticalCommentaryForOverlays.</p>
+<p>It filters the textcritical commentary for the selected svg overlays.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>commentary</td>
+                                            <td>
+                                                            <code><a href="../classes/TextcriticalCommentary.html" target="_self" >TextcriticalCommentary</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given textcritical commentary.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>overlays</td>
+                                            <td>
+                                                            <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given svg overlays.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/TextcriticalCommentary.html" target="_self" >TextcriticalCommentary</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The filtered textcritical commentary.</p>
 
                             </div>
                 </td>
@@ -1166,98 +1258,6 @@ otherwise tries to get the next sheed id for non-partial sheets.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getTextcriticalCommentsForOverlays"></a>
-                    <span class="name">
-                        <span ><b>getTextcriticalCommentsForOverlays</b></span>
-                        <a href="#getTextcriticalCommentsForOverlays"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getTextcriticalCommentsForOverlays(textcriticalCommentBlocks: TextcriticalCommentBlock[], overlays: <a href="../classes/EditionSvgOverlay.html" target="_self">EditionSvgOverlay[]</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="113"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:113</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: getTextcriticalCommentsForOverlays.</p>
-<p>It provides the textcritical comments for the selected svg overlays.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>textcriticalCommentBlocks</td>
-                                            <td>
-                                                        <code>TextcriticalCommentBlock[]</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given textcritical comment blocks.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>overlays</td>
-                                            <td>
-                                                            <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay[]</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given svg overlays.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>TextcriticalCommentBlock[]</code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Array with filtered textcritical comment block.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="selectConvolute"></a>
                     <span class="name">
                         <span ><b>selectConvolute</b></span>
@@ -1274,8 +1274,8 @@ otherwise tries to get the next sheed id for non-partial sheets.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="144"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:144</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="146"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:146</a></div>
                         </td>
                     </tr>
 
@@ -1382,8 +1382,8 @@ otherwise tries to get the next sheed id for non-partial sheets.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="169"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:169</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="171"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:171</a></div>
                         </td>
                     </tr>
 
@@ -1467,7 +1467,7 @@ import {
     EditionSvgSheet,
     EditionSvgSheetList,
     FolioConvolute,
-    TextcriticalCommentBlock,
+    TextcriticalCommentary,
     Textcritics,
 } from &#x27;@awg-views/edition-view/models&#x27;;
 
@@ -1564,22 +1564,22 @@ export class EditionSheetsService {
     }
 
     /**
-     * Public method: getTextcriticalCommentsForOverlays.
+     * Public method: filterTextcriticalCommentaryForOverlays.
      *
-     * It provides the textcritical comments for the selected svg overlays.
+     * It filters the textcritical commentary for the selected svg overlays.
      *
-     * @param {TextcriticalCommentBlock[]} textcriticalCommentBlocks The given textcritical comment blocks.
+     * @param {TextcriticalCommentary[]} commentary The given textcritical commentary.
      * @param {EditionSvgOverlay[]} overlays The given svg overlays.
-     * @returns {TextcriticalCommentBlock[]} Array with filtered textcritical comment block.
+     * @returns {TextcriticalCommentary} The filtered textcritical commentary.
      */
-    getTextcriticalCommentsForOverlays(
-        textcriticalCommentBlocks: TextcriticalCommentBlock[],
+    filterTextcriticalCommentaryForOverlays(
+        commentary: TextcriticalCommentary,
         overlays: EditionSvgOverlay[]
-    ): TextcriticalCommentBlock[] {
-        if (!textcriticalCommentBlocks || !overlays) {
-            return [];
+    ): TextcriticalCommentary {
+        if (!commentary?.comments || !overlays) {
+            return { preamble: commentary?.preamble || &#x27;&#x27;, comments: [] };
         }
-        return textcriticalCommentBlocks
+        const filteredComments &#x3D; commentary.comments
             .map(block &#x3D;&gt; {
                 const filteredBlock &#x3D; {
                     ...block,
@@ -1590,6 +1590,8 @@ export class EditionSheetsService {
                 return filteredBlock;
             })
             .filter(block &#x3D;&gt; block.blockComments.length &gt; 0);
+
+        return { preamble: commentary.preamble, comments: filteredComments };
     }
 
     /**

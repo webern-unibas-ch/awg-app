@@ -600,6 +600,7 @@ export class PropertyJson {
             const jsonConvert: JsonConvert &#x3D; new JsonConvert();
             return jsonConvert.deserializeArray(this.values, PropertyJsonValue);
         } catch (e) {
+            console.error(&#x27;PropertyJson: error in getValuesAsPropertyJsonValues&#x27;, e);
             return [];
         }
     }

@@ -623,7 +623,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;1.1.0&#x27;</code>
+                        <i>Default value : </i><code>&#x27;1.2.0&#x27;</code>
                     </td>
                 </tr>
 
@@ -655,7 +655,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;14. November 2024&#x27;</code>
+                        <i>Default value : </i><code>&#x27;20. Dezember 2024&#x27;</code>
                     </td>
                 </tr>
 
@@ -3289,6 +3289,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                         blockContent: [
                             &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;testComplex1&#x27;, fragmentId: &#x27;source_A&#x27;})\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern.&quot;,
                             &quot;In &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; werden T. [11]–[12] aus &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; neu skizziert.&lt;sup id&#x3D;&#x27;note-80-backlink&#x27; class&#x3D;&#x27;note-link&#x27;&gt;&lt;a (click)&#x3D;\&quot;ref.navigateToIntroFragment({complexId: &#x27;testComplex1&#x27;, fragmentId: &#x27;note-80&#x27;})\&quot;&gt;80&lt;/a&gt;&lt;/sup&gt;&quot;,
+                            &#x27;&lt;span class&#x3D;&quot;glyph&quot;&gt;{{ref.getGlyph(&quot;[a]&quot;)}}&lt;/span&gt; überschreibt &lt;span class&#x3D;&quot;glyph&quot;&gt;{{ref.getGlyph(&quot;[b]&quot;)}}&lt;/span&gt;.&#x27;,
                         ],
                         blockNotes: [
                             &quot;&lt;span id&#x3D;&#x27;note-80&#x27; class&#x3D;&#x27;note&#x27;&gt;&lt;a class&#x3D;&#x27;note-backlink&#x27; (click)&#x3D;\&quot;ref.navigateToIntroFragment({complexId: &#x27;testComplex1&#x27;, fragmentId: &#x27;note-80-backlink&#x27;})\&quot;&gt;80&lt;/a&gt; | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).&lt;/span&gt;&quot;,
@@ -3358,7 +3359,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 id: &#x27;de&#x27;,
                 content: [
                     &quot;&lt;span class&#x3D;&#x27;no-indent&#x27;&gt;Die AWG gliedert sich in drei Serien:&lt;/span&gt;&quot;,
-                    &quot;&lt;span class&#x3D;&#x27;no-indent spacebreak&#x27;&gt;Sie werden nicht zu dem für den Druck typischen &lt;span class&#x3D;&#x27;unicode&#x27;&gt;{{ref.getGlyph(&#x27;[ped]&#x27;)}}&lt;/span&gt;.-Zeichen vereinheitlicht.&lt;/span&gt;&quot;,
+                    &quot;&lt;span class&#x3D;&#x27;no-indent spacebreak&#x27;&gt;Sie werden nicht zu dem für den Druck typischen &lt;span class&#x3D;&#x27;glyph unicode&#x27;&gt;{{ref.getGlyph(&#x27;[ped]&#x27;)}}&lt;/span&gt;.-Zeichen vereinheitlicht.&lt;/span&gt;&quot;,
                     &quot;&lt;span class&#x3D;&#x27;small spacebreak&#x27;&gt;Zugang zur AWG-Online-Edition: &lt;a href&#x3D;&#x27;https://edition.anton-webern.ch&#x27; class&#x3D;&#x27;link&#x27;&gt;edition.anton-webern.ch&lt;/a&gt;&lt;/span&gt;&quot;,
                 ],
             },
@@ -3366,7 +3367,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 id: &#x27;en&#x27;,
                 content: [
                     &quot;&lt;span class&#x3D;&#x27;no-indent&#x27;&gt;The AWG is divided into three series:&lt;/span&gt;&quot;,
-                    &quot;&lt;span class&#x3D;&#x27;no-indent spacebreak&#x27;&gt;They are not unified to the &lt;span class&#x3D;&#x27;unicode&#x27;&gt;{{ref.getGlyph(&#x27;[ped]&#x27;)}}&lt;/span&gt;. character typical for printing.&lt;/span&gt;&quot;,
+                    &quot;&lt;span class&#x3D;&#x27;no-indent spacebreak&#x27;&gt;They are not unified to the &lt;span class&#x3D;&#x27;glyph unicode&#x27;&gt;{{ref.getGlyph(&#x27;[ped]&#x27;)}}&lt;/span&gt;. character typical for printing.&lt;/span&gt;&quot;,
                     &quot;&lt;span class&#x3D;&#x27;small spacebreak&#x27;&gt;Access to the AWG online edition: &lt;a href&#x3D;&#x27;https://edition.anton-webern.ch&#x27; class&#x3D;&#x27;link&#x27;&gt;edition.anton-webern.ch&lt;/a&gt;&lt;/span&gt;&quot;,
                 ],
             },
@@ -3781,24 +3782,27 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                         {
                             id: &#x27;source_Aa_corr_1&#x27;,
                             label: &#x27;Korrekturen 1 in &lt;strong&gt;B&lt;/strong&gt; (mit Tinte)&#x27;,
-                            description: [
+                            evaluations: [
                                 &#x27;Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: Textfassung 1.&#x27;,
                             ],
-                            comments: [
-                                {
-                                    measure: &#x27;3–4&#x27;,
-                                    system: &#x27;&#x27;,
-                                    position: &#x27;&#x27;,
-                                    comment: &#x27;Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####&#x27;,
-                                },
-                                {
-                                    measure: &#x27;4&#x27;,
-                                    system: &#x27;Klav. o.&#x27;,
-                                    position: &#x27;&#x27;,
-                                    comment:
-                                        &#x27;Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.&#x27;,
-                                },
-                            ],
+                            commentary: {
+                                preamble: &#x27;Korrekturen 1:&#x27;,
+                                comments: [
+                                    {
+                                        measure: &#x27;3–4&#x27;,
+                                        system: &#x27;&#x27;,
+                                        position: &#x27;&#x27;,
+                                        comment: &#x27;Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####&#x27;,
+                                    },
+                                    {
+                                        measure: &#x27;4&#x27;,
+                                        system: &#x27;Klav. o.&#x27;,
+                                        position: &#x27;&#x27;,
+                                        comment:
+                                            &#x27;Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.&#x27;,
+                                    },
+                                ],
+                            },
                         },
                     ],
                 },
@@ -4254,73 +4258,77 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
             {
                 id: &#x27;test-1&#x27;,
                 label: &#x27;test1&#x27;,
-                description: [],
-                comments: [],
+                evaluations: [],
+                commentary: { preamble: &#x27;&#x27;, comments: [] },
                 linkBoxes: [],
             },
             {
                 id: &#x27;test-2&#x27;,
                 label: &#x27;test2&#x27;,
-                description: [
+                evaluations: [
                     &#x27;test description 1&#x27;,
                     &quot;In &lt;strong&gt;Sk2&lt;/strong&gt; werden T. 11–12 aus &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Sk1&lt;/strong&gt;&lt;/a&gt; bzw. T. 10–11 aus &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;&#x27;, fragmentId: &#x27;source_B&#x27;})\&quot;&gt;&lt;strong&gt;B&lt;/strong&gt;&lt;/a&gt; neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;C&lt;/strong&gt;&lt;/a&gt; entspricht.&quot;,
                 ],
                 rowtable: true,
-                comments: [
-                    {
-                        blockHeader: &#x27;blockheader 1&#x27;,
-                        blockComments: [
-                            {
-                                svgGroupId: &#x27;svg-group-1&#x27;,
-                                measure: &#x27;10&#x27;,
-                                system: &#x27;12&#x27;,
-                                position: &#x27;1. Note&#x27;,
-                                comment: &#x27;Viertelnote überschreibt Halbe Note.&#x27;,
-                            },
-                            {
-                                svgGroupId: &#x27;svg-group-2&#x27;,
-                                measure: &#x27;10&#x27;,
-                                system: &#x27;12&#x27;,
-                                position: &#x27;2. Note&#x27;,
-                                comment:
-                                    &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;&#x27;, fragmentId: &#x27;source_A&#x27;})\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test SkXYZ&lt;/strong&gt;&lt;/a&gt; T. [11] und &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt;.&quot;,
-                            },
-                            {
-                                svgGroupId: &#x27;svg-group-3&#x27;,
-                                measure: &#x27;{13}&#x27;,
-                                system: &#x27;12&#x27;,
-                                position: &#x27;3. Note&#x27;,
-                                comment: &#x27;{{ref.getGlyph(&quot;[a]&quot;)}} überschreibt {{ref.getGlyph(&quot;[b]&quot;)}}.&#x27;,
-                            },
-                            {
-                                svgGroupId: &#x27;svg-group-4&#x27;,
-                                measure: &#x27;[12]&#x27;,
-                                system: &#x27;13&#x27;,
-                                position: &#x27;&#x27;,
-                                comment: &#x27;radierte, nicht entzifferbare Schicht.&#x27;,
-                            },
-                        ],
-                    },
-                    {
-                        blockHeader: &#x27;blockheader 2&#x27;,
-                        blockComments: [
-                            {
-                                svgGroupId: &#x27;svg-group-5&#x27;,
-                                measure: &#x27;11&#x27;,
-                                system: &#x27;13&#x27;,
-                                position: &#x27;1. Note&#x27;,
-                                comment: &#x27;Viertelnote überschreibt Halbe Note.&#x27;,
-                            },
-                            {
-                                svgGroupId: &#x27;svg-group-6&#x27;,
-                                measure: &#x27;11&#x27;,
-                                system: &#x27;13&#x27;,
-                                position: &#x27;2. Note&#x27;,
-                                comment: &#x27;Halbe Note überschreibt Viertelnote.&#x27;,
-                            },
-                        ],
-                    },
-                ],
+                commentary: {
+                    preamble: &#x27;This is a preamble.&#x27;,
+                    comments: [
+                        {
+                            blockHeader: &#x27;blockheader 1&#x27;,
+                            blockComments: [
+                                {
+                                    svgGroupId: &#x27;svg-group-1&#x27;,
+                                    measure: &#x27;10&#x27;,
+                                    system: &#x27;12&#x27;,
+                                    position: &#x27;1. Note&#x27;,
+                                    comment: &#x27;Viertelnote überschreibt Halbe Note.&#x27;,
+                                },
+                                {
+                                    svgGroupId: &#x27;svg-group-2&#x27;,
+                                    measure: &#x27;10&#x27;,
+                                    system: &#x27;12&#x27;,
+                                    position: &#x27;2. Note&#x27;,
+                                    comment:
+                                        &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;&#x27;, fragmentId: &#x27;source_A&#x27;})\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test SkXYZ&lt;/strong&gt;&lt;/a&gt; T. [11] und &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt;.&quot;,
+                                },
+                                {
+                                    svgGroupId: &#x27;svg-group-3&#x27;,
+                                    measure: &#x27;{13}&#x27;,
+                                    system: &#x27;12&#x27;,
+                                    position: &#x27;3. Note&#x27;,
+                                    comment:
+                                        &#x27;&lt;span class&#x3D;&quot;glyph&quot;&gt;{{ref.getGlyph(&quot;[a]&quot;)}}&lt;/span&gt; überschreibt &lt;span class&#x3D;&quot;glyph&quot;&gt;{{ref.getGlyph(&quot;[b]&quot;)}}&lt;/span&gt;.&#x27;,
+                                },
+                                {
+                                    svgGroupId: &#x27;svg-group-4&#x27;,
+                                    measure: &#x27;[12]&#x27;,
+                                    system: &#x27;13&#x27;,
+                                    position: &#x27;&#x27;,
+                                    comment: &#x27;radierte, nicht entzifferbare Schicht.&#x27;,
+                                },
+                            ],
+                        },
+                        {
+                            blockHeader: &#x27;blockheader 2&#x27;,
+                            blockComments: [
+                                {
+                                    svgGroupId: &#x27;svg-group-5&#x27;,
+                                    measure: &#x27;11&#x27;,
+                                    system: &#x27;13&#x27;,
+                                    position: &#x27;1. Note&#x27;,
+                                    comment: &#x27;Viertelnote überschreibt Halbe Note.&#x27;,
+                                },
+                                {
+                                    svgGroupId: &#x27;svg-group-6&#x27;,
+                                    measure: &#x27;11&#x27;,
+                                    system: &#x27;13&#x27;,
+                                    position: &#x27;2. Note&#x27;,
+                                    comment: &#x27;Halbe Note überschreibt Viertelnote.&#x27;,
+                                },
+                            ],
+                        },
+                    ],
+                },
                 linkBoxes: [],
             },
         ],
@@ -4792,7 +4800,7 @@ response from the Salsah API.</p>
         icon: &#x27;https://www.salsah.org:443/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;125&#x27;,
         type: &#x27;Supplement&#x27;,
         lastmod: &#x27;2017-12-05 15:16:17&#x27;,
-        title: &#x27;[Programm:] Sdružení pro soudobou houdbu v Praze&lt;br/&gt;[Mi] 9. Jan 1935&#x27;,
+        title: &#x27;[Programm:] Sdružení pro soudobou houdbu v Praze&lt;br /&gt;[Mi] 9. Jan 1935&#x27;,
     },
     content: {
         props: [
@@ -5624,7 +5632,7 @@ from the Salsah API.</p>
     OP12_SHEET_COMING_SOON:
         &#x27;Die edierten Notentexte der Skizzen zu M 213 (&lt;strong&gt;A&lt;sup&gt;c&lt;/sup&gt;&lt;/strong&gt;), M 216 (&lt;strong&gt;A&lt;sup&gt;d&lt;/sup&gt;&lt;/strong&gt;) und M 217 (&lt;strong&gt;A&lt;sup&gt;b&lt;/sup&gt;&lt;/strong&gt;) erscheinen im Zusammenhang der vollständigen Edition der &lt;em&gt;Vier Lieder&lt;/em&gt; op. 12 in AWG I/5.&#x27;,
     OP12_EDITION_COMING_SOON:
-        &#x27;&lt;p&gt;Die Einleitungen, edierten Notentexte und Kritischen Berichte zu&lt;/p&gt;&lt;ul class&#x3D;&quot;nobullets&quot;&gt;&lt;li&gt;Werkedition der Druckfassung der &lt;em&gt;Vier Lieder&lt;/em&gt; op. 12, &lt;br/&gt; „&lt;em&gt;Der Tag ist vergangen&lt;/em&gt;“ M 212: Textfassung 2, sowie &lt;br/&gt; &lt;em&gt;Gleich und Gleich&lt;/em&gt; M 216: Textfassung 1 &lt;/li&gt;&lt;/ul&gt;&lt;p&gt; erscheinen im Zusammenhang der vollständigen Edition der &lt;em&gt;Vier Lieder&lt;/em&gt; op. 12 in AWG I/5.&lt;/p&gt;&#x27;,
+        &#x27;&lt;p&gt;Die Einleitungen, edierten Notentexte und Kritischen Berichte zu&lt;/p&gt;&lt;ul class&#x3D;&quot;nobullets&quot;&gt;&lt;li&gt;Werkedition der Druckfassung der &lt;em&gt;Vier Lieder&lt;/em&gt; op. 12, &lt;br /&gt; „&lt;em&gt;Der Tag ist vergangen&lt;/em&gt;“ M 212: Textfassung 2, sowie &lt;br /&gt; &lt;em&gt;Gleich und Gleich&lt;/em&gt; M 216: Textfassung 1 &lt;/li&gt;&lt;/ul&gt;&lt;p&gt; erscheinen im Zusammenhang der vollständigen Edition der &lt;em&gt;Vier Lieder&lt;/em&gt; op. 12 in AWG I/5.&lt;/p&gt;&#x27;,
     OP19_SOURCE_NOT_AVAILABLE:
         &#x27;&lt;p&gt;Die Beschreibung der Quellen &lt;strong&gt;A&lt;/strong&gt; sowie &lt;strong&gt;C–D&lt;/strong&gt; einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der &lt;em&gt;Zwei Lieder für gemischten Chor und Ensemble&lt;/em&gt; op. 19 in AWG I/3.&lt;/p&gt;&#x27;,
     OP23_SOURCE_NOT_AVAILABLE:

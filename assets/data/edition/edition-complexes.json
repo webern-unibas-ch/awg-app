@@ -363,7 +363,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Juni 2024"
@@ -385,7 +385,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Juni 2024"
@@ -407,7 +407,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Juni 2024"
@@ -429,7 +429,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Juni 2024"
@@ -451,7 +451,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Juni 2024"
@@ -473,7 +473,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Juni 2024"
@@ -495,7 +495,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "---"
@@ -517,7 +517,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "---"
@@ -539,7 +539,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "---"
@@ -561,10 +561,54 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "M312": {
+                "titleStatement": {
+                    "title": "„Herr Jesus mein“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "312"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "M314": {
+                "titleStatement": {
+                    "title": "„Das dunkle Herz“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "314"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "19. November 2024"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -583,7 +627,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "7. November 2024"
@@ -605,7 +649,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "---"
@@ -627,7 +671,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "7. November 2024"
@@ -649,7 +693,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Juni 2024"
@@ -671,7 +715,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Juni 2024"
@@ -693,7 +737,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "9. April 2024"
@@ -715,7 +759,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Mai 2023"
@@ -737,7 +781,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Mai 2023"
@@ -759,7 +803,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "17. April 2024"
@@ -781,7 +825,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Mai 2023"
@@ -803,7 +847,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "17. April 2024"
@@ -825,7 +869,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Mai 2023"

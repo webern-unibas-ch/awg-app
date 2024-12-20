@@ -159,6 +159,122 @@
                             }
                         ]
                     }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_A_corr_1",
+                        "label": "Korrekturen 1 in <strong>A</strong> (mit schwarzer Tinte ggf. auf Rasur oder Tektur)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. u.",
+                                            "position": "6/8",
+                                            "comment": "Unterstimmenschicht: B auf Rasur."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "Auf Tektur."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Ges.",
+                                            "position": "4. Note",
+                                            "comment": "Text: Großschreibung <em>Fin</em>[-stern] überschreibt <em>fin</em>[-stern]."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. u.",
+                                            "position": "nach 2/8",
+                                            "comment": "Rasur."
+                                        },
+                                        {
+                                            "measure": "15",
+                                            "system": "Klav. u.",
+                                            "position": "Taktanfang",
+                                            "comment": "Violinschlüssel auf Rasur. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 14."
+                                        },
+                                        {
+                                            "measure": "17",
+                                            "system": "Klav. u.",
+                                            "position": "letzte Note",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "18",
+                                            "system": "Ges.",
+                                            "position": "4. Note",
+                                            "comment": "Text: Großschreibung <em>Be</em>[-zeuge] überschreibt <em>be</em>[-zeuge]."
+                                        },
+                                        {
+                                            "measure": "21–22",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Auf Tektur."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "source_A_corr_2",
+                        "label": "Korrekturen 2 in <strong>A</strong> (mit Bleistift)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1",
+                                            "system": "Klav. u.",
+                                            "position": "4. Note",
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu C<sub>1</sub>/C hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "7 <br /> bis 8",
+                                            "system": "",
+                                            "position": "(4/8) <br /> (2/8)",
+                                            "comment": "<em>rit</em>[.] <em>- - -</em> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. u.",
+                                            "position": "4/16",
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu E hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. u.",
+                                            "position": "3/8",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "11",
+                                            "system": "Klav. o.",
+                                            "position": "6/32",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "20 <br /> bis 21",
+                                            "system": "Klav. u.",
+                                            "position": "2/2",
+                                            "comment": "Korrekturskizze:  <br /> ##Abbildung##"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
                 ]
             }
         }
