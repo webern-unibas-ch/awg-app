@@ -7,7 +7,7 @@
                     "section": "1",
                     "disabled": true,
                     "content": {
-                        "intro": { "disabled": true },
+                        "intro": { "disabled": true, "preview": "" },
                         "complexTypes": { "opus": [], "mnr": [] }
                     }
                 },
@@ -15,7 +15,7 @@
                     "section": "2",
                     "disabled": true,
                     "content": {
-                        "intro": { "disabled": true },
+                        "intro": { "disabled": true, "preview": "" },
                         "complexTypes": { "opus": [], "mnr": [] }
                     }
                 },
@@ -23,7 +23,7 @@
                     "section": "3",
                     "disabled": true,
                     "content": {
-                        "intro": { "disabled": true },
+                        "intro": { "disabled": true, "preview": "" },
                         "complexTypes": { "opus": [], "mnr": [] }
                     }
                 },
@@ -31,7 +31,7 @@
                     "section": "4",
                     "disabled": true,
                     "content": {
-                        "intro": { "disabled": true },
+                        "intro": { "disabled": true, "preview": "" },
                         "complexTypes": { "opus": [], "mnr": [] }
                     }
                 },
@@ -88,7 +88,7 @@
                     "section": "1",
                     "disabled": true,
                     "content": {
-                        "intro": { "disabled": true },
+                        "intro": { "disabled": true, "preview": "" },
                         "complexTypes": { "opus": [], "mnr": [] }
                     }
                 },
@@ -96,7 +96,10 @@
                     "section": "2A",
                     "disabled": false,
                     "content": {
-                        "intro": { "disabled": false },
+                        "intro": {
+                            "disabled": false,
+                            "preview": "Die in Serie II Abteilung 2a enthaltene Klaviermusik versammelt die im Nachlass Weberns überlieferten Kompositionen für Klavier, denen Webern keine Opuszahl beigefügt hat und die zu Lebzeiten nicht im Druck erschienen sind bzw. gar nicht zum Druck bestimmt waren (zur postumen Veröffentlichung einzelner Stücke vgl. die entsprechenden Abschnitte). Bei diesen Kompositionen handelt es sich größtenteils um Studienkompositionen aus Weberns Unterricht bei Arnold Schönberg von 1904 bis 1908."
+                        },
                         "complexTypes": {
                             "opus": [],
                             "mnr": [
@@ -116,7 +119,7 @@
                     "section": "2B",
                     "disabled": true,
                     "content": {
-                        "intro": { "disabled": true },
+                        "intro": { "disabled": true, "preview": "" },
                         "complexTypes": { "opus": [], "mnr": [] }
                     }
                 },
@@ -124,7 +127,7 @@
                     "section": "3",
                     "disabled": true,
                     "content": {
-                        "intro": { "disabled": true },
+                        "intro": { "disabled": true, "preview": "" },
                         "complexTypes": { "opus": [], "mnr": [] }
                     }
                 },
@@ -132,7 +135,7 @@
                     "section": "4",
                     "disabled": true,
                     "content": {
-                        "intro": { "disabled": true },
+                        "intro": { "disabled": true, "preview": "" },
                         "complexTypes": { "opus": [], "mnr": [] }
                     }
                 },
@@ -140,7 +143,7 @@
                     "section": "5",
                     "disabled": true,
                     "content": {
-                        "intro": { "disabled": true },
+                        "intro": { "disabled": true, "preview": "" },
                         "complexTypes": { "opus": [], "mnr": [] }
                     }
                 }
@@ -153,7 +156,7 @@
                     "section": "1",
                     "disabled": true,
                     "content": {
-                        "intro": { "disabled": true },
+                        "intro": { "disabled": true, "preview": "" },
                         "complexTypes": { "opus": [], "mnr": [] }
                     }
                 },
@@ -161,7 +164,7 @@
                     "section": "2",
                     "disabled": true,
                     "content": {
-                        "intro": { "disabled": true },
+                        "intro": { "disabled": true, "preview": "" },
                         "complexTypes": { "opus": [], "mnr": [] }
                     }
                 },
@@ -169,7 +172,7 @@
                     "section": "3",
                     "disabled": true,
                     "content": {
-                        "intro": { "disabled": true },
+                        "intro": { "disabled": true, "preview": "" },
                         "complexTypes": { "opus": [], "mnr": [] }
                     }
                 },
@@ -177,7 +180,7 @@
                     "section": "4",
                     "disabled": true,
                     "content": {
-                        "intro": { "disabled": true },
+                        "intro": { "disabled": true, "preview": "" },
                         "complexTypes": { "opus": [], "mnr": [] }
                     }
                 },
@@ -185,7 +188,7 @@
                     "section": "5",
                     "disabled": true,
                     "content": {
-                        "intro": { "disabled": true },
+                        "intro": { "disabled": true, "preview": "" },
                         "complexTypes": { "opus": [], "mnr": [] }
                     }
                 }
