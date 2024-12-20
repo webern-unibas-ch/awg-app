@@ -19,7 +19,7 @@ describe('EditionTkaLabelComponent (DONE)', () => {
     let isSketchIdSpy: Spy;
 
     let expectedId: string;
-    let expectedLabelType: 'evaluation' | 'comment';
+    let expectedLabelType: 'evaluation' | 'commentary';
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -110,9 +110,9 @@ describe('EditionTkaLabelComponent (DONE)', () => {
                 });
             });
 
-            describe('WHEN `labelType` is `comment`', () => {
+            describe('WHEN `labelType` is `commentary`', () => {
                 beforeEach(() => {
-                    component.labelType = 'comment';
+                    component.labelType = 'commentary';
 
                     detectChangesOnPush(fixture);
                 });

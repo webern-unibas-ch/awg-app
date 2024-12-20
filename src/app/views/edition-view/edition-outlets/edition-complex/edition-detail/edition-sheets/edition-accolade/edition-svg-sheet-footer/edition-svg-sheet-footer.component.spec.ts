@@ -18,15 +18,15 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { UtilityService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EditionSvgSheet, TextcriticalCommentBlock, Textcritics } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models';
 
 import { EditionSvgSheetFooterComponent } from './edition-svg-sheet-footer.component';
 
 // Mock components
-@Component({ selector: 'awg-edition-tka-description', template: '' })
-class EditionTkaDescriptionStubComponent {
+@Component({ selector: 'awg-edition-tka-evaluations', template: '' })
+class EditionTkaEvaluationsStubComponent {
     @Input()
-    textcriticalDescriptions: string[];
+    evaluations: string[];
     @Output()
     navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
     @Output()
@@ -39,13 +39,13 @@ class EditionTkaDescriptionStubComponent {
 class EditionTkaLabelStubComponent {
     @Input()
     id: string;
-    @Input() labelType: 'evaluation' | 'comment';
+    @Input() labelType: 'evaluation' | 'commentary';
 }
 
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
-    textcriticalCommentBlocks: TextcriticalCommentBlock[];
+    commentary: TextcriticalCommentary;
     @Input()
     isCorrections = false;
     @Input()
@@ -78,7 +78,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedSelectedTextcritics: Textcritics;
-    let expectedSelectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
+    let expectedSelectedTextcriticalCommentary: TextcriticalCommentary;
     let expectedShowTka: boolean;
     let expectedModalSnippet: string;
 
@@ -91,7 +91,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             declarations: [
                 EditionSvgSheetFooterComponent,
                 CompileHtmlComponent,
-                EditionTkaDescriptionStubComponent,
+                EditionTkaEvaluationsStubComponent,
                 EditionTkaLabelStubComponent,
                 EditionTkaTableStubComponent,
             ],
@@ -110,7 +110,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
         expectedSelectedTextcritics = JSON.parse(JSON.stringify(mockEditionData.mockTextcriticsData.textcritics.at(1)));
-        expectedSelectedTextcriticalCommentBlocks = expectedSelectedTextcritics.comments;
+        expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
         expectedShowTka = true;
 
         expectedChevronDownIcon = faChevronDown;
@@ -133,8 +133,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `selectedTextcriticalCommentBlocks`', () => {
-            expect(component.selectedTextcriticalCommentBlocks).toBeUndefined();
+        it('... should not have `selectedTextcriticalCommentary`', () => {
+            expect(component.selectedTextcriticalCommentary).toBeUndefined();
         });
 
         it('... should not have `selectedTextcritics`', () => {
@@ -176,7 +176,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.selectedTextcritics = expectedSelectedTextcritics;
-            component.selectedTextcriticalCommentBlocks = expectedSelectedTextcriticalCommentBlocks;
+            component.selectedTextcriticalCommentary = expectedSelectedTextcriticalCommentary;
             component.showTkA = expectedShowTka;
 
             // Trigger initial data binding
@@ -187,8 +187,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             expectToEqual(component.selectedTextcritics, expectedSelectedTextcritics);
         });
 
-        it('... should have `selectedTextcriticalCommentBlocks` input', () => {
-            expectToEqual(component.selectedTextcriticalCommentBlocks, expectedSelectedTextcriticalCommentBlocks);
+        it('... should have `selectedTextcriticalCommentary` input', () => {
+            expectToEqual(component.selectedTextcriticalCommentary, expectedSelectedTextcriticalCommentary);
         });
 
         it('... should have `showTkA` input', () => {
@@ -306,7 +306,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expectToBe(labelCmp.labelType, 'evaluation');
             });
 
-            it('... should contain a second span in p with `---` if selectedTextcritics.description is empty', () => {
+            it('... should contain a second span in p with `---` if selectedTextcritics.evaluations is empty', () => {
                 component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
                 detectChangesOnPush(fixture);
 
@@ -324,7 +324,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expectToBe(spanEl.textContent.trim(), `---`);
             });
 
-            describe('... should contain no EditionTkaDescriptionComponent if ...', () => {
+            describe('... should contain no EditionTkaEvaluationsStubComponent if ...', () => {
                 it('... showEvaluation = false', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -333,10 +333,10 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                         1
                     );
 
-                    getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsStubComponent, 0, 0);
                 });
 
-                it('... descriptions array is empty', () => {
+                it('... evaluations array is empty', () => {
                     component.showEvaluation = true;
                     component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
                     detectChangesOnPush(fixture);
@@ -348,11 +348,11 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                         1
                     );
 
-                    getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsStubComponent, 0, 0);
                 });
             });
 
-            it('... should contain one EditionTkaDescriptionComponent (stubbed) in evaluation div if showEvaluation = true', () => {
+            it('... should contain one EditionTkaEvaluationsStubComponent (stubbed) in evaluation div if showEvaluation = true', () => {
                 component.showEvaluation = true;
                 detectChangesOnPush(fixture);
 
@@ -363,10 +363,10 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                     1
                 );
 
-                getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsStubComponent, 1, 1);
             });
 
-            it('... should pass down `description` data to the EditionTkaDescriptionComponent if showEvaluation = true', () => {
+            it('... should pass down `evaluations` data to the EditionTkaEvaluationsStubComponent if showEvaluation = true', () => {
                 component.showEvaluation = true;
                 detectChangesOnPush(fixture);
 
@@ -377,17 +377,17 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                     1
                 );
 
-                const descDes = getAndExpectDebugElementByDirective(
+                const evaluationsDes = getAndExpectDebugElementByDirective(
                     divDes[0],
-                    EditionTkaDescriptionStubComponent,
+                    EditionTkaEvaluationsStubComponent,
                     1,
                     1
                 );
-                const descCmp = descDes[0].injector.get(
-                    EditionTkaDescriptionStubComponent
-                ) as EditionTkaDescriptionStubComponent;
+                const evaluationsCmp = evaluationsDes[0].injector.get(
+                    EditionTkaEvaluationsStubComponent
+                ) as EditionTkaEvaluationsStubComponent;
 
-                expectToBe(descCmp.textcriticalDescriptions, expectedSelectedTextcritics.description);
+                expectToBe(evaluationsCmp.evaluations, expectedSelectedTextcritics.evaluations);
             });
 
             it('... should contain no textcritics div.card if showTka is false', () => {
@@ -475,14 +475,14 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 const labelDes = getAndExpectDebugElementByDirective(divDes[0], EditionTkaLabelStubComponent, 1, 1);
                 const labelCmp = labelDes[0].injector.get(EditionTkaLabelStubComponent) as EditionTkaLabelStubComponent;
 
-                expectToBe(labelCmp.labelType, 'comment');
+                expectToBe(labelCmp.labelType, 'commentary');
             });
 
-            it('... should pass down `selectedTextcriticalCommentBlocks` to the EditionTkaTableComponent', () => {
+            it('... should pass down `selectedTextcriticalCommentary` to the EditionTkaTableComponent', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
 
-                expectToEqual(tableCmp.textcriticalCommentBlocks, expectedSelectedTextcriticalCommentBlocks);
+                expectToEqual(tableCmp.commentary, expectedSelectedTextcriticalCommentary);
             });
 
             it('... should pass down `isRowTable` to the EditionTkaTableComponent', () => {
@@ -506,41 +506,36 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaDescriptionComponent', () => {
+                it('... EditionTkaEvaluationsStubComponent', () => {
                     component.showEvaluation = true;
                     detectChangesOnPush(fixture);
 
-                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                    const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionTkaDescriptionStubComponent,
+                        EditionTkaEvaluationsStubComponent,
                         1,
                         1
                     );
-                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
-                        EditionTkaDescriptionStubComponent
-                    ) as EditionTkaDescriptionStubComponent;
+                    const evaluationsCmp = evaluationsDes[0].injector.get(
+                        EditionTkaEvaluationsStubComponent
+                    ) as EditionTkaEvaluationsStubComponent;
 
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
 
-                    editionTkaDescriptionCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+                    evaluationsCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
 
                     expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
                 });
 
                 it('... EditionTkaTableComponent', () => {
-                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionTkaTableStubComponent,
-                        1,
-                        1
-                    );
-                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                    const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
+                    const tableCmp = tableDes[0].injector.get(
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
 
-                    editionTkaTableCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+                    tableCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
 
                     expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
                 });
@@ -607,37 +602,32 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaDescriptionComponent', () => {
+                it('... EditionTkaEvaluationsStubComponent', () => {
                     component.showEvaluation = true;
                     detectChangesOnPush(fixture);
 
-                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                    const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionTkaDescriptionStubComponent,
+                        EditionTkaEvaluationsStubComponent,
                         1,
                         1
                     );
-                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
-                        EditionTkaDescriptionStubComponent
-                    ) as EditionTkaDescriptionStubComponent;
+                    const evaluationsCmp = evaluationsDes[0].injector.get(
+                        EditionTkaEvaluationsStubComponent
+                    ) as EditionTkaEvaluationsStubComponent;
 
-                    editionTkaDescriptionCmp.openModalRequest.emit(expectedModalSnippet);
+                    evaluationsCmp.openModalRequest.emit(expectedModalSnippet);
 
                     expectSpyCall(openModalSpy, 1, expectedModalSnippet);
                 });
 
                 it('... EditionTkaTableComponent', () => {
-                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionTkaTableStubComponent,
-                        1,
-                        1
-                    );
-                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                    const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
+                    const tableCmp = tableDes[0].injector.get(
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
-                    editionTkaTableCmp.openModalRequest.emit(expectedModalSnippet);
+                    tableCmp.openModalRequest.emit(expectedModalSnippet);
 
                     expectSpyCall(openModalSpy, 1, expectedModalSnippet);
                 });
@@ -662,39 +652,34 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaDescriptionComponent', () => {
+                it('... EditionTkaEvaluationsStubComponent', () => {
                     component.showEvaluation = true;
                     detectChangesOnPush(fixture);
 
-                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                    const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionTkaDescriptionStubComponent,
+                        EditionTkaEvaluationsStubComponent,
                         1,
                         1
                     );
-                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
-                        EditionTkaDescriptionStubComponent
-                    ) as EditionTkaDescriptionStubComponent;
+                    const evaluationsCmp = evaluationsDes[0].injector.get(
+                        EditionTkaEvaluationsStubComponent
+                    ) as EditionTkaEvaluationsStubComponent;
 
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                    editionTkaDescriptionCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+                    evaluationsCmp.selectSvgSheetRequest.emit(expectedSheetIds);
 
                     expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
                 });
 
                 it('... EditionTkaTableComponent', () => {
-                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionTkaTableStubComponent,
-                        1,
-                        1
-                    );
-                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                    const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
+                    const tableCmp = tableDes[0].injector.get(
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                    editionTkaTableCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+                    tableCmp.selectSvgSheetRequest.emit(expectedSheetIds);
 
                     expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
                 });

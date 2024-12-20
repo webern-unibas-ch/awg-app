@@ -27,7 +27,7 @@ export class EditionTkaLabelComponent {
      *
      * It keeps the type of the label.
      */
-    @Input() labelType: 'evaluation' | 'comment';
+    @Input() labelType: 'evaluation' | 'commentary';
 
     /**
      * Constructor of the EditionTkaLabelComponent.

@@ -5,7 +5,7 @@ import {
     EditionSvgSheet,
     EditionSvgSheetList,
     FolioConvolute,
-    TextcriticalCommentBlock,
+    TextcriticalCommentary,
     Textcritics,
 } from '@awg-views/edition-view/models';
 
@@ -102,22 +102,22 @@ export class EditionSheetsService {
     }
 
     /**
-     * Public method: getTextcriticalCommentsForOverlays.
+     * Public method: filterTextcriticalCommentaryForOverlays.
      *
-     * It provides the textcritical comments for the selected svg overlays.
+     * It filters the textcritical commentary for the selected svg overlays.
      *
-     * @param {TextcriticalCommentBlock[]} textcriticalCommentBlocks The given textcritical comment blocks.
+     * @param {TextcriticalCommentary[]} commentary The given textcritical commentary.
      * @param {EditionSvgOverlay[]} overlays The given svg overlays.
-     * @returns {TextcriticalCommentBlock[]} Array with filtered textcritical comment block.
+     * @returns {TextcriticalCommentary} The filtered textcritical commentary.
      */
-    getTextcriticalCommentsForOverlays(
-        textcriticalCommentBlocks: TextcriticalCommentBlock[],
+    filterTextcriticalCommentaryForOverlays(
+        commentary: TextcriticalCommentary,
         overlays: EditionSvgOverlay[]
-    ): TextcriticalCommentBlock[] {
-        if (!textcriticalCommentBlocks || !overlays) {
-            return [];
+    ): TextcriticalCommentary {
+        if (!commentary?.comments || !overlays) {
+            return { preamble: commentary?.preamble || '', comments: [] };
         }
-        return textcriticalCommentBlocks
+        const filteredComments = commentary.comments
             .map(block => {
                 const filteredBlock = {
                     ...block,
@@ -128,6 +128,8 @@ export class EditionSheetsService {
                 return filteredBlock;
             })
             .filter(block => block.blockComments.length > 0);
+
+        return { preamble: commentary.preamble, comments: filteredComments };
     }
 
     /**

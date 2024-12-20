@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output
 import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 import { UtilityService } from '@awg-core/services';
-import { TextcriticalCommentBlock, Textcritics } from '@awg-views/edition-view/models';
+import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models';
 
 /**
  * The EditionSvgSheetFooter component.
@@ -20,12 +20,12 @@ import { TextcriticalCommentBlock, Textcritics } from '@awg-views/edition-view/m
 })
 export class EditionSvgSheetFooterComponent {
     /**
-     * Input variable: selectedTextcriticalCommentBlocks.
+     * Input variable: selectedTextcriticalCommentary.
      *
-     * It keeps the selected textcritical comment blocks.
+     * It keeps the selected textcritical commentary.
      */
     @Input()
-    selectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
+    selectedTextcriticalCommentary: TextcriticalCommentary;
 
     /**
      * Input variable: selectedTextcritics.

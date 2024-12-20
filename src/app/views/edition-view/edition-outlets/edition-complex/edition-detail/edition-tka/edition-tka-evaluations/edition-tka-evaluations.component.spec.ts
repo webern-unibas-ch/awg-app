@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 
@@ -15,12 +16,11 @@ import { mockEditionData } from '@testing/mock-data';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EditionSvgSheet } from '@awg-views/edition-view/models';
 
-import { DOCUMENT } from '@angular/common';
-import { EditionTkaDescriptionComponent } from './edition-tka-description.component';
+import { EditionTkaEvaluationsComponent } from './edition-tka-evaluations.component';
 
-describe('EditionTkaDescriptionComponent (DONE)', () => {
-    let component: EditionTkaDescriptionComponent;
-    let fixture: ComponentFixture<EditionTkaDescriptionComponent>;
+describe('EditionTkaEvaluationsComponent (DONE)', () => {
+    let component: EditionTkaEvaluationsComponent;
+    let fixture: ComponentFixture<EditionTkaEvaluationsComponent>;
     let compDe: DebugElement;
 
     let mockDocument: Document;
@@ -38,16 +38,16 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
     let expectedModalSnippet: string;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
-    let expectedTextcriticalDescriptions: string[];
+    let expectedEvaluations: string[];
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [EditionTkaDescriptionComponent, CompileHtmlComponent],
+            declarations: [EditionTkaEvaluationsComponent, CompileHtmlComponent],
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionTkaDescriptionComponent);
+        fixture = TestBed.createComponent(EditionTkaEvaluationsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -60,11 +60,9 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
-        expectedTextcriticalDescriptions = mockEditionData.mockTextcriticsData.textcritics.at(1).description;
+        expectedEvaluations = mockEditionData.mockTextcriticsData.textcritics.at(1).evaluations;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        // Spies on functions
         navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
         navigateToReportFragmentRequestEmitSpy = spyOn(
             component.navigateToReportFragmentRequest,
@@ -81,8 +79,8 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have textcriticalDescriptions', () => {
-            expect(component.textcriticalDescriptions).toBeUndefined();
+        it('... should not have evaluations', () => {
+            expect(component.evaluations).toBeUndefined();
         });
 
         it('... should have `ref`', () => {
@@ -90,8 +88,8 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no paragraphs with edition-tka-description class yet', () => {
-                getAndExpectDebugElementByCss(compDe, 'p.awg-edition-tka-description', 0, 0);
+            it('... should contain no paragraphs with edition-tka-evaluation class yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'p.awg-edition-tka-evaluation', 0, 0);
             });
         });
     });
@@ -99,34 +97,29 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.textcriticalDescriptions = expectedTextcriticalDescriptions;
+            component.evaluations = expectedEvaluations;
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have textcriticalDescriptions', () => {
-            expectToBe(component.textcriticalDescriptions, expectedTextcriticalDescriptions);
+        it('... should have evaluations', () => {
+            expectToBe(component.evaluations, expectedEvaluations);
         });
 
         describe('VIEW', () => {
-            it('... should contain as many paragraphs with edition-tka-description class as textcriticalDescriptions length', () => {
-                const totalParagraphs = expectedTextcriticalDescriptions.length;
+            it('... should contain as many paragraphs with edition-tka-evaluation class as evaluations length', () => {
+                const totalParagraphs = expectedEvaluations.length;
 
-                getAndExpectDebugElementByCss(
-                    compDe,
-                    'p.awg-edition-tka-description',
-                    totalParagraphs,
-                    totalParagraphs
-                );
+                getAndExpectDebugElementByCss(compDe, 'p.awg-edition-tka-evaluation', totalParagraphs, totalParagraphs);
             });
 
             it('... should contain one CompileHtmlComponents in each paragraph', () => {
-                const totalParagraphs = expectedTextcriticalDescriptions.length;
+                const totalParagraphs = expectedEvaluations.length;
 
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'p.awg-edition-tka-description',
+                    'p.awg-edition-tka-evaluation',
                     totalParagraphs,
                     totalParagraphs
                 );
@@ -136,21 +129,21 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
                 });
             });
 
-            it('... should display the textcriticalDescriptions in each paragraph span', () => {
+            it('... should display the evaluation in each paragraph span', () => {
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'p.awg-edition-tka-description',
-                    expectedTextcriticalDescriptions.length,
-                    expectedTextcriticalDescriptions.length
+                    'p.awg-edition-tka-evaluation',
+                    expectedEvaluations.length,
+                    expectedEvaluations.length
                 );
                 pDes.forEach((pDe, index) => {
                     const spanDes = getAndExpectDebugElementByCss(pDe, 'span', 1, 1);
                     const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
-                    const htmlDescriptionEntry = mockDocument.createElement('span');
-                    htmlDescriptionEntry.innerHTML = expectedTextcriticalDescriptions[index];
+                    const htmlEvaluationEntry = mockDocument.createElement('span');
+                    htmlEvaluationEntry.innerHTML = expectedEvaluations[index];
 
-                    expectToBe(spanEl.textContent.trim(), htmlDescriptionEntry.textContent.trim());
+                    expectToBe(spanEl.textContent.trim(), htmlEvaluationEntry.textContent.trim());
                 });
             });
         });
@@ -164,9 +157,9 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
                 // Find paragraphs
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'p.awg-edition-tka-description',
-                    expectedTextcriticalDescriptions.length,
-                    expectedTextcriticalDescriptions.length
+                    'p.awg-edition-tka-evaluation',
+                    expectedEvaluations.length,
+                    expectedEvaluations.length
                 );
 
                 // Find anchor in second paragraph
@@ -242,9 +235,9 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
                 // Find paragraphs
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'p.awg-edition-tka-description',
-                    expectedTextcriticalDescriptions.length,
-                    expectedTextcriticalDescriptions.length
+                    'p.awg-edition-tka-evaluation',
+                    expectedEvaluations.length,
+                    expectedEvaluations.length
                 );
 
                 // Find anchor in second paragraph
@@ -278,9 +271,9 @@ describe('EditionTkaDescriptionComponent (DONE)', () => {
                 // Find paragraphs
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'p.awg-edition-tka-description',
-                    expectedTextcriticalDescriptions.length,
-                    expectedTextcriticalDescriptions.length
+                    'p.awg-edition-tka-evaluation',
+                    expectedEvaluations.length,
+                    expectedEvaluations.length
                 );
 
                 // Find anchor in second paragraph
