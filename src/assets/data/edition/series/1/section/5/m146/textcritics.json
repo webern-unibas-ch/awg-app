@@ -36,7 +36,7 @@
                             "measure": "4",
                             "system": "Ges.",
                             "position": "5/16",
-                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> <em>zart</em> in einer Zeile angeordnet. <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A'})\"><strong>A</strong></a>: <span class='glyph'>{{ref.getGlyph('[p]')}}</span> unter, <em>zart</em> über dem System."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span>&ngsp;<em>zart</em> in einer Zeile angeordnet. <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A'})\"><strong>A</strong></a>: <span class='glyph'>{{ref.getGlyph('[p]')}}</span> unter, <em>zart</em> über dem System."
                         },
                         {
                             "svgGroupId": "g553",
@@ -109,7 +109,7 @@
                             "comment": "Text: Längenstrich von 1/4 bis 5/16 korrigiert zu Silbentrennstrich."
                         },
                         {
-                            "svgGroupId": "605",
+                            "svgGroupId": "g605",
                             "measure": "14",
                             "system": "Ges.",
                             "position": "1–4/16",

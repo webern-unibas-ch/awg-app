@@ -193,7 +193,7 @@
                             "comment": "Ende des Bogens versetzt von Ende T. 14. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 14."
                         },
                         {
-                            "svgGroupId": "g695",
+                            "svgGroupId": "g695d",
                             "measure": "15",
                             "system": "Ges.",
                             "position": "8/8",
