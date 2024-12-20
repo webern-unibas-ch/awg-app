@@ -2,6 +2,146 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.2.0](https://github.com/webern-unibas-ch/awg-app/compare/v1.1.0...v1.2.0) (2024-12-20)
+
+
+### Features
+
+* **assets:** add files for m312 ([287d011](https://github.com/webern-unibas-ch/awg-app/commit/287d0116424fcc870a3a67d2d2224cebc1ce789d))
+* **assets:** add intro for AWG II/2a ([699ed7d](https://github.com/webern-unibas-ch/awg-app/commit/699ed7d746dbed628817c7ad0969bda3a2ed1863))
+* **assets:** add links to Textfassungen in AWG I/5 ([7baca84](https://github.com/webern-unibas-ch/awg-app/commit/7baca8456ed4a8f0dd0259bb6d6543a78fce4467))
+* **assets:** add M 133 Textfassungen 1 & 2 & 3 ([6ec08c1](https://github.com/webern-unibas-ch/awg-app/commit/6ec08c125626eb4ed33bb3aad6b445e25fa82168))
+* **assets:** add M 135 Textfassung 1 & 2 ([651231a](https://github.com/webern-unibas-ch/awg-app/commit/651231afbec8b57c11384c8e8c80b4afa4216b33))
+* **assets:** add M 138 Textfassungen 1 & 2 ([1e085b1](https://github.com/webern-unibas-ch/awg-app/commit/1e085b108cf8e39b92ccfd24c03d864321a8062c))
+* **assets:** add M 141 Textfassung 1 ([bb1bd90](https://github.com/webern-unibas-ch/awg-app/commit/bb1bd900b8f47a9419252ebbb357de339c16fcb7))
+* **assets:** add M 212 Textfassung 2 and M 216 Textfassung 1 ([393e9f3](https://github.com/webern-unibas-ch/awg-app/commit/393e9f3906dfdb772010b7cb387568808edc9da9))
+* **assets:** add M 314 Sk1 & Sk2 ([922f7d9](https://github.com/webern-unibas-ch/awg-app/commit/922f7d9139569da9307bbdaee9f41814de26570c))
+* **assets:** add M136 Textfassungen 1 & 2 ([356e497](https://github.com/webern-unibas-ch/awg-app/commit/356e4971f939e3c7418d7ad4df7de19627f9ac2f))
+* **assets:** add M137 Textfassungen 1 & 2 & 3 & 4 ([34698bb](https://github.com/webern-unibas-ch/awg-app/commit/34698bb32e87e86d6c48e2e034472c4e384168c6))
+* **assets:** add M139 Textfassungen 1 & 2 ([d9632aa](https://github.com/webern-unibas-ch/awg-app/commit/d9632aa7581761115875e4d0ffa46b7fed9d1406))
+* **assets:** add M142 Textfassungen 1 & 2 ([52fa823](https://github.com/webern-unibas-ch/awg-app/commit/52fa8239a15f714c6a22efba0f71f095ca770ff6))
+* **assets:** add textcritics and corrections for m143 ([78ff3a5](https://github.com/webern-unibas-ch/awg-app/commit/78ff3a5f540207513b7540acb8f5cc1e65fbd668))
+* **assets:** add textcritics and corrections for m144 ([2c98716](https://github.com/webern-unibas-ch/awg-app/commit/2c987164bb68e30d013f821ec64ded10ed3f5f3b))
+* **assets:** add textcritics and corrections for m145 ([61da2b8](https://github.com/webern-unibas-ch/awg-app/commit/61da2b8ca239d341b33f840b2e49fb333f87e797))
+* **assets:** add textcritics and corrections for m146 ([bb7c5ca](https://github.com/webern-unibas-ch/awg-app/commit/bb7c5ca8861dd08451d72103a39b012208b17316))
+* **assets:** add textcritics to Werkeditionen of AWG I/5 ([dfd22cc](https://github.com/webern-unibas-ch/awg-app/commit/dfd22cc72af4d0b9d880314be12cc867d3695a07))
+* **assets:** link complexes to intro sections in AWG II/2a ([20205c9](https://github.com/webern-unibas-ch/awg-app/commit/20205c9063290e1a9e6366f546defc0a327103dd))
+* **edition:** add disclaimer button to WE textcritics ([bd19a58](https://github.com/webern-unibas-ch/awg-app/commit/bd19a5849a714be4fc76c4af4305fab41a8597b0))
+* **edition:** add preamble to tka table ([c55a591](https://github.com/webern-unibas-ch/awg-app/commit/c55a5917e7d1bebbb7e218d8aea2f07e022af26e))
+* **edition:** enable tka table header to display formatted entities ([38e717e](https://github.com/webern-unibas-ch/awg-app/commit/38e717e1807917e2a71067988a4ead6719d1a183))
+
+
+### Bug Fixes
+
+* **assets:** add intro preview for AWG II/2a ([2705cef](https://github.com/webern-unibas-ch/awg-app/commit/2705cefa55ecd573fa2a10d982c4bb7b42e28c6e))
+* **assets:** add links to Intro in AWG_I_5 ([c538ced](https://github.com/webern-unibas-ch/awg-app/commit/c538cedbaaddf0880ad6378c7b66b42789cf2988))
+* **assets:** fix files for m135 ([cb968d9](https://github.com/webern-unibas-ch/awg-app/commit/cb968d96b0ecc33e667a0e378c1e46fe0c5ecb09))
+* **assets:** fix incomplete homepage links ([0e2a5a9](https://github.com/webern-unibas-ch/awg-app/commit/0e2a5a975ba495bd718331c1cf5b09db7b909270))
+* **assets:** fix order of edition complexes for AWG II/2a ([3536684](https://github.com/webern-unibas-ch/awg-app/commit/3536684017d4a159077a8a1fe8ea9fe358c080f3))
+* **assets:** fix size of AWG brand image ([47deab1](https://github.com/webern-unibas-ch/awg-app/commit/47deab1452c1e8e2c2acb52faa6657e4080af780))
+* **assets:** fix typos in m134 ([ba9821a](https://github.com/webern-unibas-ch/awg-app/commit/ba9821aebb2c2ab187f306fd1a67171612b5813a))
+* **assets:** optimize svgs for AWG I/5 with SVGO ([d84b33b](https://github.com/webern-unibas-ch/awg-app/commit/d84b33bd176a15d5983f51b9d17f682d6cf12524))
+* **assets:** unify correction ids ([00a0a77](https://github.com/webern-unibas-ch/awg-app/commit/00a0a776c079f10d6fcc7a6253365001f2c2b47d))
+* **assets:** update files for m143–146 ([85cf5a9](https://github.com/webern-unibas-ch/awg-app/commit/85cf5a9f99aed6f90052af10d3f9483ccc60b04c))
+* **assets:** update intro op. 23 & op. 25 ([75f21d1](https://github.com/webern-unibas-ch/awg-app/commit/75f21d16df152c4c07a82799b58cf0f991853571))
+* **assets:** update Texteditionen AWG I_5 ([d423cdf](https://github.com/webern-unibas-ch/awg-app/commit/d423cdfdbcdbcdb8e8582e69b9b31ce6a63504fd))
+* **edition:** display text editions by default if available ([01402cd](https://github.com/webern-unibas-ch/awg-app/commit/01402cd0b1b4d0b31a764631cfbe028de5090fc5))
+* **edition:** load intro when called being on another intro ([493044d](https://github.com/webern-unibas-ch/awg-app/commit/493044d11554448c2e825a004814aee037622c86))
+* **search:** fix button groups in search panel ([0be60a8](https://github.com/webern-unibas-ch/awg-app/commit/0be60a8f7916a3ceb4cb76193869d52906ca553e))
+
+
+### Code Refactoring
+
+* **assets:** nest all glyphs in classified span ([c09f96d](https://github.com/webern-unibas-ch/awg-app/commit/c09f96db58f3a7cb17fb38dec348a6e6cea8a3f9))
+* **assets:** rename tka descriptions -> evaluations ([1604093](https://github.com/webern-unibas-ch/awg-app/commit/1604093be7dae77a5cb13cd56ba5e50d36fbc660))
+* **assets:** use new commentary model ([84df519](https://github.com/webern-unibas-ch/awg-app/commit/84df519b67658a32220a31bfe477dc88d8fb26fc))
+* **edition:** move glyph handling into separate service ([f70ee30](https://github.com/webern-unibas-ch/awg-app/commit/f70ee30598dde0e3e981fad58dfa9988bef82cf7))
+* **edition:** rename EditionTkaDescriptionComponent ([b925b59](https://github.com/webern-unibas-ch/awg-app/commit/b925b59009a7d25257b9dc60e7b92f95e14e7676))
+* **edition:** rename textcriticalDescriptions -> evaluations ([1919b96](https://github.com/webern-unibas-ch/awg-app/commit/1919b96671b3d91dafb7af4616b2edd454102776))
+* **edition:** use disclaimer component in sheets nav ([7d6c289](https://github.com/webern-unibas-ch/awg-app/commit/7d6c2897ce16e9d69d51a6f4a330d33b4671c6f4))
+* **shared:** move WE disclaimer into separate component ([7db410d](https://github.com/webern-unibas-ch/awg-app/commit/7db410dd8c70a6ab916ff7a1cdd9f1c66fb11d1d))
+
+
+### Tests
+
+* **edition:** fix wrong test for tka description ([8330255](https://github.com/webern-unibas-ch/awg-app/commit/83302559298e75837a1c10ad3e182e8490af1dd7))
+
+
+### Continuous Integration
+
+* **gh-actions:** fix syntax for codecov yaml ([ff9dc9f](https://github.com/webern-unibas-ch/awg-app/commit/ff9dc9fd50eb528548f169a77fb54d1036aca19e))
+* **gh-actions:** remove whitespace from codecov env_vars ([6d75799](https://github.com/webern-unibas-ch/awg-app/commit/6d757999fa69a545aec9f615b282533ffc982879))
+* **gh-actions:** replace deprecated sonarcloud-github-action ([2705783](https://github.com/webern-unibas-ch/awg-app/commit/27057830695fcd5500d998cb6890eb1ffa48ac6c))
+
+
+### Documentation
+
+* **gh-actions:** update comment for SonarQube scan ([551ecf5](https://github.com/webern-unibas-ch/awg-app/commit/551ecf58f57e1108cbb1467b40689afd471a5287))
+
+
+### Styles
+
+* **edition:** center img in preface ([b030c87](https://github.com/webern-unibas-ch/awg-app/commit/b030c87ba3395f34a6f672fc31bfd6798f2a2b42))
+
+
+### Build System
+
+* **app:** drop support for node 18 and default to node 22 ([afebebe](https://github.com/webern-unibas-ch/awg-app/commit/afebebe09d141548142fc8c3a673eb1bfd4a98a6))
+* **app:** migrate schematicCollections to angular-eslint ([0f73a08](https://github.com/webern-unibas-ch/awg-app/commit/0f73a084905f0bd01454b3aeae3cd76f35850ec9))
+* **app:** move localize polyfills to angular.json ([16120f5](https://github.com/webern-unibas-ch/awg-app/commit/16120f5c2d2a2afc6d37c28a572779c73840b991))
+* **app:** update yarn ([3dce6f7](https://github.com/webern-unibas-ch/awg-app/commit/3dce6f7660fc39057a575fd8017ebe4dd1e3192e))
+* **deps-dev:** bump @commitlint/cli in the commitlint group ([707c8f3](https://github.com/webern-unibas-ch/awg-app/commit/707c8f37d43c076866ebe55d3bd2809e1b57bac1))
+* **deps-dev:** bump @eslint/js from 9.15.0 to 9.16.0 ([f6501da](https://github.com/webern-unibas-ch/awg-app/commit/f6501da002c8a6f7aac6d01e4d7f21f414c194ea))
+* **deps-dev:** bump @eslint/js from 9.16.0 to 9.17.0 ([db18f9a](https://github.com/webern-unibas-ch/awg-app/commit/db18f9aef5f2a05c16c5ceba96625262a83c4926))
+* **deps-dev:** bump @types/node from 22.10.1 to 22.10.2 ([2314703](https://github.com/webern-unibas-ch/awg-app/commit/23147032b7094ce19f4d37f69fd3ed4359c4d38a))
+* **deps-dev:** bump @types/node from 22.9.0 to 22.9.1 ([1aff3e8](https://github.com/webern-unibas-ch/awg-app/commit/1aff3e82230eea269199a7f3409ea578950c2e26))
+* **deps-dev:** bump @types/node from 22.9.1 to 22.10.0 ([ca10919](https://github.com/webern-unibas-ch/awg-app/commit/ca109195fe40e5b9d5b01f786255abba00a6ea0a))
+* **deps-dev:** bump eslint from 9.15.0 to 9.16.0 ([fd33e11](https://github.com/webern-unibas-ch/awg-app/commit/fd33e11de1eb787c641c478e0ddb6ff5c757f685))
+* **deps-dev:** bump eslint from 9.16.0 to 9.17.0 ([7cb0b91](https://github.com/webern-unibas-ch/awg-app/commit/7cb0b91dd6bd6066391454b74b6c178d05801227))
+* **deps-dev:** bump eslint-plugin-jsdoc from 50.5.0 to 50.6.0 ([dbae556](https://github.com/webern-unibas-ch/awg-app/commit/dbae556e7620415d8d760c39c2ccf290dde26b03))
+* **deps-dev:** bump eslint-plugin-jsdoc from 50.6.0 to 50.6.1 ([731e96d](https://github.com/webern-unibas-ch/awg-app/commit/731e96d10dbf9f5b38a81b15c7eaba7cafd63d1d))
+* **deps-dev:** bump globals from 15.12.0 to 15.13.0 ([a5daf7f](https://github.com/webern-unibas-ch/awg-app/commit/a5daf7fc73c88e7e03b105e8f2f734aaba89afad))
+* **deps-dev:** bump globals from 15.13.0 to 15.14.0 ([38f2734](https://github.com/webern-unibas-ch/awg-app/commit/38f27346e4fda1831aacdafedb762c88679d8dd5))
+* **deps-dev:** bump gzipper from 7.2.0 to 8.2.0 ([458ba38](https://github.com/webern-unibas-ch/awg-app/commit/458ba38a84f83cd3b735c035d8d7ddae5e4b1a62))
+* **deps-dev:** bump husky from 9.1.6 to 9.1.7 ([1128297](https://github.com/webern-unibas-ch/awg-app/commit/1128297b8d3b9e2adefa2495aca3a7c91d89225c))
+* **deps-dev:** bump jasmine-core from 5.4.0 to 5.5.0 ([945ef10](https://github.com/webern-unibas-ch/awg-app/commit/945ef1062bd1c9769306a02e50675567828485ef))
+* **deps-dev:** bump lint-staged from 15.2.10 to 15.2.11 ([8ae3f13](https://github.com/webern-unibas-ch/awg-app/commit/8ae3f136fc6e65979df291cb61309fef8e63c3bc))
+* **deps-dev:** bump prettier from 3.3.3 to 3.4.1 ([15f6f3b](https://github.com/webern-unibas-ch/awg-app/commit/15f6f3be2f3cda2a14f7dfb756255dc449d1c924))
+* **deps-dev:** bump prettier from 3.4.1 to 3.4.2 ([0ebd4a2](https://github.com/webern-unibas-ch/awg-app/commit/0ebd4a2bf6e804432ca1299358033b9562906073))
+* **deps-dev:** bump the angular-cli-devkit group with 2 updates ([262cf1c](https://github.com/webern-unibas-ch/awg-app/commit/262cf1cc71827f96f73238e275d96c7a2ede4645))
+* **deps-dev:** bump the angular-eslint group with 5 updates ([386c0c3](https://github.com/webern-unibas-ch/awg-app/commit/386c0c3e4f9540158a580d2c6d4869c736152034))
+* **deps-dev:** bump the angular-eslint group with 5 updates ([8f77e9b](https://github.com/webern-unibas-ch/awg-app/commit/8f77e9b660edd4c34b1953d8213ccb0f9ee98c4b))
+* **deps-dev:** bump the commitlint group with 2 updates ([bfab52e](https://github.com/webern-unibas-ch/awg-app/commit/bfab52e92b77c9823d62b09f85d99ea42a8a3e09))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([b5cd21d](https://github.com/webern-unibas-ch/awg-app/commit/b5cd21db2e4584c7c1621b0a04354a0b22255d7d))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([f2f1980](https://github.com/webern-unibas-ch/awg-app/commit/f2f19803b43a357f4507e8e3f3b92f0caf5f79ac))
+* **deps-dev:** bump typescript-eslint from 8.16.0 to 8.17.0 ([3d69ca6](https://github.com/webern-unibas-ch/awg-app/commit/3d69ca69d83c59ece07051ca0c402f9d70365377))
+* **deps-dev:** bump typescript-eslint from 8.17.0 to 8.18.0 ([87a17f2](https://github.com/webern-unibas-ch/awg-app/commit/87a17f29b35bf35d42f9bdcf56ca2fcde9668100))
+* **deps-dev:** bump typescript-eslint from 8.18.0 to 8.18.1 ([04eac90](https://github.com/webern-unibas-ch/awg-app/commit/04eac90cf30464f51e4af4d7d562ae0c188f5067))
+* **deps-dev:** migrate to eslint v9 flat config ([1411c51](https://github.com/webern-unibas-ch/awg-app/commit/1411c516673c52fe891087658b7ea1e2dfd5108c))
+* **deps:** bump @fortawesome/free-solid-svg-icons ([30602e6](https://github.com/webern-unibas-ch/awg-app/commit/30602e69521c197509b0d723d9d6e7bdf5093790))
+* **deps:** bump @fortawesome/free-solid-svg-icons ([92453f5](https://github.com/webern-unibas-ch/awg-app/commit/92453f528d3f6dc5ac2ad51e56e6abc377316be5))
+* **deps:** bump @fortawesome/free-solid-svg-icons ([f1fed1e](https://github.com/webern-unibas-ch/awg-app/commit/f1fed1ee35b486cc38ac00708856ff33359730e1))
+* **deps:** bump actions/dependency-review-action from 4.4.0 to 4.5.0 ([fbe0504](https://github.com/webern-unibas-ch/awg-app/commit/fbe050412a4e88b450694ce31f1054a558bdccb0))
+* **deps:** bump actions/upload-artifact from 4.4.3 to 4.5.0 ([a60824b](https://github.com/webern-unibas-ch/awg-app/commit/a60824b062b0d044b6bfe00eafc82791c02fb115))
+* **deps:** bump codecov/codecov-action from 4.6.0 to 5.0.1 ([844d8ee](https://github.com/webern-unibas-ch/awg-app/commit/844d8eef0e7946f9b176caceabf815fc375544e6))
+* **deps:** bump codecov/codecov-action from 5.0.1 to 5.0.2 ([2883d48](https://github.com/webern-unibas-ch/awg-app/commit/2883d484e49ce6b7c68f291880ec1020b032e806))
+* **deps:** bump codecov/codecov-action from 5.0.2 to 5.0.4 ([81e041f](https://github.com/webern-unibas-ch/awg-app/commit/81e041f05bc00cd9d28829f0e974a6d670089574))
+* **deps:** bump codecov/codecov-action from 5.0.4 to 5.0.7 ([5235b7b](https://github.com/webern-unibas-ch/awg-app/commit/5235b7b532b90dae7ec96f2e21e1d2e674ce384f))
+* **deps:** bump codecov/codecov-action from 5.0.7 to 5.1.1 ([0be13f7](https://github.com/webern-unibas-ch/awg-app/commit/0be13f7b17e0c882b0f0f258499ea2879eb1628f))
+* **deps:** bump codecov/codecov-action from 5.1.1 to 5.1.2 ([dfa8f93](https://github.com/webern-unibas-ch/awg-app/commit/dfa8f9344f714dfbbea82fe9c732692c6b0862a5))
+* **deps:** bump cross-spawn from 7.0.3 to 7.0.5 ([8ecdb2b](https://github.com/webern-unibas-ch/awg-app/commit/8ecdb2b4d8105a311f1fffb739052861c4d0738a))
+* **deps:** bump github/codeql-action from 3.27.4 to 3.27.5 ([50445e5](https://github.com/webern-unibas-ch/awg-app/commit/50445e5ee2566f9b80a2fa7173d841184b44470a))
+* **deps:** bump github/codeql-action from 3.27.5 to 3.27.6 ([23649c0](https://github.com/webern-unibas-ch/awg-app/commit/23649c09fb2c765d4f7b670788a21aa29e7e0833))
+* **deps:** bump github/codeql-action from 3.27.6 to 3.27.7 ([eccc5ac](https://github.com/webern-unibas-ch/awg-app/commit/eccc5ac39102e875e82d329e2772be0294905d87))
+* **deps:** bump github/codeql-action from 3.27.7 to 3.27.9 ([0bc56a3](https://github.com/webern-unibas-ch/awg-app/commit/0bc56a385622db74e59ac9cd2a6f0703bfa6c605))
+* **deps:** bump n3 from 1.23.0 to 1.23.1 ([b64df67](https://github.com/webern-unibas-ch/awg-app/commit/b64df677b5cdf3db9c96c3c52ed63f8860c250e5))
+* **deps:** bump softprops/action-gh-release from 2.1.0 to 2.2.0 ([4d8f0ea](https://github.com/webern-unibas-ch/awg-app/commit/4d8f0ea424c45e40aba3a7a7acc7138bef315dfd))
+* **deps:** bump SonarSource/sonarcloud-github-action ([5f818a2](https://github.com/webern-unibas-ch/awg-app/commit/5f818a2e0015a6fe5e2e3bab774d63cbefb5fa1d))
+* **deps:** bump SonarSource/sonarqube-scan-action from 4.1.0 to 4.2.1 ([cc1d802](https://github.com/webern-unibas-ch/awg-app/commit/cc1d802c861aba18310a5e17dc29611f30a4162f))
+* **deps:** bump step-security/harden-runner from 2.10.1 to 2.10.2 ([ee999cb](https://github.com/webern-unibas-ch/awg-app/commit/ee999cbed0508ec194d127b3fb2db08212fbf54c))
+* **deps:** bump the angular group with 11 updates ([3c2d3d4](https://github.com/webern-unibas-ch/awg-app/commit/3c2d3d4b96591a2aeba7e59ca38be0567ab285a9))
+* **deps:** remove font-awesome package (not needed anymore) ([dff3bdc](https://github.com/webern-unibas-ch/awg-app/commit/dff3bdcf3675fa50c4e1279d06f05facd72f1f31))
+
 ## [1.1.0](https://github.com/webern-unibas-ch/awg-app/compare/v1.0.1...v1.1.0) (2024-11-14)
 
 ### Features
