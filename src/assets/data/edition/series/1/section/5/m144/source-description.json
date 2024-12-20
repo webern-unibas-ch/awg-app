@@ -93,151 +93,157 @@
                         "id": "source_A_corr_1",
                         "label": "Korrekturen 1 (mit schwarzer Tinte ggf. auf Rasur)",
                         "evaluations": [],
-                        "comments": [
-                            {
-                                "blockHeader": "",
-                                "blockComments": [
-                                    {
-                                        "measure": "2",
-                                        "system": "Klav. u.",
-                                        "position": "5. Note",
-                                        "comment": "Unterstimmenschicht: Auf Rasur."
-                                    },
-                                    {
-                                        "measure": "3",
-                                        "system": "Ges.",
-                                        "position": "1. Note",
-                                        "comment": "Großschreibung <em>Gott</em> überschreibt <em>gott</em>."
-                                    },
-                                    {
-                                        "measure": "4",
-                                        "system": "",
-                                        "position": "(8/8)",
-                                        "comment": "Auf Rasur. Ante correcturam: vermutlich Taktstrich."
-                                    },
-                                    {
-                                        "measure": "5",
-                                        "system": "Klav. o.",
-                                        "position": "1/8",
-                                        "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b."
-                                    },
-                                    {
-                                        "measure": "5 <br /> bis 9",
-                                        "system": "Klav.",
-                                        "position": "3/8 <br /> 1/8",
-                                        "comment": "Auf zahlreichen Rasuren."
-                                    },
-                                    {
-                                        "measure": "6",
-                                        "system": "Ges.",
-                                        "position": "5/8",
-                                        "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>."
-                                    },
-                                    {
-                                        "measure": "7",
-                                        "system": "Ges.",
-                                        "position": "4/8",
-                                        "comment": "Auf Rasur. Ante correcturam: vermutlich e<sup>1</sup> oder es<sup>1</sup>."
-                                    },
-                                    {
-                                        "measure": "8",
-                                        "system": "Ges.",
-                                        "position": "4/8",
-                                        "comment": "Großschreibung <em>Mich</em> überschreibt <em>mich</em>."
-                                    },
-                                    {
-                                        "measure": "9",
-                                        "system": "Ges.",
-                                        "position": "1/8",
-                                        "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup>."
-                                    },
-                                    {
-                                        "measure": "10",
-                                        "system": "Klav. u.",
-                                        "position": "2–6/8",
-                                        "comment": "Auf Rasur."
-                                    },
-                                    {
-                                        "measure": "10",
-                                        "system": "Klav. u.",
-                                        "position": "6/8",
-                                        "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu B<sub>1</sub> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu H<sub>1</sub>."
-                                    },
-                                    {
-                                        "measure": "12",
-                                        "system": "Klav. o.",
-                                        "position": "4/8",
-                                        "comment": "Ende des Bogens bis nach T. 12 rasiert und geändert zu T. 12 4/8. <a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 12."
-                                    }
-                                ]
-                            }
-                        ]
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. u.",
+                                            "position": "5. Note",
+                                            "comment": "Unterstimmenschicht: Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Ges.",
+                                            "position": "1. Note",
+                                            "comment": "Großschreibung <em>Gott</em> überschreibt <em>gott</em>."
+                                        },
+                                        {
+                                            "measure": "4",
+                                            "system": "",
+                                            "position": "(8/8)",
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich Taktstrich."
+                                        },
+                                        {
+                                            "measure": "5",
+                                            "system": "Klav. o.",
+                                            "position": "1/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b."
+                                        },
+                                        {
+                                            "measure": "5 <br /> bis 9",
+                                            "system": "Klav.",
+                                            "position": "3/8 <br /> 1/8",
+                                            "comment": "Auf zahlreichen Rasuren."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Ges.",
+                                            "position": "5/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "7",
+                                            "system": "Ges.",
+                                            "position": "4/8",
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich e<sup>1</sup> oder es<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Ges.",
+                                            "position": "4/8",
+                                            "comment": "Großschreibung <em>Mich</em> überschreibt <em>mich</em>."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Ges.",
+                                            "position": "1/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. u.",
+                                            "position": "2–6/8",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. u.",
+                                            "position": "6/8",
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu B<sub>1</sub> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu H<sub>1</sub>."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. o.",
+                                            "position": "4/8",
+                                            "comment": "Ende des Bogens bis nach T. 12 rasiert und geändert zu T. 12 4/8. <a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 12."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                     },
                     {
                         "id": "source_A_corr_2",
                         "label": "Korrekturen 2 (mit Bleistift)",
                         "evaluations": [],
-                        "comments": [
-                            {
-                                "blockHeader": "",
-                                "blockComments": [
-                                    {
-                                        "measure": "6 <br /> bis 8",
-                                        "system": "Ges.",
-                                        "position": "",
-                                        "comment": "Korrekturskizze über dem System:  <br /> ##Abbildung##"
-                                    },
-                                    {
-                                        "measure": "7",
-                                        "system": "Klav.",
-                                        "position": "",
-                                        "comment": "Korrekturskizze:  <br /> ##Abbildung##"
-                                    },
-                                    {
-                                        "measure": "9",
-                                        "system": "Klav. u.",
-                                        "position": "2/8",
-                                        "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b hinzugefügt. Siehe TkA."
-                                    },
-                                    {
-                                        "measure": "9",
-                                        "system": "Klav. u.",
-                                        "position": "2/4",
-                                        "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> hinzugefügt."
-                                    },
-                                    {
-                                        "measure": "12",
-                                        "system": "Klav. o.",
-                                        "position": "4/8",
-                                        "comment": "f<sup>2</sup> gestrichen."
-                                    },
-                                    {
-                                        "measure": "13",
-                                        "system": "Ges.",
-                                        "position": "",
-                                        "comment": "Korrekturskizze über dem System:  <br /> ##Abbildung##"
-                                    },
-                                    {
-                                        "measure": "14",
-                                        "system": "Ges.",
-                                        "position": "1–4/8",
-                                        "comment": "Drei Achtelnoten und Achtelpause geändert zu drei triolische Achtelnoten und Viertelpause."
-                                    },
-                                    {
-                                        "measure": "14 <br /> bis 15",
-                                        "system": "",
-                                        "position": "(3/4)",
-                                        "comment": "T. 15 durch Einklammerung getilgt, Taktstrich nach T. 14 geändert zu Schlusstaktstrich und Fermaten zu 3/4 in Klav. o. sowie zu 6/8 in Klav. u. hinzugefügt mit rotem Buntstift."
-                                    },
-                                    {
-                                        "measure": "15",
-                                        "system": "Klav.",
-                                        "position": "2/8",
-                                        "comment": "<em>8 höher</em> hinzugefügt über Klav. o."
-                                    }
-                                ]
-                            }
-                        ]
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "6 <br /> bis 8",
+                                            "system": "Ges.",
+                                            "position": "",
+                                            "comment": "Korrekturskizze über dem System:  <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "7",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Korrekturskizze:  <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. u.",
+                                            "position": "2/8",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b hinzugefügt. Siehe TkA."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. o.",
+                                            "position": "4/8",
+                                            "comment": "f<sup>2</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Ges.",
+                                            "position": "",
+                                            "comment": "Korrekturskizze über dem System:  <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "14",
+                                            "system": "Ges.",
+                                            "position": "1–4/8",
+                                            "comment": "Drei Achtelnoten und Achtelpause geändert zu drei triolische Achtelnoten und Viertelpause."
+                                        },
+                                        {
+                                            "measure": "14 <br /> bis 15",
+                                            "system": "",
+                                            "position": "(3/4)",
+                                            "comment": "T. 15 durch Einklammerung getilgt, Taktstrich nach T. 14 geändert zu Schlusstaktstrich und Fermaten zu 3/4 in Klav. o. sowie zu 6/8 in Klav. u. hinzugefügt mit rotem Buntstift."
+                                        },
+                                        {
+                                            "measure": "15",
+                                            "system": "Klav.",
+                                            "position": "2/8",
+                                            "comment": "<em>8 höher</em> hinzugefügt über Klav. o."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                     }
                 ]
             }

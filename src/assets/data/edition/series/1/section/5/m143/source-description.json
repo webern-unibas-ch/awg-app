@@ -136,181 +136,187 @@
                         "id": "source_A_corr_1",
                         "label": "Korrekturen 1 in <strong>A</strong> (mit schwarzer Tinte ggf. auf Rasur)",
                         "evaluations": [],
-                        "comments": [
-                            {
-                                "blockHeader": "",
-                                "blockComments": [
-                                    {
-                                        "measure": "1",
-                                        "system": "Klav. u.",
-                                        "position": "1. Note",
-                                        "comment": "Unterstimmenschicht: auf Rasur. Ante correcturam: vermutlich cis oder Cis/cis."
-                                    },
-                                    {
-                                        "measure": "2",
-                                        "system": "Klav. u.",
-                                        "position": "1. Note",
-                                        "comment": "Oberstimmenschicht: Viertelnote e/ais überschreibt Ganze Note e/ais."
-                                    },
-                                    {
-                                        "measure": "7",
-                                        "system": "Klav. u.",
-                                        "position": "3. Note",
-                                        "comment": "Auf Rasur. Ante correcturam: vermutlich B/b."
-                                    },
-                                    {
-                                        "measure": "9",
-                                        "system": "Klav. o.",
-                                        "position": "3/8",
-                                        "comment": "Achtelfähnchen rasiert und geändert zu Achtelbalken."
-                                    },
-                                    {
-                                        "measure": "16",
-                                        "system": "Klav. o.",
-                                        "position": "1–3/4",
-                                        "comment": "Decrescendogabel auf Rasur."
-                                    },
-                                    {
-                                        "measure": "21",
-                                        "system": "Ges.",
-                                        "position": "1/8",
-                                        "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup>."
-                                    },
-                                    {
-                                        "measure": "23",
-                                        "system": "Klav. u.",
-                                        "position": "3. Note",
-                                        "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[p]')}}</span>."
-                                    },
-                                    {
-                                        "measure": "26",
-                                        "system": "Klav. u.",
-                                        "position": "(2/2)",
-                                        "comment": "Oberstimmenschicht: Halbe Note B überschreibt ausgefüllten Notenkopf. Unterstimmenschicht: 3/4 auf Rasur. Ante correcturam: vermutlich Halbe Note E."
-                                    },
-                                    {
-                                        "measure": "28",
-                                        "system": "Klav. u.",
-                                        "position": "1/2",
-                                        "comment": "Unterstimmenschicht: auf Rasur."
-                                    },
-                                    {
-                                        "measure": "30",
-                                        "system": "Klav. u.",
-                                        "position": "2/4",
-                                        "comment": "Auf Rasur."
-                                    },
-                                    {
-                                        "measure": "nach 30",
-                                        "system": "",
-                                        "position": "",
-                                        "comment": "Rasuren. Ante correcturam: weiterer Takt mit Schlusstaktstrich."
-                                    }
-                                ]
-                            }
-                        ]
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: auf Rasur. Ante correcturam: vermutlich cis oder Cis/cis."
+                                        },
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Oberstimmenschicht: Viertelnote e/ais überschreibt Ganze Note e/ais."
+                                        },
+                                        {
+                                            "measure": "7",
+                                            "system": "Klav. u.",
+                                            "position": "3. Note",
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich B/b."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. o.",
+                                            "position": "3/8",
+                                            "comment": "Achtelfähnchen rasiert und geändert zu Achtelbalken."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "Klav. o.",
+                                            "position": "1–3/4",
+                                            "comment": "Decrescendogabel auf Rasur."
+                                        },
+                                        {
+                                            "measure": "21",
+                                            "system": "Ges.",
+                                            "position": "1/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "23",
+                                            "system": "Klav. u.",
+                                            "position": "3. Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[p]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "26",
+                                            "system": "Klav. u.",
+                                            "position": "(2/2)",
+                                            "comment": "Oberstimmenschicht: Halbe Note B überschreibt ausgefüllten Notenkopf. Unterstimmenschicht: 3/4 auf Rasur. Ante correcturam: vermutlich Halbe Note E."
+                                        },
+                                        {
+                                            "measure": "28",
+                                            "system": "Klav. u.",
+                                            "position": "1/2",
+                                            "comment": "Unterstimmenschicht: auf Rasur."
+                                        },
+                                        {
+                                            "measure": "30",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "nach 30",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "Rasuren. Ante correcturam: weiterer Takt mit Schlusstaktstrich."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                     },
                     {
                         "id": "source_A_corr_2",
                         "label": "Korrekturen 2 in <strong>A</strong> (mit Bleistift)",
                         "evaluations": [],
-                        "comments": [
-                            {
-                                "blockHeader": "",
-                                "blockComments": [
-                                    {
-                                        "measure": "9",
-                                        "system": "Ges.",
-                                        "position": "4/8–8/8",
-                                        "comment": "Korrekturskizze am rechten Seitenrand:  <br /> ##Abbildung##"
-                                    },
-                                    {
-                                        "measure": "11",
-                                        "system": "Klav. o.",
-                                        "position": "8/8",
-                                        "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>3</sup> hinzugefügt."
-                                    },
-                                    {
-                                        "measure": "14",
-                                        "system": "Ges.",
-                                        "position": "4/8, 3. Note",
-                                        "comment": "Tonbuchstabe <em>g</em> am rechten Seitenrand. Bezug nicht eindeutig."
-                                    },
-                                    {
-                                        "measure": "14",
-                                        "system": "Klav. o.",
-                                        "position": "4/4",
-                                        "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> hinzugefügt."
-                                    },
-                                    {
-                                        "measure": "14 <br /> bis 15",
-                                        "system": "Klav. o.",
-                                        "position": "4/4 <br /> 1/4",
-                                        "comment": "Ligaturbögen hinzugefügt."
-                                    },
-                                    {
-                                        "measure": "15–16",
-                                        "system": "Klav. u.",
-                                        "position": "",
-                                        "comment": "Dynamik überschreibt:  <br /> ##Abbildung##"
-                                    },
-                                    {
-                                        "measure": "15",
-                                        "system": "Klav. o.",
-                                        "position": "4/4",
-                                        "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[mf]')}}</span>."
-                                    },
-                                    {
-                                        "measure": "16",
-                                        "system": "Klav. u.",
-                                        "position": "3.–4. Note",
-                                        "comment": "Ligaturbogen hinzugefügt."
-                                    },
-                                    {
-                                        "measure": "16",
-                                        "system": "Klav. o.",
-                                        "position": "3/4",
-                                        "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> hinzugefügt."
-                                    },
-                                    {
-                                        "measure": "16 <br /> bis 17",
-                                        "system": "Klav. o.",
-                                        "position": "4/4 <br /> 1/4",
-                                        "comment": "Zuerst: Crescendogabel, <span class='glyph'>{{ref.getGlyph('[f]')}}</span> gestrichen.  <br /> Dann: Crescendogabel wieder hinzugefügt."
-                                    },
-                                    {
-                                        "measure": "17",
-                                        "system": "Klav. o.",
-                                        "position": "3. Note",
-                                        "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
-                                    },
-                                    {
-                                        "measure": "18",
-                                        "system": "Ges.",
-                                        "position": "4/8",
-                                        "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
-                                    },
-                                    {
-                                        "measure": "20",
-                                        "system": "Ges.",
-                                        "position": "4/8",
-                                        "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
-                                    },
-                                    {
-                                        "measure": "21",
-                                        "system": "Ges.",
-                                        "position": "2/8",
-                                        "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
-                                    },
-                                    {
-                                        "measure": "24",
-                                        "system": "Ges.",
-                                        "position": "1/8",
-                                        "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
-                                    }
-                                ]
-                            }
-                        ]
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "9",
+                                            "system": "Ges.",
+                                            "position": "4/8–8/8",
+                                            "comment": "Korrekturskizze am rechten Seitenrand:  <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "11",
+                                            "system": "Klav. o.",
+                                            "position": "8/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>3</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "14",
+                                            "system": "Ges.",
+                                            "position": "4/8, 3. Note",
+                                            "comment": "Tonbuchstabe <em>g</em> am rechten Seitenrand. Bezug nicht eindeutig."
+                                        },
+                                        {
+                                            "measure": "14",
+                                            "system": "Klav. o.",
+                                            "position": "4/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "14 <br /> bis 15",
+                                            "system": "Klav. o.",
+                                            "position": "4/4 <br /> 1/4",
+                                            "comment": "Ligaturbögen hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "15–16",
+                                            "system": "Klav. u.",
+                                            "position": "",
+                                            "comment": "Dynamik überschreibt:  <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "15",
+                                            "system": "Klav. o.",
+                                            "position": "4/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[mf]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "Klav. u.",
+                                            "position": "3.–4. Note",
+                                            "comment": "Ligaturbogen hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "16 <br /> bis 17",
+                                            "system": "Klav. o.",
+                                            "position": "4/4 <br /> 1/4",
+                                            "comment": "Zuerst: Crescendogabel, <span class='glyph'>{{ref.getGlyph('[f]')}}</span> gestrichen.  <br /> Dann: Crescendogabel wieder hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "17",
+                                            "system": "Klav. o.",
+                                            "position": "3. Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "18",
+                                            "system": "Ges.",
+                                            "position": "4/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "Ges.",
+                                            "position": "4/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "21",
+                                            "system": "Ges.",
+                                            "position": "2/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "24",
+                                            "system": "Ges.",
+                                            "position": "1/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> hinzugefügt."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                     }
                 ]
             }
