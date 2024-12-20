@@ -1,0 +1,2721 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">awg-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  EditionIntroComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The EditionIntro component.</p>
+<p>It contains the intro section
+of the edition view of the app.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnDestroy</code>
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>awg-edition-intro</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./edition-intro.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./edition-intro.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_destroyed$" >_destroyed$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_editionDataService" >_editionDataService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_editionStateService" >_editionStateService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_router" >_router</a>
+                            </li>
+                            <li>
+                                <a href="#currentLanguage" >currentLanguage</a>
+                            </li>
+                            <li>
+                                <a href="#editionComplex" >editionComplex</a>
+                            </li>
+                            <li>
+                                <a href="#editionIntroData$" >editionIntroData$</a>
+                            </li>
+                            <li>
+                                <a href="#errorObject" >errorObject</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#modal" >modal</a>
+                            </li>
+                            <li>
+                                <a href="#notesLabels" >notesLabels</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#UTILS" >UTILS</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_extractUrlSegments" >_extractUrlSegments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_fetchAndFilterIntroData" >_fetchAndFilterIntroData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_filterSectionIntroDataById" >_filterSectionIntroDataById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_initScrollListener" >_initScrollListener</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_isNavigationEndToIntro" >_isNavigationEndToIntro</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_loadEditionIntroData" >_loadEditionIntroData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_navigateWithComplexId" >_navigateWithComplexId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_onIntroScroll" >_onIntroScroll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_updateEditionState" >_updateEditionState</a>
+                            </li>
+                            <li>
+                                <a href="#getEditionIntroData" >getEditionIntroData</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onIntroFragmentNavigate" >onIntroFragmentNavigate</a>
+                            </li>
+                            <li>
+                                <a href="#onLanguageSet" >onLanguageSet</a>
+                            </li>
+                            <li>
+                                <a href="#onModalOpen" >onModalOpen</a>
+                            </li>
+                            <li>
+                                <a href="#onReportFragmentNavigate" >onReportFragmentNavigate</a>
+                            </li>
+                            <li>
+                                <a href="#onSvgSheetSelect" >onSvgSheetSelect</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#editionRouteConstants" >editionRouteConstants</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:103</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the EditionIntroComponent.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_extractUrlSegments"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_extractUrlSegments</b></span>
+                        <a href="#_extractUrlSegments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_extractUrlSegments(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="254"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:254</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _extractUrlSegments.</p>
+<p>It extracts the series and section number from a given URL.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given URL.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>literal type</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The extracted series and section number.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_fetchAndFilterIntroData"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_fetchAndFilterIntroData</b></span>
+                        <a href="#_fetchAndFilterIntroData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_fetchAndFilterIntroData(seriesRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, sectionRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, complex: <a href="../classes/EditionComplex.html" target="_self">EditionComplex | null</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="288"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:288</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _fetchAndFilterIntroData.</p>
+<p>It fetches the intro data and, if needed,
+filters it by a given block id for the edition complex.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>seriesRoute</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given series route.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>sectionRoute</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given section route.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>complex</td>
+                                            <td>
+                                                            <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex | null</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given edition complex.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;IntroList&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The filtered intro data.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_filterSectionIntroDataById"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_filterSectionIntroDataById</b></span>
+                        <a href="#_filterSectionIntroDataById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_filterSectionIntroDataById(sectionIntroData: <a href="../classes/IntroList.html" target="_self">IntroList</a>, blockId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="320"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:320</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _filterSectionIntroDataById.</p>
+<p>It filters the section intro data by a given block id.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sectionIntroData</td>
+                                            <td>
+                                                            <code><a href="../classes/IntroList.html" target="_self" >IntroList</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given section intro data.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>blockId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given block id.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/IntroList.html" target="_self" >IntroList</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The filtered section intro data.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_initScrollListener"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_initScrollListener</b></span>
+                        <a href="#_initScrollListener"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_initScrollListener()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="337"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:337</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _initScrollListener.</p>
+<p>It initializes the scroll listener for the window.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Initializes the scroll listener.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_isNavigationEndToIntro"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_isNavigationEndToIntro</b></span>
+                        <a href="#_isNavigationEndToIntro"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_isNavigationEndToIntro(events: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="354"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:354</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _isNavigationEndToIntro.</p>
+<p>It checks if the given event is a NavigationEnd event
+and if the URL contains &#39;intro&#39;.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>events</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given events.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>NavigationEnd</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The result of the check.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_loadEditionIntroData"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_loadEditionIntroData</b></span>
+                        <a href="#_loadEditionIntroData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_loadEditionIntroData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="367"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:367</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _loadEditionIntroData.</p>
+<p>It gets the current edition complex from the EditionStateService
+and the observable of the corresponding intro data
+from the EditionDataService.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Loads the intro data.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_navigateWithComplexId"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_navigateWithComplexId</b></span>
+                        <a href="#_navigateWithComplexId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_navigateWithComplexId(complexId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, targetRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, navigationExtras: NavigationExtras)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="397"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:397</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _navigateWithComplexId.</p>
+<p>It navigates to a target route using the provided complexId.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>complexId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given complex id.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>targetRoute</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given target route.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>navigationExtras</td>
+                                            <td>
+                                                        <code>NavigationExtras</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given navigation extras.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Navigates to the target route.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_onIntroScroll"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_onIntroScroll</b></span>
+                        <a href="#_onIntroScroll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_onIntroScroll(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="413"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:413</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _onIntroScroll.</p>
+<p>It handles the scroll event on the intro window
+and highlights the corresponding section in the intro navigation.</p>
+<p>on window scroll.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given scroll event.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Highlights the corresponding section in the intro navigation
+on window scroll.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_updateEditionState"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_updateEditionState</b></span>
+                        <a href="#_updateEditionState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_updateEditionState(seriesNumber: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, sectionNumber: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="447"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:447</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _updateEditionState.</p>
+<p>It updates the selected edition series and section
+and the introView in the EditionStateService.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>seriesNumber</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given series number.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>sectionNumber</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given section number.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Updates the selected edition series, section, and introView.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEditionIntroData"></a>
+                    <span class="name">
+                        <span ><b>getEditionIntroData</b></span>
+                        <a href="#getEditionIntroData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getEditionIntroData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="154"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:154</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: getEditionIntroData.</p>
+<p>It updates the current edition state and loads the intro data.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Updates the current edition state and loads the intro data.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="139"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:139</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Angular life cycle hook: ngOnDestroy.</p>
+<p>It calls the containing methods
+when destroying the component.</p>
+<p>Destroys subscriptions.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="127"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:127</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
+<p>It calls the containing methods
+when initializing the component.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onIntroFragmentNavigate"></a>
+                    <span class="name">
+                        <span ><b>onIntroFragmentNavigate</b></span>
+                        <a href="#onIntroFragmentNavigate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onIntroFragmentNavigate(introIds: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="177"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:177</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: onIntroFragmentNavigate.</p>
+<p>It navigates to the &#39;/intro/&#39; route with the given complexId and fragmentId.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>introIds</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given intro ids as { complexId: string, fragmentId: string }.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Navigates to the edition intro fragment.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onLanguageSet"></a>
+                    <span class="name">
+                        <span ><b>onLanguageSet</b></span>
+                        <a href="#onLanguageSet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onLanguageSet(language: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="192"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:192</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: onLanguageSet.</p>
+<p>It sets the current language of the edition intro.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>language</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given language number.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the current language.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onModalOpen"></a>
+                    <span class="name">
+                        <span ><b>onModalOpen</b></span>
+                        <a href="#onModalOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onModalOpen(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="204"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:204</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: onModalOpen.</p>
+<p>It opens the <a href="../components/ModalComponent.html">ModalComponent</a> with a given id of a modal snippet text.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given modal snippet id.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Opens the modal with the snippet id.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onReportFragmentNavigate"></a>
+                    <span class="name">
+                        <span ><b>onReportFragmentNavigate</b></span>
+                        <a href="#onReportFragmentNavigate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onReportFragmentNavigate(reportIds: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="219"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:219</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: onReportFragmentNavigate.</p>
+<p>It navigates to the &#39;/report/&#39; route with the given complexId and fragmentId.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>reportIds</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given report ids as { complexId: string, fragmentId: string }.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Navigates to the edition report fragment.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSvgSheetSelect"></a>
+                    <span class="name">
+                        <span ><b>onSvgSheetSelect</b></span>
+                        <a href="#onSvgSheetSelect"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSvgSheetSelect(sheetIds: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="236"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:236</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: onSvgSheetSelect.</p>
+<p>It navigates to the &#39;/sheet/&#39; route using the provided sheetId
+within the context of an edition complex identified by the provided complexId.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sheetIds</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given sheet ids as { complexId: string, sheetId: string }.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Navigates to the edition sheets.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_destroyed$"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_destroyed$</b></span>
+                        <a href="#_destroyed$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subject&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subject&lt;boolean&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:82</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly variable: _destroyed$.</p>
+<p>Subject to emit a truthy value in the ngOnDestroy lifecycle hook.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_editionDataService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_editionDataService</b></span>
+                        <a href="#_editionDataService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionDataService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _editionDataService.</p>
+<p>It keeps the instance of the injected EditionDataService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_editionStateService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_editionStateService</b></span>
+                        <a href="#_editionStateService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionStateService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _editionStateService.</p>
+<p>It keeps the instance of the injected EditionStateService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_router</b></span>
+                        <a href="#_router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _router.</p>
+<p>It keeps the instance of the injected Angular Router.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentLanguage"></a>
+                    <span class="name">
+                        <span ><b>currentLanguage</b></span>
+                        <a href="#currentLanguage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: currentLanguage.</p>
+<p>It keeps the current language of the edition intro: 0 for German, 1 for English.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editionComplex"></a>
+                    <span class="name">
+                        <span ><b>editionComplex</b></span>
+                        <a href="#editionComplex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: editionComplex.</p>
+<p>It keeps the information about the current edition complex.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editionIntroData$"></a>
+                    <span class="name">
+                        <span ><b>editionIntroData$</b></span>
+                        <a href="#editionIntroData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;IntroList&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: editionIntroData$.</p>
+<p>It keeps the observable of the edition intro data.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorObject"></a>
+                    <span class="name">
+                        <span ><b>errorObject</b></span>
+                        <a href="#errorObject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: errorObject.</p>
+<p>It keeps an errorObject for the service calls.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modal"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>modal</b></span>
+                        <a href="#modal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/ModalComponent.html" target="_self" >ModalComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;modal&#x27;, {static: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ViewChild variable: modal.</p>
+<p>It keeps the reference to the awg-modal.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notesLabels"></a>
+                    <span class="name">
+                        <span ><b>notesLabels</b></span>
+                        <a href="#notesLabels"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Map&lt;number | string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map([
+        [0, &#x27;Anmerkungen&#x27;],
+        [1, &#x27;Notes&#x27;],
+    ])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: notesLabels.</p>
+<p>It keeps the labels for the notes in the edition intro.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UTILS"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>UTILS</b></span>
+                        <a href="#UTILS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(UtilityService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:75</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public readonly injection variable: UTILS.</p>
+<p>It keeps the instance of the injected UtilityService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editionRouteConstants"></a>
+                        <span class="name"><b>editionRouteConstants</b><a href="#editionRouteConstants"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>editionRouteConstants()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:117</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Getter variable: editionRouteConstants.</p>
+<p> It returns the EDITION_ROUTE_CONSTANTS.</p>
+</div>
+
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, OnDestroy, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
+import { NavigationEnd, NavigationExtras, Router } from &#x27;@angular/router&#x27;;
+
+import { combineLatest, EMPTY, fromEvent, Observable, of as observableOf, Subject } from &#x27;rxjs&#x27;;
+import { catchError, map, startWith, switchMap, takeUntil, throttleTime } from &#x27;rxjs/operators&#x27;;
+
+import { UtilityService } from &#x27;@awg-core/services&#x27;;
+import { ModalComponent } from &#x27;@awg-shared/modal/modal.component&#x27;;
+import { EDITION_ROUTE_CONSTANTS } from &#x27;@awg-views/edition-view/edition-route-constants&#x27;;
+import { EditionComplex, EditionOutlineSection, EditionOutlineSeries, IntroList } from &#x27;@awg-views/edition-view/models&#x27;;
+import { EditionDataService, EditionOutlineService, EditionStateService } from &#x27;@awg-views/edition-view/services&#x27;;
+
+/**
+ * The EditionIntro component.
+ *
+ * It contains the intro section
+ * of the edition view of the app.
+ */
+@Component({
+    selector: &#x27;awg-edition-intro&#x27;,
+    templateUrl: &#x27;./edition-intro.component.html&#x27;,
+    styleUrls: [&#x27;./edition-intro.component.scss&#x27;],
+})
+export class EditionIntroComponent implements OnDestroy, OnInit {
+    /**
+     * ViewChild variable: modal.
+     *
+     * It keeps the reference to the awg-modal.
+     */
+    @ViewChild(&#x27;modal&#x27;, { static: true }) modal: ModalComponent;
+
+    /**
+     * Public variable: currentLanguage.
+     *
+     * It keeps the current language of the edition intro: 0 for German, 1 for English.
+     */
+    currentLanguage &#x3D; 0;
+
+    /**
+     * Public variable: notesLabels.
+     *
+     * It keeps the labels for the notes in the edition intro.
+     */
+    notesLabels: Map&lt;number, string&gt; &#x3D; new Map([
+        [0, &#x27;Anmerkungen&#x27;],
+        [1, &#x27;Notes&#x27;],
+    ]);
+
+    /**
+     * Public variable: editionComplex.
+     *
+     * It keeps the information about the current edition complex.
+     */
+    editionComplex: EditionComplex;
+
+    /**
+     * Public variable: editionIntroData$.
+     *
+     * It keeps the observable of the edition intro data.
+     */
+    editionIntroData$: Observable&lt;IntroList&gt;;
+
+    /**
+     * Public variable: errorObject.
+     *
+     * It keeps an errorObject for the service calls.
+     */
+    errorObject &#x3D; null;
+
+    /**
+     * Public readonly injection variable: UTILS.
+     *
+     * It keeps the instance of the injected UtilityService.
+     */
+    readonly UTILS &#x3D; inject(UtilityService);
+
+    /**
+     * Private readonly variable: _destroyed$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private readonly _destroyed$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
+
+    /**
+     * Private readonly injection variable: _editionDataService.
+     *
+     * It keeps the instance of the injected EditionDataService.
+     */
+    private readonly _editionDataService &#x3D; inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService &#x3D; inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It keeps the instance of the injected Angular Router.
+     */
+    private readonly _router &#x3D; inject(Router);
+
+    /**
+     * Constructor of the EditionIntroComponent.
+     */
+    constructor() {
+        this._initScrollListener();
+    }
+
+    /**
+     * Getter variable: editionRouteConstants.
+     *
+     *  It returns the EDITION_ROUTE_CONSTANTS.
+     **/
+    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
+        return EDITION_ROUTE_CONSTANTS;
+    }
+
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
+    ngOnInit() {
+        this.getEditionIntroData();
+    }
+
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     *
+     * Destroys subscriptions.
+     */
+    ngOnDestroy() {
+        this._editionStateService.clearIsIntroView();
+        this.editionIntroData$ &#x3D; undefined;
+
+        this._destroyed$.next(true);
+        this._destroyed$.complete();
+    }
+
+    /**
+     * Public method: getEditionIntroData.
+     *
+     * It updates the current edition state and loads the intro data.
+     *
+     * @returns {void} Updates the current edition state and loads the intro data.
+     */
+    getEditionIntroData(): void {
+        this._router.events.subscribe(events &#x3D;&gt; {
+            if (this._isNavigationEndToIntro(events)) {
+                const { seriesNumber, sectionNumber } &#x3D; this._extractUrlSegments(events.urlAfterRedirects);
+
+                if (seriesNumber &amp;&amp; sectionNumber) {
+                    this._updateEditionState(seriesNumber, sectionNumber);
+                } else {
+                    console.error(&#x27;Invalid URL segments:&#x27;, events.urlAfterRedirects);
+                }
+            }
+        });
+        this._loadEditionIntroData();
+    }
+
+    /**
+     * Public method: onIntroFragmentNavigate.
+     *
+     * It navigates to the &#x27;/intro/&#x27; route with the given complexId and fragmentId.
+     *
+     * @param {object} introIds The given intro ids as { complexId: string, fragmentId: string }.
+     * @returns {void} Navigates to the edition intro fragment.
+     */
+    onIntroFragmentNavigate(introIds: { complexId: string; fragmentId: string }): void {
+        const navigationExtras: NavigationExtras &#x3D; {
+            fragment: introIds?.fragmentId ?? &#x27;&#x27;,
+        };
+        this._router.navigate([], navigationExtras);
+    }
+
+    /**
+     * Public method: onLanguageSet.
+     *
+     * It sets the current language of the edition intro.
+     *
+     * @param {number} language The given language number.
+     * @returns {void} Sets the current language.
+     */
+    onLanguageSet(language: number): void {
+        this.currentLanguage &#x3D; language;
+    }
+
+    /**
+     * Public method: onModalOpen.
+     *
+     * It opens the {@link ModalComponent} with a given id of a modal snippet text.
+     *
+     * @param {string} id The given modal snippet id.
+     * @returns {void} Opens the modal with the snippet id.
+     */
+    onModalOpen(id: string): void {
+        if (!id) {
+            return;
+        }
+        this.modal.open(id);
+    }
+
+    /**
+     * Public method: onReportFragmentNavigate.
+     *
+     * It navigates to the &#x27;/report/&#x27; route with the given complexId and fragmentId.
+     *
+     * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
+     * @returns {void} Navigates to the edition report fragment.
+     */
+    onReportFragmentNavigate(reportIds: { complexId: string; fragmentId: string }): void {
+        const reportRoute &#x3D; this.editionRouteConstants.EDITION_REPORT.route;
+        const navigationExtras: NavigationExtras &#x3D; {
+            fragment: reportIds?.fragmentId ?? &#x27;&#x27;,
+        };
+        this._navigateWithComplexId(reportIds?.complexId, reportRoute, navigationExtras);
+    }
+
+    /**
+     * Public method: onSvgSheetSelect.
+     *
+     * It navigates to the &#x27;/sheet/&#x27; route using the provided sheetId
+     * within the context of an edition complex identified by the provided complexId.
+     *
+     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
+     * @returns {void} Navigates to the edition sheets.
+     */
+    onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
+        const sheetRoute &#x3D; this.editionRouteConstants.EDITION_SHEETS.route;
+        const navigationExtras: NavigationExtras &#x3D; {
+            queryParams: { id: sheetIds?.sheetId ?? &#x27;&#x27; },
+            // .queryParamsHandling: &#x27;&#x27;,
+        };
+
+        this._navigateWithComplexId(sheetIds?.complexId, sheetRoute, navigationExtras);
+    }
+
+    /**
+     * Private method: _extractUrlSegments.
+     *
+     * It extracts the series and section number from a given URL.
+     *
+     * @param {string} url The given URL.
+     * @returns {{ seriesNumber: string | undefined; sectionNumber: string | undefined }} The extracted series and section number.
+     */
+    private _extractUrlSegments(url: string): { seriesNumber: string | undefined; sectionNumber: string | undefined } {
+        if (!url) {
+            return { seriesNumber: undefined, sectionNumber: undefined };
+        }
+        const urlSegments &#x3D; url.split(&#x27;/&#x27;);
+        const seriesIndex &#x3D; urlSegments.indexOf(&#x27;series&#x27;) + 1;
+        const sectionIndex &#x3D; urlSegments.indexOf(&#x27;section&#x27;) + 1;
+
+        const seriesNumber &#x3D; urlSegments[seriesIndex];
+        const sectionNumber &#x3D; urlSegments[sectionIndex];
+
+        const isValidSeriesNumber &#x3D; (value: string | undefined): boolean &#x3D;&gt;
+            value !&#x3D;&#x3D; undefined &amp;&amp; /^[1-3]$/.test(value);
+
+        const isValidSectionNumber &#x3D; (value: string | undefined): boolean &#x3D;&gt;
+            value !&#x3D;&#x3D; undefined &amp;&amp; /^[1-5]+[ab]?$/.test(value);
+
+        return {
+            seriesNumber: isValidSeriesNumber(seriesNumber) ? seriesNumber : undefined,
+            sectionNumber: isValidSectionNumber(sectionNumber) ? sectionNumber : undefined,
+        };
+    }
+
+    /**
+     * Private method: _fetchAndFilterIntroData.
+     *
+     * It fetches the intro data and, if needed,
+     * filters it by a given block id for the edition complex.
+     *
+     * @param {string} seriesRoute The given series route.
+     * @param {string} sectionRoute The given section route.
+     * @param {EditionComplex} complex The given edition complex.
+     * @returns {Observable&lt;IntroList&gt;} The filtered intro data.
+     */
+    private _fetchAndFilterIntroData(
+        seriesRoute: string,
+        sectionRoute: string,
+        complex: EditionComplex | null
+    ): Observable&lt;IntroList&gt; {
+        return this._editionDataService.getEditionSectionIntroData(seriesRoute, sectionRoute).pipe(
+            switchMap(sectionIntroData &#x3D;&gt; {
+                if (complex) {
+                    this.editionComplex &#x3D; complex;
+                    return this._editionDataService.getEditionComplexIntroData(this.editionComplex).pipe(
+                        map(complexIntroData &#x3D;&gt; {
+                            const blockId &#x3D; complexIntroData.intro[0].id;
+                            return this._filterSectionIntroDataById(sectionIntroData, blockId);
+                        })
+                    );
+                } else {
+                    this.editionComplex &#x3D; undefined;
+                    return observableOf(sectionIntroData);
+                }
+            })
+        );
+    }
+
+    /**
+     * Private method: _filterSectionIntroDataById.
+     *
+     * It filters the section intro data by a given block id.
+     *
+     * @param {IntroList} sectionIntroData The given section intro data.
+     * @param {string} blockId The given block id.
+     * @returns {IntroList} The filtered section intro data.
+     */
+    private _filterSectionIntroDataById(sectionIntroData: IntroList, blockId: string): IntroList {
+        return {
+            ...sectionIntroData,
+            intro: sectionIntroData.intro.map(section &#x3D;&gt; ({
+                ...section,
+                content: section.content.filter(contentBlock &#x3D;&gt; contentBlock.blockId &#x3D;&#x3D;&#x3D; blockId),
+            })),
+        };
+    }
+
+    /**
+     * Private method: _initScrollListener.
+     *
+     * It initializes the scroll listener for the window.
+     *
+     * @returns {void} Initializes the scroll listener.
+     */
+    private _initScrollListener(): void {
+        fromEvent(window, &#x27;scroll&#x27;)
+            .pipe(throttleTime(200), takeUntil(this._destroyed$))
+            .subscribe({
+                next: event &#x3D;&gt; this._onIntroScroll(event),
+            });
+    }
+
+    /**
+     * Private method: _isNavigationEndToIntro.
+     *
+     * It checks if the given event is a NavigationEnd event
+     * and if the URL contains &#x27;intro&#x27;.
+     *
+     * @param {any} events The given events.
+     * @returns {boolean} The result of the check.
+     */
+    private _isNavigationEndToIntro(events: any): events is NavigationEnd {
+        return events instanceof NavigationEnd &amp;&amp; events.urlAfterRedirects?.includes(&#x27;intro&#x27;);
+    }
+
+    /**
+     * Private method: _loadEditionIntroData.
+     *
+     * It gets the current edition complex from the EditionStateService
+     * and the observable of the corresponding intro data
+     * from the EditionDataService.
+     *
+     * @returns {void} Loads the intro data.
+     */
+    private _loadEditionIntroData(): void {
+        this.editionIntroData$ &#x3D; combineLatest([
+            this._editionStateService.getSelectedEditionSeries(),
+            this._editionStateService.getSelectedEditionSection(),
+            this._editionStateService.getSelectedEditionComplex().pipe(startWith(null)),
+        ]).pipe(
+            switchMap(([series, section, complex]) &#x3D;&gt; {
+                if (series &amp;&amp; section) {
+                    return this._fetchAndFilterIntroData(series.series.route, section.section.route, complex);
+                } else {
+                    return EMPTY;
+                }
+            }),
+            catchError(err &#x3D;&gt; {
+                this.errorObject &#x3D; err;
+                return EMPTY;
+            })
+        );
+    }
+
+    /**
+     * Private method: _navigateWithComplexId.
+     *
+     * It navigates to a target route using the provided complexId.
+     *
+     * @param {string} complexId The given complex id.
+     * @param {string} targetRoute The given target route.
+     * @param {NavigationExtras} navigationExtras The given navigation extras.
+     * @returns {void} Navigates to the target route.
+     */
+    private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
+        const complexRoute &#x3D; complexId ? &#x60;/edition/complex/${complexId}/&#x60; : this.editionComplex.baseRoute;
+
+        this._router.navigate([complexRoute, targetRoute], navigationExtras);
+    }
+
+    /**
+     * Private method: _onIntroScroll.
+     *
+     * It handles the scroll event on the intro window
+     * and highlights the corresponding section in the intro navigation.
+     *
+     * @param {Event} event The given scroll event.
+     * @returns {void} Highlights the corresponding section in the intro navigation
+     * on window scroll.
+     */
+    private _onIntroScroll(event: Event): void {
+        if (event?.type &#x3D;&#x3D;&#x3D; &#x27;scroll&#x27;) {
+            const scrollPosition &#x3D; window.scrollY || document.documentElement.scrollTop;
+            const introSections: NodeListOf&lt;HTMLElement&gt; &#x3D; document.querySelectorAll(&#x27;.awg-edition-intro-section&#x27;);
+            const introNavLinks: NodeListOf&lt;HTMLAnchorElement&gt; &#x3D;
+                document.querySelectorAll(&#x27;a.awg-edition-intro-nav-link&#x27;);
+
+            let activeIntroSectionId: string | null &#x3D; null;
+
+            introSections.forEach((introSection: HTMLElement) &#x3D;&gt; {
+                const introSectionTop &#x3D; introSection.offsetTop - 10;
+                const introSectionBottom &#x3D; introSection.offsetTop + introSection.offsetHeight;
+
+                if (introSectionTop &lt;&#x3D; scrollPosition &amp;&amp; introSectionBottom &gt; scrollPosition) {
+                    activeIntroSectionId &#x3D; introSection.id;
+                }
+            });
+
+            introNavLinks.forEach((navLink: HTMLAnchorElement) &#x3D;&gt; {
+                navLink.classList.toggle(&#x27;active&#x27;, navLink.hash.includes(activeIntroSectionId));
+            });
+        }
+    }
+
+    /**
+     * Private method: _updateEditionState.
+     *
+     * It updates the selected edition series and section
+     * and the introView in the EditionStateService.
+     *
+     * @param {string} seriesNumber The given series number.
+     * @param {string} sectionNumber The given section number.
+     * @returns {void} Updates the selected edition series, section, and introView.
+     */
+    private _updateEditionState(seriesNumber: string, sectionNumber: string): void {
+        const series: EditionOutlineSeries &#x3D; EditionOutlineService.getEditionSeriesById(seriesNumber);
+        const section: EditionOutlineSection &#x3D; EditionOutlineService.getEditionSectionById(seriesNumber, sectionNumber);
+
+        this._editionStateService.updateSelectedEditionSeries(series);
+        this._editionStateService.updateSelectedEditionSection(section);
+        this._editionStateService.updateIsIntroView(true);
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- content: intro --&gt;
+&lt;div&gt;
+    &lt;!-- modal --&gt;
+    &lt;awg-modal #modal&gt;&lt;/awg-modal&gt;
+
+    &lt;!-- intro --&gt;
+    @if (editionIntroData$ | async; as editionIntroData) {
+        &lt;div class&#x3D;&quot;awg-edition-intro-view p-5 border rounded-3&quot;&gt;
+            &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+                @if (UTILS.isNotEmptyArray(editionIntroData.intro[currentLanguage].content)) {
+                    @if (editionComplex) {
+                        &lt;awg-edition-intro-partial-disclaimer
+                            class&#x3D;&quot;col-12 col-xl-6&quot;
+                            [editionComplex]&#x3D;&quot;editionComplex&quot;
+                            [editionLabel]&#x3D;&quot;editionRouteConstants.EDITION.short&quot;
+                            [editionRoute]&#x3D;&quot;editionRouteConstants.EDITION.route&quot;
+                            [seriesRoute]&#x3D;&quot;editionRouteConstants.SERIES.route&quot;
+                            [sectionRoute]&#x3D;&quot;editionRouteConstants.SECTION.route&quot;
+                            [introRoute]&#x3D;&quot;
+                                editionRouteConstants.EDITION_INTRO.route
+                            &quot;&gt;&lt;/awg-edition-intro-partial-disclaimer&gt;
+                    }
+                    &lt;awg-edition-intro-content
+                        class&#x3D;&quot;col-12 col-xl-10&quot;
+                        [introBlockContent]&#x3D;&quot;editionIntroData?.intro[currentLanguage]?.content&quot;
+                        [notesLabel]&#x3D;&quot;notesLabels.get(currentLanguage)&quot;
+                        (navigateToIntroFragmentRequest)&#x3D;&quot;onIntroFragmentNavigate($event)&quot;
+                        (navigateToReportFragmentRequest)&#x3D;&quot;onReportFragmentNavigate($event)&quot;
+                        (openModalRequest)&#x3D;&quot;onModalOpen($event)&quot;
+                        (selectSvgSheetRequest)&#x3D;&quot;onSvgSheetSelect($event)&quot;&gt;&lt;/awg-edition-intro-content&gt;
+
+                    &lt;awg-edition-intro-nav
+                        class&#x3D;&quot;col-12 col-xl-2 d-none d-xl-block&quot;
+                        [introBlockContent]&#x3D;&quot;editionIntroData?.intro[currentLanguage]?.content&quot;
+                        [notesLabel]&#x3D;&quot;notesLabels.get(currentLanguage)&quot;
+                        [currentLanguage]&#x3D;&quot;currentLanguage&quot;
+                        (languageChangeRequest)&#x3D;&quot;onLanguageSet($event)&quot;&gt;&lt;/awg-edition-intro-nav&gt;
+                } @else {
+                    &lt;awg-edition-intro-placeholder
+                        class&#x3D;&quot;col-12&quot;
+                        [editionComplex]&#x3D;&quot;editionComplex&quot;
+                        [editionLabel]&#x3D;&quot;editionRouteConstants.EDITION.short&quot;&gt;&lt;/awg-edition-intro-placeholder&gt;
+                }
+            &lt;/div&gt;
+        &lt;/div&gt;
+    } @else {
+        &lt;!-- error message --&gt;
+        @if (errorObject) {
+            &lt;awg-alert-error [errorObject]&#x3D;&quot;errorObject&quot;&gt;&lt;/awg-alert-error&gt;
+        } @else {
+            &lt;!-- loading spinner --&gt;
+            &lt;awg-twelve-tone-spinner&gt;&lt;/awg-twelve-tone-spinner&gt;
+        }
+    }
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./edition-intro.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- content: intro --><div>    <!-- modal -->    <awg-modal #modal></awg-modal>    <!-- intro -->    @if (editionIntroData$ | async; as editionIntroData) {        <div class="awg-edition-intro-view p-5 border rounded-3">            <div class="row justify-content-center">                @if (UTILS.isNotEmptyArray(editionIntroData.intro[currentLanguage].content)) {                    @if (editionComplex) {                        <awg-edition-intro-partial-disclaimer                            class="col-12 col-xl-6"                            [editionComplex]="editionComplex"                            [editionLabel]="editionRouteConstants.EDITION.short"                            [editionRoute]="editionRouteConstants.EDITION.route"                            [seriesRoute]="editionRouteConstants.SERIES.route"                            [sectionRoute]="editionRouteConstants.SECTION.route"                            [introRoute]="                                editionRouteConstants.EDITION_INTRO.route                            "></awg-edition-intro-partial-disclaimer>                    }                    <awg-edition-intro-content                        class="col-12 col-xl-10"                        [introBlockContent]="editionIntroData?.intro[currentLanguage]?.content"                        [notesLabel]="notesLabels.get(currentLanguage)"                        (navigateToIntroFragmentRequest)="onIntroFragmentNavigate($event)"                        (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"                        (openModalRequest)="onModalOpen($event)"                        (selectSvgSheetRequest)="onSvgSheetSelect($event)"></awg-edition-intro-content>                    <awg-edition-intro-nav                        class="col-12 col-xl-2 d-none d-xl-block"                        [introBlockContent]="editionIntroData?.intro[currentLanguage]?.content"                        [notesLabel]="notesLabels.get(currentLanguage)"                        [currentLanguage]="currentLanguage"                        (languageChangeRequest)="onLanguageSet($event)"></awg-edition-intro-nav>                } @else {                    <awg-edition-intro-placeholder                        class="col-12"                        [editionComplex]="editionComplex"                        [editionLabel]="editionRouteConstants.EDITION.short"></awg-edition-intro-placeholder>                }            </div>        </div>    } @else {        <!-- error message -->        @if (errorObject) {            <awg-alert-error [errorObject]="errorObject"></awg-alert-error>        } @else {            <!-- loading spinner -->            <awg-twelve-tone-spinner></awg-twelve-tone-spinner>        }    }</div></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'DisclaimerWorkeditionsComponent', 'selector': 'awg-disclaimer-workeditions'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopComponent', 'selector': 'awg-scroll-to-top'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+    var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
+    var ACTUAL_COMPONENT = {'name': 'EditionIntroComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'EditionIntroComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
