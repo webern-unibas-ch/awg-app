@@ -414,6 +414,25 @@ export class TextcriticalComment {
 }
 
 /**
+ * The TextcriticalCommentary class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for the textcritical commentary
+ * from a textcritics json file.
+ */
+export class TextcriticalCommentary {
+    /**
+     * The preamble of the textcritical commentary.
+     */
+    preamble: string;
+
+    /**
+     * The array of textcritical comment blocks from a textcritics list.
+     */
+    comments: TextcriticalCommentBlock[];
+}
+
+/**
  * The Textcritics class.
  *
  * It is used in the context of the edition view
@@ -432,14 +451,14 @@ export class Textcritics {
     label: string;
 
     /**
-     * The description of the textcritics.
+     * The evaluations of the textcritics.
      */
-    description: string[];
+    evaluations: string[];
 
     /**
-     * The array of textcritical comment blocks from a textcritics list.
+     * The commentary of the textcritics.
      */
-    comments: TextcriticalCommentBlock[];
+    commentary: TextcriticalCommentary;
 
     /**
      * The array of link boxes from a textcritics list.

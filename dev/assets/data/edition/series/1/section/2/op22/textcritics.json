@@ -3,7 +3,7 @@
         {
             "id": "SkRT",
             "label": "M 305 / M 308 / M 309 RT (Reihentabelle op. 22)",
-            "description": [
+            "evaluations": [
                 "<small class=\"text-muted\">[Der Skizzenkommentar erscheint im Zusammenhang der vollständigen Edition von Opus 22 in AWG I/2.]</small>"
             ],
             "rowtable": true,

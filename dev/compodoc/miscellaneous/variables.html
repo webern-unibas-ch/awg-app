@@ -623,7 +623,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;1.1.0-183-g85cf5a9f9&#x27;</code>
+                        <i>Default value : </i><code>&#x27;1.1.0-191-g847af1069&#x27;</code>
                     </td>
                 </tr>
 
@@ -3782,24 +3782,27 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                         {
                             id: &#x27;source_Aa_corr_1&#x27;,
                             label: &#x27;Korrekturen 1 in &lt;strong&gt;B&lt;/strong&gt; (mit Tinte)&#x27;,
-                            description: [
+                            evaluations: [
                                 &#x27;Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: Textfassung 1.&#x27;,
                             ],
-                            comments: [
-                                {
-                                    measure: &#x27;3–4&#x27;,
-                                    system: &#x27;&#x27;,
-                                    position: &#x27;&#x27;,
-                                    comment: &#x27;Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####&#x27;,
-                                },
-                                {
-                                    measure: &#x27;4&#x27;,
-                                    system: &#x27;Klav. o.&#x27;,
-                                    position: &#x27;&#x27;,
-                                    comment:
-                                        &#x27;Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.&#x27;,
-                                },
-                            ],
+                            commentary: {
+                                preamble: &#x27;Korrekturen 1:&#x27;,
+                                comments: [
+                                    {
+                                        measure: &#x27;3–4&#x27;,
+                                        system: &#x27;&#x27;,
+                                        position: &#x27;&#x27;,
+                                        comment: &#x27;Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####&#x27;,
+                                    },
+                                    {
+                                        measure: &#x27;4&#x27;,
+                                        system: &#x27;Klav. o.&#x27;,
+                                        position: &#x27;&#x27;,
+                                        comment:
+                                            &#x27;Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.&#x27;,
+                                    },
+                                ],
+                            },
                         },
                     ],
                 },
@@ -4255,74 +4258,77 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
             {
                 id: &#x27;test-1&#x27;,
                 label: &#x27;test1&#x27;,
-                description: [],
-                comments: [],
+                evaluations: [],
+                commentary: { preamble: &#x27;&#x27;, comments: [] },
                 linkBoxes: [],
             },
             {
                 id: &#x27;test-2&#x27;,
                 label: &#x27;test2&#x27;,
-                description: [
+                evaluations: [
                     &#x27;test description 1&#x27;,
                     &quot;In &lt;strong&gt;Sk2&lt;/strong&gt; werden T. 11–12 aus &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Sk1&lt;/strong&gt;&lt;/a&gt; bzw. T. 10–11 aus &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;&#x27;, fragmentId: &#x27;source_B&#x27;})\&quot;&gt;&lt;strong&gt;B&lt;/strong&gt;&lt;/a&gt; neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;C&lt;/strong&gt;&lt;/a&gt; entspricht.&quot;,
                 ],
                 rowtable: true,
-                comments: [
-                    {
-                        blockHeader: &#x27;blockheader 1&#x27;,
-                        blockComments: [
-                            {
-                                svgGroupId: &#x27;svg-group-1&#x27;,
-                                measure: &#x27;10&#x27;,
-                                system: &#x27;12&#x27;,
-                                position: &#x27;1. Note&#x27;,
-                                comment: &#x27;Viertelnote überschreibt Halbe Note.&#x27;,
-                            },
-                            {
-                                svgGroupId: &#x27;svg-group-2&#x27;,
-                                measure: &#x27;10&#x27;,
-                                system: &#x27;12&#x27;,
-                                position: &#x27;2. Note&#x27;,
-                                comment:
-                                    &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;&#x27;, fragmentId: &#x27;source_A&#x27;})\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test SkXYZ&lt;/strong&gt;&lt;/a&gt; T. [11] und &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt;.&quot;,
-                            },
-                            {
-                                svgGroupId: &#x27;svg-group-3&#x27;,
-                                measure: &#x27;{13}&#x27;,
-                                system: &#x27;12&#x27;,
-                                position: &#x27;3. Note&#x27;,
-                                comment:
-                                    &#x27;&lt;span class&#x3D;&quot;glyph&quot;&gt;{{ref.getGlyph(&quot;[a]&quot;)}}&lt;/span&gt; überschreibt &lt;span class&#x3D;&quot;glyph&quot;&gt;{{ref.getGlyph(&quot;[b]&quot;)}}&lt;/span&gt;.&#x27;,
-                            },
-                            {
-                                svgGroupId: &#x27;svg-group-4&#x27;,
-                                measure: &#x27;[12]&#x27;,
-                                system: &#x27;13&#x27;,
-                                position: &#x27;&#x27;,
-                                comment: &#x27;radierte, nicht entzifferbare Schicht.&#x27;,
-                            },
-                        ],
-                    },
-                    {
-                        blockHeader: &#x27;blockheader 2&#x27;,
-                        blockComments: [
-                            {
-                                svgGroupId: &#x27;svg-group-5&#x27;,
-                                measure: &#x27;11&#x27;,
-                                system: &#x27;13&#x27;,
-                                position: &#x27;1. Note&#x27;,
-                                comment: &#x27;Viertelnote überschreibt Halbe Note.&#x27;,
-                            },
-                            {
-                                svgGroupId: &#x27;svg-group-6&#x27;,
-                                measure: &#x27;11&#x27;,
-                                system: &#x27;13&#x27;,
-                                position: &#x27;2. Note&#x27;,
-                                comment: &#x27;Halbe Note überschreibt Viertelnote.&#x27;,
-                            },
-                        ],
-                    },
-                ],
+                commentary: {
+                    preamble: &#x27;This is a preamble.&#x27;,
+                    comments: [
+                        {
+                            blockHeader: &#x27;blockheader 1&#x27;,
+                            blockComments: [
+                                {
+                                    svgGroupId: &#x27;svg-group-1&#x27;,
+                                    measure: &#x27;10&#x27;,
+                                    system: &#x27;12&#x27;,
+                                    position: &#x27;1. Note&#x27;,
+                                    comment: &#x27;Viertelnote überschreibt Halbe Note.&#x27;,
+                                },
+                                {
+                                    svgGroupId: &#x27;svg-group-2&#x27;,
+                                    measure: &#x27;10&#x27;,
+                                    system: &#x27;12&#x27;,
+                                    position: &#x27;2. Note&#x27;,
+                                    comment:
+                                        &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;&#x27;, fragmentId: &#x27;source_A&#x27;})\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test SkXYZ&lt;/strong&gt;&lt;/a&gt; T. [11] und &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt;.&quot;,
+                                },
+                                {
+                                    svgGroupId: &#x27;svg-group-3&#x27;,
+                                    measure: &#x27;{13}&#x27;,
+                                    system: &#x27;12&#x27;,
+                                    position: &#x27;3. Note&#x27;,
+                                    comment:
+                                        &#x27;&lt;span class&#x3D;&quot;glyph&quot;&gt;{{ref.getGlyph(&quot;[a]&quot;)}}&lt;/span&gt; überschreibt &lt;span class&#x3D;&quot;glyph&quot;&gt;{{ref.getGlyph(&quot;[b]&quot;)}}&lt;/span&gt;.&#x27;,
+                                },
+                                {
+                                    svgGroupId: &#x27;svg-group-4&#x27;,
+                                    measure: &#x27;[12]&#x27;,
+                                    system: &#x27;13&#x27;,
+                                    position: &#x27;&#x27;,
+                                    comment: &#x27;radierte, nicht entzifferbare Schicht.&#x27;,
+                                },
+                            ],
+                        },
+                        {
+                            blockHeader: &#x27;blockheader 2&#x27;,
+                            blockComments: [
+                                {
+                                    svgGroupId: &#x27;svg-group-5&#x27;,
+                                    measure: &#x27;11&#x27;,
+                                    system: &#x27;13&#x27;,
+                                    position: &#x27;1. Note&#x27;,
+                                    comment: &#x27;Viertelnote überschreibt Halbe Note.&#x27;,
+                                },
+                                {
+                                    svgGroupId: &#x27;svg-group-6&#x27;,
+                                    measure: &#x27;11&#x27;,
+                                    system: &#x27;13&#x27;,
+                                    position: &#x27;2. Note&#x27;,
+                                    comment: &#x27;Halbe Note überschreibt Viertelnote.&#x27;,
+                                },
+                            ],
+                        },
+                    ],
+                },
                 linkBoxes: [],
             },
         ],

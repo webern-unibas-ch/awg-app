@@ -3,460 +3,468 @@
         {
             "id": "op23_WE",
             "label": "<em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23 (Werkedition)",
-            "description": [
-                "Für die Edition der in den <em>Drei Gesängen aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23 versammelten Textfassungen (I: „Das dunkle Herz“ M 314, II: „Es stürzt aus Höhen Frische“ M 313, III: „Herr Jesus mein“ M 312) sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_B'})\"><strong>B</strong></a> enthalten Skizzen bzw. Reihentabellen (siehe <span class='link-todo'>Skizzeneditionen</span>). <br /> <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> ist Stichvorlage für den Druck <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>. <br /> Hauptquelle für die Werkedition der <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23 ist der Druck <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> ist Referenzquelle."
+            "evaluations": [
+                "Für die Edition der in den <em>Drei Gesängen aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23 versammelten Textfassungen (I: „Das dunkle Herz“ M 314, II: „Es stürzt aus Höhen Frische“ M 313, III: „Herr Jesus mein“ M 312) sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_B'})\"><strong>B</strong></a> enthalten Skizzen bzw. Reihentabellen (siehe <span class='link-todo'>Skizzeneditionen</span>).",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> ist Stichvorlage für den Druck <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>.",
+                "Hauptquelle für die Werkedition der <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23 ist der Druck <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> ist Referenzquelle."
             ],
-            "comments": [
-                {
-                    "blockHeader": " Die Schreibweise der Titel in <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a> mit Versalien sowie die Auszeichnung von <em>Viae inviae</em> wurde vereinheitlichend geändert. <br /> <strong>I</strong> („Das dunkle Herz“ M 314: einzige Textfassung)",
-                    "blockComments": [
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "3",
-                            "system": "Klav.",
-                            "position": "8/8",
-                            "comment": "Ende der Crescendogabel versetzt von Taktende gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "6",
-                            "system": "Ges.",
-                            "position": "1/8",
-                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>: kein Akkoladenwechsel nach T. 5."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "6",
-                            "system": "Klav.",
-                            "position": "8/8",
-                            "comment": "Anfang der Decrescendogabel versetzt von T. 7 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> ante correcturam."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "8",
-                            "system": "Ges.",
-                            "position": "7–8/8",
-                            "comment": "Längenstrich ergänzt."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "10",
-                            "system": "Klav.",
-                            "position": "8/8",
-                            "comment": "Anfang der Decrescendogabel versetzt von T. 11 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> ante correcturam."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "11",
-                            "system": "Klav. o.",
-                            "position": "7/8",
-                            "comment": "Fermate ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> post correcturam und analog Ges. und Klav. u."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "13",
-                            "system": "Klav. o.",
-                            "position": "5/8",
-                            "comment": "Achtelpause als redundant weggelassen."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "15",
-                            "system": "Klav.",
-                            "position": "1. Note",
-                            "comment": "Ende der Decrescendogabel versetzt von Ende T. 14 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> ante correcturam."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "17",
-                            "system": "Ges.",
-                            "position": "1/8",
-                            "comment": "Ende der Decrescendogabel versetzt von Ende T. 16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "17",
-                            "system": "Klav. o.",
-                            "position": "1. Note",
-                            "comment": "Tenutostrich ergänzt."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "17 <br /> bis 18",
-                            "system": "Klav. o.",
-                            "position": "Taktende <br /> Taktanfang",
-                            "comment": "Violinschlüssel versetzt von vor T. 18 2/8 und Kustos ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>: kein Akkoladenwechsel nach T. 17."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "19",
-                            "system": "Ges.",
-                            "position": "1. Note",
-                            "comment": "Ende der Decrescendogabel versetzt von Ende T. 18 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "20",
-                            "system": "Klav. o.",
-                            "position": "1. Note",
-                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "22",
-                            "system": "Ges.",
-                            "position": "1. Note",
-                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "22",
-                            "system": "Klav. o.",
-                            "position": "2/4",
-                            "comment": "Tenutostrich ergänzt."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "vor 23",
-                            "system": "Klav. o.",
-                            "position": "",
-                            "comment": "Bassschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "vor 37",
-                            "system": "Klav. u.",
-                            "position": "",
-                            "comment": "Violinschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "37",
-                            "system": "Ges.",
-                            "position": "5–6/8",
-                            "comment": "Längenstrich ergänzt."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "37",
-                            "system": "Klav. u.",
-                            "position": "4/8",
-                            "comment": "Achtelpause (Unterstimme) als redundant weggelassen."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "38",
-                            "system": "Ges.",
-                            "position": "3–4/8",
-                            "comment": "Text: <em>Flü-ße</em> korrigiert zu <em>Flüs-se</em> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "38",
-                            "system": "Klav. u.",
-                            "position": "6/8",
-                            "comment": "Achtelpause (Unterstimme) als redundant weggelassen."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "vor 41",
-                            "system": "Klav. u.",
-                            "position": "",
-                            "comment": "Bassschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> (dort: rechts vom Taktstrich)."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "vor 43",
-                            "system": "Klav. u.",
-                            "position": "",
-                            "comment": "Bassschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> (dort: rechts vom Taktstrich)."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "vor 46",
-                            "system": "Klav. u.",
-                            "position": "",
-                            "comment": "Violinschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "49",
-                            "system": "Ges.",
-                            "position": "2. Note",
-                            "comment": "Fermate ergänzt analog Klav. u. 5/8. Siehe auch TkA zu Klav. o."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "49",
-                            "system": "Klav. o.",
-                            "position": "3/4",
-                            "comment": "Fermate ergänzt analog Klav. u. 5/8. Siehe auch TkA zu Ges."
-                        }
-                    ]
-                },
-                {
-                    "blockHeader": "<strong>II</strong> („Es stürzt aus Höhen Frische“ M 313: einzige Textfassung)",
-                    "blockComments": [
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "vor 8",
-                            "system": "Klav. u.",
-                            "position": "",
-                            "comment": "Bassschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "vor 9",
-                            "system": "Klav. u.",
-                            "position": "",
-                            "comment": "Violinschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "10",
-                            "system": "Klav.",
-                            "position": "9/8",
-                            "comment": "Anfang der Decrescendogabel versetzt von 10/8 mit Blick auf T. 8 6/8 und T. 9 5/8."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "11",
-                            "system": "Klav.",
-                            "position": "6/8",
-                            "comment": "Anfang der Decrescendogabel versetzt von 5/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "14",
-                            "system": "Ges.",
-                            "position": "1/8",
-                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>2</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>: kein Akkoladenwechsel nach T. 13."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "17",
-                            "system": "Klav. o.",
-                            "position": "1. Note",
-                            "comment": "sic: Halsrichtung nach unten."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "vor 18",
-                            "system": "Klav. o.",
-                            "position": "",
-                            "comment": "Violinschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "21",
-                            "system": "Ges.",
-                            "position": "1/4",
-                            "comment": "Ende der Decrescendogabel versetzt von Ende T. 20 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "vor 22",
-                            "system": "Klav. u.",
-                            "position": "",
-                            "comment": "Bassschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "22",
-                            "system": "Ges.",
-                            "position": "4–5/8",
-                            "comment": "Text sic: Silbentrennung <em>ein-an</em>(-der)."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "22",
-                            "system": "Klav. o.",
-                            "position": "10/8",
-                            "comment": "Fermate ergänzt."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "23",
-                            "system": "Klav. u.",
-                            "position": "1/8",
-                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>: Akkoladenwechsel nach T. 22."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "25",
-                            "system": "Klav. u.",
-                            "position": "",
-                            "comment": "Triolenziffer und -klammer ergänzt."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "26",
-                            "system": "Ges.",
-                            "position": "1. Note",
-                            "comment": "Ende der Decrescendogabel versetzt von Ende T. 25 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        }
-                    ]
-                },
-                {
-                    "blockHeader": "<strong>III</strong> („Herr Jesus mein“ M 312: einzige Textfassung)",
-                    "blockComments": [
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "3",
-                            "system": "Klav. u.",
-                            "position": "11/16",
-                            "comment": "Sechzehntelpause (Unterstimme) als redundant weggelassen."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "5",
-                            "system": "Klav. u.",
-                            "position": "2.–3. Note",
-                            "comment": "Bogen (von Vorschlagsnote zu 6/16) ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "6",
-                            "system": "Klav.",
-                            "position": "2/16",
-                            "comment": "Ende der Decrescendogabel versetzt von Ende T. 5 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "10",
-                            "system": "Klav.",
-                            "position": "8/32",
-                            "comment": "<em>Ped.</em> versetzt von 7/32 bzw. 4/16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "11",
-                            "system": "Klav. o.",
-                            "position": "vor 2. Note",
-                            "comment": "Bassschlüssel versetzt von vor 4/32 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "11",
-                            "system": "Klav.",
-                            "position": "5/32",
-                            "comment": "<em>cresc.</em> versetzt von 4/32 (Pause)."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "15",
-                            "system": "Klav. u.",
-                            "position": "7/32",
-                            "comment": "Staccatopunkt ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "15",
-                            "system": "Klav. o.",
-                            "position": "9/32",
-                            "comment": "Staccatopunkt ergänzt."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "vor 22",
-                            "system": "Klav. o.",
-                            "position": "",
-                            "comment": "Violinschlüssel versetzt von vor 4/16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "vor 22",
-                            "system": "Klav. u.",
-                            "position": "",
-                            "comment": "Bassschlüssel versetzt von vor 3/16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "22",
-                            "system": "Ges.",
-                            "position": "6/16",
-                            "comment": "Ende der Crescendogabel versetzt von 5/16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "26",
-                            "system": "Klav.",
-                            "position": "6/32",
-                            "comment": "Ende der Decrescendogabel versetzt von 7/32 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "27",
-                            "system": "Klav.",
-                            "position": "2/32",
-                            "comment": "Ende der Crescendogabel versetzt von Ende T. 26 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        },
-                        {
-                            "svgGroupId": "TODO",
-                            "measure": "28",
-                            "system": "Klav.",
-                            "position": "2/32",
-                            "comment": "Anfang der Decrescendogabel versetzt von 1/32 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
-                        }
-                    ]
-                }
-            ]
+            "commentary": {
+                "preamble": "Die Schreibweise der Titel in <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a> mit Versalien sowie die Auszeichnung von <em>Viae inviae</em> wurde vereinheitlichend geändert.",
+                "comments": [
+                    {
+                        "blockHeader": "<strong>I</strong> („Das dunkle Herz“ M 314: einzige Textfassung)",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "3",
+                                "system": "Klav.",
+                                "position": "8/8",
+                                "comment": "Ende der Crescendogabel versetzt von Taktende gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "6",
+                                "system": "Ges.",
+                                "position": "1/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>: kein Akkoladenwechsel nach T. 5."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "6",
+                                "system": "Klav.",
+                                "position": "8/8",
+                                "comment": "Anfang der Decrescendogabel versetzt von T. 7 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> ante correcturam."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "8",
+                                "system": "Ges.",
+                                "position": "7–8/8",
+                                "comment": "Längenstrich ergänzt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "10",
+                                "system": "Klav.",
+                                "position": "8/8",
+                                "comment": "Anfang der Decrescendogabel versetzt von T. 11 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> ante correcturam."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "11",
+                                "system": "Klav. o.",
+                                "position": "7/8",
+                                "comment": "Fermate ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> post correcturam und analog Ges. und Klav. u."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "13",
+                                "system": "Klav. o.",
+                                "position": "5/8",
+                                "comment": "Achtelpause als redundant weggelassen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "15",
+                                "system": "Klav.",
+                                "position": "1. Note",
+                                "comment": "Ende der Decrescendogabel versetzt von Ende T. 14 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> ante correcturam."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "17",
+                                "system": "Ges.",
+                                "position": "1/8",
+                                "comment": "Ende der Decrescendogabel versetzt von Ende T. 16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "17",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "Tenutostrich ergänzt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "17 <br /> bis 18",
+                                "system": "Klav. o.",
+                                "position": "Taktende <br /> Taktanfang",
+                                "comment": "Violinschlüssel versetzt von vor T. 18 2/8 und Kustos ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>: kein Akkoladenwechsel nach T. 17."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "19",
+                                "system": "Ges.",
+                                "position": "1. Note",
+                                "comment": "Ende der Decrescendogabel versetzt von Ende T. 18 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "20",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "22",
+                                "system": "Ges.",
+                                "position": "1. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>2</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "22",
+                                "system": "Klav. o.",
+                                "position": "2/4",
+                                "comment": "Tenutostrich ergänzt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "vor 23",
+                                "system": "Klav. o.",
+                                "position": "",
+                                "comment": "Bassschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "vor 37",
+                                "system": "Klav. u.",
+                                "position": "",
+                                "comment": "Violinschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "37",
+                                "system": "Ges.",
+                                "position": "5–6/8",
+                                "comment": "Längenstrich ergänzt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "37",
+                                "system": "Klav. u.",
+                                "position": "4/8",
+                                "comment": "Achtelpause (Unterstimme) als redundant weggelassen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "38",
+                                "system": "Ges.",
+                                "position": "3–4/8",
+                                "comment": "Text: <em>Flü-ße</em> korrigiert zu <em>Flüs-se</em> gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "38",
+                                "system": "Klav. u.",
+                                "position": "6/8",
+                                "comment": "Achtelpause (Unterstimme) als redundant weggelassen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "vor 41",
+                                "system": "Klav. u.",
+                                "position": "",
+                                "comment": "Bassschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> (dort: rechts vom Taktstrich)."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "vor 43",
+                                "system": "Klav. u.",
+                                "position": "",
+                                "comment": "Bassschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a> (dort: rechts vom Taktstrich)."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "vor 46",
+                                "system": "Klav. u.",
+                                "position": "",
+                                "comment": "Violinschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "49",
+                                "system": "Ges.",
+                                "position": "2. Note",
+                                "comment": "Fermate ergänzt analog Klav. u. 5/8. Siehe auch TkA zu Klav. o."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "49",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "Fermate ergänzt analog Klav. u. 5/8. Siehe auch TkA zu Ges."
+                            }
+                        ]
+                    },
+                    {
+                        "blockHeader": "<strong>II</strong> („Es stürzt aus Höhen Frische“ M 313: einzige Textfassung)",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "vor 8",
+                                "system": "Klav. u.",
+                                "position": "",
+                                "comment": "Bassschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "vor 9",
+                                "system": "Klav. u.",
+                                "position": "",
+                                "comment": "Violinschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "10",
+                                "system": "Klav.",
+                                "position": "9/8",
+                                "comment": "Anfang der Decrescendogabel versetzt von 10/8 mit Blick auf T. 8 6/8 und T. 9 5/8."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "11",
+                                "system": "Klav.",
+                                "position": "6/8",
+                                "comment": "Anfang der Decrescendogabel versetzt von 5/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "14",
+                                "system": "Ges.",
+                                "position": "1/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>2</sup> ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>: kein Akkoladenwechsel nach T. 13."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "17",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "sic: Halsrichtung nach unten."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "vor 18",
+                                "system": "Klav. o.",
+                                "position": "",
+                                "comment": "Violinschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "21",
+                                "system": "Ges.",
+                                "position": "1/4",
+                                "comment": "Ende der Decrescendogabel versetzt von Ende T. 20 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "vor 22",
+                                "system": "Klav. u.",
+                                "position": "",
+                                "comment": "Bassschlüssel versetzt von vor 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "22",
+                                "system": "Ges.",
+                                "position": "4–5/8",
+                                "comment": "Text sic: Silbentrennung <em>ein-an</em>(-der)."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "22",
+                                "system": "Klav. o.",
+                                "position": "10/8",
+                                "comment": "Fermate ergänzt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "23",
+                                "system": "Klav. u.",
+                                "position": "1/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_D'})\"><strong>D</strong></a>: Akkoladenwechsel nach T. 22."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "25",
+                                "system": "Klav. u.",
+                                "position": "",
+                                "comment": "Triolenziffer und -klammer ergänzt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "26",
+                                "system": "Ges.",
+                                "position": "1. Note",
+                                "comment": "Ende der Decrescendogabel versetzt von Ende T. 25 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            }
+                        ]
+                    },
+                    {
+                        "blockHeader": "<strong>III</strong> („Herr Jesus mein“ M 312: einzige Textfassung)",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "3",
+                                "system": "Klav. u.",
+                                "position": "11/16",
+                                "comment": "Sechzehntelpause (Unterstimme) als redundant weggelassen."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "5",
+                                "system": "Klav. u.",
+                                "position": "2.–3. Note",
+                                "comment": "Bogen (von Vorschlagsnote zu 6/16) ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "6",
+                                "system": "Klav.",
+                                "position": "2/16",
+                                "comment": "Ende der Decrescendogabel versetzt von Ende T. 5 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "10",
+                                "system": "Klav.",
+                                "position": "8/32",
+                                "comment": "<em>Ped.</em> versetzt von 7/32 bzw. 4/16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "11",
+                                "system": "Klav. o.",
+                                "position": "vor 2. Note",
+                                "comment": "Bassschlüssel versetzt von vor 4/32 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "11",
+                                "system": "Klav.",
+                                "position": "5/32",
+                                "comment": "<em>cresc.</em> versetzt von 4/32 (Pause)."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "15",
+                                "system": "Klav. u.",
+                                "position": "7/32",
+                                "comment": "Staccatopunkt ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "15",
+                                "system": "Klav. o.",
+                                "position": "9/32",
+                                "comment": "Staccatopunkt ergänzt."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "vor 22",
+                                "system": "Klav. o.",
+                                "position": "",
+                                "comment": "Violinschlüssel versetzt von vor 4/16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "vor 22",
+                                "system": "Klav. u.",
+                                "position": "",
+                                "comment": "Bassschlüssel versetzt von vor 3/16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "22",
+                                "system": "Ges.",
+                                "position": "6/16",
+                                "comment": "Ende der Crescendogabel versetzt von 5/16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "26",
+                                "system": "Klav.",
+                                "position": "6/32",
+                                "comment": "Ende der Decrescendogabel versetzt von 7/32 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "27",
+                                "system": "Klav.",
+                                "position": "2/32",
+                                "comment": "Ende der Crescendogabel versetzt von Ende T. 26 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "TODO",
+                                "measure": "28",
+                                "system": "Klav.",
+                                "position": "2/32",
+                                "comment": "Anfang der Decrescendogabel versetzt von 1/32 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op23', fragmentId: 'source_C'})\"><strong>C</strong></a>."
+                            }
+                        ]
+                    }
+                ]
+            }
         },
         {
             "id": "M_312_Sk1",
             "label": "M 312 Sk1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1</strong> entwirft den Anfang der Singstimme zu „Herr Jesus mein“ M 312 sowie gleichzeitig im Abgleich mit <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M_312_Sk1_1'})\"><strong>Sk1.1</strong></a> die Reihenform G<sub>g</sub> der zugrundeliegenden Zwölftonreihe. Ab dem Ende von T. 3 ist lediglich ein möglicher Rhythmus in verschiedenen metrischen Varianten skizziert (siehe die getilgten Taktstriche)."
             ],
-            "comments": [
-                {
-                    "blockHeader": "",
-                    "blockComments": [
-                        {
-                            "svgGroupId": "g3",
-                            "measure": "2",
-                            "system": "1",
-                            "position": "3. Note",
-                            "comment": "Achtelbalken überschreibt Ansatz zu Achtelbalken."
-                        },
-                        {
-                            "svgGroupId": "g2",
-                            "measure": "3",
-                            "system": "1",
-                            "position": "1. Note",
-                            "comment": "Radiert."
-                        },
-                        {
-                            "svgGroupId": "g12",
-                            "measure": "3",
-                            "system": "3",
-                            "position": "nach 4/8",
-                            "comment": "Gestrichenes Zeichen: Möglicherweise Ansatz zu Notenkopf g<sup>2</sup>?"
-                        },
-                        {
-                            "svgGroupId": "g8",
-                            "measure": "4",
-                            "system": "3",
-                            "position": "nach 8/16",
-                            "comment": "Taktstrich und Taktziffer <em>5</em> gestrichen."
-                        },
-                        {
-                            "svgGroupId": "g9",
-                            "measure": "5",
-                            "system": "3",
-                            "position": "nach 4/16",
-                            "comment": "Taktstrich gestrichen."
-                        },
-                        {
-                            "svgGroupId": "g10",
-                            "measure": "6",
-                            "system": "3",
-                            "position": "nach 2/8",
-                            "comment": "Taktstrich gestrichen."
-                        }
-                    ]
-                }
-            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g3",
+                                "measure": "2",
+                                "system": "1",
+                                "position": "3. Note",
+                                "comment": "Achtelbalken überschreibt Ansatz zu Achtelbalken."
+                            },
+                            {
+                                "svgGroupId": "g2",
+                                "measure": "3",
+                                "system": "1",
+                                "position": "1. Note",
+                                "comment": "Radiert."
+                            },
+                            {
+                                "svgGroupId": "g12",
+                                "measure": "3",
+                                "system": "3",
+                                "position": "nach 4/8",
+                                "comment": "Gestrichenes Zeichen: Möglicherweise Ansatz zu Notenkopf g<sup>2</sup>?"
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "4",
+                                "system": "3",
+                                "position": "nach 8/16",
+                                "comment": "Taktstrich und Taktziffer <em>5</em> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "5",
+                                "system": "3",
+                                "position": "nach 4/16",
+                                "comment": "Taktstrich gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "6",
+                                "system": "3",
+                                "position": "nach 2/8",
+                                "comment": "Taktstrich gestrichen."
+                            }
+                        ]
+                    }
+                ]
+            },
             "linkBoxes": [
                 {
                     "svgGroupId": "g5",
@@ -477,30 +485,33 @@
         {
             "id": "M_312_Sk1_1",
             "label": "M 312 Sk1.1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1.1</strong> entwirft im Abgleich mit <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M_312_Sk1'})\"><strong>Sk1</strong></a> die Reihenform G<sub>g</sub> der zugrundeliegenden Zwölftonreihe. "
             ],
-            "comments": [
-                {
-                    "blockHeader": "",
-                    "blockComments": [
-                        {
-                            "svgGroupId": "g8",
-                            "measure": "Bl. 27<sup>r</sup>",
-                            "system": "1",
-                            "position": "3. Reihenton",
-                            "comment": "g<sup>1</sup> gestrichen und zunächst ersetzt durch a<sup>1</sup>. Dann ersetzt durch Tonbuchstabe g über dem System. Siehe auch Kommentar zu 11.–12. Reihenton."
-                        },
-                        {
-                            "svgGroupId": "g7",
-                            "measure": "Bl. 27<sup>r</sup>",
-                            "system": "1",
-                            "position": "11.–12. Reihenton",
-                            "comment": "h–g<sup>1</sup> durch Einklammerung getilgt und ersetzt durch a<sup>1</sup>–h<sup>1</sup>. Siehe auch Kommentar zu 3. Reihenton."
-                        }
-                    ]
-                }
-            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "Bl. 27<sup>r</sup>",
+                                "system": "1",
+                                "position": "3. Reihenton",
+                                "comment": "g<sup>1</sup> gestrichen und zunächst ersetzt durch a<sup>1</sup>. Dann ersetzt durch Tonbuchstabe g über dem System. Siehe auch Kommentar zu 11.–12. Reihenton."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "Bl. 27<sup>r</sup>",
+                                "system": "1",
+                                "position": "11.–12. Reihenton",
+                                "comment": "h–g<sup>1</sup> durch Einklammerung getilgt und ersetzt durch a<sup>1</sup>–h<sup>1</sup>. Siehe auch Kommentar zu 3. Reihenton."
+                            }
+                        ]
+                    }
+                ]
+            },
             "linkBoxes": [
                 {
                     "svgGroupId": "g6",
@@ -514,44 +525,47 @@
         {
             "id": "M_312_Sk3",
             "label": "M 312 Sk3",
-            "description": [
+            "evaluations": [
                 "<strong>Sk3</strong> skizziert verschiedene Ansätze zur Klaviereinleitung von „Herr Jesus mein“ M 312 auf der Grundlage der Reihenform KU<sub>h</sub>."
             ],
-            "comments": [
-                {
-                    "blockHeader": "",
-                    "blockComments": [
-                        {
-                            "svgGroupId": "g427",
-                            "measure": "{1A}",
-                            "system": "15",
-                            "position": "8/16",
-                            "comment": "Balken überschreibt Sechzehntelfähnchen."
-                        },
-                        {
-                            "svgGroupId": "g428",
-                            "measure": "{2A}",
-                            "system": "12",
-                            "position": "1–3/16",
-                            "comment": "Sechzehntelpause zu 3/16 radiert, Sechzehntelbalken zu 1/16 und Sechzehntelpause zu 2/16 hinzugefügt."
-                        },
-                        {
-                            "svgGroupId": "g1374",
-                            "measure": "{1B}",
-                            "system": "11",
-                            "position": "1/16",
-                            "comment": "Punktierte Achtelpause gestrichen und ersetzt durch Sechzehntelpause."
-                        },
-                        {
-                            "svgGroupId": "g1377",
-                            "measure": "{1A–2A}, {1B}",
-                            "system": "10–11 / [12–16]",
-                            "position": "",
-                            "comment": "Durch Einklammerung rechts getilgt."
-                        }
-                    ]
-                }
-            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g427",
+                                "measure": "{1A}",
+                                "system": "15",
+                                "position": "8/16",
+                                "comment": "Balken überschreibt Sechzehntelfähnchen."
+                            },
+                            {
+                                "svgGroupId": "g428",
+                                "measure": "{2A}",
+                                "system": "12",
+                                "position": "1–3/16",
+                                "comment": "Sechzehntelpause zu 3/16 radiert, Sechzehntelbalken zu 1/16 und Sechzehntelpause zu 2/16 hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "g1374",
+                                "measure": "{1B}",
+                                "system": "11",
+                                "position": "1/16",
+                                "comment": "Punktierte Achtelpause gestrichen und ersetzt durch Sechzehntelpause."
+                            },
+                            {
+                                "svgGroupId": "g1377",
+                                "measure": "{1A–2A}, {1B}",
+                                "system": "10–11 / [12–16]",
+                                "position": "",
+                                "comment": "Durch Einklammerung rechts getilgt."
+                            }
+                        ]
+                    }
+                ]
+            },
             "linkBoxes": [
                 {
                     "svgGroupId": "g1406",
@@ -579,109 +593,115 @@
         {
             "id": "SkRT",
             "label": "M 312 / M 313 / M 314 RT (Reihentabelle op. 23)",
-            "description": [
+            "evaluations": [
                 "Die <strong>Reihentabelle op. 23</strong> wiederholt die bereits in <strong>M 312 Sk2</strong> tabellarisch notierten Reihenformen 1–8, ohne die dort ebenfalls notierten (eingeklammerten) Reihenformen 9–10 (G<sub>f</sub>, K<sub>gis</sub>). Sie wurde vermutlich während oder nach <strong>M 312 Sk4</strong> angefertigt und dürfte als Werkzeug bei den Skizzen zu M 313 und M 314 gedient haben."
             ],
             "rowtable": true,
-            "comments": [
-                {
-                    "blockHeader": "",
-                    "blockComments": [
-                        {
-                            "svgGroupId": "text620",
-                            "measure": "Bl. 1<sup>r</sup>",
-                            "system": "1a",
-                            "position": "G<sub>gis</sub>",
-                            "comment": "Reihennummerierung <em>I</em> mit rotem Buntstift."
-                        },
-                        {
-                            "svgGroupId": "text622",
-                            "measure": "Bl. 1<sup>r</sup>",
-                            "system": "1b",
-                            "position": "K<sub>h</sub>",
-                            "comment": "Reihennummerierung <em>II</em> mit rotem Buntstift."
-                        },
-                        {
-                            "svgGroupId": "text624",
-                            "measure": "Bl. 1<sup>r</sup>",
-                            "system": "2a",
-                            "position": "U<sub>gis</sub>",
-                            "comment": "Reihennummerierung <em>III</em> mit rotem Buntstift."
-                        },
-                        {
-                            "svgGroupId": "text626",
-                            "measure": "Bl. 1<sup>r</sup>",
-                            "system": "2b",
-                            "position": "KU<sub>f</sub>",
-                            "comment": "Reihennummerierung <em>IV</em> mit rotem Buntstift."
-                        },
-                        {
-                            "svgGroupId": "g998",
-                            "measure": "Bl. 1<sup>r</sup>",
-                            "system": "2b",
-                            "position": "KU<sub>f</sub>: 8. Reihenton",
-                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> als Ansatz zu ges<sup>1</sup>."
-                        },
-                        {
-                            "svgGroupId": "text628",
-                            "measure": "Bl. 1<sup>r</sup>",
-                            "system": "3a",
-                            "position": "G<sub>d</sub>",
-                            "comment": "Reihennummerierung <em>V</em> mit rotem Buntstift."
-                        },
-                        {
-                            "svgGroupId": "text630",
-                            "measure": "Bl. 1<sup>r</sup>",
-                            "system": "3b",
-                            "position": "K<sub>f</sub>",
-                            "comment": "Reihennummerierung <em>VI</em> mit rotem Buntstift."
-                        },
-                        {
-                            "svgGroupId": "text632",
-                            "measure": "Bl. 1<sup>r</sup>",
-                            "system": "4a",
-                            "position": "U<sub>d</sub>",
-                            "comment": "Reihennummerierung <em>VII</em> mit rotem Buntstift."
-                        },
-                        {
-                            "svgGroupId": "text634",
-                            "measure": "Bl. 1<sup>r</sup>",
-                            "system": "4b",
-                            "position": "KU<sub>h</sub>",
-                            "comment": "Reihennummerierung <em>VIII</em> mit rotem Buntstift."
-                        }
-                    ]
-                }
-            ]
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "text620",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "1a",
+                                "position": "G<sub>gis</sub>",
+                                "comment": "Reihennummerierung <em>I</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text622",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "1b",
+                                "position": "K<sub>h</sub>",
+                                "comment": "Reihennummerierung <em>II</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text624",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "2a",
+                                "position": "U<sub>gis</sub>",
+                                "comment": "Reihennummerierung <em>III</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text626",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "2b",
+                                "position": "KU<sub>f</sub>",
+                                "comment": "Reihennummerierung <em>IV</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g998",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "2b",
+                                "position": "KU<sub>f</sub>: 8. Reihenton",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> als Ansatz zu ges<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "text628",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "3a",
+                                "position": "G<sub>d</sub>",
+                                "comment": "Reihennummerierung <em>V</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text630",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "3b",
+                                "position": "K<sub>f</sub>",
+                                "comment": "Reihennummerierung <em>VI</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text632",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "4a",
+                                "position": "U<sub>d</sub>",
+                                "comment": "Reihennummerierung <em>VII</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text634",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "4b",
+                                "position": "KU<sub>h</sub>",
+                                "comment": "Reihennummerierung <em>VIII</em> mit rotem Buntstift."
+                            }
+                        ]
+                    }
+                ]
+            }
         },
         {
             "id": "M_314_Sk1",
             "label": "M 314 Sk1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1</strong> skizziert den Anfang der Singstimme von „Das dunkle Herz“ M 314 auf der Grundlage der Reihenform KU<sub>f</sub>.",
                 "Die Ziffer <em>IV</em> in T. 1 bezeichnet den Anfang der verwendeten Reihenform gemäß den Reihentabellen <strong>M 312 Sk2</strong> und <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'SkRT'})\"><strong>M 312 / M 313 / M 314 RT</strong></a>."
             ],
-            "comments": [
-                {
-                    "blockHeader": "",
-                    "blockComments": [
-                        {
-                            "svgGroupId": "text244",
-                            "measure": "1",
-                            "system": "1",
-                            "position": "1. Note",
-                            "comment": "<em>IV</em> mit rotem Buntstift."
-                        },
-                        {
-                            "svgGroupId": "g1",
-                            "measure": "1",
-                            "system": "1",
-                            "position": "2.–3. Note",
-                            "comment": "<em>dunkle</em> zusammengeschrieben."
-                        }
-                    ]
-                }
-            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "text244",
+                                "measure": "1",
+                                "system": "1",
+                                "position": "1. Note",
+                                "comment": "<em>IV</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "1",
+                                "system": "1",
+                                "position": "2.–3. Note",
+                                "comment": "<em>dunkle</em> zusammengeschrieben."
+                            }
+                        ]
+                    }
+                ]
+            },
             "linkBoxes": [
                 {
                     "svgGroupId": "g1418",
@@ -695,45 +715,48 @@
         {
             "id": "M_314_Sk2",
             "label": "M 314 Sk2",
-            "description": [
+            "evaluations": [
                 "<strong>Sk2</strong> führt den Anfang der Singstimme von „Das dunkle Herz“ M 314 in vergrößerten rhythmischen Werten und entsprechend verändertem Metrum weiter als <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'M_314_Sk1'})\"><strong>Sk1</strong></a>. Die durch entsprechend vorgesehene Systeme (System 4–5) zunächst anvisierte Skizzierung der Klavierbegleitung wurde nicht ausgeführt.",
                 "Die Ziffern <em>VII</em> (U<sub>d</sub>) und <em>II</em> (K<sub>h</sub>) bezeichnen den Anfang der verwendeten Reihenformen gemäß den Reihentabellen <strong>M 312 Sk2</strong> und <a (click)=\"ref.selectSvgSheet({complexId: 'op23', sheetId: 'SkRT'})\"><strong>M 312 / M 313 / M 314 RT</strong></a>."
             ],
-            "comments": [
-                {
-                    "blockHeader": "",
-                    "blockComments": [
-                        {
-                            "svgGroupId": "g348",
-                            "measure": "vor 1",
-                            "system": "4–5",
-                            "position": "",
-                            "comment": "Klammer für Klaviersysteme gestrichen."
-                        },
-                        {
-                            "svgGroupId": "g349",
-                            "measure": "1",
-                            "system": "3",
-                            "position": "1/4",
-                            "comment": "f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch f<sup>1</sup>."
-                        },
-                        {
-                            "svgGroupId": "g351",
-                            "measure": "2",
-                            "system": "3",
-                            "position": "1. Note",
-                            "comment": "Punktierte Viertelnote überschreibt Halbe Note."
-                        },
-                        {
-                            "svgGroupId": "g354",
-                            "measure": "7",
-                            "system": "3",
-                            "position": "4.–5. Note",
-                            "comment": "<em>Leuchten</em> zusammengeschrieben."
-                        }
-                    ]
-                }
-            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g348",
+                                "measure": "vor 1",
+                                "system": "4–5",
+                                "position": "",
+                                "comment": "Klammer für Klaviersysteme gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g349",
+                                "measure": "1",
+                                "system": "3",
+                                "position": "1/4",
+                                "comment": "f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch f<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g351",
+                                "measure": "2",
+                                "system": "3",
+                                "position": "1. Note",
+                                "comment": "Punktierte Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g354",
+                                "measure": "7",
+                                "system": "3",
+                                "position": "4.–5. Note",
+                                "comment": "<em>Leuchten</em> zusammengeschrieben."
+                            }
+                        ]
+                    }
+                ]
+            },
             "linkBoxes": [
                 {
                     "svgGroupId": "g1418",
