@@ -7,6 +7,7 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
+import { EditionGlyphService } from '@awg-app/views/edition-view/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { IntroBlock } from '@awg-views/edition-view/models';
 
@@ -17,6 +18,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionIntroContentComponent>;
     let compDe: DebugElement;
 
+    let getGlyphSpy: Spy;
     let navigateToIntroFragmentSpy: Spy;
     let navigateToIntroFragmentRequestEmitSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
@@ -25,6 +27,9 @@ describe('EditionIntroContentComponent (DONE)', () => {
     let openModalRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
+    let editionGlyphServiceGetGlyphSpy: Spy;
+
+    let mockEditionGlyphService: Partial<EditionGlyphService>;
 
     let expectedIntroBlockContent: IntroBlock[];
     let expectedNotesLabel: string;
@@ -38,13 +43,29 @@ describe('EditionIntroContentComponent (DONE)', () => {
     let expectedNextSheetId: string;
 
     beforeEach(async () => {
+        mockEditionGlyphService = {
+            getGlyph: (glyphString: string): string => {
+                switch (glyphString) {
+                    case '[a]':
+                        return '\u266E';
+                    case '[b]':
+                        return '\u266D';
+                    default:
+                        return 'glyphString';
+                }
+            },
+        };
+
         await TestBed.configureTestingModule({
             declarations: [EditionIntroContentComponent, CompileHtmlComponent],
+            providers: [{ provide: EditionGlyphService, useValue: mockEditionGlyphService }],
         }).compileComponents();
 
         fixture = TestBed.createComponent(EditionIntroContentComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
+
+        mockEditionGlyphService = TestBed.inject(EditionGlyphService);
 
         // Test data
         expectedIntroBlockContent = JSON.parse(JSON.stringify(mockEditionData.mockIntroData.intro[0].content));
@@ -58,9 +79,8 @@ describe('EditionIntroContentComponent (DONE)', () => {
         expectedSheetId = 'test-1';
         expectedNextSheetId = 'test-2';
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        // Spies
+        getGlyphSpy = spyOn(component, 'getGlyph').and.callThrough();
         navigateToIntroFragmentSpy = spyOn(component, 'navigateToIntroFragment').and.callThrough();
         navigateToIntroFragmentRequestEmitSpy = spyOn(
             component.navigateToIntroFragmentRequest,
@@ -75,6 +95,8 @@ describe('EditionIntroContentComponent (DONE)', () => {
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+
+        editionGlyphServiceGetGlyphSpy = spyOn(mockEditionGlyphService, 'getGlyph').and.callThrough();
     });
 
     it('should create', () => {
@@ -214,9 +236,8 @@ describe('EditionIntroContentComponent (DONE)', () => {
                         );
 
                         if (index < expectedIntroBlockContent.length) {
-                            expect(pDes[0].nativeElement.textContent).toBe(
-                                expectedIntroBlockContent[index].blockHeader
-                            );
+                            const pEl: HTMLParagraphElement = pDes[0].nativeElement;
+                            expect(pEl.textContent).toBe(expectedIntroBlockContent[index].blockHeader);
                         }
                     });
                 });
@@ -343,10 +364,10 @@ describe('EditionIntroContentComponent (DONE)', () => {
                     );
                     const notesSectionDe = sectionDes.at(-1);
 
-                    const h5Des = getAndExpectDebugElementByCss(notesSectionDe, 'h5', 1, 1);
-                    const h5El = h5Des[0].nativeElement;
+                    const hDes = getAndExpectDebugElementByCss(notesSectionDe, 'h5', 1, 1);
+                    const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                    expectToBe(h5El.textContent, expectedNotesLabel);
+                    expectToBe(hEl.textContent, expectedNotesLabel);
                 });
 
                 it('... should contain one div.awg-edition-intro-notes', () => {
@@ -386,6 +407,36 @@ describe('EditionIntroContentComponent (DONE)', () => {
             });
         });
 
+        describe('#getGlyph()', () => {
+            it('... should have a method `getGlyph`', () => {
+                expect(component.getGlyph).toBeDefined();
+            });
+
+            it('... should trigger on change detection', () => {
+                // 2 glyphs in detected content
+                expectSpyCall(getGlyphSpy, 2);
+
+                detectChangesOnPush(fixture);
+
+                expectSpyCall(getGlyphSpy, 4);
+            });
+
+            it('... should call `getGlyphs` method from EditionGlyphService with correct glyph string', () => {
+                // 2 glyphs in detected content
+                expectSpyCall(editionGlyphServiceGetGlyphSpy, 2);
+
+                component.getGlyph('[bb]');
+
+                expectSpyCall(editionGlyphServiceGetGlyphSpy, 3, '[bb]');
+            });
+
+            it('... should return the glyph string from EditionGlyphService', () => {
+                const result = component.getGlyph('[bb]');
+
+                expectToBe(result, 'glyphString');
+            });
+        });
+
         describe('#navigateToIntroFragment()', () => {
             it('... should have a method `navigateToIntroFragment`', () => {
                 expect(component.navigateToIntroFragment).toBeDefined();
@@ -419,7 +470,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
             }));
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
+                it('... parameter is undefined', () => {
                     component.navigateToIntroFragment(undefined);
 
                     expectSpyCall(navigateToIntroFragmentRequestEmitSpy, 0);
@@ -506,7 +557,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
             }));
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
+                it('... parameter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);

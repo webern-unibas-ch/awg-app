@@ -15,7 +15,7 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { TextcriticalCommentBlock, Textcritics } from '@awg-views/edition-view/models';
+import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models';
 
 import { SourceDescriptionCorrectionsComponent } from './source-description-corrections.component';
 
@@ -23,7 +23,7 @@ import { SourceDescriptionCorrectionsComponent } from './source-description-corr
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
-    textcriticalCommentBlocks: TextcriticalCommentBlock[];
+    commentary: TextcriticalCommentary;
     @Input()
     isCorrections = false;
     @Input()
@@ -122,7 +122,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     1,
                     1
                 );
-                const pEl = pDes[0].nativeElement;
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expect(pEl).toHaveClass('no-para');
                 expectToBe(pEl.textContent.trim(), 'Korrekturen:');
@@ -170,7 +170,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 );
 
                 detailsDes.forEach((detailsDe, index) => {
-                    const detailsEl = detailsDe.nativeElement;
+                    const detailsEl: HTMLDetailsElement = detailsDe.nativeElement;
 
                     expect(detailsEl).toBeTruthy();
                     expectToBe(detailsEl.id, expectedCorrections[index].id);
@@ -192,7 +192,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const summaryEl = summaryDes[0].nativeElement;
+                    const summaryEl: HTMLElement = summaryDes[0].nativeElement;
 
                     const expectedHtmlTextContent = mockDocument.createElement('summary');
                     expectedHtmlTextContent.innerHTML = expectedCorrections[index].label + ':';
@@ -210,9 +210,9 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, index) => {
+                detailsDes.forEach(detailsDe => {
                     const divDes = getAndExpectDebugElementByCss(detailsDe, 'div', 1, 1);
-                    const divEl = divDes[0].nativeElement;
+                    const divEl: HTMLDivElement = divDes[0].nativeElement;
 
                     expect(divEl).toBeTruthy();
                     expectToContain(divEl.classList, 'border');
@@ -220,7 +220,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain a paragraph with as many descriptions as each corrections detail has', () => {
+            it('... should contain a paragraph with as many evaluations as each corrections detail has', () => {
                 const detailsDes = getAndExpectDebugElementByCss(
                     compDe,
                     'details.awg-source-description-correction-details',
@@ -231,19 +231,19 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 detailsDes.forEach((detailsDe, index) => {
                     const pDes = getAndExpectDebugElementByCss(
                         detailsDe,
-                        'p.awg-source-description-correction-desc',
+                        'p.awg-source-description-correction-evaluation',
                         1,
                         1
                     );
-                    const pEl = pDes[0].nativeElement;
+                    const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                     expect(pEl).toBeTruthy();
-                    expectToEqual(pEl.textContent.trim(), expectedCorrections[index].description[index].trim());
+                    expectToEqual(pEl.textContent.trim(), expectedCorrections[index].evaluations[index].trim());
                 });
             });
 
-            it('... should contain no EditionTkaTableComponent in corrections detail if no comments are given', () => {
-                component.corrections[0].comments = [];
+            it('... should contain no EditionTkaTableComponent in corrections detail if no commentary.comments are given', () => {
+                component.corrections[0].commentary.comments = [];
                 detectChangesOnPush(fixture);
 
                 const detailsDes = getAndExpectDebugElementByCss(
@@ -253,12 +253,12 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, _index) => {
+                detailsDes.forEach(detailsDe => {
                     getAndExpectDebugElementByDirective(detailsDe, EditionTkaTableStubComponent, 0, 0);
                 });
             });
 
-            it('... should contain one EditionTkaTableComponent in each corrections detail if comments are given', () => {
+            it('... should contain one EditionTkaTableComponent in each corrections detail if commentary.comments are given', () => {
                 const detailsDes = getAndExpectDebugElementByCss(
                     compDe,
                     'details.awg-source-description-correction-details',
@@ -266,12 +266,12 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, _index) => {
+                detailsDes.forEach(detailsDe => {
                     getAndExpectDebugElementByDirective(detailsDe, EditionTkaTableStubComponent, 1, 1);
                 });
             });
 
-            it('... should pass down `comments` to EditionTkaTableComponent (stubbed)', () => {
+            it('... should pass down `commentary` to EditionTkaTableComponent (stubbed)', () => {
                 const detailsDes = getAndExpectDebugElementByCss(
                     compDe,
                     'details.awg-source-description-correction-details',
@@ -290,7 +290,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
-                    expectToEqual(editionTkaTableCmp.textcriticalCommentBlocks, expectedCorrections[index].comments);
+                    expectToEqual(editionTkaTableCmp.commentary, expectedCorrections[index].commentary);
                 });
             });
 
@@ -329,7 +329,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, index) => {
+                detailsDes.forEach(detailsDe => {
                     const editionTkaTableDes = getAndExpectDebugElementByDirective(
                         detailsDe,
                         EditionTkaTableStubComponent,
@@ -358,7 +358,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, index) => {
+                detailsDes.forEach(detailsDe => {
                     const editionTkaTableDes = getAndExpectDebugElementByDirective(
                         detailsDe,
                         EditionTkaTableStubComponent,
@@ -378,7 +378,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
             });
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
+                it('... parameter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
@@ -445,7 +445,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, index) => {
+                detailsDes.forEach(detailsDe => {
                     const editionTkaTableDes = getAndExpectDebugElementByDirective(
                         detailsDe,
                         EditionTkaTableStubComponent,
@@ -501,7 +501,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     expectedCorrections.length
                 );
 
-                detailsDes.forEach((detailsDe, index) => {
+                detailsDes.forEach(detailsDe => {
                     const editionTkaTableDes = getAndExpectDebugElementByDirective(
                         detailsDe,
                         EditionTkaTableStubComponent,

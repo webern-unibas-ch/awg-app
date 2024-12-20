@@ -50,7 +50,7 @@ describe('AlertErrorComponent', () => {
 
             it('... should not display an error message in `div.alert-danger` yet', () => {
                 const alertDes = getAndExpectDebugElementByCss(compDe, 'div.alert-danger', 1, 1);
-                const alertEl = alertDes[0].nativeElement;
+                const alertEl: HTMLDivElement = alertDes[0].nativeElement;
 
                 expectToBe(alertEl.textContent, '');
             });
@@ -68,7 +68,7 @@ describe('AlertErrorComponent', () => {
         describe('VIEW', () => {
             it('... should display an error message in `div.alert-danger`', () => {
                 const alertDes = getAndExpectDebugElementByCss(compDe, 'div.alert-danger', 1, 1);
-                const alertEl = alertDes[0].nativeElement;
+                const alertEl: HTMLDivElement = alertDes[0].nativeElement;
 
                 expectToContain(alertEl.textContent, jsonPipe.transform(expectedErrorObject));
             });

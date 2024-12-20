@@ -1,5 +1,5 @@
 import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 
 import { combineLatest, EMPTY, fromEvent, Observable, of as observableOf, Subject } from 'rxjs';
 import { catchError, map, startWith, switchMap, takeUntil, throttleTime } from 'rxjs/operators';
@@ -7,8 +7,8 @@ import { catchError, map, startWith, switchMap, takeUntil, throttleTime } from '
 import { UtilityService } from '@awg-core/services';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionComplex, IntroList } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionComplex, EditionOutlineSection, EditionOutlineSeries, IntroList } from '@awg-views/edition-view/models';
+import { EditionDataService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionIntro component.
@@ -100,7 +100,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      *
      * It keeps the instance of the injected Angular Router.
      */
-    private readonly _router: any = inject(Router);
+    private readonly _router = inject(Router);
 
     /**
      * Constructor of the EditionIntroComponent.
@@ -138,7 +138,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      */
     ngOnDestroy() {
         this._editionStateService.clearIsIntroView();
-        this.editionIntroData$ = null;
+        this.editionIntroData$ = undefined;
 
         this._destroyed$.next(true);
         this._destroyed$.complete();
@@ -147,32 +147,23 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     /**
      * Public method: getEditionIntroData.
      *
-     * It gets the current edition complex from the EditionStateService
-     * and the observable of the corresponding intro data
-     * from the EditionDataService.
+     * It updates the current edition state and loads the intro data.
      *
-     * @returns {void} Gets the current edition complex and the corresponding intro data.
+     * @returns {void} Updates the current edition state and loads the intro data.
      */
     getEditionIntroData(): void {
-        this._editionStateService.updateIsIntroView(true);
+        this._router.events.subscribe(events => {
+            if (this._isNavigationEndToIntro(events)) {
+                const { seriesNumber, sectionNumber } = this._extractUrlSegments(events.urlAfterRedirects);
 
-        this.editionIntroData$ = combineLatest([
-            this._editionStateService.getSelectedEditionSeries(),
-            this._editionStateService.getSelectedEditionSection(),
-            this._editionStateService.getSelectedEditionComplex().pipe(startWith(null)),
-        ]).pipe(
-            switchMap(([series, section, complex]) => {
-                if (series && section) {
-                    return this._fetchAndFilterIntroData(series.series.route, section.section.route, complex);
+                if (seriesNumber && sectionNumber) {
+                    this._updateEditionState(seriesNumber, sectionNumber);
                 } else {
-                    return EMPTY;
+                    console.error('Invalid URL segments:', events.urlAfterRedirects);
                 }
-            }),
-            catchError(err => {
-                this.errorObject = err;
-                return EMPTY;
-            })
-        );
+            }
+        });
+        this._loadEditionIntroData();
     }
 
     /**
@@ -253,6 +244,37 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     }
 
     /**
+     * Private method: _extractUrlSegments.
+     *
+     * It extracts the series and section number from a given URL.
+     *
+     * @param {string} url The given URL.
+     * @returns {{ seriesNumber: string | undefined; sectionNumber: string | undefined }} The extracted series and section number.
+     */
+    private _extractUrlSegments(url: string): { seriesNumber: string | undefined; sectionNumber: string | undefined } {
+        if (!url) {
+            return { seriesNumber: undefined, sectionNumber: undefined };
+        }
+        const urlSegments = url.split('/');
+        const seriesIndex = urlSegments.indexOf('series') + 1;
+        const sectionIndex = urlSegments.indexOf('section') + 1;
+
+        const seriesNumber = urlSegments[seriesIndex];
+        const sectionNumber = urlSegments[sectionIndex];
+
+        const isValidSeriesNumber = (value: string | undefined): boolean =>
+            value !== undefined && /^[1-3]$/.test(value);
+
+        const isValidSectionNumber = (value: string | undefined): boolean =>
+            value !== undefined && /^[1-5]+[ab]?$/.test(value);
+
+        return {
+            seriesNumber: isValidSeriesNumber(seriesNumber) ? seriesNumber : undefined,
+            sectionNumber: isValidSectionNumber(sectionNumber) ? sectionNumber : undefined,
+        };
+    }
+
+    /**
      * Private method: _fetchAndFilterIntroData.
      *
      * It fetches the intro data and, if needed,
@@ -315,7 +337,51 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     private _initScrollListener(): void {
         fromEvent(window, 'scroll')
             .pipe(throttleTime(200), takeUntil(this._destroyed$))
-            .subscribe(event => this._onIntroScroll(event));
+            .subscribe({
+                next: event => this._onIntroScroll(event),
+            });
+    }
+
+    /**
+     * Private method: _isNavigationEndToIntro.
+     *
+     * It checks if the given event is a NavigationEnd event
+     * and if the URL contains 'intro'.
+     *
+     * @param {any} events The given events.
+     * @returns {boolean} The result of the check.
+     */
+    private _isNavigationEndToIntro(events: any): events is NavigationEnd {
+        return events instanceof NavigationEnd && events.urlAfterRedirects?.includes('intro');
+    }
+
+    /**
+     * Private method: _loadEditionIntroData.
+     *
+     * It gets the current edition complex from the EditionStateService
+     * and the observable of the corresponding intro data
+     * from the EditionDataService.
+     *
+     * @returns {void} Loads the intro data.
+     */
+    private _loadEditionIntroData(): void {
+        this.editionIntroData$ = combineLatest([
+            this._editionStateService.getSelectedEditionSeries(),
+            this._editionStateService.getSelectedEditionSection(),
+            this._editionStateService.getSelectedEditionComplex().pipe(startWith(null)),
+        ]).pipe(
+            switchMap(([series, section, complex]) => {
+                if (series && section) {
+                    return this._fetchAndFilterIntroData(series.series.route, section.section.route, complex);
+                } else {
+                    return EMPTY;
+                }
+            }),
+            catchError(err => {
+                this.errorObject = err;
+                return EMPTY;
+            })
+        );
     }
 
     /**
@@ -340,28 +406,50 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * It handles the scroll event on the intro window
      * and highlights the corresponding section in the intro navigation.
      *
-     * @param {Event} _event The given scroll event (not used).
+     * @param {Event} event The given scroll event.
      * @returns {void} Highlights the corresponding section in the intro navigation
      * on window scroll.
      */
-    private _onIntroScroll(_event: Event): void {
-        const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-        const introSections: NodeListOf<HTMLElement> = document.querySelectorAll('.awg-edition-intro-section');
-        const introNavLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('a.awg-edition-intro-nav-link');
+    private _onIntroScroll(event: Event): void {
+        if (event?.type === 'scroll') {
+            const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+            const introSections: NodeListOf<HTMLElement> = document.querySelectorAll('.awg-edition-intro-section');
+            const introNavLinks: NodeListOf<HTMLAnchorElement> =
+                document.querySelectorAll('a.awg-edition-intro-nav-link');
 
-        let activeIntroSectionId: string | null = null;
+            let activeIntroSectionId: string | null = null;
 
-        introSections.forEach((introSection: HTMLElement) => {
-            const introSectionTop = introSection.offsetTop - 10;
-            const introSectionBottom = introSection.offsetTop + introSection.offsetHeight;
+            introSections.forEach((introSection: HTMLElement) => {
+                const introSectionTop = introSection.offsetTop - 10;
+                const introSectionBottom = introSection.offsetTop + introSection.offsetHeight;
 
-            if (introSectionTop <= scrollPosition && introSectionBottom > scrollPosition) {
-                activeIntroSectionId = introSection.id;
-            }
-        });
+                if (introSectionTop <= scrollPosition && introSectionBottom > scrollPosition) {
+                    activeIntroSectionId = introSection.id;
+                }
+            });
 
-        introNavLinks.forEach((navLink: HTMLAnchorElement) => {
-            navLink.classList.toggle('active', navLink.hash.includes(activeIntroSectionId));
-        });
+            introNavLinks.forEach((navLink: HTMLAnchorElement) => {
+                navLink.classList.toggle('active', navLink.hash.includes(activeIntroSectionId));
+            });
+        }
+    }
+
+    /**
+     * Private method: _updateEditionState.
+     *
+     * It updates the selected edition series and section
+     * and the introView in the EditionStateService.
+     *
+     * @param {string} seriesNumber The given series number.
+     * @param {string} sectionNumber The given section number.
+     * @returns {void} Updates the selected edition series, section, and introView.
+     */
+    private _updateEditionState(seriesNumber: string, sectionNumber: string): void {
+        const series: EditionOutlineSeries = EditionOutlineService.getEditionSeriesById(seriesNumber);
+        const section: EditionOutlineSection = EditionOutlineService.getEditionSectionById(seriesNumber, sectionNumber);
+
+        this._editionStateService.updateSelectedEditionSeries(series);
+        this._editionStateService.updateSelectedEditionSection(section);
+        this._editionStateService.updateIsIntroView(true);
     }
 }

@@ -118,13 +118,11 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'section.awg-props', 1, 1);
             });
 
-            it('... should contain one header', () => {
-                // Header debug element
-                const headerDes = getAndExpectDebugElementByCss(compDe, 'section.awg-props > h4.awg-props-title', 1, 1);
-                const headerEl = headerDes[0].nativeElement;
+            it('... should contain one heading', () => {
+                const hDes = getAndExpectDebugElementByCss(compDe, 'section.awg-props > h4.awg-props-title', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                // Check output
-                expectToContain(headerEl.textContent, 'Objektdaten');
+                expectToContain(hEl.textContent, 'Objektdaten');
             });
 
             it('... should contain no ul with props yet', () => {

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { DOCUMENT } from '@angular/common';
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
@@ -78,7 +77,7 @@ describe('EditionViewComponent (DONE)', () => {
             getSelectedEditionComplex: (): Observable<EditionComplex> =>
                 // Return op. 12 by default
                 observableOf(EditionComplexesService.getEditionComplexById(expectedSelectedEditionComplexId)),
-            updateSelectedEditionComplex: (editionComplex: EditionComplex): void => {
+            updateSelectedEditionComplex: (): void => {
                 // Intentional empty test override
             },
             getSelectedEditionSeries: (): Observable<EditionOutlineSeries> =>
@@ -290,7 +289,7 @@ describe('EditionViewComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const hEl = hDes[0].nativeElement;
+                    const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                     const expectedBreadCrumb = `${expectedEditionRouteConstants.EDITION.short} / ${expectedEditionRouteConstants.PREFACE.short}`;
 
@@ -343,7 +342,7 @@ describe('EditionViewComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const hEl = hDes[0].nativeElement;
+                    const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                     const expectedBreadCrumb = `${expectedEditionRouteConstants.EDITION.short} / ${expectedEditionRouteConstants.ROWTABLES.full}`;
 
@@ -396,7 +395,7 @@ describe('EditionViewComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const hEl = hDes[0].nativeElement;
+                    const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                     const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                     const series = expectedSelectedEditionComplex.pubStatement.series.full;
@@ -439,28 +438,28 @@ describe('EditionViewComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
                 });
 
-                it('... should display editor and version in responsibility div', () => {
+                it('... should display editor link and version in responsibility div', () => {
                     const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-responsibility > p', 1, 1);
 
                     const expectedEditors = expectedSelectedEditionComplex.respStatement.editors;
-                    const editorDes = getAndExpectDebugElementByCss(
+                    const editorLinkDes = getAndExpectDebugElementByCss(
                         pDes[0],
                         'span.editor > a',
                         expectedEditors.length,
                         expectedEditors.length
                     );
-                    const versionDes = getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
+                    const versionSpanDes = getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
 
-                    const editorEls = editorDes.map(editor => editor.nativeElement);
-                    const versionEl = versionDes[0].nativeElement;
+                    const editorLinkEls: HTMLAnchorElement[] = editorLinkDes.map(editor => editor.nativeElement);
+                    const versionSpanEl: HTMLSpanElement = versionSpanDes[0].nativeElement;
 
-                    editorEls.forEach((editorEl, i: number) => {
-                        expectToBe(editorEl.href, expectedEditors[i].homepage);
+                    editorLinkEls.forEach((editorLinkEl, i: number) => {
+                        expectToBe(editorLinkEl.href, expectedEditors[i].homepage);
 
-                        expectToBe(editorEl.innerText, expectedEditors[i].name);
+                        expectToBe(editorLinkEl.innerText, expectedEditors[i].name);
                     });
 
-                    expectToBe(versionEl.innerText, expectedSelectedEditionComplex.respStatement.lastModified);
+                    expectToBe(versionSpanEl.innerText, expectedSelectedEditionComplex.respStatement.lastModified);
                 });
             });
 
@@ -554,7 +553,7 @@ describe('EditionViewComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const hEl = hDes[0].nativeElement;
+                            const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                             const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                             const expectedBreadCrumb = `${awg} /`;
@@ -598,7 +597,7 @@ describe('EditionViewComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const hEl = hDes[0].nativeElement;
+                            const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                             const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                             const series = expectedSelectedEditionComplex.pubStatement.series.full;
@@ -651,7 +650,7 @@ describe('EditionViewComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const hEl = hDes[0].nativeElement;
+                            const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                             const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                             const series = expectedSelectedEditionComplex.pubStatement.series.full;
@@ -711,7 +710,7 @@ describe('EditionViewComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const hEl = hDes[0].nativeElement;
+                            const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                             const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
                             const series = expectedSelectedEditionComplex.pubStatement.series.full;

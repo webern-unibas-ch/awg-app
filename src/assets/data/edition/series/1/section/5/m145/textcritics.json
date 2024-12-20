@@ -1,3 +1,254 @@
 {
-    "textcritics": []
+    "textcritics": [
+        {
+            "id": "M_145_TF1",
+            "label": "M 145 einzige Textfassung",
+            "evaluations": [
+                "Für die Edition der einzigen Textfassung von Trauer I („So wart bis ich dies dir noch künde“) M 145 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle.",
+                "Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte ggf. auf Rasur oder Tektur (<a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a>) und mit Bleistift (<a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht immer eindeutig zu entziffern. Der Zustand nach Korrekturen 1 etabliert die einzige Textfassung. Korrekturen 2 skizzieren eine ansonten nicht etablierte Textfassung und sind nicht immer eindeutig zu interpretieren.",
+                "Hauptquelle für die Textedition von Trauer I („So wart bis ich dies dir noch künde“) M 145 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a> nach Korrekturen 1."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g483",
+                                "measure": "1",
+                                "system": "Klav. u.",
+                                "position": "4/8",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f ergänzt mit Blick auf Motivik vor T. 1 Klav. o."
+                            },
+                            {
+                                "svgGroupId": "g485",
+                                "measure": "2",
+                                "system": "Klav. u.",
+                                "position": "1/4",
+                                "comment": "Unterstimmenschicht: Ende des Legatobogens versetzt von Ende T. 1. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel vor T. 2."
+                            },
+                            {
+                                "svgGroupId": "g486",
+                                "measure": "2",
+                                "system": "Ges.",
+                                "position": "5/8",
+                                "comment": "Text: Großschreibung <em>Daß</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung.  <br /> Text sic: <em>Daß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>Dass</em>."
+                            },
+                            {
+                                "svgGroupId": "g487",
+                                "measure": "3",
+                                "system": "Ges.",
+                                "position": "2. Note",
+                                "comment": "Text: Gedankenstrich nach (er-be-)<em>te</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g488",
+                                "measure": "4",
+                                "system": "Ges.",
+                                "position": "1.–2. Note",
+                                "comment": "Text sic: Silbentrennung (be-)<em>ge-hre</em>."
+                            },
+                            {
+                                "svgGroupId": "g489",
+                                "measure": "4",
+                                "system": "Ges.",
+                                "position": "4/8",
+                                "comment": "Text: Punkt nach (be-ge-)<em>hre</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g490",
+                                "measure": "4",
+                                "system": "Ges.",
+                                "position": "6/8",
+                                "comment": "Text: Großschreibung <em>Der</em> mit Blick auf Satzanfang (siehe TkA zu T. 4 4/8) sowie auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                            },
+                            {
+                                "svgGroupId": "g694",
+                                "measure": "6",
+                                "system": "Ges.",
+                                "position": "2/8",
+                                "comment": "Text: Komma nach (sün-)<em>de</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g695",
+                                "measure": "6",
+                                "system": "Ges.",
+                                "position": "3. Note",
+                                "comment": "Text: Großschreibung <em>Der</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                            },
+                            {
+                                "svgGroupId": "g700",
+                                "measure": "6",
+                                "system": "Ges.",
+                                "position": "4. Note",
+                                "comment": "Text sic: Großschreibung <em>Tod</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>tod.</em>"
+                            },
+                            {
+                                "svgGroupId": "g701",
+                                "measure": "7",
+                                "system": "Ges.",
+                                "position": "6/8",
+                                "comment": "Text: Punkt nach (eh-)<em>re</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g702",
+                                "measure": "8",
+                                "system": "Klav. u.",
+                                "position": "1/8",
+                                "comment": "Unterstimmenschicht: Ende des Bogens versetzt von Ende T. 7. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Seitenwechsel nach T. 7."
+                            },
+                            {
+                                "svgGroupId": "g703",
+                                "measure": "9",
+                                "system": "Klav. u.",
+                                "position": "3. Note",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e ergänzt mit Blick auf T. 10 2/16 und 3/8."
+                            },
+                            {
+                                "svgGroupId": "g726",
+                                "measure": "9",
+                                "system": "Ges.",
+                                "position": "4. Note",
+                                "comment": "Text sic: Großschreibung <em>Fin</em>(-stern) (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>)<em>.</em>"
+                            },
+                            {
+                                "svgGroupId": "g727",
+                                "measure": "9",
+                                "system": "Klav. u.",
+                                "position": "12/16",
+                                "comment": "Oberstimmenschicht: Anfang der Ligaturbögen zu T. 10 ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 9."
+                            },
+                            {
+                                "svgGroupId": "g747",
+                                "measure": "10",
+                                "system": "Ges.",
+                                "position": "2/8",
+                                "comment": "Text: Doppelpunkt nach (er-la-)<em>sen</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g766",
+                                "measure": "11",
+                                "system": "Ges.",
+                                "position": "1. Note",
+                                "comment": "Text sic: <em>ich</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em><span class=\"smallcaps\">ich</span></em> (Kleinschreibung mit Kapitälchen). <br /> Text sic: Längenstrich nach <em>ich</em>."
+                            },
+                            {
+                                "svgGroupId": "g767",
+                                "measure": "11",
+                                "system": "Klav. o.",
+                                "position": "14/32–6/8",
+                                "comment": "Bogen ergänzt analog T. 12 2/32–2/8 und T. 13 18/32–6/8."
+                            },
+                            {
+                                "svgGroupId": "g768",
+                                "measure": "11",
+                                "system": "Klav. o.",
+                                "position": "6/8",
+                                "comment": "Ende der Crescendogabel versetzt von vorletzter Note analog T. 12 2/8 und T. 13 6/8"
+                            },
+                            {
+                                "svgGroupId": "g449",
+                                "measure": "12",
+                                "system": "Ges.",
+                                "position": "2/8",
+                                "comment": "Text: Punkt nach (stu-)<em>fe</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g450",
+                                "measure": "12",
+                                "system": "Ges.",
+                                "position": "4/8",
+                                "comment": "Text: Großschreibung <em>Die</em> mit Blick auf Satzanfang (siehe TkA zu T. 12 2/8) sowie auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                            },
+                            {
+                                "svgGroupId": "g451",
+                                "measure": "13",
+                                "system": "Ges.",
+                                "position": "6/8",
+                                "comment": "Text: Punkt nach (ra-)<em>sen</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g452",
+                                "measure": "13",
+                                "system": "Klav. o.",
+                                "position": "6/8",
+                                "comment": "<em>linke H.</em> versetzt von vor dem Akkord (in <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a> dort missverständlich auf Klav. u. 7. Note beziehbar)."
+                            },
+                            {
+                                "svgGroupId": "g478",
+                                "measure": "14",
+                                "system": "Ges.",
+                                "position": "4.–6. Note",
+                                "comment": "Text sic: Silbentrennung <em>fle-hen</em>(-den)."
+                            },
+                            {
+                                "svgGroupId": "g479",
+                                "measure": "14",
+                                "system": "Ges.",
+                                "position": "letzte Note",
+                                "comment": "Text: Drei Punkte nach (ru-)<em>fe</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g690",
+                                "measure": "15",
+                                "system": "Klav. u.",
+                                "position": "1/8",
+                                "comment": "Ende des Bogens versetzt von Ende T. 14. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 14."
+                            },
+                            {
+                                "svgGroupId": "g695d",
+                                "measure": "15",
+                                "system": "Ges.",
+                                "position": "8/8",
+                                "comment": "Text: Anführungszeichen vor <em>Laß</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. Siehe auch TkA zu T. 20 4/8. <br /> Text sic: <em>Laß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>Lass</em>."
+                            },
+                            {
+                                "svgGroupId": "g771",
+                                "measure": "16",
+                                "system": "Ges.",
+                                "position": "letzte Note",
+                                "comment": "Text: Ausrufezeichen nach (ent-schwe[-])<em>ben</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g772",
+                                "measure": "17",
+                                "system": "Ges.",
+                                "position": "1/4",
+                                "comment": "Text: Großschreibung <em>Du</em> mit Blick auf Satzanfang (siehe TkA zu T. 16 letzte Note) sowie auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                            },
+                            {
+                                "svgGroupId": "g796",
+                                "measure": "17",
+                                "system": "Ges.",
+                                "position": "2. Note",
+                                "comment": "Text sic: Apostroph nach <em>heb</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: kein Apostroph."
+                            },
+                            {
+                                "svgGroupId": "g830",
+                                "measure": "18",
+                                "system": "Ges.",
+                                "position": "2/8",
+                                "comment": "Text: Ausrufezeichen nach (ge-sund-)<em>der</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g859",
+                                "measure": "19",
+                                "system": "Ges.",
+                                "position": "4/8",
+                                "comment": "Text sic: Großschreibung <em>Und</em> (wie <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> am Zeilenanfang). Siehe auch TkA zu T. 2 5/8 und T. 6 3. Note."
+                            },
+                            {
+                                "svgGroupId": "g887",
+                                "measure": "20",
+                                "system": "Ges.",
+                                "position": "4/8",
+                                "comment": "Text: Ausrufezeichen und Anführungszeichen nach (le-)<em>ben</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm145', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>. Siehe auch TkA zu T. 15 8/8."
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
 }

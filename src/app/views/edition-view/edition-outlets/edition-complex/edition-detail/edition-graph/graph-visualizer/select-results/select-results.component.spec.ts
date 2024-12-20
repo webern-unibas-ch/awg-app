@@ -116,22 +116,17 @@ describe('SelectResultsComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one div.accordion', () => {
-                // Div.accordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
             it('... should contain one div.accordion-item with header and non-collapsible body yet in div.accordion', () => {
-                // Div.accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
-                // Header (div.accordion-header)
                 getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-header', 1, 1);
 
-                // Body (div.accordion-collapse)
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
-                const itemBodyEl = itemBodyDes[0].nativeElement;
+                const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                 expectToContain(itemBodyEl.classList, 'accordion-collapse');
             });
@@ -166,17 +161,14 @@ describe('SelectResultsComponent (DONE)', () => {
         describe('VIEW', () => {
             describe('not in fullscreen mode', () => {
                 it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
-                    // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                    // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
                         'div#awg-graph-visualizer-select-results.accordion-item',
                         1,
                         1
                     );
-                    // Header (div.accordion-header)
                     getAndExpectDebugElementByCss(
                         itemDes[0],
                         'div#awg-graph-visualizer-select-results > div.accordion-header',
@@ -191,13 +183,12 @@ describe('SelectResultsComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const itemBodyEl = itemBodyDes[0].nativeElement;
+                    const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
                 });
 
                 it('... should display item header button', () => {
-                    // Header debug elements
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-header',
@@ -205,16 +196,13 @@ describe('SelectResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Item header button
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                    // Check button content
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
                 it('... should toggle item body on click', () => {
-                    // Header debug elements
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-header',
@@ -222,10 +210,8 @@ describe('SelectResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Button debug elements
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
-                    // Button native elements to click on
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Item body is open
                     let itemBodyDes = getAndExpectDebugElementByCss(
@@ -235,7 +221,7 @@ describe('SelectResultsComponent (DONE)', () => {
                         1,
                         'open'
                     );
-                    let itemBodyEl = itemBodyDes[0].nativeElement;
+                    let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
 
@@ -278,7 +264,6 @@ describe('SelectResultsComponent (DONE)', () => {
                         component.queryResult$ = EMPTY;
                         detectChangesOnPush(fixture);
 
-                        // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -294,7 +279,6 @@ describe('SelectResultsComponent (DONE)', () => {
                         component.queryResult$ = undefined;
                         detectChangesOnPush(fixture);
 
-                        // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -310,7 +294,6 @@ describe('SelectResultsComponent (DONE)', () => {
                         component.queryResult$ = null;
                         detectChangesOnPush(fixture);
 
-                        // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -328,7 +311,6 @@ describe('SelectResultsComponent (DONE)', () => {
                         component.queryResult$ = observableOf({ head: { vars: [] }, body: { bindings: [] } });
                         detectChangesOnPush(fixture);
 
-                        // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -346,7 +328,6 @@ describe('SelectResultsComponent (DONE)', () => {
                         component.queryResult$ = observableOf(undefinedQueryResult);
                         detectChangesOnPush(fixture);
 
-                        // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -364,7 +345,6 @@ describe('SelectResultsComponent (DONE)', () => {
                         component.queryResult$ = observableOf(undefinedQueryResult);
                         detectChangesOnPush(fixture);
 
-                        // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -382,7 +362,6 @@ describe('SelectResultsComponent (DONE)', () => {
                         component.queryResult$ = observableOf(undefinedQueryResult);
                         detectChangesOnPush(fixture);
 
-                        // Item body
                         const body = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -396,7 +375,6 @@ describe('SelectResultsComponent (DONE)', () => {
                 });
 
                 it('... should contain item body with SparqlTableComponent (stubbed) if results are available', () => {
-                    // Item body
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -427,17 +405,14 @@ describe('SelectResultsComponent (DONE)', () => {
                 });
 
                 it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
-                    // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                    // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
                         'div#awg-graph-visualizer-select-results.accordion-item',
                         1,
                         1
                     );
-                    // Header (div.accordion-header)
                     getAndExpectDebugElementByCss(
                         itemDes[0],
                         'div#awg-graph-visualizer-select-results > div.accordion-header',
@@ -452,13 +427,12 @@ describe('SelectResultsComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const itemBodyEl = itemBodyDes[0].nativeElement;
+                    const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
                 });
 
                 it('... should display item header button', () => {
-                    // Header debug elements
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-header',
@@ -466,16 +440,14 @@ describe('SelectResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Item header button
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Check button content
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
                 it('... should not toggle item body on click', () => {
-                    // Header debug elements
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-header',
@@ -483,10 +455,8 @@ describe('SelectResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Button debug elements
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
-                    // Button native elements to click on
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     expect(btnEl.disabled).toBeTruthy();
 
@@ -498,7 +468,7 @@ describe('SelectResultsComponent (DONE)', () => {
                         1,
                         'open'
                     );
-                    let itemBodyEl = itemBodyDes[0].nativeElement;
+                    let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
 
@@ -525,7 +495,6 @@ describe('SelectResultsComponent (DONE)', () => {
                         component.queryResult$ = EMPTY;
                         detectChangesOnPush(fixture);
 
-                        // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -541,7 +510,6 @@ describe('SelectResultsComponent (DONE)', () => {
                         component.queryResult$ = undefined;
                         detectChangesOnPush(fixture);
 
-                        // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -557,7 +525,6 @@ describe('SelectResultsComponent (DONE)', () => {
                         component.queryResult$ = null;
                         detectChangesOnPush(fixture);
 
-                        // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -575,7 +542,6 @@ describe('SelectResultsComponent (DONE)', () => {
                         component.queryResult$ = observableOf({ head: { vars: [] }, body: { bindings: [] } });
                         detectChangesOnPush(fixture);
 
-                        // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -593,7 +559,6 @@ describe('SelectResultsComponent (DONE)', () => {
                         component.queryResult$ = observableOf(undefinedQueryResult);
                         detectChangesOnPush(fixture);
 
-                        // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -611,7 +576,6 @@ describe('SelectResultsComponent (DONE)', () => {
                         component.queryResult$ = observableOf(undefinedQueryResult);
                         detectChangesOnPush(fixture);
 
-                        // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -629,7 +593,6 @@ describe('SelectResultsComponent (DONE)', () => {
                         component.queryResult$ = observableOf(undefinedQueryResult);
                         detectChangesOnPush(fixture);
 
-                        // Item body
                         const body = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -643,7 +606,6 @@ describe('SelectResultsComponent (DONE)', () => {
                 });
 
                 it('... should contain item body with SparqlTableComponent (stubbed) if results are available', () => {
-                    // Item body
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',

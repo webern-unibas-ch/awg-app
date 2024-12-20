@@ -1,3 +1,9 @@
+.awg-edition-tka-table caption {
+    caption-side: top;
+    text-align: left;
+    color: var(--bs-primary-color);
+}
+
 .awg-edition-tka-table .measure {
     width: 10%;
     white-space: nowrap;

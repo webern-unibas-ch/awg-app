@@ -549,7 +549,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Autograph von „Wie bin ich froh!“ M 317: Textfassung 1.",
+            "type": "Autograph von „Wie bin ich froh!“ M 317: <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
@@ -1862,7 +1862,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "I „Wie bin ich froh!“ M 317: Textfassung 1→2",
+                        "itemDescription": "I „Wie bin ich froh!“ M 317: <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>→<span class='link-todo'>2</span>",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -1939,7 +1939,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "II „Des Herzens Purpurvogel“ M 322: einzige Textfassung",
+                        "itemDescription": "II „Des Herzens Purpurvogel“ M 322: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
                                 "folio": "4r",
@@ -2065,7 +2065,7 @@
                     {
                         "item": "",
                         "itemLinkTo": {},
-                        "itemDescription": "III „Sterne, Ihr silbernen Bienen“ M 321: einzige Textfassung",
+                        "itemDescription": "III „Sterne, Ihr silbernen Bienen“ M 321: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
                                 "folio": "7r",
@@ -2198,912 +2198,914 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_E_corr1",
+                        "id": "source_E_corr_1",
                         "label": "Korrekturen 1 in <strong>E</strong>",
-                        "description": [
-                            "Die Beschreibung der Korrekturen bezieht sich auf „Wie bin ich froh“ M 317: Textfassung 1."
-                        ],
-                        "comments": [
-                            {
-                                "blockHeader": "",
-                                "blockComments": [
-                                    {
-                                        "measure": "1",
-                                        "system": "",
-                                        "position": "(5/8)",
-                                        "comment": "Geltungsstrichelung von <em>rit.</em> auf Rasur. Ante correcturam: <em>rit.</em> vermutlich versetzt von T. 1 5/8. Siehe TkA zu 4/8."
-                                    },
-                                    {
-                                        "measure": "10",
-                                        "system": "",
-                                        "position": "(3/4)",
-                                        "comment": "Geltungsstrichelung von <em>rit.</em> auf Rasur. Ante correcturam: <em>rit.</em> vermutlich versetzt von T. 10 3/4 zu Taktanfang."
-                                    },
-                                    {
-                                        "measure": "11 <br /> bis 12",
-                                        "system": "",
-                                        "position": "(4/4)",
-                                        "comment": "T. 11 4/4 wurde zum Teil auf handgezogenen Systemen am Akkoladenende ergänzt; am vom Systemanfang nach rechts verschobenen Akkoladenanfang vor T. 12 steht eine großflächige Rasur; weitere Rasuren in T. 12 Ges.; radierter Taktstrich nach T. 12 2/8. Ante correcturam: vermutlich eine dreitaktige Variante (T. [11–13]) mit Taktstrichen nach T. 11 6/8 (vor T. [12]) und nach T. 12 2/8 (vor T. [13]). Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\"><strong>M 317 Sk4</strong> T. 13–15</a>."
-                                    },
-                                    {
-                                        "measure": "12",
-                                        "system": "Klav. u.",
-                                        "position": "2.–5. Note",
-                                        "comment": "Auf Rasur. Ante correcturam: Tonhöhen vermutlich im Violinschlüssel notiert. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\"><strong>M 317 Sk4</strong> T. 13–15</a>."
-                                    }
-                                ]
-                            }
-                        ]
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf „Wie bin ich froh“ M 317: <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>.",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1",
+                                            "system": "",
+                                            "position": "(5/8)",
+                                            "comment": "Geltungsstrichelung von <em>rit.</em> auf Rasur. Ante correcturam: <em>rit.</em> vermutlich versetzt von T. 1 5/8. Siehe TkA zu 4/8."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "",
+                                            "position": "(3/4)",
+                                            "comment": "Geltungsstrichelung von <em>rit.</em> auf Rasur. Ante correcturam: <em>rit.</em> vermutlich versetzt von T. 10 3/4 zu Taktanfang."
+                                        },
+                                        {
+                                            "measure": "11 <br /> bis 12",
+                                            "system": "",
+                                            "position": "(4/4)",
+                                            "comment": "T. 11 4/4 wurde zum Teil auf handgezogenen Systemen am Akkoladenende ergänzt; am vom Systemanfang nach rechts verschobenen Akkoladenanfang vor T. 12 steht eine großflächige Rasur; weitere Rasuren in T. 12 Ges.; radierter Taktstrich nach T. 12 2/8. Ante correcturam: vermutlich eine dreitaktige Variante (T. [11–13]) mit Taktstrichen nach T. 11 6/8 (vor T. [12]) und nach T. 12 2/8 (vor T. [13]). Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\"><strong>M 317 Sk4</strong> T. 13–15</a>."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. u.",
+                                            "position": "2.–5. Note",
+                                            "comment": "Auf Rasur. Ante correcturam: Tonhöhen vermutlich im Violinschlüssel notiert. Siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_Sk4d'})\"><strong>M 317 Sk4</strong> T. 13–15</a>."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                     },
                     {
-                        "id": "source_E_corr2",
+                        "id": "source_E_corr_2",
                         "label": "Korrekturen 2 in <strong>E</strong>",
-                        "description": [
-                            "Die Beschreibung der Korrekturen bezieht sich auf die Textfassungen der Werkedition von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25."
-                        ],
-                        "comments": [
-                            {
-                                "blockHeader": "I „Wie bin ich froh“ M 317",
-                                "blockComments": [
-                                    {
-                                        "measure": "1",
-                                        "system": "Klav.",
-                                        "position": "5–6/8",
-                                        "comment": "Auf Rasur. Ante correcturam: Aufteilung der Noten auf die Systeme vermutlich wie in Textfassung 1."
-                                    },
-                                    {
-                                        "measure": "2",
-                                        "system": "Ges.",
-                                        "position": "2.–3. Note",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
-                                    },
-                                    {
-                                        "measure": "3",
-                                        "system": "Ges.",
-                                        "position": "1.–3. Note",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
-                                    },
-                                    {
-                                        "measure": "3",
-                                        "system": "Ges.",
-                                        "position": "5–6/8",
-                                        "comment": "Tenutostriche rasiert (siehe Textfassung 1)."
-                                    },
-                                    {
-                                        "measure": "vor 4",
-                                        "system": "Klav. u.",
-                                        "position": "",
-                                        "comment": "Violinschlüssel versetzt von T. 4 vor 1. Note (dort Rasur; siehe Textfassung 1)."
-                                    },
-                                    {
-                                        "measure": "4",
-                                        "system": "Ges.",
-                                        "position": "1.–3. Note",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
-                                    },
-                                    {
-                                        "measure": "4",
-                                        "system": "Ges.",
-                                        "position": "8/8",
-                                        "comment": "Tenutostrich rasiert (siehe Textfassung 1)."
-                                    },
-                                    {
-                                        "measure": "5",
-                                        "system": "Ges.",
-                                        "position": "1.–3. Note",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
-                                    },
-                                    {
-                                        "measure": "5 <br /> bis 6",
-                                        "system": "Klav.",
-                                        "position": "5/8 <br /> 1/8",
-                                        "comment": "Auf Rasur. Ante correcturam: Aufteilung der Noten auf die Systeme vermutlich wie in Textfassung 1."
-                                    },
-                                    {
-                                        "measure": "6",
-                                        "system": "Klav.",
-                                        "position": "2. Note",
-                                        "comment": "Bleistiftskizzen über und unter der Akkolade (System 5 und 9) rasiert."
-                                    },
-                                    {
-                                        "measure": "6 <br /> bis 7",
-                                        "system": "Ges.",
-                                        "position": "2. Note <br /> 2/8",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1). Möglicherweise steht der Silbenbogen in T. 7 1–2/8 im Zusammenhang mit dieser Korrektur."
-                                    },
-                                    {
-                                        "measure": "7",
-                                        "system": "Ges.",
-                                        "position": "4–6/8",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
-                                    },
-                                    {
-                                        "measure": "8",
-                                        "system": "Klav. u.",
-                                        "position": "nach 3/8",
-                                        "comment": "Violinschlüssel versetzt von vor 2. Note (dort Rasur; siehe Textfassung 1)."
-                                    },
-                                    {
-                                        "measure": "8",
-                                        "system": "Ges.",
-                                        "position": "1.–4. Note",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1). Möglicherweise steht der Silbenbogen in T. 8 3.–4. Note im Zusammenhang mit dieser Korrektur."
-                                    },
-                                    {
-                                        "measure": "8",
-                                        "system": "Ges.",
-                                        "position": "5.–6. Note",
-                                        "comment": "Tenutostriche rasiert (siehe Textfassung 1)."
-                                    },
-                                    {
-                                        "measure": "9",
-                                        "system": "Ges.",
-                                        "position": "3.–5. Note",
-                                        "comment": "Tenutostriche rasiert (siehe Textfassung 1)."
-                                    },
-                                    {
-                                        "measure": "9 <br /> bis 10",
-                                        "system": "Ges.",
-                                        "position": "8/8 <br /> 2/8",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
-                                    },
-                                    {
-                                        "measure": "10",
-                                        "system": "Ges.",
-                                        "position": "3.–5. Note",
-                                        "comment": "Bogen rasiert (siehe Textfassung 1)."
-                                    },
-                                    {
-                                        "measure": "11",
-                                        "system": "Ges.",
-                                        "position": "6/8",
-                                        "comment": "Tenutostrich rasiert (siehe Textfassung 1)."
-                                    },
-                                    {
-                                        "measure": "12",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>tempo I.</em> ersetzt <em>wieder tempo I.</em> auf Rasur (siehe Textfassung 1)."
-                                    }
-                                ]
-                            },
-                            {
-                                "blockHeader": "II „Des Herzens Purpurvogel“ M 322",
-                                "blockComments": [
-                                    {
-                                        "measure": "1",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "Metronomangabe auf Rasur."
-                                    },
-                                    {
-                                        "measure": "2",
-                                        "system": "Klav. u.",
-                                        "position": "1/16",
-                                        "comment": "Auf Rasur."
-                                    },
-                                    {
-                                        "measure": "3",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>rit.</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "3 <br /> bis 6",
-                                        "system": "Ges.",
-                                        "position": "6/16 <br /> 3/8",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "6",
-                                        "system": "Klav. u.",
-                                        "position": "1–2/8",
-                                        "comment": "Auf Rasur. Ante correcturam: Hals- und Bogenausrichtung umgekehrt?"
-                                    },
-                                    {
-                                        "measure": "7 <br /> bis 8",
-                                        "system": "Ges.",
-                                        "position": "2/8 <br /> 2/8",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "9",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>rit.</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "10",
-                                        "system": "Klav. u.",
-                                        "position": "1/16",
-                                        "comment": "{{ref.getGlyph('[f]')}} auf Rasur."
-                                    },
-                                    {
-                                        "measure": "10",
-                                        "system": "",
-                                        "position": "4/16",
-                                        "comment": "<em>rit.</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "10 <br /> bis 11",
-                                        "system": "Ges.",
-                                        "position": "6/16 <br /> 3/8",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "11",
-                                        "system": "Klav.",
-                                        "position": "2–6/16",
-                                        "comment": "Auf Rasur. Bleistiftskizzen über und unter dem Klav.-System (System 4 und 7) radiert."
-                                    },
-                                    {
-                                        "measure": "12",
-                                        "system": "Ges.",
-                                        "position": "2–3/8",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "13",
-                                        "system": "Klav.",
-                                        "position": "",
-                                        "comment": "Crescendo- und Decrescendogabel auf Rasur."
-                                    },
-                                    {
-                                        "measure": "13 <br /> bis 14",
-                                        "system": "Ges.",
-                                        "position": "2/8 <br /> 6/16",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "15",
-                                        "system": "Ges.",
-                                        "position": "1.–2. Note",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "15",
-                                        "system": "Klav.",
-                                        "position": "1–5/16",
-                                        "comment": "Rasur zwischen den Systemen. Ante correcturam: Gabel?"
-                                    },
-                                    {
-                                        "measure": "16",
-                                        "system": "Ges.",
-                                        "position": "1.–2. Note",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "16 <br /> bis 17",
-                                        "system": "Ges.",
-                                        "position": "3/8 <br /> 6/16",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "16",
-                                        "system": "Klav. u.",
-                                        "position": "3/8",
-                                        "comment": "{{ref.getGlyph('[f]')}} auf Rasur."
-                                    },
-                                    {
-                                        "measure": "16 <br /> bis 17",
-                                        "system": "Klav. u.",
-                                        "position": "3/8 <br /> 1/16",
-                                        "comment": "Auf Rasur."
-                                    },
-                                    {
-                                        "measure": "18 <br /> bis 19",
-                                        "system": "Ges.",
-                                        "position": "2/16 <br /> 2. Note",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "19",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>rit.</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "20",
-                                        "system": "Ges.",
-                                        "position": "1.–2. Note",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "21",
-                                        "system": "Klav. o.",
-                                        "position": "1/16",
-                                        "comment": "Auf Rasur."
-                                    },
-                                    {
-                                        "measure": "21",
-                                        "system": "Klav. u.",
-                                        "position": "2/16",
-                                        "comment": "Auf Rasur."
-                                    },
-                                    {
-                                        "measure": "23–24",
-                                        "system": "",
-                                        "position": "",
-                                        "comment": "<em>rit. - - - tempo</em> auf Rasur (bis Ende T. 24)."
-                                    },
-                                    {
-                                        "measure": "23",
-                                        "system": "Ges.",
-                                        "position": "2/16–2/8",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "23 <br /> bis 24",
-                                        "system": "Ges.",
-                                        "position": "3/8 <br /> 1. Note",
-                                        "comment": "Anfang der Decrescendogabel auf Rasur. Ante correcturam: Ausdehnung der Gabel von T. 23 2/8 bis Taktende?"
-                                    },
-                                    {
-                                        "measure": "23 <br /> bis 24",
-                                        "system": "Klav. o.",
-                                        "position": "6/16 <br /> 1/16",
-                                        "comment": "Auf Rasur. Ante correcturam: ges<sup>1</sup>? (Siehe <strong>M 322 Sk4</strong> T. 12.)"
-                                    },
-                                    {
-                                        "measure": "24",
-                                        "system": "Klav. u.",
-                                        "position": "2/8",
-                                        "comment": "Auf Rasur."
-                                    },
-                                    {
-                                        "measure": "25 <br /> bis 26",
-                                        "system": "Ges.",
-                                        "position": "1. Note <br /> 3/8",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "26",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>rit.</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "27",
-                                        "system": "Klav.",
-                                        "position": "2.–3. Note",
-                                        "comment": "Auf Rasur."
-                                    },
-                                    {
-                                        "measure": "27 <br /> bis 28",
-                                        "system": "Ges.",
-                                        "position": "4/16 <br /> 2/16",
-                                        "comment": "Bogen rasiert. Crescendo- (T. 27 3/8) und Decrescendogabel auf Rasur."
-                                    },
-                                    {
-                                        "measure": "27 <br /> bis 28",
-                                        "system": "Klav.",
-                                        "position": "6/16 <br /> 2/16",
-                                        "comment": "Bogen auf Rasur."
-                                    },
-                                    {
-                                        "measure": "29",
-                                        "system": "Ges.",
-                                        "position": "2–3/16",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "29 <br /> bis 30",
-                                        "system": "Ges.",
-                                        "position": "4/16 <br /> 4/16",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "30",
-                                        "system": "",
-                                        "position": "6/16",
-                                        "comment": "<em>tempo</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "30 <br /> bis 31",
-                                        "system": "Ges.",
-                                        "position": "6/16 <br /> 3/16",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "31",
-                                        "system": "",
-                                        "position": "2/16",
-                                        "comment": "<em>rit.</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "32",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "Geltungsstrichelung von<em> rit</em>. (T. 31) auf Rasur."
-                                    },
-                                    {
-                                        "measure": "33",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>langsamer</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "33",
-                                        "system": "Ges.",
-                                        "position": "1.–2. Note",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "33",
-                                        "system": "Ges.",
-                                        "position": "5–6/16",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "34",
-                                        "system": "Klav.",
-                                        "position": "2–4/16",
-                                        "comment": "Bogen rasiert. Staccatopunkt zu 4/16 auf Rasur."
-                                    },
-                                    {
-                                        "measure": "34",
-                                        "system": "Ges.",
-                                        "position": "4/16–3/8",
-                                        "comment": "Bogen rasiert. Tenutostrich zu 3/8 auf Rasur."
-                                    },
-                                    {
-                                        "measure": "35",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>rit.</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "35",
-                                        "system": "Ges.",
-                                        "position": "2–4/16",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "36",
-                                        "system": "Klav.",
-                                        "position": "2–4/16",
-                                        "comment": "{{ref.getGlyph('[pp]')}} und Decrescendogabel auf Rasur."
-                                    },
-                                    {
-                                        "measure": "37",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>rit.</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "37",
-                                        "system": "Ges.",
-                                        "position": "1.–2. Note",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "37",
-                                        "system": "Klav.",
-                                        "position": "2/16",
-                                        "comment": "{{ref.getGlyph('[pp]')}} auf Rasur."
-                                    },
-                                    {
-                                        "measure": "38",
-                                        "system": "",
-                                        "position": "3/16",
-                                        "comment": "<em>immer langsamer</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "38",
-                                        "system": "Klav. o.",
-                                        "position": "3/8",
-                                        "comment": "{{ref.getGlyph('[p]')}} auf Rasur."
-                                    },
-                                    {
-                                        "measure": "39",
-                                        "system": "Ges.",
-                                        "position": "1.–3. Note",
-                                        "comment": "Bogen rasiert. Tenutostrich zu 3/8 auf Rasur."
-                                    },
-                                    {
-                                        "measure": "39",
-                                        "system": "Klav. u.",
-                                        "position": "2/8–6/16",
-                                        "comment": "Auf Rasur."
-                                    },
-                                    {
-                                        "measure": "40",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "Rasur über Akkolade. Ante correcturam: Tempoangabe?"
-                                    },
-                                    {
-                                        "measure": "40",
-                                        "system": "Ges.",
-                                        "position": "2–5/16",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "40",
-                                        "system": "Klav.",
-                                        "position": "4–6/16",
-                                        "comment": "{{ref.getGlyph('[pp]')}} und Decrescendogabel auf Rasur."
-                                    },
-                                    {
-                                        "measure": "41",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>verlöschend</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "41",
-                                        "system": "Ges.",
-                                        "position": "1.–3. Note",
-                                        "comment": "Bogen rasiert. Silbenbogen 2.–3. Note auf Rasur. <br /> {{ref.getGlyph('[pp]')}}, Decrescendogabel (?) rasiert."
-                                    },
-                                    {
-                                        "measure": "nach 42",
-                                        "system": "",
-                                        "position": "",
-                                        "comment": "Bleistiftnotiz nach Schlusstaktstrich radiert."
-                                    }
-                                ]
-                            },
-                            {
-                                "blockHeader": "III „Sterne, ihr silbernen Bienen“ M 321",
-                                "blockComments": [
-                                    {
-                                        "measure": "4–6",
-                                        "system": "Ges.",
-                                        "position": "",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "8",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>rit.</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "9 <br /> bis 14",
-                                        "system": "Ges.",
-                                        "position": "2/4 <br /> 2/4",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "13",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>rit.</em> auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 5: <em>calando</em>."
-                                    },
-                                    {
-                                        "measure": "13 <br /> bis 14",
-                                        "system": "Klav.",
-                                        "position": "2/4 <br /> 2/4",
-                                        "comment": "Auf Rasur."
-                                    },
-                                    {
-                                        "measure": "15 <br /> bis 16",
-                                        "system": "Ges.",
-                                        "position": "2/4",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "15–21",
-                                        "system": "Klav.",
-                                        "position": "",
-                                        "comment": "Teilweise auf Rasur. Ante correcturam: alternative Aufteilung der Noten auf die Systeme?"
-                                    },
-                                    {
-                                        "measure": "17",
-                                        "system": "",
-                                        "position": "",
-                                        "comment": "Geltungstrichelung von <em>rit.</em> (T. 13) und <em>viel mäßiger</em> (2/4) auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 6 2. TH: <em>tempo</em>."
-                                    },
-                                    {
-                                        "measure": "17 <br /> bis 20",
-                                        "system": "Ges.",
-                                        "position": "2/4 <br /> 2/4",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "19",
-                                        "system": "Klav. u.",
-                                        "position": "",
-                                        "comment": "Bleistifteintragung (Text) radiert."
-                                    },
-                                    {
-                                        "measure": "20",
-                                        "system": "",
-                                        "position": "",
-                                        "comment": "Rasur über der Akkolade. Ante correcturam: Tempoangabe?"
-                                    },
-                                    {
-                                        "measure": "21",
-                                        "system": "Ges.",
-                                        "position": "1/4",
-                                        "comment": "Viertelpause ersetzt Viertelnote e<sup>2</sup> mit Ligaturbogen von T. 20 2/4 auf Rasur."
-                                    },
-                                    {
-                                        "measure": "22",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>rit. - - -</em> auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 8A: <em>calando</em>."
-                                    },
-                                    {
-                                        "measure": "22–24",
-                                        "system": "Ges.",
-                                        "position": "",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "26–28",
-                                        "system": "",
-                                        "position": "",
-                                        "comment": "Bleistifteintragung (Text) radiert."
-                                    },
-                                    {
-                                        "measure": "28",
-                                        "system": "",
-                                        "position": "",
-                                        "comment": "Rasur über der Akkolade. Ante correcturam: Tempoangabe?"
-                                    },
-                                    {
-                                        "measure": "29 <br /> bis 31",
-                                        "system": "",
-                                        "position": "Taktanfang <br /> 1/4",
-                                        "comment": "<em>rit.- - -</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "29 <br /> bis 30",
-                                        "system": "Ges.",
-                                        "position": "2/4 <br /> 2/4",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "31",
-                                        "system": "",
-                                        "position": "2/4",
-                                        "comment": "<em>wieder viel mäßiger</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "31 <br /> bis 33",
-                                        "system": "Ges.",
-                                        "position": "2/4 <br /> 1/4",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "33 <br /> bis 34",
-                                        "system": "Ges.",
-                                        "position": "2/4 <br /> 2. Note",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "34",
-                                        "system": "Klav. o.",
-                                        "position": "1.–2. Note",
-                                        "comment": "Auf Rasur. Bleistiftskizze im System darüber radiert."
-                                    },
-                                    {
-                                        "measure": "35",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>rit. - - -</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "35",
-                                        "system": "Klav. u.",
-                                        "position": "1/4",
-                                        "comment": "Auf Rasur."
-                                    },
-                                    {
-                                        "measure": "35 <br /> bis 36",
-                                        "system": "Ges.",
-                                        "position": "2/4 <br /> 2/4",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "37",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>tempo I.</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "37 <br /> bis 38",
-                                        "system": "Ges.",
-                                        "position": "2/4 <br /> 2/4",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "39",
-                                        "system": "",
-                                        "position": "2/4",
-                                        "comment": "<em>rit. - - -</em> auf Rasur (ab Taktanfang)."
-                                    },
-                                    {
-                                        "measure": "39 <br /> bis 41",
-                                        "system": "Ges.",
-                                        "position": "2/4",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "42 <br /> bis 45",
-                                        "system": "Ges.",
-                                        "position": "1. Note <br /> 2/4",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "43",
-                                        "system": "Klav. u.",
-                                        "position": "1.–2. Note",
-                                        "comment": "Auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 15: h–b<sup>1</sup>."
-                                    },
-                                    {
-                                        "measure": "46 <br /> bis 49",
-                                        "system": "Ges.",
-                                        "position": "1. Note <br /> 2. Note",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "48 <br /> bis 49",
-                                        "system": "Ges.",
-                                        "position": "2. Note <br /> 2. Note",
-                                        "comment": "Drecrescendogabel auf Rasur."
-                                    },
-                                    {
-                                        "measure": "48 <br /> bis 49",
-                                        "system": "Klav.",
-                                        "position": "2/4 <br /> 2/4",
-                                        "comment": "Drecrescendogabel auf Rasur."
-                                    },
-                                    {
-                                        "measure": "50 <br /> bis 51",
-                                        "system": "Ges.",
-                                        "position": "1. Note",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "51",
-                                        "system": "",
-                                        "position": "2/4",
-                                        "comment": "<em>tempo</em> auf Rasur (ab Taktanfang)."
-                                    },
-                                    {
-                                        "measure": "51",
-                                        "system": "Klav. u.",
-                                        "position": "2/4",
-                                        "comment": "Auf Rasur."
-                                    },
-                                    {
-                                        "measure": "55",
-                                        "system": "Klav. o.",
-                                        "position": "vor 2/4",
-                                        "comment": "Rasur. Siehe <strong>M 321 Sk8</strong> T. 19B vor 2/8: Vorschlagsnote e<sup>1</sup>."
-                                    },
-                                    {
-                                        "measure": "56",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "Rasur über der Akkolade. Ante correcturam: Tempoangabe?"
-                                    },
-                                    {
-                                        "measure": "56",
-                                        "system": "Ges.",
-                                        "position": "2/4",
-                                        "comment": "{{ref.getGlyph('[ff]')}} auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 19B 1. Note: {{ref.getGlyph('[f]')}}."
-                                    },
-                                    {
-                                        "measure": "57",
-                                        "system": "",
-                                        "position": "",
-                                        "comment": "Rasur über der Akkolade. Ante correcturam: Tempoangabe?"
-                                    },
-                                    {
-                                        "measure": "57",
-                                        "system": "Klav.",
-                                        "position": "",
-                                        "comment": "Auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 19B 2. TH."
-                                    },
-                                    {
-                                        "measure": "58 <br /> bis 60",
-                                        "system": "Ges.",
-                                        "position": "2/4 <br /> 2/4",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "61",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>wieder viel mäßiger</em> auf Rasur (bis Ende T.63)."
-                                    },
-                                    {
-                                        "measure": "61 <br /> bis 63",
-                                        "system": "Ges.",
-                                        "position": "2/4 <br /> 2/4",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "62 <br /> bis 63",
-                                        "system": "Klav. u.",
-                                        "position": "2/4 <br /> 2/4",
-                                        "comment": "Bogen rasiert. Staccatopunkte möglicherweise nach Rasur hinzugefügt."
-                                    },
-                                    {
-                                        "measure": "63 <br /> bis 64",
-                                        "system": "Klav. o.",
-                                        "position": "1/4 <br /> 1/4",
-                                        "comment": "Bogen rasiert. Staccatopunkte möglicherweise nach Rasur hinzugefügt."
-                                    },
-                                    {
-                                        "measure": "65 <br /> bis 68",
-                                        "system": "Ges.",
-                                        "position": "2/4 <br /> 1/4",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "67",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>rit. - - -</em> auf Rasur."
-                                    },
-                                    {
-                                        "measure": "67–68",
-                                        "system": "Klav.",
-                                        "position": "",
-                                        "comment": "Auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 23B."
-                                    },
-                                    {
-                                        "measure": "69",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "Geltungsstrichelung auf Rasur (bis <em>tempo</em>)."
-                                    },
-                                    {
-                                        "measure": "69 <br /> bis 74",
-                                        "system": "Ges.",
-                                        "position": "2/4 <br /> 2/4",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "71 <br /> bis 73",
-                                        "system": "Klav.",
-                                        "position": "1/4",
-                                        "comment": "Auf Rasur."
-                                    },
-                                    {
-                                        "measure": "73",
-                                        "system": "",
-                                        "position": "Taktanfang",
-                                        "comment": "<em>rit. - - -</em> auf Rasur (bis Taktende)."
-                                    },
-                                    {
-                                        "measure": "74 <br /> bis 75",
-                                        "system": "Klav.",
-                                        "position": "1/4 <br /> 1/4",
-                                        "comment": "Bogen rasiert. Bogen T. 74 1–2/4 auf Rasur."
-                                    },
-                                    {
-                                        "measure": "75 <br /> bis 76",
-                                        "system": "Ges.",
-                                        "position": "2/4",
-                                        "comment": "Bogen rasiert."
-                                    },
-                                    {
-                                        "measure": "76",
-                                        "system": "Ges.",
-                                        "position": "",
-                                        "comment": "&lt; &gt; auf Rasur."
-                                    },
-                                    {
-                                        "measure": "76",
-                                        "system": "",
-                                        "position": "2/4",
-                                        "comment": "<em>tempo I.</em> [...] auf Rasur (ab Taktanfang)."
-                                    },
-                                    {
-                                        "measure": "nach 78",
-                                        "system": "",
-                                        "position": "",
-                                        "comment": "Bleistifteintragung <em>2’</em> nach dem Schlusstaktstrich radiert."
-                                    }
-                                ]
-                            }
-                        ]
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf die Textfassungen der <span class='link-todo'>Werkedition von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25</span>.",
+                            "comments": [
+                                {
+                                    "blockHeader": "I „Wie bin ich froh“ M 317",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1",
+                                            "system": "Klav.",
+                                            "position": "5–6/8",
+                                            "comment": "Auf Rasur. Ante correcturam: Aufteilung der Noten auf die Systeme vermutlich wie in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>."
+                                        },
+                                        {
+                                            "measure": "2",
+                                            "system": "Ges.",
+                                            "position": "2.–3. Note",
+                                            "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Ges.",
+                                            "position": "1.–3. Note",
+                                            "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Ges.",
+                                            "position": "5–6/8",
+                                            "comment": "Tenutostriche rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
+                                        },
+                                        {
+                                            "measure": "vor 4",
+                                            "system": "Klav. u.",
+                                            "position": "",
+                                            "comment": "Violinschlüssel versetzt von T. 4 vor 1. Note (dort Rasur; siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
+                                        },
+                                        {
+                                            "measure": "4",
+                                            "system": "Ges.",
+                                            "position": "1.–3. Note",
+                                            "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
+                                        },
+                                        {
+                                            "measure": "4",
+                                            "system": "Ges.",
+                                            "position": "8/8",
+                                            "comment": "Tenutostrich rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
+                                        },
+                                        {
+                                            "measure": "5",
+                                            "system": "Ges.",
+                                            "position": "1.–3. Note",
+                                            "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
+                                        },
+                                        {
+                                            "measure": "5 <br /> bis 6",
+                                            "system": "Klav.",
+                                            "position": "5/8 <br /> 1/8",
+                                            "comment": "Auf Rasur. Ante correcturam: Aufteilung der Noten auf die Systeme vermutlich wie in <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav.",
+                                            "position": "2. Note",
+                                            "comment": "Bleistiftskizzen über und unter der Akkolade (System 5 und 9) rasiert."
+                                        },
+                                        {
+                                            "measure": "6 <br /> bis 7",
+                                            "system": "Ges.",
+                                            "position": "2. Note <br /> 2/8",
+                                            "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>). Möglicherweise steht der Silbenbogen in T. 7 1–2/8 im Zusammenhang mit dieser Korrektur."
+                                        },
+                                        {
+                                            "measure": "7",
+                                            "system": "Ges.",
+                                            "position": "4–6/8",
+                                            "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. u.",
+                                            "position": "nach 3/8",
+                                            "comment": "Violinschlüssel versetzt von vor 2. Note (dort Rasur; siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Ges.",
+                                            "position": "1.–4. Note",
+                                            "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>). Möglicherweise steht der Silbenbogen in T. 8 3.–4. Note im Zusammenhang mit dieser Korrektur."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Ges.",
+                                            "position": "5.–6. Note",
+                                            "comment": "Tenutostriche rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Ges.",
+                                            "position": "3.–5. Note",
+                                            "comment": "Tenutostriche rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
+                                        },
+                                        {
+                                            "measure": "9 <br /> bis 10",
+                                            "system": "Ges.",
+                                            "position": "8/8 <br /> 2/8",
+                                            "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Ges.",
+                                            "position": "3.–5. Note",
+                                            "comment": "Bogen rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
+                                        },
+                                        {
+                                            "measure": "11",
+                                            "system": "Ges.",
+                                            "position": "6/8",
+                                            "comment": "Tenutostrich rasiert (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>tempo I.</em> ersetzt <em>wieder tempo I.</em> auf Rasur (siehe <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>)."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "blockHeader": "II „Des Herzens Purpurvogel“ M 322",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "Metronomangabe auf Rasur."
+                                        },
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. u.",
+                                            "position": "1/16",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>rit.</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "3 <br /> bis 6",
+                                            "system": "Ges.",
+                                            "position": "6/16 <br /> 3/8",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. u.",
+                                            "position": "1–2/8",
+                                            "comment": "Auf Rasur. Ante correcturam: Hals- und Bogenausrichtung umgekehrt?"
+                                        },
+                                        {
+                                            "measure": "7 <br /> bis 8",
+                                            "system": "Ges.",
+                                            "position": "2/8 <br /> 2/8",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>rit.</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. u.",
+                                            "position": "1/16",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "",
+                                            "position": "4/16",
+                                            "comment": "<em>rit.</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "10 <br /> bis 11",
+                                            "system": "Ges.",
+                                            "position": "6/16 <br /> 3/8",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "11",
+                                            "system": "Klav.",
+                                            "position": "2–6/16",
+                                            "comment": "Auf Rasur. Bleistiftskizzen über und unter dem Klav.-System (System 4 und 7) radiert."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Ges.",
+                                            "position": "2–3/8",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Crescendo- und Decrescendogabel auf Rasur."
+                                        },
+                                        {
+                                            "measure": "13 <br /> bis 14",
+                                            "system": "Ges.",
+                                            "position": "2/8 <br /> 6/16",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "15",
+                                            "system": "Ges.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "15",
+                                            "system": "Klav.",
+                                            "position": "1–5/16",
+                                            "comment": "Rasur zwischen den Systemen. Ante correcturam: Gabel?"
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "Ges.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "16 <br /> bis 17",
+                                            "system": "Ges.",
+                                            "position": "3/8 <br /> 6/16",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "Klav. u.",
+                                            "position": "3/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "16 <br /> bis 17",
+                                            "system": "Klav. u.",
+                                            "position": "3/8 <br /> 1/16",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "18 <br /> bis 19",
+                                            "system": "Ges.",
+                                            "position": "2/16 <br /> 2. Note",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "19",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>rit.</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "Ges.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "21",
+                                            "system": "Klav. o.",
+                                            "position": "1/16",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "21",
+                                            "system": "Klav. u.",
+                                            "position": "2/16",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "23–24",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "<em>rit. - - - tempo</em> auf Rasur (bis Ende T. 24)."
+                                        },
+                                        {
+                                            "measure": "23",
+                                            "system": "Ges.",
+                                            "position": "2/16–2/8",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "23 <br /> bis 24",
+                                            "system": "Ges.",
+                                            "position": "3/8 <br /> 1. Note",
+                                            "comment": "Anfang der Decrescendogabel auf Rasur. Ante correcturam: Ausdehnung der Gabel von T. 23 2/8 bis Taktende?"
+                                        },
+                                        {
+                                            "measure": "23 <br /> bis 24",
+                                            "system": "Klav. o.",
+                                            "position": "6/16 <br /> 1/16",
+                                            "comment": "Auf Rasur. Ante correcturam: ges<sup>1</sup>? (Siehe <strong>M 322 Sk4</strong> T. 12.)"
+                                        },
+                                        {
+                                            "measure": "24",
+                                            "system": "Klav. u.",
+                                            "position": "2/8",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "25 <br /> bis 26",
+                                            "system": "Ges.",
+                                            "position": "1. Note <br /> 3/8",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "26",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>rit.</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "27",
+                                            "system": "Klav.",
+                                            "position": "2.–3. Note",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "27 <br /> bis 28",
+                                            "system": "Ges.",
+                                            "position": "4/16 <br /> 2/16",
+                                            "comment": "Bogen rasiert. Crescendo- (T. 27 3/8) und Decrescendogabel auf Rasur."
+                                        },
+                                        {
+                                            "measure": "27 <br /> bis 28",
+                                            "system": "Klav.",
+                                            "position": "6/16 <br /> 2/16",
+                                            "comment": "Bogen auf Rasur."
+                                        },
+                                        {
+                                            "measure": "29",
+                                            "system": "Ges.",
+                                            "position": "2–3/16",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "29 <br /> bis 30",
+                                            "system": "Ges.",
+                                            "position": "4/16 <br /> 4/16",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "30",
+                                            "system": "",
+                                            "position": "6/16",
+                                            "comment": "<em>tempo</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "30 <br /> bis 31",
+                                            "system": "Ges.",
+                                            "position": "6/16 <br /> 3/16",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "31",
+                                            "system": "",
+                                            "position": "2/16",
+                                            "comment": "<em>rit.</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "32",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "Geltungsstrichelung von<em> rit</em>. (T. 31) auf Rasur."
+                                        },
+                                        {
+                                            "measure": "33",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>langsamer</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "33",
+                                            "system": "Ges.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "33",
+                                            "system": "Ges.",
+                                            "position": "5–6/16",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "34",
+                                            "system": "Klav.",
+                                            "position": "2–4/16",
+                                            "comment": "Bogen rasiert. Staccatopunkt zu 4/16 auf Rasur."
+                                        },
+                                        {
+                                            "measure": "34",
+                                            "system": "Ges.",
+                                            "position": "4/16–3/8",
+                                            "comment": "Bogen rasiert. Tenutostrich zu 3/8 auf Rasur."
+                                        },
+                                        {
+                                            "measure": "35",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>rit.</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "35",
+                                            "system": "Ges.",
+                                            "position": "2–4/16",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "36",
+                                            "system": "Klav.",
+                                            "position": "2–4/16",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> und Decrescendogabel auf Rasur."
+                                        },
+                                        {
+                                            "measure": "37",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>rit.</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "37",
+                                            "system": "Ges.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "37",
+                                            "system": "Klav.",
+                                            "position": "2/16",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "38",
+                                            "system": "",
+                                            "position": "3/16",
+                                            "comment": "<em>immer langsamer</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "38",
+                                            "system": "Klav. o.",
+                                            "position": "3/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "39",
+                                            "system": "Ges.",
+                                            "position": "1.–3. Note",
+                                            "comment": "Bogen rasiert. Tenutostrich zu 3/8 auf Rasur."
+                                        },
+                                        {
+                                            "measure": "39",
+                                            "system": "Klav. u.",
+                                            "position": "2/8–6/16",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "40",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "Rasur über Akkolade. Ante correcturam: Tempoangabe?"
+                                        },
+                                        {
+                                            "measure": "40",
+                                            "system": "Ges.",
+                                            "position": "2–5/16",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "40",
+                                            "system": "Klav.",
+                                            "position": "4–6/16",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> und Decrescendogabel auf Rasur."
+                                        },
+                                        {
+                                            "measure": "41",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>verlöschend</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "41",
+                                            "system": "Ges.",
+                                            "position": "1.–3. Note",
+                                            "comment": "Bogen rasiert. Silbenbogen 2.–3. Note auf Rasur. <br /> <span class='glyph'>{{ref.getGlyph('[pp]')}}</span>, Decrescendogabel (?) rasiert."
+                                        },
+                                        {
+                                            "measure": "nach 42",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "Bleistiftnotiz nach Schlusstaktstrich radiert."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "blockHeader": "III „Sterne, ihr silbernen Bienen“ M 321",
+                                    "blockComments": [
+                                        {
+                                            "measure": "4–6",
+                                            "system": "Ges.",
+                                            "position": "",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>rit.</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "9 <br /> bis 14",
+                                            "system": "Ges.",
+                                            "position": "2/4 <br /> 2/4",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>rit.</em> auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 5: <em>calando</em>."
+                                        },
+                                        {
+                                            "measure": "13 <br /> bis 14",
+                                            "system": "Klav.",
+                                            "position": "2/4 <br /> 2/4",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "15 <br /> bis 16",
+                                            "system": "Ges.",
+                                            "position": "2/4",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "15–21",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Teilweise auf Rasur. Ante correcturam: alternative Aufteilung der Noten auf die Systeme?"
+                                        },
+                                        {
+                                            "measure": "17",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "Geltungstrichelung von <em>rit.</em> (T. 13) und <em>viel mäßiger</em> (2/4) auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 6 2. TH: <em>tempo</em>."
+                                        },
+                                        {
+                                            "measure": "17 <br /> bis 20",
+                                            "system": "Ges.",
+                                            "position": "2/4 <br /> 2/4",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "19",
+                                            "system": "Klav. u.",
+                                            "position": "",
+                                            "comment": "Bleistifteintragung (Text) radiert."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "Rasur über der Akkolade. Ante correcturam: Tempoangabe?"
+                                        },
+                                        {
+                                            "measure": "21",
+                                            "system": "Ges.",
+                                            "position": "1/4",
+                                            "comment": "Viertelpause ersetzt Viertelnote e<sup>2</sup> mit Ligaturbogen von T. 20 2/4 auf Rasur."
+                                        },
+                                        {
+                                            "measure": "22",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>rit. - - -</em> auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 8A: <em>calando</em>."
+                                        },
+                                        {
+                                            "measure": "22–24",
+                                            "system": "Ges.",
+                                            "position": "",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "26–28",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "Bleistifteintragung (Text) radiert."
+                                        },
+                                        {
+                                            "measure": "28",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "Rasur über der Akkolade. Ante correcturam: Tempoangabe?"
+                                        },
+                                        {
+                                            "measure": "29 <br /> bis 31",
+                                            "system": "",
+                                            "position": "Taktanfang <br /> 1/4",
+                                            "comment": "<em>rit.- - -</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "29 <br /> bis 30",
+                                            "system": "Ges.",
+                                            "position": "2/4 <br /> 2/4",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "31",
+                                            "system": "",
+                                            "position": "2/4",
+                                            "comment": "<em>wieder viel mäßiger</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "31 <br /> bis 33",
+                                            "system": "Ges.",
+                                            "position": "2/4 <br /> 1/4",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "33 <br /> bis 34",
+                                            "system": "Ges.",
+                                            "position": "2/4 <br /> 2. Note",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "34",
+                                            "system": "Klav. o.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Auf Rasur. Bleistiftskizze im System darüber radiert."
+                                        },
+                                        {
+                                            "measure": "35",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>rit. - - -</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "35",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "35 <br /> bis 36",
+                                            "system": "Ges.",
+                                            "position": "2/4 <br /> 2/4",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "37",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>tempo I.</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "37 <br /> bis 38",
+                                            "system": "Ges.",
+                                            "position": "2/4 <br /> 2/4",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "39",
+                                            "system": "",
+                                            "position": "2/4",
+                                            "comment": "<em>rit. - - -</em> auf Rasur (ab Taktanfang)."
+                                        },
+                                        {
+                                            "measure": "39 <br /> bis 41",
+                                            "system": "Ges.",
+                                            "position": "2/4",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "42 <br /> bis 45",
+                                            "system": "Ges.",
+                                            "position": "1. Note <br /> 2/4",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "43",
+                                            "system": "Klav. u.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 15: h–b<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "46 <br /> bis 49",
+                                            "system": "Ges.",
+                                            "position": "1. Note <br /> 2. Note",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "48 <br /> bis 49",
+                                            "system": "Ges.",
+                                            "position": "2. Note <br /> 2. Note",
+                                            "comment": "Drecrescendogabel auf Rasur."
+                                        },
+                                        {
+                                            "measure": "48 <br /> bis 49",
+                                            "system": "Klav.",
+                                            "position": "2/4 <br /> 2/4",
+                                            "comment": "Drecrescendogabel auf Rasur."
+                                        },
+                                        {
+                                            "measure": "50 <br /> bis 51",
+                                            "system": "Ges.",
+                                            "position": "1. Note",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "51",
+                                            "system": "",
+                                            "position": "2/4",
+                                            "comment": "<em>tempo</em> auf Rasur (ab Taktanfang)."
+                                        },
+                                        {
+                                            "measure": "51",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "55",
+                                            "system": "Klav. o.",
+                                            "position": "vor 2/4",
+                                            "comment": "Rasur. Siehe <strong>M 321 Sk8</strong> T. 19B vor 2/8: Vorschlagsnote e<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "56",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "Rasur über der Akkolade. Ante correcturam: Tempoangabe?"
+                                        },
+                                        {
+                                            "measure": "56",
+                                            "system": "Ges.",
+                                            "position": "2/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[ff]')}}</span> auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 19B 1. Note: <span class='glyph'>{{ref.getGlyph('[f]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "57",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "Rasur über der Akkolade. Ante correcturam: Tempoangabe?"
+                                        },
+                                        {
+                                            "measure": "57",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 19B 2. TH."
+                                        },
+                                        {
+                                            "measure": "58 <br /> bis 60",
+                                            "system": "Ges.",
+                                            "position": "2/4 <br /> 2/4",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "61",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>wieder viel mäßiger</em> auf Rasur (bis Ende T.63)."
+                                        },
+                                        {
+                                            "measure": "61 <br /> bis 63",
+                                            "system": "Ges.",
+                                            "position": "2/4 <br /> 2/4",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "62 <br /> bis 63",
+                                            "system": "Klav. u.",
+                                            "position": "2/4 <br /> 2/4",
+                                            "comment": "Bogen rasiert. Staccatopunkte möglicherweise nach Rasur hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "63 <br /> bis 64",
+                                            "system": "Klav. o.",
+                                            "position": "1/4 <br /> 1/4",
+                                            "comment": "Bogen rasiert. Staccatopunkte möglicherweise nach Rasur hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "65 <br /> bis 68",
+                                            "system": "Ges.",
+                                            "position": "2/4 <br /> 1/4",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "67",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>rit. - - -</em> auf Rasur."
+                                        },
+                                        {
+                                            "measure": "67–68",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Auf Rasur. Siehe <strong>M 321 Sk8</strong> T. 23B."
+                                        },
+                                        {
+                                            "measure": "69",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "Geltungsstrichelung auf Rasur (bis <em>tempo</em>)."
+                                        },
+                                        {
+                                            "measure": "69 <br /> bis 74",
+                                            "system": "Ges.",
+                                            "position": "2/4 <br /> 2/4",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "71 <br /> bis 73",
+                                            "system": "Klav.",
+                                            "position": "1/4",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "73",
+                                            "system": "",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>rit. - - -</em> auf Rasur (bis Taktende)."
+                                        },
+                                        {
+                                            "measure": "74 <br /> bis 75",
+                                            "system": "Klav.",
+                                            "position": "1/4 <br /> 1/4",
+                                            "comment": "Bogen rasiert. Bogen T. 74 1–2/4 auf Rasur."
+                                        },
+                                        {
+                                            "measure": "75 <br /> bis 76",
+                                            "system": "Ges.",
+                                            "position": "2/4",
+                                            "comment": "Bogen rasiert."
+                                        },
+                                        {
+                                            "measure": "76",
+                                            "system": "Ges.",
+                                            "position": "",
+                                            "comment": "&lt; &gt; auf Rasur."
+                                        },
+                                        {
+                                            "measure": "76",
+                                            "system": "",
+                                            "position": "2/4",
+                                            "comment": "<em>tempo I.</em> [...] auf Rasur (ab Taktanfang)."
+                                        },
+                                        {
+                                            "measure": "nach 78",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "Bleistifteintragung <em>2’</em> nach dem Schlusstaktstrich radiert."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                     }
                 ]
             }

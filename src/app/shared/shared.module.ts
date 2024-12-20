@@ -17,6 +17,7 @@ import { CompileHtmlModule } from './compile-html';
 import { AddressComponent } from './address/address.component';
 import { AlertErrorComponent } from './alert-error/alert-error.component';
 import { AlertInfoComponent } from './alert-info/alert-info.component';
+import { DisclaimerWorkeditionsComponent } from './disclaimer-workeditions/disclaimer-workeditions.component';
 import { FullscreenToggleComponent } from './fullscreen-toggle/fullscreen-toggle.component';
 import { HeadingComponent } from './heading/heading.component';
 import { JsonViewerComponent } from './json-viewer/json-viewer.component';
@@ -63,6 +64,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         AddressComponent,
         AlertErrorComponent,
         AlertInfoComponent,
+        DisclaimerWorkeditionsComponent,
         FullscreenToggleComponent,
         HeadingComponent,
         JsonViewerComponent,
@@ -96,6 +98,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         AddressComponent,
         AlertErrorComponent,
         AlertInfoComponent,
+        DisclaimerWorkeditionsComponent,
         FullscreenToggleComponent,
         HeadingComponent,
         JsonViewerComponent,

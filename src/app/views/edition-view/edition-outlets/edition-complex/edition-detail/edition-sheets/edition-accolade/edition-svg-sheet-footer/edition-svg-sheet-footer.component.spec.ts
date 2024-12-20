@@ -18,15 +18,15 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { UtilityService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EditionSvgSheet, TextcriticalCommentBlock, Textcritics } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models';
 
 import { EditionSvgSheetFooterComponent } from './edition-svg-sheet-footer.component';
 
 // Mock components
-@Component({ selector: 'awg-edition-tka-description', template: '' })
-class EditionTkaDescriptionStubComponent {
+@Component({ selector: 'awg-edition-tka-evaluations', template: '' })
+class EditionTkaEvaluationsStubComponent {
     @Input()
-    textcriticalDescriptions: string[];
+    evaluations: string[];
     @Output()
     navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
     @Output()
@@ -39,13 +39,13 @@ class EditionTkaDescriptionStubComponent {
 class EditionTkaLabelStubComponent {
     @Input()
     id: string;
-    @Input() labelType: 'evaluation' | 'comment';
+    @Input() labelType: 'evaluation' | 'commentary';
 }
 
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
-    textcriticalCommentBlocks: TextcriticalCommentBlock[];
+    commentary: TextcriticalCommentary;
     @Input()
     isCorrections = false;
     @Input()
@@ -65,8 +65,6 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSvgSheetFooterComponent>;
     let compDe: DebugElement;
 
-    let utils: UtilityService;
-
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
     let openModalSpy: Spy;
@@ -80,7 +78,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedSelectedTextcritics: Textcritics;
-    let expectedSelectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
+    let expectedSelectedTextcriticalCommentary: TextcriticalCommentary;
     let expectedShowTka: boolean;
     let expectedModalSnippet: string;
 
@@ -93,7 +91,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             declarations: [
                 EditionSvgSheetFooterComponent,
                 CompileHtmlComponent,
-                EditionTkaDescriptionStubComponent,
+                EditionTkaEvaluationsStubComponent,
                 EditionTkaLabelStubComponent,
                 EditionTkaTableStubComponent,
             ],
@@ -104,8 +102,6 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        utils = TestBed.inject(UtilityService);
-
         // Test data
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
@@ -114,15 +110,13 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
         expectedSelectedTextcritics = JSON.parse(JSON.stringify(mockEditionData.mockTextcriticsData.textcritics.at(1)));
-        expectedSelectedTextcriticalCommentBlocks = expectedSelectedTextcritics.comments;
+        expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
         expectedShowTka = true;
 
         expectedChevronDownIcon = faChevronDown;
         expectedChevronRightIcon = faChevronRight;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        // Spies
         navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
         navigateToReportFragmentRequestEmitSpy = spyOn(
             component.navigateToReportFragmentRequest,
@@ -139,8 +133,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `selectedTextcriticalCommentBlocks`', () => {
-            expect(component.selectedTextcriticalCommentBlocks).toBeUndefined();
+        it('... should not have `selectedTextcriticalCommentary`', () => {
+            expect(component.selectedTextcriticalCommentary).toBeUndefined();
         });
 
         it('... should not have `selectedTextcritics`', () => {
@@ -170,10 +164,10 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             it('... should contain no evaluation div and no textcritics div in outer div yet', () => {
-                const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer', 1, 1);
 
-                getAndExpectDebugElementByCss(divDe[0], 'div.awg-edition-svg-sheet-footer-evaluation', 0, 0);
-                getAndExpectDebugElementByCss(divDe[0], 'div.awg-edition-svg-sheet-footer-textcritics', 0, 0);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-svg-sheet-footer-evaluation', 0, 0);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-svg-sheet-footer-textcritics', 0, 0);
             });
         });
     });
@@ -182,7 +176,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.selectedTextcritics = expectedSelectedTextcritics;
-            component.selectedTextcriticalCommentBlocks = expectedSelectedTextcriticalCommentBlocks;
+            component.selectedTextcriticalCommentary = expectedSelectedTextcriticalCommentary;
             component.showTkA = expectedShowTka;
 
             // Trigger initial data binding
@@ -193,8 +187,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             expectToEqual(component.selectedTextcritics, expectedSelectedTextcritics);
         });
 
-        it('... should have `selectedTextcriticalCommentBlocks` input', () => {
-            expectToEqual(component.selectedTextcriticalCommentBlocks, expectedSelectedTextcriticalCommentBlocks);
+        it('... should have `selectedTextcriticalCommentary` input', () => {
+            expectToEqual(component.selectedTextcriticalCommentary, expectedSelectedTextcriticalCommentary);
         });
 
         it('... should have `showTkA` input', () => {
@@ -206,284 +200,289 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 component.selectedTextcritics = undefined;
                 detectChangesOnPush(fixture);
 
-                const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer', 1, 1);
 
-                getAndExpectDebugElementByCss(divDe[0], 'div.awg-edition-svg-sheet-footer-evaluation', 0, 0);
-                getAndExpectDebugElementByCss(divDe[0], 'div.awg-edition-svg-sheet-footer-textcritics', 0, 0);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-svg-sheet-footer-evaluation', 0, 0);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-svg-sheet-footer-textcritics', 0, 0);
             });
 
             it('... should contain one evaluation div.card if selectedTextcritics is defined', () => {
-                const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer', 1, 1);
 
-                getAndExpectDebugElementByCss(divDe[0], 'div.card.awg-edition-svg-sheet-footer-evaluation', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.card.awg-edition-svg-sheet-footer-evaluation', 1, 1);
             });
 
             it('... should contain one div.card-body in evaluation div.card', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-evaluation',
                     1,
                     1
                 );
 
-                getAndExpectDebugElementByCss(divDe[0], 'div.card-body', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.card-body', 1, 1);
             });
             it('... should contain one paragraph in evaluation div.card-body', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-evaluation > div.card-body',
                     1,
                     1
                 );
 
-                getAndExpectDebugElementByCss(divDe[0], 'p', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
             });
 
             it('... should contain fa-icon with chevronRight in evaluation paragraph if showEvaluation = false', () => {
-                const pDe = getAndExpectDebugElementByCss(
+                const pDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-evaluation > div.card-body > p:first-child',
                     1,
                     1
                 );
-                const iconDe = getAndExpectDebugElementByCss(pDe[0], 'fa-icon', 1, 1);
+                const iconDes = getAndExpectDebugElementByCss(pDes[0], 'fa-icon', 1, 1);
 
-                expect(iconDe[0].children[0]).toBeTruthy();
-                expect(iconDe[0].children[0].classes).toBeTruthy();
-                expectToBe(iconDe[0].children[0].classes['fa-chevron-right'], true);
+                expect(iconDes[0].children[0]).toBeTruthy();
+                expect(iconDes[0].children[0].classes).toBeTruthy();
+                expectToBe(iconDes[0].children[0].classes['fa-chevron-right'], true);
             });
 
             it('... should contain fa-icon with chevronDown in evaluation paragraph if showEvaluation = true', () => {
                 component.showEvaluation = true;
                 detectChangesOnPush(fixture);
 
-                const pDe = getAndExpectDebugElementByCss(
+                const pDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-evaluation > div.card-body > p:first-child',
                     1,
                     1
                 );
-                const iconDe = getAndExpectDebugElementByCss(pDe[0], 'fa-icon', 1, 1);
+                const iconDes = getAndExpectDebugElementByCss(pDes[0], 'fa-icon', 1, 1);
 
-                expect(iconDe[0].children[0]).toBeTruthy();
-                expect(iconDe[0].children[0].classes).toBeTruthy();
-                expectToBe(iconDe[0].children[0].classes['fa-chevron-down'], true);
+                expect(iconDes[0].children[0]).toBeTruthy();
+                expect(iconDes[0].children[0].classes).toBeTruthy();
+                expectToBe(iconDes[0].children[0].classes['fa-chevron-down'], true);
             });
 
             it('... should contain a span.smallcaps in evaluation paragraph with first EditionTkaLabelComponent', () => {
-                const pDe = getAndExpectDebugElementByCss(
+                const pDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-evaluation > div.card-body > p',
                     1,
                     1
                 );
-                const spanDe = getAndExpectDebugElementByCss(pDe[0], 'span.smallcaps', 1, 1);
+                const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
 
-                getAndExpectDebugElementByDirective(spanDe[0], EditionTkaLabelStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(spanDes[0], EditionTkaLabelStubComponent, 1, 1);
             });
 
             it('... should pass down `id` data to first EditionTkaLabelComponent (stubbed)', () => {
-                const pDe = getAndExpectDebugElementByCss(
+                const pDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-evaluation > div.card-body > p',
                     1,
                     1
                 );
-                const spanDe = getAndExpectDebugElementByCss(pDe[0], 'span.smallcaps', 1, 1);
+                const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
 
-                const labelDes = getAndExpectDebugElementByDirective(spanDe[0], EditionTkaLabelStubComponent, 1, 1);
+                const labelDes = getAndExpectDebugElementByDirective(spanDes[0], EditionTkaLabelStubComponent, 1, 1);
                 const labelCmp = labelDes[0].injector.get(EditionTkaLabelStubComponent) as EditionTkaLabelStubComponent;
 
                 expectToBe(labelCmp.id, expectedSelectedTextcritics.id);
             });
 
             it('... should pass down `labelType` data to first EditionTkaLabelComponent (stubbed)', () => {
-                const pDe = getAndExpectDebugElementByCss(
+                const pDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-evaluation > div.card-body > p',
                     1,
                     1
                 );
-                const spanDe = getAndExpectDebugElementByCss(pDe[0], 'span.smallcaps', 1, 1);
+                const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
 
-                const labelDes = getAndExpectDebugElementByDirective(spanDe[0], EditionTkaLabelStubComponent, 1, 1);
+                const labelDes = getAndExpectDebugElementByDirective(spanDes[0], EditionTkaLabelStubComponent, 1, 1);
                 const labelCmp = labelDes[0].injector.get(EditionTkaLabelStubComponent) as EditionTkaLabelStubComponent;
 
                 expectToBe(labelCmp.labelType, 'evaluation');
             });
 
-            it('... should contain a second span in p with `---` if selectedTextcritics.description is empty', () => {
+            it('... should contain a second span in p with `---` if selectedTextcritics.evaluations is empty', () => {
                 component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
                 detectChangesOnPush(fixture);
 
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-evaluation > div.card-body',
                     1,
                     1
                 );
 
-                const pDe = getAndExpectDebugElementByCss(divDe[0], 'p', 1, 1);
-                const spanDe = getAndExpectDebugElementByCss(pDe[0], 'span', 2, 2);
-                const spanEl = spanDe[1].nativeElement;
+                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
+                const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span', 2, 2);
+                const spanEl: HTMLSpanElement = spanDes[1].nativeElement;
 
                 expectToBe(spanEl.textContent.trim(), `---`);
             });
 
-            describe('... should contain no EditionTkaDescriptionComponent if ...', () => {
+            describe('... should contain no EditionTkaEvaluationsStubComponent if ...', () => {
                 it('... showEvaluation = false', () => {
-                    const divDe = getAndExpectDebugElementByCss(
+                    const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.card.awg-edition-svg-sheet-footer-evaluation > div.card-body',
                         1,
                         1
                     );
 
-                    getAndExpectDebugElementByDirective(divDe[0], EditionTkaDescriptionStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsStubComponent, 0, 0);
                 });
 
-                it('... descriptions array is empty', () => {
+                it('... evaluations array is empty', () => {
                     component.showEvaluation = true;
                     component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
                     detectChangesOnPush(fixture);
 
-                    const divDe = getAndExpectDebugElementByCss(
+                    const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.card.awg-edition-svg-sheet-footer-evaluation > div.card-body',
                         1,
                         1
                     );
 
-                    getAndExpectDebugElementByDirective(divDe[0], EditionTkaDescriptionStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsStubComponent, 0, 0);
                 });
             });
 
-            it('... should contain one EditionTkaDescriptionComponent (stubbed) in evaluation div if showEvaluation = true', () => {
+            it('... should contain one EditionTkaEvaluationsStubComponent (stubbed) in evaluation div if showEvaluation = true', () => {
                 component.showEvaluation = true;
                 detectChangesOnPush(fixture);
 
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-evaluation > div.card-body',
                     1,
                     1
                 );
 
-                getAndExpectDebugElementByDirective(divDe[0], EditionTkaDescriptionStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsStubComponent, 1, 1);
             });
 
-            it('... should pass down `description` data to the EditionTkaDescriptionComponent if showEvaluation = true', () => {
+            it('... should pass down `evaluations` data to the EditionTkaEvaluationsStubComponent if showEvaluation = true', () => {
                 component.showEvaluation = true;
                 detectChangesOnPush(fixture);
 
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-evaluation > div.card-body',
                     1,
                     1
                 );
 
-                const descDes = getAndExpectDebugElementByDirective(divDe[0], EditionTkaDescriptionStubComponent, 1, 1);
-                const descCmp = descDes[0].injector.get(
-                    EditionTkaDescriptionStubComponent
-                ) as EditionTkaDescriptionStubComponent;
+                const evaluationsDes = getAndExpectDebugElementByDirective(
+                    divDes[0],
+                    EditionTkaEvaluationsStubComponent,
+                    1,
+                    1
+                );
+                const evaluationsCmp = evaluationsDes[0].injector.get(
+                    EditionTkaEvaluationsStubComponent
+                ) as EditionTkaEvaluationsStubComponent;
 
-                expectToBe(descCmp.textcriticalDescriptions, expectedSelectedTextcritics.description);
+                expectToBe(evaluationsCmp.evaluations, expectedSelectedTextcritics.evaluations);
             });
 
             it('... should contain no textcritics div.card if showTka is false', () => {
                 component.showTkA = false;
                 detectChangesOnPush(fixture);
 
-                const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer', 1, 1);
 
-                getAndExpectDebugElementByCss(divDe[0], 'div.card.awg-edition-svg-sheet-footer-textcritics', 0, 0);
+                getAndExpectDebugElementByCss(divDes[0], 'div.card.awg-edition-svg-sheet-footer-textcritics', 0, 0);
             });
 
             it('... should contain one textcritics div.card if showTka is true (and selectedTextcritics is defined)', () => {
                 component.showTkA = true;
                 detectChangesOnPush(fixture);
 
-                const divDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer', 1, 1);
 
-                getAndExpectDebugElementByCss(divDe[0], 'div.card.awg-edition-svg-sheet-footer-textcritics', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.card.awg-edition-svg-sheet-footer-textcritics', 1, 1);
             });
 
             it('... should contain one div.card-body header in textcritics div.card', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-textcritics',
                     1,
                     1
                 );
-                getAndExpectDebugElementByCss(divDe[0], 'div.card-body', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.card-body', 1, 1);
             });
 
             it('... should contain one p.smallcaps header in textcritics div.card-body', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-textcritics > div.card-body',
                     1,
                     1
                 );
-                getAndExpectDebugElementByCss(divDe[0], 'p.smallcaps', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
             });
 
             it('... should contain second EditionTkaLabelComponent (stubbed) in textcritics div.card-body', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-textcritics > div.card-body',
                     1,
                     1
                 );
 
-                getAndExpectDebugElementByDirective(divDe[0], EditionTkaLabelStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], EditionTkaLabelStubComponent, 1, 1);
             });
 
             it('... should contain one EditionTkaTableComponent (stubbed) in textcritics div.card-body', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-textcritics > div.card-body',
                     1,
                     1
                 );
 
-                getAndExpectDebugElementByDirective(divDe[0], EditionTkaTableStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], EditionTkaTableStubComponent, 1, 1);
             });
 
             it('... should pass down `id` to the second EditionTkaLabelComponent', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-textcritics > div.card-body',
                     1,
                     1
                 );
 
-                const labelDes = getAndExpectDebugElementByDirective(divDe[0], EditionTkaLabelStubComponent, 1, 1);
+                const labelDes = getAndExpectDebugElementByDirective(divDes[0], EditionTkaLabelStubComponent, 1, 1);
                 const labelCmp = labelDes[0].injector.get(EditionTkaLabelStubComponent) as EditionTkaLabelStubComponent;
 
                 expectToBe(labelCmp.id, expectedSelectedTextcritics.id);
             });
 
             it('... should pass down `labelType` to the second EditionTkaLabelComponent', () => {
-                const divDe = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card.awg-edition-svg-sheet-footer-textcritics > div.card-body',
                     1,
                     1
                 );
 
-                const labelDes = getAndExpectDebugElementByDirective(divDe[0], EditionTkaLabelStubComponent, 1, 1);
+                const labelDes = getAndExpectDebugElementByDirective(divDes[0], EditionTkaLabelStubComponent, 1, 1);
                 const labelCmp = labelDes[0].injector.get(EditionTkaLabelStubComponent) as EditionTkaLabelStubComponent;
 
-                expectToBe(labelCmp.labelType, 'comment');
+                expectToBe(labelCmp.labelType, 'commentary');
             });
 
-            it('... should pass down `selectedTextcriticalCommentBlocks` to the EditionTkaTableComponent', () => {
+            it('... should pass down `selectedTextcriticalCommentary` to the EditionTkaTableComponent', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
 
-                expectToEqual(tableCmp.textcriticalCommentBlocks, expectedSelectedTextcriticalCommentBlocks);
+                expectToEqual(tableCmp.commentary, expectedSelectedTextcriticalCommentary);
             });
 
             it('... should pass down `isRowTable` to the EditionTkaTableComponent', () => {
@@ -507,48 +506,43 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaDescriptionComponent', () => {
+                it('... EditionTkaEvaluationsStubComponent', () => {
                     component.showEvaluation = true;
                     detectChangesOnPush(fixture);
 
-                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                    const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionTkaDescriptionStubComponent,
+                        EditionTkaEvaluationsStubComponent,
                         1,
                         1
                     );
-                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
-                        EditionTkaDescriptionStubComponent
-                    ) as EditionTkaDescriptionStubComponent;
+                    const evaluationsCmp = evaluationsDes[0].injector.get(
+                        EditionTkaEvaluationsStubComponent
+                    ) as EditionTkaEvaluationsStubComponent;
 
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
 
-                    editionTkaDescriptionCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+                    evaluationsCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
 
                     expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
                 });
 
                 it('... EditionTkaTableComponent', () => {
-                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionTkaTableStubComponent,
-                        1,
-                        1
-                    );
-                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                    const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
+                    const tableCmp = tableDes[0].injector.get(
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
 
-                    editionTkaTableCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+                    tableCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
 
                     expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
                 });
             });
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
+                it('... parameter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
@@ -608,37 +602,32 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaDescriptionComponent', () => {
+                it('... EditionTkaEvaluationsStubComponent', () => {
                     component.showEvaluation = true;
                     detectChangesOnPush(fixture);
 
-                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                    const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionTkaDescriptionStubComponent,
+                        EditionTkaEvaluationsStubComponent,
                         1,
                         1
                     );
-                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
-                        EditionTkaDescriptionStubComponent
-                    ) as EditionTkaDescriptionStubComponent;
+                    const evaluationsCmp = evaluationsDes[0].injector.get(
+                        EditionTkaEvaluationsStubComponent
+                    ) as EditionTkaEvaluationsStubComponent;
 
-                    editionTkaDescriptionCmp.openModalRequest.emit(expectedModalSnippet);
+                    evaluationsCmp.openModalRequest.emit(expectedModalSnippet);
 
                     expectSpyCall(openModalSpy, 1, expectedModalSnippet);
                 });
 
                 it('... EditionTkaTableComponent', () => {
-                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionTkaTableStubComponent,
-                        1,
-                        1
-                    );
-                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                    const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
+                    const tableCmp = tableDes[0].injector.get(
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
-                    editionTkaTableCmp.openModalRequest.emit(expectedModalSnippet);
+                    tableCmp.openModalRequest.emit(expectedModalSnippet);
 
                     expectSpyCall(openModalSpy, 1, expectedModalSnippet);
                 });
@@ -663,39 +652,34 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaDescriptionComponent', () => {
+                it('... EditionTkaEvaluationsStubComponent', () => {
                     component.showEvaluation = true;
                     detectChangesOnPush(fixture);
 
-                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                    const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionTkaDescriptionStubComponent,
+                        EditionTkaEvaluationsStubComponent,
                         1,
                         1
                     );
-                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
-                        EditionTkaDescriptionStubComponent
-                    ) as EditionTkaDescriptionStubComponent;
+                    const evaluationsCmp = evaluationsDes[0].injector.get(
+                        EditionTkaEvaluationsStubComponent
+                    ) as EditionTkaEvaluationsStubComponent;
 
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                    editionTkaDescriptionCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+                    evaluationsCmp.selectSvgSheetRequest.emit(expectedSheetIds);
 
                     expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
                 });
 
                 it('... EditionTkaTableComponent', () => {
-                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionTkaTableStubComponent,
-                        1,
-                        1
-                    );
-                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                    const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
+                    const tableCmp = tableDes[0].injector.get(
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                    editionTkaTableCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+                    tableCmp.selectSvgSheetRequest.emit(expectedSheetIds);
 
                     expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
                 });

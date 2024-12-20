@@ -15,10 +15,10 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
+import { EditionGlyphService } from '@awg-app/views/edition-view/services';
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
-import { EditionSvgSheet, TextcriticalCommentBlock, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, TextcriticalCommentary, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
 
@@ -37,22 +37,38 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let openModalRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
+    let editionGlyphServiceGetGlyphSpy: Spy;
+
+    let mockEditionGlyphService: Partial<EditionGlyphService>;
 
     let expectedReportFragment: string;
-    let expectedGlyphs: typeof EDITION_GLYPHS_DATA;
     let expectedIsRowTable: boolean;
     let expectedModalSnippet: string;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
-    let expectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
+    let expectedCommentary: TextcriticalCommentary;
     let expectedTableHeaderStrings: { [key: string]: TkaTableHeaderColumn[] };
     let expectedTotalRows: number;
 
     beforeEach(waitForAsync(() => {
+        mockEditionGlyphService = {
+            getGlyph: (glyphString: string): string => {
+                switch (glyphString) {
+                    case '[a]':
+                        return '\u266E';
+                    case '[b]':
+                        return '\u266D';
+                    default:
+                        return 'glyphString';
+                }
+            },
+        };
+
         TestBed.configureTestingModule({
             declarations: [EditionTkaTableComponent, AbbrDirective, CompileHtmlComponent],
+            providers: [{ provide: EditionGlyphService, useValue: mockEditionGlyphService }],
         }).compileComponents();
     }));
 
@@ -62,19 +78,21 @@ describe('EditionTkaTableComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         mockDocument = TestBed.inject(DOCUMENT);
+        mockEditionGlyphService = TestBed.inject(EditionGlyphService);
 
         // Test data
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
-        expectedGlyphs = EDITION_GLYPHS_DATA;
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
-        expectedTextcriticalCommentBlocks = mockEditionData.mockTextcriticsData.textcritics.at(1).comments;
+        expectedCommentary = JSON.parse(
+            JSON.stringify(mockEditionData.mockTextcriticsData.textcritics.at(1).commentary)
+        );
 
-        const totalBlockHeaders = expectedTextcriticalCommentBlocks.filter(block => block.blockHeader).length;
-        const totalBlockComments = expectedTextcriticalCommentBlocks.reduce(
+        const totalBlockHeaders = expectedCommentary.comments.filter(block => block.blockHeader).length;
+        const totalBlockComments = expectedCommentary.comments.reduce(
             (acc, block) => acc + block.blockComments.length,
             0
         );
@@ -102,9 +120,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             ],
         };
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        // Spies
         getGlyphSpy = spyOn(component, 'getGlyph').and.callThrough();
         getTableHeaderStringsSpy = spyOn(component, 'getTableHeaderStrings').and.callThrough();
         navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
@@ -116,6 +132,8 @@ describe('EditionTkaTableComponent (DONE)', () => {
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
+
+        editionGlyphServiceGetGlyphSpy = spyOn(mockEditionGlyphService, 'getGlyph').and.callThrough();
     });
 
     it('... should create', () => {
@@ -123,8 +141,8 @@ describe('EditionTkaTableComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have textcriticalCommentBlocks', () => {
-            expect(component.textcriticalCommentBlocks).toBeUndefined();
+        it('... should not have commentary', () => {
+            expect(component.commentary).toBeUndefined();
         });
 
         it('... should have isRowTable = false', () => {
@@ -139,21 +157,13 @@ describe('EditionTkaTableComponent (DONE)', () => {
             expectToEqual(component.tableHeaderStrings, expectedTableHeaderStrings);
         });
 
-        it('... should have glyphs', () => {
-            expectToEqual(component.GLYPHS, expectedGlyphs);
-        });
-
         describe('VIEW', () => {
-            it('... should contain one table with table head, but no body yet', () => {
+            it('... should contain one table without table caption, head or body yet', () => {
                 const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
 
-                getAndExpectDebugElementByCss(tableDes[0], 'thead', 1, 1);
+                getAndExpectDebugElementByCss(tableDes[0], 'caption', 0, 0);
+                getAndExpectDebugElementByCss(tableDes[0], 'thead', 0, 0);
                 getAndExpectDebugElementByCss(tableDes[0], 'tbody', 0, 0);
-            });
-
-            it('... should contain one row (tr) without columns (th) in table head', () => {
-                const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
-                getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 0, 4);
             });
         });
     });
@@ -161,18 +171,63 @@ describe('EditionTkaTableComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.textcriticalCommentBlocks = expectedTextcriticalCommentBlocks;
+            component.commentary = expectedCommentary;
             component.isRowTable = expectedIsRowTable;
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have textcriticalCommentBlocks', () => {
-            expectToBe(component.textcriticalCommentBlocks, expectedTextcriticalCommentBlocks);
+        it('... should have commentary', () => {
+            expectToBe(component.commentary, expectedCommentary);
         });
 
         describe('VIEW', () => {
+            it('... should contain one table with table caption, head and body if commentary provides preamble and comments', () => {
+                const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
+
+                getAndExpectDebugElementByCss(tableDes[0], 'caption', 1, 1);
+                getAndExpectDebugElementByCss(tableDes[0], 'thead', 1, 1);
+                getAndExpectDebugElementByCss(tableDes[0], 'tbody', 1, 1);
+            });
+
+            it('... should contain no table caption if commentary.preamble is empty', () => {
+                component.commentary.preamble = '';
+                detectChangesOnPush(fixture);
+
+                const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
+
+                getAndExpectDebugElementByCss(tableDes[0], 'caption', 0, 0);
+                getAndExpectDebugElementByCss(tableDes[0], 'thead', 1, 1);
+                getAndExpectDebugElementByCss(tableDes[0], 'tbody', 1, 1);
+            });
+
+            it('... should contain no table head or body if commentary.comments are empty', () => {
+                component.commentary.comments = [];
+                detectChangesOnPush(fixture);
+
+                const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
+
+                getAndExpectDebugElementByCss(tableDes[0], 'caption', 1, 1);
+                getAndExpectDebugElementByCss(tableDes[0], 'thead', 0, 0);
+                getAndExpectDebugElementByCss(tableDes[0], 'tbody', 0, 0);
+            });
+
+            describe('... table caption', () => {
+                it('... should contain CompileHtmlComponent in caption', () => {
+                    const captionDes = getAndExpectDebugElementByCss(compDe, 'table > caption', 1, 1);
+
+                    getAndExpectDebugElementByDirective(captionDes[0], CompileHtmlComponent, 1, 1);
+                });
+
+                it('... should contain the correct caption', () => {
+                    const captionDes = getAndExpectDebugElementByCss(compDe, 'table > caption', 1, 1);
+                    const captionEl: HTMLTableCaptionElement = captionDes[0].nativeElement;
+
+                    expectToBe(captionEl.textContent, expectedCommentary.preamble);
+                });
+            });
+
             describe('... table header', () => {
                 it('... should contain one row (tr) with four columns (th) in table head', () => {
                     const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
@@ -187,7 +242,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
 
                     columnDes.forEach((columnDe, index) => {
-                        const columnEl = columnDe.nativeElement;
+                        const columnEl: HTMLTableCellElement = columnDe.nativeElement;
                         expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings['rowTable'][index].label);
                     });
                 });
@@ -200,7 +255,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
 
                     columnDes.forEach((columnDe, index) => {
-                        const columnEl = columnDe.nativeElement;
+                        const columnEl: HTMLTableCellElement = columnDe.nativeElement;
                         expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings['corrections'][index].label);
                     });
                 });
@@ -210,7 +265,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
 
                     columnDes.forEach((columnDe, index) => {
-                        const columnEl = columnDe.nativeElement;
+                        const columnEl: HTMLTableCellElement = columnDe.nativeElement;
                         expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings['default'][index].label);
                     });
                 });
@@ -226,36 +281,19 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
 
                     columnDes.forEach((columnDe, index) => {
-                        const columnEl = columnDe.nativeElement;
+                        const columnEl: HTMLTableCellElement = columnDe.nativeElement;
                         expectToBe(columnEl.textContent.trim(), expected[index].label);
                     });
                 });
             });
 
             describe('... table body', () => {
-                it('... should contain no table body if textcritical comment blocks are not provided', () => {
-                    component.textcriticalCommentBlocks = undefined;
-                    detectChangesOnPush(fixture);
-
-                    const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
-
-                    getAndExpectDebugElementByCss(tableDes[0], 'thead', 1, 1);
-                    getAndExpectDebugElementByCss(tableDes[0], 'tbody', 0, 0);
-                });
-
-                it('... should contain one table body if textcritical comment blocks are provided ', () => {
-                    const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
-
-                    getAndExpectDebugElementByCss(tableDes[0], 'thead', 1, 1);
-                    getAndExpectDebugElementByCss(tableDes[0], 'tbody', 1, 1);
-                });
-
                 it('... should contain rows (tr) for each textcritical comment and block header in table body', () => {
                     getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', expectedTotalRows, expectedTotalRows);
                 });
 
                 it('... should contain one cell (td colspan=4) for block headers and four cells (td) for block comments in each row (tr) in table body', () => {
-                    const rows = getAndExpectDebugElementByCss(
+                    const rowDes = getAndExpectDebugElementByCss(
                         compDe,
                         'table > tbody > tr',
                         expectedTotalRows,
@@ -263,17 +301,17 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     );
 
                     let rowIndex = 0;
-                    expectedTextcriticalCommentBlocks.forEach(block => {
+                    expectedCommentary.comments.forEach(block => {
                         if (block.blockHeader) {
-                            const tdDes = getAndExpectDebugElementByCss(rows[rowIndex], 'td', 1, 1);
-                            const tdEl = tdDes[0].nativeElement;
+                            const tdDes = getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 1, 1);
+                            const tdEl: HTMLTableCellElement = tdDes[0].nativeElement;
                             expectToBe(tdEl.getAttribute('colspan'), '4');
                             expectToContain(tdEl.classList, 'awg-edition-tka-table-block-header');
 
                             rowIndex++;
                         }
                         block.blockComments.forEach(() => {
-                            getAndExpectDebugElementByCss(rows[rowIndex], 'td', 4, 4);
+                            getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 4, 4);
 
                             rowIndex++;
                         });
@@ -281,7 +319,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 });
 
                 it('... should contain correct data in all row cells (tr/td)', () => {
-                    const rows = getAndExpectDebugElementByCss(
+                    const rowDes = getAndExpectDebugElementByCss(
                         compDe,
                         'table > tbody > tr',
                         expectedTotalRows,
@@ -289,27 +327,27 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     );
 
                     let rowIndex = 0;
-                    expectedTextcriticalCommentBlocks.forEach(block => {
+                    expectedCommentary.comments.forEach(block => {
                         if (block.blockHeader) {
                             const tdDes = getAndExpectDebugElementByCss(
-                                rows[rowIndex],
+                                rowDes[rowIndex],
                                 'td.awg-edition-tka-table-block-header',
                                 1,
                                 1
                             );
-                            const tdEl = tdDes[0].nativeElement;
+                            const tdEl: HTMLTableCellElement = tdDes[0].nativeElement;
 
                             expectToBe(tdEl.textContent, block.blockHeader);
 
                             rowIndex++;
                         }
                         block.blockComments.forEach((comment, index) => {
-                            const rowCells = getAndExpectDebugElementByCss(rows[rowIndex], 'td', 4, 4);
+                            const rowCellDes = getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 4, 4);
 
-                            const measureCell = rowCells[0].nativeElement;
-                            const systemCell = rowCells[1].nativeElement;
-                            const positionCell = rowCells[2].nativeElement;
-                            const commentCell = rowCells[3].nativeElement;
+                            const measureCell: HTMLTableCellElement = rowCellDes[0].nativeElement;
+                            const systemCell: HTMLTableCellElement = rowCellDes[1].nativeElement;
+                            const positionCell: HTMLTableCellElement = rowCellDes[2].nativeElement;
+                            const commentCell: HTMLTableCellElement = rowCellDes[3].nativeElement;
 
                             const measureCellHtmlSnippet = mockDocument.createElement('span');
                             measureCellHtmlSnippet.innerHTML = index === 2 ? '{13}' : comment.measure;
@@ -328,7 +366,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 });
 
                 it('... should contain CompileHtmlComponent in each header cell or fourth cell (td) of a block comment', () => {
-                    const rows = getAndExpectDebugElementByCss(
+                    const rowDes = getAndExpectDebugElementByCss(
                         compDe,
                         'table > tbody > tr',
                         expectedTotalRows,
@@ -336,16 +374,16 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     );
 
                     let rowIndex = 0;
-                    expectedTextcriticalCommentBlocks.forEach(block => {
+                    expectedCommentary.comments.forEach(block => {
                         if (block.blockHeader) {
-                            const tdDes = getAndExpectDebugElementByCss(rows[rowIndex], 'td', 1, 1);
+                            const tdDes = getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 1, 1);
 
                             getAndExpectDebugElementByDirective(tdDes[0], CompileHtmlComponent, 1, 1);
 
                             rowIndex++;
                         }
                         block.blockComments.forEach(() => {
-                            const tdDes = getAndExpectDebugElementByCss(rows[rowIndex], 'td', 4, 4);
+                            const tdDes = getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 4, 4);
 
                             getAndExpectDebugElementByDirective(tdDes[0], CompileHtmlComponent, 0, 0);
                             getAndExpectDebugElementByDirective(tdDes[1], CompileHtmlComponent, 0, 0);
@@ -365,6 +403,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
 
             it('... should trigger on change detection', () => {
+                // 2 glyphs in detected content
                 expectSpyCall(getGlyphSpy, 2);
 
                 component.isRowTable = true;
@@ -373,20 +412,19 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expectSpyCall(getGlyphSpy, 4);
             });
 
-            it('... should return the correct hex value for a valid glyph alt value', () => {
-                expectToBe(component.getGlyph('[bb]'), '\uD834\uDD2B'); // DOUBLE_FLAT
-                expectToBe(component.getGlyph('[x]'), '\uD834\uDD2A'); // DOUBLE_SHARP
-                expectToBe(component.getGlyph('[b]'), '\u266D'); // FLAT
-                expectToBe(component.getGlyph('[#]'), '\u266F'); // SHARP
-                expectToBe(component.getGlyph('[a]'), '\u266E'); // NATURAL
-                expectToBe(component.getGlyph('[f]'), '\uD834\uDD91'); // FORTE
-                expectToBe(component.getGlyph('[ped]'), '\uD834\uDDAE'); // PEDAL
+            it('... should call `getGlyphs` method from EditionGlyphService with correct glyph string', () => {
+                // 2 glyphs in detected content
+                expectSpyCall(editionGlyphServiceGetGlyphSpy, 2);
+
+                component.getGlyph('[bb]');
+
+                expectSpyCall(editionGlyphServiceGetGlyphSpy, 3, '[bb]');
             });
 
-            it('... should return an empty string for an invalid glyph alt value', () => {
-                expectToBe(component.getGlyph(''), '');
-                expectToBe(component.getGlyph('[invalid]'), '');
-                expectToBe(component.getGlyph('[not found]'), '');
+            it('... should return the glyph string from EditionGlyphService', () => {
+                const result = component.getGlyph('[bb]');
+
+                expectToBe(result, 'glyphString');
             });
         });
 
@@ -484,7 +522,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
 
             it('... should trigger on click', fakeAsync(() => {
-                const rows = getAndExpectDebugElementByCss(
+                const rowDes = getAndExpectDebugElementByCss(
                     compDe,
                     'table > tbody > tr',
                     expectedTotalRows,
@@ -492,20 +530,20 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 );
 
                 // Find spans of third row
-                const spanDes = getAndExpectDebugElementByCss(rows[2], 'td > span', 1, 1);
+                const spanDes = getAndExpectDebugElementByCss(rowDes[2], 'td > span', 1, 1);
 
                 // Find anchors in span
-                const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
+                const aDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
 
                 // Trigger click with click helper & wait for changes
                 // CLick on second anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                clickAndAwaitChanges(aDes[0], fixture);
 
                 expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: expectedReportFragment });
             }));
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
+                it('... parameter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
@@ -565,7 +603,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
 
             it('... should trigger on click', fakeAsync(() => {
-                const rows = getAndExpectDebugElementByCss(
+                const rowDes = getAndExpectDebugElementByCss(
                     compDe,
                     'table > tbody > tr',
                     expectedTotalRows,
@@ -573,13 +611,13 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 );
 
                 // Find spans of third row
-                const spanDes = getAndExpectDebugElementByCss(rows[2], 'td > span', 1, 1);
+                const spanDes = getAndExpectDebugElementByCss(rowDes[2], 'td > span', 1, 1);
 
                 // Find anchors in span
-                const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
+                const aDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
 
                 // Click on first anchor with modal call
-                clickAndAwaitChanges(anchorDes[1], fixture);
+                clickAndAwaitChanges(aDes[1], fixture);
 
                 expectSpyCall(openModalSpy, 1, expectedModalSnippet);
             }));
@@ -603,7 +641,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
 
             it('... should trigger on click', fakeAsync(() => {
-                const rows = getAndExpectDebugElementByCss(
+                const rowDes = getAndExpectDebugElementByCss(
                     compDe,
                     'table > tbody > tr',
                     expectedTotalRows,
@@ -611,14 +649,14 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 );
 
                 // Find spans of third row
-                const spanDes = getAndExpectDebugElementByCss(rows[2], 'td > span', 1, 1);
+                const spanDes = getAndExpectDebugElementByCss(rowDes[2], 'td > span', 1, 1);
 
                 // Find anchors in span
-                const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
+                const aDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
 
                 // Trigger click with click helper & wait for changes
                 // CLick on second anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[2], fixture);
+                clickAndAwaitChanges(aDes[2], fixture);
 
                 expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSvgSheet.id });
             }));

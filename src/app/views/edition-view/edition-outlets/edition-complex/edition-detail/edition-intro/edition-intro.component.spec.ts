@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { DOCUMENT, JsonPipe } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 
 import {
     EMPTY,
@@ -27,6 +26,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
+import { mockConsole } from '@testing/mock-helper';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
@@ -106,7 +106,7 @@ class AlertErrorStubComponent {
 
 @Component({ selector: 'awg-modal', template: '' })
 class ModalStubComponent {
-    open(modalContentSnippetKey: string): void {}
+    open(): void {}
 }
 
 @Component({ selector: 'awg-twelve-tone-spinner', template: '' })
@@ -122,9 +122,13 @@ describe('IntroComponent (DONE)', () => {
 
     let editionDataServiceGetEditionSectionIntroDataSpy: Spy;
     let editionDataServiceGetEditionComplexIntroDataSpy: Spy;
+    let editionOutlineServiceGetEditionSeriesByIdSpy: Spy;
+    let editionOutlineServiceGetEditionSectionByIdSpy: Spy;
     let editionStateServiceGetSelectedEditionComplexSpy: Spy;
     let editionStateServiceGetSelectedEditionSectionSpy: Spy;
+    let editionStateServiceUpdateSelectedEditionSectionSpy: Spy;
     let editionStateServiceGetSelectedEditionSeriesSpy: Spy;
+    let editionStateServiceUpdateSelectedEditionSeriesSpy: Spy;
     let editionStateServiceUpdateIsIntroViewSpy: Spy;
     let editionStateServiceClearIsIntroViewSpy: Spy;
 
@@ -137,8 +141,13 @@ describe('IntroComponent (DONE)', () => {
     let onModalOpenSpy: Spy;
     let onReportFragmentNavigateSpy: Spy;
     let onSvgSheetSelectSpy: Spy;
+    let consoleSpy: Spy;
 
+    let extractUrlSegmentsSpy: Spy;
     let fetchAndFilterIntroDataSpy: Spy;
+    let isNavigationEndToIntroSpy: Spy;
+    let loadEditionIntroDataSpy: Spy;
+    let updateEditionStateSpy: Spy;
 
     let mockEditionDataService: Partial<EditionDataService>;
     let mockEditionStateService: Partial<EditionStateService>;
@@ -163,10 +172,7 @@ describe('IntroComponent (DONE)', () => {
     let expectedSelectedEditionSeries: EditionOutlineSeries;
     let expectedSelectedEditionSection: EditionOutlineSection;
     let expectedSvgSheet: EditionSvgSheet;
-    let expectedNextSvgSheet: EditionSvgSheet;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
-
-    const jsonPipe = new JsonPipe();
 
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
@@ -175,7 +181,13 @@ describe('IntroComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         // Mock router with spy object
-        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+        mockRouter = {
+            url: '/test-url',
+            events: observableOf(
+                new NavigationEnd(0, 'http://localhost:4200/test-url', 'http://localhost:4200/test-url')
+            ),
+            navigate: jasmine.createSpy('navigate'),
+        };
 
         // Mock services
         mockIsIntroViewSubject = new ReplaySubject<boolean>(1);
@@ -183,15 +195,16 @@ describe('IntroComponent (DONE)', () => {
         mockEditionStateService = {
             getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(null),
             getSelectedEditionSeries: (): Observable<EditionOutlineSeries> => observableOf(null),
+            updateSelectedEditionSeries: (): void => {},
             getSelectedEditionSection: (): Observable<EditionOutlineSection> => observableOf(null),
+            updateSelectedEditionSection: (): void => {},
             updateIsIntroView: (isView: boolean): void => mockIsIntroViewSubject.next(isView),
             clearIsIntroView: (): void => mockIsIntroViewSubject.next(null),
         };
 
         mockEditionDataService = {
-            getEditionComplexIntroData: (editionComplex: EditionComplex): Observable<IntroList> => observableOf(null),
-            getEditionSectionIntroData: (seriesRoute: string, sectionRoute: string): Observable<IntroList> =>
-                observableOf(null),
+            getEditionComplexIntroData: (): Observable<IntroList> => observableOf(null),
+            getEditionSectionIntroData: (): Observable<IntroList> => observableOf(null),
         };
 
         TestBed.configureTestingModule({
@@ -244,7 +257,6 @@ describe('IntroComponent (DONE)', () => {
         expectedReportFragment = 'source_A';
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
-        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
 
         expectedSelectedEditionSeries = EditionOutlineService.getEditionSeriesById(
             expectedEditionComplex.pubStatement.series.route
@@ -255,7 +267,11 @@ describe('IntroComponent (DONE)', () => {
         );
 
         // Spies on functions
+        extractUrlSegmentsSpy = spyOn(component as any, '_extractUrlSegments').and.callThrough();
         fetchAndFilterIntroDataSpy = spyOn(component as any, '_fetchAndFilterIntroData').and.callThrough();
+        isNavigationEndToIntroSpy = spyOn(component as any, '_isNavigationEndToIntro').and.callThrough();
+        loadEditionIntroDataSpy = spyOn(component as any, '_loadEditionIntroData').and.callThrough();
+        updateEditionStateSpy = spyOn(component as any, '_updateEditionState').and.callThrough();
         getEditionIntroDataSpy = spyOn(component, 'getEditionIntroData').and.callThrough();
         navigateWithComplexIdSpy = spyOn(component as any, '_navigateWithComplexId').and.callThrough();
         navigationSpy = mockRouter.navigate as jasmine.Spy;
@@ -265,6 +281,7 @@ describe('IntroComponent (DONE)', () => {
         onModalOpenSpy = spyOn(component, 'onModalOpen').and.callThrough();
         onReportFragmentNavigateSpy = spyOn(component, 'onReportFragmentNavigate').and.callThrough();
         onSvgSheetSelectSpy = spyOn(component, 'onSvgSheetSelect').and.callThrough();
+        consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
 
         editionDataServiceGetEditionComplexIntroDataSpy = spyOn(
             editionDataService,
@@ -274,6 +291,14 @@ describe('IntroComponent (DONE)', () => {
             editionDataService,
             'getEditionSectionIntroData'
         ).and.callThrough();
+        editionOutlineServiceGetEditionSeriesByIdSpy = spyOn(
+            EditionOutlineService,
+            'getEditionSeriesById'
+        ).and.callThrough();
+        editionOutlineServiceGetEditionSectionByIdSpy = spyOn(
+            EditionOutlineService,
+            'getEditionSectionById'
+        ).and.callThrough();
         editionStateServiceGetSelectedEditionComplexSpy = spyOn(
             editionStateService,
             'getSelectedEditionComplex'
@@ -282,12 +307,25 @@ describe('IntroComponent (DONE)', () => {
             editionStateService,
             'getSelectedEditionSeries'
         ).and.callThrough();
+        editionStateServiceUpdateSelectedEditionSeriesSpy = spyOn(
+            editionStateService,
+            'updateSelectedEditionSeries'
+        ).and.callThrough();
         editionStateServiceGetSelectedEditionSectionSpy = spyOn(
             editionStateService,
             'getSelectedEditionSection'
         ).and.callThrough();
+        editionStateServiceUpdateSelectedEditionSectionSpy = spyOn(
+            editionStateService,
+            'updateSelectedEditionSection'
+        ).and.callThrough();
         editionStateServiceUpdateIsIntroViewSpy = spyOn(editionStateService, 'updateIsIntroView').and.callThrough();
         editionStateServiceClearIsIntroViewSpy = spyOn(editionStateService, 'clearIsIntroView').and.callThrough();
+    });
+
+    afterEach(() => {
+        // Clear mock stores after each test
+        mockConsole.clear();
     });
 
     afterAll(() => {
@@ -316,7 +354,7 @@ describe('IntroComponent (DONE)', () => {
         });
 
         it('... should have `errorObject = null`', () => {
-            expectToBe(component.errorObject, null);
+            expectToBe(component.errorObject, expectedErrorObject);
         });
 
         it('... should have `editionRouteConstants`', () => {
@@ -604,11 +642,10 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('on error', () => {
-                const expectedError = { status: 404, statusText: 'got Error' };
-
                 beforeEach(waitForAsync(() => {
+                    expectedErrorObject = { status: 404, statusText: 'got Error' };
                     // Spy on editionDataService to return an error
-                    fetchAndFilterIntroDataSpy.and.returnValue(observableThrowError(() => expectedError));
+                    fetchAndFilterIntroDataSpy.and.returnValue(observableThrowError(() => expectedErrorObject));
 
                     component.getEditionIntroData();
                     fixture.detectChanges();
@@ -627,7 +664,7 @@ describe('IntroComponent (DONE)', () => {
                         AlertErrorStubComponent
                     ) as AlertErrorStubComponent;
 
-                    expectToEqual(alertErrorCmp.errorObject, expectedError);
+                    expectToEqual(alertErrorCmp.errorObject, expectedErrorObject);
                 }));
             });
 
@@ -671,165 +708,84 @@ describe('IntroComponent (DONE)', () => {
                 expect(component.getEditionIntroData).toBeDefined();
             });
 
-            it('... should trigger and update `isIntroView = true` in EditionStateService', () => {
-                expectSpyCall(editionStateServiceUpdateIsIntroViewSpy, 1, true);
-            });
-
-            it('... should trigger `getSelectedEditionSeries()` method from EditionStateService', () => {
-                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 1);
+            it('... should trigger `_isNavigationEndToIntro` method', () => {
+                expectSpyCall(isNavigationEndToIntroSpy, 1);
 
                 component.getEditionIntroData();
 
-                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 2);
+                expectSpyCall(isNavigationEndToIntroSpy, 2);
             });
 
-            it('... should trigger `getSelectedEditionSection()` method from EditionStateService', () => {
-                expectSpyCall(editionStateServiceGetSelectedEditionSectionSpy, 1);
+            describe('... on NavigationEnd event', () => {
+                it('... should return true from `_isNavigationEndToIntro` method for intro URL', () => {
+                    const anyUrl = '/some/path';
+                    const introUrl = '/some/path/series/1/section/5/intro';
+                    const navigationEndEvent = new NavigationEnd(1, anyUrl, introUrl);
 
-                component.getEditionIntroData();
+                    const result = component['_isNavigationEndToIntro'](navigationEndEvent);
 
-                expectSpyCall(editionStateServiceGetSelectedEditionSectionSpy, 2);
-            });
+                    expectToBe(result, true);
+                });
 
-            it('... should trigger `getSelectedEditionComplex()` method from EditionStateService', () => {
-                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 1);
+                it('... should return false from `_isNavigationEndToIntro` method for non-intro URL', () => {
+                    const anyUrl = '/some/path';
+                    const otherUrl = '/some/path/series/1/section/5/other';
+                    const navigationEndEvent = new NavigationEnd(1, anyUrl, otherUrl);
 
-                component.getEditionIntroData();
+                    const result = component['_isNavigationEndToIntro'](navigationEndEvent);
 
-                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 2);
-            });
+                    expectToBe(result, false);
+                });
 
-            describe('... without given complex', () => {
-                beforeEach(fakeAsync(() => {
-                    // Simulate the services returning the observable properties
-                    editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
+                it('... should trigger `_extractUrlSegments` with intro URL', () => {
+                    const anyUrl = '/some/path';
+                    const introUrl = '/some/path/series/1/section/5/intro';
+                    const navigationEndEvent = new NavigationEnd(1, anyUrl, introUrl);
 
-                    tick();
-
-                    component.getEditionIntroData();
+                    mockRouter.events = observableOf(navigationEndEvent);
                     fixture.detectChanges();
-                }));
-
-                it('... should have full editionIntroData$', waitForAsync(() => {
-                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolved();
-                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolvedTo(expectedEditionIntroData);
-                }));
-
-                it('... should not have editionComplex', () => {
-                    expect(component.editionComplex).toBeUndefined();
-                });
-
-                it('... should have triggered `_fetchAndFilterIntroData()` method with series, section and complex=null', () => {
-                    expectSpyCall(fetchAndFilterIntroDataSpy, 4, [
-                        expectedSelectedEditionSeries.series.route,
-                        expectedSelectedEditionSection.section.route,
-                        null,
-                    ]);
-                });
-            });
-
-            describe('... with given complex', () => {
-                it('... should have filtered editionIntroData$', waitForAsync(() => {
-                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolved();
-                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolvedTo(
-                        expectedEditionIntroFilteredData
-                    );
-                }));
-
-                it('... should have set editionComplex', () => {
-                    expectToEqual(component.editionComplex, expectedEditionComplex);
-                });
-
-                it('... should have triggered `_fetchAndFilterIntroData()` method with series, section, and complex', () => {
-                    expectSpyCall(fetchAndFilterIntroDataSpy, 2, [
-                        expectedSelectedEditionSeries.series.route,
-                        expectedSelectedEditionSection.section.route,
-                        expectedEditionComplex,
-                    ]);
-                });
-            });
-
-            describe('... without series or section (EMPTY)', () => {
-                describe('... should have editionIntroData$ = EMPTY if', () => {
-                    it('... no series is given', fakeAsync(() => {
-                        // Simulate the services returning the observable properties
-                        editionStateServiceGetSelectedEditionSeriesSpy.and.returnValue(observableOf(null));
-                        editionStateServiceGetSelectedEditionSectionSpy.and.returnValue(
-                            observableOf(expectedSelectedEditionSection)
-                        );
-                        editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
-
-                        component.getEditionIntroData();
-                        tick();
-
-                        component.editionIntroData$.pipe(isEmpty()).subscribe({
-                            next: isEmptyData => {
-                                expectToBe(isEmptyData, true);
-                            },
-                            error: err => {
-                                fail(`Observable emitted an error: ${err}`);
-                            },
-                        });
-                    }));
-
-                    it('... no section is given', fakeAsync(() => {
-                        // Simulate the services returning the observable properties
-                        editionStateServiceGetSelectedEditionSeriesSpy.and.returnValue(
-                            observableOf(expectedSelectedEditionSeries)
-                        );
-                        editionStateServiceGetSelectedEditionSectionSpy.and.returnValue(observableOf(null));
-                        editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
-
-                        component.getEditionIntroData();
-                        tick();
-
-                        component.editionIntroData$.pipe(isEmpty()).subscribe({
-                            next: isEmptyData => {
-                                expectToBe(isEmptyData, true);
-                            },
-                            error: err => {
-                                fail(`Observable emitted an error: ${err}`);
-                            },
-                        });
-                    }));
-
-                    it('... no series and no section are given', fakeAsync(() => {
-                        // Simulate the services returning the observable properties
-                        editionStateServiceGetSelectedEditionSeriesSpy.and.returnValue(observableOf(null));
-                        editionStateServiceGetSelectedEditionSectionSpy.and.returnValue(observableOf(null));
-                        editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(
-                            observableOf(expectedEditionComplex)
-                        );
-
-                        component.getEditionIntroData();
-                        tick();
-
-                        component.editionIntroData$.pipe(isEmpty()).subscribe({
-                            next: isEmptyData => {
-                                expectToBe(isEmptyData, true);
-                            },
-                            error: err => {
-                                fail(`Observable emitted an error: ${err}`);
-                            },
-                        });
-                    }));
-                });
-            });
-
-            describe('... on error', () => {
-                it('... should return empty observable and set errorObject if switchMap fails', fakeAsync(() => {
-                    const expectedError = { status: 404, statusText: 'error' };
-                    // Spy on switchMap method to return an error
-                    fetchAndFilterIntroDataSpy.and.returnValue(observableThrowError(() => expectedError));
 
                     component.getEditionIntroData();
-                    tick();
 
-                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeRejected();
-                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeRejectedWithError(EmptyError);
+                    expectSpyCall(extractUrlSegmentsSpy, 1, navigationEndEvent.urlAfterRedirects);
+                });
 
-                    expectToEqual(component.errorObject, expectedError);
-                }));
+                it('... should update edition state with seriesNumber and sectionNumber for valid URL segments', () => {
+                    const seriesNumber = '1';
+                    const sectionNumber = '5';
+                    const anyUrl = '/some/path';
+                    const introUrl = `/some/path/series/${seriesNumber}/section/${sectionNumber}/intro`;
+                    const navigationEndEvent = new NavigationEnd(1, anyUrl, introUrl);
+
+                    mockRouter.events = observableOf(navigationEndEvent);
+                    fixture.detectChanges();
+
+                    component.getEditionIntroData();
+
+                    expectSpyCall(updateEditionStateSpy, 1, [seriesNumber, sectionNumber]);
+                });
+
+                it('... should not update edition state, but log an error for invalid URL segments', () => {
+                    const anyUrl = '/some/path';
+                    const invalidIntroUrl = `/some/path/series/invalid/section/invalid/intro`;
+                    const navigationEndEvent = new NavigationEnd(1, anyUrl, invalidIntroUrl);
+
+                    mockRouter.events = observableOf(navigationEndEvent);
+                    fixture.detectChanges();
+
+                    component.getEditionIntroData();
+
+                    expectSpyCall(updateEditionStateSpy, 0);
+                    expectSpyCall(consoleSpy, 1, ['Invalid URL segments:', navigationEndEvent.urlAfterRedirects]);
+                });
+
+                it('... should trigger `_loadEditionIntroData` method', () => {
+                    expectSpyCall(loadEditionIntroDataSpy, 1);
+
+                    component.getEditionIntroData();
+
+                    expectSpyCall(loadEditionIntroDataSpy, 2);
+                });
             });
         });
 
@@ -1382,6 +1338,126 @@ describe('IntroComponent (DONE)', () => {
             });
         });
 
+        describe('#_extractUrlSegments', () => {
+            it('... should have a method `_extractUrlSegments`', () => {
+                expect((component as any)._extractUrlSegments).toBeDefined();
+            });
+
+            it('... should extract series and section numbers from a valid URL', () => {
+                const url = '/edition/series/1/section/2/intro';
+
+                const result = (component as any)._extractUrlSegments(url);
+
+                expectToEqual(result, { seriesNumber: '1', sectionNumber: '2' });
+            });
+
+            it('... should extract series and section numbers with optional letters from a valid URL', () => {
+                const url = '/edition/series/1/section/2a/intro';
+
+                const result = (component as any)._extractUrlSegments(url);
+
+                expectToEqual(result, { seriesNumber: '1', sectionNumber: '2a' });
+
+                const url2 = '/edition/series/1/section/2b/intro';
+
+                const result2 = (component as any)._extractUrlSegments(url2);
+
+                expectToEqual(result2, { seriesNumber: '1', sectionNumber: '2b' });
+            });
+
+            it('... should handle URLs with missing series or section correctly', () => {
+                const url = '/edition/series/3/intro';
+
+                const result = (component as any)._extractUrlSegments(url);
+
+                expectToEqual(result, { seriesNumber: '3', sectionNumber: undefined });
+
+                const url2 = '/edition/section/4/intro';
+
+                const result2 = (component as any)._extractUrlSegments(url2);
+
+                expectToEqual(result2, { seriesNumber: undefined, sectionNumber: '4' });
+            });
+
+            it('... should handle URLs with additional segments correctly', () => {
+                const url = '/edition/series/3/section/4/extra/intro';
+
+                const result = (component as any)._extractUrlSegments(url);
+
+                expectToEqual(result, { seriesNumber: '3', sectionNumber: '4' });
+            });
+
+            describe('... should return undefined if', () => {
+                it('... URL does contain series numbers other than 1-3', () => {
+                    const url = '/edition/series/0/section/5/intro';
+
+                    const result = (component as any)._extractUrlSegments(url);
+
+                    expectToEqual(result, { seriesNumber: undefined, sectionNumber: '5' });
+
+                    const url2 = '/edition/series/4/section/5/intro';
+
+                    const result2 = (component as any)._extractUrlSegments(url2);
+
+                    expectToEqual(result2, { seriesNumber: undefined, sectionNumber: '5' });
+                });
+
+                it('... URL does contain section numbers other than 1-5', () => {
+                    const url = '/edition/series/1/section/0/intro';
+
+                    const result = (component as any)._extractUrlSegments(url);
+
+                    expectToEqual(result, { seriesNumber: '1', sectionNumber: undefined });
+
+                    const url2 = '/edition/series/1/section/6/intro';
+
+                    const result2 = (component as any)._extractUrlSegments(url2);
+
+                    expectToEqual(result2, { seriesNumber: '1', sectionNumber: undefined });
+                });
+
+                it('... URL does contain series and section numbers with optional letters other than a or b', () => {
+                    const url = '/edition/series/1c/section/2d/intro';
+
+                    const result = (component as any)._extractUrlSegments(url);
+
+                    expectToEqual(result, { seriesNumber: undefined, sectionNumber: undefined });
+                });
+
+                it('... URL does not contain series and section numbers', () => {
+                    const url = '/edition/series/section/intro';
+
+                    const result = (component as any)._extractUrlSegments(url);
+
+                    expectToEqual(result, { seriesNumber: undefined, sectionNumber: undefined });
+                });
+
+                it('... URL does not contain series and section segments', () => {
+                    const url = '/edition/2/1/intro';
+
+                    const result = (component as any)._extractUrlSegments(url);
+
+                    expectToEqual(result, { seriesNumber: undefined, sectionNumber: undefined });
+                });
+
+                it('... URL is empty', () => {
+                    const url = '';
+
+                    const result = (component as any)._extractUrlSegments(url);
+
+                    expectToEqual(result, { seriesNumber: undefined, sectionNumber: undefined });
+                });
+
+                it('... URL is undefined', () => {
+                    const url = undefined;
+
+                    const result = (component as any)._extractUrlSegments(url);
+
+                    expectToEqual(result, { seriesNumber: undefined, sectionNumber: undefined });
+                });
+            });
+        });
+
         describe('#_fetchAndFilterIntroData()', () => {
             it('... should have a method `_fetchAndFilterIntroData`', () => {
                 expect((component as any)._fetchAndFilterIntroData).toBeDefined();
@@ -1448,7 +1524,7 @@ describe('IntroComponent (DONE)', () => {
                     const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
 
                     result$.subscribe({
-                        next: (_data: Observable<IntroList>) => {
+                        next: () => {
                             expectToEqual(component.editionComplex, complex);
                             done();
                         },
@@ -1469,7 +1545,7 @@ describe('IntroComponent (DONE)', () => {
                     const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
 
                     result$.subscribe({
-                        next: (_data: Observable<IntroList>) => {
+                        next: () => {
                             expectSpyCall(editionDataServiceGetEditionComplexIntroDataSpy, 2, complex);
                             done();
                         },
@@ -1494,7 +1570,7 @@ describe('IntroComponent (DONE)', () => {
                     const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
 
                     result$.subscribe({
-                        next: (_data: Observable<IntroList>) => {
+                        next: () => {
                             expectSpyCall(filterSectionIntroDataByIdSpy, 1, [
                                 expectedEditionIntroData,
                                 expectedBlockId,
@@ -1570,7 +1646,7 @@ describe('IntroComponent (DONE)', () => {
             });
         });
 
-        describe('#__initScrollListener()', () => {
+        describe('#_initScrollListener()', () => {
             it('... should have a method `_initScrollListener`', () => {
                 expect((component as any)._initScrollListener).toBeDefined();
             });
@@ -1583,6 +1659,190 @@ describe('IntroComponent (DONE)', () => {
                 window.dispatchEvent(new Event('scroll'));
 
                 expect(onIntroScrollSpy).toHaveBeenCalled();
+            });
+        });
+
+        describe('#_isNavigationEndToIntro()', () => {
+            it('... should have a method `_isNavigationEndToIntro`', () => {
+                expect(component['_isNavigationEndToIntro']).toBeDefined();
+            });
+
+            it('... should return true for NavigationEnd event with `intro` in URL', () => {
+                const event = new NavigationEnd(1, '/some/path', '/some/path/intro');
+                expect(component['_isNavigationEndToIntro'](event)).toBeTrue();
+            });
+
+            it('... should return false for NavigationEnd event without `intro` in URL', () => {
+                const event = new NavigationEnd(1, '/some/path', '/some/path/other');
+                expect(component['_isNavigationEndToIntro'](event)).toBeFalse();
+            });
+
+            it('... should return false for non-NavigationEnd event', () => {
+                const event = { urlAfterRedirects: '/some/path/intro' };
+                expect(component['_isNavigationEndToIntro'](event)).toBeFalse();
+            });
+        });
+
+        describe('#_loadEditionIntroData()', () => {
+            it('... should have a method `_loadEditionIntroData`', () => {
+                expect((component as any)._loadEditionIntroData).toBeDefined();
+            });
+
+            it('... should trigger `getSelectedEditionSeries()` method from EditionStateService', () => {
+                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 1);
+
+                (component as any)._loadEditionIntroData();
+
+                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 2);
+            });
+
+            it('... should trigger `getSelectedEditionSection()` method from EditionStateService', () => {
+                expectSpyCall(editionStateServiceGetSelectedEditionSectionSpy, 1);
+
+                (component as any)._loadEditionIntroData();
+
+                expectSpyCall(editionStateServiceGetSelectedEditionSectionSpy, 2);
+            });
+
+            it('... should trigger `getSelectedEditionComplex()` method from EditionStateService', () => {
+                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 1);
+
+                (component as any)._loadEditionIntroData();
+
+                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 2);
+            });
+
+            describe('... without given complex', () => {
+                beforeEach(fakeAsync(() => {
+                    // Simulate the services returning the observable properties
+                    editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
+
+                    tick();
+
+                    (component as any)._loadEditionIntroData();
+                    fixture.detectChanges();
+                }));
+
+                it('... should have full editionIntroData$', waitForAsync(() => {
+                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolved();
+                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolvedTo(expectedEditionIntroData);
+                }));
+
+                it('... should not have editionComplex', () => {
+                    expect(component.editionComplex).toBeUndefined();
+                });
+
+                it('... should have triggered `_fetchAndFilterIntroData()` method with series, section and complex=null', () => {
+                    expectSpyCall(fetchAndFilterIntroDataSpy, 4, [
+                        expectedSelectedEditionSeries.series.route,
+                        expectedSelectedEditionSection.section.route,
+                        null,
+                    ]);
+                });
+            });
+
+            describe('... with given complex', () => {
+                it('... should have filtered editionIntroData$', waitForAsync(() => {
+                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolved();
+                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolvedTo(
+                        expectedEditionIntroFilteredData
+                    );
+                }));
+
+                it('... should have set editionComplex', () => {
+                    expectToEqual(component.editionComplex, expectedEditionComplex);
+                });
+
+                it('... should have triggered `_fetchAndFilterIntroData()` method with series, section, and complex', () => {
+                    expectSpyCall(fetchAndFilterIntroDataSpy, 2, [
+                        expectedSelectedEditionSeries.series.route,
+                        expectedSelectedEditionSection.section.route,
+                        expectedEditionComplex,
+                    ]);
+                });
+            });
+
+            describe('... without series or section (EMPTY)', () => {
+                describe('... should have editionIntroData$ = EMPTY if', () => {
+                    it('... no series is given', fakeAsync(() => {
+                        // Simulate the services returning the observable properties
+                        editionStateServiceGetSelectedEditionSeriesSpy.and.returnValue(observableOf(null));
+                        editionStateServiceGetSelectedEditionSectionSpy.and.returnValue(
+                            observableOf(expectedSelectedEditionSection)
+                        );
+                        editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
+
+                        (component as any)._loadEditionIntroData();
+                        tick();
+
+                        component.editionIntroData$.pipe(isEmpty()).subscribe({
+                            next: isEmptyData => {
+                                expectToBe(isEmptyData, true);
+                            },
+                            error: err => {
+                                fail(`Observable emitted an error: ${err}`);
+                            },
+                        });
+                    }));
+
+                    it('... no section is given', fakeAsync(() => {
+                        // Simulate the services returning the observable properties
+                        editionStateServiceGetSelectedEditionSeriesSpy.and.returnValue(
+                            observableOf(expectedSelectedEditionSeries)
+                        );
+                        editionStateServiceGetSelectedEditionSectionSpy.and.returnValue(observableOf(null));
+                        editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(observableOf(null));
+
+                        (component as any)._loadEditionIntroData();
+                        tick();
+
+                        component.editionIntroData$.pipe(isEmpty()).subscribe({
+                            next: isEmptyData => {
+                                expectToBe(isEmptyData, true);
+                            },
+                            error: err => {
+                                fail(`Observable emitted an error: ${err}`);
+                            },
+                        });
+                    }));
+
+                    it('... no series and no section are given', fakeAsync(() => {
+                        // Simulate the services returning the observable properties
+                        editionStateServiceGetSelectedEditionSeriesSpy.and.returnValue(observableOf(null));
+                        editionStateServiceGetSelectedEditionSectionSpy.and.returnValue(observableOf(null));
+                        editionStateServiceGetSelectedEditionComplexSpy.and.returnValue(
+                            observableOf(expectedEditionComplex)
+                        );
+
+                        (component as any)._loadEditionIntroData();
+                        tick();
+
+                        component.editionIntroData$.pipe(isEmpty()).subscribe({
+                            next: isEmptyData => {
+                                expectToBe(isEmptyData, true);
+                            },
+                            error: err => {
+                                fail(`Observable emitted an error: ${err}`);
+                            },
+                        });
+                    }));
+                });
+            });
+
+            describe('... on error', () => {
+                it('... should return empty observable and set errorObject if switchMap fails', fakeAsync(() => {
+                    const expectedError = { status: 404, statusText: 'error' };
+                    // Spy on switchMap method to return an error
+                    fetchAndFilterIntroDataSpy.and.returnValue(observableThrowError(() => expectedError));
+
+                    (component as any)._loadEditionIntroData();
+                    tick();
+
+                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeRejected();
+                    expectAsync(lastValueFrom(component.editionIntroData$)).toBeRejectedWithError(EmptyError);
+
+                    expectToEqual(component.errorObject, expectedError);
+                }));
             });
         });
 
@@ -1629,6 +1889,29 @@ describe('IntroComponent (DONE)', () => {
 
             it('... should have a method `_onIntroScroll`', () => {
                 expect((component as any)._onIntroScroll).toBeDefined();
+            });
+
+            describe('... should do nothing if', () => {
+                it('... event is undefined', () => {
+                    (component as any)._onIntroScroll(undefined);
+
+                    expectToBe(navLink1.classList.contains('active'), false);
+                    expectToBe(navLink2.classList.contains('active'), false);
+                });
+
+                it('... event is null', () => {
+                    (component as any)._onIntroScroll(null);
+
+                    expectToBe(navLink1.classList.contains('active'), false);
+                    expectToBe(navLink2.classList.contains('active'), false);
+                });
+
+                it('... event is not of type `scroll`', () => {
+                    (component as any)._onIntroScroll(new Event('click'));
+
+                    expectToBe(navLink1.classList.contains('active'), false);
+                    expectToBe(navLink2.classList.contains('active'), false);
+                });
             });
 
             it('... should update nav link classes based on scroll position (document.documentElement.scrollTop)', () => {
@@ -2224,6 +2507,75 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                     });
                 });
+            });
+        });
+
+        describe('#_updateEditionState()', () => {
+            it('... should have a method `_updateEditionState`', () => {
+                expect((component as any)._updateEditionState).toBeDefined();
+            });
+
+            it('... should call EditionOutlineService.getEditionSeriesById', () => {
+                expectSpyCall(editionOutlineServiceGetEditionSeriesByIdSpy, 0);
+
+                const seriesNumber = '1';
+                const sectionNumber = '5';
+
+                (component as any)._updateEditionState(seriesNumber, sectionNumber);
+
+                expectSpyCall(editionOutlineServiceGetEditionSeriesByIdSpy, 2, seriesNumber);
+            });
+
+            it('... should call EditionOutlineService.getEditionSectionById', () => {
+                expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 0);
+
+                const seriesNumber = '1';
+                const sectionNumber = '5';
+
+                (component as any)._updateEditionState(seriesNumber, sectionNumber);
+
+                expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 1, [seriesNumber, sectionNumber]);
+            });
+
+            it('... should trigger and update `selectedEditionSeries` in EditionStateService', () => {
+                const seriesNumber = '1';
+                const sectionNumber = '5';
+
+                (component as any)._updateEditionState(seriesNumber, sectionNumber);
+
+                expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, 1, expectedSelectedEditionSeries);
+            });
+
+            it('... should trigger and update `selectedEditionSection` in EditionStateService', () => {
+                const seriesNumber = '1';
+                const sectionNumber = '5';
+
+                (component as any)._updateEditionState(seriesNumber, sectionNumber);
+
+                expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 1, expectedSelectedEditionSection);
+            });
+
+            it('... should trigger and update `isIntroView = true` in EditionStateService', () => {
+                const seriesNumber = '1';
+                const sectionNumber = '5';
+
+                (component as any)._updateEditionState(seriesNumber, sectionNumber);
+
+                expectSpyCall(editionStateServiceUpdateIsIntroViewSpy, 1, true);
+            });
+        });
+
+        describe('#ngOnDestroy()', () => {
+            it('... should have cleared isIntroView on destroy (via EditionStateService)', () => {
+                component.ngOnDestroy();
+
+                expectSpyCall(editionStateServiceClearIsIntroViewSpy, 1);
+            });
+
+            it('... should have set `editionIntroData$` to undefined on destroy', () => {
+                component.ngOnDestroy();
+
+                expect(component.editionIntroData$).toBeUndefined();
             });
         });
     });

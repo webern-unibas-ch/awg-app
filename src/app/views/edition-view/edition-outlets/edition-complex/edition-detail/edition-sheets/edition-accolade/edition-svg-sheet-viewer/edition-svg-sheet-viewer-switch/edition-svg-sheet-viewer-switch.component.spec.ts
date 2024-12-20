@@ -21,7 +21,7 @@ import { EditionSvgSheetViewerSwitchComponent } from './edition-svg-sheet-viewer
 class EditionTkaLabelStubComponent {
     @Input()
     id: string;
-    @Input() labelType: 'evaluation' | 'comment';
+    @Input() labelType: 'evaluation' | 'commentary';
 }
 
 describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
@@ -122,46 +122,46 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
             });
 
             it('... should have a div.card-header and a div.card-body inside the outer div.card', () => {
-                const cardDe = getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
+                const cardDes = getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
 
-                getAndExpectDebugElementByCss(cardDe[0], 'div.card-body', 1, 1);
-                getAndExpectDebugElementByCss(cardDe[0], 'div.card-header', 1, 1);
+                getAndExpectDebugElementByCss(cardDes[0], 'div.card-body', 1, 1);
+                getAndExpectDebugElementByCss(cardDes[0], 'div.card-header', 1, 1);
             });
 
             it('... should display title in div.card-header', () => {
-                const cardHeaderDe = getAndExpectDebugElementByCss(compDe, 'div.card-header', 1, 1);
+                const cardHeaderDes = getAndExpectDebugElementByCss(compDe, 'div.card-header', 1, 1);
 
-                const titleDe = getAndExpectDebugElementByCss(cardHeaderDe[0], 'span', 1, 1);
-                const titleEl = titleDe[0].nativeElement;
+                const titleSpanDes = getAndExpectDebugElementByCss(cardHeaderDes[0], 'span', 1, 1);
+                const titleSpanEl: HTMLSpanElement = titleSpanDes[0].nativeElement;
 
-                expectToEqual(titleEl.textContent, 'Editorische Ergänzungen');
+                expectToEqual(titleSpanEl.textContent, 'Editorische Ergänzungen');
             });
 
             it('... should have a div.card-body with only one form-switch for all supplied classes yet', () => {
-                const cardBodyDe = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
+                const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
 
-                getAndExpectDebugElementByCss(cardBodyDe[0], 'div.form-check.form-switch', 1, 1);
+                getAndExpectDebugElementByCss(cardBodyDes[0], 'div.form-check.form-switch', 1, 1);
             });
 
             it('... should have input[checked=false] and label in form-switch for all-supplied-classes', () => {
-                const cardBodyDe = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
+                const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
 
-                const formSwitchDe = getAndExpectDebugElementByCss(cardBodyDe[0], 'div.form-check.form-switch', 1, 1);
-                const formSwitchInputDe = getAndExpectDebugElementByCss(
-                    formSwitchDe[0],
+                const formSwitchDes = getAndExpectDebugElementByCss(cardBodyDes[0], 'div.form-check.form-switch', 1, 1);
+                const formSwitchInputDes = getAndExpectDebugElementByCss(
+                    formSwitchDes[0],
                     'input.form-check-input',
                     1,
                     1
                 );
-                const formSwitchLabelDe = getAndExpectDebugElementByCss(
-                    formSwitchDe[0],
+                const formSwitchLabelDes = getAndExpectDebugElementByCss(
+                    formSwitchDes[0],
                     'label.form-check-label',
                     1,
                     1
                 );
 
-                const formSwitchInputEl = formSwitchInputDe[0].nativeElement;
-                const formSwitchLabelEl = formSwitchLabelDe[0].nativeElement;
+                const formSwitchInputEl: HTMLInputElement = formSwitchInputDes[0].nativeElement;
+                const formSwitchLabelEl: HTMLLabelElement = formSwitchLabelDes[0].nativeElement;
 
                 expectToEqual(formSwitchInputEl.type, 'checkbox');
                 expectToEqual(formSwitchInputEl.checked, false);
@@ -203,10 +203,10 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should have a div.card-body with as many form-switches as supplied classes (plus one for all classes and one for tkk)', () => {
-                const cardBodyDe = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
+                const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
 
-                const formSwitchDe = getAndExpectDebugElementByCss(
-                    cardBodyDe[0],
+                getAndExpectDebugElementByCss(
+                    cardBodyDes[0],
                     'div.form-check.form-switch',
                     expectedSuppliedClasses.size + 2,
                     expectedSuppliedClasses.size + 2
@@ -214,29 +214,29 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
             });
 
             it('... should have input[checked=true] and label in form-switch for all-supplied-classes', () => {
-                const cardBodyDe = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
-                const formSwitchDe = getAndExpectDebugElementByCss(
-                    cardBodyDe[0],
+                const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
+                const formSwitchDes = getAndExpectDebugElementByCss(
+                    cardBodyDes[0],
                     'div.form-check.form-switch',
                     expectedSuppliedClasses.size + 2,
                     expectedSuppliedClasses.size + 2
                 );
                 // Get first form-switch for all-supplied-classes
-                const formSwitchInputDe = getAndExpectDebugElementByCss(
-                    formSwitchDe[0],
+                const formSwitchInputDes = getAndExpectDebugElementByCss(
+                    formSwitchDes[0],
                     'input.form-check-input',
                     1,
                     1
                 );
-                const formSwitchLabelDe = getAndExpectDebugElementByCss(
-                    formSwitchDe[0],
+                const formSwitchLabelDes = getAndExpectDebugElementByCss(
+                    formSwitchDes[0],
                     'label.form-check-label',
                     1,
                     1
                 );
 
-                const formSwitchInputEl = formSwitchInputDe[0].nativeElement;
-                const formSwitchLabelEl = formSwitchLabelDe[0].nativeElement;
+                const formSwitchInputEl: HTMLInputElement = formSwitchInputDes[0].nativeElement;
+                const formSwitchLabelEl: HTMLLabelElement = formSwitchLabelDes[0].nativeElement;
 
                 expectToEqual(formSwitchInputEl.type, 'checkbox');
                 expectToEqual(formSwitchInputEl.checked, true);
@@ -246,21 +246,21 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
             });
 
             it('... should display `Alle aus/einblenden` depending on status of allClassesVisible', async () => {
-                const cardBodyDe = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
-                const formSwitchDe = getAndExpectDebugElementByCss(
-                    cardBodyDe[0],
+                const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
+                const formSwitchDes = getAndExpectDebugElementByCss(
+                    cardBodyDes[0],
                     'div.form-check.form-switch',
                     expectedSuppliedClasses.size + 2,
                     expectedSuppliedClasses.size + 2
                 );
-                const formSwitchLabelDe = getAndExpectDebugElementByCss(
-                    formSwitchDe[0],
+                const formSwitchLabelDes = getAndExpectDebugElementByCss(
+                    formSwitchDes[0],
                     'label.form-check-label',
                     1,
                     1
                 );
 
-                const formSwitchLabelEl = formSwitchLabelDe[0].nativeElement;
+                const formSwitchLabelEl: HTMLLabelElement = formSwitchLabelDes[0].nativeElement;
 
                 expectToBe(component.allClassesVisible, true);
                 expectToEqual(formSwitchLabelEl.textContent.trim(), 'Alle ausblenden');
@@ -274,7 +274,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
             });
 
             it('... should trigger `toggleAllClassesOpacity`on click on form-switch for all-supplied-classes', fakeAsync(() => {
-                const formSwitchInputDe = getAndExpectDebugElementByCss(
+                const formSwitchInputDes = getAndExpectDebugElementByCss(
                     compDe,
                     'input.form-check-input#all-supplied-classes',
                     1,
@@ -282,16 +282,16 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 );
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(formSwitchInputDe[0], fixture);
+                clickAndAwaitChanges(formSwitchInputDes[0], fixture);
 
                 expectSpyCall(toggleAllClassesOpacitySpy, 1);
             }));
 
             it('... should have a form-switch for each supplied class', () => {
-                const cardBodyDe = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
+                const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
 
                 const formSwitchDes = getAndExpectDebugElementByCss(
-                    cardBodyDe[0],
+                    cardBodyDes[0],
                     'div.form-check.form-switch',
                     expectedSuppliedClasses.size + 2,
                     expectedSuppliedClasses.size + 2
@@ -299,21 +299,21 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
 
                 // Get form-switches for supplied classes (without first and last)
                 formSwitchDes.slice(1, -1).forEach((formSwitchDe, index) => {
-                    const formSwitchInputDe = getAndExpectDebugElementByCss(
+                    const formSwitchInputDes = getAndExpectDebugElementByCss(
                         formSwitchDe,
                         'input.form-check-input',
                         1,
                         1
                     );
-                    const formSwitchLabelDe = getAndExpectDebugElementByCss(
+                    const formSwitchLabelDes = getAndExpectDebugElementByCss(
                         formSwitchDe,
                         'label.form-check-label',
                         1,
                         1
                     );
 
-                    const formSwitchInputEl = formSwitchInputDe[0].nativeElement;
-                    const formSwitchLabelEl = formSwitchLabelDe[0].nativeElement;
+                    const formSwitchInputEl: HTMLInputElement = formSwitchInputDes[0].nativeElement;
+                    const formSwitchLabelEl: HTMLLabelElement = formSwitchLabelDes[0].nativeElement;
 
                     const keysArray = Array.from(expectedSuppliedClasses.keys());
 
@@ -329,7 +329,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 const keysArray = Array.from(expectedSuppliedClasses.keys());
 
                 keysArray.forEach((key, index) => {
-                    const formSwitchInputDe = getAndExpectDebugElementByCss(
+                    const formSwitchInputDes = getAndExpectDebugElementByCss(
                         compDe,
                         'input.form-check-input#' + key,
                         1,
@@ -337,16 +337,16 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                     );
 
                     // Trigger click with click helper & wait for changes
-                    clickAndAwaitChanges(formSwitchInputDe[0], fixture);
+                    clickAndAwaitChanges(formSwitchInputDes[0], fixture);
 
                     expectSpyCall(toggleSingleSuppliedClassOpacitySpy, index + 1, [key]);
                 });
             }));
 
             it('... should have a form-switch for tkk if hasAvailableTkaOverlays is true', () => {
-                const cardBodyDe = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
+                const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
                 getAndExpectDebugElementByCss(
-                    cardBodyDe[0],
+                    cardBodyDes[0],
                     'div.form-check.form-switch',
                     expectedSuppliedClasses.size + 2,
                     expectedSuppliedClasses.size + 2
@@ -358,9 +358,9 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 component.hasAvailableTkaOverlays = false;
                 await detectChangesOnPush(fixture);
 
-                const cardBodyDe = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
+                const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
                 getAndExpectDebugElementByCss(
-                    cardBodyDe[0],
+                    cardBodyDes[0],
                     'div.form-check.form-switch',
                     expectedSuppliedClasses.size + 1,
                     expectedSuppliedClasses.size + 1
@@ -369,29 +369,29 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
             });
 
             it('... should have input[checked=true] and label in form-switch for tkk', () => {
-                const cardBodyDe = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
-                const formSwitchDe = getAndExpectDebugElementByCss(
-                    cardBodyDe[0],
+                const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
+                const formSwitchDes = getAndExpectDebugElementByCss(
+                    cardBodyDes[0],
                     'div.form-check.form-switch',
                     expectedSuppliedClasses.size + 2,
                     expectedSuppliedClasses.size + 2
                 );
                 // Get last form-switch for tkk
-                const formSwitchInputDe = getAndExpectDebugElementByCss(
-                    formSwitchDe[expectedSuppliedClasses.size + 1],
+                const formSwitchInputDes = getAndExpectDebugElementByCss(
+                    formSwitchDes[expectedSuppliedClasses.size + 1],
                     'input.form-check-input',
                     1,
                     1
                 );
-                const formSwitchLabelDe = getAndExpectDebugElementByCss(
-                    formSwitchDe[expectedSuppliedClasses.size + 1],
+                const formSwitchLabelDes = getAndExpectDebugElementByCss(
+                    formSwitchDes[expectedSuppliedClasses.size + 1],
                     'label.form-check-label',
                     1,
                     1
                 );
 
-                const formSwitchInputEl = formSwitchInputDe[0].nativeElement;
-                const formSwitchLabelEl = formSwitchLabelDe[0].nativeElement;
+                const formSwitchInputEl: HTMLInputElement = formSwitchInputDes[0].nativeElement;
+                const formSwitchLabelEl: HTMLLabelElement = formSwitchLabelDes[0].nativeElement;
 
                 expectToEqual(formSwitchInputEl.type, 'checkbox');
                 expectToEqual(formSwitchInputEl.checked, true);
@@ -400,21 +400,21 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
             });
 
             it('... should contain EditionTkaLabelComponent in tkk label', () => {
-                const cardBodyDe = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
-                const formSwitchDe = getAndExpectDebugElementByCss(
-                    cardBodyDe[0],
+                const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
+                const formSwitchDes = getAndExpectDebugElementByCss(
+                    cardBodyDes[0],
                     'div.form-check.form-switch',
                     expectedSuppliedClasses.size + 2,
                     expectedSuppliedClasses.size + 2
                 );
                 // Get last form-switch for tkk
-                const formSwitchLabelDe = getAndExpectDebugElementByCss(
-                    formSwitchDe[expectedSuppliedClasses.size + 1],
+                const formSwitchLabelDes = getAndExpectDebugElementByCss(
+                    formSwitchDes[expectedSuppliedClasses.size + 1],
                     'label.form-check-label',
                     1,
                     1
                 );
-                getAndExpectDebugElementByDirective(formSwitchLabelDe[0], EditionTkaLabelStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(formSwitchLabelDes[0], EditionTkaLabelStubComponent, 1, 1);
             });
 
             it('... should pass down `id` data to EditionTkaLabelComponent (stubbed)', () => {
@@ -428,14 +428,14 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 const labelDes = getAndExpectDebugElementByDirective(compDe, EditionTkaLabelStubComponent, 1, 1);
                 const labelCmp = labelDes[0].injector.get(EditionTkaLabelStubComponent) as EditionTkaLabelStubComponent;
 
-                expectToBe(labelCmp.labelType, 'comment');
+                expectToBe(labelCmp.labelType, 'commentary');
             });
 
             it('... should trigger `toggleTkkClassesHighlight` on click on form-switch for tkk', fakeAsync(() => {
-                const formSwitchInputDe = getAndExpectDebugElementByCss(compDe, 'input.form-check-input#tkk', 1, 1);
+                const formSwitchInputDes = getAndExpectDebugElementByCss(compDe, 'input.form-check-input#tkk', 1, 1);
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(formSwitchInputDe[0], fixture);
+                clickAndAwaitChanges(formSwitchInputDes[0], fixture);
 
                 expectSpyCall(toggleTkkClassesHighlightSpy, 1);
             }));

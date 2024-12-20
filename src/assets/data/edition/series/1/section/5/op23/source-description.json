@@ -398,7 +398,7 @@
                                     [
                                         {
                                             "system": "9–16a",
-                                            "measure": "{1A–2A}, {1B}. {1C}, 2B",
+                                            "measure": "{1A–2A}, {1B}, 1C–2B",
                                             "linkTo": ""
                                         }
                                     ]
@@ -419,7 +419,7 @@
                                     [
                                         {
                                             "system": "13b–14b",
-                                            "measure": "13b–14b",
+                                            "measure": "1–2",
                                             "linkTo": ""
                                         }
                                     ]
@@ -1619,7 +1619,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "I „Das dunkle Herz“ M 314: einzige Textfassung",
+                        "itemDescription": "I „Das dunkle Herz“ M 314: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -1815,7 +1815,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "II „Es stürzt aus Höhen Frische“ M 313: einzige Textfassung",
+                        "itemDescription": "II „Es stürzt aus Höhen Frische“ M 313: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
                                 "folio": "6r",
@@ -1934,7 +1934,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "III „Herr Jesus mein“ M 312: einzige Textfassung",
+                        "itemDescription": "III „Herr Jesus mein“ M 312: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
                                 "folio": "8r",
@@ -2133,7 +2133,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "I „Das dunkle Herz“ M 314: einzige Textfassung",
+                        "itemDescription": "I „Das dunkle Herz“ M 314: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
                                 "folio": "2",
@@ -2313,7 +2313,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "II „Es stürzt aus Höhen Frische“ M 313: einzige Textfassung",
+                        "itemDescription": "II „Es stürzt aus Höhen Frische“ M 313: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
                                 "folio": "7",
@@ -2392,7 +2392,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "III „Herr Jesus mein“ M 312: einzige Textfassung",
+                        "itemDescription": "III „Herr Jesus mein“ M 312: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
                                 "folio": "9",
