@@ -3536,19 +3536,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ng-bootstrap/ng-bootstrap@npm:^17.0.1":
-  version: 17.0.1
-  resolution: "@ng-bootstrap/ng-bootstrap@npm:17.0.1"
+"@ng-bootstrap/ng-bootstrap@npm:^18.0.0":
+  version: 18.0.0
+  resolution: "@ng-bootstrap/ng-bootstrap@npm:18.0.0"
   dependencies:
     tslib: "npm:^2.3.0"
   peerDependencies:
-    "@angular/common": ^18.0.0
-    "@angular/core": ^18.0.0
-    "@angular/forms": ^18.0.0
-    "@angular/localize": ^18.0.0
+    "@angular/common": ^19.0.0
+    "@angular/core": ^19.0.0
+    "@angular/forms": ^19.0.0
+    "@angular/localize": ^19.0.0
     "@popperjs/core": ^2.11.8
     rxjs: ^6.5.3 || ^7.4.0
-  checksum: 10c0/9892a7b99596491f9144669c6ccc28574160ed79e6c7045fea9c922cac0896dc02b6de00cc115ae1830f46233a5fafbca5af985533a02085e409769ff7c210af
+  checksum: 10c0/289b6793116a69422b72d64950315f987db1f3e5b0059655853176cb2970748c9c4b575cc8856fee5acf6446372d52fbfa8fc928c98d5258c7515d3ee4503451
   languageName: node
   linkType: hard
 
@@ -5875,7 +5875,7 @@ __metadata:
     "@fortawesome/angular-fontawesome": "npm:^1.0.0"
     "@fortawesome/free-solid-svg-icons": "npm:^6.7.2"
     "@kolkov/ngx-gallery": "npm:2.0.1"
-    "@ng-bootstrap/ng-bootstrap": "npm:^17.0.1"
+    "@ng-bootstrap/ng-bootstrap": "npm:^18.0.0"
     "@popperjs/core": "npm:^2.11.8"
     "@types/d3": "npm:^7.4.3"
     "@types/jasmine": "npm:~5.1.4"
