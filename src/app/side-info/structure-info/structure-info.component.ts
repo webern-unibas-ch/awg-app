@@ -14,6 +14,7 @@ import { CoreService } from '@awg-core/services';
     templateUrl: './structure-info.component.html',
     styleUrls: ['./structure-info.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class StructureInfoComponent implements OnInit {
     /**

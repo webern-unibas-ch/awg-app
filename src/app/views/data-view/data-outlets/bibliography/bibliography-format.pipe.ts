@@ -12,6 +12,7 @@ import { BibEntry } from './bibliography-entry.model';
  */
 @Pipe({
     name: 'bibFormat',
+    standalone: false,
 })
 export class BibliographyFormatPipe implements PipeTransform {
     /**

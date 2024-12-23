@@ -13,6 +13,7 @@ import { QueryResult } from '../models';
     templateUrl: './sparql-table.component.html',
     styleUrls: ['./sparql-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SparqlTableComponent {
     /**

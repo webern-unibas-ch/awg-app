@@ -22,7 +22,11 @@ import { EditionComplexesService, EditionOutlineService, EditionStateService } f
 import { EditionViewComponent } from './edition-view.component';
 
 // Mock components
-@Component({ selector: 'awg-edition-jumbotron', template: '' })
+@Component({
+    selector: 'awg-edition-jumbotron',
+    template: '',
+    standalone: false,
+})
 class EditionJumbotronStubComponent {
     @Input()
     jumbotronId: string;
@@ -30,7 +34,11 @@ class EditionJumbotronStubComponent {
     jumbotronTitle: string;
 }
 
-@Component({ selector: 'awg-scroll-to-top', template: '' })
+@Component({
+    selector: 'awg-scroll-to-top',
+    template: '',
+    standalone: false,
+})
 class ScrollToTopStubComponent {}
 
 describe('EditionViewComponent (DONE)', () => {

@@ -11,6 +11,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     templateUrl: './edition-section-detail-disclaimer.component.html',
     styleUrls: ['./edition-section-detail-disclaimer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionSectionDetailDisclaimerComponent {
     // Intentionally left empty

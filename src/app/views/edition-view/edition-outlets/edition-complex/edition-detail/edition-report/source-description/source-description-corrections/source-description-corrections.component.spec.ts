@@ -20,7 +20,11 @@ import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/mod
 import { SourceDescriptionCorrectionsComponent } from './source-description-corrections.component';
 
 // Mock components
-@Component({ selector: 'awg-edition-tka-table', template: '' })
+@Component({
+    selector: 'awg-edition-tka-table',
+    template: '',
+    standalone: false,
+})
 class EditionTkaTableStubComponent {
     @Input()
     commentary: TextcriticalCommentary;

@@ -31,7 +31,11 @@ import {
 import { SourceDescriptionComponent } from './source-description.component';
 
 // Mock components
-@Component({ selector: 'awg-source-description-details', template: '' })
+@Component({
+    selector: 'awg-source-description-details',
+    template: '',
+    standalone: false,
+})
 class SourceDescriptionDetailsStubComponent {
     @Input()
     details: string[];
@@ -46,7 +50,11 @@ class SourceDescriptionDetailsStubComponent {
     @Output()
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
-@Component({ selector: 'awg-source-description-corrections', template: '' })
+@Component({
+    selector: 'awg-source-description-corrections',
+    template: '',
+    standalone: false,
+})
 class SourceDescriptionCorrectionsStubComponent {
     @Input()
     corrections: Textcritics[];

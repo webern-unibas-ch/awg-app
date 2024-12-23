@@ -14,6 +14,7 @@ import { TextcriticalCommentary, TkaTableHeaderColumn } from '@awg-views/edition
     templateUrl: './edition-tka-table.component.html',
     styleUrls: ['./edition-tka-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionTkaTableComponent {
     /**

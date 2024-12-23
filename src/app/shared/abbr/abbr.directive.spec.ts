@@ -9,6 +9,7 @@ import { AbbrDirective } from './abbr.directive';
 // Test abbr component
 @Component({
     template: `<p [awgAbbr]="text"></p>`,
+    standalone: false,
 })
 class TestAbbrComponent {
     text = 'This is a test with Klav. and Klav. o. and Ges. It is located in CH-Bps.';

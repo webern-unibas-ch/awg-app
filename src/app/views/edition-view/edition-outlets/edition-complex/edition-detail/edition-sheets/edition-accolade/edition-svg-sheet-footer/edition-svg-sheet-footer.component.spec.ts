@@ -23,7 +23,11 @@ import { EditionSvgSheet, TextcriticalCommentary, Textcritics } from '@awg-views
 import { EditionSvgSheetFooterComponent } from './edition-svg-sheet-footer.component';
 
 // Mock components
-@Component({ selector: 'awg-edition-tka-evaluations', template: '' })
+@Component({
+    selector: 'awg-edition-tka-evaluations',
+    template: '',
+    standalone: false,
+})
 class EditionTkaEvaluationsStubComponent {
     @Input()
     evaluations: string[];
@@ -35,14 +39,22 @@ class EditionTkaEvaluationsStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-edition-tka-label', template: '' })
+@Component({
+    selector: 'awg-edition-tka-label',
+    template: '',
+    standalone: false,
+})
 class EditionTkaLabelStubComponent {
     @Input()
     id: string;
     @Input() labelType: 'evaluation' | 'commentary';
 }
 
-@Component({ selector: 'awg-edition-tka-table', template: '' })
+@Component({
+    selector: 'awg-edition-tka-table',
+    template: '',
+    standalone: false,
+})
 class EditionTkaTableStubComponent {
     @Input()
     commentary: TextcriticalCommentary;

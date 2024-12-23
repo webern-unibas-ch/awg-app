@@ -21,16 +21,28 @@ import { EditionComplexesService, EditionOutlineService, EditionStateService } f
 import { EditionSectionDetailOverviewComponent } from './edition-section-detail-overview.component';
 
 // Mock components
-@Component({ selector: 'awg-edition-section-detail-complex-card', template: '' })
+@Component({
+    selector: 'awg-edition-section-detail-complex-card',
+    template: '',
+    standalone: false,
+})
 class EditionSectionDetailComplexCardStubComponent {
     @Input()
     complexes: EditionOutlineComplexItem[];
 }
 
-@Component({ selector: 'awg-edition-section-detail-disclaimer', template: '' })
+@Component({
+    selector: 'awg-edition-section-detail-disclaimer',
+    template: '',
+    standalone: false,
+})
 class EditionSectionDetailDisclaimerStubComponent {}
 
-@Component({ selector: 'awg-edition-section-detail-intro-card', template: '' })
+@Component({
+    selector: 'awg-edition-section-detail-intro-card',
+    template: '',
+    standalone: false,
+})
 class EditionSectionDetailIntroCardStubComponent {
     @Input()
     selectedSeries: EditionOutlineSeries;
@@ -38,7 +50,11 @@ class EditionSectionDetailIntroCardStubComponent {
     selectedSection: EditionOutlineSection;
 }
 
-@Component({ selector: 'awg-edition-section-detail-placeholder', template: '' })
+@Component({
+    selector: 'awg-edition-section-detail-placeholder',
+    template: '',
+    standalone: false,
+})
 class EditionSectionDetailPlaceholderStubComponent {
     @Input()
     selectedSeries: EditionOutlineSeries;

@@ -14,6 +14,7 @@ import { IntroBlock } from '@awg-views/edition-view/models';
     templateUrl: './edition-intro-content.component.html',
     styleUrls: ['./edition-intro-content.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionIntroContentComponent {
     /**

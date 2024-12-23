@@ -40,7 +40,11 @@ import {
 
 import { EditionSheetsComponent } from './edition-sheets.component';
 
-@Component({ selector: 'awg-edition-accolade', template: '' })
+@Component({
+    selector: 'awg-edition-accolade',
+    template: '',
+    standalone: false,
+})
 class EditionAccoladeStubComponent {
     @Input()
     isFullscreen: boolean;
@@ -70,7 +74,11 @@ class EditionAccoladeStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-edition-convolute', template: '' })
+@Component({
+    selector: 'awg-edition-convolute',
+    template: '',
+    standalone: false,
+})
 class EditionConvoluteStubComponent {
     @Input()
     selectedConvolute: FolioConvolute;
@@ -82,20 +90,32 @@ class EditionConvoluteStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-alert-error', template: '' })
+@Component({
+    selector: 'awg-alert-error',
+    template: '',
+    standalone: false,
+})
 class AlertErrorStubComponent {
     @Input()
     errorObject: any;
 }
 
-@Component({ selector: 'awg-modal', template: '' })
+@Component({
+    selector: 'awg-modal',
+    template: '',
+    standalone: false,
+})
 class ModalStubComponent {
     modalContent: string;
     open(modalContentSnippetKey: string): void {
         this.modalContent = modalContentSnippetKey;
     }
 }
-@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+@Component({
+    selector: 'awg-twelve-tone-spinner',
+    template: '',
+    standalone: false,
+})
 class TwelveToneSpinnerStubComponent {}
 
 describe('EditionSheetsComponent (DONE)', () => {

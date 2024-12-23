@@ -9,7 +9,11 @@ import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDir
 import { QueryResult } from '../models';
 import { SparqlTableComponent } from './sparql-table.component';
 
-@Component({ selector: 'awg-table', template: '' })
+@Component({
+    selector: 'awg-table',
+    template: '',
+    standalone: false,
+})
 class TableStubComponent {
     @Input() tableTitle: string;
     @Input() headerInputData: any;

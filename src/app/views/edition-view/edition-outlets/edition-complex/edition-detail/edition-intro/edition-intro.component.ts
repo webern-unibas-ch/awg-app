@@ -20,6 +20,7 @@ import { EditionDataService, EditionOutlineService, EditionStateService } from '
     selector: 'awg-edition-intro',
     templateUrl: './edition-intro.component.html',
     styleUrls: ['./edition-intro.component.scss'],
+    standalone: false,
 })
 export class EditionIntroComponent implements OnDestroy, OnInit {
     /**

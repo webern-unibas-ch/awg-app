@@ -13,6 +13,7 @@ import { EditionComplex } from '@awg-views/edition-view/models';
     templateUrl: './edition-intro-placeholder.component.html',
     styleUrls: ['./edition-intro-placeholder.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionIntroPlaceholderComponent {
     /**

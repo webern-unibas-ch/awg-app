@@ -21,17 +21,29 @@ import { QueryResult } from '../models';
 import { SelectResultsComponent } from './select-results.component';
 
 // Mock components
-@Component({ selector: 'awg-sparql-no-results', template: '' })
+@Component({
+    selector: 'awg-sparql-no-results',
+    template: '',
+    standalone: false,
+})
 class SparqlNoResultsStubComponent {}
 
-@Component({ selector: 'awg-sparql-table', template: '' })
+@Component({
+    selector: 'awg-sparql-table',
+    template: '',
+    standalone: false,
+})
 class SparqlTableStubComponent {
     @Input() queryResult: QueryResult;
     @Input() queryTime: number;
     @Output() clickedTableRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+@Component({
+    selector: 'awg-twelve-tone-spinner',
+    template: '',
+    standalone: false,
+})
 class TwelveToneSpinnerStubComponent {}
 
 describe('SelectResultsComponent (DONE)', () => {

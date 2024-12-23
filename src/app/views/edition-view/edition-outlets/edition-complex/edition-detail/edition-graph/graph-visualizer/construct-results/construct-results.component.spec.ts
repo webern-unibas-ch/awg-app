@@ -22,17 +22,29 @@ import { D3SimulationNode, D3SimulationNodeType, Triple } from '../models';
 import { ConstructResultsComponent } from './construct-results.component';
 
 // Mock components
-@Component({ selector: 'awg-force-graph', template: '' })
+@Component({
+    selector: 'awg-force-graph',
+    template: '',
+    standalone: false,
+})
 class ForceGraphStubComponent {
     @Input() currentQueryResultTriples: Triple[];
     @Input() height: number;
     @Output() clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter<D3SimulationNode>();
 }
 
-@Component({ selector: 'awg-sparql-no-results', template: '' })
+@Component({
+    selector: 'awg-sparql-no-results',
+    template: '',
+    standalone: false,
+})
 class SparqlNoResultsStubComponent {}
 
-@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+@Component({
+    selector: 'awg-twelve-tone-spinner',
+    template: '',
+    standalone: false,
+})
 class TwelveToneSpinnerStubComponent {}
 
 describe('ConstructResultsComponent (DONE)', () => {

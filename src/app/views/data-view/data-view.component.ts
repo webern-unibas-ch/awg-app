@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
     selector: 'awg-data',
     templateUrl: './data-view.component.html',
     styleUrls: ['./data-view.component.scss'],
+    standalone: false,
 })
 export class DataViewComponent implements OnInit, OnDestroy {
     /**

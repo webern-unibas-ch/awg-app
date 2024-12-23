@@ -16,6 +16,7 @@ import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-li
     selector: 'awg-search-overview',
     templateUrl: './search-overview.component.html',
     styleUrls: ['./search-overview.component.scss'],
+    standalone: false,
 })
 export class SearchOverviewComponent implements OnInit {
     /**

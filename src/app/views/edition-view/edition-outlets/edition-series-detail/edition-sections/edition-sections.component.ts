@@ -15,6 +15,7 @@ import { EditionStateService } from '@awg-views/edition-view/services';
     selector: 'awg-edition-sections',
     templateUrl: './edition-sections.component.html',
     styleUrls: ['./edition-sections.component.scss'],
+    standalone: false,
 })
 export class EditionSectionsComponent implements OnInit {
     /**

@@ -26,7 +26,11 @@ import { TableData, TableOptions, TablePaginatorOptions } from './models';
 import { TableComponent } from './table.component';
 
 // Mock components
-@Component({ selector: 'awg-table-pagination', template: '' })
+@Component({
+    selector: 'awg-table-pagination',
+    template: '',
+    standalone: false,
+})
 class TablePaginationStubComponent {
     @Input()
     collectionSize: number;
@@ -38,7 +42,11 @@ class TablePaginationStubComponent {
     pageChangeRequest: EventEmitter<number> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+@Component({
+    selector: 'awg-twelve-tone-spinner',
+    template: '',
+    standalone: false,
+})
 class TwelveToneSpinnerStubComponent {}
 
 describe('TableComponent', () => {

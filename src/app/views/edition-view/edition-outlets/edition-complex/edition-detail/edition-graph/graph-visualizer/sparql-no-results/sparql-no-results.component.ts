@@ -15,6 +15,7 @@ import { CoreService } from '@awg-core/services';
     templateUrl: './sparql-no-results.component.html',
     styleUrls: ['./sparql-no-results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SparqlNoResultsComponent implements OnInit {
     /**

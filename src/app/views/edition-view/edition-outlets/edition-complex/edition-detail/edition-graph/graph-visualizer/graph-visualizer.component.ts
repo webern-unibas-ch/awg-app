@@ -23,6 +23,7 @@ import { GraphVisualizerService } from './services';
     templateUrl: './graph-visualizer.component.html',
     styleUrls: ['./graph-visualizer.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
+    standalone: false,
 })
 export class GraphVisualizerComponent implements OnInit {
     /**

@@ -19,7 +19,11 @@ import {
 import { ResourceDetailHtmlComponent } from './resource-detail-html.component';
 
 // Mock component
-@Component({ selector: 'awg-resource-detail-html-content', template: '' })
+@Component({
+    selector: 'awg-resource-detail-html-content',
+    template: '',
+    standalone: false,
+})
 class ResourceDetailHtmlContentStubComponent {
     @Input()
     content: ResourceDetailContent;

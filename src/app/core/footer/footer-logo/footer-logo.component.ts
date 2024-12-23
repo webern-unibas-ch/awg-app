@@ -13,6 +13,7 @@ import { Logo } from '@awg-core/core-models';
     templateUrl: './footer-logo.component.html',
     styleUrls: ['./footer-logo.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class FooterLogoComponent {
     /**

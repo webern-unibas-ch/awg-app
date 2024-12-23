@@ -14,7 +14,11 @@ import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-li
 import { SearchOverviewComponent } from './search-overview.component';
 
 // Mock components
-@Component({ selector: 'awg-router-link-button-group', template: '' })
+@Component({
+    selector: 'awg-router-link-button-group',
+    template: '',
+    standalone: false,
+})
 class RouterLinkButtonGroupStubComponent {
     @Input()
     routerLinkButtons: RouterLinkButton[];

@@ -13,6 +13,7 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
     templateUrl: './scroll-to-top.component.html',
     styleUrl: './scroll-to-top.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class ScrollToTopComponent {
     /**

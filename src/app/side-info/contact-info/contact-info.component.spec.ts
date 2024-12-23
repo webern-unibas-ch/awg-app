@@ -21,7 +21,11 @@ import { CoreService } from '@awg-core/services';
 import { ContactInfoComponent } from './contact-info.component';
 
 // Mock address component
-@Component({ selector: 'awg-address', template: '' })
+@Component({
+    selector: 'awg-address',
+    template: '',
+    standalone: false,
+})
 class AddressStubComponent {
     @Input()
     pageMetaData: MetaPage;
@@ -30,7 +34,11 @@ class AddressStubComponent {
 }
 
 // Mock open street map component
-@Component({ selector: 'awg-open-street-map', template: '' })
+@Component({
+    selector: 'awg-open-street-map',
+    template: '',
+    standalone: false,
+})
 class OpenStreetMapStubComponent {
     @Input()
     osmEmbedUrl: SafeResourceUrl;

@@ -47,7 +47,11 @@ import {
 import { EditionIntroComponent } from './edition-intro.component';
 
 // Mock components
-@Component({ selector: 'awg-edition-intro-content', template: '' })
+@Component({
+    selector: 'awg-edition-intro-content',
+    template: '',
+    standalone: false,
+})
 class EditionIntroContentStubComponent {
     @Input()
     introBlockContent: IntroBlock[];
@@ -63,7 +67,11 @@ class EditionIntroContentStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-edition-intro-nav', template: '' })
+@Component({
+    selector: 'awg-edition-intro-nav',
+    template: '',
+    standalone: false,
+})
 class EditionIntroNavStubComponent {
     @Input()
     introBlockContent: IntroBlock[];
@@ -74,7 +82,11 @@ class EditionIntroNavStubComponent {
     @Output() languageChangeRequest = new EventEmitter<number>();
 }
 
-@Component({ selector: 'awg-edition-intro-partial-disclaimer', template: '' })
+@Component({
+    selector: 'awg-edition-intro-partial-disclaimer',
+    template: '',
+    standalone: false,
+})
 class EditionIntroPartialDisclaimerStubComponent {
     @Input()
     editionComplex: EditionComplex;
@@ -90,7 +102,11 @@ class EditionIntroPartialDisclaimerStubComponent {
     introRoute: string;
 }
 
-@Component({ selector: 'awg-edition-intro-placeholder', template: '' })
+@Component({
+    selector: 'awg-edition-intro-placeholder',
+    template: '',
+    standalone: false,
+})
 class EditionIntroPlaceholderStubComponent {
     @Input()
     editionComplex: EditionComplex;
@@ -98,18 +114,30 @@ class EditionIntroPlaceholderStubComponent {
     editionLabel: string;
 }
 
-@Component({ selector: 'awg-alert-error', template: '' })
+@Component({
+    selector: 'awg-alert-error',
+    template: '',
+    standalone: false,
+})
 class AlertErrorStubComponent {
     @Input()
     errorObject: any;
 }
 
-@Component({ selector: 'awg-modal', template: '' })
+@Component({
+    selector: 'awg-modal',
+    template: '',
+    standalone: false,
+})
 class ModalStubComponent {
     open(): void {}
 }
 
-@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+@Component({
+    selector: 'awg-twelve-tone-spinner',
+    template: '',
+    standalone: false,
+})
 class TwelveToneSpinnerStubComponent {}
 
 describe('IntroComponent (DONE)', () => {

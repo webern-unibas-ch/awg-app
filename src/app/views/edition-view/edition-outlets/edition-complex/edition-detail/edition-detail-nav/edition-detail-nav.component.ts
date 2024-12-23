@@ -19,6 +19,7 @@ import { EditionStateService } from '@awg-views/edition-view/services';
     selector: 'awg-edition-detail-nav',
     templateUrl: './edition-detail-nav.component.html',
     styleUrls: ['./edition-detail-nav.component.scss'],
+    standalone: false,
 })
 export class EditionDetailNavComponent implements OnInit, OnDestroy {
     /**

@@ -16,6 +16,7 @@ import { CoreService } from '@awg-core/services';
     templateUrl: './contact-info.component.html',
     styleUrls: ['./contact-info.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class ContactInfoComponent implements OnInit {
     /**

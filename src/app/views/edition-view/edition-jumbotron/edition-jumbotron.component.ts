@@ -11,6 +11,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     templateUrl: './edition-jumbotron.component.html',
     styleUrls: ['./edition-jumbotron.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionJumbotronComponent {
     /**

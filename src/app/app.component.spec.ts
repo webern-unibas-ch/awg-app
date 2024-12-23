@@ -14,24 +14,48 @@ import { AnalyticsService, EditionInitService } from '@awg-core/services';
 import { AppComponent } from './app.component';
 
 // Mock components
-@Component({ selector: 'awg-navbar', template: '' })
+@Component({
+    selector: 'awg-navbar',
+    template: '',
+    standalone: false,
+})
 class NavbarStubComponent {}
 
-@Component({ selector: 'awg-view-container', template: '' })
+@Component({
+    selector: 'awg-view-container',
+    template: '',
+    standalone: false,
+})
 class ViewContainerStubComponent {
     @Input() activateSideOutlet: boolean;
 }
 
-@Component({ selector: 'awg-footer', template: '' })
+@Component({
+    selector: 'awg-footer',
+    template: '',
+    standalone: false,
+})
 class FooterStubComponent {}
 
-@Component({ selector: 'awg-test', template: 'test' })
+@Component({
+    selector: 'awg-test',
+    template: 'test',
+    standalone: false,
+})
 export class RoutedTestMockComponent {}
 
-@Component({ selector: 'awg-test2', template: 'test2' })
+@Component({
+    selector: 'awg-test2',
+    template: 'test2',
+    standalone: false,
+})
 export class RoutedTest2MockComponent {}
 
-@Component({ selector: 'awg-side', template: 'test' })
+@Component({
+    selector: 'awg-side',
+    template: 'test',
+    standalone: false,
+})
 export class RoutedSideMockComponent {}
 
 export const MOCK_ROUTES: Routes = [

@@ -17,7 +17,11 @@ import {
 import { EditionSvgSheetViewerSwitchComponent } from './edition-svg-sheet-viewer-switch.component';
 
 // Mock components
-@Component({ selector: 'awg-edition-tka-label', template: '' })
+@Component({
+    selector: 'awg-edition-tka-label',
+    template: '',
+    standalone: false,
+})
 class EditionTkaLabelStubComponent {
     @Input()
     id: string;

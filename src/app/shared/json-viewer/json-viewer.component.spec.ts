@@ -69,7 +69,11 @@ function expectNavPanel(fixture: ComponentFixture<any>, expectedLinks: boolean[]
 }
 
 // Mock ngx-json-viewer component
-@Component({ selector: 'ngx-json-viewer', template: '' })
+@Component({
+    selector: 'ngx-json-viewer',
+    template: '',
+    standalone: false,
+})
 class NgxJsonViewerStubComponent {
     @Input()
     json: ResourceFullResponseJson | {};
