@@ -2809,22 +2809,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/angular-fontawesome@npm:^0.15.0":
-  version: 0.15.0
-  resolution: "@fortawesome/angular-fontawesome@npm:0.15.0"
+"@fortawesome/angular-fontawesome@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@fortawesome/angular-fontawesome@npm:1.0.0"
   dependencies:
-    "@fortawesome/fontawesome-svg-core": "npm:^6.5.2"
-    tslib: "npm:^2.6.2"
+    "@fortawesome/fontawesome-svg-core": "npm:^6.7.1"
+    tslib: "npm:^2.8.1"
   peerDependencies:
-    "@angular/core": ^18.0.0
-  checksum: 10c0/9ddc4d167850e3b507bb16edecefb84872cbb464f4dab3e113b1910a57c2ccd28e329b897e7394cbed7f10bb1ed659e9acdb905c5ec19f03f8e7aa4ddce3c247
-  languageName: node
-  linkType: hard
-
-"@fortawesome/fontawesome-common-types@npm:6.7.1":
-  version: 6.7.1
-  resolution: "@fortawesome/fontawesome-common-types@npm:6.7.1"
-  checksum: 10c0/0345b896ad8df26fb823893ce0a405dd513e9ef34878dd7b94fbbbabe370379bf680a32199bcaaf7346acbcd2a10bf0072e305829b49e5d9b0bf1c5315d07c96
+    "@angular/core": ^19.0.0
+  checksum: 10c0/3231ce35848373654719266988b1591a8ae64551fc931f1e2c217b8e644b9af4c5224fead5ebe09d5836b31516f1f2ad5f8a65486d17e6a190d6efd9801da724
   languageName: node
   linkType: hard
 
@@ -2835,12 +2828,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/fontawesome-svg-core@npm:^6.5.2":
-  version: 6.7.1
-  resolution: "@fortawesome/fontawesome-svg-core@npm:6.7.1"
+"@fortawesome/fontawesome-svg-core@npm:^6.7.1":
+  version: 6.7.2
+  resolution: "@fortawesome/fontawesome-svg-core@npm:6.7.2"
   dependencies:
-    "@fortawesome/fontawesome-common-types": "npm:6.7.1"
-  checksum: 10c0/7a1dc40fc5ef380eb0f83d89dfcb26dc5b49f6a6545970e46e413d81dfa9764006a056cfcd49c2e8113dbd2c95d429db873710424a150e4a923b2496e11707ca
+    "@fortawesome/fontawesome-common-types": "npm:6.7.2"
+  checksum: 10c0/9e4e2992b341d2d11cd6ab8cf001e2cb9be4266ce200b307d15c0618e7d2cf11c1c4c67a1f95f3cc70feed2380fa66672132c32078674d5f9cb2cb0b7703f3ac
   languageName: node
   linkType: hard
 
@@ -5879,7 +5872,7 @@ __metadata:
     "@compodoc/compodoc": "npm:^1.1.26"
     "@eslint/eslintrc": "npm:^3.2.0"
     "@eslint/js": "npm:^9.17.0"
-    "@fortawesome/angular-fontawesome": "npm:^0.15.0"
+    "@fortawesome/angular-fontawesome": "npm:^1.0.0"
     "@fortawesome/free-solid-svg-icons": "npm:^6.7.2"
     "@kolkov/ngx-gallery": "npm:2.0.1"
     "@ng-bootstrap/ng-bootstrap": "npm:^17.0.1"
