@@ -22,6 +22,7 @@ import {
     templateUrl: './edition-accolade.component.html',
     styleUrls: ['./edition-accolade.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionAccoladeComponent {
     /**

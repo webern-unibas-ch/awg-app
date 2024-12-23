@@ -14,6 +14,7 @@ import { EditionDataService, EditionStateService } from '@awg-views/edition-view
     selector: 'awg-edition-row-tables',
     templateUrl: './edition-row-tables.component.html',
     styleUrls: ['./edition-row-tables.component.scss'],
+    standalone: false,
 })
 export class EditionRowTablesComponent implements OnDestroy, OnInit {
     /**

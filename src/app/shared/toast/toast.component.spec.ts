@@ -9,13 +9,18 @@ import { Toast, ToastService } from './toast.service';
 // Mock component to get templateRef
 @Component({
     template: ` <ng-template #template><h1>Test template</h1></ng-template> `,
+    standalone: false,
 })
 class MockTemplateComponent {
     @ViewChild('template', { static: true }) public template: TemplateRef<any>;
 }
 
 // Mock ngb-toast component
-@Component({ selector: 'ngb-toast', template: '' })
+@Component({
+    selector: 'ngb-toast',
+    template: '',
+    standalone: false,
+})
 class NgbToastStubComponent {
     @Input()
     header: string;

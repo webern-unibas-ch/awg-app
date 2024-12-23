@@ -19,6 +19,7 @@ import { EditionComplexesService } from '@awg-views/edition-view/services';
     selector: 'awg-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss'],
+    standalone: false,
 })
 export class NavbarComponent implements OnInit {
     /**

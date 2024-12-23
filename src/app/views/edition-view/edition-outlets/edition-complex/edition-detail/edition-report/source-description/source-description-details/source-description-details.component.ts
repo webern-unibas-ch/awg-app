@@ -12,6 +12,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
     templateUrl: './source-description-details.component.html',
     styleUrl: './source-description-details.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SourceDescriptionDetailsComponent {
     /**

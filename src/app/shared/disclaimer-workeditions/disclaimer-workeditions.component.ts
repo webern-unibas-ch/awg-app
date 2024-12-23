@@ -12,6 +12,7 @@ import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
     selector: 'awg-disclaimer-workeditions',
     templateUrl: './disclaimer-workeditions.component.html',
     styleUrls: ['./disclaimer-workeditions.component.scss'],
+    standalone: false,
 })
 export class DisclaimerWorkeditionsComponent {
     /**

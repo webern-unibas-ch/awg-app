@@ -13,6 +13,7 @@ import { UtilityService } from '@awg-core/services';
     templateUrl: './edition-tka-label.component.html',
     styleUrl: './edition-tka-label.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionTkaLabelComponent {
     /**

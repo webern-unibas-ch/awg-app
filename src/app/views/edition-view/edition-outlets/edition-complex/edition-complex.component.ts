@@ -18,6 +18,7 @@ import { EditionComplexesService, EditionOutlineService, EditionStateService } f
     selector: 'awg-edition-complex',
     templateUrl: './edition-complex.component.html',
     styleUrls: ['./edition-complex.component.scss'],
+    standalone: false,
 })
 export class EditionComplexComponent implements OnDestroy, OnInit {
     /**

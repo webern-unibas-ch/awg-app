@@ -20,7 +20,11 @@ import { IntroBlock } from '@awg-views/edition-view/models';
 import { EditionIntroNavComponent } from './edition-intro-nav.component';
 
 // Mock components
-@Component({ selector: 'awg-language-switcher', template: '' })
+@Component({
+    selector: 'awg-language-switcher',
+    template: '',
+    standalone: false,
+})
 class LanguageSwitcherStubComponent {
     @Input()
     currentLanguage: number;

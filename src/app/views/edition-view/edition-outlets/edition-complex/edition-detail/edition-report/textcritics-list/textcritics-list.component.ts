@@ -15,6 +15,7 @@ import { TextcriticsList } from '@awg-views/edition-view/models';
     templateUrl: './textcritics-list.component.html',
     styleUrls: ['./textcritics-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class TextcriticsListComponent {
     /**

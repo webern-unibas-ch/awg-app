@@ -35,6 +35,7 @@ import { DataApiService } from '@awg-views/data-view/services';
     selector: 'awg-extended-search-form',
     templateUrl: './extended-search-form.component.html',
     styleUrls: ['./extended-search-form.component.scss'],
+    standalone: false,
 })
 export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
     /**

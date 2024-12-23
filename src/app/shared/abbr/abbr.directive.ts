@@ -7,6 +7,7 @@ import { Directive, ElementRef, inject, Input, OnInit } from '@angular/core';
  */
 @Directive({
     selector: '[awgAbbr]',
+    standalone: false,
 })
 export class AbbrDirective implements OnInit {
     /**

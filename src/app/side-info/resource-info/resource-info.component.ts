@@ -21,6 +21,7 @@ import { SearchQuery, SearchResponseWithQuery } from '@awg-views/data-view/model
     selector: 'awg-resource-info',
     templateUrl: './resource-info.component.html',
     styleUrls: ['./resource-info.component.scss'],
+    standalone: false,
 })
 export class ResourceInfoComponent implements OnInit, OnDestroy {
     /**

@@ -23,6 +23,7 @@ import {
     templateUrl: './source-description.component.html',
     styleUrls: ['./source-description.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SourceDescriptionComponent {
     /**

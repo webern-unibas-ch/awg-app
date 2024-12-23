@@ -11,10 +11,18 @@ import { BibliographyService } from '@awg-views/data-view/services';
 import { BibliographyComponent } from './bibliography.component';
 
 // Mock components
-@Component({ selector: 'awg-bibliography-search', template: '' })
+@Component({
+    selector: 'awg-bibliography-search',
+    template: '',
+    standalone: false,
+})
 class BibliographySearchStubComponent {}
 
-@Component({ selector: 'awg-bibliography-list', template: '' })
+@Component({
+    selector: 'awg-bibliography-list',
+    template: '',
+    standalone: false,
+})
 class BibliographyListStubComponent {
     @Input()
     bibList: SubjectItemJson[];

@@ -16,7 +16,11 @@ import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { SearchResultListComponent } from './search-result-list.component';
 
-@Component({ selector: 'awg-table', template: '' })
+@Component({
+    selector: 'awg-table',
+    template: '',
+    standalone: false,
+})
 class TableStubComponent {
     @Input() tableTitle: string;
     @Input() headerInputData: any;

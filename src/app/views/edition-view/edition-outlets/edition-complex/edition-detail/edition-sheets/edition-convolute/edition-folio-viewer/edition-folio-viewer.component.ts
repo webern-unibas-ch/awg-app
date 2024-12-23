@@ -35,6 +35,7 @@ import * as D3_SELECTION from 'd3-selection';
     templateUrl: './edition-folio-viewer.component.html',
     styleUrls: ['./edition-folio-viewer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked {
     /**

@@ -29,7 +29,11 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { EditionAccoladeComponent } from './edition-accolade.component';
 
 // Mock components
-@Component({ selector: 'awg-edition-svg-sheet-nav', template: '' })
+@Component({
+    selector: 'awg-edition-svg-sheet-nav',
+    template: '',
+    standalone: false,
+})
 class EditionSvgSheetNavStubComponent {
     @Input()
     svgSheetsData: EditionSvgSheetList;
@@ -39,7 +43,11 @@ class EditionSvgSheetNavStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-edition-svg-sheet-viewer', template: '' })
+@Component({
+    selector: 'awg-edition-svg-sheet-viewer',
+    template: '',
+    standalone: false,
+})
 class EditionSvgSheetViewerStubComponent {
     @Input()
     selectedSvgSheet: EditionSvgSheet;
@@ -55,7 +63,11 @@ class EditionSvgSheetViewerStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-edition-svg-sheet-footer', template: '' })
+@Component({
+    selector: 'awg-edition-svg-sheet-footer',
+    template: '',
+    standalone: false,
+})
 class EditionSvgSheetFooterStubComponent {
     @Input()
     selectedTextcriticalCommentary: TextcriticalCommentary;
@@ -71,7 +83,11 @@ class EditionSvgSheetFooterStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-fullscreen-toggle', template: '' })
+@Component({
+    selector: 'awg-fullscreen-toggle',
+    template: '',
+    standalone: false,
+})
 class FullscreenToggleStubComponent {
     @Input()
     fsElement: HTMLElement;

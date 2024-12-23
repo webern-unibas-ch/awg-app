@@ -20,6 +20,7 @@ import { ModalComponent } from './modal.component';
         </div>
         <awg-modal> </awg-modal>
     `,
+    standalone: false,
 })
 class WrapperComponent implements AfterViewInit {
     @ViewChild(ModalComponent) modalComponentRef: ModalComponent;

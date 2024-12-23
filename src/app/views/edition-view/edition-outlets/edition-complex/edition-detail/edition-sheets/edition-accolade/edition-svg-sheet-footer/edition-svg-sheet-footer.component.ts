@@ -17,6 +17,7 @@ import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/mod
     templateUrl: './edition-svg-sheet-footer.component.html',
     styleUrls: ['./edition-svg-sheet-footer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionSvgSheetFooterComponent {
     /**

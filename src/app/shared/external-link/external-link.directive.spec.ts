@@ -22,6 +22,7 @@ import { ExternalLinkDirective } from './external-link.directive';
 
         <br /><br />
         <a (click)="doSomething()" (keyup.enter)="doSomething()" role="link" tabindex="0">Link without href</a>`,
+    standalone: false,
 })
 class TestExernalLinkComponent {
     hostname = location.hostname;

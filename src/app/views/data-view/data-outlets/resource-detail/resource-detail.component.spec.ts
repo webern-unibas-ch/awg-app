@@ -29,7 +29,11 @@ import { ResourceData, ResourceDetail, ResourceDetailHeader } from '@awg-views/d
 import { ResourceDetailComponent } from './resource-detail.component';
 
 // Mock components
-@Component({ selector: 'awg-resource-detail-header', template: '' })
+@Component({
+    selector: 'awg-resource-detail-header',
+    template: '',
+    standalone: false,
+})
 class ResourceDetailHeaderStubComponent {
     @Input()
     header: ResourceDetailHeader;
@@ -39,7 +43,11 @@ class ResourceDetailHeaderStubComponent {
     resourceRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-resource-detail-html', template: '' })
+@Component({
+    selector: 'awg-resource-detail-html',
+    template: '',
+    standalone: false,
+})
 class ResourceDetailHtmlStubComponent {
     @Input()
     resourceDetailData: ResourceDetail;
@@ -49,19 +57,31 @@ class ResourceDetailHtmlStubComponent {
     resourceRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-resource-detail-json-converted', template: '' })
+@Component({
+    selector: 'awg-resource-detail-json-converted',
+    template: '',
+    standalone: false,
+})
 class ResourceDetailJsonConvertedStubComponent {
     @Input()
     resourceJsonConvertedData: ResourceDetail;
 }
 
-@Component({ selector: 'awg-resource-detail-json-raw', template: '' })
+@Component({
+    selector: 'awg-resource-detail-json-raw',
+    template: '',
+    standalone: false,
+})
 class ResourceDetailJsonRawStubComponent {
     @Input()
     resourceJsonRawData: ResourceFullResponseJson;
 }
 
-@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+@Component({
+    selector: 'awg-twelve-tone-spinner',
+    template: '',
+    standalone: false,
+})
 class TwelveToneSpinnerStubComponent {}
 
 describe('ResourceDetailComponent', () => {

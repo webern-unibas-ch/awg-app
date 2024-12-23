@@ -14,6 +14,7 @@ import { FullscreenService } from '@awg-app/core/services';
     templateUrl: './fullscreen-toggle.component.html',
     styleUrls: ['./fullscreen-toggle.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class FullscreenToggleComponent {
     /**

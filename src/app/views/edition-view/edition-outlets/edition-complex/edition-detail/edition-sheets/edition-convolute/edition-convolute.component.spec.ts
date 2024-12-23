@@ -27,7 +27,11 @@ interface IFolioLegend {
     label: string;
 }
 
-@Component({ selector: 'awg-edition-folio-viewer', template: '' })
+@Component({
+    selector: 'awg-edition-folio-viewer',
+    template: '',
+    standalone: false,
+})
 class EditionFolioViewerStubComponent {
     @Input()
     selectedConvolute: FolioConvolute;

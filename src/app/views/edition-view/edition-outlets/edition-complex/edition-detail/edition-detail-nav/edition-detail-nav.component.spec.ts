@@ -17,7 +17,11 @@ import { EditionComplexesService, EditionStateService } from '@awg-views/edition
 import { EditionDetailNavComponent } from './edition-detail-nav.component';
 
 // Mock components
-@Component({ selector: 'awg-router-link-button-group', template: '' })
+@Component({
+    selector: 'awg-router-link-button-group',
+    template: '',
+    standalone: false,
+})
 class RouterLinkButtonGroupStubComponent {
     @Input()
     routerLinkButtons: RouterLinkButton[];

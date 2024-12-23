@@ -25,13 +25,21 @@ import { HomeViewCard } from '@awg-views/home-view/models';
 import { HomeViewComponent } from './home-view.component';
 
 // Mock components
-@Component({ selector: 'awg-alert-info', template: '' })
+@Component({
+    selector: 'awg-alert-info',
+    template: '',
+    standalone: false,
+})
 class AlertInfoStubComponent {
     @Input()
     infoMessage: string;
 }
 
-@Component({ selector: 'awg-heading', template: '' })
+@Component({
+    selector: 'awg-heading',
+    template: '',
+    standalone: false,
+})
 class HeadingStubComponent {
     @Input()
     title: string;
@@ -39,7 +47,11 @@ class HeadingStubComponent {
     id: string;
 }
 
-@Component({ selector: 'awg-home-view-card', template: '' })
+@Component({
+    selector: 'awg-home-view-card',
+    template: '',
+    standalone: false,
+})
 class HomeViewCardStubComponent {
     @Input()
     cardData: HomeViewCard;

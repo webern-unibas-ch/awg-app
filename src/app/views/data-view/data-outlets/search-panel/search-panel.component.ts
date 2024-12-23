@@ -25,6 +25,7 @@ import { DataApiService } from '@awg-views/data-view/services';
     selector: 'awg-search-panel',
     templateUrl: './search-panel.component.html',
     styleUrls: ['./search-panel.component.scss'],
+    standalone: false,
 })
 export class SearchPanelComponent implements OnInit, OnDestroy {
     /**

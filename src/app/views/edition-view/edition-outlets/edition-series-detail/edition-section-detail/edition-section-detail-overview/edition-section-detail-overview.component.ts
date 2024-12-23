@@ -16,6 +16,7 @@ import { Observable } from 'rxjs';
     templateUrl: './edition-section-detail-overview.component.html',
     styleUrls: ['./edition-section-detail-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionSectionDetailOverviewComponent implements OnInit {
     /**

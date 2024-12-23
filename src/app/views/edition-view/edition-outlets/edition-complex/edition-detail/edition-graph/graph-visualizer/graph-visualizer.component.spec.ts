@@ -24,7 +24,11 @@ import { GraphVisualizerService } from './services/graph-visualizer.service';
 import { GraphVisualizerComponent } from './graph-visualizer.component';
 
 // Mock components
-@Component({ selector: 'awg-construct-results', template: '' })
+@Component({
+    selector: 'awg-construct-results',
+    template: '',
+    standalone: false,
+})
 class ConstructResultsStubComponent {
     @Input()
     queryResult$: Observable<Triple[]>;
@@ -36,7 +40,11 @@ class ConstructResultsStubComponent {
     clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-select-results', template: '' })
+@Component({
+    selector: 'awg-select-results',
+    template: '',
+    standalone: false,
+})
 class SelectResultsStubComponent {
     @Input()
     queryResult$: Observable<Triple[]>;
@@ -48,7 +56,11 @@ class SelectResultsStubComponent {
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-sparql-editor', template: '' })
+@Component({
+    selector: 'awg-sparql-editor',
+    template: '',
+    standalone: false,
+})
 class SparqlEditorStubComponent {
     @Input()
     queryList: GraphSparqlQuery[];
@@ -66,10 +78,18 @@ class SparqlEditorStubComponent {
     updateQueryStringRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-toast', template: '' })
+@Component({
+    selector: 'awg-toast',
+    template: '',
+    standalone: false,
+})
 class ToastStubComponent {}
 
-@Component({ selector: 'awg-triples-editor', template: '' })
+@Component({
+    selector: 'awg-triples-editor',
+    template: '',
+    standalone: false,
+})
 class TriplesEditorStubComponent {
     @Input() triples: string;
     @Input()
@@ -84,7 +104,11 @@ class TriplesEditorStubComponent {
     updateTriplesRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-unsupported-type-results', template: '' })
+@Component({
+    selector: 'awg-unsupported-type-results',
+    template: '',
+    standalone: false,
+})
 class UnsupportedTypeResultsStubComponent {
     @Input()
     queryType: string; // Query.queryType ?

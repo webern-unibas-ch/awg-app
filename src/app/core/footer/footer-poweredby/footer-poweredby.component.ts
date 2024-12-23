@@ -14,6 +14,7 @@ import { Logos, MetaPage } from '@awg-core/core-models';
     templateUrl: './footer-poweredby.component.html',
     styleUrls: ['./footer-poweredby.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class FooterPoweredbyComponent {
     /**

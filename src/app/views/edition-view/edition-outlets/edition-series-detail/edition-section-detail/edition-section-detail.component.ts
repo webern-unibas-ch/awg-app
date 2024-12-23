@@ -16,6 +16,7 @@ import { EditionOutlineService, EditionStateService } from '@awg-views/edition-v
     selector: 'awg-edition-section-detail',
     templateUrl: './edition-section-detail.component.html',
     styleUrls: ['./edition-section-detail.component.scss'],
+    standalone: false,
 })
 export class EditionSectionDetailComponent implements OnInit, OnDestroy {
     /**

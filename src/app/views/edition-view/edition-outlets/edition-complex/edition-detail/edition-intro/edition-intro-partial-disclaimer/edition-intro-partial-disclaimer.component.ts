@@ -12,6 +12,7 @@ import { EditionComplex } from '@awg-views/edition-view/models';
     selector: 'awg-edition-intro-partial-disclaimer',
     templateUrl: './edition-intro-partial-disclaimer.component.html',
     styleUrls: ['./edition-intro-partial-disclaimer.component.scss'],
+    standalone: false,
 })
 export class EditionIntroPartialDisclaimerComponent {
     /**

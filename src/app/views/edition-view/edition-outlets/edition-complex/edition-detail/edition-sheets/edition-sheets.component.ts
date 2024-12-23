@@ -33,6 +33,7 @@ import { EditionDataService, EditionSheetsService, EditionStateService } from '@
     selector: 'awg-edition-sheets',
     templateUrl: './edition-sheets.component.html',
     styleUrls: ['./edition-sheets.component.scss'],
+    standalone: false,
 })
 export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**
