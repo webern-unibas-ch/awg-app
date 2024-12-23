@@ -171,8 +171,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/prefix-pipe/prefix.pipe.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/prefix-pipe/prefix.pipe.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -272,7 +272,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/prefix-pipe/prefix.pipe.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/prefix-pipe/prefix.pipe.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -302,7 +302,11 @@ import { Prefix, PrefixForm } from &#x27;../models&#x27;;
  *
  * It turns a short form of an RDF prefix into a long form and vice versa.
  */
-@Pipe({ name: &#x27;prefix&#x27;, pure: false })
+@Pipe({
+    name: &#x27;prefix&#x27;,
+    pure: false,
+    standalone: false,
+})
 export class PrefixPipe implements PipeTransform {
     /**
      * Public variable: defaultPrefixes.
