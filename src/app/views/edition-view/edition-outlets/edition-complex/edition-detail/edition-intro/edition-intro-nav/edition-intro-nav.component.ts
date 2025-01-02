@@ -13,6 +13,7 @@ import { IntroBlock } from '@awg-views/edition-view/models';
     templateUrl: './edition-intro-nav.component.html',
     styleUrls: ['./edition-intro-nav.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionIntroNavComponent {
     /**

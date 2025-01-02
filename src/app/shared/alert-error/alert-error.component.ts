@@ -11,6 +11,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     templateUrl: './alert-error.component.html',
     styleUrl: './alert-error.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class AlertErrorComponent {
     /**

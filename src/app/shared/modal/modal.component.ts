@@ -13,6 +13,7 @@ import { MODAL_CONTENT_SNIPPETS } from './data/modal-content-snippets.data';
     selector: 'awg-modal',
     templateUrl: './modal.component.html',
     styleUrls: ['./modal.component.scss'],
+    standalone: false,
 })
 export class ModalComponent {
     /**

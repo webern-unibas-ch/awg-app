@@ -27,7 +27,7 @@ import {
     EditionSvgSheetList,
     FolioConvolute,
     FolioConvoluteList,
-    TextcriticalCommentBlock,
+    TextcriticalCommentary,
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
@@ -40,7 +40,11 @@ import {
 
 import { EditionSheetsComponent } from './edition-sheets.component';
 
-@Component({ selector: 'awg-edition-accolade', template: '' })
+@Component({
+    selector: 'awg-edition-accolade',
+    template: '',
+    standalone: false,
+})
 class EditionAccoladeStubComponent {
     @Input()
     isFullscreen: boolean;
@@ -49,7 +53,7 @@ class EditionAccoladeStubComponent {
     @Input()
     selectedSvgSheet: EditionSvgSheet;
     @Input()
-    selectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
+    selectedTextcriticalCommentary: TextcriticalCommentary;
     @Input()
     selectedTextcritics: Textcritics;
     @Input()
@@ -70,7 +74,11 @@ class EditionAccoladeStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-edition-convolute', template: '' })
+@Component({
+    selector: 'awg-edition-convolute',
+    template: '',
+    standalone: false,
+})
 class EditionConvoluteStubComponent {
     @Input()
     selectedConvolute: FolioConvolute;
@@ -82,20 +90,32 @@ class EditionConvoluteStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-alert-error', template: '' })
+@Component({
+    selector: 'awg-alert-error',
+    template: '',
+    standalone: false,
+})
 class AlertErrorStubComponent {
     @Input()
     errorObject: any;
 }
 
-@Component({ selector: 'awg-modal', template: '' })
+@Component({
+    selector: 'awg-modal',
+    template: '',
+    standalone: false,
+})
 class ModalStubComponent {
     modalContent: string;
     open(modalContentSnippetKey: string): void {
         this.modalContent = modalContentSnippetKey;
     }
 }
-@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+@Component({
+    selector: 'awg-twelve-tone-spinner',
+    template: '',
+    standalone: false,
+})
 class TwelveToneSpinnerStubComponent {}
 
 describe('EditionSheetsComponent (DONE)', () => {
@@ -117,7 +137,7 @@ describe('EditionSheetsComponent (DONE)', () => {
     let editionSheetsServiceFindTextcriticsSpy: Spy;
     let editionSheetsServiceGetCurrentEditionTypeSpy: Spy;
     let editionSheetsServiceGetNextSheetIdSpy: Spy;
-    let editionSheetsServiceGetTextcriticalCommentsForOverlaysSpy: Spy;
+    let editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy: Spy;
     let editionSheetsServiceSelectSvgSheetByIdSpy: Spy;
     let editionSheetsServiceSelectConvoluteSpy: Spy;
     let editionStateServiceGetSelectedEditionComplexSpy: Spy;
@@ -141,7 +161,7 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedTextcriticsData: TextcriticsList;
     let expectedSelectedTextcritics: Textcritics;
-    let expectedSelectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
+    let expectedSelectedTextcriticalCommentary: TextcriticalCommentary;
     let expectedEditionComplexBaseRoute: string;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
@@ -183,7 +203,7 @@ describe('EditionSheetsComponent (DONE)', () => {
             findTextcritics: (): Textcritics => new Textcritics(),
             getCurrentEditionType: (): keyof EditionSvgSheetList['sheets'] | undefined => undefined,
             getNextSheetId: (): string => '',
-            getTextcriticalCommentsForOverlays: (): TextcriticalCommentBlock[] => [],
+            filterTextcriticalCommentaryForOverlays: (): TextcriticalCommentary => new TextcriticalCommentary(),
             selectSvgSheetById: (): EditionSvgSheet => new EditionSvgSheet(),
             selectConvolute: (): FolioConvolute | undefined => new FolioConvolute(),
         };
@@ -240,7 +260,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         expectedTextcriticsData = JSON.parse(JSON.stringify(mockEditionData.mockTextcriticsData));
         expectedSelectedTextcritics = expectedTextcriticsData.textcritics.at(1);
-        expectedSelectedTextcriticalCommentBlocks = expectedSelectedTextcritics.comments;
+        expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
 
         // Spies on service functions
         // Spies on service functions
@@ -258,9 +278,9 @@ describe('EditionSheetsComponent (DONE)', () => {
             'getCurrentEditionType'
         ).and.callThrough();
         editionSheetsServiceGetNextSheetIdSpy = spyOn(mockEditionSheetsService, 'getNextSheetId').and.callThrough();
-        editionSheetsServiceGetTextcriticalCommentsForOverlaysSpy = spyOn(
+        editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy = spyOn(
             mockEditionSheetsService,
-            'getTextcriticalCommentsForOverlays'
+            'filterTextcriticalCommentaryForOverlays'
         ).and.callThrough();
         editionSheetsServiceSelectConvoluteSpy = spyOn(mockEditionSheetsService, 'selectConvolute').and.returnValue(
             expectedFolioConvoluteData[0]
@@ -313,8 +333,8 @@ describe('EditionSheetsComponent (DONE)', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
 
-        it('... should not have `selectedTextcriticalCommentBlocks`', () => {
-            expect(component.selectedTextcriticalCommentBlocks).toBeUndefined();
+        it('... should not have `selectedTextcriticalCommentary`', () => {
+            expect(component.selectedTextcriticalCommentary).toBeUndefined();
         });
 
         it('... should not have `selectedTextcritics`', () => {
@@ -464,12 +484,124 @@ describe('EditionSheetsComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-sheets-view', 1, 1);
             });
 
-            it('... should contain one AccoladeComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+            describe('... AccoladeComponent (stubbed)', () => {
+                it('... should contain one AccoladeComponent (stubbed)', () => {
+                    getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                });
+
+                it('... should pass down `isFullscreen` to the EditionAccoladeComponent', () => {
+                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                    const accoladeCmp = accoladeDes[0].injector.get(
+                        EditionAccoladeStubComponent
+                    ) as EditionAccoladeStubComponent;
+
+                    expectToEqual(accoladeCmp.isFullscreen, expectedIsFullscreen);
+                });
+
+                it('... should pass down `svgSheetsData` to the EditionAccoladeComponent', () => {
+                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                    const accoladeCmp = accoladeDes[0].injector.get(
+                        EditionAccoladeStubComponent
+                    ) as EditionAccoladeStubComponent;
+
+                    expectToEqual(accoladeCmp.svgSheetsData, expectedSvgSheetsData);
+                });
+
+                it('... should pass down `selectedSvgSheet` to the EditionAccoladeComponent', () => {
+                    component.selectedSvgSheet = expectedSvgSheet;
+                    detectChangesOnPush(fixture);
+
+                    detectChangesOnPush(fixture);
+                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                    const accoladeCmp = accoladeDes[0].injector.get(
+                        EditionAccoladeStubComponent
+                    ) as EditionAccoladeStubComponent;
+
+                    expectToEqual(accoladeCmp.selectedSvgSheet, expectedSvgSheet);
+                });
+
+                it('... should pass down `selectedTextcritics` to the EditionAccoladeComponent', () => {
+                    component.selectedTextcritics = expectedSelectedTextcritics;
+                    detectChangesOnPush(fixture);
+
+                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                    const accoladeCmp = accoladeDes[0].injector.get(
+                        EditionAccoladeStubComponent
+                    ) as EditionAccoladeStubComponent;
+
+                    expectToEqual(accoladeCmp.selectedTextcritics, expectedSelectedTextcritics);
+                });
+
+                it('... should pass down `selectedTextcriticalCommentary` to the EditionAccoladeComponent', () => {
+                    component.selectedTextcriticalCommentary = expectedSelectedTextcriticalCommentary;
+                    detectChangesOnPush(fixture);
+
+                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                    const accoladeCmp = accoladeDes[0].injector.get(
+                        EditionAccoladeStubComponent
+                    ) as EditionAccoladeStubComponent;
+
+                    expectToEqual(accoladeCmp.selectedTextcriticalCommentary, expectedSelectedTextcriticalCommentary);
+                });
+
+                it('... should pass down `showTkA` to the EditionAccoladeComponent', () => {
+                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                    const accoladeCmp = accoladeDes[0].injector.get(
+                        EditionAccoladeStubComponent
+                    ) as EditionAccoladeStubComponent;
+
+                    expectToEqual(accoladeCmp.showTkA, false);
+                });
             });
 
-            it('... should contain no ConvoluteComponent (stubbed) if no convolute is provided', () => {
-                getAndExpectDebugElementByDirective(compDe, EditionConvoluteStubComponent, 0, 0);
+            describe('... ConvoluteComponent (stubbed)', () => {
+                it('... should contain no ConvoluteComponent (stubbed) if no convolute is provided', () => {
+                    getAndExpectDebugElementByDirective(compDe, EditionConvoluteStubComponent, 0, 0);
+                });
+
+                it('... should contain one ConvoluteComponent (stubbed) if convolute is provided', () => {
+                    component.selectedConvolute = expectedConvolute;
+                    component.selectedSvgSheet = expectedSvgSheet;
+                    detectChangesOnPush(fixture);
+
+                    getAndExpectDebugElementByDirective(compDe, EditionConvoluteStubComponent, 1, 1);
+                });
+
+                it('... should pass down `selectedConvolute` to the EditionConvoluteComponent', () => {
+                    component.selectedConvolute = expectedConvolute;
+                    component.selectedSvgSheet = expectedSvgSheet;
+                    detectChangesOnPush(fixture);
+
+                    const convoluteDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionConvoluteStubComponent,
+                        1,
+                        1
+                    );
+                    const convoluteCmp = convoluteDes[0].injector.get(
+                        EditionConvoluteStubComponent
+                    ) as EditionConvoluteStubComponent;
+
+                    expectToEqual(convoluteCmp.selectedConvolute, expectedConvolute);
+                });
+
+                it('... should pass down `selectedSvgSheet` to the EditionConvoluteComponent', () => {
+                    component.selectedConvolute = expectedConvolute;
+                    component.selectedSvgSheet = expectedSvgSheet;
+                    detectChangesOnPush(fixture);
+
+                    const convoluteDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionConvoluteStubComponent,
+                        1,
+                        1
+                    );
+                    const convoluteCmp = convoluteDes[0].injector.get(
+                        EditionConvoluteStubComponent
+                    ) as EditionConvoluteStubComponent;
+
+                    expectToEqual(convoluteCmp.selectedSvgSheet, expectedSvgSheet);
+                });
             });
         });
 
@@ -771,21 +903,24 @@ describe('EditionSheetsComponent (DONE)', () => {
                 expectSpyCall(onOverlaySelectSpy, 1, [expectedOverlays]);
             });
 
-            it('... should find correct commentblocks and set `showTka` to true', () => {
-                expectedSelectedTextcriticalCommentBlocks.forEach(textcriticalCommentBlock => {
-                    textcriticalCommentBlock.blockComments.forEach(comment => {
+            it('... should correctly filter textcritical commentary and set `showTka` to true', () => {
+                expectedSelectedTextcriticalCommentary.comments.forEach(comment => {
+                    comment.blockComments.forEach(blockComment => {
                         const expectedOverlays = [
-                            new EditionSvgOverlay(EditionSvgOverlayTypes.tka, comment.svgGroupId, true),
+                            new EditionSvgOverlay(EditionSvgOverlayTypes.tka, blockComment.svgGroupId, true),
                         ];
-                        const expectedCommentBlocks = [
-                            {
-                                ...textcriticalCommentBlock,
-                                blockComments: [comment],
-                            },
-                        ];
+                        const expectedCommentary = {
+                            preamble: expectedSelectedTextcriticalCommentary.preamble,
+                            comments: [
+                                {
+                                    ...comment,
+                                    blockComments: [blockComment],
+                                },
+                            ],
+                        };
 
-                        editionSheetsServiceGetTextcriticalCommentsForOverlaysSpy.and.returnValue(
-                            expectedCommentBlocks
+                        editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy.and.returnValue(
+                            expectedCommentary
                         );
 
                         component.selectedTextcritics = expectedSelectedTextcritics;
@@ -793,7 +928,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                         component.onOverlaySelect(expectedOverlays);
 
-                        expectToEqual(component.selectedTextcriticalCommentBlocks, expectedCommentBlocks);
+                        expectToEqual(component.selectedTextcriticalCommentary, expectedCommentary);
                         expectToBe(component.showTkA, true);
                     });
                 });
@@ -1957,14 +2092,13 @@ describe('EditionSheetsComponent (DONE)', () => {
                     expectSpyCall(onOverlaySelectSpy, 1, []);
                 });
 
-                it('... should set correct `selectedTextcriticalCommentBlocks`', () => {
+                it('... should set correct `selectedTextcriticalCommentary`', () => {
                     (component as any)._selectSvgSheet(expectedSvgSheet.id);
 
                     expectToEqual(component.selectedSvgSheet, expectedSvgSheet);
                     expectToEqual(component.selectedConvolute, expectedConvolute);
                     expectToEqual(component.selectedTextcritics, expectedSelectedTextcritics);
-
-                    expectToEqual(component.selectedTextcriticalCommentBlocks, expectedSelectedTextcritics.comments);
+                    expectToEqual(component.selectedTextcriticalCommentary, expectedSelectedTextcritics.commentary);
                 });
             });
         });

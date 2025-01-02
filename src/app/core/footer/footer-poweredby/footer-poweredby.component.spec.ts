@@ -18,7 +18,11 @@ import { Logo, Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 
 import { FooterPoweredbyComponent } from './footer-poweredby.component';
 
-@Component({ selector: 'awg-footer-logo', template: '' })
+@Component({
+    selector: 'awg-footer-logo',
+    template: '',
+    standalone: false,
+})
 class FooterLogoStubComponent {
     @Input()
     logo: Logo;

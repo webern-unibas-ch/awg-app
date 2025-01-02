@@ -15,6 +15,7 @@ import { EditionSvgSheet } from '@awg-views/edition-view/models';
     templateUrl: './edition-svg-sheet-nav-item.component.html',
     styleUrls: ['./edition-svg-sheet-nav-item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionSvgSheetNavItemComponent {
     /**

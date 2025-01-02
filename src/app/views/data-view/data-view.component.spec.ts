@@ -16,7 +16,11 @@ import { RouterOutletStubComponent } from '@testing/router-stubs';
 import { DataViewComponent } from './data-view.component';
 
 // Mock heading component
-@Component({ selector: 'awg-heading', template: '' })
+@Component({
+    selector: 'awg-heading',
+    template: '',
+    standalone: false,
+})
 class HeadingStubComponent {
     @Input()
     title: string;

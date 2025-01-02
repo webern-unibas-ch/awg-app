@@ -17,25 +17,41 @@ import { CoreService } from '@awg-core/services';
 import { FooterComponent } from './footer.component';
 
 // Mock components
-@Component({ selector: 'awg-footer-copyright', template: '' })
+@Component({
+    selector: 'awg-footer-copyright',
+    template: '',
+    standalone: false,
+})
 class FooterCopyrightStubComponent {
     @Input()
     pageMetaData: MetaPage;
 }
 
-@Component({ selector: 'awg-footer-declaration', template: '' })
+@Component({
+    selector: 'awg-footer-declaration',
+    template: '',
+    standalone: false,
+})
 class FooterDeclarationStubComponent {
     @Input()
     pageMetaData: MetaPage;
 }
 
-@Component({ selector: 'awg-footer-logo', template: '' })
+@Component({
+    selector: 'awg-footer-logo',
+    template: '',
+    standalone: false,
+})
 class FooterLogoStubComponent {
     @Input()
     logo: Logo;
 }
 
-@Component({ selector: 'awg-footer-poweredby', template: '' })
+@Component({
+    selector: 'awg-footer-poweredby',
+    template: '',
+    standalone: false,
+})
 class FooterPoweredbyStubComponent {
     @Input()
     logos: Logos;

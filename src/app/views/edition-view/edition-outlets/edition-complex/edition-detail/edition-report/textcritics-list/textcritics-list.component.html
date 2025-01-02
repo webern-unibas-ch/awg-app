@@ -26,19 +26,19 @@
                 <div ngbAccordionCollapse>
                     <div ngbAccordionBody>
                         <ng-template>
-                            <div>
+                            <div class="mb-4">
                                 <p class="smallcaps">
                                     <awg-edition-tka-label
                                         [id]="textcritics.id"
                                         [labelType]="'evaluation'"></awg-edition-tka-label
                                     >:
                                 </p>
-                                @if (utils.isNotEmptyArray(textcritics.description)) {
-                                    <awg-edition-tka-description
-                                        [textcriticalDescriptions]="textcritics.description"
+                                @if (utils.isNotEmptyArray(textcritics.evaluations)) {
+                                    <awg-edition-tka-evaluations
+                                        [evaluations]="textcritics.evaluations"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                         (openModalRequest)="openModal($event)"
-                                        (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-tka-description>
+                                        (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-tka-evaluations>
                                 } @else {
                                     <ng-container *ngTemplateOutlet="noContent"></ng-container>
                                 }
@@ -47,12 +47,15 @@
                                 <p class="smallcaps">
                                     <awg-edition-tka-label
                                         [id]="textcritics.id"
-                                        [labelType]="'comment'"></awg-edition-tka-label
+                                        [labelType]="'commentary'"></awg-edition-tka-label
                                     >:
                                 </p>
-                                @if (utils.isNotEmptyArray(textcritics.comments)) {
+                                @if (
+                                    utils.isNotEmptyObject(textcritics.commentary) &&
+                                    utils.isNotEmptyArray(textcritics.commentary.comments)
+                                ) {
                                     <awg-edition-tka-table
-                                        [textcriticalCommentBlocks]="textcritics.comments"
+                                        [commentary]="textcritics.commentary"
                                         [isRowTable]="textcritics.rowtable"
                                         [isSketchId]="utils.isSketchId(textcritics.id)"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"

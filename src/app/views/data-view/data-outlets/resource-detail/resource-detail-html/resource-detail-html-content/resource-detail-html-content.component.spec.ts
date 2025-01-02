@@ -25,7 +25,11 @@ import {
 import { ResourceDetailHtmlContentComponent } from './resource-detail-html-content.component';
 
 // Mock components
-@Component({ selector: 'awg-resource-detail-html-content-props', template: '' })
+@Component({
+    selector: 'awg-resource-detail-html-content-props',
+    template: '',
+    standalone: false,
+})
 class ResourceDetailHtmlContentPropsStubComponent {
     @Input()
     props: ResourceDetailProperty[];
@@ -35,13 +39,21 @@ class ResourceDetailHtmlContentPropsStubComponent {
     resourceRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-resource-detail-html-content-imageobjects', template: '' })
+@Component({
+    selector: 'awg-resource-detail-html-content-imageobjects',
+    template: '',
+    standalone: false,
+})
 class ResourceDetailHtmlContentImageobjectsStubComponent {
     @Input()
     images: NgxGalleryImage[];
 }
 
-@Component({ selector: 'awg-resource-detail-html-content-linkedobjects', template: '' })
+@Component({
+    selector: 'awg-resource-detail-html-content-linkedobjects',
+    template: '',
+    standalone: false,
+})
 class ResourceDetailHtmlContentLinkedobjectsStubComponent {
     @Input()
     incomingGroups: ResourceDetailGroupedIncomingLinks[];

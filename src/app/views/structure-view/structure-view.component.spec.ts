@@ -7,7 +7,11 @@ import { expectToBe, getAndExpectDebugElementByCss, getAndExpectDebugElementByDi
 import { StructureViewComponent } from './structure-view.component';
 
 // Mock heading component
-@Component({ selector: 'awg-heading', template: '' })
+@Component({
+    selector: 'awg-heading',
+    template: '',
+    standalone: false,
+})
 class HeadingStubComponent {
     @Input()
     title: string;

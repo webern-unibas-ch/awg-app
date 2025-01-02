@@ -1,25 +1,26 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 /**
- * The EditionTkaDescription component.
+ * The EditionTkaEvaluations component.
  *
- * It contains the desription for the textcritical comments
+ * It contains the evaluations for the textcritical commentary
  * of the edition view of the app.
  */
 @Component({
-    selector: 'awg-edition-tka-description',
-    templateUrl: './edition-tka-description.component.html',
-    styleUrl: './edition-tka-description.component.scss',
+    selector: 'awg-edition-tka-evaluations',
+    templateUrl: './edition-tka-evaluations.component.html',
+    styleUrl: './edition-tka-evaluations.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
-export class EditionTkaDescriptionComponent {
+export class EditionTkaEvaluationsComponent {
     /**
-     * Input variable: textcriticalComments.
+     * Input variable: evaluations.
      *
-     * It keeps the textcritical comments.
+     * It keeps the evaluations data.
      */
     @Input()
-    textcriticalDescriptions: string[];
+    evaluations: string[];
 
     /**
      * Output variable: navigateToReportFragment.
@@ -49,10 +50,10 @@ export class EditionTkaDescriptionComponent {
     /**
      * Self-referring variable needed for CompileHtml library.
      */
-    ref: EditionTkaDescriptionComponent;
+    ref: EditionTkaEvaluationsComponent;
 
     /**
-     * Constructor of the EditionTkaDescriptionComponent.
+     * Constructor of the EditionTkaEvaluationsComponent.
      *
      * It initializes the self-referring ref variable needed for CompileHtml library.
      */

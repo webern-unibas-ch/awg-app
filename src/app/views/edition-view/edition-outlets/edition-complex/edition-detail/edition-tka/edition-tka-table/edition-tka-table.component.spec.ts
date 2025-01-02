@@ -18,7 +18,7 @@ import { mockEditionData } from '@testing/mock-data';
 import { EditionGlyphService } from '@awg-app/views/edition-view/services';
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EditionSvgSheet, TextcriticalCommentBlock, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, TextcriticalCommentary, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
 
@@ -48,7 +48,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let expectedNextComplexId: string;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
-    let expectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
+    let expectedCommentary: TextcriticalCommentary;
     let expectedTableHeaderStrings: { [key: string]: TkaTableHeaderColumn[] };
     let expectedTotalRows: number;
 
@@ -87,10 +87,12 @@ describe('EditionTkaTableComponent (DONE)', () => {
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
-        expectedTextcriticalCommentBlocks = mockEditionData.mockTextcriticsData.textcritics.at(1).comments;
+        expectedCommentary = JSON.parse(
+            JSON.stringify(mockEditionData.mockTextcriticsData.textcritics.at(1).commentary)
+        );
 
-        const totalBlockHeaders = expectedTextcriticalCommentBlocks.filter(block => block.blockHeader).length;
-        const totalBlockComments = expectedTextcriticalCommentBlocks.reduce(
+        const totalBlockHeaders = expectedCommentary.comments.filter(block => block.blockHeader).length;
+        const totalBlockComments = expectedCommentary.comments.reduce(
             (acc, block) => acc + block.blockComments.length,
             0
         );
@@ -139,8 +141,8 @@ describe('EditionTkaTableComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have textcriticalCommentBlocks', () => {
-            expect(component.textcriticalCommentBlocks).toBeUndefined();
+        it('... should not have commentary', () => {
+            expect(component.commentary).toBeUndefined();
         });
 
         it('... should have isRowTable = false', () => {
@@ -156,16 +158,12 @@ describe('EditionTkaTableComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one table with table head, but no body yet', () => {
+            it('... should contain one table without table caption, head or body yet', () => {
                 const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
 
-                getAndExpectDebugElementByCss(tableDes[0], 'thead', 1, 1);
+                getAndExpectDebugElementByCss(tableDes[0], 'caption', 0, 0);
+                getAndExpectDebugElementByCss(tableDes[0], 'thead', 0, 0);
                 getAndExpectDebugElementByCss(tableDes[0], 'tbody', 0, 0);
-            });
-
-            it('... should contain one row (tr) without columns (th) in table head', () => {
-                const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
-                getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 0, 4);
             });
         });
     });
@@ -173,18 +171,63 @@ describe('EditionTkaTableComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.textcriticalCommentBlocks = expectedTextcriticalCommentBlocks;
+            component.commentary = expectedCommentary;
             component.isRowTable = expectedIsRowTable;
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have textcriticalCommentBlocks', () => {
-            expectToBe(component.textcriticalCommentBlocks, expectedTextcriticalCommentBlocks);
+        it('... should have commentary', () => {
+            expectToBe(component.commentary, expectedCommentary);
         });
 
         describe('VIEW', () => {
+            it('... should contain one table with table caption, head and body if commentary provides preamble and comments', () => {
+                const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
+
+                getAndExpectDebugElementByCss(tableDes[0], 'caption', 1, 1);
+                getAndExpectDebugElementByCss(tableDes[0], 'thead', 1, 1);
+                getAndExpectDebugElementByCss(tableDes[0], 'tbody', 1, 1);
+            });
+
+            it('... should contain no table caption if commentary.preamble is empty', () => {
+                component.commentary.preamble = '';
+                detectChangesOnPush(fixture);
+
+                const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
+
+                getAndExpectDebugElementByCss(tableDes[0], 'caption', 0, 0);
+                getAndExpectDebugElementByCss(tableDes[0], 'thead', 1, 1);
+                getAndExpectDebugElementByCss(tableDes[0], 'tbody', 1, 1);
+            });
+
+            it('... should contain no table head or body if commentary.comments are empty', () => {
+                component.commentary.comments = [];
+                detectChangesOnPush(fixture);
+
+                const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
+
+                getAndExpectDebugElementByCss(tableDes[0], 'caption', 1, 1);
+                getAndExpectDebugElementByCss(tableDes[0], 'thead', 0, 0);
+                getAndExpectDebugElementByCss(tableDes[0], 'tbody', 0, 0);
+            });
+
+            describe('... table caption', () => {
+                it('... should contain CompileHtmlComponent in caption', () => {
+                    const captionDes = getAndExpectDebugElementByCss(compDe, 'table > caption', 1, 1);
+
+                    getAndExpectDebugElementByDirective(captionDes[0], CompileHtmlComponent, 1, 1);
+                });
+
+                it('... should contain the correct caption', () => {
+                    const captionDes = getAndExpectDebugElementByCss(compDe, 'table > caption', 1, 1);
+                    const captionEl: HTMLTableCaptionElement = captionDes[0].nativeElement;
+
+                    expectToBe(captionEl.textContent, expectedCommentary.preamble);
+                });
+            });
+
             describe('... table header', () => {
                 it('... should contain one row (tr) with four columns (th) in table head', () => {
                     const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
@@ -245,23 +288,6 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
 
             describe('... table body', () => {
-                it('... should contain no table body if textcritical comment blocks are not provided', () => {
-                    component.textcriticalCommentBlocks = undefined;
-                    detectChangesOnPush(fixture);
-
-                    const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
-
-                    getAndExpectDebugElementByCss(tableDes[0], 'thead', 1, 1);
-                    getAndExpectDebugElementByCss(tableDes[0], 'tbody', 0, 0);
-                });
-
-                it('... should contain one table body if textcritical comment blocks are provided ', () => {
-                    const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
-
-                    getAndExpectDebugElementByCss(tableDes[0], 'thead', 1, 1);
-                    getAndExpectDebugElementByCss(tableDes[0], 'tbody', 1, 1);
-                });
-
                 it('... should contain rows (tr) for each textcritical comment and block header in table body', () => {
                     getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', expectedTotalRows, expectedTotalRows);
                 });
@@ -275,7 +301,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     );
 
                     let rowIndex = 0;
-                    expectedTextcriticalCommentBlocks.forEach(block => {
+                    expectedCommentary.comments.forEach(block => {
                         if (block.blockHeader) {
                             const tdDes = getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 1, 1);
                             const tdEl: HTMLTableCellElement = tdDes[0].nativeElement;
@@ -301,7 +327,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     );
 
                     let rowIndex = 0;
-                    expectedTextcriticalCommentBlocks.forEach(block => {
+                    expectedCommentary.comments.forEach(block => {
                         if (block.blockHeader) {
                             const tdDes = getAndExpectDebugElementByCss(
                                 rowDes[rowIndex],
@@ -348,7 +374,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     );
 
                     let rowIndex = 0;
-                    expectedTextcriticalCommentBlocks.forEach(block => {
+                    expectedCommentary.comments.forEach(block => {
                         if (block.blockHeader) {
                             const tdDes = getAndExpectDebugElementByCss(rowDes[rowIndex], 'td', 1, 1);
 

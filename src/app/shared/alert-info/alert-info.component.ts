@@ -13,6 +13,7 @@ import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
     templateUrl: './alert-info.component.html',
     styleUrls: ['./alert-info.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class AlertInfoComponent {
     /**

@@ -54,6 +54,7 @@ type EditorStateConfig = Parameters<typeof EditorState.create>[0];
     styleUrls: ['./codemirror.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class CodeMirrorComponent implements AfterViewInit, OnChanges {
     /**

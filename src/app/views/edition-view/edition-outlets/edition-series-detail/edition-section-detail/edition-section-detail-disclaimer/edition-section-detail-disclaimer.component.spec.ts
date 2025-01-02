@@ -7,7 +7,11 @@ import { expectToEqual, getAndExpectDebugElementByDirective } from '@testing/exp
 import { EditionSectionDetailDisclaimerComponent } from './edition-section-detail-disclaimer.component';
 
 // Mock components
-@Component({ selector: 'awg-alert-info', template: '' })
+@Component({
+    selector: 'awg-alert-info',
+    template: '',
+    standalone: false,
+})
 class AlertInfoStubComponent {
     @Input()
     infoMessage: string;

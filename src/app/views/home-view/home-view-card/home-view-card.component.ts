@@ -15,6 +15,7 @@ import { HomeViewCard } from '@awg-views/home-view/models';
     templateUrl: './home-view-card.component.html',
     styleUrls: ['./home-view-card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class HomeViewCardComponent {
     /**

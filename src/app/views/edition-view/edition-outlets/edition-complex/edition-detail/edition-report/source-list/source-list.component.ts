@@ -15,6 +15,7 @@ import { Source, SourceList } from '@awg-views/edition-view/models';
     templateUrl: './source-list.component.html',
     styleUrls: ['./source-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SourceListComponent {
     /**

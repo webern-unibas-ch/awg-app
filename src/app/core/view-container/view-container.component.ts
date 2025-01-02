@@ -13,6 +13,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     templateUrl: './view-container.component.html',
     styleUrls: ['./view-container.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
+    standalone: false,
 })
 export class ViewContainerComponent {
     /**

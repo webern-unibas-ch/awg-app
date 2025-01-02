@@ -41,16 +41,28 @@ import { EditionSvgSheetViewerComponent } from './edition-svg-sheet-viewer.compo
 
 import * as D3_SELECTION from 'd3-selection';
 
-@Component({ selector: 'awg-license', template: '' })
+@Component({
+    selector: 'awg-license',
+    template: '',
+    standalone: false,
+})
 class LicenseStubComponent {}
 
-@Component({ selector: 'awg-edition-svg-sheet-viewer-nav', template: '' })
+@Component({
+    selector: 'awg-edition-svg-sheet-viewer-nav',
+    template: '',
+    standalone: false,
+})
 class EditionSvgSheetViewerNavStubComponent {
     @Output()
     browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-edition-svg-sheet-viewer-switch', template: '' })
+@Component({
+    selector: 'awg-edition-svg-sheet-viewer-switch',
+    template: '',
+    standalone: false,
+})
 class EditionSvgSheetViewerSwitchStubComponent {
     @Input() id?: string;
     @Input() suppliedClasses?: Map<string, boolean>;

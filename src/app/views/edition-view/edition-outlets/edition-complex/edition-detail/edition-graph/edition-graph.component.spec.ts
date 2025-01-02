@@ -38,13 +38,21 @@ import { EditionComplexesService, EditionDataService, EditionStateService } from
 import { EditionGraphComponent } from './edition-graph.component';
 
 // Mock components
-@Component({ selector: 'awg-alert-error', template: '' })
+@Component({
+    selector: 'awg-alert-error',
+    template: '',
+    standalone: false,
+})
 class AlertErrorStubComponent {
     @Input()
     errorObject: any;
 }
 
-@Component({ selector: 'awg-fullscreen-toggle', template: '' })
+@Component({
+    selector: 'awg-fullscreen-toggle',
+    template: '',
+    standalone: false,
+})
 class FullscreenToggleStubComponent {
     @Input()
     fsElement: HTMLElement;
@@ -55,6 +63,7 @@ class FullscreenToggleStubComponent {
 @Component({
     selector: 'awg-graph-visualizer',
     template: '',
+    standalone: false,
 })
 class GraphVisualizerStubComponent {
     @Input()
@@ -67,7 +76,11 @@ class GraphVisualizerStubComponent {
     }
 }
 
-@Component({ selector: 'awg-modal', template: '' })
+@Component({
+    selector: 'awg-modal',
+    template: '',
+    standalone: false,
+})
 class ModalStubComponent {
     modalContent: string;
     open(modalContentSnippetKey: string): void {
@@ -75,7 +88,11 @@ class ModalStubComponent {
     }
 }
 
-@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+@Component({
+    selector: 'awg-twelve-tone-spinner',
+    template: '',
+    standalone: false,
+})
 class TwelveToneSpinnerStubComponent {}
 
 describe('EditionGraphComponent (DONE)', () => {

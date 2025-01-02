@@ -28,6 +28,7 @@ import { ResourceData } from '@awg-views/data-view/models';
     templateUrl: './resource-detail.component.html',
     styleUrls: ['./resource-detail.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
+    standalone: false,
 })
 export class ResourceDetailComponent implements OnInit, OnDestroy {
     /**

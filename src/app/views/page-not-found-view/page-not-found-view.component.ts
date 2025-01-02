@@ -13,6 +13,7 @@ import { AppConfig } from '@awg-app/app.config';
     templateUrl: './page-not-found-view.component.html',
     styleUrls: ['./page-not-found-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
+    standalone: false,
 })
 export class PageNotFoundViewComponent {
     /**

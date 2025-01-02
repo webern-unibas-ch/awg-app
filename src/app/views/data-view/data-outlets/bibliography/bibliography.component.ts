@@ -18,6 +18,7 @@ import { BibliographyService } from '@awg-views/data-view/services';
     selector: 'awg-bibliography',
     templateUrl: './bibliography.component.html',
     styleUrls: ['./bibliography.component.scss'],
+    standalone: false,
 })
 export class BibliographyComponent implements OnInit {
     /**

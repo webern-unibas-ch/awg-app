@@ -25,6 +25,7 @@ export interface UrlSegmentStub {
  */
 @Directive({
     selector: '[routerLink]',
+    standalone: false,
 })
 export class RouterLinkStubDirective {
     /**
@@ -79,6 +80,7 @@ export class RouterLinkStubDirective {
 @Component({
     selector: 'router-outlet',
     template: '',
+    standalone: false,
 })
 export class RouterOutletStubComponent {}
 // #enddocregion router-outlet-stub

@@ -13,6 +13,7 @@ import { EditionOutlineSection, EditionOutlineSeries } from '@awg-app/views/edit
     templateUrl: './edition-section-detail-placeholder.component.html',
     styleUrls: ['./edition-section-detail-placeholder.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionSectionDetailPlaceholderComponent {
     /**

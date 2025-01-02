@@ -10,6 +10,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angul
     templateUrl: './edition-svg-sheet-viewer-nav.component.html',
     styleUrl: './edition-svg-sheet-viewer-nav.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionSvgSheetViewerNavComponent {
     /**

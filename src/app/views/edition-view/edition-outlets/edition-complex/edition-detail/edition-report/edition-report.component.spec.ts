@@ -41,18 +41,30 @@ import { EditionComplexesService, EditionDataService, EditionStateService } from
 import { EditionReportComponent } from './edition-report.component';
 
 // Mock components
-@Component({ selector: 'awg-alert-error', template: '' })
+@Component({
+    selector: 'awg-alert-error',
+    template: '',
+    standalone: false,
+})
 class AlertErrorStubComponent {
     @Input()
     errorObject: any;
 }
 
-@Component({ selector: 'awg-modal', template: '' })
+@Component({
+    selector: 'awg-modal',
+    template: '',
+    standalone: false,
+})
 class ModalStubComponent {
     open(): void {}
 }
 
-@Component({ selector: 'awg-source-list', template: '' })
+@Component({
+    selector: 'awg-source-list',
+    template: '',
+    standalone: false,
+})
 class SourceListStubComponent {
     @Input()
     sourceListData: SourceList;
@@ -62,7 +74,11 @@ class SourceListStubComponent {
     openModalRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-source-description', template: '' })
+@Component({
+    selector: 'awg-source-description',
+    template: '',
+    standalone: false,
+})
 class SourceDescriptionStubComponent {
     @Input()
     sourceDescriptionListData: SourceDescriptionList;
@@ -74,7 +90,11 @@ class SourceDescriptionStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-source-evaluation', template: '' })
+@Component({
+    selector: 'awg-source-evaluation',
+    template: '',
+    standalone: false,
+})
 class SourceEvaluationStubComponent {
     @Input()
     editionComplex: EditionComplex;
@@ -88,7 +108,11 @@ class SourceEvaluationStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-textcritics-list', template: '' })
+@Component({
+    selector: 'awg-textcritics-list',
+    template: '',
+    standalone: false,
+})
 export class TextcriticsListStubComponent {
     @Input()
     textcriticsData: TextcriticsList;
@@ -98,7 +122,11 @@ export class TextcriticsListStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+@Component({
+    selector: 'awg-twelve-tone-spinner',
+    template: '',
+    standalone: false,
+})
 class TwelveToneSpinnerStubComponent {}
 
 describe('EditionReportComponent', () => {

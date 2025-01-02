@@ -14,6 +14,7 @@ import { Textcritics } from '@awg-views/edition-view/models';
     templateUrl: './source-description-corrections.component.html',
     styleUrl: './source-description-corrections.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SourceDescriptionCorrectionsComponent {
     /**

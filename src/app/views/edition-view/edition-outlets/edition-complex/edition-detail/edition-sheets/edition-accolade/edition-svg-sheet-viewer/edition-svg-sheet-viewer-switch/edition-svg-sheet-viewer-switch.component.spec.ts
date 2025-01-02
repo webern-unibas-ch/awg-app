@@ -17,11 +17,15 @@ import {
 import { EditionSvgSheetViewerSwitchComponent } from './edition-svg-sheet-viewer-switch.component';
 
 // Mock components
-@Component({ selector: 'awg-edition-tka-label', template: '' })
+@Component({
+    selector: 'awg-edition-tka-label',
+    template: '',
+    standalone: false,
+})
 class EditionTkaLabelStubComponent {
     @Input()
     id: string;
-    @Input() labelType: 'evaluation' | 'comment';
+    @Input() labelType: 'evaluation' | 'commentary';
 }
 
 describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
@@ -428,7 +432,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 const labelDes = getAndExpectDebugElementByDirective(compDe, EditionTkaLabelStubComponent, 1, 1);
                 const labelCmp = labelDes[0].injector.get(EditionTkaLabelStubComponent) as EditionTkaLabelStubComponent;
 
-                expectToBe(labelCmp.labelType, 'comment');
+                expectToBe(labelCmp.labelType, 'commentary');
             });
 
             it('... should trigger `toggleTkkClassesHighlight` on click on form-switch for tkk', fakeAsync(() => {

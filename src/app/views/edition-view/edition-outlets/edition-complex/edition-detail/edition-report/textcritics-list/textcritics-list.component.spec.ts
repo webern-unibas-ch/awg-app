@@ -19,18 +19,26 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { UtilityService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { TextcriticalCommentBlock, TextcriticsList } from '@awg-views/edition-view/models';
+import { TextcriticalCommentary, TextcriticsList } from '@awg-views/edition-view/models';
 
 import { TextcriticsListComponent } from './textcritics-list.component';
 
 // Mock components
-@Component({ selector: 'awg-disclaimer-workeditions', template: '' })
+@Component({
+    selector: 'awg-disclaimer-workeditions',
+    template: '',
+    standalone: false,
+})
 class DisclaimerWorkeditionsStubComponent {}
 
-@Component({ selector: 'awg-edition-tka-description', template: '' })
-class EditionTkaDescriptionStubComponent {
+@Component({
+    selector: 'awg-edition-tka-evaluations',
+    template: '',
+    standalone: false,
+})
+class EditionTkaEvaluationsStubComponent {
     @Input()
-    textcriticalDescriptions: string[];
+    evaluations: string[];
     @Output()
     navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
     @Output()
@@ -39,17 +47,25 @@ class EditionTkaDescriptionStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-edition-tka-label', template: '' })
+@Component({
+    selector: 'awg-edition-tka-label',
+    template: '',
+    standalone: false,
+})
 class EditionTkaLabelStubComponent {
     @Input()
     id: string;
-    @Input() labelType: 'evaluation' | 'comment';
+    @Input() labelType: 'evaluation' | 'commentary';
 }
 
-@Component({ selector: 'awg-edition-tka-table', template: '' })
+@Component({
+    selector: 'awg-edition-tka-table',
+    template: '',
+    standalone: false,
+})
 class EditionTkaTableStubComponent {
     @Input()
-    textcriticalCommentBlocks: TextcriticalCommentBlock[];
+    commentary: TextcriticalCommentary;
     @Input()
     isCorrections = false;
     @Input()
@@ -102,7 +118,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 TextcriticsListComponent,
                 CompileHtmlComponent,
                 DisclaimerWorkeditionsStubComponent,
-                EditionTkaDescriptionStubComponent,
+                EditionTkaEvaluationsStubComponent,
                 EditionTkaLabelStubComponent,
                 EditionTkaTableStubComponent,
             ],
@@ -525,8 +541,8 @@ describe('TextcriticsListComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
                 });
 
-                describe('...  if description array is empty', () => {
-                    it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaDescriptionComponent', () => {
+                describe('...  if evaluations array is empty', () => {
+                    it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaEvaluationsComponent', () => {
                         const textcritics = expectedTextcriticsData.textcritics[0];
 
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -541,7 +557,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                         getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
 
-                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsStubComponent, 0, 0);
                     });
 
                     it('... should display a no content message (small.text-muted) in another paragraph within item body div', () => {
@@ -566,8 +582,8 @@ describe('TextcriticsListComponent (DONE)', () => {
                     });
                 });
 
-                describe('...  if description array is not empty', () => {
-                    it('... should contain item body with div, small caps paragraph, first EditionTkaLabelComponent and EditionTkaDescriptionComponent', () => {
+                describe('...  if evaluations array is not empty', () => {
+                    it('... should contain item body with div, small caps paragraph, first EditionTkaLabelComponent and EditionTkaEvaluationsComponent', () => {
                         const textcritics = expectedTextcriticsData.textcritics[1];
 
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -582,7 +598,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                         getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelStubComponent, 1, 1);
 
-                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsStubComponent, 1, 1);
                     });
 
                     it('... should pass down `id` data to first EditionTkaLabelComponent (stubbed)', () => {
@@ -633,25 +649,22 @@ describe('TextcriticsListComponent (DONE)', () => {
                         expectToBe(labelCmp.labelType, 'evaluation');
                     });
 
-                    it('... should pass down `description` data to EditionTkaDescriptionComponent (stubbed)', () => {
-                        const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                    it('... should pass down `evaluations` data to EditionTkaEvaluationsComponent (stubbed)', () => {
+                        const evaluationsDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionTkaDescriptionStubComponent,
+                            EditionTkaEvaluationsStubComponent,
                             1,
                             1
                         );
-                        const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
-                            EditionTkaDescriptionStubComponent
-                        ) as EditionTkaDescriptionStubComponent;
+                        const evaluationsCmp = evaluationsDes[0].injector.get(
+                            EditionTkaEvaluationsStubComponent
+                        ) as EditionTkaEvaluationsStubComponent;
 
-                        expectToEqual(
-                            editionTkaDescriptionCmp.textcriticalDescriptions,
-                            expectedTextcriticsData.textcritics[1].description
-                        );
+                        expectToEqual(evaluationsCmp.evaluations, expectedTextcriticsData.textcritics[1].evaluations);
                     });
                 });
 
-                describe('...  if commments array is empty', () => {
+                describe('...  if commmentary is an empty object', () => {
                     it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaTableComponent', () => {
                         const textcritics = expectedTextcriticsData.textcritics[0];
 
@@ -692,7 +705,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     });
                 });
 
-                describe('...  if comments array is not empty', () => {
+                describe('...  if commentary is not empty', () => {
                     it('... should contain item body with div, small caps paragraph, second EditionTkaLabelComponent and EditionTkaTableComponent', () => {
                         const textcritics = expectedTextcriticsData.textcritics[1];
 
@@ -756,52 +769,49 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaLabelStubComponent
                         ) as EditionTkaLabelStubComponent;
 
-                        expectToBe(labelCmp.labelType, 'comment');
+                        expectToBe(labelCmp.labelType, 'commentary');
                     });
 
-                    it('... should pass down `comments` to EditionTkaTableComponent (stubbed)', () => {
-                        const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                    it('... should pass down `commentary` to EditionTkaTableComponent (stubbed)', () => {
+                        const tableDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionTkaTableStubComponent,
                             1,
                             1
                         );
-                        const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                        const tableCmp = tableDes[0].injector.get(
                             EditionTkaTableStubComponent
                         ) as EditionTkaTableStubComponent;
 
-                        expectToEqual(
-                            editionTkaTableCmp.textcriticalCommentBlocks,
-                            expectedTextcriticsData.textcritics[1].comments
-                        );
+                        expectToEqual(tableCmp.commentary, expectedTextcriticsData.textcritics[1].commentary);
                     });
 
                     it('... should pass down `isRowTable` to EditionTkaTableComponent (stubbed)', () => {
-                        const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                        const tableDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionTkaTableStubComponent,
                             1,
                             1
                         );
-                        const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                        const tableCmp = tableDes[0].injector.get(
                             EditionTkaTableStubComponent
                         ) as EditionTkaTableStubComponent;
 
-                        expectToEqual(editionTkaTableCmp.isRowTable, expectedTextcriticsData.textcritics[1].rowtable);
+                        expectToEqual(tableCmp.isRowTable, expectedTextcriticsData.textcritics[1].rowtable);
                     });
 
                     it('... should pass down `isSketchId` to EditionTkaTableComponent (stubbed)', () => {
-                        const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                        const tableDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionTkaTableStubComponent,
                             1,
                             1
                         );
-                        const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                        const tableCmp = tableDes[0].injector.get(
                             EditionTkaTableStubComponent
                         ) as EditionTkaTableStubComponent;
 
-                        expectToEqual(editionTkaTableCmp.isSketchId, false);
+                        expectToEqual(tableCmp.isSketchId, false);
                     });
                 });
             });
@@ -851,7 +861,7 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaDescriptionComponent', () => {
+                it('... EditionTkaEvaluationsComponent', () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
@@ -872,19 +882,19 @@ describe('TextcriticsListComponent (DONE)', () => {
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                    const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionTkaDescriptionStubComponent,
+                        EditionTkaEvaluationsStubComponent,
                         1,
                         1
                     );
-                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
-                        EditionTkaDescriptionStubComponent
-                    ) as EditionTkaDescriptionStubComponent;
+                    const evaluationsCmp = evaluationsDes[0].injector.get(
+                        EditionTkaEvaluationsStubComponent
+                    ) as EditionTkaEvaluationsStubComponent;
 
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
 
-                    editionTkaDescriptionCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+                    evaluationsCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
 
                     expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
                 });
@@ -910,19 +920,14 @@ describe('TextcriticsListComponent (DONE)', () => {
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionTkaTableStubComponent,
-                        1,
-                        1
-                    );
-                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                    const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
+                    const tableCmp = tableDes[0].injector.get(
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
                     const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
 
-                    editionTkaTableCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+                    tableCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
 
                     expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
                 });
@@ -989,7 +994,7 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from', () => {
-                it('... EditionTkaDescriptionComponent', () => {
+                it('... EditionTkaEvaluationsComponent', () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
@@ -1010,17 +1015,17 @@ describe('TextcriticsListComponent (DONE)', () => {
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                    const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionTkaDescriptionStubComponent,
+                        EditionTkaEvaluationsStubComponent,
                         1,
                         1
                     );
-                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
-                        EditionTkaDescriptionStubComponent
-                    ) as EditionTkaDescriptionStubComponent;
+                    const evaluationsCmp = evaluationsDes[0].injector.get(
+                        EditionTkaEvaluationsStubComponent
+                    ) as EditionTkaEvaluationsStubComponent;
 
-                    editionTkaDescriptionCmp.openModalRequest.emit(expectedModalSnippet);
+                    evaluationsCmp.openModalRequest.emit(expectedModalSnippet);
 
                     expectSpyCall(openModalSpy, 1, expectedModalSnippet);
                 });
@@ -1046,17 +1051,12 @@ describe('TextcriticsListComponent (DONE)', () => {
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionTkaTableStubComponent,
-                        1,
-                        1
-                    );
-                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                    const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
+                    const tableCmp = tableDes[0].injector.get(
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
-                    editionTkaTableCmp.openModalRequest.emit(expectedModalSnippet);
+                    tableCmp.openModalRequest.emit(expectedModalSnippet);
 
                     expectSpyCall(openModalSpy, 1, expectedModalSnippet);
                 });
@@ -1094,7 +1094,7 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             describe('... should trigger on event from ...', () => {
-                it('...  EditionTkaDescriptionComponent', () => {
+                it('...  EditionTkaEvaluationsComponent', () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
@@ -1115,18 +1115,18 @@ describe('TextcriticsListComponent (DONE)', () => {
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                    const evaluationsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionTkaDescriptionStubComponent,
+                        EditionTkaEvaluationsStubComponent,
                         1,
                         1
                     );
-                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
-                        EditionTkaDescriptionStubComponent
-                    ) as EditionTkaDescriptionStubComponent;
+                    const evaluationsCmp = evaluationsDes[0].injector.get(
+                        EditionTkaEvaluationsStubComponent
+                    ) as EditionTkaEvaluationsStubComponent;
 
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
-                    editionTkaDescriptionCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+                    evaluationsCmp.selectSvgSheetRequest.emit(expectedSheetIds);
 
                     expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
                 });
@@ -1152,18 +1152,13 @@ describe('TextcriticsListComponent (DONE)', () => {
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionTkaTableStubComponent,
-                        1,
-                        1
-                    );
-                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                    const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
+                    const tableCmp = tableDes[0].injector.get(
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
                     const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
-                    editionTkaTableCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+                    tableCmp.selectSvgSheetRequest.emit(expectedSheetIds);
 
                     expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
                 });

@@ -30,7 +30,11 @@ import { GraphSparqlQuery } from '@awg-views/edition-view/models';
 
 import { SparqlEditorComponent } from './sparql-editor.component';
 
-@Component({ selector: 'awg-codemirror', template: '' })
+@Component({
+    selector: 'awg-codemirror',
+    template: '',
+    standalone: false,
+})
 class CodeMirrorStubComponent {
     @Input() mode: CmMode;
     @Input() content: string;
@@ -38,7 +42,11 @@ class CodeMirrorStubComponent {
     @Output() editor: EditorView;
 }
 
-@Component({ selector: 'awg-view-handle-button-group', template: '' })
+@Component({
+    selector: 'awg-view-handle-button-group',
+    template: '',
+    standalone: false,
+})
 class ViewHandleButtongGroupStubComponent {
     @Input()
     viewHandles: ViewHandle[];

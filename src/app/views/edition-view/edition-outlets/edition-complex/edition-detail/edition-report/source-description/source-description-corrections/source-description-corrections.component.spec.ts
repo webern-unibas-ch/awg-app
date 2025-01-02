@@ -15,15 +15,19 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { TextcriticalCommentBlock, Textcritics } from '@awg-views/edition-view/models';
+import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models';
 
 import { SourceDescriptionCorrectionsComponent } from './source-description-corrections.component';
 
 // Mock components
-@Component({ selector: 'awg-edition-tka-table', template: '' })
+@Component({
+    selector: 'awg-edition-tka-table',
+    template: '',
+    standalone: false,
+})
 class EditionTkaTableStubComponent {
     @Input()
-    textcriticalCommentBlocks: TextcriticalCommentBlock[];
+    commentary: TextcriticalCommentary;
     @Input()
     isCorrections = false;
     @Input()
@@ -220,7 +224,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain a paragraph with as many descriptions as each corrections detail has', () => {
+            it('... should contain a paragraph with as many evaluations as each corrections detail has', () => {
                 const detailsDes = getAndExpectDebugElementByCss(
                     compDe,
                     'details.awg-source-description-correction-details',
@@ -231,19 +235,19 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 detailsDes.forEach((detailsDe, index) => {
                     const pDes = getAndExpectDebugElementByCss(
                         detailsDe,
-                        'p.awg-source-description-correction-desc',
+                        'p.awg-source-description-correction-evaluation',
                         1,
                         1
                     );
                     const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                     expect(pEl).toBeTruthy();
-                    expectToEqual(pEl.textContent.trim(), expectedCorrections[index].description[index].trim());
+                    expectToEqual(pEl.textContent.trim(), expectedCorrections[index].evaluations[index].trim());
                 });
             });
 
-            it('... should contain no EditionTkaTableComponent in corrections detail if no comments are given', () => {
-                component.corrections[0].comments = [];
+            it('... should contain no EditionTkaTableComponent in corrections detail if no commentary.comments are given', () => {
+                component.corrections[0].commentary.comments = [];
                 detectChangesOnPush(fixture);
 
                 const detailsDes = getAndExpectDebugElementByCss(
@@ -258,7 +262,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain one EditionTkaTableComponent in each corrections detail if comments are given', () => {
+            it('... should contain one EditionTkaTableComponent in each corrections detail if commentary.comments are given', () => {
                 const detailsDes = getAndExpectDebugElementByCss(
                     compDe,
                     'details.awg-source-description-correction-details',
@@ -271,7 +275,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 });
             });
 
-            it('... should pass down `comments` to EditionTkaTableComponent (stubbed)', () => {
+            it('... should pass down `commentary` to EditionTkaTableComponent (stubbed)', () => {
                 const detailsDes = getAndExpectDebugElementByCss(
                     compDe,
                     'details.awg-source-description-correction-details',
@@ -290,7 +294,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
-                    expectToEqual(editionTkaTableCmp.textcriticalCommentBlocks, expectedCorrections[index].comments);
+                    expectToEqual(editionTkaTableCmp.commentary, expectedCorrections[index].commentary);
                 });
             });
 

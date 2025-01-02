@@ -22,17 +22,29 @@ import { D3SimulationNode, D3SimulationNodeType, Triple } from '../models';
 import { ConstructResultsComponent } from './construct-results.component';
 
 // Mock components
-@Component({ selector: 'awg-force-graph', template: '' })
+@Component({
+    selector: 'awg-force-graph',
+    template: '',
+    standalone: false,
+})
 class ForceGraphStubComponent {
     @Input() currentQueryResultTriples: Triple[];
     @Input() height: number;
     @Output() clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter<D3SimulationNode>();
 }
 
-@Component({ selector: 'awg-sparql-no-results', template: '' })
+@Component({
+    selector: 'awg-sparql-no-results',
+    template: '',
+    standalone: false,
+})
 class SparqlNoResultsStubComponent {}
 
-@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+@Component({
+    selector: 'awg-twelve-tone-spinner',
+    template: '',
+    standalone: false,
+})
 class TwelveToneSpinnerStubComponent {}
 
 describe('ConstructResultsComponent (DONE)', () => {
@@ -894,11 +906,11 @@ describe('ConstructResultsComponent (DONE)', () => {
             });
 
             it('... should be triggered from ngbAccordionBody', () => {
-                expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+                expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
             });
 
             it('... should be triggered by change of queryResult', () => {
-                expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+                expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                 // Mock another queryResult
                 const anotherQueryResult = {
@@ -909,24 +921,24 @@ describe('ConstructResultsComponent (DONE)', () => {
                 component.queryResult$ = observableOf([anotherQueryResult]);
                 detectChangesOnPush(fixture);
 
-                expectSpyCall(isQueryResultNotEmptySpy, 3, anotherQueryResult[0]);
+                expectSpyCall(isQueryResultNotEmptySpy, 4, anotherQueryResult[0]);
             });
 
             describe('... should return false if ...', () => {
                 it('... queryResult is empty array', () => {
-                    expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                     // Mock empty response
                     const emptyQueryResult = [];
                     component.queryResult$ = observableOf(emptyQueryResult);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 3, emptyQueryResult);
+                    expectSpyCall(isQueryResultNotEmptySpy, 4, emptyQueryResult);
                     expectToBe(component.isQueryResultNotEmpty(emptyQueryResult), false);
                 });
 
                 it('... queryResult.subject is undefined or empty string', () => {
-                    expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                     // Mock undefined response
                     const undefinedQueryResult = {
@@ -937,7 +949,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     component.queryResult$ = observableOf([undefinedQueryResult]);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 3, undefinedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 4, undefinedQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([undefinedQueryResult]), false);
 
                     // Mock empty response
@@ -949,12 +961,12 @@ describe('ConstructResultsComponent (DONE)', () => {
                     component.queryResult$ = observableOf([emptyQueryResult]);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 5, emptyQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 6, emptyQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([emptyQueryResult]), false);
                 });
 
                 it('... queryResult.predicate is undefined or empty string', () => {
-                    expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                     // Mock undefined response
                     const undefinedQueryResult = {
@@ -965,7 +977,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     component.queryResult$ = observableOf([undefinedQueryResult]);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 3, undefinedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 4, undefinedQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([undefinedQueryResult]), false);
 
                     // Mock empty response
@@ -977,12 +989,12 @@ describe('ConstructResultsComponent (DONE)', () => {
                     component.queryResult$ = observableOf([emptyQueryResult]);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 5, emptyQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 6, emptyQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([emptyQueryResult]), false);
                 });
 
                 it('... queryResult.object is undefined or empty string', () => {
-                    expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                     // Mock undefined response
                     const undefinedQueryResult = {
@@ -993,7 +1005,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     component.queryResult$ = observableOf([undefinedQueryResult]);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 3, undefinedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 4, undefinedQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([undefinedQueryResult]), false);
 
                     // Mock empty response
@@ -1005,19 +1017,19 @@ describe('ConstructResultsComponent (DONE)', () => {
                     component.queryResult$ = observableOf([emptyQueryResult]);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 5, emptyQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 6, emptyQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([emptyQueryResult]), false);
                 });
 
                 it('... queryResult.subject, queryResult.predicate and queryResult.object are undefined or empty string', () => {
-                    expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                     // Mock undefined response
                     const undefinedQueryResult = { subject: undefined, predicate: undefined, object: undefined };
                     component.queryResult$ = observableOf([undefinedQueryResult]);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 3, undefinedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 4, undefinedQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([undefinedQueryResult]), false);
 
                     // Mock empty response
@@ -1025,13 +1037,13 @@ describe('ConstructResultsComponent (DONE)', () => {
                     component.queryResult$ = observableOf([emptyQueryResult]);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 5, emptyQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 6, emptyQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([emptyQueryResult]), false);
                 });
             });
 
             it('... should return true if queryResult is not empty', () => {
-                expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+                expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                 // Mock non-empty response
                 const nonEmptyQueryResult = {
@@ -1042,7 +1054,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 component.queryResult$ = observableOf([nonEmptyQueryResult]);
                 detectChangesOnPush(fixture);
 
-                expectSpyCall(isQueryResultNotEmptySpy, 3, nonEmptyQueryResult[0]);
+                expectSpyCall(isQueryResultNotEmptySpy, 4, nonEmptyQueryResult[0]);
                 expectToBe(component.isQueryResultNotEmpty([nonEmptyQueryResult]), true);
             });
         });

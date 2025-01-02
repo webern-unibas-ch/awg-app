@@ -15,6 +15,7 @@ import { EditionDataService, EditionGlyphService, EditionStateService } from '@a
     templateUrl: './edition-preface.component.html',
     styleUrls: ['./edition-preface.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionPrefaceComponent implements OnInit, OnDestroy {
     /**

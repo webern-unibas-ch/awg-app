@@ -28,6 +28,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
     templateUrl: './fulltext-search-form.component.html',
     styleUrls: ['./fulltext-search-form.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy {
     /**

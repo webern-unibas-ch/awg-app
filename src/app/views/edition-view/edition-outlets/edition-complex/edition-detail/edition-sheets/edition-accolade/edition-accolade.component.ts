@@ -4,7 +4,7 @@ import {
     EditionSvgOverlay,
     EditionSvgSheet,
     EditionSvgSheetList,
-    TextcriticalCommentBlock,
+    TextcriticalCommentary,
     Textcritics,
 } from '@awg-views/edition-view/models';
 
@@ -22,6 +22,7 @@ import {
     templateUrl: './edition-accolade.component.html',
     styleUrls: ['./edition-accolade.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionAccoladeComponent {
     /**
@@ -49,12 +50,12 @@ export class EditionAccoladeComponent {
     selectedSvgSheet: EditionSvgSheet;
 
     /**
-     * Input variable: selectedTextcriticalCommentBlocks.
+     * Input variable: selectedTextcriticalCommentary.
      *
-     * It keeps the selected textcritical comment blocks.
+     * It keeps the selected textcritical commentary.
      */
     @Input()
-    selectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
+    selectedTextcriticalCommentary: TextcriticalCommentary;
 
     /**
      * Input variable: selectedTextcritics.

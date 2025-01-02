@@ -9,7 +9,11 @@ import { ResourceDetail } from '@awg-views/data-view/models';
 import { ResourceDetailJsonRawComponent } from './resource-detail-json-raw.component';
 
 // Mock awg-json-viewer component
-@Component({ selector: 'awg-json-viewer', template: '' })
+@Component({
+    selector: 'awg-json-viewer',
+    template: '',
+    standalone: false,
+})
 class JsonViewerStubComponent {
     @Input()
     jsonViewerHeader: string;

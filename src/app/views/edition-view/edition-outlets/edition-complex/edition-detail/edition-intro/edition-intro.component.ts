@@ -20,6 +20,7 @@ import { EditionDataService, EditionOutlineService, EditionStateService } from '
     selector: 'awg-edition-intro',
     templateUrl: './edition-intro.component.html',
     styleUrls: ['./edition-intro.component.scss'],
+    standalone: false,
 })
 export class EditionIntroComponent implements OnDestroy, OnInit {
     /**
@@ -262,9 +263,11 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
         const seriesNumber = urlSegments[seriesIndex];
         const sectionNumber = urlSegments[sectionIndex];
 
-        const isValidSeriesNumber = (value: string | undefined): boolean => value !== undefined && /^[1-3]$/.test(value);
+        const isValidSeriesNumber = (value: string | undefined): boolean =>
+            value !== undefined && /^[1-3]$/.test(value);
 
-        const isValidSectionNumber = (value: string | undefined): boolean => value !== undefined && /^[1-5]+[ab]?$/.test(value);
+        const isValidSectionNumber = (value: string | undefined): boolean =>
+            value !== undefined && /^[1-5]+[ab]?$/.test(value);
 
         return {
             seriesNumber: isValidSeriesNumber(seriesNumber) ? seriesNumber : undefined,

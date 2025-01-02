@@ -13,6 +13,7 @@ import { ResourceDetailHeader } from '@awg-views/data-view/models';
     templateUrl: './resource-detail-header.component.html',
     styleUrls: ['./resource-detail-header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class ResourceDetailHeaderComponent {
     /**

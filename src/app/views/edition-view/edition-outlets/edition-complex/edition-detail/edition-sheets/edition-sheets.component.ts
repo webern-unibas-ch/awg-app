@@ -14,7 +14,7 @@ import {
     EditionSvgSheetList,
     FolioConvolute,
     FolioConvoluteList,
-    TextcriticalCommentBlock,
+    TextcriticalCommentary,
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
@@ -33,6 +33,7 @@ import { EditionDataService, EditionSheetsService, EditionStateService } from '@
     selector: 'awg-edition-sheets',
     templateUrl: './edition-sheets.component.html',
     styleUrls: ['./edition-sheets.component.scss'],
+    standalone: false,
 })
 export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**
@@ -85,11 +86,11 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     selectedSvgSheet: EditionSvgSheet;
 
     /**
-     * Public variable: selectedTextcriticalCommentBlocks.
+     * Public variable: selectedTextcriticalCommentary.
      *
-     * It keeps the selected textcritical comment blocks.
+     * It keeps the selected textcritical commentary.
      */
-    selectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
+    selectedTextcriticalCommentary: TextcriticalCommentary;
 
     /**
      * Public variable: selectedTextcritics.
@@ -321,18 +322,18 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**
      * Public method: onOverlaySelect.
      *
-     * It finds the corresponding textcritical comments to a list of selected overlays.
+     * It finds the corresponding textcritical comments for a list of selected overlays.
      *
      * @param {EditionSvgOverlay[]} overlays The given SVG overlays.
      * @returns {void} Sets the selectedTextcriticalComments and showTka variable.
      */
     onOverlaySelect(overlays: EditionSvgOverlay[]): void {
-        this.selectedTextcriticalCommentBlocks = this._editionSheetsService.getTextcriticalCommentsForOverlays(
-            this.selectedTextcritics.comments,
+        this.selectedTextcriticalCommentary = this._editionSheetsService.filterTextcriticalCommentaryForOverlays(
+            this.selectedTextcritics.commentary,
             overlays
         );
 
-        this.showTkA = this._utils.isNotEmptyArray(this.selectedTextcriticalCommentBlocks);
+        this.showTkA = this._utils.isNotEmptyArray(this.selectedTextcriticalCommentary.comments);
     }
 
     /**
@@ -504,9 +505,9 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
 
         if (
             this._utils.isNotEmptyObject(this.selectedTextcritics) &&
-            this._utils.isNotEmptyArray(this.selectedTextcritics.comments)
+            this._utils.isNotEmptyObject(this.selectedTextcritics.commentary)
         ) {
-            this.selectedTextcriticalCommentBlocks = this.selectedTextcritics.comments;
+            this.selectedTextcriticalCommentary = this.selectedTextcritics.commentary;
         }
     }
 }
