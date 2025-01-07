@@ -1,7 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { EditionJumbotronComponent } from './edition-jumbotron.component';
 
@@ -39,8 +39,8 @@ describe('EditionJumbotronComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have one div.awg-jumbotron-image', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-jumbotron-image', 1, 1);
+            it('... should have one div.awg-jumbotron', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-jumbotron', 1, 1);
             });
         });
     });
@@ -56,31 +56,26 @@ describe('EditionJumbotronComponent', () => {
         });
 
         it('... should have jumbotronId', () => {
-            expect(component.jumbotronId).toBeDefined();
-            expect(component.jumbotronId).withContext(`should be ${expectedId}`).toBe(expectedId);
+            expectToBe(component.jumbotronId, expectedId);
         });
 
         it('... should have jumbotronTitle', () => {
-            expect(component.jumbotronTitle).toBeDefined();
-            expect(component.jumbotronTitle).withContext(`should be ${expectedTitle}`).toBe(expectedTitle);
+            expectToBe(component.jumbotronTitle, expectedTitle);
         });
 
         describe('VIEW', () => {
-            it('... should have an h1 in jumbotron', () => {
-                const jumbotronDes = getAndExpectDebugElementByCss(compDe, 'div.awg-jumbotron-image', 1, 1);
+            it('... should have a heading (h3) in jumbotron', () => {
+                const jumbotronDes = getAndExpectDebugElementByCss(compDe, 'div.awg-jumbotron', 1, 1);
 
-                getAndExpectDebugElementByCss(jumbotronDes[0], 'h1', 1, 1);
+                getAndExpectDebugElementByCss(jumbotronDes[0], 'h3', 1, 1);
             });
 
-            it('... should pass down `jumbotronId` and `jumbotronTitle`to jumbotron h1', () => {
-                const headingDes = getAndExpectDebugElementByCss(compDe, 'div.awg-jumbotron-image > h1', 1, 1);
-                const headingEl = headingDes[0].nativeElement;
+            it('... should pass down `jumbotronId` and `jumbotronTitle`to jumbotron heading', () => {
+                const hDes = getAndExpectDebugElementByCss(compDe, 'div.awg-jumbotron > h3', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                expect(headingEl.id).toBeTruthy();
-                expect(headingEl.id).withContext(`should be ${expectedId}`).toBe(expectedId);
-
-                expect(headingEl.textContent).toBeTruthy();
-                expect(headingEl.textContent.trim()).withContext(`should be ${expectedTitle}`).toBe(expectedTitle);
+                expectToBe(hEl.id, expectedId);
+                expectToBe(hEl.textContent.trim(), expectedTitle);
             });
         });
     });

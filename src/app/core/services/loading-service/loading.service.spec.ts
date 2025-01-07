@@ -45,7 +45,7 @@ describe('LoadingService (DONE)', () => {
         it('... should return default false value', waitForAsync(() => {
             loadingService.getLoadingStatus().subscribe({
                 next: (isLoading: boolean) => {
-                    expect(isLoading).toBeFalse();
+                    expectToBe(isLoading, false);
                 },
             });
         }));

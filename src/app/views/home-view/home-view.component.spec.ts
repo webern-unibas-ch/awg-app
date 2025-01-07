@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Router } from '@angular/router';
 
 import Spy = jasmine.Spy;
 
@@ -10,23 +8,38 @@ import { click } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
-    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { METADATA } from '@awg-app/core/core-data';
-import { MetaPage, MetaSectionTypes } from '@awg-app/core/core-models';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionComplex } from '@awg-views/edition-view/models';
+import { META_DATA } from '@awg-core/core-data';
+import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EditionOutlineSection } from '@awg-views/edition-view/models';
+import { EditionComplexesService, EditionOutlineService } from '@awg-views/edition-view/services';
+import { HOME_VIEW_CARD_DATA } from '@awg-views/home-view/data';
+import { HomeViewCard } from '@awg-views/home-view/models';
 
 import { HomeViewComponent } from './home-view.component';
 
-// Mock heading component
-@Component({ selector: 'awg-heading', template: '' })
+// Mock components
+@Component({
+    selector: 'awg-alert-info',
+    template: '',
+    standalone: false,
+})
+class AlertInfoStubComponent {
+    @Input()
+    infoMessage: string;
+}
+
+@Component({
+    selector: 'awg-heading',
+    template: '',
+    standalone: false,
+})
 class HeadingStubComponent {
     @Input()
     title: string;
@@ -34,31 +47,31 @@ class HeadingStubComponent {
     id: string;
 }
 
+@Component({
+    selector: 'awg-home-view-card',
+    template: '',
+    standalone: false,
+})
+class HomeViewCardStubComponent {
+    @Input()
+    cardData: HomeViewCard;
+}
+
 /** Helper function */
-function generateExpectedOrderOfRouterlinks(editionComplexes: EditionComplex[]): string[][] {
-    const editionAndGraphLinks = editionComplexes.flatMap(complex => {
-        const routes = [[complex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route]];
-        if (complex === EDITION_COMPLEXES.OP25) {
-            routes.push([complex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_GRAPH.route]);
-        }
-        return routes;
-    });
+function getRouterlinks(sections: EditionOutlineSection[]): string[][] {
+    const { EDITION, SERIES, SECTION, ROWTABLES } = EDITION_ROUTE_CONSTANTS;
 
-    const structureLinks = [['/structure']];
-
-    const editionLinks = editionComplexes.map(complex => [
-        complex.baseRoute,
-        EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route,
+    const sectionLinks = sections.map(section => [
+        EDITION.route,
+        SERIES.route,
+        section?.seriesParent?.route,
+        SECTION.route,
+        section?.section?.route,
     ]);
+    const rowTablesLink = [[EDITION.route, ROWTABLES.route]];
+    const contactLink = [['/contact']];
 
-    const otherLinks = [
-        ['/edition', 'row-tables'],
-        ['/data/search', 'fulltext'],
-        ['/data/search', 'extended'],
-        ['/contact'],
-    ];
-
-    return [...editionAndGraphLinks, ...structureLinks, ...editionLinks, ...otherLinks];
+    return [...sectionLinks, ...rowTablesLink, ...contactLink];
 }
 
 describe('HomeViewComponent (DONE)', () => {
@@ -69,25 +82,32 @@ describe('HomeViewComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let mockRouter: Partial<Router>;
-
-    const expectedTitle = 'Beispieleditionen ausgewählter Skizzen';
-    const expectedId = 'awg-home-view';
-
-    let expectedPageMetaData: MetaPage;
-    let expectedEditionComplexes: EditionComplex[];
-    let expectedOrderOfRouterlinks: string[][];
+    let provideMetaDataSpy: Spy;
 
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
-    const expectedEditionTypeConstants: typeof EDITION_TYPE_CONSTANTS = EDITION_TYPE_CONSTANTS;
+    let expectedTitle: string;
+    let expectedId: string;
+    let expectedDisclaimerInfoMessage: string;
+    let expectedHomeViewCardData: HomeViewCard[];
+    let expectedPageMetaData: MetaPage;
+    let expectedSections: EditionOutlineSection[];
+
+    let expectedRouterlinks: string[][];
+
+    beforeAll(() => {
+        EditionComplexesService.initializeEditionComplexesList();
+        EditionOutlineService.initializeEditionOutline();
+    });
 
     beforeEach(waitForAsync(() => {
-        // Router spy object
-        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
-
         TestBed.configureTestingModule({
-            declarations: [HomeViewComponent, HeadingStubComponent, RouterLinkStubDirective],
-            providers: [{ provide: Router, useValue: mockRouter }],
+            declarations: [
+                HomeViewComponent,
+                AlertInfoStubComponent,
+                HeadingStubComponent,
+                HomeViewCardStubComponent,
+                RouterLinkStubDirective,
+            ],
         }).compileComponents();
     }));
 
@@ -97,25 +117,22 @@ describe('HomeViewComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedPageMetaData = METADATA[MetaSectionTypes.page];
-
-        expectedEditionComplexes = [
-            EDITION_COMPLEXES.OP12,
-            EDITION_COMPLEXES.OP25,
-            EDITION_COMPLEXES.M22,
-            EDITION_COMPLEXES.M30,
-            EDITION_COMPLEXES.M31,
-            EDITION_COMPLEXES.M34,
-            EDITION_COMPLEXES.M35_42,
-            EDITION_COMPLEXES.M37,
+        expectedTitle = 'Anton Webern Gesamtausgabe: Online-Edition';
+        expectedId = 'awg-home-view';
+        expectedDisclaimerInfoMessage =
+            'Die Online-Edition wird in Bezug auf Umfang und Funktionalität kontinuierlich erweitert.';
+        expectedHomeViewCardData = HOME_VIEW_CARD_DATA;
+        expectedPageMetaData = META_DATA[MetaSectionTypes.page];
+        expectedSections = [
+            EditionOutlineService.getEditionSectionById('1', '5'),
+            EditionOutlineService.getEditionSectionById('2', '2a'),
         ];
-        expectedOrderOfRouterlinks = generateExpectedOrderOfRouterlinks(expectedEditionComplexes);
+        expectedRouterlinks = getRouterlinks(expectedSections);
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        spyOn(component, 'provideMetaData').and.callThrough();
-        spyOn(component, 'routeToSidenav').and.callThrough();
+        provideMetaDataSpy = spyOn(component, 'provideMetaData').and.callThrough();
     });
 
     afterAll(() => {
@@ -132,24 +149,128 @@ describe('HomeViewComponent (DONE)', () => {
             expectToBe(component.homeViewId, expectedId);
         });
 
-        it('... should have `DISPLAYED_EDITION_COMPLEXES`', () => {
-            expectToEqual(component.DISPLAYED_EDITION_COMPLEXES, expectedEditionComplexes);
+        it('... should have `DISPLAYED_SECTIONS`', () => {
+            expectToEqual(component.DISPLAYED_SECTIONS, expectedSections);
         });
 
-        it('... should have as many `DISPLAYED_EDITION_COMPLEXES` as there are complexes in the array', () => {
-            expectToEqual(component.DISPLAYED_EDITION_COMPLEXES.length, expectedEditionComplexes.length);
+        it('... should have as many `DISPLAYED_SECTIONS` as there are sections in the array', () => {
+            expectToEqual(component.DISPLAYED_SECTIONS.length, expectedSections.length);
         });
 
         it('... should have `editionRouteConstants`', () => {
             expectToBe(component.editionRouteConstants, expectedEditionRouteConstants);
         });
 
-        it('... should have `editionTypeConstants`', () => {
-            expectToBe(component.editionTypeConstants, expectedEditionTypeConstants);
+        it('... should have `disclaimerInfoMessage`', () => {
+            expectToBe(component.disclaimerInfoMessage, expectedDisclaimerInfoMessage);
+        });
+
+        it('... should have `homeViewCardData`', () => {
+            expectToEqual(component.homeViewCardData, expectedHomeViewCardData);
         });
 
         it('... should not have pageMetaData', () => {
             expect(component.pageMetaData).toBeUndefined();
+        });
+
+        describe('VIEW', () => {
+            it('... should contain one `div.awg-home-view`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
+            });
+
+            it('... should contain one `awg-heading` component in `div.awg-home-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
+            });
+
+            it('... should not pass down `title` and `id` to heading component', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
+                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+
+                expect(headingCmp.title).toBeUndefined();
+                expect(headingCmp.id).toBeUndefined();
+            });
+
+            it('... should contain one `div.awg-home-view-content` in `div.awg-home-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-content', 1, 1);
+            });
+
+            it('... should contain an AlertInfoComponent (stubbed) in `div.awg-home-view-content`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
+            });
+
+            it('... should not pass down infoMessage to AlertInfoComponent yet', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
+                const alertInfoDes = getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
+                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
+
+                expect(alertInfoCmp.infoMessage).toBeUndefined();
+            });
+
+            it('... should contain one `div.awg-home-view-grid` in `div.awg-home-view-content`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-grid', 1, 1);
+            });
+
+            it('... should not contain any HomeViewCardComponent in `div.awg-home-view-grid` yet', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-grid', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], HomeViewCardStubComponent, 0, 0);
+            });
+
+            it('... should contain one `div.awg-home-view-text` in `div.awg-home-view-content`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-text', 1, 1);
+            });
+
+            describe('... should not render links in `div.awg-home-view-text` yet to', () => {
+                it('... DSP', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
+                    const dspDes = getAndExpectDebugElementByCss(divDes[0], 'a#dsp-link', 1, 1);
+                    const dspEl: HTMLAnchorElement = dspDes[0].nativeElement;
+
+                    expect(dspEl).toBeDefined();
+                    expectToBe(dspEl.href, '');
+                });
+
+                it('... DaSCH', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
+                    const daschDes = getAndExpectDebugElementByCss(divDes[0], 'a#dasch-link', 1, 1);
+                    const daschEl: HTMLAnchorElement = daschDes[0].nativeElement;
+
+                    expect(daschEl).toBeDefined();
+                    expectToBe(daschEl.href, '');
+                });
+
+                it('... DaSCH mission', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
+                    const daschMissionDes = getAndExpectDebugElementByCss(divDes[0], 'a#dasch-mission-link', 1, 1);
+                    const daschMissionEl: HTMLAnchorElement = daschMissionDes[0].nativeElement;
+
+                    expect(daschMissionEl).toBeDefined();
+                    expectToBe(daschMissionEl.href, '');
+                });
+
+                it('... GitHub', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
+                    const githubDes = getAndExpectDebugElementByCss(divDes[0], 'a#github-link', 1, 1);
+                    const githubEl: HTMLAnchorElement = githubDes[0].nativeElement;
+
+                    expect(githubEl).toBeDefined();
+                    expectToBe(githubEl.href, '');
+                });
+
+                it('... Zenodo', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
+                    const zenodoDes = getAndExpectDebugElementByCss(divDes[0], 'a#zenodo-link', 1, 1);
+                    const zenodoEl: HTMLAnchorElement = zenodoDes[0].nativeElement;
+
+                    expect(zenodoEl).toBeDefined();
+                    expectToBe(zenodoEl.href, '');
+                });
+            });
         });
 
         describe('#provideMetaData()', () => {
@@ -158,101 +279,7 @@ describe('HomeViewComponent (DONE)', () => {
             });
 
             it('... should not have been called', () => {
-                expect(component.provideMetaData).not.toHaveBeenCalled();
-            });
-        });
-
-        describe('#routeToSidenav()', () => {
-            it('... should have a method `routeToSidenav`', () => {
-                expect(component.routeToSidenav).toBeDefined();
-            });
-
-            it('... should not have been called', () => {
-                expect(component.routeToSidenav).not.toHaveBeenCalled();
-            });
-        });
-
-        describe('VIEW', () => {
-            it('... should not pass down `title` and `id` to heading component', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
-                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
-
-                expect(headingCmp.title).toBeUndefined();
-                expect(headingCmp.id).toBeUndefined();
-            });
-
-            it('... should contain three `div.para` elements', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
-            });
-
-            it('... should have one h6 breadcrumb but no h3 info headers in first div.para yet', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
-                getAndExpectDebugElementByCss(divDes[0], 'h6.awg-breadcrumb', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'h3.awg-edition-info-header', 0, 0);
-            });
-
-            it('... should not render bread crumb header in first div.para yet', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
-                const headerDes = getAndExpectDebugElementByCss(divDes[0], 'h6.awg-breadcrumb', 1, 1);
-                const headerEl = headerDes[0].nativeElement;
-
-                expectToBe(headerEl.textContent, '');
-            });
-
-            it('... should have one h6 breadcrumb but no h3 info headers in second div.para yet', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
-                getAndExpectDebugElementByCss(divDes[1], 'h6.awg-breadcrumb', 1, 1);
-                getAndExpectDebugElementByCss(divDes[1], 'h3.awg-edition-info-header', 0, 0);
-            });
-
-            it('... should not render bread crumb header in second div.para yet', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
-                const headerDes = getAndExpectDebugElementByCss(divDes[1], 'h6.awg-breadcrumb', 1, 1);
-                const headerEl = headerDes[0].nativeElement;
-
-                expectToBe(headerEl.textContent, '');
-            });
-
-            describe('... should not render links in main text block yet to', () => {
-                it('... DSP', () => {
-                    const dspDes = getAndExpectDebugElementByCss(compDe, 'a#dsp-link', 1, 1);
-                    const dspEl = dspDes[0].nativeElement;
-
-                    expect(dspEl).toBeDefined();
-                    expectToBe(dspEl.href, '');
-                });
-
-                it('... DaSCH', () => {
-                    const daschDes = getAndExpectDebugElementByCss(compDe, 'a#dasch-link', 1, 1);
-                    const daschEl = daschDes[0].nativeElement;
-
-                    expect(daschEl).toBeDefined();
-                    expectToBe(daschEl.href, '');
-                });
-
-                it('... DaSCH mission', () => {
-                    const daschMissionDes = getAndExpectDebugElementByCss(compDe, 'a#dasch-mission-link', 1, 1);
-                    const daschMissionEl = daschMissionDes[0].nativeElement;
-
-                    expect(daschMissionEl).toBeDefined();
-                    expectToBe(daschMissionEl.href, '');
-                });
-
-                it('... GitHub', () => {
-                    const githubDes = getAndExpectDebugElementByCss(compDe, 'a#github-link', 1, 1);
-                    const githubEl = githubDes[0].nativeElement;
-
-                    expect(githubEl).toBeDefined();
-                    expectToBe(githubEl.href, '');
-                });
-
-                it('... Compodoc', () => {
-                    const compodocDes = getAndExpectDebugElementByCss(compDe, 'a#compodoc-link', 1, 1);
-                    const compodocEl = compodocDes[0].nativeElement;
-
-                    expect(compodocEl).toBeDefined();
-                    expectToBe(compodocEl.href, '');
-                });
+                expectSpyCall(provideMetaDataSpy, 0);
             });
         });
     });
@@ -263,60 +290,12 @@ describe('HomeViewComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#provideMetaData()', () => {
-            it('... should have been called', () => {
-                expect(component.provideMetaData).toHaveBeenCalled();
-            });
-
-            it('... should return pageMetaData', () => {
-                expectToEqual(component.pageMetaData, expectedPageMetaData);
-            });
-        });
-
-        describe('#routeToSideNav()', () => {
-            let navigationSpy: Spy;
-
-            beforeEach(() => {
-                // Create spy of mockrouter SpyObj
-                navigationSpy = mockRouter.navigate as jasmine.Spy;
-            });
-
-            it('... should have been called', () => {
-                // Router navigation triggerd by onInit
-                expect(component.routeToSidenav).toHaveBeenCalled();
-            });
-
-            it('... should have triggered `router.navigate`', () => {
-                expectSpyCall(navigationSpy, 1);
-            });
-
-            it('... should tell ROUTER to navigate to `editionInfo` outlet', () => {
-                const expectedRoute = 'editionInfo';
-
-                // Catch args passed to navigation spy
-                const navArgs = navigationSpy.calls.first().args;
-                const outletRoute = navArgs[0][0].outlets.side;
-
-                expect(navArgs).toBeDefined();
-                expect(navArgs[0]).toBeDefined();
-                expectToBe(outletRoute, expectedRoute);
-
-                expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
-            });
-
-            it('... should tell ROUTER to navigate with `preserveFragment:true`', () => {
-                // Catch args passed to navigation spy
-                const navArgs = navigationSpy.calls.first().args;
-                const navExtras = navArgs[1];
-
-                expect(navExtras).toBeDefined();
-                expectToBe(navExtras.preserveFragment, true);
-
-                expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
-            });
-        });
-
         describe('VIEW', () => {
+            it('... should contain one `awg-heading` component in `div.awg-home-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
+            });
+
             it('... should pass down `title` and `id` to heading component', () => {
                 const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
@@ -326,131 +305,79 @@ describe('HomeViewComponent (DONE)', () => {
                 expectToBe(headingCmp.id, expectedId);
             });
 
-            it('... should render bread crumb header in first div.para', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
-                const headerDes = getAndExpectDebugElementByCss(divDes[0], 'h6.awg-breadcrumb', 1, 1);
-                const headerEl = headerDes[0].nativeElement;
-
-                const expectedBreadCrumb = ` ${expectedEditionRouteConstants.EDITION.short} / ${expectedEditionRouteConstants.SERIES_1.full} / ${expectedEditionRouteConstants.SECTION_5.full} `;
-
-                expectToBe(headerEl.textContent, expectedBreadCrumb);
+            it('... should contain one `div.awg-home-view-content` in `div.awg-home-view`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-content', 1, 1);
             });
 
-            it('... should render title of edition info headers in first div.para', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
+            it('... should contain an AlertInfoComponent (stubbed) in `div.awg-home-view-content`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
+            });
 
-                const expectedLength = expectedEditionComplexes.slice(0, 2).length;
-                const titleDes = getAndExpectDebugElementByCss(
+            it('... should pass down infoMessage to AlertInfoComponent', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
+                const alertInfoDes = getAndExpectDebugElementByDirective(divDes[0], AlertInfoStubComponent, 1, 1);
+                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
+
+                expectToBe(alertInfoCmp.infoMessage, expectedDisclaimerInfoMessage);
+            });
+
+            it('... should contain one `div.awg-home-view-grid` in `div.awg-home-view-content`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-grid', 1, 1);
+            });
+
+            it('... should contain as many `div.col` in `div.awg-home-view-grid` as entries in `homeViewCardData`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-grid', 1, 1);
+
+                getAndExpectDebugElementByCss(
                     divDes[0],
-                    'h3.awg-edition-info-header .awg-edition-info-header-title',
-                    expectedLength,
-                    expectedLength
+                    'div.col',
+                    expectedHomeViewCardData.length,
+                    expectedHomeViewCardData.length
+                );
+            });
+
+            it('... should contain as many HomeViewCardComponents in `div.awg-home-view-grid > div.col` as entries in `homeViewCardData`', () => {
+                const colDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-home-view-grid > div.col',
+                    expectedHomeViewCardData.length,
+                    expectedHomeViewCardData.length
                 );
 
-                titleDes.forEach((titleDe, index) => {
-                    const titleEl = titleDe.nativeElement;
-                    expectToBe(titleEl.innerHTML, expectedEditionComplexes.slice(0.2)[index].titleStatement.title);
+                colDes.forEach(colDe => {
+                    getAndExpectDebugElementByDirective(colDe, HomeViewCardStubComponent, 1, 1);
                 });
             });
 
-            it('... should render catalogue number of edition info headers in first div.para', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
-                const expectedLength = expectedEditionComplexes.slice(0, 2).length;
-                const catalogueDes = getAndExpectDebugElementByCss(
-                    divDes[0],
-                    '.awg-edition-info-header .awg-edition-info-header-catalogue',
-                    expectedLength,
-                    expectedLength
+            it('... should pass down `cardData` to HomeViewCardComponents', () => {
+                const colDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-home-view-grid > div.col',
+                    expectedHomeViewCardData.length,
+                    expectedHomeViewCardData.length
                 );
 
-                catalogueDes.forEach((catalogueDe, index) => {
-                    const catalogueEl = catalogueDe.nativeElement;
-                    expectToBe(catalogueEl.innerHTML, expectedEditionComplexes.slice(0.2)[index].complexId.short);
+                colDes.forEach((colDe, index) => {
+                    const cardDes = getAndExpectDebugElementByDirective(colDe, HomeViewCardStubComponent, 1, 1);
+                    const cardCmp = cardDes[0].injector.get(HomeViewCardStubComponent) as HomeViewCardStubComponent;
+
+                    expectToEqual(cardCmp.cardData, expectedHomeViewCardData[index]);
                 });
             });
 
-            it('... should render edition type links in first div.para', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
-                const aDes = getAndExpectDebugElementByCss(divDes[0], '.awg-edition-info-header a', 3, 3);
-
-                const a0El = aDes[0].nativeElement;
-                const a1El = aDes[1].nativeElement;
-                const a2El = aDes[2].nativeElement;
-
-                expect(a0El).toBeDefined();
-                expect(a1El).toBeDefined();
-                expect(a2El).toBeDefined();
-
-                expectToBe(a0El.textContent, expectedEditionTypeConstants.SKETCH_EDITION.full);
-                expectToBe(a1El.textContent, expectedEditionTypeConstants.SKETCH_EDITION.full);
-                expectToBe(a2El.textContent, expectedEditionRouteConstants.EDITION_GRAPH.short);
-            });
-
-            it('... should render bread crumb header in second div.para', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
-                const headerDes = getAndExpectDebugElementByCss(divDes[1], 'h6.awg-breadcrumb', 1, 1);
-                const headerEl = headerDes[0].nativeElement;
-
-                const expectedBreadCrumb = ` ${expectedEditionRouteConstants.EDITION.short} / ${expectedEditionRouteConstants.SERIES_2.full} / ${expectedEditionRouteConstants.SECTION_2A.full} `;
-
-                expectToBe(headerEl.textContent, expectedBreadCrumb);
-            });
-
-            it('... should render title of edition info headers in second div.para', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
-
-                const expectedLength = expectedEditionComplexes.slice(2).length;
-                const titleDes = getAndExpectDebugElementByCss(
-                    divDes[1],
-                    'h3.awg-edition-info-header .awg-edition-info-header-title',
-                    expectedLength,
-                    expectedLength
-                );
-
-                titleDes.forEach((titleDe, index) => {
-                    const titleEl = titleDe.nativeElement;
-                    expectToBe(titleEl.innerHTML, expectedEditionComplexes.slice(2)[index].titleStatement.title);
-                });
-            });
-
-            it('... should render catalogue number of edition info headers in second div.para', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
-
-                const expectedLength = expectedEditionComplexes.slice(2).length;
-                const catalogueDes = getAndExpectDebugElementByCss(
-                    divDes[1],
-                    '.awg-edition-info-header .awg-edition-info-header-catalogue',
-                    expectedLength,
-                    expectedLength
-                );
-
-                catalogueDes.forEach((catalogueDe, index) => {
-                    const catalogueEl = catalogueDe.nativeElement;
-                    expectToBe(catalogueEl.innerHTML, expectedEditionComplexes.slice(2)[index].complexId.short);
-                });
-            });
-
-            it('... should render edition type links in second div.para', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
-
-                const expectedLength = expectedEditionComplexes.slice(2).length;
-                const aDes = getAndExpectDebugElementByCss(
-                    divDes[1],
-                    '.awg-edition-info-header a',
-                    expectedLength,
-                    expectedLength
-                );
-
-                aDes.forEach((aDe, index) => {
-                    const aEl = aDe.nativeElement;
-                    expectToBe(aEl.textContent, expectedEditionTypeConstants.SKETCH_EDITION.full);
-                });
+            it('... should contain one `div.awg-home-view-text` in `div.awg-home-view-content`', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-content', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-home-view-text', 1, 1);
             });
 
             describe('... should render links to', () => {
                 it('... DSP', () => {
-                    const dspDes = getAndExpectDebugElementByCss(compDe, 'a#dsp-link', 1, 1);
-                    const dspEl = dspDes[0].nativeElement;
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
+                    const dspDes = getAndExpectDebugElementByCss(divDes[0], 'a#dsp-link', 1, 1);
+                    const dspEl: HTMLAnchorElement = dspDes[0].nativeElement;
 
                     const dspRoute = 'dsp-app';
 
@@ -460,8 +387,9 @@ describe('HomeViewComponent (DONE)', () => {
                 });
 
                 it('... DaSCH', () => {
-                    const daschDes = getAndExpectDebugElementByCss(compDe, 'a#dasch-link', 1, 1);
-                    const daschEl = daschDes[0].nativeElement;
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
+                    const daschDes = getAndExpectDebugElementByCss(divDes[0], 'a#dasch-link', 1, 1);
+                    const daschEl: HTMLAnchorElement = daschDes[0].nativeElement;
 
                     expect(daschEl).toBeDefined();
                     expectToBe(daschEl.href, expectedPageMetaData.daschUrl);
@@ -469,8 +397,9 @@ describe('HomeViewComponent (DONE)', () => {
                 });
 
                 it('... DaSCH mission', () => {
-                    const daschMissionDes = getAndExpectDebugElementByCss(compDe, 'a#dasch-mission-link', 1, 1);
-                    const daschMissionEl = daschMissionDes[0].nativeElement;
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
+                    const daschMissionDes = getAndExpectDebugElementByCss(divDes[0], 'a#dasch-mission-link', 1, 1);
+                    const daschMissionEl: HTMLAnchorElement = daschMissionDes[0].nativeElement;
 
                     const missionRoute = 'mission';
 
@@ -480,22 +409,34 @@ describe('HomeViewComponent (DONE)', () => {
                 });
 
                 it('... GitHub', () => {
-                    const githubDes = getAndExpectDebugElementByCss(compDe, 'a#github-link', 1, 1);
-                    const githubEl = githubDes[0].nativeElement;
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
+                    const githubDes = getAndExpectDebugElementByCss(divDes[0], 'a#github-link', 1, 1);
+                    const githubEl: HTMLAnchorElement = githubDes[0].nativeElement;
 
                     expect(githubEl).toBeDefined();
                     expectToBe(githubEl.href, expectedPageMetaData.githubUrl);
                     expectToBe(githubEl.textContent, 'GitHub');
                 });
 
-                it('... Compodoc', () => {
-                    const compodocDes = getAndExpectDebugElementByCss(compDe, 'a#compodoc-link', 1, 1);
-                    const compodocEl = compodocDes[0].nativeElement;
+                it('... Zenodo', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-text', 1, 1);
+                    const zenodoDes = getAndExpectDebugElementByCss(divDes[0], 'a#zenodo-link', 1, 1);
+                    const zenodoEl: HTMLAnchorElement = zenodoDes[0].nativeElement;
 
-                    expect(compodocEl).toBeDefined();
-                    expectToContain(compodocEl.href, expectedPageMetaData.compodocUrl);
-                    expectToBe(compodocEl.textContent, 'dokumentiert');
+                    expect(zenodoEl).toBeDefined();
+                    expectToBe(zenodoEl.href, expectedPageMetaData.zenodoUrl);
+                    expectToBe(zenodoEl.textContent, 'Zenodo');
                 });
+            });
+        });
+
+        describe('#provideMetaData()', () => {
+            it('... should have been called', () => {
+                expectSpyCall(provideMetaDataSpy, 1);
+            });
+
+            it('... should return pageMetaData', () => {
+                expectToEqual(component.pageMetaData, expectedPageMetaData);
             });
         });
 
@@ -505,8 +446,8 @@ describe('HomeViewComponent (DONE)', () => {
                 linkDes = getAndExpectDebugElementByDirective(
                     compDe,
                     RouterLinkStubDirective,
-                    expectedOrderOfRouterlinks.length,
-                    expectedOrderOfRouterlinks.length
+                    expectedRouterlinks.length,
+                    expectedRouterlinks.length
                 );
 
                 // Get attached link directive instances using each DebugElement's injector
@@ -514,21 +455,21 @@ describe('HomeViewComponent (DONE)', () => {
             });
 
             it('... can get correct number of routerLinks from template', () => {
-                expectToBe(routerLinks.length, expectedOrderOfRouterlinks.length);
+                expectToBe(routerLinks.length, expectedRouterlinks.length);
             });
 
             it('... can get correct linkParams from template', () => {
                 routerLinks.forEach((routerLink, index) => {
-                    expectToEqual(routerLink.linkParams, expectedOrderOfRouterlinks[index]);
+                    expectToEqual(routerLink.linkParams, expectedRouterlinks[index]);
                 });
             });
 
             it('... can click all links in template', () => {
                 routerLinks.forEach((routerLink, index) => {
                     const linkDe = linkDes[index];
-                    const expectedRouterLink = expectedOrderOfRouterlinks[index];
+                    const expectedRouterLink = expectedRouterlinks[index];
 
-                    expect(routerLink.navigatedTo).toBeNull();
+                    expectToBe(routerLink.navigatedTo, null);
 
                     click(linkDe);
                     fixture.detectChanges();

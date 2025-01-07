@@ -12,6 +12,7 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
@@ -40,11 +41,30 @@ import { EditionSvgSheetViewerComponent } from './edition-svg-sheet-viewer.compo
 
 import * as D3_SELECTION from 'd3-selection';
 
-@Component({ selector: 'awg-license', template: '' })
+@Component({
+    selector: 'awg-license',
+    template: '',
+    standalone: false,
+})
 class LicenseStubComponent {}
 
-@Component({ selector: 'awg-edition-svg-sheet-viewer-switch', template: '' })
+@Component({
+    selector: 'awg-edition-svg-sheet-viewer-nav',
+    template: '',
+    standalone: false,
+})
+class EditionSvgSheetViewerNavStubComponent {
+    @Output()
+    browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
+}
+
+@Component({
+    selector: 'awg-edition-svg-sheet-viewer-switch',
+    template: '',
+    standalone: false,
+})
 class EditionSvgSheetViewerSwitchStubComponent {
+    @Input() id?: string;
     @Input() suppliedClasses?: Map<string, boolean>;
     @Input() hasAvailableTkaOverlays?: boolean;
 
@@ -75,14 +95,12 @@ describe('EditionSvgSheetViewerComponent', () => {
     let resetZoomSpy: Spy;
     let resetZoomTranslationSpy: Spy;
 
-    let serviceCreateSvgSpy: Spy;
     let serviceGetGroupsBySelectorSpy: Spy;
     let serviceGetSuppliedClassesSpy: Spy;
     let serviceToggleSuppliedClassOpacitySpy: Spy;
     let serviceUpdateTkkOverlayColorSpy: Spy;
 
     let expectedComplexId: string;
-    let expectedNextComplexId: string;
     let expectedCompressIcon: IconDefinition;
     let expectedSliderConfig: SliderConfig;
     let expectedSvgSheet: EditionSvgSheet;
@@ -98,7 +116,7 @@ describe('EditionSvgSheetViewerComponent', () => {
     beforeEach(waitForAsync(() => {
         // Mock EditionSvgDrawingService
         mockEditionSvgDrawingService = {
-            createSvg: (svgFilePath: string, svgEl: SVGSVGElement, svgRootGroupEl: SVGGElement): Promise<D3Selection> =>
+            createSvg: (_svgFilePath: string, svgEl: SVGSVGElement): Promise<D3Selection> =>
                 new Promise(resolve => {
                     resolve(D3_SELECTION.select(svgEl));
                 }),
@@ -107,23 +125,16 @@ describe('EditionSvgSheetViewerComponent', () => {
                 svgRootGroup.selectAll(selector),
             getOverlayGroupRectSelection: (svgRootGroup: D3Selection, overlayId: string, type: string): D3Selection =>
                 svgRootGroup.select(`#${overlayId} rect.${type}`),
-            getSuppliedClasses: (svgRootGroup: D3Selection): Map<string, boolean> => new Map(),
-            toggleSuppliedClassOpacity: (
-                svgRootGroup: D3Selection,
-                className: string,
-                isCurrentlyVisible: boolean
-            ): void => {},
-            updateTkkOverlayColor: (
-                overly: EditionSvgOverlay,
-                overlayGroupRectSelection: D3Selection,
-                overlayActionType: EditionSvgOverlayActionTypes
-            ): void => {},
+            getSuppliedClasses: (): Map<string, boolean> => new Map(),
+            toggleSuppliedClassOpacity: (): void => {},
+            updateTkkOverlayColor: (): void => {},
         };
 
         TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, FormsModule],
             declarations: [
                 EditionSvgSheetViewerComponent,
+                EditionSvgSheetViewerNavStubComponent,
                 EditionSvgSheetViewerSwitchStubComponent,
                 LicenseStubComponent,
             ],
@@ -143,7 +154,6 @@ describe('EditionSvgSheetViewerComponent', () => {
         expectedSliderConfig = new SliderConfig(1, 0.1, 10, 0.01, 1);
 
         expectedComplexId = 'testComplex1';
-        expectedNextComplexId = 'testComplex2';
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
 
@@ -183,7 +193,6 @@ describe('EditionSvgSheetViewerComponent', () => {
         resetZoomTranslationSpy = spyOn<any>(component, '_resetZoomTranslation').and.callThrough();
 
         // Spies for service methods
-        serviceCreateSvgSpy = spyOn(mockEditionSvgDrawingService, 'createSvg').and.callThrough();
         serviceGetGroupsBySelectorSpy = spyOn(mockEditionSvgDrawingService, 'getGroupsBySelector').and.callThrough();
         serviceGetSuppliedClassesSpy = spyOn(mockEditionSvgDrawingService, 'getSuppliedClasses').and.returnValue(
             expectedSuppliedClassMap
@@ -208,7 +217,7 @@ describe('EditionSvgSheetViewerComponent', () => {
 
     it('... injected service should use provided mockValue', () => {
         const svgDrawingService = TestBed.inject(EditionSvgDrawingService);
-        expect(svgDrawingService === mockEditionSvgDrawingService).toBe(true);
+        expectToBe(svgDrawingService === mockEditionSvgDrawingService, true);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -287,26 +296,26 @@ describe('EditionSvgSheetViewerComponent', () => {
         });
 
         it('... should have `svgSheetContainerRef` ViewChild', () => {
-            const svgSheetContainerDe = getAndExpectDebugElementByCss(
+            const svgSheetContainerDes = getAndExpectDebugElementByCss(
                 compDe,
                 'div.awg-edition-svg-sheet-container',
                 1,
                 1
             );
 
-            expectToEqual(component.svgSheetContainerRef.nativeElement, svgSheetContainerDe[0].nativeElement);
+            expectToEqual(component.svgSheetContainerRef.nativeElement, svgSheetContainerDes[0].nativeElement);
         });
 
         it('... should have `svgSheetElementRef` ViewChild', () => {
-            const svgSheetDe = getAndExpectDebugElementByCss(compDe, 'svg#awg-edition-svg-sheet', 1, 1);
+            const svgSheetDes = getAndExpectDebugElementByCss(compDe, 'svg#awg-edition-svg-sheet', 1, 1);
 
-            expectToEqual(component.svgSheetElementRef.nativeElement, svgSheetDe[0].nativeElement);
+            expectToEqual(component.svgSheetElementRef.nativeElement, svgSheetDes[0].nativeElement);
         });
 
         it('... should have `svgSheetRootGroupRef` ViewChild', () => {
-            const svgRootGroupDe = getAndExpectDebugElementByCss(compDe, 'g#awg-edition-svg-sheet-root-group', 1, 1);
+            const svgRootGroupDes = getAndExpectDebugElementByCss(compDe, 'g#awg-edition-svg-sheet-root-group', 1, 1);
 
-            expectToEqual(component.svgSheetRootGroupRef.nativeElement, svgRootGroupDe[0].nativeElement);
+            expectToEqual(component.svgSheetRootGroupRef.nativeElement, svgRootGroupDes[0].nativeElement);
         });
 
         it('... should have `suppliedClasses`', () => {
@@ -322,59 +331,58 @@ describe('EditionSvgSheetViewerComponent', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-viewer', 1, 1);
             });
 
-            it('... should contain 1 icon-bar, 1 sheet-container and 1 sheet-viewer-nav as direct child divs in outer div', () => {
-                const sheetViewerDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-viewer', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-viewer > div', 3, 3);
+            it('... should contain 1 icon-bar and 1 sheet-container as direct child divs in outer div', () => {
+                const sheetViewerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-viewer', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-viewer > div', 2, 2);
 
-                getAndExpectDebugElementByCss(sheetViewerDe[0], 'div.awg-edition-svg-icon-bar', 1, 1);
-                getAndExpectDebugElementByCss(sheetViewerDe[0], 'div.awg-edition-svg-sheet-container', 1, 1);
-                getAndExpectDebugElementByCss(sheetViewerDe[0], 'div.awg-edition-svg-sheet-viewer-nav', 1, 1);
+                getAndExpectDebugElementByCss(sheetViewerDes[0], 'div.awg-edition-svg-icon-bar', 1, 1);
+                getAndExpectDebugElementByCss(sheetViewerDes[0], 'div.awg-edition-svg-sheet-container', 1, 1);
             });
 
             describe('awg-edition-svg-icon-bar', () => {
                 it('... should contain 1 div.awg-edition-svg-zoom-slider-container in div.awg-edition-svg-icon-bar', () => {
-                    const divIconBarDe = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-icon-bar', 1, 1);
+                    const divIconBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-icon-bar', 1, 1);
 
-                    getAndExpectDebugElementByCss(divIconBarDe[0], 'div.awg-edition-svg-zoom-slider-container', 1, 1);
+                    getAndExpectDebugElementByCss(divIconBarDes[0], 'div.awg-edition-svg-zoom-slider-container', 1, 1);
                 });
 
                 it('... should contain 1 span.input-group-text in div.awg-edition-svg-zoom-slider-container', () => {
-                    const divZoomSliderDe = getAndExpectDebugElementByCss(
+                    const divZoomSliderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-edition-svg-zoom-slider-container',
                         1,
                         1
                     );
 
-                    getAndExpectDebugElementByCss(divZoomSliderDe[0], 'span.input-group-text', 1, 1);
+                    getAndExpectDebugElementByCss(divZoomSliderDes[0], 'span.input-group-text', 1, 1);
                 });
 
                 it('... should contain 1 input#awg-edition-svg-zoom-slider in div.awg-edition-svg-zoom-slider-container', () => {
-                    const divZoomSliderDe = getAndExpectDebugElementByCss(
+                    const divZoomSliderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-edition-svg-zoom-slider-container',
                         1,
                         1
                     );
 
-                    getAndExpectDebugElementByCss(divZoomSliderDe[0], 'input#awg-edition-svg-zoom-slider', 1, 1);
+                    getAndExpectDebugElementByCss(divZoomSliderDes[0], 'input#awg-edition-svg-zoom-slider', 1, 1);
                 });
 
                 it('... should have correct attributes in input', () => {
-                    const divZoomSliderDe = getAndExpectDebugElementByCss(
+                    const divZoomSliderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-edition-svg-zoom-slider-container',
                         1,
                         1
                     );
 
-                    const inputDe = getAndExpectDebugElementByCss(
-                        divZoomSliderDe[0],
+                    const inputDes = getAndExpectDebugElementByCss(
+                        divZoomSliderDes[0],
                         'input#awg-edition-svg-zoom-slider',
                         1,
                         1
                     );
-                    const inputEl = inputDe[0].nativeElement;
+                    const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                     expectToBe(inputEl.getAttribute('type'), 'range');
                     expectToBe(inputEl.getAttribute('min'), expectedSliderConfig.min.toString());
@@ -383,46 +391,46 @@ describe('EditionSvgSheetViewerComponent', () => {
                 });
 
                 it('... should contain 1 button in div.awg-edition-svg-zoom-slider-container', () => {
-                    const divZoomSliderDe = getAndExpectDebugElementByCss(
+                    const divZoomSliderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-edition-svg-zoom-slider-container',
                         1,
                         1
                     );
 
-                    getAndExpectDebugElementByCss(divZoomSliderDe[0], 'button', 1, 1);
+                    getAndExpectDebugElementByCss(divZoomSliderDes[0], 'button', 1, 1);
                 });
 
                 it('... should have correct attributes in button', () => {
-                    const divZoomSliderDe = getAndExpectDebugElementByCss(
+                    const divZoomSliderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-edition-svg-zoom-slider-container',
                         1,
                         1
                     );
 
-                    const buttonDe = getAndExpectDebugElementByCss(divZoomSliderDe[0], 'button', 1, 1);
-                    const buttonEl = buttonDe[0].nativeElement;
+                    const btnDes = getAndExpectDebugElementByCss(divZoomSliderDes[0], 'button', 1, 1);
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                    expectToBe(buttonEl.getAttribute('title'), 'Reset zoom');
-                    expectToBe(buttonEl.getAttribute('type'), 'submit');
+                    expectToBe(btnEl.getAttribute('title'), 'Reset zoom');
+                    expectToBe(btnEl.getAttribute('type'), 'submit');
 
-                    expect(buttonEl.classList).toContain('btn');
-                    expect(buttonEl.classList).toContain('btn-sm');
-                    expect(buttonEl.classList).toContain('btn-outline-info');
+                    expectToContain(btnEl.classList, 'btn');
+                    expectToContain(btnEl.classList, 'btn-sm');
+                    expectToContain(btnEl.classList, 'btn-outline-info');
                 });
 
                 it('... should display compress icon in button', () => {
-                    const divZoomSliderDe = getAndExpectDebugElementByCss(
+                    const divZoomSliderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-edition-svg-zoom-slider-container',
                         1,
                         1
                     );
 
-                    const buttonDe = getAndExpectDebugElementByCss(divZoomSliderDe[0], 'button', 1, 1);
-                    const faIconDe = getAndExpectDebugElementByCss(buttonDe[0], 'fa-icon', 1, 1);
-                    const faIconIns = faIconDe[0].componentInstance.icon;
+                    const btnDes = getAndExpectDebugElementByCss(divZoomSliderDes[0], 'button', 1, 1);
+                    const faIconDes = getAndExpectDebugElementByCss(btnDes[0], 'fa-icon', 1, 1);
+                    const faIconIns = faIconDes[0].componentInstance.icon;
 
                     expectToEqual(faIconIns, expectedCompressIcon);
                 });
@@ -430,32 +438,32 @@ describe('EditionSvgSheetViewerComponent', () => {
 
             describe('awg-edition-svg-sheet-container', () => {
                 it('... should contain 1 svg#awg-edition-svg-sheet element with a g element', () => {
-                    const svgSheetContainerDe = getAndExpectDebugElementByCss(
+                    const svgSheetContainerDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-edition-svg-sheet-container',
                         1,
                         1
                     );
 
-                    const svgSheetDe = getAndExpectDebugElementByCss(
-                        svgSheetContainerDe[0],
+                    const svgSheetDes = getAndExpectDebugElementByCss(
+                        svgSheetContainerDes[0],
                         'svg#awg-edition-svg-sheet',
                         1,
                         1
                     );
-                    getAndExpectDebugElementByCss(svgSheetDe[0], 'g#awg-edition-svg-sheet-root-group', 1, 1);
+                    getAndExpectDebugElementByCss(svgSheetDes[0], 'g#awg-edition-svg-sheet-root-group', 1, 1);
                 });
 
                 describe('LicenseComponent', () => {
                     it('... should contain 1 license component (stubbed)', () => {
-                        const svgSheetContainerDe = getAndExpectDebugElementByCss(
+                        const svgSheetContainerDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-edition-svg-sheet-container',
                             1,
                             1
                         );
 
-                        getAndExpectDebugElementByDirective(svgSheetContainerDe[0], LicenseStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(svgSheetContainerDes[0], LicenseStubComponent, 1, 1);
                     });
                 });
 
@@ -465,7 +473,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                         component.hasAvailableTkaOverlays = false;
                         fixture.detectChanges();
 
-                        const svgSheetContainerDe = getAndExpectDebugElementByCss(
+                        const svgSheetContainerDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-edition-svg-sheet-container',
                             1,
@@ -473,7 +481,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                         );
 
                         getAndExpectDebugElementByDirective(
-                            svgSheetContainerDe[0],
+                            svgSheetContainerDes[0],
                             EditionSvgSheetViewerSwitchStubComponent,
                             1,
                             1
@@ -485,7 +493,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                         component.hasAvailableTkaOverlays = true;
                         fixture.detectChanges();
 
-                        const svgSheetContainerDe = getAndExpectDebugElementByCss(
+                        const svgSheetContainerDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-edition-svg-sheet-container',
                             1,
@@ -493,7 +501,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                         );
 
                         getAndExpectDebugElementByDirective(
-                            svgSheetContainerDe[0],
+                            svgSheetContainerDes[0],
                             EditionSvgSheetViewerSwitchStubComponent,
                             1,
                             1
@@ -505,7 +513,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                         component.hasAvailableTkaOverlays = false;
                         fixture.detectChanges();
 
-                        const svgSheetContainerDe = getAndExpectDebugElementByCss(
+                        const svgSheetContainerDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-edition-svg-sheet-container',
                             1,
@@ -513,11 +521,25 @@ describe('EditionSvgSheetViewerComponent', () => {
                         );
 
                         getAndExpectDebugElementByDirective(
-                            svgSheetContainerDe[0],
+                            svgSheetContainerDes[0],
                             EditionSvgSheetViewerSwitchStubComponent,
                             0,
                             0
                         );
+                    });
+
+                    it('... should pass the sheet id to the switch component', () => {
+                        const switchDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSvgSheetViewerSwitchStubComponent,
+                            1,
+                            1
+                        );
+                        const switchCmp = switchDes[0].injector.get(
+                            EditionSvgSheetViewerSwitchStubComponent
+                        ) as EditionSvgSheetViewerSwitchStubComponent;
+
+                        expectToEqual(switchCmp.id, expectedSvgSheet.id);
                     });
 
                     it('... should pass the correct suppliedClasses to the switch component', () => {
@@ -568,50 +590,15 @@ describe('EditionSvgSheetViewerComponent', () => {
             });
 
             describe('awg-edition-svg-sheet-viewer-nav', () => {
-                it('... should contain 1 div.prev and 1 div.next in div.awg-edition-svg-sheet-viewer-nav', () => {
-                    const sheetViewerDe = getAndExpectDebugElementByCss(
+                it('... should contain 1 awg-edition-svg-sheet-viewer-nav component (stubbed)', () => {
+                    const sheetViewerDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-edition-svg-sheet-viewer',
                         1,
                         1
                     );
-                    getAndExpectDebugElementByCss(sheetViewerDe[0], 'div.awg-edition-svg-sheet-viewer-nav > div', 2, 2);
 
-                    const sheetViewerNavDe = getAndExpectDebugElementByCss(
-                        sheetViewerDe[0],
-                        'div.awg-edition-svg-sheet-viewer-nav',
-                        1,
-                        1
-                    );
-
-                    getAndExpectDebugElementByCss(sheetViewerNavDe[0], 'div.prev', 1, 1);
-                    getAndExpectDebugElementByCss(sheetViewerNavDe[0], 'div.next', 1, 1);
-                });
-
-                it('... should display left arrow in div.prev', () => {
-                    const divPrevDe = getAndExpectDebugElementByCss(compDe, 'div.prev', 1, 1);
-
-                    const spanDe = getAndExpectDebugElementByCss(divPrevDe[0], 'span', 1, 1);
-                    const spanEl = spanDe[0].nativeElement;
-
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('span');
-                    expectedHtmlTextContent.innerHTML = '&#10094;';
-
-                    expectToBe(spanEl.textContent, expectedHtmlTextContent.textContent);
-                });
-
-                it('... should display right arrow in div.next', () => {
-                    const divNextDe = getAndExpectDebugElementByCss(compDe, 'div.next', 1, 1);
-
-                    const spanDe = getAndExpectDebugElementByCss(divNextDe[0], 'span', 1, 1);
-                    const spanEl = spanDe[0].nativeElement;
-
-                    // Process HTML expression of expected text content
-                    const expectedHtmlTextContent = mockDocument.createElement('span');
-                    expectedHtmlTextContent.innerHTML = '&#10095;';
-
-                    expectToBe(spanEl.textContent, expectedHtmlTextContent.textContent);
+                    getAndExpectDebugElementByDirective(sheetViewerDes[0], EditionSvgSheetViewerNavStubComponent, 1, 1);
                 });
             });
         });
@@ -621,25 +608,22 @@ describe('EditionSvgSheetViewerComponent', () => {
                 expect(component.browseSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on click on div.prev', fakeAsync(() => {
-                const divPrevDe = getAndExpectDebugElementByCss(compDe, 'div.prev', 1, 1);
-                const expectedDirection = -1;
+            it('... should trigger on event from EditionSvgSheetViewerNavComponent', () => {
+                const navDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetViewerNavStubComponent, 1, 1);
+                const navCmp = navDes[0].injector.get(
+                    EditionSvgSheetViewerNavStubComponent
+                ) as EditionSvgSheetViewerNavStubComponent;
 
-                // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(divPrevDe[0], fixture);
+                // Direction -1
+                navCmp.browseSvgSheetRequest.emit(-1);
 
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
-            }));
+                expectSpyCall(browseSvgSheetSpy, 1, -1);
 
-            it('... should trigger on click on div.next', fakeAsync(() => {
-                const divNextDe = getAndExpectDebugElementByCss(compDe, 'div.next', 1, 1);
-                const expectedDirection = 1;
+                // Direction 1
+                navCmp.browseSvgSheetRequest.emit(1);
 
-                // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(divNextDe[0], fixture);
-
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
-            }));
+                expectSpyCall(browseSvgSheetSpy, 2, 1);
+            });
 
             it('... should not emit anything if no direction is provided', () => {
                 const expectedDirection = undefined;
@@ -756,11 +740,13 @@ describe('EditionSvgSheetViewerComponent', () => {
                         const overlayGroupRectSelection = expectedOverlayGroups.select(
                             `#${overlay.id} rect.${expectedOverlayType}`
                         );
-                        expect(serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[0]).toEqual(overlay);
-                        expect(serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[1]).toEqual(
+                        expectToEqual(serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[0], overlay);
+                        expectToEqual(
+                            serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[1],
                             overlayGroupRectSelection
                         );
-                        expect(serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[2]).toEqual(
+                        expectToBe(
+                            serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[2],
                             EditionSvgOverlayActionTypes.fill
                         );
                     });
@@ -775,7 +761,8 @@ describe('EditionSvgSheetViewerComponent', () => {
                     expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalledTimes(expectedOverlayGroups.nodes().length);
 
                     expectedOverlayGroups.nodes().forEach((_node, index) => {
-                        expect(serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[2]).toEqual(
+                        expectToBe(
+                            serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[2],
                             EditionSvgOverlayActionTypes.fill
                         );
                     });
@@ -790,7 +777,8 @@ describe('EditionSvgSheetViewerComponent', () => {
                     expect(serviceUpdateTkkOverlayColorSpy).toHaveBeenCalledTimes(expectedOverlayGroups.nodes().length);
 
                     expectedOverlayGroups.nodes().forEach((_node, index) => {
-                        expect(serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[2]).toEqual(
+                        expectToBe(
+                            serviceUpdateTkkOverlayColorSpy.calls.all()[index].args[2],
                             EditionSvgOverlayActionTypes.transparent
                         );
                     });
@@ -806,22 +794,22 @@ describe('EditionSvgSheetViewerComponent', () => {
             it('... should trigger on change of zoom slider', () => {
                 expectSpyCall(onZoomChangeSpy, 1);
 
-                const divZoomSliderDe = getAndExpectDebugElementByCss(
+                const divZoomSliderDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-edition-svg-zoom-slider-container',
                     1,
                     1
                 );
 
-                const sliderInputDe = getAndExpectDebugElementByCss(
-                    divZoomSliderDe[0],
+                const sliderInputDes = getAndExpectDebugElementByCss(
+                    divZoomSliderDes[0],
                     'input#awg-edition-svg-zoom-slider',
                     1,
                     1
                 );
-                const sliderInputEl = sliderInputDe[0].nativeElement;
+                const sliderInputEl: HTMLInputElement = sliderInputDes[0].nativeElement;
                 const expectedZoom = 7.5;
-                sliderInputEl.value = expectedZoom;
+                sliderInputEl.value = expectedZoom.toString();
 
                 sliderInputEl.dispatchEvent(new Event('input'));
 
@@ -832,17 +820,17 @@ describe('EditionSvgSheetViewerComponent', () => {
                 let expectedZoom = null;
                 component.onZoomChange(expectedZoom);
 
-                expect(component.sliderConfig.value).toBe(expectedZoom);
+                expectToBe(component.sliderConfig.value, expectedZoom);
 
                 expectedZoom = 5;
                 component.onZoomChange(expectedZoom);
 
-                expect(component.sliderConfig.value).toBe(expectedZoom);
+                expectToBe(component.sliderConfig.value, expectedZoom);
 
                 expectedZoom = expectedSliderConfig.initial;
                 component.onZoomChange(expectedZoom);
 
-                expect(component.sliderConfig.value).toBe(expectedSliderConfig.initial);
+                expectToBe(component.sliderConfig.value, expectedSliderConfig.initial);
             });
 
             it('... should trigger `_rescaleZoom` function', () => {
@@ -980,17 +968,17 @@ describe('EditionSvgSheetViewerComponent', () => {
             it('... should trigger on click on reset button of zoom slider', fakeAsync(() => {
                 expectSpyCall(resetZoomSpy, 1);
 
-                const divZoomSliderDe = getAndExpectDebugElementByCss(
+                const divZoomSliderDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-edition-svg-zoom-slider-container',
                     1,
                     1
                 );
 
-                const buttonDe = getAndExpectDebugElementByCss(divZoomSliderDe[0], 'button', 1, 1);
+                const btnDes = getAndExpectDebugElementByCss(divZoomSliderDes[0], 'button', 1, 1);
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(buttonDe[0], fixture);
+                clickAndAwaitChanges(btnDes[0], fixture);
 
                 expectSpyCall(resetZoomSpy, 2);
             }));
@@ -1183,10 +1171,10 @@ describe('EditionSvgSheetViewerComponent', () => {
 
             xit('... should trigger on click on link box (D3 event)', fakeAsync(() => {
                 const onLinkBoxSelectSpy = spyOn(component as any, '_onLinkBoxSelect').and.callThrough();
-                const linkBoxDe = getAndExpectDebugElementByCss(compDe, 'g.link-box', 1, 1);
+                const linkBoxDes = getAndExpectDebugElementByCss(compDe, 'g.link-box', 1, 1);
 
                 // Select the element using D3
-                const linkBoxSelection = D3_SELECTION.select(linkBoxDe[0].nativeElement);
+                const linkBoxSelection = D3_SELECTION.select(linkBoxDes[0].nativeElement);
 
                 // Dispatch the click event
                 linkBoxSelection.dispatch('click');
@@ -1380,7 +1368,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                         it(`... for stepSize ${stepSize} and given value ${givenValue} returns ${expectedNearestStep}`, () => {
                             component.sliderConfig.stepSize = stepSize;
                             const result = (component as any)._roundToScaleStepDecimalPrecision(givenValue);
-                            expect(result).toBe(expectedNearestStep);
+                            expectToBe(result, expectedNearestStep);
                         });
                     }
                 }

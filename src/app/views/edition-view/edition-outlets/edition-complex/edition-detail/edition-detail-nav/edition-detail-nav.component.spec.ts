@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { QueryParamsHandling } from '@angular/router';
@@ -7,19 +6,22 @@ import { of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { expectSpyCall, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionDetailNavComponent } from './edition-detail-nav.component';
 
 // Mock components
-@Component({ selector: 'awg-router-link-button-group', template: '' })
+@Component({
+    selector: 'awg-router-link-button-group',
+    template: '',
+    standalone: false,
+})
 class RouterLinkButtonGroupStubComponent {
     @Input()
     routerLinkButtons: RouterLinkButton[];
@@ -37,19 +39,19 @@ describe('EditionDetailNavComponent (DONE)', () => {
     let expectedEditionComplex: EditionComplex;
 
     let setButtonsSpy: Spy;
-    let getEditionComplexSpy: Spy;
+    let getSelectedEditionComplexSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         // Create a fake service object with a `getData()` spy
-        const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionComplex']);
+        const mockEditionStateService = jasmine.createSpyObj('EditionStateService', ['getSelectedEditionComplex']);
         // Make the spy return a synchronous Observable with the test data
-        getEditionComplexSpy = mockEditionService.getEditionComplex.and.returnValue(
-            observableOf(EDITION_COMPLEXES.OP12)
+        getSelectedEditionComplexSpy = mockEditionStateService.getSelectedEditionComplex.and.returnValue(
+            observableOf(EditionComplexesService.getEditionComplexById('OP12'))
         );
 
         TestBed.configureTestingModule({
             declarations: [EditionDetailNavComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
-            providers: [{ provide: EditionService, useValue: mockEditionService }],
+            providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
         }).compileComponents();
     }));
 
@@ -59,7 +61,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedEditionComplex = EDITION_COMPLEXES.OP12;
+        expectedEditionComplex = EditionComplexesService.getEditionComplexById('OP12');
         expectedEditionRouterLinkButtons = [
             new RouterLinkButton(
                 expectedEditionComplex.baseRoute,
@@ -116,7 +118,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
             });
 
             it('... should not have been called', () => {
-                expectSpyCall(getEditionComplexSpy, 0);
+                expectSpyCall(getSelectedEditionComplexSpy, 0);
             });
         });
 
@@ -149,15 +151,12 @@ describe('EditionDetailNavComponent (DONE)', () => {
 
         describe('#getEditionComplex()', () => {
             it('... should have been called', () => {
-                expectSpyCall(getEditionComplexSpy, 1);
+                expectSpyCall(getSelectedEditionComplexSpy, 1);
             });
         });
 
         it('... should have `editionComplex`', () => {
-            expect(component.editionComplex).withContext('should be defined').toBeDefined();
-            expect(component.editionComplex)
-                .withContext(`should equal ${expectedEditionComplex}`)
-                .toEqual(expectedEditionComplex);
+            expectToEqual(component.editionComplex, expectedEditionComplex);
         });
 
         describe('#setButtons()', () => {
@@ -166,10 +165,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
             });
 
             it('... should have `editionRouterLinkButtons`', () => {
-                expect(component.editionRouterLinkButtons).toBeDefined();
-                expect(component.editionRouterLinkButtons)
-                    .withContext(`should equal ${expectedEditionRouterLinkButtons}`)
-                    .toEqual(expectedEditionRouterLinkButtons);
+                expectToEqual(component.editionRouterLinkButtons, expectedEditionRouterLinkButtons);
             });
         });
 
@@ -183,15 +179,12 @@ describe('EditionDetailNavComponent (DONE)', () => {
             });
 
             it('... should pass down editionRouterLinkButtons to RouterLinkButtonGroupComponent', () => {
-                const buttonDes = getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 1, 1);
-                const buttonCmp = buttonDes[0].injector.get(
+                const btnDes = getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 1, 1);
+                const btnCmp = btnDes[0].injector.get(
                     RouterLinkButtonGroupStubComponent
                 ) as RouterLinkButtonGroupStubComponent;
 
-                expect(buttonCmp.routerLinkButtons).toBeTruthy();
-                expect(buttonCmp.routerLinkButtons)
-                    .withContext(`should equal ${expectedEditionRouterLinkButtons}`)
-                    .toEqual(expectedEditionRouterLinkButtons);
+                expectToEqual(btnCmp.routerLinkButtons, expectedEditionRouterLinkButtons);
             });
         });
     });

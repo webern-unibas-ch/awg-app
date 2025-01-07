@@ -22,7 +22,11 @@ import { ToastMessage } from '@awg-shared/toast/toast.service';
 
 import { TriplesEditorComponent } from './triples-editor.component';
 
-@Component({ selector: 'awg-codemirror', template: '' })
+@Component({
+    selector: 'awg-codemirror',
+    template: '',
+    standalone: false,
+})
 class CodeMirrorStubComponent {
     @Input() mode: CmMode;
     @Input() content: string;
@@ -108,9 +112,20 @@ describe('TriplesEditorComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no div.accordion yet', () => {
-                // Div.accordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
+            it('... should contain one div.accordion', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+            });
+
+            it('... should contain one div.accordion-item with header and non-collapsible body yet in div.accordion', () => {
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+
+                const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
+                getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-header', 1, 1);
+
+                const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
+                const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'accordion-collapse');
             });
         });
     });
@@ -134,230 +149,204 @@ describe('TriplesEditorComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.accordion', () => {
-                // NgbAccordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
-            });
-
             describe('not in fullscreen mode', () => {
-                describe('with closed panel', () => {
-                    it('... should contain one div.accordion with panel (div.accordion-item) header and collapsed body', () => {
-                        // NgbAccordion debug element
+                describe('with closed item', () => {
+                    it('... should contain one div.accordion-item with header and collapsed body in div.accordion', () => {
                         const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                        // Panel (div.accordion-item)
-                        const panelDes = getAndExpectDebugElementByCss(
+                        const itemDes = getAndExpectDebugElementByCss(
                             accordionDes[0],
                             'div#awg-graph-visualizer-triples.accordion-item',
                             1,
                             1
                         );
-                        // Header (div.accordion-header)
-                        const panelHeaderDes = getAndExpectDebugElementByCss(
-                            panelDes[0],
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
+                            itemDes[0],
                             'div#awg-graph-visualizer-triples > div.accordion-header',
                             1,
                             1
                         );
-                        const panelHeaderEl = panelHeaderDes[0].nativeElement;
+                        const itemHeaderEl: HTMLDivElement = itemHeaderDes[0].nativeElement;
 
-                        expectToContain(panelHeaderEl.classList, 'collapsed');
+                        expectToContain(itemHeaderEl.classList, 'collapsed');
 
-                        // Body (div.accordion-collapse)
-                        const panelBodyDes = getAndExpectDebugElementByCss(
-                            panelDes[0],
+                        const itemBodyDes = getAndExpectDebugElementByCss(
+                            itemDes[0],
                             'div#awg-graph-visualizer-triples > div.accordion-collapse',
                             1,
                             1
                         );
-                        const panelBodyEl = panelBodyDes[0].nativeElement;
+                        const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).not.toContain('show');
+                        expect(itemBodyEl.classList).not.toContain('show');
                     });
 
-                    it('... should display panel header button', () => {
-                        // Header debug elements
-                        const panelHeaderDes = getAndExpectDebugElementByCss(
+                    it('... should display item header button', () => {
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-triples > div.accordion-header',
                             1,
                             1
                         );
 
-                        // Panel header button
-                        const btnDes = getAndExpectDebugElementByCss(
-                            panelHeaderDes[0],
-                            'button.accordion-button',
-                            1,
-                            1
-                        );
+                        const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
+                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                        const btnEl = btnDes[0].nativeElement;
-
-                        // Check button content
                         expectToBe(btnEl.textContent, 'RDF Triples');
                     });
 
-                    it('... should toggle panel body on click', () => {
-                        // Header debug elements
-                        const panelHeaderDes = getAndExpectDebugElementByCss(
+                    it('... should toggle item body on click', () => {
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-triples > div.accordion-header',
                             1,
                             1
                         );
 
-                        // Button debug elements
                         const btnDes = getAndExpectDebugElementByCss(
-                            panelHeaderDes[0],
+                            itemHeaderDes[0],
                             'button#awg-graph-visualizer-triples-toggle',
                             1,
                             1
                         );
-                        // Button native elements to click on
-                        const btnEl = btnDes[0].nativeElement;
+                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                        // Panel body is closed
-                        let panelBodyDes = getAndExpectDebugElementByCss(
+                        // Item body is closed
+                        let itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-triples > div.accordion-collapse',
                             1,
                             1
                         );
-                        let panelBodyEl = panelBodyDes[0].nativeElement;
+                        let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).not.toContain('show');
+                        expect(itemBodyEl.classList).not.toContain('show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
                         detectChangesOnPush(fixture);
 
-                        // Panel is open
-                        panelBodyDes = getAndExpectDebugElementByCss(
+                        // Item is open
+                        itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-triples > div.accordion-collapse',
                             1,
                             1
                         );
-                        panelBodyEl = panelBodyDes[0].nativeElement;
+                        itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expectToContain(panelBodyEl.classList, 'show');
+                        expectToContain(itemBodyEl.classList, 'show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
                         detectChangesOnPush(fixture);
 
-                        panelBodyDes = getAndExpectDebugElementByCss(
+                        itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-triples > div.accordion-collapse',
                             1,
                             1
                         );
-                        panelBodyEl = panelBodyDes[0].nativeElement;
+                        itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).not.toContain('show');
+                        expect(itemBodyEl.classList).not.toContain('show');
                     });
                 });
 
-                describe('with open panel', () => {
+                describe('with open item', () => {
                     let bodyDes: DebugElement[];
 
                     beforeEach(() => {
-                        // Open panel by click on header button
+                        // Open item by click on header button
                         const btnDes = getAndExpectDebugElementByCss(
                             compDe,
                             'button#awg-graph-visualizer-triples-toggle',
                             1,
                             1
                         );
-                        const btnEl = btnDes[0].nativeElement;
+                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                         // Click header button
                         click(btnEl as HTMLElement);
                         detectChangesOnPush(fixture);
 
-                        // Panel body is open
+                        // Item body is open
                         const collapseDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-triples > div.accordion-collapse',
                             1,
                             1
                         );
-                        const collapseEl = collapseDes[0].nativeElement;
+                        const collapseEl: HTMLDivElement = collapseDes[0].nativeElement;
 
                         expectToContain(collapseEl.classList, 'show');
 
-                        // Panel body
                         bodyDes = getAndExpectDebugElementByCss(collapseDes[0], 'div.accordion-body', 1, 1);
                     });
 
-                    it('... should toggle panel body on click', () => {
-                        // Header debug elements
-                        const panelHeaderDes = getAndExpectDebugElementByCss(
+                    it('... should toggle item body on click', () => {
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-triples > div.accordion-header',
                             1,
                             1
                         );
 
-                        // Button debug elements
                         const btnDes = getAndExpectDebugElementByCss(
-                            panelHeaderDes[0],
+                            itemHeaderDes[0],
                             'button#awg-graph-visualizer-triples-toggle',
                             1,
                             1
                         );
-                        // Button native elements to click on
-                        const btnEl = btnDes[0].nativeElement;
+                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                        // Panel body is open
-                        let panelBodyDes = getAndExpectDebugElementByCss(
+                        // Item body is open
+                        let itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-triples > div.accordion-collapse',
                             1,
                             1
                         );
-                        let panelBodyEl = panelBodyDes[0].nativeElement;
+                        let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
-                        expectToContain(panelBodyEl.classList, 'show');
+                        expectToContain(itemBodyEl.classList, 'show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
                         detectChangesOnPush(fixture);
 
-                        // Panel is closed
-                        panelBodyDes = getAndExpectDebugElementByCss(
+                        // Item is closed
+                        itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-triples > div.accordion-collapse',
                             1,
                             1
                         );
-                        panelBodyEl = panelBodyDes[0].nativeElement;
+                        itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).not.toContain('show');
+                        expect(itemBodyEl.classList).not.toContain('show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
                         detectChangesOnPush(fixture);
 
-                        // Panel body is open again
-                        panelBodyDes = getAndExpectDebugElementByCss(
+                        // Item body is open again
+                        itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-triples > div.accordion-collapse',
                             1,
                             1
                         );
-                        panelBodyEl = panelBodyDes[0].nativeElement;
+                        itemBodyEl = itemBodyDes[0].nativeElement;
 
-                        expectToContain(panelBodyEl.classList, 'show');
+                        expectToContain(itemBodyEl.classList, 'show');
                     });
 
-                    it('... should contain CodeMirrorComponent (stubbed) in panel body', () => {
-                        // CodeMirrorComponent
+                    it('... should contain CodeMirrorComponent (stubbed) in item body', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorStubComponent, 1, 1);
                     });
 
-                    it('... should contain div with 3 buttons (Query, Reset, Clear) in panel body', () => {
+                    it('... should contain div with 3 buttons (Query, Reset, Clear) in item body', () => {
                         const divDes = getAndExpectDebugElementByCss(
                             bodyDes[0],
                             'div.awg-graph-visualizer-triples-handle-buttons',
@@ -366,9 +355,9 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
 
                         const btnDes = getAndExpectDebugElementByCss(divDes[0], 'button.btn', 3, 3);
-                        const btnEl0 = btnDes[0].nativeElement;
-                        const btnEl1 = btnDes[1].nativeElement;
-                        const btnEl2 = btnDes[2].nativeElement;
+                        const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
+                        const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
+                        const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
 
                         expectToBe(btnEl0.textContent, 'Query');
                         expectToBe(btnEl1.textContent, 'Reset');
@@ -382,7 +371,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                             3,
                             3
                         );
-                        const btnEl0 = btnDes[0].nativeElement;
+                        const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
 
                         expectToBe(btnEl0.textContent, 'Query');
 
@@ -401,7 +390,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                             3,
                             3
                         );
-                        const btnEl1 = btnDes[1].nativeElement;
+                        const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
 
                         expectToBe(btnEl1.textContent, 'Reset');
 
@@ -420,7 +409,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                             3,
                             3
                         );
-                        const btnEl2 = btnDes[2].nativeElement;
+                        const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
 
                         expectToBe(btnEl2.textContent, 'Clear');
 
@@ -437,20 +426,20 @@ describe('TriplesEditorComponent (DONE)', () => {
                 let bodyDes: DebugElement[];
 
                 beforeEach(() => {
-                    // Open panel by click on header button
+                    // Open item by click on header button
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
                         'button#awg-graph-visualizer-triples-toggle',
                         1,
                         1
                     );
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Click header button
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    // Panel body
+                    // Item body
                     bodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-triples-collapse > div.accordion-body',
@@ -462,106 +451,95 @@ describe('TriplesEditorComponent (DONE)', () => {
                     component.isFullscreen = true;
                 });
 
-                it('... should contain one div.accordion with panel (div.accordion-item) header and open body', () => {
-                    // NgbAccordion debug element
+                it('... should contain one div.accordion with item (div.accordion-item) header and open body', () => {
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                    // Panel (div.accordion-item)
-                    const panelDes = getAndExpectDebugElementByCss(
+                    const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
                         'div#awg-graph-visualizer-triples.accordion-item',
                         1,
                         1
                     );
-                    // Header (div.accordion-header)
                     getAndExpectDebugElementByCss(
-                        panelDes[0],
+                        itemDes[0],
                         'div#awg-graph-visualizer-triples > div.accordion-header',
                         1,
                         1
                     );
 
-                    // Body open (div.accordion-body)
                     getAndExpectDebugElementByCss(
-                        panelDes[0],
+                        itemDes[0],
                         'div#awg-graph-visualizer-triples-collapse > div.accordion-body',
                         1,
                         1
                     );
                 });
 
-                it('... should display panel header button', () => {
-                    // Header debug elements
-                    const panelHeaderDes = getAndExpectDebugElementByCss(
+                it('... should display item header button', () => {
+                    const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-triples > div.accordion-header',
                         1,
                         1
                     );
 
-                    // Panel header button
-                    const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.accordion-button', 1, 1);
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                    // Check button content
                     expectToBe(btnEl.textContent, 'RDF Triples');
                 });
 
-                it('... should not toggle panel body on click', () => {
-                    // Header debug elements
-                    const panelHeaderDes = getAndExpectDebugElementByCss(
+                it('... should not toggle item body on click', () => {
+                    const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-triples > div.accordion-header',
                         1,
                         1
                     );
 
-                    // Button debug elements
-                    const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.accordion-button', 1, 1);
-                    // Button native elements to click on
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                    // Panel body does not close
-                    let panelBodyDes = getAndExpectDebugElementByCss(
+                    // Item body does not close
+                    let itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-triples > div.accordion-collapse',
                         1,
                         1,
                         'open'
                     );
-                    let panelBodyEl = panelBodyDes[0].nativeElement;
+                    let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
-                    expectToContain(panelBodyEl.classList, 'show');
+                    expectToContain(itemBodyEl.classList, 'show');
 
                     // Click header button
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    // Panel body does not close again
-                    panelBodyDes = getAndExpectDebugElementByCss(
+                    // Item body does not close again
+                    itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-triples > div.accordion-collapse',
                         1,
                         1,
                         'open'
                     );
-                    panelBodyEl = panelBodyDes[0].nativeElement;
+                    itemBodyEl = itemBodyDes[0].nativeElement;
 
-                    expectToContain(panelBodyEl.classList, 'show');
+                    expectToContain(itemBodyEl.classList, 'show');
                 });
 
-                it('... should contain CodeMirrorComponent (stubbed) in panel body', () => {
-                    // CodeMirrorComponent
+                it('... should contain CodeMirrorComponent (stubbed) in item body', () => {
                     getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorStubComponent, 1, 1);
                 });
 
-                it('... should contain div with 3 buttons (Query, Reset, Clear) in panel body', () => {
+                it('... should contain div with 3 buttons (Query, Reset, Clear) in item body', () => {
                     const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div', 1, 1);
 
                     const btnDes = getAndExpectDebugElementByCss(divDes[0], 'button.btn', 3, 3);
-                    const btnEl0 = btnDes[0].nativeElement;
-                    const btnEl1 = btnDes[1].nativeElement;
-                    const btnEl2 = btnDes[2].nativeElement;
+                    const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
+                    const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
+                    const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
 
                     expectToBe(btnEl0.textContent, 'Query');
                     expectToBe(btnEl1.textContent, 'Reset');
@@ -570,7 +548,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                 it('... should trigger `performQuery()` by click on Query button', () => {
                     const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 3, 3);
-                    const btnEl0 = btnDes[0].nativeElement;
+                    const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
 
                     expectToBe(btnEl0.textContent, 'Query');
 
@@ -584,7 +562,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                 it('... should trigger `resetTriples()` by click on Reset button', () => {
                     const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 3, 3);
-                    const btnEl1 = btnDes[1].nativeElement;
+                    const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
 
                     expectToBe(btnEl1.textContent, 'Reset');
 
@@ -598,7 +576,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                 it('... should trigger `onEditorInputChange()` with empty string by click on Clear button', () => {
                     const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 3, 3);
-                    const btnEl2 = btnDes[2].nativeElement;
+                    const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
 
                     expectToBe(btnEl2.textContent, 'Clear');
 
@@ -613,14 +591,14 @@ describe('TriplesEditorComponent (DONE)', () => {
 
         describe('#onEditorInputChange()', () => {
             beforeEach(async () => {
-                // Open panel by click on header button
+                // Open item by click on header button
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'button#awg-graph-visualizer-triples-toggle',
                     1,
                     1
                 );
-                const btnEl = btnDes[0].nativeElement;
+                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Click header button
                 click(btnEl as HTMLElement);
@@ -648,7 +626,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     3,
                     3
                 );
-                const btnEl2 = btnDes[2].nativeElement;
+                const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
 
                 expectToBe(btnEl2.textContent, 'Clear');
 
@@ -666,7 +644,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     3,
                     3
                 );
-                const btnEl2 = btnDes[2].nativeElement;
+                const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
 
                 expectToBe(btnEl2.textContent, 'Clear');
 
@@ -708,14 +686,14 @@ describe('TriplesEditorComponent (DONE)', () => {
 
         describe('#performQuery()', () => {
             beforeEach(async () => {
-                // Open panel by click on header button
+                // Open item by click on header button
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'button#awg-graph-visualizer-triples-toggle',
                     1,
                     1
                 );
-                const btnEl = btnDes[0].nativeElement;
+                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Click header button
                 click(btnEl as HTMLElement);
@@ -733,7 +711,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     3,
                     3
                 );
-                const btnEl0 = btnDes[0].nativeElement;
+                const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
 
                 expectToBe(btnEl0.textContent, 'Query');
 
@@ -752,7 +730,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         3,
                         3
                     );
-                    const btnEl0 = btnDes[0].nativeElement;
+                    const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
 
                     expectToBe(btnEl0.textContent, 'Query');
 
@@ -777,7 +755,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         3,
                         3
                     );
-                    const btnEl0 = btnDes[0].nativeElement;
+                    const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
 
                     expectToBe(btnEl0.textContent, 'Query');
 
@@ -794,14 +772,14 @@ describe('TriplesEditorComponent (DONE)', () => {
 
         describe('#resetTriples()', () => {
             beforeEach(async () => {
-                // Open panel by click on header button
+                // Open item by click on header button
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'button#awg-graph-visualizer-triples-toggle',
                     1,
                     1
                 );
-                const btnEl = btnDes[0].nativeElement;
+                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                 // Click header button
                 click(btnEl as HTMLElement);
@@ -819,7 +797,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     3,
                     3
                 );
-                const btnEl1 = btnDes[1].nativeElement;
+                const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
 
                 expectToBe(btnEl1.textContent, 'Reset');
 
@@ -837,7 +815,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     3,
                     3
                 );
-                const btnEl1 = btnDes[1].nativeElement;
+                const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
 
                 expectToBe(btnEl1.textContent, 'Reset');
 
@@ -864,7 +842,6 @@ describe('TriplesEditorComponent (DONE)', () => {
             });
 
             it('... should return false if isFullscreen is true', () => {
-                // Set fullscreen flag to true
                 component.isFullscreen = true;
 
                 expectToBe(component.isAccordionItemCollapsed(), false);
@@ -885,7 +862,6 @@ describe('TriplesEditorComponent (DONE)', () => {
             });
 
             it('... should return true if isFullscreen is true', () => {
-                // Set fullscreen flag to true
                 component.isFullscreen = true;
 
                 expectToBe(component.isAccordionItemDisabled(), true);

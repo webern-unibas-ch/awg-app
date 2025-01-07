@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
     selector: 'awg-edition-detail',
     templateUrl: './edition-detail.component.html',
     styleUrls: ['./edition-detail.component.scss'],
+    standalone: false,
 })
 export class EditionDetailComponent {
     // Intentionally left empty until implemented

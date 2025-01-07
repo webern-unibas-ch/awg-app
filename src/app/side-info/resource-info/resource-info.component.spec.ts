@@ -1,6 +1,6 @@
 import { JsonPipe } from '@angular/common';
-import { Component, DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 import { AbstractControl, ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -12,7 +12,7 @@ import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockSearchResponseJson } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
@@ -29,10 +29,6 @@ function getErrors(resourceInfoIndex: AbstractControl): {} {
     return resourceInfoIndex.errors || {};
 }
 
-// Mock components
-@Component({ selector: 'awg-test', template: '' })
-class SearchPanelStubComponent {}
-
 describe('ResourceInfoComponent (DONE)', () => {
     let component: ResourceInfoComponent;
     let fixture: ComponentFixture<ResourceInfoComponent>;
@@ -41,7 +37,6 @@ describe('ResourceInfoComponent (DONE)', () => {
     let mockRouter: Partial<Router>;
     let mockDataStreamerService: Partial<DataStreamerService>;
     let dataStreamerService: Partial<DataStreamerService>;
-    let formBuilder: UntypedFormBuilder;
 
     let buildFormSpy: Spy;
     let findIndexPositionInSearchResultsByIdSpy: Spy;
@@ -91,7 +86,6 @@ describe('ResourceInfoComponent (DONE)', () => {
 
         // Inject service from root
         dataStreamerService = TestBed.inject(DataStreamerService);
-        formBuilder = TestBed.inject(UntypedFormBuilder);
 
         const expectedSearchResponse = JSON.parse(JSON.stringify(mockSearchResponseJson));
         expectedSearchResponseWithQuery = new SearchResponseWithQuery(expectedSearchResponse, expectedQuery);
@@ -131,7 +125,7 @@ describe('ResourceInfoComponent (DONE)', () => {
     });
 
     it('... injected service should use provided mockValue', () => {
-        expect(dataStreamerService === mockDataStreamerService).toBe(true);
+        expectToBe(dataStreamerService === mockDataStreamerService, true);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -152,15 +146,14 @@ describe('ResourceInfoComponent (DONE)', () => {
         });
 
         it('... should have empty resourceInfoData', () => {
-            expect(component.resourceInfoData).withContext('should be defined').toBeDefined();
-            expect(component.resourceInfoData).withContext('should equal new ResourceInfo').toEqual(new ResourceInfo());
+            expectToEqual(component.resourceInfoData, new ResourceInfo());
         });
 
         it('... should have fa-icons', () => {
-            expect(component.faArrowLeft).withContext('should be faArrowLeft').toBe(faArrowLeft);
-            expect(component.faChevronLeft).withContext('should be faChevronLeft').toBe(faChevronLeft);
-            expect(component.faChevronRight).withContext('should be faChevronRight').toBe(faChevronRight);
-            expect(component.faTimesCircle).withContext('should be faTimesCircle').toBe(faTimesCircle);
+            expectToEqual(component.faArrowLeft, faArrowLeft);
+            expectToEqual(component.faChevronLeft, faChevronLeft);
+            expectToEqual(component.faChevronRight, faChevronRight);
+            expectToEqual(component.faTimesCircle, faTimesCircle);
         });
 
         describe('VIEW', () => {
@@ -254,8 +247,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             it('... should have got `resourceId` from dataStreamerService', () => {
                 expectSpyCall(dataStreamerResourceIdSpy, 1);
 
-                expect(component.resourceId).withContext('should be truthy').toBeTruthy();
-                expect(component.resourceId).withContext(`should be ${expectedResourceId}`).toBe(expectedResourceId);
+                expectToBe(component.resourceId, expectedResourceId);
             });
 
             it('... should have got searchResponseWithQuery from dataStreamerService', () => {
@@ -268,11 +260,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                 expectSpyCall(updateResourceInfoSpy, 1, [expectedResourceId, expectedResponseClone]);
             });
             it('... should have set `goToIndex` and `resultSize` (via _updateResourceInfo)', () => {
-                expect(component.resultSize).withContext('should be truthy').toBeTruthy();
-                expect(component.resultSize).withContext(`should be ${expectedResultSize}`).toBe(expectedResultSize);
-
-                expect(component.goToIndex).withContext('should be truthy').toBeTruthy();
-                expect(component.goToIndex).withContext(`should be ${expectedGoToIndex}`).toBe(expectedGoToIndex);
+                expectToBe(component.resultSize, expectedResultSize);
+                expectToBe(component.goToIndex, expectedGoToIndex);
             });
 
             it('... should have called _buildForm with `goToIndex` and `resultSize`', () => {
@@ -318,7 +307,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 // Check console
                 expectSpyCall(consoleSpy, 1, expectedLogMessage);
-                expect(mockConsole.get(0)).withContext(`should be ${expectedLogMessage}`).toEqual(expectedLogMessage);
+                expectToEqual(mockConsole.get(0), expectedLogMessage);
             });
         });
 
@@ -330,11 +319,8 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
 
             it('... should set `goToIndex` and `resultSize`', () => {
-                expect(component.resultSize).withContext('should be truthy').toBeTruthy();
-                expect(component.resultSize).withContext(`should be ${expectedResultSize}`).toBe(expectedResultSize);
-
-                expect(component.goToIndex).withContext('should be truthy').toBeTruthy();
-                expect(component.goToIndex).withContext(`should be ${expectedGoToIndex}`).toBe(expectedGoToIndex);
+                expectToBe(component.resultSize, expectedResultSize);
+                expectToBe(component.goToIndex, expectedGoToIndex);
             });
 
             it('... should change `goToIndex` and `resultSize` depending on input', () => {
@@ -346,11 +332,8 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
-                expect(component.resultSize).withContext('should be truthy').toBeTruthy();
-                expect(component.resultSize).withContext(`should be ${expectedResultSize}`).toBe(expectedResultSize);
-
-                expect(component.goToIndex).withContext('should be truthy').toBeTruthy();
-                expect(component.goToIndex).withContext(`should be ${expectedGoToIndex}`).toBe(expectedGoToIndex);
+                expectToBe(component.resultSize, expectedResultSize);
+                expectToBe(component.goToIndex, expectedGoToIndex);
             });
 
             describe('... should set `resourceInfoData` if', () => {
@@ -371,10 +354,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         },
                     };
 
-                    expect(component.resourceInfoData).withContext('should be truthy').toBeTruthy();
-                    expect(component.resourceInfoData)
-                        .withContext(`should be ${expectedResourceInfoData}`)
-                        .toEqual(expectedResourceInfoData);
+                    expectToEqual(component.resourceInfoData, expectedResourceInfoData);
                 });
 
                 it('... only current and next resource given', () => {
@@ -398,13 +378,9 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                     (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
-                    expect(component.goToIndex).withContext('should be 1').toBe(1);
-                    expect(component.resultSize).withContext('should be 3').toBe(3);
-
-                    expect(component.resourceInfoData).withContext('should be truthy').toBeTruthy();
-                    expect(component.resourceInfoData)
-                        .withContext(`should be ${expectedResourceInfoData}`)
-                        .toEqual(expectedResourceInfoData);
+                    expectToBe(component.goToIndex, 1);
+                    expectToBe(component.resultSize, 3);
+                    expectToEqual(component.resourceInfoData, expectedResourceInfoData);
                 });
 
                 it('... only current and previous resource given', () => {
@@ -428,15 +404,9 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                     (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
-                    expect(component.goToIndex).withContext(`should be ${expectedGoToIndex}`).toBe(expectedGoToIndex);
-                    expect(component.resultSize)
-                        .withContext(`should be ${expectedResultSize}`)
-                        .toBe(expectedResultSize);
-
-                    expect(component.resourceInfoData).withContext('should be truthy').toBeTruthy();
-                    expect(component.resourceInfoData)
-                        .withContext(`should be ${expectedResourceInfoData}`)
-                        .toEqual(expectedResourceInfoData);
+                    expectToBe(component.goToIndex, expectedGoToIndex);
+                    expectToBe(component.resultSize, expectedResultSize);
+                    expectToEqual(component.resourceInfoData, expectedResourceInfoData);
                 });
 
                 it('... only current resource given', () => {
@@ -459,15 +429,9 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                     (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
-                    expect(component.goToIndex).withContext(`should be ${expectedGoToIndex}`).toBe(expectedGoToIndex);
-                    expect(component.resultSize)
-                        .withContext(`should be ${expectedResultSize}`)
-                        .toBe(expectedResultSize);
-
-                    expect(component.resourceInfoData).withContext('should be truthy').toBeTruthy();
-                    expect(component.resourceInfoData)
-                        .withContext(`should be ${expectedResourceInfoData}`)
-                        .toEqual(expectedResourceInfoData);
+                    expectToBe(component.goToIndex, expectedGoToIndex);
+                    expectToBe(component.resultSize, expectedResultSize);
+                    expectToEqual(component.resourceInfoData, expectedResourceInfoData);
                 });
 
                 it('... no previous and current resource given', () => {
@@ -500,15 +464,9 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                     (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
-                    expect(component.goToIndex).withContext(`should be ${expectedGoToIndex}`).toBe(expectedGoToIndex);
-                    expect(component.resultSize)
-                        .withContext(`should be ${expectedResultSize}`)
-                        .toBe(expectedResultSize);
-
-                    expect(component.resourceInfoData).withContext('should be truthy').toBeTruthy();
-                    expect(component.resourceInfoData)
-                        .withContext(`should equal ${expectedResourceInfoData}`)
-                        .toEqual(expectedResourceInfoData);
+                    expectToBe(component.goToIndex, expectedGoToIndex);
+                    expectToBe(component.resultSize, expectedResultSize);
+                    expectToEqual(component.resourceInfoData, expectedResourceInfoData);
                 });
             });
         });
@@ -557,10 +515,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                     expectedGoToIndex = 3;
 
                     expect(component.resourceInfoFormGroup).toBeTruthy();
-                    expect(component.resourceInfoFormGroup.controls['resourceInfoIndex']).toBeTruthy();
-                    expect(component.resourceInfoFormGroup.controls['resourceInfoIndex'].value)
-                        .withContext(`should equal ${expectedGoToIndex}`)
-                        .toEqual(expectedGoToIndex);
+                    expectToBe(component.resourceInfoFormGroup.controls['resourceInfoIndex'].value, expectedGoToIndex);
                 });
 
                 it('... with empty index if none is given', () => {
@@ -571,10 +526,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                     fixture.detectChanges();
 
                     expect(component.resourceInfoFormGroup).toBeTruthy();
-                    expect(component.resourceInfoFormGroup.controls['resourceInfoIndex']).toBeTruthy();
-                    expect(component.resourceInfoFormGroup.controls['resourceInfoIndex'].value)
-                        .withContext(`should equal ${expectedEmptyIndex}`)
-                        .toEqual(expectedEmptyIndex);
+                    expectToBe(component.resourceInfoFormGroup.controls['resourceInfoIndex'].value, expectedEmptyIndex);
                 });
             });
 
@@ -631,10 +583,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             actualValue: nanValue,
                         };
 
-                        expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern'])
-                            .withContext(`should equal ${expectedPatternError}`)
-                            .toEqual(expectedPatternError);
+                        expectToEqual(errors['pattern'], expectedPatternError);
                     });
 
                     it('any string', () => {
@@ -647,10 +596,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             actualValue: anyString,
                         };
 
-                        expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern'])
-                            .withContext(`should equal ${expectedPatternError}`)
-                            .toEqual(expectedPatternError);
+                        expectToEqual(errors['pattern'], expectedPatternError);
                     });
 
                     it('any array', () => {
@@ -663,10 +609,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             actualValue: anyArray,
                         };
 
-                        expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern'])
-                            .withContext(`should equal ${expectedPatternError}`)
-                            .toEqual(expectedPatternError);
+                        expectToEqual(errors['pattern'], expectedPatternError);
                     });
 
                     it('empty object', () => {
@@ -679,10 +622,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             actualValue: emptyObject,
                         };
 
-                        expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern'])
-                            .withContext(`should equal ${expectedPatternError}`)
-                            .toEqual(expectedPatternError);
+                        expectToEqual(errors['pattern'], expectedPatternError);
                     });
 
                     it('any object', () => {
@@ -695,10 +635,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             actualValue: anyObject,
                         };
 
-                        expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern'])
-                            .withContext(`should equal ${expectedPatternError}`)
-                            .toEqual(expectedPatternError);
+                        expectToEqual(errors['pattern'], expectedPatternError);
                     });
                 });
 
@@ -715,10 +652,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             actualValue: tenDigitNegativeInteger,
                         };
 
-                        expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern'])
-                            .withContext(`should equal ${expectedPatternError}`)
-                            .toEqual(expectedPatternError);
+                        expectToEqual(errors['pattern'], expectedPatternError);
                     });
 
                     it('no 1-digit negative integers (-1)', () => {
@@ -731,10 +665,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             actualValue: oneDigitNegativeInteger,
                         };
 
-                        expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern'])
-                            .withContext(`should equal ${expectedPatternError}`)
-                            .toEqual(expectedPatternError);
+                        expectToEqual(errors['pattern'], expectedPatternError);
                     });
 
                     it('not 0', () => {
@@ -747,10 +678,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             actualValue: zero,
                         };
 
-                        expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern'])
-                            .withContext(`should equal ${expectedPatternError}`)
-                            .toEqual(expectedPatternError);
+                        expectToEqual(errors['pattern'], expectedPatternError);
                     });
 
                     it('no 11-digit positive integers (12345678901)', () => {
@@ -763,10 +691,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             actualValue: elevenDigitPositivInteger,
                         };
 
-                        expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern'])
-                            .withContext(`should equal ${expectedPatternError}`)
-                            .toEqual(expectedPatternError);
+                        expectToEqual(errors['pattern'], expectedPatternError);
                     });
 
                     it('no floating numbers (1.1)', () => {
@@ -779,26 +704,20 @@ describe('ResourceInfoComponent (DONE)', () => {
                             actualValue: floatingNumber,
                         };
 
-                        expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern'])
-                            .withContext(`should equal ${expectedPatternError}`)
-                            .toEqual(expectedPatternError);
+                        expectToEqual(errors['pattern'], expectedPatternError);
                     });
 
                     it('no big floating numbers (1234567890.0123456789)', () => {
-                        const bigFloatingNumber = 1234567890.0123456789;
-                        resourceInfoIndex.setValue(bigFloatingNumber);
+                        const bigFloatingNumber = '1234567890.0123456789';
+                        resourceInfoIndex.setValue(Number(bigFloatingNumber));
                         errors = getErrors(resourceInfoIndex);
 
                         const expectedPatternError = {
                             requiredPattern: expectedPattern,
-                            actualValue: bigFloatingNumber,
+                            actualValue: Number(bigFloatingNumber),
                         };
 
-                        expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern'])
-                            .withContext(`should equal ${expectedPatternError}`)
-                            .toEqual(expectedPatternError);
+                        expectToEqual(errors['pattern'], expectedPatternError);
                     });
                 });
 
@@ -839,8 +758,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                         const expectedError = { min: 1, actual: -1 };
 
-                        expect(errors['min']).toBeTruthy();
-                        expect(errors['min']).withContext(`should equal ${expectedError}`).toEqual(expectedError);
+                        expectToEqual(errors['min'], expectedError);
                     });
 
                     it('min error == TRUE for 0', () => {
@@ -849,8 +767,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                         const expectedError = { min: 1, actual: 0 };
 
-                        expect(errors['min']).toBeTruthy();
-                        expect(errors['min']).withContext(`should equal ${expectedError}`).toEqual(expectedError);
+                        expectToEqual(errors['min'], expectedError);
                     });
 
                     it('min error == FALSE for 1', () => {
@@ -875,8 +792,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                         const expectedError = { max: 5, actual: 6 };
 
-                        expect(errors['max']).toBeTruthy();
-                        expect(errors['max']).withContext(`should equal ${expectedError}`).toEqual(expectedError);
+                        expectToEqual(errors['max'], expectedError);
                     });
 
                     it('max error == FALSE for value equals resultSize', () => {
@@ -900,14 +816,12 @@ describe('ResourceInfoComponent (DONE)', () => {
             it('... should return index position of a given `resourceId` in given search response', () => {
                 const expectedResponseClone = JSON.parse(JSON.stringify(expectedSearchResponseWithQuery));
 
-                expect(
-                    (component as any)._findIndexPositionInSearchResultsById(expectedResourceId, expectedResponseClone)
-                ).toBeTruthy();
-                expect(
-                    (component as any)._findIndexPositionInSearchResultsById(expectedResourceId, expectedResponseClone)
-                )
-                    .withContext('should be 2')
-                    .toBe(2);
+                const actualIndex = (component as any)._findIndexPositionInSearchResultsById(
+                    expectedResourceId,
+                    expectedResponseClone
+                );
+
+                expectToBe(actualIndex, 2);
             });
 
             it('... should return -1 if resource id is not found in given search response', () => {
@@ -921,12 +835,12 @@ describe('ResourceInfoComponent (DONE)', () => {
                         otherResponseClone.data.subjects.slice(sliceIndex + 1, otherResponseClone.data.subjects.length)
                     );
 
-                expect(
-                    (component as any)._findIndexPositionInSearchResultsById(expectedResourceId, otherResponseClone)
-                ).toBeTruthy();
-                expect((component as any)._findIndexPositionInSearchResultsById(expectedResourceId, otherResponseClone))
-                    .withContext('should be -1')
-                    .toBe(-1);
+                const actualIndex = (component as any)._findIndexPositionInSearchResultsById(
+                    expectedResourceId,
+                    otherResponseClone
+                );
+
+                expectToBe(actualIndex, -1);
             });
         });
 
@@ -1015,12 +929,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
 
             it('... should trigger on click', fakeAsync(() => {
-                const buttonDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'button#awg-resource-info-input-group-text',
-                    1,
-                    1
-                );
+                const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-resource-info-input-group-text', 1, 1);
 
                 // Set input to another index then current.displayIndex (=3)
                 let chosenIndex = 1;
@@ -1031,7 +940,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 // Trigger click on resourceIndex=1 with click helper & wait for changes
-                clickAndAwaitChanges(buttonDes[0], fixture);
+                clickAndAwaitChanges(btnDes[0], fixture);
 
                 // Called resourceIndex=1 (id: 1230)
                 expectSpyCall(navigateToResourceByIndexSpy, 1, 1);
@@ -1047,7 +956,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 // Trigger click on resourceIndex=5 with click helper & wait for changes
-                clickAndAwaitChanges(buttonDes[0], fixture);
+                clickAndAwaitChanges(btnDes[0], fixture);
 
                 // Called resourceIndex=5 (id: 1234)
                 expectSpyCall(navigateToResourceByIndexSpy, 2, 5);
@@ -1093,7 +1002,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         component.resourceInfoData.searchResults = null;
                         component.navigateToSearchPanel();
 
-                        expect(component.resourceInfoData.searchResults).toBeNull();
+                        expectToBe(component.resourceInfoData.searchResults, null);
                         expectSpyCall(navigationSpy, 1, [expectedRoute, expectedParams]);
                     });
 
@@ -1110,9 +1019,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         component.navigateToSearchPanel();
 
                         expect(component.resourceInfoData.searchResults).toBeTruthy();
-                        expect(component.resourceInfoData.searchResults.query)
-                            .withContext('should be empty string (falsy)')
-                            .toBeFalsy();
+                        expectToBe(component.resourceInfoData.searchResults.query, '');
                         expectSpyCall(navigationSpy, 1, [expectedRoute, expectedParams]);
                     });
                 });
@@ -1149,9 +1056,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                         expect(component.resourceInfoData.searchResults).toBeTruthy();
                         expect(component.resourceInfoData.searchResults.query).toBeTruthy();
-                        expect(typeof component.resourceInfoData.searchResults.query)
-                            .withContext(`should be string`)
-                            .toBe('string');
+                        expectToBe(typeof component.resourceInfoData.searchResults.query, 'string');
                         expectSpyCall(navigationSpy, 1, [expectedRoute, expectedParams]);
                     });
                 });
@@ -1183,9 +1088,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                         expect(component.resourceInfoData.searchResults).toBeTruthy();
                         expect(component.resourceInfoData.searchResults.query).toBeTruthy();
-                        expect(typeof component.resourceInfoData.searchResults.query)
-                            .withContext(`should be object`)
-                            .toBe('object');
+                        expectToBe(typeof component.resourceInfoData.searchResults.query, 'object');
                         expectSpyCall(navigationSpy, 1, [expectedRoute, expectedParams]);
                     });
                 });
@@ -1193,18 +1096,18 @@ describe('ResourceInfoComponent (DONE)', () => {
 
             describe('... should trigger on click', () => {
                 it('... without query', fakeAsync(() => {
-                    const buttonDe = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
 
                     component.resourceInfoData.searchResults = new SearchResponseWithQuery(mockSearchResponseJson, '');
 
                     // Trigger click with click helper & wait for changes
-                    clickAndAwaitChanges(buttonDe[0], fixture);
+                    clickAndAwaitChanges(btnDes[0], fixture);
 
                     expectSpyCall(navigateToSearchPanelSpy, 1);
                 }));
 
                 it('with string query', fakeAsync(() => {
-                    const buttonDe = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
 
                     component.resourceInfoData.searchResults = new SearchResponseWithQuery(
                         mockSearchResponseJson,
@@ -1212,13 +1115,13 @@ describe('ResourceInfoComponent (DONE)', () => {
                     );
 
                     // Trigger click with click helper & wait for changes
-                    clickAndAwaitChanges(buttonDe[0], fixture);
+                    clickAndAwaitChanges(btnDes[0], fixture);
 
                     expectSpyCall(navigateToSearchPanelSpy, 1);
                 }));
 
                 it('with object query', fakeAsync(() => {
-                    const buttonDe = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
 
                     component.resourceInfoData.searchResults = new SearchResponseWithQuery(mockSearchResponseJson, {
                         filterByRestype: '43',
@@ -1228,7 +1131,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                     });
 
                     // Trigger click with click helper & wait for changes
-                    clickAndAwaitChanges(buttonDe[0], fixture);
+                    clickAndAwaitChanges(btnDes[0], fixture);
 
                     expectSpyCall(navigateToSearchPanelSpy, 1);
                 }));
@@ -1257,37 +1160,35 @@ describe('ResourceInfoComponent (DONE)', () => {
                 });
 
                 it('... should have faArrowLeft icon in first div button', () => {
-                    const buttonDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
-                    const iconDes = getAndExpectDebugElementByCss(buttonDes[0], 'fa-icon', 1, 1);
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
+                    const iconDes = getAndExpectDebugElementByCss(btnDes[0], 'fa-icon', 1, 1);
 
                     expect(iconDes[0].children[0]).toBeTruthy();
                     expect(iconDes[0].children[0].classes).toBeTruthy();
-                    expect(iconDes[0].children[0].classes['fa-arrow-left']).toBeTrue();
+                    expectToBe(iconDes[0].children[0].classes['fa-arrow-left'], true);
                 });
 
                 it('... should display innerHTML text on first div button', () => {
-                    const buttonDe = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
-                    const spanDe = getAndExpectDebugElementByCss(buttonDe[0], 'span.awg-resource-info-btn-text', 1, 1);
-                    const spanEl = spanDe[0].nativeElement;
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div button', 1, 1);
+                    const spanDes = getAndExpectDebugElementByCss(btnDes[0], 'span.awg-resource-info-btn-text', 1, 1);
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                     const expectedText = 'Zur Suche';
 
-                    expect(spanEl.innerText).toBeTruthy();
-                    expect(spanEl.innerText).withContext(`should be ${expectedText}`).toBe(expectedText);
+                    expectToBe(spanEl.innerText, expectedText);
                 });
 
                 it('... should display bold, small, muted text in second div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div', 2, 2);
                     const strongDes = getAndExpectDebugElementByCss(divDes[1], 'strong', 1, 1);
-                    const strongEl = strongDes[0].nativeElement;
+                    const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                     const expectedText = 'Aktuelle Suchanfrage';
 
                     expect(strongEl).toHaveClass('text-muted');
                     expect(strongEl).toHaveClass('small');
 
-                    expect(strongEl.innerText).toBeTruthy();
-                    expect(strongEl.innerText).withContext(`should be ${expectedText}`).toBe(expectedText);
+                    expectToBe(strongEl.innerText, expectedText);
                 });
 
                 it('... should display query in span in second div', () => {
@@ -1297,12 +1198,9 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div', 2, 2);
                     const spanDes = getAndExpectDebugElementByCss(divDes[1], 'span', 1, 1);
-                    const spanEl = spanDes[0].nativeElement;
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
-                    expect(spanEl.innerText).toBeTruthy();
-                    expect(spanEl.innerText)
-                        .withContext(`should be ${expectedQuery}`)
-                        .toBe(jsonPipe.transform(expectedQuery));
+                    expectToBe(spanEl.innerText, jsonPipe.transform(expectedQuery));
                 });
 
                 it('... should display `---`  without query in span in second div', () => {
@@ -1312,12 +1210,11 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.card-header div', 2, 2);
                     const spanDes = getAndExpectDebugElementByCss(divDes[1], 'span', 1, 1);
-                    const spanEl = spanDes[0].nativeElement;
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                     const expectedText = '---';
 
-                    expect(spanEl.innerText).toBeTruthy();
-                    expect(spanEl.innerText).withContext(`should be ${expectedText}`).toBe(expectedText);
+                    expectToBe(spanEl.innerText, expectedText);
                 });
             });
 
@@ -1337,7 +1234,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                     it('... should display text left (text-start)', () => {
                         const ulDes = getAndExpectDebugElementByCss(compDe, 'ul.awg-resource-info-list-group', 1, 1);
                         const aDes = getAndExpectDebugElementByCss(ulDes[0], 'a.awg-list-group-item', 2, 2);
-                        const aEl0 = aDes[0].nativeElement;
+                        const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
 
                         expect(aEl0).toHaveClass('text-start');
                     });
@@ -1350,7 +1247,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const aEl0 = aDes[0].nativeElement;
+                            const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
 
                             expect(aEl0).toHaveClass('list-group-item-action');
                         });
@@ -1390,7 +1287,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
                             // Get first div
                             const strongDes = getAndExpectDebugElementByCss(divDes[0], 'strong', 1, 1);
-                            const strongEl = strongDes[0].nativeElement;
+                            const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                             expect(strongEl).toHaveClass('text-muted');
                             expect(strongEl).toHaveClass('small');
@@ -1406,7 +1303,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const iconDes = getAndExpectDebugElementByCss(strongDes[0], 'fa-icon', 1, 1);
                             expect(iconDes[0].children[0]).toBeTruthy();
                             expect(iconDes[0].children[0].classes).toBeTruthy();
-                            expect(iconDes[0].children[0].classes['fa-chevron-left']).toBeTrue();
+                            expectToBe(iconDes[0].children[0].classes['fa-chevron-left'], true);
                         });
 
                         it('... should point to previous resource in span in strong element', () => {
@@ -1423,14 +1320,11 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1
                             );
 
-                            const spanEl = spanDes[0].nativeElement;
+                            const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
                             const expectedIndex = component.resourceInfoData.resources.previous.displayIndex; // = 2
                             const expectedInnerText = `Vorheriges Ergebnis (${expectedIndex}/${expectedResultSize})`;
 
-                            expect(spanEl.innerText).toBeTruthy();
-                            expect(spanEl.innerText)
-                                .withContext(`should be ${expectedInnerText}`)
-                                .toBe(expectedInnerText);
+                            expectToBe(spanEl.innerText, expectedInnerText);
                         });
 
                         it('... should have two divs.single-line in second div', () => {
@@ -1442,7 +1336,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
                             const divDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line', 2, 2);
                             // Get second div
-                            const divEl1 = divDes[1].nativeElement;
+                            const divEl1: HTMLDivElement = divDes[1].nativeElement;
 
                             expect(divEl1).toHaveClass('text-muted');
                             expect(divEl1).toHaveClass('small');
@@ -1462,11 +1356,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2,
                                 2
                             );
-                            const spanEl0 = spanDes[0].nativeElement;
+                            const spanEl0: HTMLSpanElement = spanDes[0].nativeElement;
                             const title = component.resourceInfoData.resources.previous.title; // = Nelson 1974
 
-                            expect(spanEl0.innerText).toBeTruthy();
-                            expect(spanEl0.innerText).withContext(`should be ${title}`).toBe(title);
+                            expectToBe(spanEl0.innerText, title);
                         });
 
                         it('... should display previous subtitle in second div.single-line', () => {
@@ -1482,11 +1375,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2,
                                 2
                             );
-                            const spanEl1 = spanDes[1].nativeElement;
+                            const spanEl1: HTMLSpanElement = spanDes[1].nativeElement;
                             const subTitle = component.resourceInfoData.resources.previous.subtitle; // = Bibliografie
 
-                            expect(spanEl1.innerText).toBeTruthy();
-                            expect(spanEl1.innerText).withContext(`should be ${subTitle}`).toBe(subTitle);
+                            expectToBe(spanEl1.innerText, subTitle);
                         });
                     });
 
@@ -1503,10 +1395,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         });
 
                         it('... should have current.displayIndex === 1', () => {
-                            expect(component.resourceInfoData.resources.current.displayIndex).toBeTruthy();
-                            expect(component.resourceInfoData.resources.current.displayIndex)
-                                .withContext('should be 1')
-                                .toBe(1);
+                            expectToBe(component.resourceInfoData.resources.current.displayIndex, 1);
                         });
 
                         it('... should have list-group-item-danger class', () => {
@@ -1516,7 +1405,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const aEl0 = aDes[0].nativeElement;
+                            const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
 
                             expect(aEl0).toHaveClass('list-group-item-danger');
                         });
@@ -1539,7 +1428,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
                             // Get first div
                             const strongDes = getAndExpectDebugElementByCss(divDes[0], 'strong', 1, 1);
-                            const strongEl = strongDes[0].nativeElement;
+                            const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                             expect(strongEl).toHaveClass('text-muted');
                             expect(strongEl).toHaveClass('small');
@@ -1556,7 +1445,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                             expect(iconDes[0].children[0]).toBeTruthy();
                             expect(iconDes[0].children[0].classes).toBeTruthy();
-                            expect(iconDes[0].children[0].classes['fa-circle-xmark']).toBeTrue();
+                            expectToBe(iconDes[0].children[0].classes['fa-circle-xmark'], true);
                         });
 
                         it('... should have two empty divs.single-line in second div', () => {
@@ -1569,27 +1458,20 @@ describe('ResourceInfoComponent (DONE)', () => {
                             // Get second outer div
                             const divDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line', 2, 2);
                             // Get second inner div
-                            const divEl1 = divDes[1].nativeElement;
+                            const divEl1: HTMLDivElement = divDes[1].nativeElement;
 
                             expect(divEl1).toHaveClass('text-muted');
                             expect(divEl1).toHaveClass('small');
 
                             // Get spans
                             const spanDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line span', 2, 2);
-                            const spanEl0 = spanDes[0].nativeElement;
-                            const spanEl1 = spanDes[1].nativeElement;
+                            const spanEl0: HTMLSpanElement = spanDes[0].nativeElement;
+                            const spanEl1: HTMLSpanElement = spanDes[1].nativeElement;
 
                             const whiteSpace = '\xA0'; // Hex code for a non-breaking space '&nbsp;'
 
-                            expect(spanEl0.innerText).toBeTruthy();
-                            expect(spanEl0.innerText)
-                                .withContext(`should be non-breaking whiteSpace ${whiteSpace}`)
-                                .toBe(whiteSpace);
-
-                            expect(spanEl1.innerText).toBeTruthy();
-                            expect(spanEl1.innerText)
-                                .withContext(`should be non-breaking whiteSpace ${whiteSpace}`)
-                                .toBe(whiteSpace);
+                            expectToBe(spanEl0.innerText, whiteSpace);
+                            expectToBe(spanEl1.innerText, whiteSpace);
                         });
                     });
                 });
@@ -1602,7 +1484,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                         it('... should have list-group-item-info class', () => {
                             const liDes = getAndExpectDebugElementByCss(compDe, 'li.awg-list-group-item', 1, 1);
-                            const liEl = liDes[0].nativeElement;
+                            const liEl: HTMLLIElement = liDes[0].nativeElement;
 
                             expect(liEl).toHaveClass('list-group-item-info');
                         });
@@ -1626,7 +1508,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const strongEl = strongDes[0].nativeElement;
+                            const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                             expect(strongEl).toHaveClass('text-muted');
                             expect(strongEl).toHaveClass('small');
@@ -1646,14 +1528,11 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1
                             );
 
-                            const spanEl = spanDes[0].nativeElement;
+                            const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
                             const expectedIndex = component.resourceInfoData.resources.current.displayIndex; // = 3
                             const expectedInnerText = `Angezeigtes Ergebnis (${expectedIndex}/${expectedResultSize})`;
 
-                            expect(spanEl.innerText).toBeTruthy();
-                            expect(spanEl.innerText)
-                                .withContext(`should be ${expectedInnerText}`)
-                                .toBe(expectedInnerText);
+                            expectToBe(spanEl.innerText, expectedInnerText);
                         });
 
                         it('... should contain one div with button and an input in form > div.input-group', () => {
@@ -1687,76 +1566,57 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1
                             );
 
-                            // FormControlName='resourceInfoIndex'
-                            expect(inputDes[0].attributes['formControlName']).toBeTruthy();
-                            expect(inputDes[0].attributes['formControlName'])
-                                .withContext('should be resourceInfoIndex')
-                                .toBe('resourceInfoIndex');
-
-                            // Type='number'
-                            expect(inputDes[0].attributes['type']).toBeTruthy();
-                            expect(inputDes[0].attributes['type']).withContext('should be number').toBe('number');
-
-                            // Size=4
-                            expect(inputDes[0].attributes['size']).toBeTruthy();
-                            expect(inputDes[0].attributes['size']).withContext('should be 4').toBe('4');
-                            // Step=1
-                            expect(inputDes[0].attributes['step']).toBeTruthy();
-                            expect(inputDes[0].attributes['step']).withContext('should be 1').toBe('1');
+                            expectToBe(inputDes[0].attributes['formControlName'], 'resourceInfoIndex');
+                            expectToBe(inputDes[0].attributes['type'], 'number');
+                            expectToBe(inputDes[0].attributes['size'], '4');
+                            expectToBe(inputDes[0].attributes['step'], '1');
                         });
 
                         describe('button', () => {
                             it('... should have correct options set', () => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                                // Type='submit'
-                                expect(buttonDes[0].attributes['type']).toBeTruthy();
-                                expect(buttonDes[0].attributes['type']).withContext('should be submit').toBe('submit');
-
-                                // Class=btn
-                                expect(buttonEl).toHaveClass('btn');
-
-                                // Disabled = true
-                                expect(buttonEl.disabled).toBeTrue();
+                                expectToBe(btnDes[0].attributes['type'], 'submit');
+                                expect(btnEl).toHaveClass('btn');
+                                expectToBe(btnEl.disabled, true);
                             });
 
                             it('... should display innerHTML text', () => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                                 const expectedText = 'Gehe zu';
 
-                                expect(buttonEl.innerText).toBeTruthy();
-                                expect(buttonEl.innerText).withContext(`should be ${expectedText}`).toBe(expectedText);
+                                expectToBe(btnEl.innerText, expectedText);
                             });
 
                             it('... should have btn-outline-success class when form is valid', () => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                                 // Form is valid
                                 expect(component.resourceInfoFormGroup.valid).toBeTruthy();
                                 expect(component.resourceInfoFormGroup.invalid).toBeFalsy();
 
                                 // Class is btn-outline-success
-                                expect(buttonEl).toHaveClass('btn-outline-success');
-                                expect(buttonEl).not.toHaveClass('btn-outline-danger');
+                                expect(btnEl).toHaveClass('btn-outline-success');
+                                expect(btnEl).not.toHaveClass('btn-outline-danger');
                             });
 
                             it('... should have btn-outline-danger class when form is not valid', () => {
@@ -1767,41 +1627,39 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 // Apply changes
                                 fixture.detectChanges();
 
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                                 // Form is invalid
                                 expect(component.resourceInfoFormGroup.valid).toBeFalsy();
                                 expect(component.resourceInfoFormGroup.invalid).toBeTruthy();
 
                                 // Class is btn-outline-danger
-                                expect(buttonEl).not.toHaveClass('btn-outline-success');
-                                expect(buttonEl).toHaveClass('btn-outline-danger');
+                                expect(btnEl).not.toHaveClass('btn-outline-success');
+                                expect(btnEl).toHaveClass('btn-outline-danger');
                             });
 
                             it('... should be disabled when input index is current.displayIndex', () => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
                                 const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
 
                                 // Input index is current.displayIndex
-                                expect(resourceInfoIndex.value)
-                                    .withContext(
-                                        `should be ${component.resourceInfoData.resources.current.displayIndex}`
-                                    )
-                                    .toBe(component.resourceInfoData.resources.current.displayIndex);
-                                // Disabled = true
-                                expect(buttonEl.disabled).toBeTrue();
+                                expectToBe(
+                                    resourceInfoIndex.value,
+                                    component.resourceInfoData.resources.current.displayIndex
+                                );
+                                expectToBe(btnEl.disabled, true);
                             });
 
                             it('... should be disabled when form is not valid', () => {
@@ -1812,20 +1670,20 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 // Apply changes
                                 fixture.detectChanges();
 
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                                 // Form is invalid
                                 expect(component.resourceInfoFormGroup.valid).toBeFalsy();
                                 expect(component.resourceInfoFormGroup.invalid).toBeTruthy();
 
                                 // Disabled = true
-                                expect(buttonEl.disabled).toBeTrue();
+                                expectToBe(btnEl.disabled, true);
                             });
 
                             it('... should be enabled when input index is not current.displayIndex and form is valid', () => {
@@ -1836,43 +1694,40 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 // Apply changes
                                 fixture.detectChanges();
 
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                                 // Form is valid
                                 expect(component.resourceInfoFormGroup.valid).toBeTruthy();
                                 expect(component.resourceInfoFormGroup.invalid).toBeFalsy();
 
                                 // Input index is different from current.displayIndex
-                                expect(resourceInfoIndex.value)
-                                    .withContext(
-                                        `should not be ${component.resourceInfoData.resources.current.displayIndex}`
-                                    )
-                                    .not.toBe(component.resourceInfoData.resources.current.displayIndex);
-
-                                // Disabled = false
-                                expect(buttonEl.disabled).toBeFalse();
+                                expect(resourceInfoIndex.value).not.toBe(
+                                    component.resourceInfoData.resources.current.displayIndex
+                                );
+                                expectToBe(btnEl.disabled, false);
                             });
 
                             it('... should not be able to navigate to resource by index when button is disabled', fakeAsync(() => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
                                 const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
 
                                 // ---------------------------
                                 // DISABLED: case 1
                                 // Input index is current.displayIndex
-                                expect(resourceInfoIndex.value).toBe(
+                                expectToBe(
+                                    resourceInfoIndex.value,
                                     component.resourceInfoData.resources.current.displayIndex
                                 );
 
@@ -1881,10 +1736,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 expect(component.resourceInfoFormGroup.invalid).toBeFalsy();
 
                                 // Disabled = true
-                                expect(buttonEl.disabled).toBeTrue();
+                                expectToBe(btnEl.disabled, true);
 
                                 // Trigger click on button with click helper & wait for changes
-                                clickAndAwaitChanges(buttonDes[0], fixture);
+                                clickAndAwaitChanges(btnDes[0], fixture);
 
                                 expectSpyCall(navigateToResourceByIndexSpy, 0);
 
@@ -1901,22 +1756,22 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 expect(component.resourceInfoFormGroup.invalid).toBeTruthy();
 
                                 // Disabled = true
-                                expect(buttonEl.disabled).toBeTrue();
+                                expectToBe(btnEl.disabled, true);
 
                                 // Trigger click on button with click helper & wait for changes
-                                clickAndAwaitChanges(buttonDes[0], fixture);
+                                clickAndAwaitChanges(btnDes[0], fixture);
 
                                 expectSpyCall(navigateToResourceByIndexSpy, 0);
                             }));
 
                             it('... should be able to navigate to resource by index on click when button is enabled', fakeAsync(() => {
-                                const buttonDes = getAndExpectDebugElementByCss(
+                                const btnDes = getAndExpectDebugElementByCss(
                                     compDe,
                                     'button#awg-resource-info-input-group-text',
                                     1,
                                     1
                                 );
-                                const buttonEl = buttonDes[0].nativeElement;
+                                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                                 // Set input to another index then current.displayIndex (=3)
                                 const chosenIndex = 1;
@@ -1936,10 +1791,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 expect(component.resourceInfoFormGroup.invalid).toBeFalsy();
 
                                 // Button.disabled = false
-                                expect(buttonEl.disabled).toBeFalse();
+                                expectToBe(btnEl.disabled, false);
 
                                 // Trigger click on button with click helper & wait for changes
-                                clickAndAwaitChanges(buttonDes[0], fixture);
+                                clickAndAwaitChanges(btnDes[0], fixture);
 
                                 expectSpyCall(navigateToResourceByIndexSpy, 1, chosenIndex);
                             }));
@@ -1974,7 +1829,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                     it('... should display text right (text-end)', () => {
                         const ulDes = getAndExpectDebugElementByCss(compDe, 'ul.awg-resource-info-list-group', 1, 1);
                         const aDes = getAndExpectDebugElementByCss(ulDes[0], 'a.awg-list-group-item', 2, 2);
-                        const aEl1 = aDes[1].nativeElement;
+                        const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
                         expect(aEl1).toHaveClass('list-group-item-action');
                         expect(aEl1).toHaveClass('text-end');
                     });
@@ -1982,7 +1837,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                     describe('if next resource is given', () => {
                         it('... should have list-group-item-action class', () => {
                             const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-list-group-item.text-end', 1, 1);
-                            const aEl0 = aDes[0].nativeElement;
+                            const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
 
                             expect(aEl0).toHaveClass('list-group-item-action');
                         });
@@ -2016,7 +1871,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2
                             );
                             const strongDes = getAndExpectDebugElementByCss(divDes[0], 'strong', 1, 1);
-                            const strongEl = strongDes[0].nativeElement;
+                            const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                             expect(strongEl).toHaveClass('text-muted');
                             expect(strongEl).toHaveClass('small');
@@ -2032,7 +1887,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const iconDes = getAndExpectDebugElementByCss(strongDes[0], 'fa-icon', 1, 1);
                             expect(iconDes[0].children[0]).toBeTruthy();
                             expect(iconDes[0].children[0].classes).toBeTruthy();
-                            expect(iconDes[0].children[0].classes['fa-chevron-right']).toBeTrue();
+                            expectToBe(iconDes[0].children[0].classes['fa-chevron-right'], true);
                         });
 
                         it('... should point to previous resource in span in strong element', () => {
@@ -2049,14 +1904,11 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1
                             );
 
-                            const spanEl = spanDes[0].nativeElement;
+                            const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
                             const expectedIndex = component.resourceInfoData.resources.next.displayIndex; // = 4
                             const expectedInnerText = `Nächstes Ergebnis (${expectedIndex}/${expectedResultSize})`;
 
-                            expect(spanEl.innerText).toBeTruthy();
-                            expect(spanEl.innerText)
-                                .withContext(`should be ${expectedInnerText}`)
-                                .toBe(expectedInnerText);
+                            expectToBe(spanEl.innerText, expectedInnerText);
                         });
 
                         it('... should have two divs.single-line in second div', () => {
@@ -2068,7 +1920,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
                             const divDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line', 2, 2);
                             // // get second div
-                            const divEl1 = divDes[1].nativeElement;
+                            const divEl1: HTMLDivElement = divDes[1].nativeElement;
 
                             expect(divEl1).toHaveClass('text-muted');
                             expect(divEl1).toHaveClass('small');
@@ -2088,11 +1940,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2,
                                 2
                             );
-                            const spanEl0 = spanDes[0].nativeElement;
+                            const spanEl0: HTMLSpanElement = spanDes[0].nativeElement;
                             const title = component.resourceInfoData.resources.next.title; // = BrownJ 2014
 
-                            expect(spanEl0.innerText).toBeTruthy();
-                            expect(spanEl0.innerText).withContext(`should be ${title}`).toBe(title);
+                            expectToBe(spanEl0.innerText, title);
                         });
 
                         it('... should display next subtitle in second div.single-line', () => {
@@ -2109,11 +1960,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2,
                                 2
                             );
-                            const spanEl1 = spanDes[1].nativeElement;
+                            const spanEl1: HTMLSpanElement = spanDes[1].nativeElement;
                             const subTitle = component.resourceInfoData.resources.next.subtitle; // = Bibliografie
 
-                            expect(spanEl1.innerText).toBeTruthy();
-                            expect(spanEl1.innerText).withContext(`should be ${subTitle}`).toBe(subTitle);
+                            expectToBe(spanEl1.innerText, subTitle);
                         });
                     });
 
@@ -2130,15 +1980,12 @@ describe('ResourceInfoComponent (DONE)', () => {
                         });
 
                         it('... should have current.displayIndex === resultSize', () => {
-                            expect(component.resourceInfoData.resources.current.displayIndex).toBeTruthy();
-                            expect(component.resourceInfoData.resources.current.displayIndex)
-                                .withContext(`should be ${component.resultSize}`)
-                                .toBe(component.resultSize);
+                            expectToBe(component.resourceInfoData.resources.current.displayIndex, component.resultSize);
                         });
 
                         it('... should have list-group-item-danger class', () => {
                             const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-list-group-item.text-end', 1, 1);
-                            const aEl0 = aDes[0].nativeElement;
+                            const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
 
                             expect(aEl0).toHaveClass('list-group-item-danger');
                         });
@@ -2161,7 +2008,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
                             // Get first div
                             const strongDes = getAndExpectDebugElementByCss(divDes[0], 'strong', 1, 1);
-                            const strongEl = strongDes[0].nativeElement;
+                            const strongEl: HTMLElement = strongDes[0].nativeElement;
 
                             expect(strongEl).toHaveClass('text-muted');
                             expect(strongEl).toHaveClass('small');
@@ -2177,7 +2024,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const iconDes = getAndExpectDebugElementByCss(strongDes[0], 'fa-icon', 1, 1);
                             expect(iconDes[0].children[0]).toBeTruthy();
                             expect(iconDes[0].children[0].classes).toBeTruthy();
-                            expect(iconDes[0].children[0].classes['fa-circle-xmark']).toBeTrue();
+                            expectToBe(iconDes[0].children[0].classes['fa-circle-xmark'], true);
                         });
 
                         it('... should have two empty divs.single-line in second div', () => {
@@ -2190,27 +2037,20 @@ describe('ResourceInfoComponent (DONE)', () => {
                             // Get second outer div
                             const divDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line', 2, 2);
                             // Get second inner div
-                            const divEl1 = divDes[1].nativeElement;
+                            const divEl1: HTMLDivElement = divDes[1].nativeElement;
 
                             expect(divEl1).toHaveClass('text-muted');
                             expect(divEl1).toHaveClass('small');
 
                             // Get spans
                             const spanDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line span', 2, 2);
-                            const spanEl0 = spanDes[0].nativeElement;
-                            const spanEl1 = spanDes[1].nativeElement;
+                            const spanEl0: HTMLSpanElement = spanDes[0].nativeElement;
+                            const spanEl1: HTMLSpanElement = spanDes[1].nativeElement;
 
                             const whiteSpace = '\xA0'; // Hex code for a non-breaking space '&nbsp;'
 
-                            expect(spanEl0.innerText).withContext(`should be truthy`).toBeTruthy();
-                            expect(spanEl0.innerText)
-                                .withContext(`should be non-breaking whiteSpace ${whiteSpace}`)
-                                .toBe(whiteSpace);
-
-                            expect(spanEl1.innerText).withContext(`should be truthy`).toBeTruthy();
-                            expect(spanEl1.innerText)
-                                .withContext(`should be non-breaking whiteSpace ${whiteSpace}`)
-                                .toBe(whiteSpace);
+                            expectToBe(spanEl0.innerText, whiteSpace);
+                            expectToBe(spanEl1.innerText, whiteSpace);
                         });
                     });
                 });
@@ -2221,11 +2061,11 @@ describe('ResourceInfoComponent (DONE)', () => {
                     const expectedHref = 'https://arachne.dainst.org/';
                     const expectedInnerText = 'iDAI.object arachne';
 
-                    const aDe = getAndExpectDebugElementByCss(compDe, 'div.card-footer a', 1, 1);
-                    const aEl = aDe[0].nativeElement;
+                    const aDes = getAndExpectDebugElementByCss(compDe, 'div.card-footer a', 1, 1);
+                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                    expect(aEl.href).withContext(`should be ${expectedHref}`).toBe(expectedHref);
-                    expect(aEl.innerText).withContext(`should be ${expectedInnerText}`).toBe(expectedInnerText);
+                    expectToBe(aEl.href, expectedHref);
+                    expectToBe(aEl.innerText, expectedInnerText);
                 });
             });
         });

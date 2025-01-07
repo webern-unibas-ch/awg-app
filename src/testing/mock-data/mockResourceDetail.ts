@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-
 /**
  * Test helper data file: mockResourceDetail.
  *
@@ -14,7 +12,7 @@ export const mockResourceDetail = {
         icon: 'https://www.salsah.org:443/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=125',
         type: 'Supplement',
         lastmod: '2017-12-05 15:16:17',
-        title: '[Programm:] Sdružení pro soudobou houdbu v Praze<br/>[Mi] 9. Jan 1935',
+        title: '[Programm:] Sdružení pro soudobou houdbu v Praze<br />[Mi] 9. Jan 1935',
     },
     content: {
         props: [

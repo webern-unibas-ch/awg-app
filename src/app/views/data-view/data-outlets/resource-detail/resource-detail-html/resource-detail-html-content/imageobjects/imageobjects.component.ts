@@ -14,6 +14,7 @@ import { NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
     templateUrl: './imageobjects.component.html',
     styleUrls: ['./imageobjects.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class ResourceDetailHtmlContentImageobjectsComponent {
     /**

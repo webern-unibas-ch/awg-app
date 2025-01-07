@@ -1,0 +1,252 @@
+{
+    "sources": [
+        {
+            "id": "source_A",
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Autograph von <em>Kunfttag I</em> („Dem bist du Kind“) M 144: einzige Textfassung.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": ["1 Bogen (Bl. 1/2). Falz rechts, Bl. 1<sup>v</sup>, 2<sup>r</sup> unbeschriftet."],
+                "writingMaterialStrings": [
+                    "Notenpapier, 22 Systeme, Format hoch 344 × 265 mm, Firmenzeichen [JE] | <em>No. 7 | 22 linig.</em> auf Bl. 1<sup>v</sup>, 2<sup>v</sup> unten links"
+                ],
+                "writingInstruments": {
+                    "main": "Tinte",
+                    "secondary": ["Bleistift", "roter Buntstift"]
+                },
+                "titles": [
+                    "<em>Kunfttag I | aus dem „VII. Ring‘ von | Stefan George</em> auf Bl. 1<sup>r</sup> System 1–3 rechts"
+                ],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "Autograph von <em>Kunfttag I</em> („Dem bist du Kind“) M 144: einzige Textfassung",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4–7",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–13",
+                                            "measure": "3–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–19",
+                                            "measure": "5–7",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4–7",
+                                            "measure": "8–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–14",
+                                            "measure": "10–12",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–20",
+                                            "measure": "13–15",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_A_corr_1",
+                        "label": "Korrekturen 1 (mit schwarzer Tinte ggf. auf Rasur)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. u.",
+                                            "position": "5. Note",
+                                            "comment": "Unterstimmenschicht: Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Ges.",
+                                            "position": "1. Note",
+                                            "comment": "Großschreibung <em>Gott</em> überschreibt <em>gott</em>."
+                                        },
+                                        {
+                                            "measure": "4",
+                                            "system": "",
+                                            "position": "(8/8)",
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich Taktstrich."
+                                        },
+                                        {
+                                            "measure": "5",
+                                            "system": "Klav. o.",
+                                            "position": "1/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b."
+                                        },
+                                        {
+                                            "measure": "5 <br /> bis 9",
+                                            "system": "Klav.",
+                                            "position": "3/8 <br /> 1/8",
+                                            "comment": "Auf zahlreichen Rasuren."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Ges.",
+                                            "position": "5/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "7",
+                                            "system": "Ges.",
+                                            "position": "4/8",
+                                            "comment": "Auf Rasur. Ante correcturam: vermutlich e<sup>1</sup> oder es<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Ges.",
+                                            "position": "4/8",
+                                            "comment": "Großschreibung <em>Mich</em> überschreibt <em>mich</em>."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Ges.",
+                                            "position": "1/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. u.",
+                                            "position": "2–6/8",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. u.",
+                                            "position": "6/8",
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu B<sub>1</sub> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu H<sub>1</sub>."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. o.",
+                                            "position": "4/8",
+                                            "comment": "Ende des Bogens bis nach T. 12 rasiert und geändert zu T. 12 4/8. <a (click)=\"ref.navigateToReportFragment({complexId: 'm144', fragmentId: 'source_A'})\"><strong>A</strong></a>: Akkoladenwechsel nach T. 12."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "source_A_corr_2",
+                        "label": "Korrekturen 2 (mit Bleistift)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "6 <br /> bis 8",
+                                            "system": "Ges.",
+                                            "position": "",
+                                            "comment": "Korrekturskizze über dem System:  <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "7",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Korrekturskizze:  <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. u.",
+                                            "position": "2/8",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b hinzugefügt. Siehe TkA."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. o.",
+                                            "position": "4/8",
+                                            "comment": "f<sup>2</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Ges.",
+                                            "position": "",
+                                            "comment": "Korrekturskizze über dem System:  <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "14",
+                                            "system": "Ges.",
+                                            "position": "1–4/8",
+                                            "comment": "Drei Achtelnoten und Achtelpause geändert zu drei triolische Achtelnoten und Viertelpause."
+                                        },
+                                        {
+                                            "measure": "14 <br /> bis 15",
+                                            "system": "",
+                                            "position": "(3/4)",
+                                            "comment": "T. 15 durch Einklammerung getilgt, Taktstrich nach T. 14 geändert zu Schlusstaktstrich und Fermaten zu 3/4 in Klav. o. sowie zu 6/8 in Klav. u. hinzugefügt mit rotem Buntstift."
+                                        },
+                                        {
+                                            "measure": "15",
+                                            "system": "Klav.",
+                                            "position": "2/8",
+                                            "comment": "<em>8 höher</em> hinzugefügt über Klav. o."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

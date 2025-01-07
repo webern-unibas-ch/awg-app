@@ -16,6 +16,7 @@ import { ToastMessage } from '@awg-shared/toast/toast.service';
     templateUrl: './triples-editor.component.html',
     styleUrls: ['./triples-editor.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class TriplesEditorComponent {
     /**

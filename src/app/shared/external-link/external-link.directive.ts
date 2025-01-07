@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Directive, HostBinding, Inject, Input, OnChanges, PLATFORM_ID } from '@angular/core';
+import { Directive, HostBinding, inject, Input, OnChanges, PLATFORM_ID } from '@angular/core';
 
 /**
  * The external link directive.
@@ -8,8 +8,8 @@ import { Directive, HostBinding, Inject, Input, OnChanges, PLATFORM_ID } from '@
  * adds specific attributes if href has an external target.
  */
 @Directive({
-    // eslint-disable-next-line @angular-eslint/directive-selector
     selector: 'a[href]',
+    standalone: false,
 })
 export class ExternalLinkDirective implements OnChanges {
     /**
@@ -41,13 +41,11 @@ export class ExternalLinkDirective implements OnChanges {
     @Input() href: string;
 
     /**
-     * Constructor of the ExternalLinkDirective.
+     * Private readonly injection variable: _platformId.
      *
-     * It declares and injects a private instance of the Angular PLATFORM_ID.
-     *
-     * @param {PLATFORM_ID} platformId Instance of the Angular PLATFORM_ID.
+     * It keeps the instance of the injected Angular PLATFORM_ID.
      */
-    constructor(@Inject(PLATFORM_ID) private platformId: string) {}
+    private readonly _platformId = inject(PLATFORM_ID);
 
     /**
      * Angular life cycle hook: ngOnChanges.
@@ -72,6 +70,6 @@ export class ExternalLinkDirective implements OnChanges {
      * @returns {boolean} Sets the _isExternalLink flag.
      */
     private _isExternalLink(): boolean {
-        return isPlatformBrowser(this.platformId) && !this.href.includes(location.hostname);
+        return isPlatformBrowser(this._platformId) && !this.href.includes(location.hostname);
     }
 }

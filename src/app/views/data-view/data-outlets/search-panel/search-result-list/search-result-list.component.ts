@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    inject,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Observable, Subject } from 'rxjs';
@@ -24,6 +33,7 @@ import { SearchParams, SearchResponseWithQuery } from '@awg-views/data-view/mode
     templateUrl: './search-result-list.component.html',
     styleUrls: ['./search-result-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
+    standalone: false,
 })
 export class SearchResultListComponent implements OnInit, OnDestroy {
     /**
@@ -150,30 +160,39 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     private _selectedResourceId: string;
 
     /**
-     * Private variable: _destroyed$.
+     * Private readonly variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroyed$: Subject<boolean> = new Subject<boolean>();
+    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Constructor of the SearchResultListComponent.
+     * Private readonly injection variable: _conversionService.
      *
-     * It declares private instances of the Angular Router,
-     * the ConversionService, the DataStreamerService,
-     * and the SideInfoService.
-     *
-     * @param {Router} router Instance of the Angular Router.
-     * @param {ConversionService} conversionService Instance of the ConversionService.
-     * @param {DataStreamerService} dataStreamerService Instance of the DataStreamerService.
-     * @param {SideInfoService} sideInfoService Instance of the SideInfoService.
+     * It keeps the instance of the injected ConversionService.
      */
-    constructor(
-        private router: Router,
-        private conversionService: ConversionService,
-        private dataStreamerService: DataStreamerService,
-        private sideInfoService: SideInfoService
-    ) {}
+    private readonly _conversionService = inject(ConversionService);
+
+    /**
+     * Private readonly injection variable: _dataStreamerService.
+     *
+     * It keeps the instance of the injected DataStreamerService.
+     */
+    private readonly _dataStreamerService = inject(DataStreamerService);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It keeps the instance of the injected Angular Router.
+     */
+    private readonly _router = inject(Router);
+
+    /**
+     * Private readonly injection variable: _sideInfoService.
+     *
+     * It keeps the instance of the injected SideInfoService.
+     */
+    private readonly _sideInfoService = inject(SideInfoService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -253,7 +272,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      */
     navigateToResource(id: string): void {
         this._selectedResourceId = id;
-        this.router.navigate(['/data/resource', this._selectedResourceId]);
+        this._router.navigate(['/data/resource', this._selectedResourceId]);
     }
 
     /**
@@ -330,7 +349,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      */
     getSearchResponseWithQueryData(): void {
         // Cold request to streamer service
-        const searchResponseWithQuery$: Observable<SearchResponseWithQuery> = this.dataStreamerService
+        const searchResponseWithQuery$: Observable<SearchResponseWithQuery> = this._dataStreamerService
             .getSearchResponseWithQuery()
             .pipe(takeUntil(this._destroyed$));
         // Subscribe to response to handle changes
@@ -346,20 +365,6 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
                 console.error('SearchResultList# searchResultData subscription error: ', this.errorMessage);
             },
         });
-    }
-
-    /**
-     * Public method: trackById.
-     *
-     * It returns a unique identifier of a given item.
-     * Angular uses the value returned from
-     * tracking function to track items identity.
-     *
-     * @param {string} item The given item.
-     * @returns {string} The identifier of the item.
-     */
-    trackById(item): string {
-        return item.obj_id;
     }
 
     /**
@@ -422,14 +427,14 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         });*/
 
         // Update info message about the search results
-        this.searchResultText = this.conversionService.prepareFullTextSearchResultText(
+        this.searchResultText = this._conversionService.prepareFullTextSearchResultText(
             searchResponseWithQuery,
             this.searchUrl
         );
 
         // Update data for searchInfo via SideInfoService
         const searchInfo: SearchInfo = new SearchInfo(this.searchResponseWithQuery.query, this.searchResultText);
-        this.sideInfoService.updateSearchInfoData(searchInfo);
+        this._sideInfoService.updateSearchInfoData(searchInfo);
     }
 
     /**
@@ -440,7 +445,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy() {
         // Clear search info
-        this.sideInfoService.clearSearchInfoData();
+        this._sideInfoService.clearSearchInfoData();
 
         // Emit truthy value to end all subscriptions
         this._destroyed$.next(true);

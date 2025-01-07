@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 /**
@@ -12,8 +12,9 @@ import { Router } from '@angular/router';
     selector: 'awg-data',
     templateUrl: './data-view.component.html',
     styleUrls: ['./data-view.component.scss'],
+    standalone: false,
 })
-export class DataViewComponent implements OnInit {
+export class DataViewComponent implements OnInit, OnDestroy {
     /**
      * Public variable: searchTitle.
      *
@@ -31,13 +32,11 @@ export class DataViewComponent implements OnInit {
     searchId = 'search';
 
     /**
-     * Constructor of the DataViewComponent.
+     * Private readonly injection variable: _router.
      *
-     * It declares a private Router instance.
-     *
-     * @param {Router} router Instance of the Angular router.
+     * It keeps the instance of the injected Angular Router.
      */
-    constructor(private router: Router) {}
+    private readonly _router = inject(Router);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -46,21 +45,31 @@ export class DataViewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.routeToSidenav();
+        this.navigateToSideOutlet();
     }
 
     /**
-     * Public method: routeToSidenav.
+     * Public method: navigateToSideOutlet.
      *
-     * It activates the secondary outlet with the search-info.
+     * It activates the side outlet with the search-info.
      *
      * @returns {void} Activates the search-info side outlet.
      */
-    routeToSidenav(): void {
+    navigateToSideOutlet(): void {
         // Opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: 'searchInfo' } }], {
+        this._router.navigate([{ outlets: { side: 'searchInfo' } }], {
             preserveFragment: true,
             queryParamsHandling: 'preserve',
         });
+    }
+
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods when destroying the component.
+     */
+    ngOnDestroy() {
+        // Navigate to an empty outlet to clear the side outlet
+        this._router.navigate([{ outlets: { side: null } }]);
     }
 }

@@ -1,0 +1,44 @@
+@if (selectedSection$ | async; as selectedSection) {
+    @if (
+        UTILS.isNotEmptyArray(selectedSection?.content?.complexTypes?.opus) ||
+        UTILS.isNotEmptyArray(selectedSection?.content?.complexTypes?.mnr)
+    ) {
+        <div class="awg-edition-section-detail">
+            <awg-edition-section-detail-disclaimer></awg-edition-section-detail-disclaimer>
+
+            @if (!selectedSection?.content?.intro.disabled) {
+                <div class="awg-edition-section-detail-intro para p-3 shadow border rounded-3">
+                    <div class="row">
+                        <div class="col-12 col-xl-8">
+                            <awg-edition-section-detail-intro-card
+                                [selectedSeries]="selectedSeries$ | async"
+                                [selectedSection]="selectedSection"></awg-edition-section-detail-intro-card>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (UTILS.isNotEmptyArray(selectedSection?.content?.complexTypes?.opus)) {
+                <div class="awg-edition-section-detail-opus para p-3 shadow border rounded-3">
+                    <h5>nach Opusnummer:</h5>
+                    <awg-edition-section-detail-complex-card
+                        [complexes]="
+                            selectedSection.content.complexTypes.opus
+                        "></awg-edition-section-detail-complex-card>
+                </div>
+            }
+            @if (UTILS.isNotEmptyArray(selectedSection?.content?.complexTypes?.mnr)) {
+                <div class="awg-edition-section-detail-mnr p-3 shadow border rounded-3">
+                    <h5>nach Moldenhauer-Nummer:</h5>
+                    <awg-edition-section-detail-complex-card
+                        [complexes]="
+                            selectedSection.content.complexTypes.mnr
+                        "></awg-edition-section-detail-complex-card>
+                </div>
+            }
+        </div>
+    } @else {
+        <awg-edition-section-detail-placeholder
+            [selectedSeries]="selectedSeries$ | async"
+            [selectedSection]="selectedSection"></awg-edition-section-detail-placeholder>
+    }
+}

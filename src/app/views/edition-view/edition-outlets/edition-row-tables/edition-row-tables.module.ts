@@ -5,7 +5,7 @@ import { SharedModule } from '@awg-shared/shared.module';
 import { EditionRowTablesRoutingModule, routedEditionRowTablesComponents } from './edition-row-tables-routing.module';
 
 /**
- * The editionRowTables module.
+ * The EditionRowTables module.
  *
  * It embeds the {@link EditionRowTablesComponent} and its
  * [routing definition]{@link EditionRowTablesRoutingModule}

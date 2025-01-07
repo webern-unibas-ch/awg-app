@@ -1,10 +1,20 @@
-<div ngbAccordion>
+<div ngbAccordion #accoladeAcc [class.fullscreen]="isFullscreen">
     <div ngbAccordionItem="awg-accolade-view" [collapsed]="false">
         <div ngbAccordionHeader class="accordion-button awg-accordion-button-custom-header justify-content-between">
             <button ngbAccordionToggle class="btn btn-link text-start p-0">Edierte Notentexte</button>
-            <button type="button" class="btn btn-sm btn-outline-info" (click)="openModal('HINT_EDITION_SHEETS')">
-                Hinweise zur Nutzung
-            </button>
+            <div class="ms-auto">
+                @if (!isFullscreen) {
+                    <button
+                        type="button"
+                        class="btn btn-sm btn-outline-info"
+                        (click)="openModal('HINT_EDITION_SHEETS')">
+                        Hinweise zur Nutzung
+                    </button>
+                }
+                <awg-fullscreen-toggle
+                    [fsElement]="accoladeAcc"
+                    (toggleFullscreenRequest)="fullscreenToggle($event)"></awg-fullscreen-toggle>
+            </div>
         </div>
         <div ngbAccordionCollapse>
             <div ngbAccordionBody>
@@ -12,13 +22,11 @@
                     <div class="row">
                         <div class="order-2 order-lg-1 col-12 col-lg-4 col-xl-3">
                             <!-- svg sheet navigation -->
-                            @if (svgSheetsData && selectedSvgSheet) {
-                                <awg-edition-svg-sheet-nav
-                                    [svgSheetsData]="svgSheetsData"
-                                    [selectedSvgSheet]="selectedSvgSheet"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)">
-                                </awg-edition-svg-sheet-nav>
-                            }
+                            <awg-edition-svg-sheet-nav
+                                [svgSheetsData]="svgSheetsData"
+                                [selectedSvgSheet]="selectedSvgSheet"
+                                (selectSvgSheetRequest)="selectSvgSheet($event)">
+                            </awg-edition-svg-sheet-nav>
                         </div>
                         <div class="order-1 order-lg-2 col-12 col-lg-8 col-xl-9">
                             <!-- svg sheet -->
@@ -35,7 +43,7 @@
                             @if (selectedSvgSheet && selectedTextcritics) {
                                 <awg-edition-svg-sheet-footer
                                     [selectedTextcritics]="selectedTextcritics"
-                                    [selectedTextcriticalComments]="selectedTextcriticalComments"
+                                    [selectedTextcriticalCommentary]="selectedTextcriticalCommentary"
                                     [showTkA]="showTkA"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"

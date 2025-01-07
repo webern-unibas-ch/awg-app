@@ -1,10 +1,11 @@
 <!-- content: search -->
+<div class="awg-data-view p-5 border rounded-3">
+    <!-- heading -->
+    <awg-heading [title]="searchTitle" [id]="searchId"></awg-heading>
 
-<!-- heading -->
-<awg-heading [title]="searchTitle" [id]="searchId"></awg-heading>
+    <!-- help-block -->
+    <div class="help-block text-danger para">BETA: Suche momentan noch mit eingeschränkter Funktionalität</div>
 
-<!-- help-block -->
-<div class="help-block text-danger para">BETA: Suche momentan noch mit eingeschränkter Funktionalität</div>
-
-<!-- data (search) routes -->
-<router-outlet></router-outlet>
+    <!-- data (search) routes -->
+    <router-outlet />
+</div>

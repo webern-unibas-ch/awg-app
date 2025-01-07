@@ -1,0 +1,13 @@
+.awg-scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    text-align: right;
+    color: white;
+    z-index: 1000;
+
+    &:hover {
+        cursor: pointer;
+        color: #f0f0f0;
+    }
+}

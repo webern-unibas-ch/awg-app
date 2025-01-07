@@ -1,12 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
-import { UtilityService } from '@awg-core/services';
-import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionSectionDetail component.
@@ -18,46 +16,29 @@ import { EditionService } from '@awg-views/edition-view/services';
     selector: 'awg-edition-section-detail',
     templateUrl: './edition-section-detail.component.html',
     styleUrls: ['./edition-section-detail.component.scss'],
+    standalone: false,
 })
 export class EditionSectionDetailComponent implements OnInit, OnDestroy {
     /**
-     * Public variable: selectedSeries.
-     *
-     * It keeps the selected series of the edition.
-     */
-    selectedSeries: EditionOutlineSeries;
-
-    /**
-     * Public variable: selectedSection.
-     *
-     * It keeps the selected section of the edition.
-     */
-    selectedSection: EditionOutlineSection;
-
-    /**
-     * Private variable: _destroyed$.
+     * Private readonly variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroyed$: Subject<boolean> = new Subject<boolean>();
+    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Constructor of the EditionSectionDetailComponent.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It declares private instances of the Angular ActivatedRoute and the EditionService,
-     * and a public instance of the UtilityService.
-     *
-     * @param {ActivatedRoute} route Instance of the ActivatedRoute.
-     * @param {EditionService} editionService Instance of the EditionService.
-     * @param {UtilityService} utils Instance of the UtilityService.
+     * It keeps the instance of the injected EditionStateService.
      */
-    constructor(
-        private route: ActivatedRoute,
-        private editionService: EditionService,
-        public utils: UtilityService
-    ) {
-        // Intentionally left empty until implemented
-    }
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _route.
+     *
+     * It keeps the instance of the injected Angular ActivatedRoute.
+     */
+    private readonly _route = inject(ActivatedRoute);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -66,30 +47,30 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getSection();
+        this.updateSectionFromRoute();
     }
 
     /**
-     * Public method: getSection.
+     * Public method: updateSectionFromRoute.
      *
-     * It gets the selected section by ID from the EditionService.
+     * It fetches the route params to get the id of the current section
+     * and updates the EditionStateService.
      *
-     * @returns {void} Gets the edition section.
+     * @returns {void} Updates the edition section.
      */
-    getSection(): void {
-        const sectionId = this.route.snapshot.paramMap.get('id');
+    updateSectionFromRoute(): void {
+        const sectionId = this._route.snapshot.paramMap.get('id');
 
-        this.editionService
+        this._editionStateService
             .getSelectedEditionSeries()
             .pipe(
                 takeUntil(this._destroyed$),
                 filter(series => !!series)
             )
             .subscribe(series => {
-                this.selectedSeries = series;
-                const seriesId = series.series.route;
-                this.selectedSection = this.editionService.getEditionSectionById(seriesId, sectionId);
-                this.editionService.updateSelectedEditionSection(this.selectedSection);
+                const seriesId = series?.series?.route;
+                const selectedSection = EditionOutlineService.getEditionSectionById(seriesId, sectionId);
+                this._editionStateService.updateSelectedEditionSection(selectedSection);
             });
     }
 

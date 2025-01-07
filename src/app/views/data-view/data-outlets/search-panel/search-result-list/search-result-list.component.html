@@ -18,26 +18,25 @@
                         [viewHandles]="viewHandles"
                         [selectedViewType]="selectedViewType"
                         (viewChangeRequest)="onViewChange($event)"></awg-view-handle-button-group>
-                    <div class="btn-group" role="group">
+                    <div
+                        class="btn-group"
+                        ngbDropdown
+                        role="group"
+                        aria-label="Button group with nested dropdown for row number">
                         <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
                             <span class="d-none d-lg-inline">Hits per page: </span>{{ searchParams?.nRows }}
                         </button>
-                        <div
-                            ngbDropdown
-                            class="btn-group"
-                            role="group"
-                            aria-label="Button group with nested dropdown for row number">
-                            <button
-                                class="btn btn-sm btn-info dropdown-toggle-split"
-                                ngbDropdownToggle
-                                [disabled]="isNoResults()"></button>
-                            <div class="dropdown-menu" ngbDropdownMenu>
-                                @for (rowNumber of rowNumbers; track rowNumber) {
-                                    <button class="dropdown-item" (click)="onRowNumberChange(rowNumber)">
-                                        {{ rowNumber }}
-                                    </button>
-                                }
-                            </div>
+                        <button
+                            class="btn btn-sm btn-info dropdown-toggle-split"
+                            ngbDropdownToggle
+                            [disabled]="isNoResults()"
+                            aria-label="Toggle dropdown"></button>
+                        <div class="dropdown-menu" ngbDropdownMenu>
+                            @for (rowNumber of rowNumbers; track rowNumber) {
+                                <button class="dropdown-item" (click)="onRowNumberChange(rowNumber)">
+                                    {{ rowNumber }}
+                                </button>
+                            }
                         </div>
                     </div>
                 </div>
@@ -60,33 +59,32 @@
             <!-- table with searchResults -->
             @if (!isGridView()) {
                 <div class="table-responsive">
-                    <table aria-label="Table with search results" class="table table-sm awg-search-result-table">
+                    <table
+                        aria-label="Table with search results"
+                        class="table table-hover table-sm awg-search-result-table">
                         <thead>
                             <tr class="d-flex">
-                                <th scope="col" class="col-6 col-sm-4 col-md-5 col-lg-4 col-xl-3">Typ</th>
-                                <th scope="col" class="col-6 col-sm-8 col-md-7 col-lg-8 col-xl-9">Ressource</th>
+                                <th scope="col" class="col-6 col-sm-3 col-md-4 col-lg-3 col-xl-2">Typ</th>
+                                <th scope="col" class="col-6 col-sm-9 col-md-8 col-lg-9 col-xl-10">Ressource</th>
                             </tr>
                         </thead>
                         <tbody>
                             <!-- show searchResultDetail by clicking on single entry -->
-                            @for (
-                                subject of searchResponseWithQuery?.data?.subjects;
-                                track trackById($index, subject)
-                            ) {
+                            @for (subject of searchResponseWithQuery?.data?.subjects; track $index) {
                                 <tr
                                     class="d-flex"
                                     (click)="navigateToResource(subject?.obj_id)"
                                     [class.active]="isActiveResource(subject?.obj_id)">
-                                    <td class="col-6 col-sm-4 col-md-5 col-lg-4 col-xl-3">
-                                        <span class="badge">
+                                    <td class="col-6 col-sm-3 col-md-4 col-lg-3 col-xl-2">
+                                        <span class="badge text-bg-light">
                                             <img [attr.src]="subject?.iconsrc" alt="iconsrc" />
                                             <small>&nbsp;{{ subject?.iconlabel }}</small>
                                         </span>
                                     </td>
-                                    <td class="col-6 col-sm-8 col-md-7 col-lg-8 col-xl-9">
+                                    <td class="col-6 col-sm-9 col-md-8 col-lg-9 col-xl-10">
                                         <span
-                                            ><em>{{ subject!.valuelabel[0] }}:&nbsp;</em></span
-                                        ><span [compile-html]="subject!.value[0]" [compile-html-ref]="this"></span>
+                                            ><em>{{ subject?.valuelabel[0] }}:&nbsp;</em></span
+                                        ><span [compile-html]="subject?.value[0]" [compile-html-ref]="this"></span>
                                     </td>
                                 </tr>
                             }
@@ -97,7 +95,7 @@
             <!-- grid with searchResults -->
             @if (isGridView()) {
                 <div class="row row-cols-1 row-cols-sm-3 row-cols-xl-5 g-4 mb-4">
-                    @for (subject of searchResponseWithQuery?.data?.subjects; track trackById($index, subject)) {
+                    @for (subject of searchResponseWithQuery?.data?.subjects; track $index) {
                         <div class="col">
                             <div class="card h-100">
                                 <div class="card-header">
@@ -106,13 +104,13 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        <span [compile-html]="subject!.value[0]" [compile-html-ref]="this"></span>
+                                        <span [compile-html]="subject?.value[0]" [compile-html-ref]="this"></span>
                                     </h5>
                                 </div>
                                 <div class="card-footer text-end">
-                                    <a (click)="navigateToResource(subject?.obj_id)" class="btn btn-outline-info"
-                                        >Mehr ...
-                                    </a>
+                                    <button class="btn btn-outline-info" (click)="navigateToResource(subject?.obj_id)">
+                                        Mehr ...
+                                    </button>
                                 </div>
                             </div>
                         </div>

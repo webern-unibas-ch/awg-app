@@ -6,8 +6,10 @@ import {
     HttpInterceptor,
     HttpRequest,
     HttpResponse,
+    provideHttpClient,
+    withInterceptorsFromDi,
 } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
+import { HttpTestingController, TestRequest, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Data } from '@angular/router';
 
@@ -41,7 +43,7 @@ describe('CachingInterceptor (DONE)', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
+            imports: [],
             providers: [
                 HttpCacheService,
                 {
@@ -49,6 +51,8 @@ describe('CachingInterceptor (DONE)', () => {
                     useClass: CachingInterceptor,
                     multi: true,
                 },
+                provideHttpClient(withInterceptorsFromDi()),
+                provideHttpClientTesting(),
             ],
         });
 
@@ -130,12 +134,12 @@ describe('CachingInterceptor (DONE)', () => {
             // Spied service call returns created response
             expectToEqual(httpCacheService.get(expectedRequest), expectedResponse);
             // Real service does not have created response
-            expect((httpCacheService as any)._cachedResponses.has(expectedRequest.urlWithParams)).toBeFalse();
+            expectToBe((httpCacheService as any)._cachedResponses.has(expectedRequest.urlWithParams), false);
         }));
 
         it('... should clear mock cache after each run', waitForAsync(() => {
-            expect(mockCache.get(expectedRequest)).toBeNull();
-            expect(httpCacheService.get(expectedRequest)).toBeNull();
+            expectToBe(mockCache.get(expectedRequest), null);
+            expectToBe(httpCacheService.get(expectedRequest), null);
         }));
 
         it('... should use mock console', () => {
@@ -227,7 +231,7 @@ describe('CachingInterceptor (DONE)', () => {
                 const expectedRequest = new HttpRequest('GET', expectedUrl);
 
                 // Mock cache is empty
-                expect(mockCache.get(expectedRequest)).toBeNull();
+                expectToBe(mockCache.get(expectedRequest), null);
 
                 // Subscribe to GET Http Request
                 const sub = httpClient.get<Data>(expectedUrl).subscribe({
@@ -289,7 +293,7 @@ describe('CachingInterceptor (DONE)', () => {
                 const expectedRequest = new HttpRequest('GET', expectedUrl);
 
                 // No cached response in cache
-                expect(mockCache.get(expectedRequest)).toBeNull();
+                expectToBe(mockCache.get(expectedRequest), null);
 
                 // Subscribe to GET Http Request
                 httpClient.get<Data>(expectedUrl).subscribe({

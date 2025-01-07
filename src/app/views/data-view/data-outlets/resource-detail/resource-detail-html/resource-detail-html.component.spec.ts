@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { GndEvent, GndEventType } from '@awg-core/services/gnd-service';
 import {
@@ -20,7 +19,11 @@ import {
 import { ResourceDetailHtmlComponent } from './resource-detail-html.component';
 
 // Mock component
-@Component({ selector: 'awg-resource-detail-html-content', template: '' })
+@Component({
+    selector: 'awg-resource-detail-html-content',
+    template: '',
+    standalone: false,
+})
 class ResourceDetailHtmlContentStubComponent {
     @Input()
     content: ResourceDetailContent;
@@ -121,10 +124,7 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
         });
 
         it('... should have `resourceDetailData` inputs', () => {
-            expect(component.resourceDetailData).withContext('should be defined').toBeDefined();
-            expect(component.resourceDetailData)
-                .withContext(`should be ${expectedResourceDetailData}`)
-                .toBe(expectedResourceDetailData);
+            expectToEqual(component.resourceDetailData, expectedResourceDetailData);
         });
 
         describe('VIEW', () => {
@@ -154,10 +154,7 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
                     ResourceDetailHtmlContentStubComponent
                 ) as ResourceDetailHtmlContentStubComponent;
 
-                expect(htmlContentCmp.content).toBeDefined();
-                expect(htmlContentCmp.content)
-                    .withContext(`should be ${expectedResourceDetailData.content}`)
-                    .toBe(expectedResourceDetailData.content);
+                expectToBe(htmlContentCmp.content, expectedResourceDetailData.content);
             });
         });
 

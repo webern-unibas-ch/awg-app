@@ -1,0 +1,26 @@
+@if (introBlockContent) {
+    <div class="awg-edition-intro-nav">
+        <ul class="nav flex-column">
+            <awg-language-switcher [currentLanguage]="currentLanguage" (languageChangeRequest)="setLanguage($event)">
+            </awg-language-switcher>
+            <hr class="mt-0 mb-2" />
+            @for (introBlock of introBlockContent; track $index) {
+                @if (introBlock.blockHeader) {
+                    <li class="nav-item small">
+                        <a
+                            class="nav-link awg-edition-intro-nav-link pt-0"
+                            [routerLink]="'.'"
+                            [fragment]="introBlock.blockId"
+                            [innerHTML]="introBlock.blockHeader"></a>
+                    </li>
+                }
+            }
+            <hr class="mb-2" />
+            <li class="nav-item small">
+                <a class="nav-link awg-edition-intro-nav-link pt-0" [routerLink]="'.'" fragment="notes">{{
+                    notesLabel
+                }}</a>
+            </li>
+        </ul>
+    </div>
+}

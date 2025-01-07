@@ -20,7 +20,11 @@ a:link:not(.nav-link),
 a:visited:not(.nav-link),
 a:hover:not(.nav-link),
 a:not([href]):not([tabindex]):not(.nav-link),
-a:not([href]):not([tabindex]):not(.nav-link):hover {
+a:not([href]):not([tabindex]):not(.nav-link):hover,
+a[role='button'][tabindex='0'],
+a[role='button'][tabindex='0']:hover,
+a[role='link'][tabindex='0'],
+a[role='link'][tabindex='0']:hover {
     color: $link-color;
     text-decoration: none;
 }
@@ -31,6 +35,7 @@ a.awg-svg-sheet-nav-link:hover,
 }
 a.dropdown-item:hover,
 a.list-group-item:hover,
+a.awg-edition-intro-nav-link:hover,
 a.awg-svg-sheet-nav-link,
 a.awg-svg-sheet-nav-link:hover,
 .navbar-brand:hover,
@@ -143,14 +148,14 @@ awg-view-container > div {
     }
 }
 
-/* sidenav */
-.awg-sidenav > .card {
+/* side-outlet */
+.awg-side-outlet > .card {
     padding: inherit;
 }
 
-/* On small screens, set height to 'auto' for sidenav and grid */
+/* On small screens, set height to 'auto' for side-outlet and grid */
 @media screen and (max-width: 767px) {
-    .awg-sidenav {
+    .awg-side-outlet {
         height: auto;
     }
     .row {
@@ -278,15 +283,16 @@ footer {
 
 /****** IMAGES ******/
 #unibaslogo {
-    width: 118px;
-    height: 37px;
+    height: 50px;
+    cursor: pointer;
+}
+#sagwlogo {
+    height: 50px;
     cursor: pointer;
 }
 #snflogo {
-    width: 118px;
-    height: 40px;
+    height: 50px;
     cursor: pointer;
-    padding-right: 10px;
 }
 .webernlogo {
     cursor: pointer;
@@ -379,22 +385,37 @@ span.facet-badge {
 %inlineblock {
     display: inline-block;
 }
+@mixin tab($margin) {
+    @extend %inlineblock;
+    margin-left: $margin;
+}
 
 .tab {
-    @extend %inlineblock;
-    margin-left: 25px;
+    @include tab(25px);
 }
 .singletab {
-    @extend %inlineblock;
-    margin-left: 50px;
+    @include tab(50px);
 }
 .doubletab {
-    @extend %inlineblock;
-    margin-left: 60px;
+    @include tab(60px);
 }
-.doubletab_two {
-    @extend %inlineblock;
-    margin-left: 70px;
+.doubletab_extended {
+    @include tab(70px);
+}
+.tab75 {
+    @include tab(75px);
+}
+.tab100 {
+    @include tab(100px);
+}
+.tab150 {
+    @include tab(150px);
+}
+.tab200 {
+    @include tab(200px);
+}
+.tab250 {
+    @include tab(250px);
 }
 
 .indent {
@@ -404,6 +425,14 @@ span.facet-badge {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.unicode {
+    font-size: 3em;
+    line-height: 12px;
+    position: relative;
+    vertical-align: bottom;
+    top: 7.5px;
 }
 
 /****** COLOURS ******/

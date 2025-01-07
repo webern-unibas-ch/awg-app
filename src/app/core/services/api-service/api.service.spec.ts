@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { HttpClient, HttpClientModule, HttpParams, HttpRequest } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient, HttpParams, HttpRequest, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Data } from '@angular/router';
 
@@ -55,8 +54,8 @@ describe('ApiService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientModule, HttpClientTestingModule],
-            providers: [ApiService],
+            imports: [],
+            providers: [ApiService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
         });
         // Inject services and http client handler
         apiService = TestBed.inject(ApiService);
@@ -92,8 +91,7 @@ describe('ApiService', () => {
         });
 
         it("... should have empty 'httpGetUrl'", () => {
-            expect(apiService.httpGetUrl).toBeDefined();
-            expect(apiService.httpGetUrl).toBeFalsy();
+            expectToBe(apiService.httpGetUrl, '');
         });
     });
 
@@ -159,6 +157,7 @@ describe('ApiService', () => {
                 expectToBe(call.request.method, 'GET');
                 expectToBe(call.request.responseType, 'json');
                 expectToEqual(call.request.url, expectedUrl);
+
                 expect(call.request.params).toBeDefined();
                 expectToBe(call.request.params.keys().length, 0);
             }));
@@ -182,6 +181,7 @@ describe('ApiService', () => {
                 expectToBe(call.request.method, 'GET');
                 expectToBe(call.request.responseType, 'json');
                 expectToEqual(call.request.url, expectedUrl);
+
                 expect(call.request.params).toBeDefined();
                 expectToBe(call.request.params.keys().length, 2);
                 expectToBe(call.request.params.get('searchtype'), expectedSearchType);

@@ -1,5 +1,5 @@
 import { registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import localeDeDE from '@angular/common/locales/de';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from '@awg-core/core.module';
 import { SharedModule } from '@awg-shared/shared.module';
 import { SideInfoModule } from '@awg-side-info/side-info.module';
+import { HomeViewModule } from '@awg-views/home-view/home-view.module';
 import { AppComponent } from './app.component';
 
 /* Routing Module */
@@ -28,14 +29,17 @@ registerLocaleData(localeDeDE);
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        HttpClientModule,
         CoreModule,
+        HomeViewModule,
         SharedModule,
         SideInfoModule,
         AppRoutingModule,
     ],
     declarations: [AppComponent, routedAppComponents],
-    providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }], // Change global LOCALE-ID
+    providers: [
+        { provide: LOCALE_ID, useValue: 'de-DE' }, // Change global LOCALE-ID
+        provideHttpClient(withInterceptorsFromDi()),
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

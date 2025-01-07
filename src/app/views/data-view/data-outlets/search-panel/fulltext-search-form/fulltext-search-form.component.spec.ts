@@ -6,7 +6,13 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { faSearch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import Spy = jasmine.Spy;
 
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+} from '@testing/expect-helper';
 
 import { FulltextSearchFormComponent } from './fulltext-search-form.component';
 
@@ -90,26 +96,26 @@ describe('FulltextSearchFormComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should have one form with one div.input-group', () => {
-                const formDe = getAndExpectDebugElementByCss(compDe, 'form', 1, 1);
-                getAndExpectDebugElementByCss(formDe[0], 'div.input-group', 1, 1);
+                const formDes = getAndExpectDebugElementByCss(compDe, 'form', 1, 1);
+                getAndExpectDebugElementByCss(formDes[0], 'div.input-group', 1, 1);
             });
 
             it('... should have one div.input-group-text and one div.awg-form-floating-group in div.input-group', () => {
-                const inputGroupDe = getAndExpectDebugElementByCss(compDe, 'div.input-group', 1, 1);
+                const inputGroupDes = getAndExpectDebugElementByCss(compDe, 'div.input-group', 1, 1);
 
-                getAndExpectDebugElementByCss(inputGroupDe[0], 'div.input-group-text', 1, 1);
-                getAndExpectDebugElementByCss(inputGroupDe[0], 'div.awg-form-floating-group', 1, 1);
+                getAndExpectDebugElementByCss(inputGroupDes[0], 'div.input-group-text', 1, 1);
+                getAndExpectDebugElementByCss(inputGroupDes[0], 'div.awg-form-floating-group', 1, 1);
             });
 
             it('... should have one fa-icon in div.input-group-text', () => {
-                const inputGroupTextDe = getAndExpectDebugElementByCss(compDe, 'div.input-group-text', 1, 1);
-                getAndExpectDebugElementByCss(inputGroupTextDe[0], 'fa-icon', 1, 1);
+                const inputGroupTextDes = getAndExpectDebugElementByCss(compDe, 'div.input-group-text', 1, 1);
+                getAndExpectDebugElementByCss(inputGroupTextDes[0], 'fa-icon', 1, 1);
             });
 
             it('... should have one input.form-control#awg-fulltext-search-searchValue in div.awg-form-floating-group', () => {
-                const formFloatingGroupDe = getAndExpectDebugElementByCss(compDe, 'div.awg-form-floating-group', 1, 1);
+                const formFloatingGroupDes = getAndExpectDebugElementByCss(compDe, 'div.awg-form-floating-group', 1, 1);
                 getAndExpectDebugElementByCss(
-                    formFloatingGroupDe[0],
+                    formFloatingGroupDes[0],
                     'input.form-control#awg-fulltext-search-searchValue',
                     1,
                     1
@@ -117,34 +123,34 @@ describe('FulltextSearchFormComponent (DONE)', () => {
             });
 
             it('... should have no value or placeholder in input.form-control yet', () => {
-                const inputDe = getAndExpectDebugElementByCss(
+                const inputDes = getAndExpectDebugElementByCss(
                     compDe,
                     'input.form-control#awg-fulltext-search-searchValue',
                     1,
                     1
                 );
-                const inputEl = inputDe[0].nativeElement;
+                const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                 expect(inputEl.value).toBeFalsy();
                 expect(inputEl.placeholder).toBeFalsy();
             });
 
             it('... should have no title for input.form-control yet', () => {
-                const inputDe = getAndExpectDebugElementByCss(compDe, 'input.form-control', 1, 1);
-                const inputEl = inputDe[0].nativeElement;
+                const inputDes = getAndExpectDebugElementByCss(compDe, 'input.form-control', 1, 1);
+                const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                 expect(inputEl.title).toBeFalsy();
             });
 
             it('... should have one label.text-muted in div.awg-form-floating-group', () => {
-                const formFloatingGroupDe = getAndExpectDebugElementByCss(compDe, 'div.awg-form-floating-group', 1, 1);
-                getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'label.text-muted', 1, 1);
+                const formFloatingGroupDes = getAndExpectDebugElementByCss(compDe, 'div.awg-form-floating-group', 1, 1);
+                getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'label.text-muted', 1, 1);
             });
 
             it('... should have no placeholder in label.text-muted yet', () => {
-                const formFloatingGroupDe = getAndExpectDebugElementByCss(compDe, 'div.awg-form-floating-group', 1, 1);
-                const labelDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'label.text-muted', 1, 1);
-                const labelEl = labelDe[0].nativeElement;
+                const formFloatingGroupDes = getAndExpectDebugElementByCss(compDe, 'div.awg-form-floating-group', 1, 1);
+                const labelDes = getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'label.text-muted', 1, 1);
+                const labelEl: HTMLLabelElement = labelDes[0].nativeElement;
 
                 expect(labelEl.textContent).toBeFalsy();
             });
@@ -179,88 +185,88 @@ describe('FulltextSearchFormComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should display faSearch icon in div.input-group-text', () => {
-                const inputGroupTextDe = getAndExpectDebugElementByCss(compDe, 'div.input-group-text', 1, 1);
-                const faIconDe = getAndExpectDebugElementByCss(inputGroupTextDe[0], 'fa-icon', 1, 1);
-                const faIconIns = faIconDe[0].componentInstance.icon;
+                const inputGroupTextDes = getAndExpectDebugElementByCss(compDe, 'div.input-group-text', 1, 1);
+                const faIconDes = getAndExpectDebugElementByCss(inputGroupTextDes[0], 'fa-icon', 1, 1);
+                const faIconIns = faIconDes[0].componentInstance.icon;
 
                 expectToEqual(faIconIns, expectedSearchIcon);
             });
 
             it('... should have a title for input.form-control', () => {
-                const formFloatingGroupDe = getAndExpectDebugElementByCss(compDe, 'div.awg-form-floating-group', 1, 1);
-                const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
-                const inputEl = inputDe[0].nativeElement;
+                const formFloatingGroupDes = getAndExpectDebugElementByCss(compDe, 'div.awg-form-floating-group', 1, 1);
+                const inputDes = getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'input.form-control', 1, 1);
+                const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                 expectToBe(inputEl.title, expectedFulltextSearchFormStrings.label);
             });
 
             it('... should have a placeholder in label.text-muted', () => {
-                const formFloatingGroupDe = getAndExpectDebugElementByCss(compDe, 'div.awg-form-floating-group', 1, 1);
-                const labelDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'label.text-muted', 1, 1);
-                const labelEl = labelDe[0].nativeElement;
+                const formFloatingGroupDes = getAndExpectDebugElementByCss(compDe, 'div.awg-form-floating-group', 1, 1);
+                const labelDes = getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'label.text-muted', 1, 1);
+                const labelEl: HTMLLabelElement = labelDes[0].nativeElement;
 
                 expectToBe(labelEl.textContent, expectedFulltextSearchFormStrings.placeholder);
             });
 
             describe('... form untouched (pristine && invalid)', () => {
                 it('... should have no value, but display a placeholder in input.form-control', () => {
-                    const formFloatingGroupDe = getAndExpectDebugElementByCss(
+                    const formFloatingGroupDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-form-floating-group',
                         1,
                         1
                     );
-                    const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
-                    const inputEl = inputDe[0].nativeElement;
+                    const inputDes = getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'input.form-control', 1, 1);
+                    const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                     expect(inputEl.value).toBeFalsy();
                     expectToBe(inputEl.placeholder, expectedFulltextSearchFormStrings.placeholder);
                 });
 
                 it('... should have class `is-invalid` in input.form-control', () => {
-                    const formFloatingGroupDe = getAndExpectDebugElementByCss(
+                    const formFloatingGroupDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-form-floating-group',
                         1,
                         1
                     );
-                    const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
-                    const inputEl = inputDe[0].nativeElement;
+                    const inputDes = getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'input.form-control', 1, 1);
+                    const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
-                    expect(inputEl.classList).toContain('is-invalid');
+                    expectToContain(inputEl.classList, 'is-invalid');
                 });
 
                 it('... should have class `ng-pristine`, but not `ng-dirty` in input.form-control', () => {
-                    const formFloatingGroupDe = getAndExpectDebugElementByCss(
+                    const formFloatingGroupDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-form-floating-group',
                         1,
                         1
                     );
-                    const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
-                    const inputEl = inputDe[0].nativeElement;
+                    const inputDes = getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'input.form-control', 1, 1);
+                    const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
-                    expect(inputEl.classList).toContain('ng-pristine');
+                    expectToContain(inputEl.classList, 'ng-pristine');
                     expect(inputEl.classList).not.toContain('ng-dirty');
                 });
 
                 it('... should have an invalid searchval input', () => {
-                    expect(component.searchvalControl.valid).toBeFalse();
+                    expectToBe(component.searchvalControl.valid, false);
                 });
 
                 it('... should have an invalid form', () => {
-                    expect(component.fulltextSearchForm.valid).toBeFalse();
+                    expectToBe(component.fulltextSearchForm.valid, false);
                 });
 
                 it('... should not have a div.invalid-feedback', () => {
-                    const formFloatingGroupDe = getAndExpectDebugElementByCss(
+                    const formFloatingGroupDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-form-floating-group',
                         1,
                         1
                     );
 
-                    getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'div.invalid-feedback', 0, 0);
+                    getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'div.invalid-feedback', 0, 0);
                 });
             });
 
@@ -271,14 +277,14 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.setSearchvalFromInput();
                     fixture.detectChanges();
 
-                    const formFloatingGroupDe = getAndExpectDebugElementByCss(
+                    const formFloatingGroupDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-form-floating-group',
                         1,
                         1
                     );
-                    const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
-                    const inputEl = inputDe[0].nativeElement;
+                    const inputDes = getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'input.form-control', 1, 1);
+                    const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                     expectToBe(inputEl.value, expectedSearchValue);
 
@@ -291,19 +297,19 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.setSearchvalFromInput();
                     fixture.detectChanges();
 
-                    const formFloatingGroupDe = getAndExpectDebugElementByCss(
+                    const formFloatingGroupDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-form-floating-group',
                         1,
                         1
                     );
-                    const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
-                    const inputEl = inputDe[0].nativeElement;
+                    const inputDes = getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'input.form-control', 1, 1);
+                    const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                     inputEl.dispatchEvent(new Event('input'));
                     fixture.detectChanges();
 
-                    expect(inputEl.classList).toContain('is-invalid');
+                    expectToContain(inputEl.classList, 'is-invalid');
                 });
 
                 it('... should not have class `ng-pristine`, but `ng-dirty` in input.form-control', () => {
@@ -312,20 +318,20 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.setSearchvalFromInput();
                     fixture.detectChanges();
 
-                    const formFloatingGroupDe = getAndExpectDebugElementByCss(
+                    const formFloatingGroupDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-form-floating-group',
                         1,
                         1
                     );
-                    const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
-                    const inputEl = inputDe[0].nativeElement;
+                    const inputDes = getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'input.form-control', 1, 1);
+                    const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                     inputEl.dispatchEvent(new Event('input'));
                     fixture.detectChanges();
 
                     expect(inputEl.classList).not.toContain('ng-pristine');
-                    expect(inputEl.classList).toContain('ng-dirty');
+                    expectToContain(inputEl.classList, 'ng-dirty');
                 });
 
                 it('... should have an invalid searchval input', () => {
@@ -334,7 +340,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.setSearchvalFromInput();
                     fixture.detectChanges();
 
-                    expect(component.searchvalControl.valid).toBeFalse();
+                    expectToBe(component.searchvalControl.valid, false);
                 });
 
                 it('... should have an invalid form', () => {
@@ -343,7 +349,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.setSearchvalFromInput();
                     fixture.detectChanges();
 
-                    expect(component.fulltextSearchForm.valid).toBeFalse();
+                    expectToBe(component.fulltextSearchForm.valid, false);
                 });
 
                 it('... should have a div.invalid-feedback if form is invalid after input', () => {
@@ -352,19 +358,19 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.setSearchvalFromInput();
                     fixture.detectChanges();
 
-                    const formFloatingGroupDe = getAndExpectDebugElementByCss(
+                    const formFloatingGroupDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-form-floating-group',
                         1,
                         1
                     );
-                    const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
-                    const inputEl = inputDe[0].nativeElement;
+                    const inputDes = getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'input.form-control', 1, 1);
+                    const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                     inputEl.dispatchEvent(new Event('input'));
                     fixture.detectChanges();
 
-                    getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'div.invalid-feedback', 1, 1);
+                    getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'div.invalid-feedback', 1, 1);
                 });
 
                 it('... should have an error message in div.invalid-feedback if form is invalid', () => {
@@ -373,25 +379,25 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.setSearchvalFromInput();
                     fixture.detectChanges();
 
-                    const formFloatingGroupDe = getAndExpectDebugElementByCss(
+                    const formFloatingGroupDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-form-floating-group',
                         1,
                         1
                     );
-                    const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
-                    const inputEl = inputDe[0].nativeElement;
+                    const inputDes = getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'input.form-control', 1, 1);
+                    const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                     inputEl.dispatchEvent(new Event('input'));
                     fixture.detectChanges();
 
-                    const invalidFeedbackDe = getAndExpectDebugElementByCss(
-                        formFloatingGroupDe[0],
+                    const invalidFeedbackDes = getAndExpectDebugElementByCss(
+                        formFloatingGroupDes[0],
                         'div.invalid-feedback',
                         1,
                         1
                     );
-                    const invalidFeedbackEl = invalidFeedbackDe[0].nativeElement;
+                    const invalidFeedbackEl: HTMLDivElement = invalidFeedbackDes[0].nativeElement;
 
                     expectToBe(
                         invalidFeedbackEl.textContent.trim(),
@@ -407,14 +413,14 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.setSearchvalFromInput();
                     fixture.detectChanges();
 
-                    const formFloatingGroupDe = getAndExpectDebugElementByCss(
+                    const formFloatingGroupDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-form-floating-group',
                         1,
                         1
                     );
-                    const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
-                    const inputEl = inputDe[0].nativeElement;
+                    const inputDes = getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'input.form-control', 1, 1);
+                    const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                     expectToBe(inputEl.value, expectedSearchValue);
 
@@ -427,14 +433,14 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.setSearchvalFromInput();
                     fixture.detectChanges();
 
-                    const formFloatingGroupDe = getAndExpectDebugElementByCss(
+                    const formFloatingGroupDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-form-floating-group',
                         1,
                         1
                     );
-                    const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
-                    const inputEl = inputDe[0].nativeElement;
+                    const inputDes = getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'input.form-control', 1, 1);
+                    const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                     inputEl.dispatchEvent(new Event('input'));
                     fixture.detectChanges();
@@ -448,20 +454,20 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.setSearchvalFromInput();
                     fixture.detectChanges();
 
-                    const formFloatingGroupDe = getAndExpectDebugElementByCss(
+                    const formFloatingGroupDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-form-floating-group',
                         1,
                         1
                     );
-                    const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
-                    const inputEl = inputDe[0].nativeElement;
+                    const inputDes = getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'input.form-control', 1, 1);
+                    const inputEl: HTMLInputElement = inputDes[0].nativeElement;
 
                     inputEl.dispatchEvent(new Event('input'));
                     fixture.detectChanges();
 
                     expect(inputEl.classList).not.toContain('ng-pristine');
-                    expect(inputEl.classList).toContain('ng-dirty');
+                    expectToContain(inputEl.classList, 'ng-dirty');
                 }));
 
                 it('... should have a valid searchval input', () => {
@@ -483,14 +489,14 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                 });
 
                 it('... should not have a div.invalid-feedback', () => {
-                    const formFloatingGroupDe = getAndExpectDebugElementByCss(
+                    const formFloatingGroupDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-form-floating-group',
                         1,
                         1
                     );
 
-                    getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'div.invalid-feedback', 0, 0);
+                    getAndExpectDebugElementByCss(formFloatingGroupDes[0], 'div.invalid-feedback', 0, 0);
                 });
             });
         });
@@ -709,7 +715,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                 });
 
                 expectSpyCall(setSearchvalFromInputSpy, 0);
-                expectSpyCall(setSearchvalFromInputSpy, 0);
+                expectSpyCall(setSearchValControlValueSpy, 0);
             });
         });
 

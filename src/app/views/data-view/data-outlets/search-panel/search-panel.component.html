@@ -11,7 +11,7 @@
             <ng-template ngbNavContent>
                 <!-- full text search -->
                 <awg-fulltext-search-form
-                    [searchValue]="getSearchQueryType(searchParams?.query)"
+                    [searchValue]="getSearchQueryAsString(searchParams?.query)"
                     (searchRequest)="onSearch($event)">
                 </awg-fulltext-search-form>
             </ng-template>
@@ -34,7 +34,7 @@
     </div>
 } @else {
     @if (errorMessage) {
-        <div class="errorMessage">
+        <div class="awg-error-message">
             <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
             <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>
             <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder der Suchanfrage.</p>

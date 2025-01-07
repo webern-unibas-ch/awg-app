@@ -141,6 +141,7 @@ export class StorageService {
 
             return result;
         } catch (e) {
+            console.error('Storage is not available:', e);
             return false;
         }
     }

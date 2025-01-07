@@ -1,7 +1,7 @@
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 import { ResourceDetail, ResourceDetailContent } from '@awg-views/data-view/models';
@@ -9,7 +9,11 @@ import { ResourceDetail, ResourceDetailContent } from '@awg-views/data-view/mode
 import { ResourceDetailJsonConvertedComponent } from './resource-detail-json-converted.component';
 
 // Mock awg-json-viewer component
-@Component({ selector: 'awg-json-viewer', template: '' })
+@Component({
+    selector: 'awg-json-viewer',
+    template: '',
+    standalone: false,
+})
 class JsonViewerStubComponent {
     @Input()
     jsonViewerHeader: string;
@@ -62,10 +66,7 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
                 const viewerDes = getAndExpectDebugElementByDirective(compDe, JsonViewerStubComponent, 1, 1);
                 const viewerCmp = viewerDes[0].injector.get(JsonViewerStubComponent) as JsonViewerStubComponent;
 
-                expect(viewerCmp.jsonViewerHeader).toBeDefined();
-                expect(viewerCmp.jsonViewerHeader)
-                    .withContext(`should have header: ${expectedHeader}`)
-                    .toBe(expectedHeader);
+                expectToBe(viewerCmp.jsonViewerHeader, expectedHeader);
             });
 
             it('... should not pass down `resourceJsonConvertedData` to json viewer component', () => {
@@ -87,10 +88,7 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
         });
 
         it('... should have `resourceJsonConvertedData`', () => {
-            expect(component.resourceJsonConvertedData).toBeDefined();
-            expect(component.resourceJsonConvertedData)
-                .withContext(`should equal ${expectedData}`)
-                .toEqual(expectedData);
+            expectToEqual(component.resourceJsonConvertedData, expectedData);
         });
 
         describe('VIEW', () => {
@@ -98,8 +96,7 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
                 const viewerDes = getAndExpectDebugElementByDirective(compDe, JsonViewerStubComponent, 1, 1);
                 const viewerCmp = viewerDes[0].injector.get(JsonViewerStubComponent) as JsonViewerStubComponent;
 
-                expect(viewerCmp.jsonViewerData).toBeDefined();
-                expect(viewerCmp.jsonViewerData).withContext(`should equal ${expectedData}`).toEqual(expectedData);
+                expectToEqual(viewerCmp.jsonViewerData, expectedData);
             });
         });
     });

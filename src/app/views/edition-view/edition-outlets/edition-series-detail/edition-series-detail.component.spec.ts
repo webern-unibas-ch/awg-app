@@ -1,40 +1,51 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
 
-import { ActivatedRouteStub } from '@testing/router-stubs';
+import Spy = jasmine.Spy;
+
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionSeriesDetailComponent } from './edition-series-detail.component';
 
-describe('EditionSeriesDetailComponent', () => {
+describe('EditionSeriesDetailComponent (DONE)', () => {
     let component: EditionSeriesDetailComponent;
     let fixture: ComponentFixture<EditionSeriesDetailComponent>;
     let compDe: DebugElement;
 
-    let mockEditionService: Partial<EditionService>;
+    let mockActivatedRoute: ActivatedRouteStub;
+    let mockEditionStateService: Partial<EditionStateService>;
 
-    let expectedEditionSeries: EditionOutlineSeries;
+    let updateSeriesFromRouteSpy: Spy;
+    let editionOutlineServiceGetEditionSeriesByIdSpy: Spy;
+    let editionStateServiceUpdateSelectedEditionSeriesSpy: Spy;
+
+    let expectedSelectedSeries: EditionOutlineSeries;
+    let expectedSeriesId: string;
+
+    beforeAll(() => {
+        EditionOutlineService.initializeEditionOutline();
+    });
 
     beforeEach(async () => {
-        // Mock edition service
-        mockEditionService = {
-            getEditionSeriesById: (seriesId: string): EditionOutlineSeries => expectedEditionSeries,
-            updateSelectedEditionSeries: (editionSeries: EditionOutlineSeries): void => {},
+        // Mock edition state service
+        mockEditionStateService = {
+            updateSelectedEditionSeries: (): void => {},
         };
 
         // Mocked activated route
-        const mockActivatedRoute: ActivatedRouteStub = new ActivatedRouteStub();
+        mockActivatedRoute = new ActivatedRouteStub();
 
         await TestBed.configureTestingModule({
-            imports: [RouterTestingModule],
-            declarations: [EditionSeriesDetailComponent],
+            declarations: [EditionSeriesDetailComponent, RouterOutletStubComponent],
             providers: [
                 { provide: ActivatedRoute, useValue: mockActivatedRoute },
-                { provide: EditionService, useValue: mockEditionService },
+                { provide: EditionStateService, useValue: mockEditionStateService },
             ],
         }).compileComponents();
     });
@@ -44,10 +55,81 @@ describe('EditionSeriesDetailComponent', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        fixture.detectChanges();
+        // Test data
+        expectedSelectedSeries = EditionOutlineService.getEditionOutline()[0];
+        expectedSeriesId = expectedSelectedSeries.series.route;
+
+        // Spies
+        updateSeriesFromRouteSpy = spyOn(component, 'updateSeriesFromRoute').and.callThrough();
+        editionOutlineServiceGetEditionSeriesByIdSpy = spyOn(
+            EditionOutlineService,
+            'getEditionSeriesById'
+        ).and.callThrough();
+        editionStateServiceUpdateSelectedEditionSeriesSpy = spyOn(
+            mockEditionStateService,
+            'updateSelectedEditionSeries'
+        ).and.callThrough();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('... should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    describe('BEFORE initial data binding', () => {
+        it('... should not have called `updateSeriesFromRoute` method', () => {
+            expectSpyCall(updateSeriesFromRouteSpy, 0);
+        });
+
+        describe('VIEW', () => {
+            it('... should contain one router outlet (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 1, 1);
+            });
+        });
+    });
+
+    describe('AFTER initial data binding', () => {
+        beforeEach(() => {
+            // Set route params via ActivatedRoute mock
+            mockActivatedRoute.testParamMap = { id: expectedSeriesId };
+
+            // Trigger initial data binding
+            fixture.detectChanges();
+        });
+
+        it('... should have called `updateSeriesFromRoute` method', () => {
+            expectSpyCall(updateSeriesFromRouteSpy, 1);
+        });
+
+        describe('VIEW', () => {
+            it('... should contain one router outlet (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 1, 1);
+            });
+        });
+
+        describe('#updateSeriesFromRoute()', () => {
+            it('... should have a method `updateSeriesFromRoute`', () => {
+                expect(component.updateSeriesFromRoute).toBeDefined();
+            });
+
+            it('... should call EditionOutlineService.getEditionSeriesById', () => {
+                expectSpyCall(editionOutlineServiceGetEditionSeriesByIdSpy, 1, expectedSeriesId);
+
+                component.updateSeriesFromRoute();
+
+                expectSpyCall(editionOutlineServiceGetEditionSeriesByIdSpy, 2, expectedSeriesId);
+            });
+
+            it('... should call editionStateService.updateSelectedEditionSeries with selectedSeries', () => {
+                expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, 1, expectedSelectedSeries);
+
+                component.updateSeriesFromRoute();
+
+                expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, 2, expectedSelectedSeries);
+            });
+        });
     });
 });

@@ -13,6 +13,7 @@ import { SubjectItemJson } from '@awg-shared/api-objects';
     selector: 'awg-bibliography-list',
     templateUrl: './bibliography-list.component.html',
     styleUrls: ['./bibliography-list.component.scss'],
+    standalone: false,
 })
 export class BibliographyListComponent {
     /**

@@ -7,9 +7,14 @@ import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+} from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
-import { createD3TestSvg } from '@testing/svg-drawing-helper';
 
 import {
     D3Selection,
@@ -47,6 +52,8 @@ describe('EditionFolioViewerComponent (DONE)', () => {
     let serviceAddViewBoxToSvgCanvasSpy: Spy;
     let serviceGetFolioSvgDataSpy: Spy;
 
+    let expectedComplexId: string;
+    let expectedNextComplexId: string;
     let expectedConvolute: FolioConvolute;
     let expectedFolioSettingsArray: FolioSettings[];
     let expectedFolioSettings: FolioSettings;
@@ -83,6 +90,9 @@ describe('EditionFolioViewerComponent (DONE)', () => {
         expectedSvgSheetWithPartialA = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
         expectedConvolute = mockEditionData.mockFolioConvoluteData.convolutes[0];
 
+        expectedComplexId = 'testComplex1';
+        expectedNextComplexId = 'testComplex2';
+
         expectedFolioSettings = {
             factor: 1.5,
             formatX: 175,
@@ -93,7 +103,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
         };
         expectedFolioSettingsArray = [];
         expectedFolioSvgDataArray = [];
-        expectedConvolute.folios.forEach((folio, _index) => {
+        expectedConvolute.folios.forEach(folio => {
             const folioSettings = {
                 ...expectedFolioSettings,
                 formatX: +folio.format.width,
@@ -137,7 +147,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
     it('... injected service should use provided mockValue', () => {
         const folioService = TestBed.inject(FolioService);
-        expect(mockFolioService === folioService).toBeTrue();
+        expectToBe(mockFolioService === folioService, true);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -200,17 +210,17 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one div.svgGrid with one div.svgRow', () => {
-                const gridDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid', 1, 1);
+                const gridDes = getAndExpectDebugElementByCss(compDe, 'div.svgGrid', 1, 1);
 
-                getAndExpectDebugElementByCss(gridDe[0], 'div.svgRow', 1, 1);
+                getAndExpectDebugElementByCss(gridDes[0], 'div.svgRow', 1, 1);
             });
 
             it('... should contain as many div.svgCol in div.svgRow as content segments in folioSvgDataArray', async () => {
-                const rowDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
+                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
 
                 expect(component.folioSvgDataArray.length).toBeGreaterThan(0);
                 getAndExpectDebugElementByCss(
-                    rowDe[0],
+                    rowDes[0],
                     'div.svgCol',
                     expectedFolioSvgDataArray.length,
                     expectedFolioSvgDataArray.length
@@ -218,51 +228,51 @@ describe('EditionFolioViewerComponent (DONE)', () => {
             });
 
             it('... should have correct bootstrap grid classes for div.svgCol', () => {
-                const rowDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
+                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
 
-                const colDe = getAndExpectDebugElementByCss(
-                    rowDe[0],
+                const colDes = getAndExpectDebugElementByCss(
+                    rowDes[0],
                     'div.svgCol',
                     expectedFolioSvgDataArray.length,
                     expectedFolioSvgDataArray.length
                 );
 
-                colDe.forEach((col, _index) => {
-                    const colEl = col.nativeElement;
+                colDes.forEach(colDe => {
+                    const colEl: HTMLDivElement = colDe.nativeElement;
 
                     const expectedLgColClass = 'col-lg-' + Math.floor(12 / expectedFolioSvgDataArray.length);
 
-                    expect(colEl.classList.contains('col-sm-6')).toBeTrue();
-                    expect(colEl.classList.contains(expectedLgColClass)).toBeTrue();
+                    expectToContain(colEl.classList, 'col-sm-6');
+                    expectToContain(colEl.classList, expectedLgColClass);
                 });
             });
 
             it('... should contain as many muted span elements in div.svgCol as content segments in folioSvgDataArray', () => {
-                const rowDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
-                const colDe = getAndExpectDebugElementByCss(
-                    rowDe[0],
+                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
+                const colDes = getAndExpectDebugElementByCss(
+                    rowDes[0],
                     'div.svgCol',
                     expectedFolioSvgDataArray.length,
                     expectedFolioSvgDataArray.length
                 );
 
-                colDe.forEach((col, _index) => {
-                    getAndExpectDebugElementByCss(col, 'span.text-muted', 1, 1);
+                colDes.forEach(colDe => {
+                    getAndExpectDebugElementByCss(colDe, 'span.text-muted', 1, 1);
                 });
             });
 
             it('... should display correct folioId in muted span elements', () => {
-                const rowDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
-                const colDe = getAndExpectDebugElementByCss(
-                    rowDe[0],
+                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
+                const colDes = getAndExpectDebugElementByCss(
+                    rowDes[0],
                     'div.svgCol',
                     expectedFolioSvgDataArray.length,
                     expectedFolioSvgDataArray.length
                 );
 
-                colDe.forEach((col, index) => {
-                    const spanDe = getAndExpectDebugElementByCss(col, 'span.text-muted', 1, 1);
-                    const spanEl = spanDe[0].nativeElement;
+                colDes.forEach((colDe, index) => {
+                    const spanDes = getAndExpectDebugElementByCss(colDe, 'span.text-muted', 1, 1);
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
                     const expectedFolioId = expectedFolioSvgDataArray[index].sheet.folioId;
                     const expectedContent = `[${expectedFolioId}]`;
 
@@ -271,32 +281,32 @@ describe('EditionFolioViewerComponent (DONE)', () => {
             });
 
             it('... should contain as many svg elements in div.svgCol as content segments in folioSvgDataArray', () => {
-                const rowDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
+                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
 
-                const colDe = getAndExpectDebugElementByCss(
-                    rowDe[0],
+                const colDes = getAndExpectDebugElementByCss(
+                    rowDes[0],
                     'div.svgCol',
                     expectedFolioSvgDataArray.length,
                     expectedFolioSvgDataArray.length
                 );
 
-                colDe.forEach((col, _index) => {
-                    getAndExpectDebugElementByCss(col, 'svg', 1, 1);
+                colDes.forEach(colDe => {
+                    getAndExpectDebugElementByCss(colDe, 'svg', 1, 1);
                 });
             });
 
             it('... should have correct id for each svg element', () => {
-                const rowDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
-                const colDe = getAndExpectDebugElementByCss(
-                    rowDe[0],
+                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
+                const colDes = getAndExpectDebugElementByCss(
+                    rowDes[0],
                     'div.svgCol',
                     expectedFolioSvgDataArray.length,
                     expectedFolioSvgDataArray.length
                 );
 
-                colDe.forEach((col, index) => {
-                    const svgDe = getAndExpectDebugElementByCss(col, 'svg', 1, 1);
-                    const svgEl = svgDe[0].nativeElement;
+                colDes.forEach((colDe, index) => {
+                    const svgDes = getAndExpectDebugElementByCss(colDe, 'svg', 1, 1);
+                    const svgEl: SVGSVGElement = svgDes[0].nativeElement;
                     const expectedSvgId = `folio-${expectedSvgSheet.id}-${expectedFolioSvgDataArray[index].sheet.folioId}`;
 
                     expectToBe(svgEl.id, expectedSvgId);
@@ -373,8 +383,10 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                     component.createSVGCanvas();
 
                     expect(component.viewBoxArray.length).not.toEqual(component.folioSvgDataArray.length);
-                    expectToEqual(component.canvasArray, []);
                     expectToBe(component.canvasArray.length, 0);
+                    expectToBe(component.viewBoxArray.length, 2);
+
+                    expectToEqual(component.canvasArray, []);
                 });
 
                 it('... svgCanvas is empty', () => {
@@ -383,7 +395,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                     component.prepareFolioSvgOutput();
                     component.createSVGCanvas();
 
-                    expect(component.canvasArray).toEqual([]);
+                    expectToEqual(component.canvasArray, []);
                 });
             });
 
@@ -447,13 +459,13 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 it('... the given id matches the selectedSvgSheet id', () => {
                     component.selectedSvgSheet = expectedSvgSheet;
 
-                    expect(component.isSelectedSvgSheet('test-1')).toBeTrue();
+                    expectToBe(component.isSelectedSvgSheet('test-1'), true);
                 });
 
                 it('... the given id matches the selectedSvgSheet id with partial', () => {
                     component.selectedSvgSheet = expectedSvgSheetWithPartialA;
 
-                    expect(component.isSelectedSvgSheet('test-2a')).toBeTrue();
+                    expectToBe(component.isSelectedSvgSheet('test-2a'), true);
                 });
             });
 
@@ -461,19 +473,19 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 it('... the given id does not match the selectedSvgSheet id', () => {
                     component.selectedSvgSheet = expectedSvgSheet;
 
-                    expect(component.isSelectedSvgSheet('other-test')).toBeFalse();
+                    expectToBe(component.isSelectedSvgSheet('other-test'), false);
                 });
 
                 it('... given the id does not match the selectedSvgSheet id with partial', () => {
                     component.selectedSvgSheet = expectedSvgSheetWithPartialA;
 
-                    expect(component.isSelectedSvgSheet('test-2b')).toBeFalse();
+                    expectToBe(component.isSelectedSvgSheet('test-2b'), false);
                 });
 
                 it('... selectedSvgSheet is undefined', () => {
                     component.selectedSvgSheet = undefined;
 
-                    expect(component.isSelectedSvgSheet('test-1')).toBeFalse();
+                    expectToBe(component.isSelectedSvgSheet('test-1'), false);
                 });
             });
         });
@@ -615,16 +627,10 @@ describe('EditionFolioViewerComponent (DONE)', () => {
             });
 
             xit('... should trigger on click', fakeAsync(() => {
-                // TODO: update
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 1, 1);
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
 
-                // Find content item spans
-                const contentSegmentDes = getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'span.awg-source-description-content-item',
-                    3,
-                    3
-                );
+                // Find content segments
+                const contentSegmentDes = getAndExpectDebugElementByCss(compDe, 'svg > g.content-segment-group', 3, 3);
 
                 // Find anchors in second paragraph
                 const anchorDes = getAndExpectDebugElementByCss(contentSegmentDes[0], 'a', 1, 1);
@@ -632,43 +638,44 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 // CLick on anchor (with selectSvgSheet call)
                 clickAndAwaitChanges(anchorDes[0], fixture);
 
-                // TODO: [expectedComplexId, expectedSheetId] should be used in spy call response
-                expectSpyCall(selectSvgSheetSpy, 1);
+                expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
             }));
 
             it('... should not emit anything if no id is provided', () => {
-                component.selectSvgSheet(undefined, undefined);
+                const expectedSheetIds = undefined;
+                component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
 
-                component.selectSvgSheet('', '');
+                const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
+                component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
             });
 
             it('... should emit id of selected svg sheet within same complex', () => {
-                const expectedSheetIds = { complexId: 'test-complex', sheetId: expectedSvgSheet.id };
-                component.selectSvgSheet(expectedSheetIds.complexId, expectedSheetIds.sheetId);
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
 
-                const expectedNextSheetIds = { complexId: 'test-complex', sheetId: expectedSvgSheetWithPartialA.id };
-                component.selectSvgSheet(expectedNextSheetIds.complexId, expectedNextSheetIds.sheetId);
+                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheetWithPartialA.id };
+                component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
             });
 
             it('... should emit id of selected svg sheet for another complex', () => {
-                const expectedSheetIds = { complexId: 'test-complex', sheetId: expectedSvgSheet.id };
-                component.selectSvgSheet(expectedSheetIds.complexId, expectedSheetIds.sheetId);
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
 
                 const expectedNextSheetIds = {
-                    complexId: 'test-next-complex',
+                    complexId: expectedNextComplexId,
                     sheetId: expectedSvgSheetWithPartialA.id,
                 };
-                component.selectSvgSheet(expectedNextSheetIds.complexId, expectedNextSheetIds.sheetId);
+                component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
             });
@@ -680,11 +687,14 @@ describe('EditionFolioViewerComponent (DONE)', () => {
             let svgGroupSelection2: D3Selection;
 
             beforeEach(() => {
-                // Create mocked SVG element with D3
+                // Create mocked SVG element with D3 and return selection
+                const svgId = `folio-${expectedSvgSheet.id}-${expectedFolioSvgDataArray[0].sheet.folioId}`;
                 const contentSegmentId = expectedSvgSheet.id;
                 const anotherContentSegmentId = 'another-id';
 
-                svgSelection = createD3TestSvg(mockDocument);
+                const container: HTMLElement = mockDocument.createElement('div');
+                svgSelection = D3_SELECTION.select(container).append('svg').attr('id', svgId);
+
                 svgGroupSelection1 = svgSelection
                     .append('g')
                     .attr('class', 'content-segment-group')
@@ -693,6 +703,8 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                     .append('g')
                     .attr('class', 'content-segment-group')
                     .attr('contentSegmentId', anotherContentSegmentId);
+
+                d3SelectSpy.and.returnValue(svgSelection);
             });
 
             afterEach(() => {
@@ -726,15 +738,15 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
                 component.toggleActiveClass();
 
-                expect(svgGroupSelection1.classed('active')).toBe(true);
-                expect(svgGroupSelection2.classed('active')).toBe(false);
+                expectToBe(svgGroupSelection1.classed('active'), true);
+                expectToBe(svgGroupSelection2.classed('active'), false);
 
                 isSelectedSvgSheetSpy.and.callFake(contentSegmentId => contentSegmentId === 'another-id');
 
                 component.toggleActiveClass();
 
-                expect(svgGroupSelection1.classed('active')).toBe(false);
-                expect(svgGroupSelection2.classed('active')).toBe(true);
+                expectToBe(svgGroupSelection1.classed('active'), false);
+                expectToBe(svgGroupSelection2.classed('active'), true);
             });
         });
 

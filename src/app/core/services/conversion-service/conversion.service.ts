@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 
+import { GeoNames, JdnDate } from '@awg-core/core-models';
 import { ApiService } from '@awg-core/services/api-service';
-
-import { GeoNames } from '@awg-core/core-models';
 import { UtilityService } from '@awg-core/services/utility-service';
 import {
     ContextJson,
@@ -72,20 +71,40 @@ export class ConversionService extends ApiService {
     filteredOut: number;
 
     /**
+     * Private readonly injection variable: _utils.
+     *
+     * It keeps the instance of the injected UtilityService.
+     */
+    private readonly _utils = inject(UtilityService);
+
+    /**
      * Constructor of the ConversionService.
      *
      * It declares a public {@link HttpClient} instance
-     * with a super reference to base class (ApiService)
-     * and a private {@link UtilityService} instance.
+     * with a super reference to base class (ApiService).
      *
      * @param {HttpClient} http Instance of the HttpClient.
-     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor(
-        public override http: HttpClient,
-        private utils: UtilityService
-    ) {
+    constructor(public override http: HttpClient) {
         super(http);
+    }
+
+    /**
+     * Public static method: replaceParagraphTags.
+     *
+     * It removes paragraph tags in richtext values
+     * and replaces line breaks instead for multiple lines.
+     *
+     * @param {string} str The given richtext value.
+     *
+     * @returns {string} The adjusted richtext value.
+     */
+    public static replaceParagraphTags(str: string): string {
+        if (!str) {
+            return undefined;
+        }
+        const replacedStr = str.replace(/<\/p><p>/g, '<br class="mb-2" />').replace(/<p>|<\/p>/g, '');
+        return replacedStr;
     }
 
     /**
@@ -103,68 +122,17 @@ export class ConversionService extends ApiService {
             return searchResults;
         }
 
-        // TODO: refactor with reduce??
-        searchResults.subjects.forEach(subject => {
-            // Clean value labels
-            subject.valuelabel[0] = subject.valuelabel[0].replace(' (Richtext)', '');
-            subject.obj_id = subject.obj_id.replace('_-_local', '');
-
-            // =>Chronologie: salsah standoff needs to be converted before displaying
-            // Valuetype_id 14 = valuelabel 'Ereignis'
-            if (subject.valuetype_id[0] === '14' && subject.value[0]) {
-                let htmlstr = '';
-                const utf8str: string = subject.value[0].utf8str;
-                const textattr: string = subject.value[0].textattr;
-
-                // Check if there is standoff, otherwise leave res.value[0] alone
-                // Because when retrieved from cache the standoff is already converted
-                if (utf8str && textattr) {
-                    htmlstr = this._convertStandoffToHTML(utf8str, textattr);
-
-                    // Replace salsah links
-                    htmlstr = this._replaceSalsahLink(htmlstr);
-
-                    // Strip & replace <p>-tags for displaying
-                    htmlstr = this._replaceParagraphTags(htmlstr);
-
-                    subject.value[0] = htmlstr;
-                }
-            }
+        // Clean up labels and values of result subjects
+        const cleanedSubjects = searchResults.subjects.map(subject => {
+            subject = this._cleanSubjectValueLabels({ ...subject });
+            subject = this._cleanSubjectValues({ ...subject });
+            return subject;
         });
-        // Remove duplicates from response
-        searchResults.subjects = this._distinctSubjects(searchResults.subjects);
-        return searchResults;
-    }
 
-    /**
-     * Public method: prepareFullTextSearchResultText.
-     *
-     * It prepares the fulltext search result text
-     * to be displayed in the search info.
-     *
-     * @param {SearchResponseWithQuery} searchResponseWithQuery The given results and query of a search request.
-     * @param {string} searchUrl The given url of a search request.
-     *
-     * @returns {string} The text to be displayed.
-     */
-    prepareFullTextSearchResultText(searchResponseWithQuery: SearchResponseWithQuery, searchUrl: string): string {
-        let resText: string;
+        // Remove duplicates from result subjects
+        const distinctSubjects = this._distinctSubjects(cleanedSubjects);
 
-        const searchResults = { ...searchResponseWithQuery.data };
-
-        if (searchResults.subjects) {
-            const currentLength = searchResults.subjects.length;
-            const totalLength = searchResults.nhits;
-            const resString: string = length === 1 ? 'Ergbnis' : 'Ergebnisse';
-            resText = `${currentLength} / ${totalLength} ${resString}`;
-            if (this.filteredOut > 0) {
-                resText += ' (Duplikate enfternt)';
-            }
-        } else {
-            resText = `Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;
-        }
-
-        return resText;
+        return { ...searchResults, subjects: distinctSubjects };
     }
 
     /**
@@ -187,7 +155,7 @@ export class ConversionService extends ApiService {
             let propValue = []; // Empty text value array
 
             // Check if values property is defined
-            if (prop.hasOwnProperty('values') && prop.values !== undefined) {
+            if (Object.prototype.hasOwnProperty.call(prop, 'values') && prop.values !== undefined) {
                 // Check for gui-elements
                 switch (prop.valuetype_id) {
                     case '4':
@@ -200,7 +168,7 @@ export class ConversionService extends ApiService {
                     case '7':
                         // SELECTION PULLDOWN: selection nodes have to be read seperately
                         // TODO
-                        if (this.utils.isNotEmptyArray(prop.values)) {
+                        if (this._utils.isNotEmptyArray(prop.values)) {
                             propValue = this._convertSelectionValues(prop.values, prop.attributes);
                         }
                         break; // END selection
@@ -219,11 +187,7 @@ export class ConversionService extends ApiService {
                                 let htmlstr = '';
 
                                 // Convert linear salsah standoff to html (using plugin "htmlConverter")
-                                htmlstr = this._convertStandoffToHTML(prop.values[i].utf8str, prop.values[i].textattr);
-
-                                // Replace salsah links & <p>-tags
-                                htmlstr = this._replaceSalsahLink(htmlstr);
-                                htmlstr = htmlstr.replace('<p>', '').replace('</p>', '');
+                                htmlstr = this._convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr);
 
                                 // Trim string
                                 propValue[i] = htmlstr.trim();
@@ -263,7 +227,7 @@ export class ConversionService extends ApiService {
         }); // END forEach PROPS
 
         return convObj;
-    } // END convertObjectProperties (func)
+    }
 
     /**
      * Public method: convertResourceData.
@@ -286,6 +250,34 @@ export class ConversionService extends ApiService {
             return this._prepareAccessibleResource(resourceData, resourceId);
         } else {
             return this._prepareRestrictedResource(resourceData, resourceId);
+        }
+    }
+
+    /**
+     * Public method: prepareFullTextSearchResultText.
+     *
+     * It prepares the fulltext search result text
+     * to be displayed in the search info.
+     *
+     * @param {SearchResponseWithQuery} searchResponseWithQuery The given results and query of a search request.
+     * @param {string} searchUrl The given url of a search request.
+     *
+     * @returns {string} The text to be displayed.
+     */
+    prepareFullTextSearchResultText(searchResponseWithQuery: SearchResponseWithQuery, searchUrl: string): string {
+        const { subjects, nhits: totalLength = 0 } = { ...searchResponseWithQuery?.data };
+
+        if (subjects) {
+            const currentLength = subjects.length;
+            const resString: string = currentLength === 1 ? 'Ergebnis' : 'Ergebnisse';
+            let resText = `${currentLength} / ${totalLength} ${resString}`;
+            if (this.filteredOut > 0) {
+                const duplicateString = this.filteredOut === 1 ? 'Duplikat' : 'Duplikate';
+                resText += ` (${this.filteredOut} ${duplicateString} entfernt)`;
+            }
+            return resText;
+        } else {
+            return `Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;
         }
     }
 
@@ -462,9 +454,9 @@ export class ConversionService extends ApiService {
      *
      * @param {PropertyJson[]} props The given properties.
      *
-     * @returns {*} The converted resource data.
+     * @returns {PropertyJson[]} The converted properties.
      */
-    private _convertGUISpecificProps(props: PropertyJson[]): any {
+    private _convertGUISpecificProps(props: PropertyJson[]): PropertyJson[] {
         // Loop through all properties and add toHtml values
         Object.keys(props).forEach((key: string) => {
             props[key] = this._addHtmlValues(props[key]);
@@ -478,12 +470,11 @@ export class ConversionService extends ApiService {
      * It adds an 'toHtml' property to the props array
      * of an accessible resource to be displayed via HTML.
      *
-     * @param {*} prop The given property.
-     * @param {string} [url] A given optional url.
+     * @param {PropertyJson} prop The given property.
      *
-     * @returns {string[]} The converted property.
+     * @returns {PropertyJson} The converted property.
      */
-    private _addHtmlValues(prop: any, url?: string): [string] {
+    private _addHtmlValues(prop: PropertyJson): PropertyJson {
         prop.toHtml = [];
 
         if (prop.values) {
@@ -496,7 +487,11 @@ export class ConversionService extends ApiService {
 
                 case '6': // LINKVALUE (searchbox): links to another salsah object need to be converted
                     for (let i = 0; i < prop.values.length; i++) {
-                        prop.toHtml[i] = this._convertLinkValue(prop, i);
+                        prop.toHtml[i] = this._convertLinkValue(
+                            prop.values[i],
+                            prop.value_firstprops[i],
+                            prop.value_restype[i]
+                        );
                     }
                     break; // END linkvalue
 
@@ -532,6 +527,51 @@ export class ConversionService extends ApiService {
     }
 
     /**
+     * Private method: _cleanSubjectValueLabels.
+     *
+     * It cleans the value labels of a subject (SubjectItemJson)
+     * to be displayed via HTML.
+     *
+     * @param {SubjectItemJson} subject The given subject.
+     *
+     * @returns {SubjectItemJson} The cleaned subject.
+     */
+    private _cleanSubjectValueLabels(subject: SubjectItemJson): SubjectItemJson {
+        const { valuelabel, obj_id: objId } = subject;
+        const firstValueLabel = valuelabel?.[0];
+
+        const modifiedValuelabel = firstValueLabel ? [firstValueLabel.replace(' (Richtext)', '')] : valuelabel;
+        const modifiedObjId = objId ? objId?.replace('_-_local', '') : '';
+
+        return { ...subject, valuelabel: modifiedValuelabel, obj_id: modifiedObjId };
+    }
+
+    /**
+     * Private method: _cleanSubjectValues.
+     *
+     * It cleans the values of a subject (SubjectItemJson)
+     * to be displayed via HTML.
+     *
+     * @param {SubjectItemJson} subject The given subject.
+     *
+     * @returns {SubjectItemJson} The cleaned subject.
+     */
+    private _cleanSubjectValues(subject: SubjectItemJson): SubjectItemJson {
+        const tmpSubject = { ...subject };
+        const { valuetype_id: valueTypeId, value } = tmpSubject;
+        const firstValue = value?.[0];
+
+        if (valueTypeId?.[0] === '14' && firstValue) {
+            const { utf8str, textattr } = firstValue;
+            if (utf8str && textattr) {
+                const htmlstr = this._convertRichtextValue(utf8str, textattr);
+                tmpSubject.value[0] = htmlstr;
+            }
+        }
+        return tmpSubject;
+    }
+
+    /**
      * Private method: _convertDateValue.
      *
      * It converts date values of an accessible resource
@@ -540,14 +580,12 @@ export class ConversionService extends ApiService {
      * Conversion goes from Julian Day Number (JDN)
      * to Gregorian Calendar.
      *
-     * @param {*} dateObj The given date object.
+     * @param {JdnDate} dateObj The given JDN date object.
      *
      * @returns {string} The converted date string.
      */
-    private _convertDateValue(dateObj: any): string {
-        let date: string = dateConverter(dateObj);
-        date = date.replace(' (G)', '');
-        return date;
+    private _convertDateValue(dateObj: JdnDate): string {
+        return dateConverter(dateObj).replace(' (G)', '');
     }
 
     /**
@@ -649,21 +687,14 @@ export class ConversionService extends ApiService {
      * It converts a link value of an accessible resource
      * to be displayed via HTML.
      *
-     * @param {*} prop The given property value.
-     * @param {number} index The given index position.
+     * @param {string} valueId The given value id.
+     * @param {string} firstProp The given first property value.
+     * @param {string} restype The given resource type.
      *
      * @returns {string} The converted link value.
      */
-    private _convertLinkValue(prop: any, index: number): string {
-        // Add <a>-tag with click-directive; linktext is stored in "$&"
-        const firstValue = prop.value_firstprops[index];
-        const replaceValue =
-            '<a (click)="ref.navigateToResource(\'' +
-            prop.values[index] +
-            '\')">$& (' +
-            prop.value_restype[index] +
-            ')</a>';
-        return firstValue.replace(firstValue, replaceValue);
+    private _convertLinkValue(valueId: string, firstProp: string, restype: string): string {
+        return `<a (click)="ref.navigateToResource('${valueId}')">${firstProp} (${restype})</a>`;
     }
 
     /**
@@ -679,10 +710,13 @@ export class ConversionService extends ApiService {
      */
     private _convertRichtextValue(str: string, attr: string): string {
         // Convert salsah standoff to html (using plugin "htmlConverter")
-        const rtValue: string = this._convertStandoffToHTML(str, attr);
+        const htmlValue: string = this._convertStandoffToHTML(str, attr);
 
         // Replace salsah links
-        return this._replaceSalsahLink(rtValue);
+        const replacedLinks = this._replaceSalsahLink(htmlValue);
+
+        // Strip & replace <p>-tags for displaying
+        return ConversionService.replaceParagraphTags(replacedLinks);
     }
 
     /**
@@ -744,20 +778,45 @@ export class ConversionService extends ApiService {
      * to html using plugin 'htmlConverter'.
      *
      * @param {string} str The given utf8 string of a rich text property.
-     * @param {string} attr The given standoff attributes of a richtext property.
+     * @param {string} jsonAttrs The given standoff (JSON) attributes of a richtext property.
      *
      * @returns {string} The converted standoff.
-     *
-     * @todo check if it is possible to unify with hlist conversion?
      */
-    private _convertStandoffToHTML(str: string, attr: string): string {
+    private _convertStandoffToHTML(str: string, jsonAttrs: string): string {
         if (!str) {
             return undefined;
         }
-        if (!attr) {
+        if (!jsonAttrs) {
             return str;
         }
-        return htmlConverter(JSON.parse(attr), str);
+        return htmlConverter(JSON.parse(jsonAttrs), str);
+    }
+
+    /**
+     * Private method: _distinctSubjects.
+     *
+     * It removes duplicates from an array of subjects (SubjectItemJson[]).
+     * It uses the `reduce` method to create an object with unique `obj_id` keys,
+     * then converts this object back to an array.
+     *
+     * @param {SubjectItemJson[]} subjects The given subject with possible duplicates.
+     *
+     * @returns {SubjectItemJson[]} The distinct subjects.
+     */
+    private _distinctSubjects(subjects: SubjectItemJson[]): SubjectItemJson[] {
+        if (!subjects) {
+            return undefined;
+        }
+
+        const distinctObj: { [key: string]: SubjectItemJson } = subjects.reduce((acc, subject) => {
+            acc[subject.obj_id] = subject;
+            return acc;
+        }, {});
+        const distinctArr: SubjectItemJson[] = Object.values(distinctObj);
+
+        this.filteredOut = subjects.length - distinctArr.length;
+
+        return distinctArr;
     }
 
     /**
@@ -804,7 +863,7 @@ export class ConversionService extends ApiService {
     private _getNodeIdFromAttributes(attributes: string): string {
         // Identify node id from prop.attributes
         // E.g. "hlist=17" or "selection=77"
-        return attributes.split('=')[1].toString();
+        return attributes?.split('=')[1]?.toString();
     }
 
     /**
@@ -871,85 +930,26 @@ export class ConversionService extends ApiService {
         }
 
         // Regexp for Salsah links
-        // Including subgroup for object id: /[1-9]\d{0,9}/ (any up-to 10-digit integer greater 0)
+        // Including subgroup for object id: /[1-9]\d{0,12}/ (any up-to 13-digit integer greater 0)
         const regLink =
-            /<a\s+(?:[^>]*?\s+)?href=(["'])((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?salsah\.org\/api\/resources\/([1-9]\d{0,9}))\1 class=(["'])salsah-link\5>(.*?)<\/a>/i;
+            /<a\s+(?:[^>]*?\s+)?href=(["'])((?:https?:\/\/(?:www\.)?)?salsah\.org\/api\/resources\/([1-9]\d{0,12}))\1 class=(["'])salsah-link\4>(.*?)<\/a>/i;
 
         let regArr: RegExpExecArray;
 
         // Check for salsah links in str
-        while (regLink.exec(str)) {
-            // I.e.: as long as regLink is detected in str do...
-            regArr = regLink.exec(str);
-
+        while ((regArr = regLink.exec(str))) {
             // Resource id is in 4th array entry
-            const resId = regArr[4];
+            const resId = regArr[3];
             // Link text is stored in last array entry
-            const resTextContent = regArr[regArr.length - 1];
+            const resTextContent = regArr.at(-1);
 
             // Replace href attribute with click-directive
-            const replaceValue =
-                '<a (click)="ref.navigateToResource(\'' +
-                resId +
-                '\'); $event.stopPropagation()">' +
-                resTextContent +
-                '</a>';
+            const replaceValue = `<a (click)="ref.navigateToResource('${resId}'); $event.stopPropagation()">${resTextContent}</a>`;
+
             str = str.replace(regArr[0], replaceValue);
-        } // END while
+        }
 
         return str;
-    }
-
-    /**
-     * Private method: _replaceParagraphTags.
-     *
-     * It removes paragraph tags in richtext values
-     * and replaces line breaks instead for multiple lines.
-     *
-     * @param {string} str The given richtext value.
-     *
-     * @returns {string} The adjusted richtext value.
-     */
-    private _replaceParagraphTags(str: string): string {
-        if (!str) {
-            return undefined;
-        }
-        str = str
-            .replace(/<\/p><p>/g, '<br />')
-            .replace(/<p>|<\/p>/g, '')
-            .replace(str, '«$&»');
-        return str;
-    }
-
-    /**
-     * Private method: _distinctSubjects.
-     *
-     * It removes duplicates from an array (SubjectItemJson[]).
-     * It checks for every array position (reduce) if the obj_id
-     * of the entry at the current position (y) is already
-     * in the array (findIndex). If that is not the case it
-     * pushes y into x which is initialized as empty array [].
-     *
-     * See also {@link https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855}.
-     *
-     * @param {SubjectItemJson[]} subjects The given subject with possible duplicates.
-     *
-     * @returns {SubjectItemJson[]} The distinct subjects.
-     */
-    private _distinctSubjects(subjects: SubjectItemJson[]): SubjectItemJson[] {
-        if (!subjects) {
-            return undefined;
-        }
-        this.filteredOut = 0;
-        const distinctObj = {};
-        let distinctArr = [];
-
-        subjects.forEach((subject: SubjectItemJson) => (distinctObj[subject.obj_id] = subject));
-        distinctArr = Object.values(distinctObj);
-
-        this.filteredOut = subjects.length - distinctArr.length;
-
-        return distinctArr;
     }
 
     /**

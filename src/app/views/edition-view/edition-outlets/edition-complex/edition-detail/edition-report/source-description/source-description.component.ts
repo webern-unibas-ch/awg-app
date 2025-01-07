@@ -23,6 +23,7 @@ import {
     templateUrl: './source-description.component.html',
     styleUrls: ['./source-description.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SourceDescriptionComponent {
     /**
@@ -36,10 +37,10 @@ export class SourceDescriptionComponent {
     /**
      * Output variable: navigateToReportFragment.
      *
-     * It keeps an event emitter for a fragment id of the edition report.
+     * It keeps an event emitter for the selected ids of an edition complex and report fragment.
      */
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
 
     /**
      * Output variable: openModalRequest.
@@ -192,17 +193,17 @@ export class SourceDescriptionComponent {
     /**
      * Public method: navigateToReportFragment.
      *
-     * It emits a given id of a fragment of the edition report
+     * It emits the given ids of a selected edition complex and report fragment
      * to the {@link navigateToReportFragmentRequest}.
      *
-     * @param {string} id The given fragment id.
-     * @returns {void} Navigates to the edition report.
+     * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
+     * @returns {void} Emits the ids.
      */
-    navigateToReportFragment(id: string): void {
-        if (!id) {
+    navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
+        if (!reportIds?.fragmentId) {
             return;
         }
-        this.navigateToReportFragmentRequest.emit(id);
+        this.navigateToReportFragmentRequest.emit(reportIds);
     }
 
     /**
@@ -227,14 +228,13 @@ export class SourceDescriptionComponent {
      * It emits the given ids of a selected edition complex
      * and svg sheet to the {@link selectSvgSheetRequest}.
      *
-     * @param {string} complexId The given complex id.
-     * @param {string} sheetId The given sheet id.
+     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
      * @returns {void} Emits the ids.
      */
-    selectSvgSheet(complexId: string, sheetId: string): void {
-        if (!sheetId) {
+    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
+        if (!sheetIds?.sheetId) {
             return;
         }
-        this.selectSvgSheetRequest.emit({ complexId: complexId, sheetId: sheetId });
+        this.selectSvgSheetRequest.emit(sheetIds);
     }
 }

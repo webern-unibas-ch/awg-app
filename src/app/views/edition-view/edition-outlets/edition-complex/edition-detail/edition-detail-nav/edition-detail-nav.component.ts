@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionOverview component.
@@ -19,6 +19,7 @@ import { EditionService } from '@awg-views/edition-view/services';
     selector: 'awg-edition-detail-nav',
     templateUrl: './edition-detail-nav.component.html',
     styleUrls: ['./edition-detail-nav.component.scss'],
+    standalone: false,
 })
 export class EditionDetailNavComponent implements OnInit, OnDestroy {
     /**
@@ -36,20 +37,18 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
     editionComplex: EditionComplex;
 
     /**
-     * Private variable: _destroyed$.
+     * Private readonly variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroyed$: Subject<boolean> = new Subject<boolean>();
+    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Constructor of the EditionDetailNavComponent.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It declares a private instance of EditionService.
-     *
-     * @param {EditionService} editionService Instance of the EditionService.
+     * It keeps the instance of the injected EditionStateService.
      */
-    constructor(private editionService: EditionService) {}
+    private readonly _editionStateService = inject(EditionStateService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -65,13 +64,13 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
      * Public method: getEditionComplex.
      *
      * It subscribes to the current edition complex
-     * of the edition service.
+     * of the EditionStateService.
      *
      * @returns {void} Gets the current edition complex.
      */
     getEditionComplex(): void {
-        this.editionService
-            .getEditionComplex()
+        this._editionStateService
+            .getSelectedEditionComplex()
             .pipe(takeUntil(this._destroyed$))
             .subscribe({
                 next: (complex: EditionComplex) => {

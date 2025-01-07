@@ -3,6 +3,7 @@ import {
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
+    inject,
     Input,
     OnChanges,
     Output,
@@ -34,6 +35,7 @@ import * as D3_SELECTION from 'd3-selection';
     templateUrl: './edition-folio-viewer.component.html',
     styleUrls: ['./edition-folio-viewer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked {
     /**
@@ -98,11 +100,11 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
     ref: EditionFolioViewerComponent;
 
     /**
-     * Private variable: _folioSettings.
+     * Private readonly variable: _folioSettings.
      *
      * It keeps the format settings for the folio.
      */
-    private _folioSettings: FolioSettings = {
+    private readonly _folioSettings: FolioSettings = {
         factor: 1.5,
         formatX: 175,
         formatY: 270,
@@ -112,15 +114,18 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
     };
 
     /**
+     * Private readonly injection variable: _folioService.
+     *
+     * It keeps the instance of the injected FolioService.
+     */
+    private readonly _folioService = inject(FolioService);
+
+    /**
      * Constructor of the FolioComponent.
      *
-     * It declares a private {@link FolioService} instance
-     * and initializes the self-referring ref variable
-     * needed for CompileHtml library.
-     *
-     * @param {FolioService} folioService Instance of the FolioService.
+     * It initializes the self-referring ref variable needed for CompileHtml library.
      */
-    constructor(private folioService: FolioService) {
+    constructor() {
         this.ref = this;
     }
 
@@ -178,10 +183,10 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
             svgCanvas.selectAll('*').remove();
 
             // SVG viewBox
-            this.folioService.addViewBoxToSvgCanvas(svgCanvas, this.viewBoxArray[folioIndex]);
+            this._folioService.addViewBoxToSvgCanvas(svgCanvas, this.viewBoxArray[folioIndex]);
 
             // SVG content
-            this.folioService.addFolioToSvgCanvas(svgCanvas, folioSvgData, this.ref);
+            this._folioService.addFolioToSvgCanvas(svgCanvas, folioSvgData, this.ref);
 
             this.canvasArray.push(svgCanvas);
         });
@@ -255,7 +260,7 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
             this.viewBoxArray.push(new ViewBox(viewBoxWidth, viewBoxHeight));
 
             // Populate folioSvgData with calculated SVG data
-            return this.folioService.getFolioSvgData(folioSettings, folio);
+            return this._folioService.getFolioSvgData(folioSettings, folio);
         });
     }
 
@@ -263,17 +268,16 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
      * Public method: selectSvgSheet.
      *
      * It emits the given ids of a selected edition complex
-     * and SVG sheet to the {@link selectSvgSheetRequest}.
+     * and svg sheet to the {@link selectSvgSheetRequest}.
      *
-     * @param {string} complexId The given complex id.
-     * @param {string} sheetId The given sheet id.
+     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
      * @returns {void} Emits the ids.
      */
-    selectSvgSheet(complexId: string, sheetId: string): void {
-        if (!sheetId) {
+    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
+        if (!sheetIds?.sheetId) {
             return;
         }
-        this.selectSvgSheetRequest.emit({ complexId: complexId, sheetId: sheetId });
+        this.selectSvgSheetRequest.emit(sheetIds);
     }
 
     /**

@@ -12,6 +12,7 @@ import { SafeResourceUrl } from '@angular/platform-browser';
     templateUrl: './open-street-map.component.html',
     styleUrls: ['./open-street-map.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class OpenStreetMapComponent {
     /**

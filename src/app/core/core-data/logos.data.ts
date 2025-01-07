@@ -7,7 +7,7 @@ import { Logos } from '@awg-core/core-models';
  *
  * Available logos: `unibas`, `snf`, `angular`, `bootstrap`.
  */
-export const LOGOSDATA: Logos = {
+export const LOGOS_DATA: Logos = {
     angular: {
         id: 'angularlogo',
         src: 'assets/img/logos/angular.svg',
@@ -40,7 +40,7 @@ export const LOGOSDATA: Logos = {
     },
     snf: {
         id: 'snflogo',
-        src: 'assets/img/logos/snf.png',
+        src: 'assets/img/logos/snf.svg',
         alt: 'Logo SNF',
         href: 'https://www.snf.ch',
     },

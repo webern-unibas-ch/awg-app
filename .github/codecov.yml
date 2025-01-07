@@ -9,26 +9,32 @@ coverage:
 
     status:
         project:
-            default: off
+            default: false
             app:
-                flags: app
+                flags:
+                    - app
             home:
                 target: 99%
-                flags: home
+                flags:
+                    - home
             edition:
                 target: 70%
-                flags: edition
+                flags:
+                    - edition
             search:
                 target: 70%
-                flags: search
+                flags:
+                    - search
             structure:
                 target: 99%
-                flags: structure
+                flags:
+                    - structure
             contact:
                 target: 99%
-                flags: contact
-        patch: yes
-        changes: no
+                flags:
+                    - contact
+        patch: true
+        changes: false
 
 flags:
     app:
@@ -53,4 +59,4 @@ flags:
 comment:
     layout: 'reach, diff, flags, files, footer'
     behavior: default
-    require_changes: no
+    require_changes: false

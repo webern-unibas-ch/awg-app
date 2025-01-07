@@ -1,21 +1,40 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { EditionInfoComponent } from '@awg-side-info/edition-info/edition-info.component';
+
 import { EditionComplexComponent } from './edition-outlets/edition-complex';
 import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component';
 import { EditionSeriesComponent } from './edition-outlets/edition-series';
 import { EditionSeriesDetailComponent } from './edition-outlets/edition-series-detail';
-import { EditionSectionDetailComponent } from './edition-outlets/edition-series-detail/edition-section-detail';
 import { EditionSectionsComponent } from './edition-outlets/edition-series-detail/edition-sections';
-import { EditionTypeComponent } from './edition-outlets/edition-type';
 import { EditionViewComponent } from './edition-view.component';
 
 /* Routes of the EditionViewModule */
 const EDITION_VIEW_ROUTES: Routes = [
     {
         path: '',
+        outlet: 'side',
+        component: EditionInfoComponent,
+    },
+    {
+        path: '',
         component: EditionViewComponent,
         children: [
+            {
+                path: 'preface',
+                loadChildren: () =>
+                    import('./edition-outlets/edition-preface/edition-preface.module').then(
+                        m => m.EditionPrefaceModule
+                    ),
+            },
+            {
+                path: 'row-tables',
+                loadChildren: () =>
+                    import('./edition-outlets/edition-row-tables/edition-row-tables.module').then(
+                        m => m.EditionRowTablesModule
+                    ),
+            },
             {
                 // Overview of series.
                 path: 'series',
@@ -34,7 +53,10 @@ const EDITION_VIEW_ROUTES: Routes = [
                     {
                         // Section by id (1, 2, 3, 4, 5).
                         path: 'section/:id',
-                        component: EditionSectionDetailComponent,
+                        loadChildren: () =>
+                            import(
+                                './edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.module'
+                            ).then(m => m.EditionSectionDetailModule),
                     },
                     {
                         path: 'sections/:id',
@@ -90,27 +112,6 @@ const EDITION_VIEW_ROUTES: Routes = [
                                         './edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.module'
                                     ).then(m => m.EditionGraphModule),
                             },
-                            /* 
-                                Path: 'workedition',
-                                loadChildren: () =>
-                                    import(
-                                        './edition-outlets/edition-complex/edition-detail/edition-workedition/edition-workedition.module'
-                                    ).then(m => m.EditionWorkeditionModule),
-                            },
-                            {
-                                path: 'texteditions',
-                                loadChildren: () =>
-                                    import(
-                                        './edition-outlets/edition-complex/edition-detail/edition-texteditions/edition-texteditions.module'
-                                    ).then(m => m.EditionTexteditionModule),
-                            },
-                            {
-                                path: 'sketches',
-                                loadChildren: () =>
-                                    import(
-                                        './edition-outlets/edition-complex/edition-detail/edition-sketches/edition-sketches.module'
-                                    ).then(m => m.EditionSketchesModule),
-                            },*/
                             {
                                 path: '',
                                 redirectTo: 'sheets',
@@ -120,33 +121,25 @@ const EDITION_VIEW_ROUTES: Routes = [
                     },
                 ],
             },
-            {
-                // Overview of row tables.
-                path: 'row-tables',
-                loadChildren: () =>
-                    import('./edition-outlets/edition-row-tables/edition-row-tables.module').then(
-                        m => m.EditionRowTablesModule
-                    ),
-            },
         ],
     },
 ];
 
 /**
  * Routed components of the {@link EditionViewModule}:
- * {@link EditionViewComponent}, {@link EditionDetailNavComponent},
- * {@link EditionSectionsComponent}, {@link EditionSeriesComponent}
- * and {@link EditionTypeComponent}.
+ * {@link EditionViewComponent}, {@link EditionComplexComponent},
+ * {@link EditionDetailNavComponent}, {@link EditionInfoComponent},
+ * {@link EditionSectionsComponent}, {@link EditionSeriesComponent},
+ * and {@link EditionSeriesDetailComponent}.
  */
 export const routedEditionViewComponents = [
     EditionViewComponent,
     EditionComplexComponent,
     EditionDetailNavComponent,
+    EditionInfoComponent,
     EditionSectionsComponent,
-    EditionSectionDetailComponent,
     EditionSeriesComponent,
     EditionSeriesDetailComponent,
-    EditionTypeComponent,
 ];
 
 /**
