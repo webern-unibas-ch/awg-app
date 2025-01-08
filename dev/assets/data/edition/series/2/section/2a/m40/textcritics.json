@@ -33,7 +33,7 @@
                                 "measure": "14",
                                 "system": "Klav. o.",
                                 "position": "3/4",
-                                "comment": "{{ref.getGlyph('[#]')}} zu gis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
                             },
                             {
                                 "svgGroupId": "g3404",
@@ -134,7 +134,7 @@
                                 "measure": "8B",
                                 "system": "1",
                                 "position": "2/4",
-                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}}g<sup>1</sup> überschreibt f<sub>1</sub>."
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup> überschreibt f<sub>1</sub>."
                             },
                             {
                                 "svgGroupId": "g1274",
@@ -162,14 +162,14 @@
                                 "measure": "13B",
                                 "system": "4",
                                 "position": "1/8",
-                                "comment": "{{ref.getGlyph('[#]')}}ais<sup>1</sup> überschreibt h<sup>1</sup>."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>ais<sup>1</sup> überschreibt h<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g1456",
                                 "measure": "13B",
                                 "system": "4",
                                 "position": "3. Note",
-                                "comment": "{{ref.getGlyph('[#]')}}gis<sup>1</sup> überscheibt {{ref.getGlyph('[b]')}}as<sup></sup>."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> überscheibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup></sup>."
                             },
                             {
                                 "svgGroupId": "g1496",
@@ -183,7 +183,7 @@
                                 "measure": "14",
                                 "system": "4",
                                 "position": "1. Note",
-                                "comment": "Viertelnote [{{ref.getGlyph('[b]')}}]as<sup>1</sup> gestrichen."
+                                "comment": "Viertelnote [<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]as<sup>1</sup> gestrichen."
                             },
                             {
                                 "svgGroupId": "g1502",
@@ -211,14 +211,14 @@
                                 "measure": "16A",
                                 "system": "8",
                                 "position": "1/2",
-                                "comment": "{{ref.getGlyph('[b]')}}B überschreibt {{ref.getGlyph('[#]')}}Ais."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>B überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>Ais."
                             },
                             {
                                 "svgGroupId": "g1206",
                                 "measure": "16A",
                                 "system": "7",
                                 "position": "2/8",
-                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}}e<sup>1</sup> überschreibt {{ref.getGlyph('[#]')}}dis<sup>1</sup>."
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>."
                             },
                             {
                                 "svgGroupId": "g1212",
@@ -232,7 +232,7 @@
                                 "measure": "16A",
                                 "system": "8",
                                 "position": "2/4",
-                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}}g überschreibt f."
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g überschreibt f."
                             },
                             {
                                 "svgGroupId": "g1224",
@@ -253,7 +253,7 @@
                                 "measure": "16B",
                                 "system": "8",
                                 "position": "(2. Note)",
-                                "comment": "Halbe Note [{{ref.getGlyph('[a]')}}]H gestrichen."
+                                "comment": "Halbe Note [<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]H gestrichen."
                             },
                             {
                                 "svgGroupId": "g1248",
