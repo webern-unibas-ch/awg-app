@@ -270,7 +270,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
                 service.fillD3SelectionWithColor(d3Selection, color);
 
                 expect(d3Selection).toBeDefined();
-                expect(d3Selection.attr('fill')).toBeNull();
+                expectToBe(d3Selection.attr('fill'), null);
             });
         });
 
@@ -732,12 +732,12 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
     describe('#_fetchSvgFile', () => {
         it('... should have a method `_fetchSvgFile`', () => {
-            expect((service as any)._fetchSvgFile).toBeDefined();
+            expect(service['_fetchSvgFile']).toBeDefined();
         });
 
         it('... should return an svg document', async () => {
             const svgFilePath = 'base/src/testing/mock-data/mockSvgHeader.svg';
-            const svg = await (service as any)._fetchSvgFile(svgFilePath);
+            const svg = await service['_fetchSvgFile'](svgFilePath);
 
             expectToEqual(svg, jasmine.any(Document));
             expect(svg.getElementsByTagName('svg')).toBeDefined();
@@ -748,48 +748,45 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
     describe('#_getTkkOverlayColor()', () => {
         it('... should have a method `_getTkkOverlayColor`', () => {
-            expect((service as any)._getTkkOverlayColor).toBeDefined();
+            expect(service['_getTkkOverlayColor']).toBeDefined();
         });
 
         it('... should return a color string', () => {
-            const color = (service as any)._getTkkOverlayColor();
+            const color = service['_getTkkOverlayColor'](undefined, EditionSvgOverlayActionTypes.fill);
 
             expect(color).toBeDefined();
             expect(color).toBeInstanceOf(String);
         });
 
         it('... should return overlayFillColor if overlay is not given', () => {
-            const color = (service as any)._getTkkOverlayColor(undefined, EditionSvgOverlayActionTypes.fill);
+            const color = service['_getTkkOverlayColor'](undefined, EditionSvgOverlayActionTypes.fill);
 
             expectToBe(color, expectedOverlayFillColor);
         });
 
         it('... should return overlayTransparentFillColor if overlayActionType is `transparent` no matter if overlay is selected or not', () => {
             const overlay = expectedOverlays[0];
-            const color = (service as any)._getTkkOverlayColor(overlay, EditionSvgOverlayActionTypes.transparent);
+            const color = service['_getTkkOverlayColor'](overlay, EditionSvgOverlayActionTypes.transparent);
 
             expectToBe(color, expectedOverlayTransparentFillColor);
 
             overlay.isSelected = false;
-            const color2 = (service as any)._getTkkOverlayColor(overlay, EditionSvgOverlayActionTypes.transparent);
+            const color2 = service['_getTkkOverlayColor'](overlay, EditionSvgOverlayActionTypes.transparent);
 
             expectToBe(color2, expectedOverlayTransparentFillColor);
         });
 
         it('... should return overlaySelectionFillColor if overlay is selected no matter if overlayActionType is `hover` or `fill`, but not for `transparent`', () => {
             const selectedOverlay = expectedOverlays[0];
-            const color = (service as any)._getTkkOverlayColor(selectedOverlay, EditionSvgOverlayActionTypes.fill);
+            const color = service['_getTkkOverlayColor'](selectedOverlay, EditionSvgOverlayActionTypes.fill);
 
             expectToBe(color, expectedOverlaySelectionFillColor);
 
-            const color2 = (service as any)._getTkkOverlayColor(selectedOverlay, EditionSvgOverlayActionTypes.hover);
+            const color2 = service['_getTkkOverlayColor'](selectedOverlay, EditionSvgOverlayActionTypes.hover);
 
             expectToBe(color2, expectedOverlaySelectionFillColor);
 
-            const color3 = (service as any)._getTkkOverlayColor(
-                selectedOverlay,
-                EditionSvgOverlayActionTypes.transparent
-            );
+            const color3 = service['_getTkkOverlayColor'](selectedOverlay, EditionSvgOverlayActionTypes.transparent);
 
             expect(color3).not.toBe(expectedOverlaySelectionFillColor);
         });
@@ -797,7 +794,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
         it('... should return overlayHoverFillColor if overlay is not selected and overlayActionType is `hover`', () => {
             const notSelectedOverlay = expectedOverlays[0];
             notSelectedOverlay.isSelected = false;
-            const color = (service as any)._getTkkOverlayColor(notSelectedOverlay, EditionSvgOverlayActionTypes.hover);
+            const color = service['_getTkkOverlayColor'](notSelectedOverlay, EditionSvgOverlayActionTypes.hover);
 
             expectToBe(color, expectedOverlayHoverFillColor);
         });
@@ -805,14 +802,11 @@ describe('EditionSvgDrawingService (DONE)', () => {
         it('... should return overlayFillColor if overlay is not selected and overlayActionType is not `hover` or `transparent`', () => {
             const notSelectedOverlay = expectedOverlays[0];
             notSelectedOverlay.isSelected = false;
-            const color = (service as any)._getTkkOverlayColor(notSelectedOverlay, EditionSvgOverlayActionTypes.fill);
+            const color = service['_getTkkOverlayColor'](notSelectedOverlay, EditionSvgOverlayActionTypes.fill);
 
             expectToBe(color, expectedOverlayFillColor);
 
-            const color2 = (service as any)._getTkkOverlayColor(
-                notSelectedOverlay,
-                EditionSvgOverlayActionTypes.transparent
-            );
+            const color2 = service['_getTkkOverlayColor'](notSelectedOverlay, EditionSvgOverlayActionTypes.transparent);
 
             expect(color2).not.toBe(expectedOverlayFillColor);
         });

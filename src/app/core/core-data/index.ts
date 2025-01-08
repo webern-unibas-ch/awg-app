@@ -7,7 +7,7 @@
  *
  */
 
-import { LOGOSDATA } from './logos.data';
-import { METADATA } from './meta.data';
+import { LOGOS_DATA } from './logos.data';
+import { META_DATA } from './meta.data';
 
-export { METADATA, LOGOSDATA };
+export { LOGOS_DATA, META_DATA };

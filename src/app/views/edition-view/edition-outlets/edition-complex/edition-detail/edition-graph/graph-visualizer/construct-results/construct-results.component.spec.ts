@@ -22,17 +22,29 @@ import { D3SimulationNode, D3SimulationNodeType, Triple } from '../models';
 import { ConstructResultsComponent } from './construct-results.component';
 
 // Mock components
-@Component({ selector: 'awg-force-graph', template: '' })
+@Component({
+    selector: 'awg-force-graph',
+    template: '',
+    standalone: false,
+})
 class ForceGraphStubComponent {
     @Input() currentQueryResultTriples: Triple[];
     @Input() height: number;
     @Output() clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter<D3SimulationNode>();
 }
 
-@Component({ selector: 'awg-sparql-no-results', template: '' })
+@Component({
+    selector: 'awg-sparql-no-results',
+    template: '',
+    standalone: false,
+})
 class SparqlNoResultsStubComponent {}
 
-@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+@Component({
+    selector: 'awg-twelve-tone-spinner',
+    template: '',
+    standalone: false,
+})
 class TwelveToneSpinnerStubComponent {}
 
 describe('ConstructResultsComponent (DONE)', () => {
@@ -113,9 +125,25 @@ describe('ConstructResultsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no div.accordion yet', () => {
+            it('... should contain one div.accordion', () => {
                 // Div.accordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+            });
+
+            it('... should contain one div.accordion-item with header and non-collapsible body yet in div.accordion', () => {
+                // Div.accordion debug element
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
+                // Header (div.accordion-header)
+                getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-header', 1, 1);
+
+                // Body (div.accordion-collapse)
+                const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
+                const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'accordion-collapse');
             });
         });
     });
@@ -144,13 +172,8 @@ describe('ConstructResultsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.accordion', () => {
-                // NgbAccordion debug element
-                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
-            });
-
             describe('not in fullscreen mode', () => {
-                it('... should contain div.accordion-item with header and open body in div.accordion', () => {
+                it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
                     // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
@@ -176,7 +199,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const itemBodyEl = itemBodyDes[0].nativeElement;
+                    const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
                 });
@@ -192,7 +215,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                     // Item header button
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Check button content
                     expectToBe(btnEl.textContent, 'Resultat');
@@ -210,7 +233,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     // Button debug elements
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
                     // Button native elements to click on
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Item body is open
                     let itemBodyDes = getAndExpectDebugElementByCss(
@@ -220,7 +243,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         1,
                         'open'
                     );
-                    let itemBodyEl = itemBodyDes[0].nativeElement;
+                    let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
 
@@ -514,11 +537,11 @@ describe('ConstructResultsComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
                 });
 
-                it('... should contain div.accordion-item with header and open body in div.accordion', () => {
+                it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
                     // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                    // Panel (div.accordion-item)
+                    // Item (div.accordion-item)
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
                         'div#awg-graph-visualizer-construct-results.accordion-item',
@@ -540,7 +563,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const itemBodyEl = itemBodyDes[0].nativeElement;
+                    const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
                 });
@@ -554,9 +577,9 @@ describe('ConstructResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Panel header button
+                    // Item header button
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     // Check button content
                     expectToBe(btnEl.textContent, 'Resultat');
@@ -571,10 +594,8 @@ describe('ConstructResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Button debug elements
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
-                    // Button native elements to click on
-                    const btnEl = btnDes[0].nativeElement;
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     expect(btnEl.disabled).toBeTruthy();
 
@@ -586,7 +607,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         1,
                         'open'
                     );
-                    let itemBodyEl = itemBodyDes[0].nativeElement;
+                    let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
 
@@ -885,11 +906,11 @@ describe('ConstructResultsComponent (DONE)', () => {
             });
 
             it('... should be triggered from ngbAccordionBody', () => {
-                expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+                expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
             });
 
             it('... should be triggered by change of queryResult', () => {
-                expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+                expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                 // Mock another queryResult
                 const anotherQueryResult = {
@@ -900,24 +921,24 @@ describe('ConstructResultsComponent (DONE)', () => {
                 component.queryResult$ = observableOf([anotherQueryResult]);
                 detectChangesOnPush(fixture);
 
-                expectSpyCall(isQueryResultNotEmptySpy, 3, anotherQueryResult[0]);
+                expectSpyCall(isQueryResultNotEmptySpy, 4, anotherQueryResult[0]);
             });
 
             describe('... should return false if ...', () => {
                 it('... queryResult is empty array', () => {
-                    expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                     // Mock empty response
                     const emptyQueryResult = [];
                     component.queryResult$ = observableOf(emptyQueryResult);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 3, emptyQueryResult);
+                    expectSpyCall(isQueryResultNotEmptySpy, 4, emptyQueryResult);
                     expectToBe(component.isQueryResultNotEmpty(emptyQueryResult), false);
                 });
 
                 it('... queryResult.subject is undefined or empty string', () => {
-                    expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                     // Mock undefined response
                     const undefinedQueryResult = {
@@ -928,7 +949,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     component.queryResult$ = observableOf([undefinedQueryResult]);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 3, undefinedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 4, undefinedQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([undefinedQueryResult]), false);
 
                     // Mock empty response
@@ -940,12 +961,12 @@ describe('ConstructResultsComponent (DONE)', () => {
                     component.queryResult$ = observableOf([emptyQueryResult]);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 5, emptyQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 6, emptyQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([emptyQueryResult]), false);
                 });
 
                 it('... queryResult.predicate is undefined or empty string', () => {
-                    expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                     // Mock undefined response
                     const undefinedQueryResult = {
@@ -956,7 +977,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     component.queryResult$ = observableOf([undefinedQueryResult]);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 3, undefinedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 4, undefinedQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([undefinedQueryResult]), false);
 
                     // Mock empty response
@@ -968,12 +989,12 @@ describe('ConstructResultsComponent (DONE)', () => {
                     component.queryResult$ = observableOf([emptyQueryResult]);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 5, emptyQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 6, emptyQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([emptyQueryResult]), false);
                 });
 
                 it('... queryResult.object is undefined or empty string', () => {
-                    expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                     // Mock undefined response
                     const undefinedQueryResult = {
@@ -984,7 +1005,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     component.queryResult$ = observableOf([undefinedQueryResult]);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 3, undefinedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 4, undefinedQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([undefinedQueryResult]), false);
 
                     // Mock empty response
@@ -996,19 +1017,19 @@ describe('ConstructResultsComponent (DONE)', () => {
                     component.queryResult$ = observableOf([emptyQueryResult]);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 5, emptyQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 6, emptyQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([emptyQueryResult]), false);
                 });
 
                 it('... queryResult.subject, queryResult.predicate and queryResult.object are undefined or empty string', () => {
-                    expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                     // Mock undefined response
                     const undefinedQueryResult = { subject: undefined, predicate: undefined, object: undefined };
                     component.queryResult$ = observableOf([undefinedQueryResult]);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 3, undefinedQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 4, undefinedQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([undefinedQueryResult]), false);
 
                     // Mock empty response
@@ -1016,13 +1037,13 @@ describe('ConstructResultsComponent (DONE)', () => {
                     component.queryResult$ = observableOf([emptyQueryResult]);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(isQueryResultNotEmptySpy, 5, emptyQueryResult[0]);
+                    expectSpyCall(isQueryResultNotEmptySpy, 6, emptyQueryResult[0]);
                     expectToBe(component.isQueryResultNotEmpty([emptyQueryResult]), false);
                 });
             });
 
             it('... should return true if queryResult is not empty', () => {
-                expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+                expectSpyCall(isQueryResultNotEmptySpy, 3, expectedQueryResult[0]);
 
                 // Mock non-empty response
                 const nonEmptyQueryResult = {
@@ -1033,7 +1054,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 component.queryResult$ = observableOf([nonEmptyQueryResult]);
                 detectChangesOnPush(fixture);
 
-                expectSpyCall(isQueryResultNotEmptySpy, 3, nonEmptyQueryResult[0]);
+                expectSpyCall(isQueryResultNotEmptySpy, 4, nonEmptyQueryResult[0]);
                 expectToBe(component.isQueryResultNotEmpty([nonEmptyQueryResult]), true);
             });
         });

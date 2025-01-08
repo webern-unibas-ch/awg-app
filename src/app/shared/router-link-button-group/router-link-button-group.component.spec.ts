@@ -150,7 +150,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                 );
 
                 btnDes.forEach((btnDe, index) => {
-                    const btnEl = btnDe.nativeElement;
+                    const btnEl: HTMLButtonElement = btnDe.nativeElement;
 
                     if (expectedRouterLinkButtons[index].disabled) {
                         expect(btnEl).toHaveClass('disabled');
@@ -168,7 +168,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                     expectedRouterLinkButtons.length
                 );
                 btnDes.forEach((btnDe, index) => {
-                    const btnEl = btnDe.nativeElement;
+                    const btnEl: HTMLButtonElement = btnDe.nativeElement;
 
                     expectToBe(btnEl.textContent.trim(), expectedRouterLinkButtons[index].label.toUpperCase());
                 });
@@ -203,7 +203,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                 const fulltextLinkDe = linkDes[0]; // Fulltext link DebugElement
                 const fulltextLink = routerLinks[0]; // Fulltext link directive
 
-                expect(fulltextLink.navigatedTo).toBeNull();
+                expectToBe(fulltextLink.navigatedTo, null);
 
                 click(fulltextLinkDe);
                 fixture.detectChanges();
@@ -216,7 +216,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = expectedOrderOfRouterlinks[index];
 
-                    expect(routerLink.navigatedTo).toBeNull();
+                    expectToBe(routerLink.navigatedTo, null);
 
                     click(linkDe);
                     fixture.detectChanges();
@@ -263,23 +263,26 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
 
             it('... should trigger on click if enabled or disabled', fakeAsync(() => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'div.awg-router-link-btn', 3, 3);
+                const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
+                const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
+                const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
 
                 // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[0], fixture);
 
-                expect(btnDes[0].nativeElement).not.toHaveClass('disabled');
+                expect(btnEl0).not.toHaveClass('disabled');
                 expectSpyCall(selectButtonSpy, 1, expectedRouterLinkButtons[0]);
 
                 // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[1], fixture);
 
-                expect(btnDes[1].nativeElement).toHaveClass('disabled');
+                expect(btnEl1).toHaveClass('disabled');
                 expectSpyCall(selectButtonSpy, 2, expectedRouterLinkButtons[1]);
 
                 // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[2], fixture);
 
-                expect(btnDes[2].nativeElement).toHaveClass('disabled');
+                expect(btnEl2).toHaveClass('disabled');
                 expectSpyCall(selectButtonSpy, 3, expectedRouterLinkButtons[2]);
             }));
 

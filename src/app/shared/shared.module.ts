@@ -15,12 +15,18 @@ import { CompileHtmlModule } from './compile-html';
 //
 // Shared components
 import { AddressComponent } from './address/address.component';
+import { AlertErrorComponent } from './alert-error/alert-error.component';
+import { AlertInfoComponent } from './alert-info/alert-info.component';
+import { DisclaimerWorkeditionsComponent } from './disclaimer-workeditions/disclaimer-workeditions.component';
+import { FullscreenToggleComponent } from './fullscreen-toggle/fullscreen-toggle.component';
 import { HeadingComponent } from './heading/heading.component';
 import { JsonViewerComponent } from './json-viewer/json-viewer.component';
+import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
 import { LicenseComponent } from './license/license.component';
 import { ModalComponent } from './modal/modal.component';
 import { OpenStreetMapComponent } from './open-street-map/open-street-map.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
+import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 import { TablePaginationComponent } from './table/table-pagination/table-pagination.component';
 import { TableComponent } from './table/table.component';
 import { ToastComponent } from './toast/toast.component';
@@ -29,6 +35,7 @@ import { ViewHandleButtonGroupComponent } from './view-handle-button-group/view-
 
 //
 // Shared directives
+import { AbbrDirective } from './abbr/abbr.directive';
 import { ExternalLinkDirective } from './external-link/external-link.directive';
 
 //
@@ -55,17 +62,24 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
     ],
     declarations: [
         AddressComponent,
+        AlertErrorComponent,
+        AlertInfoComponent,
+        DisclaimerWorkeditionsComponent,
+        FullscreenToggleComponent,
         HeadingComponent,
         JsonViewerComponent,
+        LanguageSwitcherComponent,
         LicenseComponent,
         ModalComponent,
         OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
+        ScrollToTopComponent,
         TableComponent,
         TablePaginationComponent,
         ToastComponent,
         TwelveToneSpinnerComponent,
         ViewHandleButtonGroupComponent,
+        AbbrDirective,
         ExternalLinkDirective,
         OrderByPipe,
     ],
@@ -82,16 +96,23 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         SharedNgbootstrapModule,
 
         AddressComponent,
+        AlertErrorComponent,
+        AlertInfoComponent,
+        DisclaimerWorkeditionsComponent,
+        FullscreenToggleComponent,
         HeadingComponent,
         JsonViewerComponent,
+        LanguageSwitcherComponent,
         LicenseComponent,
         ModalComponent,
         OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
+        ScrollToTopComponent,
         TableComponent,
         ToastComponent,
         TwelveToneSpinnerComponent,
         ViewHandleButtonGroupComponent,
+        AbbrDirective,
         ExternalLinkDirective,
         OrderByPipe,
     ],

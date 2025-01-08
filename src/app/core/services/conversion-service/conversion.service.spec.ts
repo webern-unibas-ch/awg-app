@@ -1,13 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { TestBed } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { mockSearchResponseJson } from '@testing/mock-data';
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { mockSearchResponseJson } from '@testing/mock-data';
 
 import { AppModule } from '@awg-app/app.module';
+import { JdnDate } from '@awg-core/core-models';
+import { SearchResponseJson } from '@awg-shared/api-objects';
 import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { ConversionService } from './conversion.service';
@@ -15,11 +16,14 @@ import { ConversionService } from './conversion.service';
 describe('ConversionService', () => {
     let conversionService: ConversionService;
 
+    let expectedSearchResponse: SearchResponseJson;
+
+    let cleanSubjectValuesSpy: Spy;
+    let cleanSubjectValueLabelsSpy: Spy;
     let convertStandoffToHTMLSpy: Spy;
+    let distinctSubjectsSpy: Spy;
     let replaceParagraphTagsSpy: Spy;
     let replaceSalsahLinkSpy: Spy;
-
-    // TODO: add APP_BASE_HREF , see https://angular.io/api/common/APP_BASE_HREF
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -28,11 +32,16 @@ describe('ConversionService', () => {
         });
         conversionService = TestBed.inject(ConversionService);
 
+        expectedSearchResponse = JSON.parse(JSON.stringify(mockSearchResponseJson));
+
         // Spies for service methods
         replaceParagraphTagsSpy = spyOn(ConversionService, 'replaceParagraphTags').and.callThrough();
 
-        replaceSalsahLinkSpy = spyOn<any>(conversionService, '_replaceSalsahLink').and.callThrough();
+        cleanSubjectValuesSpy = spyOn<any>(conversionService, '_cleanSubjectValues').and.callThrough();
+        cleanSubjectValueLabelsSpy = spyOn<any>(conversionService, '_cleanSubjectValueLabels').and.callThrough();
         convertStandoffToHTMLSpy = spyOn<any>(conversionService, '_convertStandoffToHTML').and.callThrough();
+        distinctSubjectsSpy = spyOn<any>(conversionService, '_distinctSubjects').and.callThrough();
+        replaceSalsahLinkSpy = spyOn<any>(conversionService, '_replaceSalsahLink').and.callThrough();
     });
 
     afterAll(() => {
@@ -43,12 +52,123 @@ describe('ConversionService', () => {
         expect(conversionService).toBeTruthy();
     });
 
-    it('... should not have filteredOut before convertFullTextSearchResults call', () => {
+    it('... should not have `filteredOut` before call to `convertFullTextSearchResults`', () => {
         expect(conversionService.filteredOut).toBeUndefined();
 
-        conversionService.convertFullTextSearchResults(mockSearchResponseJson);
+        conversionService.convertFullTextSearchResults(expectedSearchResponse);
 
         expect(conversionService.filteredOut).toBeDefined();
+    });
+
+    describe('#convertFullTextSearchResults', () => {
+        it('... should have a method `convertFullTextSearchResults`', () => {
+            expect(conversionService.convertFullTextSearchResults).toBeDefined();
+        });
+
+        describe('... should return original search response if', () => {
+            it('... subjects are undefined', () => {
+                const searchResponse = expectedSearchResponse;
+                searchResponse.subjects = undefined;
+
+                const result = conversionService.convertFullTextSearchResults(searchResponse);
+
+                expectToEqual(result, searchResponse);
+            });
+
+            it('... subjects are null', () => {
+                const searchResponse = expectedSearchResponse;
+                searchResponse.subjects = null;
+
+                const result = conversionService.convertFullTextSearchResults(searchResponse);
+
+                expectToEqual(result, searchResponse);
+            });
+
+            it('... subjects are empty', () => {
+                const searchResponse = expectedSearchResponse;
+                searchResponse.subjects = [];
+
+                const result = conversionService.convertFullTextSearchResults(searchResponse);
+
+                expectToEqual(result, searchResponse);
+            });
+        });
+
+        it('... should trigger `_cleanSubjectValueLabels`', () => {
+            const searchResponse = expectedSearchResponse;
+
+            conversionService.convertFullTextSearchResults(searchResponse);
+
+            expectSpyCall(cleanSubjectValueLabelsSpy, searchResponse.subjects.length);
+        });
+
+        it('... should trigger `_cleanSubjectValues`', () => {
+            const searchResponse = expectedSearchResponse;
+
+            conversionService.convertFullTextSearchResults(searchResponse);
+
+            expectSpyCall(cleanSubjectValuesSpy, searchResponse.subjects.length);
+        });
+
+        it('... should trigger `_distinctSubjects`', () => {
+            const searchResponse = expectedSearchResponse;
+
+            conversionService.convertFullTextSearchResults(searchResponse);
+
+            expectSpyCall(distinctSubjectsSpy, 1, [searchResponse.subjects]);
+        });
+
+        it('... should return a search response object', () => {
+            const searchResponse = expectedSearchResponse;
+
+            const result = conversionService.convertFullTextSearchResults(searchResponse);
+
+            expectToEqual(result, searchResponse);
+        });
+
+        it('... should return a search response object with cleaned and distinct subjects', () => {
+            const subject = {
+                valuelabel: ['Test (Richtext)'],
+                obj_id: '123_-_local',
+                valuetype_id: ['14'],
+                value: [
+                    {
+                        utf8str: `A test string.`,
+                        textattr: JSON.stringify({
+                            italic: [{ start: 2, end: 6 }],
+                            p: [{ start: 0, end: 14 }],
+                        }),
+                    },
+                ],
+                iconlabel: undefined,
+                iconsrc: undefined,
+                icontitle: undefined,
+                preview_path: undefined,
+                preview_nx: undefined,
+                preview_ny: undefined,
+                rights: undefined,
+            };
+            const searchResponse = {
+                ...expectedSearchResponse,
+                subjects: [subject, subject],
+            };
+
+            const expectedSubject = {
+                ...subject,
+                obj_id: '123',
+                valuelabel: ['Test'],
+                value: [`A <em>test</em> string.`],
+            };
+
+            const expectedResult = {
+                ...searchResponse,
+                subjects: [expectedSubject],
+            };
+
+            const result = conversionService.convertFullTextSearchResults(searchResponse);
+
+            expectToEqual(result, expectedResult);
+        });
     });
 
     describe('#replaceParagraphTags', () => {
@@ -91,10 +211,7 @@ describe('ConversionService', () => {
         describe('... should return an error message if', () => {
             it('... subjects are undefined', () => {
                 const searchUrl = 'http://example.com';
-                const emptySearchResponseWithQuery = new SearchResponseWithQuery(
-                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
-                    'Test'
-                );
+                const emptySearchResponseWithQuery = new SearchResponseWithQuery(expectedSearchResponse, 'Test');
                 emptySearchResponseWithQuery.data.subjects = undefined;
                 const expected = `Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;
 
@@ -108,10 +225,7 @@ describe('ConversionService', () => {
 
             it('... subjects are null', () => {
                 const searchUrl = 'http://example.com';
-                const emptySearchResponseWithQuery = new SearchResponseWithQuery(
-                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
-                    'Test'
-                );
+                const emptySearchResponseWithQuery = new SearchResponseWithQuery(expectedSearchResponse, 'Test');
                 emptySearchResponseWithQuery.data.subjects = null;
                 const expected = `Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;
 
@@ -126,27 +240,21 @@ describe('ConversionService', () => {
 
         it('... should return a string', () => {
             const searchUrl = 'http://example.com';
-            const searchResponseWithQuery = new SearchResponseWithQuery(
-                JSON.parse(JSON.stringify(mockSearchResponseJson)),
-                'Test'
-            );
+            const searchResponseWithQuery = new SearchResponseWithQuery(expectedSearchResponse, 'Test');
 
             const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
 
-            expect(typeof result).toEqual('string');
+            expectToBe(typeof result, 'string');
         });
 
         describe('... should return correct text', () => {
             it('... for no results (default value for nhits = 0)', () => {
                 const searchUrl = 'http://example.com';
-                const searchResponseWithQuery = new SearchResponseWithQuery(
-                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
-                    'Test'
-                );
+                const searchResponseWithQuery = new SearchResponseWithQuery(expectedSearchResponse, 'Test');
                 searchResponseWithQuery.data.subjects = [];
                 searchResponseWithQuery.data.nhits = undefined;
                 const subjectsLength = searchResponseWithQuery.data.subjects.length;
-                const expected = `0 / 0 Ergebnisse`;
+                const expected = `${subjectsLength} / 0 Ergebnisse`;
 
                 const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
 
@@ -155,13 +263,11 @@ describe('ConversionService', () => {
 
             it('... for a single result', () => {
                 const searchUrl = 'http://example.com';
-                const searchResponseWithQuery = new SearchResponseWithQuery(
-                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
-                    'Test'
-                );
-                searchResponseWithQuery.data.subjects = [mockSearchResponseJson.subjects[0]];
+                const searchResponseWithQuery = new SearchResponseWithQuery(expectedSearchResponse, 'Test');
+                searchResponseWithQuery.data.subjects = [expectedSearchResponse.subjects[0]];
                 searchResponseWithQuery.data.nhits = '1';
-                const expected = `1 / 1 Ergebnis`;
+                const subjectsLength = searchResponseWithQuery.data.subjects.length;
+                const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnis`;
 
                 const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
 
@@ -170,10 +276,7 @@ describe('ConversionService', () => {
 
             it('... for multiple results', () => {
                 const searchUrl = 'http://example.com';
-                const searchResponseWithQuery = new SearchResponseWithQuery(
-                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
-                    'Test'
-                );
+                const searchResponseWithQuery = new SearchResponseWithQuery(expectedSearchResponse, 'Test');
                 const subjectsLength = searchResponseWithQuery.data.subjects.length;
                 const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnisse`;
 
@@ -186,10 +289,7 @@ describe('ConversionService', () => {
                 conversionService.filteredOut = 1;
 
                 const searchUrl = 'http://example.com';
-                const searchResponseWithQuery = new SearchResponseWithQuery(
-                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
-                    'Test'
-                );
+                const searchResponseWithQuery = new SearchResponseWithQuery(expectedSearchResponse, 'Test');
                 const subjectsLength = searchResponseWithQuery.data.subjects.length;
                 const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnisse (1 Duplikat entfernt)`;
 
@@ -202,10 +302,7 @@ describe('ConversionService', () => {
                 conversionService.filteredOut = 2;
 
                 const searchUrl = 'http://example.com';
-                const searchResponseWithQuery = new SearchResponseWithQuery(
-                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
-                    'Test'
-                );
+                const searchResponseWithQuery = new SearchResponseWithQuery(expectedSearchResponse, 'Test');
                 const subjectsLength = searchResponseWithQuery.data.subjects.length;
                 const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnisse (2 Duplikate entfernt)`;
 
@@ -221,7 +318,57 @@ describe('ConversionService', () => {
             expect((conversionService as any)._cleanSubjectValueLabels).toBeDefined();
         });
 
-        it('... should clean valuelabel and obj_id', () => {
+        describe('... should return default valuelabel and obj_id if', () => {
+            it('... values are undefined', () => {
+                const subject = {
+                    valuelabel: undefined,
+                    obj_id: undefined,
+                };
+
+                const result = (conversionService as any)._cleanSubjectValueLabels(subject);
+
+                expect(result.valuelabel).toBeUndefined();
+                expectToBe(result.obj_id, '');
+            });
+
+            it('... values are null', () => {
+                const subject = {
+                    valuelabel: null,
+                    obj_id: null,
+                };
+
+                const result = (conversionService as any)._cleanSubjectValueLabels(subject);
+
+                expectToBe(result.valuelabel, null);
+                expectToBe(result.obj_id, '');
+            });
+
+            it('... values are empty', () => {
+                const subject = {
+                    valuelabel: [],
+                    obj_id: '',
+                };
+
+                const result = (conversionService as any)._cleanSubjectValueLabels(subject);
+
+                expectToEqual(result.valuelabel, []);
+                expectToBe(result.obj_id, '');
+            });
+        });
+
+        it('... should return original valuelabel and obj_id if no replacement is needed', () => {
+            const subject = {
+                valuelabel: ['Test2'],
+                obj_id: '245',
+            };
+
+            const result = (conversionService as any)._cleanSubjectValueLabels(subject);
+
+            expectToEqual(result.valuelabel, ['Test2']);
+            expectToBe(result.obj_id, '245');
+        });
+
+        it('... should clean up given valuelabel and obj_id', () => {
             const subject = {
                 valuelabel: ['Test (Richtext)'],
                 obj_id: '123_-_local',
@@ -229,7 +376,7 @@ describe('ConversionService', () => {
 
             const result = (conversionService as any)._cleanSubjectValueLabels(subject);
 
-            expectToBe(result.valuelabel[0], 'Test');
+            expectToEqual(result.valuelabel, ['Test']);
             expectToBe(result.obj_id, '123');
         });
 
@@ -242,7 +389,7 @@ describe('ConversionService', () => {
 
             const result = (conversionService as any)._cleanSubjectValueLabels(subject);
 
-            expectToBe(result.valuelabel[0], 'Test');
+            expectToEqual(result.valuelabel, ['Test']);
             expectToBe(result.obj_id, '123');
             expectToBe(result.otherProp, 'otherValue');
         });
@@ -297,6 +444,118 @@ describe('ConversionService', () => {
 
             expectToEqual(result, subject);
             expect(result.value[0]).toBeUndefined();
+        });
+    });
+
+    describe('#_convertDateValue', () => {
+        it('... should have a method `_convertDateValue`', () => {
+            expect((conversionService as any)._convertDateValue).toBeDefined();
+        });
+
+        it('... should return a string', () => {
+            const dateObj: JdnDate = {
+                dateval1: '2417942', // 1.1.1908
+                dateval2: '2418307', // 31.12.1908
+                calendar: 'GREGORIAN',
+                dateprecision1: 'YEAR',
+                dateprecision2: 'YEAR',
+            };
+
+            const result = (conversionService as any)._convertDateValue(dateObj);
+
+            expectToBe(typeof result, 'string');
+        });
+
+        it('should return the converted date string without " (G)"', () => {
+            const dateObj: JdnDate = {
+                dateval1: '2417942', // 1.1.1908
+                dateval2: '2418307', // 31.12.1908
+                calendar: 'GREGORIAN',
+                dateprecision1: 'YEAR',
+                dateprecision2: 'YEAR',
+            };
+
+            const expected = '1908';
+
+            const result = (conversionService as any)._convertDateValue(dateObj);
+
+            expectToBe(result, expected);
+        });
+
+        it('should handle precision YEAR', () => {
+            const dateObj: JdnDate = {
+                dateval1: '2417942', // 1.1.1908
+                dateval2: '2418307', // 31.12.1908
+                calendar: 'GREGORIAN',
+                dateprecision1: 'YEAR',
+                dateprecision2: 'YEAR',
+            };
+
+            const expected = '1908';
+
+            const result = (conversionService as any)._convertDateValue(dateObj);
+
+            expectToBe(result, expected);
+        });
+
+        it('should handle precision MONTH', () => {
+            const dateObj: JdnDate = {
+                dateval1: '2417942', // 1.1.1908
+                dateval2: '2418307', // 31.12.1908
+                calendar: 'GREGORIAN',
+                dateprecision1: 'MONTH',
+                dateprecision2: 'MONTH',
+            };
+
+            const expected = 'Jan 1908 – Dez 1908';
+
+            const result = (conversionService as any)._convertDateValue(dateObj);
+
+            expectToBe(result, expected);
+        });
+
+        it('should handle precision DAY', () => {
+            const dateObj: JdnDate = {
+                dateval1: '2417942', // 1.1.1908
+                dateval2: '2418307', // 31.12.1908
+                calendar: 'GREGORIAN',
+                dateprecision1: 'DAY',
+                dateprecision2: 'DAY',
+            };
+
+            const expected = '[Mi] 1. Jan 1908 – [Do] 31. Dez 1908';
+
+            const result = (conversionService as any)._convertDateValue(dateObj);
+
+            expectToBe(result, expected);
+        });
+    });
+
+    describe('#_convertLinkValue', () => {
+        it('... should have a method `_convertLinkValue`', () => {
+            expect((conversionService as any)._convertLinkValue).toBeDefined();
+        });
+
+        it('... should return a string', () => {
+            const valueId = '123';
+            const firstProp = 'TestProp';
+            const restype = 'TestType';
+
+            const result = (conversionService as any)._convertLinkValue(valueId, firstProp, restype);
+
+            expectToBe(typeof result, 'string');
+        });
+
+        it('... should return a linked value', () => {
+            const valueId = '123';
+            const firstProp = 'TestProp';
+            const restype = 'TestType';
+
+            const expected = `<a (click)="ref.navigateToResource('${valueId}')">${firstProp} (${restype})</a>`;
+
+            const result = (conversionService as any)._convertLinkValue(valueId, firstProp, restype);
+
+            expectToBe(result, expected);
         });
     });
 
@@ -383,7 +642,7 @@ describe('ConversionService', () => {
 
             const result = (conversionService as any)._convertRichtextValue(str, JSON.stringify(jsonAttrs));
 
-            expect(typeof result).toEqual('string');
+            expectToBe(typeof result, 'string');
         });
 
         it('... should correctly convert a rich text value with Standoff to HTML', () => {
@@ -469,7 +728,7 @@ describe('ConversionService', () => {
 
             const result = (conversionService as any)._convertStandoffToHTML(str, JSON.stringify(jsonAttrs));
 
-            expect(typeof result).toEqual('string');
+            expectToBe(typeof result, 'string');
         });
 
         it('... should correctly convert a rich text value with Standoff to HTML', () => {
@@ -775,6 +1034,82 @@ describe('ConversionService', () => {
             (conversionService as any)._distinctSubjects(subjectsWithoutDuplicate);
 
             expectToBe(conversionService.filteredOut, 0);
+        });
+    });
+
+    describe('#_getNodeIdFromAttributes', () => {
+        it('... should have a method `_getNodeIdFromAttributes`', () => {
+            expect((conversionService as any)._getNodeIdFromAttributes).toBeDefined();
+        });
+
+        describe('... should return undefined when', () => {
+            it('... attributes are undefined', () => {
+                const attributes = undefined;
+
+                const result = (conversionService as any)._getNodeIdFromAttributes(attributes);
+
+                expect(result).toBeUndefined();
+            });
+
+            it('... attributes are null', () => {
+                const attributes = null;
+
+                const result = (conversionService as any)._getNodeIdFromAttributes(attributes);
+
+                expect(result).toBeUndefined();
+            });
+
+            it('... attributes are empty', () => {
+                const attributes = '';
+
+                const result = (conversionService as any)._getNodeIdFromAttributes(attributes);
+
+                expect(result).toBeUndefined();
+            });
+
+            it('... attributes cannot be split', () => {
+                const attributes = 'selection';
+
+                const result = (conversionService as any)._getNodeIdFromAttributes(attributes);
+
+                expect(result).toBeUndefined();
+            });
+        });
+
+        it('... should return the node id of hlist values', () => {
+            const attributes = 'hlist=123';
+            const expected = '123';
+
+            const result = (conversionService as any)._getNodeIdFromAttributes(attributes);
+
+            expectToBe(result, expected);
+        });
+
+        it('... should return the node id of selection values', () => {
+            const attributes = 'selection=456';
+            const expected = '456';
+
+            const result = (conversionService as any)._getNodeIdFromAttributes(attributes);
+
+            expectToBe(result, expected);
+        });
+
+        it('... should return the value after the first equals sign when attributes contains more than one equals sign', () => {
+            const attributes = 'hlist=123=456';
+            const expected = '123';
+
+            const result = (conversionService as any)._getNodeIdFromAttributes(attributes);
+
+            expectToBe(result, expected);
+        });
+
+        it('... should return an empty string when attributes contains an equals sign but no value after it', () => {
+            const attributes = 'hlist=';
+            const expected = '';
+
+            const result = (conversionService as any)._getNodeIdFromAttributes(attributes);
+
+            expectToBe(result, expected);
         });
     });
 

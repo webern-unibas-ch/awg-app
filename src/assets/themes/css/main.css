@@ -117,14 +117,14 @@ awg-view-container > div {
     }
 }
 
-/* sidenav */
-.awg-sidenav > .card {
+/* side-outlet */
+.awg-side-outlet > .card {
     padding: inherit;
 }
 
-/* On small screens, set height to 'auto' for sidenav and grid */
+/* On small screens, set height to 'auto' for side-outlet and grid */
 @media screen and (max-width: 767px) {
-    .awg-sidenav {
+    .awg-side-outlet {
         height: auto;
     }
     .row {

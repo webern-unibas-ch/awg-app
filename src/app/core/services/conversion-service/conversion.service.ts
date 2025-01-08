@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 
-import { GeoNames } from '@awg-core/core-models';
+import { GeoNames, JdnDate } from '@awg-core/core-models';
 import { ApiService } from '@awg-core/services/api-service';
 import { UtilityService } from '@awg-core/services/utility-service';
 import {
@@ -71,19 +71,21 @@ export class ConversionService extends ApiService {
     filteredOut: number;
 
     /**
+     * Private readonly injection variable: _utils.
+     *
+     * It keeps the instance of the injected UtilityService.
+     */
+    private readonly _utils = inject(UtilityService);
+
+    /**
      * Constructor of the ConversionService.
      *
      * It declares a public {@link HttpClient} instance
-     * with a super reference to base class (ApiService)
-     * and a private {@link UtilityService} instance.
+     * with a super reference to base class (ApiService).
      *
      * @param {HttpClient} http Instance of the HttpClient.
-     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor(
-        public override http: HttpClient,
-        private utils: UtilityService
-    ) {
+    constructor(public override http: HttpClient) {
         super(http);
     }
 
@@ -120,17 +122,17 @@ export class ConversionService extends ApiService {
             return searchResults;
         }
 
-        searchResults.subjects = searchResults.subjects.reduce((acc, subject) => {
-            subject = this._cleanSubjectValueLabels(subject);
-            subject = this._cleanSubjectValues(subject);
+        // Clean up labels and values of result subjects
+        const cleanedSubjects = searchResults.subjects.map(subject => {
+            subject = this._cleanSubjectValueLabels({ ...subject });
+            subject = this._cleanSubjectValues({ ...subject });
+            return subject;
+        });
 
-            acc.push(subject);
-            return acc;
-        }, []);
+        // Remove duplicates from result subjects
+        const distinctSubjects = this._distinctSubjects(cleanedSubjects);
 
-        // Remove duplicates from response
-        searchResults.subjects = this._distinctSubjects(searchResults.subjects);
-        return searchResults;
+        return { ...searchResults, subjects: distinctSubjects };
     }
 
     /**
@@ -153,7 +155,7 @@ export class ConversionService extends ApiService {
             let propValue = []; // Empty text value array
 
             // Check if values property is defined
-            if (prop.hasOwnProperty('values') && prop.values !== undefined) {
+            if (Object.prototype.hasOwnProperty.call(prop, 'values') && prop.values !== undefined) {
                 // Check for gui-elements
                 switch (prop.valuetype_id) {
                     case '4':
@@ -166,7 +168,7 @@ export class ConversionService extends ApiService {
                     case '7':
                         // SELECTION PULLDOWN: selection nodes have to be read seperately
                         // TODO
-                        if (this.utils.isNotEmptyArray(prop.values)) {
+                        if (this._utils.isNotEmptyArray(prop.values)) {
                             propValue = this._convertSelectionValues(prop.values, prop.attributes);
                         }
                         break; // END selection
@@ -452,9 +454,9 @@ export class ConversionService extends ApiService {
      *
      * @param {PropertyJson[]} props The given properties.
      *
-     * @returns {*} The converted resource data.
+     * @returns {PropertyJson[]} The converted properties.
      */
-    private _convertGUISpecificProps(props: PropertyJson[]): any {
+    private _convertGUISpecificProps(props: PropertyJson[]): PropertyJson[] {
         // Loop through all properties and add toHtml values
         Object.keys(props).forEach((key: string) => {
             props[key] = this._addHtmlValues(props[key]);
@@ -468,12 +470,11 @@ export class ConversionService extends ApiService {
      * It adds an 'toHtml' property to the props array
      * of an accessible resource to be displayed via HTML.
      *
-     * @param {*} prop The given property.
-     * @param {string} [url] A given optional url.
+     * @param {PropertyJson} prop The given property.
      *
-     * @returns {string[]} The converted property.
+     * @returns {PropertyJson} The converted property.
      */
-    private _addHtmlValues(prop: any, url?: string): [string] {
+    private _addHtmlValues(prop: PropertyJson): PropertyJson {
         prop.toHtml = [];
 
         if (prop.values) {
@@ -486,7 +487,11 @@ export class ConversionService extends ApiService {
 
                 case '6': // LINKVALUE (searchbox): links to another salsah object need to be converted
                     for (let i = 0; i < prop.values.length; i++) {
-                        prop.toHtml[i] = this._convertLinkValue(prop, i);
+                        prop.toHtml[i] = this._convertLinkValue(
+                            prop.values[i],
+                            prop.value_firstprops[i],
+                            prop.value_restype[i]
+                        );
                     }
                     break; // END linkvalue
 
@@ -531,16 +536,14 @@ export class ConversionService extends ApiService {
      *
      * @returns {SubjectItemJson} The cleaned subject.
      */
-    _cleanSubjectValueLabels(subject: SubjectItemJson): SubjectItemJson {
-        let { valuelabel, obj_id } = subject;
+    private _cleanSubjectValueLabels(subject: SubjectItemJson): SubjectItemJson {
+        const { valuelabel, obj_id: objId } = subject;
+        const firstValueLabel = valuelabel?.[0];
 
-        if (valuelabel?.[0]) {
-            valuelabel[0] = valuelabel[0].replace(' (Richtext)', '');
-        }
-        if (obj_id) {
-            obj_id = obj_id.replace('_-_local', '');
-        }
-        return { ...subject, valuelabel, obj_id };
+        const modifiedValuelabel = firstValueLabel ? [firstValueLabel.replace(' (Richtext)', '')] : valuelabel;
+        const modifiedObjId = objId ? objId?.replace('_-_local', '') : '';
+
+        return { ...subject, valuelabel: modifiedValuelabel, obj_id: modifiedObjId };
     }
 
     /**
@@ -553,12 +556,12 @@ export class ConversionService extends ApiService {
      *
      * @returns {SubjectItemJson} The cleaned subject.
      */
-    _cleanSubjectValues(subject: SubjectItemJson): SubjectItemJson {
-        let tmpSubject = { ...subject };
-        const { valuetype_id, value } = tmpSubject;
+    private _cleanSubjectValues(subject: SubjectItemJson): SubjectItemJson {
+        const tmpSubject = { ...subject };
+        const { valuetype_id: valueTypeId, value } = tmpSubject;
         const firstValue = value?.[0];
 
-        if (valuetype_id?.[0] === '14' && firstValue) {
+        if (valueTypeId?.[0] === '14' && firstValue) {
             const { utf8str, textattr } = firstValue;
             if (utf8str && textattr) {
                 const htmlstr = this._convertRichtextValue(utf8str, textattr);
@@ -577,14 +580,12 @@ export class ConversionService extends ApiService {
      * Conversion goes from Julian Day Number (JDN)
      * to Gregorian Calendar.
      *
-     * @param {*} dateObj The given date object.
+     * @param {JdnDate} dateObj The given JDN date object.
      *
      * @returns {string} The converted date string.
      */
-    private _convertDateValue(dateObj: any): string {
-        let date: string = dateConverter(dateObj);
-        date = date.replace(' (G)', '');
-        return date;
+    private _convertDateValue(dateObj: JdnDate): string {
+        return dateConverter(dateObj).replace(' (G)', '');
     }
 
     /**
@@ -686,21 +687,14 @@ export class ConversionService extends ApiService {
      * It converts a link value of an accessible resource
      * to be displayed via HTML.
      *
-     * @param {*} prop The given property value.
-     * @param {number} index The given index position.
+     * @param {string} valueId The given value id.
+     * @param {string} firstProp The given first property value.
+     * @param {string} restype The given resource type.
      *
      * @returns {string} The converted link value.
      */
-    private _convertLinkValue(prop: any, index: number): string {
-        // Add <a>-tag with click-directive; linktext is stored in "$&"
-        const firstValue = prop.value_firstprops[index];
-        const replaceValue =
-            '<a (click)="ref.navigateToResource(\'' +
-            prop.values[index] +
-            '\')">$& (' +
-            prop.value_restype[index] +
-            ')</a>';
-        return firstValue.replace(firstValue, replaceValue);
+    private _convertLinkValue(valueId: string, firstProp: string, restype: string): string {
+        return `<a (click)="ref.navigateToResource('${valueId}')">${firstProp} (${restype})</a>`;
     }
 
     /**
@@ -814,11 +808,11 @@ export class ConversionService extends ApiService {
             return undefined;
         }
 
-        const distinctObj = subjects.reduce((acc, subject) => {
+        const distinctObj: { [key: string]: SubjectItemJson } = subjects.reduce((acc, subject) => {
             acc[subject.obj_id] = subject;
             return acc;
         }, {});
-        const distinctArr = Object.values(distinctObj) as SubjectItemJson[];
+        const distinctArr: SubjectItemJson[] = Object.values(distinctObj);
 
         this.filteredOut = subjects.length - distinctArr.length;
 
@@ -869,7 +863,7 @@ export class ConversionService extends ApiService {
     private _getNodeIdFromAttributes(attributes: string): string {
         // Identify node id from prop.attributes
         // E.g. "hlist=17" or "selection=77"
-        return attributes.split('=')[1].toString();
+        return attributes?.split('=')[1]?.toString();
     }
 
     /**
@@ -950,7 +944,7 @@ export class ConversionService extends ApiService {
             const resTextContent = regArr.at(-1);
 
             // Replace href attribute with click-directive
-            const replaceValue = `<a (click)="ref.navigateToResource(\'${resId}\'); $event.stopPropagation()">${resTextContent}</a>`;
+            const replaceValue = `<a (click)="ref.navigateToResource('${resId}'); $event.stopPropagation()">${resTextContent}</a>`;
 
             str = str.replace(regArr[0], replaceValue);
         }

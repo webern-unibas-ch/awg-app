@@ -1,39 +1,36 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Observable, of as observableOf } from 'rxjs';
+import { of as observableOf } from 'rxjs';
+import Spy = jasmine.Spy;
+
+import { expectToBe } from '@testing/expect-helper';
 
 import { ConversionService } from '@awg-core/services';
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
+import { BibliographyFormatPipe } from '@awg-views/data-view/data-outlets/bibliography//bibliography-format.pipe';
+import { BibEntry } from '@awg-views/data-view/data-outlets/bibliography/bibliography-entry.model';
 import { BibliographyService } from '@awg-views/data-view/services';
 
-import { BibEntry } from '../bibliography-entry.model';
-import { BibliographyFormatPipe } from '../bibliography-format.pipe';
 import { BibliographyDetailComponent } from './bibliography-detail.component';
 
 describe('BibliographyDetailComponent', () => {
     let component: BibliographyDetailComponent;
     let fixture: ComponentFixture<BibliographyDetailComponent>;
 
+    let mockBibliographyService: Partial<BibliographyService>;
     let mockConversionService: Partial<ConversionService>;
-    let getBibliographyListSpy: Observable<ResourceFullResponseJson>;
+
+    let getBibliographyListSpy: Spy;
 
     let expectedObjId: string;
     let expectedBibItemDetailBody: ResourceFullResponseJson;
     let expectedConvertedBibItemDetail: BibEntry;
 
     beforeEach(waitForAsync(() => {
-        // Create a fake bibliography service object with a `getBibliographyItemDetail()` spy
-        const mockBibliographyService = jasmine.createSpyObj('BibliographyService', ['getBibliographyItemDetail']);
-        // Make the spies return a synchronous Observable with the test data
-        expectedBibItemDetailBody = new ResourceFullResponseJson();
-        getBibliographyListSpy = mockBibliographyService.getBibliographyItemDetail.and.returnValue(
-            observableOf(expectedBibItemDetailBody)
-        );
-
-        // Stub conversionService to return convertedBibItemDetail
-        expectedConvertedBibItemDetail = new BibEntry('Test', 'Monographie', 'Tim Test', 'Testbuch', '2018');
+        mockBibliographyService = {
+            getBibliographyItemDetail: () => observableOf(expectedBibItemDetailBody),
+        };
         mockConversionService = {
-            convertObjectProperties: (resourceData: ResourceFullResponseJson) => expectedConvertedBibItemDetail,
+            convertObjectProperties: () => expectedConvertedBibItemDetail,
         };
 
         TestBed.configureTestingModule({
@@ -51,6 +48,11 @@ describe('BibliographyDetailComponent', () => {
 
         // Test data
         expectedObjId = '1234';
+        expectedBibItemDetailBody = new ResourceFullResponseJson();
+        expectedConvertedBibItemDetail = new BibEntry('Test', 'Monographie', 'Tim Test', 'Testbuch', '2018');
+
+        // Spies
+        getBibliographyListSpy = spyOn(mockBibliographyService, 'getBibliographyItemDetail').and.callThrough();
     });
 
     it('... should create', () => {
@@ -65,6 +67,8 @@ describe('BibliographyDetailComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
+            getBibliographyListSpy.and.returnValue(observableOf(expectedBibItemDetailBody));
+
             // Simulate the parent setting the input properties
             component.objId = expectedObjId;
 
@@ -73,8 +77,7 @@ describe('BibliographyDetailComponent', () => {
         });
 
         it('... should have objId input', () => {
-            expect(component.objId).toBeTruthy();
-            expect(component.objId).withContext(`should be ${expectedObjId}`).toBe(expectedObjId);
+            expectToBe(component.objId, expectedObjId);
         });
     });
 });

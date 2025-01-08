@@ -1,7 +1,7 @@
 import { Component, DebugElement, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { ToastComponent } from './toast.component';
 import { Toast, ToastService } from './toast.service';
@@ -9,13 +9,18 @@ import { Toast, ToastService } from './toast.service';
 // Mock component to get templateRef
 @Component({
     template: ` <ng-template #template><h1>Test template</h1></ng-template> `,
+    standalone: false,
 })
 class MockTemplateComponent {
     @ViewChild('template', { static: true }) public template: TemplateRef<any>;
 }
 
 // Mock ngb-toast component
-@Component({ selector: 'ngb-toast', template: '' })
+@Component({
+    selector: 'ngb-toast',
+    template: '',
+    standalone: false,
+})
 class NgbToastStubComponent {
     @Input()
     header: string;
@@ -24,7 +29,7 @@ class NgbToastStubComponent {
     @Input()
     autohide: string;
     @Input()
-    delay: string;
+    delay: number;
     @Output()
     hide: EventEmitter<Toast> = new EventEmitter();
 }
@@ -81,8 +86,8 @@ describe('ToastComponent (DONE)', () => {
 
         it('... should have added one toast to toast service', () => {
             expect(toastService.toasts).toBeDefined();
-            expect(toastService.toasts.length).withContext(`should be 1`).toBe(1);
-            expect(toastService.toasts[0]).withContext(`should equal ${expectedToast}`).toEqual(expectedToast);
+            expectToBe(toastService.toasts.length, 1);
+            expectToEqual(toastService.toasts[0], expectedToast);
         });
 
         describe('VIEW', () => {
@@ -94,38 +99,28 @@ describe('ToastComponent (DONE)', () => {
                 const toastDes = getAndExpectDebugElementByDirective(compDe, NgbToastStubComponent, 1, 1);
                 const toastCmp = toastDes[0].injector.get(NgbToastStubComponent) as NgbToastStubComponent;
 
-                expect(toastCmp.header).toBeDefined();
-                expect(toastCmp.header)
-                    .withContext(`should be ${expectedToast.options.header}`)
-                    .toBe(expectedToast.options.header);
+                expectToBe(toastCmp.header, expectedToast.options.header);
             });
 
             it('... should pass down classname to ngb-toast component (stubbed) if given', () => {
                 const toastDes = getAndExpectDebugElementByDirective(compDe, NgbToastStubComponent, 1, 1);
                 const toastCmp = toastDes[0].injector.get(NgbToastStubComponent) as NgbToastStubComponent;
 
-                expect(toastCmp.class).toBeDefined();
-                expect(toastCmp.class)
-                    .withContext(`should be ${expectedToast.options.classname}`)
-                    .toBe(expectedToast.options.classname);
+                expectToBe(toastCmp.class, expectedToast.options.classname);
             });
 
             it('... should pass down autohide=true to ngb-toast component (stubbed)', () => {
                 const toastDes = getAndExpectDebugElementByDirective(compDe, NgbToastStubComponent, 1, 1);
                 const toastCmp = toastDes[0].injector.get(NgbToastStubComponent) as NgbToastStubComponent;
 
-                expect(toastCmp.autohide).toBeDefined();
-                expect(toastCmp.autohide).toBeTrue();
+                expectToBe(toastCmp.autohide, true);
             });
 
             it('... should pass down delay to ngb-toast component (stubbed)', () => {
                 const toastDes = getAndExpectDebugElementByDirective(compDe, NgbToastStubComponent, 1, 1);
                 const toastCmp = toastDes[0].injector.get(NgbToastStubComponent) as NgbToastStubComponent;
 
-                expect(toastCmp.delay).toBeDefined();
-                expect(toastCmp.delay)
-                    .withContext(`should be ${expectedToast.options.delay}`)
-                    .toBe(expectedToast.options.delay);
+                expectToBe(toastCmp.delay, expectedToast.options.delay);
             });
 
             it('... should pass down default delay (=5000) to ngb-toast component (stubbed) if no delay is given', () => {
@@ -139,8 +134,7 @@ describe('ToastComponent (DONE)', () => {
                 const toastDes = getAndExpectDebugElementByDirective(compDe, NgbToastStubComponent, 1, 1);
                 const toastCmp = toastDes[0].injector.get(NgbToastStubComponent) as NgbToastStubComponent;
 
-                expect(toastCmp.delay).toBeDefined();
-                expect<any>(toastCmp.delay).withContext(`should be 5000`).toBe(5000);
+                expectToBe(toastCmp.delay, 5000);
             });
 
             it('... should remove toast from service on hide', () => {
@@ -149,8 +143,7 @@ describe('ToastComponent (DONE)', () => {
 
                 toastCmp.hide.emit();
 
-                expect(toastService.toasts).toBeDefined();
-                expect(toastService.toasts.length).withContext(`should be 0`).toBe(0);
+                expectToBe(toastService.toasts.length, 0);
             });
         });
 
@@ -162,7 +155,7 @@ describe('ToastComponent (DONE)', () => {
             it('... should return false if given toast is not a template, but string', () => {
                 const check = component.isTemplate(expectedToast);
 
-                expect(check).toBeFalse();
+                expectToBe(check, false);
             });
 
             it('... should return true if given toast is a template', () => {
@@ -173,7 +166,7 @@ describe('ToastComponent (DONE)', () => {
 
                 const check = component.isTemplate(expectedTplToast);
 
-                expect(check).toBeTrue();
+                expectToBe(check, true);
             });
         });
     });

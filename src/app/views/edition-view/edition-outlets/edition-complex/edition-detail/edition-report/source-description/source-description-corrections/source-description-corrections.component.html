@@ -1,0 +1,29 @@
+<div class="awg-source-description-corrections">
+    <p class="no-para"><span class="smallcaps">Korrekturen:</span></p>
+    @for (correction of corrections; track correction.id) {
+        <details class="half-para awg-source-description-correction-details" [id]="correction.id">
+            <summary
+                class="half-para awg-source-description-correction-summary"
+                [compile-html]="correction.label + ':'"
+                [compile-html-ref]="ref"></summary>
+            <div class="p-3 border rounded-3">
+                @for (evaluation of correction.evaluations; track $index) {
+                    <p
+                        class="awg-source-description-correction-evaluation mb-0"
+                        [compile-html]="evaluation"
+                        [compile-html-ref]="ref"></p>
+                }
+                @if (correction.commentary.comments.length > 0) {
+                    <awg-edition-tka-table
+                        [commentary]="correction.commentary"
+                        [isCorrections]="true"
+                        [isRowTable]="correction.rowtable"
+                        (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                        (openModalRequest)="openModal($event)"
+                        (selectSvgSheetRequest)="selectSvgSheet($event)">
+                    </awg-edition-tka-table>
+                }
+            </div>
+        </details>
+    }
+</div>

@@ -27,9 +27,12 @@
                 <svg #svgSheetElement id="awg-edition-svg-sheet">
                     <g #svgSheetRootGroup id="awg-edition-svg-sheet-root-group"></g>
                 </svg>
+
                 <awg-license></awg-license>
+
                 @if (hasAvailableTkaOverlays || suppliedClasses.size > 0) {
                     <awg-edition-svg-sheet-viewer-switch
+                        [id]="selectedSvgSheet.id"
                         [suppliedClasses]="suppliedClasses"
                         [hasAvailableTkaOverlays]="hasAvailableTkaOverlays"
                         (toggleSuppliedClassesOpacityRequest)="onSuppliedClassesOpacityToggle($event)"
@@ -38,15 +41,10 @@
                         "></awg-edition-svg-sheet-viewer-switch>
                 }
             </div>
+
             <!-- Next and previous buttons -->
-            <div class="awg-edition-svg-sheet-viewer-nav">
-                <div class="prev" (click)="browseSvgSheet(-1)">
-                    <span>&#10094;</span>
-                </div>
-                <div class="next" (click)="browseSvgSheet(1)">
-                    <span>&#10095;</span>
-                </div>
-            </div>
+            <awg-edition-svg-sheet-viewer-nav
+                (browseSvgSheetRequest)="browseSvgSheet($event)"></awg-edition-svg-sheet-viewer-nav>
         </div>
     </div>
 }

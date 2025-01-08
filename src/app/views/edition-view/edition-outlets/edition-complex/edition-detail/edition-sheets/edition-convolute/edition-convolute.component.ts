@@ -34,6 +34,7 @@ interface IFolioLegend {
     templateUrl: './edition-convolute.component.html',
     styleUrls: ['./edition-convolute.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionConvoluteComponent {
     /**

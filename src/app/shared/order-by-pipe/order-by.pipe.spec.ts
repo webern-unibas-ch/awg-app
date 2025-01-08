@@ -390,13 +390,14 @@ describe('OrderByPipe (DONE)', () => {
 
             const parse = value => parseInt(value.replace(/[^0-9]/g, ''), 10);
 
-            expect(
+            expectToEqual(
                 pipe.transform(arr, null, false, true, (a, b) => {
                     const newA = parse(a);
                     const newB = parse(b);
                     return newA > newB ? 1 : -1;
-                })
-            ).toEqual(res);
+                }),
+                res
+            );
         });
 
         describe('test not valid values for comparator', () => {

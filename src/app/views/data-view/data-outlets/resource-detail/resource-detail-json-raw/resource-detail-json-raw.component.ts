@@ -14,6 +14,7 @@ import { ResourceFullResponseJson } from '@awg-shared/api-objects';
     templateUrl: './resource-detail-json-raw.component.html',
     styleUrls: ['./resource-detail-json-raw.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class ResourceDetailJsonRawComponent {
     /**

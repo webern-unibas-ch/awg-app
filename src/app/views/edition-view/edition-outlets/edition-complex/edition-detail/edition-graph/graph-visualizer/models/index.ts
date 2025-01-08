@@ -16,7 +16,6 @@ import { D3SimulationNode, D3SimulationNodeType } from './d3-simulation-node.mod
 import { Namespace, NamespaceType } from './namespace.model';
 import { Prefix, PrefixForm } from './prefix.model';
 import { QueryResult, QueryResultBindings } from './query-result.model';
-import { QueryTypeIndex } from './query-type-index.model';
 import { RDFStoreConstructResponse, RDFStoreSelectResponse } from './rdfstore-response.model';
 import {
     RDFStoreConstructResponseTriple,
@@ -38,9 +37,8 @@ export {
     D3SimulationNodeType,
     Namespace,
     NamespaceType,
-    PrefixForm,
     Prefix,
-    QueryTypeIndex,
+    PrefixForm,
     QueryResult,
     QueryResultBindings,
     RDFStoreConstructResponse,

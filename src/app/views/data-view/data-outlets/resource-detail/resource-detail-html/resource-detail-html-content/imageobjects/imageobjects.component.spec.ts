@@ -5,7 +5,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxGalleryComponent, NgxGalleryImage, NgxGalleryModule, NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { JsonConvert } from 'json2typescript';
 
-import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectToBe,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 import { mockContextJson } from '@testing/mock-data';
 
 import { ContextJson } from '@awg-shared/api-objects';
@@ -82,10 +87,7 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
         });
 
         it('... should have galleryOptions', () => {
-            expect(component.galleryOptions).toBeDefined();
-            expect(component.galleryOptions)
-                .withContext(`should equal expectedGalleryOptions: ${expectedGalleryOptions}`)
-                .toEqual(jasmine.arrayContaining(expectedGalleryOptions));
+            expectToEqual(component.galleryOptions, jasmine.arrayContaining(expectedGalleryOptions));
         });
 
         describe('VIEW', () => {
@@ -105,8 +107,7 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
         });
 
         it('... should have `images` inputs', () => {
-            expect(component.images).toBeDefined();
-            expect(component.images).withContext(`should be expectedImages: ${expectedImages}`).toBe(expectedImages);
+            expectToEqual(component.images, expectedImages);
         });
 
         describe('VIEW', () => {
@@ -115,17 +116,12 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
             });
 
             it('... should contain one header showing number of images', () => {
-                // Header debug element
-                const headerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-image-obj > h5', 1, 1);
-                // Size debug element
-                const sizeDes = getAndExpectDebugElementByCss(headerDes[0], 'span#awg-image-number', 1, 1);
-                const sizeEl = sizeDes[0].nativeElement;
+                const hDes = getAndExpectDebugElementByCss(compDe, 'div.awg-image-obj > h5', 1, 1);
 
-                // Check size output
-                expect(sizeEl.textContent).toBeDefined();
-                expect(sizeEl.textContent)
-                    .withContext(`should be ${expectedImages.length.toString()}`)
-                    .toBe(expectedImages.length.toString());
+                const sizeDes = getAndExpectDebugElementByCss(hDes[0], 'span#awg-image-number', 1, 1);
+                const sizeEl: HTMLSpanElement = sizeDes[0].nativeElement;
+
+                expectToBe(sizeEl.textContent, expectedImages.length.toString());
             });
 
             it('... should contain one div.awg-image-slider with one NgxGalleryComponent', () => {
@@ -144,15 +140,8 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
                 const galleryDes = getAndExpectDebugElementByDirective(compDe, NgxGalleryComponent, 1, 1);
                 const galleryCmp = galleryDes[0].injector.get(NgxGalleryComponent) as NgxGalleryComponent;
 
-                expect(galleryCmp.options).toBeDefined();
-                expect(galleryCmp.options)
-                    .withContext(`should equal expectedGalleryOptions: ${expectedGalleryOptions}`)
-                    .toEqual(expectedGalleryOptions);
-
-                expect(galleryCmp.images).toBeDefined();
-                expect(galleryCmp.images)
-                    .withContext(`should equal expectedGalleryImages: ${expectedImages}`)
-                    .toEqual(expectedImages);
+                expectToEqual(galleryCmp.options, expectedGalleryOptions);
+                expectToEqual(galleryCmp.images, expectedImages);
             });
         });
     });

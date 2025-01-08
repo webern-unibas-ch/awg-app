@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { Observable } from 'rxjs';
 
-import { UtilityService } from '@awg-app/core/services';
+import { UtilityService } from '@awg-core/services';
 import { QueryResult } from '../models';
 
 /**
@@ -16,6 +16,7 @@ import { QueryResult } from '../models';
     templateUrl: './select-results.component.html',
     styleUrls: ['./select-results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SelectResultsComponent {
     /**

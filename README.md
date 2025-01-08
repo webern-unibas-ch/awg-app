@@ -2,7 +2,7 @@
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/webern-unibas-ch/awg-app.svg)
 [![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/webern-unibas-ch/awg-app/@angular/core?color=blue&label=angular&logo=angular)](https://github.com/angular/angular)
-![Node.js version](https://img.shields.io/badge/node.js-%3E=v18.19.0-blue)
+![Node.js version](https://img.shields.io/badge/node.js-%3E=v20.13.1-blue)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/webern-unibas-ch/awg-app)
 ![CI Workflow](https://github.com/webern-unibas-ch/awg-app/actions/workflows/ci_workflow.yml/badge.svg)
 [![codecov](https://codecov.io/gh/webern-unibas-ch/awg-app/graph/badge.svg?token=IO5EgI81R6)](https://codecov.io/gh/webern-unibas-ch/awg-app)
@@ -13,12 +13,11 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4717678.svg)](https://doi.org/10.5281/zenodo.4717678)
 
-A prototype web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch) (AWG), located at the Department of Musicology of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).
+A web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch) (AWG), located at the Department of Musicology of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).
 
 **Project Status**: This project is actively maintained.
 
-<img width="943" alt="app" src="https://github.com/musicEnfanthen/awg-app/assets/21059419/0673d981-558a-4519-8232-e570efa2985e">
-
+<img width="947" alt="Screenshot 2024-10-26 124804" src="https://github.com/user-attachments/assets/e5403d43-c555-4097-a250-79b5184a4e47">
 
 ## Table of Contents
 
@@ -40,10 +39,15 @@ This repository houses the source code for the web application that powers the o
 
 ## Prerequisites
 
-To run the code base yourself, there are only a few prerequisites to take care of. We use [Yarn](https://classic.yarnpkg.com/) for dependency managing, so, before you begin, ensure you have met the following requirements:
+To run the code base yourself, there are only a few prerequisites to take care of. We use (modern) [Yarn](https://yarnpkg.com/) for dependency managing, so, before you begin, ensure you have met the following requirements:
 
--   You have installed the latest version of Node.js. You can check this by running `node -v` in your terminal. If Node.js is not installed, you can download it from [here](https://nodejs.org/).
--   You have installed Yarn. You can check this by running `yarn -v` in your terminal. If Yarn is not installed, you can download it from [here](https://classic.yarnpkg.com/).
+-   You have installed the latest version of Node.js. You can check this by running `node -v` in your terminal. If Node.js is not installed, you can download it from [here](https://nodejs.org/) or use a Node version manager like `nvm` ([Posix](https://github.com/nvm-sh/nvm)/[Windows](https://github.com/coreybutler/nvm-windows)).
+-   To activate Yarn, follow the instructions [here](https://yarnpkg.com/getting-started/install):
+    -   Run `corepack enable` in the terminal (may need admin privileges to access node folder).
+    -   Check that Yarn was installed by running `yarn -v` in your terminal.
+
+> [!NOTE]
+> While it's likely that the project can be run with [classic Yarn](https://classic.yarnpkg.com/en/), please be aware that this is no longer actively tested.
 
 ## Getting Started
 
@@ -58,7 +62,7 @@ To get started with this project, follow these steps:
 
 In the project directory, you can run the following command to serve the app in development mode:
 
--   `yarn start`: Serves the app in the development mode. Open [http://localhost:4200](http://localhost:4200) to view it in the browser.
+-   `yarn start` or `ng s`: Serves the app in the development mode. Open [http://localhost:4200](http://localhost:4200) to view it in the browser.
 
 During the development process, you'll also find the following commands useful for maintaining code quality and understanding the codebase:
 

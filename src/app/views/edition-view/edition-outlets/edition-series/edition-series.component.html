@@ -1,31 +1,50 @@
 @if (editionOutline) {
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        @for (series of editionOutline; track series) {
-            <div class="col">
-                <div class="card h-100">
-                    <h5 class="card-header">
-                        {{ series.series.full }}
-                    </h5>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            @for (section of series.sections; track section) {
-                                <li class="list-group-item">
-                                    @if (!section.disabled) {
-                                        <a [routerLink]="[series.series.route, 'section', section.section.route]">{{
-                                            section.section.full
-                                        }}</a>
-                                    } @else {
-                                        <span class="text-muted">{{ section.section.full }}</span>
-                                    }
-                                </li>
-                            }
-                        </ul>
-                    </div>
-                    <div class="card-footer text-end">
-                        <a [routerLink]="[series.series.route]" class="btn btn-outline-info">Mehr ...</a>
+    <div class="awg-edition-series">
+        <div class="awg-edition-series-text p-4 border rounded-3 para">
+            <p>
+                Die Anton Webern Gesamtausgabe (AWG) versteht sich als historisch-kritische Gesamtausgabe der
+                Kompositionen Anton Weberns. Sie ist <i>historisch</i>, indem sie die Kompositionen durch Dokumentation
+                verschiedener Textfassungen und ihrer Skizzen als in sich chronologisch differenzierte Editionskomplexe
+                präsentiert sowie deren Entstehung in den Zusammenhang der Biographie des Komponisten und der
+                allgemeinen Musikgeschichte einordnet. Sie ist <i>kritisch</i>, indem sie sämtliche erreichbaren Quellen
+                vergleicht und textkritisch prüft. Sie ist eine <i>Gesamt</i>ausgabe, indem sie die auf Grundlage dieser
+                Quellenkritik erkennbaren Textfassungen und Skizzen sämtlicher, auch fragmentarischer Kompositionen
+                ediert. Sie ist eine Gesamt<i>ausgabe</i>, indem sie Notentexte mit dem methodischen Bewusstsein
+                vorlegt, dass eine Edition grundsätzlich eine Interpretation des durch die Quellen bezeugten Texts
+                darstellt.
+            </p>
+
+            <p>Die AWG gliedert sich in drei Serien:</p>
+        </div>
+
+        <div class="awg-edition-series-grid row row-cols-1 row-cols-md-3 g-4">
+            @for (series of editionOutline; track $index) {
+                <div class="col">
+                    <div class="card awg-edition-series-card h-100 shadow">
+                        <h5 class="card-header">
+                            {{ series.series.full }}
+                        </h5>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                @for (section of series.sections; track $index) {
+                                    <li class="list-group-item">
+                                        @if (!section.disabled) {
+                                            <a [routerLink]="[series.series.route, 'section', section.section.route]">{{
+                                                section.section.full
+                                            }}</a>
+                                        } @else {
+                                            <span class="text-muted">{{ section.section.full }}</span>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="card-footer text-end">
+                            <a [routerLink]="[series.series.route]" class="btn btn-outline-info">Mehr ...</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
 }

@@ -32,89 +32,89 @@ export class FolioService {
     ref: any;
 
     /**
-     * Private variable: _bgColor.
+     * Private readonly variable: _bgColor.
      *
      * It keeps the background color for the folio.
      */
-    private _bgColor = '#a3a3a3';
+    private readonly _bgColor = '#a3a3a3';
 
     /**
-     * Private variable: _disabledColor.
+     * Private readonly variable: _disabledColor.
      *
      * It keeps the disabled color for the folios.
      */
-    private _disabledColor = 'grey';
+    private readonly _disabledColor = 'grey';
 
     /**
-     * Private variable: _fgColor.
+     * Private readonly variable: _fgColor.
      *
      * It keeps the foreground color for the folios.
      */
-    private _fgColor = 'orange';
+    private readonly _fgColor = 'orange';
 
     /**
-     * Private variable: _contentSegmentFillColor.
+     * Private readonly variable: _contentSegmentFillColor.
      *
      * It keeps the fill color for the content segments.
      */
-    private _contentSegmentFillColor = '#eeeeee';
+    private readonly _contentSegmentFillColor = '#eeeeee';
 
     /**
-     * Private variable: _contentSegmentFontFamily.
+     * Private readonly variable: _contentSegmentFontFamily.
      *
      * It keeps the font family for the content segments.
      */
-    private _contentSegmentFontFamily = 'Source Sans Pro, source-sans-pro, sans-serif';
+    private readonly _contentSegmentFontFamily = 'Source Sans Pro, source-sans-pro, sans-serif';
 
     /**
-     * Private variable: _contentSegmentFontSize.
+     * Private readonly variable: _contentSegmentFontSize.
      *
      * It keeps the font size for the content segments.
      */
-    private _contentSegmentFontSize = '11px';
+    private readonly _contentSegmentFontSize = '11px';
 
     /**
-     * Private variable: _contentSegmentOffsetCorrection.
+     * Private readonly variable: _contentSegmentOffsetCorrection.
      *
      * It corrects the offset (in px) to avoid
      * border collision between rendered SVG content segments.
      */
-    private _contentSegmentOffsetCorrection = 4;
+    private readonly _contentSegmentOffsetCorrection = 4;
 
     /**
-     * Private variable: _contentSegmentRotationAngle.
+     * Private readonly variable: _contentSegmentRotationAngle.
      *
      * It keeps the rotation angle for the reversed content segments.
      */
-    private _contentSegmentReversedRotationAngle = 180;
+    private readonly _contentSegmentReversedRotationAngle = 180;
 
     /**
-     * Private variable: _contentSegmentStrokeWidth.
+     * Private readonly variable: _contentSegmentStrokeWidth.
      *
      * It keeps the stroke width for the content segments.
      */
-    private _contentSegmentStrokeWidth = 2;
+    private readonly _contentSegmentStrokeWidth = 2;
 
     /**
-     * Private variable: _sheetFillColor.
+     * Private readonly variable: _sheetFillColor.
      *
      * It keeps the fill color for the sheets.
      */
-    private _sheetFillColor = 'white';
+    private readonly _sheetFillColor = 'white';
 
     /**
-     * Private variable: _sheetStrokeWidth.
+     * Private readonly variable: _sheetStrokeWidth.
      *
      * It keeps the stroke width for the sheets.
      */
-    private _sheetStrokeWidth = 1;
+    private readonly _sheetStrokeWidth = 1;
 
     /**
-     * Private variable: _systemsLineStrokeWidth.
+     * Private readonly variable: _systemsLineStrokeWidth.
      *
      * It keeps the stroke width for the systems.
      */
-    private _systemsLineStrokeWidth = 0.7;
+    private readonly _systemsLineStrokeWidth = 0.7;
 
     /**
      * Public method: getFolioSvgData.
@@ -294,7 +294,7 @@ export class FolioService {
         // Add click event handler
         contentSegmentGroup.on('click', () =>
             contentSegment.selectable
-                ? this.ref.selectSvgSheet(contentSegment.complexId, contentSegment.sheetId)
+                ? this.ref.selectSvgSheet({ complexId: contentSegment.complexId, sheetId: contentSegment.sheetId })
                 : this.ref.openModal(contentSegment.linkTo)
         );
 
@@ -569,15 +569,15 @@ export class FolioService {
      * @param {Record<string, any>} attributes The given attributes.
      * @returns {D3Selection} The appended SVG element with attributes.
      */
-    private _appendSvgElementWithAttrs = (
+    private _appendSvgElementWithAttrs(
         parent: D3Selection,
         type: string,
         attributes: Record<string, any>
-    ): D3Selection => {
+    ): D3Selection {
         const selection = parent.append(type);
         Object.keys(attributes).forEach(key => {
             selection.attr(key, attributes[key]);
         });
         return selection;
-    };
+    }
 }

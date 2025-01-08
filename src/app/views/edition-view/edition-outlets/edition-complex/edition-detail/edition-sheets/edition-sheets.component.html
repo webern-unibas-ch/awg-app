@@ -3,31 +3,42 @@
     <!-- modal -->
     <awg-modal #modal></awg-modal>
 
-    <!-- body with embedded svg's -->
-    <!-- accolade view -->
-    @if (svgSheetsData && selectedSvgSheet) {
-        <awg-edition-accolade
-            [svgSheetsData]="svgSheetsData"
-            [selectedSvgSheet]="selectedSvgSheet"
-            [selectedTextcritics]="selectedTextcritics"
-            [selectedTextcriticalComments]="selectedTextcriticalComments"
-            [showTkA]="showTkA"
-            (browseSvgSheetRequest)="onBrowseSvgSheet($event)"
-            (navigateToReportFragmentRequest)="onNavigateToReportFragment($event)"
-            (openModalRequest)="modal.open($event)"
-            (selectLinkBoxRequest)="onLinkBoxSelect($event)"
-            (selectOverlaysRequest)="onOverlaySelect($event)"
-            (selectSvgSheetRequest)="onSvgSheetSelect($event)">
-        </awg-edition-accolade>
-    }
+    <!-- loading spinner -->
+    @if (isLoading$ | async) {
+        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
+    } @else {
+        <!-- error message -->
+        @if (errorObject) {
+            <awg-alert-error [errorObject]="errorObject"></awg-alert-error>
+        } @else {
+            <div class="awg-sheets-view">
+                <!-- accolade view -->
+                <awg-edition-accolade
+                    [isFullscreen]="isFullscreen"
+                    [svgSheetsData]="svgSheetsData"
+                    [selectedSvgSheet]="selectedSvgSheet"
+                    [selectedTextcritics]="selectedTextcritics"
+                    [selectedTextcriticalCommentary]="selectedTextcriticalCommentary"
+                    [showTkA]="showTkA"
+                    (browseSvgSheetRequest)="onBrowseSvgSheet($event)"
+                    (fullscreenToggleRequest)="onFullscreenToggle($event)"
+                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
+                    (openModalRequest)="modal.open($event)"
+                    (selectLinkBoxRequest)="onLinkBoxSelect($event)"
+                    (selectOverlaysRequest)="onOverlaySelect($event)"
+                    (selectSvgSheetRequest)="onSvgSheetSelect($event)">
+                </awg-edition-accolade>
 
-    <!-- convolute view -->
-    @if (selectedConvolute && selectedSvgSheet) {
-        <awg-edition-convolute
-            [selectedConvolute]="selectedConvolute"
-            [selectedSvgSheet]="selectedSvgSheet"
-            (openModalRequest)="modal.open($event)"
-            (selectSvgSheetRequest)="onSvgSheetSelect($event)">
-        </awg-edition-convolute>
+                <!-- convolute view -->
+                @if (selectedConvolute && selectedSvgSheet) {
+                    <awg-edition-convolute
+                        [selectedConvolute]="selectedConvolute"
+                        [selectedSvgSheet]="selectedSvgSheet"
+                        (openModalRequest)="modal.open($event)"
+                        (selectSvgSheetRequest)="onSvgSheetSelect($event)">
+                    </awg-edition-convolute>
+                }
+            </div>
+        }
     }
 </div>

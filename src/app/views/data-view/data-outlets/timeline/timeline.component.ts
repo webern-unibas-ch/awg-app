@@ -14,6 +14,7 @@ import { TimelineDate } from '@awg-views/data-view/models/timeline-date.model';
     selector: 'awg-timeline',
     templateUrl: './timeline.component.html',
     styleUrls: ['./timeline.component.scss'],
+    standalone: false,
 })
 export class TimelineComponent implements OnInit {
     /**

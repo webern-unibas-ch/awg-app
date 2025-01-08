@@ -6,7 +6,7 @@ import { ModalDismissReasons, NgbModal, NgbModalModule } from '@ng-bootstrap/ng-
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 
@@ -20,6 +20,7 @@ import { ModalComponent } from './modal.component';
         </div>
         <awg-modal> </awg-modal>
     `,
+    standalone: false,
 })
 class WrapperComponent implements AfterViewInit {
     @ViewChild(ModalComponent) modalComponentRef: ModalComponent;
@@ -37,7 +38,7 @@ export class MockNgbModalRef {
         title: undefined,
         content: undefined,
     };
-    result: Promise<any> = new Promise((resolve, reject) => resolve(''));
+    result: Promise<any> = new Promise(resolve => resolve(''));
 }
 
 describe('ModalComponent', () => {
@@ -102,21 +103,16 @@ describe('ModalComponent', () => {
     });
 
     it('... should have modal title', () => {
-        expect(component.modalTitle).toBeDefined();
-        expect(component.modalTitle).withContext(`should be ${expectedModalTitle}`).toBe(expectedModalTitle);
+        expectToBe(component.modalTitle, expectedModalTitle);
     });
 
     it('... should have modal close label', () => {
-        expect(component.modalCloseLabel).toBeDefined();
-        expect(component.modalCloseLabel)
-            .withContext(`should be ${expectedModalCloseLabel}`)
-            .toBe(expectedModalCloseLabel);
+        expectToBe(component.modalCloseLabel, expectedModalCloseLabel);
     });
 
     it('... should recognize the modal template', () => {
-        expect(component.modalTemplate).toBeDefined();
-        expect(component.modalTemplate).withContext(`should be a TemplateRef`).toBeInstanceOf(TemplateRef);
-        expect(component.modalTemplate).withContext(`should be a wrapperComponent.modal`).toBe(wrapperComponent.modal);
+        expectToBe(component.modalTemplate, wrapperComponent.modal);
+        expect(component.modalTemplate).toBeInstanceOf(TemplateRef);
     });
 
     it('... should recognize the modal template in wrapper component', () => {
@@ -133,71 +129,63 @@ describe('ModalComponent', () => {
 
     describe('VIEW', () => {
         it('... should have one div.modal-header', () => {
-            getAndExpectDebugElementByCss(wrapperDe, '.modal-header', 1, 1);
+            getAndExpectDebugElementByCss(wrapperDe, 'div.modal-header', 1, 1);
         });
 
         it('... should have h4.modal-title in div.modal-header', () => {
-            const headerDes = getAndExpectDebugElementByCss(wrapperDe, '.modal-header', 1, 1);
-            getAndExpectDebugElementByCss(headerDes[0], 'h4.modal-title', 1, 1);
+            const divDes = getAndExpectDebugElementByCss(wrapperDe, 'div.modal-header', 1, 1);
+            getAndExpectDebugElementByCss(divDes[0], 'h4.modal-title', 1, 1);
         });
 
         it('... should render the modal title label', () => {
-            const headerDes = getAndExpectDebugElementByCss(wrapperDe, '.modal-header', 1, 1);
-            const titleDes = getAndExpectDebugElementByCss(headerDes[0], 'h4.modal-title', 1, 1);
-            const titleEl = titleDes[0].nativeElement;
+            const divDes = getAndExpectDebugElementByCss(wrapperDe, 'div.modal-header', 1, 1);
+            const hDes = getAndExpectDebugElementByCss(divDes[0], 'h4.modal-title', 1, 1);
+            const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-            expect(titleEl).toBeDefined();
-            expect(titleEl.textContent).withContext(`should be ${expectedModalTitle}`).toBe(expectedModalTitle);
+            expectToBe(hEl.textContent, expectedModalTitle);
         });
 
         it('... should have close button without label in div.modal-header', () => {
-            const headerDes = getAndExpectDebugElementByCss(wrapperDe, '.modal-header', 1, 1);
-            const buttonDes = getAndExpectDebugElementByCss(headerDes[0], 'button.btn-close', 1, 1);
-            const buttonEl = buttonDes[0].nativeElement;
+            const divDes = getAndExpectDebugElementByCss(wrapperDe, 'div.modal-header', 1, 1);
+            const btnDes = getAndExpectDebugElementByCss(divDes[0], 'button.btn-close', 1, 1);
+            const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-            expect(buttonEl).toBeDefined();
-            expect(buttonEl.textContent).withContext(`should be ''`).toBe('');
+            expectToBe(btnEl.textContent, '');
         });
 
         it('... should have one div.modal-body', () => {
-            getAndExpectDebugElementByCss(wrapperDe, '.modal-body', 1, 1);
+            getAndExpectDebugElementByCss(wrapperDe, 'div.modal-body', 1, 1);
         });
 
         it('... should render the modal content in div.modal-body', () => {
             component.open(expectedSnippetKey1);
             fixture.detectChanges();
 
-            const bodyDes = getAndExpectDebugElementByCss(wrapperDe, '.modal-body', 1, 1);
-            const bodyEl = bodyDes[0].nativeElement;
+            const bodyDes = getAndExpectDebugElementByCss(wrapperDe, 'div.modal-body', 1, 1);
+            const bodyEl: HTMLDivElement = bodyDes[0].nativeElement;
 
             // Process HTML expression of content snippet
             const htmlSnippet = mockDocument.createElement('p');
             htmlSnippet.innerHTML = EXPECTED_MODAL_CONTENT_SNIPPETS[expectedSnippetKey1];
 
-            expect(bodyEl).toBeDefined();
-            expect(bodyEl.textContent.trim())
-                .withContext(`should be ${htmlSnippet.textContent.trim()}`)
-                .toBe(htmlSnippet.textContent.trim());
+            expectToBe(bodyEl.textContent.trim(), htmlSnippet.textContent.trim());
         });
 
         it('... should have one div.modal-footer', () => {
-            getAndExpectDebugElementByCss(wrapperDe, '.modal-footer', 1, 1);
+            getAndExpectDebugElementByCss(wrapperDe, 'div.modal-footer', 1, 1);
         });
 
         it('... should have one close button.awg-modal-button in div.modal-footer', () => {
-            const footerDes = getAndExpectDebugElementByCss(wrapperDe, '.modal-footer', 1, 1);
+            const footerDes = getAndExpectDebugElementByCss(wrapperDe, 'div.modal-footer', 1, 1);
             getAndExpectDebugElementByCss(footerDes[0], 'button.awg-modal-button', 1, 1);
         });
 
         it('... should render the modal close label', () => {
-            const footerDes = getAndExpectDebugElementByCss(wrapperDe, '.modal-footer', 1, 1);
-            const buttonDes = getAndExpectDebugElementByCss(footerDes[0], 'button.awg-modal-button', 1, 1);
-            const buttonEl = buttonDes[0].nativeElement;
+            const footerDes = getAndExpectDebugElementByCss(wrapperDe, 'div.modal-footer', 1, 1);
+            const btnDes = getAndExpectDebugElementByCss(footerDes[0], 'button.awg-modal-button', 1, 1);
+            const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-            expect(buttonEl).toBeDefined();
-            expect(buttonEl.textContent.trim())
-                .withContext(`should be ${expectedModalCloseLabel}`)
-                .toBe(expectedModalCloseLabel);
+            expectToBe(btnEl.textContent.trim(), expectedModalCloseLabel);
         });
     });
 
@@ -217,32 +205,25 @@ describe('ModalComponent', () => {
         });
 
         it('... should set the correct modal content if snippet is known', () => {
-            expect(component.modalContent).toBeDefined();
-            expect(component.modalContent)
-                .withContext(` should be ${EXPECTED_MODAL_CONTENT_SNIPPETS[expectedSnippetKey1]}`)
-                .toBe(EXPECTED_MODAL_CONTENT_SNIPPETS[expectedSnippetKey1]);
+            expectToBe(component.modalContent, EXPECTED_MODAL_CONTENT_SNIPPETS[expectedSnippetKey1]);
 
             component.open(expectedSnippetKey2);
             fixture.detectChanges();
 
-            expect(component.modalContent).toBeDefined();
-            expect(component.modalContent)
-                .withContext(` should be ${EXPECTED_MODAL_CONTENT_SNIPPETS[expectedSnippetKey2]}`)
-                .toBe(EXPECTED_MODAL_CONTENT_SNIPPETS[expectedSnippetKey2]);
+            expectToBe(component.modalContent, EXPECTED_MODAL_CONTENT_SNIPPETS[expectedSnippetKey2]);
         });
 
         it('... should set the modal content to empty string if snippet is unknown', () => {
             component.open(expectedUnknownSnippetKey);
             fixture.detectChanges();
 
-            expect(component.modalContent).toBeDefined();
-            expect(component.modalContent).withContext(`should be empty string`).toBe('');
+            expectToBe(component.modalContent, '');
         });
 
         it('... should return the close result of the modal', async () => {
             const closeMessage = `Click on ${expectedModalCloseLabel}`;
             const expectedCloseResult = `Closed with: ${closeMessage}`;
-            mockModalRef.result = new Promise((resolve, reject) => resolve(closeMessage));
+            mockModalRef.result = new Promise(resolve => resolve(closeMessage));
 
             component.open(expectedSnippetKey1);
             fixture.detectChanges();
@@ -251,15 +232,14 @@ describe('ModalComponent', () => {
                 ngbModal.open(component.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result
             ).toBeResolvedTo(closeMessage);
 
-            expect(component.closeResult).toBeDefined();
-            expect(component.closeResult).toBe(expectedCloseResult);
+            expectToBe(component.closeResult, expectedCloseResult);
         });
 
         describe('should return the dismiss reason of the modal', async () => {
             it('... when clicking on close button', async () => {
                 const dismissEvent = 'Click on dismiss button';
                 const expectedDismissReason = `Dismissed with: ${dismissEvent}`;
-                mockModalRef.result = new Promise((resolve, reject) => reject(dismissEvent));
+                mockModalRef.result = new Promise((_resolve, reject) => reject(dismissEvent));
 
                 component.open(expectedSnippetKey1);
                 fixture.detectChanges();
@@ -268,16 +248,13 @@ describe('ModalComponent', () => {
                     ngbModal.open(component.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result
                 ).toBeRejectedWith(dismissEvent);
 
-                expect(component.closeResult).toBeDefined();
-                expect(component.closeResult)
-                    .withContext(`should be ${expectedDismissReason}`)
-                    .toBe(expectedDismissReason);
+                expectToBe(component.closeResult, expectedDismissReason);
             });
 
             it('... when pressing ESC key', async () => {
                 const dismissEvent = ModalDismissReasons.ESC;
                 const expectedDismissReason = `Dismissed by pressing ESC`;
-                mockModalRef.result = new Promise((resolve, reject) => reject(dismissEvent));
+                mockModalRef.result = new Promise((_resolve, reject) => reject(dismissEvent));
 
                 component.open(expectedSnippetKey1);
                 fixture.detectChanges();
@@ -286,16 +263,13 @@ describe('ModalComponent', () => {
                     ngbModal.open(component.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result
                 ).toBeRejectedWith(dismissEvent);
 
-                expect(component.closeResult).toBeDefined();
-                expect(component.closeResult)
-                    .withContext(`should be ${expectedDismissReason}`)
-                    .toBe(expectedDismissReason);
+                expectToBe(component.closeResult, expectedDismissReason);
             });
 
             it('... when clicking on backdrop', async () => {
                 const dismissEvent = ModalDismissReasons.BACKDROP_CLICK;
                 const expectedDismissReason = `Dismissed by clicking on a backdrop`;
-                mockModalRef.result = new Promise((resolve, reject) => reject(dismissEvent));
+                mockModalRef.result = new Promise((_resolve, reject) => reject(dismissEvent));
 
                 component.open(expectedSnippetKey1);
                 fixture.detectChanges();
@@ -304,10 +278,7 @@ describe('ModalComponent', () => {
                     ngbModal.open(component.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result
                 ).toBeRejectedWith(dismissEvent);
 
-                expect(component.closeResult).toBeDefined();
-                expect(component.closeResult)
-                    .withContext(`should be ${expectedDismissReason}`)
-                    .toBe(expectedDismissReason);
+                expectToBe(component.closeResult, expectedDismissReason);
             });
         });
     });

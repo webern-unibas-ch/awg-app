@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
 import { EMPTY, Observable } from 'rxjs';
@@ -13,7 +13,7 @@ import {
     SourceList,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionReport component.
@@ -27,6 +27,7 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
     templateUrl: './edition-report.component.html',
     styleUrls: ['./edition-report.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionReportComponent implements OnInit {
     /**
@@ -70,20 +71,25 @@ export class EditionReportComponent implements OnInit {
     };
 
     /**
-     * Constructor of the EditionReportComponent.
+     * Private readonly injection variable: _editionDataService.
      *
-     * It declares a private EditionDataService instance
-     * to get the report data and a private Router instance.
-     *
-     * @param {EditionDataService} editionDataService Instance of the EditionDataService.
-     * @param {EditionService} editionService Instance of the EditionService.
-     * @param {Router} router Instance of the Router.
+     * It keeps the instance of the injected EditionDataService.
      */
-    constructor(
-        private editionDataService: EditionDataService,
-        private editionService: EditionService,
-        private router: Router
-    ) {}
+    private readonly _editionDataService = inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It keeps the instance of the injected Angular Router.
+     */
+    private readonly _router: any = inject(Router);
 
     /**
      * Getter variable: editionRouteConstants.
@@ -113,22 +119,16 @@ export class EditionReportComponent implements OnInit {
      * @returns {void} Sets the editionReportData observable.
      */
     getEditionReportData(): void {
-        this.editionReportData$ = this.editionService
-            // Get current editionComplex from editionService
-            .getEditionComplex()
-            .pipe(
-                switchMap((complex: EditionComplex) => {
-                    // Set current editionComplex
-                    this.editionComplex = complex;
-                    // Get intro data from editionDataService
-                    return this.editionDataService.getEditionReportData(this.editionComplex);
-                }),
-                // Error handling
-                catchError(err => {
-                    this.errorObject = err;
-                    return EMPTY;
-                })
-            );
+        this.editionReportData$ = this._editionStateService.getSelectedEditionComplex().pipe(
+            switchMap((complex: EditionComplex) => {
+                this.editionComplex = complex;
+                return this._editionDataService.getEditionReportData(this.editionComplex);
+            }),
+            catchError(err => {
+                this.errorObject = err;
+                return EMPTY;
+            })
+        );
     }
 
     /**
@@ -149,46 +149,53 @@ export class EditionReportComponent implements OnInit {
     /**
      * Public method: onReportFragmentNavigate.
      *
-     * It navigates to the '/report/' route with the given fragmentId.
+     * It navigates to the '/report/' route using the provided fragmentId
+     * within the context of an edition complex identified by the provided complexId.
      *
-     * @param {string}  fragmentId The given fragment id.
+     * @param {object}  reportIds The given report ids as { complexId: string, fragmentId: string }.
      * @returns {void} Navigates to the edition report.
      */
-    onReportFragmentNavigate(fragmentId: string): void {
-        if (!fragmentId) {
-            fragmentId = '';
-        }
+    onReportFragmentNavigate(reportIds: { complexId: string; fragmentId: string }): void {
+        const reportRoute = this.editionRouteConstants.EDITION_REPORT.route;
         const navigationExtras: NavigationExtras = {
-            fragment: fragmentId,
+            fragment: reportIds?.fragmentId ?? '',
         };
-        this.router.navigate(
-            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_REPORT.route],
-            navigationExtras
-        );
+
+        this._navigateWithComplexId(reportIds?.complexId, reportRoute, navigationExtras);
     }
 
     /**
      * Public method: onSvgSheetSelect.
      *
-     * It selects a SVG sheet by its edition complex
-     * and sheet ids and navigates to the edition sheets route
-     * with this given id.
+     * It navigates to the '/sheet/' route using the provided sheetId
+     * within the context of an edition complex identified by the provided complexId.
      *
      * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
      * @returns {void} Navigates to the edition sheets.
      */
     onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
-        // Set default id if none is given
-        const complexRoute = sheetIds?.complexId
-            ? `/edition/complex/${sheetIds?.complexId}/`
-            : this.editionComplex.baseRoute;
-        const sheetRoute = sheetIds?.sheetId ?? '';
-
+        const sheetRoute = this.editionRouteConstants.EDITION_SHEETS.route;
         const navigationExtras: NavigationExtras = {
-            queryParams: { id: sheetRoute },
+            queryParams: { id: sheetIds?.sheetId ?? '' },
             // .queryParamsHandling: '',
         };
 
-        this.router.navigate([complexRoute, this.editionRouteConstants.EDITION_SHEETS.route], navigationExtras);
+        this._navigateWithComplexId(sheetIds?.complexId, sheetRoute, navigationExtras);
+    }
+
+    /**
+     * Private method: _navigateWithComplexId.
+     *
+     * It navigates to a target route using the provided complexId.
+     *
+     * @param {string} complexId The given complex id.
+     * @param {string} targetRoute The given target route.
+     * @param {NavigationExtras} navigationExtras The given navigation extras.
+     * @returns {void} Navigates to the target route.
+     */
+    private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
+        const complexRoute = complexId ? `/edition/complex/${complexId}/` : this.editionComplex.baseRoute;
+
+        this._router.navigate([complexRoute, targetRoute], navigationExtras);
     }
 }

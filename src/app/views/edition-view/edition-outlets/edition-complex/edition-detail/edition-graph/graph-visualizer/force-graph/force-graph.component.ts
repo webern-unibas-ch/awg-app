@@ -8,6 +8,7 @@ import {
     ElementRef,
     EventEmitter,
     HostListener,
+    inject,
     Input,
     OnChanges,
     OnDestroy,
@@ -66,6 +67,7 @@ const FORCES = {
     selector: 'awg-force-graph',
     templateUrl: './force-graph.component.html',
     styleUrls: ['./force-graph.component.scss'],
+    standalone: false,
 })
 export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     /**
@@ -90,27 +92,25 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     @Output() clickedNodeRequest = new EventEmitter<D3SimulationNode>();
 
     /**
-     * ViewChild variable: _graphContainer.
+     * ViewChild variable: graphContainer.
      *
      * It keeps the reference to the element containing the graph.
      */
-    @ViewChild('graphContainer', { static: true }) private _graphContainer: ElementRef;
+    @ViewChild('graphContainer', { static: true }) graphContainer: ElementRef<HTMLDivElement>;
 
     /**
-     * ViewChild variable: _sliderInput.
+     * ViewChild variable: sliderInput.
      *
      * It keeps the reference to the input range slider.
      */
-    @ViewChild('sliderInput', { static: true })
-    private _sliderInput: ElementRef;
+    @ViewChild('sliderInput', { static: true }) sliderInput: ElementRef<HTMLInputElement>;
 
     /**
-     * ViewChild variable: _sliderInputLabel.
+     * ViewChild variable: sliderInputLabel.
      *
      * It keeps the reference to the input sliderInputLabel.
      */
-    @ViewChild('sliderInputLabel', { static: true })
-    private _sliderInputLabel: ElementRef;
+    @ViewChild('sliderInputLabel', { static: true }) sliderInputLabel: ElementRef<HTMLSpanElement>;
 
     /**
      * Public variable: faCompressArrowsAlt.
@@ -190,32 +190,32 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     private _divHeight: number;
 
     /**
-     * Private variable: _resize$.
+     * Private readonly variable: _resize$.
      *
      * It keeps a subject for a resize event.
      */
-    private _resize$: Subject<boolean> = new Subject<boolean>();
+    private readonly _resize$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Private variable: _destroyed$.
+     * Private readonly variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroyed$: Subject<boolean> = new Subject<boolean>();
+    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Constructor of the ForceGraphComponent.
+     * Private readonly injection variable: _graphVisualizerService.
      *
-     * It declares private instances of the
-     * {@link GraphVisualizerService} and the {@link PrefixPipe}.
-     *
-     * @param {GraphVisualizerService} graphVisualizerService Instance of the GraphVisualizerService.
-     * @param {PrefixPipe} prefixPipe Instance of the PrefixPipe.
+     * It keeps the instance of the injected GraphVisualizerService.
      */
-    constructor(
-        private graphVisualizerService: GraphVisualizerService,
-        private prefixPipe: PrefixPipe
-    ) {}
+    private readonly _graphVisualizerService = inject(GraphVisualizerService);
+
+    /**
+     * Private readonly injection variable: _prefixPipe.
+     *
+     * It keeps the instance of the injected PrefixPipe.
+     */
+    private readonly _prefixPipe = inject(PrefixPipe);
 
     /**
      * HostListener: onResize.
@@ -224,13 +224,13 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     @HostListener('window:resize') onResize() {
         // Guard against resize before view is rendered
-        if (!this._graphContainer || !this.currentQueryResultTriples) {
+        if (!this.graphContainer || !this.currentQueryResultTriples) {
             return;
         }
 
         // Calculate new width & height
-        this._divWidth = this._getContainerDimensions(this._graphContainer).width;
-        this._divHeight = this._getContainerDimensions(this._graphContainer).height;
+        this._divWidth = this._getContainerDimensions(this.graphContainer).width;
+        this._divHeight = this._getContainerDimensions(this.graphContainer).height;
 
         // Fire resize event
         this._resize$.next(true);
@@ -244,8 +244,10 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     ngOnInit() {
         // Subscribe to resize subject to _redraw on resize with delay until component gets destroyed
-        this._resize$.pipe(debounceTime(150), takeUntil(this._destroyed$)).subscribe((_event: any) => {
-            this._redraw();
+        this._resize$.pipe(debounceTime(150), takeUntil(this._destroyed$)).subscribe({
+            next: () => {
+                this._redraw();
+            },
         });
 
         this._redraw();
@@ -377,7 +379,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Creates the svg container.
      */
     private _createSVG(): void {
-        if (!this._graphContainer) {
+        if (!this.graphContainer) {
             return;
         }
 
@@ -387,16 +389,16 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         if (this._divWidth) {
             width = this._divWidth;
-        } else if (this._getContainerDimensions(this._graphContainer).width) {
-            width = this._getContainerDimensions(this._graphContainer).width;
+        } else if (this._getContainerDimensions(this.graphContainer).width) {
+            width = this._getContainerDimensions(this.graphContainer).width;
         } else {
             width = 400;
         }
 
         if (this._divHeight) {
             height = this._divHeight;
-        } else if (this._getContainerDimensions(this._graphContainer).height) {
-            height = this._getContainerDimensions(this._graphContainer).height;
+        } else if (this._getContainerDimensions(this.graphContainer).height) {
+            height = this._getContainerDimensions(this.graphContainer).height;
         } else {
             height = 500;
         }
@@ -407,7 +409,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         // ==================== Add SVG =====================
         if (!this._svg) {
-            this._svg = D3_SELECTION.select(this._graphContainer.nativeElement)
+            this._svg = D3_SELECTION.select(this.graphContainer.nativeElement)
                 .append('svg')
                 .attr('class', 'force-graph');
         }
@@ -424,28 +426,12 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Attaches the data and sets up the simulation.
      */
     private _attachData(): void {
-        // Limit result length
-        const triples: Triple[] = this.graphVisualizerService.limitTriples(this.currentQueryResultTriples, this.limit);
+        const triples: Triple[] = this._graphVisualizerService.limitTriples(this.currentQueryResultTriples, this.limit);
 
-        // If type of triples is text/turtle (not array)
-        // The triples must be parsed to objects instead
-        if (typeof triples === 'string') {
-            this.graphVisualizerService.parseTripleString(triples).then((data: { triples; namespaces }) => {
-                const abrTriples: Triple[] = this.graphVisualizerService.abbreviateTriples(
-                    data.triples,
-                    data.namespaces
-                );
-                this._simulationData = this._triplesToD3GraphData(abrTriples);
+        this._simulationData = this._triplesToD3GraphData(triples);
 
-                this._setupForceSimulation();
-                this._updateSVG();
-            });
-        } else {
-            this._simulationData = this._triplesToD3GraphData(triples);
-
-            this._setupForceSimulation();
-            this._updateSVG();
-        }
+        this._setupForceSimulation();
+        this._updateSVG();
     }
 
     /**
@@ -643,7 +629,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             // Rdf:type
             predicateNode.label === 'a' ||
             predicateNode.label === 'rdf:type' ||
-            predicateNode.label === this.prefixPipe.transform('rdf:type', PrefixForm.LONG)
+            predicateNode.label === this._prefixPipe.transform('rdf:type', PrefixForm.LONG)
         );
     }
 
@@ -732,9 +718,9 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             zoomContext.attr('transform', currentTransform);
 
             // Update view
-            this._sliderInput.nativeElement.value = roundedTransformValue;
+            this.sliderInput.nativeElement.value = roundedTransformValue.toString();
             // Needed because d3 listener does not update ngModel
-            this._sliderInputLabel.nativeElement.innerText = roundedTransformValue + 'x';
+            this.sliderInputLabel.nativeElement.innerText = roundedTransformValue + 'x';
             this.sliderConfig.value = roundedTransformValue;
         };
 
@@ -780,11 +766,11 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It returns the dimensions (clientWidth & clientHeight) of a given container.
      *
-     * @param {ElementRef} container The given container element.
+     * @param {ElementRef<HTMLDivElement>} container The given container element.
      *
      * @returns { width: number; height: number } The container dimensions.
      */
-    private _getContainerDimensions(container: ElementRef): { width: number; height: number } {
+    private _getContainerDimensions(container: ElementRef<HTMLDivElement>): { width: number; height: number } {
         if (!container?.nativeElement) {
             return null;
         }
@@ -869,9 +855,9 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         // Initial Graph from triples
         triples.forEach((triple: Triple) => {
-            const subjId = this.prefixPipe.transform(triple.subject, PrefixForm.SHORT);
-            const predId = this.prefixPipe.transform(triple.predicate, PrefixForm.SHORT);
-            let objId = this.prefixPipe.transform(triple.object, PrefixForm.SHORT);
+            const subjId = this._prefixPipe.transform(triple.subject, PrefixForm.SHORT);
+            const predId = this._prefixPipe.transform(triple.predicate, PrefixForm.SHORT);
+            let objId = this._prefixPipe.transform(triple.object, PrefixForm.SHORT);
 
             // Check if object is number & round decimal numbers to 2 decimals
             if (!isNaN(objId)) {

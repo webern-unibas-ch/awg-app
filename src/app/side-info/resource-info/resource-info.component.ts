@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -21,6 +21,7 @@ import { SearchQuery, SearchResponseWithQuery } from '@awg-views/data-view/model
     selector: 'awg-resource-info',
     templateUrl: './resource-info.component.html',
     styleUrls: ['./resource-info.component.scss'],
+    standalone: false,
 })
 export class ResourceInfoComponent implements OnInit, OnDestroy {
     /**
@@ -89,29 +90,32 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     resultSize: number;
 
     /**
-     * Private variable: _destroyed$.
+     * Private readonly variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroyed$: Subject<boolean> = new Subject<boolean>();
+    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Constructor of the ResourceInfoComponent.
+     * Private readonly injection variable: _formBuilder.
      *
-     * It declares a private FormBuilder instance,
-     * a private Router instance and a private
-     * DataStreamerService instance
-     * to get the streamed search results.
-     *
-     * @param {FormBuilder} formBuilder Instance of the FormBuilder.
-     * @param {Router} router Instance of the Router.
-     * @param {DataStreamerService} streamerService Instance of the DataStreamerService.
+     * It keeps the instance of the injected Angular FormBuilder.
      */
-    constructor(
-        private formBuilder: UntypedFormBuilder,
-        private router: Router,
-        private streamerService: DataStreamerService
-    ) {}
+    private readonly _formBuilder = inject(UntypedFormBuilder);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It keeps the instance of the injected Angular Router.
+     */
+    private readonly _router = inject(Router);
+
+    /**
+     * Private readonly injection variable: _streamerService.
+     *
+     * It keeps the instance of the injected DataStreamerService.
+     */
+    private readonly _streamerService = inject(DataStreamerService);
 
     /**
      * Getter for the current index position of the form group.
@@ -143,7 +147,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      */
     getResourceInfoData(): void {
         // Subscribe to streamer service
-        this.streamerService
+        this._streamerService
             .getResourceId()
             .pipe(
                 switchMap(id => {
@@ -151,7 +155,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                     this.resourceId = id;
 
                     // Return search response with query from streamer service
-                    return this.streamerService.getSearchResponseWithQuery();
+                    return this._streamerService.getSearchResponseWithQuery();
                 }),
                 takeUntil(this._destroyed$)
             )
@@ -207,7 +211,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
         if (!id) {
             return;
         }
-        this.router.navigate(['/data/resource', id]);
+        this._router.navigate(['/data/resource', id]);
     }
 
     /**
@@ -232,7 +236,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
             extras.queryParams = { ...this.resourceInfoData.searchResults.query };
         }
 
-        this.router.navigate(commands, {
+        this._router.navigate(commands, {
             queryParams: { query },
         });
     }
@@ -304,7 +308,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     private _buildForm(index: number, resultSize: number): void {
         const regexPattern = /^[1-9]\d{0,9}$/; // Match any up-to 10-digit integer greater 0
 
-        this.resourceInfoFormGroup = this.formBuilder.group({
+        this.resourceInfoFormGroup = this._formBuilder.group({
             resourceInfoIndex: [
                 index || '',
                 Validators.compose([

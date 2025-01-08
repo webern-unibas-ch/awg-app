@@ -18,14 +18,14 @@ import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 })
 export class DataStreamerService {
     /**
-     * Private variable for the replay subject´s buffer size.
+     * Private readonly variable for the replay subject´s buffer size.
      */
-    private _bufferSize = 1;
+    private readonly _bufferSize = 1;
 
     /**
-     * Private replay subject to handle search response with query.
+     * Private readonly replay subject to handle search response with query.
      */
-    private _searchResponseWithQuerySubject = new ReplaySubject<SearchResponseWithQuery>(this._bufferSize);
+    private readonly _searchResponseWithQuerySubject = new ReplaySubject<SearchResponseWithQuery>(this._bufferSize);
 
     /**
      * Private readonly search response with query stream as observable (`ReplaySubject`).
@@ -33,9 +33,9 @@ export class DataStreamerService {
     private readonly _searchResponseWithQueryStream$ = this._searchResponseWithQuerySubject.asObservable();
 
     /**
-     * Private replay subject to handle resource id.
+     * Private readonly replay subject to handle resource id.
      */
-    private _resourceIdSubject = new ReplaySubject<string>(this._bufferSize);
+    private readonly _resourceIdSubject = new ReplaySubject<string>(this._bufferSize);
 
     /**
      * Private readonly resource id stream as observable (`ReplaySubject`).

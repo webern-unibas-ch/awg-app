@@ -18,26 +18,25 @@
                         [viewHandles]="viewHandles"
                         [selectedViewType]="selectedViewType"
                         (viewChangeRequest)="onViewChange($event)"></awg-view-handle-button-group>
-                    <div class="btn-group" role="group">
+                    <div
+                        class="btn-group"
+                        ngbDropdown
+                        role="group"
+                        aria-label="Button group with nested dropdown for row number">
                         <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
                             <span class="d-none d-lg-inline">Hits per page: </span>{{ searchParams?.nRows }}
                         </button>
-                        <div
-                            ngbDropdown
-                            class="btn-group"
-                            role="group"
-                            aria-label="Button group with nested dropdown for row number">
-                            <button
-                                class="btn btn-sm btn-info dropdown-toggle-split"
-                                ngbDropdownToggle
-                                [disabled]="isNoResults()"></button>
-                            <div class="dropdown-menu" ngbDropdownMenu>
-                                @for (rowNumber of rowNumbers; track rowNumber) {
-                                    <button class="dropdown-item" (click)="onRowNumberChange(rowNumber)">
-                                        {{ rowNumber }}
-                                    </button>
-                                }
-                            </div>
+                        <button
+                            class="btn btn-sm btn-info dropdown-toggle-split"
+                            ngbDropdownToggle
+                            [disabled]="isNoResults()"
+                            aria-label="Toggle dropdown"></button>
+                        <div class="dropdown-menu" ngbDropdownMenu>
+                            @for (rowNumber of rowNumbers; track rowNumber) {
+                                <button class="dropdown-item" (click)="onRowNumberChange(rowNumber)">
+                                    {{ rowNumber }}
+                                </button>
+                            }
                         </div>
                     </div>
                 </div>
@@ -71,7 +70,7 @@
                         </thead>
                         <tbody>
                             <!-- show searchResultDetail by clicking on single entry -->
-                            @for (subject of searchResponseWithQuery?.data?.subjects; track subject.obj_id) {
+                            @for (subject of searchResponseWithQuery?.data?.subjects; track $index) {
                                 <tr
                                     class="d-flex"
                                     (click)="navigateToResource(subject?.obj_id)"
@@ -96,7 +95,7 @@
             <!-- grid with searchResults -->
             @if (isGridView()) {
                 <div class="row row-cols-1 row-cols-sm-3 row-cols-xl-5 g-4 mb-4">
-                    @for (subject of searchResponseWithQuery?.data?.subjects; track subject.obj_id) {
+                    @for (subject of searchResponseWithQuery?.data?.subjects; track $index) {
                         <div class="col">
                             <div class="card h-100">
                                 <div class="card-header">
@@ -109,9 +108,9 @@
                                     </h5>
                                 </div>
                                 <div class="card-footer text-end">
-                                    <a (click)="navigateToResource(subject?.obj_id)" class="btn btn-outline-info"
-                                        >Mehr ...
-                                    </a>
+                                    <button class="btn btn-outline-info" (click)="navigateToResource(subject?.obj_id)">
+                                        Mehr ...
+                                    </button>
                                 </div>
                             </div>
                         </div>

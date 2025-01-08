@@ -10,7 +10,7 @@ import {
     EditionSvgSheet,
     EditionSvgSheetList,
     FolioConvolute,
-    TextcriticalComment,
+    TextcriticalCommentary,
     Textcritics,
 } from '@awg-views/edition-view/models';
 
@@ -23,7 +23,7 @@ describe('EditionSheetsService (DONE)', () => {
     let expectedOverlays: EditionSvgOverlay[];
     let expectedSelectedSheet: EditionSvgSheet;
     let expectedSheets: EditionSvgSheetList['sheets'];
-    let expectedTka: TextcriticalComment[];
+    let expectedTextcriticalCommentary: TextcriticalCommentary;
     let expectedTextcriticsArray: Textcritics[];
 
     beforeEach(() => {
@@ -38,7 +38,7 @@ describe('EditionSheetsService (DONE)', () => {
         expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
         expectedSheets = mockEditionData.mockSvgSheetList.sheets;
         expectedTextcriticsArray = mockEditionData.mockTextcriticsData.textcritics;
-        expectedTka = expectedTextcriticsArray.at(1).comments;
+        expectedTextcriticalCommentary = expectedTextcriticsArray.at(1).commentary;
     });
 
     afterAll(() => {
@@ -203,7 +203,7 @@ describe('EditionSheetsService (DONE)', () => {
                         const nextSheet = expectedOrderOfSheets.at(index + 1);
                         const expectedNextSheetId = nextSheet.id + (nextSheet.content?.[0]?.partial || '');
 
-                        expectToEqual(nextSheetId, nextSheetId);
+                        expectToEqual(nextSheetId, expectedNextSheetId);
                     } else {
                         expectToEqual(nextSheetId, expectedOrderOfSheets.at(index).id);
                     }
@@ -242,68 +242,131 @@ describe('EditionSheetsService (DONE)', () => {
         });
     });
 
-    describe('#getTextcriticalCommentsForOverlays()', () => {
-        it('... should have a method `getTextcriticalCommentsForOverlays`', () => {
-            expect(editionSheetsService.getTextcriticalCommentsForOverlays).toBeDefined();
+    describe('#filterTextcriticalCommentaryForOverlays()', () => {
+        it('... should have a method `filterTextcriticalCommentaryForOverlays`', () => {
+            expect(editionSheetsService.filterTextcriticalCommentaryForOverlays).toBeDefined();
         });
 
-        describe('... should return empty array', () => {
-            it('if no TkA are given', () => {
-                const value = editionSheetsService.getTextcriticalCommentsForOverlays(undefined, expectedOverlays);
+        describe('... should return empty comment array, but correct preamble', () => {
+            it('... if no textcritical commentary is given', () => {
+                const expectedResult = { preamble: '', comments: [] };
 
-                expect(value).toBeDefined();
-                expect(value).toEqual([]);
-            });
-
-            it('... if no overlays are given', () => {
-                const value = editionSheetsService.getTextcriticalCommentsForOverlays(expectedTka, undefined);
-
-                expect(value).toBeDefined();
-                expect(value).toEqual([]);
-            });
-        });
-
-        it('... should find a comment for a selected item by id', () => {
-            expectedTka.forEach(tka => {
-                expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tka, tka.svgGroupId, true)];
-                const expectedResult = [tka];
-
-                const filteredComments = editionSheetsService.getTextcriticalCommentsForOverlays(
-                    expectedTka,
+                const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
+                    undefined,
                     expectedOverlays
                 );
 
-                expectToEqual(filteredComments, expectedResult);
+                expectToEqual(result, expectedResult);
+            });
+
+            it('... if no textcritical comment blocks are given', () => {
+                const expectedResult = { preamble: '', comments: [] };
+
+                const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
+                    { preamble: '', comments: [] },
+                    expectedOverlays
+                );
+
+                expectToEqual(result, expectedResult);
+            });
+
+            it('... if no overlays are given', () => {
+                const expectedResult = { preamble: 'This is a preamble.', comments: [] };
+
+                const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
+                    expectedTextcriticalCommentary,
+                    undefined
+                );
+
+                expectToEqual(result, expectedResult);
+            });
+
+            it('... if no comments match the given overlay', () => {
+                const expectedResult = { preamble: 'This is a preamble.', comments: [] };
+                expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'notExistingId', true)];
+
+                const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
+                    expectedTextcriticalCommentary,
+                    expectedOverlays
+                );
+
+                expectToEqual(result, expectedResult);
+            });
+        });
+
+        it('... should filter all comments of the given textcritics', () => {
+            expectedOverlays = [];
+            expectedTextcriticalCommentary.comments.forEach(comment => {
+                comment.blockComments.forEach(blockComment => {
+                    expectedOverlays.push(
+                        new EditionSvgOverlay(EditionSvgOverlayTypes.tka, blockComment.svgGroupId, true)
+                    );
+                });
+            });
+
+            const expectedResult = expectedTextcriticalCommentary;
+
+            const filteredCommentary = editionSheetsService.filterTextcriticalCommentaryForOverlays(
+                expectedTextcriticalCommentary,
+                expectedOverlays
+            );
+
+            expectToEqual(filteredCommentary, expectedResult);
+        });
+
+        it('... should find a comment for a single selected item by id', () => {
+            expectedTextcriticalCommentary.comments.forEach(comment => {
+                comment.blockComments.forEach(blockComment => {
+                    expectedOverlays = [
+                        new EditionSvgOverlay(EditionSvgOverlayTypes.tka, blockComment.svgGroupId, true),
+                    ];
+
+                    const expectedResult = {
+                        preamble: expectedTextcriticalCommentary.preamble,
+                        comments: [
+                            {
+                                ...comment,
+                                blockComments: [blockComment],
+                            },
+                        ],
+                    };
+
+                    const filteredCommentary = editionSheetsService.filterTextcriticalCommentaryForOverlays(
+                        expectedTextcriticalCommentary,
+                        expectedOverlays
+                    );
+
+                    expectToEqual(filteredCommentary, expectedResult);
+                });
             });
         });
 
         it('... should find comments for multiple selected items by id', () => {
-            expectedOverlays = [
-                new EditionSvgOverlay(EditionSvgOverlayTypes.tka, expectedTka.at(0).svgGroupId, true),
-                new EditionSvgOverlay(EditionSvgOverlayTypes.tka, expectedTka.at(-1).svgGroupId, true),
+            const selectedBlockComments = [
+                expectedTextcriticalCommentary.comments.at(0).blockComments.at(0),
+                expectedTextcriticalCommentary.comments.at(-1).blockComments.at(0),
             ];
-            const expectedResult = [expectedTka.at(0), expectedTka.at(-1)];
 
-            const filteredComments = editionSheetsService.getTextcriticalCommentsForOverlays(
-                expectedTka,
+            expectedOverlays = selectedBlockComments.map(
+                blockComment => new EditionSvgOverlay(EditionSvgOverlayTypes.tka, blockComment.svgGroupId, true)
+            );
+
+            const expectedResult = {
+                preamble: expectedTextcriticalCommentary.preamble,
+                comments: selectedBlockComments.map(blockComment => ({
+                    ...expectedTextcriticalCommentary.comments.find(comment =>
+                        comment.blockComments.includes(blockComment)
+                    ),
+                    blockComments: [blockComment],
+                })),
+            };
+
+            const filteredCommentary = editionSheetsService.filterTextcriticalCommentaryForOverlays(
+                expectedTextcriticalCommentary,
                 expectedOverlays
             );
 
-            expectToEqual(filteredComments, expectedResult);
-        });
-
-        it('... should find all comments of the given textcritics', () => {
-            expectedOverlays = [];
-            expectedTka.forEach(tka => {
-                expectedOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.tka, tka.svgGroupId, true));
-            });
-
-            const filteredComments = editionSheetsService.getTextcriticalCommentsForOverlays(
-                expectedTka,
-                expectedOverlays
-            );
-
-            expectToEqual(filteredComments, expectedTka);
+            expectToEqual(filteredCommentary, expectedResult);
         });
     });
 
@@ -314,8 +377,6 @@ describe('EditionSheetsService (DONE)', () => {
 
         describe('... should return `undefined` if', () => {
             it('... no convolute data is given', () => {
-                const expectedResult = undefined;
-
                 const convolute = editionSheetsService.selectConvolute(
                     undefined,
                     expectedSheets,
@@ -500,15 +561,12 @@ describe('EditionSheetsService (DONE)', () => {
 
     describe('#_findConvoluteById()', () => {
         it('... should have a method `_findConvoluteById`', () => {
-            expect((editionSheetsService as any)._findConvoluteById).toBeDefined();
+            expect(editionSheetsService['_findConvoluteById']).toBeDefined();
         });
 
         describe('... should return undefined if', () => {
             it('... the given id is not in the given convolute array', () => {
-                const convolute = (editionSheetsService as any)._findConvoluteById(
-                    expectedFolioConvolutes,
-                    'notExistingId'
-                );
+                const convolute = editionSheetsService['_findConvoluteById'](expectedFolioConvolutes, 'notExistingId');
 
                 expect(convolute).toBeUndefined();
             });
@@ -516,7 +574,7 @@ describe('EditionSheetsService (DONE)', () => {
 
         it('... should return the correct convolute if the given id is in the given convolute array', () => {
             expectedFolioConvolutes.forEach((convolute, index) => {
-                const result = (editionSheetsService as any)._findConvoluteById(
+                const result = editionSheetsService['_findConvoluteById'](
                     expectedFolioConvolutes,
                     convolute.convoluteId
                 );
@@ -528,7 +586,7 @@ describe('EditionSheetsService (DONE)', () => {
 
     describe('#_findNextSheetIdForPartialSheet()', () => {
         it('... should have a method `_findNextSheetIdForPartialSheet`', () => {
-            expect((editionSheetsService as any)._findNextSheetIdForPartialSheet).toBeDefined();
+            expect(editionSheetsService['_findNextSheetIdForPartialSheet']).toBeDefined();
         });
 
         describe('... should return the correct id of the next partial sheet within the same sheet', () => {
@@ -543,7 +601,7 @@ describe('EditionSheetsService (DONE)', () => {
 
                 const direction = 1;
 
-                const nextSheetId = (editionSheetsService as any)._findNextSheetIdForPartialSheet(
+                const nextSheetId = editionSheetsService['_findNextSheetIdForPartialSheet'](
                     direction,
                     expectedSheetArray,
                     expectedCurrentSheetIndex,
@@ -564,7 +622,7 @@ describe('EditionSheetsService (DONE)', () => {
                 const expectedNextSheetId = expectedNextSheet.id + expectedNextSheet.content[0].partial;
                 const direction = -1;
 
-                const nextSheetId = (editionSheetsService as any)._findNextSheetIdForPartialSheet(
+                const nextSheetId = editionSheetsService['_findNextSheetIdForPartialSheet'](
                     direction,
                     expectedSheetArray,
                     expectedCurrentSheetIndex,
@@ -587,7 +645,7 @@ describe('EditionSheetsService (DONE)', () => {
                 const expectedNextSheetId = expectedNextSheet.id + expectedNextSheet.content[0].partial;
                 const direction = 1;
 
-                const nextSheetId = (editionSheetsService as any)._findNextSheetIdForPartialSheet(
+                const nextSheetId = editionSheetsService['_findNextSheetIdForPartialSheet'](
                     direction,
                     expectedSheetArray,
                     expectedCurrentSheetIndex,
@@ -608,7 +666,7 @@ describe('EditionSheetsService (DONE)', () => {
                 const expectedNextSheetId = expectedNextSheet.id + expectedNextSheet.content[0].partial;
                 const direction = -1;
 
-                const nextSheetId = (editionSheetsService as any)._findNextSheetIdForPartialSheet(
+                const nextSheetId = editionSheetsService['_findNextSheetIdForPartialSheet'](
                     direction,
                     expectedSheetArray,
                     expectedCurrentSheetIndex,
@@ -631,7 +689,7 @@ describe('EditionSheetsService (DONE)', () => {
                 const expectedNextSheetId = expectedNextSheet.id;
                 const direction = 1;
 
-                const nextSheetId = (editionSheetsService as any)._findNextSheetIdForPartialSheet(
+                const nextSheetId = editionSheetsService['_findNextSheetIdForPartialSheet'](
                     direction,
                     expectedSheetArray,
                     expectedCurrentSheetIndex,
@@ -652,7 +710,7 @@ describe('EditionSheetsService (DONE)', () => {
                 const expectedNextSheetId = expectedNextSheet.id;
                 const direction = -1;
 
-                const nextSheetId = (editionSheetsService as any)._findNextSheetIdForPartialSheet(
+                const nextSheetId = editionSheetsService['_findNextSheetIdForPartialSheet'](
                     direction,
                     expectedSheetArray,
                     expectedCurrentSheetIndex,
@@ -667,7 +725,7 @@ describe('EditionSheetsService (DONE)', () => {
 
     describe('#_findNextSheetIdForNonPartialSheet()', () => {
         it('... should have a method `_findNextSheetIdForNonPartialSheet`', () => {
-            expect((editionSheetsService as any)._findNextSheetIdForNonPartialSheet).toBeDefined();
+            expect(editionSheetsService['_findNextSheetIdForNonPartialSheet']).toBeDefined();
         });
 
         describe('... should return the correct id of the next non-partial sheet', () => {
@@ -679,7 +737,7 @@ describe('EditionSheetsService (DONE)', () => {
                 const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk5));
                 const direction = 1;
 
-                const nextSheetId = (editionSheetsService as any)._findNextSheetIdForNonPartialSheet(
+                const nextSheetId = editionSheetsService['_findNextSheetIdForNonPartialSheet'](
                     direction,
                     expectedSheetArray,
                     expectedCurrentSheetIndex,
@@ -697,7 +755,7 @@ describe('EditionSheetsService (DONE)', () => {
                 const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk4));
                 const direction = -1;
 
-                const nextSheetId = (editionSheetsService as any)._findNextSheetIdForNonPartialSheet(
+                const nextSheetId = editionSheetsService['_findNextSheetIdForNonPartialSheet'](
                     direction,
                     expectedSheetArray,
                     expectedCurrentSheetIndex,
@@ -716,7 +774,7 @@ describe('EditionSheetsService (DONE)', () => {
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
                 const direction = 1;
 
-                const nextSheetId = (editionSheetsService as any)._findNextSheetIdForNonPartialSheet(
+                const nextSheetId = editionSheetsService['_findNextSheetIdForNonPartialSheet'](
                     direction,
                     expectedSheetArray,
                     expectedCurrentSheetIndex,
@@ -733,7 +791,7 @@ describe('EditionSheetsService (DONE)', () => {
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
                 const direction = -1;
 
-                const nextSheetId = (editionSheetsService as any)._findNextSheetIdForNonPartialSheet(
+                const nextSheetId = editionSheetsService['_findNextSheetIdForNonPartialSheet'](
                     direction,
                     expectedSheetArray,
                     expectedCurrentSheetIndex,
@@ -747,14 +805,14 @@ describe('EditionSheetsService (DONE)', () => {
 
     describe('#_findSvgSheetIndexById()', () => {
         it('... should have a method `_findSvgSheetIndexById`', () => {
-            expect((editionSheetsService as any)._findSvgSheetIndexById).toBeDefined();
+            expect(editionSheetsService['_findSvgSheetIndexById']).toBeDefined();
         });
 
         describe('... should return -1 if', () => {
             it('... the given id is not in the given sheet list', () => {
                 const expectedSheetArray = expectedSheets['sketchEditions'];
 
-                const index = (editionSheetsService as any)._findSvgSheetIndexById(expectedSheetArray, 'notExistingId');
+                const index = editionSheetsService['_findSvgSheetIndexById'](expectedSheetArray, 'notExistingId');
 
                 expectToBe(index, -1);
             });
@@ -763,7 +821,7 @@ describe('EditionSheetsService (DONE)', () => {
                 const expectedSheetArray = expectedSheets['sketchEditions'];
                 expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
 
-                const index = (editionSheetsService as any)._findSvgSheetIndexById(
+                const index = editionSheetsService['_findSvgSheetIndexById'](
                     expectedSheetArray,
                     expectedSelectedSheet.id + 'nonExistingPartialId'
                 );
@@ -776,19 +834,13 @@ describe('EditionSheetsService (DONE)', () => {
             const expectedSheetArray = expectedSheets['sketchEditions'];
             expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
 
-            const index0 = (editionSheetsService as any)._findSvgSheetIndexById(
-                expectedSheetArray,
-                expectedSelectedSheet.id
-            );
+            const index0 = editionSheetsService['_findSvgSheetIndexById'](expectedSheetArray, expectedSelectedSheet.id);
 
             expectToBe(index0, 0);
 
             expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk5));
 
-            const index4 = (editionSheetsService as any)._findSvgSheetIndexById(
-                expectedSheetArray,
-                expectedSelectedSheet.id
-            );
+            const index4 = editionSheetsService['_findSvgSheetIndexById'](expectedSheetArray, expectedSelectedSheet.id);
 
             expectToBe(index4, 4);
         });
@@ -797,19 +849,13 @@ describe('EditionSheetsService (DONE)', () => {
             const expectedSheetArray = expectedSheets['sketchEditions'];
             expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
 
-            const index1 = (editionSheetsService as any)._findSvgSheetIndexById(
-                expectedSheetArray,
-                expectedSelectedSheet.id
-            );
+            const index1 = editionSheetsService['_findSvgSheetIndexById'](expectedSheetArray, expectedSelectedSheet.id);
 
             expectToBe(index1, 1);
 
             expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk3c));
 
-            const index2 = (editionSheetsService as any)._findSvgSheetIndexById(
-                expectedSheetArray,
-                expectedSelectedSheet.id
-            );
+            const index2 = editionSheetsService['_findSvgSheetIndexById'](expectedSheetArray, expectedSelectedSheet.id);
 
             expectToBe(index2, 2);
         });
@@ -817,7 +863,7 @@ describe('EditionSheetsService (DONE)', () => {
 
     describe('#_findSvgSheetPartialIndexById()', () => {
         it('... should have a method `_findSvgSheetPartialIndexById`', () => {
-            expect((editionSheetsService as any)._findSvgSheetPartialIndexById).toBeDefined();
+            expect(editionSheetsService['_findSvgSheetPartialIndexById']).toBeDefined();
         });
 
         describe('... should return -1 if', () => {
@@ -825,10 +871,7 @@ describe('EditionSheetsService (DONE)', () => {
                 expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
                 const expectedId = expectedSelectedSheet.id;
 
-                const index = (editionSheetsService as any)._findSvgSheetPartialIndexById(
-                    expectedSelectedSheet,
-                    expectedId
-                );
+                const index = editionSheetsService['_findSvgSheetPartialIndexById'](expectedSelectedSheet, expectedId);
 
                 expectToBe(index, -1);
             });
@@ -837,10 +880,7 @@ describe('EditionSheetsService (DONE)', () => {
                 expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
                 const expectedId = expectedSelectedSheet.id + 'nonExistingPartialId';
 
-                const index = (editionSheetsService as any)._findSvgSheetPartialIndexById(
-                    expectedSelectedSheet,
-                    expectedId
-                );
+                const index = editionSheetsService['_findSvgSheetPartialIndexById'](expectedSelectedSheet, expectedId);
 
                 expectToBe(index, -1);
             });
@@ -850,19 +890,13 @@ describe('EditionSheetsService (DONE)', () => {
             expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
             const expectedIdA = expectedSelectedSheet.id + 'a';
 
-            const indexA = (editionSheetsService as any)._findSvgSheetPartialIndexById(
-                expectedSelectedSheet,
-                expectedIdA
-            );
+            const indexA = editionSheetsService['_findSvgSheetPartialIndexById'](expectedSelectedSheet, expectedIdA);
 
             expectToBe(indexA, 0);
 
             const expectedIdB = expectedSelectedSheet.id + 'b';
 
-            const indexB = (editionSheetsService as any)._findSvgSheetPartialIndexById(
-                expectedSelectedSheet,
-                expectedIdB
-            );
+            const indexB = editionSheetsService['_findSvgSheetPartialIndexById'](expectedSelectedSheet, expectedIdB);
 
             expectToBe(indexB, 1);
         });
@@ -870,7 +904,7 @@ describe('EditionSheetsService (DONE)', () => {
 
     describe('#_getSheetWithPartialContentById()', () => {
         it('... should have a method `_getSheetWithPartialContentById`', () => {
-            expect((editionSheetsService as any)._getSheetWithPartialContentById).toBeDefined();
+            expect(editionSheetsService['_getSheetWithPartialContentById']).toBeDefined();
         });
 
         it('... should return the correct sheet and content for a non-partial id', () => {
@@ -878,7 +912,7 @@ describe('EditionSheetsService (DONE)', () => {
             const expectedIndex = 0;
             expectedSelectedSheet = expectedSheetArray[expectedIndex];
 
-            const sheet = (editionSheetsService as any)._getSheetWithPartialContentById(
+            const sheet = editionSheetsService['_getSheetWithPartialContentById'](
                 expectedSheetArray,
                 expectedIndex,
                 expectedSelectedSheet.id
@@ -896,7 +930,7 @@ describe('EditionSheetsService (DONE)', () => {
             const expectedSheetWithPartialContentA = { ...expectedSelectedSheet };
             expectedSheetWithPartialContentA.content = [expectedSelectedSheet.content[0]];
 
-            const sheet = (editionSheetsService as any)._getSheetWithPartialContentById(
+            const sheet = editionSheetsService['_getSheetWithPartialContentById'](
                 expectedSheetArray,
                 expectedIndex,
                 expectedSheetWithPartialIdA
@@ -908,7 +942,7 @@ describe('EditionSheetsService (DONE)', () => {
             const expectedSheetWithPartialContentB = { ...expectedSelectedSheet };
             expectedSheetWithPartialContentB.content = [expectedSelectedSheet.content[1]];
 
-            const sheetB = (editionSheetsService as any)._getSheetWithPartialContentById(
+            const sheetB = editionSheetsService['_getSheetWithPartialContentById'](
                 expectedSheetArray,
                 expectedIndex,
                 expectedSheetWithPartialIdB

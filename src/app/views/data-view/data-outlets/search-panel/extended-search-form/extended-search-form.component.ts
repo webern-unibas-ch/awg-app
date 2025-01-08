@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnDestroy, OnInit, Output } from '@angular/core';
 import {
     AbstractControl,
     FormArray,
@@ -35,6 +35,7 @@ import { DataApiService } from '@awg-views/data-view/services';
     selector: 'awg-extended-search-form',
     templateUrl: './extended-search-form.component.html',
     styleUrls: ['./extended-search-form.component.scss'],
+    standalone: false,
 })
 export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
     /**
@@ -141,24 +142,25 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
     };
 
     /**
-     * Private variable: _destroyed$.
+     * Private readonly variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroyed$: Subject<boolean> = new Subject<boolean>();
+    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Constructor of the ExtendedSearchFormComponent.
+     * Private readonly injection variable: _dataApiService.
      *
-     * It declares private instances of the DataApiService and the  FormBuilder.
-     *
-     * @param {DataApiService} dataApiService Instance of the DataApiService.
-     * @param {FormBuilder} formBuilder Instance of the FormBuilder.
+     * It keeps the instance of the injected DataApiService.
      */
-    constructor(
-        private dataApiService: DataApiService,
-        private formBuilder: FormBuilder
-    ) {}
+    private readonly _dataApiService = inject(DataApiService);
+
+    /**
+     * Private readonly injection variable: _formBuilder.
+     *
+     * It keeps the instance of the injected Angular FormBuilder.
+     */
+    private readonly _formBuilder = inject(FormBuilder);
 
     /**
      * Getter for the resource type control value.
@@ -196,9 +198,9 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      * @returns {void} Creates the search form.
      */
     createExtendedSearchForm(): void {
-        this.extendedSearchForm = this.formBuilder.group({
+        this.extendedSearchForm = this._formBuilder.group({
             restypeControl: ['', Validators.required],
-            propertiesControls: this.formBuilder.array([]),
+            propertiesControls: this._formBuilder.array([]),
         });
         this.addPropertiesControl();
     }
@@ -212,7 +214,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      * @returns {void} Creates the form group and adds it to the FormArray.
      */
     addPropertiesControl(): void {
-        const group = this.formBuilder.group({
+        const group = this._formBuilder.group({
             propertyIdControl: [{ value: '', disabled: true }, [Validators.required]],
             compopControl: [{ value: '', disabled: true }, [Validators.required]],
             searchvalControl: [{ value: '', disabled: true }, [this._validateSearchval()]],
@@ -313,7 +315,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the propertyListsResponse data.
      */
     getPropertyLists(restypeId: string): void {
-        this.dataApiService
+        this._dataApiService
             .getPropertyListsByResourceType(restypeId)
             .pipe(takeUntil(this._destroyed$))
             .subscribe({
@@ -334,7 +336,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the restypesResponse data.
      */
     getResourcetypes(): void {
-        this.dataApiService
+        this._dataApiService
             .getResourceTypes()
             .pipe(takeUntil(this._destroyed$))
             .subscribe({

@@ -1,7 +1,7 @@
 <div class="awg-router-link-btn-group para d-flex justify-content-between" aria-label="Router link button group">
     @for (
         routerLinkButton of routerLinkButtons;
-        track routerLinkButton;
+        track $index;
         let i = $index;
         let isFirst = $first;
         let isLast = $last
@@ -14,7 +14,9 @@
             [routerLink]="[routerLinkButton?.root, routerLinkButton?.link]"
             [queryParamsHandling]="queryParamsHandling"
             routerLinkActive="active"
-            (click)="selectButton(routerLinkButton)">
+            (click)="selectButton(routerLinkButton)"
+            (keydown)="selectButton(routerLinkButton)"
+            tabindex="0">
             {{ routerLinkButton?.label | uppercase }}
         </div>
     }

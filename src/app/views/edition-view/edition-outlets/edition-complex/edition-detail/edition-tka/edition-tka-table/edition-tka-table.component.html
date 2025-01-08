@@ -1,22 +1,39 @@
 <table aria-label="Table for text-critical comments" class="table table-hover table-condensed awg-edition-tka-table">
-    <thead>
-        <tr>
-            @for (header of getTableHeaderStrings(); track header) {
-                <th scope="col" class="awg-edition-tka-table-header {{ header.reference }}">
-                    {{ header.label }}
-                </th>
-            }
-        </tr>
-    </thead>
-    @if (textcriticalComments) {
+    @if (commentary.preamble) {
+        <caption class="awg-edition-tka-table-preamble mb-0">
+            <span [compile-html]="commentary.preamble" [compile-html-ref]="ref"> </span>
+        </caption>
+    }
+    @if (commentary.comments.length > 0) {
+        <thead>
+            <tr>
+                @for (tableHeader of getTableHeaderStrings(); track tableHeader.reference) {
+                    <th scope="col" class="awg-edition-tka-table-header {{ tableHeader.reference }}">
+                        {{ tableHeader.label }}
+                    </th>
+                }
+            </tr>
+        </thead>
         <tbody>
-            @for (textcriticalComment of textcriticalComments; track textcriticalComment) {
-                <tr>
-                    <td [innerHTML]="textcriticalComment.measure"></td>
-                    <td [innerHTML]="textcriticalComment.system"></td>
-                    <td [innerHTML]="textcriticalComment.position"></td>
-                    <td><span [compile-html]="textcriticalComment.comment" [compile-html-ref]="ref"></span></td>
-                </tr>
+            @for (textcriticalCommentBlock of commentary.comments; track $index) {
+                @if (textcriticalCommentBlock.blockHeader) {
+                    <tr class="table-light table-group-divider">
+                        <td colspan="4" class="awg-edition-tka-table-block-header">
+                            <span [compile-html]="textcriticalCommentBlock.blockHeader" [compile-html-ref]="ref"></span>
+                        </td>
+                    </tr>
+                }
+                @for (
+                    textcriticalComment of textcriticalCommentBlock.blockComments;
+                    track textcriticalComment.svgGroupId
+                ) {
+                    <tr>
+                        <td [awgAbbr]="textcriticalComment.measure"></td>
+                        <td [awgAbbr]="textcriticalComment.system"></td>
+                        <td [innerHTML]="textcriticalComment.position"></td>
+                        <td><span [compile-html]="textcriticalComment.comment" [compile-html-ref]="ref"></span></td>
+                    </tr>
+                }
             }
         </tbody>
     }

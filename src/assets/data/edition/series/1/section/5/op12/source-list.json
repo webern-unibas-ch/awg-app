@@ -3,7 +3,7 @@
         {
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Skizzen zu <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 1/2 (<a (click)=\"ref.navigateToReportFragment('source_Aa')\"><strong>A<sup>a</sup></strong></a>)<br /><span class=\"tab\"></span><em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217 (<a (click)=\"ref.navigateToReportFragment('source_Ab')\"><strong>A<sup>b</sup></strong></a>)<br /><span class=\"tab\"></span>„Schien mir’s, als ich sah die Sonne“ M 213 (<a (click)=\"ref.navigateToReportFragment('source_Ac')\"><strong>A<sup>c</sup></strong></a>)<br /><span class=\"tab\"></span><em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216 (<a (click)=\"ref.navigateToReportFragment('source_Ad')\"><strong>A<sup>d</sup></strong></a>).<br />Enthält auch Skizze zu „Schien mir’s, als ich sah die Sonne“ für Chor und Instrumente M 198.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 1/2 (<a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_Aa'})\"><strong>A<sup>a</sup></strong></a>)<br /><span class=\"tab\"></span><em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217 (<a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_Ab'})\"><strong>A<sup>b</sup></strong></a>)<br /><span class=\"tab\"></span>„Schien mir’s, als ich sah die Sonne“ M 213 (<a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_Ac'})\"><strong>A<sup>c</sup></strong></a>)<br /><span class=\"tab\"></span><em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216 (<a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_Ad'})\"><strong>A<sup>d</sup></strong></a>).<br />Enthält auch Skizze zu „Schien mir’s, als ich sah die Sonne“ für Chor und Instrumente M 198.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
             "linkTo": "source_A"
@@ -36,14 +36,14 @@
             "siglum": "E",
             "siglumAddendum": "",
             "type": "Druck von <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 2.",
-            "location": "In: <em>Musikblätter des Anbruch</em> IV (Mai 1922).",
+            "location": "Beilage in: <em>Musikblätter des Anbruch</em> IV (Mai 1922).",
             "hasDescription": true,
             "linkTo": "source_E"
         },
         {
             "siglum": "E",
             "siglumAddendum": "H",
-            "type": "Handexemplar von <a (click)=\"ref.navigateToReportFragment('source_E')\"><strong>E</strong></a> mit Korrekturen Weberns: <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 2→3.",
+            "type": "Handexemplar von <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a> mit Korrekturen Weberns: <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 2→3.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
             "linkTo": "source_EH"
@@ -67,7 +67,7 @@
         {
             "siglum": "G",
             "siglumAddendum": "H",
-            "type": "Handexemplar von <a (click)=\"ref.navigateToReportFragment('source_G')\"><strong>G</strong></a>.",
+            "type": "Handexemplar von <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder: 59/10.",
             "hasDescription": true,
             "linkTo": "source_GH"
@@ -78,7 +78,7 @@
             "id": "text_Bethge_DchF",
             "siglum": "Bethge_DchF",
             "siglumAddendum": "",
-            "type": "Hans Bethge, <em>Die chinesische Flöte</em>, Leipzig: Inselverlag, <sup>4</sup>[1914], S. 35 (Die geheimnisvolle Flöte).",
+            "type": "Hans Bethge, <em>Die chinesische Flöte</em>, Leipzig: Inselverlag, <sup>4</sup>[1914], S. 35 (<em>Die geheimnisvolle Flöte</em>).",
             "location": "Weberns Exemplar befindet sich in CH-Bps, PSS AW B 1027."
         },
         {

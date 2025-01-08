@@ -2,7 +2,7 @@
     <div class="row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
         @for (rowTable of rowTablesData?.rowTables; track rowTable) {
             <div class="col">
-                <div class="card h-100">
+                <div class="card h-100 shadow">
                     <div class="card-body">
                         <h5 class="card-title" [ngClass]="{ 'text-muted': rowTable.disabled }">
                             Reihentabelle {{ rowTable.short }}

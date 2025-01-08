@@ -16,7 +16,7 @@ import {
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { EditionRowTablesList } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { mockEditionData } from '@testing/mock-data';
 import { EditionRowTablesComponent } from './edition-row-tables.component';
@@ -29,11 +29,11 @@ describe('EditionRowTablesComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let editionServiceUpdateIsRowTablesViewSpy: Spy;
-    let editionServiceClearIsRowTablesViewSpy: Spy;
-    let editionDataServiceGetRowTablesSpy: Spy;
+    let editionDataServiceGetRowTablesDataSpy: Spy;
+    let editionStateServiceUpdateIsRowTablesViewSpy: Spy;
+    let editionStateServiceClearIsRowTablesViewSpy: Spy;
 
-    let mockEditionService: Partial<EditionService>;
+    let mockEditionStateService: Partial<EditionStateService>;
     let mockEditionDataService: Partial<EditionDataService>;
     let mockIsRowTableViewSubject: ReplaySubject<boolean>;
 
@@ -42,8 +42,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
     beforeEach(async () => {
         mockIsRowTableViewSubject = new ReplaySubject<boolean>(1);
 
-        // Mock edition service
-        mockEditionService = {
+        // Mock edition state service
+        mockEditionStateService = {
             updateIsRowTableView: (isView: boolean): void => mockIsRowTableViewSubject.next(isView),
             clearIsRowTableView: (): void => mockIsRowTableViewSubject.next(null),
         };
@@ -56,8 +56,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             declarations: [EditionRowTablesComponent, RouterLinkStubDirective],
             providers: [
-                { provide: EditionService, useValue: mockEditionService },
                 { provide: EditionDataService, useValue: mockEditionDataService },
+                { provide: EditionStateService, useValue: mockEditionStateService },
             ],
         }).compileComponents();
     });
@@ -67,7 +67,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        mockEditionService = TestBed.inject(EditionService);
+        mockEditionStateService = TestBed.inject(EditionStateService);
         mockEditionDataService = TestBed.inject(EditionDataService);
 
         // Test data
@@ -76,9 +76,18 @@ describe('EditionRowTablesComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        editionServiceUpdateIsRowTablesViewSpy = spyOn(mockEditionService, 'updateIsRowTableView').and.callThrough();
-        editionServiceClearIsRowTablesViewSpy = spyOn(mockEditionService, 'clearIsRowTableView').and.callThrough();
-        editionDataServiceGetRowTablesSpy = spyOn(mockEditionDataService, 'getEditionRowTablesData').and.callThrough();
+        editionDataServiceGetRowTablesDataSpy = spyOn(
+            mockEditionDataService,
+            'getEditionRowTablesData'
+        ).and.callThrough();
+        editionStateServiceUpdateIsRowTablesViewSpy = spyOn(
+            mockEditionStateService,
+            'updateIsRowTableView'
+        ).and.callThrough();
+        editionStateServiceClearIsRowTablesViewSpy = spyOn(
+            mockEditionStateService,
+            'clearIsRowTableView'
+        ).and.callThrough();
     });
 
     it('... should create', () => {
@@ -90,12 +99,12 @@ describe('EditionRowTablesComponent (DONE)', () => {
             expect(component.rowTablesData$).toBeUndefined();
         });
 
-        it('... should not have called EditionService', () => {
-            expectSpyCall(editionServiceUpdateIsRowTablesViewSpy, 0);
+        it('... should not have called EditionStateService', () => {
+            expectSpyCall(editionStateServiceUpdateIsRowTablesViewSpy, 0);
         });
 
         it('... should not have called EditionDataService', () => {
-            expectSpyCall(editionDataServiceGetRowTablesSpy, 0);
+            expectSpyCall(editionDataServiceGetRowTablesDataSpy, 0);
         });
 
         describe('VIEW', () => {
@@ -111,19 +120,17 @@ describe('EditionRowTablesComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have updated IsRowTableViewFlag (via EditionService)', () => {
-            expectSpyCall(editionServiceUpdateIsRowTablesViewSpy, 1, true);
+        it('... should have updated IsRowTableViewFlag (via EditionStateService)', () => {
+            expectSpyCall(editionStateServiceUpdateIsRowTablesViewSpy, 1, true);
         });
 
         it('... should have called EditionDataService', () => {
-            expectSpyCall(editionDataServiceGetRowTablesSpy, 1);
+            expectSpyCall(editionDataServiceGetRowTablesDataSpy, 1);
         });
 
         it('... should have rowTablesData$', waitForAsync(() => {
             expectAsync(lastValueFrom(component.rowTablesData$)).toBeResolved();
-            expectAsync(lastValueFrom(component.rowTablesData$))
-                .withContext(`should be resolved to ${expectedRowTablesData}`)
-                .toBeResolvedTo(expectedRowTablesData);
+            expectAsync(lastValueFrom(component.rowTablesData$)).toBeResolvedTo(expectedRowTablesData);
         }));
 
         describe('VIEW', () => {
@@ -179,12 +186,12 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 );
 
                 divDes.forEach((divDe, index) => {
-                    const headingDe = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
-                    const headingEl = headingDe[0].nativeElement;
+                    const hDes = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
+                    const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                     const expectedHeading = 'Reihentabelle ' + expectedRowTablesData.rowTables[index].short;
 
-                    expectToBe(headingEl.textContent.trim(), expectedHeading);
+                    expectToBe(hEl.textContent.trim(), expectedHeading);
                 });
             });
 
@@ -197,13 +204,13 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 );
 
                 divDes.forEach((divDe, index) => {
-                    const headingDe = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
-                    const headingEl = headingDe[0].nativeElement;
+                    const hDes = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
+                    const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                     if (expectedRowTablesData.rowTables[index].disabled) {
-                        expectToContain(headingEl.classList, 'text-muted');
+                        expectToContain(hEl.classList, 'text-muted');
                     } else {
-                        expect(headingEl.classList).not.toContain('text-muted');
+                        expect(hEl.classList).not.toContain('text-muted');
                     }
                 });
             });
@@ -229,13 +236,13 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     expectedRowTablesData.rowTables.length
                 );
 
-                divDes.forEach((divDe, index) => {
-                    const anchorDe = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
-                    const anchorEl = anchorDe[0].nativeElement;
+                divDes.forEach(divDe => {
+                    const aDes = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
+                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                     const expectedText = 'Mehr ...';
 
-                    expectToBe(anchorEl.textContent.trim(), expectedText);
+                    expectToBe(aEl.textContent.trim(), expectedText);
                 });
             });
 
@@ -248,13 +255,13 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 );
 
                 divDes.forEach((divDe, index) => {
-                    const anchorDe = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
-                    const anchorEl = anchorDe[0].nativeElement;
+                    const aDes = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
+                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                     if (expectedRowTablesData.rowTables[index].disabled) {
-                        expectToContain(anchorEl.classList, 'disabled');
+                        expectToContain(aEl.classList, 'disabled');
                     } else {
-                        expect(anchorEl.classList).not.toContain('disabled');
+                        expect(aEl.classList).not.toContain('disabled');
                     }
                 });
             });
@@ -299,7 +306,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = ['../complex' + expectedRowTablesData.rowTables[index].route, 'sheets'];
 
-                    expect(routerLink.navigatedTo).toBeNull();
+                    expectToBe(routerLink.navigatedTo, null);
 
                     click(linkDe);
                     fixture.detectChanges();
@@ -310,10 +317,10 @@ describe('EditionRowTablesComponent (DONE)', () => {
         });
 
         describe('#ngOnDestroy()', () => {
-            it('... should have cleared isRowTableView$ on destroy (via EditionService)', () => {
+            it('... should have cleared isRowTableView$ on destroy (via EditionStateService)', () => {
                 component.ngOnDestroy();
 
-                expectSpyCall(editionServiceClearIsRowTablesViewSpy, 1);
+                expectSpyCall(editionStateServiceClearIsRowTablesViewSpy, 1);
             });
         });
     });
