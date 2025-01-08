@@ -7,9 +7,7 @@
             "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
-                    "1 Bogen (Bl. 1/2). Kleiner Riss am rechten Rand von Bl. 2."
-                ],
+                "desc": ["1 Bogen (Bl. 1/2). Kleiner Riss am rechten Rand von Bl. 2."],
                 "writingMaterialString": "Notenpapier, 18 Systeme, Format: hoch 348 × 266 mm, Firmenzeichen ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>.",
                 "writingInstruments": {
                     "main": "Bleistift",
@@ -203,9 +201,7 @@
                                 "folio": "",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [
-                                    []
-                                ]
+                                "systemGroups": [[]]
                             }
                         ]
                     },
@@ -358,9 +354,7 @@
             "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
-                    "1 Bogen (Bl. 1/2). Stockfleck und rötliche Verfärbung mittig am oberen Rand des Bogens."
-                ],
+                "desc": ["1 Bogen (Bl. 1/2). Stockfleck und rötliche Verfärbung mittig am oberen Rand des Bogens."],
                 "writingMaterialString": "Notenpapier, 18 Systeme, Format: hoch 349 × 267 mm, Firmenzeichen: ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>.",
                 "writingInstruments": {
                     "main": "schwarze Tinte, Bleistift",

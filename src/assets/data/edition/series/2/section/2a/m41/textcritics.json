@@ -84,7 +84,7 @@
                             "svgGroupId": "g1100 ",
                             "measure": "2B",
                             "system": "2",
-                            "position": "1. Note"   ,
+                            "position": "1. Note",
                             "comment": "Unterstimmenschicht: Viertelnote überschreibt punktierte Halbe Note."
                         },
                         {
@@ -93,7 +93,7 @@
                             "system": "1",
                             "position": "2/8",
                             "comment": "a<sup>1</sup> überschreibt g<sup>1</sup>."
-                        },               
+                        },
                         {
                             "svgGroupId": "g1125",
                             "measure": "2B",
