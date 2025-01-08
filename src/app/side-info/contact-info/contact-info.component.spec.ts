@@ -14,14 +14,18 @@ import {
 } from '@testing/expect-helper';
 
 import { AppConfig } from '@awg-app/app.config';
-import { METADATA } from '@awg-core/core-data';
+import { META_DATA } from '@awg-core/core-data';
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 import { ContactInfoComponent } from './contact-info.component';
 
 // Mock address component
-@Component({ selector: 'awg-address', template: '' })
+@Component({
+    selector: 'awg-address',
+    template: '',
+    standalone: false,
+})
 class AddressStubComponent {
     @Input()
     pageMetaData: MetaPage;
@@ -30,7 +34,11 @@ class AddressStubComponent {
 }
 
 // Mock open street map component
-@Component({ selector: 'awg-open-street-map', template: '' })
+@Component({
+    selector: 'awg-open-street-map',
+    template: '',
+    standalone: false,
+})
 class OpenStreetMapStubComponent {
     @Input()
     osmEmbedUrl: SafeResourceUrl;
@@ -61,7 +69,7 @@ describe('ContactInfoComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         // Mock service for test purposes
-        mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
+        mockCoreService = { getMetaDataSection: sectionType => META_DATA[sectionType] };
 
         TestBed.configureTestingModule({
             imports: [BrowserModule],
@@ -78,8 +86,8 @@ describe('ContactInfoComponent (DONE)', () => {
         domSanitizer = TestBed.inject(DomSanitizer);
 
         // Test data
-        expectedPageMetaData = METADATA[MetaSectionTypes.page];
-        expectedContactMetaData = METADATA[MetaSectionTypes.contact];
+        expectedPageMetaData = META_DATA[MetaSectionTypes.page];
+        expectedContactMetaData = META_DATA[MetaSectionTypes.contact];
 
         // Link values for open streets map
         expectedUnsafeOsmEmbedUrl = AppConfig.UNSAFE_OSM_EMBED_URL;
@@ -151,10 +159,10 @@ describe('ContactInfoComponent (DONE)', () => {
             });
 
             it('... should not render `contactInfoHeader` yet', () => {
-                const headerDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-contact-info-header', 1, 1);
-                const headerEl = headerDes[0].nativeElement;
+                const hDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-contact-info-header', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                expectToBe(headerEl.textContent, '');
+                expectToBe(hEl.textContent, '');
             });
 
             it('... should contain one address component (stubbed)', () => {
@@ -228,10 +236,10 @@ describe('ContactInfoComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should render `contactInfoHeader`', () => {
-                const headerDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-contact-info-header', 1, 1);
-                const headerEl = headerDes[0].nativeElement;
+                const hDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-contact-info-header', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                expectToBe(headerEl.textContent, expectedContactInfoHeader);
+                expectToBe(hEl.textContent, expectedContactInfoHeader);
             });
 
             it('... should pass down `pageMetaData` and `contactMetaData` to address component', () => {

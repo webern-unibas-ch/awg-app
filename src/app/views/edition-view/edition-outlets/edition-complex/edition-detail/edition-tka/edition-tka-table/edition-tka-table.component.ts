@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { EditionGlyphService } from '@awg-app/views/edition-view/services';
 
-import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
-import { TextcriticalCommentBlock, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
+import { TextcriticalCommentary, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
 
 /**
  * The EditionTkaTable component.
@@ -14,15 +14,16 @@ import { TextcriticalCommentBlock, TkaTableHeaderColumn } from '@awg-views/editi
     templateUrl: './edition-tka-table.component.html',
     styleUrls: ['./edition-tka-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionTkaTableComponent {
     /**
-     * Input variable: textcriticalCommentBlocks.
+     * Input variable: commentary.
      *
-     * It keeps the textcritical comment blocks.
+     * It keeps the commentary data.
      */
     @Input()
-    textcriticalCommentBlocks: TextcriticalCommentBlock[];
+    commentary: TextcriticalCommentary;
 
     /**
      * Input variable: isCorrections.
@@ -74,13 +75,6 @@ export class EditionTkaTableComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
-     * Readonly variable: GLYPHS.
-     *
-     * It keeps the data for musical glyphs.
-     */
-    readonly GLYPHS = EDITION_GLYPHS_DATA;
-
-    /**
      * Self-referring variable needed for CompileHtml library.
      */
     ref: EditionTkaTableComponent;
@@ -112,6 +106,13 @@ export class EditionTkaTableComponent {
     };
 
     /**
+     * Private readonly injection variable: _editionGlyphService.
+     *
+     * It keeps the instance of the injected EditionGlyphService.
+     */
+    private readonly _editionGlyphService = inject(EditionGlyphService);
+
+    /**
      * Constructor of the EditionTkaTableComponent.
      *
      * It initializes the self-referring ref variable needed for CompileHtml library.
@@ -123,14 +124,14 @@ export class EditionTkaTableComponent {
     /**
      * Public method: getGlyph.
      *
-     * It returns the hex value string for a glyph referenced by the given glyph string.
+     * It returns the hex value string for a glyph referenced by the given glyph string
+     * via the EditionGlyphService.
      *
      * @param {string} glyphString The given glyph string.
      * @returns {string} The hex value string of the given glyph string or empty string.
      */
     getGlyph(glyphString: string): string {
-        const glyph = Object.values(this.GLYPHS).find(g => g.alt === glyphString);
-        return glyph ? glyph.hex : '';
+        return this._editionGlyphService.getGlyph(glyphString);
     }
 
     /**

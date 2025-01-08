@@ -14,6 +14,7 @@ import { RouterLinkButton } from './router-link-button.model';
     templateUrl: './router-link-button-group.component.html',
     styleUrls: ['./router-link-button-group.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class RouterLinkButtonGroupComponent {
     /**

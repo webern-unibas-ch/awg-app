@@ -22,7 +22,7 @@
                             "browser": ""
                         },
                         "index": "src/index.html",
-                        "polyfills": ["src/polyfills.ts"],
+                        "polyfills": ["src/polyfills.ts", "@angular/localize/init"],
                         "tsConfig": "tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
                         "aot": false,
@@ -31,7 +31,6 @@
                         "styles": [
                             "src/index.style.scss",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                            "node_modules/font-awesome/scss/font-awesome.scss",
                             "src/styles.scss"
                         ],
                         "scripts": [
@@ -54,8 +53,8 @@
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "2kB",
-                                    "maximumError": "4kB"
+                                    "maximumWarning": "4kB",
+                                    "maximumError": "8kB"
                                 }
                             ],
                             "fileReplacements": [
@@ -80,12 +79,12 @@
                                 {
                                     "type": "initial",
                                     "maximumWarning": "2MB",
-                                    "maximumError": "3MB"
+                                    "maximumError": "4MB"
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "2kB",
-                                    "maximumError": "4kB"
+                                    "maximumWarning": "4kB",
+                                    "maximumError": "8kB"
                                 }
                             ]
                         }
@@ -115,7 +114,7 @@
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
                         "main": "src/test.ts",
-                        "polyfills": "src/polyfills.ts",
+                        "polyfills": ["src/polyfills.ts", "@angular/localize/init"],
                         "tsConfig": "tsconfig.spec.json",
                         "karmaConfig": "karma.conf.js",
                         "inlineStyleLanguage": "scss",
@@ -123,7 +122,6 @@
                         "styles": [
                             "src/index.style.scss",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                            "node_modules/font-awesome/scss/font-awesome.scss",
                             "src/styles.scss"
                         ],
                         "scripts": [
@@ -165,7 +163,7 @@
             "path": ".angular/cache",
             "environment": "all"
         },
-        "schematicCollections": ["@angular-eslint/schematics"],
+        "schematicCollections": ["angular-eslint"],
         "analytics": false
     }
 }

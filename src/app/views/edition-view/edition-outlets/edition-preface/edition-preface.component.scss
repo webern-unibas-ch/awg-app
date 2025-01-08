@@ -1,32 +1,8 @@
-@import '/src/assets/themes/scss/shared';
-
-.awg-language-switcher {
-    font-family: 'Montserrat', sans-serif;
-    font-size: small;
-    text-align: end;
-
-    a {
-        cursor: pointer;
-        text-decoration: none;
-        color: inherit;
-        // disable the active link style
-        &.active,
-        &.active:hover {
-            cursor: default;
-            color: inherit;
-        }
-        &:not(.active) {
-            color: $link-color;
-        }
-        &:hover {
-            border-bottom: none !important;
-        }
-    }
-}
-
 .awg-preface-para {
     margin: 0;
     text-indent: 25px;
+    text-align: justify;
+    text-justify: inter-word;
 
     &::ng-deep {
         .heading {
@@ -51,6 +27,12 @@
             &.no-indent {
                 margin-left: 0;
             }
+        }
+
+        img.awg-preface-img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
     }
 }

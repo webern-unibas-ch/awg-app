@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { UtilityService } from '@awg-core/services';
-import { SourceList } from '@awg-views/edition-view/models';
+import { Source, SourceList } from '@awg-views/edition-view/models';
 
 /**
  * The SourceList component.
@@ -15,6 +15,7 @@ import { SourceList } from '@awg-views/edition-view/models';
     templateUrl: './source-list.component.html',
     styleUrls: ['./source-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SourceListComponent {
     /**
@@ -60,7 +61,28 @@ export class SourceListComponent {
     }
 
     /**
-     * Public method: navigateToReportFragment.
+     * Public method: onSourceClick.
+     *
+     * It navigates to a report fragment or opens a modal
+     * on a source click event.
+     *
+     * @param {Source} source The given source.
+     *
+     * @returns {void} Navigates to a report fragment or opens a modal.
+     */
+    onSourceClick(source: Source): void {
+        if (source.hasDescription) {
+            this._navigateToReportFragment({
+                complexId: '',
+                fragmentId: source.linkTo,
+            });
+        } else {
+            this._openModal(source.linkTo);
+        }
+    }
+
+    /**
+     * Private method: navigateToReportFragment.
      *
      * It emits the given ids of a selected edition complex and report fragment
      * to the {@link navigateToReportFragmentRequest}.
@@ -68,7 +90,7 @@ export class SourceListComponent {
      * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
      * @returns {void} Emits the ids.
      */
-    navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
+    private _navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
         if (!reportIds?.fragmentId) {
             return;
         }
@@ -76,7 +98,7 @@ export class SourceListComponent {
     }
 
     /**
-     * Public method: openModal.
+     * Private method: openModal.
      *
      * It emits a given id of a modal snippet text
      * to the {@link openModalRequest}.
@@ -85,7 +107,7 @@ export class SourceListComponent {
      *
      * @returns {void} Emits the id.
      */
-    openModal(id: string): void {
+    private _openModal(id: string): void {
         if (!id) {
             return;
         }

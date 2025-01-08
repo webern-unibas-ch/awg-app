@@ -116,10 +116,10 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
             });
 
             it('... should contain one header showing number of images', () => {
-                const headerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-image-obj > h5', 1, 1);
+                const hDes = getAndExpectDebugElementByCss(compDe, 'div.awg-image-obj > h5', 1, 1);
 
-                const sizeDes = getAndExpectDebugElementByCss(headerDes[0], 'span#awg-image-number', 1, 1);
-                const sizeEl = sizeDes[0].nativeElement;
+                const sizeDes = getAndExpectDebugElementByCss(hDes[0], 'span#awg-image-number', 1, 1);
+                const sizeEl: HTMLSpanElement = sizeDes[0].nativeElement;
 
                 expectToBe(sizeEl.textContent, expectedImages.length.toString());
             });

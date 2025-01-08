@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 
 import { delay, Observable } from 'rxjs';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionView component.
@@ -18,6 +17,8 @@ import { EditionService } from '@awg-views/edition-view/services';
     selector: 'awg-edition-view',
     templateUrl: './edition-view.component.html',
     styleUrls: ['./edition-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Default,
+    standalone: false,
 })
 export class EditionViewComponent implements OnInit {
     /**
@@ -25,7 +26,7 @@ export class EditionViewComponent implements OnInit {
      *
      * It keeps the title of the edition view section.
      */
-    editionViewTitle = 'Inhalt';
+    editionViewTitle = 'Editionsübersicht';
 
     /**
      * Public variable: editionViewId.
@@ -33,6 +34,14 @@ export class EditionViewComponent implements OnInit {
      * It keeps the id of the edition view section.
      */
     editionViewId = 'awg-edition-view';
+
+    /**
+     * Public variable: isIntroView$.
+     *
+     * Observable that keeps the information
+     * about the flag for the intro view.
+     */
+    isIntroView$: Observable<boolean>;
 
     /**
      * Public variable: isPrefaceView$.
@@ -73,18 +82,11 @@ export class EditionViewComponent implements OnInit {
     selectedEditionSeries$: Observable<EditionOutlineSeries>;
 
     /**
-     * Constructor of the EditionViewComponent.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It declares private instances of
-     * EditionService, ActivatedRoute and Router.
-     *
-     * @param {EditionService} editionService Instance of the EditionService.
-     * @param {Router} router Instance of the Angular router.
+     * It keeps the instance of the injected EditionStateService.
      */
-    constructor(
-        private editionService: EditionService,
-        private router: Router
-    ) {}
+    private readonly _editionStateService = inject(EditionStateService);
 
     /**
      * Getter variable: editionRouteConstants.
@@ -103,7 +105,6 @@ export class EditionViewComponent implements OnInit {
      */
     ngOnInit() {
         this.setupEditionView();
-        this.routeToSidenav();
     }
 
     /**
@@ -111,29 +112,16 @@ export class EditionViewComponent implements OnInit {
      *
      * It sets up the edition view by loading
      * the selected series, section, and edition complex
-     * from the edition service.
+     * from the EditionStateService.
      *
      * @returns {void} Sets up the edition view.
      */
     setupEditionView(): void {
-        this.selectedEditionSeries$ = this.editionService.getSelectedEditionSeries().pipe(delay(0));
-        this.selectedEditionSection$ = this.editionService.getSelectedEditionSection().pipe(delay(0));
-        this.selectedEditionComplex$ = this.editionService.getSelectedEditionComplex().pipe(delay(0));
-        this.isPrefaceView$ = this.editionService.getIsPrefaceView().pipe(delay(0));
-        this.isRowTableView$ = this.editionService.getIsRowTableView().pipe(delay(0));
-    }
-
-    /**
-     * Public method: routeToSidenav.
-     *
-     * It activates the secondary outlet with the edition-info.
-     *
-     * @returns {void} Activates the edition-info side outlet.
-     */
-    routeToSidenav(): void {
-        // Opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: 'editionInfo' } }], {
-            preserveFragment: true,
-        });
+        this.selectedEditionSeries$ = this._editionStateService.getSelectedEditionSeries().pipe(delay(0));
+        this.selectedEditionSection$ = this._editionStateService.getSelectedEditionSection().pipe(delay(0));
+        this.selectedEditionComplex$ = this._editionStateService.getSelectedEditionComplex().pipe(delay(0));
+        this.isIntroView$ = this._editionStateService.getIsIntroView().pipe(delay(0));
+        this.isPrefaceView$ = this._editionStateService.getIsPrefaceView().pipe(delay(0));
+        this.isRowTableView$ = this._editionStateService.getIsRowTableView().pipe(delay(0));
     }
 }

@@ -83,14 +83,14 @@ describe('OpenStreetMapComponent (DONE)', () => {
 
             it('... should have title attribute of iframe', () => {
                 const mapDes = getAndExpectDebugElementByCss(compDe, 'iframe#awg-osm-embed-map', 1, 1);
-                const mapEl = mapDes[0].nativeElement;
+                const mapEl: HTMLIFrameElement = mapDes[0].nativeElement;
 
                 expectToBe(mapEl.title, 'Open Street Map View');
             });
 
             it('... should not pass other attributes to iframe yet', () => {
                 const mapDes = getAndExpectDebugElementByCss(compDe, 'iframe#awg-osm-embed-map', 1, 1);
-                const mapEl = mapDes[0].nativeElement;
+                const mapEl: HTMLIFrameElement = mapDes[0].nativeElement;
 
                 expectToBe(mapEl.width, '');
                 expectToBe(mapEl.height, '');
@@ -102,16 +102,16 @@ describe('OpenStreetMapComponent (DONE)', () => {
 
             it('... should not render the osm map yet', () => {
                 const mapDes = getAndExpectDebugElementByCss(compDe, 'iframe#awg-osm-embed-map', 1, 1);
-                const mapEl = mapDes[0].nativeElement;
+                const mapEl: HTMLIFrameElement = mapDes[0].nativeElement;
 
                 expectToBe(mapEl.src, '');
             });
 
             it('... should not have the link to OSM homepage yet', () => {
-                const linkDes = getAndExpectDebugElementByCss(compDe, 'div#awg-osm-link a', 1, 1);
-                const linkEl = linkDes[0].nativeElement;
+                const aDes = getAndExpectDebugElementByCss(compDe, 'div#awg-osm-link a', 1, 1);
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                expectToBe(linkEl.href, '');
+                expectToBe(aEl.href, '');
             });
         });
     });
@@ -130,7 +130,7 @@ describe('OpenStreetMapComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should pass correct attributes to iframe', () => {
                 const mapDes = getAndExpectDebugElementByCss(compDe, 'iframe#awg-osm-embed-map', 1, 1);
-                const mapEl = mapDes[0].nativeElement;
+                const mapEl: HTMLIFrameElement = mapDes[0].nativeElement;
 
                 expectToBe(mapEl.width, expectedOsmIFrameSettings.width);
                 expectToBe(mapEl.height, expectedOsmIFrameSettings.height);
@@ -138,7 +138,7 @@ describe('OpenStreetMapComponent (DONE)', () => {
 
             it('... should render the osm map in iframe', () => {
                 const mapDes = getAndExpectDebugElementByCss(compDe, 'iframe#awg-osm-embed-map', 1, 1);
-                const mapEl = mapDes[0].nativeElement;
+                const mapEl: HTMLIFrameElement = mapDes[0].nativeElement;
 
                 // Sanitize the bypassed value
                 const sanitizedEmbedUrl = domSanitizer.sanitize(SecurityContext.RESOURCE_URL, expectedOsmEmbedUrl);
@@ -148,19 +148,19 @@ describe('OpenStreetMapComponent (DONE)', () => {
             });
 
             it('... should have the link to OSM homepage in div', () => {
-                const linkDes = getAndExpectDebugElementByCss(compDe, 'div#awg-osm-link a', 1, 1);
-                const linkEl = linkDes[0].nativeElement;
+                const aDes = getAndExpectDebugElementByCss(compDe, 'div#awg-osm-link a', 1, 1);
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                 // Check for the href attribute to contain the link url
-                expectToBe(linkEl.href, expectedOsmLinkUrl);
+                expectToBe(aEl.href, expectedOsmLinkUrl);
             });
 
             it('... should display the link label in div anchor', () => {
-                const linkDes = getAndExpectDebugElementByCss(compDe, 'div#awg-osm-link a', 1, 1);
-                const linkEl = linkDes[0].nativeElement;
+                const aDes = getAndExpectDebugElementByCss(compDe, 'div#awg-osm-link a', 1, 1);
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                 // Check for the inner text to contain the link label
-                expectToBe(linkEl.innerText, expectedOsmLinkLabel);
+                expectToBe(aEl.innerText, expectedOsmLinkLabel);
             });
         });
     });

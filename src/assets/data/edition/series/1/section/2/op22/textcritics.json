@@ -2,8 +2,8 @@
     "textcritics": [
         {
             "id": "SkRT",
-            "label": "M 305 Sk# / M 308 Sk# / M 309 Sk# (Reihentabelle op. 22)",
-            "description": [
+            "label": "M 305 / M 308 / M 309 RT (Reihentabelle op. 22)",
+            "evaluations": [
                 "<small class=\"text-muted\">[Der Skizzenkommentar erscheint im Zusammenhang der vollständigen Edition von Opus 22 in AWG I/2.]</small>"
             ],
             "rowtable": true,
@@ -282,21 +282,21 @@
                             "measure": "Bl. 3<sup>r</sup>",
                             "system": "5a",
                             "position": "G<sub>b</sub>: 2. Reihenton",
-                            "comment": "{{ref.getGlyph('[a]')}} mit Bleistift nachgezogen."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> mit Bleistift nachgezogen."
                         },
                         {
                             "svgGroupId": "g2041",
                             "measure": "Bl. 3<sup>r</sup>",
                             "system": "5a",
                             "position": "G<sub>b</sub>: 3. Reihenton",
-                            "comment": "{{ref.getGlyph('[#]')}}fis<sup>1</sup> mit Bleistift nachgezogen."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis<sup>1</sup> mit Bleistift nachgezogen."
                         },
                         {
                             "svgGroupId": "g2051",
                             "measure": "Bl. 3<sup>r</sup>",
                             "system": "5a",
                             "position": "G<sub>b</sub>: 4. Reihenton",
-                            "comment": "{{ref.getGlyph('[a]')}}a<sup>1</sup> mit Bleistift nachgezogen."
+                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup> mit Bleistift nachgezogen."
                         },
                         {
                             "svgGroupId": "g2061",

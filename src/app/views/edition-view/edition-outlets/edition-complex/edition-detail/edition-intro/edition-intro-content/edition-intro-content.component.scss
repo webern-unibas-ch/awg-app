@@ -1,0 +1,98 @@
+.awg-edition-intro-content {
+    margin-top: 1.5em;
+
+    .awg-edition-intro-note,
+    .awg-edition-intro-block {
+        text-align: justify;
+        text-justify: inter-word;
+
+        &::ng-deep {
+            .note-1-dig {
+                margin-left: 1.3em;
+                text-indent: -1.3em;
+            }
+
+            .note-2-dig {
+                margin-left: 1.8em;
+                text-indent: -1.8em;
+            }
+
+            .note-3-dig {
+                margin-left: 2.3em;
+                text-indent: -2.3em;
+            }
+        }
+    }
+
+    .awg-edition-intro-block {
+        margin: 0;
+        text-indent: 1.5em;
+
+        &::ng-deep {
+            p {
+                margin-bottom: 0 !important;
+            }
+
+            table {
+                text-wrap: nowrap;
+
+                > tbody > tr > td {
+                    padding-right: 20px;
+                }
+
+                &.awg-intro-table {
+                    /* centered table with top and bottom border */
+                    display: table;
+                    width: 80%;
+                    margin-left: auto;
+                    margin-right: auto;
+
+                    > tbody > tr:first-child {
+                        border-top: 1px solid black !important;
+
+                        td {
+                            padding-top: 10px;
+                        }
+                    }
+                    > tbody > tr:last-child {
+                        border-bottom: 1px solid black !important;
+
+                        td {
+                            padding-bottom: 10px;
+                        }
+                    }
+                }
+            }
+
+            .heading {
+                display: block;
+                font-weight: bold;
+                margin: 1.5em 0;
+                text-indent: 0;
+            }
+
+            .small,
+            .no-indent {
+                text-indent: 0;
+            }
+
+            .spacebreak {
+                display: block;
+                margin-top: 1em;
+
+                &.list {
+                    text-indent: 0;
+                }
+
+                &.no-indent {
+                    margin-left: 0;
+                }
+            }
+
+            .list {
+                margin-left: 1em;
+                text-indent: -1em;
+            }
+        }
+    }
+}

@@ -1,0 +1,200 @@
+{
+    "editionOutline": [
+        {
+            "series": "1",
+            "sections": [
+                {
+                    "section": "1",
+                    "disabled": true,
+                    "content": {
+                        "intro": { "disabled": true, "preview": "" },
+                        "complexTypes": { "opus": [], "mnr": [] }
+                    }
+                },
+                {
+                    "section": "2",
+                    "disabled": true,
+                    "content": {
+                        "intro": { "disabled": true, "preview": "" },
+                        "complexTypes": { "opus": [], "mnr": [] }
+                    }
+                },
+                {
+                    "section": "3",
+                    "disabled": true,
+                    "content": {
+                        "intro": { "disabled": true, "preview": "" },
+                        "complexTypes": { "opus": [], "mnr": [] }
+                    }
+                },
+                {
+                    "section": "4",
+                    "disabled": true,
+                    "content": {
+                        "intro": { "disabled": true, "preview": "" },
+                        "complexTypes": { "opus": [], "mnr": [] }
+                    }
+                },
+                {
+                    "section": "5",
+                    "disabled": false,
+                    "content": {
+                        "intro": {
+                            "disabled": false,
+                            "preview": "Die in Serie I Abteilung 5 versammelten Klavierlieder beinhalten die erkennbaren Textfassungen der zu Lebzeiten Anton Weberns mit Opuszahlen versehenen und gedruckten oder zum Druck vorgesehenen Klavierlieder (op. 3, 4, 12, 23 und 25) sowie verschiedene dem Entstehungsprozess einiger dieser Editionskomplexe zuzuordnende Einzellieder (George-Lieder M 143–146). Weitere zu Lebzeiten Weberns nicht publizierte Lied-Komplexe, auch wenn sie mit später obsolet gewordenen Opuszahlen versehen wurden (z. B. Dehmel-Lieder M 83, 119, 130–131), werden in Serie II Abteilung 5 ediert."
+                        },
+                        "complexTypes": {
+                            "opus": [
+                                { "complex": "OP3", "disabled": false },
+                                { "complex": "OP4", "disabled": false },
+                                { "complex": "OP12", "disabled": false },
+                                { "complex": "OP23", "disabled": false },
+                                { "complex": "OP25", "disabled": false }
+                            ],
+                            "mnr": [
+                                { "complex": "M133", "disabled": true },
+                                { "complex": "M134", "disabled": true },
+                                { "complex": "M135", "disabled": true },
+                                { "complex": "M136", "disabled": true },
+                                { "complex": "M137", "disabled": true },
+                                { "complex": "M138", "disabled": true },
+                                { "complex": "M139", "disabled": true },
+                                { "complex": "M140", "disabled": true },
+                                { "complex": "M141", "disabled": true },
+                                { "complex": "M142", "disabled": true },
+                                { "complex": "M143", "disabled": false },
+                                { "complex": "M144", "disabled": false },
+                                { "complex": "M145", "disabled": false },
+                                { "complex": "M146", "disabled": false },
+                                { "complex": "M212", "disabled": true },
+                                { "complex": "M213", "disabled": true },
+                                { "complex": "M216", "disabled": true },
+                                { "complex": "M217", "disabled": true },
+                                { "complex": "M312", "disabled": true },
+                                { "complex": "M314", "disabled": true },
+                                { "complex": "M317", "disabled": true },
+                                { "complex": "M321", "disabled": true },
+                                { "complex": "M322", "disabled": true }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "series": "2",
+            "sections": [
+                {
+                    "section": "1",
+                    "disabled": true,
+                    "content": {
+                        "intro": { "disabled": true, "preview": "" },
+                        "complexTypes": { "opus": [], "mnr": [] }
+                    }
+                },
+                {
+                    "section": "2A",
+                    "disabled": false,
+                    "content": {
+                        "intro": {
+                            "disabled": false,
+                            "preview": "Die in Serie II Abteilung 2a enthaltene Klaviermusik versammelt die im Nachlass Weberns überlieferten Kompositionen für Klavier, denen Webern keine Opuszahl beigefügt hat und die zu Lebzeiten nicht im Druck erschienen sind bzw. gar nicht zum Druck bestimmt waren (zur postumen Veröffentlichung einzelner Stücke vgl. die entsprechenden Abschnitte). Bei diesen Kompositionen handelt es sich größtenteils um Studienkompositionen aus Weberns Unterricht bei Arnold Schönberg von 1904 bis 1908."
+                        },
+                        "complexTypes": {
+                            "opus": [],
+                            "mnr": [
+                                { "complex": "M34", "disabled": false },
+                                { "complex": "M35_42", "disabled": false },
+                                { "complex": "M36", "disabled": false },
+                                { "complex": "M37", "disabled": false },
+                                { "complex": "M38", "disabled": false },
+                                { "complex": "M40", "disabled": false },
+                                { "complex": "M41", "disabled": false },
+                                { "complex": "M30", "disabled": false },
+                                { "complex": "M31", "disabled": false },
+                                { "complex": "M22", "disabled": false }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "section": "2B",
+                    "disabled": true,
+                    "content": {
+                        "intro": { "disabled": true, "preview": "" },
+                        "complexTypes": { "opus": [], "mnr": [] }
+                    }
+                },
+                {
+                    "section": "3",
+                    "disabled": true,
+                    "content": {
+                        "intro": { "disabled": true, "preview": "" },
+                        "complexTypes": { "opus": [], "mnr": [] }
+                    }
+                },
+                {
+                    "section": "4",
+                    "disabled": true,
+                    "content": {
+                        "intro": { "disabled": true, "preview": "" },
+                        "complexTypes": { "opus": [], "mnr": [] }
+                    }
+                },
+                {
+                    "section": "5",
+                    "disabled": true,
+                    "content": {
+                        "intro": { "disabled": true, "preview": "" },
+                        "complexTypes": { "opus": [], "mnr": [] }
+                    }
+                }
+            ]
+        },
+        {
+            "series": "3",
+            "sections": [
+                {
+                    "section": "1",
+                    "disabled": true,
+                    "content": {
+                        "intro": { "disabled": true, "preview": "" },
+                        "complexTypes": { "opus": [], "mnr": [] }
+                    }
+                },
+                {
+                    "section": "2",
+                    "disabled": true,
+                    "content": {
+                        "intro": { "disabled": true, "preview": "" },
+                        "complexTypes": { "opus": [], "mnr": [] }
+                    }
+                },
+                {
+                    "section": "3",
+                    "disabled": true,
+                    "content": {
+                        "intro": { "disabled": true, "preview": "" },
+                        "complexTypes": { "opus": [], "mnr": [] }
+                    }
+                },
+                {
+                    "section": "4",
+                    "disabled": true,
+                    "content": {
+                        "intro": { "disabled": true, "preview": "" },
+                        "complexTypes": { "opus": [], "mnr": [] }
+                    }
+                },
+                {
+                    "section": "5",
+                    "disabled": true,
+                    "content": {
+                        "intro": { "disabled": true, "preview": "" },
+                        "complexTypes": { "opus": [], "mnr": [] }
+                    }
+                }
+            ]
+        }
+    ]
+}

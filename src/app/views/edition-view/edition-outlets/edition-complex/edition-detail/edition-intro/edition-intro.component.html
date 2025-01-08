@@ -5,43 +5,51 @@
 
     <!-- intro -->
     @if (editionIntroData$ | async; as editionIntroData) {
-        <div class="awg-intro-view p-5 border rounded-3">
-            @if (utils.isNotEmptyArray(editionIntroData.intro[0].content)) {
-                @for (introParagraph of editionIntroData.intro[0].content; track introParagraph) {
-                    <p class="awg-intro-para" [compile-html]="introParagraph" [compile-html-ref]="this"></p>
+        <div class="awg-edition-intro-view p-5 border rounded-3">
+            <div class="row justify-content-center">
+                @if (UTILS.isNotEmptyArray(editionIntroData.intro[currentLanguage].content)) {
+                    @if (editionComplex) {
+                        <awg-edition-intro-partial-disclaimer
+                            class="col-12 col-xl-6"
+                            [editionComplex]="editionComplex"
+                            [editionLabel]="editionRouteConstants.EDITION.short"
+                            [editionRoute]="editionRouteConstants.EDITION.route"
+                            [seriesRoute]="editionRouteConstants.SERIES.route"
+                            [sectionRoute]="editionRouteConstants.SECTION.route"
+                            [introRoute]="
+                                editionRouteConstants.EDITION_INTRO.route
+                            "></awg-edition-intro-partial-disclaimer>
+                    }
+                    <awg-edition-intro-content
+                        class="col-12 col-xl-10"
+                        [introBlockContent]="editionIntroData?.intro[currentLanguage]?.content"
+                        [notesLabel]="notesLabels.get(currentLanguage)"
+                        (navigateToIntroFragmentRequest)="onIntroFragmentNavigate($event)"
+                        (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
+                        (openModalRequest)="onModalOpen($event)"
+                        (selectSvgSheetRequest)="onSvgSheetSelect($event)"></awg-edition-intro-content>
+
+                    <awg-edition-intro-nav
+                        class="col-12 col-xl-2 d-none d-xl-block"
+                        [introBlockContent]="editionIntroData?.intro[currentLanguage]?.content"
+                        [notesLabel]="notesLabels.get(currentLanguage)"
+                        [currentLanguage]="currentLanguage"
+                        (languageChangeRequest)="onLanguageSet($event)"></awg-edition-intro-nav>
+                } @else {
+                    <awg-edition-intro-placeholder
+                        class="col-12"
+                        [editionComplex]="editionComplex"
+                        [editionLabel]="editionRouteConstants.EDITION.short"></awg-edition-intro-placeholder>
                 }
-            } @else {
-                <p class="awg-intro-empty">
-                    <small class="text-muted"
-                        >[Die Einleitung zum Editionskomplex
-                        <span [innerHTML]="editionComplex.complexId.full"></span> erscheint im Zusammenhang der
-                        vollständigen Edition von <span [innerHTML]="editionComplex.complexId.short"></span> in
-                        {{ editionRouteConstants.EDITION.short }} {{ editionComplex.pubStatement.series.short }}/{{
-                            editionComplex.pubStatement.section.short
-                        }}.]
-                    </small>
-                </p>
-            }
-            @if (utils.isNotEmptyArray(editionIntroData.intro[0].footnotes)) {
-                <hr />
-                <h5>Anmerkungen</h5>
-                @for (footnote of editionIntroData.intro[0].footnotes; track footnote) {
-                    <small
-                        ><p class="awg-intro-footnote" [compile-html]="footnote" [compile-html-ref]="this"></p
-                    ></small>
-                }
-            }
+            </div>
         </div>
     } @else {
         <!-- error message -->
         @if (errorObject) {
-            <div class="errorMessage">
-                <div class="col-12 text-center">
-                    <div class="alert alert-danger">
-                        {{ errorObject }}
-                    </div>
-                </div>
-            </div>
+            <awg-alert-error [errorObject]="errorObject"></awg-alert-error>
+        } @else {
+            <!-- loading spinner -->
+            <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
         }
     }
 </div>

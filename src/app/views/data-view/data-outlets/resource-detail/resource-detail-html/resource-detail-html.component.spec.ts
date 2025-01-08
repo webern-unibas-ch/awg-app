@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 
@@ -20,7 +19,11 @@ import {
 import { ResourceDetailHtmlComponent } from './resource-detail-html.component';
 
 // Mock component
-@Component({ selector: 'awg-resource-detail-html-content', template: '' })
+@Component({
+    selector: 'awg-resource-detail-html-content',
+    template: '',
+    standalone: false,
+})
 class ResourceDetailHtmlContentStubComponent {
     @Input()
     content: ResourceDetailContent;

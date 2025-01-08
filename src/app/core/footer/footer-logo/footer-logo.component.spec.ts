@@ -13,7 +13,7 @@ import {
     getAndExpectDebugElementByCss,
 } from '@testing/expect-helper';
 
-import { LOGOSDATA } from '@awg-core/core-data';
+import { LOGOS_DATA } from '@awg-core/core-data';
 import { Logo } from '@awg-core/core-models';
 
 import { FooterLogoComponent } from './footer-logo.component';
@@ -44,9 +44,9 @@ describe('FooterLogoComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedLeftMainFooterLogo = LOGOSDATA['unibas'];
-        expectedRightMainFooterLogo = LOGOSDATA['sagw'];
-        expectedNonMainFooterLogo = LOGOSDATA['angular'];
+        expectedLeftMainFooterLogo = LOGOS_DATA['unibas'];
+        expectedRightMainFooterLogo = LOGOS_DATA['sagw'];
+        expectedNonMainFooterLogo = LOGOS_DATA['angular'];
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -84,10 +84,10 @@ describe('FooterLogoComponent (DONE)', () => {
 
             it('... should not render logo yet', () => {
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'a', 1, 1);
-                const anchorEl = anchorDes[0].nativeElement;
+                const anchorEl: HTMLAnchorElement = anchorDes[0].nativeElement;
 
                 const imageDes = getAndExpectDebugElementByCss(compDe, 'img', 1, 1);
-                const imageEl = imageDes[0].nativeElement;
+                const imageEl: HTMLImageElement = imageDes[0].nativeElement;
 
                 expectToBe(anchorEl.href, '');
                 expectToBe(imageEl.id, '');
@@ -100,7 +100,7 @@ describe('FooterLogoComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.logo = LOGOSDATA['sagw'];
+            component.logo = LOGOS_DATA['sagw'];
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -129,7 +129,7 @@ describe('FooterLogoComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should have correct logo link in anchor', () => {
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'a', 1, 1);
-                const anchorEl = anchorDes[0].nativeElement;
+                const anchorEl: HTMLAnchorElement = anchorDes[0].nativeElement;
 
                 expectToContain(anchorEl.href, expectedRightMainFooterLogo.href);
             });
@@ -140,14 +140,14 @@ describe('FooterLogoComponent (DONE)', () => {
 
             it('... should have correct logo id in img', () => {
                 const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
-                const imageEl = imageDes[0].nativeElement;
+                const imageEl: HTMLImageElement = imageDes[0].nativeElement;
 
                 expectToBe(imageEl.id, expectedRightMainFooterLogo.id);
             });
 
             it('... should have correct logo src and alt in img', () => {
                 const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
-                const imageEl = imageDes[0].nativeElement;
+                const imageEl: HTMLImageElement = imageDes[0].nativeElement;
 
                 expectToContain(imageEl.src, expectedRightMainFooterLogo.src);
                 expectToBe(imageEl.alt, expectedRightMainFooterLogo.alt);
@@ -159,7 +159,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 detectChangesOnPush(fixture);
 
                 const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
-                const imageEl = imageDes[0].nativeElement;
+                const imageEl: HTMLImageElement = imageDes[0].nativeElement;
 
                 expect(imageDes[0].classes[cssClassFloatEnd]).toBeTruthy();
                 expect(imageDes[0].classes[cssClassMarginY2]).toBeTruthy();
@@ -174,7 +174,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 detectChangesOnPush(fixture);
 
                 const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
-                const imageEl = imageDes[0].nativeElement;
+                const imageEl: HTMLImageElement = imageDes[0].nativeElement;
 
                 expect(imageDes[0].classes[cssClassFloatEnd]).toBeTruthy();
                 expectToContain(imageEl.classList, cssClassFloatEnd);
@@ -202,7 +202,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 detectChangesOnPush(fixture);
 
                 const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
-                const imageEl = imageDes[0].nativeElement;
+                const imageEl: HTMLImageElement = imageDes[0].nativeElement;
 
                 expect(imageDes[0].classes[cssClassMarginY2]).toBeTruthy();
                 expectToContain(imageEl.classList, cssClassMarginY2);
@@ -230,7 +230,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 detectChangesOnPush(fixture);
 
                 const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
-                const imageEl = imageDes[0].nativeElement;
+                const imageEl: HTMLImageElement = imageDes[0].nativeElement;
 
                 expectToBe(imageDes[0].attributes['ng-reflect-ng-class'], cssClassMarginY2 + ' ' + cssClassFloatEnd);
                 expectToBe(imageEl.attributes['ng-reflect-ng-class'].value, cssClassMarginY2 + ' ' + cssClassFloatEnd);

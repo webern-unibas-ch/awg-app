@@ -54,6 +54,7 @@ type EditorStateConfig = Parameters<typeof EditorState.create>[0];
     styleUrls: ['./codemirror.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class CodeMirrorComponent implements AfterViewInit, OnChanges {
     /**
@@ -89,7 +90,7 @@ export class CodeMirrorComponent implements AfterViewInit, OnChanges {
      *
      * It keeps the reference to the HTML template of the codemirror editor.
      */
-    @ViewChild('codemirrorhost') codemirrorhost: ElementRef = null;
+    @ViewChild('codemirrorhost') codemirrorhost: ElementRef<HTMLDivElement> = null;
 
     /**
      * Angular life cycle hook: ngOnChanges.

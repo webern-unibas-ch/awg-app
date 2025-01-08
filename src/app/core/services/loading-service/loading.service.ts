@@ -16,9 +16,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class LoadingService {
     /**
-     * Private behavior subject to handle loading status.
+     * Private readonly behavior subject to handle loading status.
      */
-    private _isLoadingSubject = new BehaviorSubject<boolean>(false);
+    private readonly _isLoadingSubject = new BehaviorSubject<boolean>(false);
 
     /**
      * Private readonly isLoading stream as observable (`BehaviorSubject`).

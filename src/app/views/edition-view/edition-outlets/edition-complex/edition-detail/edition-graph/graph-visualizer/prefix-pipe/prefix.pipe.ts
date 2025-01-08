@@ -8,7 +8,11 @@ import { Prefix, PrefixForm } from '../models';
  *
  * It turns a short form of an RDF prefix into a long form and vice versa.
  */
-@Pipe({ name: 'prefix', pure: false })
+@Pipe({
+    name: 'prefix',
+    pure: false,
+    standalone: false,
+})
 export class PrefixPipe implements PipeTransform {
     /**
      * Public variable: defaultPrefixes.

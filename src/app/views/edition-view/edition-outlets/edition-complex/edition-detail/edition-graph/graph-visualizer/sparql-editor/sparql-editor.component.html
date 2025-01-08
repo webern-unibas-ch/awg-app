@@ -15,37 +15,49 @@
 
             <!-- Example Query Handle -->
             @if (isExampleQueriesEnabled()) {
-                <div class="p-0 btn-group awg-example-query-btn-group" style="padding: -3rem">
-                    <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
-                        Beispielabfragen
-                    </button>
-                    <div
-                        class="btn-group"
-                        ngbDropdown
-                        container="body"
-                        placement="bottom-right"
-                        role="group"
-                        aria-label="Button group with nested dropdown for sample queries">
-                        <button class="btn btn-sm btn-info" ngbDropdownToggle></button>
-                        <div ngbDropdownMenu>
-                            <h6 class="dropdown-header">Graph-Ansicht (CONSTRUCT)</h6>
-                            @for (q of queryList; track q) {
-                                @if (q.queryType === 'construct') {
-                                    <a ngbDropdownItem [class.disabled]="q === query" (click)="onQueryListChange(q)">
-                                        <span>{{ q.queryLabel }}</span>
-                                    </a>
-                                }
+                <div
+                    class="p-0 btn-group awg-example-query-btn-group"
+                    style="padding: -3rem"
+                    ngbDropdown
+                    container="body"
+                    placement="bottom-right"
+                    role="group"
+                    aria-label="Button group with nested dropdown for sample queries">
+                    <button class="btn btn-sm btn-outline-info" disabled aria-disabled="true">Beispielabfragen</button>
+                    <button
+                        class="btn btn-sm btn-info dropdown-toggle-split"
+                        ngbDropdownToggle
+                        aria-label="Toggle dropdown"></button>
+                    <div class="dropdown-menu" ngbDropdownMenu>
+                        <h6 class="dropdown-header">Graph-Ansicht (CONSTRUCT)</h6>
+                        @for (q of queryList; track q) {
+                            @if (q.queryType === 'construct') {
+                                <a
+                                    ngbDropdownItem
+                                    [class.disabled]="q === query"
+                                    (click)="onQueryListChange(q)"
+                                    (keyup.enter)="onQueryListChange(q)"
+                                    role="link"
+                                    tabindex="0">
+                                    <span>{{ q.queryLabel }}</span>
+                                </a>
                             }
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Tabellen-Ansicht (SELECT)</h6>
-                            @for (q of queryList; track q) {
-                                @if (q.queryType === 'select') {
-                                    <a ngbDropdownItem [class.disabled]="q === query" (click)="onQueryListChange(q)">
-                                        <span>{{ q.queryLabel }}</span>
-                                    </a>
-                                }
+                        }
+                        <div class="dropdown-divider"></div>
+                        <h6 class="dropdown-header">Tabellen-Ansicht (SELECT)</h6>
+                        @for (q of queryList; track q) {
+                            @if (q.queryType === 'select') {
+                                <a
+                                    ngbDropdownItem
+                                    [class.disabled]="q === query"
+                                    (click)="onQueryListChange(q)"
+                                    (keyup.enter)="onQueryListChange(q)"
+                                    role="link"
+                                    tabindex="0">
+                                    <span>{{ q.queryLabel }}</span>
+                                </a>
                             }
-                        </div>
+                        }
                     </div>
                 </div>
             }

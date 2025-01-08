@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
 import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionSeries component.
@@ -13,6 +13,7 @@ import { EditionService } from '@awg-views/edition-view/services';
     selector: 'awg-edition-series',
     templateUrl: './edition-series.component.html',
     styleUrls: ['./edition-series.component.scss'],
+    standalone: false,
 })
 export class EditionSeriesComponent implements OnInit {
     /**
@@ -23,15 +24,11 @@ export class EditionSeriesComponent implements OnInit {
     editionOutline: EditionOutlineSeries[];
 
     /**
-     * Constructor of the EditionSeriesComponent.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It declares a private instance of the EditionService.
-     *
-     * @param {EditionService} editionService Instance of the EditionService.
+     * It keeps the instance of the injected EditionStateService.
      */
-    constructor(private editionService: EditionService) {
-        // Intentionally left empty until implemented
-    }
+    private readonly _editionStateService = inject(EditionStateService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -47,23 +44,23 @@ export class EditionSeriesComponent implements OnInit {
     /**
      * Public method: clearSelectedSeries.
      *
-     * It clears the selected series from the EditionService.
+     * It clears the selected series from the EditionStateService.
      *
      * @returns {void} Clears the edition series.
      */
     clearSelections(): void {
-        this.editionService.clearSelectedEditionSeries();
-        this.editionService.clearSelectedEditionSection();
+        this._editionStateService.clearSelectedEditionSeries();
+        this._editionStateService.clearSelectedEditionSection();
     }
 
     /**
      * Public method: getEditionOutline.
      *
-     * It gets the outline with array of series from the EditionService.
+     * It gets the outline with array of series from the EditionStateService.
      *
      * @returns {void} Gets the edition outline.
      */
     getEditionOutline(): void {
-        this.editionOutline = this.editionService.getEditionOutline();
+        this.editionOutline = EditionOutlineService.getEditionOutline();
     }
 }

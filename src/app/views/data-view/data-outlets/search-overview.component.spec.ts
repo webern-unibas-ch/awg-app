@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
@@ -15,7 +14,11 @@ import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-li
 import { SearchOverviewComponent } from './search-overview.component';
 
 // Mock components
-@Component({ selector: 'awg-router-link-button-group', template: '' })
+@Component({
+    selector: 'awg-router-link-button-group',
+    template: '',
+    standalone: false,
+})
 class RouterLinkButtonGroupStubComponent {
     @Input()
     routerLinkButtons: RouterLinkButton[];
@@ -176,12 +179,12 @@ describe('SearchOverviewComponent (DONE)', () => {
             });
 
             it('... should pass down searchRouterLinkButtons to RouterLinkButtonGroupComponent', () => {
-                const buttonDes = getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 1, 1);
-                const buttonCmp = buttonDes[0].injector.get(
+                const btnDes = getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 1, 1);
+                const btnCmp = btnDes[0].injector.get(
                     RouterLinkButtonGroupStubComponent
                 ) as RouterLinkButtonGroupStubComponent;
 
-                expectToEqual(buttonCmp.routerLinkButtons, expectedSearchRouterLinkButtons);
+                expectToEqual(btnCmp.routerLinkButtons, expectedSearchRouterLinkButtons);
             });
         });
 
@@ -231,40 +234,40 @@ describe('SearchOverviewComponent (DONE)', () => {
             });
 
             it('... should trigger on event from RouterLinkButtonGroupComponent', fakeAsync(() => {
-                const buttonDes = getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 1, 1);
-                const buttonCmp = buttonDes[0].injector.get(
+                const btnDes = getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 1, 1);
+                const btnCmp = btnDes[0].injector.get(
                     RouterLinkButtonGroupStubComponent
                 ) as RouterLinkButtonGroupStubComponent;
 
                 // Button 1
-                buttonCmp.selectButtonRequest.emit(expectedSearchRouterLinkButtons[0]);
+                btnCmp.selectButtonRequest.emit(expectedSearchRouterLinkButtons[0]);
 
                 expectSpyCall(selectButtonSpy, 1, expectedSearchRouterLinkButtons[0]);
 
                 // Button 2
-                buttonCmp.selectButtonRequest.emit(expectedSearchRouterLinkButtons[1]);
+                btnCmp.selectButtonRequest.emit(expectedSearchRouterLinkButtons[1]);
 
                 expectSpyCall(selectButtonSpy, 2, expectedSearchRouterLinkButtons[1]);
 
                 // Button 3
-                buttonCmp.selectButtonRequest.emit(expectedSearchRouterLinkButtons[2]);
+                btnCmp.selectButtonRequest.emit(expectedSearchRouterLinkButtons[2]);
 
                 expectSpyCall(selectButtonSpy, 3, expectedSearchRouterLinkButtons[2]);
             }));
 
             describe('... should not do anything if no RouterLinkButton provided', () => {
                 let noRouterLinkButton;
-                let buttonCmp;
+                let btnCmp;
 
                 beforeEach(() => {
                     // Get button component
-                    const buttonDes = getAndExpectDebugElementByDirective(
+                    const btnDes = getAndExpectDebugElementByDirective(
                         compDe,
                         RouterLinkButtonGroupStubComponent,
                         1,
                         1
                     );
-                    buttonCmp = buttonDes[0].injector.get(
+                    btnCmp = btnDes[0].injector.get(
                         RouterLinkButtonGroupStubComponent
                     ) as RouterLinkButtonGroupStubComponent;
                 });
@@ -272,7 +275,7 @@ describe('SearchOverviewComponent (DONE)', () => {
                 it('... not with undefined', () => {
                     // Emit undefined
                     noRouterLinkButton = undefined;
-                    buttonCmp.selectButtonRequest.emit(noRouterLinkButton);
+                    btnCmp.selectButtonRequest.emit(noRouterLinkButton);
 
                     expectSpyCall(selectButtonSpy, 1, noRouterLinkButton);
                     expectSpyCall(serviceClearSearchInfoDataSpy, 0);
@@ -283,7 +286,7 @@ describe('SearchOverviewComponent (DONE)', () => {
                 it('... not with null', () => {
                     // Emit null
                     noRouterLinkButton = null;
-                    buttonCmp.selectButtonRequest.emit(noRouterLinkButton);
+                    btnCmp.selectButtonRequest.emit(noRouterLinkButton);
 
                     expectSpyCall(selectButtonSpy, 1, noRouterLinkButton);
                     expectSpyCall(serviceClearSearchInfoDataSpy, 0);
@@ -294,7 +297,7 @@ describe('SearchOverviewComponent (DONE)', () => {
                 it('... not with empty string', () => {
                     // Emit empty string
                     noRouterLinkButton = '';
-                    buttonCmp.selectButtonRequest.emit(noRouterLinkButton);
+                    btnCmp.selectButtonRequest.emit(noRouterLinkButton);
 
                     expectSpyCall(selectButtonSpy, 1, noRouterLinkButton);
                     expectSpyCall(serviceClearSearchInfoDataSpy, 0);
@@ -305,7 +308,7 @@ describe('SearchOverviewComponent (DONE)', () => {
                 it('... not with string', () => {
                     // Emit string
                     noRouterLinkButton = 'test';
-                    buttonCmp.selectButtonRequest.emit(noRouterLinkButton);
+                    btnCmp.selectButtonRequest.emit(noRouterLinkButton);
 
                     expectSpyCall(selectButtonSpy, 1, noRouterLinkButton);
                     expectSpyCall(serviceClearSearchInfoDataSpy, 0);
@@ -316,7 +319,7 @@ describe('SearchOverviewComponent (DONE)', () => {
                 it('... not with number', () => {
                     // Emit number
                     noRouterLinkButton = 101;
-                    buttonCmp.selectButtonRequest.emit(noRouterLinkButton);
+                    btnCmp.selectButtonRequest.emit(noRouterLinkButton);
 
                     expectSpyCall(selectButtonSpy, 1, noRouterLinkButton);
                     expectSpyCall(serviceClearSearchInfoDataSpy, 0);
@@ -327,7 +330,7 @@ describe('SearchOverviewComponent (DONE)', () => {
                 it('... not with router link button without label', () => {
                     // Emit router link button without label
                     noRouterLinkButton = new RouterLinkButton('/data/search', '/fulltext', undefined, false);
-                    buttonCmp.selectButtonRequest.emit(noRouterLinkButton);
+                    btnCmp.selectButtonRequest.emit(noRouterLinkButton);
 
                     expectSpyCall(selectButtonSpy, 1, noRouterLinkButton);
                     expectSpyCall(serviceClearSearchInfoDataSpy, 0);

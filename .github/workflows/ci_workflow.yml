@@ -32,19 +32,19 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [18.19, 20.13, 22.5.1]
+                node-version: [20.13, 22.11, 23.x]
 
         outputs:
             sha: ${{ steps.get-sha.outputs.SHA }}
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
+              uses: step-security/harden-runner@0080882f6c36860b6ba35c610c98ce87d4e2f26f # v2.10.2
               with:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+              uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
               with:
                   fetch-depth: 0 # Get all history and branches
 
@@ -57,7 +57,7 @@ jobs:
                   echo "SHA: ${{ steps.get-sha.outputs.SHA }}"
 
             - name: Set up node ${{ matrix.node-version}}
-              uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
+              uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
               with:
                   node-version: ${{ matrix.node-version }}
 
@@ -65,30 +65,30 @@ jobs:
               run: corepack enable
 
             - name: Get yarn cache ${{ matrix.node-version}}
-              uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
+              uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
               with:
                   cache: 'yarn'
 
             - name: yarn install dependencies
               run: |
-                  yarn install  --immutable
+                  yarn install --immutable
 
             - name: Run CI tests with coverage
               run: |
                   yarn run test:ci
 
             - name: Upload code coverage
-              if: matrix.node-version == 20.13 # upload coverage report for current node version only
-              uses: codecov/codecov-action@e28ff129e5465c2c0dcc6f003fc735cb6ae0c673 # v4.5.0
+              if: matrix.node-version == 22.11 # upload coverage report for current node version only
+              uses: codecov/codecov-action@1e68e06f1dbfde0e4cefc87efeba9e4643565303 # v5.1.2
               env:
                   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
               with:
                   flags: unittests
-                  env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
+                  env_vars: ${{ matrix.os }},${{ matrix.node-version }}
 
-            - name: Perform SonarCloud Analysis
-              if: matrix.node-version == 20.13 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarCloud analysis only for current node version and not with pull requests or forks(token issue)
-              uses: SonarSource/sonarcloud-github-action@e44258b109568baa0df60ed515909fc6c72cba92 # v2.3.0
+            - name: Perform SonarQube scan
+              if: matrix.node-version == 22.11 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarQube scan only for current node version and not with pull requests or forks(token issue)
+              uses: SonarSource/sonarqube-scan-action@bfd4e558cda28cda6b5defafb9232d191be8c203 # v4.2.1
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -108,8 +108,8 @@ jobs:
 
             - name: Upload build artifacts (main && develop)
               # upload build artifacts for current node version and main or develop branch only
-              if: matrix.node-version == 20.13 && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
-              uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a # ratchet:actions/upload-artifact@v4.3.6
+              if: matrix.node-version == 22.11 && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
+              uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5.0
               with:
                   name: dist
                   path: ${{ github.workspace }}/${{ env.DIST_DIR }}
@@ -132,16 +132,16 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [20.13]
+                node-version: [22.11]
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
+              uses: step-security/harden-runner@0080882f6c36860b6ba35c610c98ce87d4e2f26f # v2.10.2
               with:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+              uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
               with:
                   # ref (branch, tag or SHA) to check out
                   ref: ${{ env.DEV_GH_PAGES_BRANCH }}
@@ -204,18 +204,18 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [20.13]
+                node-version: [22.11]
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
+              uses: step-security/harden-runner@0080882f6c36860b6ba35c610c98ce87d4e2f26f # v2.10.2
               with:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+              uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
             - name: Set up node ${{ matrix.node-version}}
-              uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
+              uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: 'yarn'
@@ -245,10 +245,10 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [20.13]
+                node-version: [22.11]
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
+              uses: step-security/harden-runner@0080882f6c36860b6ba35c610c98ce87d4e2f26f # v2.10.2
               with:
                   egress-policy: audit
 
@@ -258,12 +258,12 @@ jobs:
             - name: Create Release
               id: create_release
               if: ${{ success() && startsWith(github.ref, 'refs/tags/') }}
-              uses: softprops/action-gh-release@c062e08bd532815e2082a85e87e3ef29c3e6d191 # v2.0.8
+              uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda # v2.2.1
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   TAG_VERSION: ${{ steps.get_version.outputs.VERSION }}
               with:
                   name: Release ${{ env.TAG_VERSION }}
-                  body: "A prototype web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch), located at the Department of Musicology of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).\n\n Changes since last release: https://github.com/${{ github.repository }}/blob/${{ env.TAG_VERSION }}/CHANGELOG.md"
+                  body: "A web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch), located at the Department of Musicology of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).\n\n Changes since last release: https://github.com/${{ github.repository }}/blob/${{ env.TAG_VERSION }}/CHANGELOG.md"
                   draft: false
                   prerelease: false

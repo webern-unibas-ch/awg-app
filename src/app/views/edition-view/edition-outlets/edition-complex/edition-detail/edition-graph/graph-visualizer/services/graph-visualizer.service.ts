@@ -3,7 +3,7 @@
  * cf. https://github.com/MadsHolten/sparql-visualizer
  */
 
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 import * as N3 from 'n3';
 
@@ -42,13 +42,11 @@ export class GraphVisualizerService {
     private _store: any;
 
     /**
-     * Constructor of the GraphVisualizerService.
+     * Private readonly injection variable: _prefixPipe.
      *
-     * It declares a private instance of the {@link PrefixPipe}.
-     *
-     * @param {PrefixPipe} prefixPipe Instance of the PrefixPipe.
+     * It keeps the instance of the injected PrefixPipe.
      */
-    constructor(private prefixPipe: PrefixPipe) {}
+    private readonly _prefixPipe = inject(PrefixPipe);
 
     /**
      * Public method: checkNamespacesInQuery.
@@ -76,7 +74,7 @@ export class GraphVisualizerService {
         // And add missing prefixes to the SPARQL query
         [
             ...Object.entries(turtleNamespaces),
-            ...sparqlPrefixes.map(prefix => [prefix, this.prefixPipe.transform(prefix, PrefixForm.LONG)]),
+            ...sparqlPrefixes.map(prefix => [prefix, this._prefixPipe.transform(prefix, PrefixForm.LONG)]),
         ].forEach(([key, value]) => {
             if (!sparqlNamespaceKeys.has(key) && key !== value) {
                 missingNamespacesStr += `PREFIX ${key}: <${value}>\n`;
@@ -116,7 +114,7 @@ export class GraphVisualizerService {
 
                 return this._loadTriplesInStore(store, ttlString, mimeType);
             })
-            .then((_storeSize: number) => this._executeQuery(this._store, query))
+            .then(() => this._executeQuery(this._store, query))
             .then((res: RDFStoreConstructResponse | RDFStoreSelectResponse) => {
                 // Reformat data if select query
                 if (queryType === 'select') {
@@ -291,6 +289,7 @@ export class GraphVisualizerService {
      */
     private _extractNamespacesFromString(type: NamespaceType, str: string): Namespace {
         let regex: RegExp;
+        let exhaustiveCheck: never;
         switch (type) {
             case NamespaceType.TURTLE:
                 regex = /@prefix\s+(\w+):\s+<([^>]+)>/g;
@@ -299,13 +298,13 @@ export class GraphVisualizerService {
                 regex = /PREFIX\s+(\w+):\s+<([^>]+)>/g;
                 break;
             default:
-                const exhaustiveCheck: never = type;
+                exhaustiveCheck = type;
                 throw new Error(`The type must be TURTLE or SPARQL, but was: ${exhaustiveCheck}.`);
         }
 
         const namespaces: Namespace = {};
         for (const match of str.matchAll(regex)) {
-            const [_, prefix, namespaceName] = match;
+            const [, prefix, namespaceName] = match;
             namespaces[prefix] = namespaceName;
         }
 
@@ -421,7 +420,7 @@ export class GraphVisualizerService {
                 newItem[itemEntryKey]['label'] =
                     type === 'literal' && (datatype === xmlsInteger || datatype === xmlsNonNegativeInteger)
                         ? +value
-                        : this.prefixPipe.transform(value, PrefixForm.SHORT);
+                        : this._prefixPipe.transform(value, PrefixForm.SHORT);
             });
             return newItem;
         });

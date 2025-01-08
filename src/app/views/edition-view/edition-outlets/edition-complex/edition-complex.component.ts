@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { delay, EMPTY, Observable } from 'rxjs';
 
-import { EditionComplexesService, UtilityService } from '@awg-core/services';
+import { UtilityService } from '@awg-core/services';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionComplex component.
@@ -18,6 +18,7 @@ import { EditionService } from '@awg-views/edition-view/services';
     selector: 'awg-edition-complex',
     templateUrl: './edition-complex.component.html',
     styleUrls: ['./edition-complex.component.scss'],
+    standalone: false,
 })
 export class EditionComplexComponent implements OnDestroy, OnInit {
     /**
@@ -29,20 +30,25 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
     selectedEditionComplex$: Observable<EditionComplex>;
 
     /**
-     * Constructor of the EditionComplexComponent.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It declares private instances of ActivatedRoute and EditionService,
-     * and a public instance of the UtilityService.
-     *
-     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
-     * @param {EditionService} editionService Instance of the EditionService.
-     * @param {UtilityService} utils Instance of the UtilityService.
+     * It keeps the instance of the injected EditionStateService.
      */
-    constructor(
-        private route: ActivatedRoute,
-        private editionService: EditionService,
-        public utils: UtilityService
-    ) {}
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _route.
+     *
+     * It keeps the instance of the injected Angular ActivatedRoute.
+     */
+    private readonly _route = inject(ActivatedRoute);
+
+    /**
+     * Private readonly injection variable: _utils.
+     *
+     * It keeps the instance of the injected UtilityService.
+     */
+    private readonly _utils = inject(UtilityService);
 
     /**
      * Getter variable: editionRouteConstants.
@@ -66,18 +72,28 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
     /**
      * Public method: updateEditionComplexFromRoute.
      *
-     * It fetches the route params to get the id of the current edition complex and updates the edition service.
+     * It fetches the route params to get the id of the current edition complex
+     * and updates the EditionStateService.
      *
      * @returns {void} Updates the current edition complex from the route.
      */
     updateEditionComplexFromRoute(): void {
-        this.route.paramMap.subscribe(params => {
+        this._route.paramMap.subscribe(params => {
             const id: string = params.get('complexId') || '';
             const complex = EditionComplexesService.getEditionComplexById(id.toUpperCase());
 
-            if (complex) {
-                this.editionService.updateSelectedEditionComplex(complex);
-                this.selectedEditionComplex$ = this.editionService.getSelectedEditionComplex().pipe(delay(0));
+            if (this._utils.isNotEmptyObject(complex)) {
+                const series = EditionOutlineService.getEditionSeriesById(complex.pubStatement.series.route);
+                const section = EditionOutlineService.getEditionSectionById(
+                    complex.pubStatement.series.route,
+                    complex.pubStatement.section.route
+                );
+
+                this._editionStateService.updateSelectedEditionSeries(series);
+                this._editionStateService.updateSelectedEditionSection(section);
+                this._editionStateService.updateSelectedEditionComplex(complex);
+
+                this.selectedEditionComplex$ = this._editionStateService.getSelectedEditionComplex().pipe(delay(0));
             } else {
                 this.selectedEditionComplex$ = EMPTY;
             }
@@ -93,7 +109,8 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        // Remove selected edition complex
-        this.editionService.clearSelectedEditionComplex();
+        this._editionStateService.clearSelectedEditionComplex();
+        this._editionStateService.clearSelectedEditionSeries();
+        this._editionStateService.clearSelectedEditionSection();
     }
 }

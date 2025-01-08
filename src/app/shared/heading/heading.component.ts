@@ -11,6 +11,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     templateUrl: 'heading.component.html',
     styleUrls: ['heading.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class HeadingComponent {
     /**

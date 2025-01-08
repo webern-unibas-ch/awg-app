@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
 import { EMPTY, Observable } from 'rxjs';
@@ -13,7 +13,7 @@ import {
     SourceList,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionReport component.
@@ -27,6 +27,7 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
     templateUrl: './edition-report.component.html',
     styleUrls: ['./edition-report.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionReportComponent implements OnInit {
     /**
@@ -70,20 +71,25 @@ export class EditionReportComponent implements OnInit {
     };
 
     /**
-     * Constructor of the EditionReportComponent.
+     * Private readonly injection variable: _editionDataService.
      *
-     * It declares a private EditionDataService instance
-     * to get the report data and a private Router instance.
-     *
-     * @param {EditionDataService} editionDataService Instance of the EditionDataService.
-     * @param {EditionService} editionService Instance of the EditionService.
-     * @param {Router} router Instance of the Router.
+     * It keeps the instance of the injected EditionDataService.
      */
-    constructor(
-        private editionDataService: EditionDataService,
-        private editionService: EditionService,
-        private router: Router
-    ) {}
+    private readonly _editionDataService = inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It keeps the instance of the injected Angular Router.
+     */
+    private readonly _router: any = inject(Router);
 
     /**
      * Getter variable: editionRouteConstants.
@@ -113,22 +119,16 @@ export class EditionReportComponent implements OnInit {
      * @returns {void} Sets the editionReportData observable.
      */
     getEditionReportData(): void {
-        this.editionReportData$ = this.editionService
-            // Get current editionComplex from editionService
-            .getSelectedEditionComplex()
-            .pipe(
-                switchMap((complex: EditionComplex) => {
-                    // Set current editionComplex
-                    this.editionComplex = complex;
-                    // Get intro data from editionDataService
-                    return this.editionDataService.getEditionReportData(this.editionComplex);
-                }),
-                // Error handling
-                catchError(err => {
-                    this.errorObject = err;
-                    return EMPTY;
-                })
-            );
+        this.editionReportData$ = this._editionStateService.getSelectedEditionComplex().pipe(
+            switchMap((complex: EditionComplex) => {
+                this.editionComplex = complex;
+                return this._editionDataService.getEditionReportData(this.editionComplex);
+            }),
+            catchError(err => {
+                this.errorObject = err;
+                return EMPTY;
+            })
+        );
     }
 
     /**
@@ -196,6 +196,6 @@ export class EditionReportComponent implements OnInit {
     private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
         const complexRoute = complexId ? `/edition/complex/${complexId}/` : this.editionComplex.baseRoute;
 
-        this.router.navigate([complexRoute, targetRoute], navigationExtras);
+        this._router.navigate([complexRoute, targetRoute], navigationExtras);
     }
 }

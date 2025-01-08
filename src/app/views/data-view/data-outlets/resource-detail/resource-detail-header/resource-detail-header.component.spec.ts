@@ -84,17 +84,17 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
             });
 
             it('... should contain span in h2.title with compile html component with no inner html yet', () => {
-                const titleDe = getAndExpectDebugElementByCss(compDe, 'div.resource-title > h2.title', 1, 1);
+                const titleDes = getAndExpectDebugElementByCss(compDe, 'div.resource-title > h2.title', 1, 1);
 
-                const htmlDes = getAndExpectDebugElementByDirective(titleDe[0], CompileHtmlComponent, 1, 1);
+                const htmlDes = getAndExpectDebugElementByDirective(titleDes[0], CompileHtmlComponent, 1, 1);
                 expectToBe(htmlDes[0].name, 'span');
 
                 getAndExpectDebugElementByCss(htmlDes[0], 'a', 0, 0);
             });
 
             it('... should contain one div.resource-link (empty yet)', () => {
-                const rLinkDe = getAndExpectDebugElementByCss(compDe, 'div.col-lg-8 > div.resource-link', 1, 1);
-                const rLinkEl = rLinkDe[0].nativeElement;
+                const rLinkDes = getAndExpectDebugElementByCss(compDe, 'div.col-lg-8 > div.resource-link', 1, 1);
+                const rLinkEl: HTMLDivElement = rLinkDes[0].nativeElement;
 
                 expectToContain(rLinkEl.textContent, ' API-Request: ');
             });
@@ -136,7 +136,7 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
                 const expectedTitle = 'Op. 28: Skizzen zu einem "1. Satz" (später 2. Satz [M 330])';
 
                 const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 1, 1);
-                const htmlEl = htmlDes[0].nativeElement;
+                const htmlEl: HTMLElement = htmlDes[0].nativeElement;
 
                 expectToBe(htmlDes[0].name, 'span');
                 expectToContain(htmlEl.textContent, expectedTitle);
@@ -157,10 +157,10 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
                 const lastModDes = getAndExpectDebugElementByCss(tdDes[2], 'span.resource-lastmod', 1, 1);
 
                 // Find native elements
-                const tdEl = tdDes[0].nativeElement;
-                const typeEl = typeDes[0].nativeElement;
-                const imgEl = imgDes[0].nativeElement;
-                const lastModEl = lastModDes[0].nativeElement;
+                const tdEl: HTMLTableCellElement = tdDes[0].nativeElement;
+                const typeEl: HTMLSpanElement = typeDes[0].nativeElement;
+                const imgEl: HTMLImageElement = imgDes[0].nativeElement;
+                const lastModEl: HTMLSpanElement = lastModDes[0].nativeElement;
 
                 // Check output
                 expectToBe(tdEl.textContent, expectedHeader.objID);
@@ -170,8 +170,8 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
             });
 
             it('... should render resourceUrl in div.resource-link', () => {
-                const rLinkDe = getAndExpectDebugElementByCss(compDe, 'div.resource-link', 1, 1);
-                const rLinkEl = rLinkDe[0].nativeElement;
+                const rLinkDes = getAndExpectDebugElementByCss(compDe, 'div.resource-link', 1, 1);
+                const rLinkEl: HTMLDivElement = rLinkDes[0].nativeElement;
 
                 expectToBe(rLinkEl.textContent, ' API-Request: ' + expectedResourceUrl);
             });

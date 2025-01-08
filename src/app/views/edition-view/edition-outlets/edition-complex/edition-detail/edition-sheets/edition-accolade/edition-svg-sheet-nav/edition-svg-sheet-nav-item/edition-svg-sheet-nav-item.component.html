@@ -1,6 +1,8 @@
 <h6 class="card-title">
     {{ navItemLabel }}:
-    @if (!utils.isNotEmptyArray(svgSheets)) {
+    @if (navItemLabel === 'Werkeditionen') {
+        <awg-disclaimer-workeditions></awg-disclaimer-workeditions>
+    } @else if (!utils.isNotEmptyArray(svgSheets)) {
         <span>---</span>
     }
 </h6>
@@ -9,7 +11,10 @@
         <a
             class="btn btn-default w-100 awg-svg-sheet-nav-link card-text text-start"
             [ngClass]="{ active: isSelectedSvgSheet(svgSheet.id), 'text-muted': !isSelectedSvgSheet(svgSheet.id) }"
-            (click)="selectSvgSheet({ complexId: '', sheetId: svgSheet.id })">
+            (click)="selectSvgSheet({ complexId: '', sheetId: svgSheet.id })"
+            (keyup.enter)="selectSvgSheet({ complexId: '', sheetId: svgSheet.id })"
+            role="link"
+            tabindex="0">
             {{ svgSheet.label }}
         </a>
     }
@@ -34,6 +39,11 @@
                                 'text-muted': !isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial),
                             }"
                             (click)="selectSvgSheet({ complexId: '', sheetId: svgSheet.id + svgSheetContent.partial })"
+                            (keyup.enter)="
+                                selectSvgSheet({ complexId: '', sheetId: svgSheet.id + svgSheetContent.partial })
+                            "
+                            role="link"
+                            tabindex="0"
                             >{{ svgSheet.label }}
                             <span class="text-muted">[{{ i + 1 }}/{{ svgSheet.content.length }}]</span></a
                         >

@@ -1,4 +1,4 @@
-/* eslint-disable  @typescript-eslint/naming-convention, no-underscore-dangle, id-blacklist, id-match */
+/* eslint-disable  @typescript-eslint/naming-convention, no-underscore-dangle, no-unused-vars, id-blacklist, id-match */
 
 /**
  * The BibEntry class.

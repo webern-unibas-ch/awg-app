@@ -18,6 +18,7 @@ import {
     templateUrl: './edition-svg-sheet-viewer-switch.component.html',
     styleUrl: './edition-svg-sheet-viewer-switch.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionSvgSheetViewerSwitchComponent implements OnChanges {
     /**

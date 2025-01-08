@@ -10,6 +10,7 @@ import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
+import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { SourceList } from '@awg-views/edition-view/models';
 
@@ -23,6 +24,7 @@ describe('SourceListComponent (DONE)', () => {
     let expectedSourceListData: SourceList;
     let expectedFragment: string;
 
+    let onSourceClickSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
     let openModalRequestEmitSpy: Spy;
@@ -31,7 +33,7 @@ describe('SourceListComponent (DONE)', () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [RouterModule],
-            declarations: [SourceListComponent, CompileHtmlComponent, RouterLinkStubDirective],
+            declarations: [SourceListComponent, CompileHtmlComponent, AbbrDirective, RouterLinkStubDirective],
         }).compileComponents();
     }));
 
@@ -47,12 +49,13 @@ describe('SourceListComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
+        onSourceClickSpy = spyOn(component, 'onSourceClick').and.callThrough();
+        navigateToReportFragmentSpy = spyOn(component as any, '_navigateToReportFragment').and.callThrough();
         navigateToReportFragmentRequestEmitSpy = spyOn(
             component.navigateToReportFragmentRequest,
             'emit'
         ).and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
+        openModalSpy = spyOn(component as any, '_openModal').and.callThrough();
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
     });
 
@@ -156,7 +159,7 @@ describe('SourceListComponent (DONE)', () => {
                             1,
                             1
                         );
-                        const containerEl = containerDes[0].nativeElement;
+                        const containerEl: HTMLSpanElement = containerDes[0].nativeElement;
 
                         const expectedSiglum =
                             expectedSourceListData.sources[index].siglum +
@@ -193,19 +196,19 @@ describe('SourceListComponent (DONE)', () => {
                             1
                         );
 
-                        const anchorDes = getAndExpectDebugElementByCss(containerDes[0], 'a', 1, 1);
-                        const anchorEl = anchorDes[0].nativeElement;
+                        const aDes = getAndExpectDebugElementByCss(containerDes[0], 'a', 1, 1);
+                        const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                        const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 1, 1);
+                        const spanDes = getAndExpectDebugElementByCss(aDes[0], 'span', 1, 1);
 
-                        const siglumDes = spanDes[0];
-                        const siglumEl = siglumDes.nativeElement;
+                        const siglumSpanDes = spanDes[0];
+                        const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
 
                         const expectedSiglum = expectedSourceListData.sources[index].siglum;
 
-                        expectToBe(anchorEl.textContent.trim(), expectedSiglum.trim());
-                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
-                        expect(siglumEl).toHaveClass('awg-source-list-siglum');
+                        expectToBe(aEl.textContent.trim(), expectedSiglum.trim());
+                        expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
+                        expect(siglumSpanEl).toHaveClass('awg-source-list-siglum');
                     });
                 });
 
@@ -235,27 +238,27 @@ describe('SourceListComponent (DONE)', () => {
                             1
                         );
 
-                        const anchorDes = getAndExpectDebugElementByCss(containerDes[0], 'a', 1, 1);
-                        const anchorEl = anchorDes[0].nativeElement;
+                        const aDes = getAndExpectDebugElementByCss(containerDes[0], 'a', 1, 1);
+                        const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                        const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 2, 2);
+                        const spanDes = getAndExpectDebugElementByCss(aDes[0], 'span', 2, 2);
 
-                        const siglumDes = spanDes[0];
-                        const siglumEl = siglumDes.nativeElement;
+                        const siglumSpanDes = spanDes[0];
+                        const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
 
-                        const siglumAddendumDes = spanDes[1];
-                        const siglumAddendumEl = siglumAddendumDes.nativeElement;
+                        const siglumAddendumSpanDes = spanDes[1];
+                        const siglumAddendumSpanEl: HTMLSpanElement = siglumAddendumSpanDes.nativeElement;
 
                         const expectedSiglum = expectedSourceListData.sources[index].siglum;
                         const expectedAddendum = expectedSourceListData.sources[index].siglumAddendum;
 
-                        expectToBe(anchorEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
+                        expectToBe(aEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
 
-                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
-                        expect(siglumEl).toHaveClass('awg-source-list-siglum');
+                        expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
+                        expect(siglumSpanEl).toHaveClass('awg-source-list-siglum');
 
-                        expectToBe(siglumAddendumEl.textContent.trim(), expectedAddendum.trim());
-                        expect(siglumAddendumEl).toHaveClass('awg-source-list-siglum-addendum');
+                        expectToBe(siglumAddendumSpanEl.textContent.trim(), expectedAddendum.trim());
+                        expect(siglumAddendumSpanEl).toHaveClass('awg-source-list-siglum-addendum');
                     });
                 });
 
@@ -284,28 +287,28 @@ describe('SourceListComponent (DONE)', () => {
                             1
                         );
 
-                        const anchorDes = getAndExpectDebugElementByCss(containerDes[0], 'a', 1, 1);
-                        const anchorEl = anchorDes[0].nativeElement;
+                        const aDes = getAndExpectDebugElementByCss(containerDes[0], 'a', 1, 1);
+                        const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                        const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 3, 3);
+                        const spanDes = getAndExpectDebugElementByCss(aDes[0], 'span', 3, 3);
 
-                        const openingBracketDes = spanDes[0];
-                        const siglumDes = spanDes[1];
-                        const closingBracketDes = spanDes[2];
+                        const openingBracketSpanDes = spanDes[0];
+                        const siglumSpanDes = spanDes[1];
+                        const closingBracketSpanDes = spanDes[2];
 
-                        const openingBracketEl = openingBracketDes.nativeElement;
-                        const siglumEl = siglumDes.nativeElement;
-                        const closingBracketEl = closingBracketDes.nativeElement;
+                        const openingBracketSpanEl: HTMLSpanElement = openingBracketSpanDes.nativeElement;
+                        const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
+                        const closingBracketSpanEl: HTMLSpanElement = closingBracketSpanDes.nativeElement;
 
                         const expectedSiglum = expectedSourceListData.sources[index].siglum;
 
-                        expectToBe(anchorEl.textContent.trim(), `[${expectedSiglum}]`);
+                        expectToBe(aEl.textContent.trim(), `[${expectedSiglum}]`);
 
-                        expectToBe(openingBracketEl.textContent.trim(), '[');
-                        expectToBe(closingBracketEl.textContent.trim(), ']');
+                        expectToBe(openingBracketSpanEl.textContent.trim(), '[');
+                        expectToBe(closingBracketSpanEl.textContent.trim(), ']');
 
-                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
-                        expect(siglumEl).toHaveClass('awg-source-list-siglum');
+                        expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
+                        expect(siglumSpanEl).toHaveClass('awg-source-list-siglum');
                     });
                 });
 
@@ -338,34 +341,34 @@ describe('SourceListComponent (DONE)', () => {
                             1
                         );
 
-                        const anchorDes = getAndExpectDebugElementByCss(containerDes[0], 'a', 1, 1);
-                        const anchorEl = anchorDes[0].nativeElement;
+                        const aDes = getAndExpectDebugElementByCss(containerDes[0], 'a', 1, 1);
+                        const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                        const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 4, 4);
+                        const spanDes = getAndExpectDebugElementByCss(aDes[0], 'span', 4, 4);
 
-                        const openingBracketDes = spanDes[0];
-                        const siglumDes = spanDes[1];
-                        const siglumAddendumDes = spanDes[2];
-                        const closingBracketDes = spanDes[3];
+                        const openingBracketSpanDes = spanDes[0];
+                        const siglumSpanDes = spanDes[1];
+                        const siglumAddendumSpanDes = spanDes[2];
+                        const closingBracketSpanDes = spanDes[3];
 
-                        const openingBracketEl = openingBracketDes.nativeElement;
-                        const siglumEl = siglumDes.nativeElement;
-                        const siglumAddendumEl = siglumAddendumDes.nativeElement;
-                        const closingBracketEl = closingBracketDes.nativeElement;
+                        const openingBracketSpanEl: HTMLSpanElement = openingBracketSpanDes.nativeElement;
+                        const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
+                        const siglumAddendumSpanEl: HTMLSpanElement = siglumAddendumSpanDes.nativeElement;
+                        const closingBracketSpanEl: HTMLSpanElement = closingBracketSpanDes.nativeElement;
 
                         const expectedSiglum = expectedSourceListData.sources[index].siglum;
                         const expectedAddendum = expectedSourceListData.sources[index].siglumAddendum;
 
-                        expectToBe(anchorEl.textContent.trim(), `[${expectedSiglum}${expectedAddendum}]`);
+                        expectToBe(aEl.textContent.trim(), `[${expectedSiglum}${expectedAddendum}]`);
 
-                        expectToBe(openingBracketEl.textContent.trim(), '[');
-                        expectToBe(closingBracketEl.textContent.trim(), ']');
+                        expectToBe(openingBracketSpanEl.textContent.trim(), '[');
+                        expectToBe(closingBracketSpanEl.textContent.trim(), ']');
 
-                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
-                        expect(siglumEl).toHaveClass('awg-source-list-siglum');
+                        expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
+                        expect(siglumSpanEl).toHaveClass('awg-source-list-siglum');
 
-                        expectToBe(siglumAddendumEl.textContent.trim(), expectedAddendum.trim());
-                        expect(siglumAddendumEl).toHaveClass('awg-source-list-siglum-addendum');
+                        expectToBe(siglumAddendumSpanEl.textContent.trim(), expectedAddendum.trim());
+                        expect(siglumAddendumSpanEl).toHaveClass('awg-source-list-siglum-addendum');
                     });
                 });
 
@@ -388,14 +391,14 @@ describe('SourceListComponent (DONE)', () => {
                     const expectedSourcesLength = expectedSourceListData.sources.length;
                     const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
 
-                    const anchorDes = getAndExpectDebugElementByCss(
+                    const aDes = getAndExpectDebugElementByCss(
                         tableBodyDes[0],
                         'tr > th > span.awg-source-list-siglum-container > a',
                         expectedSourcesLength,
                         expectedSourcesLength
                     );
 
-                    clickAndAwaitChanges(anchorDes[0], fixture);
+                    clickAndAwaitChanges(aDes[0], fixture);
 
                     expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: 'source_A' });
                 }));
@@ -419,14 +422,14 @@ describe('SourceListComponent (DONE)', () => {
                     const expectedSourcesLength = expectedSourceListData.sources.length;
                     const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
 
-                    const anchorDes = getAndExpectDebugElementByCss(
+                    const aDes = getAndExpectDebugElementByCss(
                         tableBodyDes[0],
                         'tr > th > span.awg-source-list-siglum-container > a',
                         expectedSourcesLength,
                         expectedSourcesLength
                     );
 
-                    clickAndAwaitChanges(anchorDes[0], fixture);
+                    clickAndAwaitChanges(aDes[0], fixture);
 
                     expectSpyCall(openModalSpy, 1, 'MODAL_TEXT');
                 }));
@@ -469,21 +472,21 @@ describe('SourceListComponent (DONE)', () => {
 
                         const spanDes = getAndExpectDebugElementByCss(containerDes[0], 'span', 3, 3);
 
-                        const openingBracketDes = spanDes[0];
-                        const siglumDes = spanDes[1];
-                        const closingBracketDes = spanDes[2];
+                        const openingBracketSpanDes = spanDes[0];
+                        const siglumSpanDes = spanDes[1];
+                        const closingBracketSpanDes = spanDes[2];
 
-                        const openingBracketEl = openingBracketDes.nativeElement;
-                        const siglumEl = siglumDes.nativeElement;
-                        const closingBracketEl = closingBracketDes.nativeElement;
+                        const openingBracketSpanEl: HTMLSpanElement = openingBracketSpanDes.nativeElement;
+                        const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
+                        const closingBracketSpanEl: HTMLSpanElement = closingBracketSpanDes.nativeElement;
 
                         const expectedSiglum = expectedSourceListData.sources[index].siglum;
 
-                        expectToBe(openingBracketEl.textContent.trim(), '[');
-                        expectToBe(closingBracketEl.textContent.trim(), ']');
+                        expectToBe(openingBracketSpanEl.textContent.trim(), '[');
+                        expectToBe(closingBracketSpanEl.textContent.trim(), ']');
 
-                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
-                        expect(siglumEl).toHaveClass('awg-source-list-siglum');
+                        expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
+                        expect(siglumSpanEl).toHaveClass('awg-source-list-siglum');
                     });
                 });
 
@@ -500,8 +503,8 @@ describe('SourceListComponent (DONE)', () => {
                         const columnDes = getAndExpectDebugElementByCss(rowDe, 'td', 1, 1);
 
                         const spanDes = getAndExpectDebugElementByCss(columnDes[0], 'span', 2, 2);
-                        const spanEl0 = spanDes[0].nativeElement;
-                        const spanEl1 = spanDes[1].nativeElement;
+                        const spanEl0: HTMLSpanElement = spanDes[0].nativeElement;
+                        const spanEl1: HTMLSpanElement = spanDes[1].nativeElement;
 
                         expectToBe(spanEl0.textContent, expectedSourceListData.sources[index].type);
                         expectToBe(spanEl1.textContent, expectedSourceListData.sources[index].location);
@@ -528,7 +531,7 @@ describe('SourceListComponent (DONE)', () => {
                     const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
                     const firstTrDes = getAndExpectDebugElementByCss(tableBodyDes[1], 'tr:first-child', 1, 1);
-                    const firstTrEl = firstTrDes[0].nativeElement;
+                    const firstTrEl: HTMLTableRowElement = firstTrDes[0].nativeElement;
 
                     expectToBe(firstTrEl.textContent, 'Zum vertonten Text:');
                 });
@@ -576,7 +579,7 @@ describe('SourceListComponent (DONE)', () => {
                             return;
                         }
                         const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
-                        const columnEl = columnDes[0].nativeElement;
+                        const columnEl: HTMLTableCellElement = columnDes[0].nativeElement;
 
                         const expectedId = expectedSourceListData.textSources[index - 1].id;
 
@@ -602,19 +605,19 @@ describe('SourceListComponent (DONE)', () => {
 
                         const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
 
-                        const containerDes = getAndExpectDebugElementByCss(
+                        const containerSpanDes = getAndExpectDebugElementByCss(
                             columnDes[0],
                             'span.awg-source-list-text-siglum-container',
                             1,
                             1
                         );
-                        const containerEl = containerDes[0].nativeElement;
+                        const containerSpanEl: HTMLSpanElement = containerSpanDes[0].nativeElement;
 
                         const expectedSiglum =
                             expectedSourceListData.textSources[index - 1].siglum +
                             expectedSourceListData.textSources[index - 1].siglumAddendum;
 
-                        expectToBe(containerEl.textContent.trim(), expectedSiglum.trim());
+                        expectToBe(containerSpanEl.textContent.trim(), expectedSiglum.trim());
                     });
                 });
 
@@ -641,31 +644,32 @@ describe('SourceListComponent (DONE)', () => {
                         }
                         const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
 
-                        const containerDes = getAndExpectDebugElementByCss(
+                        const containerSpanDes = getAndExpectDebugElementByCss(
                             columnDes[0],
                             'span.awg-source-list-text-siglum-container',
                             1,
                             1
                         );
-                        const containerEl = containerDes[0].nativeElement;
-                        const spanDes = getAndExpectDebugElementByCss(containerDes[0], 'span', 2, 2);
+                        const containerSpanEl: HTMLSpanElement = containerSpanDes[0].nativeElement;
 
-                        const siglumDes = spanDes[0];
-                        const siglumEl = siglumDes.nativeElement;
+                        const spanDes = getAndExpectDebugElementByCss(containerSpanDes[0], 'span', 2, 2);
 
-                        const siglumAddendumDes = spanDes[1];
-                        const siglumAddendumEl = siglumAddendumDes.nativeElement;
+                        const siglumSpanDes = spanDes[0];
+                        const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
+
+                        const siglumAddendumSpanDes = spanDes[1];
+                        const siglumAddendumSpanEl: HTMLSpanElement = siglumAddendumSpanDes.nativeElement;
 
                         const expectedSiglum = expectedSourceListData.textSources[index - 1].siglum;
                         const expectedAddendum = expectedSourceListData.textSources[index - 1].siglumAddendum;
 
-                        expectToBe(containerEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
+                        expectToBe(containerSpanEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
 
-                        expect(siglumEl).toHaveClass('awg-source-list-text-siglum');
-                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
+                        expect(siglumSpanEl).toHaveClass('awg-source-list-text-siglum');
+                        expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
 
-                        expect(siglumAddendumEl).toHaveClass('awg-source-list-text-siglum-addendum');
-                        expectToBe(siglumAddendumEl.textContent.trim(), expectedAddendum.trim());
+                        expect(siglumAddendumSpanEl).toHaveClass('awg-source-list-text-siglum-addendum');
+                        expectToBe(siglumAddendumSpanEl.textContent.trim(), expectedAddendum.trim());
                     });
                 });
 
@@ -687,8 +691,8 @@ describe('SourceListComponent (DONE)', () => {
                         const columnDes = getAndExpectDebugElementByCss(rowDe, 'td', 1, 1);
 
                         const spanDes = getAndExpectDebugElementByCss(columnDes[0], 'span', 2, 2);
-                        const spanEl0 = spanDes[0].nativeElement;
-                        const spanEl1 = spanDes[1].nativeElement;
+                        const spanEl0: HTMLSpanElement = spanDes[0].nativeElement;
+                        const spanEl1: HTMLSpanElement = spanDes[1].nativeElement;
 
                         expectToBe(spanEl0.textContent, expectedSourceListData.textSources[index - 1].type);
                         expectToBe(spanEl1.textContent, expectedSourceListData.textSources[index - 1].location);
@@ -697,52 +701,93 @@ describe('SourceListComponent (DONE)', () => {
             });
         });
 
-        describe('#navigateToReportFragment()', () => {
-            it('... should have a method `navigateToReportFragment`', () => {
-                expect(component.navigateToReportFragment).toBeDefined();
+        describe('#onSourceClick()', () => {
+            it('... should have a method `onSourceClick`', () => {
+                expect(component.onSourceClick).toBeDefined();
             });
 
             it('... should trigger on click', fakeAsync(() => {
                 const expectedSourcesLength = expectedSourceListData.sources.length;
                 const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
 
-                const anchorDes = getAndExpectDebugElementByCss(
+                const aDes = getAndExpectDebugElementByCss(
                     tableBodyDes[0],
                     'tr > th > span.awg-source-list-siglum-container > a',
                     expectedSourcesLength,
                     expectedSourcesLength
                 );
 
-                // Everything but first anchor uses modal
-                // Click on first anchor
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                aDes.forEach((anchorDe, index) => {
+                    clickAndAwaitChanges(anchorDe, fixture);
+
+                    expectSpyCall(onSourceClickSpy, index + 1, expectedSourceListData.sources[index]);
+                });
+            }));
+
+            it('... should call `_navigateToReportFragment` if `source.hasDescription` is given', () => {
+                const source = expectedSourceListData.sources[0];
+
+                // Call with a source that has description
+                component.onSourceClick(source);
+
+                expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: source.linkTo });
+                expect(openModalSpy).not.toHaveBeenCalled();
+            });
+
+            it('... should call `_openModal` if `source.hasDescription` is not given', () => {
+                let source = expectedSourceListData.sources[1];
+
+                // Call with a source that has no description
+                component.onSourceClick(source);
+
+                expectSpyCall(openModalSpy, 1, source.linkTo);
+                expect(navigateToReportFragmentSpy).not.toHaveBeenCalled();
+
+                source = expectedSourceListData.sources[2];
+
+                component.onSourceClick(source);
+
+                expectSpyCall(openModalSpy, 2, source.linkTo);
+                expect(navigateToReportFragmentSpy).not.toHaveBeenCalled();
+            });
+        });
+
+        describe('#_navigateToReportFragment()', () => {
+            it('... should have a method `_navigateToReportFragment`', () => {
+                expect((component as any)._navigateToReportFragment).toBeDefined();
+            });
+
+            it('... should trigger from `onSourceClick` method', fakeAsync(() => {
+                const source = expectedSourceListData.sources[0];
+
+                component.onSourceClick(source);
 
                 expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: expectedFragment });
             }));
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
-                    component.navigateToReportFragment(undefined);
+                it('... parameter is undefined', () => {
+                    (component as any)._navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
                 it('... parameter is null', () => {
-                    component.navigateToReportFragment(null);
+                    (component as any)._navigateToReportFragment(null);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
                 it('... fragment id is undefined', () => {
-                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
+                    (component as any)._navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
                 it('... fragment id is null', () => {
-                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
+                    (component as any)._navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
                 it('... fragment id is empty string', () => {
-                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
+                    (component as any)._navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
@@ -750,80 +795,73 @@ describe('SourceListComponent (DONE)', () => {
 
             it('... should emit id of selected report fragment within same complex', () => {
                 const expectedReportIds = { complexId: 'testComplex', fragmentId: expectedFragment };
-                component.navigateToReportFragment(expectedReportIds);
+                (component as any)._navigateToReportFragment(expectedReportIds);
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
 
                 const otherFragment = 'source_B';
                 const expectedNextReportIds = { complexId: 'testComplex', fragmentId: otherFragment };
-                component.navigateToReportFragment(expectedNextReportIds);
+                (component as any)._navigateToReportFragment(expectedNextReportIds);
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
             });
 
             it('... should emit id of selected report fragment for another complex', () => {
                 const expectedReportIds = { complexId: 'testComplex', fragmentId: expectedFragment };
-                component.navigateToReportFragment(expectedReportIds);
+                (component as any)._navigateToReportFragment(expectedReportIds);
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
 
                 const otherFragment = 'source_B';
                 const expectedNextReportIds = { complexId: 'anotherTestComplex', fragmentId: otherFragment };
-                component.navigateToReportFragment(expectedNextReportIds);
+                (component as any)._navigateToReportFragment(expectedNextReportIds);
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
             });
         });
 
-        describe('#openModal()', () => {
-            it('... should have a method `openModal`', () => {
-                expect(component.openModal).toBeDefined();
+        describe('#_openModal()', () => {
+            it('... should have a method `_openModal`', () => {
+                expect((component as any)._openModal).toBeDefined();
             });
 
-            it('... should trigger on click', fakeAsync(() => {
-                const expectedSourcesLength = expectedSourceListData.sources.length;
-                const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
+            it('... should trigger from `onSourceClick` method', fakeAsync(() => {
+                let source = expectedSourceListData.sources[1];
 
-                const anchorDes = getAndExpectDebugElementByCss(
-                    tableBodyDes[0],
-                    'tr > th > span.awg-source-list-siglum-container > a',
-                    expectedSourcesLength,
-                    expectedSourcesLength
-                );
+                component.onSourceClick(source);
 
-                // Everything but first anchor uses modal
-                // Click on second anchor
-                clickAndAwaitChanges(anchorDes[1], fixture);
+                expectSpyCall(openModalSpy, 1, source.linkTo);
+                expect(navigateToReportFragmentSpy).not.toHaveBeenCalled();
 
-                expectSpyCall(openModalSpy, 1, expectedSourceListData.sources[1].linkTo);
+                source = expectedSourceListData.sources[2];
 
-                // Click on third anchor
-                clickAndAwaitChanges(anchorDes[2], fixture);
+                component.onSourceClick(source);
 
-                expectSpyCall(openModalSpy, 2, expectedSourceListData.sources[2].linkTo);
+                expectSpyCall(openModalSpy, 2, source.linkTo);
+                expect(navigateToReportFragmentSpy).not.toHaveBeenCalled();
             }));
 
             describe('... should not emit anything if ', () => {
                 it('... id is undefined', () => {
-                    component.openModal(undefined);
+                    (component as any)._openModal(undefined);
 
                     expectSpyCall(openModalRequestEmitSpy, 0);
                 });
 
                 it('... id is null', () => {
-                    component.openModal(undefined);
+                    (component as any)._openModal(undefined);
 
                     expectSpyCall(openModalRequestEmitSpy, 0, null);
                 });
                 it('... id is empty string', () => {
-                    component.openModal('');
+                    (component as any)._openModal('');
 
                     expectSpyCall(openModalRequestEmitSpy, 0);
                 });
             });
 
             it('... should emit id of given modal snippet', () => {
-                component.openModal(expectedSourceListData.sources[2].linkTo);
+                (component as any)._openModal(expectedSourceListData.sources[2].linkTo);
 
                 expectSpyCall(openModalRequestEmitSpy, 1, expectedSourceListData.sources[2].linkTo);
             });

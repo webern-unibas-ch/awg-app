@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { LOGOSDATA } from '@awg-core/core-data';
+import { LOGOS_DATA } from '@awg-core/core-data';
 import { Logo } from '@awg-core/core-models';
 
 /**
@@ -13,6 +13,7 @@ import { Logo } from '@awg-core/core-models';
     templateUrl: './footer-logo.component.html',
     styleUrls: ['./footer-logo.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class FooterLogoComponent {
     /**
@@ -33,9 +34,9 @@ export class FooterLogoComponent {
      * @returns {string} The class list for the logo.
      */
     getLogoClass(id: string): string {
-        const isSnfLogo = id === LOGOSDATA['snf'].id;
-        const isUnibasLogo = id === LOGOSDATA['unibas'].id;
-        const isSagwLogo = id === LOGOSDATA['sagw'].id;
+        const isSnfLogo = id === LOGOS_DATA['snf'].id;
+        const isUnibasLogo = id === LOGOS_DATA['unibas'].id;
+        const isSagwLogo = id === LOGOS_DATA['sagw'].id;
 
         let classList = '';
         if (isUnibasLogo || isSnfLogo || isSagwLogo) {

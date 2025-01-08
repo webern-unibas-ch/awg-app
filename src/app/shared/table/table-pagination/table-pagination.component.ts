@@ -11,6 +11,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
     templateUrl: './table-pagination.component.html',
     styleUrls: ['./table-pagination.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class TablePaginationComponent {
     /**

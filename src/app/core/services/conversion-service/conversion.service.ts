@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -71,19 +71,21 @@ export class ConversionService extends ApiService {
     filteredOut: number;
 
     /**
+     * Private readonly injection variable: _utils.
+     *
+     * It keeps the instance of the injected UtilityService.
+     */
+    private readonly _utils = inject(UtilityService);
+
+    /**
      * Constructor of the ConversionService.
      *
      * It declares a public {@link HttpClient} instance
-     * with a super reference to base class (ApiService)
-     * and a private {@link UtilityService} instance.
+     * with a super reference to base class (ApiService).
      *
      * @param {HttpClient} http Instance of the HttpClient.
-     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor(
-        public override http: HttpClient,
-        private utils: UtilityService
-    ) {
+    constructor(public override http: HttpClient) {
         super(http);
     }
 
@@ -153,7 +155,7 @@ export class ConversionService extends ApiService {
             let propValue = []; // Empty text value array
 
             // Check if values property is defined
-            if (prop.hasOwnProperty('values') && prop.values !== undefined) {
+            if (Object.prototype.hasOwnProperty.call(prop, 'values') && prop.values !== undefined) {
                 // Check for gui-elements
                 switch (prop.valuetype_id) {
                     case '4':
@@ -166,7 +168,7 @@ export class ConversionService extends ApiService {
                     case '7':
                         // SELECTION PULLDOWN: selection nodes have to be read seperately
                         // TODO
-                        if (this.utils.isNotEmptyArray(prop.values)) {
+                        if (this._utils.isNotEmptyArray(prop.values)) {
                             propValue = this._convertSelectionValues(prop.values, prop.attributes);
                         }
                         break; // END selection
@@ -469,11 +471,10 @@ export class ConversionService extends ApiService {
      * of an accessible resource to be displayed via HTML.
      *
      * @param {PropertyJson} prop The given property.
-     * @param {string} [url] A given optional url.
      *
      * @returns {PropertyJson} The converted property.
      */
-    private _addHtmlValues(prop: PropertyJson, url?: string): PropertyJson {
+    private _addHtmlValues(prop: PropertyJson): PropertyJson {
         prop.toHtml = [];
 
         if (prop.values) {
@@ -943,7 +944,7 @@ export class ConversionService extends ApiService {
             const resTextContent = regArr.at(-1);
 
             // Replace href attribute with click-directive
-            const replaceValue = `<a (click)="ref.navigateToResource(\'${resId}\'); $event.stopPropagation()">${resTextContent}</a>`;
+            const replaceValue = `<a (click)="ref.navigateToResource('${resId}'); $event.stopPropagation()">${resTextContent}</a>`;
 
             str = str.replace(regArr[0], replaceValue);
         }

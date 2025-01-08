@@ -4,7 +4,7 @@ import {
     EditionSvgOverlay,
     EditionSvgSheet,
     EditionSvgSheetList,
-    TextcriticalCommentBlock,
+    TextcriticalCommentary,
     Textcritics,
 } from '@awg-views/edition-view/models';
 
@@ -22,8 +22,17 @@ import {
     templateUrl: './edition-accolade.component.html',
     styleUrls: ['./edition-accolade.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionAccoladeComponent {
+    /**
+     * Input variable: isFullscreen.
+     *
+     * It keeps the fullscreen mode status.
+     */
+    @Input()
+    isFullscreen: boolean;
+
     /**
      * Input variable: svgSheetsData.
      *
@@ -41,12 +50,12 @@ export class EditionAccoladeComponent {
     selectedSvgSheet: EditionSvgSheet;
 
     /**
-     * Input variable: selectedTextcriticalCommentBlocks.
+     * Input variable: selectedTextcriticalCommentary.
      *
-     * It keeps the selected textcritical comment blocks.
+     * It keeps the selected textcritical commentary.
      */
     @Input()
-    selectedTextcriticalCommentBlocks: TextcriticalCommentBlock[];
+    selectedTextcriticalCommentary: TextcriticalCommentary;
 
     /**
      * Input variable: selectedTextcritics.
@@ -71,6 +80,14 @@ export class EditionAccoladeComponent {
      */
     @Output()
     browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
+
+    /**
+     * Output variable: fullscreenToggleRequest.
+     *
+     * It keeps an event emitter for the fullscreen toggle.
+     */
+    @Output()
+    fullscreenToggleRequest: EventEmitter<boolean> = new EventEmitter();
 
     /**
      * Output variable: navigateToReportFragment.
@@ -128,6 +145,23 @@ export class EditionAccoladeComponent {
             return;
         }
         this.browseSvgSheetRequest.emit(direction);
+    }
+
+    /**
+     * Public method: fullscreenToggle.
+     *
+     * It emits a given boolean to the {@link fullscreenToggleRequest}
+     * to toggle the fullscreen mode.
+     *
+     * @param {boolean} isFullscreen A boolean indicating the fullscreen mode.
+     *
+     * @returns {void} Emits the boolean.
+     */
+    fullscreenToggle(isFullscreen: boolean): void {
+        if (isFullscreen === undefined) {
+            return;
+        }
+        this.fullscreenToggleRequest.emit(isFullscreen);
     }
 
     /**

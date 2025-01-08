@@ -12,6 +12,7 @@ import { MetaPage } from '@awg-core/core-models';
     templateUrl: './footer-copyright.component.html',
     styleUrls: ['./footer-copyright.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class FooterCopyrightComponent {
     /**

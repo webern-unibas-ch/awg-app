@@ -2,6 +2,7 @@ import {
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
+    inject,
     Input,
     OnChanges,
     OnDestroy,
@@ -27,6 +28,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
     templateUrl: './fulltext-search-form.component.html',
     styleUrls: ['./fulltext-search-form.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy {
     /**
@@ -71,20 +73,18 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
     };
 
     /**
-     * Private variable: _destroyed$.
+     * Private readonly variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroyed$: Subject<boolean> = new Subject<boolean>();
+    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Constructor of the FulltextSearchFormComponent.
+     * Private readonly injection variable: _formBuilder.
      *
-     * It declares a private FormBuilder instance.
-     *
-     * @param {FormBuilder} formBuilder Instance of the FormBuilder.
+     * It keeps the instance of the injected Angular FormBuilder.
      */
-    constructor(private formBuilder: FormBuilder) {}
+    private readonly _formBuilder = inject(FormBuilder);
 
     /**
      * Getter for the search value control value.
@@ -128,7 +128,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      * @returns {void} Creates the search form.
      */
     createFulltextSearchForm(): void {
-        this.fulltextSearchForm = this.formBuilder.group({
+        this.fulltextSearchForm = this._formBuilder.group({
             searchvalControl: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
         });
     }

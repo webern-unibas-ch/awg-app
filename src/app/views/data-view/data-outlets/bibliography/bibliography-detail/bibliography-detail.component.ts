@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,6 +18,7 @@ import { BibEntry } from '../bibliography-entry.model';
     selector: 'awg-bibliography-detail',
     templateUrl: './bibliography-detail.component.html',
     styleUrls: ['./bibliography-detail.component.scss'],
+    standalone: false,
 })
 export class BibliographyDetailComponent implements OnInit {
     /**
@@ -36,19 +37,18 @@ export class BibliographyDetailComponent implements OnInit {
     bibEntry$: Observable<BibEntry>;
 
     /**
-     * Constructor of the BibliographyDetailComponent.
+     * Private readonly injection variable: _bibliographyService.
      *
-     * It declares a private BibliographyService instance
-     * to get the bibliography item detail
-     * and a private ConversionService instance.
-     *
-     * @param {BibliographyService} bibliographyService Instance of the BibliographyService.
-     * @param {ConversionService} conversionService Instance of the ConversionService.
+     * It keeps the instance of the injected BibliographyService.
      */
-    constructor(
-        private bibliographyService: BibliographyService,
-        private conversionService: ConversionService
-    ) {}
+    private readonly _bibliographyService = inject(BibliographyService);
+
+    /**
+     * Private readonly injection variable: _conversionService.
+     *
+     * It keeps the instance of the injected ConversionService.
+     */
+    private readonly _conversionService = inject(ConversionService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -69,8 +69,8 @@ export class BibliographyDetailComponent implements OnInit {
      * @returns {void} Sets the bibEntry observable.
      */
     getBibEntry(id: string): void {
-        this.bibEntry$ = this.bibliographyService
+        this.bibEntry$ = this._bibliographyService
             .getBibliographyItemDetail(id)
-            .pipe(map((data: ResourceFullResponseJson) => this.conversionService.convertObjectProperties(data)));
+            .pipe(map((data: ResourceFullResponseJson) => this._conversionService.convertObjectProperties(data)));
     }
 }

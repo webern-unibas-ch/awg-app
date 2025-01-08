@@ -19,7 +19,7 @@ describe('EditionTkaLabelComponent (DONE)', () => {
     let isSketchIdSpy: Spy;
 
     let expectedId: string;
-    let expectedLabelType: 'evaluation' | 'comment';
+    let expectedLabelType: 'evaluation' | 'commentary';
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -93,7 +93,7 @@ describe('EditionTkaLabelComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
 
                     const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
-                    const spanEl = spanDes[0].nativeElement;
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                     expectToBe(spanEl.textContent.trim(), 'Quellenbewertung');
                 });
@@ -104,15 +104,15 @@ describe('EditionTkaLabelComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
 
                     const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
-                    const spanEl = spanDes[0].nativeElement;
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                     expectToBe(spanEl.textContent.trim(), 'Skizzenkommentar');
                 });
             });
 
-            describe('WHEN `labelType` is `comment`', () => {
+            describe('WHEN `labelType` is `commentary`', () => {
                 beforeEach(() => {
-                    component.labelType = 'comment';
+                    component.labelType = 'commentary';
 
                     detectChangesOnPush(fixture);
                 });
@@ -123,7 +123,7 @@ describe('EditionTkaLabelComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
 
                     const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
-                    const spanEl = spanDes[0].nativeElement;
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                     expectToBe(spanEl.textContent.trim(), 'Textkritische Anmerkungen');
                 });
@@ -134,7 +134,7 @@ describe('EditionTkaLabelComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
 
                     const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
-                    const spanEl = spanDes[0].nativeElement;
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                     expectToBe(spanEl.textContent.trim(), 'Textkritische Kommentare');
                 });

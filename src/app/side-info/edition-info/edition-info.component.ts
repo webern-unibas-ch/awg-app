@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
-import { EditionComplexesService } from '@awg-core/services';
-import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionComplex } from '@awg-views/edition-view/models';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EditionOutlineComplexItem, EditionOutlineSection } from '@awg-views/edition-view/models';
+import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionInfo component.
@@ -13,9 +13,9 @@ import { EditionComplex } from '@awg-views/edition-view/models';
     selector: 'awg-edition-info',
     templateUrl: './edition-info.component.html',
     styleUrls: ['./edition-info.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
-export class EditionInfoComponent {
+export class EditionInfoComponent implements OnInit {
     /**
      * Public variable: editionInfoHeader.
      *
@@ -24,30 +24,28 @@ export class EditionInfoComponent {
     editionInfoHeader = 'Edition';
 
     /**
-     * Readonly variable: DISPLAYED_EDITION_COMPLEXES.
+     * Public variable: selectedEditionSection$.
      *
-     * It keeps the array of displayed edition complexes.
+     * It keeps the selected section of the edition as an Observable of EditionOutlineSection.
      */
-    readonly DISPLAYED_EDITION_COMPLEXES: EditionComplex[] = [
-        EditionComplexesService.getEditionComplexById('OP3'),
-        EditionComplexesService.getEditionComplexById('OP4'),
-        EditionComplexesService.getEditionComplexById('OP12'),
-        EditionComplexesService.getEditionComplexById('OP23'),
-        EditionComplexesService.getEditionComplexById('OP25'),
-        EditionComplexesService.getEditionComplexById('M22'),
-        EditionComplexesService.getEditionComplexById('M30'),
-        EditionComplexesService.getEditionComplexById('M31'),
-        EditionComplexesService.getEditionComplexById('M34'),
-        EditionComplexesService.getEditionComplexById('M35_42'),
-        EditionComplexesService.getEditionComplexById('M37'),
+    selectedEditionSection: EditionOutlineSection;
+
+    /**
+     * Readonly variable: DISPLAYED_SECTIONS.
+     *
+     * It keeps the array of displayed sections.
+     */
+    readonly DISPLAYED_SECTIONS = [
+        EditionOutlineService.getEditionSectionById('1', '5'),
+        EditionOutlineService.getEditionSectionById('2', '2a'),
     ];
 
     /**
-     * Readonly variable: SLICE_INDEX.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It keeps the index for the slice of edition complexes.
+     * It keeps the instance of the injected EditionStateService.
      */
-    readonly SLICE_INDEX = 5;
+    private readonly _editionStateService = inject(EditionStateService);
 
     /**
      * Getter variable: editionRouteConstants.
@@ -59,11 +57,42 @@ export class EditionInfoComponent {
     }
 
     /**
-     * Getter variable: editionTypeConstants.
+     * Angular life cycle hook: ngOnInit.
      *
-     *  It returns the EDITION_TYPE_CONSTANTS.
-     **/
-    get editionTypeConstants(): typeof EDITION_TYPE_CONSTANTS {
-        return EDITION_TYPE_CONSTANTS;
+     * It calls the containing methods
+     * when initializing the component.
+     */
+    ngOnInit() {
+        this.setupEditionView();
+    }
+
+    /**
+     * Public method: setupEditionView.
+     *
+     * It sets up the edition view by loading
+     * the selected series, section, and edition complex
+     * from the EditionStateService.
+     *
+     * @returns {void} Sets up the edition view.
+     */
+    setupEditionView(): void {
+        this._editionStateService.getSelectedEditionSection().subscribe(section => {
+            this.selectedEditionSection = section;
+        });
+    }
+
+    /**
+     * Public method: combineComplexes.
+     *
+     * It combines the opus and mnr complexes of a section.
+     *
+     * @param section {EditionOutlineSection} The edition outline section.
+     *
+     * @returns {EditionOutlineComplexItem[]} The combined complexes.
+     */
+    combineComplexes(section: EditionOutlineSection): EditionOutlineComplexItem[] {
+        const opusComplexes = section?.content?.complexTypes?.opus || [];
+        const mnrComplexes = section?.content?.complexTypes?.mnr || [];
+        return [...opusComplexes, ...mnrComplexes];
     }
 }

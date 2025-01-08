@@ -48,6 +48,7 @@ describe('FolioService (DONE)', () => {
     let expectedConvolutes: FolioConvolute[];
     let expectedFolioSettings: FolioSettings;
     let expectedFolioSvgData: FolioSvgData;
+    let expectedDefaultFolio: Folio;
     let expectedReversedFolio: Folio;
 
     let expectedUpperLeftCorner: FolioCalculationPoint;
@@ -81,6 +82,7 @@ describe('FolioService (DONE)', () => {
 
         // Test data
         expectedConvolutes = JSON.parse(JSON.stringify(mockEditionData.mockFolioConvoluteData.convolutes));
+        expectedDefaultFolio = expectedConvolutes[0].folios[0];
         expectedReversedFolio = JSON.parse(JSON.stringify(mockEditionData.mockReversedFolio));
         expectedFolioSettings = {
             factor: 1.5,
@@ -109,11 +111,7 @@ describe('FolioService (DONE)', () => {
         expectedLowerRightCorner = new FolioCalculationPoint(30, 40);
 
         expectedFolioSvgData = new FolioSvgData(
-            new FolioCalculation(
-                expectedFolioSettings,
-                expectedConvolutes[0].folios[0],
-                expectedContentSegmentOffsetCorrection
-            )
+            new FolioCalculation(expectedFolioSettings, expectedDefaultFolio, expectedContentSegmentOffsetCorrection)
         );
 
         // Spies on service functions
@@ -257,7 +255,7 @@ describe('FolioService (DONE)', () => {
         it('... should return an instance of FolioSvgData object', () => {
             // Create mock FolioSettings and Folio objects
             const folioSettings: FolioSettings = expectedFolioSettings;
-            const folio: Folio = expectedConvolutes[0].folios[0];
+            const folio: Folio = expectedDefaultFolio;
 
             // Call the method with the mock objects
             const result = folioService.getFolioSvgData(folioSettings, folio);
@@ -269,8 +267,7 @@ describe('FolioService (DONE)', () => {
         it('... should create a new FolioCalculation object with the correct parameters', () => {
             // Create mock FolioSettings and Folio objects
             const folioSettings: FolioSettings = expectedFolioSettings;
-            const folio: Folio = expectedConvolutes[0].folios[0];
-
+            const folio: Folio = expectedDefaultFolio;
             const result = folioService.getFolioSvgData(folioSettings, folio);
 
             expectToEqual(result, expectedFolioSvgData);
@@ -279,7 +276,7 @@ describe('FolioService (DONE)', () => {
         it('... should create a new FolioCalculation object when contentSegmentOffsetCorrection is undefined', () => {
             // Create mock FolioSettings and Folio objects
             const folioSettings: FolioSettings = expectedFolioSettings;
-            const folio: Folio = expectedConvolutes[0].folios[0];
+            const folio: Folio = expectedDefaultFolio;
 
             const expectedFolioSvgDataWithoutOffset = new FolioSvgData(new FolioCalculation(folioSettings, folio, 0));
 
@@ -751,7 +748,7 @@ describe('FolioService (DONE)', () => {
             it('... should append one link element to each content segment group', () => {
                 const contentSegmentGroups = svgSheetGroup.selectAll('g.content-segment-group').nodes();
 
-                contentSegmentGroups.forEach((contentSegmentGroup, i) => {
+                contentSegmentGroups.forEach(contentSegmentGroup => {
                     const group = D3_SELECTION.select(contentSegmentGroup);
                     const contentSegmentLink = group.select('a');
 
@@ -780,7 +777,7 @@ describe('FolioService (DONE)', () => {
             it('... should append one polygon element to each content segment link', () => {
                 const contentSegmentGroups = svgSheetGroup.selectAll('g.content-segment-group').nodes();
 
-                contentSegmentGroups.forEach((contentSegmentGroup, i) => {
+                contentSegmentGroups.forEach(contentSegmentGroup => {
                     const group = D3_SELECTION.select(contentSegmentGroup);
                     const contentSegmentLink = group.select('a');
                     const polygonElement = contentSegmentLink.select('polygon');
@@ -1910,7 +1907,7 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should only have specified attributes', () => {
-                systemArray.forEach((_line, index) => {
+                systemArray.forEach(() => {
                     const lineElement = systemsGroup.select('line');
 
                     const expectedAttributes = ['class', 'x1', 'y1', 'x2', 'y2', 'stroke', 'stroke-width'].map(attr =>

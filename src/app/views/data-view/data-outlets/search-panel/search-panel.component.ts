@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Params, Router } from '@angular/router';
 
 import { EMPTY, Observable, Subject } from 'rxjs';
@@ -25,6 +25,7 @@ import { DataApiService } from '@awg-views/data-view/services';
     selector: 'awg-search-panel',
     templateUrl: './search-panel.component.html',
     styleUrls: ['./search-panel.component.scss'],
+    standalone: false,
 })
 export class SearchPanelComponent implements OnInit, OnDestroy {
     /**
@@ -80,32 +81,46 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     viewChanged = false;
 
     /**
-     * Private variable: _destroyed$.
+     * Private readonly variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroyed$: Subject<boolean> = new Subject<boolean>();
+    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Constructor of the SearchPanelComponent.
+     * Private readonly injection variable: _dataApiService.
      *
-     * It declares private instances of the Angular ActivatedRoute,
-     * the Angular Router, the DataApiService,
-     * the DataStreamerService, and the LoadingService.
-     *
-     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
-     * @param {Router} router Instance of the Angular Router.
-     * @param {DataApiService} dataApiService Instance of the DataApiService.
-     * @param {DataStreamerService} dataStreamerService Instance of the DataStreamerService.
-     * @param {LoadingService} loadingService Instance of the LoadingService.
+     * It keeps the instance of the injected DataApiService.
      */
-    constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private dataApiService: DataApiService,
-        private dataStreamerService: DataStreamerService,
-        private loadingService: LoadingService
-    ) {}
+    private readonly _dataApiService = inject(DataApiService);
+
+    /**
+     * Private readonly injection variable: _dataStreamerService.
+     *
+     * It keeps the instance of the injected DataStreamerService.
+     */
+    private readonly _dataStreamerService = inject(DataStreamerService);
+
+    /**
+     * Private readonly injection variable: _loadingService.
+     *
+     * It keeps the instance of the injected LoadingService.
+     */
+    private readonly _loadingService = inject(LoadingService);
+
+    /**
+     * Private readonly injection variable: _route.
+     *
+     * It keeps the instance of the injected Angular ActivatedRoute.
+     */
+    private readonly _route = inject(ActivatedRoute);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It keeps the instance of the injected Angular Router.
+     */
+    private readonly _router = inject(Router);
 
     /**
      * Gets the httpGetUrl from the {@link DataApiService}.
@@ -113,7 +128,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      * @returns {string}
      */
     get httpGetUrl(): string {
-        return this.dataApiService.httpGetUrl;
+        return this._dataApiService.httpGetUrl;
     }
 
     /**
@@ -122,7 +137,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      * @returns {Observable<boolean>}
      */
     get isLoading$(): Observable<boolean> {
-        return this.loadingService.getLoadingStatus();
+        return this._loadingService.getLoadingStatus();
     }
 
     /**
@@ -147,10 +162,10 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      *
      */
     getSearchData(): void {
-        this.router.events
+        this._router.events
             .pipe(
                 filter(event => event instanceof NavigationEnd),
-                map(() => this.route),
+                map(() => this._route),
                 map((route: ActivatedRoute) => {
                     // Snapshot of tab route
                     let r = route;
@@ -181,14 +196,14 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                             if (!this.viewChanged) {
                                 if (this.searchParams.query && typeof this.searchParams.query === 'string') {
                                     // Fetch search data
-                                    return this.dataApiService.getSearchData(this.searchParams);
+                                    return this._dataApiService.getSearchData(this.searchParams);
                                 }
                                 if (
                                     typeof this.searchParams.query === 'object' &&
                                     this.searchParams.query.filterByRestype
                                 ) {
                                     // Fetch search data
-                                    return this.dataApiService.getSearchData(this.searchParams);
+                                    return this._dataApiService.getSearchData(this.searchParams);
                                 }
                             }
                         }
@@ -202,7 +217,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 next: (searchResponse: SearchResponseJson) => {
                     // Share search data via streamer service
                     this.searchResponseWithQuery = new SearchResponseWithQuery(searchResponse, this.searchParams.query);
-                    this.dataStreamerService.updateSearchResponseWithQuery(this.searchResponseWithQuery);
+                    this._dataStreamerService.updateSearchResponseWithQuery(this.searchResponseWithQuery);
                 },
                 error: err => {
                     this.errorMessage = err;
@@ -376,7 +391,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     resetSearchResponse(): void {
         this.searchResponseWithQuery = new SearchResponseWithQuery(new SearchResponseJson(), '');
 
-        this.dataStreamerService.updateSearchResponseWithQuery(this.searchResponseWithQuery);
+        this._dataStreamerService.updateSearchResponseWithQuery(this.searchResponseWithQuery);
     }
 
     /**
@@ -436,30 +451,28 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      *
      * @param {SearchQuery} value The given value.
      *
-     * @returns {any} The value as string or ExtendedSearchParams type.
+     * @returns {string | ExtendedSearchParams} The value as string or ExtendedSearchParams type.
      */
-    getSearchQueryType(value: SearchQuery): any {
+    getSearchQueryType(value: SearchQuery): string | ExtendedSearchParams {
         if (typeof value === 'string') {
             return value as string;
         } else if (typeof value === 'object') {
             return value as ExtendedSearchParams;
         }
+        return null;
     }
 
     /**
-     * Public method: isSearchResultListShown.
+     * Public method: getSearchQueryAsString.
      *
-     * It checks if the search result list shall be shown (not used yet).
+     * It returns the search query as string.
      *
-     * @returns {boolean} The boolean result of the check.
+     * @param {SearchQuery} value The given search query.
+     *
+     * @returns {string} The search query as string.
      */
-    isSearchResultListShown(): boolean {
-        this.dataStreamerService
-            .getSearchResponseWithQuery()
-            .pipe(takeUntil(this._destroyed$))
-            .subscribe({ next: result => console.log(result) });
-
-        return true;
+    getSearchQueryAsString(value: SearchQuery): string {
+        return typeof this.getSearchQueryType(value) === 'string' ? (value as string) : '';
     }
 
     /**
@@ -489,8 +502,8 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     private _routeToSelf(sp: SearchParams, route?: string): void {
         const commands = route ? [route] : [];
         const params = this._createRouterQueryParams(sp);
-        this.router.navigate(commands, {
-            relativeTo: this.route,
+        this._router.navigate(commands, {
+            relativeTo: this._route,
             queryParams: params,
         });
     }

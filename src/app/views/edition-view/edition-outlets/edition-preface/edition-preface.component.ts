@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
 import { PrefaceList } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionPreface component.
@@ -15,6 +14,8 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
     selector: 'awg-edition-preface',
     templateUrl: './edition-preface.component.html',
     styleUrls: ['./edition-preface.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionPrefaceComponent implements OnInit, OnDestroy {
     /**
@@ -32,30 +33,38 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
     currentLanguage = 0;
 
     /**
-     * Readonly variable: GLYPHS.
-     *
-     * It keeps the data for musical glyphs.
-     */
-    readonly GLYPHS = EDITION_GLYPHS_DATA;
-
-    /**
      * Self-referring variable needed for CompileHtml library.
      */
     ref: EditionPrefaceComponent;
 
     /**
+     * Private readonly injection variable: _editionDataService.
+     *
+     * It keeps the instance of the injected EditionDataService.
+     */
+    private readonly _editionDataService = inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionGlyphService.
+     *
+     * It keeps the instance of the injected EditionGlyphService.
+     */
+    private readonly _editionGlyphService = inject(EditionGlyphService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
      * Constructor of the EditionPrefaceComponent.
      *
-     * It declares private instances of the EditionService and EditionDataService
-     * and the self-referring ref variable needed for CompileHtml library.
+     * It declares the self-referring ref variable needed for CompileHtml library.
      *
-     * @param {EditionService} editionService Instance of the EditionService.
-     * @param {EditionDataService} editionDataService Instance of the EditionDataService.
      */
-    constructor(
-        private editionService: EditionService,
-        private editionDataService: EditionDataService
-    ) {
+    constructor() {
         this.ref = this;
     }
 
@@ -66,21 +75,21 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit(): void {
-        this.editionService.updateIsPrefaceView(true);
-        this.prefaceData$ = this.editionDataService.getEditionPrefaceData();
+        this._editionStateService.updateIsPrefaceView(true);
+        this.prefaceData$ = this._editionDataService.getEditionPrefaceData();
     }
 
     /**
      * Public method: getGlyph.
      *
-     * It returns the hex value string for a glyph referenced by the given glyph string.
+     * It returns the hex value string for a glyph referenced by the given glyph string
+     * via the EditionGlyphService.
      *
      * @param {string} glyphString The given glyph string.
      * @returns {string} The hex value string of the given glyph string or empty string.
      */
     getGlyph(glyphString: string): string {
-        const glyph = Object.values(this.GLYPHS).find(g => g.alt === glyphString);
-        return glyph ? glyph.hex : '';
+        return this._editionGlyphService.getGlyph(glyphString);
     }
 
     /**
@@ -104,6 +113,6 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        this.editionService.clearIsPrefaceView();
+        this._editionStateService.clearIsPrefaceView();
     }
 }

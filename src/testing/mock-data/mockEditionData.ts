@@ -134,6 +134,36 @@ export const mockEditionData = {
                                     },
                                 ],
                             },
+                            {
+                                complexId: 'op12',
+                                sheetId: 'M_212_Sk3',
+                                sigle: 'M 212 Sk3',
+                                sigleAddendum: 'T. 3',
+                                sectionPartition: 1,
+                                sections: [
+                                    {
+                                        position: 1,
+                                        startSystem: 5,
+                                        endSystem: 7,
+                                        relativeToSystem: 'above',
+                                    },
+                                ],
+                            },
+                            {
+                                complexId: 'op12',
+                                sheetId: 'M_212_Sk2',
+                                sigle: 'M 212 Sk2',
+                                sigleAddendum: 'T. 2',
+                                sectionPartition: 1,
+                                sections: [
+                                    {
+                                        position: 1,
+                                        startSystem: 5,
+                                        endSystem: 7,
+                                        relativeToSystem: 'below',
+                                    },
+                                ],
+                            },
                         ],
                     },
                 ],
@@ -207,27 +237,61 @@ export const mockEditionData = {
     mockIntroData: {
         intro: [
             {
-                id: 'op12',
+                id: 'test_intro',
                 content: [
-                    "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: 'testComplex1', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.",
-                    "In <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test Sk1</strong></a> neu skizziert.<sup id='footnote-80-backlink' class='footnote-link'><a (click)=\"ref.navigateToIntroFragment({complexId: 'testComplex1', fragmentId: 'footnote-80'})\">80</a></sup>",
-                ],
-                footnotes: [
-                    "<span id='footnote-80' class='footnote'><a class='footnote-backlink' (click)=\"ref.navigateToIntroFragment({complexId: 'testComplex1', fragmentId: 'footnote-80-backlink'})\">80</a> | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).</span>",
+                    {
+                        blockId: 'test_block_id_1',
+                        blockHeader: 'Test block header 1',
+                        blockContent: [
+                            "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: 'testComplex1', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.",
+                            "In <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test Sk1</strong></a> neu skizziert.<sup id='note-80-backlink' class='note-link'><a (click)=\"ref.navigateToIntroFragment({complexId: 'testComplex1', fragmentId: 'note-80'})\">80</a></sup>",
+                            '<span class="glyph">{{ref.getGlyph("[a]")}}</span> überschreibt <span class="glyph">{{ref.getGlyph("[b]")}}</span>.',
+                        ],
+                        blockNotes: [
+                            "<span id='note-80' class='note'><a class='note-backlink' (click)=\"ref.navigateToIntroFragment({complexId: 'testComplex1', fragmentId: 'note-80-backlink'})\">80</a> | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).</span>",
+                        ],
+                    },
+                    {
+                        blockId: 'test_block_id_2',
+                        blockHeader: 'Test block header 2',
+                        blockContent: ['Test block content 2'],
+                        blockNotes: ['Test block notes 2'],
+                    },
                 ],
             },
         ],
     },
 
     /**
-     * Test helper data constant: mockIntroEmptyData.
+     * Test helper data constant: mockIntroFilteredData.
      *
-     * It provides a mocked intro data object with empty content.
+     * It provides a mocked intro data object with filtered content.
      */
-    mockIntroEmptyData: {
+    mockIntroFilteredData: {
         intro: [
             {
-                id: 'op12',
+                id: 'test_intro',
+                content: [
+                    {
+                        blockId: 'test_block_id_2',
+                        blockHeader: 'Test block header 2',
+                        blockContent: ['Test block content 2'],
+                        blockNotes: ['Test block notes 2'],
+                    },
+                ],
+            },
+        ],
+    },
+
+    /**
+     * Test helper data constant: mockIntroComplexData.
+     *
+     * It provides a mocked intro data object of an edition complex.
+     */
+    mockIntroComplexData: {
+        intro: [
+            {
+                id: 'test_block_id_2',
                 content: [],
             },
         ],
@@ -251,7 +315,7 @@ export const mockEditionData = {
                 id: 'de',
                 content: [
                     "<span class='no-indent'>Die AWG gliedert sich in drei Serien:</span>",
-                    "<span class='no-indent spacebreak'>Sie werden nicht zu dem für den Druck typischen <span class='unicode'>{{ref.getGlyph('[ped]')}}</span>.-Zeichen vereinheitlicht.</span>",
+                    "<span class='no-indent spacebreak'>Sie werden nicht zu dem für den Druck typischen <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>.-Zeichen vereinheitlicht.</span>",
                     "<span class='small spacebreak'>Zugang zur AWG-Online-Edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></span>",
                 ],
             },
@@ -259,7 +323,7 @@ export const mockEditionData = {
                 id: 'en',
                 content: [
                     "<span class='no-indent'>The AWG is divided into three series:</span>",
-                    "<span class='no-indent spacebreak'>They are not unified to the <span class='unicode'>{{ref.getGlyph('[ped]')}}</span>. character typical for printing.</span>",
+                    "<span class='no-indent spacebreak'>They are not unified to the <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>. character typical for printing.</span>",
                     "<span class='small spacebreak'>Access to the AWG online edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></span>",
                 ],
             },
@@ -674,24 +738,27 @@ export const mockEditionData = {
                         {
                             id: 'source_Aa_corr_1',
                             label: 'Korrekturen 1 in <strong>B</strong> (mit Tinte)',
-                            description: [
+                            evaluations: [
                                 'Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: Textfassung 1.',
                             ],
-                            comments: [
-                                {
-                                    measure: '3–4',
-                                    system: '',
-                                    position: '',
-                                    comment: 'Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####',
-                                },
-                                {
-                                    measure: '4',
-                                    system: 'Klav. o.',
-                                    position: '',
-                                    comment:
-                                        'Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.',
-                                },
-                            ],
+                            commentary: {
+                                preamble: 'Korrekturen 1:',
+                                comments: [
+                                    {
+                                        measure: '3–4',
+                                        system: '',
+                                        position: '',
+                                        comment: 'Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####',
+                                    },
+                                    {
+                                        measure: '4',
+                                        system: 'Klav. o.',
+                                        position: '',
+                                        comment:
+                                            'Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.',
+                                    },
+                                ],
+                            },
                         },
                     ],
                 },
@@ -1147,73 +1214,77 @@ export const mockEditionData = {
             {
                 id: 'test-1',
                 label: 'test1',
-                description: [],
-                comments: [],
+                evaluations: [],
+                commentary: { preamble: '', comments: [] },
                 linkBoxes: [],
             },
             {
                 id: 'test-2',
                 label: 'test2',
-                description: [
+                evaluations: [
                     'test description 1',
                     "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_B'})\"><strong>B</strong></a> neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>C</strong></a> entspricht.",
                 ],
                 rowtable: true,
-                comments: [
-                    {
-                        blockHeader: 'blockheader 1',
-                        blockComments: [
-                            {
-                                svgGroupId: 'svg-group-1',
-                                measure: '10',
-                                system: '12',
-                                position: '1. Note',
-                                comment: 'Viertelnote überschreibt Halbe Note.',
-                            },
-                            {
-                                svgGroupId: 'svg-group-2',
-                                measure: '10',
-                                system: '12',
-                                position: '2. Note',
-                                comment:
-                                    "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test SkXYZ</strong></a> T. [11] und <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Test Sk1</strong></a>.",
-                            },
-                            {
-                                svgGroupId: 'svg-group-3',
-                                measure: '{13}',
-                                system: '12',
-                                position: '3. Note',
-                                comment: '{{ref.getGlyph("[a]")}} überschreibt {{ref.getGlyph("[b]")}}.',
-                            },
-                            {
-                                svgGroupId: 'svg-group-4',
-                                measure: '[12]',
-                                system: '13',
-                                position: '',
-                                comment: 'radierte, nicht entzifferbare Schicht.',
-                            },
-                        ],
-                    },
-                    {
-                        blockHeader: 'blockheader 2',
-                        blockComments: [
-                            {
-                                svgGroupId: 'svg-group-5',
-                                measure: '11',
-                                system: '13',
-                                position: '1. Note',
-                                comment: 'Viertelnote überschreibt Halbe Note.',
-                            },
-                            {
-                                svgGroupId: 'svg-group-6',
-                                measure: '11',
-                                system: '13',
-                                position: '2. Note',
-                                comment: 'Halbe Note überschreibt Viertelnote.',
-                            },
-                        ],
-                    },
-                ],
+                commentary: {
+                    preamble: 'This is a preamble.',
+                    comments: [
+                        {
+                            blockHeader: 'blockheader 1',
+                            blockComments: [
+                                {
+                                    svgGroupId: 'svg-group-1',
+                                    measure: '10',
+                                    system: '12',
+                                    position: '1. Note',
+                                    comment: 'Viertelnote überschreibt Halbe Note.',
+                                },
+                                {
+                                    svgGroupId: 'svg-group-2',
+                                    measure: '10',
+                                    system: '12',
+                                    position: '2. Note',
+                                    comment:
+                                        "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test SkXYZ</strong></a> T. [11] und <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Test Sk1</strong></a>.",
+                                },
+                                {
+                                    svgGroupId: 'svg-group-3',
+                                    measure: '{13}',
+                                    system: '12',
+                                    position: '3. Note',
+                                    comment:
+                                        '<span class="glyph">{{ref.getGlyph("[a]")}}</span> überschreibt <span class="glyph">{{ref.getGlyph("[b]")}}</span>.',
+                                },
+                                {
+                                    svgGroupId: 'svg-group-4',
+                                    measure: '[12]',
+                                    system: '13',
+                                    position: '',
+                                    comment: 'radierte, nicht entzifferbare Schicht.',
+                                },
+                            ],
+                        },
+                        {
+                            blockHeader: 'blockheader 2',
+                            blockComments: [
+                                {
+                                    svgGroupId: 'svg-group-5',
+                                    measure: '11',
+                                    system: '13',
+                                    position: '1. Note',
+                                    comment: 'Viertelnote überschreibt Halbe Note.',
+                                },
+                                {
+                                    svgGroupId: 'svg-group-6',
+                                    measure: '11',
+                                    system: '13',
+                                    position: '2. Note',
+                                    comment: 'Halbe Note überschreibt Viertelnote.',
+                                },
+                            ],
+                        },
+                    ],
+                },
                 linkBoxes: [],
             },
         ],

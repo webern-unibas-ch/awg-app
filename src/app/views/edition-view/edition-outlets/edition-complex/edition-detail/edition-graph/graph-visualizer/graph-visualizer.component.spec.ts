@@ -24,7 +24,11 @@ import { GraphVisualizerService } from './services/graph-visualizer.service';
 import { GraphVisualizerComponent } from './graph-visualizer.component';
 
 // Mock components
-@Component({ selector: 'awg-construct-results', template: '' })
+@Component({
+    selector: 'awg-construct-results',
+    template: '',
+    standalone: false,
+})
 class ConstructResultsStubComponent {
     @Input()
     queryResult$: Observable<Triple[]>;
@@ -36,7 +40,11 @@ class ConstructResultsStubComponent {
     clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-select-results', template: '' })
+@Component({
+    selector: 'awg-select-results',
+    template: '',
+    standalone: false,
+})
 class SelectResultsStubComponent {
     @Input()
     queryResult$: Observable<Triple[]>;
@@ -48,7 +56,11 @@ class SelectResultsStubComponent {
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-sparql-editor', template: '' })
+@Component({
+    selector: 'awg-sparql-editor',
+    template: '',
+    standalone: false,
+})
 class SparqlEditorStubComponent {
     @Input()
     queryList: GraphSparqlQuery[];
@@ -66,10 +78,18 @@ class SparqlEditorStubComponent {
     updateQueryStringRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-toast', template: '' })
+@Component({
+    selector: 'awg-toast',
+    template: '',
+    standalone: false,
+})
 class ToastStubComponent {}
 
-@Component({ selector: 'awg-triples-editor', template: '' })
+@Component({
+    selector: 'awg-triples-editor',
+    template: '',
+    standalone: false,
+})
 class TriplesEditorStubComponent {
     @Input() triples: string;
     @Input()
@@ -84,7 +104,11 @@ class TriplesEditorStubComponent {
     updateTriplesRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-unsupported-type-results', template: '' })
+@Component({
+    selector: 'awg-unsupported-type-results',
+    template: '',
+    standalone: false,
+})
 class UnsupportedTypeResultsStubComponent {
     @Input()
     queryType: string; // Query.queryType ?
@@ -106,7 +130,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let expectedIsFullscreen: boolean;
 
     let consoleSpy: Spy;
-    let mockGraphVisualizerServiceGetQueryTypeSpy: Spy;
+    let serviceCheckNamespacesInQuerySpy: Spy;
+    let serviceGetQueryTypeSpy: Spy;
     let queryLocalStoreSpy: Spy;
     let performQuerySpy: Spy;
     let resetQuerySpy: Spy;
@@ -116,9 +141,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
     beforeEach(waitForAsync(() => {
         // Mocked dataStreamerService
         mockGraphVisualizerService = {
-            checkNamespacesInQuery: (queryString: string, triples: string): string => queryString,
-            getQuerytype: (queryString: string): string => 'construct',
-            doQuery: (queryType: string, query: string, triples: string): Promise<Triple[]> =>
+            checkNamespacesInQuery: (queryString: string): string => queryString,
+            getQuerytype: (): string => 'construct',
+            doQuery: (): Promise<Triple[]> =>
                 new Promise((resolve, reject) => {
                     resolve(expectedResult);
                     reject({ name: 'Error1', message: 'failed' });
@@ -174,10 +199,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
         expectedIsFullscreen = false;
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        mockGraphVisualizerServiceGetQueryTypeSpy = spyOn(mockGraphVisualizerService, 'getQuerytype').and.callThrough();
+        // Spies
+        serviceGetQueryTypeSpy = spyOn(mockGraphVisualizerService, 'getQuerytype').and.callThrough();
+        serviceCheckNamespacesInQuerySpy = spyOn(
+            mockGraphVisualizerService,
+            'checkNamespacesInQuery'
+        ).and.callThrough();
         queryLocalStoreSpy = spyOn<any>(component, '_queryLocalStore').and.callThrough();
         performQuerySpy = spyOn(component, 'performQuery').and.callThrough();
         resetQuerySpy = spyOn(component, 'resetQuery').and.callThrough();
@@ -422,7 +449,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     changedQuery.queryType = 'select';
 
                     // Set correct return value of service
-                    mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue(changedQuery.queryType);
+                    serviceGetQueryTypeSpy.and.returnValue(changedQuery.queryType);
 
                     component.resetQuery(changedQuery);
                     fixture.detectChanges();
@@ -464,7 +491,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                             'PREFIX example: <https://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
                     };
                     // Set correct return value of service
-                    mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue(changedQuery.queryType);
+                    serviceGetQueryTypeSpy.and.returnValue(changedQuery.queryType);
                     component.resetQuery(changedQuery);
                     fixture.detectChanges();
 
@@ -569,7 +596,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     queryLabel: 'Test Query 1',
                     queryString: queryStringWithoutPrefixes,
                 };
-                const namespaceSpy = spyOn(graphVisualizerService, 'checkNamespacesInQuery').and.returnValue(
+                serviceCheckNamespacesInQuerySpy.and.returnValue(
                     'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }'
                 );
 
@@ -579,36 +606,31 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 expectSpyCall(performQuerySpy, 2, undefined);
-                expectSpyCall(namespaceSpy, 1, [queryStringWithoutPrefixes, expectedGraphRDFData.triples]);
+                expectSpyCall(serviceCheckNamespacesInQuerySpy, 2, [
+                    queryStringWithoutPrefixes,
+                    expectedGraphRDFData.triples,
+                ]);
 
                 expectToEqual(component.query, expectedGraphRDFData.queryList[0]);
             });
 
             it('... should get queryType from service', () => {
                 expectSpyCall(performQuerySpy, 1, undefined);
-                expectSpyCall(
-                    mockGraphVisualizerServiceGetQueryTypeSpy,
-                    1,
-                    expectedGraphRDFData.queryList[0].queryString
-                );
+                expectSpyCall(serviceGetQueryTypeSpy, 1, expectedGraphRDFData.queryList[0].queryString);
 
                 // Perform query
                 component.performQuery();
                 fixture.detectChanges();
 
                 expectSpyCall(performQuerySpy, 2, undefined);
-                expectSpyCall(
-                    mockGraphVisualizerServiceGetQueryTypeSpy,
-                    2,
-                    expectedGraphRDFData.queryList[0].queryString
-                );
+                expectSpyCall(serviceGetQueryTypeSpy, 2, expectedGraphRDFData.queryList[0].queryString);
 
                 expectToBe(component.query.queryType, 'construct');
             });
 
             it('... should trigger `_queryLocalStore` for construct queries', () => {
                 // Set construct query type
-                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('construct');
+                serviceGetQueryTypeSpy.and.returnValue('construct');
 
                 // Perform query
                 component.performQuery();
@@ -625,7 +647,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             it('... should trigger `_queryLocalStore` for select queries', () => {
                 // Set select query type
-                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('select');
+                serviceGetQueryTypeSpy.and.returnValue('select');
 
                 // Perform query
                 component.performQuery();
@@ -642,7 +664,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             it('... should get queryResult for construct queries', waitForAsync(() => {
                 // Set construct query type
-                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('construct');
+                serviceGetQueryTypeSpy.and.returnValue('construct');
 
                 // Perform query
                 component.performQuery();
@@ -655,7 +677,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             it('... should get queryResult for select queries', waitForAsync(() => {
                 // Set select query type
-                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('select');
+                serviceGetQueryTypeSpy.and.returnValue('select');
 
                 // Perform query
                 component.performQuery();
@@ -667,7 +689,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             }));
 
             it('... should set empty observable for update query types', waitForAsync(() => {
-                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('update');
+                serviceGetQueryTypeSpy.and.returnValue('update');
 
                 // Perform query
                 component.performQuery();
@@ -679,7 +701,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             }));
 
             it('... should set empty observable for other query types', waitForAsync(() => {
-                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('other');
+                serviceGetQueryTypeSpy.and.returnValue('other');
 
                 // Perform query
                 component.performQuery();
@@ -884,7 +906,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             describe('... should not do anything', () => {
                 it('... if no toastMessage is provided', () => {
-                    component.showErrorMessage(undefined);
+                    const toastMessage = undefined;
+
+                    component.showErrorMessage(toastMessage);
 
                     expectSpyCall(showErrorMessageSpy, 1, [undefined]);
                     expectSpyCall(toastServiceAddSpy, 0);
@@ -893,9 +917,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 it('... if no toastMessage.message is provided', () => {
                     const toastMessage = new ToastMessage('Error1', '', 500);
-                    component.showErrorMessage(undefined);
 
-                    expectSpyCall(showErrorMessageSpy, 1, [undefined]);
+                    component.showErrorMessage(toastMessage);
+
+                    expectSpyCall(showErrorMessageSpy, 1, toastMessage);
                     expectSpyCall(toastServiceAddSpy, 0);
                     expectSpyCall(consoleSpy, 0);
                 });

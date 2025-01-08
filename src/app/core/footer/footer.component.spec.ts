@@ -10,32 +10,48 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { LOGOSDATA, METADATA } from '@awg-core/core-data';
+import { LOGOS_DATA, META_DATA } from '@awg-core/core-data';
 import { Logo, Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 
 import { CoreService } from '@awg-core/services';
 import { FooterComponent } from './footer.component';
 
 // Mock components
-@Component({ selector: 'awg-footer-copyright', template: '' })
+@Component({
+    selector: 'awg-footer-copyright',
+    template: '',
+    standalone: false,
+})
 class FooterCopyrightStubComponent {
     @Input()
     pageMetaData: MetaPage;
 }
 
-@Component({ selector: 'awg-footer-declaration', template: '' })
+@Component({
+    selector: 'awg-footer-declaration',
+    template: '',
+    standalone: false,
+})
 class FooterDeclarationStubComponent {
     @Input()
     pageMetaData: MetaPage;
 }
 
-@Component({ selector: 'awg-footer-logo', template: '' })
+@Component({
+    selector: 'awg-footer-logo',
+    template: '',
+    standalone: false,
+})
 class FooterLogoStubComponent {
     @Input()
     logo: Logo;
 }
 
-@Component({ selector: 'awg-footer-poweredby', template: '' })
+@Component({
+    selector: 'awg-footer-poweredby',
+    template: '',
+    standalone: false,
+})
 class FooterPoweredbyStubComponent {
     @Input()
     logos: Logos;
@@ -56,7 +72,7 @@ describe('FooterComponent (DONE)', () => {
     beforeEach(waitForAsync(() => {
         // Stub service for test purposes
         mockCoreService = {
-            getMetaDataSection: sectionType => METADATA[sectionType],
+            getMetaDataSection: sectionType => META_DATA[sectionType],
             getLogos: () => expectedLogos,
         };
 
@@ -78,8 +94,8 @@ describe('FooterComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedLogos = LOGOSDATA;
-        expectedPageMetaData = METADATA[MetaSectionTypes.page];
+        expectedLogos = LOGOS_DATA;
+        expectedPageMetaData = META_DATA[MetaSectionTypes.page];
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -175,7 +191,7 @@ describe('FooterComponent (DONE)', () => {
                 it('... should contain 1 google tranlate div in third inner div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-bottom div', 3, 3);
                     const gtransDiv = divDes[2];
-                    const gtransEl = gtransDiv.nativeElement;
+                    const gtransEl: HTMLDivElement = gtransDiv.nativeElement;
 
                     expectToBe(gtransEl.id, 'google_translate_element');
                     expectToContain(gtransEl.classList, 'gtrans');

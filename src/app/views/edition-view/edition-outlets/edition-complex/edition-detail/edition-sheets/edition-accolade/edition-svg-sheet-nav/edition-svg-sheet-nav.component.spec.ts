@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
@@ -19,7 +18,11 @@ import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/mo
 import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav.component';
 
 // Mock components
-@Component({ selector: 'awg-edition-svg-sheet-nav-item', template: '' })
+@Component({
+    selector: 'awg-edition-svg-sheet-nav-item',
+    template: '',
+    standalone: false,
+})
 class EditionSvgSheetNavItemStubComponent {
     @Input()
     navItemLabel: string;
@@ -139,8 +142,8 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
             });
 
             it('... should contain one outer div.card if svgSheetsData is defined', () => {
-                const cardDe = getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
-                const cardEl = cardDe[0].nativeElement;
+                const cardDes = getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
+                const cardEl: HTMLDivElement = cardDes[0].nativeElement;
 
                 expectToContain(cardEl.classList, 'awg-svg-sheet-nav');
             });

@@ -27,10 +27,7 @@
                                 [compile-html-ref]="ref"></p>
                         }
                         @if (sourceDescription.location) {
-                            <p
-                                class="awg-source-description-location"
-                                [compile-html]="sourceDescription.location"
-                                [compile-html-ref]="ref"></p>
+                            <p class="awg-source-description-location" [awgAbbr]="sourceDescription.location"></p>
                         }
                     </div>
                     @if (utils.isNotEmptyObject(sourceDescription.description)) {
@@ -235,6 +232,14 @@
                                                                     sheetId: content.itemLinkTo.sheetId,
                                                                 })
                                                             "
+                                                            (keyup.enter)="
+                                                                selectSvgSheet({
+                                                                    complexId: content.itemLinkTo.complexId,
+                                                                    sheetId: content.itemLinkTo.sheetId,
+                                                                })
+                                                            "
+                                                            role="link"
+                                                            tabindex="0"
                                                             ><strong>{{ content.item }}</strong></a
                                                         >
                                                     }
@@ -271,6 +276,14 @@
                                                                             sheetId: folio.folioLinkTo,
                                                                         })
                                                                     "
+                                                                    (keyup.enter)="
+                                                                        selectSvgSheet({
+                                                                            complexId: content.itemLinkTo.complexId,
+                                                                            sheetId: folio.folioLinkTo,
+                                                                        })
+                                                                    "
+                                                                    role="link"
+                                                                    tabindex="0"
                                                                     ><ng-template
                                                                         *ngTemplateOutlet="
                                                                             folioTemplate;
@@ -298,9 +311,9 @@
                                                     <ng-template #folioTemplate let-folio>
                                                         <span>
                                                             @if (folio.isPage) {
-                                                                <span>S.&nbsp;</span>
+                                                                <span><span [awgAbbr]="'S.'"></span>&nbsp;</span>
                                                             } @else {
-                                                                <span>Bl.&nbsp;</span>
+                                                                <span><span [awgAbbr]="'Bl.'"></span>&nbsp;</span>
                                                             }
                                                             @if (
                                                                 folio.folio.endsWith('v') || folio.folio.endsWith('r')
@@ -405,6 +418,16 @@
                                                                                         sheetId: system.linkTo,
                                                                                     })
                                                                                 "
+                                                                                (keyup.enter)="
+                                                                                    selectSvgSheet({
+                                                                                        complexId:
+                                                                                            content.itemLinkTo
+                                                                                                .complexId,
+                                                                                        sheetId: system.linkTo,
+                                                                                    })
+                                                                                "
+                                                                                role="link"
+                                                                                tabindex="0"
                                                                                 ><ng-template
                                                                                     *ngTemplateOutlet="
                                                                                         measureTemplate;
@@ -425,7 +448,9 @@
                                                                         }
                                                                         <ng-template #measureTemplate let-measure
                                                                             ><span
-                                                                                >T.&nbsp;{{ measure }}</span
+                                                                                ><span [awgAbbr]="'T.'"></span>&nbsp;{{
+                                                                                    measure
+                                                                                }}</span
                                                                             ></ng-template
                                                                         ></span
                                                                     >
@@ -443,6 +468,16 @@
                                                                                         sheetId: system.linkTo,
                                                                                     })
                                                                                 "
+                                                                                (keyup.enter)="
+                                                                                    selectSvgSheet({
+                                                                                        complexId:
+                                                                                            content.itemLinkTo
+                                                                                                .complexId,
+                                                                                        sheetId: system.linkTo,
+                                                                                    })
+                                                                                "
+                                                                                role="link"
+                                                                                tabindex="0"
                                                                                 ><ng-template
                                                                                     *ngTemplateOutlet="
                                                                                         rowTemplate;

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 
 import { Logos } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
@@ -15,6 +15,7 @@ import { CoreService } from '@awg-core/services';
     templateUrl: './sparql-no-results.component.html',
     styleUrls: ['./sparql-no-results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SparqlNoResultsComponent implements OnInit {
     /**
@@ -25,14 +26,11 @@ export class SparqlNoResultsComponent implements OnInit {
     logos: Logos;
 
     /**
-     * Constructor of the ForceGraphNoResultComponent.
+     * Private readonly injection variable: _coreService.
      *
-     * It declares a private CoreService instance
-     * to get the logos.
-     *
-     * @param {CoreService} coreService Instance of the CoreService.
+     * It keeps the instance of the injected CoreService.
      */
-    constructor(private coreService: CoreService) {}
+    private readonly _coreService = inject(CoreService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -53,6 +51,6 @@ export class SparqlNoResultsComponent implements OnInit {
      * @returns {void} Sets the logos variables.
      */
     provideMetaData(): void {
-        this.logos = this.coreService.getLogos();
+        this.logos = this._coreService.getLogos();
     }
 }

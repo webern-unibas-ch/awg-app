@@ -111,6 +111,28 @@
             }
         },
         {
+            "M36": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "36"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "14. August 2024"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
             "M37": {
                 "titleStatement": {
                     "title": "Studienkomposition für Klavier",
@@ -125,6 +147,72 @@
                         }
                     ],
                     "lastModified": "19. Januar 2024"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M38": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "38"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "15. August 2024"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M40": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "40"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "8. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M41": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "41"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "8. Januar 2025"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -319,7 +407,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Juni 2024"
@@ -341,7 +429,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Juni 2024"
@@ -363,7 +451,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Juni 2024"
@@ -385,7 +473,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Juni 2024"
@@ -407,7 +495,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Juni 2024"
@@ -429,7 +517,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Juni 2024"
@@ -451,7 +539,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "---"
@@ -473,7 +561,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "---"
@@ -495,7 +583,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "---"
@@ -517,10 +605,120 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "M312": {
+                "titleStatement": {
+                    "title": "„Herr Jesus mein“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "312"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "M314": {
+                "titleStatement": {
+                    "title": "„Das dunkle Herz“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "314"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "19. November 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "M317": {
+                "titleStatement": {
+                    "title": "„Wie bin ich froh!“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "317"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "7. November 2024"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "M321": {
+                "titleStatement": {
+                    "title": "„Sterne, Ihr silbernen Bienen“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "321"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "---"
+                },
+                "pubStatement": {
+                    "series": "1",
+                    "section": "5"
+                }
+            }
+        },
+        {
+            "M322": {
+                "titleStatement": {
+                    "title": "„Des Herzens Purpurvogel“",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "322"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Thomas Ahrend",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "7. November 2024"
                 },
                 "pubStatement": {
                     "series": "1",
@@ -539,7 +737,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Juni 2024"
@@ -561,7 +759,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Juni 2024"
@@ -583,7 +781,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "9. April 2024"
@@ -605,7 +803,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Mai 2023"
@@ -627,7 +825,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Mai 2023"
@@ -649,7 +847,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "17. April 2024"
@@ -671,7 +869,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Mai 2023"
@@ -693,7 +891,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "17. April 2024"
@@ -715,7 +913,7 @@
                     "editors": [
                         {
                             "name": "Thomas Ahrend",
-                            "homepage": "https://www.anton-webern.ch/index.php?id"
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
                         }
                     ],
                     "lastModified": "6. Mai 2023"

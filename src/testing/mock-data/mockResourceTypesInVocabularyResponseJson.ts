@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-
 /**
  * Test helper data file: mockResourceTypesInVocabularyResponseJson.
  *

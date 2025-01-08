@@ -16,10 +16,10 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EditionComplexesService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, SourceEvaluationList } from '@awg-views/edition-view/models';
+import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 import { SourceEvaluationComponent } from './source-evaluation.component';
 
@@ -141,7 +141,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
             it('... should have `card` class on evaluation list div', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
-                const divEl = divDes[0].nativeElement;
+                const divEl: HTMLDivElement = divDes[0].nativeElement;
 
                 expectToContain(divEl.classList, 'card');
             });
@@ -170,9 +170,8 @@ describe('SourceEvaluationComponent (DONE)', () => {
                     2,
                     2
                 );
-
-                const pEl0 = pDes[0].nativeElement;
-                const pEl1 = pDes[1].nativeElement;
+                const pEl0: HTMLParagraphElement = pDes[0].nativeElement;
+                const pEl1: HTMLParagraphElement = pDes[1].nativeElement;
 
                 // Process HTML expression of first evaluation entry
                 let htmlEvaluationEntry = mockDocument.createElement('p');
@@ -214,7 +213,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
                     1,
                     1
                 );
-                const pEl = pDes[0].nativeElement;
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 // Create evaluation placeholder
                 const fullComplexSpan = mockDocument.createElement('span');
@@ -254,7 +253,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
             }));
 
             describe('... should not emit anything if', () => {
-                it('... paraemeter is undefined', () => {
+                it('... parameter is undefined', () => {
                     component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);

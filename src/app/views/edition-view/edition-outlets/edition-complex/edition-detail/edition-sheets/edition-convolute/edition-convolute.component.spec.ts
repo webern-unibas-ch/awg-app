@@ -27,7 +27,11 @@ interface IFolioLegend {
     label: string;
 }
 
-@Component({ selector: 'awg-edition-folio-viewer', template: '' })
+@Component({
+    selector: 'awg-edition-folio-viewer',
+    template: '',
+    standalone: false,
+})
 class EditionFolioViewerStubComponent {
     @Input()
     selectedConvolute: FolioConvolute;
@@ -136,22 +140,17 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one div.accordion', () => {
-                // Div.accordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
             it('... should contain one div.accordion-item with header and non-collapsible body yet in div.accordion', () => {
-                // Div.accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
-                // Header (div.accordion-header)
                 getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-header', 1, 1);
 
-                // Body (div.accordion-collapse)
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
-                const itemBodyEl = itemBodyDes[0].nativeElement;
+                const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                 expectToContain(itemBodyEl.classList, 'accordion-collapse');
             });
@@ -178,46 +177,39 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
-                // NgbAccordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                // Item (div.accordion-item)
                 const itemDes = getAndExpectDebugElementByCss(
                     accordionDes[0],
                     'div#awg-convolute-view.accordion-item',
                     1,
                     1
                 );
-                // Header (div.accordion-header)
                 getAndExpectDebugElementByCss(itemDes[0], 'div#awg-convolute-view > div.accordion-header', 1, 1);
 
-                // Body open (div.accordion-collapse)
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div#awg-convolute-view-collapse', 1, 1);
-                const itemBodyEl = itemBodyDes[0].nativeElement;
+                const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                 expectToContain(itemBodyEl.classList, 'show');
             });
 
             it('... should contain header title for the item (div.accordion-header)', () => {
-                // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
 
-                // Header
-                const headerDes = getAndExpectDebugElementByCss(
+                const itemHeaderDes = getAndExpectDebugElementByCss(
                     itemDes[0],
                     'div#awg-convolute-view > div.accordion-header',
                     1,
                     1
                 );
-                const headerEl = headerDes[0].nativeElement;
+                const itemHeaderEl: HTMLDivElement = itemHeaderDes[0].nativeElement;
 
                 const expectedTitle = 'Konvolutübersicht';
 
-                expectToBe(headerEl.textContent.trim(), expectedTitle);
+                expectToBe(itemHeaderEl.textContent.trim(), expectedTitle);
             });
 
             it('... should contain two divs and one EditionFolioViewerComponent (stubbed) in the item body (div.accordion-body)', () => {
-                // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
                 const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
@@ -245,7 +237,6 @@ describe('EditionConvoluteComponent (DONE)', () => {
             });
 
             it('... should contain one link with convolute label in the convolute label div', () => {
-                // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
 
                 const divDes = getAndExpectDebugElementByCss(
@@ -255,14 +246,13 @@ describe('EditionConvoluteComponent (DONE)', () => {
                     1
                 );
 
-                const anchorDes = getAndExpectDebugElementByCss(divDes[0], 'a', 1, 1);
-                const anchorEl = anchorDes[0].nativeElement;
+                const aDes = getAndExpectDebugElementByCss(divDes[0], 'a', 1, 1);
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                expectToBe(anchorEl.textContent, expectedSelectedConvolute.convoluteLabel);
+                expectToBe(aEl.textContent, expectedSelectedConvolute.convoluteLabel);
             });
 
             it('... should contain three legend labels in the folio legend div', () => {
-                // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
 
                 const legendDes = getAndExpectDebugElementByCss(
@@ -273,9 +263,9 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 );
 
                 const spanDes = getAndExpectDebugElementByCss(legendDes[0], 'span', 3, 3);
-                const spanEl0 = spanDes[0].nativeElement;
-                const spanEl1 = spanDes[1].nativeElement;
-                const spanEl2 = spanDes[2].nativeElement;
+                const spanEl0: HTMLSpanElement = spanDes[0].nativeElement;
+                const spanEl1: HTMLSpanElement = spanDes[1].nativeElement;
+                const spanEl2: HTMLSpanElement = spanDes[2].nativeElement;
 
                 expectToBe(spanEl0.className, expectedFolioLegends[0].color);
                 expectToBe(spanEl0.textContent.trim(), expectedFolioLegends[0].label);

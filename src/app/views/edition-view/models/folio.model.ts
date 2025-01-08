@@ -165,4 +165,9 @@ export class FolioSection {
      * The folio section's optional position (number).
      */
     position?: number;
+
+    /**
+     * The folio section's optional position relative to the system (string).
+     */
+    relativeToSystem?: string;
 }

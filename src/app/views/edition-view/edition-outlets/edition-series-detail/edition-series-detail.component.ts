@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
+import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionSeriesDetail component.
@@ -14,29 +13,22 @@ import { EditionService } from '@awg-views/edition-view/services';
     selector: 'awg-edition-series-detail',
     templateUrl: './edition-series-detail.component.html',
     styleUrls: ['./edition-series-detail.component.scss'],
+    standalone: false,
 })
 export class EditionSeriesDetailComponent implements OnInit {
     /**
-     * Public variable: selectedSeries.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It keeps the selected series of the edition.
+     * It keeps the instance of the injected EditionStateService.
      */
-    selectedSeries: EditionOutlineSeries;
+    private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Constructor of the EditionSeriesDetailComponent.
+     * Private readonly injection variable: _route.
      *
-     * It declares private instances of the Angular ActivatedRoute and the EditionService.
-     *
-     * @param {ActivatedRoute} route Instance of the ActivatedRoute.
-     * @param {EditionService} editionService Instance of the EditionService.
+     * It keeps the instance of the injected Angular ActivatedRoute.
      */
-    constructor(
-        private route: ActivatedRoute,
-        private editionService: EditionService
-    ) {
-        // Intentionally left empty until implemented
-    }
+    private readonly _route = inject(ActivatedRoute);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -51,14 +43,15 @@ export class EditionSeriesDetailComponent implements OnInit {
     /**
      * Public method: updateSeriesFromRoute.
      *
-     * It fetches the route params to get the id of the current series and updates the edition service.
+     * It fetches the route params to get the id of the current series
+     * and updates the EditionStateService.
      *
      * @returns {void} Updates the edition series.
      */
     updateSeriesFromRoute(): void {
-        const id = this.route.snapshot.paramMap.get('id');
+        const id = this._route.snapshot.paramMap.get('id');
 
-        this.selectedSeries = this.editionService.getEditionSeriesById(id);
-        this.editionService.updateSelectedEditionSeries(this.selectedSeries);
+        const selectedSeries = EditionOutlineService.getEditionSeriesById(id);
+        this._editionStateService.updateSelectedEditionSeries(selectedSeries);
     }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { UtilityService } from '@awg-core/services';
 import { EditionSvgSheet } from '@awg-views/edition-view/models';
@@ -14,6 +14,8 @@ import { EditionSvgSheet } from '@awg-views/edition-view/models';
     selector: 'awg-edition-svg-sheet-nav-item',
     templateUrl: './edition-svg-sheet-nav-item.component.html',
     styleUrls: ['./edition-svg-sheet-nav-item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionSvgSheetNavItemComponent {
     /**

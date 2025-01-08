@@ -12,12 +12,18 @@ import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
 
 import {
     EditionComplex,
-    EditionComplexesJsonInput,
+    EditionComplexesJsonData,
     EditionComplexesList,
-    EditionComplexJsonInput,
+    EditionComplexJsonData,
     EditionComplexTitleStatement,
 } from './edition-complex.model';
-import { EditionOutlineComplex, EditionOutlineSection, EditionOutlineSeries } from './edition-outline.model';
+import {
+    EditionOutline,
+    EditionOutlineComplexItem,
+    EditionOutlineJsonData,
+    EditionOutlineSection,
+    EditionOutlineSeries,
+} from './edition-outline.model';
 import { EditionRouteConstant } from './edition-route-constant.model';
 import { EditionRowTables, EditionRowTablesList } from './edition-row-tables.model';
 import { EditionSvgLinkBox } from './edition-svg-link-box.model';
@@ -30,7 +36,7 @@ import { FolioSvgContentSegment, FolioSvgData } from './folio-svg-data.model';
 import { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioFormat, FolioSection } from './folio.model';
 
 import { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';
-import { Intro, IntroList } from './intro.model';
+import { Intro, IntroBlock, IntroList } from './intro.model';
 import { Preface, PrefaceList } from './preface.model';
 
 import {
@@ -45,7 +51,13 @@ import {
 import { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
 import { Source, SourceList } from './source-list.model';
 
-import { TextcriticalComment, TextcriticalCommentBlock, Textcritics, TextcriticsList } from './textcritics.model';
+import {
+    TextcriticalComment,
+    TextcriticalCommentary,
+    TextcriticalCommentBlock,
+    Textcritics,
+    TextcriticsList,
+} from './textcritics.model';
 import { TkaTableHeaderColumn } from './tka-table-header.model';
 import { ViewBox } from './view-box.model';
 
@@ -53,11 +65,13 @@ export {
     D3Selection,
     D3ZoomBehaviour,
     EditionComplex,
-    EditionComplexesJsonInput,
+    EditionComplexesJsonData,
     EditionComplexesList,
-    EditionComplexJsonInput,
+    EditionComplexJsonData,
     EditionComplexTitleStatement,
-    EditionOutlineComplex,
+    EditionOutline,
+    EditionOutlineComplexItem,
+    EditionOutlineJsonData,
     EditionOutlineSection,
     EditionOutlineSeries,
     EditionRouteConstant,
@@ -86,6 +100,7 @@ export {
     GraphRDFData,
     GraphSparqlQuery,
     Intro,
+    IntroBlock,
     IntroList,
     Preface,
     PrefaceList,
@@ -101,6 +116,7 @@ export {
     SourceEvaluationList,
     SourceList,
     TextcriticalComment,
+    TextcriticalCommentary,
     TextcriticalCommentBlock,
     Textcritics,
     TextcriticsList,

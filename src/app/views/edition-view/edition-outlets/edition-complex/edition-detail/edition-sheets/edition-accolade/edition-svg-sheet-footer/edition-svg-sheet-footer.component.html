@@ -1,50 +1,54 @@
 <div class="awg-edition-svg-sheet-footer mt-4">
-    @if (utils.isNotEmptyObject(selectedTextcritics)) {
-        <div class="awg-edition-svg-sheet-footer-evaluation">
-            <p (click)="toggleTextcritics()" (keydown)="toggleTextcritics()" tabindex="0" style="cursor: pointer">
-                @if (utils.isNotEmptyArray(selectedTextcritics.description)) {
-                    <span>
-                        <fa-icon [icon]="showTextcritics ? faChevronDown : faChevronRight"></fa-icon>
-                        &nbsp;
-                    </span>
-                }
+    @if (UTILS.isNotEmptyObject(selectedTextcritics)) {
+        <div class="card awg-edition-svg-sheet-footer-evaluation">
+            <div class="card-body">
+                <p (click)="toggleEvaluation()" (keydown)="toggleEvaluation()" tabindex="0" style="cursor: pointer">
+                    @if (UTILS.isNotEmptyArray(selectedTextcritics.evaluations)) {
+                        <span>
+                            <fa-icon [icon]="showEvaluation ? faChevronDown : faChevronRight"></fa-icon>
+                            &nbsp;
+                        </span>
+                    }
 
-                <span class="smallcaps"
-                    ><awg-edition-tka-label
-                        [id]="selectedTextcritics?.id"
-                        [labelType]="'evaluation'"></awg-edition-tka-label
-                    >:</span
-                >
+                    <span class="smallcaps"
+                        ><awg-edition-tka-label
+                            [id]="selectedTextcritics?.id"
+                            [labelType]="'evaluation'"></awg-edition-tka-label
+                        >:</span
+                    >
 
-                @if (!utils.isNotEmptyArray(selectedTextcritics.description)) {
-                    <span>&nbsp;---</span>
+                    @if (!UTILS.isNotEmptyArray(selectedTextcritics.evaluations)) {
+                        <span>&nbsp;---</span>
+                    }
+                </p>
+                @if (showEvaluation && UTILS.isNotEmptyArray(selectedTextcritics.evaluations)) {
+                    <awg-edition-tka-evaluations
+                        [evaluations]="selectedTextcritics.evaluations"
+                        (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                        (openModalRequest)="openModal($event)"
+                        (selectSvgSheetRequest)="selectSvgSheet($event)">
+                    </awg-edition-tka-evaluations>
                 }
-            </p>
-            @if (showTextcritics && utils.isNotEmptyArray(selectedTextcritics.description)) {
-                <awg-edition-tka-description
-                    [textcriticalDescriptions]="selectedTextcritics.description"
-                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                    (openModalRequest)="openModal($event)"
-                    (selectSvgSheetRequest)="selectSvgSheet($event)">
-                </awg-edition-tka-description>
-            }
+            </div>
         </div>
         @if (showTkA) {
-            <div class="awg-edition-svg-sheet-footer-textcritics">
-                <p class="smallcaps">
-                    <awg-edition-tka-label
-                        [id]="selectedTextcritics?.id"
-                        [labelType]="'comment'"></awg-edition-tka-label
-                    >:
-                </p>
-                <awg-edition-tka-table
-                    [textcriticalCommentBlocks]="selectedTextcriticalCommentBlocks"
-                    [isRowTable]="selectedTextcritics?.rowtable"
-                    [isSketchId]="utils.isSketchId(selectedTextcritics?.id)"
-                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                    (openModalRequest)="openModal($event)"
-                    (selectSvgSheetRequest)="selectSvgSheet($event)">
-                </awg-edition-tka-table>
+            <div class="card awg-edition-svg-sheet-footer-textcritics">
+                <div class="card-body">
+                    <p class="smallcaps">
+                        <awg-edition-tka-label
+                            [id]="selectedTextcritics?.id"
+                            [labelType]="'commentary'"></awg-edition-tka-label
+                        >:
+                    </p>
+                    <awg-edition-tka-table
+                        [commentary]="selectedTextcriticalCommentary"
+                        [isRowTable]="selectedTextcritics?.rowtable"
+                        [isSketchId]="UTILS.isSketchId(selectedTextcritics?.id)"
+                        (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                        (openModalRequest)="openModal($event)"
+                        (selectSvgSheetRequest)="selectSvgSheet($event)">
+                    </awg-edition-tka-table>
+                </div>
             </div>
         }
     }

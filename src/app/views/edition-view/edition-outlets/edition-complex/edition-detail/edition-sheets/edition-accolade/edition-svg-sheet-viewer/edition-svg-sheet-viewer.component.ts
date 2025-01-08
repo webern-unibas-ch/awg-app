@@ -5,6 +5,7 @@ import {
     ElementRef,
     EventEmitter,
     HostListener,
+    inject,
     Input,
     OnChanges,
     OnDestroy,
@@ -41,6 +42,7 @@ import * as D3_ZOOM from 'd3-zoom';
     selector: 'awg-edition-svg-sheet-viewer',
     templateUrl: './edition-svg-sheet-viewer.component.html',
     styleUrls: ['./edition-svg-sheet-viewer.component.scss'],
+    standalone: false,
 })
 export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, AfterViewInit {
     /**
@@ -206,33 +208,39 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     private _zoomBehaviour: D3ZoomBehaviour;
 
     /**
-     * Private variable: _resize$.
-     *
-     * It keeps a subject for a resize event.
-     */
-    private _resize$: Subject<boolean> = new Subject<boolean>();
-
-    /**
-     * Private variable: _destroyed$.
+     * Private readonly variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroyed$: Subject<boolean> = new Subject<boolean>();
+    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
+
+    /**
+     * Private readonly variable: _resize$.
+     *
+     * It keeps a subject for a resize event.
+     */
+    private readonly _resize$: Subject<boolean> = new Subject<boolean>();
+
+    /**
+     * Private readonly injection variable: _cdr.
+     *
+     * It keeps the instance of the injected Angular ChangeDetectorRef.
+     */
+    private readonly _cdr = inject(ChangeDetectorRef);
+
+    /**
+     * Private readonly injection variable: _svgDrawingService.
+     *
+     * It keeps the instance of the injected EditionSvgDrawingService.
+     */
+    private readonly _svgDrawingService = inject(EditionSvgDrawingService);
 
     /**
      * Constructor of the EditionSvgSheetViewerComponent.
      *
-     * It declares private instances of the {@link EditionSvgDrawingService},
-     * Angular's ChangeDetectorRef and the self-referring variable
-     * needed for CompileHtml library.
-     *
-     * @param {ChangeDetectorRef} cdr Instance of the ChangeDetectorRef.
-     * @param {EditionSvgDrawingService} svgDrawingService Instance of the EditionSvgDrawingService.
+     * It declares the self-referring variable needed for CompileHtml library.
      */
-    constructor(
-        private cdr: ChangeDetectorRef,
-        private svgDrawingService: EditionSvgDrawingService
-    ) {
+    constructor() {
         this.ref = this;
     }
 
@@ -275,7 +283,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      */
     ngAfterViewInit(): void {
         // Subscribe to resize subject to _redraw on resize with delay until component gets destroyed
-        this._resize$.pipe(debounceTime(150), takeUntil(this._destroyed$)).subscribe((_event: any) => {
+        this._resize$.pipe(debounceTime(150), takeUntil(this._destroyed$)).subscribe(() => {
             this.renderSheet();
         });
 
@@ -325,7 +333,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      */
     onSuppliedClassesOpacityToggle(input: { className: string; isCurrentlyVisible: boolean }): void {
         const { className, isCurrentlyVisible } = input;
-        this.svgDrawingService.toggleSuppliedClassOpacity(
+        this._svgDrawingService.toggleSuppliedClassOpacity(
             this.svgSheetRootGroupSelection,
             className,
             isCurrentlyVisible
@@ -344,7 +352,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     onTkkClassesHighlightToggle(isCurrentlyHighlighted: boolean): void {
         const overlayType = 'tkk';
 
-        const overlayGroups: D3Selection = this.svgDrawingService.getGroupsBySelector(
+        const overlayGroups: D3Selection = this._svgDrawingService.getGroupsBySelector(
             this.svgSheetRootGroupSelection,
             overlayType
         );
@@ -353,7 +361,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             const color = isCurrentlyHighlighted
                 ? EditionSvgOverlayActionTypes.fill
                 : EditionSvgOverlayActionTypes.transparent;
-            this.svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, color);
+            this._svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, color);
         });
     }
 
@@ -394,7 +402,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         this._createSvg().then(() => {
             this.resetZoom();
             this._createSvgOverlays();
-            this.cdr.detectChanges();
+            this._cdr.detectChanges();
         });
     }
 
@@ -442,7 +450,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         }
 
         // Create a D3 selection object of the svg template element via svgDrawingService
-        this.svgSheetSelection = await this.svgDrawingService.createSvg(
+        this.svgSheetSelection = await this._svgDrawingService.createSvg(
             this.svgSheetFilePath,
             this.svgSheetElementRef?.nativeElement,
             this.svgSheetRootGroupRef?.nativeElement
@@ -486,7 +494,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Creates the D3 SVG link box overlays.
      */
     private _createOverlays(overlayType: string, createOverlayFn: (group: SVGGElement, type: string) => void): void {
-        const overlayGroups: D3Selection = this.svgDrawingService.getGroupsBySelector(
+        const overlayGroups: D3Selection = this._svgDrawingService.getGroupsBySelector(
             this.svgSheetRootGroupSelection,
             overlayType
         );
@@ -506,30 +514,29 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * It creates the D3 SVG overlay for the given link box group.
      *
      * @param {SVGGElement} group The given link box group.
-     * @param {string} _overlayType The type of the overlay to create.
      *
      * @returns {void} Creates the D3 SVG link box overlay.
      */
-    private _createLinkBoxOverlay(group: SVGGElement, _overlayType: string): void {
+    private _createLinkBoxOverlay(group: SVGGElement): void {
         const linkBoxGroupId: string = group['id'];
-        const linkBoxGroupSelection: D3Selection = this.svgDrawingService.getD3SelectionById(
+        const linkBoxGroupSelection: D3Selection = this._svgDrawingService.getD3SelectionById(
             this.svgSheetRootGroupSelection,
             linkBoxGroupId
         );
 
         // Color link box
         const linkBoxGroupPathSelection: D3Selection = linkBoxGroupSelection.select('path');
-        linkBoxGroupPathSelection.style('fill', this.svgDrawingService.linkBoxFillColor);
+        linkBoxGroupPathSelection.style('fill', this._svgDrawingService.linkBoxFillColor);
 
         linkBoxGroupSelection
             .on('mouseover', () => {
-                const hoverColor = this.svgDrawingService.linkBoxHoverFillColor;
-                this.svgDrawingService.fillD3SelectionWithColor(linkBoxGroupPathSelection, hoverColor);
+                const hoverColor = this._svgDrawingService.linkBoxHoverFillColor;
+                this._svgDrawingService.fillD3SelectionWithColor(linkBoxGroupPathSelection, hoverColor);
                 linkBoxGroupSelection.style('cursor', 'pointer');
             })
             .on('mouseout', () => {
-                const fillColor = this.svgDrawingService.linkBoxFillColor;
-                this.svgDrawingService.fillD3SelectionWithColor(linkBoxGroupPathSelection, fillColor);
+                const fillColor = this._svgDrawingService.linkBoxFillColor;
+                this._svgDrawingService.fillD3SelectionWithColor(linkBoxGroupPathSelection, fillColor);
             })
             .on('click', () => {
                 this._onLinkBoxSelect(linkBoxGroupId);
@@ -553,7 +560,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         this._availableTkaOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.tka, id, false));
 
         // Get D3 selection of overlay group
-        const overlayGroupSelection = this.svgDrawingService.createOverlayGroup(
+        const overlayGroupSelection = this._svgDrawingService.createOverlayGroup(
             this.svgSheetRootGroupSelection,
             id,
             dim,
@@ -564,7 +571,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
 
         overlayGroupSelection
             .on('mouseover', () => {
-                this.svgDrawingService.updateTkkOverlayColor(
+                this._svgDrawingService.updateTkkOverlayColor(
                     overlay,
                     overlayGroupRectSelection,
                     EditionSvgOverlayActionTypes.hover
@@ -572,7 +579,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
                 overlayGroupRectSelection.style('cursor', 'pointer');
             })
             .on('mouseout', () => {
-                this.svgDrawingService.updateTkkOverlayColor(
+                this._svgDrawingService.updateTkkOverlayColor(
                     overlay,
                     overlayGroupRectSelection,
                     EditionSvgOverlayActionTypes.fill
@@ -582,7 +589,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
                 if (overlay) {
                     overlay.isSelected = !overlay.isSelected;
                 }
-                this.svgDrawingService.updateTkkOverlayColor(
+                this._svgDrawingService.updateTkkOverlayColor(
                     overlay,
                     overlayGroupRectSelection,
                     EditionSvgOverlayActionTypes.hover
@@ -598,12 +605,12 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * It sets the width and height of the given container div with its provided value
      * or the dimensions (width and height) of the given container.
      *
-     * @param {ElementRef} containerEl The given container element.
+     * @param {ElementRef<HTMLElement>} containerEl The given container element.
      *
      * @returns {void} Sets width and height of the container div.
      */
-    private _getContainerDimensions(containerEl: ElementRef): void {
-        const dimensions = this.svgDrawingService.getContainerDimensions(containerEl);
+    private _getContainerDimensions(containerEl: ElementRef<HTMLElement>): void {
+        const dimensions = this._svgDrawingService.getContainerDimensions(containerEl);
 
         this._divWidth = this._divWidth ? this._divWidth : dimensions.width;
         this._divHeight = this._divHeight ? this._divHeight : dimensions.height;
@@ -635,7 +642,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      */
     private _getOverlayAndSelection(id: string, overlayType: string): [EditionSvgOverlay, D3Selection] {
         const overlay = this._getOverlayById(this._availableTkaOverlays, id);
-        const overlayGroupRectSelection = this.svgDrawingService.getOverlayGroupRectSelection(
+        const overlayGroupRectSelection = this._svgDrawingService.getOverlayGroupRectSelection(
             this.svgSheetRootGroupSelection,
             id,
             overlayType
@@ -665,7 +672,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Gets the supplied classes.
      */
     private _getSuppliedClasses(): void {
-        this.suppliedClasses = this.svgDrawingService.getSuppliedClasses(this.svgSheetRootGroupSelection);
+        this.suppliedClasses = this._svgDrawingService.getSuppliedClasses(this.svgSheetRootGroupSelection);
     }
 
     /**

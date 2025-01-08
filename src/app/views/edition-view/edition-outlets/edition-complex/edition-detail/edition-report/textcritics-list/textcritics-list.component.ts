@@ -15,6 +15,7 @@ import { TextcriticsList } from '@awg-views/edition-view/models';
     templateUrl: './textcritics-list.component.html',
     styleUrls: ['./textcritics-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class TextcriticsListComponent {
     /**
@@ -65,6 +66,21 @@ export class TextcriticsListComponent {
      */
     constructor(public utils: UtilityService) {
         this.ref = this;
+    }
+
+    /**
+     * Public method: isWorkEditionId.
+     *
+     * It checks if the given id is a work edition id.
+     *
+     * @param {string} id The given id.
+     * @returns {boolean} The result of the check.
+     */
+    isWorkEditionId(id: string): boolean {
+        if (!id) {
+            return false;
+        }
+        return id.includes('_WE');
     }
 
     /**
