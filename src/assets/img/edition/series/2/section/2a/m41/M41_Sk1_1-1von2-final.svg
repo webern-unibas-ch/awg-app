@@ -108,9 +108,7 @@
   <path id="line20921" d="M483.076 164.612v30.523" style="fill:none;stroke:#000;stroke-width:.64399803"/>
   <path id="path20923" d="M377.294 193.768h106.103v2.734H377.294Z" style="fill:#000;fill-rule:nonzero;stroke:none;stroke-width:1.33333004"/>
   <g id="g189" class="tkk" transform="translate(37.677)">
-    <g id="g169" class="tkk" transform="translate(1.941 -.706)">
-      <path id="polyline20847" d="m341.496 147.587 21.183-15.545" style="fill:none;stroke:#000;stroke-width:.37849995" transform="matrix(1.5337 0 0 1.88754 -71.607 -77.058)"/>
-    </g>
+    <path id="polyline20847" d="m341.496 147.587 21.183-15.545" style="fill:none;stroke:#000;stroke-width:.37849995" transform="matrix(1.5337 0 0 1.88754 -71.607 -77.058)"/>
     <path id="line20927" d="M489.71 163.702h9.34" style="fill:none;stroke:#000;stroke-width:.90399802"/>
     <g id="text20929" aria-label="œ" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004">
       <path id="path1013" d="M491.251 163.724c-.59 1.552.437 2.842 2.274 2.864s3.783-1.224 4.373-2.799c.569-1.552-.437-2.82-2.296-2.842-1.836-.022-3.782 1.224-4.351 2.777" style="font-size:21.86660004px;font-family:Maestro;fill:#000;stroke-width:1.33333004"/>

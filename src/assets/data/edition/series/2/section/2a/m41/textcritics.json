@@ -88,7 +88,7 @@
                                 "comment": "Viertelpause überschreibt Achtelpause; Achtelpause überschreibt Viertelpause."
                             },
                             {
-                                "svgGroupId": "g1100 ",
+                                "svgGroupId": "g1100",
                                 "measure": "2B",
                                 "system": "2",
                                 "position": "1. Note",
@@ -237,7 +237,23 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g4",
+                    "linkTo": {
+                        "complexId": "m41",
+                        "sheetId": "M_41_Sk1_1b"
+                    }
+                },
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m41",
+                        "sheetId": "M_41_Sk1_2"
+                    }
+                }
+            ]
         },
         {
             "id": "M_41_Sk1_1",
@@ -268,7 +284,23 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g8",
+                    "linkTo": {
+                        "complexId": "m41",
+                        "sheetId": "M_41_Sk1f"
+                    }
+                },
+                {
+                    "svgGroupId": "g9",
+                    "linkTo": {
+                        "complexId": "m41",
+                        "sheetId": "M_41_Sk1_2"
+                    }
+                }
+            ]
         },
         {
             "id": "M_41_Sk1_2",
@@ -313,7 +345,23 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m41",
+                        "sheetId": "M_41_Sk1_1b"
+                    }
+                },
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m41",
+                        "sheetId": "M_41_Sk1f"
+                    }
+                }
+            ]
         }
     ]
 }
