@@ -1062,7 +1062,7 @@
             "description": {
                 "desc": ["1 Bogen (Bl. 1/2). Kleiner Riss am rechten Rand von Bl. 2."],
                 "writingMaterialStrings": [
-                    "Notenpapier, 18 Systeme, Format: hoch 348 × 266 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.M35_42.B[0].route\" [title]=\"ref.FIRM_SIGNS.M35_42.B[0].full\" [alt]=\"ref.FIRM_SIGNS.M35_42.B[0].short\" /><br /> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
+                    "Notenpapier, 18 Systeme, Format: hoch 348 × 266 mm, Firmenzeichen ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>."
                 ],
                 "writingMaterials": [
                     {
@@ -1215,7 +1215,10 @@
                     },
                     {
                         "item": "M 40 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m40",
+                            "sheetId": "M_40_Sk1a"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 40)",
                         "folios": [
                             {
@@ -1227,21 +1230,21 @@
                                         {
                                             "system": "1–2",
                                             "measure": "1–7, {8A}, 8B, 9",
-                                            "linkTo": ""
+                                            "linkTo": "M_40_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–7b",
                                             "measure": "10–12, {13A}, 13B, 14–15",
-                                            "linkTo": ""
+                                            "linkTo": "M_40_Sk1b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7a–8",
                                             "measure": "16A–17A, 16B–17B",
-                                            "linkTo": ""
+                                            "linkTo": "M_40_Sk1c"
                                         }
                                     ]
                                 ]
@@ -1250,7 +1253,10 @@
                     },
                     {
                         "item": "M 40 Sk1.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m40",
+                            "sheetId": "M_40_Sk1_1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 40)",
                         "folios": [
                             {
@@ -1297,7 +1303,7 @@
                         "item": "M 35/42 Sk1",
                         "itemLinkTo": {
                             "complexId": "m35_42",
-                            "sheetId": "M_35_42_Sk1"
+                            "sheetId": "M_35_42_Sk1a"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 35/42)",
                         "folios": [
@@ -1441,7 +1447,7 @@
             "description": {
                 "desc": ["1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt."],
                 "writingMaterialStrings": [
-                    "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.M35_42.B[0].route\" [title]=\"ref.FIRM_SIGNS.M35_42.B[0].full\" [alt]=\"ref.FIRM_SIGNS.M35_42.B[0].short\" /><br /> unten links auf Bl. 1<sup>r</sup>"
+                    "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>."
                 ],
                 "writingMaterials": [
                     {
@@ -1489,7 +1495,10 @@
                 "contents": [
                     {
                         "item": "M 40",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m40",
+                            "sheetId": "M_40_TF1a"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 40)",
                         "folios": [
                             {
@@ -1533,7 +1542,7 @@
                         "item": "M 35/42",
                         "itemLinkTo": {
                             "complexId": "m35_42",
-                            "sheetId": "M_35_42_TF1"
+                            "sheetId": "M_35_42_TF1a"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 35/42)",
                         "folios": [
