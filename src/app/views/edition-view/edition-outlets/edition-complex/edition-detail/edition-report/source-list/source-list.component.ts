@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { UtilityService } from '@awg-app/core/services';
 
-import { SourceList } from '@awg-views/edition-view/models';
+import { UtilityService } from '@awg-core/services';
+import { Source, SourceList } from '@awg-views/edition-view/models';
 
 /**
  * The SourceList component.
@@ -15,6 +15,7 @@ import { SourceList } from '@awg-views/edition-view/models';
     templateUrl: './source-list.component.html',
     styleUrls: ['./source-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SourceListComponent {
     /**
@@ -28,10 +29,10 @@ export class SourceListComponent {
     /**
      * Output variable: navigateToReportFragment.
      *
-     * It keeps an event emitter for a fragment id of the edition report.
+     * It keeps an event emitter for the selected ids of an edition complex and report fragment.
      */
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
 
     /**
      * Output variable: openModalRequest.
@@ -60,23 +61,44 @@ export class SourceListComponent {
     }
 
     /**
-     * Public method: navigateToReportFragment.
+     * Public method: onSourceClick.
      *
-     * It emits a given id of a fragment of the edition report
-     * to the {@link navigateToReportFragmentRequest}.
+     * It navigates to a report fragment or opens a modal
+     * on a source click event.
      *
-     * @param {string} id The given fragment id.
-     * @returns {void} Navigates to the edition report.
+     * @param {Source} source The given source.
+     *
+     * @returns {void} Navigates to a report fragment or opens a modal.
      */
-    navigateToReportFragment(id: string): void {
-        if (!id) {
-            return;
+    onSourceClick(source: Source): void {
+        if (source.hasDescription) {
+            this._navigateToReportFragment({
+                complexId: '',
+                fragmentId: source.linkTo,
+            });
+        } else {
+            this._openModal(source.linkTo);
         }
-        this.navigateToReportFragmentRequest.emit(id);
     }
 
     /**
-     * Public method: openModal.
+     * Private method: navigateToReportFragment.
+     *
+     * It emits the given ids of a selected edition complex and report fragment
+     * to the {@link navigateToReportFragmentRequest}.
+     *
+     * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
+     * @returns {void} Emits the ids.
+     */
+    private _navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
+        if (!reportIds?.fragmentId) {
+            return;
+        }
+        this.navigateToReportFragmentRequest.emit(reportIds);
+    }
+
+    /**
+     * Private method: openModal.
      *
      * It emits a given id of a modal snippet text
      * to the {@link openModalRequest}.
@@ -85,7 +107,7 @@ export class SourceListComponent {
      *
      * @returns {void} Emits the id.
      */
-    openModal(id: string): void {
+    private _openModal(id: string): void {
         if (!id) {
             return;
         }

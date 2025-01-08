@@ -13,5 +13,6 @@ import { Component } from '@angular/core';
     selector: 'awg-bibliography-search',
     templateUrl: './bibliography-search.component.html',
     styleUrls: ['./bibliography-search.component.scss'],
+    standalone: false,
 })
 export class BibliographySearchComponent {}

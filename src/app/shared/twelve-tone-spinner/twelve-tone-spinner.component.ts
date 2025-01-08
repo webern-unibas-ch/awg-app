@@ -12,13 +12,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     templateUrl: './twelve-tone-spinner.component.html',
     styleUrls: ['./twelve-tone-spinner.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class TwelveToneSpinnerComponent {
     /**
-     * Public variable: spinnerMessage.
+     * Public variable: spinnerLoadText.
      *
      * It contains the message to be displayed
      * while the spinner is active.
      */
-    spinnerMessage = 'loading';
+    spinnerLoadText = 'loading';
 }

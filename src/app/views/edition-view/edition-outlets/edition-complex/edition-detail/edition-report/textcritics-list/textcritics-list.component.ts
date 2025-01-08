@@ -15,6 +15,7 @@ import { TextcriticsList } from '@awg-views/edition-view/models';
     templateUrl: './textcritics-list.component.html',
     styleUrls: ['./textcritics-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class TextcriticsListComponent {
     /**
@@ -28,10 +29,10 @@ export class TextcriticsListComponent {
     /**
      * Output variable: navigateToReportFragment.
      *
-     * It keeps an event emitter for a fragment id of the edition report.
+     * It keeps an event emitter for the selected ids of an edition complex and report fragment.
      */
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
 
     /**
      * Output variable: openModalRequest.
@@ -68,19 +69,34 @@ export class TextcriticsListComponent {
     }
 
     /**
+     * Public method: isWorkEditionId.
+     *
+     * It checks if the given id is a work edition id.
+     *
+     * @param {string} id The given id.
+     * @returns {boolean} The result of the check.
+     */
+    isWorkEditionId(id: string): boolean {
+        if (!id) {
+            return false;
+        }
+        return id.includes('_WE');
+    }
+
+    /**
      * Public method: navigateToReportFragment.
      *
-     * It emits a given id of a fragment of the edition report
+     * It emits the given ids of a selected edition complex and report fragment
      * to the {@link navigateToReportFragmentRequest}.
      *
-     * @param {string} id The given fragment id.
-     * @returns {void} Navigates to the edition report.
+     * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
+     * @returns {void} Emits the ids.
      */
-    navigateToReportFragment(id: string): void {
-        if (!id) {
+    navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
+        if (!reportIds?.fragmentId) {
             return;
         }
-        this.navigateToReportFragmentRequest.emit(id);
+        this.navigateToReportFragmentRequest.emit(reportIds);
     }
 
     /**

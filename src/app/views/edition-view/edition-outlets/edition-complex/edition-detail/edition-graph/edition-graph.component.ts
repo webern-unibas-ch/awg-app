@@ -1,26 +1,15 @@
-import { DOCUMENT } from '@angular/common';
-import {
-    ChangeDetectionStrategy,
-    Component,
-    HostBinding,
-    HostListener,
-    Inject,
-    OnInit,
-    ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
 import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 
-import { UtilityService } from '@awg-core/services';
+import { FullscreenService, UtilityService } from '@awg-core/services';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, GraphList } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
-
-import { GraphVisualizerComponent } from './graph-visualizer';
+import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionGraph component.
@@ -33,21 +22,29 @@ import { GraphVisualizerComponent } from './graph-visualizer';
     templateUrl: './edition-graph.component.html',
     styleUrls: ['./edition-graph.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionGraphComponent implements OnInit {
     /**
-     * ViewChild variable: child.
+     * Public variable: editionComplex.
      *
-     * It keeps the reference to the GraphVisualizerComponent child.
+     * It keeps the information about the current edition complex.
      */
-    @ViewChild(GraphVisualizerComponent) child: GraphVisualizerComponent;
+    editionComplex: EditionComplex;
 
     /**
-     * HostBinding: isFullscreen.
+     * Public variable: editionGraphData$.
      *
-     * It binds to the is-fullscreen CSS class.
+     * It keeps the observable of the edition graph data.
      */
-    @HostBinding('class.is-fullscreen') isFullscreen = false;
+    editionGraphData$: Observable<GraphList | never>;
+
+    /**
+     * Public variable: errorObject.
+     *
+     * It keeps an errorObject for the service calls.
+     */
+    errorObject = null;
 
     /**
      * Public variable: faExpand.
@@ -64,18 +61,16 @@ export class EditionGraphComponent implements OnInit {
     faCompress = faCompress;
 
     /**
-     * Public variable: editionComplex.
+     * Public variable: isFullscreen.
      *
-     * It keeps the information about the current edition complex.
+     * It keeps the fullscreen mode status.
      */
-    editionComplex: EditionComplex;
+    isFullscreen = false;
 
     /**
-     * Public variable: editionGraphData$.
-     *
-     * It keeps the observable of the edition graph data.
+     * Self-referring variable needed for CompileHtml library.
      */
-    editionGraphData$: Observable<GraphList | never>;
+    ref: EditionGraphComponent;
 
     /**
      * Readonly variable: GRAPH_IMAGES.
@@ -88,34 +83,40 @@ export class EditionGraphComponent implements OnInit {
     };
 
     /**
-     * Public variable: errorObject.
+     * Public readonly injection variable: UTILS.
      *
-     * It keeps an errorObject for the service calls.
+     * It keeps the instance of the injected UtilityService.
      */
-    errorObject = null;
+    readonly UTILS = inject(UtilityService);
 
     /**
-     * Self-referring variable needed for CompileHtml library.
+     * Private readonly injection variable: _editionDataService.
+     *
+     * It keeps the instance of the injected EditionDataService.
      */
-    ref: EditionGraphComponent;
+    private readonly _editionDataService = inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _fullscreenService.
+     *
+     * It keeps the instance of the injected FullscreenService.
+     */
+    private readonly _fullscreenService = inject(FullscreenService);
 
     /**
      * Constructor of the EditionGraphComponent.
      *
-     * It declares a private instances of the EditionDataService and EditionService;
-     * injects the DOCUMENT; and declares a public instance of the UtilityService.
+     * It initializes the self-referring variable needed for CompileHtml library.
      *
-     * @param {EditionDataService} editionDataService Instance of the EditionDataService.
-     * @param {EditionService} editionService Instance of the EditionService.
-     * @param {DOCUMENT} document Instance of DOCUMENT
-     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor(
-        private editionDataService: EditionDataService,
-        private editionService: EditionService,
-        @Inject(DOCUMENT) private document: any,
-        public utils: UtilityService
-    ) {
+    constructor() {
         this.ref = this;
     }
 
@@ -126,21 +127,6 @@ export class EditionGraphComponent implements OnInit {
      **/
     get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
         return EDITION_ROUTE_CONSTANTS;
-    }
-
-    /**
-     * HostListener: document:fullscreenchange.
-     *
-     * It listens for fullscreen exit with ESC key.
-     */
-    @HostListener('document:fullscreenchange', ['$event']) onKeydownHandler(_event: KeyboardEvent) {
-        if (
-            !this.document.fullscreenElement && // Alternative standard method
-            !this.document.mozFullScreenElement &&
-            !this.document.webkitFullscreenElement
-        ) {
-            this.isFullscreen = false;
-        }
     }
 
     /**
@@ -156,85 +142,34 @@ export class EditionGraphComponent implements OnInit {
     /**
      * Public method: getEditionGraphData.
      *
-     * It gets the current edition complex of the edition service
+     * It gets the current edition complex from the EditionStateService
      * and the observable of the corresponding graph data
      * from the EditionDataService.
      *
      * @returns {void} Gets the current edition complex and the corresponding graph data.
      */
     getEditionGraphData(): void {
-        this.editionGraphData$ = this.editionService
-            // Get current editionComplex from editionService
-            .getEditionComplex()
-            .pipe(
-                switchMap((complex: EditionComplex) => {
-                    // Set current editionComplex
-                    this.editionComplex = complex;
-                    // Get graph data from editionDataService
-                    return this.editionDataService.getEditionGraphData(this.editionComplex);
-                }),
-                // Error handling
-                catchError(err => {
-                    // Set error object
-                    this.errorObject = err;
-                    // Return empty observable to complete observable without data
-                    return EMPTY;
-                })
-            );
+        this.editionGraphData$ = this._editionStateService.getSelectedEditionComplex().pipe(
+            switchMap((complex: EditionComplex) => {
+                this.editionComplex = complex;
+                return this._editionDataService.getEditionGraphData(this.editionComplex);
+            }),
+            catchError(err => {
+                this.errorObject = err;
+                return EMPTY;
+            })
+        );
     }
 
     /**
-     * Public method: openFullscreen.
+     * Public method: onFullscreenToggle.
      *
-     * It activates fullscreen mode and sets isFullscreen flag to true.
+     * It toggles the fullscreen mode and sets the isFullscreen flag.
      *
-     * @returns {void} Sets isFullscreen flag to true.
+     * @param {boolean} isFullscreen A boolean indicating the fullscreen mode.
+     * @returns {void} Toggles the fullscreen mode and sets the isFullscreen flag.
      */
-    openFullscreen(): void {
-        const el = this.child.fs.nativeElement;
-
-        this.isFullscreen = true;
-        if (
-            !this.document.fullscreenElement && // Alternative standard method
-            !this.document.mozFullScreenElement &&
-            !this.document.webkitFullscreenElement
-        ) {
-            // Current working methods
-            if (el.requestFullscreen) {
-                el.requestFullscreen();
-            } else if (el.mozRequestFullScreen) {
-                /* Firefox */
-                el.mozRequestFullScreen();
-            } else if (el.webkitRequestFullscreen) {
-                /* Chrome, Safari and Opera */
-                el.webkitRequestFullscreen();
-            } else if (el.msRequestFullscreen) {
-                /* IE/Edge */
-                el.msRequestFullscreen();
-            }
-        }
-    }
-
-    /**
-     * Public method: closeFullscreen.
-     *
-     * It closes fullscreen mode and sets isFullscreen flag to false.
-     *
-     * @returns {void} Sets isFullscreen flag to false.
-     */
-    closeFullscreen(): void {
-        if (this.document.exitFullscreen) {
-            this.document.exitFullscreen();
-        } else if (this.document.mozCancelFullScreen) {
-            /* Firefox */
-            this.document.mozCancelFullScreen();
-        } else if (this.document.webkitExitFullscreen) {
-            /* Chrome, Safari and Opera */
-            this.document.webkitExitFullscreen();
-        } else if (this.document.msExitFullscreen) {
-            /* IE/Edge */
-            this.document.msExitFullscreen();
-        }
-        this.isFullscreen = false;
+    onFullscreenToggle(isFullscreen: boolean): void {
+        this.isFullscreen = isFullscreen;
     }
 }

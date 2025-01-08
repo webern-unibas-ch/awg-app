@@ -1,24 +1,26 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule } from '@angular/router';
 
 import { Observable, of as observableOf } from 'rxjs';
-import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { expectToBe } from '@testing/expect-helper';
+
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
-import { SearchResponseJson } from '@awg-shared/api-objects';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
-import { SearchParams, SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { SearchResultListComponent } from './search-result-list.component';
 
-@Component({ selector: 'awg-table', template: '' })
+@Component({
+    selector: 'awg-table',
+    template: '',
+    standalone: false,
+})
 class TableStubComponent {
     @Input() tableTitle: string;
     @Input() headerInputData: any;
@@ -38,13 +40,8 @@ describe('SearchResultListComponent', () => {
     let conversionService: Partial<ConversionService>;
     let dataStreamerService: Partial<DataStreamerService>;
     let sideInfoService: Partial<SideInfoService>;
-    let getSearchResponseWithQuerySpy: Spy;
-    let formBuilder: UntypedFormBuilder;
 
-    let expectedSearchResponseWithQuery: SearchResponseWithQuery;
     let expectedSearchResultText: string;
-
-    let expectedSearchParams: SearchParams;
 
     beforeEach(waitForAsync(() => {
         // Mock services
@@ -52,10 +49,7 @@ describe('SearchResultListComponent', () => {
             getSearchResponseWithQuery: (): Observable<SearchResponseWithQuery> => observableOf(),
         };
         mockConversionService = {
-            prepareFullTextSearchResultText: (
-                searchResponseWithQuery: SearchResponseWithQuery,
-                searchUrl: string
-            ): string => expectedSearchResultText,
+            prepareFullTextSearchResultText: (): string => expectedSearchResultText,
         };
         mockSideInfoService = {
             updateSearchInfoData: () => {
@@ -67,7 +61,7 @@ describe('SearchResultListComponent', () => {
         };
 
         TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, NgbPaginationModule, ReactiveFormsModule, RouterTestingModule],
+            imports: [FontAwesomeTestingModule, NgbPaginationModule, ReactiveFormsModule, RouterModule],
             declarations: [SearchResultListComponent, CompileHtmlComponent, TableStubComponent],
             providers: [
                 { provide: DataStreamerService, useValue: mockDataStreamerService },
@@ -86,18 +80,9 @@ describe('SearchResultListComponent', () => {
         dataStreamerService = TestBed.inject(DataStreamerService);
         conversionService = TestBed.inject(ConversionService);
         sideInfoService = TestBed.inject(SideInfoService);
-        formBuilder = TestBed.inject(UntypedFormBuilder);
 
         // Test data
-        expectedSearchResponseWithQuery = new SearchResponseWithQuery(new SearchResponseJson(), '');
         expectedSearchResultText = '';
-
-        expectedSearchParams = new SearchParams('', '5', '0', ViewHandleTypes.TABLE);
-
-        // Spies on service functions
-        getSearchResponseWithQuerySpy = spyOn(dataStreamerService, 'getSearchResponseWithQuery').and.returnValue(
-            observableOf(expectedSearchResponseWithQuery)
-        );
     });
 
     it('... should create', () => {
@@ -105,14 +90,14 @@ describe('SearchResultListComponent', () => {
     });
 
     it('... injected conversion service should use provided mockValue', () => {
-        expect(conversionService === mockConversionService).toBeTrue();
+        expectToBe(conversionService === mockConversionService, true);
     });
 
     it('... injected datastreamer service should use provided mockValue', () => {
-        expect(dataStreamerService === mockDataStreamerService).toBeTrue();
+        expectToBe(dataStreamerService === mockDataStreamerService, true);
     });
 
     it('... injected sideinfo service should use provided mockValue', () => {
-        expect(sideInfoService === mockSideInfoService).toBeTrue();
+        expectToBe(sideInfoService === mockSideInfoService, true);
     });
 });

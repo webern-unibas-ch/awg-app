@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { Logos } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
+import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 /**
  * The Header component.
@@ -19,43 +19,9 @@ import { EditionComplex } from '@awg-views/edition-view/models';
     selector: 'awg-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss'],
+    standalone: false,
 })
 export class NavbarComponent implements OnInit {
-    /**
-     * Public variable: faEnvelope.
-     *
-     * It instantiates fontawesome's faEnvelope icon.
-     */
-    faEnvelope = faEnvelope;
-
-    /**
-     * Public variable: faFileAlt.
-     *
-     * It instantiates fontawesome's faFileAlt icon.
-     */
-    faFileAlt = faFileAlt;
-
-    /**
-     * Public variable: faHome.
-     *
-     * It instantiates fontawesome's faHome icon.
-     */
-    faHome = faHome;
-
-    /**
-     * Public variable: faNetworkWired.
-     *
-     * It instantiates fontawesome's faNetworkWired icon.
-     */
-    faNetworkWired = faNetworkWired;
-
-    /**
-     * Public variable: faSearch.
-     *
-     * It instantiates fontawesome's faSearch icon.
-     */
-    faSearch = faSearch;
-
     /**
      * Public variable: isCollapsed.
      *
@@ -71,11 +37,32 @@ export class NavbarComponent implements OnInit {
     logos: Logos;
 
     /**
-     * Public variable: selectedEditionComplex.
+     * Public variable: navbarIcons.
      *
-     * It keeps the currently selected edition complex.
+     * It keeps the fontawesome icons for the navbar.
      */
-    selectedEditionComplex: EditionComplex;
+    navbarIcons = {
+        contact: faEnvelope,
+        edition: faFileAlt,
+        home: faHome,
+        structure: faNetworkWired,
+        search: faSearch,
+    };
+
+    /**
+     * Public variable: navbarLabels.
+     *
+     * It keeps the labels for the navbar.
+     */
+    navbarLabels = {
+        home: 'Home',
+        complexes: 'Auswahl Skizzenkomplexe',
+        contact: 'Kontakt',
+        edition: 'Edition',
+        general: 'Allgemein',
+        search: 'Datenbank-Suche',
+        structure: 'Strukturmodell',
+    };
 
     /**
      * Readonly variable: DISPLAYED_EDITION_COMPLEXES.
@@ -83,28 +70,32 @@ export class NavbarComponent implements OnInit {
      * It keeps the array of displayed edition complexes.
      */
     readonly DISPLAYED_EDITION_COMPLEXES: EditionComplex[] = [
-        EDITION_COMPLEXES.OP12,
-        EDITION_COMPLEXES.OP25,
-        EDITION_COMPLEXES.M22,
-        EDITION_COMPLEXES.M30,
-        EDITION_COMPLEXES.M31,
-        EDITION_COMPLEXES.M34,
-        EDITION_COMPLEXES.M35_42,
-        EDITION_COMPLEXES.M37,
+        EditionComplexesService.getEditionComplexById('OP3'),
+        EditionComplexesService.getEditionComplexById('OP4'),
+        EditionComplexesService.getEditionComplexById('OP12'),
+        EditionComplexesService.getEditionComplexById('OP23'),
+        EditionComplexesService.getEditionComplexById('OP25'),
+        EditionComplexesService.getEditionComplexById('M22'),
+        EditionComplexesService.getEditionComplexById('M30'),
+        EditionComplexesService.getEditionComplexById('M31'),
+        EditionComplexesService.getEditionComplexById('M34'),
+        EditionComplexesService.getEditionComplexById('M35_42'),
+        EditionComplexesService.getEditionComplexById('M37'),
     ];
 
     /**
-     * Constructor of the HeaderComponent.
+     * Private readonly injection variable: _coreService.
      *
-     * It declares private instances of the CoreService and the Angular Router.
-     *
-     * @param {CoreService} coreService Instance of the CoreService.
-     * @param {Router} router Instance of the Angular Router.
+     * It keeps the instance of the injected CoreService.
      */
-    constructor(
-        private coreService: CoreService,
-        private router: Router
-    ) {}
+    private readonly _coreService = inject(CoreService);
+
+    /**
+     * Private readonly injection variable: _router.
+     *
+     * It keeps the instance of the injected Angular Router.
+     */
+    private readonly _router = inject(Router);
 
     /**
      * Getter variable: editionRouteConstants.
@@ -122,7 +113,6 @@ export class NavbarComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getEditionComplex();
         this.provideMetaData();
     }
 
@@ -136,23 +126,12 @@ export class NavbarComponent implements OnInit {
      * @returns {boolean} The boolean value of the check.
      */
     isActiveRoute(route: string): boolean {
-        return this.router.isActive(route, {
+        return this._router.isActive(route, {
             paths: 'subset',
             queryParams: 'subset',
             fragment: 'ignored',
             matrixParams: 'ignored',
         });
-    }
-
-    /**
-     * Public method: getEditionComplex.
-     *
-     * It gets the selected edition complex.
-     *
-     * @returns {void} Sets the selectedEditionComplex variable.
-     */
-    getEditionComplex(): void {
-        this.selectedEditionComplex = this.DISPLAYED_EDITION_COMPLEXES[0];
     }
 
     /**
@@ -164,7 +143,7 @@ export class NavbarComponent implements OnInit {
      * @returns {void} Sets the logos variable.
      */
     provideMetaData(): void {
-        this.logos = this.coreService.getLogos();
+        this.logos = this._coreService.getLogos();
     }
 
     /**

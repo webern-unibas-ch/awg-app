@@ -1,9 +1,9 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { LOGOSDATA } from '@awg-core/core-data';
+import { LOGOS_DATA } from '@awg-core/core-data';
 import { Logos } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
@@ -36,7 +36,7 @@ describe('SparqlNoResultsComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedLogos = LOGOSDATA;
+        expectedLogos = LOGOS_DATA;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -50,7 +50,7 @@ describe('SparqlNoResultsComponent (DONE)', () => {
 
     it('... injected service should use provided mockValue', () => {
         const coreService = TestBed.inject(CoreService);
-        expect(mockCoreService === coreService).toBe(true);
+        expectToBe(mockCoreService === coreService, true);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -75,54 +75,36 @@ describe('SparqlNoResultsComponent (DONE)', () => {
             });
 
             it('... should contain plain text in 1st and 2nd paragraph', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.text-center', 1, 1);
-                const pDes = getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 1);
+                const pDes = getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 4);
 
-                const divEl = divDes[0].nativeElement;
-                const p1El = pDes[0].nativeElement;
-                const p2El = pDes[1].nativeElement;
+                const pEl1: HTMLParagraphElement = pDes[0].nativeElement;
+                const pEl2: HTMLParagraphElement = pDes[1].nativeElement;
 
-                expect(divEl.id).toBeDefined();
-
-                expect(p1El.textContent).toBeDefined();
-                expect(p1El.textContent)
-                    .withContext(
-                        'should contain: Entschuldigung, Ihre SPARQL-Anfrage führte leider zu keinem Ergebnis.'
-                    )
-                    .toContain('Entschuldigung, Ihre SPARQL-Anfrage führte leider zu keinem Ergebnis.');
-
-                expect(p2El.textContent).toBeDefined();
-                expect(p2El.textContent)
-                    .withContext('should contain: Möglicherweise können Sie Ihre Anfrage anpassen.')
-                    .toContain('Möglicherweise können Sie Ihre Anfrage anpassen.');
+                expectToBe(pEl1.textContent, 'Entschuldigung, Ihre SPARQL-Anfrage führte leider zu keinem Ergebnis.');
+                expectToBe(pEl2.textContent, 'Möglicherweise können Sie Ihre Anfrage anpassen.');
             });
 
             it('... should contain one empty link in 3rd and 4th paragraph', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.text-center', 1, 1);
-                const pDes = getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 1);
-                const p3aDes = getAndExpectDebugElementByCss(pDes[2], 'p > a', 1, 1);
-                const p4aDes = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
+                const pDes = getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 4);
+                const aDes3 = getAndExpectDebugElementByCss(pDes[2], 'p > a', 1, 1);
+                const aDes4 = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
 
-                const p3aEl = p3aDes[0].nativeElement;
-                const p4aEl = p4aDes[0].nativeElement;
+                const aEl3: HTMLAnchorElement = aDes3[0].nativeElement;
+                const aEl4: HTMLAnchorElement = aDes4[0].nativeElement;
 
-                expect(p3aEl.href).toBeDefined();
-                expect(p3aEl.href).withContext('should be empty string').not.toBeTruthy(); // JASMINE: empty string ==> not truthy
-
-                expect(p4aEl.href).toBeDefined();
-                expect(p4aEl.href).withContext('should be empty string').not.toBeTruthy();
+                expectToBe(aEl3.href, '');
+                expectToBe(aEl4.href, '');
             });
 
             it('... should contain one empty image in 4th paragraph link', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.text-center', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 1);
-                const p4aDes = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
-                const imgDes = getAndExpectDebugElementByCss(p4aDes[0], 'a > img', 1, 1);
+                const aDes4 = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
+                const imgDes = getAndExpectDebugElementByCss(aDes4[0], 'a > img', 1, 1);
 
-                const imgEl = imgDes[0].nativeElement;
+                const imgEl: HTMLImageElement = imgDes[0].nativeElement;
 
-                expect(imgEl.src).toBeDefined();
-                expect(imgEl.src).withContext('should be empty string').not.toBeTruthy();
+                expectToBe(imgEl.src, '');
             });
         });
     });
@@ -142,8 +124,7 @@ describe('SparqlNoResultsComponent (DONE)', () => {
             });
 
             it('... should return logos', () => {
-                expect(component.logos).toBeDefined();
-                expect(component.logos).withContext(`should be ${expectedLogos}`).toBe(expectedLogos);
+                expectToEqual(component.logos, expectedLogos);
             });
         });
 
@@ -151,42 +132,26 @@ describe('SparqlNoResultsComponent (DONE)', () => {
             it('... should contain correct link in 3rd and 4th paragraph', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.text-center', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 1);
-                const p3aDes = getAndExpectDebugElementByCss(pDes[2], 'p > a', 1, 1);
-                const p4aDes = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
+                const aDes3 = getAndExpectDebugElementByCss(pDes[2], 'p > a', 1, 1);
+                const aDes4 = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
 
-                const p3aEl = p3aDes[0].nativeElement;
-                const p4aEl = p4aDes[0].nativeElement;
+                const aEl3: HTMLAnchorElement = aDes3[0].nativeElement;
+                const aEl4: HTMLAnchorElement = aDes4[0].nativeElement;
 
-                expect(p3aEl.href).toBeDefined();
-                expect(p3aEl.href).withContext('should be empty string').toBeTruthy();
-                expect(p3aEl.href)
-                    .withContext(`should contain ${expectedLogos['sparql'].href}`)
-                    .toContain(expectedLogos['sparql'].href);
-
-                expect(p3aEl.textContent).toBeDefined();
-                expect(p3aEl.textContent)
-                    .withContext(`should contain: ${expectedLogos['sparql'].href}`)
-                    .toContain(expectedLogos['sparql'].href);
-
-                expect(p4aEl.href).toBeDefined();
-                expect(p4aEl.href).withContext('should be empty string').toBeTruthy();
-                expect(p4aEl.href)
-                    .withContext(`should contain ${expectedLogos['sparql'].href}`)
-                    .toContain(expectedLogos['sparql'].href);
+                expectToBe(aEl3.href, expectedLogos['sparql'].href);
+                expectToBe(aEl3.textContent, expectedLogos['sparql'].href);
+                expectToBe(aEl4.href, expectedLogos['sparql'].href);
             });
 
             it('... should contain correct image in 4th paragraph link', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.text-center', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 1);
-                const p4aDes = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
-                const imgDes = getAndExpectDebugElementByCss(p4aDes[0], 'a > img', 1, 1);
+                const aDes4 = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
+                const imgDes = getAndExpectDebugElementByCss(aDes4[0], 'a > img', 1, 1);
 
-                const imgEl = imgDes[0].nativeElement;
+                const imgEl: HTMLImageElement = imgDes[0].nativeElement;
 
-                expect(imgEl.src).toBeDefined();
-                expect(imgEl.src)
-                    .withContext(`should contain ${expectedLogos['sparql'].src}`)
-                    .toContain(expectedLogos['sparql'].src);
+                expectToContain(imgEl.src, expectedLogos['sparql'].src);
             });
         });
     });

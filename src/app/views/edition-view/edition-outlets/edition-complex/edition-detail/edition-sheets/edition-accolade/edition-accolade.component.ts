@@ -4,7 +4,7 @@ import {
     EditionSvgOverlay,
     EditionSvgSheet,
     EditionSvgSheetList,
-    TextcriticalComment,
+    TextcriticalCommentary,
     Textcritics,
 } from '@awg-views/edition-view/models';
 
@@ -22,8 +22,17 @@ import {
     templateUrl: './edition-accolade.component.html',
     styleUrls: ['./edition-accolade.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionAccoladeComponent {
+    /**
+     * Input variable: isFullscreen.
+     *
+     * It keeps the fullscreen mode status.
+     */
+    @Input()
+    isFullscreen: boolean;
+
     /**
      * Input variable: svgSheetsData.
      *
@@ -41,12 +50,12 @@ export class EditionAccoladeComponent {
     selectedSvgSheet: EditionSvgSheet;
 
     /**
-     * Input variable: selectedTextcriticalComments.
+     * Input variable: selectedTextcriticalCommentary.
      *
-     * It keeps the selected textcritical comments.
+     * It keeps the selected textcritical commentary.
      */
     @Input()
-    selectedTextcriticalComments: TextcriticalComment[];
+    selectedTextcriticalCommentary: TextcriticalCommentary;
 
     /**
      * Input variable: selectedTextcritics.
@@ -73,12 +82,20 @@ export class EditionAccoladeComponent {
     browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
 
     /**
-     * Output variable: navigateToReportFragment.
+     * Output variable: fullscreenToggleRequest.
      *
-     * It keeps an event emitter for a fragment id of the edition report.
+     * It keeps an event emitter for the fullscreen toggle.
      */
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    fullscreenToggleRequest: EventEmitter<boolean> = new EventEmitter();
+
+    /**
+     * Output variable: navigateToReportFragment.
+     *
+     * It keeps an event emitter for the selected ids of an edition complex and report fragment.
+     */
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
 
     /**
      * Output variable: openModalRequest.
@@ -131,19 +148,36 @@ export class EditionAccoladeComponent {
     }
 
     /**
-     * Public method: navigateToReportFragment.
+     * Public method: fullscreenToggle.
      *
-     * It emits a given id of a fragment of the edition report
-     * to the {@link navigateToReportFragmentRequest}.
+     * It emits a given boolean to the {@link fullscreenToggleRequest}
+     * to toggle the fullscreen mode.
      *
-     * @param {string} id The given fragment id.
-     * @returns {void} Navigates to the edition report.
+     * @param {boolean} isFullscreen A boolean indicating the fullscreen mode.
+     *
+     * @returns {void} Emits the boolean.
      */
-    navigateToReportFragment(id: string): void {
-        if (!id) {
+    fullscreenToggle(isFullscreen: boolean): void {
+        if (isFullscreen === undefined) {
             return;
         }
-        this.navigateToReportFragmentRequest.emit(id);
+        this.fullscreenToggleRequest.emit(isFullscreen);
+    }
+
+    /**
+     * Public method: navigateToReportFragment.
+     *
+     * It emits the given ids of a selected edition complex and report fragment
+     * to the {@link navigateToReportFragmentRequest}.
+     *
+     * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
+     * @returns {void} Emits the ids.
+     */
+    navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
+        if (!reportIds?.fragmentId) {
+            return;
+        }
+        this.navigateToReportFragmentRequest.emit(reportIds);
     }
 
     /**

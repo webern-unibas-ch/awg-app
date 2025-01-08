@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { EditionRowTablesList } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+
+import { EditionRowTablesList } from '@awg-views/edition-view/models';
+import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionRowTables component.
@@ -13,6 +14,7 @@ import { Observable } from 'rxjs';
     selector: 'awg-edition-row-tables',
     templateUrl: './edition-row-tables.component.html',
     styleUrls: ['./edition-row-tables.component.scss'],
+    standalone: false,
 })
 export class EditionRowTablesComponent implements OnDestroy, OnInit {
     /**
@@ -23,17 +25,18 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
     rowTablesData$: Observable<EditionRowTablesList>;
 
     /**
-     * Constructor of the EditionRowTablesComponent.
+     * Private readonly injection variable: _editionDataService.
      *
-     * It declares private instances of the EditionService and EditionDataService.
-     *
-     * @param {EditionService} editionService Instance of the EditionService.
-     * @param {EditionDataService} editionDataService Instance of the EditionDataService.
+     * It keeps the instance of the injected EditionDataService.
      */
-    constructor(
-        private editionService: EditionService,
-        private editionDataService: EditionDataService
-    ) {}
+    private readonly _editionDataService = inject(EditionDataService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -42,8 +45,8 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
      * when initializing the component.
      */
     ngOnInit(): void {
-        this.editionService.updateIsRowTableView(true);
-        this.rowTablesData$ = this.editionDataService.getEditionRowTablesData();
+        this._editionStateService.updateIsRowTableView(true);
+        this.rowTablesData$ = this._editionDataService.getEditionRowTablesData();
     }
 
     /**
@@ -55,6 +58,6 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        this.editionService.clearIsRowTableView();
+        this._editionStateService.clearIsRowTableView();
     }
 }

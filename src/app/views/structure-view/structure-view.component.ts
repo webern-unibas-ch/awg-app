@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 /**
  * The StructureView component.
@@ -11,9 +10,10 @@ import { Router } from '@angular/router';
     selector: 'awg-structure-view',
     templateUrl: './structure-view.component.html',
     styleUrls: ['./structure-view.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.Default,
+    standalone: false,
 })
-export class StructureViewComponent implements OnInit {
+export class StructureViewComponent {
     /**
      * Public variable: structureViewTitle.
      *
@@ -29,38 +29,4 @@ export class StructureViewComponent implements OnInit {
      * of the structure view section.
      */
     structureViewId = 'awg-structure-view';
-
-    /**
-     * Constructor of the StructureViewComponent.
-     *
-     * It declares a private Router instance.
-     *
-     * @param {Router} router Instance of the Angular router.
-     */
-    constructor(private router: Router) {}
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {
-        this.routeToSidenav();
-    }
-
-    /**
-     * Public method: routeToSidenav.
-     *
-     * It activates the secondary outlet with the structure-info.
-     *
-     * @returns {void} Activates the structure-info side outlet.
-     */
-    routeToSidenav(): void {
-        // Opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: 'structureInfo' } }], {
-            preserveFragment: true,
-            queryParamsHandling: 'preserve',
-        });
-    }
 }

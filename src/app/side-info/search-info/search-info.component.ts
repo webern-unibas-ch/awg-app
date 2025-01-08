@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -16,6 +16,7 @@ import { SearchInfo } from '@awg-side-info/side-info-models';
     templateUrl: './search-info.component.html',
     styleUrls: ['./search-info.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SearchInfoComponent implements OnInit {
     /**
@@ -34,15 +35,11 @@ export class SearchInfoComponent implements OnInit {
     searchInfoHeader$: Observable<string>;
 
     /**
-     * Constructor of the SearchInfoComponent.
+     * Private readonly injection variable: _sideInfoService.
      *
-     * It declares a private SideInfoService instance
-     * to get the search results and
-     * a private ChangeDetectorRef instance.
-     *
-     * @param {SideInfoService} sideInfoService Instance of the SideInfoService.
+     * It keeps the instance of the injected SideInfoService.
      */
-    constructor(private sideInfoService: SideInfoService) {}
+    private readonly _sideInfoService = inject(SideInfoService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -64,7 +61,7 @@ export class SearchInfoComponent implements OnInit {
      * and searchInfoData observables.
      */
     getSearchInfoData(): void {
-        this.searchInfoHeader$ = this.sideInfoService.getSearchInfoTitle();
-        this.searchInfoData$ = this.sideInfoService.getSearchInfoData();
+        this.searchInfoHeader$ = this._sideInfoService.getSearchInfoTitle();
+        this.searchInfoData$ = this._sideInfoService.getSearchInfoData();
     }
 }

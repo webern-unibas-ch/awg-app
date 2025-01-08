@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/no-input-rename */
-/* eslint-disable @angular-eslint/directive-selector, @angular-eslint/component-selector */
+
 import { Component, Directive, HostListener, Injectable, Input, NgModule } from '@angular/core';
 import { ParamMap, Params, QueryParamsHandling, convertToParamMap } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
@@ -25,6 +25,7 @@ export interface UrlSegmentStub {
  */
 @Directive({
     selector: '[routerLink]',
+    standalone: false,
 })
 export class RouterLinkStubDirective {
     /**
@@ -79,6 +80,7 @@ export class RouterLinkStubDirective {
 @Component({
     selector: 'router-outlet',
     template: '',
+    standalone: false,
 })
 export class RouterOutletStubComponent {}
 // #enddocregion router-outlet-stub
@@ -94,9 +96,9 @@ export class RouterOutletStubComponent {}
 @Injectable()
 export class ActivatedRouteStub {
     /**
-     * Private BehaviorSubject to handle test route parameters.
+     * Private readonly BehaviorSubject to handle test route parameters.
      */
-    private _paramSubject = new BehaviorSubject(this.testParams);
+    private readonly _paramSubject = new BehaviorSubject(this.testParams);
 
     /**
      * Readonly ActivatedRoute.params test double (stub)
@@ -111,9 +113,9 @@ export class ActivatedRouteStub {
     private _testParams: {};
 
     /**
-     * Private ReplaySubject to handle route paramMaps.
+     * Private readonly ReplaySubject to handle route paramMaps.
      */
-    private _paramMapSubject = new BehaviorSubject(convertToParamMap(this.testParamMap));
+    private readonly _paramMapSubject = new BehaviorSubject(convertToParamMap(this.testParamMap));
 
     /**
      * Observable that contains a map of the test parameters
@@ -127,9 +129,9 @@ export class ActivatedRouteStub {
     private _testParamMap: ParamMap;
 
     /**
-     * Private BehaviourSubject to handle query parameters.
+     * Private readonly BehaviourSubject to handle query parameters.
      */
-    private _queryParamMapSubject = new BehaviorSubject(convertToParamMap(this.testQueryParamMap));
+    private readonly _queryParamMapSubject = new BehaviorSubject(convertToParamMap(this.testQueryParamMap));
 
     /**
      * Observable that contains a map of the query parameters
@@ -143,9 +145,9 @@ export class ActivatedRouteStub {
     private _testQueryParamMap: ParamMap;
 
     /**
-     * Private BehaviourSubject to handle children parameters.
+     * Private readonly BehaviourSubject to handle children parameters.
      */
-    private _childrenSubject = new BehaviorSubject(this.testChildren);
+    private readonly _childrenSubject = new BehaviorSubject(this.testChildren);
 
     /**
      * Observable that contains a map of the children parameters
@@ -159,9 +161,9 @@ export class ActivatedRouteStub {
     private _testChildren: Params;
 
     /**
-     * Private BehaviorSubject to handle test route url.
+     * Private readonly BehaviorSubject to handle test route url.
      */
-    private _urlSubject = new BehaviorSubject(this.testUrl);
+    private readonly _urlSubject = new BehaviorSubject(this.testUrl);
 
     /**
      * Observable that contains a map of the urls

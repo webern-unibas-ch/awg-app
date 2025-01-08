@@ -17,6 +17,7 @@
  *
  * @return {String} A string which can be converted to HTML
  */
+// eslint-disable-next-line no-unused-vars
 function htmlConverter(assigned_props, txt) {
     let html = '';
     let proparr;
@@ -27,7 +28,6 @@ function htmlConverter(assigned_props, txt) {
     let propname;
     let idx;
     let i, j;
-    let lbstack;
 
     const tagPrecedence = {
         p: 0,
@@ -145,7 +145,6 @@ function htmlConverter(assigned_props, txt) {
         if (proparr[i] !== undefined) {
             // there is an entry in proparr for the current pos
             tmpstack = [];
-            lbstack = [];
             for (j = proparr[i].length - 1; j >= 0; j--) {
                 // go through the array from back to front (it is a stack!!)
                 // tags which have been opened later (lower precedence -> order in proparr[position]) have to be closed first
@@ -176,7 +175,7 @@ function htmlConverter(assigned_props, txt) {
                 if (proparr[i][j].proptype == 'start') {
                     if (proparr[i][j].propname == 'linebreak') {
                         // only due to backwards compatibility
-                        html += '<br/>';
+                        html += '<br />';
                     } else if (proparr[i][j].propname == '_link') {
                         stack.push(proparr[i][j].propname);
                         // create an anchor tag with href
@@ -208,7 +207,7 @@ function htmlConverter(assigned_props, txt) {
     } //END for i
 
     // replace '\n' with <br>
-    html = html.replace(/\n/g, '<br/>');
+    html = html.replace(/\n/g, '<br />');
     // remove \r since they are represented by block elements
     html = html.replace(/\r/g, '');
 

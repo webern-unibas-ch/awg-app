@@ -11,6 +11,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     templateUrl: './unsupported-type-results.component.html',
     styleUrls: ['./unsupported-type-results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class UnsupportedTypeResultsComponent {
     /**

@@ -5,7 +5,7 @@ import {
     EditionSvgSheet,
     EditionSvgSheetList,
     FolioConvolute,
-    TextcriticalComment,
+    TextcriticalCommentary,
     Textcritics,
 } from '@awg-views/edition-view/models';
 
@@ -102,22 +102,34 @@ export class EditionSheetsService {
     }
 
     /**
-     * Public method: getTextcriticalCommentsForOverlays.
+     * Public method: filterTextcriticalCommentaryForOverlays.
      *
-     * It provides the textcritical comments for the selected svg overlays.
+     * It filters the textcritical commentary for the selected svg overlays.
      *
-     * @param {TextcriticalComment[]} textcriticalComments The given textcritical comments.
+     * @param {TextcriticalCommentary[]} commentary The given textcritical commentary.
      * @param {EditionSvgOverlay[]} overlays The given svg overlays.
-     * @returns {TextcriticalComment[]} Array with filtered textcritical comments.
+     * @returns {TextcriticalCommentary} The filtered textcritical commentary.
      */
-    getTextcriticalCommentsForOverlays(
-        textcriticalComments: TextcriticalComment[],
+    filterTextcriticalCommentaryForOverlays(
+        commentary: TextcriticalCommentary,
         overlays: EditionSvgOverlay[]
-    ): TextcriticalComment[] {
-        if (!textcriticalComments || !overlays) {
-            return [];
+    ): TextcriticalCommentary {
+        if (!commentary?.comments || !overlays) {
+            return { preamble: commentary?.preamble || '', comments: [] };
         }
-        return textcriticalComments.filter(comment => overlays.some(overlay => comment.svgGroupId === overlay.id));
+        const filteredComments = commentary.comments
+            .map(block => {
+                const filteredBlock = {
+                    ...block,
+                    blockComments: block.blockComments.filter(comment =>
+                        overlays.some(overlay => comment.svgGroupId === overlay.id)
+                    ),
+                };
+                return filteredBlock;
+            })
+            .filter(block => block.blockComments.length > 0);
+
+        return { preamble: commentary.preamble, comments: filteredComments };
     }
 
     /**

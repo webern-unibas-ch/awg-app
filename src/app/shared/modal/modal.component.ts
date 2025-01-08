@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { MODAL_CONTENT_SNIPPETS } from './data/modal-content-snippets.data';
@@ -13,6 +13,7 @@ import { MODAL_CONTENT_SNIPPETS } from './data/modal-content-snippets.data';
     selector: 'awg-modal',
     templateUrl: './modal.component.html',
     styleUrls: ['./modal.component.scss'],
+    standalone: false,
 })
 export class ModalComponent {
     /**
@@ -57,14 +58,11 @@ export class ModalComponent {
     closeResult: string;
 
     /**
-     * Constructor of the ModalComponent.
+     * Private readonly injection variable: _ngbModal.
      *
-     * It declares a private NgbModal instance
-     * to handle the modal.
-     *
-     * @param {NgbModal} ngbModal Instance of the NgbModal.
+     * It keeps the instance of the injected NgbModal.
      */
-    constructor(private ngbModal: NgbModal) {}
+    private readonly _ngbModal = inject(NgbModal);
 
     /**
      * Private static method: _getDismissReason.
@@ -104,7 +102,7 @@ export class ModalComponent {
             : '';
 
         // Open modalTemplate via modalService
-        this.ngbModal.open(this.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result.then(
+        this._ngbModal.open(this.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
             },

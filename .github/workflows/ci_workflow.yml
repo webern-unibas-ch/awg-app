@@ -20,7 +20,6 @@ env:
     MAIN_REPO_OWNER: webern-unibas-ch # Main repo owner (default: webern-unibas-ch; should not be changed)
 
     # dev settings
-    DEV_REPO: webern-unibas-ch/awg-app-dev
     DEV_GH_PAGES_BRANCH: gh-pages
     DEV_GH_PAGES_DIR: gh-pages-dir
     DIST_DIR: dist
@@ -33,19 +32,19 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [18.19, 20.9] # TODO (when Angular allows it): 21.x
+                node-version: [20.13, 22.11, 23.x]
 
         outputs:
             sha: ${{ steps.get-sha.outputs.SHA }}
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@a4aa98b93cab29d9b1101a6143fb8bce00e2eac4 # v2.7.1
+              uses: step-security/harden-runner@0080882f6c36860b6ba35c610c98ce87d4e2f26f # v2.10.2
               with:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # ratchet:actions/checkout@v4.1.5
+              uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
               with:
                   fetch-depth: 0 # Get all history and branches
 
@@ -58,36 +57,48 @@ jobs:
                   echo "SHA: ${{ steps.get-sha.outputs.SHA }}"
 
             - name: Set up node ${{ matrix.node-version}}
-              uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # ratchet:actions/setup-node@v4.0.2
+              uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
               with:
                   node-version: ${{ matrix.node-version }}
+
+            - name: Set up corepack (for getting yarn)
+              run: corepack enable
+
+            - name: Get yarn cache ${{ matrix.node-version}}
+              uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+              with:
                   cache: 'yarn'
 
             - name: yarn install dependencies
               run: |
-                  yarn install
+                  yarn install --immutable
 
             - name: Run CI tests with coverage
               run: |
                   yarn run test:ci
 
             - name: Upload code coverage
-              if: matrix.node-version == 20.9 # upload coverage report for current node version only
-              uses: codecov/codecov-action@6d798873df2b1b8e5846dba6fb86631229fbcb17 # v4.4.0
+              if: matrix.node-version == 22.11 # upload coverage report for current node version only
+              uses: codecov/codecov-action@1e68e06f1dbfde0e4cefc87efeba9e4643565303 # v5.1.2
               env:
                   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
               with:
                   flags: unittests
-                  env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
+                  env_vars: ${{ matrix.os }},${{ matrix.node-version }}
 
-            - name: Perform SonarCloud Analysis
-              if: matrix.node-version == 20.9 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarCloud analysis only for current node version and not with pull requests or forks(token issue)
-              uses: SonarSource/sonarcloud-github-action@49e6cd3b187936a73b8280d59ffd9da69df63ec9 # ratchet:SonarSource/sonarcloud-github-action@v2.1.1
+            - name: Perform SonarQube scan
+              if: matrix.node-version == 22.11 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarQube scan only for current node version and not with pull requests or forks(token issue)
+              uses: SonarSource/sonarqube-scan-action@bfd4e558cda28cda6b5defafb9232d191be8c203 # v4.2.1
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-            - name: Test build from develop for GH Pages
+            - name: Test build for GH Pages (all but develop)
+              if: github.ref != 'refs/heads/develop'
+              run: |
+                  yarn run build:gh
+
+            - name: Test build for GH Pages (develop)
               if: github.ref == 'refs/heads/develop'
               run: |
                   echo "Updating dev-version"
@@ -95,14 +106,10 @@ jobs:
                   echo "Building dev-version"
                   yarn run build:dev
 
-            - name: Test build from main for GH Pages
-              if: github.ref == 'refs/heads/main'
-              run: |
-                  yarn run build:gh
-
-            - name: Upload build artifacts
-              if: matrix.node-version == 20.9 # upload build artifacts for current node version only
-              uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # ratchet:actions/upload-artifact@v4.3.3
+            - name: Upload build artifacts (main && develop)
+              # upload build artifacts for current node version and main or develop branch only
+              if: matrix.node-version == 22.11 && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
+              uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5.0
               with:
                   name: dist
                   path: ${{ github.workspace }}/${{ env.DIST_DIR }}
@@ -125,16 +132,16 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [20.9]
+                node-version: [22.11]
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@a4aa98b93cab29d9b1101a6143fb8bce00e2eac4 # v2.7.1
+              uses: step-security/harden-runner@0080882f6c36860b6ba35c610c98ce87d4e2f26f # v2.10.2
               with:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # ratchet:actions/checkout@v4.1.5
+              uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
               with:
                   # ref (branch, tag or SHA) to check out
                   ref: ${{ env.DEV_GH_PAGES_BRANCH }}
@@ -142,14 +149,10 @@ jobs:
                   path: ${{ env.DEV_GH_PAGES_DIR }}
 
             - name: Download build artifacts
-              uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # ratchet:actions/upload-artifact@v4.1.7
+              uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # ratchet:actions/upload-artifact@v4.1.8
               with:
                   name: dist
                   path: ${{ github.workspace }}/${{ env.DIST_DIR }}
-
-            - name: Copy artifacts to gh-pages
-              run: |
-                  cp -r ${{ env.DIST_DIR }}/awg-app/. ${{ env.DEV_GH_PAGES_DIR }}/dev/
 
             - name: Configure git
               working-directory: ${{ env.DEV_GH_PAGES_DIR }}
@@ -157,6 +160,16 @@ jobs:
                   echo "Configuring git"
                   git config user.name "github-actions"
                   git config user.email "github-actions@users.noreply.github.com"
+
+            - name: Remove existing files from dev
+              working-directory: ${{ env.DEV_GH_PAGES_DIR }}
+              run: |
+                  echo "Removing existing files from dev"
+                  git rm -r dev/* || true
+
+            - name: Copy artifacts to gh-pages
+              run: |
+                  cp -r ${{ env.DIST_DIR }}/awg-app/. ${{ env.DEV_GH_PAGES_DIR }}/dev/
 
             - name: Commit files
               working-directory: ${{ env.DEV_GH_PAGES_DIR }}
@@ -191,18 +204,18 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [20.9]
+                node-version: [22.11]
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@a4aa98b93cab29d9b1101a6143fb8bce00e2eac4 # v2.7.1
+              uses: step-security/harden-runner@0080882f6c36860b6ba35c610c98ce87d4e2f26f # v2.10.2
               with:
                   egress-policy: audit
 
             - name: Checkout repository
-              uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # ratchet:actions/checkout@v4.1.5
+              uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
             - name: Set up node ${{ matrix.node-version}}
-              uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # ratchet:actions/setup-node@v4.0.2
+              uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: 'yarn'
@@ -232,10 +245,10 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [20.9]
+                node-version: [22.11]
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@a4aa98b93cab29d9b1101a6143fb8bce00e2eac4 # v2.7.1
+              uses: step-security/harden-runner@0080882f6c36860b6ba35c610c98ce87d4e2f26f # v2.10.2
               with:
                   egress-policy: audit
 
@@ -245,12 +258,12 @@ jobs:
             - name: Create Release
               id: create_release
               if: ${{ success() && startsWith(github.ref, 'refs/tags/') }}
-              uses: softprops/action-gh-release@69320dbe05506a9a39fc8ae11030b214ec2d1f87 # ratchet:softprops/action-gh-release@v2.0.5
+              uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda # v2.2.1
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   TAG_VERSION: ${{ steps.get_version.outputs.VERSION }}
               with:
                   name: Release ${{ env.TAG_VERSION }}
-                  body: "A prototype web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch), located at the Department of Musicology of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).\n\n Changes since last release: https://github.com/${{ github.repository }}/blob/${{ env.TAG_VERSION }}/CHANGELOG.md"
+                  body: "A web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch), located at the Department of Musicology of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).\n\n Changes since last release: https://github.com/${{ github.repository }}/blob/${{ env.TAG_VERSION }}/CHANGELOG.md"
                   draft: false
                   prerelease: false

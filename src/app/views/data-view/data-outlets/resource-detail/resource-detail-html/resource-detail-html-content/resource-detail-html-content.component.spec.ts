@@ -1,5 +1,5 @@
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
@@ -7,6 +7,7 @@ import { JsonConvert } from 'json2typescript';
 
 import {
     expectSpyCall,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -24,7 +25,11 @@ import {
 import { ResourceDetailHtmlContentComponent } from './resource-detail-html-content.component';
 
 // Mock components
-@Component({ selector: 'awg-resource-detail-html-content-props', template: '' })
+@Component({
+    selector: 'awg-resource-detail-html-content-props',
+    template: '',
+    standalone: false,
+})
 class ResourceDetailHtmlContentPropsStubComponent {
     @Input()
     props: ResourceDetailProperty[];
@@ -34,13 +39,21 @@ class ResourceDetailHtmlContentPropsStubComponent {
     resourceRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-resource-detail-html-content-imageobjects', template: '' })
+@Component({
+    selector: 'awg-resource-detail-html-content-imageobjects',
+    template: '',
+    standalone: false,
+})
 class ResourceDetailHtmlContentImageobjectsStubComponent {
     @Input()
     images: NgxGalleryImage[];
 }
 
-@Component({ selector: 'awg-resource-detail-html-content-linkedobjects', template: '' })
+@Component({
+    selector: 'awg-resource-detail-html-content-linkedobjects',
+    template: '',
+    standalone: false,
+})
 class ResourceDetailHtmlContentLinkedobjectsStubComponent {
     @Input()
     incomingGroups: ResourceDetailGroupedIncomingLinks[];
@@ -174,10 +187,7 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
         });
 
         it('... should have `content` inputs', () => {
-            expect(component.content).withContext('should be defined').toBeDefined();
-            expect(component.content)
-                .withContext(`should be expectedIncoming: ${expectedContent}`)
-                .toBe(expectedContent);
+            expectToEqual(component.content, expectedContent);
         });
 
         describe('VIEW', () => {
@@ -193,8 +203,7 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                     ResourceDetailHtmlContentPropsStubComponent
                 ) as ResourceDetailHtmlContentPropsStubComponent;
 
-                expect(propsCmp.props).withContext('should be defined').toBeDefined();
-                expect(propsCmp.props).withContext(`should be ${expectedContent.props}`).toBe(expectedContent.props);
+                expectToEqual(propsCmp.props, expectedContent.props);
             });
 
             it('... should pass down `content.images` to ResourceDetailHtmlContentImageobjectsComponent', () => {
@@ -209,10 +218,7 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                     ResourceDetailHtmlContentImageobjectsStubComponent
                 ) as ResourceDetailHtmlContentImageobjectsStubComponent;
 
-                expect(imagesCmp.images).withContext('should be defined').toBeDefined();
-                expect(imagesCmp.images)
-                    .withContext(`should be ${expectedContent.images}`)
-                    .toBe(expectedContent.images);
+                expectToEqual(imagesCmp.images, expectedContent.images);
             });
 
             it('... should pass down `content.incoming` to ResourceDetailHtmlContentLinkedobjectsComponent', () => {
@@ -227,10 +233,7 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                     ResourceDetailHtmlContentLinkedobjectsStubComponent
                 ) as ResourceDetailHtmlContentLinkedobjectsStubComponent;
 
-                expect(incomingCmp.incomingGroups).withContext('should be defined').toBeDefined();
-                expect(incomingCmp.incomingGroups)
-                    .withContext(`should be ${expectedContent.incoming}`)
-                    .toBe(expectedContent.incoming);
+                expectToEqual(incomingCmp.incomingGroups, expectedContent.incoming);
             });
         });
 

@@ -8,7 +8,11 @@ import { Prefix, PrefixForm } from '../models';
  *
  * It turns a short form of an RDF prefix into a long form and vice versa.
  */
-@Pipe({ name: 'prefix', pure: false })
+@Pipe({
+    name: 'prefix',
+    pure: false,
+    standalone: false,
+})
 export class PrefixPipe implements PipeTransform {
     /**
      * Public variable: defaultPrefixes.
@@ -40,7 +44,7 @@ export class PrefixPipe implements PipeTransform {
             case PrefixForm.LONG: {
                 this.defaultPrefixes.forEach((p: Prefix) => {
                     if (value.indexOf(p.prefixName) !== -1) {
-                        transformedValue = value.replace(p.prefixName + ':', p.prefixIri);
+                        transformedValue = value.replace(p.prefixName, p.prefixIri);
                     }
                 });
                 break;

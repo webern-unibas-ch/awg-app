@@ -9,8 +9,7 @@ export function cleanStylesFromDOM(): void {
     const head: HTMLHeadElement = document.getElementsByTagName('head')[0];
     const styles: HTMLCollectionOf<HTMLStyleElement> | [] = head.getElementsByTagName('style');
 
-    // @ts-ignore
-    for (const style of styles) {
+    for (const style of Array.from(styles)) {
         head.removeChild(style);
     }
 }

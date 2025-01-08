@@ -10,9 +10,9 @@
                     <small class="text-muted"
                         >[Die Quellenbewertung zum Editionskomplex
                         <span [innerHTML]="editionComplex.complexId.full"></span> erscheint im Zusammenhang der
-                        vollständigen Edition von {{ editionComplex.complexId.short }} in
-                        {{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{
-                            editionComplex.section.short
+                        vollständigen Edition von <span [innerHTML]="editionComplex.complexId.short"></span> in
+                        {{ editionRouteConstants.EDITION.short }} {{ editionComplex.pubStatement.series.short }}/{{
+                            editionComplex.pubStatement.section.short
                         }}.]
                     </small>
                 </p>

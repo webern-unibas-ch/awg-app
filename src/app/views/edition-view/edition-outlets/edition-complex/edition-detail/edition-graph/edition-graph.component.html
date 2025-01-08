@@ -6,7 +6,7 @@
     <!-- graph -->
     @if (editionGraphData$ | async; as editionGraphData) {
         <div class="awg-graph-view p-5 border rounded-3">
-            @for (graph of editionGraphData.graph; track graph) {
+            @for (graph of editionGraphData.graph; track graph.id) {
                 <div>
                     <!-- graph description -->
                     <div class="awg-graph-description">
@@ -18,11 +18,11 @@
                             zugrundeliegenden Datenbestand.
                             <span class="text-danger"
                                 >Diese Funktionalität ist noch nicht für alle Skizzenbestandteile verfügbar, wird aber
-                                sukzessive ergänzt.</span
+                                kontinuierlich ergänzt.</span
                             >
                         </p>
-                        @if (utils.isNotEmptyArray(graph.description) || graph.rdfData?.triples) {
-                            @for (description of graph.description; track description) {
+                        @if (UTILS.isNotEmptyArray(graph.description) || graph.rdfData?.triples) {
+                            @for (description of graph.description; track $index) {
                                 <p [compile-html]="description" [compile-html-ref]="ref"></p>
                             }
                         } @else {
@@ -30,9 +30,11 @@
                                 <small class="text-muted"
                                     >[Die Graph-Visualisierungen zum Editionskomplex
                                     <span [innerHTML]="editionComplex.complexId.full"></span> erscheinen im Zusammenhang
-                                    der vollständigen Edition von {{ editionComplex.complexId.short }} in
-                                    {{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{
-                                        editionComplex.section.short
+                                    der vollständigen Edition von
+                                    <span [innerHTML]="editionComplex.complexId.short"></span> in
+                                    {{ editionRouteConstants.EDITION.short }}
+                                    {{ editionComplex.pubStatement.series.short }}/{{
+                                        editionComplex.pubStatement.section.short
                                     }}.]
                                 </small>
                             </p>
@@ -49,24 +51,10 @@
                                     (click)="modal.open('HINT_EDITION_GRAPH')">
                                     Hinweise zur Nutzung
                                 </button>
-                                @if (!isFullscreen) {
-                                    <button
-                                        type="button"
-                                        title="Open fullscreen"
-                                        class="btn btn-sm btn-outline-info ms-2"
-                                        (click)="openFullscreen()">
-                                        <fa-icon [icon]="faExpand"></fa-icon>
-                                    </button>
-                                }
-                                @if (isFullscreen) {
-                                    <button
-                                        type="button"
-                                        title="Close fullscreen"
-                                        class="btn btn-sm btn-info ms-2"
-                                        (click)="closeFullscreen()">
-                                        <fa-icon [icon]="faCompress"></fa-icon>
-                                    </button>
-                                }
+
+                                <awg-fullscreen-toggle
+                                    [fsElement]="graphVisualizer.fs?.nativeElement"
+                                    (toggleFullscreenRequest)="onFullscreenToggle($event)"></awg-fullscreen-toggle>
                             </h4>
                             <p>
                                 Diese interaktive Visualisierung basiert auf Mads Holten's
@@ -80,6 +68,7 @@
                                 hierbei alle vorhandenen Triples abgefragt.
                             </p>
                             <awg-graph-visualizer
+                                #graphVisualizer
                                 [graphRDFInputData]="graph.rdfData"
                                 [isFullscreen]="isFullscreen"></awg-graph-visualizer>
                         </div>
@@ -95,23 +84,12 @@
             }
         </div>
     } @else {
+        <!-- error message -->
         @if (errorObject) {
-            <div class="errorMessage">
-                <div class="col-12 text-center">
-                    <div class="alert alert-danger">{{ errorObject | json }}</div>
-                </div>
-            </div>
+            <awg-alert-error [errorObject]="errorObject"></awg-alert-error>
+        } @else {
+            <!-- loading spinner -->
+            <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
         }
     }
-
-    <!-- error message -->
-    <ng-template #error>
-        @if (errorObject) {
-            <div class="errorMessage">
-                <div class="col-12 text-center">
-                    <div class="alert alert-danger">{{ errorObject | json }}</div>
-                </div>
-            </div>
-        }
-    </ng-template>
 </div>

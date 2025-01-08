@@ -3,7 +3,7 @@
  * cf. https://github.com/MadsHolten/sparql-visualizer
  */
 
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 import * as N3 from 'n3';
 
@@ -12,7 +12,7 @@ import {
     NamespaceType,
     PrefixForm,
     QueryResult,
-    QueryTypeIndex,
+    QueryResultBindings,
     RDFStoreConstructResponse,
     RDFStoreConstructResponseTriple,
     RDFStoreSelectResponse,
@@ -42,106 +42,16 @@ export class GraphVisualizerService {
     private _store: any;
 
     /**
-     * Constructor of the GraphVisualizerService.
+     * Private readonly injection variable: _prefixPipe.
      *
-     * It declares a private instance of the {@link PrefixPipe}.
-     *
-     * @param {PrefixPipe} prefixPipe Instance of the PrefixPipe.
+     * It keeps the instance of the injected PrefixPipe.
      */
-    constructor(private prefixPipe: PrefixPipe) {}
-
-    /**
-     * Public method: parseTripleString.
-     *
-     * It parses the triples from a given triple string.
-     *
-     * @param {string} triples The given triple string.
-     *
-     * @returns {Promise<{triples; namespaces}>} A promise of the parsed triples.
-     */
-    parseTripleString(triples: string): Promise<{ triples; namespaces } | unknown> {
-        const parser = new N3.Parser();
-        const jsonTriples = [];
-
-        return new Promise((resolve, reject) => {
-            parser.parse(triples, (err, triple, namespaceValues) => {
-                if (triple) {
-                    jsonTriples.push(triple);
-                } else {
-                    resolve({ triples: jsonTriples, namespaces: namespaceValues });
-                }
-                if (err) {
-                    reject(err);
-                }
-            });
-        });
-    }
-
-    /**
-     * Public method: limitTriples.
-     *
-     * It limits a given array of triples by a given limit.
-     *
-     * @param {Triple[]} triples The given triples array.
-     * @param {number} limit The given limit.
-     *
-     * @returns {Triple[]} The array of limited triples.
-     */
-    limitTriples(triples: Triple[], limit: number): Triple[] {
-        if (!triples) {
-            return [];
-        }
-        if (triples.length > limit) {
-            return triples.slice(0, limit);
-        } else {
-            return triples;
-        }
-    }
-
-    /**
-     * Public method: abbreviateTriples.
-     *
-     * It abbreviates the given triples according to the given namespaces.
-     *
-     * @param {RDFStoreConstructResponseTriple[]} storeTriples The given triples from the rdf construct response.
-     * @param {string} namespaces The given namespaces.
-     * @param {string} [mimeType] The given optional mimeType.
-     *
-     * @returns {Triple[]} The array of abbreviated triples.
-     */
-    abbreviateTriples(
-        storeTriples: RDFStoreConstructResponseTriple[],
-        namespaces: Namespace,
-        mimeType?: string
-    ): Triple[] {
-        if (!mimeType) {
-            mimeType = 'text/turtle';
-        }
-        return storeTriples.map((storeTriple: RDFStoreConstructResponseTriple) => {
-            let s: string = storeTriple.subject.nominalValue;
-            let p: string = storeTriple.predicate.nominalValue;
-            let o: string = storeTriple.object.nominalValue;
-
-            // Abbreviate turtle format
-            if (mimeType === 'text/turtle') {
-                if (this._abbreviate(s, namespaces) != null) {
-                    s = this._abbreviate(s, namespaces);
-                }
-                if (this._abbreviate(p, namespaces) != null) {
-                    p = this._abbreviate(p, namespaces);
-                }
-                if (this._abbreviate(o, namespaces) != null) {
-                    o = this._abbreviate(o, namespaces);
-                }
-            }
-            return { subject: s, predicate: p, object: o };
-        });
-    }
+    private readonly _prefixPipe = inject(PrefixPipe);
 
     /**
      * Public method: checkNamespacesInQuery.
      *
-     * It checks the existing namespaces and qNames in a SPARQL query
+     * It checks the existing namespaces and prefixes in a SPARQL query
      * and appends missing prefix declarations, if possible, from the Turtle string.
      *
      * @param {string} queryStr The given SPARQL query string.
@@ -153,53 +63,27 @@ export class GraphVisualizerService {
         if (!queryStr || !turtleStr) {
             return undefined;
         }
-        // Get namespaces from Turtle triples
         const turtleNamespaces: Namespace = this._extractNamespacesFromString(NamespaceType.TURTLE, turtleStr);
-        // Get namespaces from SPARQL query
         const sparqlNamespaces: Namespace = this._extractNamespacesFromString(NamespaceType.SPARQL, queryStr);
-        // Get qNames used in the SPARQL query WHERE clause
-        const qNames: string[] = this._extractQNamesFromSPARQLWhereClause(queryStr);
+        const sparqlPrefixes: string[] = this._extractQNamePrefixesFromSPARQLWhereClause(queryStr);
+        const sparqlNamespaceKeys = new Set(Object.keys(sparqlNamespaces));
 
-        // Get keys of namespace objects
-        const turtleNamespaceKeys = Object.keys(turtleNamespaces);
-        const sparqlNamespaceKeys = Object.keys(sparqlNamespaces);
         let missingNamespacesStr = '';
 
-        // Loop over namespaces from Turtle prefix clause
-        turtleNamespaceKeys.forEach(key => {
-            // If namespace is missing in SPARQL header, add them from Turtle
-            if (sparqlNamespaceKeys.indexOf(key) === -1) {
-                missingNamespacesStr += `PREFIX ${key} ${turtleNamespaces[key]}\n`;
+        // Merge turtle namespaces with those from SPARQL WHERE clause (expanded if any)
+        // And add missing prefixes to the SPARQL query
+        [
+            ...Object.entries(turtleNamespaces),
+            ...sparqlPrefixes.map(prefix => [prefix, this._prefixPipe.transform(prefix, PrefixForm.LONG)]),
+        ].forEach(([key, value]) => {
+            if (!sparqlNamespaceKeys.has(key) && key !== value) {
+                missingNamespacesStr += `PREFIX ${key}: <${value}>\n`;
+            } else if (key === value) {
+                console.error(`Prefix '${key}' is unknown. Please provide a declaration.`);
             }
         });
 
-        // Loop over existing qNames from SPARQL query
-        if (qNames.length > 0) {
-            qNames.forEach(qName => {
-                // If prefix is not in the list...
-                if (sparqlNamespaceKeys.indexOf(qName) === -1) {
-                    // TODO: Warnings should go into error messages
-                    console.warn(
-                        `Prefix '${qName}' not declared in SPARQL and/or Turtle header. Searching in default namespaces...`
-                    );
-
-                    const defaultNamespace = this.prefixPipe.transform(qName, PrefixForm.LONG);
-                    if (defaultNamespace !== qName) {
-                        const missingPrefix = `PREFIX ${qName} <${defaultNamespace}>\n`;
-                        missingNamespacesStr += missingPrefix;
-                        console.warn(`Added '${missingPrefix}' to SPARQL prefixes from list of default namespaces.`);
-                    } else {
-                        console.warn(`'${qName}' is unknown. Please provide a declaration.`);
-                    }
-                }
-            });
-        }
-
-        if (missingNamespacesStr !== '') {
-            queryStr = missingNamespacesStr + queryStr;
-        }
-
-        return queryStr;
+        return missingNamespacesStr + queryStr;
     }
 
     /**
@@ -224,13 +108,13 @@ export class GraphVisualizerService {
             mimeType = 'text/turtle';
         }
 
-        return this._createStore()
+        return this._createStore(rdfstore)
             .then(store => {
                 this._store = store;
 
                 return this._loadTriplesInStore(store, ttlString, mimeType);
             })
-            .then((_storeSize: number) => this._executeQuery(this._store, query))
+            .then(() => this._executeQuery(this._store, query))
             .then((res: RDFStoreConstructResponse | RDFStoreSelectResponse) => {
                 // Reformat data if select query
                 if (queryType === 'select') {
@@ -242,12 +126,11 @@ export class GraphVisualizerService {
                 // Reformat data if construct query
                 if (queryType === 'construct') {
                     const response = res as RDFStoreConstructResponse;
-                    // Get namespaces
-                    return this._getNamespaces(ttlString).then((namespaces: Namespace) =>
-                        // Process triples
-                        this.abbreviateTriples(response.triples, namespaces, mimeType)
-                    );
+                    const namespaces = this._extractNamespacesFromString(NamespaceType.TURTLE, ttlString);
+                    const constructResponse = this._prepareConstructResponse(response.triples, namespaces, mimeType);
+                    return constructResponse;
                 }
+
                 return undefined;
             });
     }
@@ -261,47 +144,70 @@ export class GraphVisualizerService {
      *
      * @returns {string} The query type.
      */
-    getQuerytype(query: string): string {
-        let keyWords: QueryTypeIndex[] = [
-            { queryType: 'select', index: -1 },
-            { queryType: 'construct', index: -1 },
-            { queryType: 'ask', index: -1 },
-            { queryType: 'count', index: -1 },
-            { queryType: 'describe', index: -1 },
-            { queryType: 'insert', index: -1 },
-            { queryType: 'delete', index: -1 },
-        ];
+    getQuerytype(query: string): string | null {
+        const queryTypes = ['select', 'construct', 'ask', 'count', 'describe', 'insert', 'delete'];
 
-        // Get indexes and set a variable if at least one matches + store lowest index
-        let match = false; // Set to true if some keyword match is found
-        let low = Infinity;
+        let lowestIndex = Infinity;
+        let foundType: string | null = null;
 
-        keyWords = keyWords.map(item => {
-            item.index = query.toLowerCase().indexOf(item.queryType);
-            if (item.index !== -1) {
-                match = true;
-                if (item.index < low) {
-                    low = item.index;
-                }
+        queryTypes.forEach(type => {
+            const index = query.toLowerCase().indexOf(type);
+            if (index !== -1 && index < lowestIndex) {
+                lowestIndex = index;
+                foundType = type;
             }
-            return item;
         });
 
-        // If none of the keywords match, return null
-        if (!match) {
+        if (foundType === null) {
             return null;
         }
 
-        // If more keywords exist in one query, take the one with the lowest index (first in string)
-        const lowest: QueryTypeIndex = keyWords.find(item => item.index === low);
+        return foundType === 'insert' || foundType === 'delete' ? 'update' : foundType;
+    }
 
-        let type: string = lowest.queryType;
-
-        if (type === 'insert' || type === 'delete') {
-            type = 'update';
+    /**
+     * Public method: limitTriples.
+     *
+     * It limits a given array of triples by a given limit.
+     *
+     * @param {Triple[]} triples The given triples array.
+     * @param {number} limit The given limit.
+     *
+     * @returns {Triple[]} The array of limited triples.
+     */
+    limitTriples(triples: Triple[], limit: number): Triple[] {
+        if (!triples) {
+            return [];
         }
+        return triples.length > limit ? triples.slice(0, limit) : triples;
+    }
 
-        return type;
+    /**
+     * Public method: parseTripleString.
+     *
+     * It parses the triples from a given triple string.
+     *
+     * @param {string} triples The given triple string.
+     *
+     * @returns {Promise<{triples; namespaces}>} A promise of the parsed triples.
+     */
+    parseTripleString(triples: string): Promise<{ quads: N3.DataFactory.quad[]; namespaces: N3.DataFactory.prefixes }> {
+        const parser = new N3.Parser();
+        const jsonTriples = [];
+
+        return new Promise((resolve, reject) => {
+            parser.parse(triples, (error, quad, prefixes) => {
+                if (error) {
+                    reject(error);
+                    return;
+                }
+                if (quad) {
+                    jsonTriples.push(quad);
+                } else {
+                    resolve({ quads: jsonTriples, namespaces: prefixes });
+                }
+            });
+        });
     }
 
     /**
@@ -315,34 +221,35 @@ export class GraphVisualizerService {
      * @returns {string} The abbreviated or original iri string.
      */
     private _abbreviate(iri: string, namespaces: Namespace): string {
-        let newVal: string = iri;
-        // If IRI has 'http' or 'https in its name, continue
-        if (iri.indexOf('http') !== -1) {
-            // Loop over namespaces
-            Object.entries(namespaces).forEach(([key, value]) => {
-                // If the IRI has the prefixed namespace in its name, return it
-                if (iri.indexOf(value) !== -1) {
-                    newVal = iri.replace(value, key + ':');
-                }
-            });
+        if (!iri?.startsWith('http') || !namespaces) {
+            return iri;
         }
-        return newVal;
+
+        for (const [namespaceKey, namespaceValue] of Object.entries(namespaces)) {
+            if (iri.includes(namespaceValue)) {
+                return iri.replace(namespaceValue, namespaceKey + ':');
+            }
+        }
+
+        return iri;
     }
 
     /**
      * Private method: _createStore.
      *
-     * It creates an instance of the triple store.
+     * It creates an instance of the rdfstore.
      *
-     * @returns {Promise<any>} A promise of the triple store instance.
+     * @param {typeof rdfstore} store The given rdfstore.
+     *
+     * @returns {Promise<any>} A promise of the rdfstore instance.
      */
-    private _createStore(): Promise<any> {
+    private _createStore(store: typeof rdfstore): Promise<any> {
         return new Promise((resolve, reject) => {
-            rdfstore.create((err, store) => {
+            store.create((err, createdStore) => {
                 if (err) {
                     reject(err);
                 }
-                resolve(store);
+                resolve(createdStore);
             });
         });
     }
@@ -375,127 +282,58 @@ export class GraphVisualizerService {
      * It extracts the namespaces (qname: <baseURI>) of a given type (SPARQL, TURTLE)
      * from a given string.
      *
-     * @param {string} str The given string.
      * @param {NamespaceType} type The given namespace type.
+     * @param {string} str The given string.
      *
-     * @returns {Promise<Namespace>} A promise of the namespaces.
+     * @returns {Namespace} A namespace object.
      */
-    private _extractNamespacesFromString(type: NamespaceType, str: string) {
-        // Replace all whitespace characters with a single space and split by space
-        // Remove empty values
-        const arr = str
-            .toLowerCase()
-            .replace(/\s/g, ' ')
-            .split(' ')
-            .filter(el => el !== '');
-
-        let prefixStr;
-
+    private _extractNamespacesFromString(type: NamespaceType, str: string): Namespace {
+        let regex: RegExp;
+        let exhaustiveCheck: never;
         switch (type) {
-            case NamespaceType.TURTLE: {
-                prefixStr = '@prefix'.toLowerCase();
+            case NamespaceType.TURTLE:
+                regex = /@prefix\s+(\w+):\s+<([^>]+)>/g;
                 break;
-            }
-            case NamespaceType.SPARQL: {
-                prefixStr = 'PREFIX'.toLowerCase();
+            case NamespaceType.SPARQL:
+                regex = /PREFIX\s+(\w+):\s+<([^>]+)>/g;
                 break;
-            }
-            default: {
-                // This branch should not be reached
-                const exhaustiveCheck: never = type;
+            default:
+                exhaustiveCheck = type;
                 throw new Error(`The type must be TURTLE or SPARQL, but was: ${exhaustiveCheck}.`);
-            }
         }
 
-        // Get index of all occurrences of prefix string
-        const prefixIndexArray = arr.reduce((a, e, i) => {
-            if (e === prefixStr) {
-                a.push(i);
-            }
-            return a;
-        }, []);
+        const namespaces: Namespace = {};
+        for (const match of str.matchAll(regex)) {
+            const [, prefix, namespaceName] = match;
+            namespaces[prefix] = namespaceName;
+        }
 
-        // Create object of qNames and namespaceNames
-        const obj = {};
-        prefixIndexArray.forEach(prefixIndex => {
-            const qName = arr[prefixIndex + 1];
-            let namespaceName = arr[prefixIndex + 2];
-            // Remove final dot if there is no space between namespace and dot
-            if (namespaceName.at(-1) === '.') {
-                namespaceName = namespaceName.slice(0, -1);
-            }
-            obj[qName] = namespaceName;
-        });
-
-        return obj;
+        return namespaces;
     }
 
     /**
-     * Private method: _extractQNamesFromSPARQLWhereClause.
+     * Private method: _extractQNamePrefixesFromSPARQLWhereClause.
      *
-     * It identifies the qNames that are used in the WHERE clause of a SPARQL query.
+     * It identifies the qname prefixes that are used in the WHERE clause of a SPARQL query.
      *
      * @param {string} query The given query string.
      *
-     * @returns {string[]} A string array of the used qNames.
+     * @returns {string[]} A string array of the used qname prefixes.
      */
-    private _extractQNamesFromSPARQLWhereClause(query: string): string[] {
-        let m;
-        let queryStr = query.toLowerCase();
-        let start = 0;
-        const qNames: string[] = [];
-        const regex = /\b[a-zA-Z]{2,15}:/g;
-        const where = 'WHERE {'.toLowerCase();
+    private _extractQNamePrefixesFromSPARQLWhereClause(query: string): string[] {
+        const where = 'WHERE {';
+        const regex = /\b([a-zA-Z_][a-zA-Z0-9._-]{0,15}):/g;
 
         // Find WHERE clause
-        if (queryStr.includes(where)) {
-            start = queryStr.indexOf(where) + where.length;
-        }
+        const start = query.toLowerCase().indexOf(where.toLowerCase());
+        const queryStr = start !== -1 ? query.slice(start) : query;
 
-        // Remove everything before WHERE clause from query string
-        queryStr = queryStr.slice(start);
+        // Find prefixes in query using matchAll
+        const matches = queryStr.matchAll(regex);
+        // Use captured group (index 1) to return prefixes without the colon
+        const prefixes = new Set<string>(Array.from(matches, match => match[1]));
 
-        // Find prefixes in query
-        // eslint-disable-next-line no-cond-assign
-        while ((m = regex.exec(queryStr)) !== null) {
-            // This is necessary to avoid infinite loops with zero-width matches
-            if (m.index === regex.lastIndex) {
-                regex.lastIndex++;
-            }
-
-            // The result can be accessed through the `m`-variable.
-            m.forEach(match => {
-                if (qNames.indexOf(match) === -1) {
-                    qNames.push(match);
-                }
-            });
-        }
-        return qNames;
-    }
-
-    /**
-     * Private method: _getNamespaces.
-     *
-     * It extracts the namespaces from a given triple string.
-     *
-     * @param {string} triples The given triple string.
-     *
-     * @returns {Promise<Namespace>} A promise of the namespaces.
-     */
-    private _getNamespaces(triples: string): Promise<Namespace> {
-        // Parse triples
-        const parser = new N3.Parser();
-
-        return new Promise((resolve, reject) => {
-            parser.parse(triples, (err, triple, prefixes) => {
-                if (!triple) {
-                    resolve(prefixes);
-                }
-                if (err) {
-                    reject(err);
-                }
-            });
-        });
+        return Array.from(prefixes);
     }
 
     /**
@@ -515,9 +353,9 @@ export class GraphVisualizerService {
         }
 
         return new Promise((resolve, reject) => {
-            store.load(mimeType, triples, (err, size) => {
+            store.load(mimeType, triples, (err, size: number) => {
                 if (err) {
-                    console.error('_loadTriplesInStore# got error', err);
+                    console.error('_loadTriplesInStore# got ERROR', err);
                     reject(err);
                 }
                 resolve(size);
@@ -530,17 +368,100 @@ export class GraphVisualizerService {
      *
      * It maps the keys of a given key-value paired object to given newKeys.
      *
-     * @param {[key:string]: string} obj The given obj.
-     * @param {[key:string]: string} newKeys The given new keys.
+     * @param {Record<string, string>} obj The given object.
+     * @param {Record<string, string>} newKeysObj The given new keys object.
      *
-     * @returns {[key:string]: string} An object with the new keys.
+     * @returns {Record<string, string>} An object with the new keys.
      */
-    private _mapKeys(obj: { [key: string]: string }, newKeys: { [key: string]: string }): { [key: string]: string } {
-        const keyValues = Object.keys(obj).map(key => {
-            const newKey = newKeys[key] || key;
-            return { [newKey]: obj[key] };
+    private _mapKeys(obj: Record<string, string>, keyMap: Record<string, string>): Record<string, string> {
+        if (!obj) {
+            return {};
+        }
+        if (!keyMap) {
+            return obj;
+        }
+        return Object.entries(obj).reduce(
+            (acc, [key, value]) => {
+                const newKey = keyMap[key] || key;
+                acc[newKey] = value;
+                return acc;
+            },
+            {} as { [key: string]: string }
+        );
+    }
+
+    /**
+     * Private method: _prepareMappedBindings.
+     *
+     * It prepares the bindings with mapped keys and label of a given select response.
+     *
+     * @param {RDFStoreSelectResponse} selectResponse The given select response.
+     *
+     * @returns {QueryResultBindings[]} The array of bindings.
+     */
+    private _prepareMappedBindings(selectResponse: RDFStoreSelectResponse): QueryResultBindings[] {
+        const xmlsInteger = 'http://www.w3.org/2001/XMLSchema#integer';
+        const xmlsNonNegativeInteger = 'http://www.w3.org/2001/XMLSchema#nonNegativeInteger';
+        const keyMap = {
+            token: 'type',
+            type: 'datatype',
+            lang: 'xml:lang',
+        };
+
+        return selectResponse.map(item => {
+            const newItem: Record<string, any> = {};
+
+            Object.entries(item).forEach(([itemEntryKey, itemEntryValue]) => {
+                // Map keys
+                newItem[itemEntryKey] = this._mapKeys(itemEntryValue, keyMap);
+
+                // Set label
+                const { value, type, datatype = '' } = newItem[itemEntryKey];
+                newItem[itemEntryKey]['label'] =
+                    type === 'literal' && (datatype === xmlsInteger || datatype === xmlsNonNegativeInteger)
+                        ? +value
+                        : this._prefixPipe.transform(value, PrefixForm.SHORT);
+            });
+            return newItem;
         });
-        return Object.assign({}, ...keyValues);
+    }
+
+    /**
+     * Private method: _prepareConstructResponse.
+     *
+     * It prepares the triples of the construct response.
+     *
+     * @param {RDFStoreConstructResponseTriple[]} storeTriples The given triples from the rdf construct response.
+     * @param {string} namespaces The given namespaces.
+     * @param {string} [mimeType] The given optional mimeType.
+     *
+     * @returns {Triple[]} The array of abbreviated triples.
+     */
+    private _prepareConstructResponse(
+        storeTriples: RDFStoreConstructResponseTriple[],
+        namespaces: Namespace,
+        mimeType?: string
+    ): Triple[] {
+        const shouldAbbreviate = !mimeType || mimeType === 'text/turtle';
+
+        return storeTriples.map((storeTriple: RDFStoreConstructResponseTriple) => {
+            let {
+                subject: s,
+                predicate: p,
+                object: o,
+            } = {
+                subject: storeTriple.subject.nominalValue,
+                predicate: storeTriple.predicate.nominalValue,
+                object: storeTriple.object.nominalValue,
+            };
+
+            if (shouldAbbreviate) {
+                s = this._abbreviate(s, namespaces);
+                p = this._abbreviate(p, namespaces);
+                o = this._abbreviate(o, namespaces);
+            }
+            return { subject: s, predicate: p, object: o };
+        });
     }
 
     /**
@@ -560,59 +481,19 @@ export class GraphVisualizerService {
             return { status: 404, data: undefined };
         }
 
-        // Check that it didn't return null results
-        if (selectResponse[0] == null) {
+        if (selectResponse.length === 0) {
             return { status: 400, data: 'Query returned no results' };
         }
 
-        // Get variable keys
-        const varKeys = Object.keys(selectResponse[0]);
-
-        // Get object array
-        const b = selectResponse;
-
-        // Rename keys according to below mapping table
-        const map = {
-            token: 'type',
-            type: 'datatype',
-            lang: 'xml:lang',
-        };
-
-        // Loop over data to rename the keys
-        for (const i in b) {
-            if (b.hasOwnProperty(i)) {
-                for (const key in varKeys) {
-                    if (varKeys.hasOwnProperty(key)) {
-                        // Map keys
-                        b[i][varKeys[key]] = this._mapKeys(b[i][varKeys[key]], map);
-
-                        // Add label with short prefix
-                        b[i][varKeys[key]]['label'] = '';
-                        if (b[i][varKeys[key]]['value']) {
-                            b[i][varKeys[key]]['label'] = this.prefixPipe.transform(
-                                b[i][varKeys[key]]['value'],
-                                PrefixForm.SHORT
-                            );
-
-                            // Transform integer values to numbers
-                            const xmlsInteger = 'http://www.w3.org/2001/XMLSchema#integer';
-                            const xmlsNonNegativeInteger = 'http://www.w3.org/2001/XMLSchema#nonNegativeInteger';
-                            const type = b[i][varKeys[key]]['type'];
-                            const datatype = b[i][varKeys[key]]['datatype'] || '';
-                            if (
-                                type === 'literal' &&
-                                (datatype === xmlsInteger || datatype === xmlsNonNegativeInteger)
-                            ) {
-                                b[i][varKeys[key]]['label'] = +b[i][varKeys[key]]['value'];
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        // Get variable keys and bindings
+        const selectResponseKeys = Object.keys(selectResponse[0]);
+        const selectResponseBindings = this._prepareMappedBindings(selectResponse);
 
         // Re-format data
-        const reformatted: QueryResult = { head: { vars: varKeys }, body: { bindings: b } };
+        const reformatted: QueryResult = {
+            head: { vars: selectResponseKeys },
+            body: { bindings: selectResponseBindings },
+        };
 
         return { status: 200, data: reformatted };
     }

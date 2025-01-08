@@ -28,6 +28,7 @@ import { GraphSparqlQuery } from '@awg-views/edition-view/models';
     templateUrl: './sparql-editor.component.html',
     styleUrls: ['./sparql-editor.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SparqlEditorComponent implements OnInit, OnChanges {
     /**

@@ -1,0 +1,20 @@
+<div class="p-3 border rounded-3 text-center awg-edition-intro-partial-disclaimer">
+    <p class="no-para text-muted">
+        [Siehe auch die gesamte Einleitung zu
+        <a
+            [routerLink]="[
+                editionRoute,
+                seriesRoute,
+                editionComplex?.pubStatement?.series?.route,
+                sectionRoute,
+                editionComplex?.pubStatement?.section?.route,
+                introRoute,
+            ]"
+            ><span
+                >{{ editionLabel }} {{ editionComplex?.pubStatement?.series?.short }}/{{
+                    editionComplex?.pubStatement?.section?.short
+                }}</span
+            ></a
+        >.]
+    </p>
+</div>

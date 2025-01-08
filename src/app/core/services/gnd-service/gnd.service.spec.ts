@@ -27,7 +27,7 @@ describe('GndService (DONE)', () => {
     const expectedSessionStorage: Storage = window[sessionType];
 
     const expectedGndKey = 'gnd';
-    const expectedDnbReg = /href="(https?:\/\/d-nb.info\/gnd\/([\w\-]{8,11}))"/i;
+    const expectedDnbReg = /href="(https?:\/\/d-nb.info\/gnd\/([\w-]{8,11}))"/i;
 
     const expectedGndEventValue = '<a href="http://d-nb.info/gnd/12345678-X">http://d-nb.info/gnd/12345678-X</a>';
     const expectedItem = '12345678-X';
@@ -119,7 +119,7 @@ describe('GndService (DONE)', () => {
 
             expectedStorage.removeItem('testkey');
 
-            expect(mockStorage.getItem('testkey')).toBeNull();
+            expectToBe(mockStorage.getItem('testkey'), null);
         });
 
         it('... should use correct mock storage', () => {
@@ -129,7 +129,7 @@ describe('GndService (DONE)', () => {
             expectedStorage.setItem('testkey', 'testvalue');
 
             expectToBe(mockStorage.getItem('testkey'), 'testvalue');
-            expect(otherMockStorage.getItem('testkey')).toBeNull();
+            expectToBe(otherMockStorage.getItem('testkey'), null);
 
             mockStorage.clear();
             otherMockStorage.clear();
@@ -137,7 +137,7 @@ describe('GndService (DONE)', () => {
             expectedOtherStorage.setItem('testkey', 'testvalue');
 
             expectToBe(otherMockStorage.getItem('testkey'), 'testvalue');
-            expect(mockStorage.getItem('testkey')).toBeNull();
+            expectToBe(mockStorage.getItem('testkey'), null);
 
             otherMockStorage.clear();
         });
@@ -155,7 +155,7 @@ describe('GndService (DONE)', () => {
 
             expectedStorage.removeItem('testkey');
 
-            expect(mockStorage.getItem('testkey')).toBeNull();
+            expectToBe(mockStorage.getItem('testkey'), null);
         });
 
         it('... should remove the correct item', () => {
@@ -167,17 +167,17 @@ describe('GndService (DONE)', () => {
 
             expectedStorage.removeItem('testkey');
 
-            expect(mockStorage.getItem('testkey')).toBeNull();
+            expectToBe(mockStorage.getItem('testkey'), null);
             expectToBe(mockStorage.getItem('testkey2'), 'testvalue2');
 
             expectedStorage.removeItem('testkey2');
 
-            expect(mockStorage.getItem('testkey')).toBeNull();
-            expect(mockStorage.getItem('testkey2')).toBeNull();
+            expectToBe(mockStorage.getItem('testkey'), null);
+            expectToBe(mockStorage.getItem('testkey2'), null);
         });
 
         it('... should clear mock storage after each run', () => {
-            expect(mockStorage.getItem('testkey')).toBeNull();
+            expectToBe(mockStorage.getItem('testkey'), null);
         });
     });
 
@@ -204,59 +204,59 @@ describe('GndService (DONE)', () => {
 
         describe('... should not do anything if', () => {
             it('... gndEvent is undefined', () => {
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
 
                 gndService.exposeGnd(undefined);
 
                 expectSpyCall(setGndToSessionStorageSpy, 0);
                 expectSpyCall(removeGndFromSessionStorageSpy, 0);
 
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
             });
 
             it('... gndEvent is null', () => {
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
 
                 gndService.exposeGnd(null);
 
                 expectSpyCall(setGndToSessionStorageSpy, 0);
                 expectSpyCall(removeGndFromSessionStorageSpy, 0);
 
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
             });
 
             it('... gndEvent has undefined type', () => {
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
 
                 gndService.exposeGnd(new GndEvent(undefined, '123'));
 
                 expectSpyCall(setGndToSessionStorageSpy, 0);
                 expectSpyCall(removeGndFromSessionStorageSpy, 0);
 
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
             });
 
             it('... gndEvent has type null', () => {
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
 
                 gndService.exposeGnd(new GndEvent(null, '123'));
 
                 expectSpyCall(setGndToSessionStorageSpy, 0);
                 expectSpyCall(removeGndFromSessionStorageSpy, 0);
 
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
             });
 
             it('... gndEvent has GET type', () => {
                 const expectedDefaultMessage = 'Got an uncatched GND event';
 
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
 
                 gndService.exposeGnd(new GndEvent(GndEventType.GET, '123'));
 
                 expectSpyCall(setGndToSessionStorageSpy, 0);
                 expectSpyCall(removeGndFromSessionStorageSpy, 0);
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
 
                 expectSpyCall(consoleSpy, 1, expectedDefaultMessage);
                 expectToBe(mockConsole.get(0), expectedDefaultMessage);
@@ -272,7 +272,7 @@ describe('GndService (DONE)', () => {
             });
 
             it('... should set key/value pair to storage if given gndEvent type is `set`', () => {
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
 
                 gndService.exposeGnd(expectedSetEvent);
 
@@ -338,39 +338,37 @@ describe('GndService (DONE)', () => {
             it('... should set an item to the correct storage if given gndEvent value has gnd link', () => {
                 const otherMockStorage = mockLocalStorage;
 
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
-                expect(otherMockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
+                expectToBe(otherMockStorage.getItem(expectedGndKey), null);
 
                 gndService.exposeGnd(expectedSetEvent);
 
-                expectToEqual(mockStorage.getItem(expectedGndKey), expectedItem);
-                expect(otherMockStorage.getItem(expectedGndKey)).not.toEqual(expectedItem);
-                expect(otherMockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), expectedItem);
+                expectToBe(otherMockStorage.getItem(expectedGndKey), null);
 
                 otherMockStorage.clear();
             });
 
             it('... should overwrite an existing gnd key if gndEvent value has gnd link', () => {
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
 
                 gndService.exposeGnd(expectedSetEvent);
-                expectToEqual(mockStorage.getItem(expectedGndKey), expectedItem);
+                expectToBe(mockStorage.getItem(expectedGndKey), expectedItem);
 
                 gndService.exposeGnd(otherSetEvent);
-                expect(mockStorage.getItem(expectedGndKey)).not.toEqual(expectedItem);
-                expectToEqual(mockStorage.getItem(expectedGndKey), otherItem);
+                expectToBe(mockStorage.getItem(expectedGndKey), otherItem);
             });
 
             it('... should return null if value has no gnd link', () => {
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
 
                 gndService.exposeGnd(noLinkGndSetEvent);
 
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
             });
 
             it('... should call helper function with input value to check if value has gnd link', () => {
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
 
                 const valueHasGndSpy = spyOn<any>(gndService, '_valueHasGnd').and.callThrough();
                 gndService.exposeGnd(expectedSetEvent);
@@ -385,7 +383,7 @@ describe('GndService (DONE)', () => {
 
                 it('... should execute regex check and populate linkRegArr if value has gnd link', () => {
                     expect(gndService.linkRegArr).toBeUndefined();
-                    expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                    expectToBe(mockStorage.getItem(expectedGndKey), null);
 
                     const valueHasGndSpy = spyOn<any>(gndService, '_valueHasGnd').and.callFake(checkValue => {
                         gndService.linkRegArr = gndService.DNB_REG.exec(checkValue);
@@ -400,7 +398,7 @@ describe('GndService (DONE)', () => {
 
                 it('... should execute regex check and set linkRegArr = null if value has no gnd link', () => {
                     expect(gndService.linkRegArr).toBeUndefined();
-                    expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                    expectToBe(mockStorage.getItem(expectedGndKey), null);
 
                     const valueHasGndSpy = spyOn<any>(gndService, '_valueHasGnd').and.callThrough();
                     gndService.exposeGnd(noLinkGndSetEvent);
@@ -408,30 +406,30 @@ describe('GndService (DONE)', () => {
                     expectSpyCall(valueHasGndSpy, 1, noLinkGndEventValue);
 
                     expect(noLinkGndEventValue).not.toMatch(expectedDnbReg);
-                    expect(gndService.linkRegArr).toBeNull();
+                    expectToBe(gndService.linkRegArr, null);
                 });
 
                 it('... should return true (and set item) if value has gnd link', () => {
                     expect(gndService.linkRegArr).toBeUndefined();
-                    expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                    expectToBe(mockStorage.getItem(expectedGndKey), null);
 
                     const valueHasGndSpy = spyOn<any>(gndService, '_valueHasGnd').and.callThrough();
                     gndService.exposeGnd(expectedSetEvent);
 
                     expectSpyCall(valueHasGndSpy, 1, expectedGndEventValue);
-                    expectToEqual(mockStorage.getItem(expectedGndKey), expectedItem);
+                    expectToBe(mockStorage.getItem(expectedGndKey), expectedItem);
                 });
 
                 it('... should return false (and set no item) if value has no gnd link', () => {
                     expect(gndService.linkRegArr).toBeUndefined();
-                    expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                    expectToBe(mockStorage.getItem(expectedGndKey), null);
 
                     const valueHasGndSpy = spyOn<any>(gndService, '_valueHasGnd').and.callThrough();
                     gndService.exposeGnd(noLinkGndSetEvent);
 
                     expectSpyCall(valueHasGndSpy, 1, noLinkGndEventValue);
 
-                    expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                    expectToBe(mockStorage.getItem(expectedGndKey), null);
                 });
             });
         });
@@ -445,14 +443,14 @@ describe('GndService (DONE)', () => {
             });
 
             it('... should remove an item by key from the storage if given gndEvent type is `remove`', () => {
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
                 expectedStorage.setItem(expectedGndKey, expectedItem);
 
-                expectToEqual(mockStorage.getItem(expectedGndKey), expectedItem);
+                expectToBe(mockStorage.getItem(expectedGndKey), expectedItem);
 
                 gndService.exposeGnd(expectedRemoveEvent);
 
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
             });
 
             it('... should expose null value if given gndEvent type is `remove`', () => {
@@ -497,19 +495,19 @@ describe('GndService (DONE)', () => {
                 const expectedOtherStorage = expectedLocalStorage;
                 const otherMockStorage = mockLocalStorage;
 
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
-                expect(otherMockStorage.getItem(expectedGndKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
+                expectToBe(otherMockStorage.getItem(expectedGndKey), null);
 
                 expectedStorage.setItem(expectedGndKey, expectedItem);
                 expectedOtherStorage.setItem(expectedGndKey, otherItem);
 
-                expectToEqual(mockStorage.getItem(expectedGndKey), expectedItem);
-                expectToEqual(otherMockStorage.getItem(expectedGndKey), otherItem);
+                expectToBe(mockStorage.getItem(expectedGndKey), expectedItem);
+                expectToBe(otherMockStorage.getItem(expectedGndKey), otherItem);
 
                 gndService.exposeGnd(expectedRemoveEvent);
 
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
-                expectToEqual(otherMockStorage.getItem(expectedGndKey), otherItem);
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
+                expectToBe(otherMockStorage.getItem(expectedGndKey), otherItem);
 
                 otherMockStorage.clear();
             });
@@ -517,45 +515,45 @@ describe('GndService (DONE)', () => {
             it('... should remove the correct item from the storage', () => {
                 const otherKey = 'otherKey';
 
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
-                expect(mockStorage.getItem(otherKey)).toBeNull();
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
+                expectToBe(mockStorage.getItem(otherKey), null);
 
                 expectedStorage.setItem(expectedGndKey, expectedItem);
                 expectedStorage.setItem(otherKey, expectedItem);
 
-                expectToEqual(mockStorage.getItem(expectedGndKey), expectedItem);
-                expectToEqual(mockStorage.getItem(otherKey), expectedItem);
+                expectToBe(mockStorage.getItem(expectedGndKey), expectedItem);
+                expectToBe(mockStorage.getItem(otherKey), expectedItem);
 
                 gndService.exposeGnd(expectedRemoveEvent);
 
-                expect(mockStorage.getItem(expectedGndKey)).toBeNull();
-                expectToEqual(mockStorage.getItem(otherKey), expectedItem);
+                expectToBe(mockStorage.getItem(expectedGndKey), null);
+                expectToBe(mockStorage.getItem(otherKey), expectedItem);
             });
 
             describe('... should do nothing if:', () => {
                 it('- storage has not the gnd key', () => {
-                    expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                    expectToBe(mockStorage.getItem(expectedGndKey), null);
 
                     gndService.exposeGnd(expectedRemoveEvent);
 
-                    expect(mockStorage.getItem(expectedGndKey)).toBeNull();
+                    expectToBe(mockStorage.getItem(expectedGndKey), null);
                 });
 
                 it('- storage has other key but not the gnd key', () => {
                     const otherKey = 'otherKey';
 
-                    expect(mockStorage.getItem(expectedGndKey)).toBeNull();
-                    expect(mockStorage.getItem(otherKey)).toBeNull();
+                    expectToBe(mockStorage.getItem(expectedGndKey), null);
+                    expectToBe(mockStorage.getItem(otherKey), null);
 
                     expectedStorage.setItem(otherKey, expectedItem);
 
-                    expect(mockStorage.getItem(expectedGndKey)).toBeNull();
-                    expectToEqual(mockStorage.getItem(otherKey), expectedItem);
+                    expectToBe(mockStorage.getItem(expectedGndKey), null);
+                    expectToBe(mockStorage.getItem(otherKey), expectedItem);
 
                     gndService.exposeGnd(expectedRemoveEvent);
 
-                    expect(mockStorage.getItem(expectedGndKey)).toBeNull();
-                    expectToEqual(mockStorage.getItem(otherKey), expectedItem);
+                    expectToBe(mockStorage.getItem(expectedGndKey), null);
+                    expectToBe(mockStorage.getItem(otherKey), expectedItem);
                 });
             });
         });

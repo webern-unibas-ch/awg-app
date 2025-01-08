@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
@@ -15,7 +14,8 @@ import { CoreService } from '@awg-core/services';
     selector: 'awg-contact-view',
     templateUrl: './contact-view.component.html',
     styleUrls: ['./contact-view.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.Default,
+    standalone: false,
 })
 export class ContactViewComponent implements OnInit {
     /**
@@ -88,18 +88,11 @@ export class ContactViewComponent implements OnInit {
     dateFormat = 'd. MMMM yyyy';
 
     /**
-     * Constructor of the ContactViewComponent.
+     * Private readonly injection variable: _coreService.
      *
-     * It declares a private CoreService instance
-     * to get the metadata and a private Router instance.
-     *
-     * @param {CoreService} coreService Instance of the CoreService.
-     * @param {Router} router Instance of the Angular router.
+     * It keeps the instance of the injected CoreService.
      */
-    constructor(
-        private coreService: CoreService,
-        private router: Router
-    ) {}
+    private readonly _coreService = inject(CoreService);
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -108,7 +101,6 @@ export class ContactViewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.routeToSidenav();
         this.provideMetaData();
         this.today = Date.now();
     }
@@ -122,22 +114,7 @@ export class ContactViewComponent implements OnInit {
      * @returns {void} Sets the pageMetaData variable.
      */
     provideMetaData(): void {
-        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.page);
-        this.contactMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.contact);
-    }
-
-    /**
-     * Public method: routeToSidenav.
-     *
-     * It activates the secondary outlet with the contact-info.
-     *
-     * @returns {void} Activates the contact-info side outlet.
-     */
-    routeToSidenav(): void {
-        // Opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: 'contactInfo' } }], {
-            preserveFragment: true,
-            queryParamsHandling: 'preserve',
-        });
+        this.pageMetaData = this._coreService.getMetaDataSection(MetaSectionTypes.page);
+        this.contactMetaData = this._coreService.getMetaDataSection(MetaSectionTypes.contact);
     }
 }
