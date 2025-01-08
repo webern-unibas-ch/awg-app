@@ -56,8 +56,11 @@
                 "annotations": "",
                 "contents": [
                     {
-                        "item": "M 41 Sk 1",
-                        "itemLinkTo": {},
+                        "item": "M 41 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "m41",
+                            "sheetId": "M_41_Sk1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 41)",
                         "folios": [
                             {
@@ -69,42 +72,42 @@
                                         {
                                             "system": "1–2",
                                             "measure": "1, {2A–3A}, 2B–3B, 4",
-                                            "linkTo": ""
+                                            "linkTo": "M_41_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–6",
                                             "measure": "5–11",
-                                            "linkTo": ""
+                                            "linkTo": "M_41_Sk1b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7–8",
                                             "measure": "12–17",
-                                            "linkTo": ""
+                                            "linkTo": "M_41_Sk1c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10–11",
                                             "measure": "18–23",
-                                            "linkTo": ""
+                                            "linkTo": "M_41_Sk1d"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13–14",
                                             "measure": "24A, 24B, 25–28",
-                                            "linkTo": ""
+                                            "linkTo": "M_41_Sk1e"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "17a",
                                             "measure": "29–31",
-                                            "linkTo": ""
+                                            "linkTo": "M_41_Sk1f"
                                         }
                                     ]
                                 ]
@@ -113,7 +116,10 @@
                     },
                     {
                         "item": "M 41 Sk1.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m41",
+                            "sheetId": "M_41_Sk1_1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 41)",
                         "folios": [
                             {
@@ -125,14 +131,14 @@
                                         {
                                             "system": "12",
                                             "measure": "24–28",
-                                            "linkTo": ""
+                                            "linkTo": "M_41_Sk1_1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "16a",
                                             "measure": "29",
-                                            "linkTo": ""
+                                            "linkTo": "M_41_Sk1_1b"
                                         }
                                     ]
                                 ]
@@ -141,7 +147,10 @@
                     },
                     {
                         "item": "M 41 Sk1.2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m41",
+                            "sheetId": "M_41_Sk1_2"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 41)",
                         "folios": [
                             {
@@ -164,7 +173,7 @@
                         "item": "M 40 Sk1",
                         "itemLinkTo": {
                             "complexId": "m40",
-                            "sheetId": "M_40_Sk1a"
+                            "sheetId": "M_40_Sk1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 40)",
                         "folios": [
@@ -250,7 +259,7 @@
                         "item": "M 35/42 Sk1",
                         "itemLinkTo": {
                             "complexId": "m35_42",
-                            "sheetId": "M_35_42_Sk1a"
+                            "sheetId": "M_35_42_Sk1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 35/42)",
                         "folios": [
