@@ -19,7 +19,7 @@
                                 "measure": "vor 1",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "{{ref.getGlyph('[f]')}} versetzt von 2. Note."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 2. Note."
                             },
                             {
                                 "svgGroupId": "g5914",
@@ -78,7 +78,7 @@
                                 "measure": "7",
                                 "system": "16",
                                 "position": "1–4/8",
-                                "comment": "Viert Achtelnoten überschreiben drei Triolenachteln."
+                                "comment": "Vier Achtelnoten überschreiben drei Triolenachteln."
                             },
                             {
                                 "svgGroupId": "g3062",
@@ -113,7 +113,7 @@
                                 "measure": "10",
                                 "system": "17",
                                 "position": "2/4",
-                                "comment": "Viertelnote überschreit drei Triolenachteln."
+                                "comment": "Viertelnote überschreibt drei Triolenachteln."
                             }
                         ]
                     }
