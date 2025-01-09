@@ -7,9 +7,7 @@
             "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
-                    "1 Bogen (Bl. 1/2). Horizontale und vertikale Knickfalte, seitlich leicht eingerissen."
-                ],
+                "desc": ["1 Bogen (Bl. 1/2). Horizontale und vertikale Knickfalte, seitlich leicht eingerissen."],
                 "writingMaterialStrings": [
                     "Notenpapier, 28 Systeme, Format: hoch 342 × 264 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 9</em> | <em>28 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
                 ],
@@ -527,9 +525,7 @@
                                 "folio": "1v",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [
-                                    []
-                                ]
+                                "systemGroups": [[]]
                             }
                         ]
                     },
@@ -1797,9 +1793,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -2877,12 +2871,12 @@
                                 ]
                             }
                         ]
-                    }                   
+                    }
                 ],
                 "corrections": [
                     {
-                        "id": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
-                        "label": "source_B_corr_1",
+                        "id": "source_B_corr_1",
+                        "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -2932,8 +2926,8 @@
                         }
                     },
                     {
-                        "id": "Korrekturen 2 in <strong>B</strong> (mit Bleistift)",
-                        "label": "source_B_corr_2",
+                        "id": "source_B_corr_2",
+                        "label": "Korrekturen 2 in <strong>B</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -3018,9 +3012,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -3462,8 +3454,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "Korrekturen 1 in <strong>C</strong> (mit Tinte)",
-                        "label": "source_C_corr_1",
+                        "id": "source_C_corr_1",
+                        "label": "Korrekturen 1 in <strong>C</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -3791,8 +3783,8 @@
                         }
                     },
                     {
-                        "id": "Korrekturen 2 in <strong>C</strong> (mit Bleistift)",
-                        "label": "source_C_corr_2",
+                        "id": "source_C_corr_2",
+                        "label": "Korrekturen 2 in <strong>C</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -3846,13 +3838,12 @@
                                             "system": "Klav. u.",
                                             "position": "2/4  <br /> 3/4",
                                             "comment": "Noten teilweise vorgezeichnet."
-                                        },
-                                        {
-                                            "measure": "Var. II.",
-                                            "system": "",
-                                            "position": "",
-                                            "comment": ""
-                                        },
+                                        }
+                                    ]
+                                },
+                                {
+                                    "blockHeader": "Var. II.",
+                                    "blockComments": [
                                         {
                                             "measure": "1",
                                             "system": "Klav. o.",
