@@ -1,0 +1,327 @@
+{
+    "textcritics": [
+        {
+            "id": "M_40_TF1",
+            "label": "M 40 einzige Textfassung",
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M 40 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm40', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm40', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm40', fragmentId: 'source_B'})\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 40 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm40', fragmentId: 'source_B'})\"><strong>B</strong></a> nach Korrekturen 1."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g3381",
+                                "measure": "9",
+                                "system": "Klav. u.",
+                                "position": "letzte Note",
+                                "comment": "F<sub>1</sub> korrigiert zu A<sub>1</sub> mit Blick auf harmonischen Kontext und analog T. 25 (vgl. auch Korrekturen mit Tinte)."
+                            },
+                            {
+                                "svgGroupId": "g3385",
+                                "measure": "13",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Notenhals nach unten ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm40', fragmentId: 'source_B'})\"><strong>B</strong></a>: Mit punktierter Viertelnote aus Oberstimmenschicht zusammengehalst."
+                            },
+                            {
+                                "svgGroupId": "g3400",
+                                "measure": "14",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g3404",
+                                "measure": "16",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "Mittelstimmenschicht: Notenhals ergänzt."
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "M_40_Sk1",
+            "label": "M 40 Sk1",
+            "evaluations": [
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm40', sheetId: 'M_40_TF1'})\" >Studienkomposition für Klavier M 40</a>, die vor der Reprise abbricht."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g1201",
+                                "measure": "2",
+                                "system": "1",
+                                "position": "1/4",
+                                "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g1209",
+                                "measure": "2",
+                                "system": "2",
+                                "position": "1/4 ",
+                                "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g1221",
+                                "measure": "2",
+                                "system": "2",
+                                "position": "3–4/8",
+                                "comment": "Oberstimmenschicht: c/H überschreibt d/c."
+                            },
+                            {
+                                "svgGroupId": "g1226",
+                                "measure": "2",
+                                "system": "2",
+                                "position": "3/4",
+                                "comment": "Oberstimmenschicht: h überschreibt H."
+                            },
+                            {
+                                "svgGroupId": "g1230",
+                                "measure": "2",
+                                "system": "2",
+                                "position": "(3/4)",
+                                "comment": "Nicht entzifferbare Schicht bei Viertelnote h."
+                            },
+                            {
+                                "svgGroupId": "g1240",
+                                "measure": "3",
+                                "system": "1",
+                                "position": "1/4",
+                                "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g1245",
+                                "measure": "5",
+                                "system": "2",
+                                "position": "1. Note",
+                                "comment": "Halbe Note A überschreibt Viertelnote A."
+                            },
+                            {
+                                "svgGroupId": "g1252",
+                                "measure": "6",
+                                "system": "2",
+                                "position": "1. Note",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g1258",
+                                "measure": "7",
+                                "system": "2",
+                                "position": "1/4",
+                                "comment": "Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g1262",
+                                "measure": "8B",
+                                "system": "1",
+                                "position": "2/8",
+                                "comment": "Oberstimmenschicht: h<sup>1</sup> überschreibt g<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g1269",
+                                "measure": "8B",
+                                "system": "1",
+                                "position": "2/4",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup> überschreibt f<sub>1</sub>."
+                            },
+                            {
+                                "svgGroupId": "g1274",
+                                "measure": "9",
+                                "system": "1",
+                                "position": "",
+                                "comment": "Notenköpfe c<sup>1</sup>/e<sup>1</sup> gestrichen; Notenkopf c<sup>1</sup> erneut hinzugefügt? Entzifferung nicht eindeutig."
+                            },
+                            {
+                                "svgGroupId": "g1434",
+                                "measure": "11",
+                                "system": "4",
+                                "position": "3. Note",
+                                "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g1440",
+                                "measure": "{13A}",
+                                "system": "4–5",
+                                "position": "",
+                                "comment": "Takt pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g1448",
+                                "measure": "13B",
+                                "system": "4",
+                                "position": "1/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>ais<sup>1</sup> überschreibt h<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g1456",
+                                "measure": "13B",
+                                "system": "4",
+                                "position": "3. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> überscheibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>as<sup></sup>."
+                            },
+                            {
+                                "svgGroupId": "g1496",
+                                "measure": "13B",
+                                "system": "6",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g1569",
+                                "measure": "14",
+                                "system": "4",
+                                "position": "1. Note",
+                                "comment": "Viertelnote [<span class='glyph'>{{ref.getGlyph('[b]')}}</span>]as<sup>1</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g1502",
+                                "measure": "14",
+                                "system": "7",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g1511",
+                                "measure": "15",
+                                "system": "7",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g1468",
+                                "measure": "15",
+                                "system": "4",
+                                "position": "letzte Note",
+                                "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g1198",
+                                "measure": "16A",
+                                "system": "8",
+                                "position": "1/2",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>B überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>Ais."
+                            },
+                            {
+                                "svgGroupId": "g1206",
+                                "measure": "16A",
+                                "system": "7",
+                                "position": "2/8",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g1212",
+                                "measure": "16A",
+                                "system": "7",
+                                "position": "2/4",
+                                "comment": "e<sup>1</sup> überschreibt d<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g1219",
+                                "measure": "16A",
+                                "system": "8",
+                                "position": "2/4",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g überschreibt f."
+                            },
+                            {
+                                "svgGroupId": "g1224",
+                                "measure": "16A",
+                                "system": "7",
+                                "position": "3/4",
+                                "comment": "Viertelnote h<sup>1</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g1231",
+                                "measure": "16B",
+                                "system": "8",
+                                "position": "1. Note",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g1242",
+                                "measure": "16B",
+                                "system": "8",
+                                "position": "(2. Note)",
+                                "comment": "Halbe Note [<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]H gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g1248",
+                                "measure": "17B",
+                                "system": "8",
+                                "position": "1. Note",
+                                "comment": "Halbe Note E gestrichen."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g4",
+                    "linkTo": {
+                        "complexId": "m40",
+                        "sheetId": "M_40_Sk1b"
+                    }
+                },
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m40",
+                        "sheetId": "M_40_Sk1c"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_40_Sk1_1",
+            "label": "M 40 Sk1.1",
+            "evaluations": [
+                "<strong>Sk1.1</strong> enthält die in der Reprise veränderten Schlusstakte und vervollständigt damit die Verlaufsskizze <a (click)=\"ref.selectSvgSheet({complexId: 'm40', sheetId: 'M_40_Sk1'})\" ><strong>Sk1</strong></a>."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g1026",
+                                "measure": "25",
+                                "system": "10",
+                                "position": "1. Note",
+                                "comment": "Notenkopf C gestrichen."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g4",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1f"
+                    }
+                },
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1_1"
+                    }
+                }
+            ]
+        }
+    ]
+}
