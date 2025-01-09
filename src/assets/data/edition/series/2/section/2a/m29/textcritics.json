@@ -1,10 +1,38 @@
 {
     "textcritics": [
         {
+            "id": "M_29_TF1",
+            "label": "M 29 einzige Textfassung",
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M 31 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment('source_A')\"><strong>A</strong></a> enthält Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 29 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> nach Korrekturen 1."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "svgGroupId": "g1",
+                        "measure": "3",
+                        "system": "Klav. o.",
+                        "position": "8/16",
+                        "comment": "Oberstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
+                    },
+                    {
+                        "svgGroupId": "g2",
+                        "measure": "9",
+                        "system": "Klav. u.",
+                        "position": "4/8",
+                        "comment": "Augmentationspunkt weggelassen mit Blick auf metrischen Kontext (vgl. auch Korrekturen mit Tinte)."
+                    }
+                ]
+            }
+        },
+        {
             "id": "M_29_Sk1",
             "label": "M 29 Sk1",
             "evaluations": [
-                "<strong>M 29 Sk1</strong> skizziert einen ersten Melodieverlauf, der bereits einige Kernmotive der späteren Studienkomposition für Klavier M 29 enthält (z. B. punktierte Rhythmen und Sequenzierungen), ansonsten aber von der Endfassung noch stark abweicht."
+                "<strong>Sk1</strong> skizziert einen ersten Melodieverlauf, der bereits einige Kernmotive der späteren <a (click)=\"ref.selectSvgSheet('m29', 'M_29_TF1')\" ><strong>Studienkomposition für Klavier M 29</strong></a> enthält (z. B. punktierte Rhythmen und Sequenzierungen), ansonsten aber von der Endfassung noch stark abweicht."
             ],
             "commentary": {
                 "preamble": "",
@@ -65,7 +93,7 @@
             "id": "M_29_Sk2",
             "label": "M 29 Sk2",
             "evaluations": [
-                "<strong>M 29 Sk2</strong> enthält eine fragmentarische Modulierung auf der Basis von <strong>M 29 Sk1</strong>, die in formaler Hinsicht aber nicht eindeutig zuzuordnen ist."
+                "<strong>Sk2</strong> enthält eine fragmentarische Modulierung auf der Basis von <a (click)=\"ref.selectSvgSheet('m29', 'M_29_Sk1')\" ><strong>Sk1</strong></a>, die in formaler Hinsicht aber nicht eindeutig zuzuordnen ist."
             ],
             "commentary": {
                 "preamble": "",
@@ -84,7 +112,7 @@
             "id": "M_29_Sk3",
             "label": "M 29 Sk3",
             "evaluations": [
-                "<strong>M 29 Sk3</strong> formuliert einen alternativen harmonischen Verlauf auf der Basis von <strong>M 29 Sk1</strong>, der in formaler Hinsicht aber nicht eindeutig zuzuordnen ist."
+                "<strong>Sk3</strong> formuliert einen alternativen harmonischen Verlauf auf der Basis von <a (click)=\"ref.selectSvgSheet('m29', 'M_29_Sk1')\" ><strong>Sk1</strong></a>, der in formaler Hinsicht aber nicht eindeutig zuzuordnen ist."
             ],
             "commentary": {
                 "preamble": "",
@@ -124,7 +152,7 @@
             "id": "M_29_Sk4",
             "label": "M 29 Sk4",
             "evaluations": [
-                "<strong>M 29 Sk4</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 29, die jedoch nach dem B-Teil und vor der Wiederholung des A-Teils abbricht."
+                "<strong>Sk4</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet('m29', 'M_29_TF1')\" ><strong>Studienkomposition für Klavier M 29</strong></a>, die jedoch nach dem B-Teil und vor der Wiederholung des A-Teils abbricht."
             ],
             "commentary": {
                 "preamble": "",
@@ -155,7 +183,7 @@
                         "measure": "2",
                         "system": "8",
                         "position": "2/8",
-                        "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu möglichem d gestrichen."
+                        "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu möglichem des gestrichen."
                     },
                     {
                         "svgGroupId": "g1525",
@@ -409,7 +437,7 @@
             "id": "M_29_Sk5",
             "label": "M 29 Sk5",
             "evaluations": [
-                "<strong>M 29 Sk5</strong> entwirft im Nachgang zu der Tintenniederschrift von Studienkomposition für Klavier M 29 eine alternative Fassung für die ersten acht Takte, bei denen hauptsächlich die linke Hand in der Hinsicht überarbeitet wird, dass die durchgehende Achtelbewegung durch Viertelnoten und -pausen aufgebrochen wird."
+                "<strong>Sk5</strong> entwirft im Nachgang zu der Tintenniederschrift von<a (click)=\"ref.selectSvgSheet('m29', 'M_29_TF1')\" ><strong>Studienkomposition für Klavier M 29</strong></a> eine alternative Fassung für die ersten acht Takte, bei denen hauptsächlich die linke Hand in der Hinsicht überarbeitet wird, dass die durchgehende Achtelbewegung durch Viertelnoten und -pausen aufgebrochen wird."
             ],
             "commentary": {
                 "preamble": "",
