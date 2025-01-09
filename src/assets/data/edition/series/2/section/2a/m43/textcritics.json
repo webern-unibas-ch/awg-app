@@ -78,21 +78,21 @@
                                 "measure": "7",
                                 "system": "16",
                                 "position": "1–4/8",
-                                "comment": "Vier Achtelnoten überschreiben drei Triolenachteln."
+                                "comment": "Vier Achtelnoten überschreiben drei Triolenachtelnoten."
                             },
                             {
                                 "svgGroupId": "g3062",
                                 "measure": "7",
                                 "system": "16",
                                 "position": "(4/4)",
-                                "comment": "Drei Triolenachteln überschreiben vier Achtelnoten."
+                                "comment": "Drei Triolenachtelnoten überschreiben vier Achtelnoten."
                             },
                             {
-                                "svgGroupId": "g3062",
-                                "measure": "7",
-                                "system": "16",
-                                "position": "(4/4)",
-                                "comment": "Drei Triolenachteln überschreiben vier Achtelnoten."
+                                "svgGroupId": "g10764",
+                                "measure": "{8A}",
+                                "system": "17",
+                                "position": "",
+                                "comment": "Takt pauschal gestrichen."
                             },
                             {
                                 "svgGroupId": "g12590",
@@ -106,14 +106,14 @@
                                 "measure": "10",
                                 "system": "17",
                                 "position": "1–2/8",
-                                "comment": "Zwei Achtelnoten überschreiben drei Triolenachteln."
+                                "comment": "Zwei Achtelnoten überschreiben drei Triolenachtelnoten."
                             },
                             {
                                 "svgGroupId": "g13704",
                                 "measure": "10",
                                 "system": "17",
                                 "position": "2/4",
-                                "comment": "Viertelnote überschreibt drei Triolenachteln."
+                                "comment": "Viertelnote überschreibt drei Triolenachtelnoten."
                             }
                         ]
                     }
