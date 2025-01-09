@@ -412,7 +412,128 @@
                         "height": 348,
                         "width": 266
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m41",
+                            "sheetId": "M_41_Sk1a",
+                            "sigle": "M 41 Sk1",
+                            "sigleAddendum": "T. 1–4",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m41",
+                            "sheetId": "M_41_Sk1b",
+                            "sigle": "M 41 Sk1",
+                            "sigleAddendum": "T. 5–11",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m41",
+                            "sheetId": "M_41_Sk1c",
+                            "sigle": "M 41 Sk1",
+                            "sigleAddendum": "T. 12–17",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m41",
+                            "sheetId": "M_41_Sk1d",
+                            "sigle": "M 41 Sk1",
+                            "sigleAddendum": "T. 18–23",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m41",
+                            "sheetId": "M_41_Sk1e",
+                            "sigle": "M 41 Sk1",
+                            "sigleAddendum": "T. 24A–28",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m41",
+                            "sheetId": "M_41_Sk1f",
+                            "sigle": "M 41 Sk1",
+                            "sigleAddendum": "T. 29–31",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 17,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m41",
+                            "sheetId": "M_41_Sk1_1a",
+                            "sigle": "M 41 Sk1.1",
+                            "sigleAddendum": "T. 24–28",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 12,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m41",
+                            "sheetId": "M_41_Sk1_1b",
+                            "sigle": "M 41 Sk1.1",
+                            "sigleAddendum": "T. 29",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m41",
+                            "sheetId": "M_41_Sk1_2",
+                            "sigle": "M 41 Sk1.2",
+                            "sigleAddendum": "",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 16,
+                                    "endSystem": 18
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "1v",
@@ -423,10 +544,64 @@
                     },
                     "content": [
                         {
+                            "complexId": "m40",
+                            "sheetId": "M_40_Sk1a",
+                            "sigle": "M 40 Sk1",
+                            "sigleAddendum": "T. 1–9",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m40",
+                            "sheetId": "M_40_Sk1b",
+                            "sigle": "M 40 Sk1",
+                            "sigleAddendum": "T. 10–15",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 7
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m40",
+                            "sheetId": "M_40_Sk1c",
+                            "sigle": "M 40 Sk1",
+                            "sigleAddendum": "T. 16A–17B",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m40",
+                            "sheetId": "M_40_Sk1_1",
+                            "sigle": "M 40 Sk1.1",
+                            "sigleAddendum": "",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 9,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
                             "complexId": "m35_42",
                             "sheetId": "M_35_42_Sk1_1",
                             "sigle": "M 35/42 Sk1.1",
-                            "sigleAddendum": "T. 22, 22+1",
+                            "sigleAddendum": "",
                             "sectionPartition": 3,
                             "sections": [
                                 {
@@ -512,7 +687,6 @@
                 }
             ]
         },
-
         {
             "convoluteId": "D",
             "convoluteLabel": "D Tintenniederschrift (CH-Bps)",
