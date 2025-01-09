@@ -992,7 +992,10 @@
                     },
                     {
                         "item": "M 41",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m41",
+                            "sheetId": "M_41_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 41)",
                         "folios": [
                             {

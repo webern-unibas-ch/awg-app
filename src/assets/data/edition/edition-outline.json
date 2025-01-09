@@ -108,10 +108,13 @@
                                 { "complex": "M36", "disabled": false },
                                 { "complex": "M37", "disabled": false },
                                 { "complex": "M38", "disabled": false },
+                                { "complex": "M40", "disabled": false },
+                                { "complex": "M41", "disabled": false },
                                 { "complex": "M30", "disabled": false },
                                 { "complex": "M31", "disabled": false },
                                 { "complex": "M22", "disabled": false },
                                 { "complex": "M23", "disabled": false }
+                                { "complex": "M43", "disabled": false }
                             ]
                         }
                     }
