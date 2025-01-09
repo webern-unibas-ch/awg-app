@@ -4,20 +4,16 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Skizze zu Studienkomposition für Klavier M 43.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 43.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 76 Textfassung 2.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
-                    "1 Blatt (Bl. 1). Rissspuren am oberen Rand: von Bogen abgetrennt."
-                ],
+                "desc": ["1 Blatt (Bl. 1). Rissspuren am oberen Rand: von Bogen abgetrennt."],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: quer 349 × 266 mm, Firmenzeichen ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. ## | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -28,10 +24,7 @@
                 "contents": [
                     {
                         "item": "M 76",
-                        "itemLinkTo": {
-                            "complexId": "m76",
-                            "sheetId": "M_76"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 76: Textfassung 2)",
                         "folios": [
                             {
@@ -102,12 +95,10 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift von Studienkomposition für Klavier M 43.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 43.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 44.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
-                    "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt. Kleiner Riss oben links."
-                ],
+                "desc": ["1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt. Kleiner Riss oben links."],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 349 × 267 mm, Firmenzeichen ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
                 ],
@@ -126,7 +117,7 @@
                         "item": "M 43",
                         "itemLinkTo": {
                             "complexId": "m43",
-                            "sheetId": "M_43"
+                            "sheetId": "M_43_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 43)",
                         "folios": [
@@ -169,10 +160,7 @@
                     },
                     {
                         "item": "M 44",
-                        "itemLinkTo": {
-                            "complexId": "m44",
-                            "sheetId": "M_44"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 44)",
                         "folios": [
                             {
