@@ -321,7 +321,7 @@
                                 "comment": "e<sup>2</sup> überschreibt d<sup>2</sup>."
                             },
                             {
-                                "svgGroupId": "polyline130",
+                                "svgGroupId": "g5",
                                 "measure": "{19A–20A}",
                                 "system": "11–12",
                                 "position": "",
@@ -335,7 +335,7 @@
                                 "comment": "Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "polyline170",
+                                "svgGroupId": "g4",
                                 "measure": "{21A}",
                                 "system": "11–12",
                                 "position": "",
