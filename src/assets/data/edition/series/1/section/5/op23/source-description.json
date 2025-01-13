@@ -1599,7 +1599,7 @@
                 "contents": [
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "Autograph von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23",
                         "folios": [
                             {
@@ -1618,7 +1618,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "I „Das dunkle Herz“ M 314: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
@@ -1814,7 +1814,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "II „Es stürzt aus Höhen Frische“ M 313: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
@@ -1933,7 +1933,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "III „Herr Jesus mein“ M 312: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
@@ -2118,7 +2118,7 @@
                 "contents": [
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "Druck von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23",
                         "folios": [
                             {
@@ -2132,7 +2132,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "I „Das dunkle Herz“ M 314: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
@@ -2312,7 +2312,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "II „Es stürzt aus Höhen Frische“ M 313: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
@@ -2391,7 +2391,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "III „Herr Jesus mein“ M 312: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
