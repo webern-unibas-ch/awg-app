@@ -320,7 +320,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Skizzen und Tintenniederschrift.",
+            "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
@@ -539,7 +539,7 @@
             "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "Skizzen und Tintenniederschrift.",
+            "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
@@ -947,11 +947,11 @@
             "id": "source_D",
             "siglum": "D",
             "siglumAddendum": "",
-            "type": "1 Blatt (Bl. 1). Rissspuren am rechten Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte, diagonale Knickfalte unten rechts.",
-            "location": "Beschreibstoff: Notenpapier, 18 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>.",
+            "type": "Tintenniederschrift.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "Schreibstoff: schwarze Tinte; Bleistift."
+                    "1 Blatt (Bl. 1). Rissspuren am rechten Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte, diagonale Knickfalte unten rechts."
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
@@ -960,7 +960,7 @@
                     "main": "schwarze Tinte",
                     "secondary": [
                         "Bleistift"
-                    ]
+                    ]            
                 },
                 "titles": [],
                 "dates": [],
@@ -1674,11 +1674,11 @@
             "id": "source_E",
             "siglum": "E",
             "siglumAddendum": "",
-            "type": "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte, diagonale Knickfalte unten rechts.",
-            "location": "Beschreibstoff: Notenpapier, 18 Systeme, Format: hoch 347 × 267 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>.",
+            "type": "Skizzen und Tintenniederschrift.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "Schreibstoff: Bleistift; schwarze Tinte."
+                    "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte, diagonale Knickfalte unten rechts."
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 347 × 267 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
@@ -2312,11 +2312,11 @@
             "id": "source_F",
             "siglum": "F",
             "siglumAddendum": "",
-            "type": "1 Blatt (Bl. 1). Rissspuren am rechten Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte, diagonale Knickfalte unten rechts.",
-            "location": "Beschreibstoff: Notenpapier, 18 Systeme, Format: hoch 344 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>v</sup>.",
+            "type": "Tintenniederschrift.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "Schreibstoff: schwarze Tinte."
+                    "1 Blatt (Bl. 1). Rissspuren am rechten Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte, diagonale Knickfalte unten rechts."
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 344 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>v</sup>"
