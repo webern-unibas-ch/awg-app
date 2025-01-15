@@ -1,0 +1,2529 @@
+{
+    "sources": [
+        {
+            "id": "source_A",
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Skizzen.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Bogen (Bl. 1/2). Horizontale Knickfalte im Bogen. Kleiner Riss am oberen rechten Rand."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 18 Systeme, Format: hoch 348 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> oben rechts auf Bl. 1<sup>v</sup> und 2<sup>v</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift"
+                    ]
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 68",
+                        "itemLinkTo": {
+                            "complexId": "m68",
+                            "sheetId": "M_68"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 68: Textfassung 1)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–15",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–10",
+                                            "measure": "9–15",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–5",
+                                            "measure": "16–22",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 32 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–1",
+                                            "measure": "1–6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68",
+                        "itemLinkTo": {
+                            "complexId": "m68",
+                            "sheetId": "M_68"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 68: Textfassung 1)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–15",
+                                            "measure": "23–29",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–10",
+                                            "measure": "30–36",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–5",
+                                            "measure": "37–43",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4a–1a",
+                                            "measure": "44–47",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68 Sk8",
+                        "itemLinkTo": {
+                            "complexId": "m68",
+                            "sheetId": "M_68_Sk8"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4b–1b",
+                                            "measure": "28(3/4)–30",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68",
+                        "itemLinkTo": {
+                            "complexId": "m68",
+                            "sheetId": "M_68"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 68: Textfassung 1)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "17–14",
+                                            "measure": "1–8 (Trio)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–9",
+                                            "measure": "9–16 (Trio)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–4",
+                                            "measure": "17–24 (Trio)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 32 Sk2",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–2",
+                                            "measure": "17–22",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–17",
+                                            "measure": "{1A–2A}, 1B–2B, 3–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–15",
+                                            "measure": "7–14",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14a–13a",
+                                            "measure": "15–16",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14b–13b",
+                                            "measure": "23–26, {27A}, 27B, 28",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–11",
+                                            "measure": "29–34, {35A–36A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–9",
+                                            "measure": "35B–36B, 37–44",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–6",
+                                            "measure": "45, {46A}, 46B, {47A, 47B, 48A, 47C}, 47D, 48B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–4",
+                                            "measure": "49–57, {58A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3a–2a",
+                                            "measure": "58B, 59, {60A}, 60B, 61A",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 32 Sk2.1",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk2_1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3b–2b",
+                                            "measure": "58, 58+1, 58+2",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_B",
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Skizzen und Tintenniederschrift.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "2 Blätter (Bl. 1–2). Horizontale Knickfalte in beiden Blättern. Rissspuren am linken Rand von Bl. 1 und 2: von Bogen abgetrennt. Bl. 2 horizontal eingerissen und mit Klebeband fixiert."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 28 Systeme, Format: hoch 348 × 264 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 9 | 28 linig.</em>unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift"
+                    ]
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 68",
+                        "itemLinkTo": {
+                            "complexId": "m68",
+                            "sheetId": "M_68"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 68: Textfassung 2→3→4)",
+                        "folios": [
+                            {
+                                "folio": "3r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "1–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "11–19",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–16",
+                                            "measure": "20–28",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "18–21",
+                                            "measure": "29–36",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "23–26",
+                                            "measure": "",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68",
+                        "itemLinkTo": {
+                            "complexId": "m68",
+                            "sheetId": "M_68"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 68: Textfassung 3→4)",
+                        "folios": [
+                            {
+                                "folio": "4r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "53–61; → T. 53–57, 61–63, {64}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14–17",
+                                            "measure": "11–19 (Trio) → T. 11–16, {17–19} (Trio)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "19a–22a",
+                                            "measure": "20–21 (Trio) → T. {20}, 21 (Trio)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68",
+                        "itemLinkTo": {
+                            "complexId": "m68",
+                            "sheetId": "M_68"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 68: Textfassung 4)",
+                        "folios": [
+                            {
+                                "folio": "4r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "19b–22b",
+                                            "measure": "58–60",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "19c–22c",
+                                            "measure": "64–66",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "24a–27a",
+                                            "measure": "67–68",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "24b–27b",
+                                            "measure": "17–21 (Trio)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68 Sk9",
+                        "itemLinkTo": {
+                            "complexId": "m68",
+                            "sheetId": "M_68_Sk9"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68: Textfassung 2)",
+                        "folios": [
+                            {
+                                "folio": "4v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "15–22",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 32 Sk2",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32)",
+                        "folios": [
+                            {
+                                "folio": "4v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6–7",
+                                            "measure": "68–75",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–9",
+                                            "measure": "76",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_C",
+            "siglum": "C",
+            "siglumAddendum": "",
+            "type": "Skizzen und Tintenniederschrift.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Blatt (Bl. 1). Rissspuren am rechten Rand: von Bogen abgetrennt. Kleinere Risse am Rand unten. Horizontale Knickfalte."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 18 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> oben rechts auf Bl. 1<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": [
+                        "schwarze Tinte"
+                    ]
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 68 Sk10",
+                        "itemLinkTo": {
+                            "complexId": "m68",
+                            "sheetId": "M_68_Sk10"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68: Textfassung 2)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–17",
+                                            "measure": "15–24",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16a–15a",
+                                            "measure": "25–28",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68 Sk12",
+                        "itemLinkTo": {
+                            "complexId": "m68",
+                            "sheetId": "M_68_Sk12"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68: Textfassung 2)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "16b–14b",
+                                            "measure": "{60A}, 61A, 60B, 61B, {60C(3/4)}, 60D, 61C",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 33 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "m33",
+                            "sheetId": "M_33_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 33)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "16c–13",
+                                            "measure": "1–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–11",
+                                            "measure": "10–22",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–9",
+                                            "measure": "23–31",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8a–7a",
+                                            "measure": "32–33",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 32 Sk2.2",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk2_2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "8b–7b",
+                                            "measure": "72",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68 Sk13",
+                        "itemLinkTo": {
+                            "complexId": "m68",
+                            "sheetId": "M_68_Sk13"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68: Textfassung 3)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "8c–7c",
+                                            "measure": "{15B}, 16B, 17–18, {19A–21A} (Trio)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6b–5b",
+                                            "measure": "22–23, 19B–21B, 13–14 (Trio)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4a–3a",
+                                            "measure": "15A–16A (Trio)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 32 Sk3",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk3"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 2)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6a–5a",
+                                            "measure": "39–41",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68 Sk14",
+                        "itemLinkTo": {
+                            "complexId": "m68",
+                            "sheetId": "M_68_Sk14"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68: Textfassung 3)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4b–3b",
+                                            "measure": "{53A–54A}, 53B–54B, 55–57",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "2a–1a",
+                                            "measure": "58–60",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 454 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar454",
+                            "sheetId": "Mstar_454_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M*454)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2b–1b",
+                                            "measure": "x+1 bis x+3",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68 Sk6",
+                        "itemLinkTo": {
+                            "complexId": "m68",
+                            "sheetId": "M_68_Sk6"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–16c",
+                                            "measure": "1–11 (Trio)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16a–15a",
+                                            "measure": "12–14, {15A}, 15B, 16, 17A (Trio)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14a–13a",
+                                            "measure": "17B, 18–21 (Trio)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 68 Sk7",
+                        "itemLinkTo": {
+                            "complexId": "m68",
+                            "sheetId": "M_68_Sk7"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "12a–11a",
+                                            "measure": "9–16 (Trio)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 32 Sk2",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "16b–15b",
+                                            "measure": "61B, 62",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14b–13b",
+                                            "measure": "63–64",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12b–11b",
+                                            "measure": "65–67",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 9 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "m9",
+                            "sheetId": "M_9_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu „Du bist mein, ich bin dein“ M 9)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "7–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "14–20",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_D",
+            "siglum": "D",
+            "siglumAddendum": "",
+            "type": "1 Blatt (Bl. 1). Rissspuren am rechten Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte, diagonale Knickfalte unten rechts.",
+            "location": "Beschreibstoff: Notenpapier, 18 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>.",
+            "description": {
+                "desc": [
+                    "Schreibstoff: schwarze Tinte; Bleistift."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 18 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift"
+                    ]
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 32",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 1→2→3)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3–4",
+                                            "measure": "10–19",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–6",
+                                            "measure": "20–28 → T. 20, {21–28}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "29–36 → T. {29–36}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–10",
+                                            "measure": "37–45 → T. {37–45}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "46–54 → T. {46–48}, 42–47",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–14",
+                                            "measure": "55–63 → T. 48–56 → T. 48, {49–56}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "15–16",
+                                            "measure": "64–70 → T. 57–63 → T. {57–63}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "71–76 → T. 64–69 → T. {64–69}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "77–84 → T. 70–75, {76–77} → T. {70–77}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 32",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 2)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–4a",
+                                            "measure": "76–77",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 33",
+                        "itemLinkTo": {
+                            "complexId": "m33",
+                            "sheetId": "M_33"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 33: Textfassung 1→2)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6–7",
+                                            "measure": "1–9 → T. 1–6, {7–8}, 9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–9",
+                                            "measure": "10–18 → T. 10–12, {13–16}, 17–18",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–11",
+                                            "measure": "19–27",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–13",
+                                            "measure": "28–32 → T. 28–30, {31–33}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 33",
+                        "itemLinkTo": {
+                            "complexId": "m33",
+                            "sheetId": "M_33"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 33: Textfassung 2)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4b–5",
+                                            "measure": "7–8",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14a–15a",
+                                            "measure": "31–32",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14b–15b",
+                                            "measure": "13–16",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "Korrekturen 1 in <strong>D</strong> (mit Tinte)",
+                        "label": "source_D_corr_1",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1",
+                                            "system": "Klav. u.",
+                                            "position": "Taktanfang",
+                                            "comment": "Tonartvorzeichnung: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> für dis überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> für fis."
+                                        },
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Augmentationspunkt zu e<sup>2</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "5",
+                                            "system": "Klav. u.",
+                                            "position": "1/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Gis gestrichen."
+                                        },
+                                        {
+                                            "measure": "7",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "19",
+                                            "system": "Klav. u.",
+                                            "position": "1/4–3/8",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "24",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[x]')}}</span>fisis<sup>1</sup> überschreibt [<span class='glyph'>{{ref.getGlyph('[a]')}}</span>]g<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "25",
+                                            "system": "Klav. o.",
+                                            "position": "1/4",
+                                            "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
+                                        },
+                                        {
+                                            "measure": "28",
+                                            "system": "Klav. o.",
+                                            "position": "2. Note",
+                                            "comment": "Unterstimmenschicht: c<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "28",
+                                            "system": "Klav. u.",
+                                            "position": "letzte Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu dis gestrichen."
+                                        },
+                                        {
+                                            "measure": "29",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Oberstimmenschicht: Halbe Note h<sup>1</sup> überschreibt Viertelnote a<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "37",
+                                            "system": "Klav. o.",
+                                            "position": "Taktanfang",
+                                            "comment": "Tonartvorzeichnung: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> für gis überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> für fis."
+                                        },
+                                        {
+                                            "measure": "42",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Oberstimmenschicht: Augmentationspunkt gestrichen? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "42",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "Achtelfähnchen zu h<sup>1</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "48",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Halbe Note überschreibt Viertelnote."
+                                        },
+                                        {
+                                            "measure": "48",
+                                            "system": "Klav. o.",
+                                            "position": "2/4",
+                                            "comment": "Oberstimmenschicht: Viertelnote h überschreibt mit Unterstimmenschicht zusammengehalste Halbe Note h."
+                                        },
+                                        {
+                                            "measure": "52",
+                                            "system": "Klav. u.",
+                                            "position": "2/8",
+                                            "comment": "cis<sup>1</sup> überschreibt h."
+                                        },
+                                        {
+                                            "measure": "53",
+                                            "system": "Klav. o.",
+                                            "position": "4/8",
+                                            "comment": "cis<sup>2</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "53",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "h<sup>1</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "54",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Viertelnote cis<sup>2</sup> überschreibt mit Oberstimmenschicht zusammengehalste Halbe Note cis<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "55",
+                                            "system": "Klav. o.",
+                                            "position": "4/8",
+                                            "comment": "cis<sup>2</sup> überschreibt dis<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "61",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Oberstimmenschicht: Punktierte Viertelnote überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "63",
+                                            "system": "Klav. u.",
+                                            "position": "",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "64",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "dis<sup>1</sup>/fis<sup>1</sup>: Punktierte Viertelnote überschreibt Halbe Note; dis<sup>2</sup> überschreibt fis<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "65",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "Achteltriole h<sup>2</sup> –gis<sup>2</sup> –e<sup>2</sup> geändert zu Viertelnote h<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "65",
+                                            "system": "Klav. u.",
+                                            "position": "3/4",
+                                            "comment": "Unterstimmenschicht: E überschreibt Gis."
+                                        },
+                                        {
+                                            "measure": "67",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "Viertelnote überschreibt Halbe Note."
+                                        },
+                                        {
+                                            "measure": "67",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Oberstimmenschicht: Punktierte Viertelnote überschreibt Halbe Note."
+                                        },
+                                        {
+                                            "measure": "70",
+                                            "system": "Klav. o.",
+                                            "position": "(2/4)",
+                                            "comment": "Notenkopf zu fis<sup>1</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "73",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "gis<sup>1</sup>/h<sup>1</sup>: Punktierte Viertelnote überschreibt Halbe Note."
+                                        },
+                                        {
+                                            "measure": "73",
+                                            "system": "Klav. u.",
+                                            "position": "1. Pause",
+                                            "comment": "Achtelpause überschreibt Viertelnote E."
+                                        },
+                                        {
+                                            "measure": "73",
+                                            "system": "Klav. o.",
+                                            "position": "4/8",
+                                            "comment": "fis<sup>1</sup>/a überschreibt gis<sup>1</sup>/h<sup>1</sup>? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "73",
+                                            "system": "Klav. u.",
+                                            "position": "5. Note",
+                                            "comment": "a<sup>1</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "73",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "e<sup>1</sup>/gis<sup>1</sup>/e<sup>2</sup> überschreibt fis<sup>1</sup>/a<sup>1</sup>/fis<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "74",
+                                            "system": "Klav. o.",
+                                            "position": "2. Note",
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "76",
+                                            "system": "Klav. u.",
+                                            "position": "2. Note",
+                                            "comment": "Als dritte Triolenachtelnote (parallel zu gis<sup>1</sup> in Klav. o.) notiertes cis gestrichen und versetzt nach 3/8."
+                                        },
+                                        {
+                                            "measure": "76",
+                                            "system": "Klav. u.",
+                                            "position": "4–6/8",
+                                            "comment": "e–gis–cis<sup>1</sup> ersetzt gestrichenes gis–cis<sup>1</sup>–e<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "79",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Ansatz zu Notenkopf e<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "82",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "fis<sup>1</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "83",
+                                            "system": "Klav. o.",
+                                            "position": "3–4/8",
+                                            "comment": "Balkierung hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "83",
+                                            "system": "Klav. u.",
+                                            "position": "1–6/8",
+                                            "comment": "Balkierung von 1–6/8 überschreibt Balkierung von 1–3/8 und 4–6/8; Notenhälse gis–h von unten nach oben geändert."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "Korrekturen 2 in <strong>D</strong> (mit Bleistift, braunem Buntstift und Tinte im Hinblick auf Textfassung 2)",
+                        "label": "source_D_corr_2",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "7",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> mit Bleistift hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takt mit braunem Buntstift eingekreist."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. o.",
+                                            "position": "1–3/4",
+                                            "comment": "Unterstimmenschicht: Viertelnoten gestrichen mit Bleistift und ersetzt durch punktierte Halbe Note dis<sup>1</sup>/fis<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. u.",
+                                            "position": "2–3/4",
+                                            "comment": "Unterstimmenschicht: H auf 2/4 mit Bleistift gestrichen und ersetzt durch Gis; A auf 3/4 überschrieben zu Gis."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span>mit Bleistift hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. u.",
+                                            "position": "3/4",
+                                            "comment": "Oberstimmenschicht: Viertelnote gis mit Bleistift hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "21",
+                                            "system": "Klav.",
+                                            "position": "1–2/4",
+                                            "comment": "Noten mit braunem Buntstift gestrichen."
+                                        },
+                                        {
+                                            "measure": "21–22",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Taktstrich zwischen T. 21 und 22 mit braunem Buntstift markiert: Einschubstelle für Textfassung 2 (vgl. auch Korrektur in T. 49)."
+                                        },
+                                        {
+                                            "measure": "22",
+                                            "system": "Klav.",
+                                            "position": "Taktanfang",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> mit Bleistift hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "22",
+                                            "system": "Klav. u.",
+                                            "position": "1/8–3/4",
+                                            "comment": "Noten mit braunem Buntstift gestrichen."
+                                        },
+                                        {
+                                            "measure": "24",
+                                            "system": "Klav. u.",
+                                            "position": "",
+                                            "comment": "Takt im unteren System mit Bleistift gestrichen? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "26",
+                                            "system": "Klav.",
+                                            "position": "Taktanfang",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> mit Bleistift hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "26",
+                                            "system": "Klav. u.",
+                                            "position": "1/8–3/4",
+                                            "comment": "Noten mit braunem Buntstift gestrichen, dann Streichung radiert."
+                                        },
+                                        {
+                                            "measure": "26–27",
+                                            "system": "Klav. u.",
+                                            "position": "",
+                                            "comment": "Takte unterhalb des Systems mit braunem Buntstift markiert. Markierung unter T. 26 wieder radiert."
+                                        },
+                                        {
+                                            "measure": "27",
+                                            "system": "Klav.",
+                                            "position": "Taktanfang",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> mit Bleistift hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "29",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> mit Bleistift hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "29",
+                                            "system": "Klav.",
+                                            "position": "(2–3/4)",
+                                            "comment": "Wellenförmige Linie mit Bleistift zwischen den Systemen."
+                                        },
+                                        {
+                                            "measure": "30",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> mit Bleistift vorskizziert."
+                                        },
+                                        {
+                                            "measure": "30",
+                                            "system": "Klav.",
+                                            "position": "(3/4)",
+                                            "comment": "Wellenförmige Linie mit Bleistift zwischen den Systemen."
+                                        },
+                                        {
+                                            "measure": "33",
+                                            "system": "Klav.",
+                                            "position": "2. Note",
+                                            "comment": "Halbe Noten fis und cis<sup>1</sup>/e<sup>1</sup> mit Bleistift eingeklammert."
+                                        },
+                                        {
+                                            "measure": "38–39",
+                                            "system": "Klav. o.",
+                                            "position": "Taktanfang <br /> Taktende",
+                                            "comment": "Takte über dem System mit Bleistift eingeklammert."
+                                        },
+                                        {
+                                            "measure": "40",
+                                            "system": "Klav. u.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Noten mit Bleistift gestrichen und ersetzt durch Viertelpause und Halbe Note gis."
+                                        },
+                                        {
+                                            "measure": "41",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takt pauschal mit Bleistift gestrichen."
+                                        },
+                                        {
+                                            "measure": "41",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> mit Bleistift vorskizziert."
+                                        },
+                                        {
+                                            "measure": "45–48",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takte pauschal mit Bleistift gestrichen."
+                                        },
+                                        {
+                                            "measure": "49",
+                                            "system": "Klav. o.",
+                                            "position": "Taktanfang",
+                                            "comment": "Verweiszeichen über dem System: Verweis für Ende der Einschubstelle für Textfassung 2 (vgl. auch Korrektur zu T. 21–22 und Korrekturen 1 in Textfassung 2)."
+                                        },
+                                        {
+                                            "measure": "65",
+                                            "system": "Klav.",
+                                            "position": "2–3/4",
+                                            "comment": "Kreuz mit Bleistift zwischen den Systemen."
+                                        },
+                                        {
+                                            "measure": "67",
+                                            "system": "Klav. o.",
+                                            "position": "2.–3. Note",
+                                            "comment": "Oberstimmenschicht: Noten mit Bleistift eingeklammert."
+                                        },
+                                        {
+                                            "measure": "75",
+                                            "system": "Klav. o.",
+                                            "position": "letzte Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> mit braunem Buntstift hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "83–84",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takte pauschal gestrichen und ersetzt durch Alternative für Textfassung 2."
+                                        },
+                                        {
+                                            "measure": "83B",
+                                            "system": "Klav. u.",
+                                            "position": "4. Note",
+                                            "comment": "h ersetzt gestrichenes e<sup>1</sup> aus Klav. o."
+                                        },
+                                        {
+                                            "measure": "84B",
+                                            "system": "Klav.",
+                                            "position": "2. Note",
+                                            "comment": "Unterstimmenschicht: e<sup>1</sup> überschreibt gis<sup>1</sup>."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "Korrekturen 3 in <strong>D</strong> (mit Bleistift im Hinblick auf Textfassung 3)",
+                        "label": "source_D_corr_3",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "55",
+                                            "system": "Klav. u.",
+                                            "position": "",
+                                            "comment": "Pause und Noten durch Einkreisung getilgt. Halbe Note A auf 1–2/4 und Viertelnote d auf 3/4 hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "55–56",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Taktstrich mit Bleistift markiert: Einschubstelle für Textfassung 3."
+                                        },
+                                        {
+                                            "measure": "56–63",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takte pauschal gestrichen."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_E",
+            "siglum": "E",
+            "siglumAddendum": "",
+            "type": "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte, diagonale Knickfalte unten rechts.",
+            "location": "Beschreibstoff: Notenpapier, 18 Systeme, Format: hoch 347 × 267 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>.",
+            "description": {
+                "desc": [
+                    "Schreibstoff: Bleistift; schwarze Tinte."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 18 Systeme, Format: hoch 347 × 267 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": [
+                        "schwarze Tinte"
+                    ]
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 22 Sk13",
+                        "itemLinkTo": {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk13"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1a–2a",
+                                            "measure": "{1A}, 1B, 2–4 (Var. XI)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 22 Sk14",
+                        "itemLinkTo": {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk14"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3a–4a",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 414 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar414",
+                            "sheetId": "Mstar_414_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 414)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1b–2b",
+                                            "measure": "1–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3c–4c",
+                                            "measure": "5–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 22 Sk15",
+                        "itemLinkTo": {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk15"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5a–6a",
+                                            "measure": "1A–3A, 4, 1B–3B (Var. XII)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 414 Sk2",
+                        "itemLinkTo": {
+                            "complexId": "mstar414",
+                            "sheetId": "Mstar_414_Sk2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 414)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "7a–8a",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 22 Sk23",
+                        "itemLinkTo": {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk23"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3b–4b",
+                                            "measure": "1–2 (Var. XVI)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5b–6b",
+                                            "measure": "3–4 (Var. XVI)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7b–8b",
+                                            "measure": "5–6 (Var. XVI)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3d–4d",
+                                            "measure": "7 (Var. XVI)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 413 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar413",
+                            "sheetId": "Mstar_413_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 414)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "9–10",
+                                            "measure": "1–6, {7A, 7B}, 7C",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 22 Sk16",
+                        "itemLinkTo": {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk16"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "1–3, 4A, 4B, 5–6 (Var. VIII)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 22 Sk17",
+                        "itemLinkTo": {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk17"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13a–14a",
+                                            "measure": "1–8 (Var. XIII)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 22 Sk18",
+                        "itemLinkTo": {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk18"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "15–16",
+                                            "measure": "1–6 (Var. XIII)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13b–14b",
+                                            "measure": "7 (Var. XIII)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 22 Sk19",
+                        "itemLinkTo": {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk19"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "17a–18a",
+                                            "measure": "1–4 (verworfene Var.)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 22 Sk21",
+                        "itemLinkTo": {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk21"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "17b–18b",
+                                            "measure": "1–4 (Var. XV)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "16c–17c",
+                                            "measure": "5–6 (Var. XV)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16a–17a",
+                                            "measure": "7–8 (Var. XV)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 32",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 2)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "21–29",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3–4",
+                                            "measure": "30–37",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5a–6a",
+                                            "measure": "38–41",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 32 Sk4.1",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk4_1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 3)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5b–6b",
+                                            "measure": "30, {31–32}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 32 Sk4",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk4"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 3)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "21–29",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12b–15c",
+                                            "measure": "30–33",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–11",
+                                            "measure": "34–39, {40A–41A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12a–13a",
+                                            "measure": "40B–41B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 32 Sk5",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk5"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 3)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14a–15b",
+                                            "measure": "48–51",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 32 Sk4.2",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk4_2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 3)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14b–15b",
+                                            "measure": "32+x bis 33+x",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 22 Sk20",
+                        "itemLinkTo": {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk20"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XV)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "16b–17b",
+                                            "measure": "{1A}, 1B, 2–3 (Var. XIV)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "Korrekturen 1 in <strong>E</strong> (mit Tinte)",
+                        "label": "source_E_corr_1",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "26",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "e überschreibt d."
+                                        },
+                                        {
+                                            "measure": "32",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Halbe Note e<sup>1</sup> überschreibt Viertelnote e<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "33",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Viertelnote ais<sup>1</sup> überschreibt Halbe Note ais<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "36",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Augmentationspunkt zu A gestrichen."
+                                        },
+                                        {
+                                            "measure": "nach 41",
+                                            "system": "Klav. o.",
+                                            "position": "Taktende",
+                                            "comment": "Verweiszeichen über dem System: Verweis auf Einschubstelle in T. 49 in Textfassung 1 (vgl. Korrekturen 2 in Textfassung 1)."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "Korrekturen 2 in <strong>E</strong> (mit Bleistift im Hinblick auf Textfassung 3)",
+                        "label": "source_E_corr_2",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "33  <br /> bis 34",
+                                            "system": "Klav. u.",
+                                            "position": "Taktstrich",
+                                            "comment": "Einschubzeichen im System."
+                                        },
+                                        {
+                                            "measure": "34",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "<em>Moll </em>zwischen den Systemen."
+                                        },
+                                        {
+                                            "measure": "34  <br /> bis 35",
+                                            "system": "Klav. u.",
+                                            "position": "",
+                                            "comment": "<em>Thema unten </em>unter dem System."
+                                        },
+                                        {
+                                            "measure": "34  <br /> bis 36",
+                                            "system": "Klav. o.",
+                                            "position": "",
+                                            "comment": "<em>oben Gegenstimme </em>über dem System."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]        
+            }
+        },
+        {
+            "id": "source_F",
+            "siglum": "F",
+            "siglumAddendum": "",
+            "type": "1 Blatt (Bl. 1). Rissspuren am rechten Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte, diagonale Knickfalte unten rechts.",
+            "location": "Beschreibstoff: Notenpapier, 18 Systeme, Format: hoch 344 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>v</sup>.",
+            "description": {
+                "desc": [
+                    "Schreibstoff: schwarze Tinte."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 18 Systeme, Format: hoch 344 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>v</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": []
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 32",
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 3)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "21–28",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3–4",
+                                            "measure": "T. 29–33",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–6",
+                                            "measure": "34–41",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–10",
+                                            "measure": "49–56",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "57–64",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–14",
+                                            "measure": "65–69",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "Korrekturen 1 in <strong>F</strong> (mit Tinte)",
+                        "label": "source_F_corr_1",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "21",
+                                            "system": "Klav. u.",
+                                            "position": "2/8",
+                                            "comment": "gis überschreibt e."
+                                        },
+                                        {
+                                            "measure": "27",
+                                            "system": "Klav. o.",
+                                            "position": "1/4",
+                                            "comment": "Oberstimmenschicht: Viertelnote überschreibt Halbe Note."
+                                        },
+                                        {
+                                            "measure": "nach 29",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takte {30A–31A} pauschal gestrichen. <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "{30A}",
+                                            "system": "Klav. u.",
+                                            "position": "1/8",
+                                            "comment": "Achtelpause überschreibt Viertelpause."
+                                        },
+                                        {
+                                            "measure": "34",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Viertelnote überschreibt punktierte Halbe Note, Augmentationspunkte gestrichen."
+                                        },
+                                        {
+                                            "measure": "40",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Oberstimmenschicht: Punktierte Viertelnote überschreibt mit Unterstimmenschicht zusammengehalste Halbe Note."
+                                        },
+                                        {
+                                            "measure": "49",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "Unterstimmenschicht: Viertelpause und <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu Gis überschreibt Achtelpause; Strich zwischen Achtelnote in Oberstimme und überschriebener Achtelpause zur Verdeutlichung des metrischen Untersatzes."
+                                        },
+                                        {
+                                            "measure": "50",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note <br /> bis letzte Note",
+                                            "comment": "Noten auf Rasur."
+                                        },
+                                        {
+                                            "measure": "53",
+                                            "system": "Klav. o.",
+                                            "position": "4/8",
+                                            "comment": "Achtelfähnchen gestrichen (sic)."
+                                        },
+                                        {
+                                            "measure": "55",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "gis<sup>2</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "55",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "A/a überschreibt Fis/fis."
+                                        },
+                                        {
+                                            "measure": "56",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "fis<sup>2</sup>: Notenhals nach unten überschreibt Notenhals zu Oberstimmenschicht."
+                                        },
+                                        {
+                                            "measure": "60",
+                                            "system": "Klav. u.",
+                                            "position": "4/8",
+                                            "comment": "Achtelnote überschreibt Ansatz zu <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "61",
+                                            "system": "Klav. u.",
+                                            "position": "3/4",
+                                            "comment": "Achtelfähnchen gestrichen."
+                                        },
+                                        {
+                                            "measure": "62",
+                                            "system": "Klav. o.",
+                                            "position": "2.–3. Note",
+                                            "comment": "e<sup>3</sup> überschreibt cis<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "63",
+                                            "system": "Klav. o.",
+                                            "position": "4/8",
+                                            "comment": "h<sup>2</sup> überschreibt a<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "64",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Oberstimmenschicht: Punktierte Viertelnote überschreibt Halbe Note."
+                                        },
+                                        {
+                                            "measure": "64",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                                        },
+                                        {
+                                            "measure": "68",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Punktierte Viertelnote überschreibt Halbe Note."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]    
+            }
+        }
+    ]
+}
