@@ -2222,8 +2222,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "Korrekturen 1 in <strong>E</strong> (mit Tinte)",
-                        "label": "source_E_corr_1",
+                        "id": "Korrekturen 1 in <strong>E<sup>a</sup></strong> (mit Tinte)",
+                        "label": "source_E<sup>a</sup>_corr_1",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -2267,8 +2267,8 @@
                         }
                     },
                     {
-                        "id": "Korrekturen 2 in <strong>E</strong> (mit Bleistift im Hinblick auf Textfassung 3)",
-                        "label": "source_E_corr_2",
+                        "id": "Korrekturen 2 in <strong>E<sup>a</sup></strong> (mit Bleistift im Hinblick auf Textfassung 3)",
+                        "label": "source_E<sup>a</sup>_corr_2",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
