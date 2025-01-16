@@ -88,16 +88,25 @@
                                 "comment": "Taktstrich gestrichen."
                             },
                             {
-                                "svgGroupId": "g37",
+                                "svgGroupId": "g937",
                                 "measure": "21",
-                                "system": "8",
+                                "system": "9",
                                 "position": "1–3/4",
                                 "comment": "as<sup>2</sup>–g<sup>2</sup>–f<sup>2</sup> überschreibt f<sup>2</sup>–e<sup>2</sup>–d<sup>2</sup>."
                             }
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g4",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk28b"
+                    }
+                }
+            ]
         },
         {
             "id": "M_29_Sk2",
@@ -121,7 +130,16 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m29",
+                        "sheetId": "M_29_Sk3a"
+                    }
+                }
+            ]
         },
         {
             "id": "M_29_Sk3",
@@ -166,7 +184,23 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m29",
+                        "sheetId": "M_29_Sk2"
+                    }
+                },
+                {
+                    "svgGroupId": "g4",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk28a"
+                    }
+                }
+            ]
         },
         {
             "id": "M_29_Sk4",
@@ -300,7 +334,7 @@
                                 "comment": "E–a–c überschreibt c–a–c<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g1251",
+                                "svgGroupId": "g1251b",
                                 "measure": "16",
                                 "system": "9",
                                 "position": "1. Note",
