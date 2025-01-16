@@ -1,0 +1,385 @@
+{
+    "sources": [
+        {
+            "id": "source_A",
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "Schreibstoff: Bleistift."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 18 Systeme, Format: hoch 349 × 265 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": []
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 116 Sk5",
+                        "itemLinkTo": {
+                            "complexId": "m116",
+                            "sheetId": "M_116_Sk5"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 116)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "11–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "14A–15A, 16, 14B–15B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 75 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "m75",
+                            "sheetId": "M_75_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 75)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6–9",
+                                            "measure": "1–6, {7A}, 7B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "8–14",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 75 Sk1.1",
+                        "itemLinkTo": {
+                            "complexId": "m75",
+                            "sheetId": "M_75_Sk1_1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 75)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14–15",
+                                            "measure": "5–6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "Korrekturen 1 in <strong>A</strong> (mit Tinte)",
+                        "label": "source_A_corr_1",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                                        },
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. o.",
+                                            "position": "3. Note",
+                                            "comment": "Unterstimmenschicht: Punktierte Viertelnote überschreibt mit Oberstimmenschicht zusammengehalste Viertelnote."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                                        },
+                                        {
+                                            "measure": "5",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                                        },
+                                        {
+                                            "measure": "7",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Punktierte Halbe Note überschreibt Viertelnote."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "Oberstimmenschicht: Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "11",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "Achtelfähnchen gestrichen."
+                                        },
+                                        {
+                                            "measure": "17",
+                                            "system": "Klav. o",
+                                            "position": "6/8",
+                                            "comment": "Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "Klav. u.",
+                                            "position": "2/8",
+                                            "comment": "G gestrichen."
+                                        },
+                                        {
+                                            "measure": "21",
+                                            "system": "Klav. o.",
+                                            "position": "1/8",
+                                            "comment": "Unterstimmenschicht: Achtelnote überschreibt Halbe Note."
+                                        },
+                                        {
+                                            "measure": "21",
+                                            "system": "Klav.",
+                                            "position": "2.–3. Note",
+                                            "comment": "Ligaturen zwischen den Viertelnoten rasiert."
+                                        },
+                                        {
+                                            "measure": "21",
+                                            "system": "Klav. o.",
+                                            "position": "3.–4. Note",
+                                            "comment": "Ligaturen sowie Achtelnote h auf 6/8 auf Rasur."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "Korrekturen 2 in <strong>A</strong> (mit Bleistift)",
+                        "label": "source_A_corr_2",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1–5",
+                                            "system": "Klav. u.",
+                                            "position": "",
+                                            "comment": "Takte unter dem System eingeklammert."
+                                        },
+                                        {
+                                            "measure": "4",
+                                            "system": "Klav. u.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Unterstimmenschicht: Viertelnote As gestrichen und Augmentationspunkt zu Halber Note G hinzugefügt. (Vgl. auch Korrektur in T. 4–5.)"
+                                        },
+                                        {
+                                            "measure": "4",
+                                            "system": "Klav. o.",
+                                            "position": "5/8",
+                                            "comment": "Kreuz über dem System."
+                                        },
+                                        {
+                                            "measure": "5",
+                                            "system": "Klav. o.",
+                                            "position": "1/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "5",
+                                            "system": "Klav. u.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Unterstimmenschicht: Cis–D gestrichen und ersetzt durch punktierte Halbe Note G mit Ligatur zu punktierter Halber Note G in T. 4."
+                                        },
+                                        {
+                                            "measure": "nach 5",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Ganzer Takt hinzugefügt mit punktierter Halber Note d<sup>1</sup> in Klav. o. und punktierter Halber Note G in Klav. u."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. o.",
+                                            "position": "(2/8)",
+                                            "comment": "Einschubzeichen in und über dem System."
+                                        },
+                                        {
+                                            "measure": "6  <br /> bis 9",
+                                            "system": "Klav. u.",
+                                            "position": "2/4  <br /> 1. Note",
+                                            "comment": "Wellenförmige Linie unter dem System."
+                                        },
+                                        {
+                                            "measure": "7",
+                                            "system": "Klav. o.",
+                                            "position": "3. Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. o.",
+                                            "position": "1/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> hinzugefügt."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_B",
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Blatt (Bl. 1). Kleinere Risse am Rand oben. Ecke oben rechts geknickt. Rissspuren am linken Rand: von Bogen abgetrennt."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 18 Systeme, Format: quer 349 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 18 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift"
+                    ]
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 76",
+                        "itemLinkTo": {
+                            "complexId": "m76",
+                            "sheetId": "M_76"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 76: Textfassung 2)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–5",
+                                            "measure": "1–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–10",
+                                            "measure": "8–14",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–15",
+                                            "measure": "15–21",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 43 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "m43",
+                            "sheetId": "M_43_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 43)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "16",
+                                            "measure": "1–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17",
+                                            "measure": "{8A}, 8B, 9–11",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
