@@ -11,6 +11,50 @@
                 "writingMaterialStrings": [
                     "Notenpapier, 12 Systeme, Format hoch 343 × 265 mm, Firmenzeichen: [JE] | <em>No. 2 | 12 linig.</em> auf Bl. 1<sup>r</sup>, 2<sup>r</sup> unten links"
                 ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 12,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "343"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "265"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_2_LIN_12_M146_A",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r, 2r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {
+                            "variant": "",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": [""],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1/2"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift", "roter Buntstift"]
