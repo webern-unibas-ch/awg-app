@@ -1,0 +1,117 @@
+{
+    "sheets": {
+        "workEditions": [],
+        "textEditions": [
+            {
+                "id": "M_116_TF1",
+                "label": "M 116 einzige Textfassung",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m116/M116_Textfassung1-1von2-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": ""
+                    },
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m116/M116_Textfassung1-2von2-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": ""
+                    }
+                ]
+            }
+        ],
+        "sketchEditions": [
+            {
+                "id": "M_116_Sk1",
+                "label": "M 116 Sk1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m116/M116_Sk1-1von3-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": "A"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m33/M33_Sk1-2von3-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": "A"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m33/M33_Sk1-3von3-final.svg",
+                        "image": "",
+                        "partial": "c",
+                        "convolute": "A"
+                    }
+                ]
+            },
+            {
+                "id": "M_116_Sk1_1",
+                "label": "M 116 Sk1.1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m116/M116_Sk1_1-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "A"
+                    }
+                ]
+            },
+            {
+                "id": "M_116_Sk1_2",
+                "label": "M 116 Sk1.2",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m116/M116_Sk1_2-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "A"
+                    }
+                ]
+            },
+            {
+                "id": "M_116_Sk1_3",
+                "label": "M 116 Sk1.3",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m116/M116_Sk1_3-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "A"
+                    }
+                ]
+            },
+            {
+                "id": "M_116_Sk2",
+                "label": "M 116 Sk2",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m116/M116_Sk2-1von4-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": "A"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m116/M116_Sk2-2von4-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": "A"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m116/M116_Sk2-3von4-final.svg",
+                        "image": "",
+                        "partial": "c",
+                        "convolute": "B"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m116/M116_Sk2-4von4-final.svg",
+                        "image": "",
+                        "partial": "d",
+                        "convolute": "B"
+                    }
+                ]
+            }
+        ]
+    }
+}
