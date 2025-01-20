@@ -400,7 +400,7 @@
                         ]
                     },
                     {
-                        "item": "M 217 Sk2",
+                        "item": "M 217 Sk1.1",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu <em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217)",
                         "folios": [
@@ -413,6 +413,27 @@
                                         {
                                             "system": "6–8b",
                                             "measure": "11–12",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 217 Sk1.2",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu <em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "7b–11",
+                                            "measure": "27B 3/4 bis 29",
                                             "linkTo": ""
                                         }
                                     ]
