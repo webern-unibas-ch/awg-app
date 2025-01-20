@@ -22,9 +22,9 @@
     <path id="text2" d="m74.483 137.92.27-1.287q-.174.138-.49.22l.039-.19q.157-.063.31-.164t.23-.177q.046-.047.088-.113h.122l-.357 1.712zm.891 0q.033-.152.09-.254.058-.104.153-.195.095-.093.367-.31.166-.132.226-.195.087-.09.127-.178.027-.06.027-.129 0-.117-.084-.199-.083-.082-.204-.082t-.209.083q-.09.083-.128.267l-.206-.03q.03-.227.176-.358t.364-.13q.145 0 .263.06t.178.17.059.225q0 .17-.121.327-.075.097-.437.384-.156.124-.233.203-.075.079-.114.149h.763l-.04.193z" aria-label="12" style="font-style:italic;font-size:2.38125px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Italic&quot;;fill:#7d7d7d;stroke-width:.352777"/>
   </g>
   <g id="g2c" class="tkk" transform="matrix(7.7286 0 0 2.93787 -789.835 -475.75)">
-    <path id="rect2" d="M127.758 177.194h8.44v20.614h-8.44z" style="fill:blue;stroke-width:.141"/>
+    <path id="rect2" d="M127.758 177.194h8.44v20.614h-8.44z" style="fill:none;stroke-width:.141"/>
   </g>
   <g id="g1c" class="tkk" transform="matrix(1 0 0 .94989 37.67 -107.917)">
-    <path id="rect1" d="M127.758 177.194h8.44v20.614h-8.44z" style="fill:red;stroke-width:.141"/>
+    <path id="rect1" d="M127.758 177.194h8.44v20.614h-8.44z" style="fill:none;stroke-width:.141"/>
   </g>
 </svg>
