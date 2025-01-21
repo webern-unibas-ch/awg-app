@@ -961,6 +961,185 @@
                     }
                 }
             ]
+        },
+        {
+            "id": "M_216_Sk1",
+            "label": "M 216 Sk1",
+            "evaluations": [
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_TF1'})\" >Textfassung 1</a>."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "2",
+                                "system": "3–4",
+                                "position": "1/8",
+                                "comment": "e/c<sup>1</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g2",
+                                "measure": "5",
+                                "system": "2",
+                                "position": "1/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>h<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup>."
+                            },
+                            {
+                                "svgGroupId": "g1b",
+                                "measure": "6",
+                                "system": "7",
+                                "position": "1/8",
+                                "comment": "Unterstimmenschicht: h durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g2b",
+                                "measure": "6",
+                                "system": "8",
+                                "position": "3/8",
+                                "comment": "g durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g6b",
+                                "measure": "6",
+                                "system": "8",
+                                "position": "5/8",
+                                "comment": "es durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g7b",
+                                "measure": "8",
+                                "system": "7",
+                                "position": "1/4",
+                                "comment": "e<sup>2</sup> durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g8b",
+                                "measure": "8",
+                                "system": "8",
+                                "position": "",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Gis überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> (zu G), <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> (zu gis)."
+                            },
+                            {
+                                "svgGroupId": "g9b",
+                                "measure": "8  <br /> bis 9",
+                                "system": "7",
+                                "position": "3/4 <br /> 1/8",
+                                "comment": "Ligaturbogen zu T. 9 1/8 gestrichen und Achtelnote ersetzt durch Achtelpause."
+                            },
+                            {
+                                "svgGroupId": "g10b",
+                                "measure": "9",
+                                "system": "7",
+                                "position": "4/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g11b",
+                                "measure": "10",
+                                "system": "7",
+                                "position": "3. bis letzte Note",
+                                "comment": "Zwei zusammengebalkte Achtelnoten a<sup>1</sup>–as<sup>1</sup> geändert zu Viertelnote a<sup>1</sup>, Achtelnote gis<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g1c",
+                                "measure": "12",
+                                "system": "2",
+                                "position": "6/8",
+                                "comment": "Achtelnote d<sup>1</sup> geändert zu Achtelpause."
+                            },
+                            {
+                                "svgGroupId": "g2c",
+                                "measure": "{13A–14A}",
+                                "system": "",
+                                "position": "",
+                                "comment": "Zunächst T. {{'{'}}14A{{'}'}} 2–3/4 zwei Viertelnoten fis<sup>1</sup> durch Einkreisung getilgt. Dann T. {{'{'}}13A–14A{{'}'}} pauschal durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g1d",
+                                "measure": "{15A}",
+                                "system": "",
+                                "position": "",
+                                "comment": "Durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g2d",
+                                "measure": "13B",
+                                "system": "4",
+                                "position": "3.–5. Note",
+                                "comment": "f<sup>1</sup>–f<sup>1</sup>–<span class='glyph'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> überschreibt e<sup>1</sup>–e<sup>1</sup>–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup> (?)."
+                            },
+                            {
+                                "svgGroupId": "g33d",
+                                "measure": "14B",
+                                "system": "4",
+                                "position": "4/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> (zu b<sup>1</sup>)."
+                            },
+                            {
+                                "svgGroupId": "g1e",
+                                "measure": "17",
+                                "system": "2",
+                                "position": "letzte Note",
+                                "comment": "sic: Achtelfähnchen fehlt. c<sup>2</sup> gestrichen (?)."
+                            },
+                            {
+                                "svgGroupId": "g2e",
+                                "measure": "18",
+                                "system": "2",
+                                "position": "3/4",
+                                "comment": "sic: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> (siehe Textfassung 1) fehlt."
+                            },
+                            {
+                                "svgGroupId": "g33e",
+                                "measure": "18",
+                                "system": "3",
+                                "position": "5–6/8",
+                                "comment": "Zunächst: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>e–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>G überschreibt G–E. Dann 5/8: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> (zu e)."
+                            },
+                            {
+                                "svgGroupId": "g44e",
+                                "measure": "19",
+                                "system": "2",
+                                "position": "1/8",
+                                "comment": "Achtelpause ersetzt Achtelnote cis<sup>1</sup>/e<sup>1</sup>/c<sup>2</sup>. Siehe TkK zu T. 18 3/4."
+                            },
+                            {
+                                "svgGroupId": "g55e",
+                                "measure": "19",
+                                "system": "2",
+                                "position": "3/8, (4–5/8)",
+                                "comment": "Achtelnote, Viertelnote überschreibt zwei zusammengebalkte Achtelnoten."
+                            },
+                            {
+                                "svgGroupId": "g6e",
+                                "measure": "19",
+                                "system": "2",
+                                "position": "letzte Note",
+                                "comment": "sic: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> (siehe Textfassung 1) fehlt."
+                            },
+                            {
+                                "svgGroupId": "g1f",
+                                "measure": "20 <br /> bis 21",
+                                "system": "5",
+                                "position": "6/8 <br /> 1. Note",
+                                "comment": "cis<sup>2</sup>–g<sup>2</sup> durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g2f",
+                                "measure": "21",
+                                "system": "6",
+                                "position": "2/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>es gestrichen."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
         }
     ]
 }
