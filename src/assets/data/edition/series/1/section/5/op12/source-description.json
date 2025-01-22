@@ -879,7 +879,7 @@
                     "secondary": []
                 },
                 "titles": [],
-                "dates": [],
+                "dates": ["<em>Wien | 31. III. 1917</em> auf Bl. 3<sup>r</sup> System 5–6 (nach <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_216_Sk1f'})\"><strong>Sk1</strong></a>)."],
                 "paginations": [],
                 "measureNumbers": [],
                 "instrumentations": [],
