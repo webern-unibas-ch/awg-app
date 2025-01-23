@@ -578,7 +578,35 @@
                                     [
                                         {
                                             "system": "12a–15a",
-                                            "measure": "29–32",
+                                            "measure": "29A–32A",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "{29B–31B}, 29C–31C",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "32B–39",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13a–15a",
+                                            "measure": "40–41",
                                             "linkTo": ""
                                         }
                                     ]
@@ -663,55 +691,6 @@
                                         {
                                             "system": "12c",
                                             "measure": "33–36",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 213 Sk6",
-                        "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
-                        "folios": [
-                            {
-                                "folio": "1r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "1–4",
-                                            "measure": "{29A–31A}, 29B–31B",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 213 Sk7",
-                        "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
-                        "folios": [
-                            {
-                                "folio": "1r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "8–11",
-                                            "measure": "32–39",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "13a–15a",
-                                            "measure": "40, 41",
                                             "linkTo": ""
                                         }
                                     ]
