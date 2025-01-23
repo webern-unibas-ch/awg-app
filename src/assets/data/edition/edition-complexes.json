@@ -28,6 +28,28 @@
                     "title": "Studienkomposition für Klavier",
                     "catalogueType": "MNR",
                     "catalogueNumber": "23"
+                   },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "8. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M29": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "29"
                 },
                 "respStatement": {
                     "editors": [
