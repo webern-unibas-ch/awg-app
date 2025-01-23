@@ -538,7 +538,7 @@
                     "secondary": []
                 },
                 "titles": [],
-                "dates": ["<em>31</em>[.] <em>I</em>[.] <em>1915</em> auf Bl. 1<sup>r</sup> System 13a–15a (nach <span class='link-todo'><strong>Sk7</strong></span>)"],
+                "dates": ["<em>31</em>[.] <em>I</em>[.] <em>1915</em> auf Bl. 1<sup>r</sup> System 13a–15a (nach <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1i'})\"><strong>Sk1</strong></a>)"],
                 "paginations": [],
                 "measureNumbers": [],
                 "instrumentations": [],
