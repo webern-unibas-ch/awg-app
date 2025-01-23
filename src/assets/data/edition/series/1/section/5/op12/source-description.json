@@ -90,7 +90,7 @@
                     "secondary": []
                 },
                 "titles": [],
-                "dates": ["<em>13. I. 1915</em> auf Bl. 2<sup>r</sup> System 13–14 (nach <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1c'})\"><strong>Sk1</strong></a>)."],
+                "dates": ["<em>13. I. 1915</em> auf Bl. 2<sup>r</sup> System 13–14 (nach <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_212_Sk1c'})\"><strong>Sk1</strong></a>)"],
                 "paginations": [],
                 "measureNumbers": [],
                 "instrumentations": [],
