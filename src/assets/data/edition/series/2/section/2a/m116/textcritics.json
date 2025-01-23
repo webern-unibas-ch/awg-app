@@ -54,10 +54,12 @@
         {
             "id": "M_116_Sk1",
             "label": "M 116 Sk1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1</strong> entwirft einen ersten Verlauf der Studienkomposition für Klavier M 116, der jedoch bald harmonisch und satztechnisch ausdünnt. Die ersten fünf Takte sind vollständig ausnotiert, wobei mit Blick auf die spätere Tintenniederschrift die um eine Quinte nach oben versetzte Wiederholung des Anfangsthemas noch nicht vorkommt und die nachfolgenden Takte (ab T. 3 in Sk1) dementsprechend eine Quinte tiefer gesetzt sind (die Einfügung der transponierten Wiederholung erfolgt durch Sk1.1). Ab T. 6 ist nur noch das melodisch-rhythmische Grundgerüst skizziert, begleitet von mehreren harmonischen Schemata, die das Ringen mit dem geplanten harmonischen Aufbau widerspiegeln. Die Notation ist stellenweise sehr flüchtig und nicht immer gesichert zu entziffern."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -197,14 +199,17 @@
                     ]
                 }
             ]
+        }
         },
         {
             "id": "M_116_Sk1_1",
             "label": "M 116 Sk1.1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1.1</strong> enthält einen Einschub zu Sk1, der das Anfangsthema um eine Quinte nach oben versetzt wiederholt."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -239,32 +244,41 @@
                     ]
                 }
             ]
+        }
         },
         {
             "id": "M_116_Sk1_2",
             "label": "M 116 Sk1.2",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1.2</strong> besteht aus einem kurzen melodischen Motiv, das dem Verlauf von <strong>Sk1</strong> nicht mit Bestimmtheit zugeordnet werden kann. Ein möglicher Bezugspunkt ist der sehr ähnliche Melodieverlauf am Anfang von T. 5 (mit den überschriebenen f<sup>1</sup> auf 1/8)."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
             ] 
+        }
         },
         {
             "id": "M_116_Sk1.3",
             "label": "M 116 Sk1.3",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1.3</strong> besteht aus einem kurzen melodischen Motiv, das dem Verlauf von <strong>Sk1</strong> nicht mit Bestimmtheit zugeordnet werden kann. Ein möglicher Bezugspunkt ist T. 7, wo ein ähnlicher melodischer Abstieg skizziert und e-Moll als harmonischer Zielpunkt angemerkt ist. Die implizite H-Dur Harmonik mit dem {{ref.getGlyph('[#]')}}dis<sup>2</sup> in <strong>Sk1.3</strong> lässt diesen Anknüpfungspunkt plausibel erscheinen (vgl. auch die endgültige Formulierung von T. 9 in der Textedition)."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
             ] 
+        }
         },
         {
             "id": "M_116_Sk2",
             "label": "M 116 Sk2",
-            "description": [
+            "evaluations": [
                 "<strong>Sk2</strong> ist die ausgearbeitete Verlaufsskizze ab T. 3 zur Studienkomposition für Klavier M 116."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -411,6 +425,7 @@
                     ]
                 }
             ]
+        }
         }      
     ]
 }
