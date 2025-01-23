@@ -4,7 +4,7 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Skizzen.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier/Streichquartett M 22.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M* 411–412 sowie Tintenniederschrift von Studienkomposition für Streichquartett M* 408.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
@@ -497,7 +497,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Skizzen.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier/Streichquartett M 22.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 32 Textfassung 3 und M* 413–414 sowie Tintenniederschrift von Studienkomposition für Klavier M 32 Textfassung 2.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
@@ -1023,7 +1023,7 @@
             "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "Skizzen.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier/Streichquartett M 22.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M* 408.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
@@ -1341,7 +1341,7 @@
             "id": "source_D",
             "siglum": "D",
             "siglumAddendum": "",
-            "type": "Skizzen.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier/Streichquartett M 22.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 29 und M* 400–401, M* 415–416.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
@@ -1408,7 +1408,10 @@
                     },
                     {
                         "item": "M 29 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m29",
+                            "sheetId": "M_29_Sk1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 29)",
                         "folios": [
                             {
@@ -1420,21 +1423,21 @@
                                         {
                                             "system": "5–6",
                                             "measure": "1–10",
-                                            "linkTo": ""
+                                            "linkTo": "M_29_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7–8",
                                             "measure": "11–19",
-                                            "linkTo": ""
+                                            "linkTo": "M_29_Sk1b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "9a–10a",
                                             "measure": "20–24",
-                                            "linkTo": ""
+                                            "linkTo": "M_29_Sk1c"
                                         }
                                     ]
                                 ]
@@ -1443,7 +1446,10 @@
                     },
                     {
                         "item": "M 29 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m29",
+                            "sheetId": "M_29_Sk2"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 29)",
                         "folios": [
                             {
@@ -1464,8 +1470,11 @@
                     },
                     {
                         "item": "M 29 Sk3",
-                        "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 29",
+                        "itemLinkTo": {
+                            "complexId": "m29",
+                            "sheetId": "M_29_Sk3"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 29)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -1475,15 +1484,15 @@
                                     [
                                         {
                                             "system": "11b–12b",
-                                            "measure": "{x+1A}, x+1B, x+2 bis x+5",
-                                            "linkTo": ""
+                                            "measure": "{x+1A bis x+2A}, x+1B bis x+2B, x+3 bis x+5",
+                                            "linkTo": "M_29_Sk3a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13a",
                                             "measure": "{x+6}",
-                                            "linkTo": ""
+                                            "linkTo": "M_29_Sk3b"
                                         }
                                     ]
                                 ]
@@ -1536,7 +1545,7 @@
                         "item": "M 22 Sk28",
                         "itemLinkTo": {
                             "complexId": "m22",
-                            "sheetId": "M_22_Sk28a"
+                            "sheetId": "M_22_Sk28"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XIX)",
                         "folios": [
@@ -1635,7 +1644,10 @@
                     },
                     {
                         "item": "M 29 Sk4",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m29",
+                            "sheetId": "M_29_Sk4"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 29)",
                         "folios": [
                             {
@@ -1647,28 +1659,28 @@
                                         {
                                             "system": "7–8",
                                             "measure": "1–10",
-                                            "linkTo": ""
+                                            "linkTo": "M_29_Sk4a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "9–10",
                                             "measure": "11–18, {19A–20A}",
-                                            "linkTo": ""
+                                            "linkTo": "M_29_Sk4b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "11–12",
                                             "measure": "{21A}, 19B–21B, 22, {23A}, 23B, 24–26",
-                                            "linkTo": ""
+                                            "linkTo": "M_29_Sk4c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13–14",
                                             "measure": "32, {33A–34A}, {33B(2–3/4)}, 33C, 34B",
-                                            "linkTo": ""
+                                            "linkTo": "M_29_Sk4d"
                                         }
                                     ]
                                 ]
@@ -1682,12 +1694,10 @@
             "id": "source_E",
             "siglum": "E",
             "siglumAddendum": "",
-            "type": "Skizzen.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier/Streichquartett M 22.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 23 Textfassung 1 und 2, Studienkomposition für Streichquartett M 24, Studienkompositionen M* 417–422, M* 433–451 und zu <em>Hochsommernacht</em> M 65.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
-                    "1 Bogen (Bl. 1/2). Horizontale und vertikale Knickfalte, seitlich leicht eingerissen."
-                ],
+                "desc": ["1 Bogen (Bl. 1/2). Horizontale und vertikale Knickfalte, seitlich leicht eingerissen."],
                 "writingMaterialStrings": [
                     "Notenpapier, 28 Systeme, Format: hoch 342 × 264 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 9</em> | <em>28 linig.</em> unten links auf Bl. 1<sup>1</sup>–2<sup>r</sup>"
                 ],
@@ -3330,7 +3340,7 @@
             "id": "source_F",
             "siglum": "F",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier/Streichquartett M 22.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 23 Textfassung 1, M* 409 Textfassung 1→2 und 2, M* 410, M* 412–416 und Studienkompositionen M* 420–422 sowie Skizzen zu Studienkomposition für Klavier M 23 Textfassung 2 und Studienkompositionen M* 423–432.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
