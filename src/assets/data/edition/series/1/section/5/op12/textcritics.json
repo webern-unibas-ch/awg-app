@@ -1221,7 +1221,7 @@
                                 "measure": "11",
                                 "system": "3",
                                 "position": "3–6/8",
-                                "comment": "Durch Einkreisung getilgt. Siehe Änderung in System 2 sowie in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_217_Sk1_1'})\"><strong><strong>Sk1.1</strong></a>."
+                                "comment": "Durch Einkreisung getilgt. Siehe Änderung in System 2 sowie in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_217_Sk1_1'})\"><strong>Sk1.1</strong></a>."
                             },
                             {
                                 "svgGroupId": "g5c",
