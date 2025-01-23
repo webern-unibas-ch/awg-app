@@ -98,10 +98,12 @@
         {
             "id": "M_33_Sk1",
             "label": "M 33 Sk1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 33."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -297,6 +299,7 @@
                     ]
                 }
             ]
+        }
         }
     ]
 }
