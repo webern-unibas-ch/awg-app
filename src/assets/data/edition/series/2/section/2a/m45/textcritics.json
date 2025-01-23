@@ -211,10 +211,12 @@
         {
             "id": "M_45_Sk1",
             "label": "M 45 Sk1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 45 Textfassung 1, die in sich noch mehrere Verwerfungen und Verweise aufweist. Der Abschluss der ersten Phrase (T. 9–11) erfährt genauso etliche Überarbeitungen (u.a. Umstellung auf 4/4-Takt) wie der Übergang zur Reprise, der hier im Vergleich zu der Textfassung kürzer ist. Insbesondere aber weicht das zweite Thema trotz der Skizzierung zweier unterschiedlicher Versionen in der Verlaufsskizze noch erheblich von der endgültigen Version ab."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -739,14 +741,17 @@
                     ]
                 }
             ]
+        }
         },
         {
             "id": "M_45_Sk1_1",
             "label": "M 45 Sk1.1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1.1</strong> skizziert einen einzelnen Takt, der in Bezug auf die Verlaufsskizze nicht genau zugeordnet werden kann."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -760,23 +765,29 @@
                     ]
                 }
             ]
+        }
         },
         {
             "id": "M_45_Sk1_2",
             "label": "M 45 Sk1.2",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1.2</strong> skizziert die Melodieführung der letzten beiden Takte vor, die dann in der letzten Akkolade von Sk1 T. 37–38 vollständig ausgeführt sind."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
             ]
+        }
         },
         {
             "id": "M_45_Sk1_3",
             "label": "M 45 Sk1.3",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1.3</strong>präsentiert eine neue Version für T. 28 und verlängert die Überleitung zum zweiten Thema, indem nach T. 28 zwei zusätzliche Takte eingeschoben werden."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -839,14 +850,17 @@
                     ]
                 }   
             ]
+        }
         },
         {
             "id": "M_45_Sk2",
             "label": "M 45 Sk2",
-            "description": [
+            "evaluations": [
                 "<strong>Sk2</strong> formuliert einen erweiterten Schluss zu M 45, der in der Tintenniederschrift mit Ausnahme der ersten beiden Takte jedoch keine Verwendung findet."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -874,14 +888,17 @@
                     ]
                 }
             ]
+        }
         },
         {
             "id": "M_45_Sk2_1",
             "label": "M 45 Sk2.1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk2.1</strong> knüpft an die in Sk2 entworfene Schlusswendung an und verkürzt diese um drei Takte."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -902,14 +919,17 @@
                     ]
                 }
             ]
+        }
         },
         {
             "id": "M_45_Sk3",
             "label": "M 45 Sk3",
-            "description": [
+            "evaluations": [
                 "<strong>Sk3</strong> skizziert erstmals das zweite Thema in seiner endgültigen Gestalt."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -1000,14 +1020,17 @@
                     ]
                 }
             ]
+        }
         },
         {
             "id": "M_45_Sk4",
             "label": "M 45 Sk4",
-            "description": [
+            "evaluations": [
                 "<strong>Sk4</strong> entwirft in Tinte das Hauptthema von Studienkomposition für Klavier M 45."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -1035,14 +1058,17 @@
                     ]
                 }
             ]
+        }
         },
         {
             "id": "M_45_Sk5",
             "label": "M 45 Sk5",
-            "description": [
+            "evaluations": [
                 "<strong>Sk5</strong> enthält für Textfassung 2 eine neue, ausgedehntere Überleitung im Anschluss an das Hauptthema, die wegen des in Textfassung 2 vorgezogenen Mittelteils neu auf A-Dur endet."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -1231,14 +1257,17 @@
                     ]
                 }
             ]
+        }
         },
         {
             "id": "M_45_Sk6",
             "label": "M 45 Sk6",
-            "description": [
+            "evaluations": [
                 "<strong>Sk6</strong> beinhaltet für Textfassung 2 eine erweiterte Überleitung im Anschluss an das d-Moll Thema des Mittelteils, die nun in das variierte Hauptthema in A-Dur mündet. T. 33, der an der Schnittstelle zwischen den beiden mit einem Verweiszeichen verbundenen Akkoladen von Sk6 steht, wurde wohl ausgelassen, weil er mit T. 30 aus TF1 identisch ist und daher keiner nochmaligen Skizierung bedurfte."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -1273,55 +1302,59 @@
                     ]
                 }
             ]
+        }
         },
         {
             "id": "M_45_Sk7",
             "label": "M 45 Sk7",
-            "description": [
+            "evaluations": [
                 "<strong>Sk7</strong> formuliert für Textfassung 2 eine neue Überleitung im Anschluss an das variierte Hauptthema hin zur Reprise. Die nicht skizzierten T. 44–46 in der Lücke zwischen T. 43 und T. 47 entsprechen dabei den bereits bestehenden T. 8–10 aus dem ersten A-Teil."
             ],
-            "comments": [
-                {
-                    "blockHeader": "",
-                    "blockComments": [
-                        {
-                            "svgGroupId": "g5",
-                            "measure": "41",
-                            "system": "12",
-                            "position": "3/4",
-                            "comment": "cis<sup>1<sup> gestrichen."
-                        },
-                        {
-                            "svgGroupId": "g6",
-                            "measure": "7",
-                            "system": "1",
-                            "position": "1. Note",
-                            "comment": "Unterstimmenschicht: Achtelnoten cis<sup>1</sup>–h gestrichen."
-                        },
-                        {
-                            "svgGroupId": "g8",
-                            "measure": "43",
-                            "system": "11",
-                            "position": "1. Note",
-                            "comment": "Halbe Note überschreibt Viertelnote."
-                        },
-                        {
-                            "svgGroupId": "g9",
-                            "measure": "43",
-                            "system": "12",
-                            "position": "letzte Note",
-                            "comment": "Halbe Note überschreibt Viertelnote."
-                        },
-                        {
-                            "svgGroupId": "g10",
-                            "measure": "47",
-                            "system": "12",
-                            "position": "1. Note",
-                            "comment": "Viertelnote überschreibt Halbe Note."
-                        }
-                    ]
-                }
-            ]
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g5",
+                                "measure": "41",
+                                "system": "12",
+                                "position": "3/4",
+                                "comment": "cis<sup>1<sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "7",
+                                "system": "1",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Achtelnoten cis<sup>1</sup>–h gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "43",
+                                "system": "11",
+                                "position": "1. Note",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "43",
+                                "system": "12",
+                                "position": "letzte Note",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "47",
+                                "system": "12",
+                                "position": "1. Note",
+                                "comment": "Viertelnote überschreibt Halbe Note."
+                            }
+                        ]
+                    }
+                ]
+            }
         }
     ]
 }
