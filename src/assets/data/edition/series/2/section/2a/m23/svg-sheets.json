@@ -59,7 +59,13 @@
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m23/M23_Sk1-1von2-final.svg",
                         "image": "",
-                        "partial": "",
+                        "partial": "a",
+                        "convolute": "A"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m23/M23_Sk1-2von2-final.svg",
+                        "image": "",
+                        "partial": "b",
                         "convolute": "A"
                     }
                 ]
@@ -117,7 +123,7 @@
                         "convolute": "B"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m23/M23_Sk4-1von2-final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m23/M23_Sk4-2von2-final.svg",
                         "image": "",
                         "partial": "b",
                         "convolute": "B"
