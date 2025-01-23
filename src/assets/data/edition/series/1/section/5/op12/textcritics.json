@@ -1249,7 +1249,7 @@
                                 "measure": "{20A–23A}",
                                 "system": "",
                                 "position": "",
-                                "comment": "Durch <em>vi-de</em>-Vermerk und Klammer rechts nach T. {23A} getilgt."
+                                "comment": "Durch <em>vi-de</em>-Vermerk und Klammer rechts nach T. {{'{'}}23A{{'}'}} getilgt."
                             },
                             {
                                 "svgGroupId": "g4e",
