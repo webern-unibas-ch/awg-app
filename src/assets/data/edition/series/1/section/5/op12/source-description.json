@@ -865,7 +865,7 @@
                 "annotationss": [],
                 "contents": [
                     {
-                        "item": "M 213 Sk1",
+                        "item": "M 216 Sk1",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Gleich und Gleich [„Ein Blumenglöckchen“] M 216)",
                         "folios": [
@@ -898,14 +898,14 @@
                                     [
                                         {
                                             "system": "1–3",
-                                            "measure": "11–12, {13–14}",
+                                            "measure": "11–12, {13A–14A}",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–6",
-                                            "measure": "{15}, 13–15",
+                                            "measure": "{15A}, 13B–15B",
                                             "linkTo": ""
                                         }
                                     ]
