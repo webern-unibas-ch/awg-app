@@ -1,0 +1,2496 @@
+{
+    "sources": [
+        {
+            "id": "source_A",
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Skizzen.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Blatt (Bl. 1), 1 Bogen (Bl. 2/3) und 1 Blatt (Bl. 4). Horizontale und vertikale Knickfalte in Bl. 1 und 4, horizontale Knickfalte in Bl. 2/3. Bl. 1 in der Knickfalte links, rechts und unten eingerissen. Tintenflecken auf Bl. 1<sup>v</sup> und 4<sup>r</sup>. Rissspuren am rechten Rand von Bl. 4: von Bogen abgerissen. Archivalische Paginierung <em>p. 4</em> auf Bl. 4<sup>v</sup> und <em>p. 10 </em>auf Bl. 3<sup>v</sup> mit Bleistift unten links. Archivalische Eintragung <em>Langsamer Satz </em>mit Bleistift unten rechts auf Bl. 1<sup>v</sup>."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier (Bl. 4 auf dem Kopf stehend), 18 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>, 2<sup>r</sup> und 3<sup>r</sup> sowie oben rechts auf Bl. 4<sup>v</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift"
+                    ]
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 26 Sk2",
+                        "itemLinkTo": {
+                            "complexId": "m26",
+                            "sheetId": "M_26_Sk2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 26)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "1–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5a–8a",
+                                            "measure": "8–9",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5b–8b",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–12",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 452 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "mstar452",
+                            "sheetId": "Mstar_452_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M* 452)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13–17",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "18a–21a",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 66 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m66",
+                            "sheetId": "M_66_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "22–25",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "18b–21b",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3–6b",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6a–8a",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8b–10",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–13",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14–15",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "19–20",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "22–23",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "25–26",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "27–28",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 66 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m66",
+                            "sheetId": "M_66_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1a–2a",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 66 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m66",
+                            "sheetId": "M_66_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3a–4a",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 66 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m66",
+                            "sheetId": "M_66_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3b–6",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "1b–2b",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 66 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m66",
+                            "sheetId": "M_66_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "7a–8a",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 66 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m66",
+                            "sheetId": "M_66_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "7b–8b",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 66 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m66",
+                            "sheetId": "M_66_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "9–10",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–14",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "15–16",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 66 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m66",
+                            "sheetId": "M_66_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 66 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m66",
+                            "sheetId": "M_66_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–4",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 66 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m66",
+                            "sheetId": "M_66_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5–6",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 66 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m66",
+                            "sheetId": "M_66_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 66)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–10",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13a–14a",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13b–14b",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "15–16",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
+                        "folios": [
+                            {
+                                "folio": "3r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3a–4a",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
+                        "folios": [
+                            {
+                                "folio": "3r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3b–6",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
+                        "folios": [
+                            {
+                                "folio": "3r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "9–10",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–14",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "15–16",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
+                        "folios": [
+                            {
+                                "folio": "3v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6a–7a",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
+                        "folios": [
+                            {
+                                "folio": "3v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6b–7b",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–9",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
+                        "folios": [
+                            {
+                                "folio": "3v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10–11",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–13",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14–15",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–17",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
+                        "folios": [
+                            {
+                                "folio": "4r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–17",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 113 Sk3",
+                        "itemLinkTo": {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk3"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
+                        "folios": [
+                            {
+                                "folio": "4v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2b–1b",
+                                            "measure": "18–19",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "4r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "16–15",
+                                            "measure": "20A–21A, 22, {23A–24A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14–13",
+                                            "measure": "20B–21B, 21+1, 23B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–11",
+                                            "measure": "24B, 25, 26(1–3/8), {26(4–6/8)A}, 26(4–6/8)B, 27–28",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–9",
+                                            "measure": "29, 30A–31A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–7",
+                                            "measure": "31B, 30B, 31C, 32–33",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 113 Sk4",
+                        "itemLinkTo": {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk4"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
+                        "folios": [
+                            {
+                                "folio": "4r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6a–5a",
+                                            "measure": "16–17",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 113 Sk5",
+                        "itemLinkTo": {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
+                        "folios": [
+                            {
+                                "folio": "4r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6b–5b",
+                                            "measure": "41B, 42, {43A}, 43B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4a–3a",
+                                            "measure": "44–50",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "2a–1a",
+                                            "measure": "51–54",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 113 Sk5.1",
+                        "itemLinkTo": {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5_1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
+                        "folios": [
+                            {
+                                "folio": "4r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2b–1b",
+                                            "measure": "",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4b–3b",
+                                            "measure": "44+3(4–6/8)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78 Sk##",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78_Sk##"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
+                        "folios": [
+                            {
+                                "folio": "4v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–17",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–16",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "15–14",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13a–12a",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 113 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
+                        "folios": [
+                            {
+                                "folio": "4v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "12b–9b",
+                                            "measure": "1–3, 4A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10a–9a",
+                                            "measure": "{4B}, 4C, 5–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–7",
+                                            "measure": "8–10, 11A, {12A}, 12B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7b–6b",
+                                            "measure": "11B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6a–5",
+                                            "measure": "12C, 13A(1–2/8), 12D, 13B, 14A, 13A(3–6/8), 14B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–3",
+                                            "measure": "12E, 13C–14C, {15A}, 15B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "2a–1a",
+                                            "measure": "16–17",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_B",
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Skizzen.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Bogen (Bl. 1/2). Horizontale Knickfalte. Der Bogen ist unten und in der Falte rechts eingerissen. Kleiner Riss unten rechts. Tintenflecken auf Bl. 2<sup>v</sup> unten."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 18 Systeme, Format: hoch 343 × 263 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift"
+                    ]
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 78",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 78: Textfassung 1)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–5",
+                                            "measure": "1–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–10",
+                                            "measure": "7–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–15",
+                                            "measure": "",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17a–20a",
+                                            "measure": "18–20",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78 Sk###",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78_Sk###"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "17b–20b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "H",
+                                                "rowBase": "arm",
+                                                "rowNumber": ""
+                                            }
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78 Sk###",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78_Sk###"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "22–23",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "25a–26a",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78 Sk###",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78_Sk###"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "25b–26b",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78 Sk###",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78_Sk###"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 78)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6a–9a",
+                                            "measure": "###",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 113 Sk6",
+                        "itemLinkTo": {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk6"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6b–7b",
+                                            "measure": "34–36",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8b–9b",
+                                            "measure": "37–40",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 113 Sk5.2",
+                        "itemLinkTo": {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5_2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11a–12a",
+                                            "measure": "51–52",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 113 Sk5",
+                        "itemLinkTo": {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11b–12b",
+                                            "measure": "55–58",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–14",
+                                            "measure": "59–61",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "15–18b",
+                                            "measure": "62–70, 71A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "71B(4–6/8), {72A, 72B(6/8)}, 73–74",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "20a–21",
+                                            "measure": "75",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "19–20b",
+                                            "measure": "76–78",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "22–23",
+                                            "measure": "79–82",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 66",
+                        "itemLinkTo": {
+                            "complexId": "m66",
+                            "sheetId": "M_66"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 78: Textfassung 4)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–5",
+                                            "measure": "68–76",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–10",
+                                            "measure": "77–84",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–15",
+                                            "measure": "85–92",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–20",
+                                            "measure": "93–101",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "22–25",
+                                            "measure": "102–108",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 78",
+                        "itemLinkTo": {
+                            "complexId": "m78",
+                            "sheetId": "M_78"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Streichquartett M 78: Textfassung 3)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–5",
+                                            "measure": "25–29",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–10",
+                                            "measure": "30–35",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–15",
+                                            "measure": "36–39",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–20",
+                                            "measure": "40–44",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "23–26",
+                                            "measure": "45, {46}, 46–47",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_C",
+            "siglum": "C",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Bogen (Bl. 1/2). Zweifache horizontale Knickfalte (auf halber und viertel Höhe). Stockflecken und rötliche Verfärbung in der Ecke oben rechts."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier (auf dem Kopf stehend), 22 Systeme, Format: hoch 345 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> oben rechts auf Bl. 1<sup>v</sup> und 2<sup>v</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift"
+                    ]
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 113",
+                        "itemLinkTo": {
+                            "complexId": "m113",
+                            "sheetId": "M_113"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 113)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "22–21",
+                                            "measure": "1–5(1–3/8)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "19–18",
+                                            "measure": "5(4–6/8)–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–15",
+                                            "measure": "10–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–12",
+                                            "measure": "{14}, 14–15",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–9a",
+                                            "measure": "{16}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5b–4b",
+                                            "measure": "16–17",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 113 Sk2",
+                        "itemLinkTo": {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11 (Bleistift)",
+                                            "measure": "16A",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10b–6 (Bleistift)",
+                                            "measure": "",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5a–3a (Bleistift)",
+                                            "measure": "16C, 17B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 113 Sk5",
+                        "itemLinkTo": {
+                            "complexId": "m113",
+                            "sheetId": "M_113_Sk5"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 113)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3b–2a",
+                                            "measure": "39–41A",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 113",
+                        "itemLinkTo": {
+                            "complexId": "m113",
+                            "sheetId": "M_113"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 113)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "22–21",
+                                            "measure": "18–21",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "19–18",
+                                            "measure": "22–26",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–15",
+                                            "measure": "27–31",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–12",
+                                            "measure": "32–35",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–9",
+                                            "measure": "36–39",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–6",
+                                            "measure": "40–44",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–3",
+                                            "measure": "45–50",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "22–21",
+                                            "measure": "{51–52}, 53–56",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "19–18",
+                                            "measure": "51–52",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–15",
+                                            "measure": "57–60",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–12",
+                                            "measure": "61–64",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–9",
+                                            "measure": "65, 70–71",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–6",
+                                            "measure": "72–74",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–3",
+                                            "measure": "75–77",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "22–21",
+                                            "measure": "78–81",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "19–18",
+                                            "measure": "82–84",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 114 Sk9",
+                        "itemLinkTo": {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk9"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 114: Textfassung 3)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "16–15 (Bleistift)",
+                                            "measure": "44–49",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13–12 (Bleistift)",
+                                            "measure": "50–56(1–2/4)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10a–9a (Bleistift)",
+                                            "measure": "56(2–3/4)–58",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 114 Sk10",
+                        "itemLinkTo": {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk10"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 114: Textfassung 4)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10b–9b (Bleistift)",
+                                            "measure": "60–64",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "7a–6a (Bleistift)",
+                                            "measure": "65–66, {67A–70A}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5b–4b (Bleistift)",
+                                            "measure": "67B–70B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–1 (Bleistift)",
+                                            "measure": "71–73, 74A, 74B, 75–76",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "7b–6b (Bleistift)",
+                                            "measure": "77–78",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 114 Sk10.1",
+                        "itemLinkTo": {
+                            "complexId": "m114",
+                            "sheetId": "M_114_Sk10_1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 114: Textfassung 4)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5a–4a (Bleistift)",
+                                            "measure": "58–59",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_C_corr_1",
+                        "label": "Korrekturen 1 in <strong>C</strong>> (mit Tinte)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. o.",
+                                            "position": "1–3/8",
+                                            "comment": "Unterstimmenschicht: Auf Rasur. Ante correcturam: Oberstimmenschicht nach unten gehalst."
+                                        },
+                                        {
+                                            "measure": "6 <br /> bis 7",
+                                            "system": "Klav. o.",
+                                            "position": "letzte Note <br /> 3/8",
+                                            "comment": "Ende des Legatobogens versetzt von T. 6 letzte Note nach T. 7 3/8."
+                                        },
+                                        {
+                                            "measure": "7",
+                                            "system": "Klav. o.",
+                                            "position": "1/8 <br /> 8. Note",
+                                            "comment": "Legatobogen gestrichen."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. o.",
+                                            "position": "1–2/16",
+                                            "comment": "Oberstimmenschicht: Balkierung überschreibt Sechzehntel- und Achtelfähnchen."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. o.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Unterstimmenschicht: Auf Rasur."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. o.",
+                                            "position": "6/16–6/8",
+                                            "comment": "Ende des Legatobogens versetzt von 6/16 nach 6/8."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "c gestrichen."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Klav. u.",
+                                            "position": "(4/16)",
+                                            "comment": "Metrisch falsch platzierte Viertelnote c gestrichen und auf (3/8) versetzt."
+                                        },
+                                        {
+                                            "measure": "{14}",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takt pauschal gestrichen: <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "15",
+                                            "system": "Klav. u.",
+                                            "position": "7–12/16",
+                                            "comment": "Achtelnoten b–F–B geändert zu Sechzehntelnoten; Sechzehntelpausen auf 8/16, 10/16 und 12/16 hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "{16–17}",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takte {16–17} unvollständig und ersetzt durch T. 16–17:  <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "{16}",
+                                            "system": "Klav. o.",
+                                            "position": "3. Note",
+                                            "comment": "Achtelnote überschreibt Sechzehntelnote."
+                                        },
+                                        {
+                                            "measure": "{16}",
+                                            "system": "Klav. o.",
+                                            "position": "12/16",
+                                            "comment": "Sechzehntelnote überschreibt Achtelnote."
+                                        },
+                                        {
+                                            "measure": "18",
+                                            "system": "Klav. u.",
+                                            "position": "7–10/16",
+                                            "comment": "Halsung und Balken nach unten gestrichen und nach oben versetzt."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "Klav. u.",
+                                            "position": "8/16",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "22",
+                                            "system": "Klav. o.",
+                                            "position": "6/16",
+                                            "comment": "Ende des Legatobogens versetzt von 3/8 nach 6/16."
+                                        },
+                                        {
+                                            "measure": "30",
+                                            "system": "Klav. o.",
+                                            "position": "6/8",
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "nach 31",
+                                            "system": "Klav. u.",
+                                            "position": "",
+                                            "comment": "Viertelnote gis/c<sup>1</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "38",
+                                            "system": "Klav. o.",
+                                            "position": "1. Pause",
+                                            "comment": "Sechzehntelpause überschreibt punktierte Achtelpause."
+                                        },
+                                        {
+                                            "measure": "38",
+                                            "system": "Klav. o.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Oberstimmenschicht: Balkierung überschreibt Achtelfähnchen."
+                                        },
+                                        {
+                                            "measure": "38 <br /> bis 39",
+                                            "system": "Klav. o.",
+                                            "position": "letzte Note <br /> 5. Note",
+                                            "comment": "Ende des Legatobogens zweimal versetzt: von T. 38 letzte Note nach T. 39 1. Note, nach T. 39 5. Note."
+                                        },
+                                        {
+                                            "measure": "39",
+                                            "system": "Klav. o.",
+                                            "position": "1–3/8",
+                                            "comment": "Unterstimmenschicht: Notenhälse und Balken auf Rasur. Ante correcturam: f<sup>1</sup>–e<sup>1</sup>–d<sup>1</sup>?"
+                                        },
+                                        {
+                                            "measure": "41",
+                                            "system": "Klav. u.",
+                                            "position": "Taktanfang",
+                                            "comment": "Tonartvorzeichnung: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> für h überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span> für d."
+                                        },
+                                        {
+                                            "measure": "{42}",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "Takt pauschal gestrichen: <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "{42}",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Oberstimmenschicht: Notenkopf cis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "{42}",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "42",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Auf Rasur. Ante correcturam: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "45",
+                                            "system": "Klav. u.",
+                                            "position": "Taktanfang",
+                                            "comment": "Tonartvorzeichnung: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> für f überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> für a."
+                                        },
+                                        {
+                                            "measure": "50",
+                                            "system": "Klav. o.",
+                                            "position": "3/8",
+                                            "comment": "Rasur im System. Ante correcturam: Achtelnote gis<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "{51–52}",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takte durch Verweispfeil ersetzt durch T. 51–52 (vgl. T. 53 und Korrekturen 2)."
+                                        },
+                                        {
+                                            "measure": "{51}",
+                                            "system": "Klav. o.",
+                                            "position": "3/8",
+                                            "comment": "fis<sup>1</sup> überschreibt g<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "51",
+                                            "system": "klav. o.",
+                                            "position": "6/8",
+                                            "comment": "f<sup>1</sup> überschreibt g<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "53",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unter dem System: Pfeil zu T. 51–52 (vgl. T. {51–52} und Korrekturen 2)."
+                                        },
+                                        {
+                                            "measure": "54",
+                                            "system": "Klav. u.",
+                                            "position": "5/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>eis<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "54  <br /> bis 56",
+                                            "system": "Klav.",
+                                            "position": "1. Note <br /> letzte Note",
+                                            "comment": "Ende des Legatobogens versetzt von T. 54 1. Note nach T. 56 letzte Note."
+                                        },
+                                        {
+                                            "measure": "56",
+                                            "system": "Klav. u.",
+                                            "position": "5–6/8",
+                                            "comment": "<em>8 tiefer </em>unter dem System gestrichen."
+                                        },
+                                        {
+                                            "measure": "64",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Oberstimmenschicht: d<sup>2</sup> überschreibt cis<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "64",
+                                            "system": "Klav. o.",
+                                            "position": "5. Note",
+                                            "comment": "Oberstimmenschicht: cis<sup>2</sup> überschreibt h<sup>2 </sup>(vgl. TkA)."
+                                        },
+                                        {
+                                            "measure": "65",
+                                            "system": "Klav.",
+                                            "position": "(6/8)",
+                                            "comment": "<em>usw.</em> zwischen den Systemen (vgl. TkA)."
+                                        },
+                                        {
+                                            "measure": "nach 65",
+                                            "system": "Klav. o.",
+                                            "position": "1–3/8",
+                                            "comment": "Achtelnoten a<sup>2</sup>–g<sup>2</sup>–f<sup>2</sup> gestrichen (vgl. TkA)."
+                                        },
+                                        {
+                                            "measure": "vor 70",
+                                            "system": "Klav. o.",
+                                            "position": "",
+                                            "comment": "gis<sup>2</sup> und <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu potenziellem b<sup>2 </sup>gestrichen (vgl. TkA)."
+                                        },
+                                        {
+                                            "measure": "72",
+                                            "system": "Klav. o.",
+                                            "position": "4/8",
+                                            "comment": "Balkierung zu 9/16 überschreibt Achtelfähnchen."
+                                        },
+                                        {
+                                            "measure": "73",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Punktierte Viertelnote überschreibt punktierte Halbe Note."
+                                        },
+                                        {
+                                            "measure": "73",
+                                            "system": "Klav. u.",
+                                            "position": "5–12/16",
+                                            "comment": "Ende des Legatobogens versetzt von 5/16 nach 12/16."
+                                        },
+                                        {
+                                            "measure": "78",
+                                            "system": "Klav. o.",
+                                            "position": "Taktanfang",
+                                            "comment": "Tonartvorzeichnung: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> ür b überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> für g."
+                                        },
+                                        {
+                                            "measure": "78",
+                                            "system": "Klav. u.",
+                                            "position": "3/16",
+                                            "comment": "F überschreibt A."
+                                        },
+                                        {
+                                            "measure": "80",
+                                            "system": "Klav. o.",
+                                            "position": "1.­–2. Note",
+                                            "comment": "Zwei zusammengebalkte Achtelnoten <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup>/d<sup>2</sup>–b<sup>2</sup> geändert zu Achtelnote und Viertelnote."
+                                        },
+                                        {
+                                            "measure": "80",
+                                            "system": "Klav. u.",
+                                            "position": "4/8",
+                                            "comment": "Achtelpause überschreibt Notenkopf zu A."
+                                        },
+                                        {
+                                            "measure": "83 <br /> bis 84",
+                                            "system": "Klav. o.",
+                                            "position": "6/8 <br /> 1. Note",
+                                            "comment": "Ende des Legatobogens versetzt von T. 83 6/8 nach T. 84 1. Note."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "source_C_corr_2",
+                        "label": "Korrekturen 2 in <strong>C</strong>> (mit Bleistift)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. u.",
+                                            "position": "(10/16)",
+                                            "comment": "Zusätzliche Achtelnote d<sup>1</sup> nach 5/8 mit Ligatur zu drittletzter Note gestrichen."
+                                        },
+                                        {
+                                            "measure": "2 <br /> bis 3",
+                                            "system": "Klav. u.",
+                                            "position": "4/8 <br /> 1/8",
+                                            "comment": "Legatobogen hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Klav. o.",
+                                            "position": "Taktanfang",
+                                            "comment": "Kreuz über dem System."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Klav. u.",
+                                            "position": "1/8",
+                                            "comment": "h überschrieben zu Achtelpause."
+                                        },
+                                        {
+                                            "measure": "11",
+                                            "system": "Klav. u.",
+                                            "position": "10–12/16",
+                                            "comment": "Balkierung zwischen 10/16 und 11/16 gestrichen; Sechzehntelnote F<sub>1</sub>/F am Schluss hinzugefügt und mit A<sub>1</sub>/A–G<sub>1</sub>/G zu Sechzehnteltriole zusammengebalkt."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Klav. o.",
+                                            "position": "11/16",
+                                            "comment": "Kreuz über dem System."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "Klav. o.",
+                                            "position": "6/8",
+                                            "comment": "Unterstimmenschicht: d<sup>2</sup> ersetzt durch f<sup>1</sup>? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "Klav. o.",
+                                            "position": "(6/8)",
+                                            "comment": "Oberstimmenschicht: f<sup>2</sup>–g<sup>2</sup>–a<sup>2</sup> überschrieben zu f<sup>2</sup> –d<sup>2</sup>–c<sup>2</sup>? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "Klav. u.",
+                                            "position": "6/8",
+                                            "comment": "Oberstimmenschicht: Achtelnote f hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "Klav. u.",
+                                            "position": "6/8",
+                                            "comment": "Unterstimmenschicht: H gestrichen und ersetzt durch c? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "17",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takt pauschal gestrichen."
+                                        },
+                                        {
+                                            "measure": "19",
+                                            "system": "Klav. o.",
+                                            "position": "4/16",
+                                            "comment": "Nicht entzifferbare Korrektur."
+                                        },
+                                        {
+                                            "measure": "19",
+                                            "system": "Klav. u.",
+                                            "position": "9/16",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "19",
+                                            "system": "Klav. u.",
+                                            "position": "10–12/16",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis–H–<span class='glyph'>{{ref.getGlyph('[#]')}}</span>Dis überschreibt a–fis–H."
+                                        },
+                                        {
+                                            "measure": "24",
+                                            "system": "Klav. o.",
+                                            "position": "1/8",
+                                            "comment": "Unterstimmenschicht: Achtelnote c<sup>2</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "24",
+                                            "system": "Klav. o.",
+                                            "position": "4/8",
+                                            "comment": "Unterstimmenschicht: Viertelnote b<sup>1</sup> gestrichen und durch Viertelnote d<sup>1</sup>–g<sup>1</sup> ersetzt, diese gestrichen."
+                                        },
+                                        {
+                                            "measure": "28 <br /> bis 29",
+                                            "system": "Klav. o.",
+                                            "position": "4. Note <br /> 3/8",
+                                            "comment": "Klammer über dem System."
+                                        },
+                                        {
+                                            "measure": "29",
+                                            "system": "Klav. u.",
+                                            "position": "1–3/8",
+                                            "comment": "Achtelpause und Achtelnoten überschrieben zu Sechzehntelpause und Sechzehntelnoten Cis–G–cis–g–cis<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "29",
+                                            "system": "Klav. o.",
+                                            "position": "3/8",
+                                            "comment": "Einschubzeichen über dem System."
+                                        },
+                                        {
+                                            "measure": "29",
+                                            "system": "Klav. u.",
+                                            "position": "4/8",
+                                            "comment": "Kreuz unter dem System."
+                                        },
+                                        {
+                                            "measure": "nach 39",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Wellenförmige Linie zwischen den Systemen."
+                                        },
+                                        {
+                                            "measure": "43",
+                                            "system": "Klav. o.",
+                                            "position": "5.–6. Note",
+                                            "comment": "Kreuz im System."
+                                        },
+                                        {
+                                            "measure": "45",
+                                            "system": "Klav. o.",
+                                            "position": "5.–6. Note",
+                                            "comment": "Legatobogen hinzugefügt? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "46–47",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "Alternative Skizze unter den Systemen:  <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "48",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Kreuz über dem System."
+                                        },
+                                        {
+                                            "measure": "{51–52}",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takte pauschal gestrichen (vgl. Korrekturen 1) <br /> ##Abbildung##"
+                                        },
+                                        {
+                                            "measure": "51 <br /> bis 52",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note <br /> (1/4)",
+                                            "comment": "Viertelnote F in T. 52 mit Ligatur zu F in T. 51 hinzugefügt."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
