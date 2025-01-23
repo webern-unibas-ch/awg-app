@@ -183,6 +183,78 @@
                         "convolute": "Ad"
                     }
                 ]
+            },
+            {
+                "id": "M_217_Sk1",
+                "label": "M 217 Sk1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M217_Sk1-1von7-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": "Ab"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M217_Sk1-2von7-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": "Ab"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M217_Sk1-3von7-final.svg",
+                        "image": "",
+                        "partial": "c",
+                        "convolute": "Ab"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M217_Sk1-4von7-final.svg",
+                        "image": "",
+                        "partial": "d",
+                        "convolute": "Ab"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M217_Sk1-5von7-final.svg",
+                        "image": "",
+                        "partial": "e",
+                        "convolute": "Ab"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M217_Sk1-6von7-final.svg",
+                        "image": "",
+                        "partial": "f",
+                        "convolute": "Ab"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M217_Sk1-7von7-final.svg",
+                        "image": "",
+                        "partial": "g",
+                        "convolute": "Ab"
+                    }
+                ]
+            },
+            {
+                "id": "M_217_Sk1_1",
+                "label": "M 217 Sk1.1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M217_Sk1_1-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "Ab"
+                    }
+                ]
+            },
+            {
+                "id": "M_217_Sk1_2",
+                "label": "M 217 Sk1.2",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M217_Sk1_2-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "Ab"
+                    }
+                ]
             }
         ]
     }
