@@ -114,10 +114,12 @@
         {
             "id": "M_32_Sk1",
             "label": "M 32 Sk1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk1</strong> entwirft einen ersten möglichen Melodieverlauf für das Hauptthema von M 32, der in rhythmischer und harmonischer Hinsicht von der gültigen Version abweicht."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -152,14 +154,17 @@
                     ]
                 }
             ]
+        }
         },
         {
             "id": "M_32_Sk2",
             "label": "M 32 Sk2",
-            "description": [
+            "evaluations": [
                 "<strong>Sk2</strong> ist die Verlaufsskizze zur Studienkomposition für Klavier M 32."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -585,15 +590,18 @@
                         }
                     ]
                 }
-            ]     
+            ]
+        }     
         },
         {
             "id": "M_32_Sk2_1",
             "label": "M 32 Sk2.1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk2.1</strong> überarbeitet T. 58 aus der Verlaufsskizze und fügt zwischen T. 58 und 59 aus der Verlaufsskizze zwei weitere Takte ein. Der Hinweis <em>wiederholen</em> deutet darauf hin, dass diese Sequenz wiederholt werden soll (in Textfassung 1 geschieht dies in der unteren Oktave)."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -614,21 +622,28 @@
                     ]
                 }
             ]
+        }
         },
         {
             "id": "M_32_Sk3",
             "label": "M 32 Sk3",
-            "description": [
+            "evaluations": [
                 "<strong>Sk3</strong> skizziert T. 39–41 für die gekürzte Überleitung im B-Teil von M 32 Textfassung 2."
-            ]
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": []
+            }
         },
         {
             "id": "M_32_Sk4",
             "label": "M 32 Sk4",
-            "description": [
+            "evaluations": [
                 "<strong>Sk4</strong> enthält eine längere Überarbeitung für den Mittelteil von Textfassung 3, die vor allem in harmonischer Hinsicht neue Wege beschreitet. Die spezifische Verteilung der Skizzenakkoladen auf dem Blatt und die Verweispfeile deuten darauf hin, dass die Takte 30–33 nachträglich in den Verlauf von Sk4 eingebaut worden sind. Dieser Einschub zwischen T. 29 und 34 wurde in einem ersten Versuch (Sk4.1.) verworfen."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -726,14 +741,17 @@
                     ]
                 }
             ]
+        }
         },
         {
             "id": "M_32_Sk4_1",
             "label": "M 32 Sk4.1",
-            "description": [
+            "evaluations": [
                 "<strong>Sk4.1</strong> enthält einen verworfenen Einschub zu Sk4 (siehe auch Skizzenkommentar zu Sk4)."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -768,14 +786,17 @@
                     ]
                 }
             ]
+        }
         },
         {
             "id": "M_32_Sk4_2",
             "label": "M 32 Sk4.2",
-            "description": [
+            "evaluations": [
                 "<strong>Sk4.2</strong> ist nicht mit Bestimmtheit einzuordnen. Die zwei skizzierten Takte sind in Zusammenhang mit Sk4 entstanden. Es ist jedoch unklar, ob diese die in Sk4 nach der ersten Niederschrift gestrichenen Takte 32–33 ersetzen oder daran anschliessen sollten, bevor die definitive Variante im Untersatz von T. 32–33 notiert worden ist."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -810,14 +831,17 @@
                     ]
                 }
             ]
+        }
         },
         {
             "id": "M_32_Sk5",
             "label": "M 32 Sk5",
-            "description": [
+            "evaluations": [
                 "<strong>Sk5</strong> enthält die ersten vier Takte für die Überarbeitung des Schlusses ab T. 49 in Textfassung 3."
             ],
-            "comments": [
+            "commentary": {
+                "preamble": "",
+                "comments": [
                 {
                     "blockHeader": "",
                     "blockComments": [
@@ -845,6 +869,7 @@
                     ]
                 }
             ]
+        }
         } 
     ]
 }
