@@ -3,7 +3,11 @@
         {
             "id": "M_32_TF1",
             "label": "M 32 Textfassung 1",
-            "evaluations": [],
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M 32 Textfassung 1 ist <strong>D</strong> relevante Quelle.", 
+                "<strong>D</strong> weist drei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Tinte, Bleistift und braunem Buntstift und Korrekturen 3 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassung 2, Korrekturen 3 betreffen Textfassung 3. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.", 
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 32 Textfassung 1 ist <strong>D</strong> nach Korrekturen 1."
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
@@ -33,7 +37,12 @@
         {
             "id": "M_32_TF2",
             "label": "M 32 Textfassung 2",
-            "evaluations": [],
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M 32 Textfassung 2 sind <strong>D</strong> und <strong>E<sup>a</sup></strong> relevante Quellen. <strong>E<sup>b</sup></strong> enthält Skizzen.", 
+                "<strong>D</strong> weist drei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Tinte, Bleistift und braunem Buntstift und Korrekturen 3 mit Bleistift. <strong>E<sup>a</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist in beiden Quellen nicht immer zu entziffern. Korrekturen 2 in <strong>D</strong> betreffen Textfassung 2. Korrekturen 3 in <strong>D</strong> und Korrekturen 2 in <strong>E<sup>a</sup></strong> betreffen Textfassung 3. Der Zustand nach Korrekturen 2 in <strong>D</strong> und nach Korrekturen 1 in <strong>E<sup>a</sup></strong> konstituiert eine kohärente Textfassung. <strong>E<sup>a</sup></strong> enthält T. 21–41 für Textfassung 2, die T. 21–48 aus Textfassung 1 ersetzen. Entsprechende Markierungen sind in <strong>D</strong> (Streichung, Einschubzeichen, Verweiszeichen) und <strong>E<sup>a</sup></strong> (Verweiszeichen) mit braunem Buntstift, Bleistift bzw. Tinte eingetragen.", 
+                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 32 Textfassung 2 sind <strong>D</strong> nach Korrekturen 2 und <strong>E<sup>a</sup></strong> nach Korrekturen 1." 
+
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
@@ -70,7 +79,12 @@
         {
             "id": "M_32_TF3",
             "label": "M 32 Textfassung 3",
-            "evaluations": [],
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M 32 Textfassung 3 sind <strong>D</strong> und <strong>F</strong> relevante Quellen. <strong>A</strong>, <strong>B</strong>, <strong>C</strong> und <strong>E<sup>b</sup></strong> enthalten Skizzen. <strong>E<sup>a</sup></strong> bezieht sich auf Textfassung 2.",
+                "<strong>D</strong> weist drei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Tinte, Bleistift und braunem Buntstift und Korrekturen 3 mit Bleistift. <strong>F</strong> weist Korrekturen mit Tinte auf. Der Zustand vor Korrekturen 1 in <strong>D</strong> und vor den Korrekturen in <strong>F</strong> ist nicht immer zu entziffern. Korrekturen 2 in <strong>D</strong> betreffen Textfassung 2, Korrekturen 3 betreffen Textfassung 3. Der Zustand post correcturam in <strong>D</strong> und <strong>F</strong> konstituiert eine kohärente Textfassung. <strong>F</strong> enthält T. 21–41 (Bl. 1r System 1–2/3–4/5–6) und T. 49–69 (Bl. 1r System 9–10/11–12/13–14) für Textfassung 3, die T. 21–41 bzw. T. 49–77 aus Textfassung 2 ersetzen. Entsprechende Markierungen sind in <strong>D</strong> (Streichung, Einschubzeichen) mit braunem Buntstift und Bleistift eingetragen.", 
+                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 32 Textfassung 3 sind <strong>D</strong> und <strong>F</strong> post correcturam." 
+
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
