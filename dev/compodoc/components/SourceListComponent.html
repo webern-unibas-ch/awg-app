@@ -222,11 +222,10 @@ of the edition view of the app.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_navigateToReportFragment" >_navigateToReportFragment</a>
+                                <a href="#_openModal" >_openModal</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_openModal" >_openModal</a>
+                                <a href="#navigateToReportFragment" >navigateToReportFragment</a>
                             </li>
                             <li>
                                 <a href="#onSourceClick" >onSourceClick</a>
@@ -434,85 +433,6 @@ with the selected modal text snippet.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_navigateToReportFragment"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_navigateToReportFragment</b></span>
-                        <a href="#_navigateToReportFragment"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_navigateToReportFragment(reportIds: literal type)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="93"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:93</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: navigateToReportFragment.</p>
-<p>It emits the given ids of a selected edition complex and report fragment
-to the <a href="navigateToReportFragmentRequest">navigateToReportFragmentRequest</a>.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>reportIds</td>
-                                            <td>
-                                                        <code>literal type</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given report ids as { complexId: string, fragmentId: string }.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Emits the ids.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="_openModal"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -582,6 +502,83 @@ to the <a href="openModalRequest">openModalRequest</a>.</p>
                         </div>
                             <div class="io-description">
                                 <p>Emits the id.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToReportFragment"></a>
+                    <span class="name">
+                        <span ><b>navigateToReportFragment</b></span>
+                        <a href="#navigateToReportFragment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToReportFragment(reportIds: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: navigateToReportFragment.</p>
+<p>It emits the given ids of a selected edition complex and report fragment
+to the <a href="navigateToReportFragmentRequest">navigateToReportFragmentRequest</a>.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>reportIds</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given report ids as { complexId: string, fragmentId: string }.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Emits the ids.</p>
 
                             </div>
                 </td>
@@ -815,7 +812,7 @@ export class SourceListComponent {
      */
     onSourceClick(source: Source): void {
         if (source.hasDescription) {
-            this._navigateToReportFragment({
+            this.navigateToReportFragment({
                 complexId: &#x27;&#x27;,
                 fragmentId: source.linkTo,
             });
@@ -825,7 +822,7 @@ export class SourceListComponent {
     }
 
     /**
-     * Private method: navigateToReportFragment.
+     * Public method: navigateToReportFragment.
      *
      * It emits the given ids of a selected edition complex and report fragment
      * to the {@link navigateToReportFragmentRequest}.
@@ -833,7 +830,7 @@ export class SourceListComponent {
      * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
      * @returns {void} Emits the ids.
      */
-    private _navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
+    navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
         if (!reportIds?.fragmentId) {
             return;
         }
