@@ -91,7 +91,7 @@
             "id": "M_23_Sk1",
             "label": "M 23 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 23 Textfassung 1, die die frühere Version des Variations-Themas vorstellt."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 23 <a (click)=\"ref.selectSvgSheet({complexId: 'm23', sheetId: 'M_23_TF1'})\">Textfassung 1</a>, die die frühere Version des Variations-Themas vorstellt."
             ],
             "commentary": {
                 "preamble": "",
