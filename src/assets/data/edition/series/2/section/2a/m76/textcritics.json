@@ -3,7 +3,11 @@
         {
             "id": "M_76_TF1",
             "label": "M 76 Textfassung 1",
-            "evaluations": [],
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier/Streichquartett M 76 Textfassung 1 ist <strong>A</strong> relevante Quelle. <strong>B</strong> bezieht sich auf Textfassung 2 für Streichquartett (siehe AWG II/2b).",
+                "<strong>A</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier/Streichquartett M 76 Textfassung 1 ist <strong>A</strong> nach Korrekturen 1."
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
