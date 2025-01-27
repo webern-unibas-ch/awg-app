@@ -3,7 +3,11 @@
         {
             "id": "M_75_TF1",
             "label": "M 75 einzige Textfassung",
-            "evaluations": [],
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M 75 ist <strong>B</strong> relevante Quelle. <strong>A</strong> enthält Skizzen.",
+                "<strong>B</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 75 ist <strong>B</strong> nach Korrekturen 1."
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
