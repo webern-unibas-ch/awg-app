@@ -281,8 +281,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="377"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:377</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="380"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:380</a></div>
                         </td>
                     </tr>
 
@@ -359,8 +359,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="391"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:391</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="394"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:394</a></div>
                         </td>
                     </tr>
 
@@ -453,8 +453,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="418"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:418</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="421"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:421</a></div>
                         </td>
                     </tr>
 
@@ -1410,8 +1410,8 @@ and returns a promise of the selection.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="359"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:359</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="362"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:362</a></div>
                         </td>
                     </tr>
 
@@ -2282,8 +2282,11 @@ export class EditionSvgDrawingService {
             return;
         }
 
-        // Get the class name from the label lookup table
-        const className &#x3D; this._suppliedClassesLabelLookup.get(labelOrClassName) || labelOrClassName;
+        // Reverse lookup to get the class name from the lookup table
+        const className &#x3D;
+            Array.from(this._suppliedClassesLabelLookup.entries()).find(
+                ([, value]) &#x3D;&gt; value &#x3D;&#x3D;&#x3D; labelOrClassName
+            )?.[0] || labelOrClassName;
 
         // Get D3 selection of supplied elements
         const selector &#x3D; className ? &#x60;supplied.${className}&#x60; : &#x27;supplied&#x27;;
