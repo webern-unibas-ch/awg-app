@@ -1140,6 +1140,294 @@
                 ]
             },
             "linkBoxes": []
+        },
+        {
+            "id": "M_217_Sk1",
+            "label": "M 217 Sk1",
+            "evaluations": [
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217. Gegenüber der <span class='link-todo'>einzigen Textfassung</span> des Liedes weist <strong>Sk1</strong> teilweise eine andere Takteinteilung auf sowie einen zusätzlichen Takt (T. 10)."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g4a",
+                                "measure": "1",
+                                "system": "4",
+                                "position": "(1/4)",
+                                "comment": "Punktierung zu a bei 1. Note pars pro toto gestrichen, Achtelpause vor 1. Note und Triolenklammer hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "g5a",
+                                "measure": "2",
+                                "system": "3",
+                                "position": "1. Note",
+                                "comment": "Durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g6a",
+                                "measure": "2",
+                                "system": "3",
+                                "position": "2.–4. Note",
+                                "comment": "e<sup>2</sup>–es<sup>2</sup>–d<sup>2</sup> durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g7a",
+                                "measure": "5",
+                                "system": "3",
+                                "position": "4/16",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g5b",
+                                "measure": "7",
+                                "system": "8",
+                                "position": "",
+                                "comment": "2. Note durch Einkreisung getilgt, Punktierung zu 1. Note sowie 4/8 vermutlich hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "g4b",
+                                "measure": "7",
+                                "system": "9",
+                                "position": "",
+                                "comment": "Durch Einkreisung teilweise getilgt. Siehe Änderung in System 10."
+                            },
+                            {
+                                "svgGroupId": "g6b",
+                                "measure": "7",
+                                "system": "7",
+                                "position": "3. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g7b",
+                                "measure": "8",
+                                "system": "7",
+                                "position": "1/4",
+                                "comment": "sic: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> fehlt. Siehe <span class='link-todo'>einzige Textfassung</span>."
+                            },
+                            {
+                                "svgGroupId": "g8b",
+                                "measure": "8",
+                                "system": "8",
+                                "position": "2/8",
+                                "comment": "Durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g4c",
+                                "measure": "11",
+                                "system": "3",
+                                "position": "3–6/8",
+                                "comment": "Durch Einkreisung getilgt. Siehe Änderung in System 2 sowie in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_217_Sk1_1'})\"><strong>Sk1.1</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g5c",
+                                "measure": "14",
+                                "system": "2",
+                                "position": "1. Pause",
+                                "comment": "Achtelpause überschreibt unausgefüllten Notenkopf g<sup>1</sup> (?)."
+                            },
+                            {
+                                "svgGroupId": "g4d",
+                                "measure": "16",
+                                "system": "6",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Halbe Note a/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>es<sup>1</sup> überschreibt Viertelnote a/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g5d",
+                                "measure": "19",
+                                "system": "6",
+                                "position": "1/4",
+                                "comment": "sic: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup> fehlt. Siehe <span class='link-todo'>einzige Textfassung</span>."
+                            },
+                            {
+                                "svgGroupId": "g5e",
+                                "measure": "{20A–23A}",
+                                "system": "",
+                                "position": "",
+                                "comment": "Durch <em>vi-de</em>-Vermerk und Klammer rechts nach T. {{'{'}}23A{{'}'}} getilgt."
+                            },
+                            {
+                                "svgGroupId": "g4e",
+                                "measure": "{23A}",
+                                "system": "10",
+                                "position": "2/4",
+                                "comment": "Durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g15e",
+                                "measure": "21B",
+                                "system": "10–11",
+                                "position": "",
+                                "comment": "sic: Wiederholungskürzel."
+                            },
+                            {
+                                "svgGroupId": "g4f",
+                                "measure": "23B",
+                                "system": "4",
+                                "position": "1.–2. Note",
+                                "comment": "Durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g5f",
+                                "measure": "23B",
+                                "system": "3",
+                                "position": "1. Note",
+                                "comment": "Notenkopf c<sup>1</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g15f",
+                                "measure": "25",
+                                "system": "4",
+                                "position": "3. Note",
+                                "comment": "Unklare Überschreibung."
+                            },
+                            {
+                                "svgGroupId": "g6f",
+                                "measure": "26",
+                                "system": "3",
+                                "position": "(3/4)",
+                                "comment": "Unklare Überschreibungen."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g11c",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_217_Sk1d"
+                    }
+                },
+                {
+                    "svgGroupId": "g11d",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_217_Sk1c"
+                    }
+                },
+                {
+                    "svgGroupId": "g11d-6",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_217_Sk1e"
+                    }
+                },
+                {
+                    "svgGroupId": "g11e",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_217_Sk1d"
+                    }
+                },
+                {
+                    "svgGroupId": "g11g",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_217_Sk1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g12g",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_217_Sk1_2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_217_Sk1_1",
+            "label": "M 217 Sk1.1",
+            "evaluations": [
+                "<strong>Sk1.1</strong> überarbeitet T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_217_Sk1c'})\"><strong>Sk1</strong></a> im Sinne von <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217 <span class='link-todo'>einzige Textfassung</span> T. 11–12."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g4",
+                                "measure": "11",
+                                "system": "8c",
+                                "position": "",
+                                "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g11",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_217_Sk1g"
+                    }
+                },
+                {
+                    "svgGroupId": "g12",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_217_Sk1_2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_217_Sk1_2",
+            "label": "M 217 Sk1.2",
+            "evaluations": [
+                "<strong>Sk1.2</strong> ergänzt T. 27B aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_217_Sk1g'})\"><strong>Sk1</strong></a> um einen weiteren Viertelwert und fügt zwei weitere Takte an im Sinne von <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217 <span class='link-todo'>einzige Textfassung</em> T. 26–28."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g5",
+                                "measure": "27B 3/4",
+                                "system": "7b, 9b",
+                                "position": "3/4",
+                                "comment": "sic: disparater Untersatz zwischen Ges. und Klav."
+                            },
+                            {
+                                "svgGroupId": "g4",
+                                "measure": "28",
+                                "system": "9b",
+                                "position": "2. Note",
+                                "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g11",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_217_Sk1_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g12",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_217_Sk1g"
+                    }
+                }
+            ]
         }
     ]
 }

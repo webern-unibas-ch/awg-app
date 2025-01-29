@@ -57,7 +57,7 @@ jobs:
                   echo "SHA: ${{ steps.get-sha.outputs.SHA }}"
 
             - name: Set up node ${{ matrix.node-version}}
-              uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+              uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4.2.0
               with:
                   node-version: ${{ matrix.node-version }}
 
@@ -65,7 +65,7 @@ jobs:
               run: corepack enable
 
             - name: Get yarn cache ${{ matrix.node-version}}
-              uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+              uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4.2.0
               with:
                   cache: 'yarn'
 
@@ -79,7 +79,7 @@ jobs:
 
             - name: Upload code coverage
               if: matrix.node-version == 22.11 # upload coverage report for current node version only
-              uses: codecov/codecov-action@1e68e06f1dbfde0e4cefc87efeba9e4643565303 # v5.1.2
+              uses: codecov/codecov-action@13ce06bfc6bbe3ecf90edbbf1bc32fe5978ca1d3 # v5.3.1
               env:
                   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
               with:
@@ -215,7 +215,7 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
             - name: Set up node ${{ matrix.node-version}}
-              uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+              uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4.2.0
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: 'yarn'

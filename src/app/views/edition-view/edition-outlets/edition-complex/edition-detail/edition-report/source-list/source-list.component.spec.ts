@@ -50,7 +50,7 @@ describe('SourceListComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         onSourceClickSpy = spyOn(component, 'onSourceClick').and.callThrough();
-        navigateToReportFragmentSpy = spyOn(component as any, '_navigateToReportFragment').and.callThrough();
+        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
         navigateToReportFragmentRequestEmitSpy = spyOn(
             component.navigateToReportFragmentRequest,
             'emit'
@@ -724,7 +724,7 @@ describe('SourceListComponent (DONE)', () => {
                 });
             }));
 
-            it('... should call `_navigateToReportFragment` if `source.hasDescription` is given', () => {
+            it('... should call `navigateToReportFragment` if `source.hasDescription` is given', () => {
                 const source = expectedSourceListData.sources[0];
 
                 // Call with a source that has description
@@ -752,9 +752,9 @@ describe('SourceListComponent (DONE)', () => {
             });
         });
 
-        describe('#_navigateToReportFragment()', () => {
-            it('... should have a method `_navigateToReportFragment`', () => {
-                expect((component as any)._navigateToReportFragment).toBeDefined();
+        describe('#navigateToReportFragment()', () => {
+            it('... should have a method `navigateToReportFragment`', () => {
+                expect(component.navigateToReportFragment).toBeDefined();
             });
 
             it('... should trigger from `onSourceClick` method', fakeAsync(() => {
@@ -767,27 +767,27 @@ describe('SourceListComponent (DONE)', () => {
 
             describe('... should not emit anything if', () => {
                 it('... parameter is undefined', () => {
-                    (component as any)._navigateToReportFragment(undefined);
+                    component.navigateToReportFragment(undefined);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
                 it('... parameter is null', () => {
-                    (component as any)._navigateToReportFragment(null);
+                    component.navigateToReportFragment(null);
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
                 it('... fragment id is undefined', () => {
-                    (component as any)._navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
                 it('... fragment id is null', () => {
-                    (component as any)._navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
                 it('... fragment id is empty string', () => {
-                    (component as any)._navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
+                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
 
                     expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
                 });
@@ -795,26 +795,26 @@ describe('SourceListComponent (DONE)', () => {
 
             it('... should emit id of selected report fragment within same complex', () => {
                 const expectedReportIds = { complexId: 'testComplex', fragmentId: expectedFragment };
-                (component as any)._navigateToReportFragment(expectedReportIds);
+                component.navigateToReportFragment(expectedReportIds);
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
 
                 const otherFragment = 'source_B';
                 const expectedNextReportIds = { complexId: 'testComplex', fragmentId: otherFragment };
-                (component as any)._navigateToReportFragment(expectedNextReportIds);
+                component.navigateToReportFragment(expectedNextReportIds);
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
             });
 
             it('... should emit id of selected report fragment for another complex', () => {
                 const expectedReportIds = { complexId: 'testComplex', fragmentId: expectedFragment };
-                (component as any)._navigateToReportFragment(expectedReportIds);
+                component.navigateToReportFragment(expectedReportIds);
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
 
                 const otherFragment = 'source_B';
                 const expectedNextReportIds = { complexId: 'anotherTestComplex', fragmentId: otherFragment };
-                (component as any)._navigateToReportFragment(expectedNextReportIds);
+                component.navigateToReportFragment(expectedNextReportIds);
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
             });
