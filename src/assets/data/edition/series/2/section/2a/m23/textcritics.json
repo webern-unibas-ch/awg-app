@@ -171,28 +171,28 @@
                                 "comment": "e überschreibt g."
                             },
                             {
-                                "svgGroupId": "g5",
+                                "svgGroupId": "g5b",
                                 "measure": "11",
                                 "system": "7",
                                 "position": "1. Note",
                                 "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
                             },
                             {
-                                "svgGroupId": "g6",
+                                "svgGroupId": "g6b",
                                 "measure": "11",
                                 "system": "8",
                                 "position": "1/4",
                                 "comment": "Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g7",
+                                "svgGroupId": "g7b",
                                 "measure": "11",
                                 "system": "8",
                                 "position": "3/4",
                                 "comment": "d gestrichen."
                             },
                             {
-                                "svgGroupId": "g8",
+                                "svgGroupId": "g8b",
                                 "measure": "11",
                                 "system": "7",
                                 "position": "(4/4)",
@@ -344,35 +344,35 @@
                                 "comment": "Viertelnote überschreibt Halbe Note."
                             },
                             {
-                                "svgGroupId": "g14",
+                                "svgGroupId": "g14b",
                                 "measure": "8",
                                 "system": "23",
                                 "position": "1. Note",
                                 "comment": "Punktierte Viertelnote überschreibt punktierte Halbe Note."
                             },
                             {
-                                "svgGroupId": "g15",
+                                "svgGroupId": "g15b",
                                 "measure": "8",
                                 "system": "22",
                                 "position": "10. Note",
                                 "comment": "c<sup>1</sup> überschreibt h."
                             },
                             {
-                                "svgGroupId": "g16",
+                                "svgGroupId": "g16b",
                                 "measure": "9",
                                 "system": "23",
                                 "position": "2.–3. Note",
                                 "comment": "G–d überschreibt D–G."
                             },
                             {
-                                "svgGroupId": "g8",
+                                "svgGroupId": "g8c",
                                 "measure": "11",
                                 "system": "13",
                                 "position": "1. Note",
                                 "comment": "c gestrichen."
                             },
                             {
-                                "svgGroupId": "g9",
+                                "svgGroupId": "g9c",
                                 "measure": "11",
                                 "system": "12",
                                 "position": "6. Note",
@@ -475,21 +475,21 @@
                                 "comment": "{{ref.getGlyph('[#]')}}dis/fis überschreibt e/{{ref.getGlyph('[[#]]')}}gis; e<sup>1</sup>: sic. Vermutlich stehen geblieben vom zunächst angedachten E-Dur."
                             },
                             {
-                                "svgGroupId": "g1",
+                                "svgGroupId": "g14",
                                 "measure": "8",
                                 "system": "8",
                                 "position": "2.–3. Note",
                                 "comment": "Sechzehntelnote fis<sup>2</sup> und Viertelnote a<sup>2</sup> gestrichen."
                             },
                             {
-                                "svgGroupId": "g2",
+                                "svgGroupId": "g15",
                                 "measure": "8",
                                 "system": "9",
                                 "position": "4. Note",
                                 "comment": "d gestrichen."
                             },
                             {
-                                "svgGroupId": "g4",
+                                "svgGroupId": "g16",
                                 "measure": "9",
                                 "system": "8",
                                 "position": "1/4",
@@ -576,14 +576,14 @@
                                 "comment": "c<sup>2</sup>–h<sup>1</sup> überschreibt h<sup>1</sup>–a<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g2",
+                                "svgGroupId": "g14",
                                 "measure": "8",
                                 "system": "12",
                                 "position": "3–4/8",
                                 "comment": "a<sup>1</sup>–e<sup>1</sup> überschreibt c<sup>2</sup>–a<sup>1</sup>."
                             },
                             {
-                                "svgGroupId": "g3",
+                                "svgGroupId": "g15",
                                 "measure": "8",
                                 "system": "12",
                                 "position": "6–7/8",
