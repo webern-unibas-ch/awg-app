@@ -127,7 +127,7 @@
         "@eslint/js": "^9.19.0",
         "@types/d3": "^7.4.3",
         "@types/jasmine": "~5.1.4",
-        "@types/node": "^22.10.10",
+        "@types/node": "^22.12.0",
         "angular-cli-ghpages": "^2.0.3",
         "angular-eslint": "^19.0.2",
         "commit-and-tag-version": "^12.5.0",
@@ -151,7 +151,7 @@
         "prettier": "^3.4.2",
         "source-map-explorer": "^2.5.3",
         "typescript": "~5.6.3",
-        "typescript-eslint": "^8.21.0",
+        "typescript-eslint": "^8.22.0",
         "webpack-bundle-analyzer": "^4.10.2"
     },
     "engines": {
