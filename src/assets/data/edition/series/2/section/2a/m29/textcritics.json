@@ -4,9 +4,9 @@
             "id": "M_29_TF1",
             "label": "M 29 einzige Textfassung",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 29 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm29', fragmentId: 'source_Ba'})\"><strong>B<sup>a</sup></strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm29', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm29', fragmentId: 'source_Bb'})\"><strong>B<sup>b</sup></strong></a> enthalten Skizzen.",
-                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm29', fragmentId: 'source_Ba'})\"><strong>B<sup>a</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 29 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm29', fragmentId: 'source_Ba'})\"><strong>B<sup>a</sup></strong></a> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition für Klavier M 29 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm29', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm29', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'm29', fragmentId: 'source_B'})\"><strong>B<sup>b</sup></strong></a> enthalten Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm29', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 29 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm29', fragmentId: 'source_B'})\"><strong>B<sup>a</sup></strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
