@@ -324,7 +324,10 @@
                 "contents": [
                     {
                         "item": "M 217 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_217_Sk1a"
+                        },
                         "itemDescription": "(Skizze zu <em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217)",
                         "folios": [
                             {
@@ -401,7 +404,10 @@
                     },
                     {
                         "item": "M 217 Sk1.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_217_Sk1_1"
+                        },
                         "itemDescription": "(Skizze zu <em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217)",
                         "folios": [
                             {
@@ -422,7 +428,10 @@
                     },
                     {
                         "item": "M 217 Sk1.2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_217_Sk1_2"
+                        },
                         "itemDescription": "(Skizze zu <em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217)",
                         "folios": [
                             {
@@ -963,7 +972,10 @@
                 "contents": [
                     {
                         "item": "M 216 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_216_Sk1a"
+                        },
                         "itemDescription": "(Skizze zu Gleich und Gleich [„Ein Blumenglöckchen“] M 216)",
                         "folios": [
                             {
