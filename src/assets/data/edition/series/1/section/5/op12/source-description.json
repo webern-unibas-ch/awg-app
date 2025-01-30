@@ -545,8 +545,83 @@
                 "annotations": [],
                 "contents": [
                     {
+                        "item": "M 213 Sk1.4.3",
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_213_Sk1_4_3"
+                        },
+                        "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13b–14b",
+                                            "measure": "",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 213 Sk1.4.2",
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_213_Sk1_4_2"
+                        },
+                        "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13c–14c",
+                                            "measure": "",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 213 Sk1.4.1",
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_213_Sk1_4_1"
+                        },
+                        "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "15b–16",
+                                            "measure": "",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         "item": "M 213 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_213_Sk1a"
+                        },
                         "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
                         "folios": [
                             {
@@ -636,29 +711,11 @@
                         ]
                     },
                     {
-                        "item": "M 213 Sk2",
-                        "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
-                        "folios": [
-                            {
-                                "folio": "2v",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "1–3",
-                                            "measure": "18–20",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 213 Sk3",
-                        "itemLinkTo": {},
+                        "item": "M 213 Sk1.5",
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_213_Sk1_5"
+                        },
                         "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
                         "folios": [
                             {
@@ -668,8 +725,8 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "14b",
-                                            "measure": "24–26",
+                                            "system": "6a",
+                                            "measure": "",
                                             "linkTo": ""
                                         }
                                     ]
@@ -678,8 +735,11 @@
                         ]
                     },
                     {
-                        "item": "M 213 Sk4",
-                        "itemLinkTo": {},
+                        "item": "M 213 Sk1.6",
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_213_Sk1_6"
+                        },
                         "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
                         "folios": [
                             {
@@ -699,8 +759,11 @@
                         ]
                     },
                     {
-                        "item": "M 213 Sk5",
-                        "itemLinkTo": {},
+                        "item": "M 213 Sk1.3",
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_213_Sk1_3"
+                        },
                         "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
                         "folios": [
                             {
@@ -720,24 +783,58 @@
                         ]
                     },
                     {
-                        "item": "M 213 Sk8",
-                        "itemLinkTo": {},
+                        "item": "M 213 Sk1.2",
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_213_Sk1_2"
+                        },
                         "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
                         "folios": [
                             {
-                                "folio": "1r",
+                                "folio": "2r",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "13b–16",
-                                            "measure": "38–39",
+                                            "system": "14b",
+                                            "measure": "24–26",
                                             "linkTo": ""
                                         }
                                     ]
                                 ]
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 213 Sk1.1",
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_213_Sk1_1"
+                        },
+                        "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "18–20",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "nicht identifizierte Skizze",
+                        "folios": [
                             {
                                 "folio": "3r",
                                 "folioLinkTo": "",
