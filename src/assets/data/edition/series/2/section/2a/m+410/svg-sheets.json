@@ -1,0 +1,19 @@
+{
+    "sheets": {
+        "workEditions": [],
+        "textEditions": [
+            {
+                "id": "M*_410_TF1",
+                "label": "M* 410 einzige Textfassung",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m*410/M*410_Textfassung1-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": ""
+                    }
+                ]
+            }
+        ]
+    }
+}
