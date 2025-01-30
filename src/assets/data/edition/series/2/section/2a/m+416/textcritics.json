@@ -1,0 +1,77 @@
+{
+    "textcritics": [
+        {
+            "id": "M*_416_TF1",
+            "label": "M* 416 einzige Textfassung",
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M* 416 ist <strong>B</strong> relevante Quelle. <strong>A</strong> enthält Skizzen.",
+                "<strong>B</strong> weist keine Korrekturen auf.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 416 ist <strong>B</strong>."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            "Nicht vorhanden."
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
+        },   
+        {
+            "id": "M*_416_Sk1",
+            "label": "M* 416 Sk1",
+            "evaluations": [
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M* 416."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g175",
+                                "measure": "{1A}",
+                                "system": "16–15",
+                                "position": "",
+                                "comment": "Takt pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g186",
+                                "measure": "5",
+                                "system": "17",
+                                "position": "1/4",
+                                "comment": "Viertelnote H/h gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g176",
+                                "measure": "3",
+                                "system": "15",
+                                "position": "(3/8)",
+                                "comment": "Metrisch falsch platzierte Viertelnote d<sup>1</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g177",
+                                "measure": "4",
+                                "system": "16",
+                                "position": "1/4",
+                                "comment": "Oberstimmenschicht: Viertelnote überschreibt Achtelnote."
+                            },
+                            {
+                                "svgGroupId": "g178",
+                                "measure": "8",
+                                "system": "16",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: e<sup>1</sup> gestrichen."
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
