@@ -1,0 +1,45 @@
+{
+    "textcritics": [
+        {
+            "id": "M_267_TF1",
+            "label": "M 267 einzige Textfassung",
+            "evaluations": [
+                "Für die Textedition des Kinderstücks für Klavier M 267 ist <strong>A</strong> einzige relevante Quelle.",
+                "<strong>A</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition des Kinderstücks für Klavier M 267 ist <strong></strong> nach Korrekturen 1."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g533",
+                                "measure": "1 <br /> bis 2",
+                                "system": "Klav.",
+                                "position": "5/8 <br /> 1. Note",
+                                "comment": "Decrescendogabel versetzt von unter den Systemen."
+                            },
+                            {
+                                "svgGroupId": "g534",
+                                "measure": "5",
+                                "system": "Klav.",
+                                "position": "2–3/8",
+                                "comment": "Decrescendogabel versetzt von unter den Systemen."
+                            },
+                            {
+                                "svgGroupId": "g535",
+                                "measure": "6",
+                                "system": "Klav.",
+                                "position": "4/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 3/8."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
+        }
+    ]
+}
