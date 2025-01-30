@@ -963,6 +963,669 @@
             ]
         },
         {
+            "id": "M_213_Sk1",
+            "label": "M 213 Sk1",
+            "evaluations": [
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu „Schien mir’s, als ich sah die Sonne“ M 213. Gegenüber der <span class='link-todo'>einzigen Textfassung</span> des Liedes weist <strong>Sk1</strong> teilweise eine andere Takteinteilung auf."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g4a",
+                                "measure": "{4A}",
+                                "system": "",
+                                "position": "",
+                                "comment": "Durch Einkreisung in System 3–4 pauschal getilgt."
+                            },
+                            {
+                                "svgGroupId": "g5a",
+                                "measure": "6",
+                                "system": "6",
+                                "position": "",
+                                "comment": "Bezug unklar. Möglicherweise alternative Formulierung für T. 6 Klav. u. (System 4)."
+                            },
+                            {
+                                "svgGroupId": "g6a",
+                                "measure": "6",
+                                "system": "1",
+                                "position": "3/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> (?) gestrichen und ersetzt durch <span class='glyph'>{{ref.getGlyph('[a]')}}</span>g<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g4b",
+                                "measure": "{7A}",
+                                "system": "",
+                                "position": "",
+                                "comment": "Durch Einkreisung in System 9–10 pauschal getilgt."
+                            },
+                            {
+                                "svgGroupId": "g4c",
+                                "measure": "15",
+                                "system": "13",
+                                "position": "2/8",
+                                "comment": "Unklare Überschreibung: c<sup>1</sup> überschreibt f<sup>1</sup> (und Tonbuchstabe <em>f</em>) oder umgekehrt? Siehe <span class='link-todo'>einzige Textfassung</span>: c<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g5c",
+                                "measure": "15",
+                                "system": "13",
+                                "position": "3/8",
+                                "comment": "Unklare Überschreibung: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> (undeutlich) zu h<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> oder umgekehrt? Siehe <span class='link-todo'>einzige Textfassung</span>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span>h<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g6c",
+                                "measure": "{18A–20A}",
+                                "system": "",
+                                "position": "",
+                                "comment": "Durch Verweiszeichen vor T. {18A} (zu T. 18B) und pauschale Streichung in T. {18A} getilgt."
+                            },
+                            {
+                                "svgGroupId": "g7c",
+                                "measure": "{19A}",
+                                "system": "15",
+                                "position": "1. Note",
+                                "comment": "Halbe Note a<sup>2</sup> überschreibt Viertelnote, vermutlich pauschal für d<sup>2</sup>/a<sup>2</sup>."
+                            },
+                            {
+                                "svgGroupId": "g8c",
+                                "measure": "{19A} <br /> bis {20A}",
+                                "system": "15",
+                                "position": "3/4 <br /> 1/4",
+                                "comment": "Durch Einkreisungen getilgt."
+                            },
+                            {
+                                "svgGroupId": "g6d",
+                                "measure": "20B",
+                                "system": "1",
+                                "position": "2. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> (Ansatz zu dis<sup>2</sup>?)."
+                            },
+                            {
+                                "svgGroupId": "g4d",
+                                "measure": "{22A}",
+                                "system": "",
+                                "position": "",
+                                "comment": "sic: leerer Takt gestrichen. Vermutlich nach bereits gezogenem schließenden Taktstrich und auf Grund veränderter grafischer Disposition. Siehe T. 22B."
+                            },
+                            {
+                                "svgGroupId": "g5d",
+                                "measure": "22B",
+                                "system": "",
+                                "position": "nach 4/16",
+                                "comment": "Gestrichelter Taktstrich hinzugefügt. Siehe Taktdisposition in <span class='link-todo'>einzige Textfassung</span> T. 22–23."
+                            },
+                            {
+                                "svgGroupId": "g8d",
+                                "measure": "22B",
+                                "system": "1",
+                                "position": "6/16",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> (Ansatz zu gis<sup>1</sup>?)."
+                            },
+                            {
+                                "svgGroupId": "g4e",
+                                "measure": "vor 23",
+                                "system": "",
+                                "position": "",
+                                "comment": "Taktartvorzeichnung <em>4/8</em> überschreibt <em>2/8</em>."
+                            },
+                            {
+                                "svgGroupId": "g5e",
+                                "measure": "23",
+                                "system": "7",
+                                "position": "3. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>b<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup> (?)."
+                            },
+                            {
+                                "svgGroupId": "g6e",
+                                "measure": "24",
+                                "system": "7, 9–10",
+                                "position": "nach (2/8)",
+                                "comment": "Gestrichelter Taktstrich hinzugefügt. Siehe Taktdisposition in <span class='link-todo'>einzige Textfassung</span> nach T. 26."
+                            },
+                            {
+                                "svgGroupId": "g7e",
+                                "measure": "24",
+                                "system": "9",
+                                "position": "letzte Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>es<sup>2</sup> (?)."
+                            },
+                            {
+                                "svgGroupId": "g8e",
+                                "measure": "24",
+                                "system": "9–10",
+                                "position": "letzte Note",
+                                "comment": "Durch Einkreisung getilgt. Siehe Änderungen in System 11 (ebenfalls durch Einkreisung getilgt) und in System 12–13."
+                            },
+                            {
+                                "svgGroupId": "g4f",
+                                "measure": "29A",
+                                "system": "13",
+                                "position": "3/8",
+                                "comment": "e<sup>2</sup> gestrichen und geändert zu e<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g5f",
+                                "measure": "30A",
+                                "system": "13",
+                                "position": "1. Note",
+                                "comment": "Gestrichen und (tonhöhenunspezifisch) weitergeführt in System 12."
+                            },
+                            {
+                                "svgGroupId": "g6f",
+                                "measure": "32A",
+                                "system": "12",
+                                "position": "",
+                                "comment": "Gestrichen und geändert in System 13."
+                            },
+                            {
+                                "svgGroupId": "g4g",
+                                "measure": "{29B–31B}",
+                                "system": "",
+                                "position": "",
+                                "comment": "Durch Einkreisung pauschal getilgt."
+                            },
+                            {
+                                "svgGroupId": "g5g",
+                                "measure": "vor 29C",
+                                "system": "1",
+                                "position": "",
+                                "comment": "Taktartvorzeichnung <em>2/4</em> (?) gestrichen. Siehe Änderung in System 3–4."
+                            },
+                            {
+                                "svgGroupId": "g6g",
+                                "measure": "29C",
+                                "system": "1",
+                                "position": "2/4 bzw. 3/8",
+                                "comment": "Viertelpause gestrichen und geändert zu Achtelnote c<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g7g",
+                                "measure": "vor 30C",
+                                "system": "",
+                                "position": "",
+                                "comment": "Taktartvorzeichnung <em>6/8</em> überschreibt <em>3/4</em>."
+                            },
+                            {
+                                "svgGroupId": "g8g",
+                                "measure": "30C",
+                                "system": "",
+                                "position": "nach (3/8)",
+                                "comment": "Taktstrich gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g9g",
+                                "measure": "31C",
+                                "system": "3",
+                                "position": "1/16",
+                                "comment": "Durch Einkreisung getilgt. Siehe vermutliche Änderung in System 2."
+                            },
+                            {
+                                "svgGroupId": "g4h",
+                                "measure": "33",
+                                "system": "8",
+                                "position": "(3/8)",
+                                "comment": "Nicht identifizierbares Zeichen gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g5h",
+                                "measure": "38 <br /> bis nach 38",
+                                "system": "",
+                                "position": "nach 4/16",
+                                "comment": "Taktstrich nach 4/16 ansatzweise radiert. Vermutlich danach vorgezeichneter Taktstrich am Ende der Akkolade gestrichen und Taktstrich nach 6/16 hinzugefügt."
+                            },
+                            {
+                                "svgGroupId": "g4i",
+                                "measure": "39–40",
+                                "system": "",
+                                "position": "",
+                                "comment": "sic: unklare Disposition. Entweder ist T. 39 ein gegenüber der <span class='link-todo'>einzigen Textfassung</span> zusätzlicher Takt. Oder T. 40 ersetzt den (nicht explizit getilgten) T. 39."
+                            },
+                            {
+                                "svgGroupId": "g5i",
+                                "measure": "40",
+                                "system": "13",
+                                "position": "1. Note",
+                                "comment": "Gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g6i",
+                                "measure": "40",
+                                "system": "13",
+                                "position": "2.–4. Note",
+                                "comment": "Durch Einkreisung getilgt. Siehe Änderung in System 12."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g11e",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_5"
+                    }
+                },
+                {
+                    "svgGroupId": "g12e",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_6"
+                    }
+                },
+                {
+                    "svgGroupId": "g13e",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g14e",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g15e",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1f"
+                    }
+                },
+                {
+                    "svgGroupId": "g12f",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1e"
+                    }
+                },
+                {
+                    "svgGroupId": "g13f",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g14f",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g13i",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_4_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g14i",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_4_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g15i",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_4_1"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_213_Sk1_1",
+            "label": "M 213 Sk1.1",
+            "evaluations": [
+                "<strong>Sk1.1</strong> überarbeitet T. 18B–20C von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1d'})\"><strong>Sk1</strong></a>, ohne bereits die Formulierung der <span class='link-todo'>einzigen Textfassung</span> T. 18–20 identisch vorwegzunehmen."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g4",
+                                "measure": "18C",
+                                "system": "3",
+                                "position": "3/8",
+                                "comment": "Nicht identifizierbare Note gestrichen und geändert zu C."
+                            },
+                            {
+                                "svgGroupId": "g5",
+                                "measure": "19C",
+                                "system": "1",
+                                "position": "2/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "19C",
+                                "system": "2",
+                                "position": "3/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>a<sup>1</sup> gestrichen und geändert zu d<sup>1</sup>."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
+        },
+        {
+            "id": "M_213_Sk1_2",
+            "label": "M 213 Sk1.2",
+            "evaluations": [
+                "<strong>Sk1.2</strong> überarbeitet die Singstimme von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1e'})\"><strong>Sk1</strong></a> in T. 24 ab dem 5/16 und ergänzt sie für die in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1e'})\"><strong>Sk1</strong></a> unausgefüllt gelassenen T. 25–26 (siehe <span class='link-todo'>einzige Textfassung</span> T. 27–29)."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g4",
+                                "measure": "24",
+                                "system": "14",
+                                "position": "1. Note",
+                                "comment": "Sechzehntelnote <span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> überschreibt Ansatz zu <span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> oder <span class='glyph'>{{ref.getGlyph('[a]')}}</span>d<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g5",
+                                "measure": "25",
+                                "system": "14",
+                                "position": "1–2/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup>–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "26",
+                                "system": "14",
+                                "position": "1. Note",
+                                "comment": "Achtelnote geändert zu Viertelnote und vermutlich <em>4</em> (lies: 4 Achtel für 3 Achtel) hinzugefügt."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g12",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1e"
+                    }
+                },
+                {
+                    "svgGroupId": "g13",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g15",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1f"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_213_Sk1_3",
+            "label": "M 213 Sk3",
+            "evaluations": [
+                "<strong>Sk1.3</strong> ist eine Rhythmusskizze zur Singstimme von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1h'})\"><strong>Sk1</strong></a> T. 33–36 (siehe <span class='link-todo'>einzige Textfassung</span> T. 35–38)."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g4",
+                                "measure": "vor 34",
+                                "system": "12",
+                                "position": "",
+                                "comment": "Taktstrich vermutlich hinzugefügt."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g12",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1e"
+                    }
+                },
+                {
+                    "svgGroupId": "g15",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1f"
+                    }
+                },
+                {
+                    "svgGroupId": "g14",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_213_Sk1_4_1",
+            "label": "M 213 Sk1.4.1",
+            "evaluations": [
+                "<strong>Sk1.4.1</strong>, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_2'})\"><strong>Sk1.4.2</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_3'})\"><strong>Sk1.4.3</strong></a> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1h'})\"><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": []
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g13",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_4_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g14",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_4_2"
+                    }
+                },
+                {
+                    "svgGroupId": "g15",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1i"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_213_Sk1_4_2",
+            "label": "M 213 Sk1.4.2",
+            "evaluations": [
+                "<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_1'})\"><strong>Sk1.4.1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_2'})\"><strong>Sk1.4.2</strong></a> und <strong>Sk1.4.3</strong> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1h'})\"><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "",
+                                "system": "12",
+                                "position": "2. Note",
+                                "comment": "Durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "",
+                                "system": "12",
+                                "position": "3. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span>c<sup>1</sup> (siehe auch Tonbuchstabe <em>c</em>) überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>b."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g13",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_4_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g15",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_4_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g14",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1i"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_213_Sk1_4_3",
+            "label": "M 213 Sk1.4.3",
+            "evaluations": [
+                "<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_1'})\"><strong>Sk1.4.1</strong></a>, <strong>Sk1.4.2</strong> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_3'})\"><strong>Sk1.4.3</strong></a> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1h'})\"><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g4",
+                                "measure": "",
+                                "system": "12",
+                                "position": "1. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "",
+                                "system": "12–13",
+                                "position": "",
+                                "comment": "Durch Einkreisung getilgt."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g14",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_4_3"
+                    }
+                },
+                {
+                    "svgGroupId": "g15",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_4_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g16",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1i"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_213_Sk1_5",
+            "label": "M 213 Sk1.5",
+            "evaluations": [
+                "<strong>Sk1.5</strong> ist eine nicht zuordenbare Rhythmusskizze vermutlich zur Singstimme von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1'})\"><strong>Sk1</strong></a>."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": []
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g12",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_6"
+                    }
+                },
+                {
+                    "svgGroupId": "g15",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1e"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_213_Sk1_6",
+            "label": "M 213 Sk1.6",
+            "evaluations": [
+                "<strong>Sk1.6</strong> ist eine nicht zuordenbare Rhythmusskizze, möglicherweise zu den Schlusstakten (siehe Triller) von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1'})\"><strong>Sk1</strong></a>."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": []
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g11",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1_5"
+                    }
+                },
+                {
+                    "svgGroupId": "g15",
+                    "linkTo": {
+                        "complexId": "op12",
+                        "sheetId": "M_213_Sk1e"
+                    }
+                }
+            ]
+        },
+        {
             "id": "M_216_Sk1",
             "label": "M 216 Sk1",
             "evaluations": [
