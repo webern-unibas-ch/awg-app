@@ -1021,7 +1021,7 @@
                                 "measure": "{18A–20A}",
                                 "system": "",
                                 "position": "",
-                                "comment": "Durch Verweiszeichen vor T. {18A} (zu T. 18B) und pauschale Streichung in T. {18A} getilgt."
+                                "comment": "Durch Verweiszeichen vor T. {{ '{' }}18A{{ '}' }} (zu T. 18B) und pauschale Streichung in T. {{ '{' }}18A{{ '}' }} getilgt."
                             },
                             {
                                 "svgGroupId": "g7c",
