@@ -143,6 +143,162 @@
                 ]
             },
             {
+                "id": "M_213_Sk1",
+                "label": "M 213 Sk1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1-1von9-final.svg",
+                        "image": "",
+                        "partial": "a",
+                        "convolute": "Ac"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1-2von9-final.svg",
+                        "image": "",
+                        "partial": "b",
+                        "convolute": "Ac"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1-3von9-final.svg",
+                        "image": "",
+                        "partial": "c",
+                        "convolute": "Ac"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1-4von9-final.svg",
+                        "image": "",
+                        "partial": "d",
+                        "convolute": "Ac"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1-5von9-final.svg",
+                        "image": "",
+                        "partial": "e",
+                        "convolute": "Ac"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1-6von9-final.svg",
+                        "image": "",
+                        "partial": "f",
+                        "convolute": "Ac"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1-7von9-final.svg",
+                        "image": "",
+                        "partial": "g",
+                        "convolute": "Ac"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1-8von9-final.svg",
+                        "image": "",
+                        "partial": "h",
+                        "convolute": "Ac"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1-9von9-final.svg",
+                        "image": "",
+                        "partial": "i",
+                        "convolute": "Ac"
+                    }
+                ]
+            },
+            {
+                "id": "M_213_Sk1_1",
+                "label": "M 213 Sk1.1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1_1-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "Ac"
+                    }
+                ]
+            },
+            {
+                "id": "M_213_Sk1_2",
+                "label": "M 213 Sk1.2",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1_2-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "Ac"
+                    }
+                ]
+            },
+            {
+                "id": "M_213_Sk1_3",
+                "label": "M 213 Sk1.3",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1_3-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "Ac"
+                    }
+                ]
+            },
+            {
+                "id": "M_213_Sk1_4_1",
+                "label": "M 213 Sk1.4.1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1_4_1-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "Ac"
+                    }
+                ]
+            },
+            {
+                "id": "M_213_Sk1_4_2",
+                "label": "M 213 Sk1.4.2",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1_4_2-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "Ac"
+                    }
+                ]
+            },
+            {
+                "id": "M_213_Sk1_4_3",
+                "label": "M 213 Sk1.4.3",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1_4_3-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "Ac"
+                    }
+                ]
+            },
+            {
+                "id": "M_213_Sk1_5",
+                "label": "M 213 Sk1.5",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1_5-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "Ac"
+                    }
+                ]
+            },
+            {
+                "id": "M_213_Sk1_6",
+                "label": "M 213 Sk1.6",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/5/op12/M213_Sk1_6-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "Ac"
+                    }
+                ]
+            },
+            {
                 "id": "M_216_Sk1",
                 "label": "M 216 Sk1",
                 "content": [
