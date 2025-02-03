@@ -1467,7 +1467,7 @@
             "id": "M_213_Sk1_4_2",
             "label": "M 213 Sk1.4.2",
             "evaluations": [
-                "<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_1'})\"><strong>Sk1.4.1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_2'})\"><strong>Sk1.4.2</strong></a> und <strong>Sk1.4.3</strong> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1h'})\"><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
+                "<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_1'})\"><strong>Sk1.4.1</strong></a>, <strong>Sk1.4.2</strong> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_3'})\"><strong>Sk1.4.3</strong></a> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1h'})\"><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
             ],
             "commentary": {
                 "preamble": "",
@@ -1521,7 +1521,7 @@
             "id": "M_213_Sk1_4_3",
             "label": "M 213 Sk1.4.3",
             "evaluations": [
-                "<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_1'})\"><strong>Sk1.4.1</strong></a>, <strong>Sk1.4.2</strong> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_3'})\"><strong>Sk1.4.3</strong></a> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1h'})\"><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
+                "<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_1'})\"><strong>Sk1.4.1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1_4_2'})\"><strong>Sk1.4.2</strong></a> und <strong>Sk1.4.3</strong> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M_213_Sk1h'})\"><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
             ],
             "commentary": {
                 "preamble": "",
