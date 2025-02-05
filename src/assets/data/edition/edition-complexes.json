@@ -23,6 +23,28 @@
             }
         },
         {
+            "M23": {
+                "titleStatement": {
+                    "title": "<em>Der Winter ist vergangen, ich seh den Maienschein</em>. Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "23"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "29. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
             "M29": {
                 "titleStatement": {
                     "title": "Studienkomposition für Klavier",
@@ -81,6 +103,50 @@
                         }
                     ],
                     "lastModified": "19. Januar 2024"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M32": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "32"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "24. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M33": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "33"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "27. Januar 2025"
                 },
                 "pubStatement": {
                     "series": "2",
@@ -199,6 +265,28 @@
             }
         },
         {
+            "M39": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "39"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "9. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
             "M40": {
                 "titleStatement": {
                     "title": "Studienkomposition für Klavier",
@@ -257,6 +345,446 @@
                         }
                     ],
                     "lastModified": "8. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M44": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "44"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "9. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M45": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "45"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "27. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M46": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "46"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "27. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M75": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "75"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "30. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M76": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier/Streichquartett",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "76"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "27. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M112": {
+                "titleStatement": {
+                    "title": "<em>Satz für Klavier</em>. Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "112"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "5. Februar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M113": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "113"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "23. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M114": {
+                "titleStatement": {
+                    "title": "<em>Rondo für Klavier</em>. Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "114"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "6. Februar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M116": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "116"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "23. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M267": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "267"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "30. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M*409": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "409"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "30. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M*410": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "410"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "30. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M*412": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "412"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "30. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M*413": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "413"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "5. Februar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M*414": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "414"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "30. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M*415": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "415"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "30. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M*416": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "416"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "30. Januar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M*465": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "465"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "6. Februar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M*466": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "466"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "6. Februar 2025"
+                },
+                "pubStatement": {
+                    "series": "2",
+                    "section": "2a"
+                }
+            }
+        },
+        {
+            "M*467": {
+                "titleStatement": {
+                    "title": "Studienkomposition für Klavier",
+                    "catalogueType": "MNR",
+                    "catalogueNumber": "467"
+                },
+                "respStatement": {
+                    "editors": [
+                        {
+                            "name": "Michael Matter",
+                            "homepage": "https://www.anton-webern.ch/index.php?id=3"
+                        }
+                    ],
+                    "lastModified": "6. Februar 2025"
                 },
                 "pubStatement": {
                     "series": "2",
