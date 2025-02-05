@@ -1,0 +1,46 @@
+{
+    "textcritics": [
+        {
+            "id": "SkRT",
+            "label": "M 289 / M 290 / M 291 RT (Reihentabelle op. 20)",
+            "evaluations": [
+                "<small class=\"text-muted\">[Der Skizzenkommentar erscheint im Zusammenhang der vollständigen Edition von Opus 20 in AWG I/2.]</small>"
+            ],
+            "rowtable": true,
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g4a",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "1a",
+                                "position": "G<sub>as</sub>",
+                                "comment": "Reihennummerierung <em>I</em> und -bezeichnung <em>G</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g3a",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "1a",
+                                "position": "G<sub>as</sub>: nach 8. bzw. vor 9. Reihenton",
+                                "comment": "Unklares Zeichen: Notenkopf f<sup>1</sup>?"
+                            },
+                            {
+                                "####"
+                            },
+                            {
+                                "svgGroupId": "###g8997",
+                                "measure": "Bl. 3<sup>r</sup>",
+                                "system": "8b",
+                                "position": "KU<sub>fis</sub>: 12. Reihenton",
+                                "comment": "Eingekreist mit Bleistift."
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
