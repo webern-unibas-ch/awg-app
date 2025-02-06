@@ -44,9 +44,37 @@
                             {
                                 "svgGroupId": "g7a",
                                 "measure": "Bl. 1<sup>r</sup>",
-                                "system": "1b",
+                                "system": "2b",
                                 "position": "KU<sub>f</sub>",
                                 "comment": "Reihennummerierung <em>IV</em> und -bezeichnung <em>U Kr</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g8a",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "3a",
+                                "position": "G<sub>d</sub>",
+                                "comment": "Reihennummerierung <em>V</em> mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g9a",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "3b",
+                                "position": "K<sub>f</sub>",
+                                "comment": "Reihennummerierung <em>VI</em> und -bezeichnung <em>Kr</em> mit blauer Tinte überschreibt [xxx] mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g10a",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "4a",
+                                "position": "U<sub>d</sub>",
+                                "comment": "Reihennummerierung <em>VII</em> und -bezeichnung <em>U</em> mit blauer Tinte überschreibt <em>VII</em> und <em>U</em> mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g11a",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "4b",
+                                "position": "KU<sub>h</sub>",
+                                "comment": "Reihennummerierung <em>VIII</em> mit grünem Buntstift und Reihenbezeichnung <em>U Kr</em> mit blauer Tinte."
                             },
                             {
                                 "####": "###"

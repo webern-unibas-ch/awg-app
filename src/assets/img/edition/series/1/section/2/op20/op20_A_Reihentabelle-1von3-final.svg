@@ -789,9 +789,9 @@
    inkscape:window-height="1106"
    id="namedview1707"
    showgrid="false"
-   inkscape:zoom="7.0573987"
-   inkscape:cx="529.79861"
-   inkscape:cy="429.83259"
+   inkscape:zoom="1.172159"
+   inkscape:cx="530.64473"
+   inkscape:cy="343.38345"
    inkscape:window-x="-11"
    inkscape:window-y="-11"
    inkscape:window-maximized="1"
@@ -4126,7 +4126,7 @@
    width="90.199776"
    y="329.04318"
    x="151.47162" /><g
-   id="g8"
+   id="g8a"
    class="tkk"><text
      style="font-size:10.9333px;font-family:'Times New Roman';fill:#00c800;fill-opacity:1;stroke-width:1.33333"
      id="text918"
@@ -6679,7 +6679,7 @@
 
 
 <g
-   id="g11"
+   id="g11a"
    class="tkk"><text
      style="font-size:10.9333px;font-family:'Times New Roman';fill:#00c800;fill-opacity:1;stroke-width:1.33333"
      id="text1544"
@@ -7127,12 +7127,12 @@
 
 
 <g
-   id="g9"
+   id="g9a"
    class="tkk"><text
      style="font-size:10.9333px;font-family:'Times New Roman';fill:#000000;stroke-width:1.33333"
      id="text1542"
      font-size="8.200000"
-     x="517.73737"
+     x="521.73737"
      y="346.12714">VI</text><text
      style="font-size:10.9333px;font-family:'Times New Roman';fill:#000000;stroke-width:1.33333"
      id="text1546"
@@ -7142,10 +7142,10 @@
      style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.28893px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#7dd27d;fill-opacity:1;stroke-width:0.999998"
      id="text3363"
      font-size="8.200000"
-     x="531.66907"
+     x="505.66907"
      y="346.12714"><tspan
        id="tspan3361"
-       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.28893px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#7dd27d;fill-opacity:1;stroke-width:0.999998">[x]</tspan></text></g>
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.28893px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#7dd27d;fill-opacity:1;stroke-width:0.999998">[xxx]</tspan></text></g>
 
 
 
@@ -7158,7 +7158,7 @@
    id="path1667-8"
    inkscape:connector-curvature="0"
    style="fill:#7dd27d;fill-opacity:1;stroke:none;stroke-width:0.99999756" /><g
-   id="g10"
+   id="g10a"
    class="tkk"><text
      style="font-size:8.19998px;font-family:'Times New Roman';fill:#7dd27d;fill-opacity:1;stroke-width:0.999998"
      id="text920"
