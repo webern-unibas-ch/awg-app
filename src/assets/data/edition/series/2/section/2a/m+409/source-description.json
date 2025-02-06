@@ -993,14 +993,14 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "12c–13c (Tinte)",
-                                            "measure": "{1A–2A, 1B–2B}, 1C",
+                                            "system": "22c–23c (Tinte)",
+                                            "measure": "{1A–2A, 1B–2B}, 1C–2C",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "14b–15b",
+                                            "system": "24b–25b",
                                             "measure": "3–6",
                                             "linkTo": ""
                                         }
