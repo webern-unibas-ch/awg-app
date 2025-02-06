@@ -1,0 +1,83 @@
+{
+    "textcritics": [
+        {
+            "id": "M*_466_TF1",
+            "label": "M* 466 einzige Textfassung",
+            "evaluations": [
+                "Für die Textedition der Studienkomposition M* 466 ist <strong>B</strong> relevante Quelle. <strong>A</strong> enthält Skizzen.",
+                "<strong>B</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit blauem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition M* 466 ist <strong>B</strong> nach Korrekturen 1."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            "Nicht vorhanden."
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "M*_466_Sk1",
+            "label": "M* 466 Sk1",
+            "evaluations": [
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition M* 466."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "1",
+                                "system": "3",
+                                "position": "3/8",
+                                "comment": "Unterstimmenschicht: Achtelnote g<sup>1</sup> radiert."
+                            },
+                            {
+                                "svgGroupId": "g3",
+                                "measure": "1",
+                                "system": "3",
+                                "position": "3/4",
+                                "comment": "Unterstimmenschicht: c<sup>1</sup> überschreibt f<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g4",
+                                "measure": "1",
+                                "system": "3",
+                                "position": "4/4",
+                                "comment": "Unterstimmenschicht: Viertelnote e<sup>1</sup> überschreibt Achtelnoten e<sup>1</sup>–d<sup></sup>."
+                            },
+                            {
+                                "svgGroupId": "g5",
+                                "measure": "2 bis 3",
+                                "system": "3",
+                                "position": "letzte Note bis 1. Note",
+                                "comment": "Unterstimmenschicht: Ligatur gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "5",
+                                "system": "2",
+                                "position": "3/8",
+                                "comment": "Oberstimmenschicht: a<sup>1</sup> überschreibt h<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "7",
+                                "system": "2",
+                                "position": "1/2",
+                                "comment": "Halbe Note g radiert."
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
