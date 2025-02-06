@@ -28,14 +28,28 @@
                                 "comment": "Unklares Zeichen: Notenkopf f<sup>1</sup>?"
                             },
                             {
-                                "####"
+                                "svgGroupId": "g5a",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "1b",
+                                "position": "K<sub>h</sub>",
+                                "comment": "Reihennummerierung <em>II</em> und -bezeichnung <em>Kr.</em> mit rotem Buntstift."
                             },
                             {
-                                "svgGroupId": "###g8997",
-                                "measure": "Bl. 3<sup>r</sup>",
-                                "system": "8b",
-                                "position": "KU<sub>fis</sub>: 12. Reihenton",
-                                "comment": "Eingekreist mit Bleistift."
+                                "svgGroupId": "g6a",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "2a",
+                                "position": "U<sub>as</sub>",
+                                "comment": "Reihennummerierung <em>III</em> und -bezeichnung <em>U</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g7a",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "1b",
+                                "position": "KU<sub>f</sub>",
+                                "comment": "Reihennummerierung <em>IV</em> und -bezeichnung <em>U Kr</em> mit rotem Buntstift."
+                            },
+                            {
+                                "####": "###"
                             }
                         ]
                     }

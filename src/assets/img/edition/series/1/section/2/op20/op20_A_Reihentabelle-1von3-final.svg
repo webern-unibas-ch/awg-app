@@ -785,15 +785,15 @@
    guidetolerance="10"
    inkscape:pageopacity="0"
    inkscape:pageshadow="2"
-   inkscape:window-width="2560"
-   inkscape:window-height="1377"
+   inkscape:window-width="1920"
+   inkscape:window-height="1106"
    id="namedview1707"
    showgrid="false"
-   inkscape:zoom="1.4478528"
-   inkscape:cx="384.36229"
-   inkscape:cy="395.41314"
-   inkscape:window-x="2552"
-   inkscape:window-y="-8"
+   inkscape:zoom="7.0573987"
+   inkscape:cx="529.79861"
+   inkscape:cy="429.83259"
+   inkscape:window-x="-11"
+   inkscape:window-y="-11"
    inkscape:window-maximized="1"
    inkscape:current-layer="svg1705"
    inkscape:document-units="mm"
@@ -3948,7 +3948,7 @@
 
 
 <g
-   id="g6"
+   id="g6a"
    class="tkk"><text
      style="font-size:10.9333px;font-family:'Times New Roman';fill:#ff0000;fill-opacity:1;stroke-width:1.33333"
      id="text876"
@@ -6635,7 +6635,7 @@
 
 
 <g
-   id="g5"
+   id="g5a"
    class="tkk"><text
      style="font-size:10.9333px;font-family:'Times New Roman';fill:#ff0000;fill-opacity:1;stroke-width:1.33333"
      id="text1534"
@@ -6651,7 +6651,7 @@
 
 
 <g
-   id="g7"
+   id="g7a"
    class="tkk"><text
      style="font-size:10.9333px;font-family:'Times New Roman';fill:#ff0000;fill-opacity:1;stroke-width:1.33333"
      id="text1536"
