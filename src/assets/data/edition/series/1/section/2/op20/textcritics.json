@@ -147,6 +147,132 @@
                                 "comment": "Markierungskreuz hinzugefügt mit blauer Tinte."
                             },
                             {
+                                "svgGroupId": "text862b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "1a",
+                                "position": "G<sub>g</sub>",
+                                "comment": "Reihennummerierung <em>XVII</em> mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g2b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "1–4",
+                                "position": "1.–3., 4.–6., 7.–9., 10.–12. Reihenton",
+                                "comment": "Bögen zu den Trichorden der Reihenformen mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text1530b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "1b",
+                                "position": "K<sub>b</sub>",
+                                "comment": "Reihennummerierung <em>XVII</em> mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text864b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "2a",
+                                "position": "U<sub>g</sub>",
+                                "comment": "Reihennummerierung <em>XIX</em> mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text1534b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "2b",
+                                "position": "KU<sub>e</sub>",
+                                "comment": "Reihennummerierung <em>XX</em> mit grünem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text1540b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "3b",
+                                "position": "K<sub>a</sub>",
+                                "comment": "Reihenbezeichnung <em>Kr</em> mit blauem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text3408b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "4a",
+                                "position": "U<sub>ges</sub>",
+                                "comment": "Reihenbezeichnung <em>U.</em> mit blauem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text1544b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "4b",
+                                "position": "KU<sub>es</sub>",
+                                "comment": "Reihenbezeichnung <em>U Kr</em> mit blauem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "text994b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "5a",
+                                "position": "G<sub>es</sub>",
+                                "comment": "Reihennummerierung <em>25</em> mit blauem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g2-1b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "5–6",
+                                "position": "1.–3., 4.–6., 7.–9., 10.–12. Reihenton",
+                                "comment": "Bögen zu den Trichorden der Reihenformen mit blauem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g2-2b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "5b",
+                                "position": "K<sub>fis</sub>",
+                                "comment": "Reihennummerierung <em>XXVI.</em> und -bezeichnung <em>Kr</em> überschreibt <em>Kr</em> und [xx] mit blauem Buntstift. Reihennummerierung <em>26</em> mit blauem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g2-3b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "6a",
+                                "position": "U<sub>es</sub>",
+                                "comment": "Reihennummerierung <em>27 | XXVII.</em> und -bezeichnung <em>U.</em> mit blauem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g2-4b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "6b",
+                                "position": "KU<sub>c</sub>",
+                                "comment": "Reihennummerierung <em>XXVII | 28</em> und -bezeichnung <em>U Kr</em> mit blauem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g2-5b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "7a",
+                                "position": "G<sub>des</sub>",
+                                "comment": "Reihennummerierung <em>29 | XXIX</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g2-6b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "7–8",
+                                "position": "1.–3., 4.–6., 7.–9., 10.–12. Reihenton",
+                                "comment": "Bögen zu den Trichorden der Reihenformen mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g2-7b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "7b",
+                                "position": "K<sub>e</sub>",
+                                "comment": "Reihennummerierung <em>XXX</em> und -bezeichnung <em>Kr</em> mit rotem Buntstift. Reihennummerierung <em>30</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "gg2-8b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "8a",
+                                "position": "U<sub>des</sub>",
+                                "comment": "Reihennummerierung <em>XXX1 | 31</em> und -bezeichnung <em>U</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g2-9b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "8b",
+                                "position": "KU<sub>c</sub>",
+                                "comment": "Reihennummerierung <em>XXXII</em> und -bezeichnung <em>U Kr</em> mit rotem Buntstift. Reihennummerierung <em>32</em> mit rotem Buntstift."
+                            },
+                            {
                                 "####": "###"
                             }
                         ]
