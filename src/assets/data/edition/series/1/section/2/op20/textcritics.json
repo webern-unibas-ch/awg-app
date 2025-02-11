@@ -315,6 +315,20 @@
                                 "comment": "Reihennummerierung <em>XXXVI | 36</em> und -bezeichnung <em>U Kr</em> mit grünem Buntstift."
                             },
                             {
+                                "svgGroupId": "g2-6c",
+                                "measure": "Bl. 3<sup>r</sup>",
+                                "system": "3–4",
+                                "position": "1.–3., 4.–6., 7.–9., 10.–12. Reihenton",
+                                "comment": "Bögen zu den Trichorden der Reihenformen mit blauem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g2-7c",
+                                "measure": "Bl. 3<sup>r</sup>",
+                                "system": "4b",
+                                "position": "KU<sub>g</sub>",
+                                "comment": "[X]<em>L</em> überschreibt [X]<em>X</em>."
+                            },
+                            {
                                 "####": "###"
                             }
                         ]
