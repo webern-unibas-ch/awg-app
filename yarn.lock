@@ -2057,12 +2057,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codemirror/legacy-modes@npm:^6.4.2":
-  version: 6.4.2
-  resolution: "@codemirror/legacy-modes@npm:6.4.2"
+"@codemirror/legacy-modes@npm:^6.4.3":
+  version: 6.4.3
+  resolution: "@codemirror/legacy-modes@npm:6.4.3"
   dependencies:
     "@codemirror/language": "npm:^6.0.0"
-  checksum: 10c0/1020d3ac30a9c78f2474558e7cbf0dd384316a68092e588d1ca73379ba7af35a9c2cf42dc72c81f7f48ba3c00a982d782aec2be5dede7202bcd13ffb2698e1e2
+  checksum: 10c0/8a92484ea67791249e03a68967698cf8d38e9a86a26d588a6f50d13e4ce99a115a1a396ef7b1066651b6622aa4c082721912d3c5b611585ff683a22d4fa77312
   languageName: node
   linkType: hard
 
@@ -5830,7 +5830,7 @@ __metadata:
     "@angular/platform-browser-dynamic": "npm:^19.1.5"
     "@angular/platform-server": "npm:^19.1.5"
     "@angular/router": "npm:^19.1.5"
-    "@codemirror/legacy-modes": "npm:^6.4.2"
+    "@codemirror/legacy-modes": "npm:^6.4.3"
     "@commitlint/cli": "npm:^19.7.1"
     "@commitlint/config-angular": "npm:^19.7.1"
     "@compodoc/compodoc": "npm:^1.1.26"
