@@ -105,6 +105,13 @@
                                 "comment": "Reihennummerierung <em>IX</em> mit blauem Buntstift."
                             },
                             {
+                                "svgGroupId": "g12-1a",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "5a",
+                                "position": "G<sub>f</sub>: 10.",
+                                "comment": "sic: Punkt über cis<sup>2</sup>. (Markierung? Ansatz zu Notenkopf oder Bogen?)"
+                            },
+                            {
                                 "svgGroupId": "g13a",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "5b",
@@ -140,6 +147,13 @@
                                 "comment": "Reihennummerierung <em>XIII</em> mit Kopierstift."
                             },
                             {
+                                "svgGroupId": "g16-1a",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "7a, 7b",
+                                "position": "G<sub>e</sub>: 12., K<sub>g</sub>: 1.",
+                                "comment": "Doppelstrich zwischen den Reihenformen radiert."
+                            },
+                            {
                                 "svgGroupId": "g17a",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "7b",
@@ -154,18 +168,18 @@
                                 "comment": "Reihennummerierung <em>XV</em> mit Kopierstift."
                             },
                             {
+                                "svgGroupId": "g2-2a",
+                                "measure": "Bl. 1<sup>r</sup>",
+                                "system": "8a",
+                                "position": "U<sub>e</sub>",
+                                "comment": "Markierungskreuz hinzugefügt."
+                            },
+                            {
                                 "svgGroupId": "g19a",
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "8b",
                                 "position": "KU<sub>des</sub>",
                                 "comment": "Reihennummerierung <em>XVI</em> und -bezeichnung <em>U Kr</em> mit Kopierstift."
-                            },
-                            {
-                                "svgGroupId": "g2-2a",
-                                "measure": "Bl. 1<sup>r</sup>",
-                                "system": "8a",
-                                "position": "U<sub>e</sub>",
-                                "comment": "Markierungskreuz hinzugefügt mit blauer Tinte."
                             },
                             {
                                 "svgGroupId": "text862b",
@@ -224,11 +238,11 @@
                                 "comment": "Reihenbezeichnung <em>U Kr</em> mit blauem Buntstift."
                             },
                             {
-                                "svgGroupId": "text994b",
+                                "svgGroupId": "g2-22b",
                                 "measure": "Bl. 2<sup>r</sup>",
                                 "system": "5a",
                                 "position": "G<sub>es</sub>",
-                                "comment": "Reihennummerierung <em>25</em> mit blauem Buntstift."
+                                "comment": "Reihennummerierung <em>25</em> überschreibt <em>XXV</em> mit blauem Buntstift."
                             },
                             {
                                 "svgGroupId": "g2-1b",
@@ -364,11 +378,25 @@
                                 "comment": "Bögen zu den Trichorden der Reihenformen mit rotem Buntstift."
                             },
                             {
+                                "svgGroupId": "g2-22c",
+                                "measure": "Bl. 3<sup>r</sup>",
+                                "system": "5–6",
+                                "position": "",
+                                "comment": "Gestrichelte Trennstriche zwischen den Tetrachorden der Reihenformen mit blauem Buntstift."
+                            },
+                            {
                                 "svgGroupId": "g2-10c",
                                 "measure": "Bl. 3<sup>r</sup>",
                                 "system": "5b",
                                 "position": "K<sub>d</sub>",
                                 "comment": "Reihennummerierung <em>XLII</em> und -bezeichnung <em>Kr</em> mit blauem Buntstift. Reihennummerierung <em>42</em> mit blauem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g2-24c",
+                                "measure": "Bl. 3<sup>r</sup>",
+                                "system": "5b, 6b",
+                                "position": "",
+                                "comment": "Doppelstriche am Ende der Systeme mit blauem Buntstift."
                             },
                             {
                                 "svgGroupId": "g2-11c",
@@ -404,6 +432,13 @@
                                 "system": "7b",
                                 "position": "K<sub>es</sub>",
                                 "comment": "Reihennummerierung <em>XLVI</em> und -bezeichnung <em>Kr</em> mit rotem Buntstift. Reihennummerierung <em>46</em> mit rotem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g2-23c",
+                                "measure": "Bl. 3<sup>r</sup>",
+                                "system": "7b, 8b",
+                                "position": "",
+                                "comment": "Doppelstriche am Ende der Systeme mit rotem Buntstift."
                             },
                             {
                                 "svgGroupId": "g3c",
