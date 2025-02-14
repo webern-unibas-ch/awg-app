@@ -1,0 +1,31 @@
+{
+    "sheets": {
+        "workEditions": [],
+        "textEditions": [
+            {
+                "id": "M*_409_TF1",
+                "label": "M* 409 Textfassung 1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m*409/M*409_Textfassung1-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": ""
+                    }
+                ]
+            },
+            {
+                "id": "M*_409_TF2",
+                "label": "M* 409 Textfassung 2",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m*409/M*409_Textfassung2-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": ""
+                    }
+                ]
+            }
+        ]
+    }
+}
