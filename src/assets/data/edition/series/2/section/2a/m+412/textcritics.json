@@ -1,0 +1,104 @@
+{
+    "textcritics": [
+        {
+            "id": "M*_412_TF1",
+            "label": "M* 412 einzige Textfassung",
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M* 412 ist <strong>B</strong> relevante Quelle. <strong>A</strong> enthält Skizzen.",
+                "<strong>B</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 412 ist <strong>B</strong> nach Korrekturen 1."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g3027",
+                                "measure": "16",
+                                "system": "Klav. u.",
+                                "position": "letzte Note",
+                                "comment": "Unterstimmenschicht: Augmentationspunkte weggelassen mit Blick auf metrischen Kontext."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
+        },
+        {
+            "id": "M*_412_Sk1",
+            "label": "M* 412 Sk1",
+            "evaluations": [
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M* 412."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g241",
+                                "measure": "1",
+                                "system": "26",
+                                "position": "5/8",
+                                "comment": "Oberstimmenschicht: e<sup>1</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g242",
+                                "measure": "2",
+                                "system": "26",
+                                "position": "(3/4)",
+                                "comment": "Oberstimmenschicht: Viertelnote e<sup>1</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g243",
+                                "measure": "3",
+                                "system": "27",
+                                "position": "(1/4)",
+                                "comment": "Triolenachteloten e<sup>1</sup>–h–g gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g244",
+                                "measure": "4",
+                                "system": "26",
+                                "position": "1. Note",
+                                "comment": "Punktierte Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g245",
+                                "measure": "5",
+                                "system": "26",
+                                "position": "(5/8)",
+                                "comment": "Nicht entzifferbare Streichung im System."
+                            },
+                            {
+                                "svgGroupId": "g125",
+                                "measure": "10",
+                                "system": "23",
+                                "position": "letzte Note",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g126",
+                                "measure": "11",
+                                "system": "22",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht {{ref.getGlyph('[a]')}}g<sup>1</sup>: Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g127",
+                                "measure": "11",
+                                "system": "23",
+                                "position": "1/4",
+                                "comment": "Viertelpause überschreibt Achtelpause."
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
