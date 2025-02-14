@@ -1,0 +1,25 @@
+{
+    "textcritics": [
+        {
+            "id": "M*_410_TF1",
+            "label": "M* 410 einzige Textfassung",
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M* 410 ist <strong>A</strong> einzige relevante Quelle.",
+                "<strong>A</strong> weist Korrekturen mit Tinte auf. Der Zustand vor den Korrekturen ist nicht immer zu entziffern. Der Zustand post correcturam in <strong>A</strong> konstituiert eine kohärente Textfassung. Eine nur geringfügig abweichende Variante für T. 11, notiert in separaten Systemen, wurde nicht berücksichtigt.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 410 ist <strong>A</strong> post correcturam."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            "Nicht vorhanden."
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
+        }
+    ]
+}
