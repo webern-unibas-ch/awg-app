@@ -1,0 +1,1201 @@
+{
+    "sources": [
+        {
+            "id": "source_A",
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Skizzen.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Bogen (Bl. 1/2). Horizontale Knickfalte, der Bogen ist horizontal und vertikal eingerissen. Riss am Rand unten Mitte."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier (auf dem Kopf stehend), 18 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5</em> | <em>18 linig.</em> oben rechts auf auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": []
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 84",
+                        "itemLinkTo": {
+                            "complexId": "m84",
+                            "sheetId": "M_84"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition M 84 „Komm heilʼger Geist, du Tröster mein“)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–15",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–10",
+                                            "measure": "6–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–5",
+                                            "measure": "11–15",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–1",
+                                            "measure": "16–20",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–15",
+                                            "measure": "21–25",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–10",
+                                            "measure": "26–28",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 472 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar472",
+                            "sheetId": "Mstar_472_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 472)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "9–7",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 473 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar473",
+                            "sheetId": "Mstar_473_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 473)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6–3",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 483 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar483",
+                            "sheetId": "Mstar_483_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 483)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–1",
+                                            "measure": "1–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 464 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar464",
+                            "sheetId": "Mstar_464_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 464)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–17",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 464 Sk2",
+                        "itemLinkTo": {
+                            "complexId": "mstar464",
+                            "sheetId": "Mstar_464_Sk2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 464)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "16a–15a",
+                                            "measure": "1–6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 483 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar483",
+                            "sheetId": "Mstar_483_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 483)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "15b–16b",
+                                            "measure": "11A, 11B(3–4/4)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 464 Sk3",
+                        "itemLinkTo": {
+                            "complexId": "mstar464",
+                            "sheetId": "Mstar_464_Sk3"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 464)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14–13",
+                                            "measure": "1–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–11",
+                                            "measure": "10A–15A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–9",
+                                            "measure": "10B–15B, 16",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 465 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar465",
+                            "sheetId": "Mstar_465_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 465)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "7–4",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 466 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar466",
+                            "sheetId": "Mstar_466_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 466)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–2",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 466 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar466",
+                            "sheetId": "Mstar_466_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 466)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–2",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 467 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar467",
+                            "sheetId": "Mstar_467_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 466)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 480 Sk2",
+                        "itemLinkTo": {
+                            "complexId": "mstar480",
+                            "sheetId": "Mstar_480_Sk2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 480)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–17",
+                                            "measure": "1–6, 7A–8A, 7B(3/4), 8B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 480 Sk3",
+                        "itemLinkTo": {
+                            "complexId": "mstar480",
+                            "sheetId": "Mstar_480_Sk3"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 480)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "16–15",
+                                            "measure": "1A–4A, 5–8, 1B–3B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14–13",
+                                            "measure": "1C–4C",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 481 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar481",
+                            "sheetId": "Mstar_481_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 481)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "12–11",
+                                            "measure": "1–6, 7A–8A, 7B–8B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 481 Sk2",
+                        "itemLinkTo": {
+                            "complexId": "mstar481",
+                            "sheetId": "Mstar_481_Sk2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 481)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10–9",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 481 Sk1.1",
+                        "itemLinkTo": {
+                            "complexId": "mstar481",
+                            "sheetId": "Mstar_481_Sk1_1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 481)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "8a–7a",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 481 Sk2.1",
+                        "itemLinkTo": {
+                            "complexId": "mstar481",
+                            "sheetId": "Mstar_481_Sk2_1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 481)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "8b–7b",
+                                            "measure": "7A, {8A}, {7B(3/4)}–{8B}, 7C(3/4)–8C",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 481 Sk3",
+                        "itemLinkTo": {
+                            "complexId": "mstar481",
+                            "sheetId": "Mstar_481_Sk3"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 481)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "8c–5",
+                                            "measure": "1–5, {6A–8A}, 6B–8B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 482 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar482",
+                            "sheetId": "Mstar_482_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 481)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4–3",
+                                            "measure": "{1A–4A}, 5A–8A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "2–1",
+                                            "measure": "1B–5B, 5C, 6B–8B, 6C(3/4)–7C",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_B",
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Bogen (Bl. 1/2). Horizontale Knickfalte, der Bogen ist in der Falte eingerissen."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier (auf dem Kopf stehend), 18 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5</em> | <em>18 linig.</em> oben rechts auf auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": [
+                        "Tinte"
+                    ]
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M* 455 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar455",
+                            "sheetId": "Mstar_455_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 455)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–17",
+                                            "measure": "1–7",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 456 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar456",
+                            "sheetId": "Mstar_456_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 456)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "15–14",
+                                            "measure": "{1–11}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–10",
+                                            "measure": "{12–23}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 457 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar457",
+                            "sheetId": "Mstar_457_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 457)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18a–17a",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 458 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar458",
+                            "sheetId": "Mstar_458_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 458)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18b–15b",
+                                            "measure": "1–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16a–15a",
+                                            "measure": "7–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 459 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar459",
+                            "sheetId": "Mstar_459_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 459)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14a–13a",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 460 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar460",
+                            "sheetId": "Mstar_460_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 460)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "12–11",
+                                            "measure": "1A–4A, 5–6, 7A­–8A, 1B–4B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14b–13b",
+                                            "measure": "7B–8B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 461 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar461",
+                            "sheetId": "Mstar_461_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 461)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "8–7",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 455 Sk2",
+                        "itemLinkTo": {
+                            "complexId": "mstar455",
+                            "sheetId": "Mstar_455_Sk2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 455)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6–5",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 462 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar462",
+                            "sheetId": "Mstar_462_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 462)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "8–7",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 463 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar463",
+                            "sheetId": "Mstar_463_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 463)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "8–7",
+                                            "measure": "1–4, 5A–7A, 5B–7B, 8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 464",
+                        "itemLinkTo": {
+                            "complexId": "mstar464",
+                            "sheetId": "Mstar_464"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition M* 464)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–16",
+                                            "measure": "1–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14–12",
+                                            "measure": "8–14",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10a–8a",
+                                            "measure": "15–16",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "Skizze von der Hand Schönbergs",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    []
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 465",
+                        "itemLinkTo": {
+                            "complexId": "mstar465",
+                            "sheetId": "Mstar_465"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition M* 465)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6–5",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 466",
+                        "itemLinkTo": {
+                            "complexId": "mstar466",
+                            "sheetId": "Mstar_466"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition M* 466)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4–3",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 467",
+                        "itemLinkTo": {
+                            "complexId": "mstar467",
+                            "sheetId": "Mstar_467"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition M* 467)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–1",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 468 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar468",
+                            "sheetId": "Mstar_468_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 468)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18–14a",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 469 Sk1.1",
+                        "itemLinkTo": {
+                            "complexId": "mstar469",
+                            "sheetId": "Mstar_469_Sk1_1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 469)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "15b–14b",
+                                            "measure": "x+1",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 469 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar469",
+                            "sheetId": "Mstar_469_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 469)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13–12",
+                                            "measure": "1–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–10",
+                                            "measure": "10–17",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–8",
+                                            "measure": "{18A}, 18B, 19–26",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "27–35",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5a–4a",
+                                            "measure": "36–37",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 10 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "m10",
+                            "sheetId": "M_10_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu <em>Dämmerstunde</em> M 10)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5b–4b",
+                                            "measure": "3–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3–1",
+                                            "measure": "8–15",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_B_corr_1",
+                        "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Achtelfähnchen gestrichen."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "source_B_corr_2",
+                        "label": "Korrekturen 2 in <strong>B</strong> (mit blauem Buntstift von der Hand Schönbergs)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1",
+                                            "system": "Klav. o.",
+                                            "position": "3/8",
+                                            "comment": "Unterstimmenschicht: d<sup>1</sup> eingekreist."
+                                        },
+                                        {
+                                            "measure": "1",
+                                            "system": "",
+                                            "position": "3/4–4/4",
+                                            "comment": "Linie zwischen c<sup>2</sup> und h<sup>1</sup> in Klav. o. sowie f und e in Klav. u. zur Verdeutlichung der offenen Quintparallele."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Klav. o.",
+                                            "position": "3/8",
+                                            "comment": "Unterstimmenschicht: f<sup>1</sup> eingekreist."
+                                        },
+                                        {
+                                            "measure": "5 <br /> bis 6",
+                                            "system": "Klav. u.",
+                                            "position": "4/4 <br /> 2. Note",
+                                            "comment": "Oberstimmenschicht: c<sup>1</sup>–d<sup>1</sup>–d<sup>1</sup> gestrichen und ersetzt durch g–g–g."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "",
+                                            "position": "4/8 bis letzte Note",
+                                            "comment": "Linie zwischen d<sup>2</sup> und g<sup>2</sup> in Klav. o. sowie H und g in Klav. u. zur Verdeutlichung der verdeckten Otkavparallele."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. u.",
+                                            "position": "2/2",
+                                            "comment": "g gestrichen und ersetzt durch G."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
