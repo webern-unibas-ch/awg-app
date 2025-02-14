@@ -1,0 +1,2545 @@
+{
+    "sources": [
+        {
+            "id": "source_A",
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Skizzen.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Bogen (Bl. 1/2). Horizontale Knickfalte."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 22 Systeme, Format: hoch 349 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 7 | 22 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": []
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 112 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "6–8, {9A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "{10A}, 9B–10B, 11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11a–12a",
+                                            "measure": "12, 13A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14–15",
+                                            "measure": "13B, 14–19",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "20b–21b",
+                                            "measure": "20",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "{21A}, 21B, 22–25",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "20a–21a",
+                                            "measure": "25–28",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–3",
+                                            "measure": "29–33",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–6",
+                                            "measure": "34–37",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–9",
+                                            "measure": "38–43",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "44–50",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14–15",
+                                            "measure": "51–57",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "58–62",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "19–21",
+                                            "measure": "63–65, 66A–67A",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "68A, {69A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–6",
+                                            "measure": "67B–69B, 70A, {71–72}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–9",
+                                            "measure": "66B, 67C–69C, 70B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 112 Sk1.1",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1_1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11b–12b",
+                                            "measure": "3+1",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 112 Sk1.2",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1_2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11c–12c",
+                                            "measure": "8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 112 Sk1.3",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk1_3"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1",
+                                            "measure": "44",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 112 Sk2",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk2"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "56–60",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14–15",
+                                            "measure": "61–64",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "65–67, {68A–69A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "20–21",
+                                            "measure": "68B–69B, 70–71",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "72–74, {75A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–6",
+                                            "measure": "75B, 65–78",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–10",
+                                            "measure": "79–82",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 112 Sk5",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk5"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "12a–15a",
+                                            "measure": "82B–85B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "82C–85C, 86–87",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "20–21",
+                                            "measure": "88, {89A}, 89B, 90",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14b–15b",
+                                            "measure": "91–92",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12b",
+                                            "measure": "93+x",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_B",
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Skizzen und Tintenniederschrift.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Blatt (Bl. 1). Kleinere Risse am oberen und unteren Rand. Rissspuren am linken Rand: von Bogen abgetrennt."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier (auf dem Kopf stehend), 22 Systeme, Format: hoch 348 × 265 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 7 | 22 linig</em> oben rechts auf Bl. 1<sup>v</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift"
+                    ]
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 112",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 112: Textfassung 1)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "21–20",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "18–17",
+                                            "measure": "6–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–15",
+                                            "measure": "10–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–12",
+                                            "measure": "14–16",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 112 Sk4.1",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk4_1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13a–12b",
+                                            "measure": "66–67",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 112 Sk3",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk3"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13b–11b",
+                                            "measure": "x+1",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 112 Sk4",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk4"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10–8",
+                                            "measure": "62–65",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–5",
+                                            "measure": "{66A–67A}, 66B–67B, 68–69",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3–2",
+                                            "measure": "70–76",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "21–20",
+                                            "measure": "77–80, {81A–82A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "18–17",
+                                            "measure": "{83A–84A}, 81B–84B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "15–14",
+                                            "measure": "{85A}, 86, 85B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12a–11a",
+                                            "measure": "81C–82C",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 112 Sk5",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk5"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10–8",
+                                            "measure": "66–70",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–5",
+                                            "measure": "71–75",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3–2",
+                                            "measure": "76, {77A–79A}, 77B, {78B–79B}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12b–11b",
+                                            "measure": "78C–79C, 80",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_B<sup>a</sup>_corr_1",
+                        "label": "Korrekturen 1 in B<sup>a</sup> (mit Tinte)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. u.",
+                                            "position": "3/4",
+                                            "comment": "Metrisch falsch platzierte Viertelnote gis/e<sup>1</sup> gestrichen. Und versetzt nach 4/4."
+                                        },
+                                        {
+                                            "measure": "7",
+                                            "system": "Klav. u.",
+                                            "position": "3/4",
+                                            "comment": "Ober- und Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. u.",
+                                            "position": "3. Note",
+                                            "comment": "Oberstimmenschicht: g<sup>1</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. o.",
+                                            "position": "5. Note",
+                                            "comment": "Unterstimmenschicht: c<sup>2</sup> überschreibt a<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. o.",
+                                            "position": "8. Note",
+                                            "comment": "Oberstimmenschicht: f<sup>2</sup> überschreibt e<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Klav. u.",
+                                            "position": "letzte Note",
+                                            "comment": "G überschreibt H."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "source_B<sup>a</sup>_corr_2",
+                        "label": "Korrekturen 2 in B<sup>a</sup> (mit Bleistift)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1",
+                                            "system": "Klav. o.",
+                                            "position": "",
+                                            "comment": "<em>1 </em>über dem System."
+                                        },
+                                        {
+                                            "measure": "2",
+                                            "system": "Klav. o.",
+                                            "position": "",
+                                            "comment": "<em>2 </em>über dem System."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Klav. o.",
+                                            "position": "",
+                                            "comment": "<em>3 </em>über dem System."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Klav. o.",
+                                            "position": "3. Note",
+                                            "comment": "Oberstimmenschicht: <em>as </em>über dem System."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Klav. o.",
+                                            "position": "5. Note",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>2</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Klav. u.",
+                                            "position": "3/4",
+                                            "comment": "Viertelnote f hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Klav. o.",
+                                            "position": "8/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "3",
+                                            "system": "Klav.",
+                                            "position": "8/8",
+                                            "comment": "Kreuz zwischen den Systemen."
+                                        },
+                                        {
+                                            "measure": "4–5",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takte eingekreist und pauschal gestrichen."
+                                        },
+                                        {
+                                            "measure": "4",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. o.",
+                                            "position": "1.–4. Note",
+                                            "comment": "<em>8<sup>-----</sup> </em>zwischen den Systemen hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. o.",
+                                            "position": "",
+                                            "comment": "Taktwiederholungszeichen am Taktemde hinzugefügt, <em>4 </em>und<em> 5</em> über dem System."
+                                        },
+                                        {
+                                            "measure": "7",
+                                            "system": "Klav. o.",
+                                            "position": "",
+                                            "comment": "<em>6 </em>über dem System."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. o.",
+                                            "position": "",
+                                            "comment": "<em>7 </em>über dem System."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Fis hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. u.",
+                                            "position": "(4/8)",
+                                            "comment": "Achtelnote <span class='glyph'>{{ref.getGlyph('[#]')}}</span>gis hinzugefügt und mit Viertelnote Fis/fis zu zwei Achtelnoten zusammengebalkt."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. o.",
+                                            "position": "4/4",
+                                            "comment": "Viertelnoten <span class='glyph'>{{ref.getGlyph('[b]')}}</span>B/<span class='glyph'>{{ref.getGlyph('[#]')}}</span>fis und d/<span class='glyph'>{{ref.getGlyph('[b]')}}</span>as im System darüber notiert."
+                                        },
+                                        {
+                                            "measure": "8",
+                                            "system": "Klav. u.",
+                                            "position": "Taktende",
+                                            "comment": "Pfeil unter dem System zu T. 11."
+                                        },
+                                        {
+                                            "measure": "8 <br /> bis 9",
+                                            "system": "Klav. u.",
+                                            "position": "4/4 <br /> 1/4",
+                                            "comment": "<em>4 Stufen darüber </em>unter dem System."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takt eingeklammert und pauschal gestrichen."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. o.",
+                                            "position": "",
+                                            "comment": "<em>8 </em>über dem System."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. o.",
+                                            "position": "(4/4)",
+                                            "comment": "Achteltriole h<sup>1</sup>–g<sup>1</sup>–h überschreibt Achtelnoten h<sup>1</sup>–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>f<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. u.",
+                                            "position": "(4/4)",
+                                            "comment": "Achteltriole h–H–f überschreibt Achtelnoten h–<span class='glyph'>{{ref.getGlyph('[a]')}}</span>f."
+                                        },
+                                        {
+                                            "measure": "10 <br /> bis 11",
+                                            "system": "Klav. u.",
+                                            "position": "letzte Note <br /> 1/4",
+                                            "comment": "Schräg abfallende Linie im und unter dem System."
+                                        },
+                                        {
+                                            "measure": "11",
+                                            "system": "Klav. o.",
+                                            "position": "1/4",
+                                            "comment": "Achteltriole f<sup>1</sup>–e<sup>1</sup>–d<sup>1</sup> überschreibt Viertelpause."
+                                        },
+                                        {
+                                            "measure": "11",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "Achteltriole e–E–A überschreibt Viertelpause, wieder gestrichen."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. o.",
+                                            "position": "Taktanfang",
+                                            "comment": "Gestrichenes Verweiszeichen über dem System."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_C",
+            "siglum": "C",
+            "siglumAddendum": "",
+            "type": "Skizzen.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "2 Blätter (Bl. 1–2). Bl. 1<sup>v</sup> unbeschrieben. Rissspuren am linken Rand von Bl. 1–2: von Bogen abgetrennt."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 20 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 6 | 20 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": []
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 112 Sk5",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk5"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–6a",
+                                            "measure": "81, 82A–85A",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 496 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "mstar496",
+                            "sheetId": "Mstar_496_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition M* 496)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5c–6c",
+                                            "measure": "x+1 bis x+2",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 112 Sk7",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk7"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "7a–8a",
+                                            "measure": "3–4",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 112 Sk8",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk8"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "7b–8b",
+                                            "measure": "16–18",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10a–11a",
+                                            "measure": "19–20",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 112 Sk9",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk9"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10b–11b",
+                                            "measure": "109–112",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 112 Sk10",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13–14",
+                                            "measure": "103–106",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–17",
+                                            "measure": "107, {108A}, 108B, 109A–110A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "19–20",
+                                            "measure": "111A, {112A}, 112B, 113A–115A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5b–6b",
+                                            "measure": "116A",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 112 Sk10.1",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk10_1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "12–13",
+                                            "measure": "102–104",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_D",
+            "siglum": "D",
+            "siglumAddendum": "",
+            "type": "Skizzen und Tintenniederschrift.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Bogen (Bl. 1/2). Bl. 2<sup>r</sup> und Bl. 2<sup>v</sup> unbeschrieben. Bogen in der Falte eingerissen."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 20 Systeme (auf dem Kopf stehend), Format: hoch 348 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 6 | 20 linig.</em> oben rechts auf Bl. 1<sup>v</sup> und 2<sup>v</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift"
+                    ]
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [],
+                "contents": [
+                    {
+                        "item": "M 112",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 112: Textfassung 2)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "19–18",
+                                            "measure": "51–57",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–15",
+                                            "measure": "58–62",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–12",
+                                            "measure": "63–66",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–9",
+                                            "measure": "67–70",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–6",
+                                            "measure": "71–74",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–3",
+                                            "measure": "75–79",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 112 Sk6",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112_Sk6"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 112)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13–12",
+                                            "measure": "81–86",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–9",
+                                            "measure": "87–88, {89A–90A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–6",
+                                            "measure": "{91A–92A}, 89B–91B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–3",
+                                            "measure": "{89C–90C}, 89D–90D, 91C(1–3/4)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "2–1",
+                                            "measure": "91C(2–4/4), 92B, 93",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_D<sup>a</sup>_corr_1",
+                        "label": "Korrekturen 1 in D<sup>a</sup> (mit Tinte)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "54",
+                                            "system": "Klav. u.",
+                                            "position": "3/4",
+                                            "comment": "Unterstimmenschicht: E überschreibt C."
+                                        },
+                                        {
+                                            "measure": "55",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "Unterstimmenschicht: c überschreibt H."
+                                        },
+                                        {
+                                            "measure": "57",
+                                            "system": "Klav. o.",
+                                            "position": "2/4 bis 4/4",
+                                            "comment": "Ende des Legatobogens zweimal versetzt: von 4/4 nach 3/4, dann von 2/4 nach 3/4? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "58",
+                                            "system": "Klav. u.",
+                                            "position": "8/8",
+                                            "comment": "cis<sup>1</sup> überschreibt e<sup>1</sup>? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "60",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "Unterstimmenschicht: h<sup>1</sup> gestrichen."
+                                        },
+                                        {
+                                            "measure": "64",
+                                            "system": "Klav. o.",
+                                            "position": "5.–6. Note",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span>es<sup>2</sup>–<span class='glyph'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>dis<sup>2</sup>–<span class='glyph'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "69",
+                                            "system": "Klav. u.",
+                                            "position": "3/4",
+                                            "comment": "Viertelnote überschreibt Halbe Note."
+                                        },
+                                        {
+                                            "measure": "70",
+                                            "system": "Klav. u.",
+                                            "position": "letzte Note",
+                                            "comment": "ais<sup>1</sup> geändert zu fis<sup>1</sup> durch Streichung einer Hilfslinie."
+                                        },
+                                        {
+                                            "measure": "71",
+                                            "system": "Klav. u.",
+                                            "position": "letzte Note",
+                                            "comment": "d<sup>1</sup> überschreibt f<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "72",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Halbe Note überschreibt Viertelnote."
+                                        },
+                                        {
+                                            "measure": "72",
+                                            "system": "Klav. o.",
+                                            "position": "letzte Note",
+                                            "comment": "e<sup>2</sup> überschreibt f<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "74",
+                                            "system": "Klav. u.",
+                                            "position": "2/2",
+                                            "comment": "Oberstimmenschicht: Hals nach unten gestrichen und ersetzt durch Hals nach oben."
+                                        },
+                                        {
+                                            "measure": "74",
+                                            "system": "Klav. u.",
+                                            "position": "3/4",
+                                            "comment": "Unterstimmenschicht: Hals nach oben ersetzt durch Hals nach unten."
+                                        },
+                                        {
+                                            "measure": "79",
+                                            "system": "Klav. o.",
+                                            "position": "6.–7. Note",
+                                            "comment": "Oberstimmenschicht: Hals nach unten gestrichen und ersetzt durch Hals nach oben."
+                                        },
+                                        {
+                                            "measure": "82",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "a<sup>1</sup>/f<sup>2</sup>/a<sup>2</sup>: Viertelnote überschreibt Halbe Note (vgl. auch TkA)."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "source_D<sup>a</sup>_corr_2",
+                        "label": "Korrekturen 2 in D<sup>a</sup> (mit Bleistift)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "51",
+                                            "system": "Klav. o.",
+                                            "position": "2/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "55",
+                                            "system": "Klav. o.",
+                                            "position": "2/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "57",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "59",
+                                            "system": "Klav. o.",
+                                            "position": "1/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "60",
+                                            "system": "Klav. o.",
+                                            "position": "1.–3. Note",
+                                            "comment": "Untere Oktave gestrichen."
+                                        },
+                                        {
+                                            "measure": "61",
+                                            "system": "Klav.",
+                                            "position": "1–4/4",
+                                            "comment": "Crescendogabel hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "61",
+                                            "system": "Klav. u.",
+                                            "position": "6/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu B/b hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "62",
+                                            "system": "Klav.",
+                                            "position": "(2/8)",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[ff]')}}</span> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "62",
+                                            "system": "Klav.",
+                                            "position": "3/4–8/8",
+                                            "comment": "Decrescendogabel hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "64",
+                                            "system": "Klav.",
+                                            "position": "2/4–4/4",
+                                            "comment": "Decrescendogabel hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "65",
+                                            "system": "Klav.",
+                                            "position": "(4/8)",
+                                            "comment": "<em>dim. </em>hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "66",
+                                            "system": "Klav.",
+                                            "position": "1/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "68",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b hinzugefügt.."
+                                        },
+                                        {
+                                            "measure": "68  <br /> bis 72",
+                                            "system": "Klav.",
+                                            "position": "2/4 <br /> 7/8",
+                                            "comment": "<em>cres. </em>[sic] mit Geltungsstrichelung hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "69",
+                                            "system": "Klav. o.",
+                                            "position": "1.–3. Note",
+                                            "comment": "Untere Oktave gestrichen."
+                                        },
+                                        {
+                                            "measure": "69",
+                                            "system": "Klav. u.",
+                                            "position": "3/4",
+                                            "comment": "Viertelnote überschreibt Halbe Note."
+                                        },
+                                        {
+                                            "measure": "70",
+                                            "system": "Klav.",
+                                            "position": "1. Note",
+                                            "comment": "<em>cresc</em>[.]<em> </em>hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "70",
+                                            "system": "Klav. o.",
+                                            "position": "2/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>3</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "70",
+                                            "system": "Klav. u.",
+                                            "position": "6/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c/c<sup>1</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "70",
+                                            "system": "Klav. u.",
+                                            "position": "7/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f/f<sup>1</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "71",
+                                            "system": "Klav. o.",
+                                            "position": "2/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup>/e<sup>3</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "73",
+                                            "system": "Klav.",
+                                            "position": "1/4",
+                                            "comment": "<em>stark </em>hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "73",
+                                            "system": "Klav. u.",
+                                            "position": "1–4/4",
+                                            "comment": "Untere Oktave D–Cis–E<sub>1</sub>–F hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "73  <br /> bis 74",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note <br /> 4/4",
+                                            "comment": "Legatobogen hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "74  <br /> bis 76",
+                                            "system": "Klav. o.",
+                                            "position": "5. Note <br /> letzte Note",
+                                            "comment": "Legatobogen hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "74",
+                                            "system": "Klav.",
+                                            "position": "4/4",
+                                            "comment": "Decrescendogabel hinzugefügt, überschrieben zu Crescendogabel."
+                                        },
+                                        {
+                                            "measure": "75",
+                                            "system": "Klav.",
+                                            "position": "1/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "76",
+                                            "system": "Klav.",
+                                            "position": "1/4–6/8",
+                                            "comment": "Decrescendogabel hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "77",
+                                            "system": "Klav.",
+                                            "position": "1/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "77  <br /> bis 80",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note <br /> 8/8",
+                                            "comment": "Legatobogen hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "78",
+                                            "system": "Klav. u.",
+                                            "position": "1–4/8",
+                                            "comment": "Noten mit rotem Buntstift unterstrichen."
+                                        },
+                                        {
+                                            "measure": "78  <br /> bis 79",
+                                            "system": "Klav.",
+                                            "position": "8/8 <br /> (6/8)",
+                                            "comment": "Crescendogabel unter den Systemen hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "79",
+                                            "system": "Klav. o.",
+                                            "position": "1/8",
+                                            "comment": "Oberstimmenschicht: gis<sup>1</sup> überschrieben zu as<sup>1</sup> mit rotem Buntstift."
+                                        },
+                                        {
+                                            "measure": "79",
+                                            "system": "Klav. o.",
+                                            "position": "2–3/8",
+                                            "comment": "Oberstimmenschicht: gis<sup>2</sup> mit rotem Buntstift gestrichen, as<sup>2</sup> auf 3/8 geändert zu Viertelnote."
+                                        },
+                                        {
+                                            "measure": "79",
+                                            "system": "Klav. u.",
+                                            "position": "1.–3. Note",
+                                            "comment": "Noten mit rotem Buntstift unterstrichen."
+                                        },
+                                        {
+                                            "measure": "79",
+                                            "system": "Klav.",
+                                            "position": "3/4",
+                                            "comment": "<em>cresc. </em>hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "80",
+                                            "system": "Klav.",
+                                            "position": "1–8/8",
+                                            "comment": "Crescendogabel hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "80",
+                                            "system": "Klav. o.",
+                                            "position": "Taktende",
+                                            "comment": "Verweiszeichen mit Bleistift und Einschubzeichen mit rotem Buntstift über dem System: Einschubstelle für die in Sk6 skizzierten Takte."
+                                        },
+                                        {
+                                            "measure": "81–86",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Takte pauschal gestrichen."
+                                        },
+                                        {
+                                            "measure": "82",
+                                            "system": "Klav. o.",
+                                            "position": "",
+                                            "comment": "Alternative Skizze für Klav. o. über dem System: <br /> ###Abbildung##"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_FR1",
+            "siglum": "F",
+            "siglumAddendum": "R1",
+            "type": "Reprografie.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "7 Blätter (Bl. 1–7). Versoseiten unbeschrieben."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 12 Systeme, Format: hoch 307 × 217 mm, Firmenzeichen: »Sünova« Nr. 4 – 12 zeilig unten links auf Bl. 1<sup>r</sup>, 3<sup>r</sup>, 5<sup>r</sup> und 7<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        ""
+                    ]
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [
+                    "<em>Anton v. Webern (ca. 1905/6</em> [sic] auf Bl. 1<sup>r</sup> oben rechts. <em>Dies ist die Fotokopie | des Wildgans-Manuskripts</em> von fremder Hand auf Bl. 1<sup>r</sup> unten Mitte. Paginierung mit Tinte von der Hand Wildgans’ von <em>1 </em>bis <em>7 </em>oben links (geradzahlige Seiten) bzw. oben rechts (ungeradzahlige Seiten) auf S. 2–7. Archivalische Paginierung <em>1</em>, <em>2</em> und <em>6</em> oben rechts auf Bl. 2<sup>r</sup>, 4<sup>r</sup> und 6<sup>r</sup>."
+                ],
+                "contents": [
+                    {
+                        "item": "M 112",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112"
+                        },
+                        "itemDescription": "(Reprografie der Abschrift Friedrich Wildgans von Studienkomposition für Klavier M 112: Textfassung 3)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–4",
+                                            "measure": "1–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–6",
+                                            "measure": "5–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "8–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–10",
+                                            "measure": "11–15",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "16–20",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "21–25",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3–4",
+                                            "measure": "26–30",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–6",
+                                            "measure": "31–34",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "35–38",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–10",
+                                            "measure": "39–44",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "45–50",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_F<sup>R1</sup>_corr_1",
+                        "label": "Korrekturen 1 in F<sup>R1</sup> (mit Tinte)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. o.",
+                                            "position": "2/4",
+                                            "comment": "c<sup>1</sup> der Unterstimmenschicht überschreibt mit Oberstimmenschicht zusammengehalstes c<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. o.",
+                                            "position": "7/8",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "Klav. u.",
+                                            "position": "3/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu A/A<sub>1</sub> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "22",
+                                            "system": "Klav. o.",
+                                            "position": "2/2",
+                                            "comment": "Note eingekreist."
+                                        },
+                                        {
+                                            "measure": "40",
+                                            "system": "Klav.",
+                                            "position": "5/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[pp]')}}</span>? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "45",
+                                            "system": "Klav. u.",
+                                            "position": "(4/4)",
+                                            "comment": "Oberstimmenschicht: Viertelnote a gestrichen."
+                                        },
+                                        {
+                                            "measure": "47",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Hals nach unten ersetzt Hals nach oben."
+                                        },
+                                        {
+                                            "measure": "48",
+                                            "system": "Klav. u.",
+                                            "position": "2/2",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "60",
+                                            "system": "Klav.",
+                                            "position": "1. Note bis 3/4",
+                                            "comment": "<em>e </em>unter der 1. Note von Klav. o. und über der 2. Note von Klav. u. Beide <em>e </em>durch eine Linie verbunden."
+                                        },
+                                        {
+                                            "measure": "69",
+                                            "system": "Klav.",
+                                            "position": "1. Note bis 3/4",
+                                            "comment": "<em>fis </em>unter der 1. Note von Klav. o.und über der 2. Note von Klav. u. Beide <em>fis </em>durch eine Linie verbunden."
+                                        },
+                                        {
+                                            "measure": "78",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "78",
+                                            "system": "Klav. u.",
+                                            "position": "1/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu his überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu potenziellem B."
+                                        },
+                                        {
+                                            "measure": "78",
+                                            "system": "Klav. o.",
+                                            "position": "4/4",
+                                            "comment": "Oberstimmenschicht: Notenhals nach oben ersetzt Notenhals nach unten."
+                                        },
+                                        {
+                                            "measure": "79",
+                                            "system": "Klav. o.",
+                                            "position": "8/8",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "85",
+                                            "system": "Klav. o.",
+                                            "position": "1/4",
+                                            "comment": "fis<sup>2</sup> überschreibt e<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "85",
+                                            "system": "Klav.",
+                                            "position": "5/8",
+                                            "comment": "Beidseitiger Pfeil zwischen den Systemen zur Verdeutlichung der metrischen Zusammengehörigkeit."
+                                        },
+                                        {
+                                            "measure": "86",
+                                            "system": "Klav. u.",
+                                            "position": "2. Note",
+                                            "comment": "Achtelfähnchen gestrichen."
+                                        },
+                                        {
+                                            "measure": "86",
+                                            "system": "Klav.",
+                                            "position": "5/8",
+                                            "comment": "Beidseitiger Pfeil zwischen den Systemen zur Verdeutlichung der metrischen Zusammengehörigkeit."
+                                        },
+                                        {
+                                            "measure": "89",
+                                            "system": "Klav. o.",
+                                            "position": "5/8",
+                                            "comment": "Achtelnote eingekreist; <em>d </em>über der Note."
+                                        },
+                                        {
+                                            "measure": "98",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu F überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "{100}",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "Takt gestrichen."
+                                        },
+                                        {
+                                            "measure": "101",
+                                            "system": "Klav. o.",
+                                            "position": "(4/4)",
+                                            "comment": "Kreuz über dem System."
+                                        },
+                                        {
+                                            "measure": "104",
+                                            "system": "Klav. u.",
+                                            "position": "7. Note",
+                                            "comment": "Gis überschreibt Ais."
+                                        },
+                                        {
+                                            "measure": "106",
+                                            "system": "Klav.",
+                                            "position": "Taktanfang",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[ff]')}}</span> gestrichen und ersetzt durch <span class='glyph'>{{ref.getGlyph('[p]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "127",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "127",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "145",
+                                            "system": "Klav. o.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Triolenziffer und -klammer gestrichen."
+                                        },
+                                        {
+                                            "measure": "145",
+                                            "system": "Klav. o.",
+                                            "position": "2/2",
+                                            "comment": "Halbe Note d gestrichen."
+                                        },
+                                        {
+                                            "measure": "146",
+                                            "system": "Klav. o.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Triolenziffer und-klammer gestrichen."
+                                        },
+                                        {
+                                            "measure": "146",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis gestrichen? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "146",
+                                            "system": "Klav. o.",
+                                            "position": "2/2",
+                                            "comment": "Halbe Note d gestrichen."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_FR2",
+            "siglum": "F",
+            "siglumAddendum": "R2",
+            "type": "Reprografie.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "7 Blätter (Bl. 1–7). Versoseiten unbeschrieben. Sämtliche Blätter stark gewellt und zerknittert, mit kleineren Rissen und geknickter Ecke oben links."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 12 Systeme, Format: hoch 295 × 209 mm, Firmenzeichen: »Sünova« Nr. 4 – 12 zeilig unten links auf Bl. 1<sup>r</sup>, 3<sup>r</sup>, 5<sup>r</sup> und 7<sup>r</sup>"
+                ],
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift",
+                        "blauer Kugelschreiber"
+                    ]
+                },
+                "titles": [],
+                "dates": [],
+                "paginations": [],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [
+                    "<em>Anton v. Webern (ca. 1905/6</em> [sic] auf Bl. 1<sup>r</sup> oben rechts. Paginierung mit Tinte von der Hand Wildgans’ von <em>2.)</em> bis <em>7.)</em> oben links (geradzahlige Seiten) bzw. oben rechts (ungeradzahlige Seiten) auf Bl. 2<sup>r</sup>–7<sup>r</sup>. Archivalische Paginierung mit rotem Buntstift von <em>1</em> bis <em>7</em> oben rechts auf Bl. 1<sup>r</sup>–7<sup>r</sup>. Eintragungen mit Bleistift an den Seitenrändern von der Hand Moldenhauers zu den abweichenden Lesarten in den Tintenniederschriften und Skizzen"
+                ],
+                "contents": [
+                    {
+                        "item": "M 112",
+                        "itemLinkTo": {
+                            "complexId": "m112",
+                            "sheetId": "M_112"
+                        },
+                        "itemDescription": "(Reprografie der Abschrift Friedrich Wildgans von Studienkomposition für Klavier M 112: Textfassung 3)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–4",
+                                            "measure": "1–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–6",
+                                            "measure": "5–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "8–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–10",
+                                            "measure": "11–15",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "16–20",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "21–25",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3–4",
+                                            "measure": "26–30",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–6",
+                                            "measure": "31–34",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "35–38",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–10",
+                                            "measure": "39–44",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "45–50",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "corrections": [
+                    {
+                        "id": "source_F<sup>R2</sup>_corr_1",
+                        "label": "Korrekturen 1 in F<sup>R2</sup> (mit Tinte)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. o.",
+                                            "position": "2/4",
+                                            "comment": "c<sup>1</sup> der Unterstimmenschicht überschreibt mit Oberstimmenschicht zusammengehalstes c<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "12",
+                                            "system": "Klav. o.",
+                                            "position": "7/8",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "16",
+                                            "system": "Klav. u.",
+                                            "position": "3/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu A/A<sub>1</sub> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "22",
+                                            "system": "Klav. o.",
+                                            "position": "2/2",
+                                            "comment": "Note eingekreist."
+                                        },
+                                        {
+                                            "measure": "40",
+                                            "system": "Klav.",
+                                            "position": "5/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[pp]')}}</span>? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "45",
+                                            "system": "Klav. u.",
+                                            "position": "(4/4)",
+                                            "comment": "Oberstimmenschicht: Viertelnote a gestrichen."
+                                        },
+                                        {
+                                            "measure": "47",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Hals nach unten ersetzt Hals nach oben."
+                                        },
+                                        {
+                                            "measure": "48",
+                                            "system": "Klav. u.",
+                                            "position": "2/2",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "60",
+                                            "system": "Klav.",
+                                            "position": "1. Note bis 3/4",
+                                            "comment": "<em>e </em>unter der 1. Note von Klav. o. und über der 2. Note von Klav. u. Beide <em>e </em>durch eine Linie verbunden."
+                                        },
+                                        {
+                                            "measure": "69",
+                                            "system": "Klav.",
+                                            "position": "1. Note bis 3/4",
+                                            "comment": "<em>fis </em>unter der 1. Note von Klav. o.und über der 2. Note von Klav. u. Beide <em>fis </em>durch eine Linie verbunden."
+                                        },
+                                        {
+                                            "measure": "78",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "78",
+                                            "system": "Klav. u.",
+                                            "position": "1/8",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu his überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu potenziellem B."
+                                        },
+                                        {
+                                            "measure": "78",
+                                            "system": "Klav. o.",
+                                            "position": "4/4",
+                                            "comment": "Oberstimmenschicht: Notenhals nach oben ersetzt Notenhals nach unten."
+                                        },
+                                        {
+                                            "measure": "79",
+                                            "system": "Klav. o.",
+                                            "position": "8/8",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "85",
+                                            "system": "Klav. o.",
+                                            "position": "1/4",
+                                            "comment": "fis<sup>2</sup> überschreibt e<sup>2</sup>."
+                                        },
+                                        {
+                                            "measure": "85",
+                                            "system": "Klav.",
+                                            "position": "5/8",
+                                            "comment": "Beidseitiger Pfeil zwischen den Systemen zur Verdeutlichung der metrischen Zusammengehörigkeit."
+                                        },
+                                        {
+                                            "measure": "86",
+                                            "system": "Klav. u.",
+                                            "position": "2. Note",
+                                            "comment": "Achtelfähnchen gestrichen."
+                                        },
+                                        {
+                                            "measure": "86",
+                                            "system": "Klav.",
+                                            "position": "5/8",
+                                            "comment": "Beidseitiger Pfeil zwischen den Systemen zur Verdeutlichung der metrischen Zusammengehörigkeit."
+                                        },
+                                        {
+                                            "measure": "89",
+                                            "system": "Klav. o.",
+                                            "position": "5/8",
+                                            "comment": "Achtelnote eingekreist; <em>d </em>über der Note."
+                                        },
+                                        {
+                                            "measure": "98",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu F überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "{100}",
+                                            "system": "",
+                                            "position": "",
+                                            "comment": "Takt gestrichen."
+                                        },
+                                        {
+                                            "measure": "101",
+                                            "system": "Klav. o.",
+                                            "position": "(4/4)",
+                                            "comment": "Kreuz über dem System."
+                                        },
+                                        {
+                                            "measure": "104",
+                                            "system": "Klav. u.",
+                                            "position": "7. Note",
+                                            "comment": "Gis überschreibt Ais."
+                                        },
+                                        {
+                                            "measure": "106",
+                                            "system": "Klav.",
+                                            "position": "Taktanfang",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[ff]')}}</span> gestrichen und ersetzt durch <span class='glyph'>{{ref.getGlyph('[p]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "127",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "127",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>."
+                                        },
+                                        {
+                                            "measure": "145",
+                                            "system": "Klav. o.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Triolenziffer und -klammer gestrichen."
+                                        },
+                                        {
+                                            "measure": "145",
+                                            "system": "Klav. o.",
+                                            "position": "2/2",
+                                            "comment": "Halbe Note d gestrichen."
+                                        },
+                                        {
+                                            "measure": "146",
+                                            "system": "Klav. o.",
+                                            "position": "1.–2. Note",
+                                            "comment": "Triolenziffer und-klammer gestrichen."
+                                        },
+                                        {
+                                            "measure": "146",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu cis gestrichen? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "146",
+                                            "system": "Klav. o.",
+                                            "position": "2/2",
+                                            "comment": "Halbe Note d gestrichen."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "source_F<sup>R2</sup>_corr_2",
+                        "label": "Korrekturen 2 in F<sup>R2</sup> (mit Kugelschreiber)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "1–20",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "Notenlinien teilweise nachgezogen."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav.",
+                                            "position": "Taktende",
+                                            "comment": "Taktstrich nachgezogen."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. o.",
+                                            "position": "1–3/4",
+                                            "comment": "Triolenziffern nachgezogen."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. o.",
+                                            "position": "",
+                                            "comment": "Sämtliche Akzidenzien nachgezogen mit Ausnahme von <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>2</sup> (9. Note)."
+                                        },
+                                        {
+                                            "measure": "10",
+                                            "system": "Klav. u.",
+                                            "position": "5.–6. Note",
+                                            "comment": "Ligatur zu g nachgezogen."
+                                        },
+                                        {
+                                            "measure": "13",
+                                            "system": "Klav.",
+                                            "position": "Taktende",
+                                            "comment": "Taktstrich nachgezogen."
+                                        },
+                                        {
+                                            "measure": "14 <br /> bis 15",
+                                            "system": "Klav. o.",
+                                            "position": "2/4 <br /> 4/4",
+                                            "comment": "Oberstimmenschicht: Legatobogen nachgezogen."
+                                        },
+                                        {
+                                            "measure": "16–19",
+                                            "system": "Klav.",
+                                            "position": "Taktende",
+                                            "comment": "Taktstriche nachgezogen."
+                                        },
+                                        {
+                                            "measure": "17",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu As nachgezogen."
+                                        },
+                                        {
+                                            "measure": "18",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a nachgezogen."
+                                        },
+                                        {
+                                            "measure": "19 <br /> bis 20",
+                                            "system": "Klav. u.",
+                                            "position": "letzte Note <br /> 1/2",
+                                            "comment": "Notenköpfe von D<sub>1</sub>–D<sub>1</sub> nachgezogen."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "Viertelpause nachgezogen."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "Klav. o.",
+                                            "position": "4/4",
+                                            "comment": "Viertelpause nachgezogen."
+                                        },
+                                        {
+                                            "measure": "20",
+                                            "system": "Klav. u.",
+                                            "position": "letzte Note",
+                                            "comment": "Ligatur zu T. 21 nachgezogen. F<sup>2</sup>: Seitenwechsel."
+                                        },
+                                        {
+                                            "measure": "35",
+                                            "system": "Klav. o.",
+                                            "position": "1–2/2",
+                                            "comment": "Legatobogen nachgezogen."
+                                        },
+                                        {
+                                            "measure": "44",
+                                            "system": "Klav. u.",
+                                            "position": "letzte Note",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> nachgezogen oder <span class='glyph'>{{ref.getGlyph('[#]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[a]')}}</span>? Entzifferung unsicher."
+                                        },
+                                        {
+                                            "measure": "45",
+                                            "system": "Klav. u.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: Notenkopf nachgezogen."
+                                        },
+                                        {
+                                            "measure": "45",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> nachgezogen."
+                                        },
+                                        {
+                                            "measure": "49",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "Notenkopf von h nachgezogen."
+                                        },
+                                        {
+                                            "measure": "88",
+                                            "system": "Klav. u.",
+                                            "position": "Taktanfang",
+                                            "comment": "<em>zurückhaltend </em>nachgezogen."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": "source_F<sup>R2</sup>_corr_3",
+                        "label": "Korrekturen 3 in F<sup>R2</sup> (mit Bleistift)",
+                        "evaluations": [],
+                        "commentary": {
+                            "preamble": "",
+                            "comments": [
+                                {
+                                    "blockHeader": "",
+                                    "blockComments": [
+                                        {
+                                            "measure": "3",
+                                            "system": "Klav. o.",
+                                            "position": "(2/4)",
+                                            "comment": "Oberstimmenschicht: Pfeil vom linken Seitenrand her: <em>F<span class='glyph'>{{ref.getGlyph('[#]')}}</span> G<span class='glyph'>{{ref.getGlyph('[#]')}}</span> G<span class='glyph'>{{ref.getGlyph('[a]')}}</span> | ?</em>."
+                                        },
+                                        {
+                                            "measure": "6",
+                                            "system": "Klav. o.",
+                                            "position": "4/4",
+                                            "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu d<sup>1</sup> hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. o.",
+                                            "position": "9. Note",
+                                            "comment": "Noten eingekreist, Pfeil zum rechten Seitenrand: <em>F | F</em>."
+                                        },
+                                        {
+                                            "measure": "9",
+                                            "system": "Klav. o.",
+                                            "position": "10. Note",
+                                            "comment": "Noten eingekreist, Pfeil zum rechten Seitenrand: <em>E | E</em>."
+                                        },
+                                        {
+                                            "measure": "nach 30",
+                                            "system": "Klav.",
+                                            "position": "",
+                                            "comment": "<em>sketches </em>am rechten Seitenrand."
+                                        },
+                                        {
+                                            "measure": "38",
+                                            "system": "Klav. o.",
+                                            "position": "7/8",
+                                            "comment": "Note eingekreist, Pfeil zum rechten Seitenrand: <em>g<span class='glyph'>{{ref.getGlyph('[#]')}}</span></em>."
+                                        },
+                                        {
+                                            "measure": "58",
+                                            "system": "Klav. o.",
+                                            "position": "1/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup> nachgezogen."
+                                        },
+                                        {
+                                            "measure": "60",
+                                            "system": "Klav. u.",
+                                            "position": "1/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des nachgezogen."
+                                        },
+                                        {
+                                            "measure": "60",
+                                            "system": "Klav. o.",
+                                            "position": "7/8, 4/4",
+                                            "comment": "Ober- und Unterstimmenschicht: Noten eingekreist, Pfeil vom rechten Seitenrand her: <em>F<span class='glyph'>{{ref.getGlyph('[#]')}}</span> | B<span class='glyph'>{{ref.getGlyph('[b]')}}</span> | g</em>."
+                                        },
+                                        {
+                                            "measure": "61",
+                                            "system": "Klav. o.",
+                                            "position": "1/4",
+                                            "comment": "Note eingekreist, Pfeil zum linken Seitenrand: <em>F<span class='glyph'>{{ref.getGlyph('[#]')}}</span> | A<span class='glyph'>{{ref.getGlyph('[#]')}}</span> | F<span class='glyph'>{{ref.getGlyph('[#]')}}</span></em>."
+                                        },
+                                        {
+                                            "measure": "63",
+                                            "system": "Klav. o.",
+                                            "position": "3. Note, 3/4",
+                                            "comment": "Ober- und Unterstimmenschicht: Note eingekreist; <em>E<span class='glyph'>{{ref.getGlyph('[b]')}}</span> | g</em> am linken Seitenrand."
+                                        },
+                                        {
+                                            "measure": "63",
+                                            "system": "Klav. o.",
+                                            "position": "4/4",
+                                            "comment": "Ober- und Unterstimmenschicht: Note eingekreist; <em>D<span class='glyph'>{{ref.getGlyph('[b]')}}</span> | A<span class='glyph'>{{ref.getGlyph('[a]')}}</span> </em>am linken Seitenrand."
+                                        },
+                                        {
+                                            "measure": "64",
+                                            "system": "Klav. o.",
+                                            "position": "2/4",
+                                            "comment": "Unterstimmenschicht: a<sup>1</sup> überschreibt g<sup>1</sup>."
+                                        },
+                                        {
+                                            "measure": "66",
+                                            "system": "Klav. o.",
+                                            "position": "3/4",
+                                            "comment": "Note eingekreist, Pfeil zum linken Seitenrand: <em>G<span class='glyph'>{{ref.getGlyph('[#]')}}</span> | C | B</em>."
+                                        },
+                                        {
+                                            "measure": "69",
+                                            "system": "Klav. o.",
+                                            "position": "3.–4. Note, 6. Note",
+                                            "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as<sup>3</sup>, as<sup>2</sup> und es<sup>3</sup> hinzugefügt; Pfeil vom linken Seitenrand her: <em>Sketch || ?</em>."
+                                        },
+                                        {
+                                            "measure": "76",
+                                            "system": "Klav. u.",
+                                            "position": "1.–3. Note",
+                                            "comment": "Triolenziffer hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "80",
+                                            "system": "Klav. o.",
+                                            "position": "8/8",
+                                            "comment": "Ober- und Unterstimmenschicht: Note eingekreist, Pfeil vom linken Seitenrand her: <em>E | G<span class='glyph'>{{ref.getGlyph('[#]')}}</span> | E</em>."
+                                        },
+                                        {
+                                            "measure": "85",
+                                            "system": "Klav. o.",
+                                            "position": "4. Note",
+                                            "comment": "Note eingekreist."
+                                        },
+                                        {
+                                            "measure": "92",
+                                            "system": "Klav. u.",
+                                            "position": "2/4",
+                                            "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Fis/fis hinzugefügt."
+                                        },
+                                        {
+                                            "measure": "94",
+                                            "system": "Klav. o.",
+                                            "position": "1. Note",
+                                            "comment": "<em>?</em> über dem System."
+                                        },
+                                        {
+                                            "measure": "113",
+                                            "system": "Klav. o.",
+                                            "position": "2. Note",
+                                            "comment": "Markierung (Akzent?) über dem System."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
