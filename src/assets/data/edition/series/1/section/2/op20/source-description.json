@@ -61,6 +61,16 @@
                                                 "rowBase": "as",
                                                 "rowNumber": "I"
                                             }
+                                        },
+                                        {
+                                            "system": "1b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "b",
+                                                "rowNumber": "II"
+                                            }
                                         }
                                     ],
                                     [
@@ -588,6 +598,16 @@
                                             "row": {
                                                 "rowType": "G",
                                                 "rowBase": "as",
+                                                "rowNumber": ""
+                                            }
+                                        },
+                                        {
+                                            "system": "1b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "b",
                                                 "rowNumber": ""
                                             }
                                         }
