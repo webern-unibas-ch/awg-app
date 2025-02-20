@@ -244,6 +244,16 @@
                                                 "rowBase": "g",
                                                 "rowNumber": "XVII"
                                             }
+                                        },
+                                        {
+                                            "system": "1b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "b",
+                                                "rowNumber": "XVIII"
+                                            }
                                         }
                                     ],
                                     [
@@ -416,6 +426,16 @@
                                                 "rowType": "G",
                                                 "rowBase": "a",
                                                 "rowNumber": "XXXIII"
+                                            }
+                                        },
+                                        {
+                                            "system": "1b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "c",
+                                                "rowNumber": "XXXIV"
                                             }
                                         }
                                     ],
