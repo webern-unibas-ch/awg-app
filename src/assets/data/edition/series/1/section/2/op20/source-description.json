@@ -24,7 +24,7 @@
                     ]
                 },
                 "titles": [
-                    "<em><u>Reihen</u>   Trio op</em>[.]<em> 20</em> auf Bl. 1<sup>r</sup> oben halbrechts mit Bleistift;<em>Trio, op</em>[.]<em> 20 </em>auf Bl. 2<sup>r</sup> und Bl. 3<sup>r</sup> oben rechts mit Bleistift"
+                    "<em><u>Reihen</u>   Trio op</em>[.] <em>20</em> auf Bl. 1<sup>r</sup> oben halbrechts mit Bleistift; <em>Trio, op</em>[.] <em>20</em> auf Bl. 2<sup>r</sup> und Bl. 3<sup>r</sup> oben rechts mit Bleistift"
                 ],
                 "dates": [
                     "<em><u>Gge., Br., Vlc.</u> | 1926/27</em> auf Bl. 1<sup>r</sup> oben rechts mit rotem Buntstift"
@@ -579,10 +579,7 @@
                     },
                     {
                         "item": "M 289 Sk1",
-                        "itemLinkTo": {
-                            "complexId": "op20",
-                            "sheetId": "M_289_Sk1"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Reihentabelle [Variante])",
                         "folios": [
                             {
