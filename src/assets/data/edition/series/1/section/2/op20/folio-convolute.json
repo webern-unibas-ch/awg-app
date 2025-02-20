@@ -41,6 +41,7 @@
                             "sheetId": "M_289_Sk1",
                             "sigle": "M 289 Sk1",
                             "sigleAddendum": "(Reihentabelle [Variante])",
+                            "selectable": false,
                             "sectionPartition": 1,
                             "sections": [
                                 {

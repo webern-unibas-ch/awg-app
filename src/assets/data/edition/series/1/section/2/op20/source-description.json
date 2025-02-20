@@ -16,12 +16,7 @@
                 ],
                 "writingInstruments": {
                     "main": "Bleistift",
-                    "secondary": [
-                        "blauer Buntstift",
-                        "grüner Buntstift",
-                        "roter Buntstift",
-                        "Kopierstift"
-                    ]
+                    "secondary": ["blauer Buntstift", "grüner Buntstift", "roter Buntstift", "Kopierstift"]
                 },
                 "titles": [
                     "<em><u>Reihen</u>   Trio op</em>[.] <em>20</em> auf Bl. 1<sup>r</sup> oben halbrechts mit Bleistift; <em>Trio, op</em>[.] <em>20</em> auf Bl. 2<sup>r</sup> und Bl. 3<sup>r</sup> oben rechts mit Bleistift"
@@ -29,9 +24,7 @@
                 "dates": [
                     "<em><u>Gge., Br., Vlc.</u> | 1926/27</em> auf Bl. 1<sup>r</sup> oben rechts mit rotem Buntstift"
                 ],
-                "paginations": [
-                    "<em>III.</em> auf Bl. 3<sup>r</sup> oben links mit blauem Buntstift"
-                ],
+                "paginations": ["<em>III.</em> auf Bl. 3<sup>r</sup> oben links mit blauem Buntstift"],
                 "measureNumbers": [],
                 "instrumentations": [],
                 "annotations": [
