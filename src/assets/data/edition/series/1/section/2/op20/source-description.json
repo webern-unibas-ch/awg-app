@@ -41,7 +41,7 @@
                     {
                         "item": "M 289 / M 290 / M 291 RT",
                         "itemLinkTo": {
-                            "complexId": "m289",
+                            "complexId": "op20",
                             "sheetId": "SkRT"
                         },
                         "itemDescription": "(Reihentabelle op. 20)",
