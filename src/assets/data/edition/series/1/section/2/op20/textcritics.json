@@ -25,7 +25,7 @@
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "1–8",
                                 "position": "1.–3., 4.–6., 7.–9., 10.–12. Reihenton",
-                                "comment": "Bögen zu den Trichorden der Reihenformen mit Bleistift, teilweise sehr dünn. sic System 3a: keine Bögen bei G<sub>d</sub> 1.–9. Reihenton erkennbar."
+                                "comment": "Bögen zu den Trichorden der Reihenformen mit Bleistift, teilweise sehr dünn. sic System 3a und 5a: keine Bögen bei G<sub>d</sub> 1.–9. Reihenton und bei G<sub>f</sub> 1.–12. Reihenton erkennbar."
                             },
                             {
                                 "svgGroupId": "g3a",
@@ -165,7 +165,7 @@
                                 "measure": "Bl. 1<sup>r</sup>",
                                 "system": "8a",
                                 "position": "U<sub>e</sub>",
-                                "comment": "Reihennummerierung <em>U</em> mit Kopierstift (und mit Bleistift nachgezogen?)."
+                                "comment": "Reihenbezeichnung <em>U</em> mit Kopierstift (und mit Bleistift nachgezogen?)."
                             },
                             {
                                 "svgGroupId": "g2-2a",
@@ -203,11 +203,18 @@
                                 "comment": "Reihennummerierung <em>XVIII</em> mit grünem Buntstift."
                             },
                             {
-                                "svgGroupId": "text864b",
+                                "svgGroupId": "g2-20b",
                                 "measure": "Bl. 2<sup>r</sup>",
                                 "system": "2a",
                                 "position": "U<sub>g</sub>",
-                                "comment": "Reihennummerierung <em>XIX</em> mit grünem Buntstift."
+                                "comment": "Reihennummerierung <em>XIX</em> mit grünem Buntstift. Reihenbezeichnung <em>U.</em> mit blauem Buntstift."
+                            },
+                            {
+                                "svgGroupId": "g2-200b",
+                                "measure": "Bl. 2<sup>r</sup>",
+                                "system": "2a",
+                                "position": "U<sub>g</sub>: 2. Reihenton",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup> überschreibt <span class='glyph'>{{ref.getGlyph('[#]')}}</span> (zu gis<sup>1</sup>)."
                             },
                             {
                                 "svgGroupId": "text1534b",
