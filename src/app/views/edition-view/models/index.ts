@@ -41,6 +41,7 @@ import { Preface, PrefaceList } from './preface.model';
 
 import {
     SourceDescription,
+    SourceDescriptionContent,
     SourceDescriptionList,
     SourceDescriptionWritingInstruments,
     SourceDescriptionWritingMaterialDimension,
@@ -106,6 +107,7 @@ export {
     PrefaceList,
     Source,
     SourceDescription,
+    SourceDescriptionContent,
     SourceDescriptionList,
     SourceDescriptionWritingInstruments,
     SourceDescriptionWritingMaterialDimension,

@@ -1,0 +1,277 @@
+<div class="awg-source-description-contents">
+    <p class="awg-source-description-contents-label no-para-margin"><span class="smallcaps">Inhalt:</span></p>
+    @for (content of contents; track $index) {
+        <!-- content.itemDescription -->
+        @if (content.item || content.itemDescription) {
+            <p class="awg-source-description-content-item-para no-para-margin">
+                <span class="awg-source-description-content-item">
+                    @if (content.item && UTILS.isNotEmptyObject(content.itemLinkTo)) {
+                        <a
+                            (click)="
+                                selectSvgSheet({
+                                    complexId: content.itemLinkTo.complexId,
+                                    sheetId: content.itemLinkTo.sheetId,
+                                })
+                            "
+                            (keyup.enter)="
+                                selectSvgSheet({
+                                    complexId: content.itemLinkTo.complexId,
+                                    sheetId: content.itemLinkTo.sheetId,
+                                })
+                            "
+                            role="link"
+                            tabindex="0"
+                            ><strong>{{ content.item }}</strong></a
+                        >
+                    }
+                    @if (content.item && !UTILS.isNotEmptyObject(content.itemLinkTo)) {
+                        <strong>{{ content.item }}</strong>
+                    }
+                    @if (content.item && content.itemDescription) {
+                        <span>&nbsp;</span>
+                    }
+                    @if (content.itemDescription) {
+                        <span class="awg-source-description-content-item-description"
+                            ><span [compile-html]="content.itemDescription" [compile-html-ref]="ref"></span
+                        ></span>
+                    }
+                    <span>:</span><br />
+                </span>
+            </p>
+        }
+
+        <!-- content.folios -->
+        @if (content?.folios?.length) {
+            <table class="awg-source-description-content-table half-para-margin">
+                @for (folio of content.folios; track $index; let lastFolio = $last) {
+                    <ng-template #folioCellTemplate let-folio>
+                        <td
+                            [attr.colspan]="!UTILS.isNotEmptyArray(folio.systemGroups) ? 2 : 1"
+                            class="awg-source-description-content-table-datacell">
+                            @if (folio.folioLinkTo) {
+                                <a
+                                    (click)="
+                                        selectSvgSheet({
+                                            complexId: content.itemLinkTo.complexId,
+                                            sheetId: folio.folioLinkTo,
+                                        })
+                                    "
+                                    (keyup.enter)="
+                                        selectSvgSheet({
+                                            complexId: content.itemLinkTo.complexId,
+                                            sheetId: folio.folioLinkTo,
+                                        })
+                                    "
+                                    role="link"
+                                    tabindex="0"
+                                    ><ng-template
+                                        *ngTemplateOutlet="folioTemplate; context: { $implicit: folio }"></ng-template
+                                ></a>
+                            } @else {
+                                <ng-template
+                                    *ngTemplateOutlet="folioTemplate; context: { $implicit: folio }"></ng-template>
+                            }
+                            @if (folio.folioDescription) {
+                                <span class="awg-source-description-content-item-folio-description"
+                                    >&nbsp;&nbsp;<span
+                                        [compile-html]="folio.folioDescription"
+                                        [compile-html-ref]="ref"></span
+                                ></span>
+                            }
+                            <ng-template #folioTemplate let-folio>
+                                <span class="awg-source-description-content-item-folio">
+                                    @if (folio.isPage) {
+                                        <span class="awg-source-description-content-item-folio-type"
+                                            ><span [awgAbbr]="'S.'"></span>&nbsp;</span
+                                        >
+                                    } @else {
+                                        <span class="awg-source-description-content-item-folio-type"
+                                            ><span [awgAbbr]="'Bl.'"></span>&nbsp;</span
+                                        >
+                                    }
+                                    @if (folio.folio.endsWith('v') || folio.folio.endsWith('r')) {
+                                        <span class="awg-source-description-content-item-folio-number"
+                                            >{{ folio.folio.slice(0, -1)
+                                            }}<sup class="awg-source-description-content-item-folio-side">{{
+                                                folio.folio.slice(-1)
+                                            }}</sup></span
+                                        >
+                                    } @else {
+                                        <span>{{ folio.folio }}</span>
+                                    }
+                                </span>
+                            </ng-template>
+                        </td>
+                    </ng-template>
+                    <ng-template #emptyCellTemplate>
+                        <td class="awg-source-description-content-table-datacell"></td>
+                    </ng-template>
+
+                    @if (UTILS.isNotEmptyArray(folio.systemGroups)) {
+                        <!-- folio system groups are present -->
+                        @for (
+                            systemGroup of folio.systemGroups;
+                            track $index;
+                            let firstSystemGroup = $first;
+                            let lastSystemGroup = $last
+                        ) {
+                            <tr class="awg-source-description-content-table-row">
+                                <!-- get folio number in first column -->
+                                @if (firstSystemGroup) {
+                                    @if (folio.folio) {
+                                        <ng-template
+                                            *ngTemplateOutlet="
+                                                folioCellTemplate;
+                                                context: { $implicit: folio }
+                                            "></ng-template>
+                                    } @else {
+                                        <ng-template *ngTemplateOutlet="emptyCellTemplate"></ng-template>
+                                    }
+                                } @else {
+                                    <ng-template *ngTemplateOutlet="emptyCellTemplate"></ng-template>
+                                }
+                                <!-- get systems in other columns -->
+                                @for (
+                                    system of systemGroup;
+                                    track $index;
+                                    let systemIndex = $index;
+                                    let firstSystem = $first;
+                                    let lastSystem = $last
+                                ) {
+                                    <td class="awg-source-description-content-table-datacell">
+                                        <ng-template #systemTemplate let-system
+                                            >&nbsp;&nbsp;System&nbsp;{{ system }}</ng-template
+                                        >
+
+                                        @if (system.system) {
+                                            <span class="awg-source-description-content-item-system">
+                                                <ng-template
+                                                    *ngTemplateOutlet="
+                                                        systemTemplate;
+                                                        context: { $implicit: system.system }
+                                                    "></ng-template
+                                            ></span>
+                                        }
+
+                                        @if (system.systemDescription || system.measure || system.row) {
+                                            <span>:&nbsp;</span>
+                                        }
+
+                                        @if (system.systemDescription) {
+                                            <span class="awg-source-description-content-item-system-description">
+                                                <span
+                                                    [compile-html]="system.systemDescription"
+                                                    [compile-html-ref]="ref"></span>
+                                                @if (system.measure) {
+                                                    <span>&nbsp;</span>
+                                                }
+                                            </span>
+                                        }
+
+                                        @if (system.measure) {
+                                            <span class="awg-source-description-content-item-measure">
+                                                @if (system.linkTo) {
+                                                    <a
+                                                        (click)="
+                                                            selectSvgSheet({
+                                                                complexId: content.itemLinkTo.complexId,
+                                                                sheetId: system.linkTo,
+                                                            })
+                                                        "
+                                                        (keyup.enter)="
+                                                            selectSvgSheet({
+                                                                complexId: content.itemLinkTo.complexId,
+                                                                sheetId: system.linkTo,
+                                                            })
+                                                        "
+                                                        role="link"
+                                                        tabindex="0"
+                                                        ><ng-template
+                                                            *ngTemplateOutlet="
+                                                                measureTemplate;
+                                                                context: { $implicit: system.measure }
+                                                            "></ng-template
+                                                    ></a>
+                                                } @else {
+                                                    <ng-template
+                                                        *ngTemplateOutlet="
+                                                            measureTemplate;
+                                                            context: { $implicit: system.measure }
+                                                        "></ng-template>
+                                                }
+                                                <ng-template #measureTemplate let-measure
+                                                    ><span
+                                                        ><span [awgAbbr]="'T.'"></span>&nbsp;{{ measure }}</span
+                                                    ></ng-template
+                                                ></span
+                                            >
+                                        }
+
+                                        @if (UTILS.isNotEmptyObject(system.row)) {
+                                            <span class="awg-source-description-content-item-row">
+                                                <ng-template #rowTemplate let-row>
+                                                    <span
+                                                        ><span
+                                                            >{{ row.rowType }}<sub>{{ row.rowBase }}</sub></span
+                                                        >
+                                                        @if (row.rowNumber) {
+                                                            <span> ({{ row.rowNumber }})</span>
+                                                        }
+                                                    </span></ng-template
+                                                >
+
+                                                @if (system.linkTo) {
+                                                    <a
+                                                        (click)="
+                                                            selectSvgSheet({
+                                                                complexId: content.itemLinkTo.complexId,
+                                                                sheetId: system.linkTo,
+                                                            })
+                                                        "
+                                                        (keyup.enter)="
+                                                            selectSvgSheet({
+                                                                complexId: content.itemLinkTo.complexId,
+                                                                sheetId: system.linkTo,
+                                                            })
+                                                        "
+                                                        role="link"
+                                                        tabindex="0"
+                                                        ><ng-template
+                                                            *ngTemplateOutlet="
+                                                                rowTemplate;
+                                                                context: { $implicit: system.row }
+                                                            "></ng-template>
+                                                    </a>
+                                                } @else {
+                                                    <ng-template
+                                                        *ngTemplateOutlet="
+                                                            rowTemplate;
+                                                            context: { $implicit: system.row }
+                                                        "></ng-template>
+                                                }
+                                            </span>
+                                        }
+
+                                        @if (lastFolio && lastSystemGroup && lastSystem) {
+                                            <span>.</span>
+                                        } @else {
+                                            <span>;</span>
+                                        }
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    } @else {
+                        <!-- no folio system groups, only folio description -->
+                        <tr class="awg-source-description-content-table-row">
+                            @if (folio.folio) {
+                                <ng-template
+                                    *ngTemplateOutlet="folioCellTemplate; context: { $implicit: folio }"></ng-template>
+                            }
+                        </tr>
+                    }
+                }
+            </table>
+        }
+    }
+</div>
