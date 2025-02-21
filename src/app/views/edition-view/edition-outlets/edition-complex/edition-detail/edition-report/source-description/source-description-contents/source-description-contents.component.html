@@ -42,7 +42,7 @@
 
         <!-- content.folios -->
         @if (content?.folios?.length) {
-            <table class="awg-source-description-content-table half-para-margin">
+            <table class="awg-source-description-content-table half-para-margin" role="presentation">
                 @for (folio of content.folios; track $index; let lastFolio = $last) {
                     <ng-template #folioCellTemplate let-folio>
                         <td
