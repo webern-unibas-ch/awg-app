@@ -1,9 +1,9 @@
 <div class="awg-source-description-contents">
-    <p class="no-para awg-source-description-contents-label"><span class="smallcaps">Inhalt:</span></p>
+    <p class="awg-source-description-contents-label no-para-margin"><span class="smallcaps">Inhalt:</span></p>
     @for (content of contents; track $index) {
         <!-- content.itemDescription -->
         @if (content.item || content.itemDescription) {
-            <p class="no-para awg-source-description-content-item-para">
+            <p class="awg-source-description-content-item-para no-para-margin">
                 <span class="awg-source-description-content-item">
                     @if (content.item && UTILS.isNotEmptyObject(content.itemLinkTo)) {
                         <a
@@ -42,7 +42,7 @@
 
         <!-- content.folios -->
         @if (content?.folios?.length) {
-            <table class="awg-source-description-content-table half-para">
+            <table class="awg-source-description-content-table half-para-margin">
                 @for (folio of content.folios; track $index; let lastFolio = $last) {
                     <ng-template #folioCellTemplate let-folio>
                         <td

@@ -78,13 +78,13 @@ describe('SourceDescriptionContentsComponent', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-contents', 1, 1);
             });
 
-            it('... should contain one paragraph (no-para) in div displaying the contents label in smallcaps', () => {
+            it('... should contain one paragraph (no-para-margin) in div displaying the contents label in smallcaps', () => {
                 const expectedLabel = 'Inhalt:';
 
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-contents-label', 1, 1);
                 const pEl = pDes[0].nativeElement;
 
-                expect(pEl).toHaveClass('no-para');
+                expect(pEl).toHaveClass('no-para-margin');
 
                 const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
                 const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
@@ -92,8 +92,8 @@ describe('SourceDescriptionContentsComponent', () => {
                 expectToBe(spanEl.textContent.trim(), expectedLabel);
             });
 
-            it('... should contain no other p.no-para nor table', () => {
-                getAndExpectDebugElementByCss(compDe, 'p.no-para', 1, 1);
+            it('... should contain no other p.no-para-margin nor table', () => {
+                getAndExpectDebugElementByCss(compDe, 'p.no-para-margin', 1, 1);
                 getAndExpectDebugElementByCss(compDe, 'table', 0, 0);
             });
         });
@@ -134,7 +134,7 @@ describe('SourceDescriptionContentsComponent', () => {
                     pDes.forEach(pDe => {
                         const pEl = pDe.nativeElement;
 
-                        expect(pEl).toHaveClass('no-para');
+                        expect(pEl).toHaveClass('no-para-margin');
                     });
                 });
 
