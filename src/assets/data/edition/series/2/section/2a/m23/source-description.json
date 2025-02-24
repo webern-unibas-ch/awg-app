@@ -271,7 +271,7 @@
                         "item": "M 23 Sk2",
                         "itemLinkTo": {
                             "complexId": "m23",
-                            "sheetId": "M_23_Sk2"
+                            "sheetId": "M_23_Sk2a"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: Textfassung 2 Var. I)",
                         "folios": [
@@ -284,21 +284,21 @@
                                         {
                                             "system": "19b–20b",
                                             "measure": "1–3",
-                                            "linkTo": ""
+                                            "linkTo": "M_23_Sk2a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "22–23",
                                             "measure": "4–9",
-                                            "linkTo": ""
+                                            "linkTo": "M_23_Sk2b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12c–13c",
                                             "measure": "10–11",
-                                            "linkTo": ""
+                                            "linkTo": "M_23_Sk2c"
                                         }
                                     ]
                                 ]
