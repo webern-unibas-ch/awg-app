@@ -1034,7 +1034,7 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_B<sup>a</sup>_corr_1",
+                        "id": "source_Ba_corr_1",
                         "label": "Korrekturen 1 in <strong>B<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
@@ -1133,7 +1133,7 @@
                         }
                     },
                     {
-                        "id": "source_B<sup>a</sup>_corr_2",
+                        "id": "source_Ba_corr_2",
                         "label": "Korrekturen 2 in <strong>B<sup>a</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
@@ -1226,7 +1226,7 @@
                         }
                     },
                     {
-                        "id": "source_B<sup>b</sup>_corr_1",
+                        "id": "source_Bb_corr_1",
                         "label": "Korrekturen 1 in <strong>B<sup>b</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
@@ -1265,7 +1265,7 @@
                         }
                     },
                     {
-                        "id": "source_B<sup>b</sup>_corr_2",
+                        "id": "source_Bb_corr_2",
                         "label": "Korrekturen 2 in <strong>B<sup>b</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
