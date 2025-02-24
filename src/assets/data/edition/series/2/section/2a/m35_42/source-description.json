@@ -394,7 +394,10 @@
                     },
                     {
                         "item": "M 39 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m39",
+                            "sheetId": "M_39_Sk1a"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 39)",
                         "folios": [
                             {
@@ -406,70 +409,77 @@
                                         {
                                             "system": "2a–3a",
                                             "measure": "1, {2A}",
-                                            "linkTo": ""
+                                            "linkTo": "M_39_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5–6",
                                             "measure": "{2B}, 3–4, 5A",
-                                            "linkTo": ""
+                                            "linkTo": "M_39_Sk1b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "8a–9a",
                                             "measure": "5B",
-                                            "linkTo": ""
+                                            "linkTo": "M_39_Sk1c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "11a–12a",
                                             "measure": "6A, {7A–8A}",
-                                            "linkTo": ""
+                                            "linkTo": "M_39_Sk1d"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13a–14a",
                                             "measure": "6B–8B",
-                                            "linkTo": ""
+                                            "linkTo": "M_39_Sk1e"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "16–17",
                                             "measure": "{9A–13A}",
-                                            "linkTo": ""
+                                            "linkTo": "M_39_Sk1f"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "9c–10",
                                             "measure": "{9B}",
-                                            "linkTo": ""
+                                            "linkTo": "M_39_Sk1g"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "11b–12b",
                                             "measure": "9C, 10B",
-                                            "linkTo": ""
+                                            "linkTo": "M_39_Sk1h"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13b–14b",
                                             "measure": "11C, 12B",
-                                            "linkTo": ""
+                                            "linkTo": "M_39_Sk1i"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7–8c",
                                             "measure": "13B, 14",
-                                            "linkTo": ""
+                                            "linkTo": "M_39_Sk1j"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "2b–3b",
+                                            "measure": "18–19",
+                                            "linkTo": "M_39_Sk1k"
                                         }
                                     ]
                                 ]
@@ -478,7 +488,10 @@
                     },
                     {
                         "item": "M 39 Sk1.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m39",
+                            "sheetId": "M_39_Sk1_1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 39)",
                         "folios": [
                             {
