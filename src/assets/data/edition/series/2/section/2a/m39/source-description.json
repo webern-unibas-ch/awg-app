@@ -655,7 +655,7 @@
                         "item": "M 34",
                         "itemLinkTo": {
                             "complexId": "m34",
-                            "sheetId": "M_34"
+                            "sheetId": "M_34_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 34)",
                         "folios": [
@@ -685,8 +685,8 @@
                     {
                         "item": "M 35/42",
                         "itemLinkTo": {
-                            "complexId": "m35/42",
-                            "sheetId": "SkRT"
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 35/42)",
                         "folios": [
@@ -716,8 +716,8 @@
                     {
                         "item": "M 35/42 Sk2",
                         "itemLinkTo": {
-                            "complexId": "m35/42",
-                            "sheetId": "SkRT"
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk2"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 35/42)",
                         "folios": [
@@ -741,7 +741,7 @@
                         "item": "M 36",
                         "itemLinkTo": {
                             "complexId": "m36",
-                            "sheetId": "M_36"
+                            "sheetId": "M_36_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 36)",
                         "folios": [
@@ -786,7 +786,7 @@
                         "item": "M 37",
                         "itemLinkTo": {
                             "complexId": "m37",
-                            "sheetId": "M_37"
+                            "sheetId": "M_37_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 37)",
                         "folios": [
@@ -824,7 +824,7 @@
                         "item": "M 38",
                         "itemLinkTo": {
                             "complexId": "m38",
-                            "sheetId": "M_38"
+                            "sheetId": "M_38_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 38)",
                         "folios": [
@@ -862,7 +862,7 @@
                         "item": "M 39",
                         "itemLinkTo": {
                             "complexId": "m39",
-                            "sheetId": "M_39"
+                            "sheetId": "M_39_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 39: Textfassung 1→2)",
                         "folios": [
@@ -914,7 +914,7 @@
                         "item": "M 39 Sk2",
                         "itemLinkTo": {
                             "complexId": "m39",
-                            "sheetId": "M_39_Sk2"
+                            "sheetId": "M_39_Sk2a"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 39: Textfassung 2)",
                         "folios": [
@@ -938,7 +938,7 @@
                         "item": "M 39",
                         "itemLinkTo": {
                             "complexId": "m39",
-                            "sheetId": "M_39"
+                            "sheetId": "M_39_TF2"
                         },
                         "itemDescription": "(Tintenniederschrift von und Skizze zu Studienkomposition für Klavier M 39: Textfassung 2)",
                         "folios": [
@@ -976,7 +976,7 @@
                         "item": "M 41",
                         "itemLinkTo": {
                             "complexId": "m41",
-                            "sheetId": "M_41"
+                            "sheetId": "M_41_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 41)",
                         "folios": [
