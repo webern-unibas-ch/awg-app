@@ -1583,7 +1583,10 @@
                     },
                     {
                         "item": "M 39",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m39",
+                            "sheetId": "M_39_TF2a"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 39: Textfassung 2)",
                         "folios": [
                             {

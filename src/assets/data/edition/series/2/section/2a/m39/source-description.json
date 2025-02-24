@@ -1632,16 +1632,22 @@
                         "item": "M 40",
                         "itemLinkTo": {
                             "complexId": "m40",
-                            "sheetId": "M_40"
+                            "sheetId": "M_40_TF1a"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 40)",
                         "folios": [
                             {
-                                "folio": "",
+                                "folio": "1r",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
-                                    [],
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
                                     [
                                         {
                                             "system": "4–5",
@@ -1670,17 +1676,23 @@
                     {
                         "item": "M 35/42",
                         "itemLinkTo": {
-                            "complexId": "m35/42",
-                            "sheetId": "SkRT"
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_TF1a"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 35/42)",
                         "folios": [
                             {
-                                "folio": "",
+                                "folio": "1r",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
-                                    [],
+                                    [
+                                        {
+                                            "system": "13–14",
+                                            "measure": "10–16",
+                                            "linkTo": ""
+                                        }
+                                    ],
                                     [
                                         {
                                             "system": "16–17",
@@ -1689,12 +1701,6 @@
                                         }
                                     ]
                                 ]
-                            },
-                            {
-                                "folio": "",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [[]]
                             }
                         ]
                     },
@@ -1702,16 +1708,22 @@
                         "item": "M 39",
                         "itemLinkTo": {
                             "complexId": "m39",
-                            "sheetId": "M_39"
+                            "sheetId": "M_39_TF2a"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 39: Textfassung 2)",
                         "folios": [
                             {
-                                "folio": "",
+                                "folio": "1v",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
-                                    [],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "9–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
                                     [
                                         {
                                             "system": "7–8",
