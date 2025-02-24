@@ -3,7 +3,12 @@
         {
             "id": "M_22_TF1",
             "label": "M 22 einzige Textfassung",
-            "evaluations": [],
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier/Streichquartett M 22 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_F'})\"><strong>F</strong></a> relevante Quelle.  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_A'})\"><strong>A</strong></a>,  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_B'})\"><strong>B</strong></a>,  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_C'})\"><strong>C</strong></a>,  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_D'})\"><strong>D</strong></a> und  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_E'})\"><strong>E</strong></a> enthalten Skizzen.", 
+                " <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_F'})\"><strong>F</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung. Eine nur geringfügig abweichende Variante für Var. XIX T. 7–8, notiert in separaten Systemen, wurde nicht berücksichtigt.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier/Streichquartett M 22 ist  <a (click)=\"ref.navigateToReportFragment({complexId: 'm22', fragmentId: 'source_F'})\"><strong>F</strong></a> nach Korrekturen 1. Die letzten drei Variationen (Var. XXI–XXIII) in Besetzung für Streichquartett wurden aufgrund der durchgehenden Nummerierung in die Edition miteinbezogen (vgl. Einleitung)." 
+
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
@@ -2083,7 +2088,23 @@
                         ]
                     }
                 ]
-            }
+            },
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m29",
+                        "sheetId": "M_29_Sk3b"
+                    }
+                },
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m29",
+                        "sheetId": "M_29_Sk1c"
+                    }
+                }
+            ]
         },
         {
             "id": "M_22_Sk28_1",
