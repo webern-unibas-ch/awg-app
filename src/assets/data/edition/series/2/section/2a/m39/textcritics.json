@@ -153,7 +153,7 @@
                             "system": "2",
                             "position": "vorletzte Note",
                             "comment": "c<sup>2</sup>/e<sup>2</sup> überschreibt g<sup>1</sup>."
-                        },               
+                        },
                         {
                             "svgGroupId": "g1072",
                             "measure": "1",
@@ -286,35 +286,35 @@
                             "system": "16",
                             "position": "1.–2. Note",
                             "comment": "e<sup>1</sup>/g<sup>1</sup> überschreibt g<sup>1</sup>/d<sup>1</sup>."
-                        },                
+                        },
                         {
                             "svgGroupId": "g1016",
                             "measure": "{11A}",
                             "system": "16",
                             "position": "6/8",
                             "comment": "[#]fis<sup>1</sup> überschreibt a<sup>1</sup>."
-                        },                
+                        },
                         {
                             "svgGroupId": "g970",
                             "measure": "{9B}",
                             "system": "9–10",
                             "position": "",
                             "comment": "Takt pauschal gestrichen."
-                        },               
+                        },
                         {
                             "svgGroupId": "g966",
                             "measure": "{9B}",
                             "system": "9–10",
                             "position": "8/8",
                             "comment": "f<sup>1</sup> überschreibt g<sup>1</sup>."
-                        },                
+                        },
                         {
                             "svgGroupId": "g1062",
                             "measure": "10B",
                             "system": "11",
                             "position": "(3/4)",
                             "comment": "Balkierung für [punktierte] Achtelnote mit Sechzehntelnote überschreibt Achtelfähnchen zu g<sup>2</sup>."
-                        },                
+                        },
                         {
                             "svgGroupId": "g1066",
                             "measure": "10B",
@@ -369,7 +369,7 @@
             ]
         },
         {
-            "id": "M_39_Sk1.1",
+            "id": "M_39_Sk1_1",
             "label": "M 39 Sk1.1",
             "description": [
                 "<strong>M 39 Sk1.1</strong> beinhaltet eine überarbeitete Fassung des in Sk1 gestrichenen T. 2."
@@ -422,7 +422,7 @@
                         }
                     ]
                 }
-             ]
+            ]
         }
     ]
 }

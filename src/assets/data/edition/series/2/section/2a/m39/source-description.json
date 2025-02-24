@@ -7,9 +7,7 @@
             "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
-                    "1 Bogen (Bl. 1/2)."
-                ],
+                "desc": ["1 Bogen (Bl. 1/2)."],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 349 × 265 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
                 ],
@@ -638,9 +636,7 @@
             "type": "Skizzen und Tintenniederschrift.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
-                    "1 Bogen (Bl. 1/2). Stockfleck und rötliche Verfärbung mittig am oberen Rand von Bogen 1."
-                ],
+                "desc": ["1 Bogen (Bl. 1/2). Stockfleck und rötliche Verfärbung mittig am oberen Rand von Bogen 1."],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 349 × 267 mm, Firmenzeichen [J.E. &amp; Co.] | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
                 ],
@@ -1038,8 +1034,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "Korrekturen 1 in <strong>B<sup>a</sup></strong> (mit Tinte)",
-                        "label": "source_B<sup>a</sup>_corr_1",
+                        "id": "source_B<sup>a</sup>_corr_1",
+                        "label": "Korrekturen 1 in <strong>B<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1137,8 +1133,8 @@
                         }
                     },
                     {
-                        "id": "Korrekturen 2 in <strong>B<sup>a</sup></strong> (mit Bleistift)",
-                        "label": "source_B<sup>a</sup>_corr_2",
+                        "id": "source_B<sup>a</sup>_corr_2",
+                        "label": "Korrekturen 2 in <strong>B<sup>a</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1230,8 +1226,8 @@
                         }
                     },
                     {
-                        "id": "Korrekturen 1 in <strong>B<sup>b</sup></strong> (mit Bleistift)",
-                        "label": "source_B<sup>b</sup>_corr_1",
+                        "id": "source_B<sup>b</sup>_corr_1",
+                        "label": "Korrekturen 1 in <strong>B<sup>b</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1269,8 +1265,8 @@
                         }
                     },
                     {
-                        "id": "Korrekturen 2 in <strong>B<sup>b</sup></strong> (mit Tinte)",
-                        "label": "source_B<sup>b</sup>_corr_2",
+                        "id": "source_B<sup>b</sup>_corr_2",
+                        "label": "Korrekturen 2 in <strong>B<sup>b</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1307,7 +1303,7 @@
                             ]
                         }
                     }
-                ]    
+                ]
             }
         },
         {
@@ -1317,9 +1313,7 @@
             "type": "Skizzen und Tintenniederschrift.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
-                    "1 Bogen (Bl. 1/2). Kleiner Riss am rechten Rand von Bl. 2."
-                ],
+                "desc": ["1 Bogen (Bl. 1/2). Kleiner Riss am rechten Rand von Bl. 2."],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 348 × 267 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
                 ],
@@ -1424,9 +1418,7 @@
                                 "folio": "",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [
-                                    []
-                                ]
+                                "systemGroups": [[]]
                             }
                         ]
                     },
@@ -1474,9 +1466,7 @@
                                 "folio": "",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [
-                                    []
-                                ]
+                                "systemGroups": [[]]
                             }
                         ]
                     },
@@ -1492,9 +1482,7 @@
                                 "folio": "",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [
-                                    []
-                                ]
+                                "systemGroups": [[]]
                             }
                         ]
                     },
@@ -1549,9 +1537,7 @@
                                 "folio": "",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [
-                                    []
-                                ]
+                                "systemGroups": [[]]
                             }
                         ]
                     },
@@ -1613,9 +1599,7 @@
                                 "folio": "",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [
-                                    []
-                                ]
+                                "systemGroups": [[]]
                             }
                         ]
                     }
@@ -1629,9 +1613,7 @@
             "type": "Tintenniederschrift.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
-                    "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt."
-                ],
+                "desc": ["1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt."],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 349 × 267 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
                 ],
@@ -1712,9 +1694,7 @@
                                 "folio": "",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [
-                                    []
-                                ]
+                                "systemGroups": [[]]
                             }
                         ]
                     },
@@ -1744,10 +1724,10 @@
                         ]
                     }
                 ],
-                "corrections": [             
+                "corrections": [
                     {
-                        "id": "Korrekturen 1 in <strong>D</strong> (mit Tinte)",
-                        "label": "source_D_corr_1",
+                        "id": "source_D_corr_1",
+                        "label": "Korrekturen 1 in <strong>D</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -1778,7 +1758,7 @@
                             ]
                         }
                     }
-                ] 
+                ]
             }
         }
     ]
