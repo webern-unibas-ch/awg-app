@@ -347,7 +347,7 @@
     <path id="line278" d="M588.648 217.97V236" style="fill:none;stroke:#000;stroke-width:.483"/>
     <path id="line278-8" d="M583.573 215.036v19.589" style="fill:none;stroke:#777;stroke-width:.48378;stroke-dasharray:1.45134,1.45134"/>
   </g>
-  <g id="g5" class="supplied clef, supplied key">
+  <g id="g5" class="supplied clef_key">
     <g id="g28" transform="translate(49.827 -700.776)">
       <path id="text24" d="M296.402 881.49v3.258l2.143-.7v-3.257zm-.634-2.055v-3.564h.634v3.345l2.143-.7v-3.192h.634v2.996l.853-.285v2.274l-.853.285v3.236l.853-.262v2.252l-.853.284v3.564h-.634v-3.367l-2.143.7v3.236h-.634v-3.018l-.94.306v-2.274l.94-.306v-3.258l-.94.306v-2.252z" aria-label="#" style="font-size:21.8666px;font-family:Maestro;fill:#777;stroke-width:.750002"/>
       <path id="text25" d="M302.553 889.69v3.258l2.142-.7v-3.258zm-.635-2.055v-3.564h.635v3.345l2.142-.7v-3.192h.635v2.996l.852-.285v2.274l-.852.285v3.236l.852-.262v2.252l-.852.284v3.564h-.635v-3.367l-2.142.7v3.236h-.635v-3.018l-.94.306v-2.274l.94-.306v-3.258l-.94.306v-2.252z" aria-label="#" style="font-size:21.8666px;font-family:Maestro;fill:#777;stroke-width:.750002"/>
