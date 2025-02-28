@@ -661,7 +661,10 @@
                     },
                     {
                         "item": "M 39",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m39",
+                            "sheetId": "M_39_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 39: Textfassung 1→2)",
                         "folios": [
                             {
@@ -710,7 +713,10 @@
                     },
                     {
                         "item": "M 39 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m39",
+                            "sheetId": "M_39_Sk2a"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 39: Textfassung 2)",
                         "folios": [
                             {
@@ -730,9 +736,12 @@
                         ]
                     },
                     {
-                        "item": "M 39 Sk3",
-                        "itemLinkTo": {},
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 39: Textfassung 2)",
+                        "item": "M 39",
+                        "itemLinkTo": {
+                            "complexId": "m39",
+                            "sheetId": "M_39_TF2"
+                        },
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 39: Textfassung 2)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -741,14 +750,14 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "13b–14b (Bleistift)",
+                                            "system": "13b–14b (Tinte/Bleistift)",
                                             "measure": "16–17(1–2/4)",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
-                                            "system": "16b–17b (Bleistift)",
+                                            "system": "16b–17b (Tinte/Bleistift)",
                                             "measure": "17(3–4/4)–19",
                                             "linkTo": ""
                                         }
