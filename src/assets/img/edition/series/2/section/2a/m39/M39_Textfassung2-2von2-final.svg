@@ -830,13 +830,6 @@
   <g id="g1084" style="fill:#000;fill-opacity:1" transform="translate(38.931 -.537)">
     <use xlink:href="#glyph5-1" id="use1082" width="100%" height="100%" x="492.961" y="268.497"/>
   </g>
-  <g id="g3823" class="tkk" transform="translate(38.931 -.537)">
-    <g id="g3106" class="tkk">
-      <g id="g2020" style="fill:#000;fill-opacity:1">
-        <use xlink:href="#glyph8-1" id="use2018" width="100%" height="100%" x="449.701" y="507.539"/>
-      </g>
-    </g>
-  </g>
   <g id="g4183" class="tkk" transform="translate(38.931 -.537)">
     <path id="path1088" d="M515.398 261.477h7.801" style="fill:none;stroke:#000;stroke-width:.60000002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
     <path id="path1090" d="M515.398 256.797h7.801" style="fill:none;stroke:#000;stroke-width:.60000002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
@@ -1297,5 +1290,10 @@
     <path id="path2028" d="M492.422 540.719v-7.02" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
     <path id="path2030" d="M490.86 533.7h1.562" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
     <path id="path2032" d="M490.86 540.719h1.562" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
+  </g>
+  <g id="g3823" class="tkk" transform="translate(38.931 -.537)">
+    <g id="g2020" style="fill:#000;fill-opacity:1">
+      <use xlink:href="#glyph8-1" id="use2018" width="100%" height="100%" x="449.701" y="507.539"/>
+    </g>
   </g>
 </svg>
