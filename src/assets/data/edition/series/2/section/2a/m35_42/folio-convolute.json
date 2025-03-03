@@ -1278,7 +1278,92 @@
                         "height": 347,
                         "width": 265
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m40",
+                            "sheetId": "M_40_TF1",
+                            "sigle": "M 40 Tintenniederschrift",
+                            "sigleAddendum": "T. 1–9",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m40",
+                            "sheetId": "M_40_TF1",
+                            "sigle": "M 40 Tintenniederschrift",
+                            "sigleAddendum": "T. 10–16",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m40",
+                            "sheetId": "M_40_TF1",
+                            "sigle": "M 40 Tintenniederschrift",
+                            "sigleAddendum": "T. 17–23",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m40",
+                            "sheetId": "M_40_TF1",
+                            "sigle": "M 40 Tintenniederschrift",
+                            "sigleAddendum": "T. 24–25",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_TF1",
+                            "sigle": "M 35/42 Tintenniederschrift",
+                            "sigleAddendum": "T. 10–16",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_TF1",
+                            "sigle": "M 35/42 Tintenniederschrift",
+                            "sigleAddendum": "T. 17–23",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "1v",
@@ -1287,25 +1372,36 @@
                         "height": 347,
                         "width": 265
                     },
-                    "content": []
-                },
-                {
-                    "folioId": "2r",
-                    "systems": "18",
-                    "format": {
-                        "height": 347,
-                        "width": 265
-                    },
-                    "content": []
-                },
-                {
-                    "folioId": "2v",
-                    "systems": "18",
-                    "format": {
-                        "height": 347,
-                        "width": 265
-                    },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m39",
+                            "sheetId": "M_39_TF1",
+                            "sigle": "M 39 Tintenniederschrift TF 2",
+                            "sigleAddendum": "T. 9–11",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m39",
+                            "sheetId": "M_39_TF1",
+                            "sigle": "M 39 Tintenniederschrift TF 2",
+                            "sigleAddendum": "T. 12",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }
