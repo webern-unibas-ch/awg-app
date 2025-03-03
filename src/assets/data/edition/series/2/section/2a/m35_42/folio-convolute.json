@@ -536,7 +536,107 @@
                         "height": 349,
                         "width": 267
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m34",
+                            "sheetId": "M_34_TF1",
+                            "sigle": "M 34 Tintenniederschrift",
+                            "sigleAddendum": "T. 1–5",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m34",
+                            "sheetId": "M_34_TF1",
+                            "sigle": "M 34 Tintenniederschrift",
+                            "sigleAddendum": "T. 6–8",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_TF1",
+                            "sigle": "M 35/42 Tintenniederschrift",
+                            "sigleAddendum": "T. 1–7",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_TF1",
+                            "sigle": "M 35/42 Tintenniederschrift",
+                            "sigleAddendum": "T. 8–9",
+                            "selectable": false,
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk2",
+                            "sigle": "M 35/42 Sk2",
+                            "sigleAddendum": "",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m36",
+                            "sheetId": "M_36_TF1",
+                            "sigle": "M 36 Tintenniederschrift",
+                            "sigleAddendum": "T. 1–6",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m36",
+                            "sheetId": "M_36_TF1",
+                            "sigle": "M 36 Tintenniederschrift",
+                            "sigleAddendum": "T. 7–13",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "1v",
@@ -545,7 +645,106 @@
                         "height": 349,
                         "width": 267
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m36",
+                            "sheetId": "M_36_TF1",
+                            "sigle": "M 36 Tintenniederschrift",
+                            "sigleAddendum": "T. 14–16",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m37",
+                            "sheetId": "M_37_TF1",
+                            "sigle": "M 37 Tintenniederschrift",
+                            "sigleAddendum": "T. 1–7",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m37",
+                            "sheetId": "M_37_TF1",
+                            "sigle": "M 37 Tintenniederschrift",
+                            "sigleAddendum": "T. 8–15",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m37",
+                            "sheetId": "M_37_TF1",
+                            "sigle": "M 37 Tintenniederschrift",
+                            "sigleAddendum": "T. 16–21",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m38",
+                            "sheetId": "M_38_TF1",
+                            "sigle": "M 38 Tintenniederschrift",
+                            "sigleAddendum": "T. 1–6",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m38",
+                            "sheetId": "M_38_TF1",
+                            "sigle": "M 38 Tintenniederschrift",
+                            "sigleAddendum": "T. 7–12",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 15,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m38",
+                            "sheetId": "M_38_TF1",
+                            "sigle": "M 38 Tintenniederschrift",
+                            "sigleAddendum": "T. 13–20",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "2r",
@@ -554,7 +753,123 @@
                         "height": 349,
                         "width": 267
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m39",
+                            "sheetId": "M_39_TF1",
+                            "sigle": "M 39 Tintenniederschrift TF 1→2",
+                            "sigleAddendum": "T. 1–3",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m39",
+                            "sheetId": "M_39_TF1",
+                            "sigle": "M 39 Tintenniederschrift TF 1→2",
+                            "sigleAddendum": "T. 4–7",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m39",
+                            "sheetId": "M_39_TF1",
+                            "sigle": "M 39 Tintenniederschrift TF 1→2",
+                            "sigleAddendum": "T. 8–12 → T. 8, {9–12}",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m39",
+                            "sheetId": "M_39_TF1",
+                            "sigle": "M 39 Tintenniederschrift TF 1→2",
+                            "sigleAddendum": "T. 13–16 → T. {13–14}, 13–14",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m39",
+                            "sheetId": "M_39_TF1",
+                            "sigle": "M 39 Tintenniederschrift TF 1→2",
+                            "sigleAddendum": "T. 17–19 → T. 15–17",
+                            "selectable": false,
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m39",
+                            "sheetId": "M_39_Sk2a",
+                            "sigle": "M 39 Sk2",
+                            "sigleAddendum": "T. 9–10",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m39",
+                            "sheetId": "M_39_TF2",
+                            "sigle": "M 39 Tintenniederschrift TF 2",
+                            "sigleAddendum": "T. 16–17(1–2/4)",
+                            "selectable": false,
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m39",
+                            "sheetId": "M_39_TF2",
+                            "sigle": "M 39 Tintenniederschrift TF 2",
+                            "sigleAddendum": "T. 17(3–4/4)–19",
+                            "selectable": false,
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "2v",
@@ -563,7 +878,92 @@
                         "height": 349,
                         "width": 267
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m41",
+                            "sheetId": "M_41_TF1",
+                            "sigle": "M 41 Tintenniederschrift",
+                            "sigleAddendum": "T. 1–6",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m41",
+                            "sheetId": "M_41_TF1",
+                            "sigle": "M 41 Tintenniederschrift",
+                            "sigleAddendum": "T. 7–12",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m41",
+                            "sheetId": "M_41_TF1",
+                            "sigle": "M 41 Tintenniederschrift",
+                            "sigleAddendum": "T. 13–18",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m41",
+                            "sheetId": "M_41_TF1",
+                            "sigle": "M 41 Tintenniederschrift",
+                            "sigleAddendum": "T. 19–25",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m41",
+                            "sheetId": "M_41_TF1",
+                            "sigle": "M 41 Tintenniederschrift",
+                            "sigleAddendum": "T. 26–30",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m41",
+                            "sheetId": "M_41_TF1",
+                            "sigle": "M 41 Tintenniederschrift",
+                            "sigleAddendum": "T. 31",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         },
