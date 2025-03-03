@@ -1179,6 +1179,19 @@
                         },
                         {
                             "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1d",
+                            "sigle": "M 35/42 Sk1",
+                            "sigleAddendum": "T. {16A}–18",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 12,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
                             "sheetId": "M_35_42_Sk1c",
                             "sigle": "M 35/42 Sk1",
                             "sigleAddendum": "T. 10–15",
@@ -1188,19 +1201,6 @@
                                     "position": 1,
                                     "startSystem": 12,
                                     "endSystem": 13
-                                }
-                            ]
-                        },
-                        {
-                            "complexId": "m35_42",
-                            "sheetId": "M_35_42_Sk1d",
-                            "sigle": "M 35/42 Sk1",
-                            "sigleAddendum": "T. {16A}–18",
-                            "sectionPartition": 1,
-                            "sections": [
-                                {
-                                    "startSystem": 15,
-                                    "endSystem": 16
                                 }
                             ]
                         },
@@ -1240,7 +1240,21 @@
                         "height": 348,
                         "width": 266
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m39",
+                            "sheetId": "M_39_Sk1_1",
+                            "sigle": "M 39 Sk2b",
+                            "sigleAddendum": "",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "2v",
