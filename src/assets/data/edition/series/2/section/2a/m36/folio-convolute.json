@@ -173,6 +173,137 @@
                     },
                     "content": [
                         {
+                            "complexId": "mstar404",
+                            "sheetId": "Mstar_404_Sk1a",
+                            "sigle": "M* 404 Sk1",
+                            "sigleAddendum": "T. 1–{5A}",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar404",
+                            "sheetId": "Mstar_404_Sk1b",
+                            "sigle": "M* 404 Sk1",
+                            "sigleAddendum": "T. 5B–7B",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar404",
+                            "sheetId": "Mstar_404_Sk1c",
+                            "sigle": "M* 404 Sk1",
+                            "sigleAddendum": "T. 8A–11",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar404",
+                            "sheetId": "Mstar_404_Sk1d",
+                            "sigle": "M* 404 Sk1",
+                            "sigleAddendum": "T. 12–15",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar404",
+                            "sheetId": "Mstar_404_Sk1e",
+                            "sigle": "M* 404 Sk1",
+                            "sigleAddendum": "T. 16",
+                            "selectable": false,
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar404",
+                            "sheetId": "Mstar_404_Sk1_1",
+                            "sigle": "M* 404 Sk1.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar404",
+                            "sheetId": "Mstar_404_Sk1_2",
+                            "sigle": "M* 404 Sk1.2",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar404",
+                            "sheetId": "Mstar_404_Sk1_3",
+                            "sigle": "M* 404 Sk1.3",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar404",
+                            "sheetId": "Mstar_404_Sk1_4",
+                            "sigle": "M* 404 Sk1.4",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
                             "complexId": "m38",
                             "sheetId": "M_38_Sk3a",
                             "sigle": "M 38 Sk3",
