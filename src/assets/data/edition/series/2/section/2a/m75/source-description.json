@@ -26,10 +26,7 @@
                 "contents": [
                     {
                         "item": "M 116 Sk5",
-                        "itemLinkTo": {
-                            "complexId": "m116",
-                            "sheetId": "M_116_Sk5"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 116)",
                         "folios": [
                             {
@@ -59,7 +56,7 @@
                         "item": "M 75 Sk1",
                         "itemLinkTo": {
                             "complexId": "m75",
-                            "sheetId": "M_75_Sk1"
+                            "sheetId": "M_75_Sk1a"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 75)",
                         "folios": [
@@ -72,14 +69,14 @@
                                         {
                                             "system": "6–9",
                                             "measure": "1–6, {7A}, 7B",
-                                            "linkTo": ""
+                                            "linkTo": "M_75_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "11–12",
                                             "measure": "8–14",
-                                            "linkTo": ""
+                                            "linkTo": "M_75_Sk1b"
                                         }
                                     ]
                                 ]
@@ -139,10 +136,7 @@
                 "contents": [
                     {
                         "item": "M 76",
-                        "itemLinkTo": {
-                            "complexId": "m76",
-                            "sheetId": "M_76"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 76: Textfassung 1)",
                         "folios": [
                             {
@@ -186,7 +180,7 @@
                         "item": "M 75",
                         "itemLinkTo": {
                             "complexId": "m75",
-                            "sheetId": "M_75"
+                            "sheetId": "M_75_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 75)",
                         "folios": [
