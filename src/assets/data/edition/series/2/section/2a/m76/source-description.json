@@ -28,7 +28,7 @@
                         "item": "M 76",
                         "itemLinkTo": {
                             "complexId": "m76",
-                            "sheetId": "M_76"
+                            "sheetId": "M_76_TF1"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 76: Textfassung 1)",
                         "folios": [
@@ -71,10 +71,7 @@
                     },
                     {
                         "item": "M 75",
-                        "itemLinkTo": {
-                            "complexId": "m75",
-                            "sheetId": "M_75"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 75)",
                         "folios": [
                             {
@@ -117,8 +114,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "Korrekturen 1 in <strong>A</strong> (mit Tinte)",
-                        "label": "source_A_corr_1",
+                        "id": "source_A_corr_1",
+                        "label": "Korrekturen 1 in <strong>A</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -204,8 +201,8 @@
                         }
                     },
                     {
-                        "id": "Korrekturen 2 in <strong>A</strong> (mit Bleistift)",
-                        "label": "source_A_corr_2",
+                        "id": "source_A_corr_2",
+                        "label": "Korrekturen 2 in <strong>A</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -302,9 +299,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -317,9 +312,9 @@
                         "item": "M 76",
                         "itemLinkTo": {
                             "complexId": "m76",
-                            "sheetId": "M_76"
+                            "sheetId": "M_76_TF1"
                         },
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 76: Textfassung 2)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier/Streichquartett M 76: Textfassung 2)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -368,14 +363,14 @@
                                         {
                                             "system": "16",
                                             "measure": "1–7",
-                                            "linkTo": ""
+                                            "linkTo": "M_43_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "17",
                                             "measure": "{8A}, 8B, 9–11",
-                                            "linkTo": ""
+                                            "linkTo": "M_43_Sk1b"
                                         }
                                     ]
                                 ]
