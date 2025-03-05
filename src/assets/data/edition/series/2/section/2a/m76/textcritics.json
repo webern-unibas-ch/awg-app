@@ -4,9 +4,9 @@
             "id": "M_76_TF1",
             "label": "M 76 Textfassung 1",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier/Streichquartett M 76 Textfassung 1 ist <strong>A</strong> relevante Quelle. <strong>B</strong> bezieht sich auf Textfassung 2 für Streichquartett (siehe AWG II/2b).",
-                "<strong>A</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier/Streichquartett M 76 Textfassung 1 ist <strong>A</strong> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition für Klavier/Streichquartett M 76 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A'})\"><strong>A</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_B'})\"><strong>B</strong></a> bezieht sich auf Textfassung 2 für Streichquartett (siehe AWG II/2b).",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A'})\"><strong>A</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a> mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier/Streichquartett M 76 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A'})\"><strong>A</strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
@@ -26,14 +26,14 @@
                                 "measure": "8",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt mit Blick auf Textfassung 2 und Korrekturen 2."
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt mit Blick auf Textfassung 2 und <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>."
                             },
                             {
                                 "svgGroupId": "g4",
                                 "measure": "9",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt analog T. 8 und mit Blick auf Korrekturen 2 sowie Korrekturen 2 in Textfassung 2."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt analog T. 8 und mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a> sowie Korrekturen 2 in Textfassung 2."
                             },
                             {
                                 "svgGroupId": "g3",
@@ -54,7 +54,7 @@
                                 "measure": "14–17",
                                 "system": "Klav.",
                                 "position": "",
-                                "comment": "Unterstimmenschicht in <strong>A</strong>: Achtelbalken zwischen den Systemen, Achtelnoten im unteren System nach oben gehalst: <br /> ##Abbildung##"
+                                "comment": "Unterstimmenschicht in <a (click)=\"ref.navigateToReportFragment({complexId: 'm76', fragmentId: 'source_A'})\"><strong>A</strong></a>: Achtelbalken zwischen den Systemen, Achtelnoten im unteren System nach oben gehalst: <br /> ##Abbildung##"
                             },
                             {
                                 "svgGroupId": "g2650",
@@ -87,8 +87,7 @@
                         ]
                     }
                 ]
-            },
-            "linkBoxes": []
+            }
         }
     ]
 }
