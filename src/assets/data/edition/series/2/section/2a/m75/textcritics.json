@@ -4,9 +4,9 @@
             "id": "M_75_TF1",
             "label": "M 75 einzige Textfassung",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 75 ist <strong>B</strong> relevante Quelle. <strong>A</strong> enthält Skizzen.",
-                "<strong>B</strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 75 ist <strong>B</strong> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition für Klavier M 75 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm75', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm75', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
+                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm75', fragmentId: 'source_B'})\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'm75', fragmentId: 'source_B_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'm75', fragmentId: 'source_B_corr_2'})\">Korrekturen 2</a> mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 75 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm75', fragmentId: 'source_B'})\"><strong>B</strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
@@ -54,19 +54,18 @@
                                 "measure": "11",
                                 "system": "Klav. u.",
                                 "position": "3/4",
-                                "comment": "B mit Unterstimmenschicht zusammengehalst mit Blick auf motivischen Kontext. <strong>B</strong>: nur Notenkopf ohne Notenhals."
+                                "comment": "B mit Unterstimmenschicht zusammengehalst mit Blick auf motivischen Kontext. <a (click)=\"ref.navigateToReportFragment({complexId: 'm75', fragmentId: 'source_B'})\"><strong>B</strong></a>: nur Notenkopf ohne Notenhals."
                             }
                         ]
                     }
                 ]
-            },
-            "linkBoxes": []
+            }
         },
         {
             "id": "M_75_Sk1",
             "label": "M 75 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 75."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm75', sheetId: 'M_75_TF1'})\">Studienkomposition für Klavier M 75</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -202,7 +201,7 @@
             "id": "M_75_Sk1_1",
             "label": "M 75 Sk1.1",
             "evaluations": [
-                "<strong>Sk1.1</strong> überarbeitet die T. 5–6 aus <strong>Sk1</strong>."
+                "<strong>Sk1.1</strong> überarbeitet die T. 5–6 aus <a (click)=\"ref.selectSvgSheet({complexId: 'm75', sheetId: 'M_75_Sk1'})\"><strong>Sk1</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
