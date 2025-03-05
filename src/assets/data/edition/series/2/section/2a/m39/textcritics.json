@@ -3,7 +3,11 @@
         {
             "id": "M_39_TF1",
             "label": "M 39 Textfassung 1",
-            "evaluations": [],
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M 39 Textfassung 1 ist <strong>B<sup>a</sup></strong> relevante Quelle. <strong>B<sup>b</sup></strong> bezieht sich auf Textfassung 2, <strong>B<sup>c</sup></strong> enthält Skizzen.",
+                "<strong>B<sup>a</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Korrekturen 2 betreffen Textfassung 2. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 39 Textfassung 1 ist <strong>B<sup>a</sup></strong> nach Korrekturen 1."
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
@@ -39,7 +43,11 @@
         {
             "id": "M_39_TF2",
             "label": "M 39 Textfassung 2",
-            "evaluations": [],
+            "evaluations": [
+                "Für die Textedition der Studienkomposition für Klavier M 39 Textfassung 2 sind <strong>B<sup>a</sup></strong>, <strong>B<sup>b</sup></strong> und <strong>D</strong> relevante Quellen. <strong>A</strong>, <strong>B<sup>b</sup></strong> und <strong>C</strong> enthalten Skizzen.", 
+                "<strong>B<sup>a</sup></strong> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später erfolgten Korrekturen 2 mit Bleistift. <strong>B<sup>b</sup></strong> ist nur teilweise in Tinte verfasst und weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Bleistift sowie die später erfolgten Korrekturen 2 mit Tinte. <strong>D</strong> weist Korrekturen mit Tinte auf. Der Zustand vor Korrekturen 1 in <strong>B<sup>a</sup></strong>, vor Korrekturen 1 und 2 in <strong>B<sup>a</sup></strong> und vor den Korrekturen in <strong>D</strong> ist nicht immer zu entziffern. Der Zustand post correcturam in <strong>B<sup>a</sup></strong>, <strong>B<sup>b</sup></strong> und <strong>D</strong> konstituiert eine kohärente Textfassung. <strong>B<sup>b</sup></strong> enthält T. 16–19 (Bl. 2r System 13b–14b/16b–17b) für Textfassung 2, die T. 18–19 aus Textfassung 1 ersetzen. <strong>D</strong> enthält T. 9–12 (Bl. 1v System 4–5/7–8) für Textfassung 2, die T. 9–14 aus Textfassung 1 ersetzen. Entsprechende Markierungen sind in <strong>B<sup>a</sup></strong> (Einkreisung, Einschubzeichen) und <strong>D</strong> (Verweiszeichen) mit Bleistift bzw. Tinte eingetragen.", 
+                "Hauptquellen für die Textedition der Studienkomposition für Klavier M 39 Textfassung 2 sind <strong>B<sup>a</sup></strong>, <strong>B<sup>b</sup></strong> und <strong>D</strong> post correcturam. Die nicht in Tinte notierten Stellen in <strong>B<sup>b</sup></strong> sind zur Unterscheidung im Notentext im Kleinstich gesetzt."
+            ],
             "commentary": {
                 "preamble": "",
                 "comments": [
