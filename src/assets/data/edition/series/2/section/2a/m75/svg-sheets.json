@@ -10,14 +10,14 @@
                         "svg": "assets/img/edition/series/2/section/2a/m75/M75_Textfassung1-1von1-final.svg",
                         "image": "",
                         "partial": "",
-                        "convolute": ""
+                        "convolute": "B"
                     }
                 ]
             }
         ],
         "sketchEditions": [
             {
-                "id": "M_75 Sk1",
+                "id": "M_75_Sk1",
                 "label": "M 75 Sk1",
                 "content": [
                     {
@@ -35,7 +35,7 @@
                 ]
             },
             {
-                "id": "M_75 Sk1_1",
+                "id": "M_75_Sk1_1",
                 "label": "M 75 Sk1.1",
                 "content": [
                     {
