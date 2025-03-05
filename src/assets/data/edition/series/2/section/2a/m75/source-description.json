@@ -295,8 +295,8 @@
                         }
                     },
                     {
-                        "id": "Korrekturen 2 in <strong>B</strong> (mit Bleistift)",
-                        "label": "source_B_corr_2",
+                        "id": "source_B_corr_2",
+                        "label": "Korrekturen 2 in <strong>B</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
