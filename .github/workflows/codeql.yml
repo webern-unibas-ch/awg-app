@@ -26,7 +26,7 @@ jobs:
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@c95a14d0e5bab51a9f56296a4eb0e416910cd350 # v2.10.3
+              uses: step-security/harden-runner@4d991eb9b905ef189e4c376166672c3f2f230481 # v2.11.0
               with:
                 egress-policy: audit
 
@@ -36,13 +36,13 @@ jobs:
                   fetch-depth: 2
             # Initializes the CodeQL tools for scanning.
             - name: Initialize CodeQL
-              uses: github/codeql-action/init@b6a472f63d85b9c78a3ac5e89422239fc15e9b3c # v3.28.1
+              uses: github/codeql-action/init@b56ba49b26e50535fa1e7f7db0f4f7b4bf65d80d # v3.28.10
               with:
                   languages: ${{ matrix.language }}
             # If this step fails, then you should remove it and run the build manually (see below)
             - name: Autobuild
-              uses: github/codeql-action/autobuild@b6a472f63d85b9c78a3ac5e89422239fc15e9b3c # v3.28.1
+              uses: github/codeql-action/autobuild@b56ba49b26e50535fa1e7f7db0f4f7b4bf65d80d # v3.28.10
             - name: Perform CodeQL Analysis
-              uses: github/codeql-action/analyze@b6a472f63d85b9c78a3ac5e89422239fc15e9b3c # v3.28.1
+              uses: github/codeql-action/analyze@b56ba49b26e50535fa1e7f7db0f4f7b4bf65d80d # v3.28.10
               with:
                   category: '/language:${{matrix.language}}'

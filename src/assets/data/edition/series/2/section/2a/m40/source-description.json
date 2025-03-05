@@ -235,7 +235,7 @@
                         "item": "M 35/42 Sk1.1",
                         "itemLinkTo": {
                             "complexId": "m35_42",
-                            "sheetId": "M_35_42_Sk1.1"
+                            "sheetId": "M_35_42_Sk1_1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 35/42)",
                         "folios": [
@@ -302,7 +302,10 @@
                     },
                     {
                         "item": "M 39 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m39",
+                            "sheetId": "M_39_Sk2b"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 39: Textfassung 2)",
                         "folios": [
                             {
@@ -527,7 +530,10 @@
                     },
                     {
                         "item": "M 39",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m39",
+                            "sheetId": "M_39_TF2a"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 39: Textfassung 2)",
                         "folios": [
                             {
