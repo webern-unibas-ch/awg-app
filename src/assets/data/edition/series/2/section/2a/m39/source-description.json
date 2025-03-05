@@ -1912,8 +1912,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "source_D_corr_1",
-                        "label": "Korrekturen 1 in <strong>D</strong> (mit Tinte)",
+                        "id": "source_D_corr",
+                        "label": "Korrekturen in <strong>D</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
