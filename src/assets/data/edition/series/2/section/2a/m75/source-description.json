@@ -232,8 +232,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
-                        "label": "source_B_corr_1",
+                        "id": "source_B_corr_1",
+                        "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
