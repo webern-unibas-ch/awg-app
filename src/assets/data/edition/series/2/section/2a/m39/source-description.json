@@ -11,6 +11,39 @@
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 349 × 265 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
                 ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 18,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "349"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "265"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_5_LIN_18_C",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r", "2r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1/2"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "Bleistift",
                     "secondary": []
@@ -624,6 +657,39 @@
                 "desc": ["1 Bogen (Bl. 1/2). Stockfleck und rötliche Verfärbung mittig am oberen Rand von Bogen 1."],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 349 × 267 mm, Firmenzeichen [J.E. &amp; Co.] | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
+                ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 18,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "349"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "267"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_5_LIN_18_D",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r", "2r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1/2"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "",
@@ -1295,6 +1361,39 @@
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 348 × 266 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>"
                 ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 18,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "348"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "266"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_5_LIN_18_C",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r", "2r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1/2"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "",
                     "secondary": []
@@ -1657,7 +1756,40 @@
             "description": {
                 "desc": ["1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt."],
                 "writingMaterialStrings": [
-                    "Notenpapier, 18 Systeme, Format: hoch 349 × 267 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
+                    "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>"
+                ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 18,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "347"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "265"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_5_LIN_18_D",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte, Bleistift",
