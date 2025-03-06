@@ -34,17 +34,7 @@
                                 "value": "270"
                             }
                         },
-                        "trademark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
                         "folioAddendum": "1"
                     },
                     {
@@ -65,17 +55,7 @@
                                 "value": "255–260"
                             }
                         },
-                        "trademark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
                         "folioAddendum": "2"
                     },
                     {
@@ -96,17 +76,7 @@
                                 "value": "270"
                             }
                         },
-                        "trademark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
                         "folioAddendum": "3"
                     }
                 ],

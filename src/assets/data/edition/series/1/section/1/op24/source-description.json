@@ -33,17 +33,7 @@
                                 "value": "267"
                             }
                         },
-                        "trademark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
                         "folioAddendum": "1"
                     },
                     {
@@ -64,17 +54,7 @@
                                 "value": "267"
                             }
                         },
-                        "trademark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
                         "folioAddendum": "2"
                     }
                 ],

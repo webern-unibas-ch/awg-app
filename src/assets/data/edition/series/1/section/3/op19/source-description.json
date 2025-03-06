@@ -32,17 +32,7 @@
                                 "value": "255"
                             }
                         },
-                        "trademark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
                         "folioAddendum": "1"
                     }
                 ],

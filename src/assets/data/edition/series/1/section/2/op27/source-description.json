@@ -12,7 +12,7 @@
                 "writingMaterialStrings": [
                     "Notenpapier, 8 Systeme (unten beschnitten), Format (quer): 141 × 268 mm, kein Firmenzeichen (Bl. 1)",
                     "Notenpapier, 8 Systeme (unten beschnitten), Format (quer): 143 × 268 mm, kein Firmenzeichen (Bl. 2)",
-                    "Notenpapier, 8 Systeme (unten beschnitten), Format (quer): 146–149 × 270 mm, Firmenzeichen:<br /> <img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP27.B[0].route\" [title]=\"ref.FIRM_SIGNS.OP27.B[0].full\" [alt]=\"ref.FIRM_SIGNS.OP27.B[0].short\" /> <br />auf dem Kopf stehend auf Bl. 3<sup>v</sup> oben rechts (Bl. 3)"
+                    "Notenpapier, 8 Systeme (unten beschnitten), Format (quer): 146–149 × 270 mm, Firmenzeichen: ##JE_6_20## auf dem Kopf stehend auf Bl. 3<sup>v</sup> oben rechts (Bl. 3)"
                 ],
                 "writingMaterials": [
                     {
@@ -33,17 +33,7 @@
                                 "value": "268"
                             }
                         },
-                        "trademark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
                         "folioAddendum": "1"
                     },
                     {
@@ -64,17 +54,7 @@
                                 "value": "268"
                             }
                         },
-                        "trademark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
                         "folioAddendum": "2"
                     },
                     {
@@ -96,7 +76,7 @@
                             }
                         },
                         "trademark": {
-                            "variant": "JE_NO_6_LIN_20",
+                            "variant": "JE_NO_6_LIN_20_OP27_B",
                             "alt": "",
                             "location": [
                                 {

@@ -19,7 +19,8 @@
                     "2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_9_28## auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2)"
+                    "Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_9_28## auf Bl. 1<sup>r</sup> unten links (Bl. 1)",
+                    "Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2)"
                 ],
                 "writingMaterials": [
                     {
@@ -41,7 +42,7 @@
                             }
                         },
                         "trademark": {
-                            "variant": "JE_NO_9_LIN_28",
+                            "variant": "JE_NO_9_LIN_28_OP12_Aa1",
                             "alt": "",
                             "location": [
                                 {
@@ -71,17 +72,7 @@
                                 "value": "270"
                             }
                         },
-                        "trademark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
                         "folioAddendum": "2"
                     }
                 ],
@@ -289,7 +280,7 @@
                             }
                         },
                         "trademark": {
-                            "variant": "JE_NO_7_LIN_22",
+                            "variant": "JE_NO_7_LIN_22_OP12_Ab",
                             "alt": "",
                             "location": [
                                 {
@@ -490,17 +481,7 @@
                                 "value": "270"
                             }
                         },
-                        "trademark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
                         "folioAddendum": "1–2"
                     },
                     {
@@ -522,7 +503,7 @@
                             }
                         },
                         "trademark": {
-                            "variant": "JE_NO_7_LIN_22",
+                            "variant": "JE_NO_7_LIN_22_OP12_Ab",
                             "alt": "",
                             "location": [
                                 {
@@ -909,17 +890,7 @@
                                 "value": "264"
                             }
                         },
-                        "trademark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
                         "folioAddendum": "1"
                     },
                     {
@@ -1340,13 +1311,13 @@
                             "alt": "",
                             "location": [
                                 {
-                                    "info": "recto lesbar",
+                                    "info": "",
                                     "folios": ["1"],
-                                    "position": "oben"
+                                    "position": "oben recto"
                                 }
                             ]
                         },
-                        "folioAddendum": "1–2"
+                        "folioAddendum": "1"
                     },
                     {
                         "paperType": "Notenpapier",
@@ -1372,7 +1343,7 @@
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["recto"],
+                                    "folios": ["2r", "3r", "4r", "5r", "6r", "8r", "9r", "10r"],
                                     "position": "unten links"
                                 }
                             ]
@@ -2104,7 +2075,7 @@
                         "paperType": "Notenpapier",
                         "systems": {
                             "number": 12,
-                            "info": "mit vier (1 + 2 Systeme ) vorgedruckten Akkoladen",
+                            "info": "mit vier [1 + 2 Systeme] vorgedruckten Akkoladen",
                             "addendum": ""
                         },
                         "format": {
@@ -2777,7 +2748,7 @@
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["2r, 4r, 6r, 8r, 10r"],
+                                    "folios": ["2r", "4r", "6r", "8r", "10r"],
                                     "position": "unten links"
                                 }
                             ]
