@@ -109,6 +109,13 @@
                                 "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[#]')}}."
                             },
                             {
+                                "svgGroupId": "g9",
+                                "measure": "4",
+                                "system": "9",
+                                "position": "1.–2. Note",
+                                "comment": "Balken gestrichen."
+                            },
+                            {
                                 "svgGroupId": "g10",
                                 "measure": "5",
                                 "system": "9",
