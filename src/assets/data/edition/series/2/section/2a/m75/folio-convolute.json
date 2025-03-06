@@ -107,7 +107,7 @@
                         {
                             "complexId": "m76",
                             "sheetId": "M_76_TF1",
-                            "sigle": "M 76 Tintenniederschrift",
+                            "sigle": "M 76 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 1–5",
                             "selectable": false,
                             "sectionPartition": 1,
@@ -121,7 +121,7 @@
                         {
                             "complexId": "m76",
                             "sheetId": "M_76_TF1",
-                            "sigle": "M 76 Tintenniederschrift",
+                            "sigle": "M 76 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 6–11",
                             "selectable": false,
                             "sectionPartition": 1,
@@ -135,7 +135,7 @@
                         {
                             "complexId": "m76",
                             "sheetId": "M_76_TF1",
-                            "sigle": "M 76 Tintenniederschrift",
+                            "sigle": "M 76 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 12–16",
                             "selectable": false,
                             "sectionPartition": 1,
@@ -149,7 +149,7 @@
                         {
                             "complexId": "m76",
                             "sheetId": "M_76_TF1",
-                            "sigle": "M 76 Tintenniederschrift",
+                            "sigle": "M 76 Tintenniederschrift TF1",
                             "sigleAddendum": "T. 17–21",
                             "selectable": false,
                             "sectionPartition": 1,
@@ -167,7 +167,7 @@
                     "systems": "18",
                     "format": {
                         "height": 349,
-                        "width": 267
+                        "width": 264
                     },
                     "content": [
                         {
