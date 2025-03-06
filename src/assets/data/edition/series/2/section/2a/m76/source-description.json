@@ -71,7 +71,10 @@
                     },
                     {
                         "item": "M 75",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m75",
+                            "sheetId": "M_75_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 75)",
                         "folios": [
                             {
