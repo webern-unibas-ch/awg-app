@@ -19,14 +19,14 @@ export class EditionSvgDrawingService {
      *
      * It keeps the fill color for overlays.
      */
-    overlayFillColor = 'orange';
+    overlayFillColor = 'tomato';
 
     /**
      * Public variable: overlayHoverFillColor.
      *
      * It keeps the fill color for hovered overlays.
      */
-    overlayHoverFillColor = 'tomato';
+    overlayHoverFillColor = 'orange';
 
     /**
      * Public variable: overlayTransparentFillColor.
@@ -71,18 +71,18 @@ export class EditionSvgDrawingService {
     private readonly _overlayBoxesOpacity = 0.3;
 
     /**
-     * Private readonly variable: _overlayBoxesOpacity.
+     * Private readonly variable: _overlayBoxAdditionalSpace.
      *
      * It keeps a magic number for (optional) additional space of an overlay box.
      */
-    private readonly _overlayBoxAdditionalSpace = 5.5;
+    private readonly _overlayBoxAdditionalSpace = 1.5;
 
     /**
-     * Private readonly variable: _overlayBoxesOpacity.
+     * Private readonly variable: _overlayBoxCornerRadius.
      *
      * It keeps a magic number for (optional) corner radius of an overlay box.
      */
-    private readonly _overlayBoxCornerRadius = 2;
+    private readonly _overlayBoxCornerRadius = 1;
 
     /**
      * Private readonly variable: _suppliedClassesLabelLookup
@@ -334,8 +334,11 @@ export class EditionSvgDrawingService {
             return;
         }
 
-        // Get the class name from the label lookup table
-        const className = this._suppliedClassesLabelLookup.get(labelOrClassName) || labelOrClassName;
+        // Reverse lookup to get the class name from the lookup table
+        const className =
+            Array.from(this._suppliedClassesLabelLookup.entries()).find(
+                ([, value]) => value === labelOrClassName
+            )?.[0] || labelOrClassName;
 
         // Get D3 selection of supplied elements
         const selector = className ? `supplied.${className}` : 'supplied';

@@ -433,7 +433,7 @@ describe('EditionComplexComponent (DONE)', () => {
                     const mnrPlusComplex = new EditionComplex(
                         {
                             title: 'Test M* Complex',
-                            catalogueType: 'MNR_PLUS',
+                            catalogueType: 'MNR_STAR',
                             catalogueNumber: '100',
                         },
                         {
@@ -442,7 +442,7 @@ describe('EditionComplexComponent (DONE)', () => {
                         },
                         { series: '1', section: '5' }
                     );
-                    expectedSelectedEditionComplexId = 'mPlus100';
+                    expectedSelectedEditionComplexId = 'm_star100';
 
                     // Spy on the static method and provide a custom implementation
                     spyOn(EditionComplexesService, 'getEditionComplexById').and.callFake((id: string) => {

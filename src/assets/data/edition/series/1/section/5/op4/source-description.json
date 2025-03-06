@@ -97,7 +97,7 @@
                 "contents": [
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "Autographe von „Im Windesweben“ M 134, „Im Morgentaun“ M 136 und „Kahl reckt der Baum“ M 137 aus <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3",
                         "folios": [
                             {
@@ -110,7 +110,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF2'})\">2</a>",
                         "folios": [
                             {
@@ -682,7 +682,7 @@
                 "contents": [
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "Autograph von „Noch zwingt mich Treue“ M 139: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF2'})\">2</a> (<strong>B<sup>a</sup></strong>)",
                         "folios": [
                             {
@@ -799,7 +799,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "Autograph von „Ja Heil und Dank dir“ M 140: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_140_TF1'})\">Textfassung 1</a>→<span class='link-todo'>2</span> (<strong>B<sup>b</sup></strong>)",
                         "folios": [
                             {
@@ -917,7 +917,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "Autograph von „So ich traurig bin“ M 141: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_141_TF1'})\">Textfassung 1</a> (<strong>B<sup>c</sup></strong>)",
                         "folios": [
                             {
@@ -1602,7 +1602,7 @@
                 "contents": [
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "Abschrift fremder Hand von <em>Eingang</em> („Welt der Gestalten“) M 138: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF1'})\">Textfassung 1</a> (<strong>D<sup>a</sup></strong>)",
                         "folios": [
                             {
@@ -1741,7 +1741,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "Abschrift fremder Hand von „Noch zwingt mich Treue“ M 139: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a> (<strong>D<sup>b</sup></strong>)",
                         "folios": [
                             {
@@ -2461,7 +2461,7 @@
                 "contents": [
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "Druck von „Ihr tratet zu dem Herde“ M 142: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF1'})\">Textfassung 1</a>",
                         "folios": [
                             {
@@ -4997,7 +4997,7 @@
                 "contents": [
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "Druck von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4",
                         "folios": [
                             {
@@ -5011,7 +5011,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "I <em>Eingang</em> („Welt der Gestalten“) M 138: <span class='link-todo'>Textfassung 3</span>",
                         "folios": [
                             {
@@ -5105,7 +5105,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "II „Noch zwingt mich Treue“ M 139: <span class='link-todo'>Textfassung 3</span>",
                         "folios": [
                             {
@@ -5177,7 +5177,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "III „Ja Heil und Dank dir“ M 140: <span class='link-todo'>Textfassung 2</span>",
                         "folios": [
                             {
@@ -5249,7 +5249,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "IV „So ich traurig bin“ M 141: <span class='link-todo'>Textfassung 2</span>",
                         "folios": [
                             {
@@ -5292,7 +5292,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "V „Ihr tratet zu dem Herde“ M 142: <span class='link-todo'>Textfassung 3</span>",
                         "folios": [
                             {
