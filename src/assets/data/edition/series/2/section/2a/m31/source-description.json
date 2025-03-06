@@ -32,7 +32,7 @@
                                 "value": "265"
                             }
                         },
-                        "firmSign": {
+                        "trademark": {
                             "variant": "",
                             "alt": "[J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em>",
                             "location": [
@@ -512,8 +512,8 @@
                                 "value": "265"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_5_LIN_18_B",
+                        "trademark": {
+                            "variant": "JE_NO_5_LIN_18_B",
                             "alt": "",
                             "location": [
                                 {

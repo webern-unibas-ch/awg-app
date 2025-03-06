@@ -30,8 +30,8 @@
                                 "value": "335"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_15_LIN_16",
+                        "trademark": {
+                            "variant": "JE_NO_15_LIN_16",
                             "alt": "",
                             "location": [
                                 {
@@ -577,8 +577,8 @@
                                 "value": "270"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12",
+                        "trademark": {
+                            "variant": "JE_NO_2_LIN_12_OP25_B",
                             "alt": "",
                             "location": [
                                 {
@@ -726,8 +726,8 @@
                                 "value": "267"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_3_LIN_14",
+                        "trademark": {
+                            "variant": "JE_NO_3_LIN_14_OP25_C",
                             "alt": "",
                             "location": [
                                 {
@@ -1854,7 +1854,7 @@
                                 "value": "270"
                             }
                         },
-                        "firmSign": {
+                        "trademark": {
                             "variant": "",
                             "alt": "<em>J. E. & Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke</em> | <em>No. 6 | 20 linig.</em>",
                             "location": [
@@ -1896,8 +1896,8 @@
                                 "value": "267"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12_Op25_E2",
+                        "trademark": {
+                            "variant": "JE_NO_2_LIN_12_OP25_E2",
                             "alt": "",
                             "location": [
                                 {
@@ -1938,8 +1938,8 @@
                                 "value": "270"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12_Op25_E3",
+                        "trademark": {
+                            "variant": "JE_NO_2_LIN_12_OP25_E3",
                             "alt": "",
                             "location": [
                                 {
@@ -1980,8 +1980,8 @@
                                 "value": "267"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_3_LIN_14_Op25_E4",
+                        "trademark": {
+                            "variant": "JE_NO_3_LIN_14_OP25_E4",
                             "alt": "",
                             "location": [
                                 {

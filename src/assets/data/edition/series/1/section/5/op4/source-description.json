@@ -19,7 +19,7 @@
                         "paperType": "Notenpapier",
                         "systems": {
                             "number": 12,
-                            "info": "mit vier (1 + 2 Systeme ) vorgedruckten Akkoladen",
+                            "info": "mit vier [1 + 2 Systeme] vorgedruckten Akkoladen",
                             "addendum": ""
                         },
                         "format": {
@@ -33,13 +33,13 @@
                                 "value": "270"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_12_LIN_12_OP4_A1",
+                        "trademark": {
+                            "variant": "JE_NO_12_LIN_12_OP4_A1",
                             "alt": "",
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["1r, 2r, 3r"],
+                                    "folios": ["1r", "2r", "3r"],
                                     "position": "unten links"
                                 }
                             ]
@@ -64,13 +64,13 @@
                                 "value": "270"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12_OP4_A2",
+                        "trademark": {
+                            "variant": "JE_NO_12_LIN_12_OP4_A2",
                             "alt": "",
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["4r, 5r, 6r, 7r"],
+                                    "folios": ["4r", "5r", "6r", "7r"],
                                     "position": "unten links"
                                 }
                             ]
@@ -633,14 +633,14 @@
                                 "value": "264"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12_OP4_B",
+                        "trademark": {
+                            "variant": "JE_NO_2_LIN_12_OP4_B",
                             "alt": "",
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["recto"],
-                                    "position": "unten links"
+                                    "folios": ["all"],
+                                    "position": "recto unten links"
                                 }
                             ]
                         },
@@ -1519,8 +1519,8 @@
                     "6 Blätter (Bl. 1–6): 2 ineinander gelegte Bögen (Bl. 1/4, 2/3) und 1 Bogen (5/6). Archivalisch mit Bleistift paginiert von <em>[1]</em> bis <em>[12]</em> unten rechts (recto) oder links (verso). Bl. 4<sup>r</sup>, 4<sup>v</sup> (bis auf die archivalische Paginierung) unbeschriftet. Knickecken und kleinere Risse; Löcher (durch vormalige Fadenheftung?) am Falz; Stockflecken am oberen Rand von Bl. 2/3."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, 12 Systeme, Format: hoch 346 × 262 mm, Firmenzeichen: [JE] | <em>No. 2 II | 12 linig.</em> auf allen Blättern recto unten links (Bl. 1–4)",
-                    "Notenpapier, 12 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen: [JE] | <em>No. 2 | 12 linig.</em> auf allen Blättern recto unten links (Bl. 5/6)"
+                    "Notenpapier, 12 Systeme, Format: hoch 346 × 262 mm, Firmenzeichen: [JE] | <em>No. 2 II | 12 linig.</em> auf Bl. 1<sup>r</sup>, 2<sup>r</sup>, 3<sup>r</sup> und 4<sup>r</sup> unten links (Bl. 1–4)",
+                    "Notenpapier, 12 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen: [JE] | <em>No. 2 | 12 linig.</em> auf Bl. 5<sup>r</sup> und 6<sup>r</sup> unten links (Bl. 5/6)"
                 ],
                 "writingMaterials": [
                     {
@@ -1541,13 +1541,13 @@
                                 "value": "262"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2II_LIN_12_OP4_D1",
+                        "trademark": {
+                            "variant": "JE_NO_2II_LIN_12_OP4_D1",
                             "alt": "",
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["1r, 2r, 3r, 4r"],
+                                    "folios": ["1r", "2r", "3r", "4r"],
                                     "position": "unten links"
                                 }
                             ]
@@ -1572,13 +1572,13 @@
                                 "value": "264"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12_OP4_D2",
+                        "trademark": {
+                            "variant": "JE_NO_2_LIN_12_OP4_D2",
                             "alt": "",
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["5r, 6r"],
+                                    "folios": ["5r", "6r"],
                                     "position": "unten links"
                                 }
                             ]
@@ -2902,6 +2902,23 @@
                 ],
                 "writingMaterials": [
                     {
+                        "paperType": "unliniertes Papier",
+                        "systems": {},
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "354"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "270"
+                            }
+                        },
+                        "trademark": {},
+                        "folioAddendum": "[a]/[b]"
+                    },
+                    {
                         "paperType": "Notenpapier",
                         "systems": {
                             "number": 28,
@@ -2919,13 +2936,13 @@
                                 "value": "265"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_9_LIN_28_OP4_H1",
+                        "trademark": {
+                            "variant": "JE_NO_9_LIN_28_OP4_H1",
                             "alt": "",
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["1r, 8r"],
+                                    "folios": ["1r", "8r"],
                                     "position": "unten links"
                                 }
                             ]
@@ -2950,14 +2967,14 @@
                                 "value": "265"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_12_LIN_12_OP4_H2",
+                        "trademark": {
+                            "variant": "JE_NO_12_LIN_12_OP4_H2",
                             "alt": "",
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["2r, 3r, 4r, 7r"],
-                                    "position": "unten links"
+                                    "folios": ["all"],
+                                    "position": "recto unten links"
                                 }
                             ]
                         },
@@ -2981,8 +2998,8 @@
                                 "value": "263"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_8a_LIN_26_OP4_H3",
+                        "trademark": {
+                            "variant": "JE_NO_8A_LIN_26_OP4_H3",
                             "alt": "",
                             "location": [
                                 {
@@ -3012,8 +3029,8 @@
                                 "value": "267"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_4_LIN_16_OP4_H4",
+                        "trademark": {
+                            "variant": "JE_NO_4_LIN_16_OP4_H4",
                             "alt": "",
                             "location": [
                                 {
@@ -3023,7 +3040,7 @@
                                 }
                             ]
                         },
-                        "folioAddendum": "5"
+                        "folioAddendum": "6"
                     }
                 ],
                 "writingInstruments": {
@@ -4169,6 +4186,27 @@
                     {
                         "paperType": "Notenpapier",
                         "systems": {
+                            "number": 24,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "330"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "253"
+                            }
+                        },
+                        "trademark": {},
+                        "folioAddendum": "1"
+                    },
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
                             "number": 12,
                             "info": "mit vier (1 + 2 Systeme ) vorgedruckten Akkoladen",
                             "addendum": ""
@@ -4184,13 +4222,13 @@
                                 "value": "270"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_12_LIN_12_OP4_I",
+                        "trademark": {
+                            "variant": "JE_NO_12_LIN_12_OP4_I",
                             "alt": "",
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["2r, 3r, 4r"],
+                                    "folios": ["2r", "3r", "4r"],
                                     "position": "unten links"
                                 }
                             ]

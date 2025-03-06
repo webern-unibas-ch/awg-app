@@ -30,8 +30,8 @@
                                 "value": "266"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_5_LIN_18_C",
+                        "trademark": {
+                            "variant": "JE_NO_5_LIN_18_C",
                             "alt": "",
                             "location": [
                                 {
@@ -427,8 +427,8 @@
                                 "value": "265"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_5_LIN_18_D",
+                        "trademark": {
+                            "variant": "JE_NO_5_LIN_18_D",
                             "alt": "",
                             "location": [
                                 {

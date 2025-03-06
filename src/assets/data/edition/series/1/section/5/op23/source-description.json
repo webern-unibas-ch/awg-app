@@ -1421,7 +1421,7 @@
                                 "value": "270"
                             }
                         },
-                        "firmSign": {
+                        "trademark": {
                             "variant": "",
                             "alt": "",
                             "location": [
@@ -1588,8 +1588,8 @@
                                 "value": "267"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12_OP23_C",
+                        "trademark": {
+                            "variant": "JE_NO_2_LIN_12_OP23_C",
                             "alt": "",
                             "location": [
                                 {

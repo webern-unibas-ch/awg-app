@@ -33,7 +33,7 @@
                                 "value": "268"
                             }
                         },
-                        "firmSign": {
+                        "trademark": {
                             "variant": "",
                             "alt": "",
                             "location": [
@@ -64,7 +64,7 @@
                                 "value": "268"
                             }
                         },
-                        "firmSign": {
+                        "trademark": {
                             "variant": "",
                             "alt": "",
                             "location": [
@@ -95,8 +95,8 @@
                                 "value": "270"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_6_LIN_20",
+                        "trademark": {
+                            "variant": "JE_NO_6_LIN_20",
                             "alt": "",
                             "location": [
                                 {

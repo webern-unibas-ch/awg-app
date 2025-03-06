@@ -33,8 +33,8 @@
                                 "value": "265"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_5_LIN_18_OP3_A1",
+                        "trademark": {
+                            "variant": "JE_NO_5_LIN_18_OP3_A1",
                             "alt": "",
                             "location": [
                                 {
@@ -64,8 +64,8 @@
                                 "value": "265"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_7_LIN_22_OP3_A2",
+                        "trademark": {
+                            "variant": "JE_NO_7_LIN_22_OP3_A2",
                             "alt": "",
                             "location": [
                                 {
@@ -521,8 +521,8 @@
                                 "value": "264"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_7_LIN_22_OP3_B",
+                        "trademark": {
+                            "variant": "JE_NO_7_LIN_22_OP3_B",
                             "alt": "",
                             "location": [
                                 {
@@ -681,8 +681,8 @@
                                 "value": "266"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12_OP3_C",
+                        "trademark": {
+                            "variant": "JE_NO_2_LIN_12_OP3_C",
                             "alt": "",
                             "location": [
                                 {
@@ -1110,8 +1110,8 @@
                                 "value": "265"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_7_LIN_22_OP3_B",
+                        "trademark": {
+                            "variant": "JE_NO_7_LIN_22_OP3_B",
                             "alt": "",
                             "location": [
                                 {
@@ -1123,7 +1123,7 @@
                         },
                         "folioAddendum": ""
                     }
-                ],                              
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": []
@@ -1197,8 +1197,8 @@
                                 "value": "265"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_7_LIN_22_OP3_E1",
+                        "trademark": {
+                            "variant": "JE_NO_7_LIN_22_OP3_E1",
                             "alt": "",
                             "location": [
                                 {
@@ -1228,8 +1228,8 @@
                                 "value": "267"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12_OP3_E2",
+                        "trademark": {
+                            "variant": "JE_NO_2_LIN_12_OP3_E2",
                             "alt": "",
                             "location": [
                                 {
@@ -1259,8 +1259,8 @@
                                 "value": "265"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12_OP3_E3",
+                        "trademark": {
+                            "variant": "JE_NO_2_LIN_12_OP3_E3",
                             "alt": "",
                             "location": [
                                 {
@@ -1290,8 +1290,8 @@
                                 "value": "264"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_1_LIN_10_OP3_E4",
+                        "trademark": {
+                            "variant": "JE_NO_1_LIN_10_OP3_E4",
                             "alt": "",
                             "location": [
                                 {
@@ -2823,8 +2823,8 @@
                                 "value": "265"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12_OP3_F1",
+                        "trademark": {
+                            "variant": "JE_NO_2_LIN_12_OP3_F1",
                             "alt": "",
                             "location": [
                                 {
@@ -2854,8 +2854,8 @@
                                 "value": "266"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12_OP3_F2",
+                        "trademark": {
+                            "variant": "JE_NO_2_LIN_12_OP3_F2",
                             "alt": "",
                             "location": [
                                 {
@@ -4321,8 +4321,8 @@
                                 "value": "270"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_12_LIN_12_OP3_G1",
+                        "trademark": {
+                            "variant": "JE_NO_12_LIN_12_OP3_G1",
                             "alt": "",
                             "location": [
                                 {
@@ -4352,8 +4352,8 @@
                                 "value": "270"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12_OP3_G2",
+                        "trademark": {
+                            "variant": "JE_NO_2_LIN_12_OP3_G2",
                             "alt": "",
                             "location": [
                                 {
@@ -5038,8 +5038,8 @@
                                 "value": "264"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_4_LIN_16_OP3_H",
+                        "trademark": {
+                            "variant": "JE_NO_4_LIN_16_OP3_H",
                             "alt": "",
                             "location": [
                                 {
@@ -5639,8 +5639,8 @@
                                 "value": "270"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12_OP3_J",
+                        "trademark": {
+                            "variant": "JE_NO_2_LIN_12_OP3_J",
                             "alt": "",
                             "location": [
                                 {
