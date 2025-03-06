@@ -3,7 +3,7 @@
         {
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 1–4.<br />Enthält auch Skizzen zu und Tintenniederschrift von Studienkomposition für Orchester M 102.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 1 und 4.<br />Enthält auch Skizzen zu und Tintenniederschrift von Studienkomposition für Orchester M 102.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
             "linkTo": "source_A"
@@ -11,7 +11,7 @@
         {
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 3–4.<br />Enthält auch Skizzen zu und Tintenniederschrift von Studienkomposition für Klavier M 113.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 3 und 4.<br />Enthält auch Skizzen zu und Tintenniederschrift von Studienkomposition für Klavier M 113.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
             "linkTo": "source_B"
@@ -19,7 +19,7 @@
         {
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 1→2→3,<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 2 T. 19–39,<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 3 T. 19–58.<br />Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 3.<br />Enthält auch Skizzen zu Studienkomposition M* 495 und nicht identifizierte Skizze.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 1→2→3 (<strong>C<sup>a</sup></strong>),<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 2 (<strong>C<sup>b</sup></strong>),<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 3 (<strong>C<sup>c</sup></strong>).<br />Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 3 (<strong>C<sup>d</sup></strong>).<br />Enthält auch Skizzen zu Studienkomposition M* 495 und nicht identifizierte Skizze.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
             "linkTo": "source_C"
@@ -27,7 +27,7 @@
         {
             "siglum": "D",
             "siglumAddendum": "",
-            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 4–6.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 4–6.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
             "linkTo": "source_D"
@@ -35,7 +35,7 @@
         {
             "siglum": "E",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 4→5→6,<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 5→6 T. 92–158,<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 6 T. 106–120.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 4→5→6 (<strong>E<sup>a</sup></strong>),<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114: Textfassung 5→6 (<strong>E<sup>b</sup></strong>),<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung: 6 (<strong>E<sup>c</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
             "linkTo": "source_E"

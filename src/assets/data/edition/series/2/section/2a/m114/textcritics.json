@@ -1,0 +1,2909 @@
+{
+    "textcritics": [
+        {
+            "id": "M_114_TF1",
+            "label": "M 114 Textfassung 1",
+            "evaluations": [],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g5186",
+                                "measure": "5",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "Oberstimmenschicht sic: f<sup>3</sup> (vgl. Textfassung 1–3 T. 5: f<sup>3</sup>; Textfassung 5–6 T. 119 resp. 125: f<sup>3</sup>; jedoch Textfassung 4–6 T. 5: g<sup>3</sup>;<sup> </sup>Textfassung 3–6 T. 48 resp. 49: g<sup>3</sup>)."
+                            },
+                            {
+                                "svgGroupId": "g5190",
+                                "measure": "16",
+                                "system": "Klav.",
+                                "position": "1/4",
+                                "comment": "Beginn der Crescendogabel versetzt von zwischen T. 15 3/4 und T. 16 1/4."
+                            },
+                            {
+                                "svgGroupId": "g5194",
+                                "measure": "18",
+                                "system": "Klav.",
+                                "position": "8/16",
+                                "comment": "Beginn der Geltungsstrichelung versetzt von T. 19 2/4."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
+        },
+        {
+            "id": "M_114_TF2",
+            "label": "M 114 Textfassung 2",
+            "evaluations": [],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g5069",
+                                "measure": "5",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "Oberstimmenschicht sic: f<sup>3</sup> (vgl. Textfassung 1–3 T. 5: f<sup>3</sup>; Textfassung 5–6 T. 119 resp. 125: f<sup>3</sup>; jedoch Textfassung 4–6 T. 5: g<sup>3</sup>;<sup> </sup>Textfassung 3–6 T. 48 resp. 49: g<sup>3</sup>)."
+                            },
+                            {
+                                "svgGroupId": "g5073",
+                                "measure": "16",
+                                "system": "Klav.",
+                                "position": "1/4",
+                                "comment": "Beginn der Crescendogabel versetzt von zwischen T. 15 3/4 und T. 16 1/4."
+                            },
+                            {
+                                "svgGroupId": "g5425",
+                                "measure": "22",
+                                "system": "Klav.",
+                                "position": "2. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span> versetzt von 3. Note."
+                            },
+                            {
+                                "svgGroupId": "g5445",
+                                "measure": "23",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g5437",
+                                "measure": "23",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g5456",
+                                "measure": "24",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>/a<sup>1</sup> ergänzt mit Blick auf chromatischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk4'})\"><strong>Sk4</strong></a> (dort <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>)."
+                            },
+                            {
+                                "svgGroupId": "g5460",
+                                "measure": "25",
+                                "system": "Klav.",
+                                "position": "4/16",
+                                "comment": "Beginn der Decrescendogabel versetzt von zwischen 4/16 und 2/4."
+                            },
+                            {
+                                "svgGroupId": "g5464",
+                                "measure": "35",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: d korrigiert zu f mit Blick auf harmonischen Kontext und analog Textfassungen 3–6."
+                            },
+                            {
+                                "svgGroupId": "g5468",
+                                "measure": "36",
+                                "system": "Klav.",
+                                "position": "1. Note",
+                                "comment": "Notenhals zwischen d<sup>1</sup> (Klav. o.) und f (Klav. u.) weggelassen."
+                            },
+                            {
+                                "svgGroupId": "g5472",
+                                "measure": "37",
+                                "system": "Klav. o.",
+                                "position": "2/4",
+                                "comment": "Unterstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext (vgl. Korrekturen 1 zu Klav.u.)."
+                            },
+                            {
+                                "svgGroupId": "g5493",
+                                "measure": "37",
+                                "system": "Klav. u.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b ergänzt analog Textfassungen 3–6 T. 37 bzw. 38."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
+        },
+        {
+            "id": "M_114_TF3",
+            "label": "M 114 Textfassung 3",
+            "evaluations": [],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g5160",
+                                "measure": "5",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "Oberstimmenschicht sic: f<sup>3</sup> (vgl. Textfassung 1–3 T. 5: f<sup>3</sup>; Textfassung 5–6 T. 119 resp. 125: f<sup>3</sup>; jedoch Textfassung 4–6 T. 5: g<sup>3</sup>;<sup> </sup>Textfassungen 3–6 T. 48 resp. 49: g<sup>3</sup>)."
+                            },
+                            {
+                                "svgGroupId": "g5164",
+                                "measure": "16",
+                                "system": "Klav.",
+                                "position": "1/4",
+                                "comment": "Beginn der Crescendogabel versetzt von zwischen T. 15 3/4 und T. 16 1/4."
+                            },
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "23",
+                                "system": "Klav.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e und e<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext und analog Textfassungen 4–6."
+                            },
+                            {
+                                "svgGroupId": "g2",
+                                "measure": "25",
+                                "system": "Klav.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e und e<sup>2</sup> sowie <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g3",
+                                "measure": "26",
+                                "system": "Klav.",
+                                "position": "Taktanfang",
+                                "comment": "Doppelten Taktstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_C<sup>c</sup>'})\"><strong>C<sup>c</sup></strong></a>: einfacher Taktstrich."
+                            },
+                            {
+                                "svgGroupId": "g4",
+                                "measure": "31",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g5",
+                                "measure": "33",
+                                "system": "Klav. o.",
+                                "position": "4. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> ergänzt analog Textfassungen 2 und 4–6."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "34",
+                                "system": "Klav. o.",
+                                "position": "3. Note",
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup> ergänzt analog Textfassungen 2 und 4–6."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "36",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> ergänzt analog T. 39."
+                            },
+                            {
+                                "svgGroupId": "g7132",
+                                "measure": "41",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g7150",
+                                "measure": "41",
+                                "system": "Klav. o.",
+                                "position": "3. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g7154",
+                                "measure": "42",
+                                "system": "Klav. o.",
+                                "position": "3. Note",
+                                "comment": "Oberstimmenschicht: ces<sup>4</sup> korrigiert zu as<sup>3</sup> mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g7172",
+                                "measure": "43",
+                                "system": "Klav. o.",
+                                "position": "5. Note, 8. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup> und es<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g7176",
+                                "measure": "44",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
+                            },
+                            {
+                                "svgGroupId": "g7194",
+                                "measure": "45",
+                                "system": "Klav. o.",
+                                "position": "2–3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup> und h<sup>2</sup> ergänzt analog Textfassungen 2 und 4–6."
+                            },
+                            {
+                                "svgGroupId": "g7198",
+                                "measure": "46",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
+                            },
+                            {
+                                "svgGroupId": "g7208",
+                                "measure": "46",
+                                "system": "Klav. o.",
+                                "position": "2/4",
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g7218",
+                                "measure": "49",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup> ergänzt analog T. 6."
+                            },
+                            {
+                                "svgGroupId": "g7222",
+                                "measure": "50",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
+                            },
+                            {
+                                "svgGroupId": "g7232",
+                                "measure": "55",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> ergänzt analog Textfassungen 4–6."
+                            },
+                            {
+                                "svgGroupId": "g7236",
+                                "measure": "58",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
+        },
+        {
+            "id": "M_114_TF4",
+            "label": "M 114 Textfassung 4",
+            "evaluations": [],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g4049",
+                                "measure": "2",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup> ergänzt analog Textfassungen 1–3."
+                            },
+                            {
+                                "svgGroupId": "g4055",
+                                "measure": "5",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "Oberstimmenschicht sic: g<sup>3 </sup>(vgl. Textfassungen 1–3: f<sup>3</sup>)."
+                            },
+                            {
+                                "svgGroupId": "g4059",
+                                "measure": "7",
+                                "system": "Klav. o.",
+                                "position": "1/4",
+                                "comment": "Oberstimmenschicht: Notenhals ergänzt."
+                            },
+                            {
+                                "svgGroupId": "g4063",
+                                "measure": "13",
+                                "system": "Klav.",
+                                "position": "Taktende",
+                                "comment": "Überschriebenen Bassschlüssel wiederhergestellt (vgl. Korrekturen 1)."
+                            },
+                            {
+                                "svgGroupId": "g4195",
+                                "measure": "25",
+                                "system": "Klav. o.",
+                                "position": "5. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g4199",
+                                "measure": "27",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Ligatur zu T. 26 letzte Note ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>a</sup>'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 26."
+                            },
+                            {
+                                "svgGroupId": "g5299",
+                                "measure": "31",
+                                "system": "Klav.",
+                                "position": "1/4",
+                                "comment": "<em>pp </em>versetzt von 2/8.<em> </em>"
+                            },
+                            {
+                                "svgGroupId": "g5309",
+                                "measure": "33",
+                                "system": "Klav. u.",
+                                "position": "2/4",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis ergänzt analog Textfassungen 2–3 (<a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>)."
+                            },
+                            {
+                                "svgGroupId": "g5318",
+                                "measure": "36",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu c<sup>1</sup> ergänzt analog T. 39."
+                            },
+                            {
+                                "svgGroupId": "g5334",
+                                "measure": "39",
+                                "system": "Klav. o.",
+                                "position": "2/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> ergänzt mit Blick auf T. 39 in Textfassung 3."
+                            },
+                            {
+                                "svgGroupId": "g5336",
+                                "measure": "41",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g5352",
+                                "measure": "41",
+                                "system": "Klav. o.",
+                                "position": "3. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g5378",
+                                "measure": "42",
+                                "system": "Klav.",
+                                "position": "1. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as und as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g5360",
+                                "measure": "42",
+                                "system": "Klav. o.",
+                                "position": "6. Note",
+                                "comment": "Ende des Legatobogens versetzt von zwischen 4. und 5. Note."
+                            },
+                            {
+                                "svgGroupId": "g5634",
+                                "measure": "43",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup>/as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext und analog Textfassung 3."
+                            },
+                            {
+                                "svgGroupId": "g5644",
+                                "measure": "43",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g5662",
+                                "measure": "43",
+                                "system": "Klav. u.",
+                                "position": "2. Note",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu As/as ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g5680",
+                                "measure": "43",
+                                "system": "Klav. o.",
+                                "position": "5. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup>/es<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g5684",
+                                "measure": "44",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
+                            },
+                            {
+                                "svgGroupId": "g5688",
+                                "measure": "46",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
+                            },
+                            {
+                                "svgGroupId": "g5698",
+                                "measure": "46",
+                                "system": "Klav. o.",
+                                "position": "2/4",
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g5708",
+                                "measure": "49",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup> ergänzt analog T. 6."
+                            },
+                            {
+                                "svgGroupId": "g5717",
+                                "measure": "53",
+                                "system": "Klav. o.",
+                                "position": "2/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ces<sup>2</sup> ergänzt analog Textfassung 3."
+                            },
+                            {
+                                "svgGroupId": "g6595",
+                                "measure": "59",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "as: Ligatur zu T. 58 letzte Note ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>a</sup>'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 58."
+                            },
+                            {
+                                "svgGroupId": "g6605",
+                                "measure": "59",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9.1'})\"><strong>Sk9.1</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g6623",
+                                "measure": "64",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>/g<sup>1</sup> ergänzt analog T. 73."
+                            },
+                            {
+                                "svgGroupId": "g6649",
+                                "measure": "68",
+                                "system": "Klav. o.",
+                                "position": "4/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g/g<sup>1</sup> ergänzt mit Blick auf T. 59 3/4 und Korrekturen 2."
+                            },
+                            {
+                                "svgGroupId": "g6671",
+                                "measure": "74",
+                                "system": "Klav. u.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu G/g ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g5728",
+                                "measure": "80",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "B<sub>1</sub>/G korrigiert zu G<sub>1</sub>/G mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g5732",
+                                "measure": "84",
+                                "system": "Klav. u.",
+                                "position": "letzte Note",
+                                "comment": "D mit <em>8</em>-Zeichen aufgelöst zu D<sub>1</sub>/D (vgl. Einleitung: Zur Edition)."
+                            },
+                            {
+                                "svgGroupId": "g5736",
+                                "measure": "85",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: <em>Ped. </em>versetzt von zwischen 1/4 und 2/4."
+                            },
+                            {
+                                "svgGroupId": "g5740",
+                                "measure": "86",
+                                "system": "Klav.",
+                                "position": "1. Note",
+                                "comment": "<em>steigernd </em>versetzt von zwischen 2. und 3. Note."
+                            },
+                            {
+                                "svgGroupId": "g5747",
+                                "measure": "88",
+                                "system": "Klav. u.",
+                                "position": "8/16",
+                                "comment": "sic. In Analogie zu T. 87 wäre auch D denkbar. Dort jedoch abweichende Unterstimmenschicht auf 3/4."
+                            },
+                            {
+                                "svgGroupId": "g5748",
+                                "measure": "89",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ces ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9'})\"><strong>Sk9</strong></a> T. 89 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g5755",
+                                "measure": "89",
+                                "system": "Klav. o.",
+                                "position": "12/16",
+                                "comment": "Ende des Legatobogens versetzt von T. 90 1/4."
+                            },
+                            {
+                                "svgGroupId": "g5773",
+                                "measure": "93",
+                                "system": "Klav. o.",
+                                "position": "8/16",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu f<sup>1</sup>/f<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
+        },
+        {
+            "id": "M_114_TF5",
+            "label": "M 114 Textfassung 5",
+            "evaluations": [],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g630",
+                                "measure": "2",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup> ergänzt analog Textfassungen 1–3."
+                            },
+                            {
+                                "svgGroupId": "g631",
+                                "measure": "5",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "Oberstimmenschicht sic: g<sup>3 </sup>(vgl. Textfassungen 1–3: f<sup>3</sup>)."
+                            },
+                            {
+                                "svgGroupId": "g632",
+                                "measure": "7",
+                                "system": "Klav. o.",
+                                "position": "1/4",
+                                "comment": "Oberstimmenschicht: Notenhals ergänzt."
+                            },
+                            {
+                                "svgGroupId": "g633",
+                                "measure": "13",
+                                "system": "Klav.",
+                                "position": "Taktende",
+                                "comment": "Überschriebenen Bassschlüssel wiederhergestellt (vgl. Korrekturen 1)."
+                            },
+                            {
+                                "svgGroupId": "g637",
+                                "measure": "25",
+                                "system": "Klav. o.",
+                                "position": "5. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g638",
+                                "measure": "28",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Ligaturbogens zu T. 27 ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>a</sup>'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 27."
+                            },
+                            {
+                                "svgGroupId": "g750",
+                                "measure": "32",
+                                "system": "Klav.",
+                                "position": "1/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span><em> </em>versetzt von 2/8.<em> </em>"
+                            },
+                            {
+                                "svgGroupId": "g752",
+                                "measure": "40",
+                                "system": "Klav. o.",
+                                "position": "2/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> ergänzt mit Blick auf T. 39 in Textfassung 3."
+                            },
+                            {
+                                "svgGroupId": "g754",
+                                "measure": "42",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g753",
+                                "measure": "42",
+                                "system": "Klav. o.",
+                                "position": "3. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g908",
+                                "measure": "43",
+                                "system": "Klav.",
+                                "position": "1. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as und as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g907",
+                                "measure": "43",
+                                "system": "Klav. o.",
+                                "position": "6. Note",
+                                "comment": "Ende des Legatobogens versetzt von zwischen 4. und 5. Note."
+                            },
+                            {
+                                "svgGroupId": "g909",
+                                "measure": "44",
+                                "system": "Klav.",
+                                "position": "1. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup>/as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g910",
+                                "measure": "44",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g911",
+                                "measure": "44",
+                                "system": "Klav. u.",
+                                "position": "2. Note",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu As/as ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g912",
+                                "measure": "44",
+                                "system": "Klav. o.",
+                                "position": "5. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup>/es<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g913",
+                                "measure": "45",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
+                            },
+                            {
+                                "svgGroupId": "g914",
+                                "measure": "47",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
+                            },
+                            {
+                                "svgGroupId": "g915",
+                                "measure": "47",
+                                "system": "Klav. o.",
+                                "position": "2/4",
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> T. 46 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g916",
+                                "measure": "49",
+                                "system": "Klav. u.",
+                                "position": "8/16 und 12/16",
+                                "comment": "Achtelnote korrigiert zu Sechzehntelnote mit Blick auf metrischen Kontext und analog T. 50."
+                            },
+                            {
+                                "svgGroupId": "g917",
+                                "measure": "50",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup> ergänzt analog T. 6."
+                            },
+                            {
+                                "svgGroupId": "g918",
+                                "measure": "54",
+                                "system": "Klav. o.",
+                                "position": "2/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ces<sup>2</sup> ergänzt analog Textfassung 3 T. 53."
+                            },
+                            {
+                                "svgGroupId": "g167",
+                                "measure": "57",
+                                "system": "Klav. u.",
+                                "position": "12/16",
+                                "comment": "Achtelnote korrigiert zu Sechzehntelnote mit Blick auf metrischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g232",
+                                "measure": "58",
+                                "system": "Klav. u.",
+                                "position": "4/16",
+                                "comment": "Achtelnote korrigiert zu Sechzehntelnote mit Blick auf metrischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g874",
+                                "measure": "60",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "as: Ligatur zu T. 59 letzte Note ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>a</sup>'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 59."
+                            },
+                            {
+                                "svgGroupId": "g875",
+                                "measure": "60",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9.1'})\"><strong>Sk9.1</strong></a> T. 59 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g876",
+                                "measure": "65",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>/g<sup>1</sup> ergänzt analog T. 74."
+                            },
+                            {
+                                "svgGroupId": "g732",
+                                "measure": "75",
+                                "system": "Klav. u.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu G/g ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g733",
+                                "measure": "81",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Viertelnote B<sub>1</sub>/G korrigiert zu G<sub>1</sub>/G mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g734",
+                                "measure": "85",
+                                "system": "Klav. u.",
+                                "position": "letzte Note",
+                                "comment": "D mit <em>8</em>-Zeichen aufgelöst zu D<sub>1</sub>/D (vgl. Einleitung: Zur Edition)."
+                            },
+                            {
+                                "svgGroupId": "g735",
+                                "measure": "86",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "<em>Ped. </em>versetzt von zwischen 1/4 und 2/4."
+                            },
+                            {
+                                "svgGroupId": "g736",
+                                "measure": "87",
+                                "system": "Klav.",
+                                "position": "1. Note",
+                                "comment": "<em>steigernd </em>versetzt von zwischen 2. und 3. Note."
+                            },
+                            {
+                                "svgGroupId": "g737",
+                                "measure": "89",
+                                "system": "Klav. u.",
+                                "position": "8/16",
+                                "comment": "sic. In Analogie zu T. 87 wäre auch D denkbar. Dort jedoch abweichende Unterstimmenschicht auf 3/4."
+                            },
+                            {
+                                "svgGroupId": "g893",
+                                "measure": "90",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ces ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9'})\"><strong>Sk9</strong></a> T. 89 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g894",
+                                "measure": "90",
+                                "system": "Klav. o.",
+                                "position": "12/16",
+                                "comment": "Ende des Legatobogens versetzt von T. 91 1/4."
+                            },
+                            {
+                                "svgGroupId": "g895",
+                                "measure": "94",
+                                "system": "Klav. o.",
+                                "position": "3. Note",
+                                "comment": "Akzidens zu es<sup>2</sup> undeutlich und tendenziell als <span class='glyph'>{{ref.getGlyph('[a]')}}</span> lesbar. Hier <span class='glyph'>{{ref.getGlyph('[b]')}}</span> gesetzt mit Blick auf T. 96 und auf harmonischen Kontext. <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>/h<sup>2</sup> ergänzt mit Blick auf T. 96 und Korrekturen 2."
+                            },
+                            {
+                                "svgGroupId": "g896",
+                                "measure": "98",
+                                "system": "Klav. u.",
+                                "position": "4/16",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e/e<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g897",
+                                "measure": "99",
+                                "system": "Klav. u.",
+                                "position": "8/16",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu A/a ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g1127",
+                                "measure": "101",
+                                "system": "Klav. o.",
+                                "position": "5/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup>/b<sup>2</sup> ergänzt analog T. 103."
+                            },
+                            {
+                                "svgGroupId": "g1128",
+                                "measure": "101",
+                                "system": "Klav. u.",
+                                "position": "letzte Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu H/h ergänzt analog T. 103."
+                            },
+                            {
+                                "svgGroupId": "g1129",
+                                "measure": "102",
+                                "system": "Klav. u.",
+                                "position": "5/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu B/b ergänzt analog T. 104."
+                            },
+                            {
+                                "svgGroupId": "g1130",
+                                "measure": "102",
+                                "system": "Klav. o.",
+                                "position": "letzte Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup>/h<sup>3</sup> ergänzt analog T. 104."
+                            },
+                            {
+                                "svgGroupId": "g1131",
+                                "measure": "103",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "as<sup>4</sup> korrigiert zu c<sup>4</sup> mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g576",
+                                "measure": "115",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 1."
+                            },
+                            {
+                                "svgGroupId": "577",
+                                "measure": "118",
+                                "system": "Klav. o.",
+                                "position": "2/4",
+                                "comment": "Oberstimmenschicht: sic (vgl. auch T. 4 und 48 sowie Korrekturen 2 in Textfassung 1 T. 4.)"
+                            },
+                            {
+                                "svgGroupId": "g578",
+                                "measure": "119",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "Oberstimmenschicht sic: f<sup>3</sup> (vgl. Textfassungen 1–3 T. 5: f<sup>3</sup>; Textfassungen 5–6 T. 119 resp. 125: f<sup>3</sup>; jedoch Textfassungen 4–6 T. 5: g<sup>3</sup>;<sup> </sup>Textfassungen 3–6 T. 48 resp. 49: g<sup>3</sup>)."
+                            },
+                            {
+                                "svgGroupId": "g639",
+                                "measure": "126",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> ergänzt analog T. 12."
+                            },
+                            {
+                                "svgGroupId": "g640",
+                                "measure": "134",
+                                "system": "Klav. o.",
+                                "position": "5/8",
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 143 (vgl. auch Korrekturen 1)."
+                            },
+                            {
+                                "svgGroupId": "g641",
+                                "measure": "136",
+                                "system": "Klav.",
+                                "position": "2–3/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> und A ergänzt mit Blick auf T. 134."
+                            },
+                            {
+                                "svgGroupId": "g642",
+                                "measure": "136",
+                                "system": "Klav. o.",
+                                "position": "6/8",
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu fes<sup>1</sup> ergänzt analog T. 134."
+                            },
+                            {
+                                "svgGroupId": "g643",
+                                "measure": "139",
+                                "system": "Klav. u.",
+                                "position": "3–4/8",
+                                "comment": "Kleinstich: Achtelnoten A–d sowie Achtelbalken ergänzt gemäß Korrekturen 2."
+                            },
+                            {
+                                "svgGroupId": "g712",
+                                "measure": "141",
+                                "system": "Klav.",
+                                "position": "1–6/8",
+                                "comment": "Unterstimmenschicht: Achtelbalken ergänzt gemäß Korrekturen 2."
+                            },
+                            {
+                                "svgGroupId": "g713",
+                                "measure": "142",
+                                "system": "Klav. o.",
+                                "position": "1–6/8",
+                                "comment": "Oberstimmenschicht: Achtelbalken ergänzt gemäß Korrekturen 2."
+                            },
+                            {
+                                "svgGroupId": "g714",
+                                "measure": "142",
+                                "system": "Klav. o.",
+                                "position": "5–6/8",
+                                "comment": "Kleinstich: Achtelnoten ergänzt gemäß Korrekturen 2. 6/8: ges<sup>3</sup> korrigiert zu heses<sup>3</sup> mit Blick auf harmonischen Kontext und T. 137."
+                            },
+                            {
+                                "svgGroupId": "g715",
+                                "measure": "147",
+                                "system": "Klav. o.",
+                                "position": "2/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g503",
+                                "measure": "154",
+                                "system": "Klav. u.",
+                                "position": "1–6/8",
+                                "comment": "Oberstimmenschicht: Achtelbalken ergänzt gemäß Korrekturen 2."
+                            },
+                            {
+                                "svgGroupId": "g504",
+                                "measure": "155",
+                                "system": "Klav. u.",
+                                "position": "1–6/8",
+                                "comment": "Oberstimmenschicht: Achtelbalken ergänzt gemäß Korrekturen 2."
+                            },
+                            {
+                                "svgGroupId": "g505",
+                                "measure": "155",
+                                "system": "Klav. o.",
+                                "position": "2. Note",
+                                "comment": "Mögliche Verschmierung zwischen g<sup>2</sup> und g<sup>3</sup> auch als Notenkopf c<sup>3</sup> oder (aufgrund des Quartsextakkords eher unwahrscheinlich) d<sup>3</sup> lesbar. Mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk13'})\"><strong>Sk13</strong></a> T. 155B in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a> nur Oktavparallele gesetzt."
+                            },
+                            {
+                                "svgGroupId": "g506",
+                                "measure": "155",
+                                "system": "Klav. o.",
+                                "position": "letzte Note",
+                                "comment": "Ende der Oktavierungsklammer versetzt von 4. Note."
+                            },
+                            {
+                                "svgGroupId": "g507",
+                                "measure": "vor 157",
+                                "system": "Klav. u.",
+                                "position": "",
+                                "comment": "Bassschlüssel ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g508",
+                                "measure": "157",
+                                "system": "Klav. u.",
+                                "position": "1/4",
+                                "comment": "Augmentationspunkte weggelassen mit Blick auf metrischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g509",
+                                "measure": "158",
+                                "system": "Klav.",
+                                "position": "Taktende",
+                                "comment": "Schlussstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>b</sup>'})\"><strong>E<sup>b</sup></strong></a>: Einfacher Taktstrich (vgl. Korrekturen 2)."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
+        },
+        {
+            "id": "M_114_TF6",
+            "label": "M 114 Textfassung 6",
+            "evaluations": [],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g630",
+                                "measure": "2",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup> ergänzt analog Textfassungen 1–3."
+                            },
+                            {
+                                "svgGroupId": "g631",
+                                "measure": "5",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "Oberstimmenschicht sic: g<sup>3 </sup>(vgl. Textfassungen 1–3: f<sup>3</sup>)."
+                            },
+                            {
+                                "svgGroupId": "g632",
+                                "measure": "7",
+                                "system": "Klav. o.",
+                                "position": "1/4",
+                                "comment": "Oberstimmenschicht: Notenhals ergänzt."
+                            },
+                            {
+                                "svgGroupId": "g633",
+                                "measure": "13",
+                                "system": "Klav.",
+                                "position": "Taktende",
+                                "comment": "Überschriebenen Bassschlüssel wiederhergestellt (vgl. Korrekturen 1)."
+                            },
+                            {
+                                "svgGroupId": "g636",
+                                "measure": "25",
+                                "system": "Klav. o.",
+                                "position": "5. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu fis<sup>1</sup> ergänzt mit Blick auf harmonischen und motivischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g637",
+                                "measure": "28",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Ligatur zu T. 27 ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>a</sup>'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 27."
+                            },
+                            {
+                                "svgGroupId": "g749",
+                                "measure": "32",
+                                "system": "Klav.",
+                                "position": "1/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span><em> </em>versetzt von 2/8.<em> </em>"
+                            },
+                            {
+                                "svgGroupId": "g751",
+                                "measure": "40",
+                                "system": "Klav. o.",
+                                "position": "2/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup> ergänzt mit Blick auf T. 39 in Textfassung 3."
+                            },
+                            {
+                                "svgGroupId": "g752",
+                                "measure": "42",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g753",
+                                "measure": "42",
+                                "system": "Klav. o.",
+                                "position": "3. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>2</sup>/es<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g906",
+                                "measure": "43",
+                                "system": "Klav.",
+                                "position": "1. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as und as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g907",
+                                "measure": "43",
+                                "system": "Klav. o.",
+                                "position": "6. Note",
+                                "comment": "Ende des Legatobogens versetzt von zwischen 4. und 5. Note."
+                            },
+                            {
+                                "svgGroupId": "g908",
+                                "measure": "44",
+                                "system": "Klav.",
+                                "position": "1. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu as<sup>1</sup>/as<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g909",
+                                "measure": "44",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g910",
+                                "measure": "44",
+                                "system": "Klav. u.",
+                                "position": "2. Note",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu As/as ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g911",
+                                "measure": "44",
+                                "system": "Klav. o.",
+                                "position": "5. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu es<sup>1</sup>/es<sup>2</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g914",
+                                "measure": "45",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
+                            },
+                            {
+                                "svgGroupId": "g913",
+                                "measure": "47",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "C mit <em>8</em>-Zeichen aufgelöst zu C<sub>1</sub>/C (vgl. Einleitung: Zur Edition)."
+                            },
+                            {
+                                "svgGroupId": "g912",
+                                "measure": "47",
+                                "system": "Klav. o.",
+                                "position": "2/4",
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk8'})\"><strong>Sk8</strong></a> T. 46 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g915",
+                                "measure": "49",
+                                "system": "Klav. u.",
+                                "position": "8/16 und 12/16",
+                                "comment": "Achtelnote korrigiert zu Sechzehntelnote mit Blick auf metrischen Kontext und analog T. 50."
+                            },
+                            {
+                                "svgGroupId": "g916",
+                                "measure": "50",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>3</sup> ergänzt analog T. 6."
+                            },
+                            {
+                                "svgGroupId": "g917",
+                                "measure": "54",
+                                "system": "Klav. o.",
+                                "position": "2/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ces<sup>2</sup> ergänzt analog Textfassung 3 T. 53."
+                            },
+                            {
+                                "svgGroupId": "g871",
+                                "measure": "57",
+                                "system": "Klav. u.",
+                                "position": "12/16",
+                                "comment": "Achtelnote korrigiert zu Sechzehntelnote mit Blick auf metrischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g872",
+                                "measure": "58",
+                                "system": "Klav. u.",
+                                "position": "4/16",
+                                "comment": "Achtelnote korrigiert zu Sechzehntelnote mit Blick auf metrischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g414",
+                                "measure": "60",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "as: Ligatur zu T. 59 letzte Note ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E<sup>a</sup>'})\"><strong>E<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 59."
+                            },
+                            {
+                                "svgGroupId": "g873",
+                                "measure": "60",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu des<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9.1'})\"><strong>Sk9.1</strong></a> T. 59 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g874",
+                                "measure": "65",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>1</sup>/g<sup>1</sup> ergänzt analog T. 74."
+                            },
+                            {
+                                "svgGroupId": "g731",
+                                "measure": "75",
+                                "system": "Klav. u.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu G/g ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g732",
+                                "measure": "81",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Viertelnote B<sub>1</sub>/G korrigiert zu G<sub>1</sub>/G mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g733",
+                                "measure": "85",
+                                "system": "Klav. u.",
+                                "position": "letzte Note",
+                                "comment": "D mit <em>8</em>-Zeichen aufgelöst zu D<sub>1</sub>/D (vgl. Einleitung: Zur Edition)."
+                            },
+                            {
+                                "svgGroupId": "g734",
+                                "measure": "86",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "<em>Ped. </em>versetzt von zwischen 1/4 und 2/4."
+                            },
+                            {
+                                "svgGroupId": "g735",
+                                "measure": "87",
+                                "system": "Klav.",
+                                "position": "1. Note",
+                                "comment": "<em>steigernd </em>versetzt von zwischen 2. und 3. Note."
+                            },
+                            {
+                                "svgGroupId": "g736",
+                                "measure": "89",
+                                "system": "Klav. u.",
+                                "position": "8/16",
+                                "comment": "sic. In Analogie zu T. 87 wäre auch D denkbar. Dort jedoch abweichende Unterstimmenschicht auf 3/4."
+                            },
+                            {
+                                "svgGroupId": "g921",
+                                "measure": "90",
+                                "system": "Klav. u.",
+                                "position": "1. Note",
+                                "comment": "Oberstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ces ergänzt mit Blick auf harmonischen Kontext und <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk9'})\"><strong>Sk9</strong></a> T. 89 in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a>."
+                            },
+                            {
+                                "svgGroupId": "g922",
+                                "measure": "90",
+                                "system": "Klav. o.",
+                                "position": "12/16",
+                                "comment": "Ende des Legatobogens versetzt von T. 91 1/4."
+                            },
+                            {
+                                "svgGroupId": "g923",
+                                "measure": "94",
+                                "system": "Klav. o.",
+                                "position": "3. Note",
+                                "comment": "Akzidens zu es<sup>2</sup> undeutlich und tendenziell als <span class='glyph'>{{ref.getGlyph('[a]')}}</span> lesbar. Hier <span class='glyph'>{{ref.getGlyph('[b]')}}</span> ergänzt mit Blick auf T. 96 und harmonischen Kontext; <span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>1</sup>/h<sup>2</sup> ergänzt mit Blick auf T. 96 und Korrekturen 2."
+                            },
+                            {
+                                "svgGroupId": "g924",
+                                "measure": "98",
+                                "system": "Klav. u.",
+                                "position": "4/16",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e/e<sup>1</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g925",
+                                "measure": "99",
+                                "system": "Klav. u.",
+                                "position": "8/16",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu A/a ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g1044",
+                                "measure": "101",
+                                "system": "Klav. o.",
+                                "position": "5/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu b<sup>1</sup>/b<sup>2</sup> ergänzt analog T. 103."
+                            },
+                            {
+                                "svgGroupId": "g1045",
+                                "measure": "101",
+                                "system": "Klav. u.",
+                                "position": "letzte Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu H/h ergänzt analog T. 103."
+                            },
+                            {
+                                "svgGroupId": "g1046",
+                                "measure": "102",
+                                "system": "Klav. u.",
+                                "position": "5/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu B/b ergänzt analog T. 104."
+                            },
+                            {
+                                "svgGroupId": "g1047",
+                                "measure": "102",
+                                "system": "Klav. o.",
+                                "position": "letzte Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu h<sup>2</sup>/h<sup>3</sup> ergänzt analog T. 104."
+                            },
+                            {
+                                "svgGroupId": "g1048",
+                                "measure": "103",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "as<sup>4</sup> korrigiert zu c<sup>4</sup> mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g1049",
+                                "measure": "110",
+                                "system": "Klav.",
+                                "position": "Taktende",
+                                "comment": "Doppelten Taktstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_E'})\"><strong>E</strong></a>: Einfacher Taktstrich."
+                            },
+                            {
+                                "svgGroupId": "g600",
+                                "measure": "121",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 1."
+                            },
+                            {
+                                "svgGroupId": "g601",
+                                "measure": "124",
+                                "system": "Klav. o.",
+                                "position": "2/4",
+                                "comment": "Oberstimmenschicht: sic (vgl. T. 4 und 48 sowie Korrekturen 2 in Textfassung 1 T. 4.)"
+                            },
+                            {
+                                "svgGroupId": "g602",
+                                "measure": "125",
+                                "system": "Klav. o.",
+                                "position": "3/4",
+                                "comment": "Oberstimmenschicht sic: f<sup>3</sup> (vgl. Textfassungen 1–3 T. 5: f<sup>3</sup>; Textfassungen 5–6 T. 119 resp. 125: f<sup>3</sup>; jedoch Textfassungen 4–6 T. 5: g<sup>3</sup>;<sup> </sup>Textfassungen 3–6 T. 48 resp. 49: g<sup>3</sup>)."
+                            },
+                            {
+                                "svgGroupId": "g659",
+                                "measure": "134",
+                                "system": "Klav. o.",
+                                "position": "5/8",
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu ges<sup>1</sup> ergänzt analog T. 143 (vgl. auch Korrekturen 1)."
+                            },
+                            {
+                                "svgGroupId": "g663",
+                                "measure": "136",
+                                "system": "Klav. o.",
+                                "position": "2/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu a<sup>2</sup> und A ergänzt mit Blick auf T. 134."
+                            },
+                            {
+                                "svgGroupId": "g662",
+                                "measure": "136",
+                                "system": "Klav. o.",
+                                "position": "6/8",
+                                "comment": "Unterstimmenschicht: <span class='glyph'>{{ref.getGlyph('[b]')}}</span> zu fes<sup>1</sup> ergänzt analog T. 134."
+                            },
+                            {
+                                "svgGroupId": "g787",
+                                "measure": "142",
+                                "system": "Klav. o.",
+                                "position": "6/8",
+                                "comment": "g<sup>3</sup> korrigiert zu heses<sup>3</sup> mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g789",
+                                "measure": "147",
+                                "system": "Klav. o.",
+                                "position": "2/8",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu e<sup>3</sup> ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g463",
+                                "measure": "155",
+                                "system": "Klav. o.",
+                                "position": "2. Note",
+                                "comment": "Mögliche Verschmierung zwischen g<sup>2</sup> und g<sup>3</sup> auch als Notenkopf c<sup>3</sup> oder (aufgrund des Quartsextakkords eher unwahrscheinlich) d<sup>3</sup> lesbar. Mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_Sk13'})\"><strong>Sk13</strong></a> T. 155B in <a (click)=\"ref.navigateToReportFragment({complexId: 'TODO', fragmentId: 'source_D'})\"><strong>D</strong></a> nur Oktavparallele gesetzt."
+                            },
+                            {
+                                "svgGroupId": "g464",
+                                "measure": "155",
+                                "system": "Klav. o.",
+                                "position": "letzte Note",
+                                "comment": "Ende der Oktavierungsklammer versetzt von 4. Note."
+                            },
+                            {
+                                "svgGroupId": "g467",
+                                "measure": "vor 157",
+                                "system": "Klav. u.",
+                                "position": "",
+                                "comment": "Bassschlüssel ergänzt mit Blick auf harmonischen Kontext."
+                            },
+                            {
+                                "svgGroupId": "g465",
+                                "measure": "157",
+                                "system": "Klav. u.",
+                                "position": "1/4",
+                                "comment": "Augmentationspunkte weggelassen mit Blick auf metrischen Kontext."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "linkBoxes": []
+        },
+        {
+            "id": "M_114_Sk1",
+            "label": "M 114 Sk1",
+            "evaluations": [
+                "<strong>Sk1</strong> enthält einen ersten melodisch-harmonischen Entwurf für das Hauptthema der Studienkomposition für Klavier M 114, das hier von der endgültigen Form noch deutlich abweicht, aber schon bestimmte Kernelemente enthält (Ganztonharmonik, punktierter Rhythmus, Melodieverlauf)."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "2",
+                                "system": "1",
+                                "position": "1. Note",
+                                "comment": "d<sup>1</sup> gestrichen; {{ref.getGlyph('[a]')}}h/f<sup>1</sup>: Halbe Note aus Unterstimmenschicht überschreibt mit Oberstimmenschicht zusammengehalste Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "2",
+                                "system": "2",
+                                "position": "1. Note",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "2",
+                                "system": "2",
+                                "position": "3/4",
+                                "comment": "{{ref.getGlyph('[a]')}}e überschreibt f."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "4",
+                                "system": "2",
+                                "position": "1. Note",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "M_114_Sk2",
+            "label": "M 114 Sk2",
+            "evaluations": [
+                "<strong>Sk2</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 114 Textfassung 1."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [  
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "2",
+                                "system": "4",
+                                "position": "1. Note",
+                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[b]')}}es<sup>1</sup> überschreibt {{ref.getGlyph('[b]')}}des<sup>1</sup>; {{ref.getGlyph('[b]')}}es<sup>1</sup>: Halbe Note aus Unterstimmenschicht überschreibt mit Oberstimmenschicht zusammengehalste Viertelnote."
+                            }, 
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "4",
+                                "system": "4",
+                                "position": "1/4",
+                                "comment": "Unterstimmenschicht: {{ref.getGlyph('[b]')}} überschreibt {{ref.getGlyph('[#]')}}."
+                            },                  
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "8",
+                                "system": "5",
+                                "position": "",
+                                "comment": "Noten pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g5",
+                                "measure": "9",
+                                "system": "7",
+                                "position": "3/4",
+                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[b]')}}; {{ref.getGlyph('[a]')}}a<sup>1</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "9",
+                                "system": "8",
+                                "position": "3/4",
+                                "comment": "{{ref.getGlyph('[b]')}}ces gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "10",
+                                "system": "7–8",
+                                "position": "2/4",
+                                "comment": "B/as/es<sup>1</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "10",
+                                "system": "7",
+                                "position": "3. Note",
+                                "comment": "des<sup>2</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "{11A}",
+                                "system": "7",
+                                "position": "",
+                                "comment": "Noten pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "11B",
+                                "system": "7–8",
+                                "position": "nach 1/4",
+                                "comment": "Taktstrich gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g11",
+                                "measure": "11B",
+                                "system": "7",
+                                "position": "(2./3. Note)",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g12",
+                                "measure": "11B",
+                                "system": "7",
+                                "position": "3.–4. Note",
+                                "comment": "Oberstimmenschicht: Punktierte Achtelnote {{ref.getGlyph('[a]')}}a<sup>2</sup> und Sechzehntelnote b<sup>2</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g13",
+                                "measure": "11B",
+                                "system": "7",
+                                "position": "letzte Note",
+                                "comment": "es<sup>3</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g14",
+                                "measure": "12",
+                                "system": "7",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g15",
+                                "measure": "12B </br>bis 13A",
+                                "system": "7–8",
+                                "position": "(3/4) </br>bis 2/4",
+                                "comment": "Noten pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "14",
+                                "system": "10",
+                                "position": "Taktanfang",
+                                "comment": "Bassschlüssel überschreibt Violinschlüssel."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "15",
+                                "system": "10",
+                                "position": "1/4",
+                                "comment": "Viertepause überschreibt Viertelnote es/g/c<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "16",
+                                "system": "10",
+                                "position": "2/4",
+                                "comment": "{{ref.getGlyph('[b]')}}ges überschreibt f."
+                            },
+                            {
+                                "svgGroupId": "g11",
+                                "measure": "17",
+                                "system": "10",
+                                "position": "1/4",
+                                "comment": "Oberstimmenschicht: es<sup>1</sup> überschreibt d<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g12",
+                                "measure": "19",
+                                "system": "11",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                            }
+                        ] 
+                    }   
+                ] 
+            }
+        },
+        {
+            "id": "M_114_Sk3",
+            "label": "M 114 Sk3",
+            "evaluations": [
+                "<strong>Sk3</strong> beinhaltet eine erste Version für das erste Seitenthema von M 114, die nur bis T. 28 mit Textfassung 2 übereinstimmt und danach melodisch und harmonisch anders fortsetzt."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [  
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "26",
+                                "system": "14",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Punktierte Halbe Note überschreibt Viertelnote."
+                            },               
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "26",
+                                "system": "13",
+                                "position": "2–3/8",
+                                "comment": "Balken zwischen 2/8 und 3/8 gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "28",
+                                "system": "14",
+                                "position": "1/4",
+                                "comment": "Oberstimmenschicht: Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "28",
+                                "system": "13",
+                                "position": "3–6/8",
+                                "comment": "Achtelnoten d<sup>2</sup>–cis<sup>2</sup>–h<sup>1</sup>–e<sup>1</sup> überschreibt Achtelnote e<sup>2</sup>, Viertelnote d<sup>2</sup> und Achtelnote h<sup>1</sup>; 6/8: e<sup>1</sup> überschreibt d<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "{29}",
+                                "system": "13–14",
+                                "position": "",
+                                "comment": "Takt pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "33",
+                                "system": "16",
+                                "position": "3/8",
+                                "comment": "Balken überschreibt Achtelfähnchen."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "34",
+                                "system": "16",
+                                "position": "6/8",
+                                "comment": "Notenkopf überschreibt {{ref.getGlyph('[#]')}}? Entzifferung unsicher."
+                            }
+                        ]
+                    }
+                ] 
+            }
+        },
+        {
+            "id": "M_114_Sk4",
+            "label": "M 114 Sk4",
+            "evaluations": [
+                "<strong>Sk4</strong> bietet erstmals eine vollständige Überleitung zum Seitenthema in Textfassung 2."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "20",
+                                "system": "16",
+                                "position": "1/4",
+                                "comment": "Unterstimmenschicht: {{ref.getGlyph('[a]')}} zu g<sup>1</sup> überschreibt {{ref.getGlyph('[#]')}}."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "20",
+                                "system": "16",
+                                "position": "(3/4)",
+                                "comment": "Unterstimmenschicht: Punktierte Achtelnote c<sup>2</sup> überschreibt Viertelnote {{ref.getGlyph('[a]')}}c<sup>1</sup>/e<sup>1</sup>/{{ref.getGlyph('[#]')}}gis<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "{22A}",
+                                "system": "16",
+                                "position": "1–2/4",
+                                "comment": "Noten pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "23",
+                                "system": "18",
+                                "position": "1/4",
+                                "comment": "{{ref.getGlyph('[[#]]')}}fis<sup>2</sup> überschreibt e<sup>2</sup>."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "25",
+                                "system": "18",
+                                "position": "1. Note",
+                                "comment": "Oberstimmenschicht: Halbe Note überschreibt Viertelnote."
+                            }
+                        ]
+                    }  
+                ] 
+            }
+        },
+        {
+            "id": "M_114_Sk5",
+            "label": "M 114 Sk5",
+            "evaluations": [
+                "<strong>Sk5</strong> knüpft an <strong>Sk3</strong>3 an, indem es für Textfassung 2 das Seitenthema ab dem vierten Takt bis zum Beginn der folgenden Überleitung neu skizziert."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "30",
+                                "system": "18",
+                                "position": "3/8",
+                                "comment": "Oberstimmenschicht: h gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "32",
+                                "system": "21",
+                                "position": "6/8",
+                                "comment": "{{ref.getGlyph('[b]')}}es<sup>1</sup> überschreibt d<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "34",
+                                "system": "21",
+                                "position": "3–5/8",
+                                "comment": "Oberstimmenschicht: Metrisch falsch platzierte Achtelnote {{ref.getGlyph('[a]')}}c<sup>2</sup> auf 3/8 gestrichen und versetzt nach 4/8; Achtelfähnchen auf 4/8 überschreibt Balken von 4–5/8."
+                            },
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "37",
+                                "system": "1",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: e<sup>1</sup> überschreibt d<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "37",
+                                "system": "1",
+                                "position": "2/8",
+                                "comment": "Oberstimmenschicht: Balken überschreibt Achtelfähnchen."
+                            }
+                        ]
+                    }
+                ]    
+            } 
+        },
+        {
+            "id": "M_114_Sk6",
+            "label": "M 114 Sk6",
+            "evaluations": [
+                "<strong>Sk6</strong>skizziert, wie auch <strong>Sk7</strong>, punktuell die neue Überleitung zum Seitenthema für Textfassung 3 von M 114."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "19",
+                                "system": "13",
+                                "position": "1/4",
+                                "comment": "Viertelpause überschreibt Viertelnoten d<sup>1</sup> und {{ref.getGlyph('[b]')}}as<sup>1</sup>/c<sup>2</sup>."
+                            }
+                        ]
+                    }
+                ]     
+            }
+        },
+        {
+            "id": "M_114_Sk7",
+            "label": "M 114 Sk7",
+            "evaluations": [
+                "<strong>Sk7</strong> skizziert, wie auch <strong>Sk6</strong>, punktuell die neue Überleitung zum Seitenthema für Textfassung 3 von M 114."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "24",
+                                "system": "13–12",
+                                "position": "",
+                                "comment": "Takt pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "24",
+                                "system": "13",
+                                "position": "1/8",
+                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[#]')}}cis<sup>2</sup> überschreibt a<sup>2</sup>."
+                            },
+                            {
+                                "svgGroupId": "g11",
+                                "measure": "24",
+                                "system": "13",
+                                "position": "4. Note",
+                                "comment": "Notenkopf mit braunem Buntstift eingekreist. Bedeutung unklar."
+                            },
+                            {
+                                "svgGroupId": "g12",
+                                "measure": "25",
+                                "system": "13",
+                                "position": "Taktanfang",
+                                "comment": "Kreuz mit braunem Buntstift über dem System. Bedeutung unklar."
+                            },
+                            {
+                                "svgGroupId": "g13",
+                                "measure": "25",
+                                "system": "13",
+                                "position": "1/4",
+                                "comment": "Unterstimmenschicht: Notenkopf mit braunem Buntstift eingekreist. Bedeutung unklar."
+                            },
+                            {
+                                "svgGroupId": "g14",
+                                "measure": "25",
+                                "system": "12",
+                                "position": "1/4",
+                                "comment": "Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g15",
+                                "measure": "25",
+                                "system": "12",
+                                "position": "3/4",
+                                "comment": "Unterstimmenschicht: Viertelnote es gestrichen."
+                            }
+                        ]
+                    }
+                ]
+            }     
+        },
+        {
+            "id": "M_114_Sk8",
+            "label": "M 114 Sk8",
+            "evaluations": [
+                "<strong>Sk8</strong> beinhaltet für Textfassung 3 von M 114 die neue Überleitung nach dem Seitenthema mitsamt dem anschließend wiederkehrenden Hauptthema."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [ 
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "35",
+                                "system": "4",
+                                "position": "1. Note",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "37",
+                                "system": "5",
+                                "position": "2/4",
+                                "comment": "Unterstimmenschicht: Viertelnote d radiert."
+                            },                        {
+                                "svgGroupId": "g9",
+                                "measure": "38",
+                                "system": "5",
+                                "position": "1/4",
+                                "comment": "Oberstimmenschicht: Viertelnote überschreibt Halbe Note."
+                            },                        {
+                                "svgGroupId": "g10",
+                                "measure": "38",
+                                "system": "5",
+                                "position": "2/4",
+                                "comment": "g überschreibt a."
+                            },                        {
+                                "svgGroupId": "g1",
+                                "measure": "39",
+                                "system": "2",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                            },                        {
+                                "svgGroupId": "g2",
+                                "measure": "39",
+                                "system": "1",
+                                "position": "4/16",
+                                "comment": "Sechzehntelbalken gestrichen."
+                            },                        {
+                                "svgGroupId": "g5",
+                                "measure": "39",
+                                "system": "2",
+                                "position": "2/4",
+                                "comment": "Viertelnote {{ref.getGlyph('[#]')}}fis gestrichen."
+                            },                        {
+                                "svgGroupId": "g6",
+                                "measure": "39",
+                                "system": "2",
+                                "position": "3/4",
+                                "comment": "g überschreibt {{ref.getGlyph('[a]')}}F."
+                            },                        {
+                                "svgGroupId": "g7",
+                                "measure": "40",
+                                "system": "2",
+                                "position": "1. Note",
+                                "comment": "As: {{ref.getGlyph('[b]')}} überschreibt {{ref.getGlyph('[#]')}}."
+                            },                        {
+                                "svgGroupId": "g15",
+                                "measure": "41",
+                                "system": "2",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "44",
+                                "system": "15",
+                                "position": "1. Note",
+                                "comment": "Punktierte Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g2",
+                                "measure": "45",
+                                "system": "16",
+                                "position": "1. Note",
+                                "comment": " Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g4",
+                                "measure": "45",
+                                "system": "15",
+                                "position": "6/4",
+                                "comment": "Notenkopf ces<sup>1</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "46",
+                                "system": "16",
+                                "position": "3/4",
+                                "comment": "{{ref.getGlyph('[a]')}}e<sup>1</sup> überschreibt f<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g5",
+                                "measure": "48",
+                                "system": "16",
+                                "position": "1. Note",
+                                "comment": "{{ref.getGlyph('[a]')}}d<sup>2</sup>: Halbe Note überschreibt Viertelnote? a<sup>2</sup>: Viertelnote überschreibt Halbe Note? Entzifferung unsicher."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "48",
+                                "system": "16",
+                                "position": "2/4",
+                                "comment": "Notenköpfe zu c<sup>2</sup> und g<sup>2</sup> gestrichen? Entzifferung unsicher, Notenköpfe relativ klein notiert."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "49",
+                                "system": "16",
+                                "position": "1/4",
+                                "comment": "fis<sup>2</sup>/fis<sup>3</sup>: Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "52",
+                                "system": "12",
+                                "position": "3/4",
+                                "comment": "{{ref.getGlyph('[b]')}}ces<sup>1</sup> durch Einkreisung getilgt."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "53",
+                                "system": "13",
+                                "position": "2.–3. Note",
+                                "comment": "Ligatur gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "54",
+                                "system": "13",
+                                "position": "(2/4)",
+                                "comment": "Halbe Note b<sup>1</sup> überschreibt Viertelnote as<sup>1</sup>/{{ref.getGlyph('[[b]]')}}ces<sup>2</sup>? Entzifferung unsicher."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "54",
+                                "system": "13",
+                                "position": "3/4",
+                                "comment": "Viertelnote b<sup>1</sup>/es<sup>2</sup>//g<sup>2</sup>/b<sup>2</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g3",
+                                "measure": "56(2–3/4)",
+                                "system": "10",
+                                "position": "2/4",
+                                "comment": "Notenkopf as<sup>2</sup> gestrichen."
+                            }
+                        ]
+                    }
+                ] 
+            }
+        },
+        {
+            "id": "M_114_Sk9",
+            "label": "M 114 Sk9",
+            "evaluations": [
+                "<strong>Sk9</strong> skizziert einen wesentlichen Teil des mittleren Abschnitts (Trio/Durchführung) von M 114, der im Durchführungsteil nach wenigen Takten abbricht. <strong>Sk9</strong> wird in der Tintenniederschrift von Textfassung 4 übernommen, die an die bestehende Exposition von Textfassung 3 anknüpft."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g11",
+                                "measure": "63",
+                                "system": "9",
+                                "position": "1/4",
+                                "comment": "[Viertelnote F gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "66",
+                                "system": "6",
+                                "position": "2. Note",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "{67A–70A}",
+                                "system": "7–6",
+                                "position": "",
+                                "comment": "Takte pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "{68A}",
+                                "system": "6",
+                                "position": "1. Note",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "67B",
+                                "system": "4",
+                                "position": "letzte Note",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "67B",
+                                "system": "5",
+                                "position": "5/8",
+                                "comment": "{{ref.getGlyph('[b]')}}des<sup>1</sup> überschreibt c<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "69B",
+                                "system": "5",
+                                "position": "3/4",
+                                "comment": "as<sup>2</sup>/c<sup>3</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "73",
+                                "system": "2",
+                                "position": "1. Note",
+                                "comment": "{{ref.getGlyph('[a]')}}a<sup>1</sup>/{{ref.getGlyph('[[a]]')}}<sup>2</sup>: Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "74B",
+                                "system": "1",
+                                "position": "1. Note",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "78",
+                                "system": "7",
+                                "position": "1. Note",
+                                "comment": "g<sup>2</sup>: Halbe überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "79",
+                                "system": "13",
+                                "position": "2/4",
+                                "comment": "Viertelnote D gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "{80A–82A}",
+                                "system": "14–13",
+                                "position": "",
+                                "comment": "Takte pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g11",
+                                "measure": "{80A}",
+                                "system": "14",
+                                "position": "1/4",
+                                "comment": "Viertelpause überschreibt {{ref.getGlyph('[b]')}} zu des<sup>3</sup>."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "{83A}",
+                                "system": "22",
+                                "position": "1. Note",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "{84A}",
+                                "system": "20–19",
+                                "position": "",
+                                "comment": "Takt pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "85",
+                                "system": "17",
+                                "position": "1/4",
+                                "comment": "Viertelpause überschreibt Viertelnote es<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g3",
+                                "measure": "87",
+                                "system": "2",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Halbe Note überschreibt punktierte Viertelnote; Augmentationspunkte gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "88",
+                                "system": "2",
+                                "position": "(3/4)",
+                                "comment": "Oberstimmenschicht: c/c<sup>1</sup>–{{ref.getGlyph('[[b]]')}}des/{{ref.getGlyph('[b]')}}des<sup>1</sup> überschreibt {{ref.getGlyph('[[a]]')}}H/{{ref.getGlyph('[a]')}}h–c/c<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "88",
+                                "system": "2",
+                                "position": "3/4",
+                                "comment": "Unterstimmenschicht: {{ref.getGlyph('[b]')}} zu Des gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "89",
+                                "system": "2",
+                                "position": "(1/4)",
+                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[[b]]')}}ces/{{ref.getGlyph('[b]')}}ces<sup>1</sup>–{{ref.getGlyph('[[b]]')}}des/{{ref.getGlyph('[b]')}}des<sup>1</sup> überschreibt {{ref.getGlyph('[[a]]')}}H/{{ref.getGlyph('[a]')}}h–c/c<sup>1</sup>; {{ref.getGlyph('[b]')}}des<sup>1</sup> auf 4/16 gestrichen und ersetzt durch f<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "89",
+                                "system": "1",
+                                "position": "(2–3/4}",
+                                "comment": "f<sup>1</sup>–g<sup>1</sup>–b<sup>1</sup>–{{ref.getGlyph('[b]')}}des<sup>2</sup> gestrichen und ersetzt durch g<sup>1</sup>–{{ref.getGlyph('[[a]]')}}h<sup>1</sup>–{{ref.getGlyph('[[b]]')}}des<sup>2</sup>–f<sup>2</sup>."
+                            },
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "{91}",
+                                "system": "4–5",
+                                "position": "",
+                                "comment": "Takt pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "{91}",
+                                "system": "4",
+                                "position": "3. Note",
+                                "comment": "{{ref.getGlyph('[b]')}}des<sup>1</sup>/{{ref.getGlyph('[b]')}}des<sup>2</sup> überschreibt f<sup>1</sup>/f<sup>2</sup>."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "92",
+                                "system": "5",
+                                "position": "2/4",
+                                "comment": "C gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "92",
+                                "system": "5",
+                                "position": "4. Note",
+                                "comment": "{{ref.getGlyph('[bb]')}}heses überschreibt c<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g11",
+                                "measure": "94A",
+                                "system": "4",
+                                "position": "4. Note",
+                                "comment": "{{ref.getGlyph('[b]')}}b<sup>1</sup>/{{ref.getGlyph('[b]')}}b<sup>2</sup> radiert."
+                            },
+                            {
+                                "svgGroupId": "g12",
+                                "measure": "94A",
+                                "system": "4",
+                                "position": "5. Note",
+                                "comment": "{{ref.getGlyph('[a]')}}a<sup>2</sup> überschreibt c<sup>3</sup>."
+                            },
+                            {
+                                "svgGroupId": "g13",
+                                "measure": "94A",
+                                "system": "5",
+                                "position": "5. Note",
+                                "comment": "{{ref.getGlyph('[b]')}}ces<sup>1</sup> überschreibt {{ref.getGlyph('[b]')}}es<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g14",
+                                "measure": "94A",
+                                "system": "4",
+                                "position": "letzte Note",
+                                "comment": "Sechzehntelnote f<sup>2</sup>/as<sup>2</sup>/f<sup>3</sup> und undefinierter Notenkopf gestrichen; diastematische Anmerkung as|e|d|as gestrichen und ersetzt durch a|es|ces|a."
+                            },
+                            {
+                                "svgGroupId": "g15",
+                                "measure": "95A",
+                                "system": "4",
+                                "position": "",
+                                "comment":"Noten pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "95B",
+                                "system": "7",
+                                "position": "(5–6/8)",
+                                "comment": "Achtelnoten {{ref.getGlyph('[b]')}}es<sup>2</sup>–{{ref.getGlyph('[a]')}}d<sup>2</sup> gestrichen und Achtelbalken gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "95C",
+                                "system": "8",
+                                "position": "1.–2. Note",
+                                "comment": "{{ref.getGlyph('[[#]]')}}Fis–G gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g11",
+                                "measure": "95C",
+                                "system": "7",
+                                "position": "5. Note",
+                                "comment": "zusätzliches {{ref.getGlyph('[#]')}} zu fis<sup>2</sup> gestrichen? Entzifferung unsicher."
+                            },
+                            {
+                                "svgGroupId": "g12",
+                                "measure": "95C",
+                                "system": "8",
+                                "position": "3. Note",
+                                "comment": "{{ref.getGlyph('[[#]]')}}Fis<sub>1</sub>/{{ref.getGlyph('[[#]]')}}Fis überschreibt A<sub>1</sub>/A."
+                            }
+                        ]
+                    }
+                ]    
+            } 
+        },
+        {
+            "id": "M_114_Sk9_1",
+            "label": "M 114 Sk9.1",
+            "evaluations": [
+                "<strong>Sk9.1</strong> geht <strong>Sk9</strong> inhaltlich unmittelbar voraus und liefert die fehlenden Verbindungstakte zwischen der Überleitung von der Exposition und dem Mittelteil. <strong>Sk9.1</strong> markiert damit auch den Anschlusspunkt von Textfassung 4 an den bestehenden Expositionsteil aus Textfassung 3."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "58",
+                                "system": "4",
+                                "position": "3/4",
+                                "comment": "Viertelnote D/d gestrichen."
+                            }  
+                        ]
+                    }
+                ]   
+            }  
+        },
+        {
+            "id": "M_114_Sk9_2",
+            "label": "M 114 Sk9.2",
+            "evaluations": [
+                "<strong>Sk9.2</strong> formuliert den in <strong>Sk9</strong> gestrichenen T. 91 neu."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g###",
+                                "measure": "95",
+                                "system": "7",
+                                "position": "3. Note",
+                                "comment": "{{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[#]')}}."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "95",
+                                "system": "7",
+                                "position": "4. Note",
+                                "comment": "{{ref.getGlyph('[#]')}}gis<sup>2</sup> überschreibt a<sup>2</sup>."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "95",
+                                "system": "8",
+                                "position": "3/4",
+                                "comment": "Viertelnote überschreibt Halbe Note."
+                            }
+                        ]
+                    }
+                ]     
+            }
+        },
+        {
+            "id": "M_114_Sk10",
+            "label": "M 114 Sk10",
+            "evaluations": [
+                "<strong>Sk10</strong> setzt einige Takte vor dem Abbruch von <strong>Sk9</strong> neu an und skizziert den vollständigen Durchführungsabschnitt bis unmittelbar vor dem Eintritt der Reprise."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "97",
+                                "system": "2",
+                                "position": "4. Note",
+                                "comment": "{{ref.getGlyph('[b]')}}B überschreibt G."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "{99A}",
+                                "system": "1–2",
+                                "position": "",
+                                "comment": "Takt pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "98B(3/4)–99C(1/4)",
+                                "system": "5–6",
+                                "position": "",
+                                "comment": "Taktzuordnung unsicher. Es scheint sich bei den Akkorden um Erinnerungsstützen in Zusammenhang mit dem geplanten harmonischen Gerüst zu handeln."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "98B(3/4)",
+                                "system": "6",
+                                "position": "1. Note",
+                                "comment": "es gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "100A",
+                                "system": "5",
+                                "position": "1/8",
+                                "comment": "Augmentationspunkte gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "100A",
+                                "system": "5",
+                                "position": "2/8",
+                                "comment": "es<sup>2</sup>/b<sup>2</sup> überschreibt c<sup>2</sup>/g<sup>2</sup>? Entzifferung des gesamten Akkordes unsicher."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "100A",
+                                "system": "6",
+                                "position": "8/16",
+                                "comment": "{{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[b]')}}."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "101B",
+                                "system": "9",
+                                "position": "2. Note",
+                                "comment": "Sechzehntelnote As gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "103",
+                                "system": "11",
+                                "position": "6. Note",
+                                "comment": "{{ref.getGlyph('[bb]')}} gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "{105A}",
+                                "system": "11–12",
+                                "position": "",
+                                "comment": "Takt pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "{105A}",
+                                "system": "12",
+                                "position": "5. Note",
+                                "comment": "f überschreibt as."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "106",
+                                "system": "14",
+                                "position": "(1/4)",
+                                "comment": "Punktierte Achtelnote as<sup>2</sup>/d<sup>3</sup>/f<sup>3</sup> und Sechzehntelnote {{ref.getGlyph('[b]')}}des<sup>2</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "105B",
+                                "system": "15",
+                                "position": "4/16",
+                                "comment": "{{ref.getGlyph('[[a]]')}}H überschreibt G."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "105B",
+                                "system": "14",
+                                "position": "4.–6 Note",
+                                "comment": "g<sup>2</sup>–f<sup>2</sup>–{{ref.getGlyph('[b]')}}es<sup>2</sup> überschreibt f<sup>2</sup>–{{ref.getGlyph('[#]')}}cis<sup>2</sup>–{{ref.getGlyph('[a]')}}h<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "105B",
+                                "system": "15",
+                                "position": "5.–6. Note",
+                                "comment": "{{ref.getGlyph('[a]')}}h–{{ref.getGlyph('[#]')}}cis<sup>1</sup> überschreibt g–h."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "108",
+                                "system": "18",
+                                "position": "1/4",
+                                "comment": "Oberstimmenschicht: g überschreibt f."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "108",
+                                "system": "18",
+                                "position": "2/4",
+                                "comment": "Oberstimmenschicht: es überschreibt f."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "108",
+                                "system": "18",
+                                "position": "8/16",
+                                "comment": "Unterstimmenschicht: Es überschreibt G."
+                            },
+                            {
+                                "svgGroupId": "g11",
+                                "measure": "109",
+                                "system": "18",
+                                "position": "5. Note",
+                                "comment": "Unterstimmenschicht: F überschreibt As."
+                            }
+                        ]
+                    }
+                ]   
+            }  
+        },
+        {
+            "id": "M_114_Sk10_1",
+            "label": "M 114 Sk10.1",
+            "evaluations": [
+                "<strong>Sk10.1</strong> fügt einen zusätzlichen Takt in <strong>Sk10</strong> ein."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [] 
+            }    
+        },
+        {
+            "id": "M_114_Sk11",
+            "label": "M 114 Sk11",
+            "evaluations": [
+                "<strong>Sk11</strong> skizziert die Coda für M 114 Textfassung 5, die zunehmend flüchtiger wird und schließlich nur noch das harmonische Gerüst der Schlusstakte andeutet."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "134",
+                                "system": "10",
+                                "position": "5/8",
+                                "comment": "Oberstimmenschicht: b<sup>1</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "135",
+                                "system": "10",
+                                "position": "2/8",
+                                "comment": "{{ref.getGlyph('[[b]]')}}ces<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}}a<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "135",
+                                "system": "10",
+                                "position": "3/8",
+                                "comment": "{{ref.getGlyph('[b]')}}ces<sup>2</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "135",
+                                "system": "11",
+                                "position": "6/8",
+                                "comment": "{{ref.getGlyph('[[a]]')}}A überschreibt F."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "136",
+                                "system": "10",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Viertelnote {{ref.getGlyph('[a]')}}g<sup>1</sup>/b<sup>1</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g11",
+                                "measure": "137",
+                                "system": "11",
+                                "position": "6/8",
+                                "comment": "{{ref.getGlyph('[[a]]')}}H überschreibt G."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "139",
+                                "system": "13",
+                                "position": "2/8",
+                                "comment": "sic (lies: d<sup>3</sup>)."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "139",
+                                "system": "13",
+                                "position": "5/8",
+                                "comment": "f<sup>2</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "139",
+                                "system": "13–14",
+                                "position": "5–6/8",
+                                "comment": "Noten gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "{140A}",
+                                "system": "13–14",
+                                "position": "",
+                                "comment": "Takt pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "141A",
+                                "system": "15",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "141A",
+                                "system": "15",
+                                "position": "3/8",
+                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[[a]]')}}a<sup>2</sup> überschreibt c<sup>3</sup>."
+                            },
+                            {
+                                "svgGroupId": "g3",
+                                "measure": "140C",
+                                "system": "17",
+                                "position": "1/8",
+                                "comment": "{{ref.getGlyph('[b]')}}b<sup>2</sup> überschreibt f<sup>3</sup>."
+                            },
+                            {
+                                "svgGroupId": "g5",
+                                "measure": "140C",
+                                "system": "18",
+                                "position": "1/8",
+                                "comment": "sic (lies: F<sub>1</sub>1)."
+                            },
+                            {
+                                "svgGroupId": "g4",
+                                "measure": "152",
+                                "system": "17",
+                                "position": "",
+                                "comment": "{{ref.getGlyph('[a]')}}e<sup>1</sup>/{{ref.getGlyph('[b]')}}as<sup>1</sup> überschreibt d<sup>1</sup>/g<sup>1</sup>."
+                            }
+                        ]
+                    }
+                ]
+            }        
+        },
+        {
+            "id": "M_114_Sk12",
+            "label": "M 114 Sk12",
+            "evaluations": [
+                "<strong>Sk12</strong> setzt das in <strong>Sk11</strong> vorskizzierte in eine Tintenniederschrift um, bricht jedoch schon nach wenigen Takten ab."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "138",
+                                "system": "1",
+                                "position": "5/8",
+                                "comment": "Notenhals nach oben gestrichen."
+                            }
+                        ]
+                    }
+                ]  
+            }     
+        },
+        {
+            "id": "M_114_Sk13",
+            "label": "M 114 Sk13",
+            "evaluations": [
+                "<strong>Sk13</strong> knüpft an <strong>Sk11</strong> an, indem sie nun die Coda ab T. 143 bis und mit Schlusstakt ausformuliert."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "144",
+                                "system": "7",
+                                "position": "2/8",
+                                "comment": "Ansatz zu Notenkopf as<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "144",
+                                "system": "8",
+                                "position": "4–5/8",
+                                "comment": "es–{{ref.getGlyph('[b]')}}ces überschreibt c–As."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "145",
+                                "system": "8",
+                                "position": "1/8",
+                                "comment": "es gestrichen und ersetzt durch {{ref.getGlyph('[[a]]')}}A."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "146",
+                                "system": "7",
+                                "position": "1/8",
+                                "comment": "{{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[b]')}}."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "146",
+                                "system": "8",
+                                "position": "(1/4)",
+                                "comment": "Viertelnote {{ref.getGlyph('[b]')}}as/{{ref.getGlyph('[a]')}}c<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g11",
+                                "measure": "147",
+                                "system": "8",
+                                "position": "5–6/8",
+                                "comment": "{{ref.getGlyph('[b]')}}as–c<sup>1</sup> überschreibt c<sup>1</sup>–{{ref.getGlyph('[[a]]')}}e<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "149",
+                                "system": "10",
+                                "position": "2/8",
+                                "comment": "{{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[b]')}}."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "149",
+                                "system": "11",
+                                "position": "3/8",
+                                "comment": "{{ref.getGlyph('[[b]]')}}ces<sup>1</sup> überschreibt b."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "150",
+                                "system": "10",
+                                "position": "4. Note",
+                                "comment": "b [überschreibt g."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "151",
+                                "system": "11",
+                                "position": "4–5/8",
+                                "comment": "{{ref.getGlyph('[#]')}}cis–{{ref.getGlyph('[a]')}}c überschreibt {{ref.getGlyph('[#]')}}His–{{ref.getGlyph('[#]')}}cis."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "152",
+                                "system": "11",
+                                "position": "2/8",
+                                "comment": "{{ref.getGlyph('[b]')}}fes gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g11",
+                                "measure": "152",
+                                "system": "11",
+                                "position": "3/4",
+                                "comment": "{{ref.getGlyph('[b]')}} überschreibt {{ref.getGlyph('[a]')}}."
+                            },
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "153",
+                                "system": "14",
+                                "position": "1. Note",
+                                "comment": "Unterstimmenschicht: Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "153",
+                                "system": "13",
+                                "position": "4/8–3/4",
+                                "comment": "f<sup>1</sup>–f<sup>1</sup>–as<sup>1</sup>–c<sup>2</sup> überschreibt as<sup>1</sup>–as<sup>1</sup>–c<sup>2</sup>–es<sup>2</sup>."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "{155A–157A}",
+                                "system": "13–14",
+                                "position": "",
+                                "comment": "Takt pauschal gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "{156A}",
+                                "system": "13",
+                                "position": "1/4",
+                                "comment": "sic:f<sup>3</sup>. Lies:d<sup>3</sup>."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "{156A}",
+                                "system": "14",
+                                "position": "1. Note",
+                                "comment": "Oberstimmenschicht a/c<sup>1</sup>: Halbe Note überschreibt Viertelnote."
+                            }
+                        ]
+                    }
+                ]
+            }     
+        },
+        {
+            "id": "M_114_Sk14",
+            "label": "M 114 Sk14",
+            "evaluations": [
+                "<strong>Sk14</strong> entwirft das in Textfassung 6 zu Beginn der Reprise eingeschobene Seitenthema auf der Tonika."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "106",
+                                "system": "3",
+                                "position": "1. Note",
+                                "comment": "Mittelstimmenschicht: Viertelnote überschreibt mit Unterstimmenschicht zusammengehalste Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "108",
+                                "system": "3",
+                                "position": "1. Note",
+                                "comment": "Mittelstimmenschicht: Halbe Note A überschreibt Viertelnote G."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "108",
+                                "system": "3",
+                                "position": "2/4",
+                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[b]')}}B gestrichen und ersetzt durch f."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "108",
+                                "system": "3",
+                                "position": "6/8",
+                                "comment": "Unterstimmenschicht: d gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g9",
+                                "measure": "110",
+                                "system": "2",
+                                "position": "3. Note",
+                                "comment": "c<sup>1</sup> und a<sup>1</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g10",
+                                "measure": "110",
+                                "system": "2",
+                                "position": "3/4",
+                                "comment": "Achtelnote gestrichen und ersetzt durch Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g1",
+                                "measure": "113",
+                                "system": "6",
+                                "position": "2/4",
+                                "comment": "Oberstimmenschicht: as überschreibt g."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "113",
+                                "system": "5",
+                                "position": "3/4",
+                                "comment": "Unterstimmenschicht: f<sup>1</sup> überschreibt {{ref.getGlyph('[b]')}}es<sup>1</sup>."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "116",
+                                "system": "5",
+                                "position": "1/4",
+                                "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
+                            },
+                            {
+                                "svgGroupId": "g5",
+                                "measure": "117",
+                                "system": "9",
+                                "position": "1. Note",
+                                "comment": "Halbe Note überschreibt Viertelnote."
+                            },
+                            {
+                                "svgGroupId": "g6",
+                                "measure": "117",
+                                "system": "9",
+                                "position": "6/8",
+                                "comment": "Metrisch falsch platzierte Viertelnote d<sup>1</sup> gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g7",
+                                "measure": "118",
+                                "system": "8",
+                                "position": "1/8",
+                                "comment": "Oberstimmenschicht: {{ref.getGlyph('[#]')}}fis<sup>2</sup> überschreibt as<sup>2</sup>."
+                            },
+                            {
+                                "svgGroupId": "g8",
+                                "measure": "119",
+                                "system": "9",
+                                "position": "1. Note",
+                                "comment": "Punktierte Halbe Note überschreibt Viertelnote."
+                            }
+                        ]
+                    }
+                ]     
+            }   
+        }
+    ]
+}
