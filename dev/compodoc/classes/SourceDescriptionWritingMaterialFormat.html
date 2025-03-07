@@ -459,25 +459,25 @@ export class SourceDescriptionWritingMaterialFormat {
 }
 
 /**
- * The SourceDescriptionWritingMaterialFirmSign class.
+ * The SourceDescriptionWritingMaterialTrademark class.
  *
  * It is used in the context of the edition view
- * to store the data for the firm sign of the writing material of a source description
+ * to store the data for the trademark of the writing material of a source description
  * from a source description json file.
  */
-export class SourceDescriptionWritingMaterialFirmSign {
+export class SourceDescriptionWritingMaterialTrademark {
     /**
-     * The variant of the firm sign used on the writing material (optional).
+     * The variant of the trademark used on the writing material (optional).
      */
     variant?: string;
 
     /**
-     * An alternative string for the firm sign used on the writing material (optional).
+     * An alternative string for the trademark used on the writing material (optional).
      */
     alt?: string;
 
     /**
-     * The location of the firm sign on the writing material (optional).
+     * The location of the trademark on the writing material (optional).
      */
     location?: SourceDescriptionWritingMaterialItemLocation[];
 }
@@ -578,9 +578,9 @@ export class SourceDescriptionWritingMaterial {
     format?: SourceDescriptionWritingMaterialFormat;
 
     /**
-     * The firm sign of the writing material (optional).
+     * The trademark of the writing material (optional).
      */
-    firmSign?: SourceDescriptionWritingMaterialFirmSign;
+    trademark?: SourceDescriptionWritingMaterialTrademark;
 
     /**
      * The watermark of the writing material (optional).

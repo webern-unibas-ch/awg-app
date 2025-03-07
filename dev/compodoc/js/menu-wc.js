@@ -1528,9 +1528,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/SourceDescriptionWritingMaterialDimension.html" data-type="entity-link" >SourceDescriptionWritingMaterialDimension</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SourceDescriptionWritingMaterialFirmSign.html" data-type="entity-link" >SourceDescriptionWritingMaterialFirmSign</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/SourceDescriptionWritingMaterialFormat.html" data-type="entity-link" >SourceDescriptionWritingMaterialFormat</a>
                             </li>
                             <li class="link">
@@ -1538,6 +1535,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/SourceDescriptionWritingMaterialSystems.html" data-type="entity-link" >SourceDescriptionWritingMaterialSystems</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SourceDescriptionWritingMaterialTrademark.html" data-type="entity-link" >SourceDescriptionWritingMaterialTrademark</a>
                             </li>
                             <li class="link">
                                 <a href="classes/SourceDescriptionWritingMaterialWatermark.html" data-type="entity-link" >SourceDescriptionWritingMaterialWatermark</a>
