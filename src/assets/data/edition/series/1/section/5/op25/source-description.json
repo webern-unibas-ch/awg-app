@@ -41,6 +41,7 @@
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "38–39"
                     }
                 ],
@@ -588,6 +589,7 @@
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1–2"
                     }
                 ],
@@ -737,6 +739,7 @@
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1"
                     }
                 ],
@@ -1899,17 +1902,7 @@
                                 }
                             ]
                         },
-                        "watermark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [""],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "watermark": {},
                         "folioAddendum": "1/12"
                     },
                     {
@@ -1941,17 +1934,7 @@
                                 }
                             ]
                         },
-                        "watermark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [""],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "watermark": {},
                         "folioAddendum": "2/3"
                     },
                     {
@@ -1983,17 +1966,7 @@
                                 }
                             ]
                         },
-                        "watermark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [""],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "watermark": {},
                         "folioAddendum": "4/5, 7–10"
                     },
                     {
@@ -2025,17 +1998,7 @@
                                 }
                             ]
                         },
-                        "watermark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [""],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "watermark": {},
                         "folioAddendum": "6/11"
                     }
                 ],

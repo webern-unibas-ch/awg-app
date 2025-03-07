@@ -52,6 +52,7 @@
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1"
                     },
                     {
@@ -73,6 +74,7 @@
                             }
                         },
                         "trademark": {},
+                        "watermark": {},
                         "folioAddendum": "2"
                     }
                 ],
@@ -482,6 +484,7 @@
                             }
                         },
                         "trademark": {},
+                        "watermark": {},
                         "folioAddendum": "1–2"
                     },
                     {
@@ -891,6 +894,7 @@
                             }
                         },
                         "trademark": {},
+                        "watermark": {},
                         "folioAddendum": "1"
                     },
                     {
@@ -1068,6 +1072,7 @@
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1"
                     }
                 ],
@@ -1348,6 +1353,7 @@
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "2–6, 8–10"
                     },
                     {
@@ -1368,17 +1374,8 @@
                                 "value": "270"
                             }
                         },
-                        "trademark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [""],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
+                        "watermark": {},
                         "folioAddendum": "7"
                     }
                 ],
@@ -2068,7 +2065,7 @@
                     "1 Blatt (Bl. 1). <span class='text-danger'>[Beschreibung am Original konnte bislang nicht erfolgen.]</span>"
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, 12 Systeme mit vier (1 + 2 Systeme ) vorgedruckten Akkoladen, Format: hoch ### × ### mm, Firmenzeichen: ##JE_12## recto unten links"
+                    "Notenpapier, 12 Systeme mit vier (1 + 2 Systeme) vorgedruckten Akkoladen, Format: hoch ### × ### mm, Firmenzeichen: ##JE_12## recto unten links"
                 ],
                 "writingMaterials": [
                     {
@@ -2100,6 +2097,7 @@
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1"
                     }
                 ],
@@ -2753,6 +2751,7 @@
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1–10"
                     }
                 ],

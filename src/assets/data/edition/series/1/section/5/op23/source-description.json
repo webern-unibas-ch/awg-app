@@ -1421,17 +1421,8 @@
                                 "value": "270"
                             }
                         },
-                        "trademark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [""],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
+                        "watermark": {},
                         "folioAddendum": "1/2"
                     }
                 ],
@@ -1599,17 +1590,7 @@
                                 }
                             ]
                         },
-                        "watermark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [""],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "watermark": {},
                         "folioAddendum": "1–10"
                     }
                 ],
