@@ -22,8 +22,8 @@ import {
     SourceDescriptionContent,
     SourceDescriptionList,
     SourceDescriptionWritingInstruments,
-    SourceDescriptionWritingMaterialFormat,
-    SourceDescriptionWritingMaterialItemLocation,
+    SourceDescriptionWritingMaterialDimensions,
+    SourceDescriptionWritingMaterialItemLocus,
     SourceDescriptionWritingMaterialSystems,
     Textcritics,
 } from '@awg-views/edition-view/models';
@@ -863,115 +863,115 @@ describe('SourceDescriptionComponent (DONE)', () => {
             });
         });
 
-        describe('#getWritingMaterialItemLocation()', () => {
-            it('... should have a method `getWritingMaterialItemLocation`', () => {
-                expect(component.getWritingMaterialItemLocation).toBeDefined();
+        describe('#getWritingMaterialItemLocus()', () => {
+            it('... should have a method `getWritingMaterialItemLocus`', () => {
+                expect(component.getWritingMaterialItemLocus).toBeDefined();
             });
 
             describe('... should return empty string', () => {
-                it('... if location is undefined', () => {
-                    const location: SourceDescriptionWritingMaterialItemLocation = undefined;
+                it('... if locus is undefined', () => {
+                    const locus: SourceDescriptionWritingMaterialItemLocus = undefined;
 
-                    const result = component.getWritingMaterialItemLocation(location);
+                    const result = component.getWritingMaterialItemLocus(locus);
 
                     expectToBe(result, '');
                 });
 
-                it('... if location is an empty object', () => {
-                    const location: SourceDescriptionWritingMaterialItemLocation = {};
+                it('... if locus is an empty object', () => {
+                    const locus: SourceDescriptionWritingMaterialItemLocus = {};
 
-                    const result = component.getWritingMaterialItemLocation(location);
+                    const result = component.getWritingMaterialItemLocus(locus);
 
                     expectToBe(result, '');
                 });
             });
 
-            describe('... should return correct location string', () => {
+            describe('... should return correct locus string', () => {
                 it('... for a single folio without position', () => {
-                    const location: SourceDescriptionWritingMaterialItemLocation = {
-                        info: '',
+                    const locus: SourceDescriptionWritingMaterialItemLocus = {
+                        preFolioInfo: '',
                         folios: ['1'],
                         position: '',
                     };
 
-                    const result = component.getWritingMaterialItemLocation(location);
+                    const result = component.getWritingMaterialItemLocus(locus);
 
                     expectToBe(result, 'auf Bl. 1');
                 });
 
                 it('... for a single folio with position', () => {
-                    const location: SourceDescriptionWritingMaterialItemLocation = {
-                        info: '',
+                    const locus: SourceDescriptionWritingMaterialItemLocus = {
+                        preFolioInfo: '',
                         folios: ['1'],
                         position: 'oben links',
                     };
 
-                    const result = component.getWritingMaterialItemLocation(location);
+                    const result = component.getWritingMaterialItemLocus(locus);
 
                     expectToBe(result, 'auf Bl. 1 oben links');
                 });
 
                 it('... for two folios (with connector)', () => {
-                    const location: SourceDescriptionWritingMaterialItemLocation = {
-                        info: '',
+                    const locus: SourceDescriptionWritingMaterialItemLocus = {
+                        preFolioInfo: '',
                         folios: ['1', '2'],
                         position: 'unten links',
                     };
-                    const result = component.getWritingMaterialItemLocation(location);
+                    const result = component.getWritingMaterialItemLocus(locus);
                     expectToBe(result, 'auf Bl. 1 und 2 unten links');
                 });
 
                 it('... for multiple folios (with connector)', () => {
-                    const location: SourceDescriptionWritingMaterialItemLocation = {
-                        info: '',
+                    const locus: SourceDescriptionWritingMaterialItemLocus = {
+                        preFolioInfo: '',
                         folios: ['1', '2', '3'],
                         position: 'unten links',
                     };
-                    const result = component.getWritingMaterialItemLocation(location);
+                    const result = component.getWritingMaterialItemLocus(locus);
                     expectToBe(result, 'auf Bl. 1, 2 und 3 unten links');
                 });
 
                 it('... for all folios', () => {
-                    const location: SourceDescriptionWritingMaterialItemLocation = {
-                        info: '',
+                    const locus: SourceDescriptionWritingMaterialItemLocus = {
+                        preFolioInfo: '',
                         folios: ['all'],
                         position: 'unten links',
                     };
-                    const result = component.getWritingMaterialItemLocation(location);
+                    const result = component.getWritingMaterialItemLocus(locus);
                     expectToBe(result, 'auf allen Blättern unten links');
                 });
 
                 it('... for folios with r or v at the end', () => {
-                    const location: SourceDescriptionWritingMaterialItemLocation = {
-                        info: '',
+                    const locus: SourceDescriptionWritingMaterialItemLocus = {
+                        preFolioInfo: '',
                         folios: ['1r', '2v', '3'],
                         position: 'mittig',
                     };
-                    const result = component.getWritingMaterialItemLocation(location);
+                    const result = component.getWritingMaterialItemLocus(locus);
 
                     expectToBe(result, 'auf Bl. 1<sup>r</sup>, 2<sup>v</sup> und 3 mittig');
                 });
 
-                it('... for folios with additional info', () => {
-                    const location: SourceDescriptionWritingMaterialItemLocation = {
-                        info: 'auf dem Kopf stehend',
+                it('... for folios with preFolioInfo', () => {
+                    const locus: SourceDescriptionWritingMaterialItemLocus = {
+                        preFolioInfo: 'auf dem Kopf stehend',
                         folios: ['1', '2', '3'],
                         position: 'mittig',
                     };
 
-                    const result = component.getWritingMaterialItemLocation(location);
+                    const result = component.getWritingMaterialItemLocus(locus);
 
                     expectToBe(result, 'auf dem Kopf stehend auf Bl. 1, 2 und 3 mittig');
                 });
 
-                it('... for additional info and position without folio', () => {
-                    const location: SourceDescriptionWritingMaterialItemLocation = {
-                        info: 'recto',
+                it('... for preFolioInfo and position without folio', () => {
+                    const locus: SourceDescriptionWritingMaterialItemLocus = {
+                        preFolioInfo: 'recto',
                         folios: [],
                         position: 'oben links',
                     };
 
-                    const result = component.getWritingMaterialItemLocation(location);
+                    const result = component.getWritingMaterialItemLocus(locus);
 
                     expectToBe(result, 'recto oben links');
                 });
@@ -980,53 +980,70 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
         describe('#getWritingMaterialFormat()', () => {
             it('... should have a method `getWritingMaterialFormat`', () => {
-                expect(component.getWritingMaterialFormat).toBeDefined();
+                expect(component.getWritingMaterialDimensions).toBeDefined();
             });
 
             it('... should return format string without uncertainty', () => {
-                const format: SourceDescriptionWritingMaterialFormat = {
+                const format: SourceDescriptionWritingMaterialDimensions = {
                     orientation: 'hoch',
                     height: { value: '170', uncertainty: '' },
                     width: { value: '270', uncertainty: '' },
+                    unit: 'mm',
                 };
 
-                const result = component.getWritingMaterialFormat(format);
+                const result = component.getWritingMaterialDimensions(format);
 
                 expectToBe(result, 'Format: hoch 170 × 270 mm');
             });
 
             it('... should return format string with uncertainty', () => {
-                const format: SourceDescriptionWritingMaterialFormat = {
+                const format: SourceDescriptionWritingMaterialDimensions = {
                     orientation: 'hoch',
                     height: { value: '170', uncertainty: 'ca.' },
                     width: { value: '270–275', uncertainty: 'ca.' },
+                    unit: 'mm',
                 };
 
-                const result = component.getWritingMaterialFormat(format);
+                const result = component.getWritingMaterialDimensions(format);
 
                 expectToBe(result, 'Format: hoch ca. 170 × ca. 270–275 mm');
             });
 
             it('... should return format string with orientation `quer`', () => {
-                const format: SourceDescriptionWritingMaterialFormat = {
+                const format: SourceDescriptionWritingMaterialDimensions = {
                     orientation: 'quer',
                     height: { value: '170', uncertainty: '' },
                     width: { value: '270', uncertainty: '' },
+                    unit: 'mm',
                 };
 
-                const result = component.getWritingMaterialFormat(format);
+                const result = component.getWritingMaterialDimensions(format);
 
                 expectToBe(result, 'Format: quer 170 × 270 mm');
             });
 
+            it('... should return format string with unit `inches`', () => {
+                const format: SourceDescriptionWritingMaterialDimensions = {
+                    orientation: 'quer',
+                    height: { value: '170', uncertainty: '' },
+                    width: { value: '270', uncertainty: '' },
+                    unit: 'inches',
+                };
+
+                const result = component.getWritingMaterialDimensions(format);
+
+                expectToBe(result, 'Format: quer 170 × 270 inches');
+            });
+
             it('... should handle missing values gracefully', () => {
-                const format: SourceDescriptionWritingMaterialFormat = {
+                const format: SourceDescriptionWritingMaterialDimensions = {
                     orientation: 'hoch',
                     height: { value: '170', uncertainty: '' },
                     width: {},
+                    unit: 'mm',
                 };
 
-                const result = component.getWritingMaterialFormat(format);
+                const result = component.getWritingMaterialDimensions(format);
 
                 expectToBe(result, 'Format: hoch 170 ×  mm');
             });
@@ -1037,11 +1054,11 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 expect(component.getWritingMaterialSystems).toBeDefined();
             });
 
-            it('... should return correct systems string when info and addendum are undefined and system number is 1', () => {
+            it('... should return correct systems string when totalSystemsAddendum and additionalInfo are undefined and system number is 1', () => {
                 const systems: SourceDescriptionWritingMaterialSystems = {
-                    number: 1,
-                    info: undefined,
-                    addendum: undefined,
+                    totalSystems: 1,
+                    totalSystemsAddendum: undefined,
+                    additionalInfo: undefined,
                 };
 
                 const result = component.getWritingMaterialSystems(systems);
@@ -1049,11 +1066,11 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 expectToBe(result, '1 System');
             });
 
-            it('... should return correct systems string when info and addendum are undefined and system number is bigger 1', () => {
+            it('... should return correct systems string when totalSystemsAddendum and additionalInfo are undefined and system number is bigger 1', () => {
                 const systems: SourceDescriptionWritingMaterialSystems = {
-                    number: 2,
-                    info: undefined,
-                    addendum: undefined,
+                    totalSystems: 2,
+                    totalSystemsAddendum: undefined,
+                    additionalInfo: undefined,
                 };
 
                 const result = component.getWritingMaterialSystems(systems);
@@ -1061,38 +1078,38 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 expectToBe(result, '2 Systeme');
             });
 
-            it('... should return correct systems string when info is given and addendum is undefined', () => {
+            it('... should return correct systems string when totalSystemsAddendum is given and additionalInfo is undefined', () => {
                 const systems: SourceDescriptionWritingMaterialSystems = {
-                    number: 2,
-                    info: 'info',
-                    addendum: undefined,
+                    totalSystems: 2,
+                    totalSystemsAddendum: 'totalSystemsAddendum',
+                    additionalInfo: undefined,
                 };
 
                 const result = component.getWritingMaterialSystems(systems);
 
-                expectToBe(result, '2 Systeme (info)');
+                expectToBe(result, '2 Systeme (totalSystemsAddendum)');
             });
 
-            it('... should return correct systems string when info is undefined and addendum is given', () => {
+            it('... should return correct systems string when totalSystemsAddendum is undefined and additionalInfo is given', () => {
                 const systems: SourceDescriptionWritingMaterialSystems = {
-                    number: 3,
-                    info: undefined,
-                    addendum: 'addendum',
+                    totalSystems: 3,
+                    totalSystemsAddendum: undefined,
+                    additionalInfo: 'additionalInfo',
                 };
 
                 const result = component.getWritingMaterialSystems(systems);
 
-                expectToBe(result, '3 Systeme, addendum');
+                expectToBe(result, '3 Systeme, additionalInfo');
             });
 
-            it('... should return correct systems string when info and addendum are given', () => {
+            it('... should return correct systems string when totalSystemsAddendum and additionalInfo are given', () => {
                 const systems: SourceDescriptionWritingMaterialSystems = {
-                    number: 4,
-                    info: 'info',
-                    addendum: 'addendum',
+                    totalSystems: 4,
+                    totalSystemsAddendum: 'totalSystemsAddendum',
+                    additionalInfo: 'additionalInfo',
                 };
                 const result = component.getWritingMaterialSystems(systems);
-                expectToBe(result, '4 Systeme (info), addendum');
+                expectToBe(result, '4 Systeme (totalSystemsAddendum), additionalInfo');
             });
         });
 

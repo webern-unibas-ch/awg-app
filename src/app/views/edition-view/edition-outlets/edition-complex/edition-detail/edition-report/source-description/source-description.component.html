@@ -64,9 +64,9 @@
                                         track $index;
                                         let lastWritingMaterial = $last
                                     ) {
-                                        @if (writingMaterial.paperType) {
-                                            <span class="awg-source-description-writing-material-paper-type">{{
-                                                writingMaterial.paperType
+                                        @if (writingMaterial.materialType) {
+                                            <span class="awg-source-description-writing-material-type">{{
+                                                writingMaterial.materialType
                                             }}</span
                                             >,
                                         }
@@ -75,9 +75,9 @@
                                                 {{ getWritingMaterialSystems(writingMaterial.systems) }},
                                             </span>
                                         }
-                                        @if (utils.isNotEmptyObject(writingMaterial.format)) {
-                                            <span class="awg-source-description-writing-material-format">
-                                                {{ getWritingMaterialFormat(writingMaterial.format) }}</span
+                                        @if (utils.isNotEmptyObject(writingMaterial.dimensions)) {
+                                            <span class="awg-source-description-writing-material-dimensions">
+                                                {{ getWritingMaterialDimensions(writingMaterial.dimensions) }}</span
                                             >,
                                         }
                                         @if (
@@ -111,8 +111,8 @@
                                                     >&nbsp;
                                                 }
                                             </span>
-                                            @for (location of writingMaterial.trademark.location; track $index) {
-                                                <span [innerHTML]="getWritingMaterialItemLocation(location)"></span>
+                                            @for (locus of writingMaterial.trademark.locus; track $index) {
+                                                <span [innerHTML]="getWritingMaterialItemLocus(locus)"></span>
                                             }
                                         } @else {
                                             <span>kein Firmenzeichen</span>
@@ -129,8 +129,8 @@
                                                     >&nbsp;
                                                 }
                                             </span>
-                                            @for (location of writingMaterial.watermark.location; track $index) {
-                                                <span [innerHTML]="getWritingMaterialItemLocation(location)"></span>
+                                            @for (locus of writingMaterial.watermark.locus; track $index) {
+                                                <span [innerHTML]="getWritingMaterialItemLocus(locus)"></span>
                                             }
                                             <span>&nbsp;lesbar</span>
                                         }

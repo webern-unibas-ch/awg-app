@@ -6,8 +6,8 @@ import {
     SourceDescriptionList,
     SourceDescriptionWritingInstruments,
     SourceDescriptionWritingMaterialDimension,
-    SourceDescriptionWritingMaterialFormat,
-    SourceDescriptionWritingMaterialItemLocation,
+    SourceDescriptionWritingMaterialDimensions,
+    SourceDescriptionWritingMaterialItemLocus,
     SourceDescriptionWritingMaterialSystems,
 } from '@awg-views/edition-view/models';
 
@@ -121,17 +121,17 @@ export class SourceDescriptionComponent {
     }
 
     /**
-     * Public method: getWritingMaterialItemLocation.
+     * Public method: getWritingMaterialItemLocus.
      *
-     * It retrieves the string representation of the location
+     * It retrieves the string representation of the locus
      * of an item of the writing material (trademark or watermark)
      * provided in the source description.
      *
-     * @param {SourceDescriptionWritingMaterialItemLocation} location The given location data.
-     * @returns {string} The retrieved location string.
+     * @param {SourceDescriptionWritingMaterialItemLocus} locus The given locus data.
+     * @returns {string} The retrieved locus string.
      */
-    getWritingMaterialItemLocation(location: SourceDescriptionWritingMaterialItemLocation): string {
-        if (!this.utils.isNotEmptyObject(location)) {
+    getWritingMaterialItemLocus(locus: SourceDescriptionWritingMaterialItemLocus): string {
+        if (!this.utils.isNotEmptyObject(locus)) {
             return '';
         }
 
@@ -147,27 +147,27 @@ export class SourceDescriptionComponent {
             return '';
         };
 
-        const formattedFolios = location.folios.map(formatFolio);
+        const formattedFolios = locus.folios.map(formatFolio);
         const foliosString = getFoliosString(formattedFolios);
 
-        const info = location.info ? `${location.info} ` : '';
+        const infoString = locus.preFolioInfo ? `${locus.preFolioInfo} ` : '';
         const positionWhiteSpace = foliosString ? ' ' : '';
-        const position = location.position ? `${positionWhiteSpace}${location.position}` : '';
+        const positionString = locus.position ? `${positionWhiteSpace}${locus.position}` : '';
 
-        return `${info}${foliosString}${position}`;
+        return `${infoString}${foliosString}${positionString}`;
     }
 
     /**
-     * Public method: getWritingMaterialFormat.
+     * Public method: getWritingMaterialDimensions.
      *
-     * It retrieves the string representation of the format
+     * It retrieves the string representation of the dimensions
      * of the writing material provided in the source description.
      *
-     * @param {SourceDescriptionWritingMaterialFormat} format The given format data.
-     * @returns {string} The retrieved format string.
+     * @param {SourceDescriptionWritingMaterialDimensions} dimensions The given dimensions data.
+     * @returns {string} The retrieved dimensions string.
      */
-    getWritingMaterialFormat(format: SourceDescriptionWritingMaterialFormat): string {
-        const { orientation, height, width } = format;
+    getWritingMaterialDimensions(dimensions: SourceDescriptionWritingMaterialDimensions): string {
+        const { orientation, height, width, unit } = dimensions;
 
         const getDimension = (dimension: SourceDescriptionWritingMaterialDimension) => {
             if (!this.utils.isNotEmptyObject(dimension)) {
@@ -176,7 +176,7 @@ export class SourceDescriptionComponent {
             return dimension.uncertainty ? `${dimension.uncertainty} ${dimension.value}` : dimension.value;
         };
 
-        return `Format: ${orientation} ${getDimension(height)} × ${getDimension(width)} mm`;
+        return `Format: ${orientation} ${getDimension(height)} × ${getDimension(width)} ${unit}`;
     }
 
     /**
@@ -190,9 +190,9 @@ export class SourceDescriptionComponent {
      */
     getWritingMaterialSystems(systems: SourceDescriptionWritingMaterialSystems): string {
         const systemsOutput = [
-            `${systems.number} ${systems.number === 1 ? 'System' : 'Systeme'}`,
-            systems.info && ` (${systems.info})`,
-            systems.addendum && `, ${systems.addendum}`,
+            `${systems.totalSystems} ${systems.totalSystems === 1 ? 'System' : 'Systeme'}`,
+            systems.totalSystemsAddendum && ` (${systems.totalSystemsAddendum})`,
+            systems.additionalInfo && `, ${systems.additionalInfo}`,
         ];
 
         return systemsOutput.filter(Boolean).join('');

@@ -45,8 +45,8 @@ import {
     SourceDescriptionList,
     SourceDescriptionWritingInstruments,
     SourceDescriptionWritingMaterialDimension,
-    SourceDescriptionWritingMaterialFormat,
-    SourceDescriptionWritingMaterialItemLocation,
+    SourceDescriptionWritingMaterialDimensions,
+    SourceDescriptionWritingMaterialItemLocus,
     SourceDescriptionWritingMaterialSystems,
 } from './source-description.model';
 import { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
@@ -111,8 +111,8 @@ export {
     SourceDescriptionList,
     SourceDescriptionWritingInstruments,
     SourceDescriptionWritingMaterialDimension,
-    SourceDescriptionWritingMaterialFormat,
-    SourceDescriptionWritingMaterialItemLocation,
+    SourceDescriptionWritingMaterialDimensions,
+    SourceDescriptionWritingMaterialItemLocus,
     SourceDescriptionWritingMaterialSystems,
     SourceEvaluation,
     SourceEvaluationList,
