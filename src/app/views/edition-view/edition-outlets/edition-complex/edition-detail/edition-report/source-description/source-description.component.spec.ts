@@ -17,7 +17,7 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 import { UtilityService } from '@awg-core/services';
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EDITION_FIRM_SIGNS_DATA } from '@awg-views/edition-view/data';
+import { EDITION_TRADEMARKS_DATA } from '@awg-views/edition-view/data';
 import {
     SourceDescriptionContent,
     SourceDescriptionList,
@@ -81,7 +81,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
     let selectSvgSheetRequestEmitSpy: Spy;
 
     let expectedSourceDescriptionListData: SourceDescriptionList;
-    let expectedFirmSigns;
+    let expectedTrademarks;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
     let expectedSheetId: string;
@@ -119,7 +119,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
         expectedNextSheetId = 'test_item_id_2';
         expectedReportFragment = 'source_G';
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
-        expectedFirmSigns = EDITION_FIRM_SIGNS_DATA;
+        expectedTrademarks = EDITION_TRADEMARKS_DATA;
 
         // Spies
         navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
@@ -146,8 +146,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
             expectToEqual(component.ref, component);
         });
 
-        it('... should have `FIRM_SIGNS`', () => {
-            expectToEqual(component.FIRM_SIGNS, expectedFirmSigns);
+        it('... should have `TRADEMARKS`', () => {
+            expectToEqual(component.TRADEMARKS, expectedTrademarks);
         });
 
         describe('VIEW', () => {
@@ -827,39 +827,39 @@ describe('SourceDescriptionComponent (DONE)', () => {
             });
         });
 
-        describe('#getWritingMaterialFirmSign()', () => {
-            it('... should have a method `getWritingMaterialFirmSign`', () => {
-                expect(component.getWritingMaterialFirmSign).toBeDefined();
+        describe('#getWritingMaterialTrademark()', () => {
+            it('... should have a method `getWritingMaterialTrademark`', () => {
+                expect(component.getWritingMaterialTrademark).toBeDefined();
             });
 
-            it('... should return the correct firm sign when variant is provided and exists in firm sign data', () => {
-                const variant = 'FIRM_JE_NO_2_LIN_12';
+            it('... should return the correct trademark when variant is provided and exists in trademarks data', () => {
+                const variant = 'JE_NO_2_LIN_12_OP25_B';
 
-                const result = component.getWritingMaterialFirmSign(variant);
+                const result = component.getWritingMaterialTrademark(variant);
 
-                expectToEqual(result, EDITION_FIRM_SIGNS_DATA[variant]);
+                expectToEqual(result, EDITION_TRADEMARKS_DATA[variant]);
             });
 
-            it('... should return unknown firm sign when variant is provided but does not exist in firm sign data', () => {
+            it('... should return unknown trademark when variant is provided but does not exist in trademark data', () => {
                 const variant = 'nonexistent';
 
-                const result = component.getWritingMaterialFirmSign(variant);
+                const result = component.getWritingMaterialTrademark(variant);
 
-                expectToEqual(result, { route: '', full: 'Not a known firm sign.', short: 'unknown' });
+                expectToEqual(result, { route: '', full: 'Not a known trademark.', short: 'unknown' });
             });
 
-            it('... should return unknown firm sign when variant is not provided', () => {
+            it('... should return unknown trademark when variant is not provided', () => {
                 let variant = null;
 
-                const result1 = component.getWritingMaterialFirmSign(variant);
+                const result1 = component.getWritingMaterialTrademark(variant);
 
-                expectToEqual(result1, { route: '', full: 'Not a known firm sign.', short: 'unknown' });
+                expectToEqual(result1, { route: '', full: 'Not a known trademark.', short: 'unknown' });
 
                 variant = undefined;
 
-                const result2 = component.getWritingMaterialFirmSign(variant);
+                const result2 = component.getWritingMaterialTrademark(variant);
 
-                expectToEqual(result2, { route: '', full: 'Not a known firm sign.', short: 'unknown' });
+                expectToEqual(result2, { route: '', full: 'Not a known trademark.', short: 'unknown' });
             });
         });
 
@@ -882,26 +882,6 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     const result = component.getWritingMaterialItemLocation(location);
 
-                    expectToBe(result, '');
-                });
-
-                it('... if folios are undefined', () => {
-                    const location: SourceDescriptionWritingMaterialItemLocation = {
-                        info: '',
-                        folios: undefined,
-                        position: 'unten links',
-                    };
-                    const result = component.getWritingMaterialItemLocation(location);
-                    expectToBe(result, '');
-                });
-
-                it('... if folios array is empty', () => {
-                    const location: SourceDescriptionWritingMaterialItemLocation = {
-                        info: '',
-                        folios: [],
-                        position: 'oben links',
-                    };
-                    const result = component.getWritingMaterialItemLocation(location);
                     expectToBe(result, '');
                 });
             });
@@ -931,7 +911,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     expectToBe(result, 'auf Bl. 1 oben links');
                 });
 
-                it('... for two folios', () => {
+                it('... for two folios (with connector)', () => {
                     const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: '',
                         folios: ['1', '2'],
@@ -941,7 +921,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     expectToBe(result, 'auf Bl. 1 und 2 unten links');
                 });
 
-                it('... for multiple folios', () => {
+                it('... for multiple folios (with connector)', () => {
                     const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: '',
                         folios: ['1', '2', '3'],
@@ -949,6 +929,16 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     };
                     const result = component.getWritingMaterialItemLocation(location);
                     expectToBe(result, 'auf Bl. 1, 2 und 3 unten links');
+                });
+
+                it('... for all folios', () => {
+                    const location: SourceDescriptionWritingMaterialItemLocation = {
+                        info: '',
+                        folios: ['all'],
+                        position: 'unten links',
+                    };
+                    const result = component.getWritingMaterialItemLocation(location);
+                    expectToBe(result, 'auf allen Blättern unten links');
                 });
 
                 it('... for folios with r or v at the end', () => {
@@ -972,6 +962,18 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     const result = component.getWritingMaterialItemLocation(location);
 
                     expectToBe(result, 'auf dem Kopf stehend auf Bl. 1, 2 und 3 mittig');
+                });
+
+                it('... for additional info and position without folio', () => {
+                    const location: SourceDescriptionWritingMaterialItemLocation = {
+                        info: 'recto',
+                        folios: [],
+                        position: 'oben links',
+                    };
+
+                    const result = component.getWritingMaterialItemLocation(location);
+
+                    expectToBe(result, 'recto oben links');
                 });
             });
         });
