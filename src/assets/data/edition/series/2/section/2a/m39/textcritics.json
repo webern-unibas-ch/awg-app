@@ -80,7 +80,7 @@
                                 "measure": "11",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "sic: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Fis<sub>1</sub>/Fis notiert als halbverminderter Septakkord zu 4/16 in Klav. o. (vgl. auch <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M_39_Sk2b'})\" ><strong>Sk2</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm39', fragmentId: 'source_C'})\"><strong>C</strong></a>)."
+                                "comment": "sic: <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu Fis<sub>1</sub>/Fis notiert als halbverminderter Septakkord zu 4/16 in Klav. o. (vgl. auch <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M_39_Sk2b'})\"><strong>Sk2</strong></a> in <a (click)=\"ref.navigateToReportFragment({complexId: 'm39', fragmentId: 'source_C'})\"><strong>C</strong></a>)."
                             },
                             {
                                 "svgGroupId": "g3099",
@@ -119,7 +119,7 @@
             "id": "M_39_Sk1",
             "label": "M 39 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M_39_TF1'})\" >Studienkomposition für Klavier M 39 Textfassung 1</a>, bei der allerdings die T. 15–17 aus der Reprise aufgrund der identischen Übereinstimmung mit T. 1–3 ausgelassen sind."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M_39_TF1'})\">Studienkomposition für Klavier M 39 Textfassung 1</a>, bei der allerdings die T. 15–17 aus der Reprise aufgrund der identischen Übereinstimmung mit T. 1–3 ausgelassen sind."
             ],
             "commentary": {
                 "preamble": "",
@@ -453,7 +453,7 @@
             "id": "M_39_Sk1_1",
             "label": "M 39 Sk1.1",
             "evaluations": [
-                "<strong>Sk1.1</strong> beinhaltet eine überarbeitete Fassung des in <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M_39_Sk1a'})\" ><strong>Sk1</strong></a> gestrichenen T. 2."
+                "<strong>Sk1.1</strong> beinhaltet eine überarbeitete Fassung des in <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M_39_Sk1a'})\"><strong>Sk1</strong></a> gestrichenen T. 2."
             ],
             "commentary": {
                 "preamble": "",
@@ -500,7 +500,7 @@
             "id": "M_39_Sk2",
             "label": "M 39 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> überarbeitet den Mittelteil (T. 9–12) von M 39 im Hinblick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M_39_TF2'})\" >Textfassung 2</a>."
+                "<strong>Sk2</strong> überarbeitet den Mittelteil (T. 9–12) von M 39 im Hinblick auf <a (click)=\"ref.selectSvgSheet({complexId: 'm39', sheetId: 'M_39_TF2'})\">Textfassung 2</a>."
             ],
             "commentary": {
                 "preamble": "",

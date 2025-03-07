@@ -1,0 +1,235 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "A",
+            "convoluteLabel": "A Tintenniederschrift (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 264
+                    },
+                    "content": [
+                        {
+                            "complexId": "m76",
+                            "sheetId": "M_76_TF1",
+                            "sigle": "M 76 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 1–5",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m76",
+                            "sheetId": "M_76_TF1",
+                            "sigle": "M 76 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 6–11",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m76",
+                            "sheetId": "M_76_TF1",
+                            "sigle": "M 76 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 12–16",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m76",
+                            "sheetId": "M_76_TF1",
+                            "sigle": "M 76 Tintenniederschrift TF1",
+                            "sigleAddendum": "T. 17–21",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 264
+                    },
+                    "content": [
+                        {
+                            "complexId": "m75",
+                            "sheetId": "M_75_TF1",
+                            "sigle": "M 75 Tintenniederschrift",
+                            "sigleAddendum": "T. 1–5",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m75",
+                            "sheetId": "M_75_TF1",
+                            "sigle": "M 75 Tintenniederschrift",
+                            "sigleAddendum": "T. 6–9",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m75",
+                            "sheetId": "M_75_TF1",
+                            "sigle": "M 75 Tintenniederschrift",
+                            "sigleAddendum": "T. 10–13",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m75",
+                            "sheetId": "M_75_TF1",
+                            "sigle": "M 75 Tintenniederschrift",
+                            "sigleAddendum": "T. 14",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "convoluteId": "B",
+            "convoluteLabel": "B Tintenniederschrift (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m76",
+                            "sheetId": "M_76_TF2",
+                            "sigle": "M 76 Tintenniederschrift TF2",
+                            "sigleAddendum": "T. 1–7",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 2,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m76",
+                            "sheetId": "M_76_TF2",
+                            "sigle": "M 76 Tintenniederschrift TF2",
+                            "sigleAddendum": "T. 8–14",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m76",
+                            "sheetId": "M_76_TF2",
+                            "sigle": "M 76 Tintenniederschrift TF2",
+                            "sigleAddendum": "T. 15–21",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 12,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m43",
+                            "sheetId": "M_43_Sk1a",
+                            "sigle": "M 43 Sk1",
+                            "sigleAddendum": "T. 1–7",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 16,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m43",
+                            "sheetId": "M_43_Sk1b",
+                            "sigle": "M 43 Sk1",
+                            "sigleAddendum": "T. {8A}–11",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 17,
+                                    "endSystem": 17
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 266
+                    },
+                    "content": []
+                }
+            ]
+        }
+    ]
+}
