@@ -332,9 +332,9 @@ export class SourceDescriptionWritingInstruments {
  */
 export class SourceDescriptionDesc {
     /**
-     * The description of a source (optional).
+     * The conditions of a source (optional).
      */
-    desc?: string[];
+    conditions?: string[];
 
     /**
      * The string representation of writing materials used for a source (optional).

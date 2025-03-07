@@ -443,7 +443,7 @@ export const mockEditionData = {
                 type: '',
                 location: 'Wien, Testcentre.',
                 description: {
-                    desc: [
+                    conditions: [
                         '2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert. Zeichen ergänzt mit Blick auf <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Textfassung 2</strong></a>',
                     ],
                     writingMaterialStrings: [
@@ -771,7 +771,7 @@ export const mockEditionData = {
                 type: 'Handexemplar von <strong>G</strong>.',
                 location: 'US-Wc, Moldenhauer Archives, Box-Folder: 59/10.',
                 description: {
-                    desc: [
+                    conditions: [
                         "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_G'})\"><strong>G</strong></a>.",
                     ],
                 },

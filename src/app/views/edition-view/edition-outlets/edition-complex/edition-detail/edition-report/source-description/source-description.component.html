@@ -4,6 +4,7 @@
             <div class="awg-source-description card mb-2" [id]="sourceDescription.id">
                 <div class="card-body">
                     <div class="awg-source-description-head">
+                        <!-- siglum -->
                         @if (sourceDescription.siglum) {
                             <p class="awg-source-description-siglum-container bold">
                                 @if (sourceDescription.missing) {
@@ -20,29 +21,32 @@
                                 }
                             </p>
                         }
+                        <!-- type -->
                         @if (sourceDescription.type) {
                             <p
                                 class="awg-source-description-type"
                                 [compile-html]="sourceDescription.type"
                                 [compile-html-ref]="ref"></p>
                         }
+                        <!-- location -->
                         @if (sourceDescription.location) {
                             <p class="awg-source-description-location" [awgAbbr]="sourceDescription.location"></p>
                         }
                     </div>
+                    <!-- physDesc -->
                     @if (utils.isNotEmptyObject(sourceDescription.description)) {
-                        <div class="awg-source-description-body">
-                            <!-- description -->
-                            @if (sourceDescription?.description?.desc?.length) {
+                        <div class="awg-source-description-phys-desc">
+                            <!-- conditions -->
+                            @if (sourceDescription?.description?.conditions?.length) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.description.desc"
+                                    [details]="sourceDescription.description.conditions"
                                     detailsLabel=""
-                                    detailsClass="desc"
+                                    detailsClass="conditions"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
-                            <!-- writingMaterial -->
+                            <!-- writingMaterials -->
                             @if (
                                 sourceDescription.description.writingMaterialStrings &&
                                 !sourceDescription.description.writingMaterials

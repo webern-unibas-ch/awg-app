@@ -221,7 +221,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     getAndExpectDebugElementByCss(cardBodyDes[0], 'div.awg-source-description-head', 1, 1);
-                    getAndExpectDebugElementByCss(cardBodyDes[0], 'div.awg-source-description-body', 0, 0);
+                    getAndExpectDebugElementByCss(cardBodyDes[0], 'div.awg-source-description-phys-desc', 0, 0);
                 });
 
                 it('... should contain 3 paragraphs in first description-head div', () => {
@@ -303,7 +303,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     getAndExpectDebugElementByCss(cardBodyDes[1], 'div.awg-source-description-head', 1, 1);
-                    getAndExpectDebugElementByCss(cardBodyDes[1], 'div.awg-source-description-body', 1, 1);
+                    getAndExpectDebugElementByCss(cardBodyDes[1], 'div.awg-source-description-phys-desc', 1, 1);
                 });
 
                 it('... should contain 2 paragraphs in second description-head div', () => {
@@ -366,17 +366,27 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                 it('... should contain 1 paragraph in description-body div', () => {
                     // First description has no content, so only 2 divs
-                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const descBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-phys-desc',
+                        2,
+                        2
+                    );
 
                     // Get first description body div with content
-                    getAndExpectDebugElementByCss(descBodyDes[0], 'div.awg-source-description-body > p', 1, 1);
+                    getAndExpectDebugElementByCss(descBodyDes[0], 'div.awg-source-description-phys-desc > p', 1, 1);
                 });
 
                 it('... the paragraph in description-body div displaying the writingInstruments', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const descBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-phys-desc',
+                        2,
+                        2
+                    );
                     const pDes = getAndExpectDebugElementByCss(
                         descBodyDes[0],
-                        'div.awg-source-description-body > p',
+                        'div.awg-source-description-phys-desc > p',
                         1,
                         1
                     );
@@ -402,13 +412,23 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                 it('... should contain up to 8 source description details components (stubbed) in description-body div', () => {
                     // First description has no content, so only 2 divs
-                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const descBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-phys-desc',
+                        2,
+                        2
+                    );
 
                     getAndExpectDebugElementByDirective(descBodyDes[0], SourceDescriptionDetailsStubComponent, 8, 8);
                 });
 
-                it('... should pass down the description to the first source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                it('... should pass down the conditions to the first source description details component', () => {
+                    const descBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-phys-desc',
+                        2,
+                        2
+                    );
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
@@ -420,13 +440,21 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         SourceDescriptionDetailsStubComponent
                     ) as SourceDescriptionDetailsStubComponent;
 
-                    expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].description.desc);
+                    expectToEqual(
+                        detailCmp.details,
+                        expectedSourceDescriptionListData.sources[1].description.conditions
+                    );
                     expectToBe(detailCmp.detailsLabel, '');
-                    expectToBe(detailCmp.detailsClass, 'desc');
+                    expectToBe(detailCmp.detailsClass, 'conditions');
                 });
 
                 it('... should pass down the writingMaterials to the second source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const descBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-phys-desc',
+                        2,
+                        2
+                    );
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
@@ -447,7 +475,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... should pass down the titles to the third source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const descBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-phys-desc',
+                        2,
+                        2
+                    );
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
@@ -465,7 +498,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... should pass down the dates to the fourth source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const descBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-phys-desc',
+                        2,
+                        2
+                    );
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
@@ -483,7 +521,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... should pass down the paginations to the fifth source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const descBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-phys-desc',
+                        2,
+                        2
+                    );
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
@@ -504,7 +547,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... should pass down the measureNumbers to the sixth source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const descBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-phys-desc',
+                        2,
+                        2
+                    );
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
@@ -525,7 +573,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... should pass down the instrumentations to the seventh source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const descBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-phys-desc',
+                        2,
+                        2
+                    );
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
@@ -546,7 +599,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... should pass down the annotations to the eighth source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const descBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-phys-desc',
+                        2,
+                        2
+                    );
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[0],
@@ -568,14 +626,24 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                 describe('... the contents', () => {
                     it('... should contain SourceDescriptionContentsComponent if contents array is not empty', () => {
-                        const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-source-description-phys-desc',
+                            2,
+                            2
+                        );
 
                         // First body has contents
                         getAndExpectDebugElementByDirective(bodyDes[0], SourceDescriptionContentsStubComponent, 1, 1);
                     });
 
                     it('... should contain no SourceDescriptionContentsComponent if contents array is empty or undefined', () => {
-                        const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-source-description-phys-desc',
+                            2,
+                            2
+                        );
 
                         // Second body has no contents
                         getAndExpectDebugElementByDirective(bodyDes[1], SourceDescriptionContentsStubComponent, 0, 0);
@@ -584,7 +652,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     it('... should pass down contents data to SourceDescriptionContentsComponent', () => {
                         const expectedContents = expectedSourceDescriptionListData.sources[1].description.contents;
 
-                        const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-source-description-phys-desc',
+                            2,
+                            2
+                        );
                         // First body has contents
                         const contentsDes = getAndExpectDebugElementByDirective(
                             bodyDes[0],
@@ -600,7 +673,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                 describe('... the corrections', () => {
                     it('... should contain SourceDescriptionCorrectionsComponent if corrections array is not empty', () => {
-                        const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-source-description-phys-desc',
+                            2,
+                            2
+                        );
 
                         // First body has corrections
                         getAndExpectDebugElementByDirective(
@@ -612,7 +690,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     });
 
                     it('... should contain no SourceDescriptionCorrectionsComponent if corrections array is empty or undefined', () => {
-                        const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-source-description-phys-desc',
+                            2,
+                            2
+                        );
 
                         // Second body has no corrections
                         getAndExpectDebugElementByDirective(
@@ -627,7 +710,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         const expectedCorrections =
                             expectedSourceDescriptionListData.sources[1].description.corrections;
 
-                        const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-source-description-phys-desc',
+                            2,
+                            2
+                        );
                         // First body has corrections
                         const correctionsDes = getAndExpectDebugElementByDirective(
                             bodyDes[0],
@@ -654,7 +742,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     getAndExpectDebugElementByCss(cardBodyDes[2], 'div.awg-source-description-head', 1, 1);
-                    getAndExpectDebugElementByCss(cardBodyDes[2], 'div.awg-source-description-body', 1, 1);
+                    getAndExpectDebugElementByCss(cardBodyDes[2], 'div.awg-source-description-phys-desc', 1, 1);
                 });
 
                 it('... should contain 3 paragraphs in second description-head div', () => {
@@ -739,13 +827,23 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                 it('... should contain up to 8 source description details components (stubbed) in description-body div', () => {
                     // First description has no content, so only 2 divs
-                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const descBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-phys-desc',
+                        2,
+                        2
+                    );
 
                     getAndExpectDebugElementByDirective(descBodyDes[1], SourceDescriptionDetailsStubComponent, 1, 1);
                 });
 
-                it('... should pass down the description to the first source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                it('... should pass down the conditions to the first source description details component', () => {
+                    const descBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-phys-desc',
+                        2,
+                        2
+                    );
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         descBodyDes[1],
@@ -757,9 +855,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         SourceDescriptionDetailsStubComponent
                     ) as SourceDescriptionDetailsStubComponent;
 
-                    expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[2].description.desc);
+                    expectToEqual(
+                        detailCmp.details,
+                        expectedSourceDescriptionListData.sources[2].description.conditions
+                    );
                     expectToBe(detailCmp.detailsLabel, '');
-                    expectToBe(detailCmp.detailsClass, 'desc');
+                    expectToBe(detailCmp.detailsClass, 'conditions');
                 });
             });
         });
