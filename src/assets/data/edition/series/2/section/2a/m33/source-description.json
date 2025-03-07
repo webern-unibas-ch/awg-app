@@ -15,9 +15,7 @@
                 ],
                 "writingInstruments": {
                     "main": "Bleistift",
-                    "secondary": [
-                        "schwarze Tinte"
-                    ]
+                    "secondary": ["schwarze Tinte"]
                 },
                 "titles": [],
                 "dates": [],
@@ -28,10 +26,7 @@
                 "contents": [
                     {
                         "item": "M 68 Sk10",
-                        "itemLinkTo": {
-                            "complexId": "m68",
-                            "sheetId": "M_68_Sk10"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68: Textfassung 2)",
                         "folios": [
                             {
@@ -59,10 +54,7 @@
                     },
                     {
                         "item": "M 68 Sk12",
-                        "itemLinkTo": {
-                            "complexId": "m68",
-                            "sheetId": "M_68_Sk12"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68: Textfassung 2)",
                         "folios": [
                             {
@@ -85,7 +77,7 @@
                         "item": "M 33 Sk1",
                         "itemLinkTo": {
                             "complexId": "m33",
-                            "sheetId": "M_33_Sk1"
+                            "sheetId": "M_33_Sk1a"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 33)",
                         "folios": [
@@ -98,28 +90,28 @@
                                         {
                                             "system": "16c–13",
                                             "measure": "1–9",
-                                            "linkTo": ""
+                                            "linkTo": "M_33_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12–11",
                                             "measure": "10–22",
-                                            "linkTo": ""
+                                            "linkTo": "M_33_Sk1b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10–9",
                                             "measure": "23–31",
-                                            "linkTo": ""
+                                            "linkTo": "M_33_Sk1c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "8a–7a",
                                             "measure": "32–33",
-                                            "linkTo": ""
+                                            "linkTo": "M_33_Sk1d"
                                         }
                                     ]
                                 ]
@@ -128,10 +120,7 @@
                     },
                     {
                         "item": "M 32 Sk2.2",
-                        "itemLinkTo": {
-                            "complexId": "m32",
-                            "sheetId": "M_32_Sk2_2"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32)",
                         "folios": [
                             {
@@ -152,10 +141,7 @@
                     },
                     {
                         "item": "M 68 Sk13",
-                        "itemLinkTo": {
-                            "complexId": "m68",
-                            "sheetId": "M_68_Sk13"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68: Textfassung 3)",
                         "folios": [
                             {
@@ -190,10 +176,7 @@
                     },
                     {
                         "item": "M 32 Sk3",
-                        "itemLinkTo": {
-                            "complexId": "m32",
-                            "sheetId": "M_32_Sk3"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 2)",
                         "folios": [
                             {
@@ -214,10 +197,7 @@
                     },
                     {
                         "item": "M 68 Sk14",
-                        "itemLinkTo": {
-                            "complexId": "m68",
-                            "sheetId": "M_68_Sk14"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68: Textfassung 3)",
                         "folios": [
                             {
@@ -245,10 +225,7 @@
                     },
                     {
                         "item": "M* 454 Sk1",
-                        "itemLinkTo": {
-                            "complexId": "mstar454",
-                            "sheetId": "Mstar_454_Sk1"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition M*454)",
                         "folios": [
                             {
@@ -269,10 +246,7 @@
                     },
                     {
                         "item": "M 68 Sk6",
-                        "itemLinkTo": {
-                            "complexId": "m68",
-                            "sheetId": "M_68_Sk6"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68)",
                         "folios": [
                             {
@@ -307,10 +281,7 @@
                     },
                     {
                         "item": "M 68 Sk7",
-                        "itemLinkTo": {
-                            "complexId": "m68",
-                            "sheetId": "M_68_Sk7"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 68)",
                         "folios": [
                             {
@@ -331,10 +302,7 @@
                     },
                     {
                         "item": "M 32 Sk2",
-                        "itemLinkTo": {
-                            "complexId": "m32",
-                            "sheetId": "M_32_Sk2"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32)",
                         "folios": [
                             {
@@ -369,10 +337,7 @@
                     },
                     {
                         "item": "M 9 Sk1",
-                        "itemLinkTo": {
-                            "complexId": "m9",
-                            "sheetId": "M_9_Sk1"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Du bist mein, ich bin dein“ M 9)",
                         "folios": [
                             {
@@ -423,9 +388,7 @@
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "titles": [],
                 "dates": [],
@@ -436,10 +399,7 @@
                 "contents": [
                     {
                         "item": "M 32",
-                        "itemLinkTo": {
-                            "complexId": "m32",
-                            "sheetId": "M_32"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 1→2→3)",
                         "folios": [
                             {
@@ -530,10 +490,7 @@
                     },
                     {
                         "item": "M 32",
-                        "itemLinkTo": {
-                            "complexId": "m32",
-                            "sheetId": "M_32"
-                        },
+                        "itemLinkTo": {},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 2)",
                         "folios": [
                             {
@@ -556,7 +513,7 @@
                         "item": "M 33",
                         "itemLinkTo": {
                             "complexId": "m33",
-                            "sheetId": "M_33"
+                            "sheetId": "M_33_TF1a"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 33: Textfassung 1→2)",
                         "folios": [
@@ -601,7 +558,7 @@
                         "item": "M 33",
                         "itemLinkTo": {
                             "complexId": "m33",
-                            "sheetId": "M_33"
+                            "sheetId": "M_33_TF2a"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 33: Textfassung 2)",
                         "folios": [
@@ -638,8 +595,8 @@
                 ],
                 "corrections": [
                     {
-                        "id": "Korrekturen 1 in <strong>B<sup>a</sup></strong> (mit Tinte)",
-                        "label": "source_B<sup>a</sup>_corr_1",
+                        "id": "source_B<sup>a</sup>_corr_1",
+                        "label": "Korrekturen 1 in <strong>B<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -713,8 +670,8 @@
                         }
                     },
                     {
-                        "id": "Korrekturen 2 in <strong>B<sup>a</sup></strong> (mit Bleistift und Tinte im Hinblick auf Textfassung 2)",
-                        "label": "source_B<sup>a</sup>_corr_2",
+                        "id": "source_B<sup>a</sup>_corr_2",
+                        "label": "Korrekturen 2 in <strong>B<sup>a</sup></strong> (mit Bleistift und Tinte im Hinblick auf Textfassung 2)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -776,8 +733,8 @@
                         }
                     },
                     {
-                        "id": "Korrekturen 1 in <strong>B<sup>b</sup></strong> (mit Tinte)",
-                        "label": "source_B<sup>b</sup>_corr_1",
+                        "id": "source_B<sup>b</sup>_corr_1",
+                        "label": "Korrekturen 1 in <strong>B<sup>b</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -797,8 +754,8 @@
                         }
                     },
                     {
-                        "id": "Korrekturen 2 in <strong>B<sup>b</sup></strong> (mit Bleistift)",
-                        "label": "source_B<sup>b</sup>_corr_2",
+                        "id": "source_B<sup>b</sup>_corr_2",
+                        "label": "Korrekturen 2 in <strong>B<sup>b</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
@@ -823,7 +780,7 @@
                             ]
                         }
                     }
-                ]    
+                ]
             }
         }
     ]
