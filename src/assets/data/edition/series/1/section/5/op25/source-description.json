@@ -7,7 +7,7 @@
             "type": "Skizzen und Reihentabelle zu „Wie bin ich froh!“ M 317 (in: Skizzenbuch 3).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": ["2 Seiten in <strong>Skizzenbuch 3</strong>: Bl. 38<sup>v</sup>–39<sup>r</sup>."],
+                "conditions": ["2 Seiten in <strong>Skizzenbuch 3</strong>: Bl. 38<sup>v</sup>–39<sup>r</sup>."],
                 "writingMaterialStrings": [
                     "Notenpapier, 16 Systeme, Format: quer 270 × 335 mm, Firmenzeichen: ##JE_15_16## auf Bl. 39<sup>r</sup> unten links (Bl. 38–39)"
                 ],
@@ -554,7 +554,7 @@
             "type": "Autograph von „Wie bin ich froh!“ M 317: <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
+                "conditions": [
                     "4 Blätter (Bl. 1–4): 2 ineinander gelegte Bögen (Bl. 1/4, 2/3), archivalische Paginierung von <em>[1]</em> bis <em>[8]</em> auf Bl. 1<sup>r</sup>–4<sup>v</sup> innere Seitenecken unten mit Bleistift, mit Ausnahme der archivalischen Paginierung unbeschriftet: Bl. 3<sup>v</sup>–4<sup>v</sup>. Archivalischer Eintrag <em>[op. 25 no. 1]</em> auf Bl. 1<sup>r</sup> unten halbrechts mit Bleistift."
                 ],
                 "writingMaterialStrings": [
@@ -705,7 +705,7 @@
             "type": "Reihentabelle.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
+                "conditions": [
                     "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt und beschnitten. Löcher von Reißzwecken oben Mitte und rechts sowie System 7 Mitte. Archivalische Paginierung <em>[1]</em> bis <em>[2]</em> mit Bleistift unten rechts oder links. Verso-Seite bis auf die archivalische Paginierung unbeschriftet."
                 ],
                 "writingMaterialStrings": [
@@ -875,7 +875,7 @@
             "type": "Skizzen zu „Sterne, Ihr silbernen Bienen“ M 321 und „Des Herzens Purpurvogel“ M 322 (in: Skizzenbuch 4).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
+                "conditions": [
                     "12 Seiten in Skizzenbuch 4: Bl. 2<sup>r</sup> (S. 2), Bl. 5<sup>v</sup>–10<sup>r</sup> (S. 9–18) und Bl. 11<sup>r</sup> (S. 20)."
                 ],
                 "writingMaterialStrings": [
@@ -1867,7 +1867,7 @@
             "type": "Autograph von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25.",
             "location": "A-Wue, UEQ 493.",
             "description": {
-                "desc": [
+                "conditions": [
                     "12 Blätter (Bl. 1–12): 1 Bogen (Bl. 1/12) umschließt 2 aufeinander gelegte Bögen (Bl. 2/3, 4/5) und 3 ineinander gelegte Bögen (Bl. 6/11 umschließt Bl. 7/8, 9/10). Bl. 1<sup>v</sup>, 3<sup>v</sup> (mit Ausnahme der Paginierung) und 10<sup>r</sup>–12<sup>v</sup> unbeschriftet."
                 ],
                 "writingMaterialStrings": [

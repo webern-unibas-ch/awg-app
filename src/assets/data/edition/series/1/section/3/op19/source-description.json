@@ -7,7 +7,7 @@
             "type": "Reihentabelle und Skizze.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
+                "conditions": [
                     "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt und beschnitten. Abriss an der oberen rechten Ecke. Zwei Risse am rechten Rand. Archivalische Paginierung <em>[1]</em> bis <em>[2]</em> unten links oder rechts. Verso-Seite bis auf die archivalische Paginierung unbeschriftet."
                 ],
                 "writingMaterialStrings": [
@@ -166,7 +166,7 @@
             "type": "",
             "location": "",
             "description": {
-                "desc": [
+                "conditions": [
                     "<small class=\"text-muted\">[Die Beschreibung der Quellen <strong>A</strong> sowie <strong>C-D</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Zwei Lieder für gemischten Chor und Ensemble</em> op. 19 in AWG I/3.]</small>"
                 ]
             }

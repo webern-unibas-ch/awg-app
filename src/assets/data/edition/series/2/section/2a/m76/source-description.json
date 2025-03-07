@@ -7,7 +7,7 @@
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier/Streichquartett 76: Textfassung 1.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 75.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
+                "conditions": [
                     "1 Blatt (Bl. 1). Kleinere Flecken am rechten Rand Mitte von Bl. 1v. Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
                 "writingMaterialStrings": [
@@ -294,7 +294,7 @@
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier/Streichquartett 76: Textfassung 2.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 43.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
+                "conditions": [
                     "1 Blatt (Bl. 1). Bl. 1<sup>v</sup> unbeschrieben. Kleinere Risse am Rand oben. Ecke oben rechts geknickt. Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
                 "writingMaterialStrings": [

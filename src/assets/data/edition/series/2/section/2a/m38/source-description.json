@@ -7,7 +7,7 @@
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 38.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 34, M 35/42, M 36–37, M 39 und M* 404.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": ["1 Bogen (Bl. 1/2)."],
+                "conditions": ["1 Bogen (Bl. 1/2)."],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 349 × 265 mm, Firmenzeichen: ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>."
                 ],
@@ -656,7 +656,9 @@
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 38.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 34, M 35/42, M 36–37, M 39 Textfassung 1→2 und M 41 sowie Skizzen zu Studienkomposition für Klavier M 35/42 und M 39 Textfassung 2.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": ["1 Bogen (Bl. 1/2). Stockfleck und rötliche Verfärbung mittig am oberen Rand des Bogens."],
+                "conditions": [
+                    "1 Bogen (Bl. 1/2). Stockfleck und rötliche Verfärbung mittig am oberen Rand des Bogens."
+                ],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 349 × 267 mm, Firmenzeichen: ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>."
                 ],

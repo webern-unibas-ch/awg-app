@@ -7,7 +7,7 @@
             "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": [
+                "conditions": [
                     "2 Blätter (Bl. 1–2). Schnittspuren am rechten Rand von Bl. 1: von Bogen abgeschnitten. Riss unten Mitte sowie Ecke oben links abgetrennt auf Bl. 1. Rissspuren am rechten Rand von Bl. 2: von Bogen abgetrennt. Kleiner Risse am linken Rand von Bl. 2."
                 ],
                 "writingMaterialStrings": [
@@ -491,7 +491,7 @@
             "type": "Tintenniederschrift.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": ["1 Blatt (Bl. 1). Schnittspuren am rechten Rand: von Bogen abgeschnitten."],
+                "conditions": ["1 Blatt (Bl. 1). Schnittspuren am rechten Rand: von Bogen abgeschnitten."],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen: ##JE_5_18## unten links auf Bl. 1<sup>v</sup>"
                 ],

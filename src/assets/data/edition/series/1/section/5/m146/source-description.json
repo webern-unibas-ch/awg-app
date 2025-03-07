@@ -7,7 +7,7 @@
             "type": "Autograph von „Das lockere Saatgefilde“ M 146: einzige Textfassung.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": ["1 Bogen (Bl. 1/2)."],
+                "conditions": ["1 Bogen (Bl. 1/2)."],
                 "writingMaterialStrings": [
                     "Notenpapier, 12 Systeme, Format hoch 343 × 265 mm, Firmenzeichen: [JE] | <em>No. 2 | 12 linig.</em> auf Bl. 1<sup>r</sup>, 2<sup>r</sup> unten links"
                 ],
