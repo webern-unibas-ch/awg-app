@@ -2829,7 +2829,7 @@
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["recto"],
+                                    "folios": ["1r", "2r", "3r", "4r"],
                                     "position": "unten links"
                                 }
                             ]
