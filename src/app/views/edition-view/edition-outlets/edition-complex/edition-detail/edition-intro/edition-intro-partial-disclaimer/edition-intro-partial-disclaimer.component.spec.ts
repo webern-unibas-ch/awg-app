@@ -92,13 +92,13 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-partial-disclaimer', 1, 1);
             });
 
-            it('... should contain a text-muted paragraph (no-para) in div', () => {
+            it('... should contain a text-muted paragraph (no-para-margin) in div', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-partial-disclaimer', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expect(pEl).toHaveClass('text-muted');
-                expect(pEl).toHaveClass('no-para');
+                expect(pEl).toHaveClass('no-para-margin');
             });
         });
     });
@@ -148,7 +148,7 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
                 expect(pEl).toHaveClass('text-muted');
-                expect(pEl).toHaveClass('no-para');
+                expect(pEl).toHaveClass('no-para-margin');
 
                 const awg = component.editionLabel;
                 const series = component.editionComplex?.pubStatement?.series?.short;
