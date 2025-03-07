@@ -36,22 +36,12 @@
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["1r, 2r, 3r, 4r"],
+                                    "folios": ["1r", "2r", "3r", "4r"],
                                     "position": "unten links"
                                 }
                             ]
                         },
-                        "watermark": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [""],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "watermark": {},
                         "folioAddendum": "1-4"
                     }
                 ],
