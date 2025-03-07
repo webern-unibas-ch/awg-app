@@ -81,34 +81,37 @@
                                             >,
                                         }
                                         @if (
-                                            utils.isNotEmptyObject(writingMaterial.firmSign) &&
-                                            (writingMaterial.firmSign?.variant || writingMaterial.firmSign?.alt)
+                                            utils.isNotEmptyObject(writingMaterial.trademark) &&
+                                            (writingMaterial.trademark?.variant || writingMaterial.trademark?.alt)
                                         ) {
-                                            <span class="awg-source-description-writing-material-firm-sign"
+                                            <span class="awg-source-description-writing-material-trademark"
                                                 ><span>Firmenzeichen: </span>
-                                                @if (writingMaterial.firmSign.variant) {
+                                                @if (writingMaterial.trademark.variant) {
                                                     <br /><img
                                                         class="img-thumbnail"
                                                         [src]="
-                                                            getWritingMaterialFirmSign(writingMaterial.firmSign.variant)
-                                                                ?.route
+                                                            getWritingMaterialTrademark(
+                                                                writingMaterial.trademark.variant
+                                                            )?.route
                                                         "
                                                         [title]="
-                                                            getWritingMaterialFirmSign(writingMaterial.firmSign.variant)
-                                                                ?.full
+                                                            getWritingMaterialTrademark(
+                                                                writingMaterial.trademark.variant
+                                                            )?.full
                                                         "
                                                         [alt]="
-                                                            getWritingMaterialFirmSign(writingMaterial.firmSign.variant)
-                                                                ?.short
+                                                            getWritingMaterialTrademark(
+                                                                writingMaterial.trademark.variant
+                                                            )?.short
                                                         " /><br />
                                                 } @else {
                                                     <span
-                                                        [compile-html]="writingMaterial.firmSign.alt"
+                                                        [compile-html]="writingMaterial.trademark.alt"
                                                         [compile-html-ref]="ref"></span
                                                     >&nbsp;
                                                 }
                                             </span>
-                                            @for (location of writingMaterial.firmSign.location; track $index) {
+                                            @for (location of writingMaterial.trademark.location; track $index) {
                                                 <span [innerHTML]="getWritingMaterialItemLocation(location)"></span>
                                             }
                                         } @else {
