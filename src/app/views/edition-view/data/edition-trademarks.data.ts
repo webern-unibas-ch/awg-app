@@ -96,7 +96,7 @@ export const EDITION_TRADEMARKS_DATA = {
     },
 
     /**
-     * The path to the assets image of a trademark: JE No. 2, 12 Lines (variant "OP4_B").
+     * The path to the assets image of a trademark: JE No. 2, 12 Lines (variant "OP4_A2").
      */
     JE_NO_2_LIN_12_OP4_A2: {
         route: 'assets/img/edition/trademarks/je/no2_lin12/trademark_je_no2_lin12_op4_A2.png',
