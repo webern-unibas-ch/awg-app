@@ -14,6 +14,52 @@
                     "Notenpapier, 9 Systeme (oben und unten beschnitten), Format (quer): 147–152 (Bl. 1) bzw. 146–147 (Bl. 2) × 266 mm, kein Firmenzeichen (Bl. 1, 2)",
                     "Notenpapier, 11 Systeme (unten beschnitten), Format (quer): 165 × 255 mm, kein Firmenzeichen (Bl. 3)"
                 ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 9,
+                            "info": "oben und unten beschnitten",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "147–152 (Bl. 1) bzw. 146–147 (Bl. 2)"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "266"
+                            }
+                        },
+                        "trademark": {},
+                        "watermark": {},
+                        "folioAddendum": "1, 2"
+                    },
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 11,
+                            "info": "unten beschnitten",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "165"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "255"
+                            }
+                        },
+                        "trademark": {},
+                        "watermark": {},
+                        "folioAddendum": "3"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "Bleistift",
                     "secondary": ["blauer Buntstift", "grüner Buntstift", "roter Buntstift", "Kopierstift"]

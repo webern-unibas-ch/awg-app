@@ -13,6 +13,40 @@
                 "writingMaterialStrings": [
                     "Notenpapier, quer 270 × 335 mm, 16 Systeme, Firmenzeichen <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>No. 15 | 16 linig.</em> recto auf Bl. 26–36 unten links (Bl. 26–36)"
                 ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 16,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "270"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "335"
+                            }
+                        },
+                        "trademark": {
+                            "variant": "JE_NO15_LIN16_OP23_A",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["all"],
+                                    "position": "recto unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "26–36"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "Bleistift",
                     "secondary": ["grüner Buntstift", "roter Buntstift", "blaue Tinte"]
@@ -1421,17 +1455,8 @@
                                 "value": "270"
                             }
                         },
-                        "firmSign": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [""],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
+                        "watermark": {},
                         "folioAddendum": "1/2"
                     }
                 ],
@@ -1568,6 +1593,40 @@
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 12 Systeme, Format: hoch 336 × 267 mm, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke | No. 2 | 12 linig.</em> auf Bl. 2<sup>r</sup>, 4<sup>r</sup>, 6<sup>r</sup>, 8<sup>r</sup>, 10<sup>r</sup> unten links (Bl. 1–10)"
+                ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 12,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "336"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "267"
+                            }
+                        },
+                        "trademark": {
+                            "variant": "JE_NO2_LIN12_OP23_C",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["2r, 4r, 6r, 8r, 10r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "1–10"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",

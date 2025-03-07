@@ -32,7 +32,7 @@
                                 "value": "265"
                             }
                         },
-                        "firmSign": {
+                        "trademark": {
                             "variant": "",
                             "alt": "[J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em>",
                             "location": [
@@ -43,6 +43,7 @@
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1–2"
                     }
                 ],
@@ -491,7 +492,7 @@
             "description": {
                 "desc": ["1 Blatt (Bl. 1). Schnittspuren am rechten Rand: von Bogen abgeschnitten."],
                 "writingMaterialStrings": [
-                    "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.M30.B[0].route\" [title]=\"ref.FIRM_SIGNS.M30.B[0].full\" [alt]=\"ref.FIRM_SIGNS.M30.B[0].short\" /> <br /> unten links auf Bl. 1<sup>v</sup>"
+                    "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen: ##JE_5_18## unten links auf Bl. 1<sup>v</sup>"
                 ],
                 "writingMaterials": [
                     {
@@ -512,8 +513,8 @@
                                 "value": "265"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_5_LIN_18_B",
+                        "trademark": {
+                            "variant": "JE_NO5_LIN18_M30_B",
                             "alt": "",
                             "location": [
                                 {
@@ -523,6 +524,7 @@
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1"
                     }
                 ],

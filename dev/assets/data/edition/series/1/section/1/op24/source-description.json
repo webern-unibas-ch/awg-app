@@ -33,17 +33,8 @@
                                 "value": "267"
                             }
                         },
-                        "firmSign": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
+                        "watermark": {},
                         "folioAddendum": "1"
                     },
                     {
@@ -64,17 +55,8 @@
                                 "value": "267"
                             }
                         },
-                        "firmSign": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
+                        "watermark": {},
                         "folioAddendum": "2"
                     }
                 ],
