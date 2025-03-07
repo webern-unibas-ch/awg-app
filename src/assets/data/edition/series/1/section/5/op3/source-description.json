@@ -527,7 +527,7 @@
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["recto"],
+                                    "folios": ["1r", "2r"],
                                     "position": "unten links"
                                 }
                             ]
@@ -687,7 +687,7 @@
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["recto"],
+                                    "folios": ["1r", "2r"],
                                     "position": "unten links"
                                 }
                             ]
@@ -1203,7 +1203,7 @@
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["recto"],
+                                    "folios": ["1r", "3r", "4r", "11r"],
                                     "position": "unten links"
                                 }
                             ]
@@ -1234,7 +1234,7 @@
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["recto"],
+                                    "folios": ["2r", "7r", "8r"],
                                     "position": "unten links"
                                 }
                             ]
@@ -1265,7 +1265,7 @@
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["recto"],
+                                    "folios": ["5r", "6r"],
                                     "position": "unten links"
                                 }
                             ]
@@ -1296,7 +1296,7 @@
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["recto"],
+                                    "folios": ["9r", "10r"],
                                     "position": "unten links"
                                 }
                             ]
@@ -2829,7 +2829,7 @@
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["recto"],
+                                    "folios": ["1r", "2r", "3r", "4r"],
                                     "position": "unten links"
                                 }
                             ]
@@ -2860,7 +2860,7 @@
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["recto"],
+                                    "folios": ["5r", "6r"],
                                     "position": "unten links"
                                 }
                             ]
