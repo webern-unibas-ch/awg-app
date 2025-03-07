@@ -875,6 +875,40 @@
                 "writingMaterialStrings": [
                     "Notenpapier, quer 270 × 337 mm, 16 Systeme, Firmenzeichen <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] <em>Protokoll. Schutzmarke</em> | <em>No. 15</em> auf auf Bl. 2, 5 und 11 recto unten links"
                 ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 16,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "270"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "337"
+                            }
+                        },
+                        "trademark": {
+                            "variant": "JE_NO_15_LIN_16_OP25_D",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["2r, 5r, 11r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "2, 5–11"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "Bleistift",
                     "secondary": ["blauer Buntstift", "grüner Buntstift", "roter Buntstift", "blaue Tinte"]
