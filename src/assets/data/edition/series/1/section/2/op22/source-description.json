@@ -34,17 +34,8 @@
                                 "value": "270"
                             }
                         },
-                        "firmSign": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
+                        "watermark": {},
                         "folioAddendum": "1"
                     },
                     {
@@ -65,17 +56,8 @@
                                 "value": "255–260"
                             }
                         },
-                        "firmSign": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
+                        "watermark": {},
                         "folioAddendum": "2"
                     },
                     {
@@ -96,17 +78,8 @@
                                 "value": "270"
                             }
                         },
-                        "firmSign": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
+                        "watermark": {},
                         "folioAddendum": "3"
                     }
                 ],

@@ -30,8 +30,8 @@
                                 "value": "266"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_5_LIN_18_C",
+                        "trademark": {
+                            "variant": "JE_NO5_LIN18_M34_A",
                             "alt": "",
                             "location": [
                                 {
@@ -41,6 +41,7 @@
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1/2"
                     }
                 ],
@@ -427,8 +428,8 @@
                                 "value": "265"
                             }
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_5_LIN_18_D",
+                        "trademark": {
+                            "variant": "JE_NO5_LIN18_M34_B",
                             "alt": "",
                             "location": [
                                 {
@@ -438,6 +439,7 @@
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1"
                     }
                 ],

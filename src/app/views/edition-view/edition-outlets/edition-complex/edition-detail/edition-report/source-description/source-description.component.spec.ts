@@ -833,7 +833,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
             });
 
             it('... should return the correct trademark when variant is provided and exists in trademarks data', () => {
-                const variant = 'JE_NO_2_LIN_12_OP25_B';
+                const variant = 'JE_NO2_LIN12_OP25_B';
 
                 const result = component.getWritingMaterialTrademark(variant);
 
