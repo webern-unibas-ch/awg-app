@@ -11,6 +11,40 @@
                 "writingMaterialStrings": [
                     "Notenpapier, 22 Systeme, Format hoch 344 × 265 mm, Firmenzeichen [JE] | <em>No. 7 | 22 linig.</em> auf Bl. 1<sup>v</sup>, 2<sup>v</sup> unten links"
                 ],
+                "writingMaterials": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 22,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "344"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "265"
+                            }
+                        },
+                        "trademark": {
+                            "variant": "JE_NO7_LIN22_M144_A",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1v, 2v"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "1–2"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "Tinte",
                     "secondary": ["Bleistift", "roter Buntstift"]

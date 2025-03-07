@@ -269,6 +269,15 @@ export const EDITION_TRADEMARKS_DATA = {
     },
 
     /**
+     * The path to the assets image of a trademark: JE No. 5, 18 Lines (variant "M143_A").
+     */
+    JE_NO5_LIN18_M143_A: {
+        route: 'assets/img/edition/trademarks/je/no5_lin18/trademark_je_no5_lin18_m143_A.png',
+        short: '[JE] | No. 5 | 18 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 5 | 18 linig.',
+    },
+
+    /**
      * The path to the assets image of a trademark: JE No. 5, 18 Lines (variant "OP3_A1").
      */
     JE_NO5_LIN18_OP3_A1: {
@@ -284,6 +293,15 @@ export const EDITION_TRADEMARKS_DATA = {
         route: 'assets/img/edition/trademarks/je/no6_lin20/trademark_je_no6_lin20_op27_B.png',
         short: '[JE] | No. 6 | 20 linig.',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 6 | 20 linig.',
+    },
+
+    /**
+     * The path to the assets image of a trademark: JE No. 7, 22 Lines (variant "M144_A").
+     */
+    JE_NO7_LIN22_M144_A: {
+        route: 'assets/img/edition/trademarks/je/no7_lin22/trademark_je_no7_lin22_m144_A.png',
+        short: '[JE] | No. 7 | 22 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 7 | 22 linig.',
     },
 
     /**
@@ -410,6 +428,15 @@ export const EDITION_TRADEMARKS_DATA = {
         route: 'assets/img/edition/trademarks/je/no12_lin12/trademark_je_no12_lin12_op12_D.png',
         short: '[JE] | No. 12.',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 12',
+    },
+
+    /**
+     * The path to the assets image of a trademark: JE No. 15, 16 Lines (variant "OP23_A").
+     */
+    JE_NO15_LIN16_OP23_A: {
+        route: 'assets/img/edition/trademarks/je/no15_lin16/trademark_je_no15_lin16_op23_A.png',
+        short: '[JE] | No. 15 | 16 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 15 | 16 linig.',
     },
 
     /**
