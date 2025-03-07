@@ -38,8 +38,8 @@
                             "location": [
                                 {
                                     "info": "",
-                                    "folios": ["recto"],
-                                    "position": "unten links"
+                                    "folios": ["all"],
+                                    "position": "recto unten links"
                                 }
                             ]
                         },
