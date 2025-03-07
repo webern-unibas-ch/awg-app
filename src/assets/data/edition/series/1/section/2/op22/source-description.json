@@ -17,13 +17,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 8,
-                            "info": "oben und unten beschnitten",
-                            "addendum": ""
+                            "totalSystems": 8,
+                            "totalSystemsAddendum": "oben und unten beschnitten",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
@@ -32,20 +32,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "270"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {},
                         "watermark": {},
                         "folioAddendum": "1"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 9,
-                            "info": "oben, unten und rechts beschnitten",
-                            "addendum": ""
+                            "totalSystems": 9,
+                            "totalSystemsAddendum": "oben, unten und rechts beschnitten",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
@@ -54,20 +55,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "255–260"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {},
                         "watermark": {},
                         "folioAddendum": "2"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 7,
-                            "info": "oben beschnitten",
-                            "addendum": "recto System 8 mit Bleistift handgezogen"
+                            "totalSystems": 7,
+                            "totalSystemsAddendum": "oben beschnitten",
+                            "additionalInfo": "recto System 8 mit Bleistift handgezogen"
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
@@ -76,7 +78,8 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "270"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {},
                         "watermark": {},

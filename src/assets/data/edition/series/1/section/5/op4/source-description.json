@@ -16,13 +16,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "mit vier [1 + 2 Systeme] vorgedruckten Akkoladen",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "mit vier [1 + 2 Systeme] vorgedruckten Akkoladen",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -31,14 +31,15 @@
                             "width": {
                                 "uncertainty": "ca.",
                                 "value": "270"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO12_LIN12_OP4_A1",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1r", "2r", "3r"],
                                     "position": "unten links"
                                 }
@@ -48,13 +49,13 @@
                         "folioAddendum": "1–3"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -63,14 +64,15 @@
                             "width": {
                                 "uncertainty": "ca.",
                                 "value": "270"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO2_LIN12_OP4_A2",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["4r", "5r", "6r", "7r"],
                                     "position": "unten links"
                                 }
@@ -618,13 +620,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -633,14 +635,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "264"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO2_LIN12_OP4_B",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["all"],
                                     "position": "recto unten links"
                                 }
@@ -1527,13 +1530,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -1542,14 +1545,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "262"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO2II_LIN12_OP4_D1",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1r", "2r", "3r", "4r"],
                                     "position": "unten links"
                                 }
@@ -1559,13 +1563,13 @@
                         "folioAddendum": "1–4"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -1574,14 +1578,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "264"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO2_LIN12_OP4_D2",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["5r", "6r"],
                                     "position": "unten links"
                                 }
@@ -2907,9 +2912,9 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "unliniertes Papier",
+                        "materialType": "unliniertes Papier",
                         "systems": {},
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -2918,20 +2923,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "270"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {},
                         "watermark": {},
                         "folioAddendum": "[a]/[b]"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 28,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 28,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -2940,14 +2946,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "265"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO9_LIN28_OP4_H1",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1r", "8r"],
                                     "position": "unten links"
                                 }
@@ -2957,13 +2964,13 @@
                         "folioAddendum": "1/8"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "mit vier [1 + 2 Systeme] vorgedruckten Akkoladen",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "mit vier [1 + 2 Systeme] vorgedruckten Akkoladen",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -2972,14 +2979,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "265"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO12_LIN12_OP4_H2",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["all"],
                                     "position": "recto unten links"
                                 }
@@ -2989,13 +2997,13 @@
                         "folioAddendum": "2/3, 4, 7"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 26,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 26,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -3004,14 +3012,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "263"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO8A_LIN26_OP4_H3",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "auf dem Kopf stehend",
+                                    "preFolioInfo": "auf dem Kopf stehend",
                                     "folios": ["5v"],
                                     "position": "oben rechts"
                                 }
@@ -3021,13 +3030,13 @@
                         "folioAddendum": "5"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 26,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 26,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -3036,14 +3045,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "267"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO4_LIN16_OP4_H4",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["6r"],
                                     "position": "unten links"
                                 }
@@ -4194,13 +4204,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 24,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 24,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -4209,20 +4219,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "253"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {},
                         "watermark": {},
                         "folioAddendum": "1"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "mit vier [1 + 2 Systeme] vorgedruckten Akkoladen",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "mit vier [1 + 2 Systeme] vorgedruckten Akkoladen",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -4231,14 +4242,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "270"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO12_LIN12_OP4_I",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["2r", "3r", "4r"],
                                     "position": "unten links"
                                 }

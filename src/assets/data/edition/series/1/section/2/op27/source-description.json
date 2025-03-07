@@ -16,13 +16,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 8,
-                            "info": "unten beschnitten",
-                            "addendum": ""
+                            "totalSystems": 8,
+                            "totalSystemsAddendum": "unten beschnitten",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
@@ -31,20 +31,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "268"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {},
                         "watermark": {},
                         "folioAddendum": "1"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 8,
-                            "info": "unten beschnitten",
-                            "addendum": ""
+                            "totalSystems": 8,
+                            "totalSystemsAddendum": "unten beschnitten",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
@@ -53,20 +54,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "268"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {},
                         "watermark": {},
                         "folioAddendum": "2"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 8,
-                            "info": "unten beschnitten",
-                            "addendum": ""
+                            "totalSystems": 8,
+                            "totalSystemsAddendum": "unten beschnitten",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
@@ -75,14 +77,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "270"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO6_LIN20_OP27_B",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "auf dem Kopf stehend",
+                                    "preFolioInfo": "auf dem Kopf stehend",
                                     "folios": ["3v"],
                                     "position": "oben rechts"
                                 }

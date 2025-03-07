@@ -15,13 +15,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 16,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 16,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -30,14 +30,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "335"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO15_LIN16_OP23_A",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["all"],
                                     "position": "recto unten links"
                                 }
@@ -1438,13 +1439,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 4,
-                            "info": "unten beschnitten",
-                            "addendum": ""
+                            "totalSystems": 4,
+                            "totalSystemsAddendum": "unten beschnitten",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
@@ -1453,7 +1454,8 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "270"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {},
                         "watermark": {},
@@ -1596,13 +1598,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -1611,15 +1613,16 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "267"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO2_LIN12_OP23_C",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
-                                    "folios": ["2r, 4r, 6r, 8r, 10r"],
+                                    "preFolioInfo": "",
+                                    "folios": ["2r", "4r", "6r", "8r", "10r"],
                                     "position": "unten links"
                                 }
                             ]

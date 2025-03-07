@@ -24,13 +24,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 14,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 14,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "ca.",
@@ -39,14 +39,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "267"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO9_LIN28_OP12_AA1",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1r"],
                                     "position": "unten links"
                                 }
@@ -56,13 +57,13 @@
                         "folioAddendum": "1"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 16,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 16,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
@@ -71,7 +72,8 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "270"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {},
                         "watermark": {},
@@ -264,13 +266,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 11,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 11,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "ca.",
@@ -279,14 +281,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "264"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO7_LIN22_OP12_AB",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1r"],
                                     "position": "unten links"
                                 }
@@ -295,9 +298,9 @@
                         "watermark": {
                             "variant": "T",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "auf dem Kopf stehend",
+                                    "preFolioInfo": "auf dem Kopf stehend",
                                     "folios": ["2"],
                                     "position": "unten"
                                 }
@@ -466,13 +469,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 16,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 16,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "ca.",
@@ -481,20 +484,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "270"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {},
                         "watermark": {},
                         "folioAddendum": "1–2"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 22,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 22,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -503,14 +507,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "264"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO7_LIN22_OP12_AC",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["3r"],
                                     "position": "unten links"
                                 }
@@ -519,9 +524,9 @@
                         "watermark": {
                             "variant": "J. E. & Co. | W I E N",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "vertikal absteigend",
+                                    "preFolioInfo": "vertikal absteigend",
                                     "folios": ["3v"],
                                     "position": ""
                                 }
@@ -876,13 +881,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 9,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 9,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "ca.",
@@ -891,20 +896,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "264"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {},
                         "watermark": {},
                         "folioAddendum": "1"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 6,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 6,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "ca.",
@@ -913,14 +919,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "264"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO2_LIN12_OP12_AD2",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["2v"],
                                     "position": "unten links"
                                 }
@@ -929,9 +936,9 @@
                         "watermark": {
                             "variant": "J. E. & Co. | W I E N",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "vertikal absteigend",
+                                    "preFolioInfo": "vertikal absteigend",
                                     "folios": ["3v"],
                                     "position": ""
                                 }
@@ -1044,13 +1051,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -1059,14 +1066,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "266"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO2_LIN12_OP12_B",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1r"],
                                     "position": "unten links"
                                 }
@@ -1283,13 +1291,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 11,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 11,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -1298,14 +1306,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "263"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO7_LIN22_OP12_C1",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1r"],
                                     "position": "unten links"
                                 }
@@ -1314,9 +1323,9 @@
                         "watermark": {
                             "variant": "T",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1"],
                                     "position": "oben recto"
                                 }
@@ -1325,13 +1334,13 @@
                         "folioAddendum": "1"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -1340,14 +1349,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "265"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO2_LIN12_OP12_C2",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["2r", "3r", "4r", "5r", "6r", "8r", "9r", "10r"],
                                     "position": "unten links"
                                 }
@@ -1357,13 +1367,13 @@
                         "folioAddendum": "2–6, 8–10"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 7,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 7,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
@@ -1372,7 +1382,8 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "270"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {},
                         "watermark": {},
@@ -2069,13 +2080,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "mit vier [1 + 2 Systeme] vorgedruckten Akkoladen",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "mit vier [1 + 2 Systeme] vorgedruckten Akkoladen",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -2084,14 +2095,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "##"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO12_LIN12_OP12_D",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1r"],
                                     "position": "unten links"
                                 }
@@ -2723,13 +2735,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -2738,14 +2750,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "268"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO2_LIN12_OP12_F",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["2r", "4r", "6r", "8r", "10r"],
                                     "position": "unten links"
                                 }
