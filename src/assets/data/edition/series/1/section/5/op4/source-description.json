@@ -6,7 +6,7 @@
             "siglumAddendum": "",
             "type": "Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF2'})\">2</a>. Enthält auch Autographe von „Im Windesweben“ M 134, „Im Morgentaun“ M 136 und „Kahl reckt der Baum“ M 137 aus <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
-            "description": {
+            "physDesc": {
                 "conditions": [
                     "7 Blätter (Bl. 1–7) in festem rotem Ledereinband mit einem roten Schmutzblatt (Bl. [a]) und drei weißen Schmutzblättern (Bl. [b–d]) vorne sowie drei weißen Schmutzblättern (Bl. [e–g]) und einem roten Schmutzblatt (Bl. [h]) hinten. Alle Blätter sind mit Papierklebestreifen am Falz in die Bindung eingeheftet. Bl. 2/3, 4/5 und 6/7 bildeten vermutlich vor der Bindung gemeinsame Bögen. Schmutzblätter bis auf die Paraphe <em>RoLehman</em> auf Bl. [c] oben mit blauer Tinte (Hs. Lehman) und die archivalische Eintragung <em>II = OP. 3 # II | III = OP. 3 # V | VI = OP. 3 # IV | VII = OP. IV # 1</em> auf Bl. [c] Mitte bis unten mit schwarzer Tinte (archivalische Hs.) unbeschriftet, Bl. 3<sup>r</sup>–3<sup>v</sup> unbeschriftet. Papierklebestreifen am linken Rand von Bl. 4<sup>v</sup>. Einband: 345 × 292 mm, Bunddicke ca. 8 mm."
                 ],
@@ -611,7 +611,7 @@
             "siglumAddendum": "",
             "type": "Autographe von „Noch zwingt mich Treue“ M 139: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF2'})\">2</a> (<strong>B<sup>a</sup></strong>) / „Ja Heil und Dank dir“ M 140: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_140_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_140_TF2'})\">2</a> (<strong>B<sup>b</sup></strong>) / „So ich traurig bin“ M 141: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_141_TF1'})\">Textfassung 1</a> (<strong>B<sup>c</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
+            "physDesc": {
                 "conditions": [
                     "10 Blätter (Bl. 1–10): 2 ineinander gelegte Bögen (Bl. 1/4, 2/3), 3 Bögen (Bl. 5/6, 7/8, 9/10). Archivalisch mit Bleistift paginiert von <em>[1]</em> bis <em>[20]</em> unten rechts (recto) oder links (verso). Bl. 1<sup>v</sup>, 8<sup>r</sup>, 8<sup>v</sup>, 10<sup>v</sup> (bis auf die archivalische Paginierung) unbeschriftet. Knickfalten und kleinere Risse. Einstichlöcher am Falz oben und unten bei Bl. 1–8. Untere rechte Ecke von Bl. 8 (System 12) ausgeschnitten. Rechteckige Ausschneidungen am linken Rand von Bl. 10 (System 5–6, 8, 10, 12)."
                 ],
@@ -1520,7 +1520,7 @@
             "siglumAddendum": "",
             "type": "Abschriften fremder Hand von <em>Eingang</em> („Welt der Gestalten“) M 138: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_138_TF1'})\">Textfassung 1</a> (<strong>D<sup>a</sup></strong>) / „Noch zwingt mich Treue“ M 139: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_139_TF1'})\">Textfassung 1</a> (<strong>D<sup>b</sup></strong>).",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
+            "physDesc": {
                 "conditions": [
                     "6 Blätter (Bl. 1–6): 2 ineinander gelegte Bögen (Bl. 1/4, 2/3) und 1 Bogen (5/6). Archivalisch mit Bleistift paginiert von <em>[1]</em> bis <em>[12]</em> unten rechts (recto) oder links (verso). Bl. 4<sup>r</sup>, 4<sup>v</sup> (bis auf die archivalische Paginierung) unbeschriftet. Knickecken und kleinere Risse; Löcher (durch vormalige Fadenheftung?) am Falz; Stockflecken am oberen Rand von Bl. 2/3."
                 ],
@@ -2451,7 +2451,7 @@
             "siglumAddendum": "",
             "type": "Druck von „Ihr tratet zu dem Herde“ M 142: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF1'})\">Textfassung 1</a>.",
             "location": "Beilage in: <em>Der blaue Reiter</em>, München: Piper, 1912.",
-            "description": {
+            "physDesc": {
                 "conditions": [
                     "Buch, 150 Seiten, Format (hoch) 296 × 215 mm, Einband: 305 × 320 mm. Beilagen mit Kompositionen von Arnold Schönberg, Alban Berg und Anton Webern zwischen S. [132] (vacat) und S. [133] (Inhaltsverzeichnis). (Es folgen: S. [134] vacat, S. [135]–140 Register der Reproduktionen, S. [141] vacat, S. [142–150] Werbeanzeigen.) Im konsultierten Exemplar (Berlin, Staatsbibliothek Preußischer Kulturbesitz, 1 B 20301) sind die Notenbeilagen (zusammen mit einer Anzeige „Moderne Galerie | Heinrich Tannhauser | MÜNCHEN THEATINERSTR. 7“) vermutlich nachträglich eingeheftet. Beilage Anton Webern: 1 Blatt, Format (hoch) 296 × ca. 222 mm, paginiert von <em>1</em> bis <em>2</em> recto oben rechts und verso oben links. Eine zweite Auflage des Buches von 1914 unterscheidet sich im Umfang (140 Seiten; die Werbeanzeigen fehlen) und Format ([hoch] 288 × 217 mm; Einband: 295 × 220 mm). Die Beilage mit der Komposition Anton Weberns unterscheidet sich in dieser Auflage ebenfalls im Format: (hoch) 280 × ca. 205 mm."
                 ],
@@ -2543,7 +2543,7 @@
             "siglumAddendum": "H",
             "type": "Handexemplar von <strong>G</strong> mit Korrekturen Weberns: „Ihr tratet zu dem Herde“ M 142: <a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF1'})\">Textfassung 1</a>→<a (click)=\"ref.selectSvgSheet({complexId: 'op4', sheetId: 'M_142_TF2'})\">2</a>.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, PMM 21.",
-            "description": {
+            "physDesc": {
                 "conditions": [
                     "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_G'})\"><strong>G</strong></a>. Format: hoch 296 × 219 mm. Rissspuren am linken Rand: von Bogen abgetrennt. Papierklebestreifen am rechten Rand von S. 2. Archivalische Eintragung <em>PMM 21</em> auf S. 2 unten Mitte mit Bleistift."
                 ],
@@ -2899,7 +2899,7 @@
             "siglumAddendum": "",
             "type": "Autograph von <em>Fünf Lieder nach Gedichten von Stefan George </em>op. 4",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
+            "physDesc": {
                 "conditions": [
                     "8 Blätter (Bl. 1–8) in Umschlagbogen (Bl. [a]/[b]): 1 Bogen (Bl. 1/8) umschließt 1 Bogen (Bl. 2/3) und 4 Blätter (Bl. 4–7). Fadenheftung, teilweise aufgelöst. Bl. 1–8 archivalisch mit Bleistift paginiert von <em>[1]</em> bis <em>[16]</em> unten links (recto) oder rechts (verso). Bl. 1<sup>v</sup>, 3<sup>v</sup>, 8<sup>v</sup> (bis auf die archivalische Paginierung) sowie Innenseite des vorderen Umschlagblattes und hinteres Umschlagblatt unbeschriftet. Knickfalten und kleinere Risse. Risse am Falz oben und unten bei Bl. 1/8. Riss an der Mitte des Falzes, mehrere Löcher (durch Rasuren?) bei Bl. 2/3, 6 und 7. Rissspuren am linken Rand von Bl. 4–7: von Bögen abgetrennt."
                 ],
@@ -4194,7 +4194,7 @@
             "siglumAddendum": "",
             "type": "Abschrift fremder Hand von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
-            "description": {
+            "physDesc": {
                 "conditions": [
                     "7 Blätter (Bl. 1–7): 1 Blatt (Bl. 1) und 3 ineinander gelegte, fadenheftete Bögen (Bl. 2/7, 3/6, 4/5). Auf Bl. 1<sup>r</sup> ist oben links ein Zettel (hoch 140 × 125 mm) mit Klebstoff aufgeklebt. Foliierung unten links mit <em>1</em> (aufgeklebter Zettel auf Bl. 1<sup>r</sup>) und von <em>2</em> bis <em>8</em> (Bl. 1–7) recto unten links mit Bleistift. Bl. 7<sup>r</sup> bis auf die Foliierung unbeschriftet, Verso Seite des auf Bl. 1<sup>r</sup> aufgeklebten Zettels, Bl. 1<sup>v</sup>, 8<sup>v</sup> unbeschriftet. Spuren von Klebstoff am rechten Rand von Bl. 8<sup>v</sup>."
                 ],
@@ -5026,7 +5026,7 @@
             "siglumAddendum": "",
             "type": "Druck von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4.",
             "location": "Wien: Universal Edition, 1923.",
-            "description": {
+            "physDesc": {
                 "conditions": [
                     "12 Seiten (S. [1]–[12]): 3 fadengeheftete Bögen (S. [1]|2/11|[12], 3|4/9|10 und 5|6/7|8) in Umschlag (S. [a]–[d]), Format: hoch ### × ### mm. S. [2] und [12] sowie innere Seiten des Umschlags (S. [b] und [c]) nicht bedruckt. [Die konsultierten Exemplare lassen wegen Einbindung in Sammelbände keine Aussagen über das Originalformat und den Inhalt von S. [d] (Verlagsanzeige?) zu.]"
                 ],
@@ -5404,7 +5404,7 @@
             "siglumAddendum": "H",
             "type": "Handexemplar von <a (click)=\"ref.navigateToReportFragment({complexId: 'op4', fragmentId: 'source_J'})\"><strong>J</strong></a> mit Eintragungen Weberns.",
             "location": "A-Wst, Musikhandschriften, MHc-14926.",
-            "description": {}
+            "physDesc": {}
         }
     ]
 }

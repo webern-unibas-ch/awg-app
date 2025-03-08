@@ -6,7 +6,7 @@
             "siglumAddendum": "",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier/Streichquartett M 22.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M* 411–412 sowie Tintenniederschrift von Studienkomposition für Streichquartett M* 408.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
+            "physDesc": {
                 "conditions": [
                     "1 Blatt (Bl. 1). Horizontale Knickfalte. Stockflecken unten mittig-rechts. Ecke unten links abgerissen (vermutlich inkl. Firmenzeichen auf 1<sup>r</sup>). Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
@@ -499,7 +499,7 @@
             "siglumAddendum": "",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier/Streichquartett M 22.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 32 Textfassung 3 und M* 413–414 sowie Tintenniederschrift von Studienkomposition für Klavier M 32 Textfassung 2.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
+            "physDesc": {
                 "conditions": [
                     "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte, diagonale Knickfalte unten rechts."
                 ],
@@ -1025,7 +1025,7 @@
             "siglumAddendum": "",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier/Streichquartett M 22.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M* 408.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
+            "physDesc": {
                 "conditions": [
                     "1 Blatt (Bl. 1). Horizontale Knickfalte. Zahlreiche Risse und Knicke am rechten, oberen und unteren Rand. Rötliche Verfärbung oben links und rechts. Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
@@ -1343,7 +1343,7 @@
             "siglumAddendum": "",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier/Streichquartett M 22.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 29 und M* 400–401, M* 415–416.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
+            "physDesc": {
                 "conditions": [
                     "1 Blatt (Bl. 1). Linke obere Ecke mit Bleistift eingefärbt. Rissspuren am rechten Rand: von Bogen abgetrennt. Horizontale und vertikale Knickfalte."
                 ],
@@ -1696,7 +1696,7 @@
             "siglumAddendum": "",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier/Streichquartett M 22.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 23 Textfassung 1 und 2, Studienkomposition für Streichquartett M 24, Studienkompositionen M* 417–422, M* 433–451 und zu <em>Hochsommernacht</em> M 65.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
+            "physDesc": {
                 "conditions": ["1 Bogen (Bl. 1/2). Horizontale und vertikale Knickfalte, seitlich leicht eingerissen."],
                 "writingMaterialStrings": [
                     "Notenpapier, 28 Systeme, Format: hoch 342 × 264 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 9</em> | <em>28 linig.</em> unten links auf Bl. 1<sup>1</sup>–2<sup>r</sup>"
@@ -3348,7 +3348,7 @@
             "siglumAddendum": "",
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier/Streichquartett M 22.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 23 Textfassung 1, M* 409 Textfassung 1→2 und 2, M* 410, M* 412–416 und Studienkompositionen M* 420–422 sowie Skizzen zu Studienkomposition für Klavier M 23 Textfassung 2 und Studienkompositionen M* 423–432.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
+            "physDesc": {
                 "conditions": [
                     "1 Blatt (Bl. 1), 1 Bogen (Bl. 2/3). Horizontale Knickfalte auf Blatt und Bogen. Kleiner Stockfleck oben rechts auf Blatt und Bogen. Ecke unten rechts von Bl. 1 abgerissen. Bogen unten in der Falte eingerissen."
                 ],
