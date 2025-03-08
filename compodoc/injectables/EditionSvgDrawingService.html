@@ -281,8 +281,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="377"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:377</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="380"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:380</a></div>
                         </td>
                     </tr>
 
@@ -359,8 +359,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="391"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:391</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="394"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:394</a></div>
                         </td>
                     </tr>
 
@@ -453,8 +453,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="418"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:418</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="421"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:421</a></div>
                         </td>
                     </tr>
 
@@ -1410,8 +1410,8 @@ and returns a promise of the selection.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="359"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:359</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="362"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:362</a></div>
                         </td>
                     </tr>
 
@@ -1525,7 +1525,7 @@ and returns a promise of the selection.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>5.5</code>
+                        <i>Default value : </i><code>1.5</code>
                     </td>
                 </tr>
                     <tr>
@@ -1536,7 +1536,7 @@ and returns a promise of the selection.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly variable: _overlayBoxesOpacity.</p>
+                    <div class="io-description"><p>Private readonly variable: _overlayBoxAdditionalSpace.</p>
 <p>It keeps a magic number for (optional) additional space of an overlay box.</p>
 </div>
                 </td>
@@ -1565,7 +1565,7 @@ and returns a promise of the selection.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>2</code>
+                        <i>Default value : </i><code>1</code>
                     </td>
                 </tr>
                     <tr>
@@ -1576,7 +1576,7 @@ and returns a promise of the selection.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly variable: _overlayBoxesOpacity.</p>
+                    <div class="io-description"><p>Private readonly variable: _overlayBoxCornerRadius.</p>
 <p>It keeps a magic number for (optional) corner radius of an overlay box.</p>
 </div>
                 </td>
@@ -1807,7 +1807,7 @@ and returns a promise of the selection.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;orange&#x27;</code>
+                        <i>Default value : </i><code>&#x27;tomato&#x27;</code>
                     </td>
                 </tr>
                     <tr>
@@ -1845,7 +1845,7 @@ and returns a promise of the selection.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;tomato&#x27;</code>
+                        <i>Default value : </i><code>&#x27;orange&#x27;</code>
                     </td>
                 </tr>
                     <tr>
@@ -1967,14 +1967,14 @@ export class EditionSvgDrawingService {
      *
      * It keeps the fill color for overlays.
      */
-    overlayFillColor &#x3D; &#x27;orange&#x27;;
+    overlayFillColor &#x3D; &#x27;tomato&#x27;;
 
     /**
      * Public variable: overlayHoverFillColor.
      *
      * It keeps the fill color for hovered overlays.
      */
-    overlayHoverFillColor &#x3D; &#x27;tomato&#x27;;
+    overlayHoverFillColor &#x3D; &#x27;orange&#x27;;
 
     /**
      * Public variable: overlayTransparentFillColor.
@@ -2019,18 +2019,18 @@ export class EditionSvgDrawingService {
     private readonly _overlayBoxesOpacity &#x3D; 0.3;
 
     /**
-     * Private readonly variable: _overlayBoxesOpacity.
+     * Private readonly variable: _overlayBoxAdditionalSpace.
      *
      * It keeps a magic number for (optional) additional space of an overlay box.
      */
-    private readonly _overlayBoxAdditionalSpace &#x3D; 5.5;
+    private readonly _overlayBoxAdditionalSpace &#x3D; 1.5;
 
     /**
-     * Private readonly variable: _overlayBoxesOpacity.
+     * Private readonly variable: _overlayBoxCornerRadius.
      *
      * It keeps a magic number for (optional) corner radius of an overlay box.
      */
-    private readonly _overlayBoxCornerRadius &#x3D; 2;
+    private readonly _overlayBoxCornerRadius &#x3D; 1;
 
     /**
      * Private readonly variable: _suppliedClassesLabelLookup
@@ -2282,8 +2282,11 @@ export class EditionSvgDrawingService {
             return;
         }
 
-        // Get the class name from the label lookup table
-        const className &#x3D; this._suppliedClassesLabelLookup.get(labelOrClassName) || labelOrClassName;
+        // Reverse lookup to get the class name from the lookup table
+        const className &#x3D;
+            Array.from(this._suppliedClassesLabelLookup.entries()).find(
+                ([, value]) &#x3D;&gt; value &#x3D;&#x3D;&#x3D; labelOrClassName
+            )?.[0] || labelOrClassName;
 
         // Get D3 selection of supplied elements
         const selector &#x3D; className ? &#x60;supplied.${className}&#x60; : &#x27;supplied&#x27;;

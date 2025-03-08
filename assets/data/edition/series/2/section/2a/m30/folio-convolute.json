@@ -107,8 +107,8 @@
                             ]
                         },
                         {
-                            "complexId": "m_plus403",
-                            "sheetId": "M*_403_Sk1a",
+                            "complexId": "mstar403",
+                            "sheetId": "Mstar_403_Sk1a",
                             "sigle": "M* 403 Sk1",
                             "sigleAddendum": "T. 1–10",
                             "selectable": false,
@@ -122,8 +122,8 @@
                             ]
                         },
                         {
-                            "complexId": "m_plus403",
-                            "sheetId": "M*_403_Sk1b",
+                            "complexId": "mstar403",
+                            "sheetId": "Mstar_403_Sk1b",
                             "sigle": "M* 403 Sk1",
                             "sigleAddendum": "T. 11–15",
                             "selectable": false,
@@ -288,8 +288,8 @@
                             ]
                         },
                         {
-                            "complexId": "m_plus403",
-                            "sheetId": "M*_403_Sk2a",
+                            "complexId": "mstar403",
+                            "sheetId": "Mstar_403_Sk2a",
                             "sigle": "M* 403 Sk2",
                             "sigleAddendum": "T. 1–8",
                             "selectable": false,
@@ -303,8 +303,8 @@
                             ]
                         },
                         {
-                            "complexId": "m_plus403",
-                            "sheetId": "M*_403_Sk2b",
+                            "complexId": "mstar403",
+                            "sheetId": "Mstar_403_Sk2b",
                             "sigle": "M* 403 Sk2",
                             "sigleAddendum": "T. 9–12",
                             "selectable": false,
@@ -318,8 +318,8 @@
                             ]
                         },
                         {
-                            "complexId": "m_plus403",
-                            "sheetId": "M*_403_Sk2c",
+                            "complexId": "mstar403",
+                            "sheetId": "Mstar_403_Sk2c",
                             "sigle": "M* 403 Sk2",
                             "sigleAddendum": "T. 13–15",
                             "selectable": false,
@@ -334,8 +334,8 @@
                             ]
                         },
                         {
-                            "complexId": "m_plus403",
-                            "sheetId": "M*_403_Sk2d",
+                            "complexId": "mstar403",
+                            "sheetId": "Mstar_403_Sk2d",
                             "sigle": "M* 403 Sk2",
                             "sigleAddendum": "T. x+16 bis x+23",
                             "selectable": false,
@@ -444,10 +444,9 @@
                             "sheetId": "M_31_Sk2",
                             "sigle": "M 31 Sk2",
                             "sigleAddendum": "T. x+1 bis x+4",
-                            "sectionPartition": 2,
+                            "sectionPartition": 1,
                             "sections": [
                                 {
-                                    "position": 2,
                                     "startSystem": 13,
                                     "endSystem": 13
                                 }
@@ -486,7 +485,223 @@
         {
             "convoluteId": "B",
             "convoluteLabel": "B Tintenniederschrift (CH-Bps)",
-            "folios": []
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "18",
+                    "format": {
+                        "height": 347,
+                        "width": 265
+                    },
+                    "content": [
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_TF1",
+                            "sigle": "M 31 Tintenniederschrift",
+                            "sigleAddendum": "T. 1–5",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_TF1",
+                            "sigle": "M 31 Tintenniederschrift",
+                            "sigleAddendum": "T. 6–10",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_TF1",
+                            "sigle": "M 31 Tintenniederschrift",
+                            "sigleAddendum": "T. 11–17",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_TF1",
+                            "sigle": "M 31 Tintenniederschrift",
+                            "sigleAddendum": "T. 18–22",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 9,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_TF1",
+                            "sigle": "M 31 Tintenniederschrift",
+                            "sigleAddendum": "T. 23–27",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_TF1",
+                            "sigle": "M 31 Tintenniederschrift",
+                            "sigleAddendum": "T. 28–30",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "format": {
+                        "height": 347,
+                        "width": 265
+                    },
+                    "content": [
+                        {
+                            "complexId": "m30",
+                            "sheetId": "M_30_TF1",
+                            "sigle": "M 30 Tintenniederschrift",
+                            "sigleAddendum": "T. 1–5",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m30",
+                            "sheetId": "M_30_TF1",
+                            "sigle": "M 30 Tintenniederschrift",
+                            "sigleAddendum": "T. 6–10",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m30",
+                            "sheetId": "M_30_TF1",
+                            "sigle": "M 30 Tintenniederschrift",
+                            "sigleAddendum": "T. 11–15",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m30",
+                            "sheetId": "M_30_TF1",
+                            "sigle": "M 30 Tintenniederschrift",
+                            "sigleAddendum": "T. 16–20",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m30",
+                            "sheetId": "M_30_TF1",
+                            "sigle": "M 30 Tintenniederschrift",
+                            "sigleAddendum": "T. 21–24",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar402",
+                            "sheetId": "Mstar_402_Sk1a",
+                            "sigle": "M* 402 Sk1",
+                            "sigleAddendum": "T. 1–5",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "mstar402",
+                            "sheetId": "Mstar_402_Sk1b",
+                            "sigle": "M* 402 Sk1",
+                            "sigleAddendum": "T. 6–9",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 18,
+                                    "endSystem": 18
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

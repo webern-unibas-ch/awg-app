@@ -6,12 +6,47 @@
             "siglumAddendum": "",
             "type": "Skizzen (in: Skizzenbuch 3).",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "17 Seiten in <strong>Skizzenbuch 3</strong>: Bl. 26<sup>v</sup>–31<sup>r</sup> (S. <em>51</em>–<em>60</em>), Bl. 32<sup>r</sup> (S. <em>62</em>) und Bl. 33<sup>v</sup>–36<sup>r</sup> (S. <em>65</em>–<em>70</em>)."
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, quer 270 × 335 mm, 16 Systeme, Firmenzeichen <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>No. 15 | 16 linig.</em> recto auf Bl. 26–36 unten links (Bl. 26–36)"
+                ],
+                "writingMaterials": [
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 16,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "270"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "335"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {
+                            "variant": "JE_NO15_LIN16_OP23_A",
+                            "alt": "",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["all"],
+                                    "position": "recto unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "26–36"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "Bleistift",
@@ -1395,8 +1430,8 @@
             "siglumAddendum": "",
             "type": "Reihentabelle.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Bogen (Bl. 1/2). Unterer Rand beschnitten. Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> mit Bleistift unten rechts oder links. Bl. 1<sup>v</sup>–2<sup>v</sup> bis auf die archivalische Paginierung unbeschriftet."
                 ],
                 "writingMaterialStrings": [
@@ -1404,13 +1439,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 4,
-                            "info": "unten beschnitten",
-                            "addendum": ""
+                            "totalSystems": 4,
+                            "totalSystemsAddendum": "unten beschnitten",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
@@ -1419,19 +1454,11 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "270"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
-                            "variant": "",
-                            "alt": "",
-                            "location": [
-                                {
-                                    "info": "",
-                                    "folios": [""],
-                                    "position": ""
-                                }
-                            ]
-                        },
+                        "trademark": {},
+                        "watermark": {},
                         "folioAddendum": "1/2"
                     }
                 ],
@@ -1562,12 +1589,47 @@
             "siglumAddendum": "",
             "type": "Autograph von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.G389 / 115908.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "10 Blätter (Bl. 1–10): 1 Blatt (Bl. 1), 3 aufeinander gelegte Bögen (Bl. 2/3, 4/5, 6/7), 3 Blätter (Bl. 8–10). Bl. 5<sup>v</sup>, 10<sup>v</sup> unbeschriftet. Rissspuren am linken Rand von Bl. 1, 8–10: von Bögen abgetrennt. (Vermutlich bildeten Bl. 1 und 10 sowie Bl. 8 und 9 gemeinsame Bögen.) Risse am Falz unten bei Bl. 2/3, 4/5, 6/7."
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, 12 Systeme, Format: hoch 336 × 267 mm, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke | No. 2 | 12 linig.</em> auf Bl. 2<sup>r</sup>, 4<sup>r</sup>, 6<sup>r</sup>, 8<sup>r</sup>, 10<sup>r</sup> unten links (Bl. 1–10)"
+                ],
+                "writingMaterials": [
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "336"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "267"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {
+                            "variant": "JE_NO2_LIN12_OP23_C",
+                            "alt": "",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["2r", "4r", "6r", "8r", "10r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "1–10"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
@@ -1599,7 +1661,7 @@
                 "contents": [
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "Autograph von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23",
                         "folios": [
                             {
@@ -1618,7 +1680,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "I „Das dunkle Herz“ M 314: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
@@ -1814,7 +1876,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "II „Es stürzt aus Höhen Frische“ M 313: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
@@ -1933,7 +1995,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "III „Herr Jesus mein“ M 312: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
@@ -2087,8 +2149,8 @@
             "siglumAddendum": "",
             "type": "Druck von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23.",
             "location": "Wien: Universal Edition, 1936.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "12 Seiten (S. [1]–12): 3 klammergeheftete Bögen in Umschlag (S. [a–d]), Format: hoch 309 × 230 mm. Innere Seiten des Umschlags (S. [b] und [c]) nicht bedruckt. S. [d]: Verlagsanzeige (<em>WERKE VON ANTON WEBERN</em>)."
                 ],
                 "writingMaterialStrings": [],
@@ -2118,7 +2180,7 @@
                 "contents": [
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "Druck von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23",
                         "folios": [
                             {
@@ -2132,7 +2194,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "I „Das dunkle Herz“ M 314: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
@@ -2312,7 +2374,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "II „Es stürzt aus Höhen Frische“ M 313: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
@@ -2391,7 +2453,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "III „Herr Jesus mein“ M 312: <span class='link-todo'>einzige Textfassung</span>",
                         "folios": [
                             {
@@ -2535,8 +2597,8 @@
             "siglumAddendum": "",
             "type": "",
             "location": "",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "<small class=\"text-muted\">[Die Beschreibung der in den Quellen gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23 in AWG I/5.]</small>"
                 ]
             }
