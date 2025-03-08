@@ -447,8 +447,8 @@ export const mockEditionData = {
                         '2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert. Zeichen ergänzt mit Blick auf <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Textfassung 2</strong></a>',
                     ],
                     writingMaterialStrings: [
-                        'Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen:<br /><img class="img-thumbnail" [src]="ref.FIRM_SIGNS.FIRM_JE_NO2_LIN12.route" [title]="ref.FIRM_SIGNS.FIRM_JE_NO2_LIN12.full" [alt]="ref.FIRM_SIGNS.FIRM_JE_NO2_LIN12.short" /><br />auf Bl. 1<sup>r</sup> unten links (Bl. 1)',
-                        'Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2)',
+                        'Notenpapier, 14 Systeme (unten beschnitten), Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_2_12# auf dem Kopf stehend auf Bl. 1<sup>r</sup> unten links (Bl. 1)',
+                        'Notenpapier, 16 Systeme, Format: hoch 270 × 175 mm, kein Firmenzeichen (Bl. 2)',
                     ],
                     writingInstruments: {
                         main: 'Bleistift',
@@ -773,6 +773,68 @@ export const mockEditionData = {
                 physDesc: {
                     conditions: [
                         "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_G'})\"><strong>G</strong></a>.",
+                    ],
+                    writingMaterialStrings: [
+                        'Notenpapier, 14 Systeme (unten beschnitten), Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_2_12# auf dem Kopf stehend auf Bl. 1<sup>r</sup> unten links (Bl. 1)',
+                        'Notenpapier, 16 Systeme, Format: hoch 270 × 175 mm, kein Firmenzeichen (Bl. 2)',
+                    ],
+                    writingMaterials: [
+                        {
+                            materialType: 'Notenpapier',
+                            systems: {
+                                totalSystems: 14,
+                                totalSystemsAddendum: 'unten beschnitten',
+                                additionalInfo: '',
+                            },
+                            dimensions: {
+                                orientation: 'quer',
+                                height: {
+                                    uncertainty: 'ca.',
+                                    value: '160–180',
+                                },
+                                width: {
+                                    uncertainty: '',
+                                    value: '267',
+                                },
+                                unit: 'mm',
+                            },
+                            trademark: {
+                                variant: 'JE_NO2_LIN12_OP3_J',
+                                alt: '',
+                                locus: [
+                                    {
+                                        preFolioInfo: 'auf dem Kopf stehend',
+                                        folios: ['1r'],
+                                        position: 'unten links',
+                                    },
+                                ],
+                            },
+                            watermark: {},
+                            folioAddendum: '1',
+                        },
+                        {
+                            materialType: 'Notenpapier',
+                            systems: {
+                                totalSystems: 16,
+                                totalSystemsAddendum: '',
+                                additionalInfo: '',
+                            },
+                            dimensions: {
+                                orientation: 'hoch',
+                                height: {
+                                    uncertainty: '',
+                                    value: '270',
+                                },
+                                width: {
+                                    uncertainty: '',
+                                    value: '175',
+                                },
+                                unit: 'mm',
+                            },
+                            trademark: {},
+                            watermark: {},
+                            folioAddendum: '2',
+                        },
                     ],
                 },
             },

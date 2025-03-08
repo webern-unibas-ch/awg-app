@@ -34,7 +34,7 @@
                         }
                     </div>
                     <!-- physDesc -->
-                    @if (utils.isNotEmptyObject(sourceDescription.physDesc)) {
+                    @if (UTILS.isNotEmptyObject(sourceDescription.physDesc)) {
                         <div class="awg-source-description-phys-desc">
                             <!-- conditions -->
                             @if (sourceDescription?.physDesc?.conditions?.length) {
@@ -48,8 +48,8 @@
                             }
                             <!-- writingMaterials -->
                             @if (
-                                sourceDescription.physDesc.writingMaterialStrings &&
-                                !sourceDescription.physDesc.writingMaterials
+                                sourceDescription?.physDesc?.writingMaterialStrings?.length &&
+                                !sourceDescription?.physDesc?.writingMaterials?.length
                             ) {
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.writingMaterialStrings"
@@ -58,99 +58,14 @@
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
-                            }
-                            @if (sourceDescription.physDesc.writingMaterials) {
-                                <p class="awg-source-description-writing-materials">
-                                    <span class="smallcaps">Beschreibstoff:&nbsp;</span>
-
-                                    @for (
-                                        writingMaterial of sourceDescription?.physDesc?.writingMaterials;
-                                        track $index;
-                                        let lastWritingMaterial = $last
-                                    ) {
-                                        @if (writingMaterial.materialType) {
-                                            <span class="awg-source-description-writing-material-type">{{
-                                                writingMaterial.materialType
-                                            }}</span
-                                            >,
-                                        }
-                                        @if (utils.isNotEmptyObject(writingMaterial.systems)) {
-                                            <span class="awg-source-description-writing-material-systems">
-                                                {{ getWritingMaterialSystems(writingMaterial.systems) }},
-                                            </span>
-                                        }
-                                        @if (utils.isNotEmptyObject(writingMaterial.dimensions)) {
-                                            <span class="awg-source-description-writing-material-dimensions">
-                                                {{ getWritingMaterialDimensions(writingMaterial.dimensions) }}</span
-                                            >,
-                                        }
-                                        @if (
-                                            utils.isNotEmptyObject(writingMaterial.trademark) &&
-                                            (writingMaterial.trademark?.variant || writingMaterial.trademark?.alt)
-                                        ) {
-                                            <span class="awg-source-description-writing-material-trademark"
-                                                ><span>Firmenzeichen: </span>
-                                                @if (writingMaterial.trademark.variant) {
-                                                    <br /><img
-                                                        class="img-thumbnail"
-                                                        [src]="
-                                                            getWritingMaterialTrademark(
-                                                                writingMaterial.trademark.variant
-                                                            )?.route
-                                                        "
-                                                        [title]="
-                                                            getWritingMaterialTrademark(
-                                                                writingMaterial.trademark.variant
-                                                            )?.full
-                                                        "
-                                                        [alt]="
-                                                            getWritingMaterialTrademark(
-                                                                writingMaterial.trademark.variant
-                                                            )?.short
-                                                        " /><br />
-                                                } @else {
-                                                    <span
-                                                        [compile-html]="writingMaterial.trademark.alt"
-                                                        [compile-html-ref]="ref"></span
-                                                    >&nbsp;
-                                                }
-                                            </span>
-                                            @for (locus of writingMaterial.trademark.locus; track $index) {
-                                                <span [innerHTML]="getWritingMaterialItemLocus(locus)"></span>
-                                            }
-                                        } @else {
-                                            <span>kein Firmenzeichen</span>
-                                        }
-                                        @if (
-                                            utils.isNotEmptyObject(writingMaterial.watermark) &&
-                                            writingMaterial.watermark?.variant
-                                        ) {
-                                            <span class="awg-source-description-writing-material-watermark"
-                                                ><span>, Wasserzeichen: </span>
-                                                @if (writingMaterial.watermark.variant) {
-                                                    <span
-                                                        ><em>{{ writingMaterial.watermark.variant }}</em></span
-                                                    >&nbsp;
-                                                }
-                                            </span>
-                                            @for (locus of writingMaterial.watermark.locus; track $index) {
-                                                <span [innerHTML]="getWritingMaterialItemLocus(locus)"></span>
-                                            }
-                                            <span>&nbsp;lesbar</span>
-                                        }
-                                        @if (writingMaterial.folioAddendum) {
-                                            <span>&nbsp;(Bl. {{ writingMaterial.folioAddendum }})</span>
-                                        }
-                                        @if (!lastWritingMaterial) {
-                                            <span>;</span><br />
-                                        } @else {
-                                            <span>.</span>
-                                        }
-                                    }
-                                </p>
+                            } @else if (sourceDescription?.physDesc?.writingMaterials?.length) {
+                                <awg-source-description-writing-materials
+                                    [writingMaterials]="
+                                        sourceDescription.physDesc.writingMaterials
+                                    "></awg-source-description-writing-materials>
                             }
                             <!-- writingInstruments -->
-                            @if (utils.isNotEmptyObject(sourceDescription.physDesc.writingInstruments)) {
+                            @if (UTILS.isNotEmptyObject(sourceDescription.physDesc.writingInstruments)) {
                                 @if (sourceDescription.physDesc.writingInstruments.main) {
                                     <p class="awg-source-description-writing-instruments">
                                         <span class="smallcaps">Schreibstoff:&nbsp;</span>
