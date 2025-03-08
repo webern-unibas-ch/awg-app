@@ -18,6 +18,7 @@ import { BibEntry } from '../bibliography-entry.model';
     selector: 'awg-bibliography-detail',
     templateUrl: './bibliography-detail.component.html',
     styleUrls: ['./bibliography-detail.component.scss'],
+    standalone: false,
 })
 export class BibliographyDetailComponent implements OnInit {
     /**

@@ -16,6 +16,7 @@ import { EditionComplex, SourceEvaluationList } from '@awg-views/edition-view/mo
     templateUrl: './source-evaluation.component.html',
     styleUrls: ['./source-evaluation.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SourceEvaluationComponent {
     /**

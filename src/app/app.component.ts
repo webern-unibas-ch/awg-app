@@ -17,6 +17,7 @@ import { AnalyticsService, EditionInitService } from '@awg-core/services';
     selector: 'awg-app',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+    standalone: false,
 })
 export class AppComponent {
     /**

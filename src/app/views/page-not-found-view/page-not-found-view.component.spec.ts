@@ -15,7 +15,11 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 import { PageNotFoundViewComponent } from './page-not-found-view.component';
 
 // Mock components
-@Component({ selector: 'awg-heading', template: '' })
+@Component({
+    selector: 'awg-heading',
+    template: '',
+    standalone: false,
+})
 class HeadingStubComponent {
     @Input()
     title: string;

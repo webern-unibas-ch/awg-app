@@ -13,6 +13,7 @@ import { EditionOutlineComplexItem } from '@awg-views/edition-view/models';
     templateUrl: './edition-section-detail-complex-card.component.html',
     styleUrls: ['./edition-section-detail-complex-card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionSectionDetailComplexCardComponent {
     /**

@@ -68,12 +68,6 @@ describe('EditionSvgDrawingService (DONE)', () => {
             },
         ];
 
-        expectedSuppliedClassNames = ['supplied class-1', 'supplied class-2'];
-        expectedSuppliedClassMap = new Map([
-            [expectedSuppliedClassNames[0].split(' ')[1], true],
-            [expectedSuppliedClassNames[1].split(' ')[1], true],
-        ]);
-
         expectedSuppliedClassesLabelLookup = new Map([
             ['foliation', 'Blattangabe'],
             ['staffN', 'Systemangabe'],
@@ -85,15 +79,24 @@ describe('EditionSvgDrawingService (DONE)', () => {
             ['hyphen', 'Silbentrennung'],
         ]);
 
-        expectedOverlayFillColor = 'orange';
-        expectedOverlayHoverFillColor = 'tomato';
+        expectedSuppliedClassNames = ['supplied foliation', 'supplied clef_key', 'supplied unknown-class'];
+        expectedSuppliedClassMap = new Map(
+            expectedSuppliedClassNames.map(name => {
+                const key = name.split(' ')[1];
+                const value = expectedSuppliedClassesLabelLookup.get(key) || key;
+                return [value, true];
+            })
+        );
+
+        expectedOverlayFillColor = 'tomato';
+        expectedOverlayHoverFillColor = 'orange';
         expectedOverlayTransparentFillColor = 'transparent';
         expectedOverlaySelectionFillColor = 'green';
         expectedLinkBoxFillColor = '#dddddd';
         expectedLinkBoxHoverFillColor = '#eeeeee';
         expectedOverlayBoxesOpacity = 0.3;
-        expectedOverlayBoxAdditionalSpace = 5.5;
-        expectedOverlayBoxCornerRadius = 2;
+        expectedOverlayBoxAdditionalSpace = 1.5;
+        expectedOverlayBoxCornerRadius = 1;
 
         expectedSvg = createD3TestSvg(mockDocument);
         expectedSvgRootGroup = createD3TestRootGroup(expectedSvg);
@@ -110,11 +113,11 @@ describe('EditionSvgDrawingService (DONE)', () => {
         expect(service).toBeTruthy();
     });
 
-    it('... should have `overlayFillColor = orange`', () => {
+    it('... should have `overlayFillColor = tomato`', () => {
         expectToBe(service.overlayFillColor, expectedOverlayFillColor);
     });
 
-    it('... should have `overlayHoverFillColor = tomato`', () => {
+    it('... should have `overlayHoverFillColor = orange`', () => {
         expectToBe(service.overlayHoverFillColor, expectedOverlayHoverFillColor);
     });
 
@@ -138,11 +141,11 @@ describe('EditionSvgDrawingService (DONE)', () => {
         expectToBe(service['_overlayBoxesOpacity'], expectedOverlayBoxesOpacity);
     });
 
-    it('... should have `_overlayBoxAdditionalSpace = 5.5` (private)', () => {
+    it('... should have `_overlayBoxAdditionalSpace = 1.5` (private)', () => {
         expectToBe(service['_overlayBoxAdditionalSpace'], expectedOverlayBoxAdditionalSpace);
     });
 
-    it('... should have `_overlayBoxCornerRadius = 2` (private)', () => {
+    it('... should have `_overlayBoxCornerRadius = 1` (private)', () => {
         expectToBe(service['_overlayBoxCornerRadius'], expectedOverlayBoxCornerRadius);
     });
 

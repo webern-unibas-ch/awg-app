@@ -18,7 +18,11 @@ import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/mo
 import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav.component';
 
 // Mock components
-@Component({ selector: 'awg-edition-svg-sheet-nav-item', template: '' })
+@Component({
+    selector: 'awg-edition-svg-sheet-nav-item',
+    template: '',
+    standalone: false,
+})
 class EditionSvgSheetNavItemStubComponent {
     @Input()
     navItemLabel: string;

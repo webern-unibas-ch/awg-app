@@ -23,7 +23,11 @@ import { SearchResponseJson } from '@awg-app/shared/api-objects';
 import { ViewHandleTypes } from '@awg-app/shared/view-handle-button-group/view-handle.model';
 import { SearchPanelComponent } from './search-panel.component';
 
-@Component({ selector: 'awg-fulltext-search-form', template: '' })
+@Component({
+    selector: 'awg-fulltext-search-form',
+    template: '',
+    standalone: false,
+})
 class FulltextSearchFormStubComponent {
     @Input()
     searchValue: string;
@@ -31,13 +35,21 @@ class FulltextSearchFormStubComponent {
     searchRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-extended-search-form', template: '' })
+@Component({
+    selector: 'awg-extended-search-form',
+    template: '',
+    standalone: false,
+})
 class ExtendedSearchFormStubComponent {
     @Output()
     searchRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-search-result-list', template: '' })
+@Component({
+    selector: 'awg-search-result-list',
+    template: '',
+    standalone: false,
+})
 class SearchResultListStubComponent {
     @Input()
     searchParams: SearchParams;
@@ -51,7 +63,11 @@ class SearchResultListStubComponent {
     viewChangeRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+@Component({
+    selector: 'awg-twelve-tone-spinner',
+    template: '',
+    standalone: false,
+})
 class TwelveToneSpinnerStubComponent {}
 
 describe('SearchPanelComponent', () => {

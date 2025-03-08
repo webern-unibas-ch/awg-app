@@ -15,6 +15,7 @@ import { Source, SourceList } from '@awg-views/edition-view/models';
     templateUrl: './source-list.component.html',
     styleUrls: ['./source-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class SourceListComponent {
     /**
@@ -71,7 +72,7 @@ export class SourceListComponent {
      */
     onSourceClick(source: Source): void {
         if (source.hasDescription) {
-            this._navigateToReportFragment({
+            this.navigateToReportFragment({
                 complexId: '',
                 fragmentId: source.linkTo,
             });
@@ -81,7 +82,7 @@ export class SourceListComponent {
     }
 
     /**
-     * Private method: navigateToReportFragment.
+     * Public method: navigateToReportFragment.
      *
      * It emits the given ids of a selected edition complex and report fragment
      * to the {@link navigateToReportFragmentRequest}.
@@ -89,7 +90,7 @@ export class SourceListComponent {
      * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
      * @returns {void} Emits the ids.
      */
-    private _navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
+    navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
         if (!reportIds?.fragmentId) {
             return;
         }

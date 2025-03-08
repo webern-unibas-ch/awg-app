@@ -6,20 +6,20 @@
             "siglumAddendum": "",
             "type": "Skizzen und Reihentabelle zu „Wie bin ich froh!“ M 317 (in: Skizzenbuch 3).",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": ["2 Seiten in <strong>Skizzenbuch 3</strong>: Bl. 38<sup>v</sup>–39<sup>r</sup>."],
+            "physDesc": {
+                "conditions": ["2 Seiten in <strong>Skizzenbuch 3</strong>: Bl. 38<sup>v</sup>–39<sup>r</sup>."],
                 "writingMaterialStrings": [
-                    "Notenpapier, 16 Systeme, Format: quer 270 × 335 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP25.A[0].route\" [title]=\"ref.FIRM_SIGNS.OP25.A[0].full\" [alt]=\"ref.FIRM_SIGNS.OP25.A[0].short\" /> <br /> auf Bl. 39<sup>r</sup> unten links (Bl. 38–39)"
+                    "Notenpapier, 16 Systeme, Format: quer 270 × 335 mm, Firmenzeichen: ##JE_15_16## auf Bl. 39<sup>r</sup> unten links (Bl. 38–39)"
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 16,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 16,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
@@ -28,19 +28,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "335"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_15_LIN_16",
+                        "trademark": {
+                            "variant": "JE_NO15_LIN16_OP25_A",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["39r"],
                                     "position": "unten links"
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "38–39"
                     }
                 ],
@@ -551,22 +553,22 @@
             "siglumAddendum": "",
             "type": "Autograph von „Wie bin ich froh!“ M 317: <a (click)=\"ref.selectSvgSheet({complexId: 'op25', sheetId: 'M_317_TF1'})\">Textfassung 1</a>.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "4 Blätter (Bl. 1–4): 2 ineinander gelegte Bögen (Bl. 1/4, 2/3), archivalische Paginierung von <em>[1]</em> bis <em>[8]</em> auf Bl. 1<sup>r</sup>–4<sup>v</sup> innere Seitenecken unten mit Bleistift, mit Ausnahme der archivalischen Paginierung unbeschriftet: Bl. 3<sup>v</sup>–4<sup>v</sup>. Archivalischer Eintrag <em>[op. 25 no. 1]</em> auf Bl. 1<sup>r</sup> unten halbrechts mit Bleistift."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, 12 Systeme, Format: hoch 340 × 270 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP25.B[0].route\" [title]=\"ref.FIRM_SIGNS.OP25.B[0].full\" [alt]=\"ref.FIRM_SIGNS.OP25.B[0].short\" /> <br /> auf Bl. 1<sup>r</sup> und 2<sup>r</sup> unten links (Bl. 1–2)"
+                    "Notenpapier, 12 Systeme, Format: hoch 340 × 270 mm, Firmenzeichen: ##JE_2_12## auf Bl. 1<sup>r</sup> und 2<sup>r</sup> unten links (Bl. 1–2)"
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -575,19 +577,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "270"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_2_LIN_12",
+                        "trademark": {
+                            "variant": "JE_NO2_LIN12_OP25_B",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1r", "2r"],
                                     "position": "unten links"
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1–2"
                     }
                 ],
@@ -700,22 +704,22 @@
             "siglumAddendum": "",
             "type": "Reihentabelle.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt und beschnitten. Löcher von Reißzwecken oben Mitte und rechts sowie System 7 Mitte. Archivalische Paginierung <em>[1]</em> bis <em>[2]</em> mit Bleistift unten rechts oder links. Verso-Seite bis auf die archivalische Paginierung unbeschriftet."
                 ],
                 "writingMaterialStrings": [
-                    "Notenpapier, 7 Systeme (oben beschnitten), Format: quer 169 × 267 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP25.C[0].route\" [title]=\"ref.FIRM_SIGNS.OP25.C[0].full\" [alt]=\"ref.FIRM_SIGNS.OP25.C[0].short\" /> <br /> auf Bl. 1<sup>r</sup> unten links (Bl. 1)"
+                    "Notenpapier, 7 Systeme (oben beschnitten), Format: quer 169 × 267 mm, Firmenzeichen: ##JE_3_14## auf Bl. 1<sup>r</sup> unten links (Bl. 1)"
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 7,
-                            "info": "oben beschnitten",
-                            "addendum": ""
+                            "totalSystems": 7,
+                            "totalSystemsAddendum": "oben beschnitten",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
@@ -724,19 +728,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "267"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_3_LIN_14",
+                        "trademark": {
+                            "variant": "JE_NO3_LIN14_OP25_C",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1r"],
                                     "position": "unten links"
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1"
                     }
                 ],
@@ -868,12 +874,47 @@
             "siglumAddendum": "",
             "type": "Skizzen zu „Sterne, Ihr silbernen Bienen“ M 321 und „Des Herzens Purpurvogel“ M 322 (in: Skizzenbuch 4).",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "12 Seiten in Skizzenbuch 4: Bl. 2<sup>r</sup> (S. 2), Bl. 5<sup>v</sup>–10<sup>r</sup> (S. 9–18) und Bl. 11<sup>r</sup> (S. 20)."
                 ],
                 "writingMaterialStrings": [
                     "Notenpapier, quer 270 × 337 mm, 16 Systeme, Firmenzeichen <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] <em>Protokoll. Schutzmarke</em> | <em>No. 15</em> auf auf Bl. 2, 5 und 11 recto unten links"
+                ],
+                "writingMaterials": [
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 16,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "270"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "337"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {
+                            "variant": "JE_NO15_LIN16_OP25_D",
+                            "alt": "",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["2r", "5r", "11r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "2, 5–11"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "Bleistift",
@@ -1354,6 +1395,13 @@
                                             "measure": "21A–26A",
                                             "linkTo": ""
                                         }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–16",
+                                            "measure": "21B–26B",
+                                            "linkTo": ""
+                                        }
                                     ]
                                 ]
                             }
@@ -1818,8 +1866,8 @@
             "siglumAddendum": "",
             "type": "Autograph von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25.",
             "location": "A-Wue, UEQ 493.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "12 Blätter (Bl. 1–12): 1 Bogen (Bl. 1/12) umschließt 2 aufeinander gelegte Bögen (Bl. 2/3, 4/5) und 3 ineinander gelegte Bögen (Bl. 6/11 umschließt Bl. 7/8, 9/10). Bl. 1<sup>v</sup>, 3<sup>v</sup> (mit Ausnahme der Paginierung) und 10<sup>r</sup>–12<sup>v</sup> unbeschriftet."
                 ],
                 "writingMaterialStrings": [
@@ -1827,6 +1875,140 @@
                     "Notenpapier, hoch 336 × 267 mm, 12 Systeme, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke</em> | <em>No. 2 | 12 linig.</em> auf Bl. 2<sup>r</sup> unten links (Bl. 2/3)",
                     "Notenpapier, hoch 340 × 270 mm, 12 Systeme, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke</em> | <em>No. 2 | 12 linig.</em> auf Bl. 4<sup>r</sup>, 7<sup>r</sup>, 10<sup>r</sup> unten links (Bl. 4/5, 7–10)",
                     "Notenpapier, hoch 336 × 267 mm, 14 Systeme, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke</em> | <em>No. 3 | 14 linig.</em> auf Bl. 6<sup>r</sup> unten links (Bl. 6/11)"
+                ],
+                "writingMaterials": [
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 20,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "340"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "270"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {
+                            "variant": "",
+                            "alt": "<em>J. E. & Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke</em> | <em>No. 6 | 20 linig.</em>",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["12v"],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "1/12"
+                    },
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "336"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "267"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {
+                            "variant": "JE_NO2_LIN12_OP25_E2",
+                            "alt": "",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["2r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "2/3"
+                    },
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "340"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "270"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {
+                            "variant": "JE_NO2_LIN12_OP25_E3",
+                            "alt": "",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["4r", "7r", "10r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "4/5, 7–10"
+                    },
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 14,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "336"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "267"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {
+                            "variant": "JE_NO3_LIN14_OP25_E4",
+                            "alt": "",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["6r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "6/11"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",

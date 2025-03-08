@@ -11,6 +11,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
     templateUrl: './edition-tka-evaluations.component.html',
     styleUrl: './edition-tka-evaluations.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionTkaEvaluationsComponent {
     /**

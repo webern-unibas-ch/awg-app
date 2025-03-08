@@ -41,11 +41,13 @@ import { Preface, PrefaceList } from './preface.model';
 
 import {
     SourceDescription,
+    SourceDescriptionContent,
     SourceDescriptionList,
     SourceDescriptionWritingInstruments,
+    SourceDescriptionWritingMaterial,
     SourceDescriptionWritingMaterialDimension,
-    SourceDescriptionWritingMaterialFormat,
-    SourceDescriptionWritingMaterialItemLocation,
+    SourceDescriptionWritingMaterialDimensions,
+    SourceDescriptionWritingMaterialItemLocus,
     SourceDescriptionWritingMaterialSystems,
 } from './source-description.model';
 import { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
@@ -106,11 +108,13 @@ export {
     PrefaceList,
     Source,
     SourceDescription,
+    SourceDescriptionContent,
     SourceDescriptionList,
     SourceDescriptionWritingInstruments,
+    SourceDescriptionWritingMaterial,
     SourceDescriptionWritingMaterialDimension,
-    SourceDescriptionWritingMaterialFormat,
-    SourceDescriptionWritingMaterialItemLocation,
+    SourceDescriptionWritingMaterialDimensions,
+    SourceDescriptionWritingMaterialItemLocus,
     SourceDescriptionWritingMaterialSystems,
     SourceEvaluation,
     SourceEvaluationList,

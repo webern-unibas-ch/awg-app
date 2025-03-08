@@ -8,6 +8,7 @@ import { Toast, ToastService } from './toast.service';
 // Mock component to get templateRef
 @Component({
     template: ` <ng-template #template><h1>Test template</h1></ng-template> `,
+    standalone: false,
 })
 class MockTemplateComponent {
     @ViewChild('template', { static: true }) public template: TemplateRef<any>;

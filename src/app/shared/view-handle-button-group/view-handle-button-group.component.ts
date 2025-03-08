@@ -26,6 +26,7 @@ import { ViewHandle, ViewHandleTypes } from './view-handle.model';
     selector: 'awg-view-handle-button-group',
     templateUrl: './view-handle-button-group.component.html',
     styleUrls: ['./view-handle-button-group.component.scss'],
+    standalone: false,
 })
 export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDestroy {
     /**

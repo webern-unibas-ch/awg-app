@@ -22,6 +22,7 @@ import { EditionDataService, EditionStateService } from '@awg-views/edition-view
     templateUrl: './edition-graph.component.html',
     styleUrls: ['./edition-graph.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class EditionGraphComponent implements OnInit {
     /**

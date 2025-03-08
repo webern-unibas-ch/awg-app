@@ -10,5 +10,6 @@ import { Component } from '@angular/core';
     selector: 'awg-license',
     templateUrl: './license.component.html',
     styleUrls: ['./license.component.scss'],
+    standalone: false,
 })
 export class LicenseComponent {}

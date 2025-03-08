@@ -17,6 +17,7 @@ import { ResourceDetailContent } from '@awg-views/data-view/models';
     templateUrl: './resource-detail-html-content.component.html',
     styleUrls: ['./resource-detail-html-content.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class ResourceDetailHtmlContentComponent {
     /**

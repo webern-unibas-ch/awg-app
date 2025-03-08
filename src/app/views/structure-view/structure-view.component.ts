@@ -11,6 +11,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     templateUrl: './structure-view.component.html',
     styleUrls: ['./structure-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
+    standalone: false,
 })
 export class StructureViewComponent {
     /**

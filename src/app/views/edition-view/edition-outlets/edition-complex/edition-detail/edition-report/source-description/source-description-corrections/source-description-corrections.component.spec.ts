@@ -20,7 +20,7 @@ import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/mod
 import { SourceDescriptionCorrectionsComponent } from './source-description-corrections.component';
 
 // Mock components
-@Component({ selector: 'awg-edition-tka-table', template: '' })
+@Component({ selector: 'awg-edition-tka-table', template: '', standalone: false })
 class EditionTkaTableStubComponent {
     @Input()
     commentary: TextcriticalCommentary;
@@ -75,7 +75,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
         const expectedSourceDescriptionListData = JSON.parse(
             JSON.stringify(mockEditionData.mockSourceDescriptionListData)
         );
-        expectedCorrections = expectedSourceDescriptionListData.sources[1].description.corrections;
+        expectedCorrections = expectedSourceDescriptionListData.sources[1].physDesc.corrections;
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
@@ -115,16 +115,16 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-corrections', 1, 1);
             });
 
-            it('... should contain one paragraph (no-para) displaying the label "Korrekturen:" in corrections div', () => {
+            it('... should contain one paragraph (no-para-margin) displaying the label "Korrekturen:" in corrections div', () => {
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.awg-source-description-corrections > p.no-para',
+                    'div.awg-source-description-corrections > p.no-para-margin',
                     1,
                     1
                 );
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expect(pEl).toHaveClass('no-para');
+                expect(pEl).toHaveClass('no-para-margin');
                 expectToBe(pEl.textContent.trim(), 'Korrekturen:');
             });
 

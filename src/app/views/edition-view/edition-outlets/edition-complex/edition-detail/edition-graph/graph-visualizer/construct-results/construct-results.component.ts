@@ -15,6 +15,7 @@ import { D3SimulationNode, Triple } from '../models';
     templateUrl: './construct-results.component.html',
     styleUrls: ['./construct-results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class ConstructResultsComponent {
     /**

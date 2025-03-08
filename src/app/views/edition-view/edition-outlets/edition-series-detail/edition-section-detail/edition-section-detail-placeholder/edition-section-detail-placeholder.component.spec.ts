@@ -10,7 +10,11 @@ import { EditionOutlineService } from '@awg-views/edition-view/services';
 import { EditionSectionDetailPlaceholderComponent } from './edition-section-detail-placeholder.component';
 
 // Mock components
-@Component({ selector: 'awg-alert-info', template: '' })
+@Component({
+    selector: 'awg-alert-info',
+    template: '',
+    standalone: false,
+})
 class AlertInfoStubComponent {
     @Input()
     infoMessage: string;

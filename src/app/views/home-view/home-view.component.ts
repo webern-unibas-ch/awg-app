@@ -19,6 +19,7 @@ import { HomeViewCard } from '@awg-views/home-view/models';
     templateUrl: './home-view.component.html',
     styleUrls: ['./home-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
+    standalone: false,
 })
 export class HomeViewComponent implements OnInit {
     /**

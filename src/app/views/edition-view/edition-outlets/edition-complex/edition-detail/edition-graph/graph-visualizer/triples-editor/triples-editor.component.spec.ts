@@ -22,7 +22,11 @@ import { ToastMessage } from '@awg-shared/toast/toast.service';
 
 import { TriplesEditorComponent } from './triples-editor.component';
 
-@Component({ selector: 'awg-codemirror', template: '' })
+@Component({
+    selector: 'awg-codemirror',
+    template: '',
+    standalone: false,
+})
 class CodeMirrorStubComponent {
     @Input() mode: CmMode;
     @Input() content: string;

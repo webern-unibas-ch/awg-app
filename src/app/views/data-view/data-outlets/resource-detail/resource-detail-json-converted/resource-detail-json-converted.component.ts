@@ -14,6 +14,7 @@ import { ResourceDetail } from '@awg-views/data-view/models';
     templateUrl: './resource-detail-json-converted.component.html',
     styleUrls: ['./resource-detail-json-converted.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class ResourceDetailJsonConvertedComponent {
     /**

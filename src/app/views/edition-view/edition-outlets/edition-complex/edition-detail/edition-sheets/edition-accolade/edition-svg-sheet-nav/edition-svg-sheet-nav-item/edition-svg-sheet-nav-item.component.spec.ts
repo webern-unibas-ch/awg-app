@@ -19,7 +19,11 @@ import { EditionSvgSheet } from '@awg-views/edition-view/models';
 import { EditionSvgSheetNavItemComponent } from './edition-svg-sheet-nav-item.component';
 
 // Mock components
-@Component({ selector: 'awg-disclaimer-workeditions', template: '' })
+@Component({
+    selector: 'awg-disclaimer-workeditions',
+    template: '',
+    standalone: false,
+})
 class DisclaimerWorkeditionsStubComponent {}
 
 describe('EditionSvgSheetNavItemComponent (DONE)', () => {

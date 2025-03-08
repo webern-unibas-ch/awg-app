@@ -5,7 +5,11 @@ import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { BibliographyListComponent } from './bibliography-list.component';
 
-@Component({ selector: 'awg-bibliography-detail', template: '' })
+@Component({
+    selector: 'awg-bibliography-detail',
+    template: '',
+    standalone: false,
+})
 class BibliographyDetailStubComponent {
     @Input()
     objId: string;

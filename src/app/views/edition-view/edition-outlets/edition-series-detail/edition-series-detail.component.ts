@@ -13,6 +13,7 @@ import { EditionOutlineService, EditionStateService } from '@awg-views/edition-v
     selector: 'awg-edition-series-detail',
     templateUrl: './edition-series-detail.component.html',
     styleUrls: ['./edition-series-detail.component.scss'],
+    standalone: false,
 })
 export class EditionSeriesDetailComponent implements OnInit {
     /**

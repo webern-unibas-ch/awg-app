@@ -21,7 +21,11 @@ import { CoreService } from '@awg-core/services';
 import { ContactViewComponent } from './contact-view.component';
 
 // Mock heading component
-@Component({ selector: 'awg-heading', template: '' })
+@Component({
+    selector: 'awg-heading',
+    template: '',
+    standalone: false,
+})
 class HeadingStubComponent {
     @Input()
     title: string;

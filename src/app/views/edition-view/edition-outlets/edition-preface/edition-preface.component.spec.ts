@@ -21,7 +21,11 @@ import { EditionDataService, EditionGlyphService, EditionStateService } from '@a
 import { EditionPrefaceComponent } from './edition-preface.component';
 
 // Mock components
-@Component({ selector: 'awg-language-switcher', template: '' })
+@Component({
+    selector: 'awg-language-switcher',
+    template: '',
+    standalone: false,
+})
 class LanguageSwitcherStubComponent {
     @Input()
     currentLanguage: number;
