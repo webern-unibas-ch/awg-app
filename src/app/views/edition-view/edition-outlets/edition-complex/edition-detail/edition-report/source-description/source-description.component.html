@@ -4,6 +4,7 @@
             <div class="awg-source-description card mb-2" [id]="sourceDescription.id">
                 <div class="card-body">
                     <div class="awg-source-description-head">
+                        <!-- siglum -->
                         @if (sourceDescription.siglum) {
                             <p class="awg-source-description-siglum-container bold">
                                 @if (sourceDescription.missing) {
@@ -20,148 +21,66 @@
                                 }
                             </p>
                         }
+                        <!-- type -->
                         @if (sourceDescription.type) {
                             <p
                                 class="awg-source-description-type"
                                 [compile-html]="sourceDescription.type"
                                 [compile-html-ref]="ref"></p>
                         }
+                        <!-- location -->
                         @if (sourceDescription.location) {
                             <p class="awg-source-description-location" [awgAbbr]="sourceDescription.location"></p>
                         }
                     </div>
-                    @if (utils.isNotEmptyObject(sourceDescription.description)) {
-                        <div class="awg-source-description-body">
-                            <!-- description -->
-                            @if (sourceDescription?.description?.desc?.length) {
+                    <!-- physDesc -->
+                    @if (UTILS.isNotEmptyObject(sourceDescription.physDesc)) {
+                        <div class="awg-source-description-phys-desc">
+                            <!-- conditions -->
+                            @if (sourceDescription?.physDesc?.conditions?.length) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.description.desc"
+                                    [details]="sourceDescription.physDesc.conditions"
                                     detailsLabel=""
-                                    detailsClass="desc"
+                                    detailsClass="conditions"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
-                            <!-- writingMaterial -->
+                            <!-- writingMaterials -->
                             @if (
-                                sourceDescription.description.writingMaterialStrings &&
-                                !sourceDescription.description.writingMaterials
+                                sourceDescription?.physDesc?.writingMaterialStrings?.length &&
+                                !sourceDescription?.physDesc?.writingMaterials?.length
                             ) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.description.writingMaterialStrings"
+                                    [details]="sourceDescription.physDesc.writingMaterialStrings"
                                     detailsLabel="Beschreibstoff"
                                     detailsClass="writing-materials"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
-                            }
-                            @if (sourceDescription.description.writingMaterials) {
-                                <p class="awg-source-description-writing-materials">
-                                    <span class="smallcaps">Beschreibstoff:&nbsp;</span>
-
-                                    @for (
-                                        writingMaterial of sourceDescription?.description?.writingMaterials;
-                                        track $index;
-                                        let lastWritingMaterial = $last
-                                    ) {
-                                        @if (writingMaterial.paperType) {
-                                            <span class="awg-source-description-writing-material-paper-type">{{
-                                                writingMaterial.paperType
-                                            }}</span
-                                            >,
-                                        }
-                                        @if (utils.isNotEmptyObject(writingMaterial.systems)) {
-                                            <span class="awg-source-description-writing-material-systems">
-                                                {{ getWritingMaterialSystems(writingMaterial.systems) }},
-                                            </span>
-                                        }
-                                        @if (utils.isNotEmptyObject(writingMaterial.format)) {
-                                            <span class="awg-source-description-writing-material-format">
-                                                {{ getWritingMaterialFormat(writingMaterial.format) }}</span
-                                            >,
-                                        }
-                                        @if (
-                                            utils.isNotEmptyObject(writingMaterial.trademark) &&
-                                            (writingMaterial.trademark?.variant || writingMaterial.trademark?.alt)
-                                        ) {
-                                            <span class="awg-source-description-writing-material-trademark"
-                                                ><span>Firmenzeichen: </span>
-                                                @if (writingMaterial.trademark.variant) {
-                                                    <br /><img
-                                                        class="img-thumbnail"
-                                                        [src]="
-                                                            getWritingMaterialTrademark(
-                                                                writingMaterial.trademark.variant
-                                                            )?.route
-                                                        "
-                                                        [title]="
-                                                            getWritingMaterialTrademark(
-                                                                writingMaterial.trademark.variant
-                                                            )?.full
-                                                        "
-                                                        [alt]="
-                                                            getWritingMaterialTrademark(
-                                                                writingMaterial.trademark.variant
-                                                            )?.short
-                                                        " /><br />
-                                                } @else {
-                                                    <span
-                                                        [compile-html]="writingMaterial.trademark.alt"
-                                                        [compile-html-ref]="ref"></span
-                                                    >&nbsp;
-                                                }
-                                            </span>
-                                            @for (location of writingMaterial.trademark.location; track $index) {
-                                                <span [innerHTML]="getWritingMaterialItemLocation(location)"></span>
-                                            }
-                                        } @else {
-                                            <span>kein Firmenzeichen</span>
-                                        }
-                                        @if (
-                                            utils.isNotEmptyObject(writingMaterial.watermark) &&
-                                            writingMaterial.watermark?.variant
-                                        ) {
-                                            <span class="awg-source-description-writing-material-watermark"
-                                                ><span>, Wasserzeichen: </span>
-                                                @if (writingMaterial.watermark.variant) {
-                                                    <span
-                                                        ><em>{{ writingMaterial.watermark.variant }}</em></span
-                                                    >&nbsp;
-                                                }
-                                            </span>
-                                            @for (location of writingMaterial.watermark.location; track $index) {
-                                                <span [innerHTML]="getWritingMaterialItemLocation(location)"></span>
-                                            }
-                                            <span>&nbsp;lesbar</span>
-                                        }
-                                        @if (writingMaterial.folioAddendum) {
-                                            <span>&nbsp;(Bl. {{ writingMaterial.folioAddendum }})</span>
-                                        }
-                                        @if (!lastWritingMaterial) {
-                                            <span>;</span><br />
-                                        } @else {
-                                            <span>.</span>
-                                        }
-                                    }
-                                </p>
+                            } @else if (sourceDescription?.physDesc?.writingMaterials?.length) {
+                                <awg-source-description-writing-materials
+                                    [writingMaterials]="
+                                        sourceDescription.physDesc.writingMaterials
+                                    "></awg-source-description-writing-materials>
                             }
                             <!-- writingInstruments -->
-                            @if (utils.isNotEmptyObject(sourceDescription.description.writingInstruments)) {
-                                @if (sourceDescription.description.writingInstruments.main) {
+                            @if (UTILS.isNotEmptyObject(sourceDescription.physDesc.writingInstruments)) {
+                                @if (sourceDescription.physDesc.writingInstruments.main) {
                                     <p class="awg-source-description-writing-instruments">
                                         <span class="smallcaps">Schreibstoff:&nbsp;</span>
                                         <span
                                             [compile-html]="
-                                                getWritingInstruments(sourceDescription.description.writingInstruments)
+                                                getWritingInstruments(sourceDescription.physDesc.writingInstruments)
                                             "
                                             [compile-html-ref]="ref"></span>
                                     </p>
                                 }
                             }
                             <!-- title -->
-                            @if (sourceDescription?.description?.titles?.length) {
+                            @if (sourceDescription?.physDesc?.titles?.length) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.description.titles"
+                                    [details]="sourceDescription.physDesc.titles"
                                     detailsLabel="Titel"
                                     detailsClass="titles"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
@@ -169,9 +88,9 @@
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- date -->
-                            @if (sourceDescription?.description?.dates?.length) {
+                            @if (sourceDescription?.physDesc?.dates?.length) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.description.dates"
+                                    [details]="sourceDescription.physDesc.dates"
                                     detailsLabel="Datierung"
                                     detailsClass="dates"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
@@ -179,9 +98,9 @@
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- pagination -->
-                            @if (sourceDescription?.description?.paginations?.length) {
+                            @if (sourceDescription?.physDesc?.paginations?.length) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.description.paginations"
+                                    [details]="sourceDescription.physDesc.paginations"
                                     detailsLabel="Paginierung"
                                     detailsClass="paginations"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
@@ -189,9 +108,9 @@
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- measureNumbers -->
-                            @if (sourceDescription?.description?.measureNumbers?.length) {
+                            @if (sourceDescription?.physDesc?.measureNumbers?.length) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.description.measureNumbers"
+                                    [details]="sourceDescription.physDesc.measureNumbers"
                                     detailsLabel="Taktzahlen"
                                     detailsClass="measure-numbers"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
@@ -199,9 +118,9 @@
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- instrumentation -->
-                            @if (sourceDescription?.description?.instrumentations?.length) {
+                            @if (sourceDescription?.physDesc?.instrumentations?.length) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.description.instrumentations"
+                                    [details]="sourceDescription.physDesc.instrumentations"
                                     detailsLabel="Instrumentenvorsatz"
                                     detailsClass="instrumentations"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
@@ -209,9 +128,9 @@
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- annotations -->
-                            @if (sourceDescription?.description?.annotations?.length) {
+                            @if (sourceDescription?.physDesc?.annotations?.length) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.description.annotations"
+                                    [details]="sourceDescription.physDesc.annotations"
                                     detailsLabel="Eintragungen"
                                     detailsClass="annotations"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
@@ -219,16 +138,16 @@
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-details>
                             }
                             <!-- contents -->
-                            @if (sourceDescription?.description?.contents?.length) {
+                            @if (sourceDescription?.physDesc?.contents?.length) {
                                 <awg-source-description-contents
-                                    [contents]="sourceDescription.description.contents"
+                                    [contents]="sourceDescription.physDesc.contents"
                                     (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-source-description-contents>
                             }
 
                             <!-- corrections -->
-                            @if (sourceDescription?.description?.corrections?.length) {
+                            @if (sourceDescription?.physDesc?.corrections?.length) {
                                 <awg-source-description-corrections
-                                    [corrections]="sourceDescription.description.corrections"
+                                    [corrections]="sourceDescription.physDesc.corrections"
                                     (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                     (openModalRequest)="openModal($event)"
                                     (selectSvgSheetRequest)="

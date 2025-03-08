@@ -47,7 +47,7 @@ describe('SourceDescriptionContentsComponent', () => {
 
         // Test data
         expectedContents = JSON.parse(
-            JSON.stringify(mockEditionData.mockSourceDescriptionListData?.sources[1]?.description?.contents)
+            JSON.stringify(mockEditionData.mockSourceDescriptionListData?.sources[1]?.physDesc?.contents)
         );
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';

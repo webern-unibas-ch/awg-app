@@ -6,20 +6,20 @@
             "siglumAddendum": "",
             "type": "Autograph von „Das lockere Saatgefilde“ M 146: einzige Textfassung.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": ["1 Bogen (Bl. 1/2)."],
+            "physDesc": {
+                "conditions": ["1 Bogen (Bl. 1/2)."],
                 "writingMaterialStrings": [
                     "Notenpapier, 12 Systeme, Format hoch 343 × 265 mm, Firmenzeichen: [JE] | <em>No. 2 | 12 linig.</em> auf Bl. 1<sup>r</sup>, 2<sup>r</sup> unten links"
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -28,14 +28,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "265"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO2_LIN12_M146_A",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1r", "2r"],
                                     "position": "unten links"
                                 }
