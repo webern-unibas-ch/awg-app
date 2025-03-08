@@ -434,7 +434,7 @@ export const mockEditionData = {
                 siglumAddendum: '',
                 type: 'Skizzen',
                 location: 'CH-Bps, Sammlung Anton Webern.',
-                description: {},
+                physDesc: {},
             },
             {
                 id: 'source_Aa',
@@ -442,7 +442,7 @@ export const mockEditionData = {
                 siglumAddendum: 'a',
                 type: '',
                 location: 'Wien, Testcentre.',
-                description: {
+                physDesc: {
                     conditions: [
                         '2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert. Zeichen ergänzt mit Blick auf <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Textfassung 2</strong></a>',
                     ],
@@ -770,7 +770,7 @@ export const mockEditionData = {
                 missing: true,
                 type: 'Handexemplar von <strong>G</strong>.',
                 location: 'US-Wc, Moldenhauer Archives, Box-Folder: 59/10.',
-                description: {
+                physDesc: {
                     conditions: [
                         "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_G'})\"><strong>G</strong></a>.",
                     ],
@@ -1222,7 +1222,7 @@ export const mockEditionData = {
                 id: 'test-2',
                 label: 'test2',
                 evaluations: [
-                    'test description 1',
+                    'test evaluation 1',
                     "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_B'})\"><strong>B</strong></a> neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>C</strong></a> entspricht.",
                 ],
                 rowtable: true,

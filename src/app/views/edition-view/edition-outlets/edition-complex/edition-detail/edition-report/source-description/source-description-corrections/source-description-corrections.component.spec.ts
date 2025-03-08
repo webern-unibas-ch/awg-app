@@ -75,7 +75,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
         const expectedSourceDescriptionListData = JSON.parse(
             JSON.stringify(mockEditionData.mockSourceDescriptionListData)
         );
-        expectedCorrections = expectedSourceDescriptionListData.sources[1].description.corrections;
+        expectedCorrections = expectedSourceDescriptionListData.sources[1].physDesc.corrections;
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';

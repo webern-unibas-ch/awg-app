@@ -324,13 +324,13 @@ export class SourceDescriptionWritingInstruments {
 }
 
 /**
- * The SourceDescriptionDesc class.
+ * The SourceDescriptionPhysDesc class.
  *
  * It is used in the context of the edition view
- * to store the data for the description of a source description
+ * to store the data for the physical description of a source description
  * from a source description json file.
  */
-export class SourceDescriptionDesc {
+export class SourceDescriptionPhysDesc {
     /**
      * The conditions of a source (optional).
      */
@@ -431,9 +431,9 @@ export class SourceDescription {
     location: string;
 
     /**
-     * The description of a sourceDescription.
+     * The physical description of a sourceDescription.
      */
-    description: SourceDescriptionDesc;
+    physDesc: SourceDescriptionPhysDesc;
 }
 
 /**

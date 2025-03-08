@@ -212,7 +212,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
             });
 
             describe('... first description div', () => {
-                it('... should contain a description-head div, but no description-body in div.card-body', () => {
+                it('... should contain a description-head div, but no physDesc in div.card-body', () => {
                     const cardBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-list > div.awg-source-description > div.card-body',
@@ -294,7 +294,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
             });
 
             describe('... second description div', () => {
-                it('... should contain a description-head div, and a description-body in div.card-body', () => {
+                it('... should contain a description-head div, and a physDesc in div.card-body', () => {
                     const cardBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-list > div.awg-source-description > div.card-body',
@@ -364,35 +364,35 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[1].location.trim());
                 });
 
-                it('... should contain 1 paragraph in description-body div', () => {
+                it('... should contain 1 paragraph in physDesc div', () => {
                     // First description has no content, so only 2 divs
-                    const descBodyDes = getAndExpectDebugElementByCss(
+                    const physDescDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-phys-desc',
                         2,
                         2
                     );
 
-                    // Get first description body div with content
-                    getAndExpectDebugElementByCss(descBodyDes[0], 'div.awg-source-description-phys-desc > p', 1, 1);
+                    // Get first physDesc div with content
+                    getAndExpectDebugElementByCss(physDescDes[0], 'div.awg-source-description-phys-desc > p', 1, 1);
                 });
 
-                it('... the paragraph in description-body div displaying the writingInstruments', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(
+                it('... the paragraph in physDesc div displaying the writingInstruments', () => {
+                    const physDescDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-phys-desc',
                         2,
                         2
                     );
                     const pDes = getAndExpectDebugElementByCss(
-                        descBodyDes[0],
+                        physDescDes[0],
                         'div.awg-source-description-phys-desc > p',
                         1,
                         1
                     );
                     const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                    const instruments = expectedSourceDescriptionListData.sources[1].description.writingInstruments;
+                    const instruments = expectedSourceDescriptionListData.sources[1].physDesc.writingInstruments;
 
                     // Process HTML expression of expected text content
                     const expectedHtmlTextContent = mockDocument.createElement('p');
@@ -410,20 +410,20 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
                 });
 
-                it('... should contain up to 8 source description details components (stubbed) in description-body div', () => {
+                it('... should contain up to 8 source description details components (stubbed) in physDesc div', () => {
                     // First description has no content, so only 2 divs
-                    const descBodyDes = getAndExpectDebugElementByCss(
+                    const physDescDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-phys-desc',
                         2,
                         2
                     );
 
-                    getAndExpectDebugElementByDirective(descBodyDes[0], SourceDescriptionDetailsStubComponent, 8, 8);
+                    getAndExpectDebugElementByDirective(physDescDes[0], SourceDescriptionDetailsStubComponent, 8, 8);
                 });
 
                 it('... should pass down the conditions to the first source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(
+                    const physDescDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-phys-desc',
                         2,
@@ -431,7 +431,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     const detailDes = getAndExpectDebugElementByDirective(
-                        descBodyDes[0],
+                        physDescDes[0],
                         SourceDescriptionDetailsStubComponent,
                         8,
                         8
@@ -440,16 +440,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         SourceDescriptionDetailsStubComponent
                     ) as SourceDescriptionDetailsStubComponent;
 
-                    expectToEqual(
-                        detailCmp.details,
-                        expectedSourceDescriptionListData.sources[1].description.conditions
-                    );
+                    expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].physDesc.conditions);
                     expectToBe(detailCmp.detailsLabel, '');
                     expectToBe(detailCmp.detailsClass, 'conditions');
                 });
 
                 it('... should pass down the writingMaterials to the second source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(
+                    const physDescDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-phys-desc',
                         2,
@@ -457,7 +454,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     const detailDes = getAndExpectDebugElementByDirective(
-                        descBodyDes[0],
+                        physDescDes[0],
                         SourceDescriptionDetailsStubComponent,
                         8,
                         8
@@ -468,14 +465,14 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     expectToEqual(
                         detailCmp.details,
-                        expectedSourceDescriptionListData.sources[1].description.writingMaterialStrings
+                        expectedSourceDescriptionListData.sources[1].physDesc.writingMaterialStrings
                     );
                     expectToBe(detailCmp.detailsLabel, 'Beschreibstoff');
                     expectToBe(detailCmp.detailsClass, 'writing-materials');
                 });
 
                 it('... should pass down the titles to the third source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(
+                    const physDescDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-phys-desc',
                         2,
@@ -483,7 +480,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     const detailDes = getAndExpectDebugElementByDirective(
-                        descBodyDes[0],
+                        physDescDes[0],
                         SourceDescriptionDetailsStubComponent,
                         8,
                         8
@@ -492,13 +489,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         SourceDescriptionDetailsStubComponent
                     ) as SourceDescriptionDetailsStubComponent;
 
-                    expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].description.titles);
+                    expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].physDesc.titles);
                     expectToBe(detailCmp.detailsLabel, 'Titel');
                     expectToBe(detailCmp.detailsClass, 'titles');
                 });
 
                 it('... should pass down the dates to the fourth source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(
+                    const physDescDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-phys-desc',
                         2,
@@ -506,7 +503,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     const detailDes = getAndExpectDebugElementByDirective(
-                        descBodyDes[0],
+                        physDescDes[0],
                         SourceDescriptionDetailsStubComponent,
                         8,
                         8
@@ -515,13 +512,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         SourceDescriptionDetailsStubComponent
                     ) as SourceDescriptionDetailsStubComponent;
 
-                    expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].description.dates);
+                    expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].physDesc.dates);
                     expectToBe(detailCmp.detailsLabel, 'Datierung');
                     expectToBe(detailCmp.detailsClass, 'dates');
                 });
 
                 it('... should pass down the paginations to the fifth source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(
+                    const physDescDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-phys-desc',
                         2,
@@ -529,7 +526,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     const detailDes = getAndExpectDebugElementByDirective(
-                        descBodyDes[0],
+                        physDescDes[0],
                         SourceDescriptionDetailsStubComponent,
                         8,
                         8
@@ -538,16 +535,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         SourceDescriptionDetailsStubComponent
                     ) as SourceDescriptionDetailsStubComponent;
 
-                    expectToEqual(
-                        detailCmp.details,
-                        expectedSourceDescriptionListData.sources[1].description.paginations
-                    );
+                    expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].physDesc.paginations);
                     expectToBe(detailCmp.detailsLabel, 'Paginierung');
                     expectToBe(detailCmp.detailsClass, 'paginations');
                 });
 
                 it('... should pass down the measureNumbers to the sixth source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(
+                    const physDescDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-phys-desc',
                         2,
@@ -555,7 +549,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     const detailDes = getAndExpectDebugElementByDirective(
-                        descBodyDes[0],
+                        physDescDes[0],
                         SourceDescriptionDetailsStubComponent,
                         8,
                         8
@@ -566,14 +560,14 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     expectToEqual(
                         detailCmp.details,
-                        expectedSourceDescriptionListData.sources[1].description.measureNumbers
+                        expectedSourceDescriptionListData.sources[1].physDesc.measureNumbers
                     );
                     expectToBe(detailCmp.detailsLabel, 'Taktzahlen');
                     expectToBe(detailCmp.detailsClass, 'measure-numbers');
                 });
 
                 it('... should pass down the instrumentations to the seventh source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(
+                    const physDescDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-phys-desc',
                         2,
@@ -581,7 +575,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     const detailDes = getAndExpectDebugElementByDirective(
-                        descBodyDes[0],
+                        physDescDes[0],
                         SourceDescriptionDetailsStubComponent,
                         8,
                         8
@@ -592,14 +586,14 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     expectToEqual(
                         detailCmp.details,
-                        expectedSourceDescriptionListData.sources[1].description.instrumentations
+                        expectedSourceDescriptionListData.sources[1].physDesc.instrumentations
                     );
                     expectToBe(detailCmp.detailsLabel, 'Instrumentenvorsatz');
                     expectToBe(detailCmp.detailsClass, 'instrumentations');
                 });
 
                 it('... should pass down the annotations to the eighth source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(
+                    const physDescDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-phys-desc',
                         2,
@@ -607,7 +601,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     const detailDes = getAndExpectDebugElementByDirective(
-                        descBodyDes[0],
+                        physDescDes[0],
                         SourceDescriptionDetailsStubComponent,
                         8,
                         8
@@ -616,51 +610,58 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         SourceDescriptionDetailsStubComponent
                     ) as SourceDescriptionDetailsStubComponent;
 
-                    expectToEqual(
-                        detailCmp.details,
-                        expectedSourceDescriptionListData.sources[1].description.annotations
-                    );
+                    expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].physDesc.annotations);
                     expectToBe(detailCmp.detailsLabel, 'Eintragungen');
                     expectToBe(detailCmp.detailsClass, 'annotations');
                 });
 
                 describe('... the contents', () => {
                     it('... should contain SourceDescriptionContentsComponent if contents array is not empty', () => {
-                        const bodyDes = getAndExpectDebugElementByCss(
+                        const physDescDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-source-description-phys-desc',
                             2,
                             2
                         );
 
-                        // First body has contents
-                        getAndExpectDebugElementByDirective(bodyDes[0], SourceDescriptionContentsStubComponent, 1, 1);
+                        // First physDesc has contents
+                        getAndExpectDebugElementByDirective(
+                            physDescDes[0],
+                            SourceDescriptionContentsStubComponent,
+                            1,
+                            1
+                        );
                     });
 
                     it('... should contain no SourceDescriptionContentsComponent if contents array is empty or undefined', () => {
-                        const bodyDes = getAndExpectDebugElementByCss(
+                        const physDescDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-source-description-phys-desc',
                             2,
                             2
                         );
 
-                        // Second body has no contents
-                        getAndExpectDebugElementByDirective(bodyDes[1], SourceDescriptionContentsStubComponent, 0, 0);
+                        // Second physDesc has no contents
+                        getAndExpectDebugElementByDirective(
+                            physDescDes[1],
+                            SourceDescriptionContentsStubComponent,
+                            0,
+                            0
+                        );
                     });
 
                     it('... should pass down contents data to SourceDescriptionContentsComponent', () => {
-                        const expectedContents = expectedSourceDescriptionListData.sources[1].description.contents;
+                        const expectedContents = expectedSourceDescriptionListData.sources[1].physDesc.contents;
 
-                        const bodyDes = getAndExpectDebugElementByCss(
+                        const physDescDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-source-description-phys-desc',
                             2,
                             2
                         );
-                        // First body has contents
+                        // First physDesc has contents
                         const contentsDes = getAndExpectDebugElementByDirective(
-                            bodyDes[0],
+                            physDescDes[0],
                             SourceDescriptionContentsStubComponent,
                             1,
                             1
@@ -673,16 +674,16 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                 describe('... the corrections', () => {
                     it('... should contain SourceDescriptionCorrectionsComponent if corrections array is not empty', () => {
-                        const bodyDes = getAndExpectDebugElementByCss(
+                        const physDescDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-source-description-phys-desc',
                             2,
                             2
                         );
 
-                        // First body has corrections
+                        // First physDesc has corrections
                         getAndExpectDebugElementByDirective(
-                            bodyDes[0],
+                            physDescDes[0],
                             SourceDescriptionCorrectionsStubComponent,
                             1,
                             1
@@ -690,16 +691,16 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     });
 
                     it('... should contain no SourceDescriptionCorrectionsComponent if corrections array is empty or undefined', () => {
-                        const bodyDes = getAndExpectDebugElementByCss(
+                        const physDescDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-source-description-phys-desc',
                             2,
                             2
                         );
 
-                        // Second body has no corrections
+                        // Second physDesc has no corrections
                         getAndExpectDebugElementByDirective(
-                            bodyDes[1],
+                            physDescDes[1],
                             SourceDescriptionCorrectionsStubComponent,
                             0,
                             0
@@ -707,18 +708,17 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     });
 
                     it('... should pass down corrections data to SourceDescriptionCorrectionsComponent', () => {
-                        const expectedCorrections =
-                            expectedSourceDescriptionListData.sources[1].description.corrections;
+                        const expectedCorrections = expectedSourceDescriptionListData.sources[1].physDesc.corrections;
 
-                        const bodyDes = getAndExpectDebugElementByCss(
+                        const physDescDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-source-description-phys-desc',
                             2,
                             2
                         );
-                        // First body has corrections
+                        // First physDesc has corrections
                         const correctionsDes = getAndExpectDebugElementByDirective(
-                            bodyDes[0],
+                            physDescDes[0],
                             SourceDescriptionCorrectionsStubComponent,
                             1,
                             1
@@ -733,7 +733,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
             });
 
             describe('... third description div', () => {
-                it('... should contain a description-head div, and a description-body in div.card-body', () => {
+                it('... should contain a description-head div, and a physDesc in div.card-body', () => {
                     const cardBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-list > div.awg-source-description > div.card-body',
@@ -825,20 +825,20 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[2].location.trim());
                 });
 
-                it('... should contain up to 8 source description details components (stubbed) in description-body div', () => {
-                    // First description has no content, so only 2 divs
-                    const descBodyDes = getAndExpectDebugElementByCss(
+                it('... should contain up to 8 source description details components (stubbed) in physDesc div', () => {
+                    // First physDesc has no content, so only 2 divs
+                    const physDescDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-phys-desc',
                         2,
                         2
                     );
 
-                    getAndExpectDebugElementByDirective(descBodyDes[1], SourceDescriptionDetailsStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(physDescDes[1], SourceDescriptionDetailsStubComponent, 1, 1);
                 });
 
                 it('... should pass down the conditions to the first source description details component', () => {
-                    const descBodyDes = getAndExpectDebugElementByCss(
+                    const physDescDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-phys-desc',
                         2,
@@ -846,7 +846,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     );
 
                     const detailDes = getAndExpectDebugElementByDirective(
-                        descBodyDes[1],
+                        physDescDes[1],
                         SourceDescriptionDetailsStubComponent,
                         1,
                         1
@@ -855,10 +855,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         SourceDescriptionDetailsStubComponent
                     ) as SourceDescriptionDetailsStubComponent;
 
-                    expectToEqual(
-                        detailCmp.details,
-                        expectedSourceDescriptionListData.sources[2].description.conditions
-                    );
+                    expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[2].physDesc.conditions);
                     expectToBe(detailCmp.detailsLabel, '');
                     expectToBe(detailCmp.detailsClass, 'conditions');
                 });
