@@ -6,8 +6,8 @@
             "siglumAddendum": "",
             "type": "Reihentabelle.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "2 Blätter (Bl. 1–2). Rissspuren am linken Rand (Bl. 1, 2): von Bögen abgetrennt und beschnitten. Risse an den Rändern von Bl. 2. Kunststoffklebestreifen am linken Rand von Bl. 1<sup>r</sup> und 2<sup>v</sup>. Löcher von Reißzwecken oder Nadeln an Bl. 1 rechts und Bl. 2 links. Knickecken an beiden Blättern oben rechts. Horizontale Knickfalte an Bl. 2 unten (System 13). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> mit Bleistift auf Bl. 1–2 unten rechts oder links. Verso-Seiten bis auf die archivalische Paginierung unbeschriftet."
                 ],
                 "writingMaterialStrings": [
@@ -16,13 +16,13 @@
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 12,
-                            "info": "unten beschnitten",
-                            "addendum": ""
+                            "totalSystems": 12,
+                            "totalSystemsAddendum": "unten beschnitten",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
@@ -31,20 +31,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "267"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {},
                         "watermark": {},
                         "folioAddendum": "1"
                     },
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 13,
-                            "info": "unten beschnitten",
-                            "addendum": ""
+                            "totalSystems": 13,
+                            "totalSystemsAddendum": "unten beschnitten",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "quer",
                             "height": {
                                 "uncertainty": "",
@@ -53,7 +54,8 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "267"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {},
                         "watermark": {},
@@ -637,8 +639,8 @@
             "siglumAddendum": "",
             "type": "",
             "location": "",
-            "description": {
-                "desc": [
+            "physDesc": {
+                "conditions": [
                     "<small class=\"text-muted\">[Die Beschreibung der Quellen <strong>A</strong> sowie <strong>C–D</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition des <em>Konzerts für neun Instrumente</em> op. 24 in AWG I/1.]</small>"
                 ]
             }

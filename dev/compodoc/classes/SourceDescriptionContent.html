@@ -472,27 +472,32 @@ export class SourceDescriptionWritingMaterialDimension {
 }
 
 /**
- * The SourceDescriptionWritingMaterialFormat class.
+ * The SourceDescriptionWritingMaterialDimensions class.
  *
  * It is used in the context of the edition view
- * to store the data for the format of the writing material of a source description
+ * to store the data for the dimensions of the writing material of a source description
  * from a source description json file.
  */
-export class SourceDescriptionWritingMaterialFormat {
+export class SourceDescriptionWritingMaterialDimensions {
     /**
      * The orientation of the writing material (optional).
      */
     orientation?: string;
 
     /**
-     * The height dimensions of the writing material (optional).
+     * The height of the writing material (optional).
      */
     height?: SourceDescriptionWritingMaterialDimension;
 
     /**
-     * The width dimensions of the writing material (optional).
+     * The width of the writing material (optional).
      */
     width?: SourceDescriptionWritingMaterialDimension;
+
+    /**
+     * The unit of the dimensions of the writing material (optional).
+     */
+    unit?: string;
 }
 
 /**
@@ -516,21 +521,21 @@ export class SourceDescriptionWritingMaterialTrademark {
     /**
      * The location of the trademark on the writing material (optional).
      */
-    location?: SourceDescriptionWritingMaterialItemLocation[];
+    locus?: SourceDescriptionWritingMaterialItemLocus[];
 }
 
 /**
- * The SourceDescriptionWritingMaterialItemLocation class.
+ * The SourceDescriptionWritingMaterialItemLocus class.
  *
  * It is used in the context of the edition view
- * to store the data for the location of an item oof the writing material of a source description
+ * to store the data for the locus of an item of the writing material of a source description
  * from a source description json file.
  */
-export class SourceDescriptionWritingMaterialItemLocation {
+export class SourceDescriptionWritingMaterialItemLocus {
     /**
-     * An additional info to the item location on the writing material (optional).
+     * An additional info to the item locus on the writing material placed before the folios (optional).
      */
-    info?: string;
+    preFolioInfo?: string;
 
     /**
      * The folios on which the item is placed on the writing material (optional).
@@ -552,19 +557,19 @@ export class SourceDescriptionWritingMaterialItemLocation {
  */
 export class SourceDescriptionWritingMaterialSystems {
     /**
-     * The number of systems available (optional).
+     * The total number of systems available (optional).
      */
-    number?: number;
+    totalSystems?: number;
 
     /**
-     * Another info to the number of systems available (optional).
+     * An addendum to the total number of systems available (optional) to be displayed in parentheses.
      */
-    info?: string;
+    totalSystemsAddendum?: string;
 
     /**
-     * An addendum to the systems available (optional).
+     * Additional info regarding the systems available (optional).
      */
-    addendum?: string;
+    additionalInfo?: string;
 }
 
 /**
@@ -586,9 +591,9 @@ export class SourceDescriptionWritingMaterialWatermark {
     alt?: string;
 
     /**
-     * The location of the watermark on the writing material (optional).
+     * The locus of the watermark on the writing material (optional).
      */
-    location?: SourceDescriptionWritingMaterialItemLocation[];
+    locus?: SourceDescriptionWritingMaterialItemLocus[];
 }
 
 /**
@@ -600,9 +605,9 @@ export class SourceDescriptionWritingMaterialWatermark {
  */
 export class SourceDescriptionWritingMaterial {
     /**
-     * The paper type of the writing material (optional).
+     * The type of the writing material (optional).
      */
-    paperType?: string;
+    materialType?: string;
 
     /**
      * The systems of the writing material (optional).
@@ -610,9 +615,9 @@ export class SourceDescriptionWritingMaterial {
     systems?: SourceDescriptionWritingMaterialSystems;
 
     /**
-     * The format of the writing material (optional).
+     * The dimensions of the writing material (optional).
      */
-    format?: SourceDescriptionWritingMaterialFormat;
+    dimensions?: SourceDescriptionWritingMaterialDimensions;
 
     /**
      * The trademark of the writing material (optional).
@@ -650,17 +655,17 @@ export class SourceDescriptionWritingInstruments {
 }
 
 /**
- * The SourceDescriptionDesc class.
+ * The SourceDescriptionPhysDesc class.
  *
  * It is used in the context of the edition view
- * to store the data for the description of a source description
+ * to store the data for the physical description of a source description
  * from a source description json file.
  */
-export class SourceDescriptionDesc {
+export class SourceDescriptionPhysDesc {
     /**
-     * The description of a source (optional).
+     * The conditions of a source (optional).
      */
-    desc?: string[];
+    conditions?: string[];
 
     /**
      * The string representation of writing materials used for a source (optional).
@@ -757,9 +762,9 @@ export class SourceDescription {
     location: string;
 
     /**
-     * The description of a sourceDescription.
+     * The physical description of a sourceDescription.
      */
-    description: SourceDescriptionDesc;
+    physDesc: SourceDescriptionPhysDesc;
 }
 
 /**

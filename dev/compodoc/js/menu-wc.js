@@ -904,13 +904,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/SourceDescriptionModule.html" data-type="entity-link" >SourceDescriptionModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-SourceDescriptionModule-e7310f686ed8cdb06c581821db89eeebbd44c2738fd9f86f5965f7bad0169d1f3c51d02c182f6cb8d30c4e93bb105714603183bcfbdc7d7a025909cc60b43a27"' : 'data-bs-target="#xs-components-links-module-SourceDescriptionModule-e7310f686ed8cdb06c581821db89eeebbd44c2738fd9f86f5965f7bad0169d1f3c51d02c182f6cb8d30c4e93bb105714603183bcfbdc7d7a025909cc60b43a27"' }>
+                                            'data-bs-target="#components-links-module-SourceDescriptionModule-b7d9ef2238b9d3d0fd03cc2b558f5b1a8dab827a2dd414611073564a2ced9cc1932f773a8392f49c0ce47b5e56400dc15c968508748bf8c775ea2f0b0b94d2f8"' : 'data-bs-target="#xs-components-links-module-SourceDescriptionModule-b7d9ef2238b9d3d0fd03cc2b558f5b1a8dab827a2dd414611073564a2ced9cc1932f773a8392f49c0ce47b5e56400dc15c968508748bf8c775ea2f0b0b94d2f8"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SourceDescriptionModule-e7310f686ed8cdb06c581821db89eeebbd44c2738fd9f86f5965f7bad0169d1f3c51d02c182f6cb8d30c4e93bb105714603183bcfbdc7d7a025909cc60b43a27"' :
-                                            'id="xs-components-links-module-SourceDescriptionModule-e7310f686ed8cdb06c581821db89eeebbd44c2738fd9f86f5965f7bad0169d1f3c51d02c182f6cb8d30c4e93bb105714603183bcfbdc7d7a025909cc60b43a27"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SourceDescriptionModule-b7d9ef2238b9d3d0fd03cc2b558f5b1a8dab827a2dd414611073564a2ced9cc1932f773a8392f49c0ce47b5e56400dc15c968508748bf8c775ea2f0b0b94d2f8"' :
+                                            'id="xs-components-links-module-SourceDescriptionModule-b7d9ef2238b9d3d0fd03cc2b558f5b1a8dab827a2dd414611073564a2ced9cc1932f773a8392f49c0ce47b5e56400dc15c968508748bf8c775ea2f0b0b94d2f8"' }>
                                             <li class="link">
                                                 <a href="components/SourceDescriptionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionComponent</a>
                                             </li>
@@ -922,6 +922,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             </li>
                                             <li class="link">
                                                 <a href="components/SourceDescriptionDetailsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionDetailsComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/SourceDescriptionWritingMaterialsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionWritingMaterialsComponent</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -1054,6 +1057,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/SourceDescriptionDetailsComponent.html" data-type="entity-link" >SourceDescriptionDetailsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SourceDescriptionWritingMaterialsComponent.html" data-type="entity-link" >SourceDescriptionWritingMaterialsComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/SourceEvaluationComponent.html" data-type="entity-link" >SourceEvaluationComponent</a>
@@ -1504,13 +1510,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/SourceDescriptionContent.html" data-type="entity-link" >SourceDescriptionContent</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SourceDescriptionDesc.html" data-type="entity-link" >SourceDescriptionDesc</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/SourceDescriptionFolio.html" data-type="entity-link" >SourceDescriptionFolio</a>
                             </li>
                             <li class="link">
                                 <a href="classes/SourceDescriptionList.html" data-type="entity-link" >SourceDescriptionList</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SourceDescriptionPhysDesc.html" data-type="entity-link" >SourceDescriptionPhysDesc</a>
                             </li>
                             <li class="link">
                                 <a href="classes/SourceDescriptionSystem.html" data-type="entity-link" >SourceDescriptionSystem</a>
@@ -1528,10 +1534,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/SourceDescriptionWritingMaterialDimension.html" data-type="entity-link" >SourceDescriptionWritingMaterialDimension</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SourceDescriptionWritingMaterialFormat.html" data-type="entity-link" >SourceDescriptionWritingMaterialFormat</a>
+                                <a href="classes/SourceDescriptionWritingMaterialDimensions.html" data-type="entity-link" >SourceDescriptionWritingMaterialDimensions</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SourceDescriptionWritingMaterialItemLocation.html" data-type="entity-link" >SourceDescriptionWritingMaterialItemLocation</a>
+                                <a href="classes/SourceDescriptionWritingMaterialItemLocus.html" data-type="entity-link" >SourceDescriptionWritingMaterialItemLocus</a>
                             </li>
                             <li class="link">
                                 <a href="classes/SourceDescriptionWritingMaterialSystems.html" data-type="entity-link" >SourceDescriptionWritingMaterialSystems</a>

@@ -623,7 +623,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;1.2.0-243-gbab170f72&#x27;</code>
+                        <i>Default value : </i><code>&#x27;1.2.0-252-gec055b9dd&#x27;</code>
                     </td>
                 </tr>
 
@@ -655,7 +655,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;07. March 2025&#x27;</code>
+                        <i>Default value : </i><code>&#x27;08. March 2025&#x27;</code>
                     </td>
                 </tr>
 
@@ -3831,7 +3831,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 siglumAddendum: &#x27;&#x27;,
                 type: &#x27;Skizzen&#x27;,
                 location: &#x27;CH-Bps, Sammlung Anton Webern.&#x27;,
-                description: {},
+                physDesc: {},
             },
             {
                 id: &#x27;source_Aa&#x27;,
@@ -3839,13 +3839,13 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 siglumAddendum: &#x27;a&#x27;,
                 type: &#x27;&#x27;,
                 location: &#x27;Wien, Testcentre.&#x27;,
-                description: {
-                    desc: [
+                physDesc: {
+                    conditions: [
                         &#x27;2 Blätter (Bl. 1–2). Archivalische Paginierung &lt;em&gt;[1]&lt;/em&gt; bis &lt;em&gt;[4]&lt;/em&gt; unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2&lt;sup&gt;v&lt;/sup&gt; mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert. Zeichen ergänzt mit Blick auf &lt;a (click)&#x3D;&quot;ref.openModal(\&#x27;OP12_SHEET_COMING_SOON\&#x27;)&quot;&gt;&lt;strong&gt;Textfassung 2&lt;/strong&gt;&lt;/a&gt;&#x27;,
                     ],
                     writingMaterialStrings: [
-                        &#x27;Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen:&lt;br /&gt;&lt;img class&#x3D;&quot;img-thumbnail&quot; [src]&#x3D;&quot;ref.FIRM_SIGNS.FIRM_JE_NO2_LIN12.route&quot; [title]&#x3D;&quot;ref.FIRM_SIGNS.FIRM_JE_NO2_LIN12.full&quot; [alt]&#x3D;&quot;ref.FIRM_SIGNS.FIRM_JE_NO2_LIN12.short&quot; /&gt;&lt;br /&gt;auf Bl. 1&lt;sup&gt;r&lt;/sup&gt; unten links (Bl. 1)&#x27;,
-                        &#x27;Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2)&#x27;,
+                        &#x27;Notenpapier, 14 Systeme (unten beschnitten), Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_2_12# auf dem Kopf stehend auf Bl. 1&lt;sup&gt;r&lt;/sup&gt; unten links (Bl. 1)&#x27;,
+                        &#x27;Notenpapier, 16 Systeme, Format: hoch 270 × 175 mm, kein Firmenzeichen (Bl. 2)&#x27;,
                     ],
                     writingInstruments: {
                         main: &#x27;Bleistift&#x27;,
@@ -4167,9 +4167,71 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 missing: true,
                 type: &#x27;Handexemplar von &lt;strong&gt;G&lt;/strong&gt;.&#x27;,
                 location: &#x27;US-Wc, Moldenhauer Archives, Box-Folder: 59/10.&#x27;,
-                description: {
-                    desc: [
+                physDesc: {
+                    conditions: [
                         &quot;Siehe &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;&#x27;, fragmentId: &#x27;source_G&#x27;})\&quot;&gt;&lt;strong&gt;G&lt;/strong&gt;&lt;/a&gt;.&quot;,
+                    ],
+                    writingMaterialStrings: [
+                        &#x27;Notenpapier, 14 Systeme (unten beschnitten), Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_2_12# auf dem Kopf stehend auf Bl. 1&lt;sup&gt;r&lt;/sup&gt; unten links (Bl. 1)&#x27;,
+                        &#x27;Notenpapier, 16 Systeme, Format: hoch 270 × 175 mm, kein Firmenzeichen (Bl. 2)&#x27;,
+                    ],
+                    writingMaterials: [
+                        {
+                            materialType: &#x27;Notenpapier&#x27;,
+                            systems: {
+                                totalSystems: 14,
+                                totalSystemsAddendum: &#x27;unten beschnitten&#x27;,
+                                additionalInfo: &#x27;&#x27;,
+                            },
+                            dimensions: {
+                                orientation: &#x27;quer&#x27;,
+                                height: {
+                                    uncertainty: &#x27;ca.&#x27;,
+                                    value: &#x27;160–180&#x27;,
+                                },
+                                width: {
+                                    uncertainty: &#x27;&#x27;,
+                                    value: &#x27;267&#x27;,
+                                },
+                                unit: &#x27;mm&#x27;,
+                            },
+                            trademark: {
+                                variant: &#x27;JE_NO2_LIN12_OP3_J&#x27;,
+                                alt: &#x27;&#x27;,
+                                locus: [
+                                    {
+                                        preFolioInfo: &#x27;auf dem Kopf stehend&#x27;,
+                                        folios: [&#x27;1r&#x27;],
+                                        position: &#x27;unten links&#x27;,
+                                    },
+                                ],
+                            },
+                            watermark: {},
+                            folioAddendum: &#x27;1&#x27;,
+                        },
+                        {
+                            materialType: &#x27;Notenpapier&#x27;,
+                            systems: {
+                                totalSystems: 16,
+                                totalSystemsAddendum: &#x27;&#x27;,
+                                additionalInfo: &#x27;&#x27;,
+                            },
+                            dimensions: {
+                                orientation: &#x27;hoch&#x27;,
+                                height: {
+                                    uncertainty: &#x27;&#x27;,
+                                    value: &#x27;270&#x27;,
+                                },
+                                width: {
+                                    uncertainty: &#x27;&#x27;,
+                                    value: &#x27;175&#x27;,
+                                },
+                                unit: &#x27;mm&#x27;,
+                            },
+                            trademark: {},
+                            watermark: {},
+                            folioAddendum: &#x27;2&#x27;,
+                        },
                     ],
                 },
             },
@@ -4619,7 +4681,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 id: &#x27;test-2&#x27;,
                 label: &#x27;test2&#x27;,
                 evaluations: [
-                    &#x27;test description 1&#x27;,
+                    &#x27;test evaluation 1&#x27;,
                     &quot;In &lt;strong&gt;Sk2&lt;/strong&gt; werden T. 11–12 aus &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet({complexId: &#x27;testComplex1&#x27;, sheetId: &#x27;test-1&#x27;})\&quot;&gt;&lt;strong&gt;Sk1&lt;/strong&gt;&lt;/a&gt; bzw. T. 10–11 aus &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment({complexId: &#x27;&#x27;, fragmentId: &#x27;source_B&#x27;})\&quot;&gt;&lt;strong&gt;B&lt;/strong&gt;&lt;/a&gt; neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;C&lt;/strong&gt;&lt;/a&gt; entspricht.&quot;,
                 ],
                 rowtable: true,

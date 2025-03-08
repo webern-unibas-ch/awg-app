@@ -6,20 +6,20 @@
             "siglumAddendum": "",
             "type": "Autograph von <em>Kunfttag I</em> („Dem bist du Kind“) M 144: einzige Textfassung.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": ["1 Bogen (Bl. 1/2). Falz rechts, Bl. 1<sup>v</sup>, 2<sup>r</sup> unbeschriftet."],
+            "physDesc": {
+                "conditions": ["1 Bogen (Bl. 1/2). Falz rechts, Bl. 1<sup>v</sup>, 2<sup>r</sup> unbeschriftet."],
                 "writingMaterialStrings": [
                     "Notenpapier, 22 Systeme, Format hoch 344 × 265 mm, Firmenzeichen [JE] | <em>No. 7 | 22 linig.</em> auf Bl. 1<sup>v</sup>, 2<sup>v</sup> unten links"
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 22,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 22,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -28,14 +28,15 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "265"
-                            }
+                            },
+                            "unit": "mm"
                         },
                         "trademark": {
                             "variant": "JE_NO7_LIN22_M144_A",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1v", "2v"],
                                     "position": "unten links"
                                 }
