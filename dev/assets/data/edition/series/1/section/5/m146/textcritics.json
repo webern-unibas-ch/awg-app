@@ -1,0 +1,149 @@
+{
+    "textcritics": [
+        {
+            "id": "M_146_TF1",
+            "label": "M 146 einzige Textfassung",
+            "evaluations": [
+                "Für die Edition der einzigen Textfassung von „Das lockere Saatgefilde“ M 146 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle.",
+                "Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A'})\"><strong>A</strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte auf Rasur oder Tektur (<a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a>) und mit Bleistift oder Buntstift (<a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>) vorgenommen. Der Zustand vor Korrekturen 1 ist nicht eindeutig zu entziffern. Der Zustand nach Korrekturen 1 etabliert eine kohärente Textfassung. Korrekturen 2 sind nicht immer eindeutig.",
+                "Hauptquelle für die Textedition von „Das lockere Saatgefilde“ M 146 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A'})\"><strong>A</strong></a> inklusive Korrekturen 1."
+            ],
+            "commentary": {
+                "preamble": "",
+                "comments": [
+                    {
+                        "blockHeader": "",
+                        "blockComments": [
+                            {
+                                "svgGroupId": "g394",
+                                "measure": "1",
+                                "system": "Ges.",
+                                "position": "2.–3. Note",
+                                "comment": "Text sic: Silbentrennung <em>lo-cke</em>(-re)."
+                            },
+                            {
+                                "svgGroupId": "g403",
+                                "measure": "3",
+                                "system": "Ges.",
+                                "position": "2. Note",
+                                "comment": "Text: Großschreibung <em>Da</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                            },
+                            {
+                                "svgGroupId": "g425",
+                                "measure": "4",
+                                "system": "Ges.",
+                                "position": "1–2/8",
+                                "comment": "Text sic: Silbentrennung <em>fro-ste</em>."
+                            },
+                            {
+                                "svgGroupId": "g426",
+                                "measure": "4",
+                                "system": "Ges.",
+                                "position": "5/16",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span>&ngsp;<em>zart</em> in einer Zeile angeordnet. <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A'})\"><strong>A</strong></a>: <span class='glyph'>{{ref.getGlyph('[p]')}}</span> unter, <em>zart</em> über dem System."
+                            },
+                            {
+                                "svgGroupId": "g553",
+                                "measure": "6",
+                                "system": "Klav. o.",
+                                "position": "1. Note",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[f]')}}</span> versetzt von 2. Note."
+                            },
+                            {
+                                "svgGroupId": "g554",
+                                "measure": "6",
+                                "system": "Ges.",
+                                "position": "4/8",
+                                "comment": "<em>Anmerkung</em> [...]<em>: zwischen f und e</em>[.] versetzt vom oberen Seitenrand. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>: Kreuznotenkopf geändert zu ausgefülltem Notenkopf e<sup>1</sup>, <em>Anm.</em> über der Note sowie Anmerkungstext gestrichen."
+                            },
+                            {
+                                "svgGroupId": "g555",
+                                "measure": "6",
+                                "system": "Klav. o.",
+                                "position": "8/16",
+                                "comment": "<em>linke Hand</em> abgekürzt zu <em>l. H.</em>"
+                            },
+                            {
+                                "svgGroupId": "g556",
+                                "measure": "8",
+                                "system": "Klav. o.",
+                                "position": "3/16",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> zu g<sup>2</sup> korrigiert zu <span class='glyph'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>2</sup> mit Blick auf 8/16 und 6/8. Siehe <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>: <span class='glyph'>{{ref.getGlyph('[a]')}}</span> geändert zu <span class='glyph'>{{ref.getGlyph('[#]')}}</span>."
+                            },
+                            {
+                                "svgGroupId": "g557",
+                                "measure": "8",
+                                "system": "Ges.",
+                                "position": "3. Note",
+                                "comment": "Anfang des Bogens versetzt von Anfang T. 9 (Fortführung eines Bogens nach Seitenwechsel)."
+                            },
+                            {
+                                "svgGroupId": "g563",
+                                "measure": "9",
+                                "system": "Klav. u.",
+                                "position": "1/16",
+                                "comment": "c<sup>1</sup> korrigiert zu d<sup>1</sup> mit Blick auf Ligaturbogen von T. 8 und Ostinato-Struktur von T. 8 3/16 bis T. 9 2/8."
+                            },
+                            {
+                                "svgGroupId": "g562",
+                                "measure": "9",
+                                "system": "Klav. o.",
+                                "position": "11/16",
+                                "comment": "<em>rechte H.</em> abgekürzt zu <em>r. H.</em>"
+                            },
+                            {
+                                "svgGroupId": "g569",
+                                "measure": "12",
+                                "system": "Ges.",
+                                "position": "4/8",
+                                "comment": "Ende des Bogens versetzt von Ende T. 10 (Fortführung eines Bogens vor Akkoladenwechsel)."
+                            },
+                            {
+                                "svgGroupId": "g570",
+                                "measure": "12",
+                                "system": "Ges.",
+                                "position": "6/8",
+                                "comment": "Anfang des Bogens versetzt von Anfang T. 13 (Fortführung eines Bogens nach Seitenwechsel).  <br /> Text: Großschreibung <em>Das</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                            },
+                            {
+                                "svgGroupId": "g571",
+                                "measure": "13",
+                                "system": "Ges.",
+                                "position": "1/4–6/16",
+                                "comment": "Text: Längenstrich von 1/4 bis 5/16 korrigiert zu Silbentrennstrich."
+                            },
+                            {
+                                "svgGroupId": "g605",
+                                "measure": "14",
+                                "system": "Ges.",
+                                "position": "1–4/16",
+                                "comment": "Text sic: <em>leicht-ge-wirk-ten</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>: <em>leichtgewirrten</em>."
+                            },
+                            {
+                                "svgGroupId": "g606",
+                                "measure": "14",
+                                "system": "Ges.",
+                                "position": "6/8",
+                                "comment": "Text: Großschreibung <em>Dein</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                            },
+                            {
+                                "svgGroupId": "g607",
+                                "measure": "15",
+                                "system": "Klav. u.",
+                                "position": "1/16",
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[ppp]')}}</span> versetzt von 2/16."
+                            },
+                            {
+                                "svgGroupId": "g608",
+                                "measure": "16",
+                                "system": "Ges.",
+                                "position": "letzte Note",
+                                "comment": "Text: Punkt nach (feuch-)<em>te</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm146', fragmentId: 'text_George_DsR'})\"><strong>George_DsR</strong></a>."
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

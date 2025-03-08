@@ -1,0 +1,182 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "A",
+            "convoluteLabel": "A Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "14",
+                    "format": {
+                        "height": 180,
+                        "width": 267
+                    },
+                    "content": [
+                        {
+                            "complexId": "op12",
+                            "sheetId": "M_212_Sk1a",
+                            "sigle": "M 212 Sk1",
+                            "sigleAddendum": "T. 1–6",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 2,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op12",
+                            "sheetId": "M_212_Sk1b",
+                            "sigle": "M 212 Sk1",
+                            "sigleAddendum": "T. 7–12",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 6,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op12",
+                            "sheetId": "M_212_Sk1c",
+                            "sigle": "M 212 Sk1",
+                            "sigleAddendum": "T. 13–17",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 14
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "14",
+                    "format": {
+                        "height": 180,
+                        "width": 267
+                    },
+                    "content": [
+                        {
+                            "complexId": "op12",
+                            "sheetId": "M_212_Sk4",
+                            "sigle": "M 212 Sk4",
+                            "sigleAddendum": "T. 10–11",
+                            "reversed": true,
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 7
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op12",
+                            "sheetId": "M_212_Sk5",
+                            "sigle": "M 212 Sk5",
+                            "sigleAddendum": "T. 10–11",
+                            "reversed": true,
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 6,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op12",
+                            "sheetId": "M_212_Sk3",
+                            "sigle": "M 212 Sk3",
+                            "sigleAddendum": "T. 10–11",
+                            "reversed": true,
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op12",
+                            "sheetId": "M_212_Sk2",
+                            "sigle": "M 212 Sk2",
+                            "sigleAddendum": "T. 10–12",
+                            "reversed": true,
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 12,
+                                    "endSystem": 14
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "16",
+                    "format": {
+                        "height": "175",
+                        "width": "270"
+                    },
+                    "content": [
+                        {
+                            "complexId": "op12",
+                            "sheetId": "M_212_Sk1d",
+                            "sigle": "M 212 Sk1",
+                            "sigleAddendum": "T. 18–22",
+                            "sections": [
+                                {
+                                    "startSystem": 6,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "op12",
+                            "sheetId": "M_212_Sk1e",
+                            "sigle": "M 212 Sk1",
+                            "sigleAddendum": "T. 23–24",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 15
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "16",
+                    "format": {
+                        "height": "175",
+                        "width": "270"
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "B–H",
+            "convoluteLabel": "B–H (siehe Kritischer Bericht)",
+            "folios": [],
+            "linkTo": "OP12_SOURCE_NOT_AVAILABLE"
+        }
+    ]
+}

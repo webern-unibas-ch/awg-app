@@ -1,0 +1,703 @@
+{
+    "sources": [
+        {
+            "id": "source_B",
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Reihentabelle und Skizze.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "physDesc": {
+                "conditions": [
+                    "3 Blätter (Bl. 1–3). Kunststoffklebestreifen am linken Rand von Bl. 1<sup>r</sup>, 2<sup>r</sup> und 3<sup>v</sup>. Löcher von Reißzwecken oder Nadeln an den linken und rechten Rändern aller Blätter. Rissspuren am linken (Bl. 1) bzw. rechten Rand (Bl. 2, 3): von Bögen abgetrennt und beschnitten. Knickfalte am rechten Rand von Bl. 1 (ca. 4 cm) und am linken Rand von Bl. 2 (ca. 3 cm). Archivalische Paginierung mit Bleistift <em>[1]</em> bis <em>[6]</em> auf Bl. 1<sup>r</sup>–3<sup>v</sup> unten rechts. Bl. 2<sup>v</sup> und 3<sup>v</sup> bis auf die archivalische Paginierung unbeschriftet."
+                ],
+                "writingMaterialStrings": [
+                    "Notenpapier, 9 Systeme (oben und unten beschnitten), Format (quer): 147–152 (Bl. 1) bzw. 146–147 (Bl. 2) × 266 mm, kein Firmenzeichen (Bl. 1, 2)",
+                    "Notenpapier, 11 Systeme (unten beschnitten), Format (quer): 165 × 255 mm, kein Firmenzeichen (Bl. 3)"
+                ],
+                "writingMaterials": [
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 9,
+                            "totalSystemsAddendum": "oben und unten beschnitten",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "147–152 (Bl. 1) bzw. 146–147 (Bl. 2)"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "266"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {},
+                        "watermark": {},
+                        "folioAddendum": "1, 2"
+                    },
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 11,
+                            "totalSystemsAddendum": "unten beschnitten",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "165"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "255"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {},
+                        "watermark": {},
+                        "folioAddendum": "3"
+                    }
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": ["blauer Buntstift", "grüner Buntstift", "roter Buntstift", "Kopierstift"]
+                },
+                "titles": [
+                    "<em><u>Reihen</u>   Trio op</em>[.] <em>20</em> auf Bl. 1<sup>r</sup> oben halbrechts mit Bleistift; <em>Trio, op</em>[.] <em>20</em> auf Bl. 2<sup>r</sup> und Bl. 3<sup>r</sup> oben rechts mit Bleistift"
+                ],
+                "dates": [
+                    "<em><u>Gge., Br., Vlc.</u> | 1926/27</em> auf Bl. 1<sup>r</sup> oben rechts mit rotem Buntstift"
+                ],
+                "paginations": ["<em>III.</em> auf Bl. 3<sup>r</sup> oben links mit blauem Buntstift"],
+                "measureNumbers": [],
+                "instrumentations": [],
+                "annotations": [
+                    "<em>AWebern</em> vertikal aufsteigend auf Bl. 1<sup>r</sup>, 2<sup>r</sup> rechts sowie horizontal auf Bl. 3<sup>r</sup> oben halbrechts (Hs. Wilhelmine Webern?)"
+                ],
+                "contents": [
+                    {
+                        "item": "M 289 / M 290 / M 291 RT",
+                        "itemLinkTo": {
+                            "complexId": "op20",
+                            "sheetId": "SkRT"
+                        },
+                        "itemDescription": "(Reihentabelle op. 20)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "SkRTa",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "as",
+                                                "rowNumber": "I"
+                                            }
+                                        },
+                                        {
+                                            "system": "1b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "b",
+                                                "rowNumber": "II"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "2a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "as",
+                                                "rowNumber": "III"
+                                            }
+                                        },
+                                        {
+                                            "system": "2b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "f",
+                                                "rowNumber": "IV"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "d",
+                                                "rowNumber": "V"
+                                            }
+                                        },
+                                        {
+                                            "system": "3b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "f",
+                                                "rowNumber": "VI"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "d",
+                                                "rowNumber": "VII"
+                                            }
+                                        },
+                                        {
+                                            "system": "4b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "h",
+                                                "rowNumber": "VIII"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "f",
+                                                "rowNumber": "IX"
+                                            }
+                                        },
+                                        {
+                                            "system": "5b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "gis",
+                                                "rowNumber": "X"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "f",
+                                                "rowNumber": "XI"
+                                            }
+                                        },
+                                        {
+                                            "system": "6b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "d",
+                                                "rowNumber": "XII"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "e",
+                                                "rowNumber": "XIII"
+                                            }
+                                        },
+                                        {
+                                            "system": "7b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "g",
+                                                "rowNumber": "XIV"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "e",
+                                                "rowNumber": "XV"
+                                            }
+                                        },
+                                        {
+                                            "system": "8b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "des",
+                                                "rowNumber": "XVI"
+                                            }
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "SkRTb",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "g",
+                                                "rowNumber": "XVII"
+                                            }
+                                        },
+                                        {
+                                            "system": "1b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "b",
+                                                "rowNumber": "XVIII"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "2a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "g",
+                                                "rowNumber": "XIX"
+                                            }
+                                        },
+                                        {
+                                            "system": "2b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "e",
+                                                "rowNumber": "XX"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "ges",
+                                                "rowNumber": "XXI"
+                                            }
+                                        },
+                                        {
+                                            "system": "3b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "a",
+                                                "rowNumber": "XXII"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "ges",
+                                                "rowNumber": "XXIII"
+                                            }
+                                        },
+                                        {
+                                            "system": "4b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "es",
+                                                "rowNumber": "XXIV"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "es",
+                                                "rowNumber": "XXV"
+                                            }
+                                        },
+                                        {
+                                            "system": "5b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "fis",
+                                                "rowNumber": "XXVI"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "es",
+                                                "rowNumber": "XXVII"
+                                            }
+                                        },
+                                        {
+                                            "system": "6b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "c",
+                                                "rowNumber": "XXVIII"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "des",
+                                                "rowNumber": "XXIX"
+                                            }
+                                        },
+                                        {
+                                            "system": "7b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "e",
+                                                "rowNumber": "XXX"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "des",
+                                                "rowNumber": "XXXI"
+                                            }
+                                        },
+                                        {
+                                            "system": "8b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "b",
+                                                "rowNumber": "XXXII"
+                                            }
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "3r",
+                                "folioLinkTo": "SkRTc",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "a",
+                                                "rowNumber": "XXXIII"
+                                            }
+                                        },
+                                        {
+                                            "system": "1b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "c",
+                                                "rowNumber": "XXXIV"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "2a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "a",
+                                                "rowNumber": "XXXV"
+                                            }
+                                        },
+                                        {
+                                            "system": "2b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "fis",
+                                                "rowNumber": "XXXVI"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "b",
+                                                "rowNumber": "XXXVII"
+                                            }
+                                        },
+                                        {
+                                            "system": "3b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "cis",
+                                                "rowNumber": "XXXVIII"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "b",
+                                                "rowNumber": "XXXIX"
+                                            }
+                                        },
+                                        {
+                                            "system": "4b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "g",
+                                                "rowNumber": "XL"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "h",
+                                                "rowNumber": "XLI"
+                                            }
+                                        },
+                                        {
+                                            "system": "5b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "d",
+                                                "rowNumber": "XLII"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "h",
+                                                "rowNumber": "XLIII"
+                                            }
+                                        },
+                                        {
+                                            "system": "6b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "as",
+                                                "rowNumber": "XLIV"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "c",
+                                                "rowNumber": "XLV"
+                                            }
+                                        },
+                                        {
+                                            "system": "7b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "es",
+                                                "rowNumber": "XLVI"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "c",
+                                                "rowNumber": "XLVII"
+                                            }
+                                        },
+                                        {
+                                            "system": "8b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "a",
+                                                "rowNumber": "XLVIII"
+                                            }
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 289 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Reihentabelle [Variante])",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "as",
+                                                "rowNumber": ""
+                                            }
+                                        },
+                                        {
+                                            "system": "1b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "b",
+                                                "rowNumber": ""
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "2a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "as",
+                                                "rowNumber": ""
+                                            }
+                                        },
+                                        {
+                                            "system": "2b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "fis",
+                                                "rowNumber": ""
+                                            }
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
