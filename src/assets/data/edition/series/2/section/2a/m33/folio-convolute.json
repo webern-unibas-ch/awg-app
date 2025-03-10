@@ -371,7 +371,6 @@
                             "sheetId": "M_9_Sk1a",
                             "sigle": "M 9 Sk1",
                             "sigleAddendum": "T. 1–6",
-                            "reversed": true,
                             "selectable": false,
                             "sectionPartition": 1,
                             "sections": [
@@ -387,7 +386,6 @@
                             "sheetId": "M_9_Sk1b",
                             "sigle": "M 9 Sk1",
                             "sigleAddendum": "T. 7–13",
-                            "reversed": true,
                             "selectable": false,
                             "sectionPartition": 1,
                             "sections": [
@@ -403,7 +401,6 @@
                             "sheetId": "M_9_Sk1c",
                             "sigle": "M 9 Sk1",
                             "sigleAddendum": "T. 14–20",
-                            "reversed": true,
                             "selectable": false,
                             "sectionPartition": 1,
                             "sections": [
