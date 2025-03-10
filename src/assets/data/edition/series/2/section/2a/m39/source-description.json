@@ -1328,7 +1328,7 @@
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "1. Note",
-                                            "comment": "Halbe Note überschreibt Viertelnote. Viertelnote <span class='glyph'>{{ref.getGlyph('[[#]]')}}</span>gis<sup>1</sup> gestrichen."
+                                            "comment": "Halbe Note überschreibt Viertelnote. Viertelnote [<span class='glyph'>{{ref.getGlyph('[#]')}}</span>]gis<sup>1</sup> gestrichen."
                                         },
                                         {
                                             "measure": "16",
