@@ -6,10 +6,45 @@
             "siglumAddendum": "",
             "type": "Autograph von „Erwachen aus dem tiefsten Traumesschoße“ M 143: einzige Textfassung.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": ["1 Bogen (Bl. 1/2). Bl. 2<sup>v</sup> unbeschriftet."],
+            "physDesc": {
+                "conditions": ["1 Bogen (Bl. 1/2). Bl. 2<sup>v</sup> unbeschriftet."],
                 "writingMaterialStrings": [
-                    "Notenpapier, Format hoch 346 × 265 mm, Firmenzeichen [JE] | <em>No. 5 | 18 linig.</em> auf Bl. 1<sup>r</sup>, 2<sup>r</sup> unten links."
+                    "Notenpapier, 18 Systeme, Format hoch 346 × 265 mm, Firmenzeichen [JE] | <em>No. 5 | 18 linig.</em> auf Bl. 1<sup>r</sup>, 2<sup>r</sup> unten links."
+                ],
+                "writingMaterials": [
+                    {
+                        "materialType": "Notenpapier",
+                        "systems": {
+                            "totalSystems": 18,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
+                        },
+                        "dimensions": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "346"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "265"
+                            },
+                            "unit": "mm"
+                        },
+                        "trademark": {
+                            "variant": "JE_NO5_LIN18_M143_A",
+                            "alt": "",
+                            "locus": [
+                                {
+                                    "preFolioInfo": "",
+                                    "folios": ["1r", "2r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {},
+                        "folioAddendum": "1–2"
+                    }
                 ],
                 "writingInstruments": {
                     "main": "Tinte",
