@@ -524,23 +524,50 @@ describe('FolioService (DONE)', () => {
                 expectToBe(svgSheetGroup.selectAll('.system-line-group').size(), systemCount);
             });
 
-            it('... should trigger `_appendSystemsGroupLabel` for each system', () => {
-                const systemIndex = expectedFolioSvgData.systems.systemsLabelPositions.length - 1;
+            it('... should trigger `_appendSystemsGroupLabel` for regular systems', () => {
+                const systemIndex = expectedFolioSvgData.systems.systemsLines.length - 1;
+                const labelIndex = systemIndex + 1; // Regular label index
+                const labelPosition = expectedFolioSvgData.systems.systemsLabelPositions[systemIndex];
 
                 const systemsGroup = svgSheetGroup
                     .append('g')
-                    .attr('systemsGroupId', systemIndex + 1)
+                    .attr('systemsGroupId', labelIndex)
                     .attr('class', 'systems-group');
-                systemsGroup
-                    .append('g')
-                    .attr('systemLineGroupId', systemIndex + 1)
-                    .attr('class', 'system-line-group');
+                systemsGroup.append('g').attr('systemLineGroupId', labelIndex).attr('class', 'system-line-group');
 
                 expectToBe(appendSystemsGroupLabelSpy.calls.count(), systemIndex + 1);
                 expectSpyCall(appendSystemsGroupLabelSpy, systemIndex + 1, [
-                    svgSheetGroup.select(`[systemsGroupId="${systemIndex + 1}"]`),
-                    expectedFolioSvgData,
-                    systemIndex,
+                    svgSheetGroup.select(`[systemsGroupId="${labelIndex}"]`),
+                    labelPosition,
+                    labelIndex,
+                ]);
+            });
+
+            it('... should trigger `_appendSystemsGroupLabel` for reversed systems', () => {
+                const altFolioSvgData = new FolioSvgData(
+                    new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
+                );
+
+                svgSheetGroup = D3_SELECTION.create('g');
+
+                (folioService as any)._addFolioSystemsToSvgCanvas(svgSheetGroup, altFolioSvgData);
+
+                const systemIndex = altFolioSvgData.systems.systemsLines.length - 1;
+                const labelIndex = altFolioSvgData.systems.systemsLines.length - systemIndex; // Reversed label index
+                const labelPosition = altFolioSvgData.systems.systemsLabelPositions[systemIndex];
+
+                const systemsGroup = svgSheetGroup
+                    .append('g')
+                    .attr('systemsGroupId', labelIndex)
+                    .attr('class', 'systems-group');
+                systemsGroup.append('g').attr('systemLineGroupId', labelIndex).attr('class', 'system-line-group');
+
+                // Method got called twice, once for regular and once for reversed systems
+                expectToBe(appendSystemsGroupLabelSpy.calls.count(), 2 * (systemIndex + 1));
+                expectSpyCall(appendSystemsGroupLabelSpy, 2 * (systemIndex + 1), [
+                    svgSheetGroup.select(`[systemsGroupId="${labelIndex}"]`),
+                    labelPosition,
+                    labelIndex,
                 ]);
             });
 
@@ -1729,7 +1756,11 @@ describe('FolioService (DONE)', () => {
 
                 systemIndex = 0;
 
-                (folioService as any)._appendSystemsGroupLabel(systemsGroup, expectedFolioSvgData, systemIndex);
+                (folioService as any)._appendSystemsGroupLabel(
+                    systemsGroup,
+                    expectedFolioSvgData.systems.systemsLabelPositions[systemIndex],
+                    systemIndex + 1
+                );
             });
 
             afterEach(() => {

@@ -212,16 +212,21 @@ export class FolioService {
      */
     private _addFolioSystemsToSvgCanvas(svgSheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
         folioSvgData.systems.systemsLines.forEach((systemArray: FolioCalculationLine[], systemIndex: number) => {
+            const labelIndex = folioSvgData.systems.systemsReversed
+                ? folioSvgData.systems.systemsLines.length - systemIndex
+                : systemIndex + 1;
+            const labelPosition: FolioCalculationPoint = folioSvgData.systems.systemsLabelPositions[systemIndex];
+
             const svgSystemsGroup = this._appendSvgElementWithAttrs(svgSheetGroup, 'g', {
-                systemsGroupId: systemIndex + 1,
+                systemsGroupId: labelIndex,
                 class: 'systems-group',
             });
             const svgSystemLineGroup = this._appendSvgElementWithAttrs(svgSystemsGroup, 'g', {
-                systemLineGroupId: systemIndex + 1,
+                systemLineGroupId: labelIndex,
                 class: 'system-line-group',
             });
 
-            this._appendSystemsGroupLabel(svgSystemsGroup, folioSvgData, systemIndex);
+            this._appendSystemsGroupLabel(svgSystemsGroup, labelPosition, labelIndex);
             this._appendSystemsGroupLines(svgSystemLineGroup, systemArray);
         });
     }
@@ -373,7 +378,7 @@ export class FolioService {
         this._appendContentSegmentLinkLabelTspanElements(label, contentSegment);
 
         // Rotate the label 180 degrees around its center when reversed
-        if (contentSegment.reversed) {
+        if (contentSegment.segmentReversed) {
             label.attr(
                 'transform',
                 `rotate(${this._contentSegmentReversedRotationAngle}, ${contentSegment.centeredXPosition}, ${contentSegment.centeredYPosition})`
@@ -510,26 +515,24 @@ export class FolioService {
      * It appends a label to the systems group.
      *
      * @param {D3Selection} svgSystemsGroup The given SVG systems group selection.
-     * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
-     * @param {number} systemIndex The given system index.
+     * @param {FolioCalculationPoint} labelPosition The given calculated label position.
+     * @param {number} labelIndex The given label index.
      * @returns {void} Appends a label to the systems group selection.
      */
     private _appendSystemsGroupLabel(
         svgSystemsGroup: D3Selection,
-        folioSvgData: FolioSvgData,
-        systemIndex: number
+        labelPosition: FolioCalculationPoint,
+        labelIndex: number
     ): void {
-        const { x, y } = folioSvgData.systems.systemsLabelPositions[systemIndex];
-        const systemLabel = systemIndex + 1;
         const attributes = {
             class: 'system-label',
-            x: x,
-            y: y,
+            x: labelPosition.x,
+            y: labelPosition.y,
             fill: this._bgColor,
         };
         attributes['dominant-baseline'] = 'hanging';
 
-        this._appendSvgElementWithAttrs(svgSystemsGroup, 'text', attributes).text(systemLabel);
+        this._appendSvgElementWithAttrs(svgSystemsGroup, 'text', attributes).text(labelIndex);
     }
 
     /**
