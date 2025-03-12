@@ -733,29 +733,8 @@
                         }
                     },
                     {
-                        "id": "source_Bb_corr_1",
-                        "label": "Korrekturen 1 in <strong>B<sup>b</sup></strong> (mit Tinte)",
-                        "evaluations": [],
-                        "commentary": {
-                            "preamble": "",
-                            "comments": [
-                                {
-                                    "blockHeader": "",
-                                    "blockComments": [
-                                        {
-                                            "measure": "8",
-                                            "system": "Klav. o.",
-                                            "position": "2. Note",
-                                            "comment": "Unterstimmenschicht: h/d<sup>1</sup> überschreibt c<sup>1</sup>? Entzifferung unsicher."
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "id": "source_Bb_corr_2",
-                        "label": "Korrekturen 2 in <strong>B<sup>b</sup></strong> (mit Bleistift)",
+                        "id": "source_Bb_corr",
+                        "label": "Korrekturen in <strong>B<sup>b</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
                             "preamble": "",
