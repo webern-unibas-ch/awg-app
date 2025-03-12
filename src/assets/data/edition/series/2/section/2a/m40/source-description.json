@@ -6,20 +6,20 @@
             "siglumAddendum": "",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 40.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 35/42, M 39 Textfassung 2, M 41 und M* 405–406.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": ["1 Bogen (Bl. 1/2). Kleiner Riss am rechten Rand von Bl. 2."],
+            "physDesc": {
+                "conditions": ["1 Bogen (Bl. 1/2). Kleiner Riss am rechten Rand von Bl. 2."],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 348 × 266 mm, Firmenzeichen ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>."
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 18,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 18,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -28,19 +28,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "266"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_5_LIN_18_C",
+                        "trademark": {
+                            "variant": "JE_NO5_LIN18_M34_A",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1r", "2r"],
                                     "position": "unten links"
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1/2"
                     }
                 ],
@@ -235,7 +237,7 @@
                         "item": "M 35/42 Sk1.1",
                         "itemLinkTo": {
                             "complexId": "m35_42",
-                            "sheetId": "M_35_42_Sk1.1"
+                            "sheetId": "M_35_42_Sk1_1"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 35/42)",
                         "folios": [
@@ -302,7 +304,10 @@
                     },
                     {
                         "item": "M 39 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m39",
+                            "sheetId": "M_39_Sk2b"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 39: Textfassung 2)",
                         "folios": [
                             {
@@ -400,20 +405,20 @@
             "siglumAddendum": "",
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 40.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 35/42 und M 39 Textfassung 2.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": {
-                "desc": ["1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt."],
+            "physDesc": {
+                "conditions": ["1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt."],
                 "writingMaterialStrings": [
                     "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen ##[JE]## | <em>Protokoll. Schutzmarke | N<sup><u>o</u></sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>."
                 ],
                 "writingMaterials": [
                     {
-                        "paperType": "Notenpapier",
+                        "materialType": "Notenpapier",
                         "systems": {
-                            "number": 18,
-                            "info": "",
-                            "addendum": ""
+                            "totalSystems": 18,
+                            "totalSystemsAddendum": "",
+                            "additionalInfo": ""
                         },
-                        "format": {
+                        "dimensions": {
                             "orientation": "hoch",
                             "height": {
                                 "uncertainty": "",
@@ -422,19 +427,21 @@
                             "width": {
                                 "uncertainty": "",
                                 "value": "265"
-                            }
+                            },
+                            "unit": "mm"
                         },
-                        "firmSign": {
-                            "variant": "FIRM_JE_NO_5_LIN_18_D",
+                        "trademark": {
+                            "variant": "JE_NO5_LIN18_M34_B",
                             "alt": "",
-                            "location": [
+                            "locus": [
                                 {
-                                    "info": "",
+                                    "preFolioInfo": "",
                                     "folios": ["1r"],
                                     "position": "unten links"
                                 }
                             ]
                         },
+                        "watermark": {},
                         "folioAddendum": "1"
                     }
                 ],
@@ -527,7 +534,10 @@
                     },
                     {
                         "item": "M 39",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m39",
+                            "sheetId": "M_39_TF2a"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 39: Textfassung 2)",
                         "folios": [
                             {
