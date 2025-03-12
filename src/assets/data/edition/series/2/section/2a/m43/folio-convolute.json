@@ -57,8 +57,8 @@
                         {
                             "complexId": "m43",
                             "sheetId": "M_43_Sk1a",
-                            "sigle": "M 43 Sk1",
-                            "sigleAddendum": "T. 1–7",
+                            "sigle": "M 43 Sk1 T. 1–7",
+                            "sigleAddendum": "",
                             "sectionPartition": 1,
                             "sections": [
                                 {
@@ -70,8 +70,8 @@
                         {
                             "complexId": "m43",
                             "sheetId": "M_43_Sk1b",
-                            "sigle": "M 43 Sk1",
-                            "sigleAddendum": "T. {8A}–11",
+                            "sigle": "M 43 Sk1 T. {8A}–11",
+                            "sigleAddendum": "",
                             "sectionPartition": 1,
                             "sections": [
                                 {
