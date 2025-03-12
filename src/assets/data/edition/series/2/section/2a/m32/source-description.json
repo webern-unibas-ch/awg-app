@@ -941,7 +941,7 @@
                         "item": "M 32",
                         "itemLinkTo": {
                             "complexId": "m32",
-                            "sheetId": "M_32"
+                            "sheetId": "M_32_TF1a"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 1→2→3)",
                         "folios": [
@@ -1035,7 +1035,7 @@
                         "item": "M 32",
                         "itemLinkTo": {
                             "complexId": "m32",
-                            "sheetId": "M_32"
+                            "sheetId": "M_32_TF2"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 2)",
                         "folios": [
@@ -1059,7 +1059,7 @@
                         "item": "M 33",
                         "itemLinkTo": {
                             "complexId": "m33",
-                            "sheetId": "M_33"
+                            "sheetId": "M_33_TF1a"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 33: Textfassung 1→2)",
                         "folios": [
@@ -1104,7 +1104,7 @@
                         "item": "M 33",
                         "itemLinkTo": {
                             "complexId": "m33",
-                            "sheetId": "M_33"
+                            "sheetId": "M_33_TF2a"
                         },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 33: Textfassung 2)",
                         "folios": [

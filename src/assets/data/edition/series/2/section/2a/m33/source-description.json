@@ -408,7 +408,10 @@
                 "contents": [
                     {
                         "item": "M 32",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_TF1a"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 1→2→3)",
                         "folios": [
                             {
@@ -499,7 +502,10 @@
                     },
                     {
                         "item": "M 32",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_TF2"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 32: Textfassung 2)",
                         "folios": [
                             {
