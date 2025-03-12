@@ -1339,7 +1339,7 @@
                             "complexId": "mstar414",
                             "sheetId": "Mstar_414_Sk1a",
                             "sigle": "M* 414 Sk1",
-                            "sigleAddendum": "",
+                            "sigleAddendum": "T. 1–4",
                             "selectable": false,
                             "sectionPartition": 2,
                             "sections": [
@@ -1354,7 +1354,7 @@
                             "complexId": "mstar414",
                             "sheetId": "Mstar_414_Sk1b",
                             "sigle": "M* 414 Sk1",
-                            "sigleAddendum": "",
+                            "sigleAddendum": "T. 5–8",
                             "selectable": false,
                             "sectionPartition": 4,
                             "sections": [
@@ -1534,8 +1534,8 @@
                         },
                         {
                             "complexId": "m22",
-                            "sheetId": "M_22_Sk21",
-                            "sigle": "M 22 Sk21a",
+                            "sheetId": "M_22_Sk21a",
+                            "sigle": "M 22 Sk21",
                             "sigleAddendum": "T. 1–4 (Var. XV)",
                             "sectionPartition": 2,
                             "sections": [
@@ -1558,8 +1558,8 @@
                     "content": [
                         {
                             "complexId": "m22",
-                            "sheetId": "M_22_Sk21",
-                            "sigle": "M 22 Sk21b",
+                            "sheetId": "M_22_Sk21b",
+                            "sigle": "M 22 Sk21",
                             "sigleAddendum": "T. 5–6 (Var. XV)",
                             "sectionPartition": 3,
                             "sections": [
@@ -1572,8 +1572,8 @@
                         },
                         {
                             "complexId": "m22",
-                            "sheetId": "M_22_Sk21",
-                            "sigle": "M 22 Sk21c",
+                            "sheetId": "M_22_Sk21c",
+                            "sigle": "M 22 Sk21",
                             "sigleAddendum": "T. 7–8 (Var. XV)",
                             "sectionPartition": 3,
                             "sections": [
@@ -1632,7 +1632,6 @@
                             "sheetId": "M_32_Sk4_1",
                             "sigle": "M 32 Sk4.1",
                             "sigleAddendum": "",
-                            "selectable": false,
                             "sectionPartition": 2,
                             "sections": [
                                 {
