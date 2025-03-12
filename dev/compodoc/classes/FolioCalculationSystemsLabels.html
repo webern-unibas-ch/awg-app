@@ -205,7 +205,7 @@ to calculate the labels of the systems on the folio canvas.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="774" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:774</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="778" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:778</a></div>
                             </td>
                         </tr>
 
@@ -332,7 +332,7 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="764" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:764</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="768" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:768</a></div>
                         </td>
                     </tr>
 
@@ -372,7 +372,7 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="769" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:769</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="773" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:773</a></div>
                         </td>
                     </tr>
 
@@ -406,7 +406,7 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="774" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:774</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="778" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:778</a></div>
                         </td>
                     </tr>
 
@@ -448,8 +448,8 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="803"
-                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:803</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="807"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:807</a></div>
                         </td>
                     </tr>
 
@@ -758,7 +758,11 @@ export class FolioCalculationContentSegmentVertices {
      * @returns {number} The calculated y value of the content segment vertices.
      */
     private _calculateY(section: FolioSection, isStart: boolean): number {
-        const systemIndex &#x3D; isStart ? section.startSystem - 1 : section.endSystem - 1;
+        let systemIndex &#x3D; isStart ? section.startSystem - 1 : section.endSystem - 1;
+        // Reverse order of the system index if the systems are reversed
+        if (this._systems.SYSTEMS_REVERSED) {
+            systemIndex &#x3D; this._systems.SYSTEMS_LINES.SYSTEMS_ARRAYS.length - 1 - systemIndex;
+        }
         const systemLines &#x3D; this._systems.SYSTEMS_LINES.SYSTEMS_ARRAYS[systemIndex];
 
         let offset: number;
@@ -1322,6 +1326,11 @@ export class FolioCalculationSystems {
     public readonly NUMBER_OF_SYSTEMS: number;
 
     /**
+     * The flag if the systems are reversed (boolean
+     */
+    public readonly SYSTEMS_REVERSED: boolean;
+
+    /**
      * The labels of the systems (FolioCalculationSystemsLabels).
      */
     public readonly SYSTEMS_LABELS: FolioCalculationSystemsLabels;
@@ -1347,17 +1356,19 @@ export class FolioCalculationSystems {
     public readonly ZOOM_FACTOR: number;
 
     /**
-     * Constructor of the FolioCalculationSheet class.
+     * Constructor of the FolioCalculationSystems class.
      *
      * It initializes the class with values
      * from the calculated folio sheet, the systems string and the zoom factor.
      *
      * @param {FolioCalculationSheet} sheet The given calculated folio sheet.
      * @param {string} systems The given systems string.
+     * @param {boolean} systemsReversed The given reversed flag.
      * @param {number} factor The given zoom factor.
      */
-    constructor(sheet: FolioCalculationSheet, systems: string, factor: number) {
+    constructor(sheet: FolioCalculationSheet, systems: string, systemsReversed: boolean &#x3D; false, factor: number) {
         this.NUMBER_OF_SYSTEMS &#x3D; systems ? parseInt(systems, 10) : 0;
+        this.SYSTEMS_REVERSED &#x3D; systemsReversed;
         this.ZOOM_FACTOR &#x3D; factor;
 
         this.SYSTEMS_MARGINS &#x3D; new FolioCalculationSystemsMargins(sheet);
@@ -1441,7 +1452,12 @@ export class FolioCalculation {
      */
     constructor(folioSettings: FolioSettings, folioData: Folio, segmentOffsetCorrection: number &#x3D; 0) {
         this.SHEET &#x3D; new FolioCalculationSheet(folioSettings, folioData.folioId);
-        this.SYSTEMS &#x3D; new FolioCalculationSystems(this.SHEET, folioData.systems, folioSettings.factor);
+        this.SYSTEMS &#x3D; new FolioCalculationSystems(
+            this.SHEET,
+            folioData.systems,
+            folioData.reversed,
+            folioSettings.factor
+        );
         this.CONTENT_SEGMENTS &#x3D; folioData.content.map(
             (content: FolioContent) &#x3D;&gt;
                 new FolioCalculationContentSegment(content, this.SYSTEMS, segmentOffsetCorrection)

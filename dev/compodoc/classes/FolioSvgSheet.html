@@ -425,6 +425,11 @@ class FolioSvgSystems {
     systemsLines: FolioCalculationLine[][];
 
     /**
+     * The boolean flag if the systems are reversed.
+     */
+    systemsReversed: boolean;
+
+    /**
      * Constructor of the FolioSvgSystems class.
      *
      * It initializes the class with values from the folio system calculation.
@@ -434,6 +439,7 @@ class FolioSvgSystems {
     constructor(calculatedSystems: FolioCalculationSystems) {
         this.systemsLabelPositions &#x3D; calculatedSystems.SYSTEMS_LABELS.SYSTEMS_LABELS_ARRAY;
         this.systemsLines &#x3D; calculatedSystems.SYSTEMS_LINES.SYSTEMS_ARRAYS;
+        this.systemsReversed &#x3D; calculatedSystems.SYSTEMS_REVERSED;
     }
 }
 
@@ -467,14 +473,14 @@ export class FolioSvgContentSegment {
     selectable: boolean;
 
     /**
-     * The optional boolean flag if the content segment is reversed.
-     */
-    reversed: boolean;
-
-    /**
      * The array of labels of a content segment (string[]).
      */
     segmentLabelArray: string[];
+
+    /**
+     * The optional boolean flag if the content segment is reversed.
+     */
+    segmentReversed: boolean;
 
     /**
      * The label of a content segment (string).
@@ -508,10 +514,10 @@ export class FolioSvgContentSegment {
         this.sheetId &#x3D; calculatedContentSegment.sheetId;
         this.linkTo &#x3D; calculatedContentSegment.linkTo;
         this.selectable &#x3D; calculatedContentSegment.selectable;
-        this.reversed &#x3D; calculatedContentSegment.reversed;
-        this.segmentVertices &#x3D; calculatedContentSegment.vertices?.VERTICES_AS_STRING;
         this.segmentLabelArray &#x3D; calculatedContentSegment.segmentLabelArray;
         this.segmentLabel &#x3D; calculatedContentSegment.segmentLabel;
+        this.segmentReversed &#x3D; calculatedContentSegment.reversed;
+        this.segmentVertices &#x3D; calculatedContentSegment.vertices?.VERTICES_AS_STRING;
         this.centeredXPosition &#x3D; calculatedContentSegment.centeredXPosition;
         this.centeredYPosition &#x3D; calculatedContentSegment.centeredYPosition;
     }

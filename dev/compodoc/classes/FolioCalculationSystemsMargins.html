@@ -230,7 +230,7 @@ to calculate the margins of the systems on the folio canvas.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="590" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:590</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="594" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:594</a></div>
                             </td>
                         </tr>
 
@@ -303,7 +303,7 @@ from the sheet and the number of systems.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="555" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:555</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="559" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:559</a></div>
                         </td>
                     </tr>
 
@@ -337,7 +337,7 @@ from the sheet and the number of systems.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="565" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:565</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="569" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:569</a></div>
                         </td>
                     </tr>
 
@@ -371,7 +371,7 @@ from the sheet and the number of systems.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="570" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:570</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="574" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:574</a></div>
                         </td>
                     </tr>
 
@@ -405,7 +405,7 @@ from the sheet and the number of systems.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="575" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:575</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="579" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:579</a></div>
                         </td>
                     </tr>
 
@@ -439,7 +439,7 @@ from the sheet and the number of systems.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="580" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:580</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="584" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:584</a></div>
                         </td>
                     </tr>
 
@@ -473,7 +473,7 @@ from the sheet and the number of systems.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="585" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:585</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="589" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:589</a></div>
                         </td>
                     </tr>
 
@@ -513,7 +513,7 @@ from the sheet and the number of systems.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="560" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:560</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="564" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:564</a></div>
                         </td>
                     </tr>
 
@@ -547,7 +547,7 @@ from the sheet and the number of systems.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="590" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:590</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="594" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:594</a></div>
                         </td>
                     </tr>
 
@@ -589,8 +589,8 @@ from the sheet and the number of systems.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="629"
-                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:629</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="633"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:633</a></div>
                         </td>
                     </tr>
 
@@ -947,7 +947,11 @@ export class FolioCalculationContentSegmentVertices {
      * @returns {number} The calculated y value of the content segment vertices.
      */
     private _calculateY(section: FolioSection, isStart: boolean): number {
-        const systemIndex &#x3D; isStart ? section.startSystem - 1 : section.endSystem - 1;
+        let systemIndex &#x3D; isStart ? section.startSystem - 1 : section.endSystem - 1;
+        // Reverse order of the system index if the systems are reversed
+        if (this._systems.SYSTEMS_REVERSED) {
+            systemIndex &#x3D; this._systems.SYSTEMS_LINES.SYSTEMS_ARRAYS.length - 1 - systemIndex;
+        }
         const systemLines &#x3D; this._systems.SYSTEMS_LINES.SYSTEMS_ARRAYS[systemIndex];
 
         let offset: number;
@@ -1511,6 +1515,11 @@ export class FolioCalculationSystems {
     public readonly NUMBER_OF_SYSTEMS: number;
 
     /**
+     * The flag if the systems are reversed (boolean
+     */
+    public readonly SYSTEMS_REVERSED: boolean;
+
+    /**
      * The labels of the systems (FolioCalculationSystemsLabels).
      */
     public readonly SYSTEMS_LABELS: FolioCalculationSystemsLabels;
@@ -1536,17 +1545,19 @@ export class FolioCalculationSystems {
     public readonly ZOOM_FACTOR: number;
 
     /**
-     * Constructor of the FolioCalculationSheet class.
+     * Constructor of the FolioCalculationSystems class.
      *
      * It initializes the class with values
      * from the calculated folio sheet, the systems string and the zoom factor.
      *
      * @param {FolioCalculationSheet} sheet The given calculated folio sheet.
      * @param {string} systems The given systems string.
+     * @param {boolean} systemsReversed The given reversed flag.
      * @param {number} factor The given zoom factor.
      */
-    constructor(sheet: FolioCalculationSheet, systems: string, factor: number) {
+    constructor(sheet: FolioCalculationSheet, systems: string, systemsReversed: boolean &#x3D; false, factor: number) {
         this.NUMBER_OF_SYSTEMS &#x3D; systems ? parseInt(systems, 10) : 0;
+        this.SYSTEMS_REVERSED &#x3D; systemsReversed;
         this.ZOOM_FACTOR &#x3D; factor;
 
         this.SYSTEMS_MARGINS &#x3D; new FolioCalculationSystemsMargins(sheet);
@@ -1630,7 +1641,12 @@ export class FolioCalculation {
      */
     constructor(folioSettings: FolioSettings, folioData: Folio, segmentOffsetCorrection: number &#x3D; 0) {
         this.SHEET &#x3D; new FolioCalculationSheet(folioSettings, folioData.folioId);
-        this.SYSTEMS &#x3D; new FolioCalculationSystems(this.SHEET, folioData.systems, folioSettings.factor);
+        this.SYSTEMS &#x3D; new FolioCalculationSystems(
+            this.SHEET,
+            folioData.systems,
+            folioData.reversed,
+            folioSettings.factor
+        );
         this.CONTENT_SEGMENTS &#x3D; folioData.content.map(
             (content: FolioContent) &#x3D;&gt;
                 new FolioCalculationContentSegment(content, this.SYSTEMS, segmentOffsetCorrection)
