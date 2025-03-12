@@ -10,25 +10,25 @@
                         "svg": "assets/img/edition/series/2/section/2a/m32/M32_Textfassung1-1von4-final.svg",
                         "image": "",
                         "partial": "a",
-                        "convolute": ""
+                        "convolute": "D"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m32/M32_Textfassung1-2von4-final.svg",
                         "image": "",
                         "partial": "b",
-                        "convolute": ""
+                        "convolute": "D"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m32/M32_Textfassung1-3von4-final.svg",
                         "image": "",
                         "partial": "c",
-                        "convolute": ""
+                        "convolute": "D"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m32/M32_Textfassung1-4von4-final.svg",
                         "image": "",
                         "partial": "d",
-                        "convolute": ""
+                        "convolute": "D"
                     }
                 ]
             },
@@ -40,25 +40,25 @@
                         "svg": "assets/img/edition/series/2/section/2a/m32/M32_Textfassung2-1von4-final.svg",
                         "image": "",
                         "partial": "a",
-                        "convolute": ""
+                        "convolute": "E"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m32/M32_Textfassung2-2von4-final.svg",
                         "image": "",
                         "partial": "b",
-                        "convolute": ""
+                        "convolute": "E"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m32/M32_Textfassung2-3von4-final.svg",
                         "image": "",
                         "partial": "c",
-                        "convolute": ""
+                        "convolute": "E"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m32/M32_Textfassung2-4von4-final.svg",
                         "image": "",
                         "partial": "d",
-                        "convolute": ""
+                        "convolute": "E"
                     }
                 ]
             },
@@ -70,19 +70,19 @@
                         "svg": "assets/img/edition/series/2/section/2a/m32/M32_Textfassung3-1von3-final.svg",
                         "image": "",
                         "partial": "a",
-                        "convolute": ""
+                        "convolute": "F"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m32/M32_Textfassung3-2von3-final.svg",
                         "image": "",
                         "partial": "b",
-                        "convolute": ""
+                        "convolute": "F"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m32/M32_Textfassung3-3von3-final.svg",
                         "image": "",
                         "partial": "c",
-                        "convolute": ""
+                        "convolute": "F"
                     }
                 ]
             }
@@ -115,8 +115,8 @@
                         "image": "",
                         "partial": "b",
                         "convolute": "A"
-                    }
-                    ,                    {
+                    },
+                    {
                         "svg": "assets/img/edition/series/2/section/2a/m32/M32_Sk2-3von15-final.svg",
                         "image": "",
                         "partial": "c",
@@ -268,6 +268,18 @@
                 "content": [
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m32/M32_Sk4_1-1von1-final.svg",
+                        "image": "",
+                        "partial": "",
+                        "convolute": "E"
+                    }
+                ]
+            },
+            {
+                "id": "M_32_Sk4_2",
+                "label": "M 32 Sk4.2",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m32/M32_Sk4_2-1von1-final.svg",
                         "image": "",
                         "partial": "",
                         "convolute": "E"
