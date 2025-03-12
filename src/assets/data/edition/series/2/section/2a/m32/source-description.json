@@ -2409,7 +2409,7 @@
                                             "measure": "nach 29",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takte {30A–31A} pauschal gestrichen. <br /> ##Abbildung##"
+                                            "comment": "Takte {{ '{' }}30A–31A{{ '}' }} pauschal gestrichen. <br /> ##Abbildung##"
                                         },
                                         {
                                             "measure": "{30A}",
