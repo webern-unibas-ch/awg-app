@@ -116,7 +116,6 @@
                             "sheetId": "M_32_Sk2_2",
                             "sigle": "M 32 Sk2.2",
                             "sigleAddendum": "",
-                            "selectable": false,
                             "sectionPartition": 3,
                             "sections": [
                                 {
@@ -176,7 +175,6 @@
                             "sheetId": "M_32_Sk3",
                             "sigle": "M 32 Sk3",
                             "sigleAddendum": "",
-                            "selectable": false,
                             "sectionPartition": 2,
                             "sections": [
                                 {
@@ -303,10 +301,9 @@
                         },
                         {
                             "complexId": "m32",
-                            "sheetId": "M_32_Sk2a",
+                            "sheetId": "M_32_Sk2k",
                             "sigle": "M 32 Sk2",
                             "sigleAddendum": "T. 61B–62",
-                            "selectable": false,
                             "sectionPartition": 3,
                             "sections": [
                                 {
@@ -318,10 +315,9 @@
                         },
                         {
                             "complexId": "m32",
-                            "sheetId": "M_32_Sk2b",
+                            "sheetId": "M_32_Sk2l",
                             "sigle": "M 32 Sk2",
                             "sigleAddendum": "T. 63–64",
-                            "selectable": false,
                             "sectionPartition": 2,
                             "sections": [
                                 {
@@ -333,10 +329,9 @@
                         },
                         {
                             "complexId": "m32",
-                            "sheetId": "M_32_Sk2c",
+                            "sheetId": "M_32_Sk2m",
                             "sigle": "M 32 Sk2",
                             "sigleAddendum": "T. 65–67",
-                            "selectable": false,
                             "sectionPartition": 2,
                             "sections": [
                                 {

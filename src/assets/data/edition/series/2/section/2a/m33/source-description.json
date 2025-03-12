@@ -120,7 +120,10 @@
                     },
                     {
                         "item": "M 32 Sk2.2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk2_2"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32)",
                         "folios": [
                             {
@@ -176,7 +179,10 @@
                     },
                     {
                         "item": "M 32 Sk3",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk3"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32: Textfassung 2)",
                         "folios": [
                             {
@@ -302,7 +308,10 @@
                     },
                     {
                         "item": "M 32 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m32",
+                            "sheetId": "M_32_Sk2k"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32)",
                         "folios": [
                             {
@@ -314,21 +323,21 @@
                                         {
                                             "system": "16b–15b",
                                             "measure": "61B, 62",
-                                            "linkTo": ""
+                                            "linkTo": "M_32_Sk2k"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "14b–13b",
                                             "measure": "63–64",
-                                            "linkTo": ""
+                                            "linkTo": "M_32_Sk2l"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "12b–11b",
                                             "measure": "65–67",
-                                            "linkTo": ""
+                                            "linkTo": "M_32_Sk2m"
                                         }
                                     ]
                                 ]
