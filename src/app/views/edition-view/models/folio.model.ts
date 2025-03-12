@@ -65,6 +65,11 @@ export class Folio {
     format: FolioFormat;
 
     /**
+     * The folio's optional boolean flag if the folio sheet is reversed.
+     */
+    reversed?: boolean;
+
+    /**
      * The folio's content array (FolioContent[]).
      */
     content: FolioContent[];

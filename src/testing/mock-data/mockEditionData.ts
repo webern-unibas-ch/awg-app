@@ -185,6 +185,7 @@ export const mockEditionData = {
     mockReversedFolio: {
         folioId: '1',
         systems: '12',
+        reversed: true,
         format: {
             height: 180,
             width: 267,
@@ -202,8 +203,8 @@ export const mockEditionData = {
                 sections: [
                     {
                         position: 1,
-                        startSystem: 2,
-                        endSystem: 4,
+                        startSystem: 4,
+                        endSystem: 2,
                     },
                 ],
             },

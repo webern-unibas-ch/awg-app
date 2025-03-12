@@ -77,6 +77,11 @@ class FolioSvgSystems {
     systemsLines: FolioCalculationLine[][];
 
     /**
+     * The boolean flag if the systems are reversed.
+     */
+    systemsReversed: boolean;
+
+    /**
      * Constructor of the FolioSvgSystems class.
      *
      * It initializes the class with values from the folio system calculation.
@@ -86,6 +91,7 @@ class FolioSvgSystems {
     constructor(calculatedSystems: FolioCalculationSystems) {
         this.systemsLabelPositions = calculatedSystems.SYSTEMS_LABELS.SYSTEMS_LABELS_ARRAY;
         this.systemsLines = calculatedSystems.SYSTEMS_LINES.SYSTEMS_ARRAYS;
+        this.systemsReversed = calculatedSystems.SYSTEMS_REVERSED;
     }
 }
 
@@ -119,14 +125,14 @@ export class FolioSvgContentSegment {
     selectable: boolean;
 
     /**
-     * The optional boolean flag if the content segment is reversed.
-     */
-    reversed: boolean;
-
-    /**
      * The array of labels of a content segment (string[]).
      */
     segmentLabelArray: string[];
+
+    /**
+     * The optional boolean flag if the content segment is reversed.
+     */
+    segmentReversed: boolean;
 
     /**
      * The label of a content segment (string).
@@ -160,10 +166,10 @@ export class FolioSvgContentSegment {
         this.sheetId = calculatedContentSegment.sheetId;
         this.linkTo = calculatedContentSegment.linkTo;
         this.selectable = calculatedContentSegment.selectable;
-        this.reversed = calculatedContentSegment.reversed;
-        this.segmentVertices = calculatedContentSegment.vertices?.VERTICES_AS_STRING;
         this.segmentLabelArray = calculatedContentSegment.segmentLabelArray;
         this.segmentLabel = calculatedContentSegment.segmentLabel;
+        this.segmentReversed = calculatedContentSegment.reversed;
+        this.segmentVertices = calculatedContentSegment.vertices?.VERTICES_AS_STRING;
         this.centeredXPosition = calculatedContentSegment.centeredXPosition;
         this.centeredYPosition = calculatedContentSegment.centeredYPosition;
     }
