@@ -7,7 +7,7 @@
                 {
                     "folioId": "1r",
                     "systems": "8",
-                    "format": {
+                    "dimensions": {
                         "height": 141,
                         "width": 268
                     },
@@ -31,7 +31,7 @@
                 {
                     "folioId": "1v",
                     "systems": "8",
-                    "format": {
+                    "dimensions": {
                         "height": 141,
                         "width": 268
                     },
@@ -40,7 +40,7 @@
                 {
                     "folioId": "2r",
                     "systems": "8",
-                    "format": {
+                    "dimensions": {
                         "height": 143,
                         "width": 268
                     },
@@ -64,7 +64,7 @@
                 {
                     "folioId": "2v",
                     "systems": "8",
-                    "format": {
+                    "dimensions": {
                         "height": 143,
                         "width": 268
                     },
@@ -73,7 +73,7 @@
                 {
                     "folioId": "3r",
                     "systems": "8",
-                    "format": {
+                    "dimensions": {
                         "height": 149,
                         "width": 270
                     },
@@ -97,7 +97,7 @@
                 {
                     "folioId": "3v",
                     "systems": "8",
-                    "format": {
+                    "dimensions": {
                         "height": 149,
                         "width": 270
                     },

@@ -113,7 +113,7 @@ export const mockEditionData = {
                     {
                         folioId: '1',
                         systems: '12',
-                        format: {
+                        dimensions: {
                             height: 180,
                             width: 267,
                         },
@@ -187,7 +187,7 @@ export const mockEditionData = {
         folioId: '1',
         systems: '12',
         reversed: true,
-        format: {
+        dimensions: {
             height: 180,
             width: 267,
         },

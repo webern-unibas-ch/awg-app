@@ -7,7 +7,7 @@
                 {
                     "folioId": "38v",
                     "systems": "16",
-                    "format": {
+                    "dimensions": {
                         "height": 270,
                         "width": 335
                     },
@@ -227,7 +227,7 @@
                 {
                     "folioId": "39r",
                     "systems": "16",
-                    "format": {
+                    "dimensions": {
                         "height": 270,
                         "width": 335
                     },
@@ -313,7 +313,7 @@
                 {
                     "folioId": "1r",
                     "systems": "7",
-                    "format": {
+                    "dimensions": {
                         "height": 169,
                         "width": 267
                     },
@@ -337,7 +337,7 @@
                 {
                     "folioId": "1v",
                     "systems": "7",
-                    "format": {
+                    "dimensions": {
                         "height": 169,
                         "width": 267
                     },

@@ -60,9 +60,9 @@ export class Folio {
     systems: string;
 
     /**
-     * The folio's format values.
+     * The folio's dimensions.
      */
-    format: FolioFormat;
+    dimensions: FolioDimensions;
 
     /**
      * The folio's optional boolean flag if the folio sheet is reversed.
@@ -87,14 +87,14 @@ export class Folio {
  * to store the sub level data for folio format
  * from a folio json file.
  */
-export class FolioFormat {
+export class FolioDimensions {
     /**
-     * The folio format's height.
+     * The folio's height.
      */
     height: number;
 
     /**
-     * The folio format's width.
+     * The folio's width.
      */
     width: number;
 }

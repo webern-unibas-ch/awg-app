@@ -7,7 +7,7 @@
                 {
                     "folioId": "1r",
                     "systems": "4",
-                    "format": {
+                    "dimensions": {
                         "height": 74,
                         "width": 270
                     },
@@ -31,7 +31,7 @@
                 {
                     "folioId": "1v",
                     "systems": "4",
-                    "format": {
+                    "dimensions": {
                         "height": 74,
                         "width": 270
                     },
