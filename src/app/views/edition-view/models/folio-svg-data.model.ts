@@ -3,6 +3,7 @@ import {
     FolioCalculationContentSegment,
     FolioCalculationLine,
     FolioCalculationPoint,
+    FolioCalculationRectangle,
     FolioCalculationSheet,
     FolioCalculationSystems,
 } from './folio-calculation.model';
@@ -17,25 +18,19 @@ import {
  */
 class FolioSvgSheet {
     /**
-     * The folio's id (string).
+     * The folio's id.
      */
     folioId: string;
 
     /**
-     * The upper left corner of a folio (FolioCalculationPoint).
-     *
-     * It contains the calculated upper left point (in px)
-     * to draw the svg of the sheet of a folio.
+     * The folio's sheet rectangle
      */
-    upperLeftCorner: FolioCalculationPoint;
+    sheetRectangle: FolioCalculationRectangle;
 
     /**
-     * The lower right corner (in px) of a folio (FolioCalculationPoint).
-     *
-     * It contains the calculated lower right point (in px)
-     * to draw the svg of the sheet of a folio.
+     * The optional folio's trademark rectangle.
      */
-    lowerRightCorner: FolioCalculationPoint;
+    trademarkRectangle?: FolioCalculationRectangle;
 
     /**
      * Constructor of the FolioSvgSheet class.
@@ -46,8 +41,8 @@ class FolioSvgSheet {
      */
     constructor(calculatedSheet: FolioCalculationSheet) {
         this.folioId = calculatedSheet.FOLIO_ID;
-        this.upperLeftCorner = calculatedSheet.UPPER_LEFT_CORNER;
-        this.lowerRightCorner = calculatedSheet.LOWER_RIGHT_CORNER;
+        this.sheetRectangle = calculatedSheet.SHEET_RECTANGLE;
+        this.trademarkRectangle = calculatedSheet.TRADEMARK_RECTANGLE;
     }
 }
 
@@ -61,18 +56,12 @@ class FolioSvgSheet {
  */
 class FolioSvgSystems {
     /**
-     * The systems label positions of a folio (FolioCalculationPoint[]).
-     *
-     * It contains all calculated labels and their positions (in px)
-     * to draw the svg of the systems of a folio.
+     * The systems label positions of a folio.
      */
     systemsLabelPositions: FolioCalculationPoint[];
 
     /**
-     * The system lines of a folio (FolioCalculationLine[][]).
-     *
-     * It contains all calculated lines and their positions (in px)
-     * to draw the svg of the systems of a folio.
+     * The system lines of a folio.
      */
     systemsLines: FolioCalculationLine[][];
 
@@ -105,12 +94,12 @@ class FolioSvgSystems {
  */
 export class FolioSvgContentSegment {
     /**
-     * The id for the label of a content segment edition complex (string).
+     * The id for the label of a content segment edition complex.
      */
     complexId: string;
 
     /**
-     * The id for the label of a content segment sheet (string).
+     * The id for the label of a content segment sheet.
      */
     sheetId: string;
 
@@ -125,7 +114,7 @@ export class FolioSvgContentSegment {
     selectable: boolean;
 
     /**
-     * The array of labels of a content segment (string[]).
+     * The array of labels of a content segment.
      */
     segmentLabelArray: string[];
 
@@ -135,22 +124,22 @@ export class FolioSvgContentSegment {
     segmentReversed: boolean;
 
     /**
-     * The label of a content segment (string).
+     * The label of a content segment.
      */
     segmentLabel: string;
 
     /**
-     * The vertices of a content segment polygon (string).
+     * The vertices of a content segment polygon.
      */
     segmentVertices: string;
 
     /**
-     * The centered X position of a content segment (number).
+     * The centered X position of a content segment.
      */
     centeredXPosition: number;
 
     /**
-     * The centered y position of a content segment (number).
+     * The centered y position of a content segment.
      */
     centeredYPosition: number;
 
@@ -185,26 +174,17 @@ export class FolioSvgContentSegment {
  */
 export class FolioSvgData {
     /**
-     * The sheet of a folio (FolioSvgSheet).
-     *
-     * It contains all calculated values and their positions (in px)
-     * to draw the svg of the sheet of a folio.
+     * The sheet of a folio.
      */
     sheet: FolioSvgSheet;
 
     /**
-     * The systems of a folio (FolioSvgSystems).
-     *
-     * It contains all calculated values and their positions (in px)
-     * to draw the svg of the systems of a folio.
+     * The systems of a folio.
      */
     systems: FolioSvgSystems;
 
     /**
-     * The content segments of a folio (FolioSvgContentSegments).
-     *
-     * It contains all calculated values and their positions (in px)
-     * to draw the svg of the content segments of a folio.
+     * The content segments of a folio.
      */
     contentSegments: FolioSvgContentSegment[];
 

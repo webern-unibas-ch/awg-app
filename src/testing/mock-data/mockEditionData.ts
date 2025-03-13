@@ -117,6 +117,7 @@ export const mockEditionData = {
                             height: 180,
                             width: 267,
                         },
+                        trademarkPosition: 'unten links',
                         content: [
                             {
                                 complexId: 'op12',

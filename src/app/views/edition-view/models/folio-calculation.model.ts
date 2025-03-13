@@ -62,12 +62,12 @@ export class FolioCalculationPoint {
  */
 export class FolioCalculationLine {
     /**
-     * The starting point of a line (FolioCalculationPoint).
+     * The starting point of a line.
      */
     public readonly START_POINT: FolioCalculationPoint;
 
     /**
-     * The ending point of a line (FolioCalculationPoint).
+     * The ending point of a line.
      */
     public readonly END_POINT: FolioCalculationPoint;
 
@@ -86,6 +86,39 @@ export class FolioCalculationLine {
 }
 
 /**
+ * The FolioCalculationRectangle class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the values of a rectangle on the folio canvas.
+ *
+ * Exposed to be used throughout {@link EditionSheetsModule}.
+ */
+export class FolioCalculationRectangle {
+    /**
+     * The upper left corner of a rectangle.
+     */
+    public readonly UPPER_LEFT_CORNER: FolioCalculationPoint;
+
+    /**
+     * The lower right corner of a rectangle.
+     */
+    public readonly LOWER_RIGHT_CORNER: FolioCalculationPoint;
+
+    /**
+     * Constructor of the FolioCalculationRectangle class.
+     *
+     * It initializes the class with two points for upper left and lower right corner.
+     *
+     * @param {FolioCalculationPoint} upperLeftCorner The given upper left corner.
+     * @param {FolioCalculationPoint} lowerRightCorner The given lower right corner.
+     */
+    constructor(upperLeftCorner: FolioCalculationPoint, lowerRightCorner: FolioCalculationPoint) {
+        this.UPPER_LEFT_CORNER = upperLeftCorner;
+        this.LOWER_RIGHT_CORNER = lowerRightCorner;
+    }
+}
+
+/**
  * The FolioCalculationContentSegmentCenteredPositions class.
  *
  * It is used in the context of the edition folio convolutes
@@ -95,12 +128,12 @@ export class FolioCalculationLine {
  */
 class FolioCalculationContentSegmentCenteredPositions {
     /**
-     * The centered X position of the content segment (number).
+     * The centered X position of the content segment.
      */
     public readonly CENTERED_X_POSITION: number;
 
     /**
-     * The centered Y position of the content segment (number).
+     * The centered Y position of the content segment.
      */
     public readonly CENTERED_Y_POSITION: number;
 
@@ -135,17 +168,17 @@ class FolioCalculationContentSegmentCenteredPositions {
  */
 class FolioCalculationContentSegmentLabel {
     /**
-     * The label for the content segment (string).
+     * The label for the content segment.
      */
     public readonly SEGMENT_LABEL: string;
 
     /**
-     * The array of label strings for the content segment (string[]).
+     * The array of label strings for the content segment.
      */
     public readonly SEGMENT_LABEL_ARRAY: string[];
 
     /**
-     * The label offset for the content segment (number).
+     * The label offset for the content segment.
      */
     public readonly SEGMENT_LABEL_OFFSET: number;
 
@@ -175,27 +208,27 @@ class FolioCalculationContentSegmentLabel {
  */
 export class FolioCalculationContentSegmentVertices {
     /**
-     * The upper left vertex of a content segment (FolioCalculationPoint).
+     * The upper left vertex of a content segment.
      */
     public readonly UPPER_LEFT_VERTEX: FolioCalculationPoint;
 
     /**
-     * The upper right vertex of a content segment (FolioCalculationPoint).
+     * The upper right vertex of a content segment.
      */
     public readonly UPPER_RIGHT_VERTEX: FolioCalculationPoint;
 
     /**
-     * The lower right vertex of a content segment (FolioCalculationPoint).
+     * The lower right vertex of a content segment.
      */
     public readonly LOWER_RIGHT_VERTEX: FolioCalculationPoint;
 
     /**
-     * The lower left vertex of a content segment (FolioCalculationPoint).
+     * The lower left vertex of a content segment.
      */
     public readonly LOWER_LEFT_VERTEX: FolioCalculationPoint;
 
     /**
-     * The vertices of a content segment as a string (string).
+     * The vertices of a content segment as a string.
      */
     public readonly VERTICES_AS_STRING: string;
 
@@ -329,17 +362,17 @@ export class FolioCalculationContentSegmentVertices {
  */
 export class FolioCalculationContentSegment {
     /**
-     * The centered X position of the content segment (number).
+     * The centered X position of the content segment.
      */
     centeredXPosition: number;
 
     /**
-     * The centered y position of the content segment (number).
+     * The centered y position of the content segment.
      */
     centeredYPosition: number;
 
     /**
-     * The label for the id of the edition complex of the content segment (string).
+     * The label for the id of the edition complex of the content segment.
      */
     complexId: string;
 
@@ -354,22 +387,22 @@ export class FolioCalculationContentSegment {
     reversed: boolean;
 
     /**
-     * The section of a content segment (FolioSection).
+     * The section of a content segment.
      */
     section: FolioSection;
 
     /**
-     * The section partition of the content segment (number).
+     * The section partition of the content segment.
      */
     sectionPartition: number;
 
     /**
-     * The array of label strings for the content segment (string[]).
+     * The array of label strings for the content segment.
      */
     segmentLabelArray: string[];
 
     /**
-     * The label for the content segment (string).
+     * The label for the content segment.
      */
     segmentLabel: string;
 
@@ -379,22 +412,22 @@ export class FolioCalculationContentSegment {
     selectable: boolean;
 
     /**
-     * The label for the id of the content segment (string).
+     * The label for the id of the content segment.
      */
     sheetId: string;
 
     /**
-     * The label for the sigle of the content segment (string).
+     * The label for the sigle of the content segment.
      */
     sigle: string;
 
     /**
-     * The label for the sigle addendum of the content segment (string).
+     * The label for the sigle addendum of the content segment.
      */
     sigleAddendum: string;
 
     /**
-     * The vertices of a content segment (FolioCalculationContentSegmentVertices).
+     * The vertices of a content segment.
      */
     vertices: FolioCalculationContentSegmentVertices;
 
@@ -499,34 +532,29 @@ export class FolioCalculationContentSegment {
  */
 export class FolioCalculationSheet {
     /**
-     * The offset of the sheet (FolioCalculationPoint).
+     * The folio id of the sheet.
      */
-    public readonly OFFSET: FolioCalculationPoint;
+    public readonly FOLIO_ID: string;
 
     /**
-     * The width of the sheet (number).
+     * The width of the sheet.
      */
     public readonly SHEET_WIDTH: number;
 
     /**
-     * The height of the sheet (number).
+     * The height of the sheet.
      */
     public readonly SHEET_HEIGHT: number;
 
     /**
-     * The optional folio id of the sheet (string).
+     * The rectangle of the sheet.
      */
-    public readonly FOLIO_ID?: string;
+    public readonly SHEET_RECTANGLE: FolioCalculationRectangle;
 
     /**
-     * The optional upper left corner point of the sheet (FolioCalculationPoint).
+     * The optional rectangle of the trademark on the sheet.
      */
-    public readonly UPPER_LEFT_CORNER?: FolioCalculationPoint;
-
-    /**
-     * The optional lower right corner point of the sheet (FolioCalculationPoint).
-     */
-    public readonly LOWER_RIGHT_CORNER?: FolioCalculationPoint;
+    public readonly TRADEMARK_RECTANGLE?: FolioCalculationRectangle;
 
     /**
      * Constructor of the FolioCalculationSheet class.
@@ -535,14 +563,71 @@ export class FolioCalculationSheet {
      *
      * @param {FolioSettings} folioSettings The given folio settings.
      * @param {string} folioId The given folio id.
+     * @param {string} trademarkPosition The optional given trademark position.
      */
-    constructor({ initialOffsetX, initialOffsetY, formatX, formatY, factor }: FolioSettings, folioId: string) {
+    constructor(
+        { initialOffsetX, initialOffsetY, formatX, formatY, factor }: FolioSettings,
+        folioId: string,
+        trademarkPosition?: string
+    ) {
         this.FOLIO_ID = folioId;
         this.SHEET_WIDTH = formatX * factor;
         this.SHEET_HEIGHT = formatY * factor;
-        this.OFFSET = new FolioCalculationPoint(initialOffsetX, initialOffsetY);
-        this.UPPER_LEFT_CORNER = this.OFFSET;
-        this.LOWER_RIGHT_CORNER = new FolioCalculationPoint(this.SHEET_WIDTH, this.SHEET_HEIGHT);
+        const sheetUpperLeftCorner = new FolioCalculationPoint(initialOffsetX, initialOffsetY);
+        const sheetLowerRightCorner = new FolioCalculationPoint(this.SHEET_WIDTH, this.SHEET_HEIGHT);
+        this.SHEET_RECTANGLE = new FolioCalculationRectangle(sheetUpperLeftCorner, sheetLowerRightCorner);
+        this.TRADEMARK_RECTANGLE = this._calculateTrademarkRectangle(trademarkPosition);
+    }
+
+    /**
+     * Private method: _calculateTrademarkRectangle.
+     *
+     * It calculates the rectanble of the trademark based on the given position string.
+     *
+     * @param {string} position The given trademark position string.
+     * @returns {FolioCalculationRectangle} The calculated rectangle of the trademark.
+     */
+    private _calculateTrademarkRectangle(position: string): FolioCalculationRectangle {
+        if (!position) {
+            return undefined;
+        }
+
+        const trademarkRectangleWidth = 20;
+        const trademarkRectangleHeight = 30;
+        const marginOffset = 10;
+
+        let x1: number, y1: number;
+
+        switch (position) {
+            case 'unten links':
+                x1 = this.SHEET_RECTANGLE.UPPER_LEFT_CORNER.x + marginOffset;
+                y1 = this.SHEET_RECTANGLE.LOWER_RIGHT_CORNER.y - marginOffset - trademarkRectangleHeight;
+
+                break;
+            case 'unten rechts':
+                x1 = this.SHEET_RECTANGLE.LOWER_RIGHT_CORNER.x - marginOffset - trademarkRectangleWidth;
+                y1 = this.SHEET_RECTANGLE.LOWER_RIGHT_CORNER.y - marginOffset - trademarkRectangleHeight;
+
+                break;
+            case 'oben links':
+                x1 = this.SHEET_RECTANGLE.UPPER_LEFT_CORNER.x + marginOffset;
+                y1 = this.SHEET_RECTANGLE.UPPER_LEFT_CORNER.y + marginOffset;
+
+                break;
+            case 'oben rechts':
+                x1 = this.SHEET_RECTANGLE.LOWER_RIGHT_CORNER.x - marginOffset - trademarkRectangleWidth;
+                y1 = this.SHEET_RECTANGLE.UPPER_LEFT_CORNER.y + marginOffset;
+
+                break;
+            default:
+                x1 = 0;
+                y1 = 0;
+        }
+
+        const x2: number = x1 + trademarkRectangleWidth;
+        const y2: number = y1 + trademarkRectangleHeight;
+
+        return new FolioCalculationRectangle(new FolioCalculationPoint(x1, y1), new FolioCalculationPoint(x2, y2));
     }
 }
 
@@ -554,42 +639,47 @@ export class FolioCalculationSheet {
  */
 class FolioCalculationSystemsMargins {
     /**
-     * The horizontal margin factor of the systems (number).
+     * The horizontal margin factor of the systems.
      */
     private static readonly HORIZONTAL_MARGIN_FACTOR = 1 / 6;
 
     /**
-     * The vertical margin factor of the systems (number).
+     * The vertical margin factor of the systems.
      */
     private static readonly VERTICAL_MARGIN_FACTOR = 0.05;
 
     /**
-     * The horizontal margins of the systems (number).
+     * The vertical margin offset of the systems.
+     */
+    private static readonly VERTICAL_MARGIN_OFFSET = 25;
+
+    /**
+     * The horizontal margins of the systems.
      */
     public readonly HORIZONTAL_MARGINS: number;
 
     /**
-     * The left margin of the systems (number).
+     * The left margin of the systems.
      */
     public readonly LEFT_MARGIN: number;
 
     /**
-     * The lower margin of the systems (number).
+     * The lower margin of the systems.
      */
     public readonly LOWER_MARGIN: number;
 
     /**
-     * The right margin of the systems (number).
+     * The right margin of the systems.
      */
     public readonly RIGHT_MARGIN: number;
 
     /**
-     * The upper margin of the systems (number).
+     * The upper margin of the systems.
      */
     public readonly UPPER_MARGIN: number;
 
     /**
-     * The vertical margins of the systems (number).
+     * The vertical margins of the systems.
      */
     public readonly VERTICAL_MARGINS: number;
 
@@ -606,6 +696,7 @@ class FolioCalculationSystemsMargins {
             this._sheet.SHEET_HEIGHT,
             FolioCalculationSystemsMargins.VERTICAL_MARGIN_FACTOR
         );
+        this.UPPER_MARGIN += FolioCalculationSystemsMargins.VERTICAL_MARGIN_OFFSET;
         this.LOWER_MARGIN = this.UPPER_MARGIN;
 
         this.LEFT_MARGIN = this._calculateSheetMargin(
@@ -643,32 +734,32 @@ class FolioCalculationSystemsMargins {
  */
 class FolioCalculationSystemsDimensions {
     /**
-     * The end position (x-value) of the systems (number).
+     * The end position (x-value) of the systems.
      */
     public readonly END_X: number;
 
     /**
-     * The end position (y-value) of the systems (number).
+     * The end position (y-value) of the systems.
      */
     public readonly END_Y: number;
 
     /**
-     * The start position (x-value) of the systems (number).
+     * The start position (x-value) of the systems.
      */
     public readonly START_X: number;
 
     /**
-     * The start position (y-value) of the systems (number).
+     * The start position (y-value) of the systems.
      */
     public readonly START_Y: number;
 
     /**
-     * The width of the systems (number).
+     * The width of the systems.
      */
     public readonly SYSTEMS_WIDTH: number;
 
     /**
-     * The height of the systems (number).
+     * The height of the systems.
      */
     public readonly SYSTEMS_HEIGHT: number;
 
@@ -685,14 +776,14 @@ class FolioCalculationSystemsDimensions {
         private readonly _sheet: FolioCalculationSheet,
         private readonly _systemsMargins: FolioCalculationSystemsMargins
     ) {
-        const { SHEET_WIDTH, SHEET_HEIGHT, UPPER_LEFT_CORNER } = this._sheet;
+        const { SHEET_WIDTH, SHEET_HEIGHT, SHEET_RECTANGLE } = this._sheet;
         const { HORIZONTAL_MARGINS, VERTICAL_MARGINS, LEFT_MARGIN, UPPER_MARGIN } = this._systemsMargins;
 
         this.SYSTEMS_WIDTH = SHEET_WIDTH - HORIZONTAL_MARGINS;
         this.SYSTEMS_HEIGHT = SHEET_HEIGHT - VERTICAL_MARGINS;
 
-        this.START_X = UPPER_LEFT_CORNER.x + LEFT_MARGIN;
-        this.START_Y = UPPER_LEFT_CORNER.y + UPPER_MARGIN;
+        this.START_X = SHEET_RECTANGLE.UPPER_LEFT_CORNER.x + LEFT_MARGIN;
+        this.START_Y = SHEET_RECTANGLE.UPPER_LEFT_CORNER.y + UPPER_MARGIN;
 
         this.END_X = this.START_X + this.SYSTEMS_WIDTH;
         this.END_Y = this.START_Y + this.SYSTEMS_HEIGHT;
@@ -707,7 +798,7 @@ class FolioCalculationSystemsDimensions {
  */
 class FolioCalculationSystemsLines {
     /**
-     * The array of line arrays of the systems (FolioCalculationLine[][]).
+     * The array of line arrays of the systems.
      */
     public readonly SYSTEMS_ARRAYS: FolioCalculationLine[][];
 
@@ -763,17 +854,17 @@ class FolioCalculationSystemsLines {
  */
 class FolioCalculationSystemsLabels {
     /**
-     * The label x start factor (number).
+     * The label x start factor.
      */
     private static readonly LABEL_START_X_OFFSET_FACTOR = 0.6;
 
     /**
-     * The label y offset correction factor (number).
+     * The label y offset correction factor.
      */
     private static readonly LABEL_START_Y_OFFSET_FACTOR = 3;
 
     /**
-     * The line label array of the systems (FolioCalculationPoint[]).
+     * The line label array of the systems.
      */
     public readonly SYSTEMS_LABELS_ARRAY: FolioCalculationPoint[];
 
@@ -832,42 +923,42 @@ class FolioCalculationSystemsLabels {
  */
 export class FolioCalculationSystems {
     /**
-     * The line space factor of the systems (number).
+     * The line space factor of the systems.
      */
     public lineSpaceFactor = 1.5;
 
     /**
-     * The number of systems (number).
+     * The number of systems.
      */
     public readonly NUMBER_OF_SYSTEMS: number;
 
     /**
-     * The flag if the systems are reversed (boolean
+     * The flag if the systems are reversed
      */
     public readonly SYSTEMS_REVERSED: boolean;
 
     /**
-     * The labels of the systems (FolioCalculationSystemsLabels).
+     * The labels of the systems.
      */
     public readonly SYSTEMS_LABELS: FolioCalculationSystemsLabels;
 
     /**
-     * The lines of the systems (FolioCalculationSystemsLines).
+     * The lines of the systems.
      */
     public readonly SYSTEMS_LINES: FolioCalculationSystemsLines;
 
     /**
-     * The calculated margins of the systems (FolioCalculationSystemsMarginCalculator).
+     * The calculated margins of the systems.
      */
     public readonly SYSTEMS_MARGINS: FolioCalculationSystemsMargins;
 
     /**
-     * The calculated dimensions of the systems (FolioCalculationSystemsDimensions).
+     * The calculated dimensions of the systems.
      */
     public readonly SYSTEMS_DIMENSIONS: FolioCalculationSystemsDimensions;
 
     /**
-     * The zoom factor (number).
+     * The zoom factor.
      */
     public readonly ZOOM_FACTOR: number;
 
@@ -940,20 +1031,17 @@ export class FolioCalculationSystems {
  */
 export class FolioCalculation {
     /**
-     * The calculated values for the sheet
-     * of a folio (FolioCalculationSheet).
+     * The calculated values for the sheet of a folio.
      */
     public readonly SHEET: FolioCalculationSheet;
 
     /**
-     * The calculated values for the systems
-     * of a folio (FolioCalculationSystems).
+     * The calculated values for the systems of a folio.
      */
     public readonly SYSTEMS: FolioCalculationSystems;
 
     /**
-     * The calculated values for content segments
-     * of a folio (FolioCalculationContentSegment[]).
+     * The calculated values for content segments of a folio.
      */
     public readonly CONTENT_SEGMENTS: FolioCalculationContentSegment[];
 
@@ -967,7 +1055,7 @@ export class FolioCalculation {
      * @param {number} [segmentOffsetCorrection] The optional given segment offset correction.
      */
     constructor(folioSettings: FolioSettings, folioData: Folio, segmentOffsetCorrection: number = 0) {
-        this.SHEET = new FolioCalculationSheet(folioSettings, folioData.folioId);
+        this.SHEET = new FolioCalculationSheet(folioSettings, folioData.folioId, folioData.trademarkPosition);
         this.SYSTEMS = new FolioCalculationSystems(
             this.SHEET,
             folioData.systems,

@@ -21,12 +21,12 @@ export class FolioConvoluteList {
  */
 export class FolioConvolute {
     /**
-     * The convolute's id (string).
+     * The convolute's id.
      */
     convoluteId: string;
 
     /**
-     * The convolute's label (string).
+     * The convolute's label.
      */
     convoluteLabel: string;
 
@@ -50,17 +50,17 @@ export class FolioConvolute {
  */
 export class Folio {
     /**
-     * The folio's id (string).
+     * The folio's id.
      */
     folioId: string;
 
     /**
-     * The folio's number of systems (string).
+     * The folio's number of systems.
      */
     systems: string;
 
     /**
-     * The folio's format values (FolioFormat).
+     * The folio's format values.
      */
     format: FolioFormat;
 
@@ -70,7 +70,12 @@ export class Folio {
     reversed?: boolean;
 
     /**
-     * The folio's content array (FolioContent[]).
+     * The folio's optional trademark position.
+     */
+    trademarkPosition?: string;
+
+    /**
+     * The folio's content array.
      */
     content: FolioContent[];
 }
@@ -84,12 +89,12 @@ export class Folio {
  */
 export class FolioFormat {
     /**
-     * The folio format's height (number).
+     * The folio format's height.
      */
     height: number;
 
     /**
-     * The folio format's width (number).
+     * The folio format's width.
      */
     width: number;
 }
@@ -103,27 +108,27 @@ export class FolioFormat {
  */
 export class FolioContent {
     /**
-     * The folio content's complex id (string).
+     * The folio content's complex id.
      */
     complexId: string;
 
     /**
-     * The folio content's sheet id (string).
+     * The folio content's sheet id.
      */
     sheetId: string;
 
     /**
-     * The folio content's sigle (string).
+     * The folio content's sigle.
      */
     sigle: string;
 
     /**
-     * The folio content's sigle addendum (string).
+     * The folio content's sigle addendum.
      */
     sigleAddendum: string;
 
     /**
-     * Boolean flag if the content item can be selected..
+     * Boolean flag if the content item can be selected.
      */
     selectable?: boolean;
 
@@ -138,12 +143,12 @@ export class FolioContent {
     linkTo?: string;
 
     /**
-     * The folio content's optional sectionPartition (number).
+     * The folio content's optional sectionPartition.
      */
     sectionPartition?: number;
 
     /**
-     * The folio content's optional sections array (FolioSection[]).
+     * The folio content's optional sections array.
      */
     sections?: FolioSection[];
 }
@@ -157,22 +162,22 @@ export class FolioContent {
  */
 export class FolioSection {
     /**
-     * The folio section's start system (number).
+     * The folio section's start system.
      */
     startSystem: number;
 
     /**
-     * The folio section's end system (number).
+     * The folio section's end system.
      */
     endSystem: number;
 
     /**
-     * The folio section's optional position (number).
+     * The folio section's optional position.
      */
     position?: number;
 
     /**
-     * The folio section's optional position relative to the system (string).
+     * The folio section's optional position relative to the system.
      */
     relativeToSystem?: string;
 }

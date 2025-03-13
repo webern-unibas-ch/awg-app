@@ -12,6 +12,7 @@ import {
     FolioCalculation,
     FolioCalculationLine,
     FolioCalculationPoint,
+    FolioCalculationRectangle,
     FolioConvolute,
     FolioSettings,
     FolioSvgContentSegment,
@@ -38,8 +39,13 @@ describe('FolioService (DONE)', () => {
     let appendContentSegmentLinkLabelTextElementSpy: Spy;
     let appendContentSegmentLinkLabelTspanElementsSpy: Spy;
     let appendContentSegmentLinkPolygonSpy: Spy;
-    let appendSheetGroupTitleSpy: Spy;
-    let appendSheetGroupRectangleSpy: Spy;
+    let appendSheetGroupSheetTitleSpy: Spy;
+    let appendSheetGroupSheetRectangleSpy: Spy;
+    let appendSheetGroupTrademarkSpy: Spy;
+    let appendSheetGroupTrademarkGroupSpy: Spy;
+    let appendSheetGroupTrademarkRectangleSpy: Spy;
+    let appendSheetGroupTrademarkSymbolSpy: Spy;
+    let appendSheetGroupTrademarkTitleSpy: Spy;
     let appendSystemsGroupLabelSpy: Spy;
     let appendSystemsGroupLinesSpy: Spy;
     let appendSvgElementWithAttrsSpy: Spy;
@@ -50,9 +56,8 @@ describe('FolioService (DONE)', () => {
     let expectedFolioSvgData: FolioSvgData;
     let expectedDefaultFolio: Folio;
     let expectedReversedFolio: Folio;
-
-    let expectedUpperLeftCorner: FolioCalculationPoint;
-    let expectedLowerRightCorner: FolioCalculationPoint;
+    let expectedSheetRectangle: FolioCalculationRectangle;
+    let expectedTrademarkRectangle: FolioCalculationRectangle;
 
     let expectedBgColor: string;
     let expectedContentSegmentFillColor: string;
@@ -107,8 +112,14 @@ describe('FolioService (DONE)', () => {
         expectedSheetStrokeWidth = 1;
         expectedSystemsLineStrokeWidth = 0.7;
 
-        expectedUpperLeftCorner = new FolioCalculationPoint(10, 20);
-        expectedLowerRightCorner = new FolioCalculationPoint(30, 40);
+        expectedSheetRectangle = new FolioCalculationRectangle(
+            new FolioCalculationPoint(10, 20),
+            new FolioCalculationPoint(300, 400)
+        );
+        expectedTrademarkRectangle = new FolioCalculationRectangle(
+            new FolioCalculationPoint(10, 20),
+            new FolioCalculationPoint(30, 40)
+        );
 
         expectedFolioSvgData = new FolioSvgData(
             new FolioCalculation(expectedFolioSettings, expectedDefaultFolio, expectedContentSegmentOffsetCorrection)
@@ -150,8 +161,29 @@ describe('FolioService (DONE)', () => {
             folioService as any,
             '_appendContentSegmentLinkPolygon'
         ).and.callThrough();
-        appendSheetGroupTitleSpy = spyOn(folioService as any, '_appendSheetGroupTitle').and.callThrough();
-        appendSheetGroupRectangleSpy = spyOn(folioService as any, '_appendSheetGroupRectangle').and.callThrough();
+        appendSheetGroupSheetTitleSpy = spyOn(folioService as any, '_appendSheetGroupSheetTitle').and.callThrough();
+        appendSheetGroupSheetRectangleSpy = spyOn(
+            folioService as any,
+            '_appendSheetGroupSheetRectangle'
+        ).and.callThrough();
+        appendSheetGroupTrademarkSpy = spyOn(folioService as any, '_appendSheetGroupTrademark').and.callThrough();
+        appendSheetGroupTrademarkGroupSpy = spyOn(
+            folioService as any,
+            '_appendSheetGroupTrademarkGroup'
+        ).and.callThrough();
+        appendSheetGroupTrademarkRectangleSpy = spyOn(
+            folioService as any,
+            '_appendSheetGroupTrademarkRectangle'
+        ).and.callThrough();
+        appendSheetGroupTrademarkSymbolSpy = spyOn(
+            folioService as any,
+            '_appendSheetGroupTrademarkSymbol'
+        ).and.callThrough();
+        appendSheetGroupTrademarkTitleSpy = spyOn(
+            folioService as any,
+            '_appendSheetGroupTrademarkTitle'
+        ).and.callThrough();
+
         appendSystemsGroupLabelSpy = spyOn(folioService as any, '_appendSystemsGroupLabel').and.callThrough();
         appendSystemsGroupLinesSpy = spyOn(folioService as any, '_appendSystemsGroupLines').and.callThrough();
         appendSvgElementWithAttrsSpy = spyOn(folioService as any, '_appendSvgElementWithAttrs').and.callThrough();
@@ -342,9 +374,10 @@ describe('FolioService (DONE)', () => {
                     'xlink',
                     'preserveAspectRatio',
                 ];
-                const actualAttributes = Array.from((svgCanvas.node() as Element).attributes).map(attr => attr.name);
+                const actualAttributesList = (svgCanvas.node() as Element).attributes;
+                const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
 
-                expectToBe((svgCanvas.node() as Element).attributes.length, expectedAttributes.length);
+                expectToBe(actualAttributesList.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
@@ -369,15 +402,15 @@ describe('FolioService (DONE)', () => {
                 svgSheetGroup = svgCanvas.select('g.sheet-group');
             });
 
-            it('should set the ref variable', () => {
+            it('... should set the ref variable', () => {
                 expectToEqual(folioService.ref, ref);
             });
 
             it('... should trigger `_appendCanvasSheetGroup` method', () => {
-                expectSpyCall(appendCanvasSheetGroupSpy, 1, [svgCanvas, expectedFolioSvgData]);
+                expectSpyCall(appendCanvasSheetGroupSpy, 1, [svgCanvas, expectedFolioSvgData.sheet.folioId]);
             });
 
-            it('should append one SVG sheet group to the svg canvas', () => {
+            it('... should append one svgSheetGroup to the svg canvas', () => {
                 expect(svgSheetGroup).toBeDefined();
                 expectToBe(svgSheetGroup.size(), 1);
             });
@@ -398,8 +431,13 @@ describe('FolioService (DONE)', () => {
 
     describe('#_addFolioSheetToSvgCanvas', () => {
         let svgSheetGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
+        let folioId: string;
+        let sheetRectangle: FolioCalculationRectangle;
+        let trademarkRectangle: FolioCalculationRectangle;
 
         beforeEach(() => {
+            ({ folioId, sheetRectangle, trademarkRectangle } = expectedFolioSvgData.sheet);
+
             svgSheetGroup = D3_SELECTION.create('g');
 
             (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, expectedFolioSvgData);
@@ -409,46 +447,325 @@ describe('FolioService (DONE)', () => {
             expect((folioService as any)._addFolioSheetToSvgCanvas).toBeDefined();
         });
 
-        it('... should trigger `_appendSheetGroupTitle` with correct arguments', () => {
-            expectSpyCall(appendSheetGroupTitleSpy, 1, [svgSheetGroup, expectedFolioSvgData.sheet.folioId]);
+        it('... should trigger `_appendSheetGroupSheetTitle` with correct arguments', () => {
+            expectSpyCall(appendSheetGroupSheetTitleSpy, 1, [svgSheetGroup, folioId]);
         });
 
-        it('... should trigger `_appendSheetGroupRectangle` with correct arguments', () => {
-            expectSpyCall(appendSheetGroupRectangleSpy, 1, [
-                svgSheetGroup,
-                expectedFolioSvgData.sheet.upperLeftCorner,
-                expectedFolioSvgData.sheet.lowerRightCorner,
-            ]);
+        it('... should trigger `_appendSheetGroupSheetRectangle` with correct arguments', () => {
+            expectSpyCall(appendSheetGroupSheetRectangleSpy, 1, [svgSheetGroup, sheetRectangle]);
         });
 
-        it('... should append a title element with correct text content to the svg sheet group', () => {
+        it('... should trigger `_appendSheetGroupTrademark` with correct arguments if trademarkRectangle is given', () => {
+            expectSpyCall(appendSheetGroupTrademarkSpy, 1, [svgSheetGroup, trademarkRectangle, folioId]);
+        });
+
+        it('... should not trigger `_appendSheetGroupTrademark` if trademarkRectangle is not given', () => {
+            expectSpyCall(appendSheetGroupTrademarkSpy, 1, [svgSheetGroup, trademarkRectangle, folioId]);
+
+            const altFolioSvgData = new FolioSvgData(
+                new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
+            );
+
+            (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altFolioSvgData);
+
+            // No additional call
+            expectSpyCall(appendSheetGroupTrademarkSpy, 1, [svgSheetGroup, trademarkRectangle, folioId]);
+        });
+
+        it('... should append a title element with correct text content to the svgSheetGroup', () => {
             expect(svgSheetGroup).toBeDefined();
 
-            expect(svgSheetGroup.select('title')).toBeDefined();
-            expectToBe(svgSheetGroup.selectAll('title').size(), 1);
-            expectToBe(svgSheetGroup.select('title').text(), `Bl. ${expectedFolioSvgData.sheet.folioId}`);
+            expect(svgSheetGroup.select('title.sheet-group-title')).toBeDefined();
+            expectToBe(svgSheetGroup.selectAll('title.sheet-group-title').size(), 1);
+            expectToBe(svgSheetGroup.select('title.sheet-group-title').text(), `Bl. ${folioId}`);
         });
 
-        it('... should append a rect element with correct attributes to the svg sheet group', () => {
+        it('... should append a rect element with correct attributes to the svgSheetGroup', () => {
             expect(svgSheetGroup).toBeDefined();
 
             const rectElement = svgSheetGroup.select('rect');
 
             expect(rectElement).toBeDefined();
-            expectToBe(rectElement.attr('x'), String(expectedFolioSvgData.sheet.upperLeftCorner.x));
-            expectToBe(rectElement.attr('y'), String(expectedFolioSvgData.sheet.upperLeftCorner.y));
+            expectToBe(rectElement.attr('x'), String(sheetRectangle.UPPER_LEFT_CORNER.x));
+            expectToBe(rectElement.attr('y'), String(sheetRectangle.UPPER_LEFT_CORNER.y));
             expectToBe(
                 rectElement.attr('width'),
-                String(expectedFolioSvgData.sheet.lowerRightCorner.x - expectedFolioSvgData.sheet.upperLeftCorner.x)
+                String(sheetRectangle.LOWER_RIGHT_CORNER.x - sheetRectangle.UPPER_LEFT_CORNER.x)
             );
             expectToBe(
                 rectElement.attr('height'),
-                String(expectedFolioSvgData.sheet.lowerRightCorner.y - expectedFolioSvgData.sheet.upperLeftCorner.y)
+                String(sheetRectangle.LOWER_RIGHT_CORNER.y - sheetRectangle.UPPER_LEFT_CORNER.y)
             );
             expectToBe(rectElement.attr('fill'), expectedSheetFillColor);
             expectToBe(rectElement.attr('stroke'), expectedBgColor);
             expectToBe(rectElement.attr('stroke-width'), String(expectedSheetStrokeWidth));
             expectToBe((rectElement.node() as Element).attributes.length, 7);
+        });
+
+        describe('... if trademark is given', () => {
+            const expectedSheetMarginOffset = 10;
+            const expectedTrademarkRectangleWidth = 20;
+            const expectedTrademarkRectangleHeight = 30;
+            let expectedUpperLeftCorner: FolioCalculationPoint;
+            let expectedLowerRightCorner: FolioCalculationPoint;
+            let expectedRectangle: FolioCalculationRectangle;
+
+            it('... should append a trademarkGroup to the svgSheetGroup', () => {
+                expect(svgSheetGroup).toBeDefined();
+
+                const trademarkGroupElement = svgSheetGroup.select('g.trademark-group');
+
+                expect(trademarkGroupElement).toBeDefined();
+            });
+
+            describe('... with trademark position `unten links`', () => {
+                beforeEach(() => {
+                    expectedUpperLeftCorner = new FolioCalculationPoint(
+                        sheetRectangle.UPPER_LEFT_CORNER.x + expectedSheetMarginOffset,
+                        sheetRectangle.LOWER_RIGHT_CORNER.y -
+                            expectedSheetMarginOffset -
+                            expectedTrademarkRectangleHeight
+                    );
+                    expectedLowerRightCorner = new FolioCalculationPoint(
+                        expectedUpperLeftCorner.x + expectedTrademarkRectangleWidth,
+                        expectedUpperLeftCorner.y + expectedTrademarkRectangleHeight
+                    );
+                    expectedRectangle = new FolioCalculationRectangle(
+                        expectedUpperLeftCorner,
+                        expectedLowerRightCorner
+                    );
+                });
+
+                it('... should append a trademarkRectangle with correct attributes to the svgSheetGroup', () => {
+                    expect(svgSheetGroup).toBeDefined();
+
+                    const trademarkRectangleElement = svgSheetGroup.select('rect.trademark-rectangle');
+
+                    expect(trademarkRectangleElement).toBeDefined();
+                    expectToBe(trademarkRectangleElement.attr('class'), 'trademark-rectangle');
+                    expectToBe(trademarkRectangleElement.attr('x'), String(expectedRectangle.UPPER_LEFT_CORNER.x));
+                    expectToBe(trademarkRectangleElement.attr('y'), String(expectedRectangle.UPPER_LEFT_CORNER.y));
+                    expectToBe(
+                        trademarkRectangleElement.attr('width'),
+                        String(expectedRectangle.LOWER_RIGHT_CORNER.x - expectedRectangle.UPPER_LEFT_CORNER.x)
+                    );
+                    expectToBe(
+                        trademarkRectangleElement.attr('height'),
+                        String(expectedRectangle.LOWER_RIGHT_CORNER.y - expectedRectangle.UPPER_LEFT_CORNER.y)
+                    );
+                    expectToBe(trademarkRectangleElement.attr('fill'), expectedSheetFillColor);
+                    expectToBe(trademarkRectangleElement.attr('stroke'), expectedBgColor);
+                    expectToBe(trademarkRectangleElement.attr('stroke-width'), String(expectedSheetStrokeWidth));
+                    expectToBe((trademarkRectangleElement.node() as Element).attributes.length, 8);
+                });
+            });
+
+            describe('... with trademark position `unten rechts`', () => {
+                beforeEach(() => {
+                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    altFolio.trademarkPosition = 'unten rechts';
+
+                    const altSvgData = new FolioSvgData(
+                        new FolioCalculation(expectedFolioSettings, altFolio, expectedContentSegmentOffsetCorrection)
+                    );
+
+                    svgSheetGroup = D3_SELECTION.create('g');
+
+                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+
+                    expectedUpperLeftCorner = new FolioCalculationPoint(
+                        sheetRectangle.LOWER_RIGHT_CORNER.x -
+                            expectedSheetMarginOffset -
+                            expectedTrademarkRectangleWidth,
+                        sheetRectangle.LOWER_RIGHT_CORNER.y -
+                            expectedSheetMarginOffset -
+                            expectedTrademarkRectangleHeight
+                    );
+                    expectedLowerRightCorner = new FolioCalculationPoint(
+                        expectedUpperLeftCorner.x + expectedTrademarkRectangleWidth,
+                        expectedUpperLeftCorner.y + expectedTrademarkRectangleHeight
+                    );
+                    expectedRectangle = new FolioCalculationRectangle(
+                        expectedUpperLeftCorner,
+                        expectedLowerRightCorner
+                    );
+                });
+
+                it('... should append a trademarkRectangle with correct attributes to the svgSheetGroup', () => {
+                    expect(svgSheetGroup).toBeDefined();
+
+                    const trademarkRectangleElement = svgSheetGroup.select('rect.trademark-rectangle');
+
+                    expect(trademarkRectangleElement).toBeDefined();
+                    expectToBe(trademarkRectangleElement.attr('class'), 'trademark-rectangle');
+                    expectToBe(trademarkRectangleElement.attr('x'), String(expectedRectangle.UPPER_LEFT_CORNER.x));
+                    expectToBe(trademarkRectangleElement.attr('y'), String(expectedRectangle.UPPER_LEFT_CORNER.y));
+                    expectToBe(
+                        trademarkRectangleElement.attr('width'),
+                        String(expectedRectangle.LOWER_RIGHT_CORNER.x - expectedRectangle.UPPER_LEFT_CORNER.x)
+                    );
+                    expectToBe(
+                        trademarkRectangleElement.attr('height'),
+                        String(expectedRectangle.LOWER_RIGHT_CORNER.y - expectedRectangle.UPPER_LEFT_CORNER.y)
+                    );
+                    expectToBe(trademarkRectangleElement.attr('fill'), expectedSheetFillColor);
+                    expectToBe(trademarkRectangleElement.attr('stroke'), expectedBgColor);
+                    expectToBe(trademarkRectangleElement.attr('stroke-width'), String(expectedSheetStrokeWidth));
+                    expectToBe((trademarkRectangleElement.node() as Element).attributes.length, 8);
+                });
+            });
+
+            describe('... with trademark position `oben links`', () => {
+                beforeEach(() => {
+                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    altFolio.trademarkPosition = 'oben links';
+
+                    const altSvgData = new FolioSvgData(
+                        new FolioCalculation(expectedFolioSettings, altFolio, expectedContentSegmentOffsetCorrection)
+                    );
+
+                    svgSheetGroup = D3_SELECTION.create('g');
+
+                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+
+                    expectedUpperLeftCorner = new FolioCalculationPoint(
+                        sheetRectangle.UPPER_LEFT_CORNER.x + expectedSheetMarginOffset,
+                        sheetRectangle.UPPER_LEFT_CORNER.y + expectedSheetMarginOffset
+                    );
+                    expectedLowerRightCorner = new FolioCalculationPoint(
+                        expectedUpperLeftCorner.x + expectedTrademarkRectangleWidth,
+                        expectedUpperLeftCorner.y + expectedTrademarkRectangleHeight
+                    );
+                    expectedRectangle = new FolioCalculationRectangle(
+                        expectedUpperLeftCorner,
+                        expectedLowerRightCorner
+                    );
+                });
+
+                it('... should append a trademarkRectangle with correct attributes to the svgSheetGroup', () => {
+                    expect(svgSheetGroup).toBeDefined();
+
+                    const trademarkRectangleElement = svgSheetGroup.select('rect.trademark-rectangle');
+
+                    expect(trademarkRectangleElement).toBeDefined();
+                    expectToBe(trademarkRectangleElement.attr('class'), 'trademark-rectangle');
+                    expectToBe(trademarkRectangleElement.attr('x'), String(expectedRectangle.UPPER_LEFT_CORNER.x));
+                    expectToBe(trademarkRectangleElement.attr('y'), String(expectedRectangle.UPPER_LEFT_CORNER.y));
+                    expectToBe(
+                        trademarkRectangleElement.attr('width'),
+                        String(expectedRectangle.LOWER_RIGHT_CORNER.x - expectedRectangle.UPPER_LEFT_CORNER.x)
+                    );
+                    expectToBe(
+                        trademarkRectangleElement.attr('height'),
+                        String(expectedRectangle.LOWER_RIGHT_CORNER.y - expectedRectangle.UPPER_LEFT_CORNER.y)
+                    );
+                    expectToBe(trademarkRectangleElement.attr('fill'), expectedSheetFillColor);
+                    expectToBe(trademarkRectangleElement.attr('stroke'), expectedBgColor);
+                    expectToBe(trademarkRectangleElement.attr('stroke-width'), String(expectedSheetStrokeWidth));
+                    expectToBe((trademarkRectangleElement.node() as Element).attributes.length, 8);
+                });
+            });
+
+            describe('... with trademark position `oben rechts`', () => {
+                beforeEach(() => {
+                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    altFolio.trademarkPosition = 'oben rechts';
+
+                    const altSvgData = new FolioSvgData(
+                        new FolioCalculation(expectedFolioSettings, altFolio, expectedContentSegmentOffsetCorrection)
+                    );
+
+                    svgSheetGroup = D3_SELECTION.create('g');
+
+                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+
+                    expectedUpperLeftCorner = new FolioCalculationPoint(
+                        sheetRectangle.LOWER_RIGHT_CORNER.x -
+                            expectedSheetMarginOffset -
+                            expectedTrademarkRectangleWidth,
+                        sheetRectangle.UPPER_LEFT_CORNER.y + expectedSheetMarginOffset
+                    );
+                    expectedLowerRightCorner = new FolioCalculationPoint(
+                        expectedUpperLeftCorner.x + expectedTrademarkRectangleWidth,
+                        expectedUpperLeftCorner.y + expectedTrademarkRectangleHeight
+                    );
+                    expectedRectangle = new FolioCalculationRectangle(
+                        expectedUpperLeftCorner,
+                        expectedLowerRightCorner
+                    );
+                });
+
+                it('... should append a trademarkRectangle with correct attributes to the svgSheetGroup', () => {
+                    expect(svgSheetGroup).toBeDefined();
+
+                    const trademarkRectangleElement = svgSheetGroup.select('rect.trademark-rectangle');
+
+                    expect(trademarkRectangleElement).toBeDefined();
+                    expectToBe(trademarkRectangleElement.attr('class'), 'trademark-rectangle');
+                    expectToBe(trademarkRectangleElement.attr('x'), String(expectedRectangle.UPPER_LEFT_CORNER.x));
+                    expectToBe(trademarkRectangleElement.attr('y'), String(expectedRectangle.UPPER_LEFT_CORNER.y));
+                    expectToBe(
+                        trademarkRectangleElement.attr('width'),
+                        String(expectedRectangle.LOWER_RIGHT_CORNER.x - expectedRectangle.UPPER_LEFT_CORNER.x)
+                    );
+                    expectToBe(
+                        trademarkRectangleElement.attr('height'),
+                        String(expectedRectangle.LOWER_RIGHT_CORNER.y - expectedRectangle.UPPER_LEFT_CORNER.y)
+                    );
+                    expectToBe(trademarkRectangleElement.attr('fill'), expectedSheetFillColor);
+                    expectToBe(trademarkRectangleElement.attr('stroke'), expectedBgColor);
+                    expectToBe(trademarkRectangleElement.attr('stroke-width'), String(expectedSheetStrokeWidth));
+                    expectToBe((trademarkRectangleElement.node() as Element).attributes.length, 8);
+                });
+            });
+
+            describe('... with any other trademark position', () => {
+                beforeEach(() => {
+                    const altFolio = JSON.parse(JSON.stringify(expectedDefaultFolio));
+                    altFolio.trademarkPosition = 'irgendwo';
+
+                    const altSvgData = new FolioSvgData(
+                        new FolioCalculation(expectedFolioSettings, altFolio, expectedContentSegmentOffsetCorrection)
+                    );
+
+                    svgSheetGroup = D3_SELECTION.create('g');
+
+                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+
+                    expectedUpperLeftCorner = new FolioCalculationPoint(0, 0);
+                    expectedLowerRightCorner = new FolioCalculationPoint(
+                        expectedUpperLeftCorner.x + expectedTrademarkRectangleWidth,
+                        expectedUpperLeftCorner.y + expectedTrademarkRectangleHeight
+                    );
+                    expectedRectangle = new FolioCalculationRectangle(
+                        expectedUpperLeftCorner,
+                        expectedLowerRightCorner
+                    );
+                });
+
+                it('... should append a trademarkRectangle with correct attributes to the svgSheetGroup', () => {
+                    expect(svgSheetGroup).toBeDefined();
+
+                    const trademarkRectangleElement = svgSheetGroup.select('rect.trademark-rectangle');
+
+                    expect(trademarkRectangleElement).toBeDefined();
+                    expectToBe(trademarkRectangleElement.attr('class'), 'trademark-rectangle');
+                    expectToBe(trademarkRectangleElement.attr('x'), String(expectedRectangle.UPPER_LEFT_CORNER.x));
+                    expectToBe(trademarkRectangleElement.attr('y'), String(expectedRectangle.UPPER_LEFT_CORNER.y));
+                    expectToBe(
+                        trademarkRectangleElement.attr('width'),
+                        String(expectedRectangle.LOWER_RIGHT_CORNER.x - expectedRectangle.UPPER_LEFT_CORNER.x)
+                    );
+                    expectToBe(
+                        trademarkRectangleElement.attr('height'),
+                        String(expectedRectangle.LOWER_RIGHT_CORNER.y - expectedRectangle.UPPER_LEFT_CORNER.y)
+                    );
+                    expectToBe(trademarkRectangleElement.attr('fill'), expectedSheetFillColor);
+                    expectToBe(trademarkRectangleElement.attr('stroke'), expectedBgColor);
+                    expectToBe(trademarkRectangleElement.attr('stroke-width'), String(expectedSheetStrokeWidth));
+                    expectToBe((trademarkRectangleElement.node() as Element).attributes.length, 8);
+                });
+            });
         });
 
         describe('... should set sheet vertex to NaN if', () => {
@@ -462,7 +779,7 @@ describe('FolioService (DONE)', () => {
 
                 (folioService as any)._addFolioSheetToSvgCanvas(altSvgSheetGroup, altFolioSvgData);
 
-                expectToEqual(altFolioSvgData.sheet.lowerRightCorner.x, NaN);
+                expectToEqual(altFolioSvgData.sheet.sheetRectangle.LOWER_RIGHT_CORNER.x, NaN);
             });
 
             it('... sheet height is NaN in folioCalculation model', () => {
@@ -475,7 +792,7 @@ describe('FolioService (DONE)', () => {
 
                 (folioService as any)._addFolioSheetToSvgCanvas(altSvgSheetGroup, altFolioSvgData);
 
-                expectToEqual(altFolioSvgData.sheet.lowerRightCorner.y, NaN);
+                expectToEqual(altFolioSvgData.sheet.sheetRectangle.LOWER_RIGHT_CORNER.y, NaN);
             });
         });
     });
@@ -517,7 +834,7 @@ describe('FolioService (DONE)', () => {
                 });
             });
 
-            it('... should append a systems group and a system line group to the SVG sheet group for each system', () => {
+            it('... should append a systems group and a system line group to the svgSheetGroup for each system', () => {
                 const systemCount = expectedFolioSvgData.systems.systemsLines.length;
 
                 expectToBe(svgSheetGroup.selectAll('.systems-group').size(), systemCount);
@@ -754,7 +1071,7 @@ describe('FolioService (DONE)', () => {
                 expectSpyCall(appendContentSegmentGroupSpy, expectedFolioSvgData.contentSegments.length);
             });
 
-            it('... should append one content segment group to the SVG sheet group for each content segment', () => {
+            it('... should append one content segment group to the svgSheetGroup for each content segment', () => {
                 const contentSegmentGroups = svgSheetGroup.selectAll('g.content-segment-group');
                 expectToBe(contentSegmentGroups.size(), expectedFolioSvgData.contentSegments.length);
             });
@@ -861,11 +1178,19 @@ describe('FolioService (DONE)', () => {
 
         describe('... when called', () => {
             let svgCanvas: D3_SELECTION.Selection<SVGSVGElement, unknown, null, undefined>;
+            let sheetGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
+            let sheetGroupId: string;
+            let sheetGroupClass: string;
 
             beforeEach(() => {
+                sheetGroupId = expectedFolioSvgData.sheet.folioId;
+                sheetGroupClass = 'sheet-group';
+
                 svgCanvas = D3_SELECTION.create('svg');
 
-                (folioService as any)._appendCanvasSheetGroup(svgCanvas, expectedFolioSvgData);
+                (folioService as any)._appendCanvasSheetGroup(svgCanvas, sheetGroupId);
+
+                sheetGroup = svgCanvas.select('g.sheet-group');
             });
 
             it('... should trigger `_appendSvgElementWithAttrs` with correct arguments', () => {
@@ -873,41 +1198,31 @@ describe('FolioService (DONE)', () => {
                     svgCanvas,
                     'g',
                     {
-                        sheetGroupId: expectedFolioSvgData.sheet.folioId,
-                        class: 'sheet-group',
+                        sheetGroupId: sheetGroupId,
+                        class: sheetGroupClass,
                     },
                 ]);
             });
 
             it('... should append one sheet group to the svg canvas', () => {
-                const sheetGroup = svgCanvas.select('g.sheet-group');
-
                 expect(sheetGroup).toBeDefined();
                 expectToBe(sheetGroup.size(), 1);
             });
 
             it('... should set the `sheetGroupId` attribute of the sheet group', () => {
-                const sheetGroup = svgCanvas.select('g.sheet-group');
-
-                expectToBe(sheetGroup.attr('sheetGroupId'), expectedFolioSvgData.sheet.folioId);
+                expectToBe(sheetGroup.attr('sheetGroupId'), sheetGroupId);
             });
 
             it('... should set the `class` attribute of the sheet group', () => {
-                const sheetGroup = svgCanvas.select('g.sheet-group');
-
-                expectToBe(sheetGroup.attr('class'), 'sheet-group');
+                expectToBe(sheetGroup.attr('class'), sheetGroupClass);
             });
 
             it('... should only have specified attributes', () => {
                 const expectedAttributes = ['sheetGroupId', 'class'];
-                const actualAttributes = Array.from(
-                    (svgCanvas.select('g.sheet-group').node() as Element).attributes
-                ).map(attr => attr.name);
+                const actualAttributesList = (sheetGroup.node() as Element).attributes;
+                const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
 
-                expectToBe(
-                    (svgCanvas.select('g.sheet-group').node() as Element).attributes.length,
-                    expectedAttributes.length
-                );
+                expectToBe(actualAttributesList.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
@@ -1012,7 +1327,7 @@ describe('FolioService (DONE)', () => {
                 ]);
             });
 
-            it('... should append one group element to the SVG sheet group', () => {
+            it('... should append one group element to the svgSheetGroup', () => {
                 expect(contentSegmentGroup).toBeDefined();
                 expectToBe(svgSheetGroup.selectAll('g').size(), 1);
             });
@@ -1063,11 +1378,10 @@ describe('FolioService (DONE)', () => {
                 const expectedAttributes = ['contentSegmentGroupId', 'contentSegmentId', 'class', 'stroke', 'fill'].map(
                     attr => attr.toLowerCase()
                 );
-                const actualAttributes = Array.from((contentSegmentGroup.node() as Element).attributes).map(
-                    attr => attr.name
-                );
+                const actualAttributesList = (contentSegmentGroup.node() as Element).attributes;
+                const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
 
-                expectToBe((contentSegmentGroup.node() as Element).attributes.length, expectedAttributes.length);
+                expectToBe(actualAttributesList.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
@@ -1117,9 +1431,10 @@ describe('FolioService (DONE)', () => {
                 const titleElement = contentSegmentGroup.select('title');
 
                 const expectedAttributes = [];
-                const actualAttributes = Array.from((titleElement.node() as Element).attributes).map(attr => attr.name);
+                const actualAttributesList = (titleElement.node() as Element).attributes;
+                const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
 
-                expectToBe((titleElement.node() as Element).attributes.length, expectedAttributes.length);
+                expectToBe(actualAttributesList.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
@@ -1170,9 +1485,10 @@ describe('FolioService (DONE)', () => {
                 const linkElement = contentSegmentGroup.select('a');
 
                 const expectedAttributes = ['class'].map(attr => attr.toLowerCase());
-                const actualAttributes = Array.from((linkElement.node() as Element).attributes).map(attr => attr.name);
+                const actualAttributesList = (linkElement.node() as Element).attributes;
+                const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
 
-                expectToBe((linkElement.node() as Element).attributes.length, expectedAttributes.length);
+                expectToBe(actualAttributesList.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
@@ -1346,9 +1662,10 @@ describe('FolioService (DONE)', () => {
                     'text-anchor',
                     'style',
                 ].map(attr => attr.toLowerCase());
-                const actualAttributes = Array.from((textElement.node() as Element).attributes).map(attr => attr.name);
+                const actualAttributesList = (textElement.node() as Element).attributes;
+                const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
 
-                expectToBe((textElement.node() as Element).attributes.length, expectedAttributes.length);
+                expectToBe(actualAttributesList.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
@@ -1600,19 +1917,18 @@ describe('FolioService (DONE)', () => {
                 const polygonElement = contentSegmentLink.select('polygon');
 
                 const expectedAttributes = ['class', 'points', 'fill', 'stroke-width'].map(attr => attr.toLowerCase());
-                const actualAttributes = Array.from((polygonElement.node() as Element).attributes).map(
-                    attr => attr.name
-                );
+                const actualAttributesList = (polygonElement.node() as Element).attributes;
+                const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
 
-                expectToBe((polygonElement.node() as Element).attributes.length, expectedAttributes.length);
+                expectToBe(actualAttributesList.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
     });
 
-    describe('#_appendSheetGroupRectangle', () => {
-        it('... should have a method `_appendSheetGroupRectangle`', () => {
-            expect((folioService as any)._appendSheetGroupRectangle).toBeDefined();
+    describe('#_appendSheetGroupSheetRectangle', () => {
+        it('... should have a method `_appendSheetGroupSheetRectangle`', () => {
+            expect((folioService as any)._appendSheetGroupSheetRectangle).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -1622,11 +1938,7 @@ describe('FolioService (DONE)', () => {
             beforeEach(() => {
                 svgSheetGroup = D3_SELECTION.create('g');
 
-                (folioService as any)._appendSheetGroupRectangle(
-                    svgSheetGroup,
-                    expectedUpperLeftCorner,
-                    expectedLowerRightCorner
-                );
+                (folioService as any)._appendSheetGroupSheetRectangle(svgSheetGroup, expectedSheetRectangle);
 
                 rectElement = svgSheetGroup.select('rect');
             });
@@ -1637,10 +1949,10 @@ describe('FolioService (DONE)', () => {
 
             it('... should trigger `_appendSvgElementWithAttrs` with correct arguments', () => {
                 const attributes = {
-                    x: expectedUpperLeftCorner.x,
-                    y: expectedUpperLeftCorner.y,
-                    width: expectedLowerRightCorner.x - expectedUpperLeftCorner.x,
-                    height: expectedLowerRightCorner.y - expectedUpperLeftCorner.y,
+                    x: expectedSheetRectangle.UPPER_LEFT_CORNER.x,
+                    y: expectedSheetRectangle.UPPER_LEFT_CORNER.y,
+                    width: expectedSheetRectangle.LOWER_RIGHT_CORNER.x - expectedSheetRectangle.UPPER_LEFT_CORNER.x,
+                    height: expectedSheetRectangle.LOWER_RIGHT_CORNER.y - expectedSheetRectangle.UPPER_LEFT_CORNER.y,
                     fill: expectedSheetFillColor,
                     stroke: expectedBgColor,
                 };
@@ -1655,19 +1967,25 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should set the `x` attribute of the `rect` element', () => {
-                expectToBe(rectElement.attr('x'), String(expectedUpperLeftCorner.x));
+                expectToBe(rectElement.attr('x'), String(expectedSheetRectangle.UPPER_LEFT_CORNER.x));
             });
 
             it('... should set the `y` attribute of the `rect` element', () => {
-                expectToBe(rectElement.attr('y'), String(expectedUpperLeftCorner.y));
+                expectToBe(rectElement.attr('y'), String(expectedSheetRectangle.UPPER_LEFT_CORNER.y));
             });
 
             it('... should set the `width` attribute of the `rect` element', () => {
-                expectToBe(rectElement.attr('width'), String(expectedLowerRightCorner.x - expectedUpperLeftCorner.x));
+                expectToBe(
+                    rectElement.attr('width'),
+                    String(expectedSheetRectangle.LOWER_RIGHT_CORNER.x - expectedSheetRectangle.UPPER_LEFT_CORNER.x)
+                );
             });
 
             it('... should set the `height` attribute of the `rect` element', () => {
-                expectToBe(rectElement.attr('height'), String(expectedLowerRightCorner.y - expectedUpperLeftCorner.y));
+                expectToBe(
+                    rectElement.attr('height'),
+                    String(expectedSheetRectangle.LOWER_RIGHT_CORNER.y - expectedSheetRectangle.UPPER_LEFT_CORNER.y)
+                );
             });
 
             it('... should set the `fill` attribute of the `rect` element', () => {
@@ -1686,29 +2004,34 @@ describe('FolioService (DONE)', () => {
                 const expectedAttributes = ['x', 'y', 'width', 'height', 'fill', 'stroke', 'stroke-width'].map(attr =>
                     attr.toLowerCase()
                 );
-                const actualAttributes = Array.from((rectElement.node() as Element).attributes).map(attr => attr.name);
+                const actualAttributesList = (rectElement.node() as Element).attributes;
+                const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
 
-                expectToBe((rectElement.node() as Element).attributes.length, expectedAttributes.length);
+                expectToBe(actualAttributesList.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
     });
 
-    describe('#_appendSheetGroupTitle', () => {
-        it('... should have a method `_appendSheetGroupTitle`', () => {
-            expect((folioService as any)._appendSheetGroupTitle).toBeDefined();
+    describe('#_appendSheetGroupSheetTitle', () => {
+        it('... should have a method `_appendSheetGroupSheetTitle`', () => {
+            expect((folioService as any)._appendSheetGroupSheetTitle).toBeDefined();
         });
 
         describe('... when called', () => {
             let svgSheetGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
             let titleElement: D3_SELECTION.Selection<SVGTitleElement, unknown, null, undefined>;
             let folioId: string;
+            let sheetGroupTitle: string;
+            let sheetGroupTitleClass: string;
 
             beforeEach(() => {
                 svgSheetGroup = D3_SELECTION.create('g');
                 folioId = 'test-folio';
+                sheetGroupTitle = `Bl. ${folioId}`;
+                sheetGroupTitleClass = 'sheet-group-title';
 
-                (folioService as any)._appendSheetGroupTitle(svgSheetGroup, folioId);
+                (folioService as any)._appendSheetGroupSheetTitle(svgSheetGroup, folioId);
 
                 titleElement = svgSheetGroup.select('title');
             });
@@ -1717,25 +2040,393 @@ describe('FolioService (DONE)', () => {
                 D3_SELECTION.select('g').remove();
             });
 
-            it('... should trigger `_appendSvgElementWithAttrs` with no arguments', () => {
-                expectSpyCall(appendSvgElementWithAttrsSpy, 1, [svgSheetGroup, 'title', {}]);
+            it('... should trigger `_appendSvgElementWithAttrs` with correct arguments', () => {
+                expectSpyCall(appendSvgElementWithAttrsSpy, 1, [
+                    svgSheetGroup,
+                    'title',
+                    { class: sheetGroupTitleClass },
+                ]);
             });
 
             it('... should add a title element to the svgSheetGroup', () => {
                 expect(titleElement).toBeDefined();
             });
 
-            it('... should have no attributes on title element', () => {
-                const expectedAttributes = [].map(attr => attr.toLowerCase());
-                const actualAttributes = Array.from((titleElement.node() as Element).attributes).map(attr => attr.name);
+            it('... should set the `class` attribute of the svgSheetGroup', () => {
+                expectToBe(titleElement.attr('class'), sheetGroupTitleClass);
+            });
 
-                expectToBe((titleElement.node() as Element).attributes.length, expectedAttributes.length);
+            it('... should only have specified attributes on title element', () => {
+                const expectedAttributes = ['class'].map(attr => attr.toLowerCase());
+                const actualAttributesList = (titleElement.node() as Element).attributes;
+                const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
+
+                expectToBe(actualAttributesList.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
 
             it('... should set the text content of the title element', () => {
                 expectToBe(titleElement.empty(), false);
-                expectToBe(titleElement.text(), `Bl. ${folioId}`);
+                expectToBe(titleElement.text(), sheetGroupTitle);
+            });
+        });
+    });
+
+    describe('#_appendSheetGroupTrademark', () => {
+        it('... should have a method `_appendSheetGroupTrademark`', () => {
+            expect((folioService as any)._appendSheetGroupTrademark).toBeDefined();
+        });
+
+        describe('... when called', () => {
+            let svgSheetGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
+            let svgTrademarkGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
+
+            beforeEach(() => {
+                svgSheetGroup = D3_SELECTION.create('g');
+
+                (folioService as any)._appendSheetGroupTrademark(
+                    svgSheetGroup,
+                    expectedTrademarkRectangle,
+                    expectedFolioSvgData.sheet.folioId
+                );
+
+                svgTrademarkGroup = svgSheetGroup.select('g.trademark-group');
+            });
+
+            it('... should trigger `_appendSheetGroupTrademarkGroup` with correct arguments', () => {
+                expectSpyCall(appendSheetGroupTrademarkGroupSpy, 1, [
+                    svgSheetGroup,
+                    expectedFolioSvgData.sheet.folioId,
+                ]);
+            });
+
+            it('... should append one svgTrademarkGroup to the svgSheetGroup', () => {
+                expect(svgTrademarkGroup).toBeDefined();
+                expectToBe(svgTrademarkGroup.size(), 1);
+            });
+
+            it('... should trigger `_appendSheetGroupTrademarkRectangle` with correct arguments', () => {
+                expectSpyCall(appendSheetGroupTrademarkRectangleSpy, 1, [
+                    svgTrademarkGroup,
+                    expectedTrademarkRectangle,
+                ]);
+            });
+
+            it('... should trigger `_appendSheetGroupTrademarkSymbol` with correct arguments', () => {
+                expectSpyCall(appendSheetGroupTrademarkSymbolSpy, 1, [svgTrademarkGroup, expectedTrademarkRectangle]);
+            });
+
+            it('... should trigger `_appendSheetGroupTrademarkTitle` with correct arguments', () => {
+                expectSpyCall(appendSheetGroupTrademarkTitleSpy, 1, [svgTrademarkGroup]);
+            });
+        });
+    });
+
+    describe('#_appendSheetGroupTrademarkGroup', () => {
+        it('... should have a method `_appendSheetGroupTrademarkGroup`', () => {
+            expect((folioService as any)._appendSheetGroupTrademarkGroup).toBeDefined();
+        });
+
+        describe('... when called', () => {
+            let svgSheetGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
+            let trademarkGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
+            let trademarkGroupId: string;
+            let trademarkGroupClass: string;
+
+            beforeEach(() => {
+                trademarkGroupId = expectedFolioSvgData.sheet.folioId;
+                trademarkGroupClass = 'trademark-group';
+
+                svgSheetGroup = D3_SELECTION.create('g');
+
+                (folioService as any)._appendSheetGroupTrademarkGroup(svgSheetGroup, trademarkGroupId);
+
+                trademarkGroup = svgSheetGroup.select('g.trademark-group');
+            });
+
+            it('... should trigger `_appendSvgElementWithAttrs` with correct arguments', () => {
+                expectSpyCall(appendSvgElementWithAttrsSpy, 1, [
+                    svgSheetGroup,
+                    'g',
+                    {
+                        trademarkGroupId: trademarkGroupId,
+                        class: trademarkGroupClass,
+                    },
+                ]);
+            });
+
+            it('... should append one trademark group to the svgSheetGroup', () => {
+                expect(trademarkGroup).toBeDefined();
+                expectToBe(trademarkGroup.size(), 1);
+            });
+
+            it('... should set the `trademarkGroupId` attribute of the trademark group', () => {
+                expectToBe(trademarkGroup.attr('trademarkGroupId'), trademarkGroupId);
+            });
+
+            it('... should set the `class` attribute of the sheet group', () => {
+                expectToBe(trademarkGroup.attr('class'), trademarkGroupClass);
+            });
+
+            it('... should only have specified attributes', () => {
+                const expectedAttributes = ['trademarkgroupid', 'class'];
+                const actualAttributesList = (trademarkGroup.node() as Element).attributes;
+                const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
+
+                expectToBe(actualAttributesList.length, expectedAttributes.length);
+                expectToEqual(actualAttributes, expectedAttributes);
+            });
+        });
+    });
+
+    describe('#_appendSheetGroupTrademarkRectangle', () => {
+        it('... should have a method `_appendSheetGroupTrademarkRectangle`', () => {
+            expect((folioService as any)._appendSheetGroupTrademarkRectangle).toBeDefined();
+        });
+
+        describe('... when called', () => {
+            let svgTrademarkGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
+            let rectElement: D3_SELECTION.Selection<SVGRectElement, unknown, null, undefined>;
+            let trademarkRectangleClass: string;
+
+            beforeEach(() => {
+                trademarkRectangleClass = 'trademark-rectangle';
+
+                svgTrademarkGroup = D3_SELECTION.create('g');
+
+                (folioService as any)._appendSheetGroupTrademarkRectangle(
+                    svgTrademarkGroup,
+                    expectedTrademarkRectangle
+                );
+
+                rectElement = svgTrademarkGroup.select('rect');
+            });
+
+            afterEach(() => {
+                D3_SELECTION.select('g').remove();
+            });
+
+            it('... should trigger `_appendSvgElementWithAttrs` with correct arguments', () => {
+                const attributes = {
+                    class: trademarkRectangleClass,
+                    x: expectedTrademarkRectangle.UPPER_LEFT_CORNER.x,
+                    y: expectedTrademarkRectangle.UPPER_LEFT_CORNER.y,
+                    width:
+                        expectedTrademarkRectangle.LOWER_RIGHT_CORNER.x -
+                        expectedTrademarkRectangle.UPPER_LEFT_CORNER.x,
+                    height:
+                        expectedTrademarkRectangle.LOWER_RIGHT_CORNER.y -
+                        expectedTrademarkRectangle.UPPER_LEFT_CORNER.y,
+                    fill: expectedSheetFillColor,
+                    stroke: expectedBgColor,
+                };
+                attributes['stroke-width'] = expectedSheetStrokeWidth;
+
+                console.log('attributes', attributes);
+
+                expectSpyCall(appendSvgElementWithAttrsSpy, 1, [svgTrademarkGroup, 'rect', attributes]);
+            });
+
+            it('... should add a rect element to the svgTrademarkGroup', () => {
+                expect(rectElement).toBeDefined();
+                expectToBe(rectElement.empty(), false);
+            });
+
+            it('... should set the `class` attribute of the svgTrademarkGroup', () => {
+                expectToBe(rectElement.attr('class'), trademarkRectangleClass);
+            });
+
+            it('... should set the `x` attribute of the `rect` element', () => {
+                expectToBe(rectElement.attr('x'), String(expectedTrademarkRectangle.UPPER_LEFT_CORNER.x));
+            });
+
+            it('... should set the `y` attribute of the `rect` element', () => {
+                expectToBe(rectElement.attr('y'), String(expectedTrademarkRectangle.UPPER_LEFT_CORNER.y));
+            });
+
+            it('... should set the `width` attribute of the `rect` element', () => {
+                expectToBe(
+                    rectElement.attr('width'),
+                    String(
+                        expectedTrademarkRectangle.LOWER_RIGHT_CORNER.x - expectedTrademarkRectangle.UPPER_LEFT_CORNER.x
+                    )
+                );
+            });
+
+            it('... should set the `height` attribute of the `rect` element', () => {
+                expectToBe(
+                    rectElement.attr('height'),
+                    String(
+                        expectedTrademarkRectangle.LOWER_RIGHT_CORNER.y - expectedTrademarkRectangle.UPPER_LEFT_CORNER.y
+                    )
+                );
+            });
+
+            it('... should set the `fill` attribute of the `rect` element', () => {
+                expectToBe(rectElement.attr('fill'), expectedSheetFillColor);
+            });
+
+            it('... should set the `stroke` attribute of the `rect` element', () => {
+                expectToBe(rectElement.attr('stroke'), expectedBgColor);
+            });
+
+            it('... should set the `stroke-width` attribute of the `rect` element', () => {
+                expectToBe(rectElement.attr('stroke-width'), String(expectedSheetStrokeWidth));
+            });
+
+            it('... should only have specified attributes', () => {
+                const expectedAttributes = ['class', 'x', 'y', 'width', 'height', 'fill', 'stroke', 'stroke-width'].map(
+                    attr => attr.toLowerCase()
+                );
+                const actualAttributesList = (rectElement.node() as Element).attributes;
+                const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
+
+                expectToBe(actualAttributesList.length, expectedAttributes.length);
+                expectToEqual(actualAttributes, expectedAttributes);
+            });
+        });
+    });
+
+    describe('#_appendSheetGroupTrademarkSymbol', () => {
+        it('... should have a method `_appendSheetGroupTrademarkSymbol`', () => {
+            expect((folioService as any)._appendSheetGroupTrademarkSymbol).toBeDefined();
+        });
+
+        describe('... when called', () => {
+            let svgTrademarkGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
+            let symbolPathElement: D3_SELECTION.Selection<SVGPathElement, unknown, null, undefined>;
+            let trademarkSymbolClass: string;
+            let tradeMarkSymbolPath: string;
+            let trademarkSymbolTransform: string;
+            let x1: number, x2: number, y1: number, y2: number;
+
+            beforeEach(() => {
+                ({ x: x1, y: y1 } = expectedTrademarkRectangle.UPPER_LEFT_CORNER);
+                ({ x: x2, y: y2 } = expectedTrademarkRectangle.LOWER_RIGHT_CORNER);
+                trademarkSymbolClass = 'trademark-symbol';
+                trademarkSymbolTransform = `translate(${(x1 + x2) / 2 - 10}, ${(y1 + y2) / 2 - 10}) scale(0.5)`;
+                tradeMarkSymbolPath = `M 10 35 Q 12 33 14 35 T 18 35 Q 20 33 22 35 T 26 35 Q 28 33 30 35 T 34 35 M 10 40 T 34 40 M 12 18 C 17 30 19 28 21 22 C 23 32 25 30 29 29 M 15 22 C 17 20 19 18 21 20 C 23 22 26 20 27 18 M 12 29 C 17 25 20 24 21 25 C 23 27 25 26 29 22 M 15 16 L 17 13 L 19 15 L 21 13 L 23 15 L 25 13 L 27 16 M 11 16 L 17 8 L 19 10 L 21 8 L 23 10 L 25 8 L 31 16 M 15 6 L 17 3 L 19 5 L 21 3 L 23 5 L 25 3 L 27 6`;
+
+                svgTrademarkGroup = D3_SELECTION.create('g');
+
+                (folioService as any)._appendSheetGroupTrademarkSymbol(svgTrademarkGroup, expectedTrademarkRectangle);
+
+                symbolPathElement = svgTrademarkGroup.select('path');
+            });
+
+            afterEach(() => {
+                D3_SELECTION.select('g').remove();
+            });
+
+            it('... should trigger `_appendSvgElementWithAttrs` with correct arguments', () => {
+                const attributes = {
+                    class: trademarkSymbolClass,
+                    d: tradeMarkSymbolPath,
+                    fill: 'none',
+                    stroke: expectedDisabledColor,
+                    transform: trademarkSymbolTransform,
+                };
+                attributes['stroke-width'] = expectedContentSegmentStrokeWidth;
+
+                expectSpyCall(appendSvgElementWithAttrsSpy, 1, [svgTrademarkGroup, 'path', attributes]);
+            });
+
+            it('... should add a path element to the svgTrademarkGroup', () => {
+                expect(symbolPathElement).toBeDefined();
+                expectToBe(symbolPathElement.empty(), false);
+            });
+
+            it('... should set the `class` attribute of the svgTrademarkGroup', () => {
+                expectToBe(symbolPathElement.attr('class'), trademarkSymbolClass);
+            });
+
+            it('... should set the `d` attribute of the `path` element', () => {
+                expectToBe(symbolPathElement.attr('d'), String(tradeMarkSymbolPath));
+            });
+
+            it('... should set the `fill` attribute of the `path` element', () => {
+                expectToBe(symbolPathElement.attr('fill'), 'none');
+            });
+
+            it('... should set the `stroke` attribute of the `path` element', () => {
+                expectToBe(symbolPathElement.attr('stroke'), expectedDisabledColor);
+            });
+
+            it('... should set the `transform` attribute of the `path` element', () => {
+                expectToBe(symbolPathElement.attr('transform'), trademarkSymbolTransform);
+            });
+
+            it('... should set the `stroke-width` attribute of the `path` element', () => {
+                expectToBe(symbolPathElement.attr('stroke-width'), String(expectedContentSegmentStrokeWidth));
+            });
+
+            it('... should only have specified attributes', () => {
+                const expectedAttributes = ['class', 'd', 'fill', 'stroke', 'transform', 'stroke-width'].map(attr =>
+                    attr.toLowerCase()
+                );
+                const actualAttributesList = (symbolPathElement.node() as Element).attributes;
+                const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
+
+                expectToBe(actualAttributesList.length, expectedAttributes.length);
+                expectToEqual(actualAttributes, expectedAttributes);
+            });
+        });
+    });
+
+    describe('#_appendSheetGroupTrademarkTitle', () => {
+        it('... should have a method `_appendSheetGroupTrademarkTitle`', () => {
+            expect((folioService as any)._appendSheetGroupTrademarkTitle).toBeDefined();
+        });
+
+        describe('... when called', () => {
+            let svgTrademarkGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
+            let titleElement: D3_SELECTION.Selection<SVGTitleElement, unknown, null, undefined>;
+            let trademarkTitle: string;
+            let trademarkTitleClass: string;
+
+            beforeEach(() => {
+                trademarkTitle = 'Firmenzeichen';
+                trademarkTitleClass = 'trademark-title';
+
+                svgTrademarkGroup = D3_SELECTION.create('g');
+
+                (folioService as any)._appendSheetGroupTrademarkTitle(svgTrademarkGroup);
+
+                titleElement = svgTrademarkGroup.select('title');
+            });
+
+            afterEach(() => {
+                D3_SELECTION.select('g').remove();
+            });
+
+            it('... should trigger `_appendSvgElementWithAttrs` with correct arguments', () => {
+                expectSpyCall(appendSvgElementWithAttrsSpy, 1, [
+                    svgTrademarkGroup,
+                    'title',
+                    { class: trademarkTitleClass },
+                ]);
+            });
+
+            it('... should add a title element to the svgTrademarkGroup', () => {
+                expect(titleElement).toBeDefined();
+            });
+
+            it('... should set the `class` attribute of the svgTrademarkGroup', () => {
+                expectToBe(titleElement.attr('class'), trademarkTitleClass);
+            });
+
+            it('... should only have specified attributes on title element', () => {
+                const expectedAttributes = ['class'].map(attr => attr.toLowerCase());
+                const actualAttributesList = (titleElement.node() as Element).attributes;
+                const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
+
+                expectToBe(actualAttributesList.length, expectedAttributes.length);
+                expectToEqual(actualAttributes, expectedAttributes);
+            });
+
+            it('... should set the text content of the title element', () => {
+                expectToBe(titleElement.empty(), false);
+                expectToBe(titleElement.text(), trademarkTitle);
             });
         });
     });
@@ -1829,9 +2520,10 @@ describe('FolioService (DONE)', () => {
                 const expectedAttributes = ['class', 'x', 'y', 'fill', 'dominant-baseline'].map(attr =>
                     attr.toLowerCase()
                 );
-                const actualAttributes = Array.from((textElement.node() as Element).attributes).map(attr => attr.name);
+                const actualAttributesList = (textElement.node() as Element).attributes;
+                const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
 
-                expectToBe((textElement.node() as Element).attributes.length, expectedAttributes.length);
+                expectToBe(actualAttributesList.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
@@ -1944,9 +2636,8 @@ describe('FolioService (DONE)', () => {
                     const expectedAttributes = ['class', 'x1', 'y1', 'x2', 'y2', 'stroke', 'stroke-width'].map(attr =>
                         attr.toLowerCase()
                     );
-                    const actualAttributes = Array.from((lineElement.node() as Element).attributes).map(
-                        attr => attr.name
-                    );
+                    const actualAttributesList = (lineElement.node() as Element).attributes;
+                    const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
 
                     expectToEqual(actualAttributes, expectedAttributes);
                 });
@@ -2008,7 +2699,8 @@ describe('FolioService (DONE)', () => {
             it('... should only have given attributes on the appended element', () => {
                 const group = svgSelection.select('g');
                 const expectedAttributes = Object.keys(attributes);
-                const actualAttributes = Array.from((group.node() as Element).attributes).map(attr => attr.name);
+                const actualAttributesList = (group.node() as Element).attributes;
+                const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
 
                 expectToEqual(actualAttributes, expectedAttributes);
             });
