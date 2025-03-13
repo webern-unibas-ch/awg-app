@@ -123,7 +123,7 @@ export class FolioService {
      * It calculates and provides the folio SVG data
      * to render the folio SVG.
      *
-     * @param {FolioSettings} folioSettings The given folio format settings.
+     * @param {FolioSettings} folioSettings The given folio settings.
      * @param {Folio} folio The given folio.
      * @returns {FolioSvgData} The calculated folio SVG data.
      */

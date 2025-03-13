@@ -1,5 +1,5 @@
 import { FolioSettings } from './folio-settings.model';
-import { Folio, FolioContent, FolioSection } from './folio.model';
+import { Folio, FolioContent, FolioSegment } from './folio.model';
 
 /**
  * Utility function: round.
@@ -238,18 +238,18 @@ export class FolioCalculationContentSegmentVertices {
      * It initializes the class with four points
      * for upper and lower left and upper and lower right vertices.
      *
-     * @param {FolioSection} section The given section of the folio content.
+     * @param {FolioSegment} segment The given segment of the folio content.
      * @param {FolioCalculationSystems} _systems The given calculated systems.
      * @param {number} _sectionPartition The given section partition.
      * @param {number} _segmentOffsetCorrection The given segment offset correction.
      */
     constructor(
-        section: FolioSection,
+        segment: FolioSegment,
         private readonly _systems: FolioCalculationSystems,
         private readonly _sectionPartition: number,
         private readonly _segmentOffsetCorrection: number
     ) {
-        const { startX, startY, endX, endY } = this._calculateVertices(section);
+        const { startX, startY, endX, endY } = this._calculateVertices(segment);
 
         this.UPPER_LEFT_VERTEX = new FolioCalculationPoint(startX, startY);
         this.UPPER_RIGHT_VERTEX = new FolioCalculationPoint(endX, startY);
@@ -263,14 +263,14 @@ export class FolioCalculationContentSegmentVertices {
      *
      * It calculates the vertices of a content segment.
      *
-     * @param {FolioSection} section The given section of the folio content.
+     * @param {FolioSegment} segment The given segment of the folio content.
      * @returns {FolioCalculationPoint} The calculated vertices of a content segment.
      */
-    private _calculateVertices(section: FolioSection): { startX: number; startY: number; endX: number; endY: number } {
-        const startX = this._calculateX(section, true);
-        const endX = this._calculateX(section, false);
-        const startY = this._calculateY(section, true);
-        const endY = this._calculateY(section, false);
+    private _calculateVertices(segment: FolioSegment): { startX: number; startY: number; endX: number; endY: number } {
+        const startX = this._calculateX(segment, true);
+        const endX = this._calculateX(segment, false);
+        const startY = this._calculateY(segment, true);
+        const endY = this._calculateY(segment, false);
 
         return { startX, startY, endX, endY };
     }
@@ -280,14 +280,14 @@ export class FolioCalculationContentSegmentVertices {
      *
      * It calculates the x value of the content segment vertices.
      *
-     * @param {FolioSection} section The given section of the folio content.
+     * @param {FolioSegment} segment The given segment of the folio content.
      * @param {boolean} isStart The given flag if the x value is for the start.
      * @returns {number} The calculated the content segment vertices.
      */
-    private _calculateX(section: FolioSection, isStart: boolean): number {
+    private _calculateX(segment: FolioSegment, isStart: boolean): number {
         const width = round(this._systems.SYSTEMS_DIMENSIONS.SYSTEMS_WIDTH / this._sectionPartition, 2);
 
-        const systemIndex = section.position && section.position <= this._sectionPartition ? section.position - 1 : 0;
+        const systemIndex = segment.position && segment.position <= this._sectionPartition ? segment.position - 1 : 0;
         const baseX = this._systems.SYSTEMS_DIMENSIONS.START_X;
         const offset = this._segmentOffsetCorrection / 2;
 
@@ -302,12 +302,12 @@ export class FolioCalculationContentSegmentVertices {
      *
      * It calculates the y value of the content segment vertices.
      *
-     * @param {FolioSection} section The given section of the folio content.
+     * @param {FolioSegment} segment The given segment of the folio content.
      * @param {boolean} isStart The given flag if the y value is for the start.
      * @returns {number} The calculated y value of the content segment vertices.
      */
-    private _calculateY(section: FolioSection, isStart: boolean): number {
-        let systemIndex = isStart ? section.startSystem - 1 : section.endSystem - 1;
+    private _calculateY(segment: FolioSegment, isStart: boolean): number {
+        let systemIndex = isStart ? segment.startSystem - 1 : segment.endSystem - 1;
         // Reverse order of the system index if the systems are reversed
         if (this._systems.SYSTEMS_REVERSED) {
             systemIndex = this._systems.SYSTEMS_LINES.SYSTEMS_ARRAYS.length - 1 - systemIndex;
@@ -315,7 +315,7 @@ export class FolioCalculationContentSegmentVertices {
         const systemLines = this._systems.SYSTEMS_LINES.SYSTEMS_ARRAYS[systemIndex];
 
         let offset: number;
-        switch (section.relativeToSystem) {
+        switch (segment.relativeToSystem) {
             case 'below':
                 offset = 20;
                 break;
@@ -387,9 +387,9 @@ export class FolioCalculationContentSegment {
     reversed: boolean;
 
     /**
-     * The section of a content segment.
+     * The segment of a content segment.
      */
-    section: FolioSection;
+    segment: FolioSegment;
 
     /**
      * The section partition of the content segment.
@@ -448,32 +448,32 @@ export class FolioCalculationContentSegment {
     ) {
         this.sectionPartition = content.sectionPartition ?? 1;
 
-        this._getContentSections(content);
+        this._getContentSegments(content);
     }
 
     /**
-     * Private method: _getContentSections.
+     * Private method: _getContentSegments.
      *
-     * It gets the sections of a given folio content.
+     * It gets the segments of a given folio content.
      *
      * @param {FolioContent} content The given folio content.
-     * @returns {void} Gets the sections of a given folio content.
+     * @returns {void} Gets the segments of a given folio content.
      */
-    private _getContentSections(content: FolioContent): void {
-        if (!content.sections) {
-            console.error('No sections array in content', content);
+    private _getContentSegments(content: FolioContent): void {
+        if (!content.segments) {
+            console.error('No segments array in content', content);
             return;
         }
-        if (content.sections.length > this.sectionPartition) {
-            console.error('Sections array is bigger than sectionPartition');
+        if (content.segments.length > this.sectionPartition) {
+            console.error('Segments array is bigger than sectionPartition');
             return;
         }
         if (this._systems.NUMBER_OF_SYSTEMS === 0) {
             console.error('No systems in folio');
             return;
         }
-        content.sections.forEach((section: FolioSection) => {
-            this._setProperties(content, section);
+        content.segments.forEach((segment: FolioSegment) => {
+            this._setProperties(content, segment);
         });
     }
 
@@ -483,18 +483,18 @@ export class FolioCalculationContentSegment {
      * It sets the properties of a content segment.
      *
      * @param {FolioContent} content The given folio content.
-     * @param {FolioSection} section The given section of the folio content.
+     * @param {FolioSegment} segment The given segment of the folio content.
      * @returns {void} Sets the properties of a content segment.
      */
-    private _setProperties(content: FolioContent, section: FolioSection): void {
+    private _setProperties(content: FolioContent, segment: FolioSegment): void {
         const { complexId, sheetId, selectable = true, reversed = false, linkTo = '', sigle, sigleAddendum } = content;
 
-        this.section = section;
+        this.segment = segment;
 
         const label = new FolioCalculationContentSegmentLabel(sigle, sigleAddendum);
 
         this.vertices = new FolioCalculationContentSegmentVertices(
-            section,
+            segment,
             this._systems,
             this.sectionPartition,
             this._segmentOffsetCorrection

@@ -19,7 +19,7 @@
                             "sigle": "M 34 Sk1",
                             "sigleAddendum": "T. 1–7",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 1,
                                     "endSystem": 2
@@ -32,7 +32,7 @@
                             "sigle": "M 34 Sk1",
                             "sigleAddendum": "T. 8–14",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 4,
                                     "endSystem": 5
@@ -45,7 +45,7 @@
                             "sigle": "M 34 Sk1",
                             "sigleAddendum": "T. 15–16",
                             "sectionPartition": 2,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 7,
@@ -59,7 +59,7 @@
                             "sigle": "M 34 Sk1.1",
                             "sigleAddendum": "",
                             "sectionPartition": 2,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 6,
@@ -73,7 +73,7 @@
                             "sigle": "M 35/42 Sk1",
                             "sigleAddendum": "T. 1–7",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 10,
                                     "endSystem": 11
@@ -86,7 +86,7 @@
                             "sigle": "M 35/42 Sk1",
                             "sigleAddendum": "T. 8(1–2/4)–9B",
                             "sectionPartition": 2,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 13,
@@ -100,7 +100,7 @@
                             "sigle": "M 36 Sk1",
                             "sigleAddendum": "T. 1–6",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 16,
                                     "endSystem": 17
@@ -113,7 +113,7 @@
                             "sigle": "M 36 Sk1",
                             "sigleAddendum": "T. 8–11",
                             "sectionPartition": 2,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 13,
@@ -127,7 +127,7 @@
                             "sigle": "M 36 Sk1",
                             "sigleAddendum": "T. 12",
                             "sectionPartition": 7,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 6,
                                     "startSystem": 12,
@@ -141,7 +141,7 @@
                             "sigle": "M 36 Sk1",
                             "sigleAddendum": "T. 7",
                             "sectionPartition": 7,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 6,
                                     "startSystem": 14,
@@ -155,7 +155,7 @@
                             "sigle": "M 36 Sk1",
                             "sigleAddendum": "T. 16",
                             "sectionPartition": 7,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 4,
                                     "startSystem": 15,
@@ -180,7 +180,7 @@
                             "sigleAddendum": "T. 1–{5A}",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 1,
                                     "endSystem": 2
@@ -194,7 +194,7 @@
                             "sigleAddendum": "T. 5B–7B",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 4,
                                     "endSystem": 5
@@ -208,7 +208,7 @@
                             "sigleAddendum": "T. 8A–11",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 10,
                                     "endSystem": 11
@@ -222,7 +222,7 @@
                             "sigleAddendum": "T. 12–15",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 13,
                                     "endSystem": 14
@@ -236,7 +236,7 @@
                             "sigleAddendum": "T. 16",
                             "selectable": false,
                             "sectionPartition": 3,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 16,
@@ -251,7 +251,7 @@
                             "sigleAddendum": "",
                             "selectable": false,
                             "sectionPartition": 3,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 7,
@@ -266,7 +266,7 @@
                             "sigleAddendum": "",
                             "selectable": false,
                             "sectionPartition": 3,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 7,
@@ -281,7 +281,7 @@
                             "sigleAddendum": "",
                             "selectable": false,
                             "sectionPartition": 3,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 3,
                                     "startSystem": 7,
@@ -296,7 +296,7 @@
                             "sigleAddendum": "",
                             "selectable": false,
                             "sectionPartition": 3,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 16,
@@ -310,7 +310,7 @@
                             "sigle": "M 38 Sk3",
                             "sigleAddendum": "T. 1–4",
                             "sectionPartition": 3,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 3,
                                     "startSystem": 15,
@@ -324,7 +324,7 @@
                             "sigle": "M 38 Sk3",
                             "sigleAddendum": "T. 5",
                             "sectionPartition": 4,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 4,
                                     "startSystem": 13,
@@ -338,7 +338,7 @@
                             "sigle": "M 38 Sk3",
                             "sigleAddendum": "T. 6–8",
                             "sectionPartition": 3,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 3,
                                     "startSystem": 17,
@@ -363,7 +363,7 @@
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. 1–{2A}",
                             "sectionPartition": 2,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 2,
@@ -377,7 +377,7 @@
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. {2B}–5A",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 5,
                                     "endSystem": 6
@@ -390,7 +390,7 @@
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. 5B",
                             "sectionPartition": 3,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 8,
@@ -404,7 +404,7 @@
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. 6A–{8A}",
                             "sectionPartition": 2,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 11,
@@ -418,7 +418,7 @@
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. 6B–8B",
                             "sectionPartition": 2,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 13,
@@ -432,7 +432,7 @@
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. {9A–13A}",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 16,
                                     "endSystem": 17
@@ -445,7 +445,7 @@
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. {9B}",
                             "sectionPartition": 3,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 3,
                                     "startSystem": 9,
@@ -459,7 +459,7 @@
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. 9C–10B",
                             "sectionPartition": 2,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 11,
@@ -473,7 +473,7 @@
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. 11C–12B",
                             "sectionPartition": 2,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 13,
@@ -487,7 +487,7 @@
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. 13B–14",
                             "sectionPartition": 3,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 3,
                                     "startSystem": 7,
@@ -501,7 +501,7 @@
                             "sigle": "M 39 Sk1",
                             "sigleAddendum": "T. 18–19",
                             "sectionPartition": 2,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 2,
@@ -515,7 +515,7 @@
                             "sigle": "M 39 Sk1.1",
                             "sigleAddendum": "",
                             "sectionPartition": 3,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 8,
@@ -529,7 +529,7 @@
                             "sigle": "M 37 Sk1",
                             "sigleAddendum": "",
                             "sectionPartition": 3,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 18,
@@ -543,7 +543,7 @@
                             "sigle": "M 37 Sk2",
                             "sigleAddendum": "",
                             "sectionPartition": 3,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 18,
@@ -557,7 +557,7 @@
                             "sigle": "M 38 Sk1",
                             "sigleAddendum": "",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 18,
                                     "endSystem": 18,
@@ -571,7 +571,7 @@
                             "sigle": "M 38 Sk2",
                             "sigleAddendum": "",
                             "sectionPartition": 3,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 3,
                                     "startSystem": 18,
@@ -595,7 +595,7 @@
                             "sigle": "M 38 Sk3",
                             "sigleAddendum": "T. 9–12B",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 1,
                                     "endSystem": 2
@@ -608,7 +608,7 @@
                             "sigle": "M 38 Sk3",
                             "sigleAddendum": "T. 13–17",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 4,
                                     "endSystem": 5
@@ -621,7 +621,7 @@
                             "sigle": "M 37 Sk3",
                             "sigleAddendum": "T. 1–6",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 7,
                                     "endSystem": 8
@@ -634,7 +634,7 @@
                             "sigle": "M 37 Sk3",
                             "sigleAddendum": "T. 7–14",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 10,
                                     "endSystem": 11
@@ -647,7 +647,7 @@
                             "sigle": "M 37 Sk3",
                             "sigleAddendum": "T. 15–21",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 13,
                                     "endSystem": 14
@@ -677,7 +677,7 @@
                             "sigleAddendum": "T. 1–5",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 1,
                                     "endSystem": 2
@@ -691,7 +691,7 @@
                             "sigleAddendum": "T. 6–8",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 4,
                                     "endSystem": 5
@@ -705,7 +705,7 @@
                             "sigleAddendum": "T. 1–7",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 7,
                                     "endSystem": 8
@@ -719,7 +719,7 @@
                             "sigleAddendum": "T. 8–9",
                             "selectable": false,
                             "sectionPartition": 2,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 10,
@@ -733,7 +733,7 @@
                             "sigle": "M 35/42 Sk2",
                             "sigleAddendum": "",
                             "sectionPartition": 2,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 10,
@@ -748,7 +748,7 @@
                             "sigleAddendum": "T. 1–6",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 13,
                                     "endSystem": 14
@@ -762,7 +762,7 @@
                             "sigleAddendum": "T. 7–13",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 16,
                                     "endSystem": 17
@@ -786,7 +786,7 @@
                             "sigleAddendum": "T. 14–16",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 1,
                                     "endSystem": 2
@@ -800,7 +800,7 @@
                             "sigleAddendum": "T. 1–7",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 4,
                                     "endSystem": 5
@@ -814,7 +814,7 @@
                             "sigleAddendum": "T. 8–15",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 7,
                                     "endSystem": 8
@@ -828,7 +828,7 @@
                             "sigleAddendum": "T. 16–21",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 10,
                                     "endSystem": 11
@@ -842,7 +842,7 @@
                             "sigleAddendum": "T. 1–6",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 13,
                                     "endSystem": 14
@@ -856,7 +856,7 @@
                             "sigleAddendum": "T. 7–12",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 15,
                                     "endSystem": 16
@@ -870,7 +870,7 @@
                             "sigleAddendum": "T. 13–20",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 17,
                                     "endSystem": 18
@@ -894,7 +894,7 @@
                             "sigleAddendum": "T. 1–3",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 1,
                                     "endSystem": 2
@@ -908,7 +908,7 @@
                             "sigleAddendum": "T. 4–7",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 4,
                                     "endSystem": 5
@@ -922,7 +922,7 @@
                             "sigleAddendum": "T. 8–12 → T. 8, {9–12}",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 7,
                                     "endSystem": 8
@@ -936,7 +936,7 @@
                             "sigleAddendum": "T. 13–16 → T. {13–14}, 13–14",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 10,
                                     "endSystem": 11
@@ -950,7 +950,7 @@
                             "sigleAddendum": "T. 17–19 → T. 15–17",
                             "selectable": false,
                             "sectionPartition": 2,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 13,
@@ -964,7 +964,7 @@
                             "sigle": "M 39 Sk2",
                             "sigleAddendum": "T. 9–10",
                             "sectionPartition": 2,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 16,
@@ -979,7 +979,7 @@
                             "sigleAddendum": "T. 16–17(1–2/4)",
                             "selectable": false,
                             "sectionPartition": 2,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 13,
@@ -994,7 +994,7 @@
                             "sigleAddendum": "T. 17(3–4/4)–19",
                             "selectable": false,
                             "sectionPartition": 2,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 2,
                                     "startSystem": 16,
@@ -1019,7 +1019,7 @@
                             "sigleAddendum": "T. 1–6",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 1,
                                     "endSystem": 2
@@ -1033,7 +1033,7 @@
                             "sigleAddendum": "T. 7–12",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 4,
                                     "endSystem": 5
@@ -1047,7 +1047,7 @@
                             "sigleAddendum": "T. 13–18",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 7,
                                     "endSystem": 8
@@ -1061,7 +1061,7 @@
                             "sigleAddendum": "T. 19–25",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 10,
                                     "endSystem": 11
@@ -1075,7 +1075,7 @@
                             "sigleAddendum": "T. 26–30",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 13,
                                     "endSystem": 14
@@ -1089,7 +1089,7 @@
                             "sigleAddendum": "T. 31",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 16,
                                     "endSystem": 17

@@ -18,7 +18,7 @@
                             "sigle": "M 289 / M 290 / M 291 RT (Reihentabelle op. 20)",
                             "sigleAddendum": "Reihenformen 1–16",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 1,
@@ -43,7 +43,7 @@
                             "sigleAddendum": "(Reihentabelle [Variante])",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 1,
@@ -67,7 +67,7 @@
                             "sigle": "M 289 / M 290 / M 291 RT (Reihentabelle op. 20)",
                             "sigleAddendum": "Reihenformen 17–32",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 1,
@@ -100,7 +100,7 @@
                             "sigle": "M 289 / M 290 / M 291 RT (Reihentabelle op. 20)",
                             "sigleAddendum": "Reihenformen 33–48",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "position": 1,
                                     "startSystem": 1,

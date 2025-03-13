@@ -148,36 +148,36 @@ export class FolioContent {
     sectionPartition?: number;
 
     /**
-     * The folio content's optional sections array.
+     * The folio content's optional segments array.
      */
-    sections?: FolioSection[];
+    segments?: FolioSegment[];
 }
 
 /**
- * The Folio section class.
+ * The FolioSegment class.
  *
  * It is used in the context of the edition folio convolutes
- * to store the sub level data for folio sections
+ * to store the sub level data for folio segments
  * from a folio json file.
  */
-export class FolioSection {
+export class FolioSegment {
     /**
-     * The folio section's start system.
+     * The folio segment's start system.
      */
     startSystem: number;
 
     /**
-     * The folio section's end system.
+     * The folio segment's end system.
      */
     endSystem: number;
 
     /**
-     * The folio section's optional position.
+     * The folio segment's optional position.
      */
     position?: number;
 
     /**
-     * The folio section's optional position relative to the system.
+     * The folio segment's optional position relative to the system.
      */
     relativeToSystem?: string;
 }

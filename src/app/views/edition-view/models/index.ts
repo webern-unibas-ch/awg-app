@@ -38,7 +38,7 @@ import {
 } from './folio-calculation.model';
 import { FolioSettings } from './folio-settings.model';
 import { FolioSvgContentSegment, FolioSvgData } from './folio-svg-data.model';
-import { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioDimensions, FolioSection } from './folio.model';
+import { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioDimensions, FolioSegment } from './folio.model';
 
 import { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';
 import { Intro, IntroBlock, IntroList } from './intro.model';
@@ -99,7 +99,7 @@ export {
     FolioConvolute,
     FolioConvoluteList,
     FolioDimensions,
-    FolioSection,
+    FolioSegment,
     FolioSettings,
     FolioSvgContentSegment,
     FolioSvgData,

@@ -19,7 +19,7 @@
                             "sigleAddendum": "T. 11–13",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 1,
                                     "endSystem": 2
@@ -33,7 +33,7 @@
                             "sigleAddendum": "T. 14A–15B",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 4,
                                     "endSystem": 5
@@ -46,7 +46,7 @@
                             "sigle": "M 75 Sk1",
                             "sigleAddendum": "T. 1–7B",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 6,
                                     "endSystem": 9
@@ -59,7 +59,7 @@
                             "sigle": "M 75 Sk1",
                             "sigleAddendum": "T. 8–14",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 11,
                                     "endSystem": 12
@@ -72,7 +72,7 @@
                             "sigle": "M 75 Sk1.1",
                             "sigleAddendum": "",
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 14,
                                     "endSystem": 15
@@ -111,7 +111,7 @@
                             "sigleAddendum": "T. 1–5",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 1,
                                     "endSystem": 2
@@ -125,7 +125,7 @@
                             "sigleAddendum": "T. 6–11",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 4,
                                     "endSystem": 5
@@ -139,7 +139,7 @@
                             "sigleAddendum": "T. 12–16",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 7,
                                     "endSystem": 8
@@ -153,7 +153,7 @@
                             "sigleAddendum": "T. 17–21",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 10,
                                     "endSystem": 11
@@ -177,7 +177,7 @@
                             "sigleAddendum": "T. 1–5",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 1,
                                     "endSystem": 2
@@ -191,7 +191,7 @@
                             "sigleAddendum": "T. 6–9",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 4,
                                     "endSystem": 5
@@ -205,7 +205,7 @@
                             "sigleAddendum": "T. 10–13",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 7,
                                     "endSystem": 8
@@ -219,7 +219,7 @@
                             "sigleAddendum": "T. 14",
                             "selectable": false,
                             "sectionPartition": 1,
-                            "sections": [
+                            "segments": [
                                 {
                                     "startSystem": 10,
                                     "endSystem": 11
